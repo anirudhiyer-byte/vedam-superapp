@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "@/lib/analytics/posthog-provider";
 import { GoogleAnalytics } from "@/lib/analytics/ga";
+import { UtmCapture } from "@/components/utm-capture";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -52,7 +53,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PostHogProvider>{children}</PostHogProvider>
+          <PostHogProvider>
+            <UtmCapture />
+            {children}
+          </PostHogProvider>
         </ThemeProvider>
         <GoogleAnalytics />
       </body>

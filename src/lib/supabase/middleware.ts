@@ -4,9 +4,27 @@ import { NextResponse, type NextRequest } from "next/server";
 type CookieToSet = { name: string; value: string; options?: CookieOptions };
 
 /**
- * Refreshes the Supabase auth session on every request and keeps cookies in
- * sync. Route protection (redirecting anonymous users, gating /admin by role)
- * gets added here in the auth phase — for now it only maintains the session.
+ * Routes that require a logged-in user. Prefix match. Add account/dashboard
+ * paths here as they get built. `/admin` is handled separately (needs the
+ * admin role, not just any session).
+ */
+const AUTH_REQUIRED = ["/account", "/dashboard"];
+
+/** Auth pages a logged-in user shouldn't sit on — bounce them home. */
+const AUTH_PAGES = ["/login", "/register"];
+
+function redirectWithCookies(url: URL, from: NextResponse) {
+  const res = NextResponse.redirect(url);
+  from.cookies.getAll().forEach((c) => res.cookies.set(c));
+  return res;
+}
+
+/**
+ * Refreshes the Supabase session on every request AND enforces route access:
+ *  - /admin        -> must be logged in AND have the admin role
+ *  - AUTH_REQUIRED -> must be logged in
+ *  - logged-out hits on gated routes bounce to /login?next=<path> (deeplink return)
+ *  - logged-in hits on /login|/register bounce home
  */
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
@@ -32,8 +50,42 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  // Touch the user to trigger a token refresh when needed.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const path = request.nextUrl.pathname;
+  const isAdminPath = path === "/admin" || path.startsWith("/admin/");
+  const needsAuth = AUTH_REQUIRED.some((p) => path === p || path.startsWith(p + "/"));
+  const isAuthPage = AUTH_PAGES.some((p) => path === p || path.startsWith(p + "/"));
+
+  // logged-out on a gated route -> login, remember where they were going
+  if (!user && (isAdminPath || needsAuth)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/login";
+    url.search = "";
+    url.searchParams.set("next", path + request.nextUrl.search);
+    return redirectWithCookies(url, supabaseResponse);
+  }
+
+  // admin route -> must actually be an admin
+  if (user && isAdminPath) {
+    const { data: isAdmin } = await supabase.rpc("is_admin");
+    if (!isAdmin) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/";
+      url.search = "";
+      return redirectWithCookies(url, supabaseResponse);
+    }
+  }
+
+  // already logged in -> no need to sit on login/register
+  if (user && isAuthPage) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    url.search = "";
+    return redirectWithCookies(url, supabaseResponse);
+  }
 
   return supabaseResponse;
 }
