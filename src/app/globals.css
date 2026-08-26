@@ -3,37 +3,62 @@
 @tailwind utilities;
 
 /*
-  Vedam tokens — values are RGB channels (space separated) so Tailwind's
-  `rgb(var(--x) / <alpha-value>)` mapping supports opacity in both themes.
-  Sourced from the Vedam Visual Identity Capsule.
+  Vedam tokens — from the Visual Identity Capsule.
+  Two layers:
+   1. Channel tokens (space-separated RGB) consumed by Tailwind via
+      rgb(var(--x) / <alpha-value>) so opacity modifiers work in both themes.
+   2. Atmospheric tokens (full colour values) used directly in inline styles /
+      SVG for glows, gradients, and the ecosystem hub.
+  :root = light (base). .dark = dark overrides (app defaults to dark).
 */
 :root {
-  /* Light mode */
-  --background: 249 249 249;      /* Vedam White  #F9F9F9 */
-  --surface: 255 255 255;         /* pure white surface     */
-  --surface-warm: 248 243 234;    /* Light Orange #F8F3EA   */
-  --foreground: 30 30 30;         /* Solid Black  #1E1E1E   */
-  --muted: 122 122 122;           /* readable grey          */
-  --border: 228 226 233;          /* hairline               */
+  /* channel tokens */
+  --background: 251 248 242;      /* warm off-white (not stark) */
+  --surface: 255 255 255;
+  --surface-warm: 248 243 234;    /* Light Orange #F8F3EA */
+  --foreground: 56 50 74;
+  --heading: 43 19 92;            /* Deep Violet #2B135C — brand headings */
+  --muted: 110 104 128;
+  --border: 224 219 232;
 
-  /* Brand core (constant) */
-  --primary: 249 125 3;           /* Vedam Orange     #F97D03 */
-  --accent: 138 24 255;           /* Electric Violet  #8A18FF */
-  --violet-deep: 43 19 92;        /* Vedam Violet     #2B135C */
+  --primary: 249 125 3;           /* Vedam Orange   #F97D03 */
+  --accent: 138 24 255;           /* Electric Violet #8A18FF */
+  --violet-deep: 43 19 92;
+
+  /* atmospheric (full colour) */
+  --glow-orange: rgba(249, 125, 3, 0.14);
+  --glow-violet: rgba(138, 24, 255, 0.12);
+  --hub-ring: rgba(43, 19, 92, 0.10);
+  --node-bg: #f8f3ea;
+  --node-muted-bg: rgba(43, 19, 92, 0.04);
+  --node-muted-text: #7d7791;
+  --border-strong: rgba(138, 24, 255, 0.30);
+  --pill-bg: rgba(43, 19, 92, 0.05);
+  --dot: rgba(138, 24, 255, 0.10);
 }
 
 .dark {
-  /* Dark mode — the brand book's native look */
-  --background: 12 9 49;          /* Cetacean Blue #0C0931 */
-  --surface: 29 24 86;            /* Space Cadet   #1D1856 */
-  --surface-warm: 43 19 92;       /* Vedam Violet  #2B135C */
-  --foreground: 249 249 249;      /* Vedam White   #F9F9F9 */
-  --muted: 167 167 167;           /* Light Grey    #A7A7A7 */
-  --border: 46 42 94;             /* subtle violet border  */
+  --background: 11 8 38;          /* deep brand night */
+  --surface: 20 16 56;
+  --surface-warm: 43 19 92;
+  --foreground: 237 235 247;
+  --heading: 255 255 255;
+  --muted: 154 149 180;
+  --border: 42 38 74;
 
   --primary: 249 125 3;
   --accent: 138 24 255;
   --violet-deep: 43 19 92;
+
+  --glow-orange: rgba(249, 125, 3, 0.16);
+  --glow-violet: rgba(138, 24, 255, 0.28);
+  --hub-ring: rgba(255, 255, 255, 0.10);
+  --node-bg: #1d1856;
+  --node-muted-bg: rgba(255, 255, 255, 0.04);
+  --node-muted-text: #8b86a6;
+  --border-strong: rgba(138, 24, 255, 0.35);
+  --pill-bg: rgba(255, 255, 255, 0.05);
+  --dot: rgba(138, 24, 255, 0.22);
 }
 
 * {
@@ -52,15 +77,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Gradient text helper used in the hero */
+/* ecosystem hub connector pulse */
+@keyframes flow {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+/* 3-stop brand gradient (orange -> pink -> violet) */
 .text-brand-gradient {
-  background: linear-gradient(135deg, #f97d03 0%, #8a18ff 100%);
+  background: linear-gradient(120deg, #f97d03 0%, #e80074 46%, #8a18ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

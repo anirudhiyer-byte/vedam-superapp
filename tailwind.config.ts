@@ -1,10 +1,9 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Vedam design tokens.
- * Colours are defined as raw RGB channels in globals.css (:root and .dark)
- * and referenced here as rgb(var(--token) / <alpha-value>) so Tailwind
- * opacity modifiers (e.g. bg-primary/20) keep working in both themes.
+ * Vedam design tokens. Colours are RGB channels in globals.css, referenced
+ * here as rgb(var(--token) / <alpha-value>) so opacity modifiers keep working
+ * in both themes.
  */
 const config: Config = {
   darkMode: "class",
@@ -16,21 +15,22 @@ const config: Config = {
         surface: "rgb(var(--surface) / <alpha-value>)",
         "surface-warm": "rgb(var(--surface-warm) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
+        heading: "rgb(var(--heading) / <alpha-value>)",
         muted: "rgb(var(--muted) / <alpha-value>)",
         border: "rgb(var(--border) / <alpha-value>)",
-        // Brand core (constant across themes)
-        primary: "rgb(var(--primary) / <alpha-value>)",       // Vedam Orange
-        accent: "rgb(var(--accent) / <alpha-value>)",         // Electric Violet
+        primary: "rgb(var(--primary) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
         "violet-deep": "rgb(var(--violet-deep) / <alpha-value>)",
       },
       fontFamily: {
-        // Bound to next/font CSS variables in the root layout.
         display: ["var(--font-outfit)", "system-ui", "sans-serif"],
         sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
         body: ["var(--font-nunito)", "system-ui", "sans-serif"],
+        mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg, #F97D03 0%, #8A18FF 100%)",
+        "brand-gradient":
+          "linear-gradient(120deg, #F97D03 0%, #E80074 46%, #8A18FF 100%)",
       },
       borderRadius: {
         xl: "1rem",
