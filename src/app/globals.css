@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Vedam tokens — values are RGB channels (space separated) so Tailwind's
+  `rgb(var(--x) / <alpha-value>)` mapping supports opacity in both themes.
+  Sourced from the Vedam Visual Identity Capsule.
+*/
+:root {
+  /* Light mode */
+  --background: 249 249 249;      /* Vedam White  #F9F9F9 */
+  --surface: 255 255 255;         /* pure white surface     */
+  --surface-warm: 248 243 234;    /* Light Orange #F8F3EA   */
+  --foreground: 30 30 30;         /* Solid Black  #1E1E1E   */
+  --muted: 122 122 122;           /* readable grey          */
+  --border: 228 226 233;          /* hairline               */
+
+  /* Brand core (constant) */
+  --primary: 249 125 3;           /* Vedam Orange     #F97D03 */
+  --accent: 138 24 255;           /* Electric Violet  #8A18FF */
+  --violet-deep: 43 19 92;        /* Vedam Violet     #2B135C */
+}
+
+.dark {
+  /* Dark mode — the brand book's native look */
+  --background: 12 9 49;          /* Cetacean Blue #0C0931 */
+  --surface: 29 24 86;            /* Space Cadet   #1D1856 */
+  --surface-warm: 43 19 92;       /* Vedam Violet  #2B135C */
+  --foreground: 249 249 249;      /* Vedam White   #F9F9F9 */
+  --muted: 167 167 167;           /* Light Grey    #A7A7A7 */
+  --border: 46 42 94;             /* subtle violet border  */
+
+  --primary: 249 125 3;
+  --accent: 138 24 255;
+  --violet-deep: 43 19 92;
+}
+
+* {
+  border-color: rgb(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Gradient text helper used in the hero */
+.text-brand-gradient {
+  background: linear-gradient(135deg, #f97d03 0%, #8a18ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
