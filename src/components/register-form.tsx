@@ -9,7 +9,7 @@ import { readUtm } from "@/lib/utm";
 const GRAD_YEARS = [2024, 2025, 2026, 2027, 2028];
 const STREAMS = ["PCM", "PCMB", "PCB", "Others"] as const;
 
-type Step = "details" | "otp" | "done";
+type Step = "details" | "otp" | "email" | "done";
 
 export function RegisterForm() {
   const [supabase] = useState(() => createClient());
@@ -27,15 +27,10 @@ export function RegisterForm() {
   const [streamOther, setStreamOther] = useState("");
   const [consent, setConsent] = useState(false);
   const [otp, setOtp] = useState("");
+  const [emailOtp, setEmailOtp] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
+  const [emailVerified, setEmailVerified] = useState(false);
   const [resendState, setResendState] = useState<"idle" | "sending" | "sent">("idle");
-
-  async function resendVerification() {
-    setResendState("sending");
-    const { error } = await supabase.auth.updateUser({ email: email.trim() });
-    setEmailError(error ? error.message : null);
-    setResendState(error ? "idle" : "sent");
-  }
 
   const e164 = (raw: string) => "+91" + raw.replace(/\D/g, "").slice(-10);
 
@@ -88,8 +83,6 @@ export function RegisterForm() {
     }
 
     const utm = readUtm();
-    // Ensure the profile carries everything (incl. email, which phone signup
-    // leaves blank on auth.users) — the signup trigger set the rest.
     await supabase
       .from("profiles")
       .update({
@@ -117,12 +110,37 @@ export function RegisterForm() {
       utm_campaign: utm.utm_campaign ?? null,
     });
 
-    // Attach + verify the email on this same account (sends via SMTP2GO).
+    // Attach the email -> sends a 6-digit code via SMTP2GO (email_change flow).
     const { error: emailErr } = await supabase.auth.updateUser({ email: email.trim() });
-    setEmailError(emailErr ? emailErr.message : null);
-
     setLoading(false);
+    if (emailErr) {
+      setEmailError(emailErr.message);
+      setStep("done");
+    } else {
+      setStep("email");
+    }
+  }
+
+  async function verifyEmail() {
+    setError(null);
+    if (emailOtp.replace(/\D/g, "").length < 4) return setError("Enter the code from your email.");
+    setLoading(true);
+    const { error } = await supabase.auth.verifyOtp({
+      email: email.trim(),
+      token: emailOtp.replace(/\D/g, ""),
+      type: "email_change",
+    });
+    setLoading(false);
+    if (error) return setError(error.message);
+    setEmailVerified(true);
     setStep("done");
+  }
+
+  async function resendEmailCode() {
+    setResendState("sending");
+    const { error } = await supabase.auth.updateUser({ email: email.trim() });
+    setEmailError(error ? error.message : null);
+    setResendState(error ? "idle" : "sent");
   }
 
   return (
@@ -197,10 +215,10 @@ export function RegisterForm() {
             We sent a 6-digit code to +91 {phone.replace(/\D/g, "").slice(-10)}.
           </p>
           <div className="mt-6 space-y-4">
-            <input className={inputCls + " text-center text-lg tracking-[0.4em]"} value={otp} onChange={(e) => setOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="••••••" />
+            <input className={otpCls} value={otp} onChange={(e) => setOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="••••••" />
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
             <button onClick={verify} disabled={loading} className={primaryBtn}>
-              {loading ? "Verifying…" : "Verify & create account"}
+              {loading ? "Verifying…" : "Verify phone"}
             </button>
             <button onClick={() => { setStep("details"); setOtp(""); setError(null); }} className="w-full font-body text-sm text-muted">
               ← Edit my details
@@ -209,31 +227,55 @@ export function RegisterForm() {
         </>
       )}
 
+      {step === "email" && (
+        <>
+          <h1 className="font-display text-2xl font-bold text-heading">Verify your email</h1>
+          <p className="mt-1 font-body text-sm text-muted">
+            We sent a 6-digit code to <b className="text-foreground">{email}</b>.
+          </p>
+          <div className="mt-6 space-y-4">
+            <input className={otpCls} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="••••••" />
+            {error && <p className="font-body text-sm text-red-500">{error}</p>}
+            <button onClick={verifyEmail} disabled={loading} className={primaryBtn}>
+              {loading ? "Verifying…" : "Verify email"}
+            </button>
+            <div className="flex items-center justify-between">
+              <button onClick={resendEmailCode} disabled={resendState === "sending"} className="font-body text-sm font-semibold text-accent disabled:opacity-60">
+                {resendState === "sending" ? "Sending…" : resendState === "sent" ? "Sent again ✓" : "Resend code"}
+              </button>
+              <button onClick={() => setStep("done")} className="font-body text-sm text-muted">
+                Skip for now
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
       {step === "done" && (
         <>
           <h1 className="font-display text-2xl font-bold text-heading">You&apos;re in 🎉</h1>
 
-          {emailError ? (
+          {emailVerified ? (
             <p className="mt-2 font-body text-sm leading-relaxed text-muted">
-              Your account is ready. We couldn&apos;t send the verification email to{" "}
-              <b className="text-foreground">{email}</b> just now — you can still explore, and resend it below.
+              Your account is ready and your email is verified. Welcome to Vedam.
+            </p>
+          ) : emailError ? (
+            <p className="mt-2 font-body text-sm leading-relaxed text-muted">
+              Your account is ready. We couldn&apos;t send the email code to <b className="text-foreground">{email}</b> just now — you can still explore, and resend it below.
             </p>
           ) : (
             <p className="mt-2 font-body text-sm leading-relaxed text-muted">
-              Your account is ready. We&apos;ve sent a verification link to{" "}
-              <b className="text-foreground">{email}</b> — confirm it to secure your account. You can start exploring right away.
+              Your account is ready. Your email <b className="text-foreground">{email}</b> isn&apos;t verified yet — resend the code below whenever you&apos;re ready.
             </p>
           )}
 
-          <div className="mt-4 flex items-center gap-3">
-            <button
-              onClick={resendVerification}
-              disabled={resendState === "sending"}
-              className="font-body text-sm font-semibold text-accent disabled:opacity-60"
-            >
-              {resendState === "sending" ? "Sending…" : resendState === "sent" ? "Sent again ✓" : "Resend verification email"}
-            </button>
-          </div>
+          {!emailVerified && (
+            <div className="mt-4">
+              <button onClick={resendEmailCode} disabled={resendState === "sending"} className="font-body text-sm font-semibold text-accent disabled:opacity-60">
+                {resendState === "sending" ? "Sending…" : resendState === "sent" ? "Sent again ✓" : "Resend email code"}
+              </button>
+            </div>
+          )}
 
           <button onClick={() => router.push("/")} className={primaryBtn + " mt-6"}>
             Go to Vedam
@@ -246,6 +288,7 @@ export function RegisterForm() {
 
 const inputCls =
   "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-[color:rgb(var(--accent))]";
+const otpCls = inputCls + " text-center text-lg tracking-[0.4em]";
 const primaryBtn =
   "w-full rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60";
 
