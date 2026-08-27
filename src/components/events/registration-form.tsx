@@ -102,6 +102,39 @@ export function RegistrationForm({
       user_id: userId, event_type: "event_register", app: "events",
       metadata: { event_code: event.event_code },
     });
+
+    // Fire the branded confirmation + calendar invite (best effort).
+    try {
+      const { data: s } = await supabase.auth.getSession();
+      const accessToken = s.session?.access_token;
+      if (accessToken && profile.email) {
+        void fetch("/api/events/send-confirmation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            to: profile.email,
+            name: profile.full_name,
+            accessToken,
+            event: {
+              name: event.name,
+              mode: event.mode,
+              dateMs: event.starts_at ? new Date(event.starts_at).getTime() : undefined,
+              durationMin: event.duration_minutes || 60,
+              platform: event.platform || undefined,
+              join: event.join_link || undefined,
+              host: event.host || undefined,
+              blurb: event.blurb || undefined,
+              zoomId: event.zoom_id || undefined,
+              zoomPw: event.zoom_passcode || undefined,
+              venue: event.venue || undefined,
+              mapLink: event.map_link || undefined,
+              schedule: event.schedule || null,
+            },
+          }),
+        });
+      }
+    } catch { /* email is best-effort */ }
+
     setSubmitting(false);
     onDone();
   }
