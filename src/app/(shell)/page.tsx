@@ -1,30 +1,12 @@
 import Link from "next/link";
 import { EcosystemHub } from "@/components/ecosystem-hub";
+import { HeroCta } from "@/components/hero-cta";
 
 const APPS = [
   {
     name: "Events",
     blurb: "Discover, register, and show up — every event tied to your profile.",
-    status: "Live now",
     live: true,
-  },
-  {
-    name: "CodeSprint",
-    blurb: "Watch modules, earn points, collect certificates, climb the leaderboard.",
-    status: "Coming soon",
-    live: false,
-  },
-  {
-    name: "College Predictor",
-    blurb: "Enter your JEE score and see the colleges within your reach.",
-    status: "Coming soon",
-    live: false,
-  },
-  {
-    name: "Seek Your Seniors",
-    blurb: "Clear doubts and get mentored by current Vedam students.",
-    status: "Coming soon",
-    live: false,
   },
 ];
 
@@ -81,13 +63,7 @@ export default function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/register"
-                className="rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
-                style={{ boxShadow: "0 10px 30px -10px rgba(138,24,255,.65)" }}
-              >
-                Create your account
-              </Link>
+              <HeroCta />
               <Link
                 href="/events"
                 className="rounded-xl border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface"
@@ -131,19 +107,6 @@ export default function HomePage() {
               aria-hidden
             >
               ◆
-            </span>
-            <span
-              className={[
-                "self-start rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.1em]",
-                app.live ? "text-white" : "text-accent",
-              ].join(" ")}
-              style={
-                app.live
-                  ? { background: "linear-gradient(120deg,#F97D03,#E80074)" }
-                  : { background: "var(--pill-bg)" }
-              }
-            >
-              {app.status}
             </span>
             <h3 className="font-display text-base font-semibold text-heading">
               {app.name}
