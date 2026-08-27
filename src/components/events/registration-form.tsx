@@ -110,6 +110,19 @@ export function RegistrationForm({
       user_id: userId, event_type: "event_register", app: "events", metadata: { event_code: event.event_code },
     });
 
+    // If this is a Zoom event, add the registrant so only their email can join.
+    if (event.zoom_meeting_id) {
+      try {
+        const { data: s } = await supabase.auth.getSession();
+        if (s.session?.access_token) {
+          void fetch("/api/zoom/register", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ eventId: event.id, accessToken: s.session.access_token }),
+          });
+        }
+      } catch { /* best effort */ }
+    }
+
     // Confirmation email + calendar invite (best effort).
     try {
       const { data: s } = await supabase.auth.getSession();

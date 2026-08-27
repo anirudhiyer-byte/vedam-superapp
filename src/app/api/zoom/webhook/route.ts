@@ -82,5 +82,9 @@ export async function POST(req: Request) {
       await supa.from("zoom_attendance").insert({ event_id: eventId, meeting_id: meetingId, participant_email: email, participant_name: pname, leave_time: leave, raw: participant });
     }
   }
+  else if (payload.event === "meeting.ended") {
+    if (eventId) { try { await supa.rpc("zoom_finalize_event", { p_event_id: eventId }); } catch { /* ignore */ } }
+  }
+
   return new Response("ok", { status: 200 });
 }

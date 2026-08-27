@@ -17,6 +17,7 @@ export function EventDetail({ code }: { code: string }) {
   const [userId, setUserId] = useState<string | null>(null);
   const [registered, setRegistered] = useState(false);
   const [certId, setCertId] = useState<string | null>(null);
+  const [zoomJoinUrl, setZoomJoinUrl] = useState<string | null>(null);
   const [shareDismissed, setShareDismissed] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -34,8 +35,8 @@ export function EventDetail({ code }: { code: string }) {
         if (active) setProfile((p as Profile) ?? null);
         if (ev) {
           const { data: r } = await supabase.from("event_registrations")
-            .select("id").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
-          if (active) setRegistered(!!r);
+            .select("id, zoom_join_url").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
+          if (active) { setRegistered(!!r); setZoomJoinUrl((r as { zoom_join_url?: string } | null)?.zoom_join_url ?? null); }
           if (r) {
             const { data: cert } = await supabase.from("certificates").select("id").eq("registration_id", r.id).maybeSingle();
             if (active && cert) setCertId(cert.id);
@@ -78,7 +79,7 @@ export function EventDetail({ code }: { code: string }) {
             <Detail label="When" value={eventDateLabel(event)} />
             <Detail label={off ? "Where" : "Platform"} value={eventTimeLabel(event)} />
             {off && event.map_link && <Detail label="Directions" value={<a className="text-accent" href={event.map_link} target="_blank" rel="noreferrer">Open map</a>} />}
-            {!off && event.join_link && <Detail label="Join" value={<a className="text-accent" href={event.join_link} target="_blank" rel="noreferrer">Join link</a>} />}
+            {!off && (zoomJoinUrl || event.join_link) && <Detail label="Join" value={<a className="text-accent" href={(zoomJoinUrl || event.join_link)!} target="_blank" rel="noreferrer">{zoomJoinUrl ? "Your personal join link" : "Join link"}</a>} />}
           </div>
 
           {pointsLine(event.points_config).length > 0 && (
