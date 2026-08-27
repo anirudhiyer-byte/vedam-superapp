@@ -2,7 +2,7 @@
 
 export type FieldType =
   | "text" | "phone" | "number" | "email" | "textarea"
-  | "dropdown" | "multiselect" | "checkbox";
+  | "dropdown" | "multiselect" | "checkbox" | "date" | "time";
 
 export type EventField = {
   key: string;
@@ -38,6 +38,9 @@ export type EventRow = {
   whatsapp_community_url: string | null;
   max_attendees: number | null;
   reg_close_at: string | null;
+  require_signin: boolean;
+  dashboard_enabled: boolean;
+  featured: boolean;
   ribbon_label: string | null;
   ribbon_value: string | null;
   status: string;
@@ -106,3 +109,38 @@ export function eventTimeLabel(e: EventRow): string {
 
 /** True if registration is closed (past reg_close_at). */
 export const regClosed = (e: EventRow) => !!e.reg_close_at && new Date(e.reg_close_at).getTime() < Date.now();
+
+/* ---- Admin builder constants ---- */
+export const FIELD_TYPES: { v: FieldType; label: string }[] = [
+  { v: "text", label: "Short text" },
+  { v: "textarea", label: "Long text" },
+  { v: "number", label: "Number" },
+  { v: "phone", label: "Phone" },
+  { v: "email", label: "Email" },
+  { v: "dropdown", label: "Dropdown (choose one)" },
+  { v: "multiselect", label: "Checkboxes (choose many)" },
+  { v: "checkbox", label: "Single checkbox (yes/no)" },
+  { v: "date", label: "Date" },
+  { v: "time", label: "Time" },
+];
+
+export const NEEDS_OPTIONS = (t: FieldType) => t === "dropdown" || t === "multiselect";
+
+export const CATEGORIES = ["Workshop", "Webinar", "Bootcamp", "Meetup", "Masterclass", "Other"];
+
+export const slugify = (s: string) =>
+  String(s || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 40);
+
+/** Lock keys: existing keys stay; new fields derive a unique key from their label. */
+export function normalizeSchema(fields: EventField[]): EventField[] {
+  const taken = new Set<string>();
+  return (fields || [])
+    .filter((f) => (f.label || "").trim())
+    .map((f) => {
+      let key = (f.key || "").trim() || slugify(f.label) || "field";
+      const base = key; let n = 2;
+      while (taken.has(key)) key = `${base}_${n++}`;
+      taken.add(key);
+      return { ...f, key, options: NEEDS_OPTIONS(f.type) ? (f.options || []).map((o) => o.trim()).filter(Boolean) : [] };
+    });
+}

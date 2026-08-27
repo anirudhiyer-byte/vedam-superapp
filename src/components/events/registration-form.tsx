@@ -185,7 +185,9 @@ function Field({
     return <textarea className={base} rows={3} value={value as string} placeholder={f.placeholder}
       onChange={(e) => setVal(f.key, e.target.value)} />;
   }
-  const inputType = f.type === "number" ? "number" : f.type === "email" ? "email" : f.type === "phone" ? "tel" : "text";
+  const inputType =
+    f.type === "number" ? "number" : f.type === "email" ? "email" :
+    f.type === "phone" ? "tel" : f.type === "date" ? "date" : f.type === "time" ? "time" : "text";
   return (
     <input className={base} type={inputType} value={value as string} placeholder={f.placeholder}
       inputMode={f.type === "phone" || f.type === "number" ? "numeric" : undefined}
