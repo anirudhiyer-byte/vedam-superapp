@@ -4,13 +4,18 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
-/** Landing hero CTA: "Create your account" when logged out, "Go to your dashboard" when logged in. */
+/** Landing hero CTA — reacts live to login/logout (no refresh needed). */
 export function HeroCta() {
   const [authed, setAuthed] = useState<boolean | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => setAuthed(!!data.user));
+    let active = true;
+    supabase.auth.getUser().then(({ data }) => { if (active) setAuthed(!!data.user); });
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
+      if (active) setAuthed(!!session?.user);
+    });
+    return () => { active = false; sub.subscription.unsubscribe(); };
   }, []);
 
   const href = authed ? "/dashboard" : "/register";
