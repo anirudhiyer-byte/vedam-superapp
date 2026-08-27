@@ -15,21 +15,24 @@ export async function POST(req: Request) {
   let payload: { event?: string; payload?: Record<string, unknown> };
   try { payload = JSON.parse(raw); } catch { return new Response("bad json", { status: 400 }); }
 
-  // Signature check (Zoom: v0=HMAC-SHA256 of `v0:{ts}:{body}`)
-  if (secret) {
-    const ts = req.headers.get("x-zm-request-timestamp") || "";
-    const sig = req.headers.get("x-zm-signature") || "";
-    const expected = "v0=" + crypto.createHmac("sha256", secret).update(`v0:${ts}:${raw}`).digest("hex");
-    if (!sig || !crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) {
-      return new Response("bad signature", { status: 401 });
-    }
-  }
-
-  // URL validation handshake
+  // URL validation handshake FIRST — it's self-authenticating (proves we hold
+  // the secret) and must be answered before any signature check.
   if (payload.event === "endpoint.url_validation") {
     const plainToken = (payload.payload as { plainToken?: string })?.plainToken || "";
     const encryptedToken = secret ? crypto.createHmac("sha256", secret).update(plainToken).digest("hex") : "";
     return Response.json({ plainToken, encryptedToken });
+  }
+
+  // Signature check for real events (Zoom: v0=HMAC-SHA256 of `v0:{ts}:{body}`).
+  // Length-guard before timingSafeEqual, which throws on mismatched lengths.
+  if (secret) {
+    const ts = req.headers.get("x-zm-request-timestamp") || "";
+    const sig = req.headers.get("x-zm-signature") || "";
+    const expected = "v0=" + crypto.createHmac("sha256", secret).update(`v0:${ts}:${raw}`).digest("hex");
+    const a = Buffer.from(sig), b = Buffer.from(expected);
+    if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) {
+      return new Response("bad signature", { status: 401 });
+    }
   }
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
