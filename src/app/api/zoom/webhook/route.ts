@@ -3,6 +3,17 @@ import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
 
+/** Diagnostic: open this URL in a browser to confirm the route is live and the
+ * webhook secret is actually present in THIS deployment. Reveals no secret value. */
+export async function GET() {
+  return Response.json({
+    ok: true,
+    route: "zoom-webhook",
+    secretConfigured: !!process.env.ZOOM_WEBHOOK_SECRET,
+    serviceKeyConfigured: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+  });
+}
+
 /**
  * Zoom webhook: handles URL validation + participant join/leave, writing raw
  * attendance rows keyed by meeting id + participant email. A later
