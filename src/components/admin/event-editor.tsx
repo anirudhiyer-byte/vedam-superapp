@@ -20,6 +20,7 @@ type Form = {
   ribbon_label: string; ribbon_value: string; dashboard_enabled: boolean;
   registration_schema: EventField[];
   points: Record<string, string>;
+  zoom_meeting_id: string;
 };
 
 const blank: Form = {
@@ -30,6 +31,7 @@ const blank: Form = {
   ribbon_label: "", ribbon_value: "", dashboard_enabled: false,
   registration_schema: DEFAULT_ONLINE_REG,
   points: { register: "10", attend: "20", attend_75: "30", share_linkedin: "15" },
+  zoom_meeting_id: "",
 };
 
 export function EventEditor({ id }: { id?: string }) {
@@ -69,6 +71,7 @@ export function EventEditor({ id }: { id?: string }) {
             attend_75: String(e.points_config?.attend_75 ?? 0),
             share_linkedin: String(e.points_config?.share_linkedin ?? 0),
           },
+          zoom_meeting_id: e.zoom_meeting_id || "",
         });
       }
       if (active) setLoading(false);
@@ -117,6 +120,7 @@ export function EventEditor({ id }: { id?: string }) {
       points_config: Object.fromEntries(
         POINT_ACTIONS.map((a) => [a.key, Number(f.points[a.key] || 0)]).filter(([, v]) => (v as number) > 0)
       ),
+      zoom_meeting_id: off ? null : (f.zoom_meeting_id.trim() || null),
       status: publish ? "open" : "draft",
     };
   }
@@ -196,6 +200,7 @@ export function EventEditor({ id }: { id?: string }) {
               <Row label="Duration (min)"><input type="number" className={input} value={f.duration_minutes} onChange={(e) => set("duration_minutes", e.target.value)} /></Row>
             </div>
             <Row label="Join link"><input className={input} value={f.join_link} onChange={(e) => set("join_link", e.target.value)} /></Row>
+            <Row label="Zoom meeting ID (for attendance tracking)"><input className={input} value={f.zoom_meeting_id} onChange={(e) => set("zoom_meeting_id", e.target.value)} placeholder="e.g. 88123456789" /></Row>
             {f.platform === "Zoom" && (
               <div className="grid gap-4 sm:grid-cols-2">
                 <Row label="Zoom meeting ID"><input className={input} value={f.zoom_id} onChange={(e) => set("zoom_id", e.target.value)} /></Row>

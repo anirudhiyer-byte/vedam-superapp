@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { EventRow } from "@/lib/events";
 import { isOffline, eventDateLabel, eventTimeLabel, regClosed, pointsLine, pointsTotalPossible } from "@/lib/events";
 import { RegistrationForm } from "@/components/events/registration-form";
+import { linkedInShareUrl } from "@/lib/events";
 
 type Profile = { full_name: string | null; phone: string | null; email: string | null; grad_year: number | null; stream: string | null };
 
@@ -15,6 +16,8 @@ export function EventDetail({ code }: { code: string }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [registered, setRegistered] = useState(false);
+  const [certId, setCertId] = useState<string | null>(null);
+  const [shareDismissed, setShareDismissed] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,6 +36,10 @@ export function EventDetail({ code }: { code: string }) {
           const { data: r } = await supabase.from("event_registrations")
             .select("id").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
           if (active) setRegistered(!!r);
+          if (r) {
+            const { data: cert } = await supabase.from("certificates").select("id").eq("registration_id", r.id).maybeSingle();
+            if (active && cert) setCertId(cert.id);
+          }
         }
       }
       if (active) setLoading(false);
@@ -49,6 +56,7 @@ export function EventDetail({ code }: { code: string }) {
   );
 
   const off = isOffline(event);
+  const sharePts = Number((event.points_config as Record<string, number> | null)?.share_linkedin || 0);
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-10 sm:px-8">
@@ -106,6 +114,17 @@ export function EventDetail({ code }: { code: string }) {
           <div className="text-center">
             <h2 className="font-display text-xl font-bold text-heading">You&apos;re registered 🎉</h2>
             <p className="mt-2 font-body text-sm text-muted">Your spot is locked. We&apos;ll be in touch with the details.</p>
+            {certId && !shareDismissed && (
+              <div className="mt-5 flex items-center gap-3 rounded-xl border border-border bg-surface-warm p-4 text-left">
+                <div className="min-w-0 flex-1">
+                  <p className="font-body text-sm font-semibold text-foreground">Share your certificate on LinkedIn{sharePts > 0 ? <span className="text-accent"> · +{sharePts} pts</span> : null}</p>
+                  <p className="mt-0.5 font-body text-xs text-muted">Show your network what you achieved.</p>
+                </div>
+                <a href={linkedInShareUrl(`${typeof window !== "undefined" ? window.location.origin : ""}/certificate?c=${certId}`)} target="_blank" rel="noreferrer"
+                  className="shrink-0 rounded-lg bg-[#0A66C2] px-4 py-2 text-sm font-semibold text-white">Share</a>
+                <button onClick={() => setShareDismissed(true)} aria-label="Dismiss" className="shrink-0 rounded-md px-2 py-1 text-muted hover:text-foreground">✕</button>
+              </div>
+            )}
           </div>
         ) : regClosed(event) ? (
           <p className="text-center font-body text-sm text-muted">Registration for this event has closed.</p>

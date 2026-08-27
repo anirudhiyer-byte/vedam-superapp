@@ -47,6 +47,7 @@ export type EventRow = {
   registration_schema: EventField[] | null;
   listing_extra: EventField[] | null;
   points_config: PointsConfig | null;
+  zoom_meeting_id: string | null;
   created_at: string;
 };
 
@@ -169,3 +170,20 @@ export function pointsLine(cfg: PointsConfig | null): { short: string; pts: numb
 }
 export const pointsTotalPossible = (cfg: PointsConfig | null) =>
   pointsLine(cfg).reduce((s, x) => s + x.pts, 0);
+
+
+/* ---- Certificates + LinkedIn sharing ---- */
+export type CertKind = "participation" | "winner";
+
+export function linkedInShareUrl(certUrl: string): string {
+  return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;
+}
+
+/** Default, editable LinkedIn post text for a certificate. */
+export function defaultShareText(eventName: string | null | undefined, kind: CertKind = "participation"): string {
+  const ev = eventName || "a Vedam program";
+  if (kind === "winner") {
+    return `Thrilled to share that I won ${ev} at Vedam School of Technology! 🏆 Grateful for the experience and everything I learned. #Vedam #Winner #Learning`;
+  }
+  return `Excited to share that I participated in ${ev} with Vedam School of Technology! 🎓 A great learning experience. #Vedam #Learning #Growth`;
+}

@@ -35,10 +35,11 @@ const bootcampLabel = (name?: string, dedupe = true) => {
 type Props = {
   fullName?: string; bootcampName?: string; issueDate?: string | Date; certificateId?: string;
   qrDataUrl?: string; showQr?: boolean; qrCaption?: string; scale?: number;
+  kind?: "participation" | "winner";
 };
 
 const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertificate(
-  { fullName, bootcampName, issueDate, certificateId, qrDataUrl = "", showQr = true, qrCaption = "Scan to verify", scale = 1 }, ref
+  { fullName, bootcampName, issueDate, certificateId, qrDataUrl = "", showQr = true, qrCaption = "Scan to verify", scale = 1, kind = "participation" }, ref
 ) {
   const name = fullName || "";
   const camp = bootcampLabel(bootcampName);
@@ -49,10 +50,13 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
       {/* eslint-disable @next/next/no-img-element */}
       <img src="/cert-bg.png" alt="" style={{ position: "absolute", left: 0, top: 0, width: CW, height: CH, display: "block" }} />
       <img src="/vedam-logo.png" alt="Vedam" style={{ position: "absolute", left: 477.1, top: 93.1, height: 54.9, width: "auto", display: "block" }} />
-      <div style={centred(NS, 42.09, 219, 800, PURPLE)}>Certificate of Participation</div>
-      <div style={centred(NS, 25.25, 277, 400, DARK)}>IS PROUDLY PRESENTED TO</div>
+      {kind === "winner" ? (
+        <div style={{ position: "absolute", right: 60, top: 60, background: "linear-gradient(120deg,#B8860B,#F5C542)", color: "#3a2a00", fontWeight: 800, fontSize: 14, letterSpacing: 1.5, padding: "6px 16px", borderRadius: 999 }}>🏆 WINNER</div>
+      ) : null}
+      <div style={centred(NS, kind === "winner" ? 40 : 42.09, 219, 800, kind === "winner" ? "#B8860B" : PURPLE)}>{kind === "winner" ? "Certificate of Excellence" : "Certificate of Participation"}</div>
+      <div style={centred(NS, 25.25, 277, 400, DARK)}>{kind === "winner" ? "IS PROUDLY AWARDED TO" : "IS PROUDLY PRESENTED TO"}</div>
       <div style={centred(NS, 67.35, 383, 400, PURPLE, { paddingLeft: 90, paddingRight: 90, overflow: "hidden", textOverflow: "ellipsis" })}>{name}</div>
-      <div style={centred(NS, 18.24, 451, 400, DARK)}>{`For participating in the ${camp} Bootcamp conducted by`}</div>
+      <div style={centred(NS, 18.24, 451, 400, DARK)}>{kind === "winner" ? `For winning the ${camp} Bootcamp conducted by` : `For participating in the ${camp} Bootcamp conducted by`}</div>
       <div style={centred(NS, 18.24, 478, 400, DARK)}>Vedam School of Technology.</div>
       <img src="/cert-signature.png" alt="Signature" style={{ position: "absolute", left: 270.9, top: 528, width: 147.1, height: 109.1, display: "block" }} />
       <div style={{ position: "absolute", left: 270, top: 618, width: 152, height: 1, background: RULE }} />
