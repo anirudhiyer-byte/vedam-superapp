@@ -50,6 +50,35 @@ export function Registrants({ id }: { id: string }) {
     });
   }, [rows, q]);
 
+  const [busy, setBusy] = useState<string | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+
+  async function issueCerts() {
+    if (!filtered.length || !confirm(`Issue & email certificates to ${filtered.length} registrant(s)?`)) return;
+    setBusy("certs"); setNote(null);
+    const { data: s } = await supabase.auth.getSession();
+    const res = await fetch("/api/events/send-certificates", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ registrationIds: filtered.map((r) => r.id), origin: window.location.origin, eventName: event?.name, accessToken: s.session?.access_token }),
+    });
+    const j = await res.json();
+    setBusy(null);
+    setNote(j.ok ? `Certificates: sent ${j.sent}${j.failed ? `, ${j.failed} failed` : ""}.` : `Error: ${j.error}`);
+  }
+
+  async function emailPasses() {
+    if (!filtered.length || !event) return;
+    setBusy("passes"); setNote(null);
+    const { data: s } = await supabase.auth.getSession();
+    const res = await fetch("/api/events/send-passes", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ recipients: filtered.map((r) => r.user_email).filter(Boolean), origin: window.location.origin, eventCode: event.event_code, eventName: event.name, accessToken: s.session?.access_token }),
+    });
+    const j = await res.json();
+    setBusy(null);
+    setNote(j.ok ? `Passes: sent ${j.sent}${j.failed ? `, ${j.failed} failed` : ""}.` : `Error: ${j.error}`);
+  }
+
   function exportCsv() {
     const headers = ["Name", "Email", "WhatsApp", "Passout", "Stream", "Registered", ...extraKeys.map(keyLabel)];
     const lines = [headers, ...filtered.map((r) => [
@@ -76,8 +105,11 @@ export function Registrants({ id }: { id: string }) {
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search (! to exclude)"
             className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
           <button onClick={exportCsv} disabled={!filtered.length} className="rounded-lg bg-brand-gradient px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">Export CSV</button>
+          <button onClick={issueCerts} disabled={!filtered.length || busy !== null} className="rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm disabled:opacity-50">{busy === "certs" ? "Issuing…" : "Issue certificates"}</button>
+          <button onClick={emailPasses} disabled={!filtered.length || busy !== null} className="rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm disabled:opacity-50">{busy === "passes" ? "Sending…" : "Email passes"}</button>
         </div>
       </div>
+      {note && <p className="mb-4 font-body text-sm text-foreground">{note}</p>}
 
       {filtered.length === 0 ? (
         <p className="font-body text-sm text-muted">No registrants{q ? " match" : " yet"}.</p>

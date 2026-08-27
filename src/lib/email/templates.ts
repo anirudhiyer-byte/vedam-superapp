@@ -126,3 +126,9 @@ export function campaignShell(bodyHtml: string): string {
     <tr><td style="padding:18px 34px 22px;border-top:1px solid #ece9f3;font:400 12px Arial,sans-serif;color:#7a7790" align="center">Pune &middot; Gurugram &nbsp;|&nbsp; <a href="https://vedam.org" style="color:#8A18FF;text-decoration:none;font-weight:700">vedam.org</a></td></tr>
   </table></td></tr></table></body></html>`;
 }
+
+/** Gradient CTA button for transactional emails. */
+export function buttonHtml(text: string, url: string): string {
+  if (!text || !url) return "";
+  return `<div style="text-align:center;margin:22px 0 4px"><a href="${url}" style="display:inline-block;background:linear-gradient(95deg,#F97D03 0%,#8A18FF 100%);color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:14px 34px;border-radius:11px">${text}</a></div>`;
+}

@@ -1,28 +1,15 @@
 import type { Metadata } from "next";
-import { Outfit, Nunito_Sans, JetBrains_Mono } from "next/font/google";
+import { Outfit, Nunito_Sans, JetBrains_Mono, Prompt } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "@/lib/analytics/posthog-provider";
 import { GoogleAnalytics } from "@/lib/analytics/ga";
 import { UtmCapture } from "@/components/utm-capture";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
-const nunito = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
+const nunito = Nunito_Sans({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
+const prompt = Prompt({ subsets: ["latin"], weight: ["400","500","600","700","800"], variable: "--font-prompt", display: "swap" });
 
 export const metadata: Metadata = {
   title: {
@@ -39,20 +26,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${nunito.variable} ${jetbrains.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <body className={`${outfit.variable} ${nunito.variable} ${jetbrains.variable} ${prompt.variable}`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <PostHogProvider>
             <UtmCapture />
             {children}
