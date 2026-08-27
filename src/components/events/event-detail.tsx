@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { EventRow } from "@/lib/events";
-import { isOffline, eventDateLabel, eventTimeLabel, regClosed } from "@/lib/events";
+import { isOffline, eventDateLabel, eventTimeLabel, regClosed, pointsLine, pointsTotalPossible } from "@/lib/events";
 import { RegistrationForm } from "@/components/events/registration-form";
 
 type Profile = { full_name: string | null; phone: string | null; email: string | null; grad_year: number | null; stream: string | null };
@@ -72,6 +72,22 @@ export function EventDetail({ code }: { code: string }) {
             {off && event.map_link && <Detail label="Directions" value={<a className="text-accent" href={event.map_link} target="_blank" rel="noreferrer">Open map</a>} />}
             {!off && event.join_link && <Detail label="Join" value={<a className="text-accent" href={event.join_link} target="_blank" rel="noreferrer">Join link</a>} />}
           </div>
+
+          {pointsLine(event.points_config).length > 0 && (
+            <div className="mt-5 rounded-xl border border-border bg-surface-warm p-4">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-wide text-accent">Earn Vedam points</span>
+                <span className="font-display text-sm font-bold text-heading">up to {pointsTotalPossible(event.points_config)} pts</span>
+              </div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {pointsLine(event.points_config).map((x) => (
+                  <span key={x.short} className="rounded-full border border-border bg-background px-2.5 py-1 font-body text-xs text-foreground">
+                    {x.short} <b className="text-accent">+{x.pts}</b>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           {event.blurb && <p className="mt-5 font-body text-base leading-relaxed text-foreground/90">{event.blurb}</p>}
           {event.details && <p className="mt-3 whitespace-pre-line font-body text-sm leading-relaxed text-muted">{event.details}</p>}

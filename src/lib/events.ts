@@ -46,6 +46,7 @@ export type EventRow = {
   status: string;
   registration_schema: EventField[] | null;
   listing_extra: EventField[] | null;
+  points_config: PointsConfig | null;
   created_at: string;
 };
 
@@ -144,3 +145,27 @@ export function normalizeSchema(fields: EventField[]): EventField[] {
       return { ...f, key, options: NEEDS_OPTIONS(f.type) ? (f.options || []).map((o) => o.trim()).filter(Boolean) : [] };
     });
 }
+
+
+/* ---- Points / gamification ---- */
+export type PointAction = "register" | "attend" | "attend_75" | "share_linkedin";
+export type PointsConfig = Partial<Record<PointAction, number>>;
+
+export const POINT_ACTIONS: { key: PointAction; label: string; short: string }[] = [
+  { key: "register", label: "Registering", short: "Register" },
+  { key: "attend", label: "Attending", short: "Attend" },
+  { key: "attend_75", label: "Staying for 75% of it", short: "Stay 75%" },
+  { key: "share_linkedin", label: "Sharing on LinkedIn", short: "Share on LinkedIn" },
+];
+
+export const ACTION_LABEL: Record<string, string> = {
+  register: "Registered", attend: "Attended", attend_75: "Stayed for 75%", share_linkedin: "Shared on LinkedIn",
+};
+
+/** Non-zero point rewards for an event, in display order. */
+export function pointsLine(cfg: PointsConfig | null): { short: string; pts: number }[] {
+  if (!cfg) return [];
+  return POINT_ACTIONS.map((a) => ({ short: a.short, pts: Number(cfg[a.key] || 0) })).filter((x) => x.pts > 0);
+}
+export const pointsTotalPossible = (cfg: PointsConfig | null) =>
+  pointsLine(cfg).reduce((s, x) => s + x.pts, 0);

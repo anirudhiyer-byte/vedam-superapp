@@ -10,6 +10,7 @@ import { Logo } from "@/components/logo";
  */
 const NAV = [
   { label: "Home", href: "/", ready: true, live: false },
+  { label: "Dashboard", href: "/dashboard", ready: true, live: true },
   { label: "Events", href: "/events", ready: true, live: true },
   { label: "CodeSprint", href: "/codesprint", ready: false, live: false },
   { label: "College Predictor", href: "/college-predictor", ready: false, live: false },

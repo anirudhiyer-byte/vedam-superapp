@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import {
   type EventRow, type EventField, type ScheduleDay,
-  CATEGORIES, normalizeSchema, DEFAULT_ONLINE_REG, DEFAULT_OFFLINE_REG,
+  CATEGORIES, normalizeSchema, DEFAULT_ONLINE_REG, DEFAULT_OFFLINE_REG, POINT_ACTIONS,
 } from "@/lib/events";
 import { FieldBuilder } from "@/components/admin/field-builder";
 import { ScheduleEditor } from "@/components/admin/schedule-editor";
@@ -19,6 +19,7 @@ type Form = {
   banner_url: string; whatsapp_community_url: string; max_attendees: string; reg_close_at: string;
   ribbon_label: string; ribbon_value: string; dashboard_enabled: boolean;
   registration_schema: EventField[];
+  points: Record<string, string>;
 };
 
 const blank: Form = {
@@ -28,6 +29,7 @@ const blank: Form = {
   banner_url: "", whatsapp_community_url: "", max_attendees: "", reg_close_at: "",
   ribbon_label: "", ribbon_value: "", dashboard_enabled: false,
   registration_schema: DEFAULT_ONLINE_REG,
+  points: { register: "10", attend: "20", attend_75: "30", share_linkedin: "15" },
 };
 
 export function EventEditor({ id }: { id?: string }) {
@@ -61,6 +63,12 @@ export function EventEditor({ id }: { id?: string }) {
           max_attendees: e.max_attendees ? String(e.max_attendees) : "", reg_close_at: e.reg_close_at ? new Date(e.reg_close_at).toISOString().slice(0, 16) : "",
           ribbon_label: e.ribbon_label || "", ribbon_value: e.ribbon_value || "", dashboard_enabled: e.dashboard_enabled,
           registration_schema: e.registration_schema?.length ? e.registration_schema : (e.mode === "offline" ? DEFAULT_OFFLINE_REG : DEFAULT_ONLINE_REG),
+          points: {
+            register: String(e.points_config?.register ?? 0),
+            attend: String(e.points_config?.attend ?? 0),
+            attend_75: String(e.points_config?.attend_75 ?? 0),
+            share_linkedin: String(e.points_config?.share_linkedin ?? 0),
+          },
         });
       }
       if (active) setLoading(false);
@@ -106,6 +114,9 @@ export function EventEditor({ id }: { id?: string }) {
       ribbon_label: f.ribbon_label.trim() || null, ribbon_value: f.ribbon_value.trim() || null,
       dashboard_enabled: f.dashboard_enabled,
       registration_schema: normalizeSchema(f.registration_schema),
+      points_config: Object.fromEntries(
+        POINT_ACTIONS.map((a) => [a.key, Number(f.points[a.key] || 0)]).filter(([, v]) => (v as number) > 0)
+      ),
       status: publish ? "open" : "draft",
     };
   }
@@ -211,6 +222,21 @@ export function EventEditor({ id }: { id?: string }) {
           <div className="grid grid-cols-2 gap-3">
             <Row label="Ribbon label"><input className={input} value={f.ribbon_label} onChange={(e) => set("ribbon_label", e.target.value)} /></Row>
             <Row label="Ribbon value"><input className={input} value={f.ribbon_value} onChange={(e) => set("ribbon_value", e.target.value)} /></Row>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="font-display text-sm font-bold text-heading">Points for this event</h2>
+          <p className="mb-3 mt-1 font-body text-xs text-muted">How many points each action earns. Shown to students on the event page; 0 hides an action.</p>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {POINT_ACTIONS.map((a) => (
+              <label key={a.key} className="block">
+                <span className="mb-1 block font-body text-[11px] font-semibold text-foreground">{a.short}</span>
+                <input type="number" min={0} className={input}
+                  value={f.points[a.key]}
+                  onChange={(e) => setF((s) => ({ ...s, points: { ...s.points, [a.key]: e.target.value } }))} />
+              </label>
+            ))}
           </div>
         </div>
 
