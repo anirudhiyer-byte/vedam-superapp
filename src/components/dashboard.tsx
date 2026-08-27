@@ -3,10 +3,14 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { ACTION_LABEL } from "@/lib/events";
+import { ACTION_LABEL, linkedInShareUrl } from "@/lib/events";
 
 type LedgerRow = {
   points: number; action: string; app: string; created_at: string;
+  events: { name: string | null } | null;
+};
+type CertRow = {
+  id: string; kind: "participation" | "winner"; issued_on: string;
   events: { name: string | null } | null;
 };
 
@@ -16,22 +20,25 @@ const startOfMonth = () => { const d = new Date(); return new Date(d.getFullYear
 export function Dashboard() {
   const [supabase] = useState(() => createClient());
   const [rows, setRows] = useState<LedgerRow[]>([]);
+  const [certs, setCerts] = useState<CertRow[]>([]);
+  const [origin, setOrigin] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
   const [authed, setAuthed] = useState(true);
 
   useEffect(() => {
+    setOrigin(window.location.origin);
     let active = true;
     (async () => {
       const { data: u } = await supabase.auth.getUser();
       if (!u.user) { if (active) { setAuthed(false); setLoading(false); } return; }
       const { data: p } = await supabase.from("profiles").select("full_name").eq("id", u.user.id).single();
       if (active) setName(p?.full_name?.split(" ")[0] ?? "");
-      const { data } = await supabase
-        .from("points_ledger")
-        .select("points, action, app, created_at, events(name)")
-        .order("created_at", { ascending: false });
-      if (active) { setRows((data as unknown as LedgerRow[]) ?? []); setLoading(false); }
+      const [{ data: ledger }, { data: cert }] = await Promise.all([
+        supabase.from("points_ledger").select("points, action, app, created_at, events(name)").order("created_at", { ascending: false }),
+        supabase.from("certificates").select("id, kind, issued_on, events(name)").eq("user_id", u.user.id).order("issued_on", { ascending: false }),
+      ]);
+      if (active) { setRows((ledger as unknown as LedgerRow[]) ?? []); setCerts((cert as unknown as CertRow[]) ?? []); setLoading(false); }
     })();
     return () => { active = false; };
   }, [supabase]);
@@ -48,7 +55,7 @@ export function Dashboard() {
   if (!authed) return (
     <div className="mx-auto max-w-md px-6 py-24 text-center">
       <h1 className="font-display text-2xl font-bold text-heading">Your dashboard</h1>
-      <p className="mt-2 font-body text-sm text-muted">Log in to see your points and activity.</p>
+      <p className="mt-2 font-body text-sm text-muted">Log in to see your points and certificates.</p>
       <Link href="/login?next=/dashboard" className="mt-5 inline-block rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white">Log in</Link>
     </div>
   );
@@ -56,13 +63,45 @@ export function Dashboard() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-10 sm:px-10">
       <h1 className="font-display text-3xl font-bold tracking-tight text-heading">{name ? `Hey ${name}` : "Your dashboard"}</h1>
-      <p className="mt-1 font-body text-sm text-muted">Your points across the entire Vedam ecosystem.</p>
+      <p className="mt-1 font-body text-sm text-muted">Your points and certificates across the entire Vedam ecosystem.</p>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
         <Stat label="Total points" value={stats.total} highlight />
         <Stat label="This week" value={stats.week} />
         <Stat label="This month" value={stats.month} />
       </div>
+
+      {/* Your certificates */}
+      <div className="mt-10 flex items-center justify-between">
+        <h2 className="font-display text-lg font-bold text-heading">Your certificates</h2>
+        {certs.length > 0 && <span className="font-mono text-xs text-muted">{certs.length}</span>}
+      </div>
+      {certs.length === 0 ? (
+        <p className="mt-2 font-body text-sm text-muted">No certificates yet — take part in an event and they&apos;ll show up here.</p>
+      ) : (
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {certs.map((c) => {
+            const winner = c.kind === "winner";
+            return (
+              <div key={c.id} className="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="truncate font-display text-sm font-semibold text-heading">{c.events?.name || "Vedam event"}</p>
+                    <p className="mt-0.5 font-body text-xs text-muted">Issued {new Date(c.issued_on).toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short", year: "numeric" })}</p>
+                  </div>
+                  <span className={["shrink-0 rounded-full px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide", winner ? "bg-[linear-gradient(120deg,#B8860B,#F5C542)] text-[#3a2a00]" : "bg-surface-warm text-accent"].join(" ")}>
+                    {winner ? "🏆 Winner" : "Participation"}
+                  </span>
+                </div>
+                <div className="mt-auto flex gap-2">
+                  <Link href={`/certificate?c=${c.id}`} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">View</Link>
+                  <a href={linkedInShareUrl(`${origin}/certificate?c=${c.id}`)} target="_blank" rel="noreferrer" className="flex-1 rounded-lg bg-[#0A66C2] px-3 py-2 text-center text-xs font-semibold text-white">Share</a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <h2 className="mb-3 mt-10 font-display text-lg font-bold text-heading">Recent activity</h2>
       {rows.length === 0 ? (
