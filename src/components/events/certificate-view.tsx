@@ -10,7 +10,7 @@ export function CertificateView() {
   const params = useSearchParams();
   const certId = params.get("c") || "";
   const [supabase] = useState(() => createClient());
-  const [data, setData] = useState<{ full_name: string; event_name: string; issued_on: string; kind: CertKind } | null>(null);
+  const [data, setData] = useState<{ full_name: string; event_name: string; issued_on: string; kind: CertKind; position: string | null } | null>(null);
   const [eventId, setEventId] = useState<string | null>(null);
   const [qr, setQr] = useState("");
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ export function CertificateView() {
       const row = Array.isArray(rows) ? rows[0] : rows;
       if (active && row?.valid) {
         const kind = (row.kind || "participation") as CertKind;
-        setData({ full_name: row.full_name, event_name: row.event_name, issued_on: row.issued_on, kind });
+        setData({ full_name: row.full_name, event_name: row.event_name, issued_on: row.issued_on, kind, position: row.position ?? null });
         setShareText(defaultShareText(row.event_name, kind));
         try {
           const QRCode = (await import("qrcode")).default;
@@ -68,7 +68,7 @@ export function CertificateView() {
   return (
     <div className="flex min-h-screen flex-col items-center gap-6 px-4 py-10">
       <div className="rounded-xl border border-border shadow-lg">
-        <VedamCertificate ref={ref} fullName={data.full_name} bootcampName={data.event_name} issueDate={data.issued_on} certificateId={certId} qrDataUrl={qr} scale={scale} kind={data.kind} />
+        <VedamCertificate ref={ref} fullName={data.full_name} bootcampName={data.event_name} issueDate={data.issued_on} certificateId={certId} qrDataUrl={qr} scale={scale} kind={data.kind} position={data.position} />
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-3">

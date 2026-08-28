@@ -36,10 +36,11 @@ type Props = {
   fullName?: string; bootcampName?: string; issueDate?: string | Date; certificateId?: string;
   qrDataUrl?: string; showQr?: boolean; qrCaption?: string; scale?: number;
   kind?: "participation" | "winner";
+  position?: string | null;
 };
 
 const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertificate(
-  { fullName, bootcampName, issueDate, certificateId, qrDataUrl = "", showQr = true, qrCaption = "Scan to verify", scale = 1, kind = "participation" }, ref
+  { fullName, bootcampName, issueDate, certificateId, qrDataUrl = "", showQr = true, qrCaption = "Scan to verify", scale = 1, kind = "participation", position = null }, ref
 ) {
   const name = fullName || "";
   const camp = bootcampLabel(bootcampName);
@@ -51,9 +52,12 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
       <img src="/cert-bg.png" alt="" style={{ position: "absolute", left: 0, top: 0, width: CW, height: CH, display: "block" }} />
       <img src="/vedam-logo.png" alt="Vedam" style={{ position: "absolute", left: 477.1, top: 93.1, height: 54.9, width: "auto", display: "block" }} />
       {kind === "winner" ? (
-        <div style={{ position: "absolute", right: 60, top: 60, background: "linear-gradient(120deg,#B8860B,#F5C542)", color: "#3a2a00", fontWeight: 800, fontSize: 14, letterSpacing: 1.5, padding: "6px 16px", borderRadius: 999 }}>🏆 WINNER</div>
+        <div style={{ position: "absolute", right: 60, top: 60, background: "linear-gradient(120deg,#B8860B,#F5C542)", color: "#3a2a00", fontWeight: 800, fontSize: 14, letterSpacing: 1.5, padding: "6px 16px", borderRadius: 999 }}>
+          {position === "1st" ? "🥇 1ST PLACE" : position === "2nd" ? "🥈 2ND PLACE" : position === "3rd" ? "🥉 3RD PLACE" : "🏆 WINNER"}
+        </div>
       ) : null}
       <div style={centred(NS, kind === "winner" ? 40 : 42.09, 219, 800, kind === "winner" ? "#B8860B" : PURPLE)}>{kind === "winner" ? "Certificate of Excellence" : "Certificate of Participation"}</div>
+      {kind === "winner" && position ? <div style={centred(NS, 20, 255, 700, "#B8860B")}>{position === "1st" ? "First Place" : position === "2nd" ? "Second Place" : position === "3rd" ? "Third Place" : position}</div> : null}
       <div style={centred(NS, 25.25, 277, 400, DARK)}>{kind === "winner" ? "IS PROUDLY AWARDED TO" : "IS PROUDLY PRESENTED TO"}</div>
       <div style={centred(NS, 67.35, 383, 400, PURPLE, { paddingLeft: 90, paddingRight: 90, overflow: "hidden", textOverflow: "ellipsis" })}>{name}</div>
       <div style={centred(NS, 18.24, 451, 400, DARK)}>{kind === "winner" ? `For winning the ${camp} Bootcamp conducted by` : `For participating in the ${camp} Bootcamp conducted by`}</div>

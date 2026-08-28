@@ -11,10 +11,11 @@ export async function POST(req: Request) {
     const creds = await gmailAccessToken();
     if (!creds) return Response.json({ ok: false, error: "Email not configured" }, { status: 200 });
 
-    const { registrationIds, origin, eventName, kind, accessToken } = (await req.json()) as {
-      registrationIds: string[]; origin: string; eventName?: string; kind?: "participation" | "winner"; accessToken?: string;
+    const { registrationIds, origin, eventName, kind, position, accessToken } = (await req.json()) as {
+      registrationIds: string[]; origin: string; eventName?: string; kind?: "participation" | "winner"; position?: string | null; accessToken?: string;
     };
     const certKind = kind === "winner" ? "winner" : "participation";
+    const certPos = certKind === "winner" ? (position || null) : null;
     if (!Array.isArray(registrationIds) || registrationIds.length === 0)
       return Response.json({ ok: false, error: "No recipients" }, { status: 400 });
     if (registrationIds.length > 40) return Response.json({ ok: false, error: "Batch too large (max 40)" }, { status: 400 });
@@ -37,10 +38,10 @@ export async function POST(req: Request) {
         // get-or-create the certificate
         let certId: string;
         const { data: existing } = await supa.from("certificates").select("id").eq("registration_id", regId).eq("kind", certKind).maybeSingle();
-        if (existing) { certId = existing.id; }
+        if (existing) { certId = existing.id; await supa.from("certificates").update({ position: certPos }).eq("id", certId); }
         else {
           const ins = await supa.from("certificates")
-            .insert({ registration_id: regId, event_id: reg.event_id, user_id: reg.user_id, kind: certKind })
+            .insert({ registration_id: regId, event_id: reg.event_id, user_id: reg.user_id, kind: certKind, position: certPos })
             .select("id").single();
           if (ins.error) { failures.push({ id: regId, error: ins.error.message.slice(0, 120) }); continue; }
           certId = ins.data.id;
