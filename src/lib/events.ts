@@ -187,3 +187,14 @@ export function defaultShareText(eventName: string | null | undefined, kind: Cer
   }
   return `Excited to share that I participated in ${ev} with Vedam School of Technology! 🎓 A great learning experience. #Vedam #Learning #Growth`;
 }
+
+
+/** Day + short month for the card date-block (IST). */
+export function eventDayMonth(e: EventRow): { day: string; month: string } {
+  if (!e.starts_at) return { day: "—", month: "" };
+  const d = new Date(e.starts_at);
+  return {
+    day: d.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", day: "2-digit" }),
+    month: d.toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", month: "short" }).toUpperCase(),
+  };
+}
