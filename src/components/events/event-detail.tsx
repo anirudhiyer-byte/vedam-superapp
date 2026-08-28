@@ -25,6 +25,7 @@ export function EventDetail({ code }: { code: string }) {
     (async () => {
       const { data: ev } = await supabase.from("events").select("*").eq("event_code", code).maybeSingle();
       if (active) setEvent((ev as EventRow) ?? null);
+      if (ev) { try { await supabase.rpc("log_event_view", { p_event_id: (ev as EventRow).id }); } catch { /* best effort */ } }
       const { data: u } = await supabase.auth.getUser();
       if (u.user && active) {
         setUserId(u.user.id);

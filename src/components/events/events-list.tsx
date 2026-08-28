@@ -46,7 +46,8 @@ export function EventsList() {
     });
   }, [events, q, cat]);
 
-  const [featured, ...rest] = filtered;
+  const featured = filtered.find((e) => e.featured) || filtered[0];
+  const rest = filtered.filter((e) => e !== featured);
 
   return (
     <div className="relative overflow-hidden">
