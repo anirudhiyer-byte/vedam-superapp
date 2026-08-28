@@ -110,39 +110,41 @@ export function RegistrationForm({
       user_id: userId, event_type: "event_register", app: "events", metadata: { event_code: event.event_code },
     });
 
-    // If this is a Zoom event, add the registrant so only their email can join.
-    if (event.zoom_meeting_id) {
-      try {
-        const { data: s } = await supabase.auth.getSession();
-        if (s.session?.access_token) {
-          void fetch("/api/zoom/register", {
-            method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ eventId: event.id, accessToken: s.session.access_token }),
-          });
-        }
-      } catch { /* best effort */ }
-    }
-
-    // Confirmation email + calendar invite (best effort).
+    // Resolve the join link. For Zoom events with a meeting ID, add the registrant
+    // by email → Zoom returns a PERSONAL join link (only their email can use it),
+    // which we then send in the confirmation email and show on the event page.
+    let joinLink = event.join_link || undefined;
     try {
       const { data: s } = await supabase.auth.getSession();
       const accessToken = s.session?.access_token;
-      if (accessToken && profile.email) {
-        void fetch("/api/events/send-confirmation", {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            to: profile.email, name: profile.full_name, accessToken,
-            event: {
-              name: event.name, mode: event.mode,
-              dateMs: event.starts_at ? new Date(event.starts_at).getTime() : undefined,
-              durationMin: event.duration_minutes || 60,
-              platform: event.platform || undefined, join: event.join_link || undefined,
-              host: event.host || undefined, blurb: event.blurb || undefined,
-              zoomId: event.zoom_id || undefined, zoomPw: event.zoom_passcode || undefined,
-              venue: event.venue || undefined, mapLink: event.map_link || undefined, schedule: event.schedule || null,
-            },
-          }),
-        });
+      if (accessToken) {
+        if (event.zoom_meeting_id) {
+          try {
+            const r = await fetch("/api/zoom/register", {
+              method: "POST", headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ eventId: event.id, accessToken }),
+            });
+            const j = await r.json();
+            if (j?.join_url) joinLink = j.join_url;
+          } catch { /* fall back to the generic link */ }
+        }
+        if (profile.email) {
+          void fetch("/api/events/send-confirmation", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              to: profile.email, name: profile.full_name, accessToken,
+              event: {
+                name: event.name, mode: event.mode,
+                dateMs: event.starts_at ? new Date(event.starts_at).getTime() : undefined,
+                durationMin: event.duration_minutes || 60,
+                platform: event.platform || undefined, join: joinLink,
+                host: event.host || undefined, blurb: event.blurb || undefined,
+                zoomId: event.zoom_id || undefined, zoomPw: event.zoom_passcode || undefined,
+                venue: event.venue || undefined, mapLink: event.map_link || undefined, schedule: event.schedule || null,
+              },
+            }),
+          });
+        }
       }
     } catch { /* best effort */ }
 

@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { createClient } from "@supabase/supabase-js";
+import { zoomToken, reconcileAttendance } from "@/lib/zoom";
 
 export const runtime = "nodejs";
 
@@ -83,7 +84,16 @@ export async function POST(req: Request) {
     }
   }
   else if (payload.event === "meeting.ended") {
-    if (eventId) { try { await supa.rpc("zoom_finalize_event", { p_event_id: eventId }); } catch { /* ignore */ } }
+    if (eventId) {
+      const uuid = String((obj as { uuid?: string }).uuid || meetingId);
+      try {
+        const token = await zoomToken();
+        if (token) await reconcileAttendance(supa as never, token, eventId, uuid);
+        else await supa.rpc("zoom_finalize_event", { p_event_id: eventId });
+      } catch {
+        try { await supa.rpc("zoom_finalize_event", { p_event_id: eventId }); } catch { /* ignore */ }
+      }
+    }
   }
 
   return new Response("ok", { status: 200 });

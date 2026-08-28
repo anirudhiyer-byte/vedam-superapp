@@ -77,10 +77,14 @@ export function Registrants({ id }: { id: string }) {
 
   async function recompute() {
     setBusy("recompute"); setNote(null);
-    const { data, error } = await supabase.rpc("zoom_recompute_event", { p_event_id: id });
+    const res = await fetch("/api/zoom/sync", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ eventId: id, accessToken: await token() }),
+    });
+    const j = await res.json();
     setBusy(null);
-    if (error) setNote(`Error: ${error.message}`);
-    else { setNote(`Attendance recomputed for ${data ?? 0} registrant(s).`); load(); }
+    if (!j.ok) setNote(`Error: ${j.error}`);
+    else { setNote(j.source === "report" ? `Synced ${j.applied} attendee(s) from Zoom's report.` : "Finalized from live attendance (Zoom report not ready yet — try again in a few minutes)."); load(); }
   }
 
   function exportCsv() {
@@ -115,7 +119,7 @@ export function Registrants({ id }: { id: string }) {
         <button onClick={() => issueCerts("participation")} disabled={!filtered.length || busy !== null} className={btn}>{busy === "participation" ? "Issuing…" : "Issue certificates"}</button>
         <button onClick={() => issueCerts("winner")} disabled={!filtered.length || busy !== null} className={btn}>{busy === "winner" ? "Issuing…" : "Issue winner certs"}</button>
         <button onClick={emailPasses} disabled={!filtered.length || busy !== null} className={btn}>{busy === "passes" ? "Sending…" : "Email passes"}</button>
-        {event?.zoom_meeting_id && <button onClick={recompute} disabled={busy !== null} className={btn}>{busy === "recompute" ? "Syncing…" : "Recompute attendance"}</button>}
+        {event?.zoom_meeting_id && <button onClick={recompute} disabled={busy !== null} className={btn}>{busy === "recompute" ? "Syncing…" : "Sync attendance from Zoom"}</button>}
       </div>
       {note && <p className="mb-4 font-body text-sm text-foreground">{note}</p>}
 
