@@ -16,6 +16,10 @@ export default function AdminPage() {
           <h2 className="font-display text-base font-semibold text-heading">Events</h2>
           <p className="mt-1 font-body text-sm text-muted">Host, edit, and manage events + registrations.</p>
         </Link>
+        <Link href="/admin/analytics" className="rounded-2xl border border-border bg-surface p-5 transition-transform hover:-translate-y-1">
+          <h2 className="font-display text-base font-semibold text-heading">Analytics</h2>
+          <p className="mt-1 font-body text-sm text-muted">Registration sources, trends, and funnel across events.</p>
+        </Link>
       </div>
     </div>
   );

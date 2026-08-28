@@ -12,6 +12,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
         <div className="flex items-center gap-3">
           <Link href="/admin/events" className="font-body text-sm text-muted hover:text-foreground">Events</Link>
+          <Link href="/admin/analytics" className="font-body text-sm text-muted hover:text-foreground">Analytics</Link>
           <ThemeToggle />
           <Link href="/" className="font-body text-sm text-muted hover:text-foreground">Exit</Link>
         </div>
