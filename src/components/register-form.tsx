@@ -195,7 +195,9 @@ export function RegisterForm() {
             <label className="flex items-start gap-2.5 pt-1">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-[color:rgb(var(--accent))]" />
               <span className="font-body text-xs leading-relaxed text-muted">
-                I agree to Vedam contacting me and processing my details as per the privacy policy.
+                I agree to Vedam contacting me and processing my details as per the{" "}
+                <a href="/privacy" target="_blank" className="text-accent underline">Privacy Policy</a> and{" "}
+                <a href="/terms" target="_blank" className="text-accent underline">Terms</a>.
               </span>
             </label>
 
