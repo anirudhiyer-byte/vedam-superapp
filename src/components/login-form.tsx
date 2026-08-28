@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
+import { Turnstile } from "@/components/turnstile";
 
 type Mode = "phone" | "email";
 
@@ -22,6 +23,8 @@ export function LoginForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaReset, setCaptchaReset] = useState(0);
 
   const e164 = (raw: string) => "+91" + raw.replace(/\D/g, "").slice(-10);
 
@@ -41,14 +44,15 @@ export function LoginForm() {
     setError(null);
     if (mode === "phone" && phone.replace(/\D/g, "").length < 10) return setError("Enter a valid phone number.");
     if (mode === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Enter a valid email.");
+    if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha.");
 
     setLoading(true);
     const { error } =
       mode === "phone"
-        ? await supabase.auth.signInWithOtp({ phone: e164(phone), options: { shouldCreateUser: false, channel: "sms" } })
-        : await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: false } });
+        ? await supabase.auth.signInWithOtp({ phone: e164(phone), options: { shouldCreateUser: false, channel: "sms", captchaToken: captchaToken || undefined } })
+        : await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: false, captchaToken: captchaToken || undefined } });
     setLoading(false);
-    if (error) return setError(error.message);
+    if (error) { setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError(error.message); }
     setSent(true);
   }
 
@@ -114,6 +118,7 @@ export function LoginForm() {
             ) : (
               <input className={inputCls} value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@example.com" />
             )}
+            <Turnstile onToken={setCaptchaToken} resetKey={captchaReset} />
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
             <button onClick={sendCode} disabled={loading} className={primaryBtn}>
               {loading ? "Sending code…" : "Send code"}

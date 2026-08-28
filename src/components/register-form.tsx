@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
+import { Turnstile } from "@/components/turnstile";
 
 const GRAD_YEARS = [2024, 2025, 2026, 2027, 2028];
 const STREAMS = ["PCM", "PCMB", "PCB", "Others"] as const;
@@ -26,6 +27,8 @@ export function RegisterForm() {
   const [stream, setStream] = useState<(typeof STREAMS)[number] | "">("");
   const [streamOther, setStreamOther] = useState("");
   const [consent, setConsent] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaReset, setCaptchaReset] = useState(0);
   const [otp, setOtp] = useState("");
   const [emailOtp, setEmailOtp] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
@@ -43,6 +46,7 @@ export function RegisterForm() {
     if (!stream) return setError("Select your stream.");
     if (stream === "Others" && !streamOther.trim()) return setError("Tell us your stream.");
     if (!consent) return setError("Please accept the consent to continue.");
+    if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha.");
 
     setLoading(true);
     const utm = readUtm();
@@ -51,6 +55,7 @@ export function RegisterForm() {
       options: {
         shouldCreateUser: true,
         channel: "sms",
+        captchaToken: captchaToken || undefined,
         data: {
           full_name: fullName.trim(),
           email: email.trim(),
@@ -63,7 +68,7 @@ export function RegisterForm() {
       },
     });
     setLoading(false);
-    if (error) return setError(error.message);
+    if (error) { setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError(error.message); }
     setStep("otp");
   }
 
@@ -193,6 +198,8 @@ export function RegisterForm() {
                 I agree to Vedam contacting me and processing my details as per the privacy policy.
               </span>
             </label>
+
+            <Turnstile onToken={setCaptchaToken} resetKey={captchaReset} />
 
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
 
