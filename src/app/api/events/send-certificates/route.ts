@@ -36,8 +36,8 @@ export async function POST(req: Request) {
 
         // get-or-create the certificate
         let certId: string;
-        const { data: existing } = await supa.from("certificates").select("id").eq("registration_id", regId).maybeSingle();
-        if (existing) { certId = existing.id; await supa.from("certificates").update({ kind: certKind }).eq("id", certId); }
+        const { data: existing } = await supa.from("certificates").select("id").eq("registration_id", regId).eq("kind", certKind).maybeSingle();
+        if (existing) { certId = existing.id; }
         else {
           const ins = await supa.from("certificates")
             .insert({ registration_id: regId, event_id: reg.event_id, user_id: reg.user_id, kind: certKind })

@@ -130,7 +130,7 @@ export function RegistrationForm({
         }
         if (profile.email) {
           void fetch("/api/events/send-confirmation", {
-            method: "POST", headers: { "Content-Type": "application/json" },
+            method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               to: profile.email, name: profile.full_name, accessToken,
               event: {

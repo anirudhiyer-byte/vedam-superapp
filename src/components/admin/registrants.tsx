@@ -8,6 +8,7 @@ type Reg = {
   id: string; full_name: string | null; user_email: string | null; whatsapp: string | null;
   passout_year: string | null; stream: string | null; created_at: string;
   answers: Record<string, unknown> | null; joined: boolean; attended_minutes: number;
+  utm_source: string | null; utm_medium: string | null; utm_campaign: string | null;
 };
 
 const cell = (v: unknown) => (Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v));
@@ -24,7 +25,7 @@ export function Registrants({ id }: { id: string }) {
   async function load() {
     const { data: ev } = await supabase.from("events").select("*").eq("id", id).single();
     const { data: regs } = await supabase.from("event_registrations")
-      .select("id, full_name, user_email, whatsapp, passout_year, stream, created_at, answers, joined, attended_minutes")
+      .select("id, full_name, user_email, whatsapp, passout_year, stream, created_at, answers, joined, attended_minutes, utm_source, utm_medium, utm_campaign")
       .eq("event_id", id).order("created_at", { ascending: false });
     setEvent((ev as EventRow) ?? null);
     setRows((regs as Reg[]) ?? []);
@@ -88,10 +89,11 @@ export function Registrants({ id }: { id: string }) {
   }
 
   function exportCsv() {
-    const headers = ["Name", "Email", "WhatsApp", "Passout", "Stream", "Joined", "Minutes", "Registered", ...extraKeys.map(keyLabel)];
+    const headers = ["Name", "Email", "WhatsApp", "Passout", "Stream", "Joined", "Minutes", "Source", "Medium", "Campaign", "Registered", ...extraKeys.map(keyLabel)];
     const lines = [headers, ...filtered.map((r) => [
       r.full_name, r.user_email, r.whatsapp, r.passout_year, r.stream,
       r.joined ? "Yes" : "No", r.attended_minutes,
+      r.utm_source, r.utm_medium, r.utm_campaign,
       new Date(r.created_at).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       ...extraKeys.map((k) => cell(r.answers?.[k])),
     ])];
@@ -130,7 +132,7 @@ export function Registrants({ id }: { id: string }) {
           <table className="w-full border-collapse text-left text-sm">
             <thead className="bg-surface-warm">
               <tr>
-                {["Name", "Email", "WhatsApp", "Passout", "Stream", "Joined", "Mins", ...extraKeys.map(keyLabel), "Registered"].map((h) => (
+                {["Name", "Email", "WhatsApp", "Passout", "Stream", "Joined", "Mins", "Source", "Campaign", ...extraKeys.map(keyLabel), "Registered"].map((h) => (
                   <th key={h} className="whitespace-nowrap px-3 py-2.5 font-body text-xs font-semibold text-foreground">{h}</th>
                 ))}
               </tr>
@@ -145,6 +147,8 @@ export function Registrants({ id }: { id: string }) {
                   <td className="whitespace-nowrap px-3 py-2 text-muted">{r.stream}</td>
                   <td className="whitespace-nowrap px-3 py-2">{r.joined ? <span className="text-accent">✓</span> : <span className="text-muted">—</span>}</td>
                   <td className="whitespace-nowrap px-3 py-2 text-muted">{r.attended_minutes || 0}</td>
+                  <td className="whitespace-nowrap px-3 py-2 text-muted">{r.utm_source || "—"}</td>
+                  <td className="whitespace-nowrap px-3 py-2 text-muted">{r.utm_campaign || "—"}</td>
                   {extraKeys.map((k) => <td key={k} className="whitespace-nowrap px-3 py-2 text-muted">{cell(r.answers?.[k])}</td>)}
                   <td className="whitespace-nowrap px-3 py-2 text-muted">{new Date(r.created_at).toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata" })}</td>
                 </tr>
