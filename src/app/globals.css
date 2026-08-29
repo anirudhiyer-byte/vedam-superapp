@@ -13,9 +13,9 @@
 */
 :root {
   /* channel tokens */
-  --background: 251 248 242;      /* warm off-white (not stark) */
+  --background: 248 247 254;      /* cool near-white, faint violet */
   --surface: 255 255 255;
-  --surface-warm: 248 243 234;    /* Light Orange #F8F3EA */
+  --surface-warm: 241 238 252;    /* light violet tint */
   --foreground: 56 50 74;
   --heading: 43 19 92;            /* Deep Violet #2B135C — brand headings */
   --muted: 110 104 128;
@@ -26,8 +26,8 @@
   --violet-deep: 43 19 92;
 
   /* atmospheric (full colour) */
-  --glow-orange: rgba(249, 125, 3, 0.14);
-  --glow-violet: rgba(138, 24, 255, 0.12);
+  --glow-orange: rgba(249, 125, 3, 0.18);
+  --glow-violet: rgba(138, 24, 255, 0.18);
   --hub-ring: rgba(43, 19, 92, 0.10);
   --node-bg: #f8f3ea;
   --node-muted-bg: rgba(43, 19, 92, 0.04);
@@ -50,8 +50,8 @@
   --accent: 138 24 255;
   --violet-deep: 43 19 92;
 
-  --glow-orange: rgba(249, 125, 3, 0.16);
-  --glow-violet: rgba(138, 24, 255, 0.28);
+  --glow-orange: rgba(249, 125, 3, 0.20);
+  --glow-violet: rgba(138, 24, 255, 0.34);
   --hub-ring: rgba(255, 255, 255, 0.10);
   --node-bg: #1d1856;
   --node-muted-bg: rgba(255, 255, 255, 0.04);
@@ -67,14 +67,41 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: rgb(var(--background));
 }
 
 body {
-  background-color: rgb(var(--background));
+  background-color: transparent;
   color: rgb(var(--foreground));
   font-family: var(--font-nunito), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Global ambient: brand glows + dotted grid on every page (behind content). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(820px 520px at 88% -10%, var(--glow-violet), transparent 62%),
+    radial-gradient(680px 500px at -10% 110%, var(--glow-orange), transparent 62%);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(circle at 82% 8%, #000, transparent 72%);
+  mask-image: radial-gradient(circle at 82% 8%, #000, transparent 72%);
 }
 
 /* ecosystem hub connector pulse */

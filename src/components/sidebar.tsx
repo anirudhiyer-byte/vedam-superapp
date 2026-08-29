@@ -9,6 +9,7 @@ const NAV = [
   { label: "Home", href: "/" },
   { label: "Dashboard", href: "/dashboard" },
   { label: "Events", href: "/events" },
+  { label: "Leaderboard", href: "/leaderboard" },
 ];
 
 export function Sidebar() {
