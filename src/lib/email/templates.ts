@@ -82,7 +82,7 @@ export function buildICS(ev: IcsEvent, to: string, sender: string): string {
   return foldICS(lines.join("\r\n"));
 }
 
-export function confirmationHtml(ev: IcsEvent, name?: string): string {
+export function confirmationHtml(ev: IcsEvent, name?: string, email?: string): string {
   const isOff = ev.mode === "offline";
   const istDate = (ms: number) => new Date(ms).toLocaleDateString("en-IN", { timeZone: IST, day: "numeric", month: "short", year: "numeric" });
   const detail = (label: string, val?: string) =>
@@ -98,6 +98,7 @@ export function confirmationHtml(ev: IcsEvent, name?: string): string {
     rows += detail("&#127908;&nbsp; Host", ev.host);
     rows += detail("&#127380;&nbsp; Meeting ID", ev.zoomId);
   }
+  const attendanceNote = !isOff ? `<tr><td style="padding:16px 34px 2px"><div style="background:linear-gradient(120deg,#f3eaff,#fdeede);border:1.5px solid #c9a9f0;border-radius:12px;padding:14px 18px;font:400 13px/1.6 Arial,sans-serif;color:#3a1c6e">&#9888;&#65039;&nbsp; <b style="color:#2B135C">Important — join with this email${email ? `: <span style="color:#8A18FF">${email}</span>` : ""}.</b> Your attendance is tracked by the email address this link was sent to. <b style="color:#2B135C">If you join Zoom with a different account, your attendance won't be counted</b> (and you won't earn points or your certificate).</div></td></tr>` : "";
   const ctaHref = isOff ? (ev.mapLink || "") : (ev.join || "");
   const ctaLabel = isOff ? "Get directions &#8594;" : "Join the session &#8594;";
   const cta = ctaHref ? `<tr><td align="center" style="padding:24px 34px 6px"><a href="${ctaHref}" style="display:inline-block;background:#8A18FF;color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:15px 38px;border-radius:11px">${ctaLabel}</a></td></tr>` : "";
@@ -115,6 +116,7 @@ export function confirmationHtml(ev: IcsEvent, name?: string): string {
       <p style="font:400 15px/1.65 Arial,sans-serif;color:#1c1733;margin:0 0 18px">Hi ${name || "there"} &#128075;, you're all set. Here's what you need:</p>
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf8ff;border:1px solid #ebe4fb;border-radius:13px;padding:8px 20px">${rows}</table>
     </td></tr>
+    ${attendanceNote}
     ${cta}
     ${zoomNote}
     ${wa}

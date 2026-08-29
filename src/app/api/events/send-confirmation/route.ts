@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     }
 
     const subject = `You're registered: ${event.name} \u00B7 Vedam School of Technology`;
-    const html = confirmationHtml(event, name);
+    const html = confirmationHtml(event, name, to);
     const ics = buildICS(event, to, creds.sender);
     const raw = buildRawWithIcs({ to, from: creds.sender, subject, html, ics });
     const sent = await gmailSend(creds.token, raw);
