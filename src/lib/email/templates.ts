@@ -1,4 +1,6 @@
 /** Vedam-branded email HTML builders (ported from vedam-events). */
+export { campaignShell, buttonHtml, ctaButton, topImageHtml, messageToHtml, EMAIL_TEMPLATES } from "./shell";
+export type { EmailTemplate } from "./shell";
 
 const IST = "Asia/Kolkata";
 const esc = (s: string) =>
@@ -117,18 +119,4 @@ export function confirmationHtml(ev: IcsEvent, name?: string): string {
   </table></td></tr></table>`;
 }
 
-/** Branded shell for campaign emails (admin-composed body inside). */
-export function campaignShell(bodyHtml: string): string {
-  return `<!doctype html><html><body style="margin:0;padding:24px 0;background:#f4f2f8"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f2f8"><tr><td align="center">
-  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(43,19,92,.10)">
-    <tr><td style="background:linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%);padding:30px 34px"><div style="font:800 12px Arial,sans-serif;letter-spacing:2.5px;color:#fff;text-transform:uppercase">Vedam School of Technology</div></td></tr>
-    <tr><td style="padding:30px 34px;font:400 15px/1.65 Arial,sans-serif;color:#1c1733">${bodyHtml}</td></tr>
-    <tr><td style="padding:18px 34px 22px;border-top:1px solid #ece9f3;font:400 12px Arial,sans-serif;color:#7a7790" align="center">Pune &middot; Gurugram &nbsp;|&nbsp; <a href="https://vedam.org" style="color:#8A18FF;text-decoration:none;font-weight:700">vedam.org</a></td></tr>
-  </table></td></tr></table></body></html>`;
-}
 
-/** Gradient CTA button for transactional emails. */
-export function buttonHtml(text: string, url: string): string {
-  if (!text || !url) return "";
-  return `<div style="text-align:center;margin:22px 0 4px"><a href="${url}" style="display:inline-block;background:linear-gradient(95deg,#F97D03 0%,#8A18FF 100%);color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:14px 34px;border-radius:11px">${text}</a></div>`;
-}

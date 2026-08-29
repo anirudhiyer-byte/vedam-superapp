@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { gmailAccessToken, buildRawHtml, gmailSend } from "@/lib/email/gmail";
-import { campaignShell } from "@/lib/email/templates";
+import { campaignShell, type EmailTemplate } from "@/lib/email/templates";
 
 export const runtime = "nodejs";
 
@@ -10,8 +10,8 @@ export async function POST(req: Request) {
     const creds = await gmailAccessToken();
     if (!creds) return Response.json({ ok: false, error: "Email not configured" }, { status: 200 });
 
-    const { subject, body, recipients, accessToken } = (await req.json()) as {
-      subject: string; body: string; recipients: string[]; accessToken?: string;
+    const { subject, body, recipients, template, accessToken } = (await req.json()) as {
+      subject: string; body: string; recipients: string[]; template?: EmailTemplate; accessToken?: string;
     };
     if (!subject || !body || !Array.isArray(recipients) || recipients.length === 0)
       return Response.json({ ok: false, error: "Missing subject, body, or recipients" }, { status: 400 });
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     const { data: isAdmin } = await supa.rpc("is_admin");
     if (!isAdmin) return Response.json({ ok: false, error: "Admins only" }, { status: 403 });
 
-    const html = campaignShell(body);
+    const html = campaignShell(body, template);
     let sent = 0;
     const failures: { to: string; error: string }[] = [];
     for (const to of recipients) {
