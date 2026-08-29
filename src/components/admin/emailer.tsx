@@ -21,6 +21,8 @@ export function Emailer({ id }: { id: string }) {
   const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
   const [buttons, setButtons] = useState<Btn[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const [uploadErr, setUploadErr] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
@@ -45,6 +47,20 @@ export function Emailer({ id }: { id: string }) {
   const liveHtml = useMemo(() => campaignShell(bodyHtml || "<p style='color:#999'>Your message preview appears here…</p>", template), [bodyHtml, template]);
   const [previewHtml, setPreviewHtml] = useState("");
   useEffect(() => { const t = setTimeout(() => setPreviewHtml(liveHtml), 350); return () => clearTimeout(t); }, [liveHtml]);
+
+  async function uploadImage(file: File) {
+    setUploadErr(null); setUploading(true);
+    try {
+      const ext = (file.name.split(".").pop() || "png").toLowerCase();
+      const path = `campaign/${id}-${Date.now()}.${ext}`;
+      const { error } = await supabase.storage.from("email-images").upload(path, file, { cacheControl: "3600", upsert: false });
+      if (error) throw error;
+      const { data } = supabase.storage.from("email-images").getPublicUrl(path);
+      setImage(data.publicUrl);
+    } catch (e) {
+      setUploadErr((e as Error)?.message || "Upload failed — check the email-images bucket exists.");
+    } finally { setUploading(false); }
+  }
 
   async function send() {
     if (!subject.trim() || !message.trim() || emails.length === 0) return;
@@ -99,10 +115,20 @@ export function Emailer({ id }: { id: string }) {
             <input value={subject} onChange={(e) => setSubject(e.target.value)} className={field} />
           </label>
 
-          <label className="block">
-            <span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Top image URL <span className="font-normal text-muted">(optional — shows above the message)</span></span>
-            <input value={image} onChange={(e) => setImage(e.target.value)} placeholder="https://…/banner.png" className={field} />
-          </label>
+          <div>
+            <span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Top image <span className="font-normal text-muted">(optional — shows above the message)</span></span>
+            <div className="flex flex-wrap items-center gap-2">
+              <label className="cursor-pointer rounded-lg border border-border-strong bg-surface px-3 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">
+                {uploading ? "Uploading…" : "Upload image"}
+                <input type="file" accept="image/*" className="hidden" disabled={uploading}
+                  onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadImage(f); }} />
+              </label>
+              <span className="font-mono text-xs text-muted">or paste a URL:</span>
+              <input value={image} onChange={(e) => setImage(e.target.value)} placeholder="https://…/banner.png" className={field + " flex-1"} />
+            </div>
+            {image && <div className="mt-2 flex items-center gap-2"><span className="truncate font-mono text-[11px] text-muted">{image}</span><button onClick={() => setImage("")} className="font-mono text-[11px] text-accent hover:underline">clear</button></div>}
+            {uploadErr && <p className="mt-1 font-body text-xs text-red-500">{uploadErr}</p>}
+          </div>
 
           <label className="block">
             <span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Message</span>

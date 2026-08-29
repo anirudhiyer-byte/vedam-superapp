@@ -13,6 +13,10 @@ type CertRow = {
   id: string; kind: "participation" | "winner"; issued_on: string;
   events: { name: string | null } | null;
 };
+type RegEvent = {
+  id: string; zoom_join_url: string | null;
+  events: { name: string | null; event_code: string | null; starts_at: string | null; mode: string | null; join_link: string | null } | null;
+};
 
 const startOfWeek = () => { const d = new Date(); const day = (d.getDay() + 6) % 7; d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - day); return d; };
 const startOfMonth = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); };
@@ -21,6 +25,7 @@ export function Dashboard() {
   const [supabase] = useState(() => createClient());
   const [rows, setRows] = useState<LedgerRow[]>([]);
   const [certs, setCerts] = useState<CertRow[]>([]);
+  const [regs, setRegs] = useState<RegEvent[]>([]);
   const [origin, setOrigin] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
@@ -30,15 +35,17 @@ export function Dashboard() {
     setOrigin(window.location.origin);
     let active = true;
     (async () => {
-      const { data: u } = await supabase.auth.getUser();
-      if (!u.user) { if (active) { setAuthed(false); setLoading(false); } return; }
-      const { data: p } = await supabase.from("profiles").select("full_name").eq("id", u.user.id).single();
+      const { data: { session } } = await supabase.auth.getSession();
+      const user = session?.user;
+      if (!user) { if (active) { setAuthed(false); setLoading(false); } return; }
+      const { data: p } = await supabase.from("profiles").select("full_name").eq("id", user.id).single();
       if (active) setName(p?.full_name?.split(" ")[0] ?? "");
-      const [{ data: ledger }, { data: cert }] = await Promise.all([
+      const [{ data: ledger }, { data: cert }, { data: reg }] = await Promise.all([
         supabase.from("points_ledger").select("points, action, app, created_at, events(name)").order("created_at", { ascending: false }),
-        supabase.from("certificates").select("id, kind, issued_on, events(name)").eq("user_id", u.user.id).order("issued_on", { ascending: false }),
+        supabase.from("certificates").select("id, kind, issued_on, events(name)").eq("user_id", user.id).order("issued_on", { ascending: false }),
+        supabase.from("event_registrations").select("id, zoom_join_url, events(name, event_code, starts_at, mode, join_link)").eq("user_id", user.id).order("created_at", { ascending: false }),
       ]);
-      if (active) { setRows((ledger as unknown as LedgerRow[]) ?? []); setCerts((cert as unknown as CertRow[]) ?? []); setLoading(false); }
+      if (active) { setRows((ledger as unknown as LedgerRow[]) ?? []); setCerts((cert as unknown as CertRow[]) ?? []); setRegs((reg as unknown as RegEvent[]) ?? []); setLoading(false); }
     })();
     return () => { active = false; };
   }, [supabase]);
@@ -50,6 +57,11 @@ export function Dashboard() {
     const month = rows.filter((r) => new Date(r.created_at).getTime() >= mo).reduce((s, r) => s + r.points, 0);
     return { total, week, month };
   }, [rows]);
+
+  const upcomingRegs = useMemo(() => {
+    const now = Date.now();
+    return regs.filter((r) => { const t = r.events?.starts_at ? new Date(r.events.starts_at).getTime() : null; return t == null || t >= now - 3 * 3600e3; });
+  }, [regs]);
 
   if (loading) return <div className="mx-auto max-w-4xl px-6 py-12"><div className="h-72 animate-pulse rounded-2xl border border-border bg-surface" /></div>;
   if (!authed) return (
@@ -70,6 +82,31 @@ export function Dashboard() {
         <Stat label="This week" value={stats.week} />
         <Stat label="This month" value={stats.month} />
       </div>
+
+      {/* Your registered events */}
+      {upcomingRegs.length > 0 && (
+        <>
+          <h2 className="mb-3 mt-10 font-display text-lg font-bold text-heading">Your upcoming events</h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {upcomingRegs.map((r) => {
+              const online = r.events?.mode !== "offline";
+              const joinUrl = r.zoom_join_url || r.events?.join_link || null;
+              return (
+                <div key={r.id} className="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-4">
+                  <div>
+                    <p className="truncate font-display text-sm font-semibold text-heading">{r.events?.name || "Vedam event"}</p>
+                    <p className="mt-0.5 font-mono text-xs text-muted">{r.events?.starts_at ? new Date(r.events.starts_at).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) : "Date TBA"}</p>
+                  </div>
+                  <div className="mt-auto flex gap-2">
+                    {online && joinUrl && <a href={joinUrl} target="_blank" rel="noreferrer" className="flex-1 rounded-lg bg-brand-gradient px-3 py-2 text-center text-xs font-semibold text-white">Join</a>}
+                    {r.events?.event_code && <Link href={`/events/${r.events.event_code}`} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">Details</Link>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
 
       {/* Your certificates */}
       <div className="mt-10 flex items-center justify-between">

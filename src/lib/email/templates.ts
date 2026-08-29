@@ -9,7 +9,7 @@ const esc = (s: string) =>
 export type IcsEvent = {
   name: string; mode: "online" | "offline";
   dateMs?: number; durationMin?: number;
-  platform?: string; join?: string; host?: string; blurb?: string;
+  platform?: string; join?: string; host?: string; blurb?: string; whatsapp?: string;
   zoomId?: string; zoomPw?: string; venue?: string; mapLink?: string;
   schedule?: { date?: string; slots?: { start?: string; end?: string }[] }[] | null;
 };
@@ -101,6 +101,8 @@ export function confirmationHtml(ev: IcsEvent, name?: string): string {
   const ctaHref = isOff ? (ev.mapLink || "") : (ev.join || "");
   const ctaLabel = isOff ? "Get directions &#8594;" : "Join the session &#8594;";
   const cta = ctaHref ? `<tr><td align="center" style="padding:24px 34px 6px"><a href="${ctaHref}" style="display:inline-block;background:#8A18FF;color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:15px 38px;border-radius:11px">${ctaLabel}</a></td></tr>` : "";
+  const zoomNote = (!isOff && !ev.join) ? `<tr><td style="padding:14px 34px 2px"><div style="background:#fff6ec;border:1px solid #ffe0c2;border-radius:11px;padding:13px 16px;font:400 13px/1.5 Arial,sans-serif;color:#7a5a2a">&#128231;&nbsp; Your personal joining link is in a <b>separate email from Zoom</b> &mdash; please check your inbox (and spam) closer to the session.</div></td></tr>` : "";
+  const wa = ev.whatsapp ? `<tr><td align="center" style="padding:14px 34px 2px"><a href="${ev.whatsapp}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;font:700 14px Arial,sans-serif;padding:12px 30px;border-radius:11px">Join the WhatsApp community &#8594;</a></td></tr>` : "";
 
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f1f9;margin:0;padding:26px 12px"><tr><td align="center">
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 14px 44px rgba(43,19,92,.14)">
@@ -114,6 +116,8 @@ export function confirmationHtml(ev: IcsEvent, name?: string): string {
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf8ff;border:1px solid #ebe4fb;border-radius:13px;padding:8px 20px">${rows}</table>
     </td></tr>
     ${cta}
+    ${zoomNote}
+    ${wa}
     <tr><td align="center" style="padding:16px 34px 0"><p style="font:400 13px Arial,sans-serif;color:#9a97ab;margin:0">&#128206; A calendar invite is attached.</p></td></tr>
     <tr><td style="padding:24px 34px 30px"><div style="border-top:1px solid #eeeaf6;padding-top:16px;font:400 12px Arial,sans-serif;color:#a8a5b8"><b style="color:#7a7790">Vedam School of Technology</b><br/>Pune &middot; Gurugram &nbsp;|&nbsp; <a href="https://vedam.org" style="color:#8A18FF;text-decoration:none;font-weight:700">vedam.org</a></div></td></tr>
   </table></td></tr></table>`;

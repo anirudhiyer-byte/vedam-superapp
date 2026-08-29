@@ -141,6 +141,7 @@ export function RegistrationForm({
                 host: event.host || undefined, blurb: event.blurb || undefined,
                 zoomId: event.zoom_id || undefined, zoomPw: event.zoom_passcode || undefined,
                 venue: event.venue || undefined, mapLink: event.map_link || undefined, schedule: event.schedule || null,
+                whatsapp: event.whatsapp_community_url || undefined,
               },
             }),
           });
