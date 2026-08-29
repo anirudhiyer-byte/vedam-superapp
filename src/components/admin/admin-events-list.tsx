@@ -6,7 +6,8 @@ import { createClient } from "@/lib/supabase/client";
 
 type Stat = {
   id: string; event_code: string; name: string; category: string | null; status: string;
-  starts_at: string | null; featured: boolean; registered: number; viewers: number; dropoff: number;
+  starts_at: string | null; featured: boolean; capacity: number | null;
+  registered: number; viewers: number; dropoff: number;
 };
 
 const fmtDate = (s: string | null) => s ? new Date(s).toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short", year: "numeric" }) : "—";
@@ -20,8 +21,7 @@ export function AdminEventsList() {
 
   async function load() {
     const { data } = await supabase.rpc("event_manage_stats");
-    setRows((data as Stat[]) ?? []);
-    setLoading(false);
+    setRows((data as Stat[]) ?? []); setLoading(false);
   }
   useEffect(() => { load(); /* eslint-disable-next-line */ }, []);
 
@@ -36,8 +36,7 @@ export function AdminEventsList() {
   const totals = useMemo(() => {
     const registered = rows.reduce((s, e) => s + Number(e.registered), 0);
     const viewers = rows.reduce((s, e) => s + Number(e.viewers), 0);
-    return { events: rows.length, registered, viewers, dropoff: rows.reduce((s, e) => s + Number(e.dropoff), 0),
-      rate: viewers ? Math.round((registered / viewers) * 100) : null };
+    return { events: rows.length, registered, dropoff: rows.reduce((s, e) => s + Number(e.dropoff), 0), rate: viewers ? Math.round((registered / viewers) * 100) : null };
   }, [rows]);
 
   async function toggleFeatured(e: Stat) {
@@ -55,12 +54,11 @@ export function AdminEventsList() {
     setRows((rs) => rs.filter((r) => r.id !== e.id));
   }
   function copyLink(e: Stat) {
-    navigator.clipboard.writeText(`${window.location.origin}/events/${e.event_code}`).then(() => {
-      setCopied(e.id); setTimeout(() => setCopied(null), 1500);
-    });
+    navigator.clipboard.writeText(`${window.location.origin}/events/${e.event_code}`).then(() => { setCopied(e.id); setTimeout(() => setCopied(null), 1500); });
   }
 
   const chip = "rounded-lg px-3.5 py-2 font-mono text-xs font-semibold transition-colors";
+  const iconBtn = "grid h-8 w-8 place-items-center rounded-lg border border-border text-muted transition-colors hover:bg-surface-warm hover:text-foreground";
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-10">
@@ -68,15 +66,14 @@ export function AdminEventsList() {
         <div>
           <span className="font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">// manage</span>
           <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-heading">Events</h1>
-          <p className="mt-1 font-body text-sm text-muted">Every event, its funnel, and quick actions — all in one place.</p>
+          <p className="mt-1 font-body text-sm text-muted">Live registration health across every event.</p>
         </div>
         <Link href="/admin/events/new" className="rounded-xl bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white">+ New event</Link>
       </div>
 
-      {/* summary */}
       <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Kpi label="Events" value={totals.events} />
-        <Kpi label="Total registered" value={totals.registered} accent />
+        <Kpi label="Active events" value={totals.events} />
+        <Kpi label="Total registrations" value={totals.registered} accent />
         <Kpi label="Reg. rate (registered / viewers)" text={totals.rate == null ? "—" : `${totals.rate}%`} />
         <Kpi label="Drop-off (viewed, didn't register)" value={totals.dropoff} />
       </div>
@@ -84,55 +81,59 @@ export function AdminEventsList() {
       <div className="mb-4 flex flex-wrap gap-2">
         {(["all", "upcoming", "past", "draft"] as const).map((t) => (
           <button key={t} onClick={() => setTab(t)}
-            className={[chip, tab === t ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>
-            {t}
-          </button>
+            className={[chip, tab === t ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>{t}</button>
         ))}
       </div>
 
       {loading ? (
-        <div className="space-y-3">{[0, 1, 2].map((i) => <div key={i} className="h-20 animate-pulse rounded-2xl border border-border bg-surface" />)}</div>
+        <div className="h-64 animate-pulse rounded-2xl border border-border bg-surface" />
       ) : filtered.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border-strong bg-surface p-10 text-center">
           <p className="font-display text-lg font-bold text-heading">Nothing here yet</p>
           <p className="mt-1 font-body text-sm text-muted">{tab === "all" ? "Create your first event to get started." : `No ${tab} events.`}</p>
         </div>
       ) : (
-        <div className="space-y-3">
-          {filtered.map((e) => (
-            <div key={e.id} className="rounded-2xl border border-border bg-surface p-4 transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(43,19,92,0.35)]">
-              <div className="flex flex-wrap items-start gap-4">
-                <button onClick={() => toggleFeatured(e)} title={e.featured ? "Unfeature" : "Feature (show first)"}
-                  className={["mt-0.5 text-lg leading-none transition-transform hover:scale-110", e.featured ? "text-primary" : "text-muted/40"].join(" ")}>
-                  {e.featured ? "★" : "☆"}
-                </button>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Link href={`/admin/events/${e.id}`} className="truncate font-display text-base font-bold text-heading hover:text-accent">{e.name}</Link>
-                    {e.category && <span className="rounded-full bg-surface-warm px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wide text-accent">{e.category}</span>}
-                    <span className={["rounded-full px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wide", e.status === "open" ? "bg-brand-gradient text-white" : "bg-surface-warm text-muted"].join(" ")}>{e.status}</span>
-                  </div>
-                  <div className="mt-1 font-mono text-xs text-muted">{e.event_code} · {fmtDate(e.starts_at)}</div>
-
-                  {/* funnel stats */}
-                  <div className="mt-3 flex flex-wrap gap-4">
-                    <Stat3 k="Registered" v={e.registered} strong />
-                    <Stat3 k="Viewers" v={e.viewers} />
-                    <Stat3 k="Drop-off" v={e.dropoff} />
-                    <Stat3text k="Reg. rate" v={Number(e.viewers) ? `${Math.round((Number(e.registered) / Number(e.viewers)) * 100)}%` : "—"} />
-                  </div>
-                </div>
-
-                {/* actions */}
-                <div className="flex shrink-0 flex-wrap gap-2">
-                  <button onClick={() => copyLink(e)} className="rounded-md border border-border px-2.5 py-1.5 font-mono text-xs text-muted hover:text-foreground">{copied === e.id ? "copied ✓" : "🔗 link"}</button>
-                  <button onClick={() => toggleStatus(e)} className="rounded-md border border-border px-2.5 py-1.5 text-xs font-medium text-muted hover:text-foreground">{e.status === "open" ? "Unpublish" : "Publish"}</button>
-                  <Link href={`/admin/events/${e.id}`} className="rounded-md border border-border px-2.5 py-1.5 text-xs font-medium text-foreground hover:bg-surface-warm">Edit</Link>
-                  <button onClick={() => remove(e)} className="rounded-md border border-red-400/40 px-2.5 py-1.5 text-xs font-medium text-red-500 hover:bg-red-500/5">Delete</button>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-x-auto rounded-2xl border border-border bg-surface">
+          <table className="w-full border-collapse text-left text-sm">
+            <thead>
+              <tr className="border-b border-border">
+                {["", "Event", "Category", "Date", "Registered", "Drop-off", "Event ID", ""].map((h, i) => (
+                  <th key={i} className="whitespace-nowrap px-3 py-3 font-mono text-[10px] font-semibold uppercase tracking-wider text-muted">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((e) => {
+                const pct = e.capacity && e.capacity > 0 ? Math.min(100, Math.round((Number(e.registered) / e.capacity) * 100)) : null;
+                return (
+                  <tr key={e.id} className="border-b border-border last:border-0 hover:bg-surface-warm/30">
+                    <td className="px-3 py-3">
+                      <button onClick={() => toggleFeatured(e)} title={e.featured ? "Unfeature" : "Feature"} className={["text-base leading-none transition-transform hover:scale-110", e.featured ? "text-primary" : "text-muted/30"].join(" ")}>{e.featured ? "★" : "☆"}</button>
+                    </td>
+                    <td className="max-w-[240px] px-3 py-3">
+                      <Link href={`/admin/events/${e.id}`} className="block truncate font-display font-bold text-heading hover:text-accent">{e.name}</Link>
+                      <button onClick={() => toggleStatus(e)} className={["mt-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide", e.status === "open" ? "text-accent" : "text-muted"].join(" ")}>{e.status === "open" ? "● published" : "○ draft"}</button>
+                    </td>
+                    <td className="px-3 py-3">{e.category ? <span className="whitespace-nowrap rounded-full bg-brand-gradient px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-wide text-white">{e.category}</span> : <span className="text-muted">—</span>}</td>
+                    <td className="whitespace-nowrap px-3 py-3 font-mono text-xs text-muted">{fmtDate(e.starts_at)}</td>
+                    <td className="min-w-[130px] px-3 py-3">
+                      <div className="font-display text-sm font-bold text-heading">{Number(e.registered).toLocaleString("en-IN")}{e.capacity ? <span className="font-mono text-xs font-normal text-muted">/{e.capacity.toLocaleString("en-IN")}</span> : null}</div>
+                      {pct != null && <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-surface-warm"><div className="h-full rounded-full bg-brand-gradient" style={{ width: `${pct}%` }} /></div>}
+                    </td>
+                    <td className="px-3 py-3 font-display text-sm font-bold text-[#E80074]">{Number(e.dropoff).toLocaleString("en-IN")}</td>
+                    <td className="whitespace-nowrap px-3 py-3 font-mono text-[11px] text-muted">{e.event_code}</td>
+                    <td className="px-3 py-3">
+                      <div className="flex items-center gap-1.5">
+                        <button onClick={() => copyLink(e)} title="Copy deep link" className={iconBtn}>{copied === e.id ? "✓" : "🔗"}</button>
+                        <Link href={`/admin/events/${e.id}`} title="Edit" className={iconBtn}>✎</Link>
+                        <button onClick={() => remove(e)} title="Delete" className="grid h-8 w-8 place-items-center rounded-lg border border-red-400/40 text-red-500 transition-colors hover:bg-red-500/5">🗑</button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
@@ -142,24 +143,8 @@ export function AdminEventsList() {
 function Kpi({ label, value, text, accent }: { label: string; value?: number; text?: string; accent?: boolean }) {
   return (
     <div className={["rounded-2xl border border-border p-4", accent ? "bg-brand-gradient text-white" : "bg-surface"].join(" ")}>
-      <div className={["font-mono text-[10px] font-semibold uppercase tracking-wide", accent ? "text-white/80" : "text-muted"].join(" ")}>{label}</div>
-      <div className={["mt-1 font-display text-2xl font-extrabold", accent ? "text-white" : "text-heading"].join(" ")}>{text ?? (value ?? 0).toLocaleString("en-IN")}</div>
-    </div>
-  );
-}
-function Stat3text({ k, v }: { k: string; v: string }) {
-  return (
-    <div>
-      <div className="font-mono text-[10px] uppercase tracking-wide text-muted">{k}</div>
-      <div className="font-display text-lg font-bold text-accent">{v}</div>
-    </div>
-  );
-}
-function Stat3({ k, v, strong }: { k: string; v: number; strong?: boolean }) {
-  return (
-    <div>
-      <div className="font-mono text-[10px] uppercase tracking-wide text-muted">{k}</div>
-      <div className={["font-display text-lg font-bold", strong ? "text-primary" : "text-heading"].join(" ")}>{Number(v).toLocaleString("en-IN")}</div>
+      <div className={["font-display text-3xl font-extrabold", accent ? "text-white" : "text-heading"].join(" ")}>{text ?? (value ?? 0).toLocaleString("en-IN")}</div>
+      <div className={["mt-1 font-body text-xs", accent ? "text-white/80" : "text-muted"].join(" ")}>{label}</div>
     </div>
   );
 }

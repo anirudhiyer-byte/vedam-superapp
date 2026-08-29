@@ -14,6 +14,7 @@ export function EventsList() {
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("All");
+  const [view, setView] = useState<"upcoming" | "past" | "featured">("upcoming");
 
   useEffect(() => {
     let active = true;
@@ -36,18 +37,24 @@ export function EventsList() {
     [events]
   );
 
+  const now = Date.now();
   const filtered = useMemo(() => {
     const terms = q.toLowerCase().split(/[,;\n]/).map((t) => t.trim()).filter(Boolean);
     return events.filter((e) => {
+      const t = e.starts_at ? new Date(e.starts_at).getTime() : null;
+      if (view === "past" && !(t != null && t < now)) return false;
+      if (view === "upcoming" && !(t == null || t >= now)) return false;
+      if (view === "featured" && !e.featured) return false;
       if (cat !== "All" && e.category !== cat) return false;
       if (!terms.length) return true;
       const hay = `${e.name} ${e.host ?? ""} ${e.category ?? ""} ${e.blurb ?? ""}`.toLowerCase();
-      return terms.some((t) => hay.includes(t));
+      return terms.some((t2) => hay.includes(t2));
     });
-  }, [events, q, cat]);
+  }, [events, q, cat, view, now]);
 
-  const featured = filtered.find((e) => e.featured) || filtered[0];
-  const rest = filtered.filter((e) => e !== featured);
+  // featured hero only makes sense in the upcoming view
+  const featured = view === "upcoming" ? (filtered.find((e) => e.featured) || filtered[0]) : undefined;
+  const rest = featured ? filtered.filter((e) => e !== featured) : filtered;
 
   return (
     <div className="relative overflow-hidden">
@@ -69,7 +76,17 @@ export function EventsList() {
           Bootcamps, sprints, and live sessions for JEE aspirants. Show up, learn, earn points, and collect certificates — all on one account.
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3">
+        <div className="mt-6 flex flex-wrap gap-2">
+          {(["upcoming", "past", "featured"] as const).map((v) => (
+            <button key={v} onClick={() => setView(v)}
+              className={["rounded-lg px-4 py-2 font-mono text-xs font-semibold capitalize transition-colors",
+                view === v ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>
+              {v}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-3">
           <div className="flex flex-1 items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2.5 sm:max-w-xs">
             <span className="text-muted">⌕</span>
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search events…"
@@ -92,8 +109,8 @@ export function EventsList() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="mt-10 rounded-2xl border border-dashed border-border-strong bg-surface p-10 text-center">
-            <p className="font-display text-lg font-bold text-heading">No events {q || cat !== "All" ? "match your filters" : "just yet"}</p>
-            <p className="mt-1 font-body text-sm text-muted">{q || cat !== "All" ? "Try clearing the search or category." : "New sessions drop regularly — check back soon."}</p>
+            <p className="font-display text-lg font-bold text-heading">No {view === "upcoming" ? "upcoming" : view} events {q || cat !== "All" ? "match your filters" : "yet"}</p>
+            <p className="mt-1 font-body text-sm text-muted">{q || cat !== "All" ? "Try clearing the search or category." : view === "past" ? "Past sessions will appear here after they wrap." : "New sessions drop regularly — check back soon."}</p>
           </div>
         ) : (
           <>
