@@ -194,9 +194,9 @@ export function RegistrationForm({
 
 function Detail({ label, value }: { label: string; value: string | null }) {
   return (
-    <div>
+    <div className="min-w-0">
       <dt className="font-mono text-[10px] font-semibold uppercase tracking-wide text-muted">{label}</dt>
-      <dd className="font-body text-sm font-medium text-foreground">{value || "—"}</dd>
+      <dd className="break-all font-body text-sm font-medium text-foreground">{value || "—"}</dd>
     </div>
   );
 }

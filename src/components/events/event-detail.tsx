@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { EventRow } from "@/lib/events";
-import { isOffline, eventDateLabel, eventTimeLabel, regClosed, pointsLine, pointsTotalPossible, linkedInShareUrl } from "@/lib/events";
+import { isOffline, eventDateLabel, eventTimeLabel, regClosed, pointsLine, pointsTotalPossible } from "@/lib/events";
 import { RegistrationForm } from "@/components/events/registration-form";
 
 type Profile = { full_name: string | null; phone: string | null; email: string | null; grad_year: number | null; stream: string | null };
@@ -15,9 +15,7 @@ export function EventDetail({ code }: { code: string }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [registered, setRegistered] = useState(false);
-  const [certId, setCertId] = useState<string | null>(null);
   const [zoomJoinUrl, setZoomJoinUrl] = useState<string | null>(null);
-  const [shareDismissed, setShareDismissed] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,10 +34,6 @@ export function EventDetail({ code }: { code: string }) {
           const { data: r } = await supabase.from("event_registrations")
             .select("id, zoom_join_url").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
           if (active) { setRegistered(!!r); setZoomJoinUrl((r as { zoom_join_url?: string } | null)?.zoom_join_url ?? null); }
-          if (r) {
-            const { data: cert } = await supabase.from("certificates").select("id").eq("registration_id", r.id).maybeSingle();
-            if (active && cert) setCertId(cert.id);
-          }
         }
       }
       if (active) setLoading(false);
@@ -56,7 +50,6 @@ export function EventDetail({ code }: { code: string }) {
   );
 
   const off = isOffline(event);
-  const sharePts = Number((event.points_config as Record<string, number> | null)?.share_linkedin || 0);
   const joinUrl = zoomJoinUrl || event.join_link;
   const wa = event.whatsapp_community_url && /^https?:\/\//.test(event.whatsapp_community_url) ? event.whatsapp_community_url : null;
   const facts: { k: string; v: React.ReactNode }[] = [
@@ -149,16 +142,7 @@ export function EventDetail({ code }: { code: string }) {
                     🔗 {zoomJoinUrl ? "Your personal join link" : "Join link"}
                   </a>
                 )}
-                {certId && !shareDismissed && (
-                  <div className="mt-3">
-                    <a href={linkedInShareUrl(`${typeof window !== "undefined" ? window.location.origin : ""}/certificate?c=${certId}`)} target="_blank" rel="noreferrer"
-                      className="block rounded-xl bg-[#0A66C2] px-4 py-2.5 text-center text-sm font-semibold text-white">
-                      Share on LinkedIn{sharePts > 0 ? ` · +${sharePts} pts` : ""}
-                    </a>
-                    <button onClick={() => setShareDismissed(true)} className="mt-2 w-full font-mono text-[11px] text-muted hover:text-foreground">dismiss</button>
-                  </div>
-                )}
-                <p className="mt-3 text-center font-body text-xs text-muted">We&apos;ve emailed your details + calendar invite.</p>
+                                <p className="mt-3 text-center font-body text-xs text-muted">We&apos;ve emailed your details + calendar invite.</p>
               </div>
             ) : regClosed(event) ? (
               <p className="py-4 text-center font-body text-sm text-muted">Registration for this event has closed.</p>

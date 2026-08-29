@@ -146,9 +146,9 @@ export function Analytics() {
 
       {/* KPIs */}
       <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Kpi label={filters.length ? "Matching (MQL)" : "Total registrations"} value={segTotal} accent />
+        <Kpi label="MQL — matching registrations" value={segTotal} accent />
         <Kpi label="Unique registrants" value={unique} />
-        <Kpi label="Of all in range" text={rows.length ? `${Math.round((segTotal / rows.length) * 100)}%` : "—"} />
+        <Kpi label="Share of date range" text={rows.length ? `${Math.round((segTotal / rows.length) * 100)}%` : "—"} />
         <Kpi label="Latest registration" text={latest ? new Date(latest).toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short" }) : "—"} />
       </div>
 

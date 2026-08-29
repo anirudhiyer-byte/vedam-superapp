@@ -2,13 +2,16 @@
 
 export type EmailTemplate = "brand" | "sunset" | "minimal" | "dark";
 
-type Theme = { bg: string; header: string; headerText: string; card: string; text: string; muted: string; footBorder: string; headerExtra?: string };
+type Theme = { bg: string; header: string; headerText: string; card: string; text: string; muted: string; footBorder: string; headerExtra?: string; logo: string };
+
+// Absolute base for email images — update on domain cutover to vedam.org.
+const LOGO_BASE = "https://vedam-superapp.vercel.app";
 
 const THEMES: Record<EmailTemplate, Theme> = {
-  brand:   { bg: "#f4f2f8", header: "linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%)", headerText: "#ffffff", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#ece9f3" },
-  sunset:  { bg: "#fff5ec", header: "linear-gradient(120deg,#F97D03 0%,#E80074 100%)", headerText: "#ffffff", card: "#ffffff", text: "#2b1733", muted: "#8a6a70", footBorder: "#f6e4d8" },
-  minimal: { bg: "#f6f6f9", header: "#ffffff", headerText: "#2B135C", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#eeeeee", headerExtra: "border-bottom:1px solid #eee;" },
-  dark:    { bg: "#0e0a1c", header: "linear-gradient(125deg,#2B135C 0%,#8A18FF 100%)", headerText: "#ffffff", card: "#181230", text: "#e9e4fb", muted: "#a99fc9", footBorder: "#2a2150" },
+  brand:   { bg: "#f4f2f8", header: "linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%)", headerText: "#ffffff", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#ece9f3", logo: LOGO_BASE + "/vedam-logo-dark.png" },
+  sunset:  { bg: "#fff5ec", header: "linear-gradient(120deg,#F97D03 0%,#E80074 100%)", headerText: "#ffffff", card: "#ffffff", text: "#2b1733", muted: "#8a6a70", footBorder: "#f6e4d8", logo: LOGO_BASE + "/vedam-logo-dark.png" },
+  minimal: { bg: "#f6f6f9", header: "#ffffff", headerText: "#2B135C", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#eeeeee", headerExtra: "border-bottom:1px solid #eee;", logo: LOGO_BASE + "/vedam-logo.png" },
+  dark:    { bg: "#0e0a1c", header: "linear-gradient(125deg,#2B135C 0%,#8A18FF 100%)", headerText: "#ffffff", card: "#181230", text: "#e9e4fb", muted: "#a99fc9", footBorder: "#2a2150", logo: LOGO_BASE + "/vedam-logo-dark.png" },
 };
 
 export const EMAIL_TEMPLATES: { key: EmailTemplate; label: string }[] = [
@@ -23,7 +26,7 @@ export function campaignShell(bodyHtml: string, template: EmailTemplate = "brand
   return `<!doctype html><html><body style="margin:0;padding:24px 0;background:${t.bg}">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${t.bg}"><tr><td align="center">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:${t.card};border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(43,19,92,.10)">
-      <tr><td style="background:${t.header};padding:30px 34px;${t.headerExtra || ""}"><div style="font:800 12px Arial,sans-serif;letter-spacing:2.5px;color:${t.headerText};text-transform:uppercase">Vedam School of Technology</div></td></tr>
+      <tr><td style="background:${t.header};padding:26px 34px;${t.headerExtra || ""}"><img src="${t.logo}" alt="Vedam School of Technology" height="30" style="height:30px;display:block;border:0" /></td></tr>
       <tr><td style="padding:30px 34px;font:400 15px/1.65 Arial,sans-serif;color:${t.text}">${bodyHtml}</td></tr>
       <tr><td style="padding:18px 34px 22px;border-top:1px solid ${t.footBorder};font:400 12px Arial,sans-serif;color:${t.muted}" align="center">Pune &middot; Gurugram &nbsp;|&nbsp; <a href="https://vedam.org" style="color:#8A18FF;text-decoration:none;font-weight:700">vedam.org</a></td></tr>
     </table></td></tr></table></body></html>`;

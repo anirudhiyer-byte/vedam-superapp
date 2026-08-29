@@ -79,8 +79,7 @@ export function EventsList() {
             {categories.map((c) => (
               <button key={c} onClick={() => setCat(c)}
                 className={["rounded-full px-4 py-2 font-mono text-xs font-semibold transition-colors",
-                  cat === c ? "bg-heading text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}
-                style={cat === c ? { background: "rgb(var(--heading))" } : undefined}>
+                  cat === c ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>
                 {c}
               </button>
             ))}
@@ -141,7 +140,7 @@ function FeaturedEvent({ event, registered }: { event: EventRow; registered?: bo
           {event.host && <span>with {event.host}</span>}
         </div>
         <div className="mt-5 flex items-center gap-3">
-          <span className="rounded-xl bg-white px-5 py-2.5 font-display text-sm font-semibold text-[color:rgb(var(--heading))]">
+          <span className="rounded-xl bg-white px-5 py-2.5 font-display text-sm font-semibold text-[#2B135C]">
             {registered ? "You're registered →" : "Register free →"}
           </span>
           {pts > 0 && <span className="rounded-full px-3.5 py-2 font-mono text-xs font-bold text-[#3a2400]" style={{ background: "linear-gradient(120deg,#F97D03,#ffb15e)" }}>+{pts} pts</span>}

@@ -33,11 +33,12 @@ export function AdminEventsList() {
     return true;
   }), [rows, tab, now]);
 
-  const totals = useMemo(() => ({
-    events: rows.length,
-    registered: rows.reduce((s, e) => s + Number(e.registered), 0),
-    dropoff: rows.reduce((s, e) => s + Number(e.dropoff), 0),
-  }), [rows]);
+  const totals = useMemo(() => {
+    const registered = rows.reduce((s, e) => s + Number(e.registered), 0);
+    const viewers = rows.reduce((s, e) => s + Number(e.viewers), 0);
+    return { events: rows.length, registered, viewers, dropoff: rows.reduce((s, e) => s + Number(e.dropoff), 0),
+      rate: viewers ? Math.round((registered / viewers) * 100) : null };
+  }, [rows]);
 
   async function toggleFeatured(e: Stat) {
     await supabase.from("events").update({ featured: !e.featured }).eq("id", e.id);
@@ -73,17 +74,17 @@ export function AdminEventsList() {
       </div>
 
       {/* summary */}
-      <div className="mb-6 grid gap-3 sm:grid-cols-3">
+      <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Kpi label="Events" value={totals.events} />
         <Kpi label="Total registered" value={totals.registered} accent />
+        <Kpi label="Reg. rate (registered / viewers)" text={totals.rate == null ? "—" : `${totals.rate}%`} />
         <Kpi label="Drop-off (viewed, didn't register)" value={totals.dropoff} />
       </div>
 
       <div className="mb-4 flex flex-wrap gap-2">
         {(["all", "upcoming", "past", "draft"] as const).map((t) => (
           <button key={t} onClick={() => setTab(t)}
-            className={[chip, tab === t ? "bg-heading text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}
-            style={tab === t ? { background: "rgb(var(--heading))" } : undefined}>
+            className={[chip, tab === t ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>
             {t}
           </button>
         ))}
@@ -118,6 +119,7 @@ export function AdminEventsList() {
                     <Stat3 k="Registered" v={e.registered} strong />
                     <Stat3 k="Viewers" v={e.viewers} />
                     <Stat3 k="Drop-off" v={e.dropoff} />
+                    <Stat3text k="Reg. rate" v={Number(e.viewers) ? `${Math.round((Number(e.registered) / Number(e.viewers)) * 100)}%` : "—"} />
                   </div>
                 </div>
 
@@ -137,11 +139,19 @@ export function AdminEventsList() {
   );
 }
 
-function Kpi({ label, value, accent }: { label: string; value: number; accent?: boolean }) {
+function Kpi({ label, value, text, accent }: { label: string; value?: number; text?: string; accent?: boolean }) {
   return (
     <div className={["rounded-2xl border border-border p-4", accent ? "bg-brand-gradient text-white" : "bg-surface"].join(" ")}>
       <div className={["font-mono text-[10px] font-semibold uppercase tracking-wide", accent ? "text-white/80" : "text-muted"].join(" ")}>{label}</div>
-      <div className={["mt-1 font-display text-2xl font-extrabold", accent ? "text-white" : "text-heading"].join(" ")}>{value.toLocaleString("en-IN")}</div>
+      <div className={["mt-1 font-display text-2xl font-extrabold", accent ? "text-white" : "text-heading"].join(" ")}>{text ?? (value ?? 0).toLocaleString("en-IN")}</div>
+    </div>
+  );
+}
+function Stat3text({ k, v }: { k: string; v: string }) {
+  return (
+    <div>
+      <div className="font-mono text-[10px] uppercase tracking-wide text-muted">{k}</div>
+      <div className="font-display text-lg font-bold text-accent">{v}</div>
     </div>
   );
 }

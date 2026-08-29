@@ -27,6 +27,7 @@ const config: Config = {
         sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
         body: ["var(--font-nunito)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
+        prompt: ["var(--font-prompt)", "serif"],
       },
       backgroundImage: {
         "brand-gradient":

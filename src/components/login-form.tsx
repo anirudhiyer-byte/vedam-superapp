@@ -52,7 +52,7 @@ export function LoginForm() {
         ? await supabase.auth.signInWithOtp({ phone: e164(phone), options: { shouldCreateUser: false, channel: "sms", captchaToken: captchaToken || undefined } })
         : await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: false, captchaToken: captchaToken || undefined } });
     setLoading(false);
-    if (error) { setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError(error.message); }
+    if (error) { setCaptchaToken(null); setCaptchaReset((x) => x + 1); const friendly = /signups? not allowed/i.test(error.message) ? "No account found with these details yet. Please create an account first." : error.message; return setError(friendly); }
     setSent(true);
   }
 

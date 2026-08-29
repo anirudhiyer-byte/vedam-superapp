@@ -42,7 +42,9 @@ export function Emailer({ id }: { id: string }) {
     topImageHtml(image) + messageToHtml(message || "") + buttons.filter((b) => b.label && b.url).map((b) => ctaButton(b.label, b.url)).join(""),
   [image, message, buttons]);
 
-  const previewHtml = useMemo(() => campaignShell(bodyHtml || "<p style='color:#999'>Your message preview appears here…</p>", template), [bodyHtml, template]);
+  const liveHtml = useMemo(() => campaignShell(bodyHtml || "<p style='color:#999'>Your message preview appears here…</p>", template), [bodyHtml, template]);
+  const [previewHtml, setPreviewHtml] = useState("");
+  useEffect(() => { const t = setTimeout(() => setPreviewHtml(liveHtml), 350); return () => clearTimeout(t); }, [liveHtml]);
 
   async function send() {
     if (!subject.trim() || !message.trim() || emails.length === 0) return;
