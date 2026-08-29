@@ -68,9 +68,18 @@ export async function updateSession(request: NextRequest) {
     return redirectWithCookies(url, supabaseResponse);
   }
 
-  // admin route -> must actually be an admin
+  // admin route -> must actually be an admin.
+  // Fast path: verified @vedam.org staff are admins by domain (matches is_admin()),
+  // so we skip the network RPC — this also avoids a cold-load race that could
+  // transiently return false and bounce a real admin home.
   if (user && isAdminPath) {
-    const { data: isAdmin } = await supabase.rpc("is_admin");
+    const email = (user.email ?? "").toLowerCase();
+    const isStaffDomain = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
+    let isAdmin = isStaffDomain;
+    if (!isAdmin) {
+      const { data } = await supabase.rpc("is_admin");
+      isAdmin = !!data;
+    }
     if (!isAdmin) {
       const url = request.nextUrl.clone();
       url.pathname = "/";
