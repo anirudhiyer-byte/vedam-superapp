@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { EventRow, EventField } from "@/lib/events";
 
 type Reg = {
-  id: string; full_name: string | null; user_email: string | null; whatsapp: string | null;
+  id: string; user_id: string | null; full_name: string | null; user_email: string | null; whatsapp: string | null;
   passout_year: string | null; stream: string | null; created_at: string;
   answers: Record<string, unknown> | null; joined: boolean; attended_minutes: number;
   utm_source: string | null; utm_medium: string | null; utm_campaign: string | null;
@@ -30,7 +30,7 @@ export function Registrants({ id }: { id: string }) {
   async function load() {
     const { data: ev } = await supabase.from("events").select("*").eq("id", id).single();
     const { data: regs } = await supabase.from("event_registrations")
-      .select("id, full_name, user_email, whatsapp, passout_year, stream, created_at, answers, joined, attended_minutes, utm_source, utm_medium, utm_campaign")
+      .select("id, user_id, full_name, user_email, whatsapp, passout_year, stream, created_at, answers, joined, attended_minutes, utm_source, utm_medium, utm_campaign")
       .eq("event_id", id).order("created_at", { ascending: false });
     setEvent((ev as EventRow) ?? null);
     setRows((regs as Reg[]) ?? []);
@@ -123,6 +123,20 @@ export function Registrants({ id }: { id: string }) {
     else { setNote(j.source === "report" ? `Synced ${j.applied} attendee(s) from Zoom.` : "Finalized from live data (Zoom report not ready — retry in a few minutes)."); load(); }
   }
 
+  async function awardPoints() {
+    const list = targets.filter((r) => r.user_id);
+    if (!list.length || !confirm(`Award attendance points to ${list.length} registrant(s)? (Safe to re-run — already-awarded people are skipped.)`)) return;
+    setBusy("award"); setNote(null);
+    let awarded = 0, skipped = 0;
+    for (const r of list) {
+      const { data, error } = await supabase.rpc("award_event_points_for", { p_user: r.user_id, p_event_id: id, p_action: "attend" });
+      if (error) continue;
+      if (Number(data) > 0) awarded++; else skipped++;
+    }
+    setBusy(null);
+    setNote(`Attendance points: awarded ${awarded}${skipped ? `, ${skipped} already had them` : ""}.`);
+  }
+
   function exportCsv() {
     const list = targets;
     const header = columns.map((c) => c.label);
@@ -161,6 +175,7 @@ export function Registrants({ id }: { id: string }) {
         </div>
         <button onClick={emailPasses} disabled={!targets.length || busy !== null} className={btn}>{busy === "passes" ? "Sending…" : "Email passes"}</button>
         {event?.zoom_meeting_id && <button onClick={sync} disabled={busy !== null} className={btn}>{busy === "sync" ? "Syncing…" : "Sync attendance from Zoom"}</button>}
+        <button onClick={awardPoints} disabled={!targets.length || busy !== null} className={btn}>{busy === "award" ? "Awarding…" : "Award attendance points"}</button>
         <span className="font-mono text-xs text-muted">actions apply to {targetLabel}</span>
       </div>
       {note && <p className="mb-4 font-body text-sm text-foreground">{note}</p>}
