@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 type Lesson = { id: string; title: string; video_url: string | null; video_source: string; order: number };
@@ -22,6 +22,7 @@ function embedUrl(url: string | null, source: string): string {
 
 export function CsPlayer() {
   const [supabase] = useState(() => createClient());
+  const router = useRouter();
   const params = useSearchParams();
   const moduleSlug = params.get("module");
   const [modules, setModules] = useState<Module[]>([]);
@@ -35,6 +36,12 @@ export function CsPlayer() {
 
   useEffect(() => {
     (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        const dest = "/codesprint/learn" + (moduleSlug ? `?module=${moduleSlug}` : "");
+        router.push(`/login?next=${encodeURIComponent(dest)}`);
+        return;
+      }
       await supabase.rpc("cs_enroll");
       const { data: mods } = await supabase.from("cs_modules").select("id, slug, title, cs_lessons(id, title, video_url, video_source, order)").eq("published", true).order("order");
       const list = (mods ?? []).map((m: Record<string, unknown>) => ({ id: m.id, slug: m.slug, title: m.title, lessons: ((m.cs_lessons as Lesson[]) ?? []).sort((a, b) => a.order - b.order) })) as Module[];

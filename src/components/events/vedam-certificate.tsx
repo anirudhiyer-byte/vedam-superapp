@@ -60,8 +60,8 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
       {kind === "winner" && position ? <div style={centred(NS, 20, 255, 700, "#B8860B")}>{position === "1st" ? "First Place" : position === "2nd" ? "Second Place" : position === "3rd" ? "Third Place" : position}</div> : null}
       <div style={centred(NS, 25.25, 277, 400, DARK)}>{kind === "winner" ? "IS PROUDLY AWARDED TO" : "IS PROUDLY PRESENTED TO"}</div>
       <div style={centred(NS, 67.35, 383, 400, PURPLE, { paddingLeft: 90, paddingRight: 90, overflow: "hidden", textOverflow: "ellipsis" })}>{name}</div>
-      <div style={centred(NS, 18.24, 451, 400, DARK)}>{kind === "winner" ? `For winning the ${camp} Bootcamp conducted by` : `For participating in the ${camp} Bootcamp conducted by`}</div>
-      <div style={centred(NS, 18.24, 478, 400, DARK)}>Vedam School of Technology.</div>
+      <div style={centred(NS, 18.24, 451, 400, DARK)}>{kind === "winner" ? `For winning the ${camp} Bootcamp conducted by` : kind === "completion" ? "For successfully completing" : `For participating in the ${camp} Bootcamp conducted by`}</div>
+      <div style={centred(NS, 18.24, 478, 400, kind === "completion" ? PURPLE : DARK)}>{kind === "completion" ? camp : "Vedam School of Technology."}</div>
       <img src="/cert-signature.png" alt="Signature" style={{ position: "absolute", left: 270.9, top: 528, width: 147.1, height: 109.1, display: "block" }} />
       <div style={{ position: "absolute", left: 270, top: 618, width: 152, height: 1, background: RULE }} />
       <div style={column(PR, 12.62, 638, 400, MUTED, 344.5)}>Senior Vice President</div>

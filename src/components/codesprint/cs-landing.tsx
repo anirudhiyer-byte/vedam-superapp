@@ -36,6 +36,11 @@ export function CsLanding() {
     await supabase.rpc("cs_enroll");
     router.push("/codesprint/learn");
   }
+  function startModule(slug: string) {
+    const dest = `/codesprint/learn?module=${slug}`;
+    if (!authed) { router.push(`/login?next=${encodeURIComponent(dest)}`); return; }
+    router.push(dest);
+  }
   const totalHours = useMemo(() => modules.length, [modules]);
 
   return (
@@ -61,7 +66,7 @@ export function CsLanding() {
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         {modules.map((m, i) => (
-          <Link key={m.id} href={`/codesprint/learn?module=${m.slug}`} className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all hover:-translate-y-1 hover:shadow-[0_20px_44px_-24px_rgba(43,19,92,0.4)]">
+          <button key={m.id} onClick={() => startModule(m.slug)} className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface text-left transition-all hover:-translate-y-1 hover:shadow-[0_20px_44px_-24px_rgba(43,19,92,0.4)]">
             <div className="relative flex h-24 items-end p-4 text-white" style={{ background: GRADS[i % GRADS.length] }}>
               <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.3px)", backgroundSize: "16px 16px" }} />
               <h3 className="relative font-display text-lg font-extrabold leading-tight">{m.title}</h3>
@@ -74,7 +79,7 @@ export function CsLanding() {
               </div>
               <span className="mt-4 rounded-lg bg-brand-gradient px-4 py-2.5 text-center text-sm font-semibold text-white">Start Free →</span>
             </div>
-          </Link>
+          </button>
         ))}
         {modules.length === 0 && <p className="font-body text-sm text-muted">Modules are being set up — check back soon.</p>}
       </div>
