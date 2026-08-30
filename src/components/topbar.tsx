@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/logo";
+import { useSidebar } from "@/components/sidebar-context";
 
 /**
  * Auth-aware top bar. Logged out -> Log in / Create account.
@@ -16,6 +17,7 @@ import { Logo } from "@/components/logo";
  */
 export function Topbar() {
   const router = useRouter();
+  const { toggle } = useSidebar();
   const supabaseRef = useRef<SupabaseClient | null>(null);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null>(null);
@@ -64,7 +66,10 @@ export function Topbar() {
         </Link>
       </div>
 
-      <div className="hidden md:block" />
+      <button onClick={toggle} aria-label="Toggle sidebar" title="Hide / show sidebar"
+        className="hidden h-9 w-9 place-items-center rounded-lg border border-border text-foreground/70 transition-colors hover:bg-surface hover:text-foreground md:grid">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+      </button>
 
       <div className="flex items-center gap-2">
         <ThemeToggle />
