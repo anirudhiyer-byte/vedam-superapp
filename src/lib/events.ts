@@ -173,7 +173,7 @@ export const pointsTotalPossible = (cfg: PointsConfig | null) =>
 
 
 /* ---- Certificates + LinkedIn sharing ---- */
-export type CertKind = "participation" | "winner";
+export type CertKind = "participation" | "winner" | "completion";
 
 export function linkedInShareUrl(certUrl: string): string {
   return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;

@@ -10,7 +10,7 @@ export function CertificateView() {
   const params = useSearchParams();
   const certId = params.get("c") || "";
   const [supabase] = useState(() => createClient());
-  const [data, setData] = useState<{ full_name: string; event_name: string; issued_on: string; kind: CertKind; position: string | null } | null>(null);
+  const [data, setData] = useState<{ full_name: string; event_name: string; issued_on: string; kind: CertKind; position: string | null; source: string; module_id: string | null } | null>(null);
   const [eventId, setEventId] = useState<string | null>(null);
   const [qr, setQr] = useState("");
   const [loading, setLoading] = useState(true);
@@ -30,19 +30,23 @@ export function CertificateView() {
       const row = Array.isArray(rows) ? rows[0] : rows;
       if (active && row?.valid) {
         const kind = (row.kind || "participation") as CertKind;
-        setData({ full_name: row.full_name, event_name: row.event_name, issued_on: row.issued_on, kind, position: row.position ?? null });
+        setData({ full_name: row.full_name, event_name: row.event_name, issued_on: row.issued_on, kind, position: row.position ?? null, source: row.source ?? "event", module_id: row.module_id ?? null });
         setShareText(defaultShareText(row.event_name, kind));
         try {
           const QRCode = (await import("qrcode")).default;
           setQr(await QRCode.toDataURL(`${window.location.origin}/verify?c=${certId}`, { margin: 0, width: 320 }));
         } catch { /* qr optional */ }
-        // find the event to read its share points + link the award
-        const { data: cert } = await supabase.from("certificates").select("event_id").eq("id", certId).maybeSingle();
-        if (cert?.event_id && active) {
-          setEventId(cert.event_id);
-          const { data: ev } = await supabase.from("events").select("points_config").eq("id", cert.event_id).maybeSingle();
-          const pc = ev?.points_config as Record<string, number> | null;
-          if (active) setSharePts(Number(pc?.share_linkedin || 0));
+        if (row.source === "codesprint" && row.module_id) {
+          const { data: mod } = await supabase.from("cs_modules").select("points_share").eq("id", row.module_id).maybeSingle();
+          if (active) setSharePts(Number((mod as { points_share?: number } | null)?.points_share || 0));
+        } else {
+          const { data: cert } = await supabase.from("certificates").select("event_id").eq("id", certId).maybeSingle();
+          if (cert?.event_id && active) {
+            setEventId(cert.event_id);
+            const { data: ev } = await supabase.from("events").select("points_config").eq("id", cert.event_id).maybeSingle();
+            const pc = ev?.points_config as Record<string, number> | null;
+            if (active) setSharePts(Number(pc?.share_linkedin || 0));
+          }
         }
       }
       if (active) setLoading(false);
@@ -57,7 +61,9 @@ export function CertificateView() {
   async function share() {
     const certUrl = `${window.location.origin}/certificate?c=${certId}`;
     window.open(linkedInShareUrl(certUrl), "_blank", "noopener");
-    if (eventId && !awarded) {
+    if (!awarded && data?.source === "codesprint" && data.module_id) {
+      try { await supabase.rpc("cs_award_share", { p_module_id: data.module_id }); setAwarded(true); } catch { /* best effort */ }
+    } else if (eventId && !awarded) {
       try { await supabase.rpc("award_event_points", { p_event_id: eventId, p_action: "share_linkedin" }); setAwarded(true); } catch { /* best effort */ }
     }
   }
@@ -68,7 +74,7 @@ export function CertificateView() {
   return (
     <div className="flex min-h-screen flex-col items-center gap-6 px-4 py-10">
       <div className="rounded-xl border border-border shadow-lg">
-        <VedamCertificate ref={ref} fullName={data.full_name} bootcampName={data.event_name} issueDate={data.issued_on} certificateId={certId} qrDataUrl={qr} scale={scale} kind={data.kind} position={data.position} />
+        <VedamCertificate ref={ref} fullName={data.full_name} bootcampName={data.source === "codesprint" ? `${data.event_name} in CodeSprint` : data.event_name} issueDate={data.issued_on} certificateId={certId} qrDataUrl={qr} scale={scale} kind={data.kind} position={data.position} />
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-3">

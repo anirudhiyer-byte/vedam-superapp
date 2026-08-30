@@ -35,7 +35,7 @@ const bootcampLabel = (name?: string, dedupe = true) => {
 type Props = {
   fullName?: string; bootcampName?: string; issueDate?: string | Date; certificateId?: string;
   qrDataUrl?: string; showQr?: boolean; qrCaption?: string; scale?: number;
-  kind?: "participation" | "winner";
+  kind?: "participation" | "winner" | "completion";
   position?: string | null;
 };
 
@@ -56,7 +56,7 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
           {position === "1st" ? "🥇 1ST PLACE" : position === "2nd" ? "🥈 2ND PLACE" : position === "3rd" ? "🥉 3RD PLACE" : "🏆 WINNER"}
         </div>
       ) : null}
-      <div style={centred(NS, kind === "winner" ? 40 : 42.09, 219, 800, kind === "winner" ? "#B8860B" : PURPLE)}>{kind === "winner" ? "Certificate of Excellence" : "Certificate of Participation"}</div>
+      <div style={centred(NS, kind === "winner" ? 40 : 42.09, 219, 800, kind === "winner" ? "#B8860B" : PURPLE)}>{kind === "winner" ? "Certificate of Excellence" : kind === "completion" ? "Certificate of Completion" : "Certificate of Participation"}</div>
       {kind === "winner" && position ? <div style={centred(NS, 20, 255, 700, "#B8860B")}>{position === "1st" ? "First Place" : position === "2nd" ? "Second Place" : position === "3rd" ? "Third Place" : position}</div> : null}
       <div style={centred(NS, 25.25, 277, 400, DARK)}>{kind === "winner" ? "IS PROUDLY AWARDED TO" : "IS PROUDLY PRESENTED TO"}</div>
       <div style={centred(NS, 67.35, 383, 400, PURPLE, { paddingLeft: 90, paddingRight: 90, overflow: "hidden", textOverflow: "ellipsis" })}>{name}</div>

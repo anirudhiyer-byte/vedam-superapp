@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { ACTION_LABEL, linkedInShareUrl } from "@/lib/events";
 
 type LedgerRow = { points: number; action: string; app: string; created_at: string; events: { name: string | null } | null };
-type CertRow = { id: string; kind: "participation" | "winner"; event_id: string | null; issued_on: string; events: { name: string | null } | null };
+type CertRow = { id: string; kind: "participation" | "winner" | "completion"; source: string; event_id: string | null; module_id: string | null; issued_on: string; events: { name: string | null } | null; cs_modules: { title: string | null } | null };
 type RegEvent = { id: string; zoom_join_url: string | null; events: { name: string | null; event_code: string | null; starts_at: string | null; mode: string | null; join_link: string | null } | null };
 
 const startOfWeek = () => { const d = new Date(); const day = (d.getDay() + 6) % 7; d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - day); return d; };
@@ -36,7 +36,7 @@ export function Dashboard() {
       if (active) setName(p?.full_name?.split(" ")[0] ?? "");
       const [{ data: ledger }, { data: cert }, { data: reg }] = await Promise.all([
         supabase.from("points_ledger").select("points, action, app, created_at, events(name)").order("created_at", { ascending: false }),
-        supabase.from("certificates").select("id, kind, event_id, issued_on, events(name)").eq("user_id", user.id).order("issued_on", { ascending: false }),
+        supabase.from("certificates").select("id, kind, source, event_id, module_id, issued_on, events(name), cs_modules(title)").eq("user_id", user.id).order("issued_on", { ascending: false }),
         supabase.from("event_registrations").select("id, zoom_join_url, events(name, event_code, starts_at, mode, join_link)").eq("user_id", user.id).order("created_at", { ascending: false }),
       ]);
       if (active) { setRows((ledger as unknown as LedgerRow[]) ?? []); setCerts((cert as unknown as CertRow[]) ?? []); setRegs((reg as unknown as RegEvent[]) ?? []); setLoading(false); }
@@ -55,11 +55,12 @@ export function Dashboard() {
     return regs.filter((r) => { const t = r.events?.starts_at ? new Date(r.events.starts_at).getTime() : null; return t == null || t >= now - 3 * 3600e3; });
   }, [regs]);
 
-  const certFolders = useMemo(() => {
-    const m = new Map<string, { key: string; event: string; certs: CertRow[] }>();
-    certs.forEach((c) => { const key = c.event_id || c.events?.name || c.id; if (!m.has(key)) m.set(key, { key, event: c.events?.name || "Vedam event", certs: [] }); m.get(key)!.certs.push(c); });
+  const eventGroups = useMemo(() => {
+    const m = new Map<string, { key: string; name: string; certs: CertRow[] }>();
+    certs.filter((c) => c.source !== "codesprint").forEach((c) => { const key = c.event_id || c.events?.name || c.id; if (!m.has(key)) m.set(key, { key, name: c.events?.name || "Vedam event", certs: [] }); m.get(key)!.certs.push(c); });
     return Array.from(m.values());
   }, [certs]);
+  const csCerts = useMemo(() => certs.filter((c) => c.source === "codesprint"), [certs]);
   const toggleFolder = (k: string) => setOpenFolders((s) => { const n = new Set(s); n.has(k) ? n.delete(k) : n.add(k); return n; });
 
   if (loading) return <div className="mx-auto max-w-4xl px-6 py-12"><div className="h-72 animate-pulse rounded-2xl border border-border bg-surface" /></div>;
@@ -119,44 +120,54 @@ export function Dashboard() {
         </>
       )}
 
-      {/* certificates — folder per event */}
+      {/* certificates: Events (per-event subfolders) + CodeSprint (flat) */}
       <h2 className="mb-3 mt-10 font-display text-lg font-bold text-heading">Your certificates</h2>
-      {certFolders.length === 0 ? (
-        <p className="font-body text-sm text-muted">No certificates yet — take part in an event and they&apos;ll show up here.</p>
+      {eventGroups.length === 0 && csCerts.length === 0 ? (
+        <p className="font-body text-sm text-muted">No certificates yet — take part in an event or finish a CodeSprint module and they&apos;ll show up here.</p>
       ) : (
         <div className="space-y-2">
-          {certFolders.map((g) => {
-            const open = openFolders.has(g.key);
-            return (
-              <div key={g.key} className="overflow-hidden rounded-2xl border border-border bg-surface">
-                <button onClick={() => toggleFolder(g.key)} className="flex w-full items-center gap-3 p-4 text-left">
-                  <span className="text-xl">{open ? "📂" : "📁"}</span>
-                  <div className="min-w-0 flex-1"><p className="truncate font-display text-sm font-semibold text-heading">{g.event}</p>
-                    <p className="font-mono text-[11px] text-muted">{g.certs.length} certificate{g.certs.length > 1 ? "s" : ""} · {g.certs.map((c) => c.kind === "winner" ? "Winner" : "Participation").join(" + ")}</p></div>
-                  <span className="font-mono text-xs text-muted">{open ? "▲" : "▼"}</span>
-                </button>
-                {open && (
-                  <div className="grid gap-3 border-t border-border p-4 sm:grid-cols-2">
-                    {g.certs.map((c) => {
-                      const winner = c.kind === "winner";
-                      return (
-                        <div key={c.id} className="flex flex-col gap-3 rounded-xl border border-border bg-background p-4">
-                          <div className="flex items-start justify-between gap-2">
-                            <span className={["rounded-full px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide", winner ? "bg-[linear-gradient(120deg,#B8860B,#F5C542)] text-[#3a2a00]" : "bg-surface-warm text-accent"].join(" ")}>{winner ? "🏆 Winner" : "Participation"}</span>
-                            <span className="font-mono text-[10px] text-muted">{fdate(c.issued_on)}</span>
-                          </div>
-                          <div className="mt-auto flex gap-2">
-                            <Link href={`/certificate?c=${c.id}`} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">View</Link>
-                            <a href={linkedInShareUrl(`${origin}/certificate?c=${c.id}`)} target="_blank" rel="noreferrer" className="flex-1 rounded-lg bg-[#0A66C2] px-3 py-2 text-center text-xs font-semibold text-white">Share</a>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          {/* Events top-level folder */}
+          {eventGroups.length > 0 && (
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface">
+              <button onClick={() => toggleFolder("events")} className="flex w-full items-center gap-3 p-4 text-left">
+                <span className="text-xl">{openFolders.has("events") ? "\uD83D\uDCC2" : "\uD83D\uDCC1"}</span>
+                <div className="min-w-0 flex-1"><p className="font-display text-sm font-semibold text-heading">Events</p>
+                  <p className="font-mono text-[11px] text-muted">{eventGroups.length} event{eventGroups.length > 1 ? "s" : ""}</p></div>
+                <span className="font-mono text-xs text-muted">{openFolders.has("events") ? "\u25B2" : "\u25BC"}</span>
+              </button>
+              {openFolders.has("events") && (
+                <div className="space-y-2 border-t border-border p-3">
+                  {eventGroups.map((g) => {
+                    const k = "events:" + g.key; const open = openFolders.has(k);
+                    return (
+                      <div key={g.key} className="overflow-hidden rounded-xl border border-border bg-background">
+                        <button onClick={() => toggleFolder(k)} className="flex w-full items-center gap-3 p-3 text-left">
+                          <span>{open ? "\uD83D\uDCC2" : "\uD83D\uDCC1"}</span>
+                          <div className="min-w-0 flex-1"><p className="truncate font-display text-sm font-semibold text-heading">{g.name}</p>
+                            <p className="font-mono text-[11px] text-muted">{g.certs.length} certificate{g.certs.length > 1 ? "s" : ""} · {g.certs.map((c) => c.kind === "winner" ? "Winner" : "Participation").join(" + ")}</p></div>
+                          <span className="font-mono text-xs text-muted">{open ? "\u25B2" : "\u25BC"}</span>
+                        </button>
+                        {open && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{g.certs.map((c) => <CertCard key={c.id} cert={c} origin={origin} />)}</div>}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* CodeSprint top-level folder (flat) */}
+          {csCerts.length > 0 && (
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface">
+              <button onClick={() => toggleFolder("codesprint")} className="flex w-full items-center gap-3 p-4 text-left">
+                <span className="text-xl">{openFolders.has("codesprint") ? "\uD83D\uDCC2" : "\uD83D\uDCC1"}</span>
+                <div className="min-w-0 flex-1"><p className="font-display text-sm font-semibold text-heading">CodeSprint</p>
+                  <p className="font-mono text-[11px] text-muted">{csCerts.length} certificate{csCerts.length > 1 ? "s" : ""}</p></div>
+                <span className="font-mono text-xs text-muted">{openFolders.has("codesprint") ? "\u25B2" : "\u25BC"}</span>
+              </button>
+              {openFolders.has("codesprint") && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{csCerts.map((c) => <CertCard key={c.id} cert={c} origin={origin} />)}</div>}
+            </div>
+          )}
         </div>
       )}
 
@@ -189,6 +200,25 @@ function Stat({ label, value }: { label: string; value: number }) {
     <div className="rounded-2xl border border-border bg-surface p-5">
       <div className="font-mono text-[10px] font-semibold uppercase tracking-wide text-muted">{label}</div>
       <div className="mt-1 font-display text-3xl font-bold text-heading">{value.toLocaleString("en-IN")}</div>
+    </div>
+  );
+}
+
+function CertCard({ cert: c, origin }: { cert: CertRow; origin: string }) {
+  const winner = c.kind === "winner";
+  const completion = c.source === "codesprint";
+  const label = completion ? (c.cs_modules?.title || "CodeSprint") : winner ? "Winner" : "Participation";
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-border bg-background p-4">
+      <div className="flex items-start justify-between gap-2">
+        <span className={["rounded-full px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide", winner ? "bg-[linear-gradient(120deg,#B8860B,#F5C542)] text-[#3a2a00]" : "bg-surface-warm text-accent"].join(" ")}>{completion ? "Completion" : winner ? "\uD83C\uDFC6 Winner" : "Participation"}</span>
+        <span className="font-mono text-[10px] text-muted">{fdate(c.issued_on)}</span>
+      </div>
+      {completion && <p className="truncate font-display text-xs font-semibold text-heading">{label}</p>}
+      <div className="mt-auto flex gap-2">
+        <Link href={`/certificate?c=${c.id}`} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">View</Link>
+        <a href={linkedInShareUrl(`${origin}/certificate?c=${c.id}`)} target="_blank" rel="noreferrer" className="flex-1 rounded-lg bg-[#0A66C2] px-3 py-2 text-center text-xs font-semibold text-white">Share</a>
+      </div>
     </div>
   );
 }

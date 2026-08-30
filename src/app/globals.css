@@ -26,15 +26,15 @@
   --violet-deep: 43 19 92;
 
   /* atmospheric (full colour) */
-  --glow-orange: rgba(249, 125, 3, 0.18);
-  --glow-violet: rgba(138, 24, 255, 0.18);
+  --glow-orange: rgba(249, 125, 3, 0.15);
+  --glow-violet: rgba(138, 24, 255, 0.24);
   --hub-ring: rgba(43, 19, 92, 0.10);
   --node-bg: #f8f3ea;
   --node-muted-bg: rgba(43, 19, 92, 0.04);
   --node-muted-text: #7d7791;
   --border-strong: rgba(138, 24, 255, 0.30);
   --pill-bg: rgba(43, 19, 92, 0.05);
-  --dot: rgba(138, 24, 255, 0.10);
+  --dot: rgba(138, 24, 255, 0.18);
 }
 
 .dark {
@@ -50,15 +50,15 @@
   --accent: 138 24 255;
   --violet-deep: 43 19 92;
 
-  --glow-orange: rgba(249, 125, 3, 0.20);
-  --glow-violet: rgba(138, 24, 255, 0.34);
+  --glow-orange: rgba(249, 125, 3, 0.24);
+  --glow-violet: rgba(138, 24, 255, 0.44);
   --hub-ring: rgba(255, 255, 255, 0.10);
   --node-bg: #1d1856;
   --node-muted-bg: rgba(255, 255, 255, 0.04);
   --node-muted-text: #8b86a6;
   --border-strong: rgba(138, 24, 255, 0.35);
   --pill-bg: rgba(255, 255, 255, 0.05);
-  --dot: rgba(138, 24, 255, 0.22);
+  --dot: rgba(190, 165, 255, 0.14);
 }
 
 * {
@@ -88,8 +88,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(820px 520px at 88% -10%, var(--glow-violet), transparent 62%),
-    radial-gradient(680px 500px at -10% 110%, var(--glow-orange), transparent 62%);
+    radial-gradient(1000px 640px at 92% -14%, var(--glow-violet), transparent 58%),
+    radial-gradient(760px 560px at -12% 112%, var(--glow-orange), transparent 60%),
+    radial-gradient(680px 520px at 45% 128%, var(--glow-violet), transparent 66%);
 }
 body::after {
   content: "";
@@ -97,11 +98,11 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.5;
-  background-image: radial-gradient(var(--dot) 1px, transparent 1.5px);
-  background-size: 28px 28px;
-  -webkit-mask-image: radial-gradient(circle at 82% 8%, #000, transparent 72%);
-  mask-image: radial-gradient(circle at 82% 8%, #000, transparent 72%);
+  opacity: 0.9;
+  background-image: radial-gradient(var(--dot) 1.1px, transparent 1.7px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 95% 75% at 78% 12%, #000 42%, transparent 82%);
+  mask-image: radial-gradient(ellipse 95% 75% at 78% 12%, #000 42%, transparent 82%);
 }
 
 /* ecosystem hub connector pulse */

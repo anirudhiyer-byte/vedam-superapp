@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import { EventsList } from "@/components/events/events-list";
-
+import { EventsPage } from "@/components/events/events-page";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Events" };
-
-export default function EventsPage() {
-  return <EventsList />;
-}
+export default function Page() { return <EventsPage />; }
