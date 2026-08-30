@@ -1,18 +1,56 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import VedamCertificate from "@/components/events/vedam-certificate";
 
-type Module = { id: string; slug: string; title: string; subtitle: string | null; taught_by: string | null; level: string | null; duration_label: string | null; lessons: number };
-const GRADS = ["linear-gradient(120deg,#F97D03,#E80074)", "linear-gradient(120deg,#8A18FF,#3a1470)", "linear-gradient(120deg,#12b3a6,#2B135C)", "linear-gradient(120deg,#6E56CF,#F97D03)"];
+type Module = { id: string; slug: string; title: string; subtitle: string | null; taught_by: string | null; level: string | null; duration_label: string | null; thumbnail_url: string | null; lessons: number };
+
+const BANNERS = [
+  "radial-gradient(circle at 28% 55%, #ffe0b0, #ffbf85 45%, #ff9a6b 72%, #ffd4ef)",
+  "radial-gradient(circle at 28% 55%, #bff5d4, #93e7d6 45%, #86d2ea 72%, #c6ecff)",
+  "radial-gradient(circle at 28% 55%, #d3c4ff, #b299ff 45%, #ff9a6b 82%)",
+  "radial-gradient(circle at 28% 55%, #ffc9e6, #ffb1c4 45%, #ffd6a6 82%)",
+];
 const FAQS = [
   ["What is CodeSprint?", "A free program for 12th-grade students starting B.Tech CS this year, to build coding fundamentals before college begins."],
   ["Who can join?", "Anyone who has completed 12th and is about to start B.Tech in CS or a related field."],
   ["What will I learn?", "Programming fundamentals, problem-solving, and the key concepts you'll meet in your first year."],
   ["Is there a certificate?", "Yes — finish a module and you get a Certificate of Completion for that module, plus points."],
 ];
+
+/** Placeholder slot the design team drops a Figma frame into. */
+function FigmaSlot({ label }: { label: string }) {
+  return (
+    <div className="my-12 grid min-h-[160px] place-items-center rounded-2xl border-2 border-dashed border-border-strong bg-surface/40 text-center">
+      <div>
+        <p className="font-mono text-xs font-semibold uppercase tracking-wider text-muted">Figma frame</p>
+        <p className="mt-1 font-body text-sm text-muted">{label}</p>
+      </div>
+    </div>
+  );
+}
+
+/** Live, scaled preview of the actual completion certificate. */
+function CertPreview() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.6);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const update = () => setScale(el.clientWidth / 1123);
+    update();
+    const ro = new ResizeObserver(update); ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className="mx-auto w-full max-w-[720px] overflow-hidden rounded-2xl border border-border shadow-[0_24px_60px_-28px_rgba(43,19,92,0.5)]" style={{ aspectRatio: "1123 / 793" }}>
+      <div style={{ width: 1123, height: 793, transformOrigin: "top left", transform: `scale(${scale})` }}>
+        <VedamCertificate fullName="Aarav Sharma" bootcampName="Prompt Engineering in CodeSprint" kind="completion" certificateId="CS-PREVIEW" showQr={false} issueDate={new Date()} />
+      </div>
+    </div>
+  );
+}
 
 export function CsLanding() {
   const [supabase] = useState(() => createClient());
@@ -23,9 +61,8 @@ export function CsLanding() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await supabase.from("cs_modules").select("id, slug, title, subtitle, taught_by, level, duration_label, cs_lessons(count)").eq("published", true).order("order");
-      const mods = (data ?? []).map((m: Record<string, unknown>) => ({ ...m, lessons: (m.cs_lessons as { count: number }[])?.[0]?.count ?? 0 })) as Module[];
-      setModules(mods);
+      const { data } = await supabase.from("cs_modules").select("id, slug, title, subtitle, taught_by, level, duration_label, thumbnail_url, cs_lessons(count)").eq("published", true).order("order");
+      setModules((data ?? []).map((m: Record<string, unknown>) => ({ ...m, lessons: (m.cs_lessons as { count: number }[])?.[0]?.count ?? 0 })) as Module[]);
       const { data: s } = await supabase.auth.getSession();
       setAuthed(!!s.session);
     })();
@@ -54,44 +91,68 @@ export function CsLanding() {
           <button onClick={register} className="rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white">Register for CodeSprint</button>
           <a href="https://t.me/vedamschooloftechnology" target="_blank" rel="noreferrer" className="rounded-xl border border-border-strong px-6 py-3 text-sm font-semibold text-foreground hover:bg-surface-warm">Join Community</a>
         </div>
-        <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-xs text-muted">
-          <span>✓ Beginner friendly</span><span>✓ Free of cost</span><span>✓ No prior experience</span>
+        {/* prominent badges */}
+        <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+          {["Beginner friendly", "Free of cost", "No prior experience required"].map((t) => (
+            <span key={t} className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 font-body text-sm font-semibold text-foreground shadow-sm">
+              <span className="grid h-5 w-5 place-items-center rounded-full bg-[#12b3a6] text-[11px] text-white">✓</span>{t}
+            </span>
+          ))}
         </div>
       </div>
 
-      {/* modules */}
-      <div className="mb-4 mt-14 flex items-baseline justify-between">
+      <FigmaSlot label="Between hero & modules — outcomes / achievements banner, student shorts, etc." />
+
+      {/* modules — screenshot-style horizontal cards */}
+      <div className="mb-6 flex items-baseline justify-between">
         <h2 className="font-display text-2xl font-bold text-heading">Built for coders who want to start early</h2>
         <span className="font-mono text-xs text-muted">{modules.length} module{modules.length === 1 ? "" : "s"}</span>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="space-y-5">
         {modules.map((m, i) => (
-          <button key={m.id} onClick={() => startModule(m.slug)} className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface text-left transition-all hover:-translate-y-1 hover:shadow-[0_20px_44px_-24px_rgba(43,19,92,0.4)]">
-            <div className="relative flex h-24 items-end p-4 text-white" style={{ background: GRADS[i % GRADS.length] }}>
-              <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.3px)", backgroundSize: "16px 16px" }} />
-              <h3 className="relative font-display text-lg font-extrabold leading-tight">{m.title}</h3>
-              {m.taught_by && <span className="absolute right-3 top-3 rounded-full bg-white/20 px-2.5 py-1 font-mono text-[10px] font-semibold backdrop-blur">by {m.taught_by}</span>}
-            </div>
-            <div className="flex flex-1 flex-col p-5">
-              {m.subtitle && <p className="font-body text-sm text-muted">{m.subtitle}</p>}
-              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted">
-                <span>{m.level || "Beginner"}</span>{m.duration_label && <span>· {m.duration_label}</span>}<span>· {m.lessons} lesson{m.lessons === 1 ? "" : "s"}</span>
+          <div key={m.id} className="flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-sm md:flex-row">
+            {/* instructor banner */}
+            <div className="relative flex min-h-[190px] items-center justify-center overflow-hidden p-6 md:w-[52%]" style={{ background: BANNERS[i % BANNERS.length] }}>
+              {m.thumbnail_url && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={m.thumbnail_url} alt={m.taught_by ?? ""} className="absolute bottom-0 left-0 h-full w-auto object-contain" />
+              )}
+              <div className="relative text-center" style={{ marginLeft: m.thumbnail_url ? "28%" : 0 }}>
+                <div className="text-2xl">⭐</div>
+                <div className="my-1 flex items-center justify-center gap-2"><span className="h-px w-8 bg-black/30" /><span className="font-mono text-[11px] font-bold tracking-[0.2em] text-black/70">TAUGHT BY</span><span className="h-px w-8 bg-black/30" /></div>
+                <div style={{ fontFamily: "var(--font-outfit), sans-serif", fontWeight: 800, fontSize: 30, lineHeight: 1, color: "#fff", WebkitTextStroke: "1.4px #241206", textTransform: "uppercase" }}>{m.taught_by || "Vedam"}</div>
+                <div style={{ fontFamily: "var(--font-outfit), sans-serif", fontWeight: 800, fontSize: 24, lineHeight: 1.1, color: "#F97D03" }}>Instructor</div>
               </div>
-              <span className="mt-4 rounded-lg bg-brand-gradient px-4 py-2.5 text-center text-sm font-semibold text-white">Start Free →</span>
             </div>
-          </button>
+            {/* details */}
+            <div className="flex flex-1 flex-col justify-center gap-2 p-6">
+              <h3 className="font-display text-2xl font-extrabold leading-tight text-heading">{m.title}</h3>
+              <div className="flex flex-wrap gap-x-5 gap-y-1 font-body text-sm text-foreground">
+                <span className="inline-flex items-center gap-1.5">👤 {m.level || "Beginner Level"}</span>
+                <span className="inline-flex items-center gap-1.5">🕐 {m.duration_label || `${m.lessons} lessons`}</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 font-body text-sm text-foreground">👁 Popular</div>
+              {m.subtitle && <div className="inline-flex items-start gap-1.5 font-body text-sm text-muted">⭐ {m.subtitle}</div>}
+              <button onClick={() => startModule(m.slug)} className="mt-3 rounded-xl px-4 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90" style={{ background: "#7C3AED" }}>Start Free</button>
+            </div>
+          </div>
         ))}
         {modules.length === 0 && <p className="font-body text-sm text-muted">Modules are being set up — check back soon.</p>}
       </div>
 
-      {/* cert note */}
-      <div className="mt-12 rounded-2xl border border-border bg-surface-warm p-6 text-center">
-        <h3 className="font-display text-lg font-bold text-heading">Get a Certificate of Completion at the end</h3>
-        <p className="mt-1 font-body text-sm text-muted">Finish every lesson in a module to earn its certificate, verifiable and ready to share.</p>
+      <FigmaSlot label="After modules — testimonials / 'what students build' / stats" />
+
+      {/* cert section with LIVE preview */}
+      <div className="mt-4 text-center">
+        <h3 className="font-display text-2xl font-bold text-heading">Get a Certificate of Completion at the end</h3>
+        <p className="mx-auto mt-1 max-w-[46ch] font-body text-sm text-muted">Finish every lesson in a module to earn its certificate — here&apos;s exactly what yours will look like:</p>
+        <div className="mt-6"><CertPreview /></div>
       </div>
 
+      <FigmaSlot label="Before FAQs — 4-year program teaser / VSAT CTA" />
+
       {/* FAQ */}
-      <h2 className="mb-4 mt-14 font-display text-2xl font-bold text-heading">Got questions?</h2>
+      <h2 className="mb-4 font-display text-2xl font-bold text-heading">Got questions?</h2>
       <div className="space-y-2">
         {FAQS.map(([q, a], i) => (
           <div key={i} className="overflow-hidden rounded-2xl border border-border bg-surface">

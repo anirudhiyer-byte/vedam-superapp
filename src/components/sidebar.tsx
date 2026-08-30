@@ -18,7 +18,7 @@ export function Sidebar() {
   const isAdmin = useIsAdmin();
 
   const linkCls = (active: boolean) =>
-    ["rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+    ["rounded-xl px-3.5 py-2.5 text-base font-bold transition-colors",
       active ? "bg-brand-gradient text-white" : "text-foreground/75 hover:bg-surface hover:text-foreground"].join(" ");
 
   return (
