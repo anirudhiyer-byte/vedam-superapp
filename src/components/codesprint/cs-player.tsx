@@ -102,9 +102,17 @@ export function CsPlayer() {
         {/* player */}
         <div>
           <h1 className="font-display text-2xl font-bold text-heading">{current?.lesson.title || "Select a lesson"}</h1>
-          <div className="mt-3 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-black">
+          <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-black">
             {current?.lesson.video_url ? (
-              <iframe src={embedUrl(current.lesson.video_url, current.lesson.video_source)} className="h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title={current.lesson.title} />
+              <>
+                <iframe src={embedUrl(current.lesson.video_url, current.lesson.video_source)} className="h-full w-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title={current.lesson.title} />
+                {current.lesson.video_source === "drive" && (
+                  // Covers Google Drive's "open in new window" pop-out so students aren't
+                  // redirected to Drive. Same corner + size as the button; it eats the click.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src="/icon.png" alt="Vedam" title="Vedam" className="absolute right-[10px] top-[10px] h-11 w-11 rounded-lg shadow-md" style={{ zIndex: 2 }} />
+                )}
+              </>
             ) : <div className="grid h-full place-items-center font-mono text-sm text-white/60">No video linked yet</div>}
           </div>
           <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-surface p-4">
