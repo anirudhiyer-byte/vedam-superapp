@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { EcosystemHub } from "@/components/ecosystem-hub";
 import { HeroCta } from "@/components/hero-cta";
+import { FaqAccordion } from "@/components/faq-accordion";
 
 export default function HomePage() {
   return (
+    <>
     <section className="relative overflow-hidden px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
       {/* brand glows */}
       <div
@@ -77,5 +79,7 @@ export default function HomePage() {
         </div>
       </div>
     </section>
+      <FaqAccordion />
+    </>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { CertificateModal } from "@/components/events/certificate-modal";
+import { CsQuiz } from "@/components/codesprint/cs-quiz";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -124,6 +125,11 @@ export function CsPlayer() {
               : <button onClick={markComplete} disabled={busy} className="rounded-lg bg-brand-gradient px-5 py-2 text-sm font-semibold text-white disabled:opacity-60">{busy ? "Saving…" : "Mark as completed"}</button>)}
           </div>
           {toast && <div className="mt-3 rounded-xl border border-border bg-surface-warm px-4 py-3 font-body text-sm text-heading">{toast}</div>}
+          {currentModule && currentModule.lessons.length > 0 && currentModule.lessons.every((l) => done.has(l.id)) && !certs[currentModule.id] && (
+            <div className="mt-4">
+              <CsQuiz moduleId={currentModule.id} onComplete={(cid) => { if (cid && currentModule) { setCerts((c) => ({ ...c, [currentModule.id]: cid })); setToast("🎉 Module complete! Certificate earned."); setTimeout(() => setToast(null), 4000); } }} />
+            </div>
+          )}
         </div>
 
         {/* module accordion */}

@@ -9,6 +9,40 @@ type Analytics = { module_id: string; title: string; total_lessons: number; enro
 
 const field = "rounded-lg border border-border bg-background px-2.5 py-1.5 text-sm text-foreground outline-none focus:border-[color:rgb(var(--accent))]";
 
+function QuizEditor({ moduleId }: { moduleId: string }) {
+  const [supabase] = useState(() => createClient());
+  const [qs, setQs] = useState<{ id: string; question: string; options: string[]; correct_index: number; explanation: string | null; order: number }[]>([]);
+  async function load() { const { data } = await supabase.from("cs_quiz_questions").select("*").eq("module_id", moduleId).order("order"); setQs((data as typeof qs) ?? []); }
+  useEffect(() => { load(); /* eslint-disable-next-line */ }, [moduleId]);
+  async function add() { await supabase.from("cs_quiz_questions").insert({ module_id: moduleId, question: "New question", options: ["Option A", "Option B"], correct_index: 0, order: qs.length + 1 }); load(); }
+  async function saveQ(q: typeof qs[number]) { await supabase.from("cs_quiz_questions").update({ question: q.question, options: q.options, correct_index: q.correct_index, explanation: q.explanation, order: q.order }).eq("id", q.id); }
+  async function delQ(id: string) { await supabase.from("cs_quiz_questions").delete().eq("id", id); load(); }
+  const setQ = (id: string, patch: Partial<typeof qs[number]>) => setQs((s) => s.map((q) => q.id === id ? { ...q, ...patch } : q));
+  const fld = "rounded-lg border border-border bg-background px-2.5 py-1.5 text-sm text-foreground outline-none";
+  return (
+    <div className="mt-3 space-y-2 border-t border-border pt-3">
+      <p className="font-mono text-[11px] font-semibold uppercase tracking-wide text-accent">Quiz questions <span className="font-normal text-muted">(passing 60% completes the module)</span></p>
+      {qs.map((q) => (
+        <div key={q.id} className="rounded-xl border border-border bg-background p-2.5">
+          <div className="flex gap-2"><input type="number" value={q.order} onChange={(e) => setQ(q.id, { order: +e.target.value })} onBlur={() => saveQ(q)} className={fld + " w-14"} />
+            <input value={q.question} onChange={(e) => setQ(q.id, { question: e.target.value })} onBlur={() => saveQ(q)} placeholder="Question" className={fld + " flex-1"} />
+            <button onClick={() => delQ(q.id)} className="font-mono text-xs text-red-500">✕</button></div>
+          {q.options.map((o, oi) => (
+            <div key={oi} className="mt-1.5 flex items-center gap-2">
+              <input type="radio" checked={q.correct_index === oi} onChange={() => { setQ(q.id, { correct_index: oi }); setTimeout(() => saveQ({ ...q, correct_index: oi }), 0); }} title="Correct answer" />
+              <input value={o} onChange={(e) => setQ(q.id, { options: q.options.map((x, j) => j === oi ? e.target.value : x) })} onBlur={() => saveQ(q)} className={fld + " flex-1 text-xs"} />
+              <button onClick={() => { setQ(q.id, { options: q.options.filter((_, j) => j !== oi) }); setTimeout(() => saveQ({ ...q, options: q.options.filter((_, j) => j !== oi) }), 0); }} className="font-mono text-xs text-muted">✕</button>
+            </div>
+          ))}
+          <button onClick={() => { setQ(q.id, { options: [...q.options, "New option"] }); setTimeout(() => saveQ({ ...q, options: [...q.options, "New option"] }), 0); }} className="mt-1.5 font-mono text-[11px] text-accent">+ option</button>
+          <input value={q.explanation ?? ""} onChange={(e) => setQ(q.id, { explanation: e.target.value })} onBlur={() => saveQ(q)} placeholder="Explanation (shown after answering)" className={fld + " mt-2 w-full text-xs"} />
+        </div>
+      ))}
+      <button onClick={add} className="font-mono text-xs text-accent hover:underline">+ add question</button>
+    </div>
+  );
+}
+
 export function CsAdmin() {
   const [supabase] = useState(() => createClient());
   const [tab, setTab] = useState<"modules" | "analytics">("modules");
@@ -103,6 +137,7 @@ export function CsAdmin() {
                     </div>
                   ))}
                   <button onClick={() => addLesson(m.id, m.cs_lessons.length)} className="font-mono text-xs text-accent hover:underline">+ add lesson</button>
+                  <QuizEditor moduleId={m.id} />
                 </div>
               )}
             </div>

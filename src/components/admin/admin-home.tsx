@@ -55,6 +55,7 @@ export function AdminHome() {
           <div className="flex flex-wrap gap-2">
             <Link href="/admin/events/new" className="rounded-xl bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white">+ New event</Link>
             <Link href="/admin/analytics" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Analytics</Link>
+            <Link href="/admin/faqs" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">FAQs</Link>
           </div>
         </div>
 

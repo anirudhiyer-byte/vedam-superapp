@@ -45,6 +45,8 @@ export type EventRow = {
   podium_enabled: boolean | null;
   share_points_podium: number | null;
   share_points_participation: number | null;
+  submission_enabled: boolean | null;
+  submission_points: number | null;
   ribbon_label: string | null;
   ribbon_value: string | null;
   status: string;

@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { EventRow } from "@/lib/events";
 import { isOffline, eventDateLabel, eventTimeLabel, regClosed, pointsLine, pointsTotalPossible } from "@/lib/events";
 import { RegistrationForm } from "@/components/events/registration-form";
+import { ProjectSubmission } from "@/components/events/project-submission";
 
 type Profile = { full_name: string | null; phone: string | null; email: string | null; grad_year: number | null; stream: string | null };
 
@@ -16,6 +17,7 @@ export function EventDetail({ code }: { code: string }) {
   const [userId, setUserId] = useState<string | null>(null);
   const [registered, setRegistered] = useState(false);
   const [zoomJoinUrl, setZoomJoinUrl] = useState<string | null>(null);
+  const [regInfo, setRegInfo] = useState<{ id: string; joined: boolean; github: string | null } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,8 +34,8 @@ export function EventDetail({ code }: { code: string }) {
         if (active) setProfile((p as Profile) ?? null);
         if (ev) {
           const { data: r } = await supabase.from("event_registrations")
-            .select("id, zoom_join_url").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
-          if (active) { setRegistered(!!r); setZoomJoinUrl((r as { zoom_join_url?: string } | null)?.zoom_join_url ?? null); }
+            .select("id, zoom_join_url, joined, github_url").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
+          if (active) { setRegistered(!!r); setZoomJoinUrl((r as { zoom_join_url?: string } | null)?.zoom_join_url ?? null); if (r) setRegInfo({ id: (r as { id: string }).id, joined: !!(r as { joined?: boolean }).joined, github: (r as { github_url?: string } | null)?.github_url ?? null }); }
         }
       }
       if (active) setLoading(false);
@@ -143,6 +145,9 @@ export function EventDetail({ code }: { code: string }) {
                   </a>
                 )}
                                 <p className="mt-3 text-center font-body text-xs text-muted">We&apos;ve emailed your details + calendar invite.</p>
+                {event.submission_enabled && regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
+                  <ProjectSubmission registrationId={regInfo.id} points={event.submission_points ?? 0} alreadyUrl={regInfo.github} />
+                )}
               </div>
             ) : regClosed(event) ? (
               <p className="py-4 text-center font-body text-sm text-muted">Registration for this event has closed.</p>
