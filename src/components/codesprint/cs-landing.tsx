@@ -88,7 +88,7 @@ export function CsLanding() {
         <h1 className="mx-auto mt-3 max-w-[16ch] font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-heading sm:text-5xl">Sprint into college with a <span className="text-brand-gradient">clear advantage</span></h1>
         <p className="mx-auto mt-4 max-w-[44ch] font-body text-base text-muted">A free, self-paced program for 12th-grade students starting B.Tech CS this year.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <button onClick={register} className="rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white">Register for CodeSprint</button>
+          <button onClick={register} className="rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white">{authed ? "Start learning" : "Register for CodeSprint"}</button>
           <a href="https://t.me/vedamschooloftechnology" target="_blank" rel="noreferrer" className="rounded-xl border border-border-strong px-6 py-3 text-sm font-semibold text-foreground hover:bg-surface-warm">Join Community</a>
         </div>
         {/* prominent badges */}

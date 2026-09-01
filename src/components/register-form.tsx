@@ -252,9 +252,6 @@ export function RegisterForm() {
               <button onClick={resendEmailCode} disabled={resendState === "sending"} className="font-body text-sm font-semibold text-accent disabled:opacity-60">
                 {resendState === "sending" ? "Sending…" : resendState === "sent" ? "Sent again ✓" : "Resend code"}
               </button>
-              <button onClick={() => setStep("done")} className="font-body text-sm text-muted">
-                Skip for now
-              </button>
             </div>
           </div>
         </>

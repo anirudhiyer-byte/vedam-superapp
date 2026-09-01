@@ -94,22 +94,24 @@ export function confirmationHtml(ev: IcsEvent, name?: string, email?: string): s
     rows += detail("&#127908;&nbsp; Host", ev.host);
   } else {
     rows += detail("&#128197;&nbsp; Date", ev.dateMs ? istDate(ev.dateMs) : "");
+  const istTime = (ms: number) => new Date(ms).toLocaleTimeString("en-IN", { timeZone: IST, hour: "numeric", minute: "2-digit" }) + " IST";
+  rows += detail("&#128337;&nbsp; Time", ev.dateMs ? istTime(ev.dateMs) : "");
     rows += detail("&#127909;&nbsp; Platform", ev.platform);
     rows += detail("&#127908;&nbsp; Host", ev.host);
     rows += detail("&#127380;&nbsp; Meeting ID", ev.zoomId);
   }
-  const attendanceNote = !isOff ? `<tr><td style="padding:16px 34px 2px"><div style="background:linear-gradient(120deg,#f3eaff,#fdeede);border:1.5px solid #c9a9f0;border-radius:12px;padding:14px 18px;font:400 13px/1.6 Arial,sans-serif;color:#3a1c6e">&#9888;&#65039;&nbsp; <b style="color:#2B135C">Important — join with this email${email ? `: <span style="color:#8A18FF">${email}</span>` : ""}.</b> Your attendance is tracked by the email address this link was sent to. <b style="color:#2B135C">If you join Zoom with a different account, your attendance won't be counted</b> (and you won't earn points or your certificate).</div></td></tr>` : "";
+  const attendanceNote = !isOff ? `<tr><td style="padding:16px 34px 2px"><div style="background:linear-gradient(120deg,#f3eaff,#fdeede);border:1.5px solid #c9a9f0;border-radius:12px;padding:13px 16px;font:400 13.5px/1.55 Arial,sans-serif;color:#3a1c6e">&#9888;&#65039;&nbsp; <b style="color:#2B135C">Important:</b> Join Zoom with this same email${email ? ` (<span style="color:#8A18FF">${email}</span>)` : ""} — attendance is tracked by it. A different account won't count.</div></td></tr>` : "";
   const ctaHref = isOff ? (ev.mapLink || "") : (ev.join || "");
-  const ctaLabel = isOff ? "Get directions &#8594;" : "Join the session &#8594;";
-  const cta = ctaHref ? `<tr><td align="center" style="padding:24px 34px 6px"><a href="${ctaHref}" style="display:inline-block;background:#8A18FF;color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:15px 38px;border-radius:11px">${ctaLabel}</a></td></tr>` : "";
+  const ctaLabel = isOff ? "Get directions" : "Join the session";
+  const cta = ctaHref ? `<tr><td align="center" style="padding:24px 34px 6px"><a href="${ctaHref}" style="display:inline-block;background:#8A18FF;color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:12px 28px;border-radius:11px">${ctaLabel}</a></td></tr>` : "";
   const zoomNote = (!isOff && !ev.join) ? `<tr><td style="padding:14px 34px 2px"><div style="background:#fff6ec;border:1px solid #ffe0c2;border-radius:11px;padding:13px 16px;font:400 13px/1.5 Arial,sans-serif;color:#7a5a2a">&#128231;&nbsp; Your personal joining link is in a <b>separate email from Zoom</b> &mdash; please check your inbox (and spam) closer to the session.</div></td></tr>` : "";
-  const wa = ev.whatsapp ? `<tr><td align="center" style="padding:14px 34px 2px"><a href="${ev.whatsapp}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;font:700 14px Arial,sans-serif;padding:12px 30px;border-radius:11px">Join the WhatsApp community &#8594;</a></td></tr>` : "";
+  const wa = ev.whatsapp ? `<tr><td align="center" style="padding:14px 34px 2px"><a href="${ev.whatsapp}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;font:700 14px Arial,sans-serif;padding:11px 24px;border-radius:11px">Join the WhatsApp community</a></td></tr>` : "";
 
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f1f9;margin:0;padding:26px 12px"><tr><td align="center">
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 14px 44px rgba(43,19,92,.14)">
     <tr><td style="background:linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%);padding:32px 34px 30px">
-      <div style="font:800 12px Arial,sans-serif;letter-spacing:2.5px;color:#F97D03;text-transform:uppercase">Vedam School of Technology</div>
-      <div style="font:800 27px Arial,sans-serif;color:#fff;margin-top:10px;line-height:1.15">You're in! &#127881;</div>
+      <img src="https://vedam-superapp.vercel.app/vedam-logo-dark.png" alt="Vedam" height="30" style="height:30px;display:block;border:0;margin-bottom:14px" />
+      <div style="font:800 27px Arial,sans-serif;color:#fff;line-height:1.15">You're in! &#127881;</div>
       <div style="font:400 15px Arial,sans-serif;color:#ddd0ff;margin-top:6px">Your spot is locked for <b style="color:#fff">${ev.name}</b>.</div>
     </td></tr>
     <tr><td style="padding:30px 34px 6px">
