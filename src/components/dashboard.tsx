@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { ACTION_LABEL, linkedInShareUrl } from "@/lib/events";
+import { CertificateModal } from "@/components/events/certificate-modal";
 
 type LedgerRow = { points: number; action: string; app: string; created_at: string; events: { name: string | null } | null };
 type CertRow = { id: string; kind: "participation" | "winner" | "completion"; source: string; event_id: string | null; module_id: string | null; issued_on: string; events: { name: string | null } | null; cs_modules: { title: string | null } | null };
@@ -24,6 +25,7 @@ export function Dashboard() {
   const [authed, setAuthed] = useState(true);
   const [openFolders, setOpenFolders] = useState<Set<string>>(new Set());
   const [showActivity, setShowActivity] = useState(false);
+  const [openCert, setOpenCert] = useState<string | null>(null);
 
   useEffect(() => {
     setOrigin(window.location.origin);
@@ -147,7 +149,7 @@ export function Dashboard() {
                             <p className="font-mono text-[11px] text-muted">{g.certs.length} certificate{g.certs.length > 1 ? "s" : ""} · {g.certs.map((c) => c.kind === "winner" ? "Winner" : "Participation").join(" + ")}</p></div>
                           <span className="font-mono text-xs text-muted">{open ? "\u25B2" : "\u25BC"}</span>
                         </button>
-                        {open && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{g.certs.map((c) => <CertCard key={c.id} cert={c} origin={origin} />)}</div>}
+                        {open && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{g.certs.map((c) => <CertCard key={c.id} cert={c} origin={origin} onView={setOpenCert} />)}</div>}
                       </div>
                     );
                   })}
@@ -165,11 +167,13 @@ export function Dashboard() {
                   <p className="font-mono text-[11px] text-muted">{csCerts.length} certificate{csCerts.length > 1 ? "s" : ""}</p></div>
                 <span className="font-mono text-xs text-muted">{openFolders.has("codesprint") ? "\u25B2" : "\u25BC"}</span>
               </button>
-              {openFolders.has("codesprint") && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{csCerts.map((c) => <CertCard key={c.id} cert={c} origin={origin} />)}</div>}
+              {openFolders.has("codesprint") && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{csCerts.map((c) => <CertCard key={c.id} cert={c} origin={origin} onView={setOpenCert} />)}</div>}
             </div>
           )}
         </div>
       )}
+
+      {openCert && <CertificateModal certId={openCert} onClose={() => setOpenCert(null)} />}
 
       {/* recent activity — collapsible */}
       {rows.length > 0 && (
@@ -204,7 +208,7 @@ function Stat({ label, value }: { label: string; value: number }) {
   );
 }
 
-function CertCard({ cert: c, origin }: { cert: CertRow; origin: string }) {
+function CertCard({ cert: c, origin, onView }: { cert: CertRow; origin: string; onView: (id: string) => void }) {
   const winner = c.kind === "winner";
   const completion = c.source === "codesprint";
   const label = completion ? (c.cs_modules?.title || "CodeSprint") : winner ? "Winner" : "Participation";
@@ -216,7 +220,7 @@ function CertCard({ cert: c, origin }: { cert: CertRow; origin: string }) {
       </div>
       {completion && <p className="truncate font-display text-xs font-semibold text-heading">{label}</p>}
       <div className="mt-auto flex gap-2">
-        <Link href={`/certificate?c=${c.id}`} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">View</Link>
+        <button onClick={() => onView(c.id)} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">View</button>
         <a href={linkedInShareUrl(`${origin}/certificate?c=${c.id}`)} target="_blank" rel="noreferrer" className="flex-1 rounded-lg bg-[#0A66C2] px-3 py-2 text-center text-xs font-semibold text-white">Share</a>
       </div>
     </div>
