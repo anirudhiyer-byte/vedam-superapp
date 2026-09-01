@@ -22,7 +22,7 @@ export function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
-  const [me, setMe] = useState<{ name: string; contact: string } | null>(null);
+  const [me, setMe] = useState<{ name: string; contact: string; uid: string } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
@@ -31,10 +31,10 @@ export function Header() {
       const { data: { session } } = await supabase.auth.getSession();
       const u = session?.user;
       if (!u) { setMe(null); return; }
-      const { data: p } = await supabase.from("profiles").select("full_name, email, phone").eq("id", u.id).maybeSingle();
+      const { data: p } = await supabase.from("profiles").select("full_name, email, phone, public_id").eq("id", u.id).maybeSingle();
       const name = (p?.full_name || u.email?.split("@")[0] || "Vedam learner") as string;
       const contact = (p?.email || u.email || p?.phone || u.phone || "") as string;
-      setMe({ name, contact });
+      setMe({ name, contact, uid: (p?.public_id as string) || "" });
     })();
   }, [supabase, pathname]);
 
@@ -78,6 +78,7 @@ export function Header() {
                   <div className="border-b border-border p-4">
                     <div className="font-display text-base font-extrabold text-heading">{me.name}</div>
                     {me.contact && <div className="mt-0.5 truncate font-mono text-xs text-muted">{me.contact}</div>}
+                    {me.uid && <div className="mt-1 font-mono text-[11px] text-[#a49cbe]">{me.uid}</div>}
                   </div>
                   <div className="p-2">
                     {/* mobile nav (hidden on desktop where header shows links) */}

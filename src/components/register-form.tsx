@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
 import { Turnstile } from "@/components/turnstile";
+import { SearchableSelect } from "@/components/ui/searchable-select";
+import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
 
 const GRAD_YEARS = [2024, 2025, 2026, 2027, 2028];
 const STREAMS = ["PCM", "PCMB", "PCB", "Others"] as const;
@@ -26,6 +28,8 @@ export function RegisterForm() {
   const [gradYear, setGradYear] = useState<number | "">("");
   const [stream, setStream] = useState<(typeof STREAMS)[number] | "">("");
   const [streamOther, setStreamOther] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
   const [consent, setConsent] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaReset, setCaptchaReset] = useState(0);
@@ -45,6 +49,8 @@ export function RegisterForm() {
     if (!gradYear) return setError("Select your class 12 graduation year.");
     if (!stream) return setError("Select your stream.");
     if (stream === "Others" && !streamOther.trim()) return setError("Tell us your stream.");
+    if (!state) return setError("Select your state.");
+    if (!city) return setError("Select your city.");
     if (!consent) return setError("Please accept the consent to continue.");
     if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha.");
 
@@ -62,6 +68,8 @@ export function RegisterForm() {
           grad_year: String(gradYear),
           stream,
           stream_other: stream === "Others" ? streamOther.trim() : null,
+          state,
+          city,
           consent_given: "true",
           ...utm,
         },
@@ -96,6 +104,8 @@ export function RegisterForm() {
         grad_year: Number(gradYear),
         stream,
         stream_other: stream === "Others" ? streamOther.trim() : null,
+        state,
+        city,
         consent_given: true,
         consent_at: new Date().toISOString(),
         last_login_at: new Date().toISOString(),
@@ -191,6 +201,14 @@ export function RegisterForm() {
                 <input className={inputCls} value={streamOther} onChange={(e) => setStreamOther(e.target.value)} placeholder="e.g. Commerce" />
               </Field>
             )}
+            <div className="grid grid-cols-2 gap-3">
+              <Field label="State / UT">
+                <SearchableSelect options={INDIA_STATES} value={state} onChange={(v) => { setState(v); setCity(""); }} placeholder="Select state…" />
+              </Field>
+              <Field label="City">
+                <SearchableSelect options={state ? (STATE_CITIES[state] ?? []) : []} value={city} onChange={setCity} placeholder={state ? "Select city…" : "Pick a state first"} disabled={!state} />
+              </Field>
+            </div>
 
             <label className="flex items-start gap-2.5 pt-1">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-[color:rgb(var(--accent))]" />

@@ -150,6 +150,7 @@ export function RegistrationForm({
     } catch { /* best effort */ }
 
     setSubmitting(false);
+    try { await supabase.rpc("record_product_usage", { p_product: "events" }); } catch { /* best effort */ }
     onDone();
   }
 
