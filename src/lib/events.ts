@@ -41,6 +41,10 @@ export type EventRow = {
   require_signin: boolean;
   dashboard_enabled: boolean;
   featured: boolean;
+  certs_enabled: boolean | null;
+  podium_enabled: boolean | null;
+  share_points_podium: number | null;
+  share_points_participation: number | null;
   ribbon_label: string | null;
   ribbon_value: string | null;
   status: string;

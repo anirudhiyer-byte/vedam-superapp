@@ -54,6 +54,8 @@ export function CertificateModal({ certId, onClose }: { certId: string; onClose:
       } else if (row.module_id) {
         const { data: mod } = await supabase.from("cs_modules").select("points_share").eq("id", row.module_id).maybeSingle();
         setSharePts(Number((mod as { points_share?: number } | null)?.points_share || 0));
+        const { data: cert } = await supabase.from("certificates").select("linkedin_post_url").eq("id", certId).maybeSingle();
+        if (cert?.linkedin_post_url) setSubmitted(-1);
       }
       if (active) setLoading(false);
     })();
@@ -66,9 +68,11 @@ export function CertificateModal({ certId, onClose }: { certId: string; onClose:
     if (!url.trim() || busy) return;
     setBusy(true); setErr(null);
     try {
-      if (data?.source === "codesprint" && data.module_id) {
-        const { data: p } = await supabase.rpc("cs_award_share", { p_module_id: data.module_id });
-        setSubmitted(Number(p) || sharePts);
+      if (data?.source === "codesprint") {
+        const { data: res } = await supabase.rpc("cs_submit_linkedin", { p_cert_id: certId, p_url: url.trim() });
+        const r = res as { ok?: boolean; already?: boolean; error?: string; points?: number };
+        if (r?.error) { setErr(r.error); setBusy(false); return; }
+        setSubmitted(r?.already ? -1 : Number(r?.points) || 0);
       } else if (regId) {
         const { data: res } = await supabase.rpc("submit_linkedin_post", { p_registration_id: regId, p_url: url.trim() });
         const r = res as { ok?: boolean; already?: boolean; error?: string; points?: number };

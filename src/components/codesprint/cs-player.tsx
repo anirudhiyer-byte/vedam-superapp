@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { CertificateModal } from "@/components/events/certificate-modal";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -33,6 +34,7 @@ export function CsPlayer() {
   const [busy, setBusy] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [openCert, setOpenCert] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -148,7 +150,7 @@ export function CsPlayer() {
                         <span className="flex-1 truncate text-foreground">{l.title}</span>
                       </button>
                     ))}
-                    {earned && <Link href={`/certificate?c=${earned}`} className="block border-t border-border px-4 py-2.5 font-mono text-xs font-semibold text-accent hover:bg-surface-warm/50">View certificate →</Link>}
+                    {earned && <button onClick={() => setOpenCert(earned)} className="block w-full border-t border-border px-4 py-2.5 text-left font-mono text-xs font-semibold text-accent hover:bg-surface-warm/50">View certificate →</button>}
                     {m.lessons.length === 0 && <p className="px-4 py-3 font-body text-xs text-muted">No lessons yet.</p>}
                   </div>
                 )}
@@ -157,6 +159,7 @@ export function CsPlayer() {
           })}
         </div>
       </div>
+    {openCert && <CertificateModal certId={openCert} onClose={() => setOpenCert(null)} />}
     </div>
   );
 }
