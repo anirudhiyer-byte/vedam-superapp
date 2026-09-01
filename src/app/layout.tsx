@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "@/lib/analytics/posthog-provider";
 import { GoogleAnalytics } from "@/lib/analytics/ga";
 import { UtmCapture } from "@/components/utm-capture";
+import { ProfileGate } from "@/components/profile-gate";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 const nunito = Nunito_Sans({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <PostHogProvider>
             <UtmCapture />
+            <ProfileGate />
             {children}
           </PostHogProvider>
         </ThemeProvider>
