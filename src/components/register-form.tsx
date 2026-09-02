@@ -44,7 +44,7 @@ export function RegisterForm() {
   async function sendOtp() {
     setError(null);
     if (!fullName.trim()) return setError("Enter your name.");
-    if (phone.replace(/\D/g, "").length < 10) return setError("Enter a valid 10-digit phone number.");
+    if (phone.replace(/\D/g, "").length < 10) return setError("Enter a valid 10-digit WhatsApp number.");
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Enter a valid email.");
     if (!gradYear) return setError("Select your class 12 graduation year.");
     if (!stream) return setError("Select your stream.");
@@ -170,11 +170,12 @@ export function RegisterForm() {
               <input className={inputCls} value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Aarav Sharma" />
             </Field>
 
-            <Field label="Phone number">
+            <Field label="WhatsApp number">
               <div className="flex">
                 <span className="inline-flex items-center rounded-l-lg border border-r-0 border-border bg-surface-warm px-3 text-sm text-muted">+91</span>
                 <input className={inputCls + " rounded-l-none"} value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="numeric" placeholder="98765 43210" />
               </div>
+              <p className="mt-1 font-body text-xs text-muted">We'll send event reminders and updates here on WhatsApp.</p>
             </Field>
 
             <Field label="Email">

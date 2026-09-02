@@ -42,7 +42,7 @@ export function LoginForm() {
 
   async function sendCode() {
     setError(null);
-    if (mode === "phone" && phone.replace(/\D/g, "").length < 10) return setError("Enter a valid phone number.");
+    if (mode === "phone" && phone.replace(/\D/g, "").length < 10) return setError("Enter a valid WhatsApp number.");
     if (mode === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Enter a valid email.");
     if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha.");
 
@@ -101,7 +101,7 @@ export function LoginForm() {
                 mode === m ? "bg-brand-gradient text-white" : "text-muted hover:text-foreground",
               ].join(" ")}
             >
-              {m}
+              {m === "phone" ? "WhatsApp" : "Email"}
             </button>
           ))}
         </div>
