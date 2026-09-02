@@ -32,6 +32,13 @@ export async function waSendSingle(opts: {
   return call(url, { method: "POST", headers: { "Content-Type": "application/json", accept: "*/*" }, body: JSON.stringify(body) });
 }
 
+export async function waCreateTemplate(payload: Record<string, unknown>, baseUrl?: string): Promise<Result> {
+  const base = (baseUrl || DEFAULT_BASE).replace(/\/$/, "");
+  const url = `${base}/v1/template?api_key=${encodeURIComponent(key())}`;
+  const body = { waba_id: process.env.TRUSTSIGNAL_WABA_ID || "", shortlink: "1", ...payload };
+  return call(url, { method: "POST", headers: { "Content-Type": "application/json", accept: "*/*" }, body: JSON.stringify(body) });
+}
+
 export async function waListTemplates(baseUrl?: string): Promise<Result> {
   const base = (baseUrl || DEFAULT_BASE).replace(/\/$/, "");
   const url = `${base}/v1/template?api_key=${encodeURIComponent(key())}&page=1&limit=100`;
