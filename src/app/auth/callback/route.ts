@@ -18,7 +18,9 @@ export async function GET(request: Request) {
   if (error) return NextResponse.redirect(`${origin}/login?error=oauth`);
 
   const { data: { user } } = await supabase.auth.getUser();
-  if (user) {
+  const email = (user?.email || "").toLowerCase();
+  const isStaff = email.endsWith("@vedam.org");
+  if (user && !isStaff) {
     const { data: p } = await supabase.from("profiles").select("phone, stream, consent").eq("id", user.id).maybeSingle();
     const completed = !!(p?.phone || p?.stream || p?.consent);
     if (!completed) {
