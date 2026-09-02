@@ -9,9 +9,12 @@ export async function POST(req: Request) {
   };
   if (!to || !templateId) return Response.json({ ok: false, error: "to + templateId required" }, { status: 400 });
   const result = await waSendSingle({ to, templateId, messageType, sender, sample, baseUrl, path });
+  const d = result.data as { results?: { transaction_id?: string; cost?: number }[] } | undefined;
+  const first = d?.results?.[0];
   await supabase.from("whatsapp_sends").insert({
     to_number: to, template_id: templateId, message_type: messageType || "text",
     status: result.ok ? "sent" : "failed", http_status: result.status, provider_response: result.data as object, sent_by: user.id,
+    transaction_id: first?.transaction_id ?? null, cost: first?.cost ?? null,
   });
   return Response.json(result);
 }

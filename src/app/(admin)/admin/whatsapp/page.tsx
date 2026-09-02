@@ -1,5 +1,17 @@
-import type { Metadata } from "next";
+"use client";
+import { useState } from "react";
 import { WhatsAppTester } from "@/components/admin/whatsapp-tester";
-export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "WhatsApp", robots: { index: false, follow: false } };
-export default function Page() { return <WhatsAppTester />; }
+import { WhatsAppBroadcast } from "@/components/admin/whatsapp-broadcast";
+
+export default function Page() {
+  const [tab, setTab] = useState<"broadcast" | "tester">("broadcast");
+  return (
+    <div>
+      <div className="mx-auto flex max-w-3xl gap-2 px-6 pt-8">
+        <button onClick={() => setTab("broadcast")} className={["rounded-lg px-4 py-2 font-mono text-xs font-semibold", tab === "broadcast" ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted"].join(" ")}>Broadcast</button>
+        <button onClick={() => setTab("tester")} className={["rounded-lg px-4 py-2 font-mono text-xs font-semibold", tab === "tester" ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted"].join(" ")}>Tester</button>
+      </div>
+      {tab === "broadcast" ? <WhatsAppBroadcast /> : <WhatsAppTester />}
+    </div>
+  );
+}
