@@ -8,7 +8,7 @@ type Reg = {
   id: string; user_id: string | null; full_name: string | null; user_email: string | null; whatsapp: string | null;
   passout_year: string | null; stream: string | null; created_at: string;
   answers: Record<string, unknown> | null; joined: boolean; attended_minutes: number;
-  utm_source: string | null; utm_medium: string | null; utm_campaign: string | null; linkedin_post_url: string | null;
+  utm_source: string | null; utm_medium: string | null; utm_campaign: string | null; linkedin_post_url: string | null; masterclass_rating: number | null; github_url: string | null;
 };
 type Col = { key: string; label: string; get: (r: Reg) => string };
 
@@ -30,7 +30,7 @@ export function Registrants({ id }: { id: string }) {
   async function load() {
     const { data: ev } = await supabase.from("events").select("*").eq("id", id).single();
     const { data: regs } = await supabase.from("event_registrations")
-      .select("id, user_id, full_name, user_email, whatsapp, passout_year, stream, created_at, answers, joined, attended_minutes, utm_source, utm_medium, utm_campaign, linkedin_post_url")
+      .select("id, user_id, full_name, user_email, whatsapp, passout_year, stream, created_at, answers, joined, attended_minutes, utm_source, utm_medium, utm_campaign, linkedin_post_url, masterclass_rating, github_url")
       .eq("event_id", id).order("created_at", { ascending: false });
     setEvent((ev as EventRow) ?? null);
     setRows((regs as Reg[]) ?? []);
@@ -51,8 +51,11 @@ export function Registrants({ id }: { id: string }) {
     { key: "joined", label: "Joined", get: (r) => (r.joined ? "Yes" : "No") },
     { key: "attended_minutes", label: "Mins", get: (r) => String(r.attended_minutes ?? 0) },
     { key: "utm_source", label: "Source", get: (r) => r.utm_source ?? "" },
+    { key: "utm_medium", label: "Medium", get: (r) => r.utm_medium ?? "" },
     { key: "utm_campaign", label: "Campaign", get: (r) => r.utm_campaign ?? "" },
     { key: "linkedin_post_url", label: "LinkedIn post", get: (r) => r.linkedin_post_url ?? "" },
+    { key: "github_url", label: "GitHub", get: (r) => r.github_url ?? "" },
+    { key: "masterclass_rating", label: "Rating", get: (r) => r.masterclass_rating ? `${r.masterclass_rating}/5` : "" },
     ...extraKeys.map((k) => ({ key: "a:" + k, label: keyLabel(k), get: (r: Reg) => cell(r.answers?.[k]) })),
     { key: "created_at", label: "Registered", get: (r) => istDate(r.created_at) },
   ], [extraKeys]); // eslint-disable-line react-hooks/exhaustive-deps
