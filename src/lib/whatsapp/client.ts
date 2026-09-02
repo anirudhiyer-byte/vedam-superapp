@@ -1,33 +1,39 @@
-/** TrustSignal / Sigmo WhatsApp client (server-only). api_key is a query param. */
-const BASE = "https://sigmo.ai/api";
+/** TrustSignal WhatsApp client (server-only). Base: https://wpapi.trustsignal.io/api
+ *  api_key is a query param. Variables: sample.header + sample.bodyvar[] (in order). */
+const DEFAULT_BASE = process.env.TRUSTSIGNAL_BASE_URL || "https://wpapi.trustsignal.io/api";
 const key = () => process.env.TRUSTSIGNAL_API_KEY || "";
 const sender = () => process.env.TRUSTSIGNAL_SENDER || "";
 
-type Result = { ok: boolean; status: number; data: unknown };
+type Result = { ok: boolean; status: number; url: string; data: unknown };
+export type WaSample = { header?: string; bodyvar?: string[]; button?: string[] };
 
-async function parse(res: Response): Promise<Result> {
+async function call(url: string, init?: RequestInit): Promise<Result> {
+  let res: Response;
+  try { res = await fetch(url, init); }
+  catch (e) { return { ok: false, status: 0, url, data: { error: String(e) } }; }
   const text = await res.text();
-  let data: unknown;
-  try { data = JSON.parse(text); } catch { data = { raw: text }; }
-  return { ok: res.ok, status: res.status, data };
+  let data: unknown; try { data = JSON.parse(text); } catch { data = { raw: text }; }
+  return { ok: res.ok, status: res.status, url, data };
 }
 
-/** Send a single WhatsApp message using an approved template. */
-export async function waSendSingle(opts: { to: string; templateId: string; messageType?: string; sender?: string }): Promise<Result> {
-  const url = `${BASE}/v1/whatsapp/single?api_key=${encodeURIComponent(key())}`;
-  const body = {
+export async function waSendSingle(opts: {
+  to: string; templateId: string; messageType?: string; sender?: string; sample?: WaSample; baseUrl?: string; path?: string;
+}): Promise<Result> {
+  const base = (opts.baseUrl || DEFAULT_BASE).replace(/\/$/, "");
+  const path = opts.path || "/v1/whatsapp/single";
+  const url = `${base}${path}?api_key=${encodeURIComponent(key())}`;
+  const body: Record<string, unknown> = {
     message_type: opts.messageType || "text",
     sender: opts.sender || sender(),
     to: opts.to,
     template_id: opts.templateId,
   };
-  const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-  return parse(res);
+  if (opts.sample && (opts.sample.header || opts.sample.bodyvar?.length || opts.sample.button?.length)) body.sample = opts.sample;
+  return call(url, { method: "POST", headers: { "Content-Type": "application/json", accept: "*/*" }, body: JSON.stringify(body) });
 }
 
-/** Fetch all WhatsApp templates (to see names/ids/approval status). */
-export async function waListTemplates(): Promise<Result> {
-  const url = `${BASE}/v1/template?api_key=${encodeURIComponent(key())}&page=1&limit=100`;
-  const res = await fetch(url, { method: "GET" });
-  return parse(res);
+export async function waListTemplates(baseUrl?: string): Promise<Result> {
+  const base = (baseUrl || DEFAULT_BASE).replace(/\/$/, "");
+  const url = `${base}/v1/template?api_key=${encodeURIComponent(key())}&page=1&limit=100`;
+  return call(url, { method: "GET" });
 }

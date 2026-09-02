@@ -12,7 +12,11 @@ export function WhatsAppTester() {
   const [to, setTo] = useState("");
   const [templateId, setTemplateId] = useState("");
   const [messageType, setMessageType] = useState("text");
+  const [headerVar, setHeaderVar] = useState("");
+  const [bodyVars, setBodyVars] = useState("");
   const [sender, setSender] = useState("");
+  const [baseUrl, setBaseUrl] = useState("https://wpapi.trustsignal.io/api");
+  const [path, setPath] = useState("/v1/whatsapp/single");
   const [sending, setSending] = useState(false);
   const [resp, setResp] = useState<string | null>(null);
   const [log, setLog] = useState<Send[]>([]);
@@ -20,7 +24,7 @@ export function WhatsAppTester() {
   async function loadTemplates() {
     setTplErr(null);
     try {
-      const r = await fetch("/api/whatsapp/templates");
+      const r = await fetch("/api/whatsapp/templates?baseUrl=" + encodeURIComponent(baseUrl));
       const j = await r.json();
       // provider shape unknown — try common containers
       const raw = j?.data;
@@ -38,7 +42,8 @@ export function WhatsAppTester() {
     try {
       const r = await fetch("/api/whatsapp/send-test", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ to: to.trim(), templateId: templateId.trim(), messageType, sender: sender.trim() || undefined }),
+        body: JSON.stringify({ to: to.trim(), templateId: templateId.trim(), messageType, sender: sender.trim() || undefined, baseUrl: baseUrl.trim() || undefined, path: path.trim() || undefined,
+          sample: (headerVar.trim() || bodyVars.trim()) ? { header: headerVar.trim() || undefined, bodyvar: bodyVars.trim() ? bodyVars.split(",").map((v) => v.trim()) : undefined } : undefined }),
       });
       const j = await r.json();
       setResp(JSON.stringify(j, null, 2));
@@ -71,12 +76,25 @@ export function WhatsAppTester() {
             <input value={to} onChange={(e) => setTo(e.target.value)} placeholder="+919812345678" className={field} /></label>
           <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">message_type</span>
             <select value={messageType} onChange={(e) => setMessageType(e.target.value)} className={field}>
-              <option value="text">text</option><option value="media">media</option><option value="template">template</option>
+              <option value="text">text</option><option value="text_var">text_var</option><option value="media">media</option><option value="media_var">media_var</option><option value="template">template</option>
             </select></label>
         </div>
         <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Sender <span className="font-normal text-muted">(blank = default env sender)</span></span>
           <input value={sender} onChange={(e) => setSender(e.target.value)} placeholder="+919289466254" className={field} /></label>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Header variable <span className="font-normal text-muted">(if template has one)</span></span>
+            <input value={headerVar} onChange={(e) => setHeaderVar(e.target.value)} placeholder="e.g. an image URL or text" className={field} /></label>
+          <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Body variables <span className="font-normal text-muted">(comma-separated, in order)</span></span>
+            <input value={bodyVars} onChange={(e) => setBodyVars(e.target.value)} placeholder="John, Order#123" className={field} /></label>
+        </div>
 
+        <div className="grid grid-cols-1 gap-3 rounded-xl border border-dashed border-border-strong p-3 sm:grid-cols-2">
+          <label className="block"><span className="mb-1.5 block font-mono text-[11px] font-semibold uppercase tracking-wide text-muted">Base URL (experiment)</span>
+            <input value={baseUrl} onChange={(e) => setBaseUrl(e.target.value)} placeholder="https://wpapi.trustsignal.io/api" className={field} /></label>
+          <label className="block"><span className="mb-1.5 block font-mono text-[11px] font-semibold uppercase tracking-wide text-muted">Path</span>
+            <input value={path} onChange={(e) => setPath(e.target.value)} placeholder="/v1/whatsapp/single" className={field} /></label>
+          <p className="font-body text-xs text-muted sm:col-span-2">Got a 405? The real API base is likely different from the docs page. Paste the working URL from Postman here and Send again — the response below shows the exact URL called.</p>
+        </div>
         <button onClick={send} disabled={sending || !to.trim() || !templateId.trim()} className="rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-60">{sending ? "Sending…" : "Send test WhatsApp"}</button>
       </div>
 
