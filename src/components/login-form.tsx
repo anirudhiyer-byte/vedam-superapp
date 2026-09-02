@@ -81,8 +81,8 @@ export function LoginForm() {
       utm_campaign: utm.utm_campaign ?? null,
     });
 
-    setLoading(false);
-    router.push(next);
+    // hard navigation so the fresh session cookie is present on the next request
+    window.location.assign(next);
   }
 
   return (
@@ -144,7 +144,7 @@ export function LoginForm() {
 
         <div className="flex items-center gap-3 pt-1">
           <div className="h-px flex-1 bg-border" />
-          <span className="font-mono text-[10px] uppercase tracking-wide text-muted">Vedam staff</span>
+          <span className="font-mono text-[10px] uppercase tracking-wide text-muted">or</span>
           <div className="h-px flex-1 bg-border" />
         </div>
         <button
