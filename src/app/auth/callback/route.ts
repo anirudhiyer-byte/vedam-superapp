@@ -21,8 +21,8 @@ export async function GET(request: Request) {
   const email = (user?.email || "").toLowerCase();
   const isStaff = email.endsWith("@vedam.org");
   if (user && !isStaff) {
-    const { data: p } = await supabase.from("profiles").select("phone, stream, consent").eq("id", user.id).maybeSingle();
-    const completed = !!(p?.phone || p?.stream || p?.consent);
+    const { data: p } = await supabase.from("profiles").select("phone, stream, consent_at").eq("id", user.id).maybeSingle();
+    const completed = !!(p?.phone || p?.stream || p?.consent_at);
     if (!completed) {
       await supabase.auth.signOut();
       // best-effort: remove the stub Google account so it doesn't linger
