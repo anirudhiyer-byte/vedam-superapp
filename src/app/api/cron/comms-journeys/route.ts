@@ -1,12 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
 import { waSendSingle } from "@/lib/whatsapp/client";
+import { sendEmailServer } from "@/lib/email/cron-send";
+import { renderEmailTemplateHtml, type EmailTpl } from "@/lib/email/render";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 type Cond = { field: string; op: string; value?: string; value2?: string };
 type Branch = { kind: "if" | "elif" | "else"; match?: "all" | "any"; conditions?: Cond[]; template_ref: string; message_type?: string; variable_mapping?: { source: string; value?: string }[] };
 type Journey = { id: string; enabled: boolean; channel: string; branches: Branch[] };
-type Row = { id: string; name: string; phone: string | null; state: string | null; city: string | null; signup: string;
+type Row = { id: string; name: string; phone: string | null; email: string | null; state: string | null; city: string | null; signup: string;
   events_reg: number; events_attended: number; cs_enrolled: boolean; cs_modules: number; cs_total: number; cp_used: boolean; points: number };
 
 const db = () => createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
@@ -53,19 +55,24 @@ export async function GET(req: Request) {
   let fired = 0;
 
   for (const j of (journeys ?? []) as Journey[]) {
-    if ((j.channel || "whatsapp") !== "whatsapp") continue; // email journeys via email path (next stage)
     for (const r of rows) {
-      if (!r.phone) continue;
       const idx = (j.branches || []).findIndex((br) => branchMatches(r, br));
       if (idx < 0) continue;
       const br = j.branches[idx];
       if (!br.template_ref) continue;
       // dedup: claim (journey,user,branch); on conflict → already fired
+      if ((j.channel || "whatsapp") === "email") { if (!r.email) continue; }
+      else if (!r.phone) continue;
       const { error: claimErr } = await sb.from("comms_journey_runs").insert({ journey_id: j.id, user_id: r.id, branch_index: idx });
       if (claimErr) continue;
-      const res = await waSendSingle({ to: r.phone, templateId: br.template_ref, messageType: br.message_type || "media", sample: sampleFor(br.variable_mapping, r) });
-      const d = (res.data as { results?: { transaction_id?: string; cost?: number }[] })?.results?.[0];
-      await sb.from("whatsapp_sends").insert({ to_number: r.phone, template_id: br.template_ref, message_type: br.message_type || "media", status: res.ok ? "sent" : "failed", http_status: res.status, provider_response: res.data as object, transaction_id: d?.transaction_id ?? null, cost: d?.cost ?? null });
+      if ((j.channel || "whatsapp") === "email") {
+        const { data: tpl } = await sb.from("email_templates").select("subject, message, template_style, image, buttons").eq("id", br.template_ref).maybeSingle();
+        if (tpl) { const html = renderEmailTemplateHtml(tpl as EmailTpl, { name: r.name }); await sendEmailServer(r.email as string, (tpl as { subject?: string }).subject || "Vedam", html); }
+      } else {
+        const res = await waSendSingle({ to: r.phone as string, templateId: br.template_ref, messageType: br.message_type || "media", sample: sampleFor(br.variable_mapping, r) });
+        const d = (res.data as { results?: { transaction_id?: string; cost?: number }[] })?.results?.[0];
+        await sb.from("whatsapp_sends").insert({ to_number: r.phone, template_id: br.template_ref, message_type: br.message_type || "media", status: res.ok ? "sent" : "failed", http_status: res.status, provider_response: res.data as object, transaction_id: d?.transaction_id ?? null, cost: d?.cost ?? null });
+      }
       fired++;
     }
     await sb.from("comms_journeys").update({ last_run_at: new Date().toISOString() }).eq("id", j.id);

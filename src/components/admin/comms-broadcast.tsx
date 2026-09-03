@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { renderEmailTemplateHtml } from "@/lib/email/render";
 
 type Row = { id: string; name: string; phone: string | null; email: string | null; state: string | null; city: string | null; signup: string;
   events_reg: number; events_attended: number; cs_enrolled: boolean; cs_modules: number; cs_total: number; cp_used: boolean; points: number };
 type WaTpl = { id?: string; name?: string; status?: string; placeholder?: { bodyvar?: number } };
-type EmTpl = { id: string; name: string; subject: string | null; product: string };
+type EmTpl = { id: string; name: string; subject: string | null; product: string; message: string | null; template_style: string | null; image: string | null; buttons: { label: string; url: string }[] | null };
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
 type DateCond = "any" | "after" | "before" | "between";
 
@@ -43,7 +44,7 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
           const list = Array.isArray(raw) ? raw : Array.isArray(raw?.templates) ? raw.templates : Array.isArray(raw?.data) ? raw.data : [];
           setWaTpls((list as WaTpl[]).filter((t) => (t.status || "APPROVED").toUpperCase() === "APPROVED")); } catch { /* */ }
       } else {
-        const { data: em } = await supabase.from("email_templates").select("id, name, subject, product").order("created_at", { ascending: false });
+        const { data: em } = await supabase.from("email_templates").select("id, name, subject, product, message, template_style, image, buttons").order("created_at", { ascending: false });
         setEmTpls((em as EmTpl[]) ?? []);
       }
     })();
@@ -94,11 +95,12 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
       const tpl = emTpls.find((t) => t.id === templateRef);
       const emails = selRows.filter((r) => r.email).map((r) => r.email as string);
       const { data: s } = await supabase.auth.getSession();
+      const bodyInner = tpl ? renderEmailTemplateHtml(tpl).replace(/^[\s\S]*<body[^>]*>|<\/body>[\s\S]*$/g, "") : "";
       let sent = 0, failed = 0;
       for (let i = 0; i < emails.length; i += 40) {
         const batch = emails.slice(i, i + 40);
         try { const res = await fetch("/api/events/send-campaign", { method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ subject: tpl?.subject || "Vedam", body: "<p>(template body)</p>", recipients: batch, template: "brand", accessToken: s.session?.access_token }) });
+          body: JSON.stringify({ subject: tpl?.subject || "Vedam", body: bodyInner || "<p>&nbsp;</p>", recipients: batch, template: (tpl?.template_style || "brand"), accessToken: s.session?.access_token }) });
           const j = await res.json(); if (j.ok) { sent += j.sent || 0; failed += j.failed || 0; } else failed += batch.length; } catch { failed += batch.length; }
       }
       setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`);
@@ -172,10 +174,13 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
               <div className="border-t border-[#eee] py-2 text-center text-[12px] font-bold text-[#0a8]">🔗 Button</div>
             </div></div>
           ) : (
+            channel === "email" && templateRef && emTpls.find((t) => t.id === templateRef) ? (
+              <iframe title="Email preview" className="h-[420px] w-full rounded-2xl border border-border bg-white" srcDoc={renderEmailTemplateHtml(emTpls.find((t) => t.id === templateRef)!)} />
+            ) : (
             <div className="rounded-2xl bg-[#eef] p-3"><div className="overflow-hidden rounded-xl border border-[#e5e5f0] bg-white">
               <div className="grid h-16 place-items-center bg-[linear-gradient(125deg,#2B135C,#8A18FF)] text-[12px] font-extrabold text-white">Vedam</div>
-              <div className="p-3 text-[12.5px] leading-relaxed">{templateRef ? `Preview of “${templates.find((t) => t.ref === templateRef)?.label}”.` : "Select a template to preview."}</div>
-            </div></div>
+              <div className="p-3 text-[12.5px] leading-relaxed">Select an email template to preview.</div>
+            </div></div>)
           )}
           <p className="mt-2 font-body text-[11px] text-muted">Preview reflects the selected template. Toggle channel to preview each.</p>
         </div>
