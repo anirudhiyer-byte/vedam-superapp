@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Nunito_Sans, JetBrains_Mono, Prompt } from "next/font/google";
+import { Outfit, Nunito_Sans, JetBrains_Mono, Prompt, Fraunces } from "next/font/google";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -12,6 +12,7 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: 
 const nunito = Nunito_Sans({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
 const prompt = Prompt({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-prompt", display: "swap" });
+const fraunces = Fraunces({ subsets: ["latin"], style: ["italic", "normal"], weight: ["400", "500", "600"], variable: "--font-fraunces", display: "swap" });
 
 export const metadata: Metadata = {
   title: {
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${nunito.variable} ${jetbrains.variable} ${prompt.variable}`}>
+      <body className={`${outfit.variable} ${nunito.variable} ${jetbrains.variable} ${prompt.variable} ${fraunces.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <PostHogProvider>
             <UtmCapture />
