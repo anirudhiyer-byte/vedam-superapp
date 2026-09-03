@@ -1,0 +1,16 @@
+VEDAM ONE — CURRENT LANDING HERO SNAPSHOT (rollback / fallback)
+================================================================
+This is the CURRENT landing page hero, saved before any premium-hero experiments.
+
+If an experimental hero doesn't click, restore the old one by extracting this zip
+from the project root — it overwrites the 3 files back to this exact state:
+
+    unzip -o ~/Downloads/vedam-current-hero-SNAPSHOT.zip -d .
+    git add -A && git commit -m "revert: restore original landing hero" && git push
+
+Files included:
+- src/app/(shell)/page.tsx           (the landing page)
+- src/components/ecosystem-hub.tsx   (the right-side ecosystem visual)
+- src/components/hero-cta.tsx        (the primary CTA button)
+
+Keep this zip safe — it's your guaranteed way back to the known-good hero.
