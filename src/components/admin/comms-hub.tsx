@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { EventReminders } from "@/components/admin/event-reminders";
+import { CommsJourneys } from "@/components/admin/comms-journeys";
 
 type Channel = "whatsapp" | "email";
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
@@ -118,16 +119,22 @@ export function CommsHub() {
         </div>
       ) : tab === "broadcast" ? (
         <CommsBroadcast channel={channel} product={product} />
-      ) : tab === "automations" && product === "events" ? (
-        <div className="mt-5">
-          <p className="mb-2 font-body text-sm text-muted">Per-event reminders (custom T− / T+). Pick an event:</p>
-          <select value={pickedEvent} onChange={(e) => setPickedEvent(e.target.value)} className="rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground outline-none"><option value="">Select an event…</option>{events.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}</select>
-          {pickedEvent ? <div className="mt-2"><EventReminders eventId={pickedEvent} /></div> : <p className="mt-3 font-body text-sm text-muted">Choose an event to manage its reminders. (Journey automations across products come next.)</p>}
+      ) : tab === "automations" ? (
+        <div className="mt-4">
+          {product === "events" && (
+            <div className="mb-4 rounded-2xl border border-border bg-surface p-4">
+              <p className="mb-2 font-body text-sm font-semibold text-heading">Per-event reminders (custom T− / T+)</p>
+              <select value={pickedEvent} onChange={(e) => setPickedEvent(e.target.value)} className="rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground outline-none"><option value="">Select an event…</option>{events.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}</select>
+              {pickedEvent && <div className="mt-2"><EventReminders eventId={pickedEvent} /></div>}
+            </div>
+          )}
+          <p className="mb-2 font-body text-sm font-semibold text-heading">Journey automations (if / else-if / else)</p>
+          <CommsJourneys channel={channel} product={product} />
         </div>
       ) : (
         <div className="mt-6 rounded-2xl border border-dashed border-border-strong bg-surface-warm/40 p-8 text-center">
           <p className="font-display text-lg font-bold text-heading capitalize">{tab} — {pill(product === "all" ? "general" : product)}</p>
-          <p className="mt-1 font-body text-sm text-muted">The product-scoped {tab} (filters + full ticklist + preview{tab === "automations" ? " + if/else journeys" : ""}) is being built in the next stages. Templates tagging is live now.</p>
+          <p className="mt-1 font-body text-sm text-muted">The product-scoped {tab} (filters + full ticklist + preview) is being built in the next stages. Templates tagging is live now.</p>
         </div>
       )}
     </div>
