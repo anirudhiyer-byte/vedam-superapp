@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 
 type Channel = "whatsapp" | "email";
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
@@ -111,6 +112,8 @@ export function CommsHub() {
             )}
           </div>
         </div>
+      ) : tab === "broadcast" ? (
+        <CommsBroadcast channel={channel} product={product} />
       ) : (
         <div className="mt-6 rounded-2xl border border-dashed border-border-strong bg-surface-warm/40 p-8 text-center">
           <p className="font-display text-lg font-bold text-heading capitalize">{tab} — {pill(product === "all" ? "general" : product)}</p>
