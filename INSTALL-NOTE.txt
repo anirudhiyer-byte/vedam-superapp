@@ -1,0 +1,8 @@
+HERO C — GLASS (Three.js). This adds the "three" dependency.
+After extracting, you MUST install it before building/deploying:
+
+    unzip -o ~/Downloads/vedam-hero-C-glass.zip -d .
+    pnpm install          # <-- pulls in three + @types/three from the updated package.json
+    git add -A && git commit -m "experiment: hero C - glass crystal (three.js)" && git push
+
+Vercel will run its own install on deploy, so the pushed package.json is enough there.
