@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
+import { EventReminders } from "@/components/admin/event-reminders";
 
 type Channel = "whatsapp" | "email";
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
@@ -27,6 +28,8 @@ export function CommsHub() {
   const [waTpls, setWaTpls] = useState<WaTpl[]>([]);
   const [emTpls, setEmTpls] = useState<EmTpl[]>([]);
   const [tags, setTags] = useState<Record<string, string>>({}); // ref -> product (whatsapp)
+  const [events, setEvents] = useState<{ id: string; name: string }[]>([]);
+  const [pickedEvent, setPickedEvent] = useState("");
 
   async function loadTags() {
     const { data } = await supabase.from("comms_template_tags").select("channel, template_ref, product").eq("channel", "whatsapp");
@@ -44,6 +47,7 @@ export function CommsHub() {
     }
   }
   useEffect(() => { load(); /* eslint-disable-next-line */ }, [channel]);
+  useEffect(() => { supabase.from("events").select("id, name").order("starts_at", { ascending: false }).limit(50).then(({ data }) => setEvents((data as { id: string; name: string }[]) ?? [])); }, [supabase]);
 
   async function tagWa(ref: string, p: string) {
     setTags((t) => ({ ...t, [ref]: p }));
@@ -114,6 +118,12 @@ export function CommsHub() {
         </div>
       ) : tab === "broadcast" ? (
         <CommsBroadcast channel={channel} product={product} />
+      ) : tab === "automations" && product === "events" ? (
+        <div className="mt-5">
+          <p className="mb-2 font-body text-sm text-muted">Per-event reminders (custom T− / T+). Pick an event:</p>
+          <select value={pickedEvent} onChange={(e) => setPickedEvent(e.target.value)} className="rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground outline-none"><option value="">Select an event…</option>{events.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}</select>
+          {pickedEvent ? <div className="mt-2"><EventReminders eventId={pickedEvent} /></div> : <p className="mt-3 font-body text-sm text-muted">Choose an event to manage its reminders. (Journey automations across products come next.)</p>}
+        </div>
       ) : (
         <div className="mt-6 rounded-2xl border border-dashed border-border-strong bg-surface-warm/40 p-8 text-center">
           <p className="font-display text-lg font-bold text-heading capitalize">{tab} — {pill(product === "all" ? "general" : product)}</p>

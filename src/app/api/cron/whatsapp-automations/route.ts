@@ -6,7 +6,7 @@ export const maxDuration = 300;
 
 type Auto = {
   id: string; name: string; trigger_type: "event_before" | "event_after" | "scheduled";
-  event_id: string | null; offset_minutes: number; scheduled_at: string | null;
+  channel?: string; event_id: string | null; offset_minutes: number; scheduled_at: string | null;
   conditions: { state?: string; attended?: "yes" | "no"; product?: string };
   template_id: string; message_type: string; variable_mapping: { source: string; value?: string }[];
   events?: { starts_at: string | null } | null;
@@ -57,6 +57,7 @@ export async function GET(req: Request) {
   let fired = 0, totalSent = 0;
 
   for (const a of (autos ?? []) as Auto[]) {
+    if ((a.channel || "whatsapp") !== "whatsapp") continue; // email reminders fire via the email path
     let due: Date | null = null, runKey = "";
     if (a.trigger_type === "scheduled") {
       if (!a.scheduled_at) continue; due = new Date(a.scheduled_at); runKey = `sched:${a.scheduled_at}`;

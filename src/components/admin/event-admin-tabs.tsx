@@ -11,6 +11,7 @@ export function EventAdminTabs({ id }: { id: string }) {
     { label: "Registrants", href: `${base}/registrants` },
     { label: "Dashboard", href: `${base}/dashboard` },
     { label: "Emailer", href: `${base}/emailer` },
+    { label: "Reminders", href: `${base}/reminders` },
   ];
   return (
     <div className="mx-auto max-w-4xl px-6 pt-8">
