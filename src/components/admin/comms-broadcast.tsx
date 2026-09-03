@@ -29,6 +29,7 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
   const [tags, setTags] = useState<Record<string, string>>({});
   const [templateRef, setTemplateRef] = useState("");
   const [messageType, setMessageType] = useState("media");
+  const [varMaps, setVarMaps] = useState<{ source: string; value: string }[]>([]);
   const [pvChannel, setPvChannel] = useState<"whatsapp" | "email">(channel);
   const [sending, setSending] = useState(false); const [result, setResult] = useState<string | null>(null);
 
@@ -50,6 +51,8 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
     })();
   }, [supabase, channel]);
 
+  const selVarCount = useMemo(() => channel === "whatsapp" ? (waTpls.find((t) => (t.name || t.id) === templateRef)?.placeholder?.bodyvar || 0) : 0, [channel, waTpls, templateRef]);
+  useEffect(() => { setVarMaps((v) => Array.from({ length: selVarCount }, (_, i) => v[i] || { source: "static", value: "" })); }, [selVarCount]);
   const templates = useMemo(() => {
     if (channel === "whatsapp") return waTpls.filter((t) => product === "all" || (tags[t.name || t.id || ""] || "general") === product).map((t) => ({ ref: t.name || t.id || "", label: t.name || "", vars: t.placeholder?.bodyvar || 0 }));
     return emTpls.filter((t) => product === "all" || (t.product || "general") === product).map((t) => ({ ref: t.id, label: t.name, vars: 0 }));
@@ -83,7 +86,8 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
     if (!templateRef || selRows.length === 0) return;
     setSending(true); setResult(null);
     if (channel === "whatsapp") {
-      const recips = selRows.filter((r) => r.phone).map((r) => ({ to: r.phone as string, sample: undefined }));
+      const F: Record<string, (r: Row) => string> = { name: (r) => r.name, state: (r) => r.state || "", city: (r) => r.city || "", points: (r) => String(r.points) };
+      const recips = selRows.filter((r) => r.phone).map((r) => ({ to: r.phone as string, sample: varMaps.length ? { bodyvar: varMaps.map((m) => m.source === "static" ? m.value : (F[m.source]?.(r) ?? "")) } : undefined }));
       let sent = 0, failed = 0;
       for (let i = 0; i < recips.length; i += 40) {
         const batch = recips.slice(i, i + 40);
@@ -121,6 +125,18 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
           <option value="">Select…</option>{templates.map((t) => <option key={t.ref} value={t.ref}>{t.label}{t.vars ? ` · ${t.vars} var` : ""}</option>)}
         </select>
         {channel === "whatsapp" && <select value={messageType} onChange={(e) => setMessageType(e.target.value)} className={field + " ml-2"}><option>media</option><option>text</option><option>text_var</option><option>media_var</option></select>}
+        {selVarCount > 0 && (
+          <div className="mt-2 rounded-xl border border-dashed border-border-strong p-3">
+            <span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Map {"{{n}}"} variables</span>
+            {varMaps.map((m, i) => (
+              <div key={i} className="mt-1.5 flex items-center gap-2">
+                <span className="w-10 font-mono text-xs text-muted">{`{{${i + 1}}}`}</span>
+                <select value={m.source} onChange={(e) => setVarMaps((v) => v.map((x, j) => j === i ? { ...x, source: e.target.value } : x))} className={field + " w-32"}><option value="static">Static text</option><option value="name">Recipient name</option><option value="state">State</option><option value="city">City</option><option value="points">Points</option></select>
+                {m.source === "static" && <input value={m.value} onChange={(e) => setVarMaps((v) => v.map((x, j) => j === i ? { ...x, value: e.target.value } : x))} placeholder="value" className={field + " flex-1"} />}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* filter bar */}
