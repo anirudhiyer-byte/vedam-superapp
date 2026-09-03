@@ -49,7 +49,7 @@ const InvitePass = forwardRef<HTMLDivElement, Props>(function InvitePass(
       <div style={{ position: "absolute", left: 118, right: 36, top: 188, bottom: 0, background: PURPLE, zIndex: 1 }} />
       <div style={{ position: "absolute", left: 150, top: 0, right: 60, height: 188, display: "flex", alignItems: "center", zIndex: 2 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/vedam-logo.png" alt="Vedam" style={{ height: 66, width: "auto", display: "block" }} />
+        <img src="/vedam-logo.png?v=2" alt="Vedam" style={{ height: 66, width: "auto", display: "block" }} />
         <div style={{ width: 2, height: 74, background: "#D9D2E6", margin: "0 26px" }} />
         <div style={{ display: "flex", alignItems: "baseline", fontWeight: 800, fontSize: 42, letterSpacing: 0.5, lineHeight: 1 }}>
           <span style={{ color: XPUR }}>X</span><span style={{ color: INK }}>PERIENCE&nbsp;DAY</span>

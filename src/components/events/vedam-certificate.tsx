@@ -62,7 +62,7 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
         {/* center content */}
         <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 74 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/vedam-logo.png" alt="Vedam" style={{ height: 50, width: "auto", display: "block" }} />
+          <img src="/vedam-logo.png?v=2" alt="Vedam" style={{ height: 50, width: "auto", display: "block" }} />
           <div style={{ fontFamily: OUT, fontWeight: 800, fontSize: 50, marginTop: 26, textAlign: "center", ...(winner ? goldText : { color: PURPLE }) }}>{title}</div>
           <div style={{ fontFamily: NS, fontWeight: 700, letterSpacing: 6, fontSize: 22, color: DARK, marginTop: 20 }}>{winner ? "IS PROUDLY AWARDED TO" : "IS PROUDLY PRESENTED TO"}</div>
           <div style={{ fontFamily: OUT, fontWeight: 500, fontSize: 68, marginTop: 22, textAlign: "center", padding: "0 90px", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", ...violetText }}>{name}</div>

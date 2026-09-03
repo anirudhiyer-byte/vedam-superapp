@@ -11,12 +11,12 @@ export function Logo({ withWordmark = true }: { withWordmark?: boolean }) {
   return (
     <span className="inline-flex select-none items-center">
       <img
-        src="/vedam-logo.png"
+        src="/vedam-logo.png?v=2"
         alt="Vedam School of Technology"
         className={`${h} w-auto dark:hidden`}
       />
       <img
-        src="/vedam-logo-dark.png"
+        src="/vedam-logo-dark.png?v=2"
         alt="Vedam School of Technology"
         className={`hidden ${h} w-auto dark:block`}
       />
