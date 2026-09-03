@@ -4,6 +4,8 @@ import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { EventReminders } from "@/components/admin/event-reminders";
 import { CommsJourneys } from "@/components/admin/comms-journeys";
+import { WhatsAppTemplateBuilder } from "@/components/admin/whatsapp-template-builder";
+import { EmailTemplateComposer } from "@/components/admin/email-template-composer";
 
 type Channel = "whatsapp" | "email";
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
@@ -25,6 +27,7 @@ export function CommsHub() {
   const [channel, setChannel] = useState<Channel>("whatsapp");
   const [product, setProduct] = useState<Product>("all");
   const [tab, setTab] = useState<"templates" | "broadcast" | "automations" | "spend">("templates");
+  const [tplMode, setTplMode] = useState<"tag" | "build">("tag");
 
   const [waTpls, setWaTpls] = useState<WaTpl[]>([]);
   const [emTpls, setEmTpls] = useState<EmTpl[]>([]);
@@ -92,6 +95,14 @@ export function CommsHub() {
 
       {tab === "templates" ? (
         <div className="mt-5">
+          <div className="mb-3 inline-flex gap-1 rounded-lg bg-surface-warm p-1">
+            <button onClick={() => setTplMode("tag")} className={["rounded-md px-3 py-1.5 text-xs font-bold", tplMode === "tag" ? "bg-surface text-foreground shadow-sm" : "text-muted"].join(" ")}>Tag existing</button>
+            <button onClick={() => setTplMode("build")} className={["rounded-md px-3 py-1.5 text-xs font-bold", tplMode === "build" ? "bg-surface text-foreground shadow-sm" : "text-muted"].join(" ")}>+ Build new</button>
+          </div>
+          {tplMode === "build" ? (
+            channel === "whatsapp" ? <WhatsAppTemplateBuilder /> : <EmailTemplateComposer product={product === "all" ? "general" : product} onSaved={load} />
+          ) : (
+          <>
           <p className="mb-3 font-body text-sm text-muted">Tag each template with the product it belongs to. Tagged templates surface in that product's Broadcast &amp; Automations.</p>
           <div className="space-y-2">
             {channel === "whatsapp" ? (
@@ -116,6 +127,8 @@ export function CommsHub() {
               ))
             )}
           </div>
+          </>
+          )}
         </div>
       ) : tab === "broadcast" ? (
         <CommsBroadcast channel={channel} product={product} />

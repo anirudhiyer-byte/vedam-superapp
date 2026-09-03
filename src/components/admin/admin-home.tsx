@@ -56,7 +56,6 @@ export function AdminHome() {
             <Link href="/admin/events/new" className="rounded-xl bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white">+ New event</Link>
             <Link href="/admin/analytics" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Analytics</Link>
             <Link href="/admin/faqs" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">FAQs</Link>
-            <Link href="/admin/whatsapp" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">WhatsApp</Link>
             <Link href="/admin/comms" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Comms hub</Link>
           </div>
         </div>

@@ -8,10 +8,10 @@ type Theme = { bg: string; header: string; headerText: string; card: string; tex
 const LOGO_BASE = "https://vedam-superapp.vercel.app";
 
 const THEMES: Record<EmailTemplate, Theme> = {
-  brand:   { bg: "#f4f2f8", header: "linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%)", headerText: "#ffffff", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#ece9f3", logo: LOGO_BASE + "/vedam-logo-dark.png" },
-  sunset:  { bg: "#fff5ec", header: "linear-gradient(120deg,#F97D03 0%,#E80074 100%)", headerText: "#ffffff", card: "#ffffff", text: "#2b1733", muted: "#8a6a70", footBorder: "#f6e4d8", logo: LOGO_BASE + "/vedam-logo-dark.png" },
-  minimal: { bg: "#f6f6f9", header: "#ffffff", headerText: "#2B135C", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#eeeeee", headerExtra: "border-bottom:1px solid #eee;", logo: LOGO_BASE + "/vedam-logo.png" },
-  dark:    { bg: "#0e0a1c", header: "linear-gradient(125deg,#2B135C 0%,#8A18FF 100%)", headerText: "#ffffff", card: "#181230", text: "#e9e4fb", muted: "#a99fc9", footBorder: "#2a2150", logo: LOGO_BASE + "/vedam-logo-dark.png" },
+  brand:   { bg: "#f4f2f8", header: "linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%)", headerText: "#ffffff", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#ece9f3", logo: LOGO_BASE + "/vedam-logo-dark.png?v=2" },
+  sunset:  { bg: "#fff5ec", header: "linear-gradient(120deg,#F97D03 0%,#E80074 100%)", headerText: "#ffffff", card: "#ffffff", text: "#2b1733", muted: "#8a6a70", footBorder: "#f6e4d8", logo: LOGO_BASE + "/vedam-logo-dark.png?v=2" },
+  minimal: { bg: "#f6f6f9", header: "#ffffff", headerText: "#2B135C", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#eeeeee", headerExtra: "border-bottom:1px solid #eee;", logo: LOGO_BASE + "/vedam-logo.png?v=2" },
+  dark:    { bg: "#0e0a1c", header: "linear-gradient(125deg,#2B135C 0%,#8A18FF 100%)", headerText: "#ffffff", card: "#181230", text: "#e9e4fb", muted: "#a99fc9", footBorder: "#2a2150", logo: LOGO_BASE + "/vedam-logo-dark.png?v=2" },
 };
 
 export const EMAIL_TEMPLATES: { key: EmailTemplate; label: string }[] = [
