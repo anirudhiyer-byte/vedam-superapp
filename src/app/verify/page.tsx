@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { Logo } from "@/components/logo";
 
@@ -16,11 +17,19 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
 
   // ---- verification runs on the SERVER; the rendered result is server-attested ----
   let data: Data | null = null;
+  let limited = false;
   if (certId) {
     const supabase = await createClient();
-    const { data: rows } = await supabase.rpc("verify_certificate", { p_id: certId });
-    const row = Array.isArray(rows) ? rows[0] : rows;
-    if (row?.valid) data = row as Data;
+    // per-IP rate limit (anti-scrape): 40 verifications / minute
+    const h = await headers();
+    const ip = (h.get("x-forwarded-for") || "unknown").split(",")[0].trim();
+    const { data: ok } = await supabase.rpc("rate_limit_hit", { p_key: "verify:" + ip, p_max: 40, p_window: 60 });
+    if (ok === false) { limited = true; }
+    else {
+      const { data: rows } = await supabase.rpc("verify_certificate", { p_id: certId });
+      const row = Array.isArray(rows) ? rows[0] : rows;
+      if (row?.valid) data = row as Data;
+    }
   }
   const valid = !!data;
 
@@ -33,7 +42,9 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
           <Logo />
         </div>
 
-        {!certId ? (
+        {limited ? (
+          <div className="rounded-2xl border border-border bg-surface p-10 text-center font-body text-sm text-muted">Too many requests — please wait a moment and try again.</div>
+        ) : !certId ? (
           <div className="rounded-2xl border border-border bg-surface p-10 text-center font-body text-sm text-muted">No certificate ID provided.</div>
         ) : !valid ? (
           <div className="overflow-hidden rounded-3xl border border-border bg-surface shadow-[0_30px_70px_-34px_rgba(43,19,92,0.5)]">
