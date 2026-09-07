@@ -12,7 +12,7 @@ const NAV = [
   { label: "Home", href: "/" },
   { label: "Events", href: "/events" },
   { label: "CodeSprint", href: "/codesprint" },
-  { label: "Predictor", href: "/predict" },
+  { label: "College Predictor", href: "/predict" },
 ];
 
 export function Header() {
