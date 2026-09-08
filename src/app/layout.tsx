@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Nunito_Sans, JetBrains_Mono, Prompt, Fraunces } from "next/font/google";
-
+import { Outfit, Nunito_Sans, JetBrains_Mono, Prompt, Fraunces, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "@/lib/analytics/posthog-provider";
@@ -8,11 +7,14 @@ import { GoogleAnalytics } from "@/lib/analytics/ga";
 import { UtmCapture } from "@/components/utm-capture";
 import { ProfileGate } from "@/components/profile-gate";
 
+
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 const nunito = Nunito_Sans({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
 const prompt = Prompt({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-prompt", display: "swap" });
 const fraunces = Fraunces({ subsets: ["latin"], style: ["italic", "normal"], weight: ["400", "500", "600"], variable: "--font-fraunces", display: "swap" });
+const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-inter", display: "swap" });
+const playfair = Playfair_Display({ subsets: ["latin"], style: ["italic", "normal"], weight: ["500", "600"], variable: "--font-playfair", display: "swap" });
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${nunito.variable} ${jetbrains.variable} ${prompt.variable} ${fraunces.variable}`}>
+      <body className={`${outfit.variable} ${nunito.variable} ${jetbrains.variable} ${prompt.variable} ${fraunces.variable} ${inter.variable} ${playfair.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <PostHogProvider>
             <UtmCapture />

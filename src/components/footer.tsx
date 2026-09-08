@@ -1,3 +1,5 @@
+"use client";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const socials = [
@@ -28,6 +30,8 @@ const socials = [
 ];
 
 export function Footer() {
+  const _pathname = usePathname();
+  if (_pathname === "/") return null;
   return (
     <footer className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10">

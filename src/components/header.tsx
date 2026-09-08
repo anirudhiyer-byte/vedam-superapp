@@ -16,6 +16,8 @@ const NAV = [
 ];
 
 export function Header() {
+  const _pathname = usePathname();
+  if (_pathname === "/") return null;
   const [supabase] = useState(() => createClient());
   const pathname = usePathname();
   const router = useRouter();
