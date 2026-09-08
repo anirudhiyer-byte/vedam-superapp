@@ -58,6 +58,8 @@ export function RegisterForm() {
 
     setLoading(true);
     const utm = readUtm();
+    // reclaim any UNVERIFIED ghost that already owns this phone/email (mid-signup switch fix)
+    try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone: e164(phone), email: email.trim() }) }); } catch { /* best effort */ }
     const { error } = await supabase.auth.signInWithOtp({
       phone: e164(phone),
       options: {
@@ -129,6 +131,7 @@ export function RegisterForm() {
     });
 
     // Attach the email -> sends a 6-digit code via SMTP2GO (email_change flow).
+    try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email.trim() }) }); } catch { /* */ }
     const { error: emailErr } = await supabase.auth.updateUser({ email: email.trim() });
     setLoading(false);
     if (emailErr) {
@@ -253,7 +256,7 @@ export function RegisterForm() {
               {loading ? "Verifying…" : "Verify phone"}
             </button>
             <button onClick={() => { setStep("details"); setOtp(""); setError(null); }} className="w-full font-body text-sm text-muted">
-              ← Edit my details
+              ← Wrong number or email? Edit details
             </button>
           </div>
         </>
