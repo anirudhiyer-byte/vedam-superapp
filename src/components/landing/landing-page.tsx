@@ -66,20 +66,21 @@ export function LandingPage() {
         .ld-orbit .m .in{animation:ld-spinrev 46s linear infinite}
         .ld-track{animation:ld-scroll 34s linear infinite}
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
+        @keyframes ld-shine{0%{left:-70%}100%{left:170%}}
+        .group:hover .ld-shine{animation:ld-shine 0.9s ease-out}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden" style={{ background: "radial-gradient(120% 100% at 80% 35%, #331660 0%, #1a0b38 45%, #0b0318 100%)" }}>
         {/* texture */}
-        <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.14]" style={{ backgroundImage: "url(/landing/polka-dots.webp)", backgroundSize: "300px" }} />
+        <div className="pointer-events-none absolute inset-0 z-[1] opacity-30" style={{ backgroundImage: "url(/landing/polka-dots.webp)", backgroundSize: "360px", backgroundRepeat: "repeat" }} />
         <div className="pointer-events-none absolute right-16 top-24 z-[1] h-[700px] w-[820px] rounded-full opacity-70 blur-[40px]" style={{ background: "radial-gradient(closest-side, rgba(150,40,220,.45), transparent 70%)" }} />
 
         {/* HEADER */}
         <header className="relative z-30 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-5 sm:px-10">
-          <div className="flex items-center gap-2.5">
-            <Image src="/landing/vedam-logo-dark.png" alt="Vedam" width={40} height={40} priority className="h-9 w-auto" />
-            <span className="hidden leading-tight sm:block"><b className="block text-[22px] font-semibold tracking-tight">Vedam</b><small className="block text-[10px] tracking-wide text-white/60">School of Technology</small></span>
+          <div className="flex items-center">
+            <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-11 w-auto sm:h-12" />
           </div>
           {/* desktop nav */}
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
@@ -127,7 +128,7 @@ export function LandingPage() {
               </div>
             ))}
           </div>
-          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-[108%] max-w-none" />
+          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-[103%] max-w-none" />
         </div>
 
         {/* copy — constrained to the left so it never sits under the image */}
@@ -144,7 +145,7 @@ export function LandingPage() {
               <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(16px,2.1vw,32px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="inline-flex items-center rounded-full border border-white/25 bg-white/[0.08] px-6 py-3.5 font-medium tracking-tight backdrop-blur-xl transition-all hover:border-[rgba(138,24,255,0.6)] hover:bg-[rgba(138,24,255,0.30)] hover:shadow-[0_0_34px_rgba(138,24,255,0.5)]" style={{ fontSize: "clamp(15px,1.3vw,19px)" }}>Start Building</button>
+              <button onClick={scrollToExplore} className="inline-flex items-center rounded-full border border-white/30 bg-white/[0.10] px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl transition-all hover:border-white/60 hover:bg-[rgba(138,24,255,0.55)]" style={{ fontSize: "clamp(15px,1.3vw,19px)" }}>Start Building</button>
             </div>
             <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(15px,1.2vw,20px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
           </div>
@@ -159,7 +160,10 @@ export function LandingPage() {
           <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-6 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 78%,rgba(11,3,24,.9) 90%,transparent)", fontSize: "clamp(20px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
-            {[...LOGOS, ...LOGOS].map((l, i) => <div key={i} className="flex items-center px-8 sm:px-14"><Image src={`/landing/logo-${l}.webp`} alt={l} width={220} height={64} className="h-10 w-auto object-contain sm:h-16" style={{ filter: "brightness(0) invert(1)" }} /></div>)}
+            {[...LOGOS, ...LOGOS].map((l, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-8 h-11 w-auto shrink-0 object-contain sm:mx-14 sm:h-14" />
+            ))}
           </div>
         </div>
       </section>
@@ -172,9 +176,11 @@ export function LandingPage() {
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {CARDS.map((c) => (
               <Link key={c.key} href={c.href} className="group relative block overflow-hidden rounded-[25px] border border-white/15 bg-white/[0.06] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5"
-                onMouseEnter={(e) => { if (c.live) e.currentTarget.style.boxShadow = `0 0 45px rgba(${c.glow},0.5)`; }}
+                onMouseEnter={(e) => { if (c.live) e.currentTarget.style.boxShadow = `0 0 85px rgba(${c.glow},0.6)`; }}
                 onMouseLeave={(e) => { e.currentTarget.style.boxShadow = ""; }}>
                 <Image src={`/landing/${c.ill}`} alt={c.title} width={440} height={500} className="h-auto w-full" />
+                <span aria-hidden className="pointer-events-none absolute inset-0 z-[3]" style={{ background: "linear-gradient(120deg, rgba(255,255,255,0.16) 0%, transparent 26%, transparent 72%, rgba(255,255,255,0.07) 100%)" }} />
+                <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[4] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />
               </Link>
             ))}
           </div>
