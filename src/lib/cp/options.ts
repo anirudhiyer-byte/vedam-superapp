@@ -11,7 +11,7 @@ export const CP_STATES: { id: number; name: string }[] = [
   { id: 96, name: "Uttarakhand" }, { id: 97, name: "West Bengal" }, { id: 98, name: "Telangana" },
 ];
 export const CP_CATEGORIES = ["OPEN", "OPEN (PwD)", "EWS", "OBC-NCL", "SC", "ST", "OBC-NCL (PwD)", "SC (PwD)", "EWS (PwD)", "ST (PwD)"];
-export const CP_GENDERS = [{ value: "Gender-Neutral", label: "Gender Neutral" }, { value: "Female", label: "Female Only" }];
+export const CP_GENDERS = [{ value: "Gender Neutral", label: "Gender Neutral" }, { value: "Female", label: "Female Only" }];
 export const CP_STREAMS = ["PCM", "PCM with Biology"];
 export const CP_YEARS = ["2026", "2025", "2024 or Before"];
 

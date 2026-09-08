@@ -9,7 +9,7 @@ type Row = { institute_id: number; institute_name: string; program_name: string;
 type Form = { mode: "rank" | "marks"; rank: string; marks: string; category: string; gender: string; stream: string; year: string; stateId: string };
 type Grouped = { institute: string; institute_id: number; rows: Row[] };
 
-const blank: Form = { mode: "marks", rank: "", marks: "", category: "OPEN", gender: "Gender-Neutral", stream: "PCM", year: "2026", stateId: "" };
+const blank: Form = { mode: "marks", rank: "", marks: "", category: "OPEN", gender: "Gender Neutral", stream: "PCM", year: "2026", stateId: "" };
 function sid() { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.randomUUID(); localStorage.setItem("cp_sid", s); } return s; }
 
 export function CollegePredictor() {
