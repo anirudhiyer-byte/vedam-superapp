@@ -128,7 +128,7 @@ export function LandingPage() {
               </div>
             ))}
           </div>
-          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-[103%] max-w-none" />
+          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-[98%] max-w-none" />
         </div>
 
         {/* copy — constrained to the left so it never sits under the image */}
@@ -162,7 +162,7 @@ export function LandingPage() {
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-8 h-11 w-auto shrink-0 object-contain sm:mx-14 sm:h-14" />
+              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-8 h-8 w-auto shrink-0 object-contain sm:mx-14 sm:h-10" />
             ))}
           </div>
         </div>
