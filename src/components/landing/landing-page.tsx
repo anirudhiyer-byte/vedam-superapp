@@ -119,7 +119,7 @@ export function LandingPage() {
 
         {/* HERO BODY */}
         {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[54%] lg:block">
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[60%] lg:block">
           <div className="ld-orbit absolute left-[46%] top-[52%] z-[1] h-0 w-0">
             {[0, 90, 180, 270].map((deg, i) => (
               <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-260px)` }}>
@@ -127,7 +127,7 @@ export function LandingPage() {
               </div>
             ))}
           </div>
-          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-full max-w-none" />
+          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-[108%] max-w-none" />
         </div>
 
         {/* copy — constrained to the left so it never sits under the image */}
@@ -144,7 +144,7 @@ export function LandingPage() {
               <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(16px,2.1vw,32px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="inline-flex items-center rounded-full bg-white/[0.14] px-6 py-3.5 font-medium tracking-tight backdrop-blur transition-all hover:bg-[rgba(138,24,255,0.42)] hover:shadow-[0_0_34px_rgba(138,24,255,0.5)]" style={{ fontSize: "clamp(15px,1.3vw,19px)" }}>Start Building</button>
+              <button onClick={scrollToExplore} className="inline-flex items-center rounded-full border border-white/25 bg-white/[0.08] px-6 py-3.5 font-medium tracking-tight backdrop-blur-xl transition-all hover:border-[rgba(138,24,255,0.6)] hover:bg-[rgba(138,24,255,0.30)] hover:shadow-[0_0_34px_rgba(138,24,255,0.5)]" style={{ fontSize: "clamp(15px,1.3vw,19px)" }}>Start Building</button>
             </div>
             <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(15px,1.2vw,20px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
           </div>
@@ -155,11 +155,11 @@ export function LandingPage() {
         </div>
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
-        <div className="relative z-[25] mt-6 flex h-[92px] items-center overflow-hidden border-y border-white/15 backdrop-blur-[2px] lg:-mt-[46px]" style={{ background: "rgba(24,12,48,.28)", boxShadow: "0 0 60px rgba(138,24,255,.25) inset" }}>
+        <div className="relative z-[25] mt-6 flex h-[96px] items-center overflow-hidden border-y border-white/20 backdrop-blur-md lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.06)", boxShadow: "0 0 60px rgba(138,24,255,.28) inset" }}>
           <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-6 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 78%,rgba(11,3,24,.9) 90%,transparent)", fontSize: "clamp(20px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
-            {[...LOGOS, ...LOGOS].map((l, i) => <div key={i} className="flex items-center px-10 sm:px-16"><Image src={`/landing/logo-${l}.webp`} alt={l} width={180} height={48} className="h-9 w-auto object-contain sm:h-12" /></div>)}
+            {[...LOGOS, ...LOGOS].map((l, i) => <div key={i} className="flex items-center px-8 sm:px-14"><Image src={`/landing/logo-${l}.webp`} alt={l} width={220} height={64} className="h-10 w-auto object-contain sm:h-16" style={{ filter: "brightness(0) invert(1)" }} /></div>)}
           </div>
         </div>
       </section>
@@ -171,7 +171,7 @@ export function LandingPage() {
           <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(17px,1.6vw,25px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {CARDS.map((c) => (
-              <Link key={c.key} href={c.href} className="group relative block overflow-hidden rounded-[25px] transition-all duration-300 hover:-translate-y-1.5"
+              <Link key={c.key} href={c.href} className="group relative block overflow-hidden rounded-[25px] border border-white/15 bg-white/[0.06] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5"
                 onMouseEnter={(e) => { if (c.live) e.currentTarget.style.boxShadow = `0 0 45px rgba(${c.glow},0.5)`; }}
                 onMouseLeave={(e) => { e.currentTarget.style.boxShadow = ""; }}>
                 <Image src={`/landing/${c.ill}`} alt={c.title} width={440} height={500} className="h-auto w-full" />
