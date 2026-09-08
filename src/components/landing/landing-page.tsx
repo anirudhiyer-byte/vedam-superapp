@@ -74,7 +74,7 @@ export function LandingPage() {
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden" style={{ background: "radial-gradient(120% 100% at 80% 35%, #331660 0%, #1a0b38 45%, #0b0318 100%)" }}>
         {/* texture */}
-        <div className="pointer-events-none absolute inset-0 z-[1] opacity-30" style={{ backgroundImage: "url(/landing/polka-dots.webp)", backgroundSize: "360px", backgroundRepeat: "repeat" }} />
+        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: "radial-gradient(rgba(205,165,255,0.6) 1.3px, transparent 1.6px)", backgroundSize: "26px 26px", opacity: 0.16 }} />
         <div className="pointer-events-none absolute right-16 top-24 z-[1] h-[700px] w-[820px] rounded-full opacity-70 blur-[40px]" style={{ background: "radial-gradient(closest-side, rgba(150,40,220,.45), transparent 70%)" }} />
 
         {/* HEADER */}
@@ -156,13 +156,13 @@ export function LandingPage() {
         </div>
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
-        <div className="relative z-[25] mt-6 flex h-[96px] items-center overflow-hidden border-y border-white/20 backdrop-blur-md lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.06)", boxShadow: "0 0 60px rgba(138,24,255,.28) inset" }}>
+        <div className="relative z-[25] mt-6 flex h-[74px] items-center overflow-hidden border-y border-white/20 backdrop-blur-md lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.06)", boxShadow: "0 0 60px rgba(138,24,255,.28) inset" }}>
           <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-6 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 78%,rgba(11,3,24,.9) 90%,transparent)", fontSize: "clamp(20px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-8 h-8 w-auto shrink-0 object-contain sm:mx-14 sm:h-10" />
+              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-8 h-6 w-auto shrink-0 object-contain sm:mx-14 sm:h-7" />
             ))}
           </div>
         </div>
@@ -179,8 +179,8 @@ export function LandingPage() {
                 onMouseEnter={(e) => { if (c.live) e.currentTarget.style.boxShadow = `0 0 85px rgba(${c.glow},0.6)`; }}
                 onMouseLeave={(e) => { e.currentTarget.style.boxShadow = ""; }}>
                 <Image src={`/landing/${c.ill}`} alt={c.title} width={440} height={500} className="h-auto w-full" />
-                <span aria-hidden className="pointer-events-none absolute inset-0 z-[3]" style={{ background: "linear-gradient(120deg, rgba(255,255,255,0.16) 0%, transparent 26%, transparent 72%, rgba(255,255,255,0.07) 100%)" }} />
-                <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[4] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />
+                {c.live && <span aria-hidden className="pointer-events-none absolute inset-0 z-[3]" style={{ background: "linear-gradient(120deg, rgba(255,255,255,0.16) 0%, transparent 26%, transparent 72%, rgba(255,255,255,0.07) 100%)" }} />}
+                {c.live && <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[4] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />}
               </Link>
             ))}
           </div>
