@@ -77,10 +77,10 @@ export function LandingPage() {
 
         {/* HEADER */}
         <header className="relative z-30 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-5 sm:px-10">
-          <Link href="/" className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5">
             <Image src="/landing/vedam-logo-dark.png" alt="Vedam" width={40} height={40} priority className="h-9 w-auto" />
             <span className="hidden leading-tight sm:block"><b className="block text-[22px] font-semibold tracking-tight">Vedam</b><small className="block text-[10px] tracking-wide text-white/60">School of Technology</small></span>
-          </Link>
+          </div>
           {/* desktop nav */}
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
             {NAV.map((n) => (
@@ -118,44 +118,48 @@ export function LandingPage() {
         )}
 
         {/* HERO BODY */}
-        <div className="relative z-20 mx-auto grid max-w-[1800px] grid-cols-1 items-center gap-8 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-[1fr_0.95fr] lg:pb-0 lg:pt-[72px]">
-          {/* copy */}
-          <div className="lg:pl-16">
-            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(64px,11vw,150px)" }}>Vedam</h1>
+        {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[50%] lg:block">
+          <div className="ld-orbit absolute left-[38%] top-[50%] z-[1] h-0 w-0">
+            {[0, 90, 180, 270].map((deg, i) => (
+              <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-300px)` }}>
+                <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={112} height={112} className="h-full w-full object-contain" /></div>
+              </div>
+            ))}
+          </div>
+          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-[86%] max-w-none" />
+        </div>
+
+        {/* copy — constrained to the left so it never sits under the image */}
+        <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
+          <div className="max-w-[640px] pb-16 pt-10 sm:pl-16 lg:max-w-[52%] lg:pb-[150px] lg:pt-[72px]">
+            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(56px,9vw,150px)" }}>Vedam</h1>
             <div className="mt-2 flex items-center gap-4">
-              <span className="font-[family-name:var(--font-playfair)] italic leading-[0.78] tracking-tight" style={{ fontSize: "clamp(48px,7.5vw,104px)", fontWeight: 600 }}>One</span>
-              <span className="h-[46px] w-0.5 bg-white/60 sm:h-[66px]" />
-              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(18px,2vw,27px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(13px,1.2vw,18px)" }}>FUTURE ENGINEERS</small></span>
+              <span className="font-[family-name:var(--font-playfair)] italic leading-[0.78] tracking-tight" style={{ fontSize: "clamp(44px,6.5vw,104px)", fontWeight: 600 }}>One</span>
+              <span className="h-[44px] w-0.5 bg-white/60 sm:h-[64px]" />
+              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(17px,1.8vw,27px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(12px,1.1vw,18px)" }}>FUTURE ENGINEERS</small></span>
             </div>
             <div className="mt-8">
-              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(24px,3vw,40px)" }}>Learn, Code, Build and Compete.</span>
-              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(22px,3vw,40px)" }}>Specially designed for class 12th students</span>
+              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(22px,2.6vw,40px)" }}>Learn, Code, Build and Compete.</span>
+              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(20px,2.6vw,40px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
               <button onClick={scrollToExplore} className="inline-flex items-center rounded-full bg-white/[0.14] px-7 py-4 font-medium tracking-tight backdrop-blur transition-all hover:bg-[rgba(138,24,255,0.42)] hover:shadow-[0_0_34px_rgba(138,24,255,0.5)]" style={{ fontSize: "clamp(18px,1.6vw,24px)" }}>Start Building</button>
             </div>
             <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(18px,1.5vw,25px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
           </div>
-
-          {/* image + orbit */}
-          <div className="relative min-h-[380px] lg:min-h-[720px]">
-            <div className="ld-orbit absolute left-[46%] top-[52%] z-[1] h-0 w-0 hidden lg:block">
-              {[0, 90, 180, 270].map((deg, i) => (
-                <div key={i} className="m absolute left-0 top-0 -m-16 h-32 w-32" style={{ transform: `rotate(${deg}deg) translateY(-330px)` }}>
-                  <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={128} height={128} className="h-full w-full object-contain" /></div>
-                </div>
-              ))}
-            </div>
-            <Image src="/landing/hero-students.webp" alt="Vedam students" width={1200} height={860} priority className="relative z-[2] ml-auto h-auto w-full max-w-[560px] lg:absolute lg:bottom-0 lg:right-0 lg:max-w-none lg:w-auto lg:h-[96%]" />
+          {/* mobile image — below the copy, no overlap */}
+          <div className="-mx-6 mt-4 lg:hidden">
+            <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} className="h-auto w-full" />
           </div>
         </div>
 
-        {/* MARQUEE (overlaps hero bottom) */}
-        <div className="relative z-[25] -mt-16 flex h-[88px] items-center overflow-hidden backdrop-blur-[3px] lg:-mt-[88px]" style={{ background: "rgba(20,10,40,.30)" }}>
-          <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-6 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 80%,rgba(11,3,24,.92) 92%,transparent)", fontSize: "clamp(20px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
-          <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 20%,transparent)" }} />
+        {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
+        <div className="relative z-[25] mt-6 flex h-[92px] items-center overflow-hidden border-y border-white/15 backdrop-blur-[2px] lg:-mt-[46px]" style={{ background: "rgba(24,12,48,.28)", boxShadow: "0 0 60px rgba(138,24,255,.25) inset" }}>
+          <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-6 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 78%,rgba(11,3,24,.9) 90%,transparent)", fontSize: "clamp(20px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
+          <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
-            {[...LOGOS, ...LOGOS].map((l, i) => <div key={i} className="flex items-center px-10 sm:px-14"><Image src={`/landing/logo-${l}.webp`} alt={l} width={140} height={34} className="h-6 w-auto object-contain sm:h-8" /></div>)}
+            {[...LOGOS, ...LOGOS].map((l, i) => <div key={i} className="flex items-center px-10 sm:px-16"><Image src={`/landing/logo-${l}.webp`} alt={l} width={180} height={48} className="h-9 w-auto object-contain sm:h-12" /></div>)}
           </div>
         </div>
       </section>
@@ -167,14 +171,10 @@ export function LandingPage() {
           <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(17px,1.6vw,25px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {CARDS.map((c) => (
-              <Link key={c.key} href={c.href} className="group relative block h-[430px] overflow-hidden rounded-[25px] border border-[#757575] bg-black/60 p-7 transition-all hover:-translate-y-1.5" style={c.live ? ({ "--g": c.glow } as React.CSSProperties) : undefined}
-                onMouseEnter={(e) => { if (c.live) { e.currentTarget.style.borderColor = `rgb(${c.glow})`; e.currentTarget.style.boxShadow = `0 0 45px rgba(${c.glow},0.42)`; } }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = ""; e.currentTarget.style.boxShadow = ""; }}>
-                {c.live && <span className="absolute left-5 top-5 z-[2] inline-flex items-center gap-2 rounded-md border border-[#34c759] px-2.5 py-1 text-sm font-medium text-[#34c759]"><span className="ld-blink h-1.5 w-1.5 rounded-full bg-[#34c759]" />Live</span>}
-                {c.soon && <span className="absolute -left-0.5 -top-0.5 z-[2] rounded-md bg-white px-3.5 py-1.5 text-sm font-medium text-black">Coming Soon</span>}
-                <h3 className={["mt-9 font-medium tracking-tight", c.soon ? "text-[#7a7a7a]" : "text-white"].join(" ")} style={{ fontSize: "clamp(28px,2.4vw,37px)" }}>{c.title}</h3>
-                <p className="mt-4 font-light leading-snug tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(16px,1.3vw,20px)" }}>{c.desc}</p>
-                <div className="absolute bottom-0 left-1/2 flex h-[205px] w-[270px] max-w-full -translate-x-1/2 items-end justify-center"><Image src={`/landing/${c.ill}`} alt="" width={270} height={205} className="max-h-full max-w-full object-contain" /></div>
+              <Link key={c.key} href={c.href} className="group relative block overflow-hidden rounded-[25px] transition-all duration-300 hover:-translate-y-1.5"
+                onMouseEnter={(e) => { if (c.live) e.currentTarget.style.boxShadow = `0 0 45px rgba(${c.glow},0.5)`; }}
+                onMouseLeave={(e) => { e.currentTarget.style.boxShadow = ""; }}>
+                <Image src={`/landing/${c.ill}`} alt={c.title} width={440} height={500} className="h-auto w-full" />
               </Link>
             ))}
           </div>
@@ -183,12 +183,18 @@ export function LandingPage() {
 
       {/* ===== FOOTER ===== */}
       <footer className="flex flex-col gap-10 border-t border-white/10 px-6 py-14 sm:flex-row sm:gap-32 sm:px-16" style={{ background: "#0b0318" }}>
-        <div><h4 className="mb-3 text-xl font-semibold">Quick Links</h4>{["About Vedam", "Privacy Policy", "Terms of Service"].map((x) => <Link key={x} href="#" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">{x}</Link>)}</div>
-        <div><h4 className="mb-3 text-xl font-semibold">Contact Us</h4><p className="text-[15px] font-medium leading-[30px] text-white/80">connect@vedam.org</p><p className="text-[15px] font-medium leading-[30px] text-white/80">+91 92010 10176</p></div>
+        <div><h4 className="mb-3 text-xl font-semibold">Quick Links</h4>
+          <Link href="/privacy" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Privacy Policy</Link>
+          <Link href="/terms" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Terms of Service</Link>
+        </div>
+        <div><h4 className="mb-3 text-xl font-semibold">Contact Us</h4>
+          <a href="mailto:connect@vedam.org" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">connect@vedam.org</a>
+          <a href="tel:+919201010176" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">+91 92010 10176</a>
+        </div>
         <div><h4 className="mb-3 text-xl font-semibold">Follow Us</h4>
           <div className="mt-2 flex gap-3.5">
-            {[["YouTube", "M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.5 31 31 0 0 0-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"], ["LinkedIn", "M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"], ["Telegram", "M21.9 4.3 2.8 11.6c-1 .4-1 1.4-.1 1.7l4.9 1.5 1.9 5.9c.2.6.5.7 1 .3l2.7-2.2 4.7 3.5c.6.4 1.2.2 1.4-.6l3.3-15.6c.2-1-.4-1.5-1.6-1z"], ["X", "M18.9 2H22l-7.2 8.3L23 22h-6.8l-5.3-7-6 7H2l7.7-8.9L1.6 2h7l4.8 6.4zM16.7 20h1.7L7.4 3.8H5.6z"]].map(([t, d]) => (
-              <a key={t} title={t} href="#" className="grid h-9 w-9 place-items-center rounded-[9px] bg-[#1e1e1e] transition-colors hover:bg-[#8A18FF]"><svg viewBox="0 0 24 24" fill="#fff" width="17" height="17"><path d={d} /></svg></a>
+            {[["YouTube", "https://www.youtube.com/@vedamschooloftechnology", "M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.5 31 31 0 0 0-.5-4.5zM9.8 15.3V8.7l5.7 3.3z"], ["Instagram", "https://www.instagram.com/vedamschooloftechnology/", "M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.6 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2m0 3.3A6.5 6.5 0 1 0 18.5 12 6.5 6.5 0 0 0 12 5.5m0 10.7A4.2 4.2 0 1 1 16.2 12 4.2 4.2 0 0 1 12 16.2m6.8-11a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5"], ["LinkedIn", "https://www.linkedin.com/school/vedam-school-of-technology/", "M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"], ["Telegram", "https://t.me/vedamschooloftechnology", "M21.9 4.3 2.8 11.6c-1 .4-1 1.4-.1 1.7l4.9 1.5 1.9 5.9c.2.6.5.7 1 .3l2.7-2.2 4.7 3.5c.6.4 1.2.2 1.4-.6l3.3-15.6c.2-1-.4-1.5-1.6-1z"]].map(([t, href, d]) => (
+              <a key={t} title={t} href={href} target="_blank" rel="noreferrer" className="grid h-9 w-9 place-items-center rounded-[9px] bg-[#1e1e1e] transition-colors hover:bg-[#8A18FF]"><svg viewBox="0 0 24 24" fill="#fff" width="17" height="17"><path d={d} /></svg></a>
             ))}
           </div>
         </div>

@@ -16,8 +16,6 @@ const NAV = [
 ];
 
 export function Header() {
-  const _pathname = usePathname();
-  if (_pathname === "/") return null;
   const [supabase] = useState(() => createClient());
   const pathname = usePathname();
   const router = useRouter();
@@ -56,6 +54,7 @@ export function Header() {
       active ? "bg-brand-gradient text-white" : "text-muted hover:bg-surface hover:text-foreground"].join(" ");
   const itemCls = "flex items-center gap-3 rounded-xl px-3 py-2.5 font-body text-sm font-semibold text-foreground hover:bg-surface-warm";
 
+  if (pathname === "/") return null;
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-[color-mix(in_srgb,rgb(var(--background))_82%,transparent)] backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-2 px-5 sm:px-8">
