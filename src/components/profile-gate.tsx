@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { SearchableSelect } from "@/components/ui/searchable-select";
@@ -11,6 +12,7 @@ import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
  * no dismiss, no escape — it only clears when saved.
  */
 export function ProfileGate() {
+  const pathname = usePathname();
   const [supabase] = useState(() => createClient());
   const [needs, setNeeds] = useState(false);
   const [uid, setUid] = useState<string | null>(null);
@@ -44,6 +46,7 @@ export function ProfileGate() {
     if (needs) { const prev = document.body.style.overflow; document.body.style.overflow = "hidden"; return () => { document.body.style.overflow = prev; }; }
   }, [needs]);
 
+  if (pathname === "/register" || pathname === "/login" || pathname?.startsWith("/auth")) return null;
   if (!needs) return null;
 
   async function save() {

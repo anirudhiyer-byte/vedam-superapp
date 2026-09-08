@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
 import { Turnstile } from "@/components/turnstile";
@@ -17,6 +17,8 @@ type Step = "details" | "otp" | "email" | "done";
 export function RegisterForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams.get("next") || "/";
 
   const [step, setStep] = useState<Step>("details");
   const [loading, setLoading] = useState(false);
@@ -106,6 +108,7 @@ export function RegisterForm() {
         stream_other: stream === "Others" ? streamOther.trim() : null,
         state,
         city,
+        mobile_verified: true,
         consent_given: true,
         consent_at: new Date().toISOString(),
         last_login_at: new Date().toISOString(),
@@ -148,6 +151,7 @@ export function RegisterForm() {
     setLoading(false);
     if (error) return setError(error.message);
     setEmailVerified(true);
+    try { const { data: u } = await supabase.auth.getUser(); if (u?.user) await supabase.from("profiles").update({ email_verified: true }).eq("id", u.user.id); } catch { /* */ }
     setStep("done");
   }
 
@@ -302,7 +306,7 @@ export function RegisterForm() {
             </div>
           )}
 
-          <button onClick={() => router.push("/")} className={primaryBtn + " mt-6"}>
+          <button onClick={() => window.location.assign(nextUrl)} className={primaryBtn + " mt-6"}>
             Go to Vedam
           </button>
         </>
