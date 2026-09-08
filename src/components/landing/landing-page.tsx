@@ -119,34 +119,34 @@ export function LandingPage() {
 
         {/* HERO BODY */}
         {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[50%] lg:block">
-          <div className="ld-orbit absolute left-[38%] top-[50%] z-[1] h-0 w-0">
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[54%] lg:block">
+          <div className="ld-orbit absolute left-[46%] top-[52%] z-[1] h-0 w-0">
             {[0, 90, 180, 270].map((deg, i) => (
-              <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-300px)` }}>
+              <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-260px)` }}>
                 <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={112} height={112} className="h-full w-full object-contain" /></div>
               </div>
             ))}
           </div>
-          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-[86%] max-w-none" />
+          <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} priority className="absolute bottom-0 right-0 z-[2] h-auto w-full max-w-none" />
         </div>
 
         {/* copy — constrained to the left so it never sits under the image */}
         <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
-          <div className="max-w-[640px] pb-16 pt-10 sm:pl-16 lg:max-w-[52%] lg:pb-[150px] lg:pt-[72px]">
-            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(56px,9vw,150px)" }}>Vedam</h1>
+          <div className="max-w-[560px] pb-16 pt-10 sm:pl-16 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px]">
+            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(45px,7.2vw,120px)" }}>Vedam</h1>
             <div className="mt-2 flex items-center gap-4">
-              <span className="font-[family-name:var(--font-playfair)] italic leading-[0.78] tracking-tight" style={{ fontSize: "clamp(44px,6.5vw,104px)", fontWeight: 600 }}>One</span>
-              <span className="h-[44px] w-0.5 bg-white/60 sm:h-[64px]" />
-              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(17px,1.8vw,27px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(12px,1.1vw,18px)" }}>FUTURE ENGINEERS</small></span>
+              <span className="font-[family-name:var(--font-playfair)] italic leading-[0.78] tracking-tight" style={{ fontSize: "clamp(35px,5.2vw,83px)", fontWeight: 600 }}>One</span>
+              <span className="h-[36px] w-0.5 bg-white/60 sm:h-[52px]" />
+              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(14px,1.5vw,22px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(10px,0.95vw,15px)" }}>FUTURE ENGINEERS</small></span>
             </div>
             <div className="mt-8">
-              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(22px,2.6vw,40px)" }}>Learn, Code, Build and Compete.</span>
-              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(20px,2.6vw,40px)" }}>Specially designed for class 12th students</span>
+              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(18px,2.1vw,32px)" }}>Learn, Code, Build and Compete.</span>
+              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(16px,2.1vw,32px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="inline-flex items-center rounded-full bg-white/[0.14] px-7 py-4 font-medium tracking-tight backdrop-blur transition-all hover:bg-[rgba(138,24,255,0.42)] hover:shadow-[0_0_34px_rgba(138,24,255,0.5)]" style={{ fontSize: "clamp(18px,1.6vw,24px)" }}>Start Building</button>
+              <button onClick={scrollToExplore} className="inline-flex items-center rounded-full bg-white/[0.14] px-6 py-3.5 font-medium tracking-tight backdrop-blur transition-all hover:bg-[rgba(138,24,255,0.42)] hover:shadow-[0_0_34px_rgba(138,24,255,0.5)]" style={{ fontSize: "clamp(15px,1.3vw,19px)" }}>Start Building</button>
             </div>
-            <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(18px,1.5vw,25px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
+            <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(15px,1.2vw,20px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
           </div>
           {/* mobile image — below the copy, no overlap */}
           <div className="-mx-6 mt-4 lg:hidden">
