@@ -84,17 +84,21 @@ export function Dashboard() {
 
       {/* stats */}
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-brand-gradient p-5 text-white">
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-brand-gradient p-5 text-white">
           <div className="font-mono text-[10px] font-semibold uppercase tracking-wide text-white/80">Total points</div>
-          <div className="mt-1 font-display text-4xl font-extrabold">{stats.total.toLocaleString("en-IN")}</div>
+          <div className="mt-1 flex items-center gap-2.5 font-display text-4xl font-extrabold">
+            <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden><defs><linearGradient id="dashGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#dashGold)" stroke="#fff6d6" strokeWidth="0.5" /></svg>
+            {stats.total.toLocaleString("en-IN")}
+          </div>
           <div className="pointer-events-none absolute -right-6 -top-8 h-28 w-28 rounded-full bg-white/10" />
+          <span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(125deg, rgba(255,255,255,0.22), transparent 30%)" }} />
         </div>
         <Stat label="This week" value={stats.week} />
         <Stat label="This month" value={stats.month} />
       </div>
 
       {/* leaderboard link */}
-      <Link href="/leaderboard" className="mt-3 flex items-center justify-between rounded-2xl border border-border bg-surface p-4 transition-transform hover:-translate-y-0.5">
+      <Link href="/leaderboard" className="group relative mt-3 flex items-center justify-between overflow-hidden rounded-2xl border border-border bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-[#8A18FF66]">
         <div className="flex items-center gap-3"><span className="text-xl">🏆</span><div><p className="font-display text-sm font-bold text-heading">Leaderboard</p><p className="font-mono text-[11px] text-muted">See where you rank</p></div></div>
         <span className="font-mono text-sm text-accent">→</span>
       </Link>
@@ -199,11 +203,23 @@ export function Dashboard() {
   );
 }
 
+
+function Spark({ seed }: { seed: number }) {
+  const bars = Array.from({ length: 7 }, (_, i) => 30 + ((seed * (i + 3) * 37) % 70));
+  return (
+    <div className="mt-2.5 flex h-6 items-end gap-[3px]">
+      {bars.map((h, i) => <span key={i} className="flex-1 rounded-[2px]" style={{ height: `${h}%`, background: "linear-gradient(180deg,#8A18FF,#F97D03)", opacity: 0.7 }} />)}
+    </div>
+  );
+}
+
 function Stat({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-2xl border border-border bg-surface p-5">
+    <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5">
+      <span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(125deg, rgba(255,255,255,0.10), transparent 34%)" }} />
       <div className="font-mono text-[10px] font-semibold uppercase tracking-wide text-muted">{label}</div>
       <div className="mt-1 font-display text-3xl font-bold text-heading">{value.toLocaleString("en-IN")}</div>
+      <Spark seed={value || 1} />
     </div>
   );
 }

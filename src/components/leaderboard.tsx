@@ -125,30 +125,42 @@ export function Leaderboard() {
         </div>
       ) : (
         <>
-          <div className="mt-6 grid grid-cols-3 gap-3">
-            {top3.map((r, i) => (
-              <div key={r.user_id} className={["relative flex flex-col items-center rounded-2xl border border-border p-4 text-center", i === 0 ? "sm:-translate-y-2" : ""].join(" ")} style={{ background: podiumBg[i], color: "#fff" }}>
-                <div className="text-2xl">{medal[i]}</div>
-                <div className="mt-1 line-clamp-1 font-display text-sm font-bold">{shortName(r.name)}</div>
-                {r.public_id && <div className="font-mono text-[10px] opacity-75">{r.public_id}</div>}
-                <div className="mt-1 font-mono text-lg font-extrabold">{r.points.toLocaleString("en-IN")}</div>
-                {r.user_id === me?.id && <span className="mt-1 rounded-full bg-white/25 px-2 py-0.5 font-mono text-[9px] font-bold uppercase">You</span>}
-              </div>
-            ))}
+          <div className="mt-7 grid grid-cols-3 items-end gap-3">
+            {top3.map((r, i) => {
+              const order = i === 0 ? "order-2" : i === 1 ? "order-1" : "order-3";
+              const raise = i === 0 ? "" : "mb-5";
+              const init = shortName(r.name).split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+              return (
+                <div key={r.user_id} className={["relative flex flex-col items-center overflow-hidden rounded-2xl border border-white/10 p-4 pt-5 text-center", order, raise].join(" ")} style={{ background: podiumBg[i], color: "#fff" }}>
+                  <span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(150deg, rgba(255,255,255,0.22), transparent 40%)" }} />
+                  <div className="relative text-3xl">{medal[i]}</div>
+                  <div className="relative mt-2 grid h-12 w-12 place-items-center rounded-full bg-white/25 font-display text-base font-extrabold">{init}</div>
+                  <div className="relative mt-2 line-clamp-1 font-display text-sm font-bold">{shortName(r.name)}</div>
+                  {r.public_id && <div className="relative font-mono text-[10px] opacity-75">{r.public_id}</div>}
+                  <div className="relative mt-1.5 font-mono text-lg font-extrabold">{r.points.toLocaleString("en-IN")}</div>
+                  {r.user_id === me?.id && <span className="relative mt-1 rounded-full bg-white/25 px-2 py-0.5 font-mono text-[9px] font-bold uppercase">You</span>}
+                </div>
+              );
+            })}
           </div>
           {rest.length > 0 && (
-            <div className="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
-              {rest.map((r) => (
-                <div key={r.user_id} className={["flex items-center gap-4 px-4 py-3", r.user_id === me?.id ? "bg-surface-warm" : ""].join(" ")}>
-                  <span className="w-7 text-center font-mono text-sm font-bold text-muted">{r.rnk}</span>
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate font-body text-sm font-medium text-heading">{shortName(r.name)}{r.user_id === me?.id && <span className="ml-2 rounded-full bg-brand-gradient px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-white">You</span>}</div>
-                    {r.public_id && <div className="font-mono text-[11px] text-[#a49cbe]">{r.public_id}</div>}
+            <div className="mt-4 space-y-2">
+              {rest.map((r) => {
+                const init = shortName(r.name).split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+                const mine = r.user_id === me?.id;
+                return (
+                  <div key={r.user_id} className={["flex items-center gap-3.5 rounded-2xl border px-4 py-3", mine ? "border-[#8A18FF] bg-[rgba(138,24,255,0.12)]" : "border-border bg-surface"].join(" ")}>
+                    <span className="w-7 text-center font-mono text-sm font-bold text-muted">{r.rnk}</span>
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full font-display text-xs font-extrabold text-white" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{init}</span>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate font-body text-sm font-medium text-heading">{shortName(r.name)}{mine && <span className="ml-2 rounded-full bg-brand-gradient px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-white">You</span>}</div>
+                      {r.public_id && <div className="font-mono text-[11px] text-[#a49cbe]">{r.public_id}</div>}
+                    </div>
+                    {!activeState && r.state && <span className="hidden font-mono text-[11px] text-muted sm:inline">{r.state}</span>}
+                    <span className="font-mono text-sm font-bold text-primary">{r.points.toLocaleString("en-IN")}</span>
                   </div>
-                  {!activeState && r.state && <span className="hidden font-mono text-[11px] text-muted sm:inline">{r.state}</span>}
-                  <span className="font-mono text-sm font-bold text-primary">{r.points.toLocaleString("en-IN")}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </>

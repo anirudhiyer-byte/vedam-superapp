@@ -17,10 +17,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
       <main className="relative z-20 flex min-h-[calc(100vh-4rem)] items-start justify-center px-4 pb-16 pt-6 sm:items-center sm:pt-0">
         <div className="w-full max-w-md">
-          <div className="mb-6 flex flex-col items-center">
-  <span className="font-[family-name:var(--font-inter)] text-[52px] font-normal uppercase leading-[0.8] tracking-[-0.05em] text-white">Vedam</span>
-  <span className="mt-1 font-[family-name:var(--font-playfair)] text-[40px] italic leading-[0.8] tracking-tight text-white" style={{ fontWeight: 600 }}>One</span>
-  <p className="mt-3 text-sm font-light tracking-wide text-white/55">THE HOME OF FUTURE ENGINEERS</p>
+          <div className="mb-6 flex items-baseline justify-center gap-3">
+  <span className="font-[family-name:var(--font-inter)] text-[46px] font-normal uppercase leading-none tracking-[-0.05em] text-white">Vedam</span>
+  <span className="font-[family-name:var(--font-playfair)] text-[38px] italic leading-none tracking-tight text-white" style={{ fontWeight: 600 }}>One</span>
 </div>
           {children}
         </div>

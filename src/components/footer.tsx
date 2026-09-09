@@ -33,35 +33,35 @@ export function Footer() {
   const _pathname = usePathname();
   if (_pathname === "/") return null;
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-white/10 text-white" style={{ background: "#000000" }}>
       <div className="mx-auto max-w-6xl px-6 py-10 sm:px-10">
         <div className="grid gap-8 sm:grid-cols-3">
           {/* Quick links */}
           <div>
-            <h3 className="font-display text-sm font-bold text-heading">Quick Links</h3>
-            <ul className="mt-3 space-y-2 font-body text-sm text-muted">
-              <li><Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-foreground">Terms of Service</Link></li>
+            <h3 className="font-display text-sm font-bold text-white">Quick Links</h3>
+            <ul className="mt-3 space-y-2 font-body text-sm text-white/60">
+              <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-white">Terms of Service</Link></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-display text-sm font-bold text-heading">Contact Us</h3>
-            <ul className="mt-3 space-y-2 font-body text-sm text-muted">
-              <li><a href="mailto:connect@vedam.org" className="hover:text-foreground">connect@vedam.org</a></li>
-              <li><a href="tel:+919201010176" className="hover:text-foreground">+91 92010 10176</a></li>
+            <h3 className="font-display text-sm font-bold text-white">Contact Us</h3>
+            <ul className="mt-3 space-y-2 font-body text-sm text-white/60">
+              <li><a href="mailto:connect@vedam.org" className="hover:text-white">connect@vedam.org</a></li>
+              <li><a href="tel:+919201010176" className="hover:text-white">+91 92010 10176</a></li>
             </ul>
           </div>
 
           {/* Follow us */}
           <div>
-            <h3 className="font-display text-sm font-bold text-heading">Follow Us</h3>
-            <ul className="mt-3 space-y-2.5 font-body text-sm text-muted">
+            <h3 className="font-display text-sm font-bold text-white">Follow Us</h3>
+            <ul className="mt-3 space-y-2.5 font-body text-sm text-white/60">
               {socials.map((s) => (
                 <li key={s.name}>
-                  <a href={s.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2.5 hover:text-foreground">
-                    <span className="text-muted">{s.icon}</span>{s.name}
+                  <a href={s.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2.5 hover:text-white">
+                    <span className="text-white/60">{s.icon}</span>{s.name}
                   </a>
                 </li>
               ))}
@@ -69,7 +69,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border pt-5 font-body text-xs text-muted">
+        <div className="mt-8 border-t border-white/10 pt-5 font-body text-xs text-white/45">
           © {new Date().getFullYear()} SET Education Technology Pvt. Ltd.
         </div>
       </div>

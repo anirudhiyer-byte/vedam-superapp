@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer";
 
 export default function ShellLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-black text-white">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
