@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { EventRow } from "@/lib/events";
 import { eventDateLabel, eventTimeLabel, isOffline, pointsTotalPossible } from "@/lib/events";
-import { EventCard } from "@/components/events/event-card";
-import Link from "next/link";
 
 export function EventsList() {
   const [supabase] = useState(() => createClient());
@@ -19,8 +18,7 @@ export function EventsList() {
   useEffect(() => {
     let active = true;
     (async () => {
-      const { data } = await supabase
-        .from("events").select("*").neq("status", "draft").order("starts_at", { ascending: true });
+      const { data } = await supabase.from("events").select("*").neq("status", "draft").order("starts_at", { ascending: true });
       if (active && data) setEvents(data as EventRow[]);
       const { data: u } = await supabase.auth.getUser();
       if (u.user) {
@@ -32,10 +30,7 @@ export function EventsList() {
     return () => { active = false; };
   }, [supabase]);
 
-  const categories = useMemo(
-    () => ["All", ...Array.from(new Set(events.map((e) => e.category).filter(Boolean) as string[]))],
-    [events]
-  );
+  const categories = useMemo(() => ["All", ...Array.from(new Set(events.map((e) => e.category).filter(Boolean) as string[]))], [events]);
 
   const now = Date.now();
   const filtered = useMemo(() => {
@@ -52,115 +47,109 @@ export function EventsList() {
     });
   }, [events, q, cat, view, now]);
 
-  // featured hero only makes sense in the upcoming view
-  const featured = view === "upcoming" ? (filtered.find((e) => e.featured) || filtered[0]) : undefined;
-  const rest = featured ? filtered.filter((e) => e !== featured) : filtered;
-
   return (
-    <div className="relative overflow-hidden">
-      {/* ambient brand glows + dotted grid, matching the landing language */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10"
-        style={{ background: "radial-gradient(680px 420px at 85% -5%, var(--glow-violet), transparent 60%), radial-gradient(520px 400px at -5% 100%, var(--glow-orange), transparent 60%)" }} />
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 opacity-60"
-        style={{ backgroundImage: "radial-gradient(var(--dot) 1px, transparent 1.4px)", backgroundSize: "26px 26px", WebkitMaskImage: "radial-gradient(circle at 80% 15%, #000, transparent 65%)", maskImage: "radial-gradient(circle at 80% 15%, #000, transparent 65%)" }} />
+    <div className="relative min-h-screen overflow-hidden bg-black text-white">
+      <style>{`
+        @keyframes ev-slide{0%{transform:translateX(-140px)}100%{transform:translateX(0)}}
+        @keyframes ev-pulse{0%,100%{transform:scale(1.25)}18%{transform:scale(1)}}
+        .ev-slide{animation:ev-slide 13s linear infinite alternate}
+        .ev-pulse{animation:ev-pulse 2.4s ease-in-out infinite}
+        @media (prefers-reduced-motion: reduce){.ev-slide,.ev-pulse{animation:none}}
+      `}</style>
 
-      <div className="mx-auto max-w-6xl px-6 py-12 sm:px-10 lg:px-16">
-        <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: "0 0 0 3px rgba(249,125,3,.22)" }} />
-          // upcoming at vedam
-        </span>
-        <h1 className="mt-3 font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-heading sm:text-5xl">
-          Events that <span className="text-brand-gradient">level you up.</span>
-        </h1>
-        <p className="mt-3 max-w-[44ch] font-body text-base text-muted">
-          Bootcamps, sprints, and live sessions for JEE aspirants. Show up, learn, earn points, and collect certificates — all on one account.
-        </p>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          {(["upcoming", "past", "featured"] as const).map((v) => (
-            <button key={v} onClick={() => setView(v)}
-              className={["rounded-lg px-4 py-2 font-mono text-xs font-semibold capitalize transition-colors",
-                view === v ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>
-              {v}
-            </button>
-          ))}
+      {/* ===== HERO ===== */}
+      <section className="relative overflow-hidden">
+        <div aria-hidden className="ev-slide pointer-events-none absolute right-0 top-[-40px] z-0 h-[520px] w-[1100px] opacity-70"
+          style={{ background: "radial-gradient(60% 60% at 70% 30%, rgba(0,207,229,.16), transparent 60%), radial-gradient(50% 50% at 95% 40%, rgba(194,0,219,.22), transparent 65%)", filter: "blur(30px)" }} />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-6 pt-14 sm:px-10 lg:px-16">
+          <h1 className="font-[family-name:var(--font-playfair)] italic text-transparent bg-clip-text" style={{ fontSize: "clamp(40px,6vw,60px)", backgroundImage: "linear-gradient(110deg,#35e8fb 8%,#c200db 100%)", fontWeight: 500 }}>Bootcamps</h1>
+          <h2 className="mt-3 font-[family-name:var(--font-inter)] font-normal tracking-tight text-white" style={{ fontSize: "clamp(28px,4vw,40px)" }}>Explore AI. Build With It.</h2>
+          <p className="mt-4 max-w-[1000px] font-[family-name:var(--font-inter)] font-extralight leading-[1.4] text-[#afafaf]" style={{ fontSize: "clamp(16px,1.6vw,25px)" }}>
+            Live, beginner-friendly, hands-on sessions where you experiment with AI, build projects and discover what&apos;s possible — all before you step into college.
+          </p>
         </div>
+      </section>
 
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <div className="flex flex-1 items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2.5 sm:max-w-xs">
-            <span className="text-muted">⌕</span>
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search events…"
-              className="w-full bg-transparent font-body text-sm text-foreground outline-none" />
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((c) => (
-              <button key={c} onClick={() => setCat(c)}
-                className={["rounded-full px-4 py-2 font-mono text-xs font-semibold transition-colors",
-                  cat === c ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>
-                {c}
+      {/* ===== LIST PANEL ===== */}
+      <section className="relative z-10 mx-auto max-w-6xl px-6 pb-24 sm:px-10 lg:px-16">
+        <div className="rounded-[21px] bg-[#171717] p-6 sm:p-8">
+          {/* tabs */}
+          <div className="flex items-center gap-6">
+            {(["upcoming", "past", "featured"] as const).map((v) => (
+              <button key={v} onClick={() => setView(v)}
+                className={["relative pb-1.5 font-[family-name:var(--font-inter)] text-[15px] capitalize transition-colors sm:text-lg", view === v ? "font-medium text-white" : "text-white/50 hover:text-white/80"].join(" ")}>
+                {v}
+                {view === v && <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full" style={{ background: "linear-gradient(90deg,#35e8fb,#c200db)" }} />}
               </button>
             ))}
           </div>
-        </div>
 
-        {loading ? (
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[0, 1, 2].map((i) => <div key={i} className="h-64 animate-pulse rounded-2xl border border-border bg-surface" />)}
+          {/* search + category pills */}
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="relative flex-1 sm:max-w-md">
+              <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40">⌕</span>
+              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search Events"
+                className="w-full rounded-lg border border-white/15 bg-white/[0.04] py-2.5 pl-10 pr-3.5 font-[family-name:var(--font-inter)] text-sm text-white placeholder:text-white/40 outline-none focus:border-[#00cfe5]/60"
+                style={{ boxShadow: "0 0 0 1px transparent" }} />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((c) => (
+                <button key={c} onClick={() => setCat(c)}
+                  className={["rounded-lg border px-4 py-1.5 font-[family-name:var(--font-inter)] text-sm transition-colors",
+                    cat === c ? "border-transparent bg-[#7629fc] text-white" : "border-white/15 bg-[#0e0e0e] text-white/80 hover:border-white/30"].join(" ")}>{c}</button>
+              ))}
+            </div>
           </div>
-        ) : filtered.length === 0 ? (
-          <div className="mt-10 rounded-2xl border border-dashed border-border-strong bg-surface p-10 text-center">
-            <p className="font-display text-lg font-bold text-heading">No {view === "upcoming" ? "upcoming" : view} events {q || cat !== "All" ? "match your filters" : "yet"}</p>
-            <p className="mt-1 font-body text-sm text-muted">{q || cat !== "All" ? "Try clearing the search or category." : view === "past" ? "Past sessions will appear here after they wrap." : "New sessions drop regularly — check back soon."}</p>
-          </div>
-        ) : (
-          <>
-            {featured && <FeaturedEvent event={featured} registered={regs[featured.event_code]} />}
-            {rest.length > 0 && (
-              <>
-                <div className="mb-4 mt-10 flex items-baseline gap-3">
-                  <h2 className="font-display text-xl font-bold text-heading">More upcoming</h2>
-                  <span className="font-mono text-xs text-muted">{rest.length} event{rest.length === 1 ? "" : "s"}</span>
-                </div>
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {rest.map((e) => <EventCard key={e.id} event={e} registered={regs[e.event_code]} />)}
-                </div>
-              </>
-            )}
-          </>
-        )}
-      </div>
+
+          {/* cards */}
+          {loading ? (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">{[0, 1].map((i) => <div key={i} className="h-[440px] animate-pulse rounded-[25px] border border-white/10 bg-white/[0.03]" />)}</div>
+          ) : filtered.length === 0 ? (
+            <div className="mt-10 rounded-2xl border border-dashed border-white/15 p-10 text-center">
+              <p className="font-[family-name:var(--font-inter)] text-lg font-semibold text-white">No {view} events {q || cat !== "All" ? "match your filters" : "yet"}</p>
+              <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-white/50">{q || cat !== "All" ? "Try clearing the search or category." : view === "past" ? "Past sessions appear here after they wrap." : "New sessions drop regularly — check back soon."}</p>
+            </div>
+          ) : (
+            <div className="mt-7 grid gap-6 sm:grid-cols-2">
+              {filtered.map((e) => <EventCard key={e.id} event={e} registered={regs[e.event_code]} />)}
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 }
 
-function FeaturedEvent({ event, registered }: { event: EventRow; registered?: boolean }) {
+function EventCard({ event, registered }: { event: EventRow; registered?: boolean }) {
   const off = isOffline(event);
   const pts = pointsTotalPossible(event.points_config);
   return (
     <Link href={`/events/${event.event_code}`}
-      className="relative mt-8 flex min-h-[280px] items-end overflow-hidden rounded-3xl text-white shadow-[0_18px_40px_-22px_rgba(43,19,92,0.5)]"
-      style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#3a1470,#8A18FF 60%,#F97D03)" }}>
-      <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(43,19,92,.15), rgba(43,19,92,.85))" }} />
-      <div aria-hidden className="absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
-      <div className="relative w-full p-8">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-white/25 bg-white/15 px-3 py-1 font-mono text-[11px] font-semibold backdrop-blur">
-            {event.category || "Featured"}
+      className="group relative block overflow-hidden rounded-[25px] border-[6px] transition-all duration-300 hover:-translate-y-1"
+      style={{ borderColor: "#00cfe5", background: "rgba(30,30,30,0.35)" }}>
+      {/* banner area */}
+      <div className="relative h-[190px] w-full overflow-hidden" style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#1a0b38,#2b135c)" }}>
+        {/* Date & Time tab */}
+        <div className="absolute left-0 top-[42%] rounded-r-md bg-white px-4 py-2 font-[family-name:var(--font-inter)] text-[15px] font-normal text-[#8b8b8b]">Date &amp; Time</div>
+        {registered && <span className="absolute right-3 top-3 rounded-full bg-[#34c759] px-2.5 py-1 font-mono text-[10px] font-bold text-white">Registered</span>}
+      </div>
+      {/* purple gradient info section */}
+      <div className="relative px-6 pb-5 pt-4" style={{ background: "linear-gradient(135deg,#5b1ec9 0%,#8A18FF 45%,#7629fc 100%)" }}>
+        <div className="font-[family-name:var(--font-inter)] text-lg font-semibold uppercase tracking-tight text-white sm:text-xl">{event.name}</div>
+        <div className="mt-1 font-[family-name:var(--font-inter)] text-xs text-white/80">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
+        <div className="mt-3 flex items-center gap-4">
+          <span className="flex items-center gap-1.5 font-[family-name:var(--font-inter)] text-sm text-white">
+            <span className="ev-pulse h-2 w-2 rounded-full" style={{ background: off ? "#F97D03" : "#34c759" }} />{off ? "In person" : "Online"}
           </span>
-          <span className="rounded-full border border-white/25 bg-white/15 px-3 py-1 font-mono text-[11px] backdrop-blur">
-            {off ? "● In person" : "● Online"}
-          </span>
+          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-sm text-white/90">{event.host}</span>}
         </div>
-        <h2 className="mt-4 max-w-[18ch] font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{event.name}</h2>
-        <div className="mt-3 flex flex-wrap gap-4 font-mono text-sm text-white/85">
-          <span className="text-white">{eventDateLabel(event)} · {eventTimeLabel(event)}</span>
-          {event.host && <span>with {event.host}</span>}
-        </div>
-        <div className="mt-5 flex items-center gap-3">
-          <span className="rounded-xl bg-white px-5 py-2.5 font-display text-sm font-semibold text-[#2B135C]">
-            {registered ? "You're registered →" : "Register free →"}
-          </span>
-          {pts > 0 && <span className="rounded-full px-3.5 py-2 font-mono text-xs font-bold text-[#3a2400]" style={{ background: "linear-gradient(120deg,#F97D03,#ffb15e)" }}>+{pts} pts</span>}
+        <div className="mt-4 flex items-end justify-end gap-6">
+          {event.max_attendees != null && (
+            <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] text-white/70">Seats</div><div className="font-[family-name:var(--font-inter)] text-sm font-bold text-white">{event.max_attendees}</div></div>
+          )}
+          {pts > 0 && (
+            <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] text-white/70">Points</div><div className="font-[family-name:var(--font-inter)] text-sm font-bold text-white">+{pts}</div></div>
+          )}
         </div>
       </div>
     </Link>
