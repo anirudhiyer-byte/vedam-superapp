@@ -74,8 +74,8 @@ export function LandingPage() {
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-80%}100%{left:180%}}
         .group:hover .ld-shine{animation:ld-shine 0.75s cubic-bezier(.2,.8,.2,1)}
-        @keyframes ld-silver{0%{background-position:-200% 0}100%{background-position:200% 0}}
-        .ld-silver{background:linear-gradient(100deg,#8f929e 0%,#eef0f4 20%,#ffffff 30%,#eef0f4 40%,#b9bcc7 55%,#ffffff 72%,#8f929e 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 1px 1px rgba(0,0,0,0.25));animation:ld-silver 9s linear infinite}
+        @keyframes ld-silver{0%{background-position:-200% -200%}100%{background-position:200% 200%}}
+        .ld-silver{background:repeating-linear-gradient(115deg, rgba(255,255,255,0.10) 0px, rgba(120,124,138,0.10) 1px, rgba(255,255,255,0.10) 2px, rgba(150,154,168,0.06) 3px),linear-gradient(120deg,#ffffff 0%,#eef1f7 14%,#b8bcca 40%,#7f8393 52%,#d7dae3 70%,#ffffff 100%);background-size:100% 100%, 220% 220%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:0 2px 1px rgba(0,0,0,0.30),0 -1px 0 rgba(255,255,255,0.6);animation:ld-silver 6s linear infinite}
         @media (prefers-reduced-motion: reduce){.ld-silver{animation:none}}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
@@ -146,13 +146,13 @@ export function LandingPage() {
 
         {/* copy — constrained to the left so it never sits under the image */}
         <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
-          <div className="mx-auto max-w-[560px] pb-5 pt-4 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[75px] lg:pt-[40px] lg:text-left">
+          <div className="mx-auto max-w-[560px] pb-10 pt-8 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px] lg:text-left">
             <div className="inline-block text-left lg:block">
             <h1 className="ld-silver font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(40px,6.5vw,108px)" }}>Vedam</h1>
-            <div className="mt-2 flex items-center justify-start gap-4">
+            <div className="mt-1.5 flex items-center justify-start gap-2.5">
               <span className="ld-silver font-[family-name:var(--font-playfair)] italic tracking-tight" style={{ fontSize: "clamp(25px,4.7vw,75px)", fontWeight: 600, lineHeight: 1.25, display: "inline-block", paddingRight: "0.08em" }}>One</span>
-              <span className="mt-2 h-[28px] w-0.5 self-end bg-white/60 sm:h-[38px]" />
-              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(13px,1.35vw,20px)" }}>The Home of<small className="mt-1 block font-medium tracking-[1.5px] text-white" style={{ fontSize: "clamp(9px,0.85vw,13px)" }}>FUTURE ENGINEERS</small></span>
+              <span className="h-[26px] w-0.5 bg-white/60 sm:h-[46px]" />
+              <span className="font-semibold leading-[1.02]" style={{ fontSize: "clamp(13px,1.3vw,19px)" }}>The Home of<small className="mt-1 block font-medium tracking-[1.5px] text-white" style={{ fontSize: "clamp(9px,0.85vw,13px)" }}>FUTURE ENGINEERS</small></span>
             </div>
             </div>
             <div className="mt-8">
