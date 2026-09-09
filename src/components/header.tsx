@@ -8,11 +8,11 @@ import { createClient } from "@/lib/supabase/client";
 import { Logo } from "@/components/logo";
 import { useIsAdmin } from "@/hooks/use-is-admin";
 
-const NAV = [
+const NAV: { label: string; href: string; soon?: boolean }[] = [
   { label: "Home", href: "/" },
   { label: "Bootcamps", href: "/events" },
-  { label: "CodeSprint", href: "/codesprint" },
-  { label: "College Predictor", href: "/predict" },
+  { label: "CodeSprint", href: "/codesprint", soon: true },
+  { label: "College Predictor", href: "/predict", soon: true },
 ];
 
 export function Header() {
@@ -50,8 +50,10 @@ export function Header() {
   const initial = (me?.name?.trim()?.[0] || "V").toUpperCase();
 
   const linkCls = (active: boolean) =>
-    ["rounded-lg px-3 py-1 font-body text-[15px] font-medium transition-colors",
-      active ? "bg-[#7629fc] text-white" : "text-white/75 hover:bg-white/10 hover:text-white"].join(" ");
+    ["font-body text-[15px] font-medium transition-colors",
+      active
+        ? "rounded-md bg-[#7629fc] px-2.5 py-0.5 text-white"
+        : "rounded-lg px-3 py-1 text-white/75 hover:bg-white/10 hover:text-white"].join(" ");
   const itemCls = "flex items-center gap-3 rounded-xl px-3 py-2.5 font-body text-sm font-semibold text-white/90 hover:bg-white/10";
 
   if (pathname === "/") return null;
@@ -64,6 +66,14 @@ export function Header() {
         <nav className="ml-4 hidden items-center gap-1 sm:flex md:ml-8">
           {NAV.map((n) => {
             const active = n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
+            if (n.soon && !isAdmin) {
+              return (
+                <span key={n.href} className="flex cursor-not-allowed items-center gap-1.5 rounded-lg px-3 py-1 font-body text-[15px] font-medium text-white/35" title="Coming soon">
+                  {n.label}
+                  <span className="rounded-full border border-white/20 px-1.5 py-px font-mono text-[8px] font-bold uppercase tracking-wide text-white/45">Soon</span>
+                </span>
+              );
+            }
             return <Link key={n.href} href={n.href} className={linkCls(active)}>{n.label}</Link>;
           })}
         </nav>
@@ -85,7 +95,9 @@ export function Header() {
                   <div className="p-2">
                     {/* mobile nav (hidden on desktop where header shows links) */}
                     <div className="sm:hidden">
-                      {NAV.map((n) => <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={itemCls}>{n.label}</Link>)}
+                      {NAV.map((n) => (n.soon && !isAdmin)
+                        ? <span key={n.href} className={itemCls.replace("hover:bg-white/10", "") + " cursor-not-allowed text-white/35"}>{n.label}<span className="ml-auto rounded-full border border-white/20 px-1.5 py-px font-mono text-[8px] font-bold uppercase text-white/45">Soon</span></span>
+                        : <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className={itemCls}>{n.label}</Link>)}
                       <div className="my-1.5 h-px bg-white/10" />
                     </div>
                     <Link href="/dashboard" onClick={() => setOpen(false)} className={itemCls}>🏠 Dashboard</Link>
