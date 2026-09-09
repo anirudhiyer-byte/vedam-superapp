@@ -52,7 +52,7 @@ export function Header() {
   const initial = (me?.name?.trim()?.[0] || "V").toUpperCase();
 
   const linkCls = (active: boolean) =>
-    ["font-body text-[15px] font-medium transition-colors",
+    ["font-[family-name:var(--font-inter)] text-[15px] font-medium transition-colors",
       active
         ? "rounded bg-[#7629fc] px-1.5 py-0 text-white"
         : "rounded-lg px-3 py-1 text-white/75 hover:bg-white/10 hover:text-white"].join(" ");
@@ -72,7 +72,7 @@ export function Header() {
             const active = n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
             if (n.soon && !isAdmin) {
               return (
-                <span key={n.href} className="flex cursor-not-allowed items-center gap-1.5 rounded-lg px-3 py-1 font-body text-[15px] font-medium text-white/35" title="Coming soon">
+                <span key={n.href} className="flex cursor-not-allowed items-center gap-1.5 rounded-lg px-3 py-1 font-[family-name:var(--font-inter)] text-[15px] font-medium text-white/35" title="Coming soon">
                   {n.label}
                   <span className="rounded-full border border-white/20 px-1.5 py-px font-mono text-[8px] font-bold uppercase tracking-wide text-white/45">Soon</span>
                 </span>

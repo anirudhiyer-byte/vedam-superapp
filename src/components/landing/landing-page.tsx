@@ -74,6 +74,9 @@ export function LandingPage() {
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-80%}100%{left:180%}}
         .group:hover .ld-shine{animation:ld-shine 0.75s cubic-bezier(.2,.8,.2,1)}
+        @keyframes ld-silver{0%{background-position:-200% 0}100%{background-position:200% 0}}
+        .ld-silver{background:linear-gradient(100deg,#8f929e 0%,#eef0f4 20%,#ffffff 30%,#eef0f4 40%,#b9bcc7 55%,#ffffff 72%,#8f929e 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 1px 1px rgba(0,0,0,0.25));animation:ld-silver 4.5s linear infinite}
+        @media (prefers-reduced-motion: reduce){.ld-silver{animation:none}}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
 
@@ -144,11 +147,11 @@ export function LandingPage() {
         {/* copy — constrained to the left so it never sits under the image */}
         <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
           <div className="mx-auto max-w-[560px] pb-10 pt-8 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px] lg:text-left">
-            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(40px,6.5vw,108px)", backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>Vedam</h1>
-            <div className="mt-2 flex items-center justify-start gap-4">
-              <span className="font-[family-name:var(--font-playfair)] italic tracking-tight" style={{ fontSize: "clamp(31px,4.7vw,75px)", fontWeight: 600, lineHeight: 1.05, paddingBottom: "0.12em", backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>One</span>
-              <span className="mt-2 h-[40px] w-0.5 self-end bg-white/60 sm:h-[58px]" />
-              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(13px,1.35vw,20px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(9px,0.85vw,13px)" }}>FUTURE ENGINEERS</small></span>
+            <h1 className="ld-silver font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(40px,6.5vw,108px)" }}>Vedam</h1>
+            <div className="mt-2 flex items-center justify-center gap-4 lg:justify-start">
+              <span className="ld-silver font-[family-name:var(--font-playfair)] italic tracking-tight" style={{ fontSize: "clamp(25px,4.7vw,75px)", fontWeight: 600, lineHeight: 1.25, display: "inline-block", paddingRight: "0.08em" }}>One</span>
+              <span className="mt-2 h-[28px] w-0.5 self-end bg-white/60 sm:h-[50px]" />
+              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(13px,1.35vw,20px)" }}>The Home of<small className="mt-1 block font-medium tracking-[1.5px] text-white" style={{ fontSize: "clamp(9px,0.85vw,13px)" }}>FUTURE ENGINEERS</small></span>
             </div>
             <div className="mt-8">
               <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(14px,1.7vw,26px)" }}>Learn, Code, Build and Compete.</span>
@@ -195,7 +198,7 @@ export function LandingPage() {
       {/* ===== EXPLORE ===== */}
       <section id="explore" className="px-6 py-8 sm:px-16 sm:pb-20 sm:pt-8" style={{ background: "#0b0318" }}>
         <div className="mx-auto max-w-[1800px] rounded-[20px] border border-[#7a7a7a] bg-[#171717] p-5 sm:rounded-[30px] sm:p-11" >
-          <h2 className="whitespace-nowrap font-medium tracking-tight" style={{ fontSize: "clamp(24px,4.1vw,55px)" }}>Explore VEDAM<span className="font-[family-name:var(--font-playfair)] italic" style={{ backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>One</span></h2>
+          <h2 className="whitespace-nowrap font-medium tracking-tight" style={{ fontSize: "clamp(24px,4.1vw,55px)" }}><span className="ld-silver">Explore VEDAM</span><span className="ld-silver font-[family-name:var(--font-playfair)] italic">One</span></h2>
           <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(12px,1.4vw,23px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {CARDS.map((c) => (
