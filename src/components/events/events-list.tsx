@@ -125,33 +125,34 @@ function EventCard({ event, registered }: { event: EventRow; registered?: boolea
   const pts = pointsTotalPossible(event.points_config);
   return (
     <Link href={`/events/${event.event_code}`}
-      className="group relative block overflow-hidden rounded-[24px] border border-white/12 bg-white/[0.05] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-[#00cfe5]/50 hover:shadow-[0_0_60px_-12px_rgba(0,207,229,0.5)]"
-      style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)" }}>
+      className="group relative block overflow-hidden rounded-[24px] border border-white/15 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#7ad7ff]/60 hover:shadow-[0_0_70px_-10px_rgba(123,92,255,0.6)]"
+      style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)" }}>
       {/* glossy shine sweep */}
-      <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-20 w-1/2 -skew-x-[18deg]" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.10) 70%, transparent)" }} />
-      <span aria-hidden className="pointer-events-none absolute inset-0 z-10" style={{ background: "linear-gradient(125deg, rgba(255,255,255,0.14), transparent 30%)" }} />
+      <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-20 w-1/2 -skew-x-[18deg]" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.12) 30%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.12) 70%, transparent)" }} />
       {/* banner */}
-      <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px]" style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#2b6ef2,#7b2ff2 55%,#c81ad6)" }}>
-        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.4))" }} />
+      <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px]" style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#1a0b38,#2b135c)" }}>
+        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.45))" }} />
         <div className="absolute left-3 top-3 z-20 flex flex-wrap gap-2">
-          {event.category && <span className="rounded-full border border-white/25 bg-black/40 px-3 py-1 font-mono text-[10px] font-semibold text-white backdrop-blur">{event.category}</span>}
-          <span className="flex items-center gap-1.5 rounded-full border border-white/25 bg-black/40 px-3 py-1 font-mono text-[10px] text-white backdrop-blur"><span className="ev-pulse h-1.5 w-1.5 rounded-full" style={{ background: off ? "#F97D03" : "#34c759" }} />{off ? "In person" : "Online"}</span>
+          {event.category && <span className="rounded-full border border-white/30 bg-black/45 px-3 py-1 font-mono text-[10px] font-semibold text-white backdrop-blur">{event.category}</span>}
+          <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-black/45 px-3 py-1 font-mono text-[10px] text-white backdrop-blur"><span className="ev-pulse h-1.5 w-1.5 rounded-full" style={{ background: off ? "#ffd27a" : "#5ce38a" }} />{off ? "In person" : "Online"}</span>
         </div>
         {registered && <span className="absolute right-3 top-3 z-20 rounded-full bg-[#34c759] px-2.5 py-1 font-mono text-[10px] font-bold text-white">Registered</span>}
       </div>
-      {/* info */}
-      <div className="relative z-[5] p-6">
-        <div className="font-[family-name:var(--font-inter)] text-lg font-semibold uppercase leading-tight tracking-tight text-white sm:text-xl">{event.name}</div>
-        <div className="mt-1.5 font-[family-name:var(--font-inter)] text-xs text-white/60">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
-        <div className="mt-4 flex items-center justify-between">
-          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-sm text-white/85">with {event.host}</span>}
-          <div className="ml-auto flex items-end gap-5">
-            {event.max_attendees != null && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-wide text-white/45">Seats</div><div className="font-[family-name:var(--font-inter)] text-sm font-bold text-white">{event.max_attendees}</div></div>}
-            {pts > 0 && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-wide text-white/45">Points</div><div className="font-[family-name:var(--font-inter)] text-sm font-bold text-[#8fe9f5]">+{pts}</div></div>}
+      {/* GRADIENT info section — richer, premium, with a glossy top highlight */}
+      <div className="relative z-[5] px-7 pb-6 pt-5" style={{ background: "linear-gradient(120deg,#2166ff 0%,#7b2ff2 48%,#d21ad6 100%)" }}>
+        <span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.18), transparent 45%)" }} />
+        <div className="relative font-[family-name:var(--font-inter)] text-xl font-bold uppercase leading-tight tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] sm:text-2xl">{event.name}</div>
+        <div className="relative mt-1.5 font-[family-name:var(--font-inter)] text-[13px] font-medium text-white/85">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
+        <div className="relative mt-4 flex items-center justify-between gap-3">
+          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-sm font-medium text-white">with {event.host}</span>}
+          <div className="ml-auto flex items-end gap-6">
+            {event.max_attendees != null && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-wide text-white/70">Seats</div><div className="font-[family-name:var(--font-inter)] text-base font-extrabold text-white">{event.max_attendees}</div></div>}
+            {pts > 0 && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-wide text-white/70">Points</div><div className="font-[family-name:var(--font-inter)] text-base font-extrabold text-[#ffe27a]">+{pts}</div></div>}
           </div>
         </div>
       </div>
     </Link>
   );
 }
+
 
