@@ -63,15 +63,15 @@ export function EventDetail({ code }: { code: string }) {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-8 sm:px-8">
-      <Link href="/events" className="font-mono text-xs text-muted hover:text-foreground">← all events</Link>
+      <Link href="/events" className="font-mono text-xs text-white/55 hover:text-white">← all events</Link>
 
       {/* hero */}
-      <div className="relative mt-4 flex min-h-[240px] items-end overflow-hidden rounded-3xl text-white shadow-[0_18px_40px_-22px_rgba(43,19,92,0.5)]"
+      <div className="relative mt-4 flex min-h-[240px] items-end overflow-hidden rounded-3xl border-2 border-[#00cfe5]/40 text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)]"
         style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#8A18FF,#3a1470 70%,#F97D03)" }}>
         <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(43,19,92,.1), rgba(43,19,92,.82))" }} />
         <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
         <div className="relative w-full p-8">
-          <span className="rounded-full border border-white/25 bg-white/15 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide backdrop-blur">
+          <span className="rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-[#8fe9f5] backdrop-blur">
             {event.category || "Vedam Event"}
           </span>
           <h1 className="mt-3 max-w-[20ch] font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{event.name}</h1>
