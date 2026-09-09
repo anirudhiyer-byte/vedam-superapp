@@ -54,7 +54,7 @@ export function Header() {
   const linkCls = (active: boolean) =>
     ["font-body text-[15px] font-medium transition-colors",
       active
-        ? "rounded-md bg-[#7629fc] px-2.5 py-0.5 text-white"
+        ? "rounded bg-[#7629fc] px-1.5 py-0 text-white"
         : "rounded-lg px-3 py-1 text-white/75 hover:bg-white/10 hover:text-white"].join(" ");
   const itemCls = "flex items-center gap-3 rounded-xl px-3 py-2.5 font-body text-sm font-semibold text-white/90 hover:bg-white/10";
 
@@ -62,10 +62,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 text-white backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(11,3,24,0.65))" }}>
       <div className="relative mx-auto flex h-[72px] max-w-[1800px] items-center justify-between px-6 sm:px-10">
-        <Link href="/" aria-label="Vedam One home" className="flex items-center">
+        <a href="https://www.vedam.org" aria-label="Vedam School of Technology" className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/vedam-logo-dark.png?v=2" alt="Vedam School of Technology" className="h-11 w-auto sm:h-12" />
-        </Link>
+          <img src="/vedam-logo-dark.png?v=2" alt="Vedam School of Technology" className="h-8 w-auto sm:h-9" />
+        </a>
         {/* centered, evenly-spaced nav — matches the landing */}
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
           {NAV.map((n) => {

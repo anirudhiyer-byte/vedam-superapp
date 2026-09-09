@@ -86,9 +86,9 @@ export function LandingPage() {
 
         {/* HEADER */}
         <header className="relative z-30 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-5 sm:px-10">
-          <div className="flex items-center">
-            <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-11 w-auto sm:h-12" />
-          </div>
+          <a href="https://www.vedam.org" className="flex items-center">
+            <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-8 w-auto sm:h-9" />
+          </a>
           {/* desktop nav */}
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
             {NAV.map((n) => (
@@ -116,7 +116,7 @@ export function LandingPage() {
                 </div>
               </>
             ) : (
-              <Link href="/login" className="rounded-lg bg-[#7629fc] px-5 py-2 text-[15px] font-medium">Sign in</Link>
+              <Link href="/login" className="rounded-lg bg-[#7629fc] px-3 py-1.5 text-[13px] font-medium">Sign in</Link>
             )}
             <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-10 w-10 place-items-center rounded-lg border border-white/15 lg:hidden">☰</button>
           </div>
@@ -144,23 +144,23 @@ export function LandingPage() {
         {/* copy — constrained to the left so it never sits under the image */}
         <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
           <div className="mx-auto max-w-[560px] pb-10 pt-8 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px] lg:text-left">
-            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(45px,7.2vw,120px)" }}>Vedam</h1>
-            <div className="mt-2 flex items-center justify-center gap-4 lg:justify-start">
-              <span className="font-[family-name:var(--font-playfair)] italic leading-[0.78] tracking-tight" style={{ fontSize: "clamp(35px,5.2vw,83px)", fontWeight: 600 }}>One</span>
-              <span className="h-[36px] w-0.5 bg-white/60 sm:h-[52px]" />
-              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(14px,1.5vw,22px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(10px,0.95vw,15px)" }}>FUTURE ENGINEERS</small></span>
+            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(40px,6.5vw,108px)" }}>Vedam</h1>
+            <div className="mt-2 flex items-center justify-start gap-4">
+              <span className="font-[family-name:var(--font-playfair)] italic leading-[0.78] tracking-tight" style={{ fontSize: "clamp(31px,4.7vw,75px)", fontWeight: 600, backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>One</span>
+              <span className="h-[32px] w-0.5 bg-white/60 sm:h-[47px]" />
+              <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(13px,1.35vw,20px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(9px,0.85vw,13px)" }}>FUTURE ENGINEERS</small></span>
             </div>
             <div className="mt-8">
-              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(18px,2.1vw,32px)" }}>Learn, Code, Build and Compete.</span>
-              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(16px,2.1vw,32px)" }}>Specially designed for class 12th students</span>
+              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(14px,1.7vw,26px)" }}>Learn, Code, Build and Compete.</span>
+              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(13px,1.7vw,26px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/80 hover:shadow-[0_0_34px_rgba(138,24,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ fontSize: "clamp(15px,1.3vw,19px)", background: "linear-gradient(96deg, rgba(53,232,251,0.30) 0%, rgba(123,92,255,0.42) 55%, rgba(194,0,219,0.38) 100%)" }}>
+              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-5 py-2.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/80 hover:shadow-[0_0_34px_rgba(138,24,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ fontSize: "clamp(12px,1.05vw,15px)", background: "linear-gradient(96deg, rgba(53,232,251,0.30) 0%, rgba(123,92,255,0.42) 55%, rgba(194,0,219,0.38) 100%)" }}>
                 <span className="relative z-10">Start Building</span>
                 <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
               </button>
             </div>
-            <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(15px,1.2vw,20px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
+            <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(12px,0.95vw,16px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
           </div>
           {/* mobile image — below the copy, no overlap */}
           <div className="relative mt-4 -mx-6 lg:hidden">
@@ -178,7 +178,7 @@ export function LandingPage() {
         </div>
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
-        <div className="relative z-[25] mt-6 flex h-[56px] items-center overflow-hidden border-y border-white/25 backdrop-blur-md sm:h-[74px] lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.07)", boxShadow: "0 0 55px rgba(138,24,255,.32) inset" }}>
+        <div className="relative z-[25] mt-6 flex h-[40px] items-center overflow-hidden border-y border-white/25 backdrop-blur-md sm:h-[52px] lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.07)", boxShadow: "0 0 55px rgba(138,24,255,.32) inset" }}>
           <div className="z-[4] flex h-full flex-shrink-0 flex-col justify-center px-4 leading-[1.05] sm:flex-row sm:items-center sm:gap-1.5 sm:whitespace-nowrap sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 74%,rgba(11,3,24,.9) 88%,transparent)", fontSize: "clamp(15px,2.6vw,34px)" }}><span>Learn From</span> <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
@@ -195,8 +195,8 @@ export function LandingPage() {
       {/* ===== EXPLORE ===== */}
       <section id="explore" className="px-6 py-8 sm:px-16 sm:pb-20 sm:pt-8" style={{ background: "#0b0318" }}>
         <div className="mx-auto max-w-[1800px] rounded-[20px] border border-[#7a7a7a] bg-[#171717] p-5 sm:rounded-[30px] sm:p-11" >
-          <h2 className="font-medium tracking-tight" style={{ fontSize: "clamp(34px,4.5vw,58px)" }}>Explore VEDAM<span className="font-[family-name:var(--font-playfair)] italic">One</span></h2>
-          <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(17px,1.6vw,25px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
+          <h2 className="whitespace-nowrap font-medium tracking-tight" style={{ fontSize: "clamp(24px,4.1vw,55px)" }}>Explore VEDAM<span className="font-[family-name:var(--font-playfair)] italic" style={{ backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>One</span></h2>
+          <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(12px,1.4vw,23px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {CARDS.map((c) => (
               <Link key={c.key} href={c.href} className="group relative block overflow-hidden rounded-[25px] border border-white/15 bg-white/[0.06] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5"
