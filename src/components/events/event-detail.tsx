@@ -19,6 +19,7 @@ export function EventDetail({ code }: { code: string }) {
   const [zoomJoinUrl, setZoomJoinUrl] = useState<string | null>(null);
   const [regInfo, setRegInfo] = useState<{ id: string; joined: boolean; github: string | null } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showRec, setShowRec] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -42,6 +43,15 @@ export function EventDetail({ code }: { code: string }) {
     })();
     return () => { active = false; };
   }, [supabase, code]);
+
+  const embedRecording = (url: string | null): string | null => {
+    if (!url) return null;
+    const drive = url.match(/drive\.google\.com\/file\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/);
+    if (url.includes("drive.google.com") && drive) return `https://drive.google.com/file/d/${drive[1]}/preview`;
+    const yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]+)/);
+    if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
+    return url;
+  };
 
   if (loading) return <div className="mx-auto max-w-5xl px-6 py-16"><div className="h-72 animate-pulse rounded-3xl border border-border bg-surface" /></div>;
   if (!event) return (
@@ -145,6 +155,13 @@ export function EventDetail({ code }: { code: string }) {
                   </a>
                 )}
                                 <p className="relative mt-3 text-center font-body text-xs text-white/50">We&apos;ve emailed your details + calendar invite.</p>
+                {event.recording_url && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
+                  <div className="relative mt-4">
+                    <button onClick={() => setShowRec((v) => !v)} className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-4 py-3 font-display text-sm font-semibold text-[#8fe9f5] backdrop-blur transition hover:border-[#00cfe5]">
+                      {showRec ? "▾ Hide recording" : "▶ View recording"}
+                    </button>
+                  </div>
+                )}
                 {event.submission_enabled && regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
                   <ProjectSubmission registrationId={regInfo.id} points={event.submission_points ?? 0} alreadyUrl={regInfo.github} />
                 )}
@@ -181,6 +198,15 @@ export function EventDetail({ code }: { code: string }) {
           </div>
         </div>
       </div>
+
+      {showRec && event.recording_url && (
+        <div className="mt-8">
+          <h3 className="font-display text-lg font-semibold text-white">Session recording</h3>
+          <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-2xl border border-white/12 bg-black">
+            <iframe src={embedRecording(event.recording_url) || undefined} title="Session recording" allow="autoplay; encrypted-media; fullscreen" allowFullScreen className="absolute inset-0 h-full w-full" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

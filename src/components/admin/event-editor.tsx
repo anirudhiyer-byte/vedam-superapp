@@ -16,7 +16,7 @@ type Form = {
   name: string; category: string; mode: "online" | "offline"; host: string; blurb: string; details: string;
   platform: string; join_link: string; zoom_id: string; zoom_passcode: string; date: string; time: string; duration_minutes: string;
   venue: string; map_link: string; schedule: ScheduleDay[];
-  banner_url: string; whatsapp_community_url: string; max_attendees: string; reg_close_at: string;
+  banner_url: string; recording_url: string; whatsapp_community_url: string; max_attendees: string; reg_close_at: string;
   certs_enabled: boolean; podium_enabled: boolean; share_podium: string; share_participation: string;
   ribbon_label: string; ribbon_value: string; dashboard_enabled: boolean;
   registration_schema: EventField[];
@@ -28,7 +28,7 @@ const blank: Form = {
   name: "", category: "Workshop", mode: "online", host: "", blurb: "", details: "",
   platform: "", join_link: "", zoom_id: "", zoom_passcode: "", date: "", time: "", duration_minutes: "60",
   venue: "", map_link: "", schedule: [{ date: "", slots: [{ start: "", end: "" }] }],
-  banner_url: "", whatsapp_community_url: "", max_attendees: "", reg_close_at: "",
+  banner_url: "", recording_url: "", whatsapp_community_url: "", max_attendees: "", reg_close_at: "",
   certs_enabled: false, podium_enabled: false, share_podium: "30", share_participation: "15",
   ribbon_label: "", ribbon_value: "", dashboard_enabled: false,
   registration_schema: DEFAULT_ONLINE_REG,
@@ -63,7 +63,7 @@ export function EventEditor({ id }: { id?: string }) {
           time: starts ? starts.toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) : "",
           duration_minutes: e.duration_minutes ? String(e.duration_minutes) : "60",
           venue: e.venue || "", map_link: e.map_link || "", schedule: e.schedule || [{ date: "", slots: [{ start: "", end: "" }] }],
-          banner_url: e.banner_url || "", whatsapp_community_url: e.whatsapp_community_url || "",
+          banner_url: e.banner_url || "", recording_url: e.recording_url || "", whatsapp_community_url: e.whatsapp_community_url || "",
           certs_enabled: !!e.certs_enabled, podium_enabled: !!e.podium_enabled, share_podium: String(e.share_points_podium ?? 30), share_participation: String(e.share_points_participation ?? 15),
           max_attendees: e.max_attendees ? String(e.max_attendees) : "", reg_close_at: e.reg_close_at ? new Date(e.reg_close_at).toISOString().slice(0, 16) : "",
           ribbon_label: e.ribbon_label || "", ribbon_value: e.ribbon_value || "", dashboard_enabled: e.dashboard_enabled,
@@ -114,7 +114,7 @@ export function EventEditor({ id }: { id?: string }) {
       venue: off ? f.venue || null : null,
       map_link: off ? f.map_link || null : null,
       schedule: off ? f.schedule.filter((d) => d.date) : null,
-      banner_url: f.banner_url || null, whatsapp_community_url: f.whatsapp_community_url || null,
+      banner_url: f.banner_url || null, recording_url: f.recording_url || null, whatsapp_community_url: f.whatsapp_community_url || null,
       certs_enabled: f.certs_enabled, podium_enabled: f.podium_enabled, share_points_podium: Number(f.share_podium) || 0, share_points_participation: Number(f.share_participation) || 0,
       max_attendees: f.max_attendees ? Number(f.max_attendees) : null,
       reg_close_at: f.reg_close_at ? new Date(f.reg_close_at + ":00+05:30").toISOString() : null,
@@ -224,6 +224,7 @@ export function EventEditor({ id }: { id?: string }) {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <Row label="WhatsApp community URL"><input className={input} value={f.whatsapp_community_url} onChange={(e) => set("whatsapp_community_url", e.target.value)} /></Row>
+          <Row label="Recording link (Drive/YouTube — shown to registered users after the event ends)"><input className={input} value={f.recording_url} onChange={(e) => set("recording_url", e.target.value)} placeholder="https://drive.google.com/file/d/…/view  or  YouTube link" /></Row>
           <Row label="Certificates & sharing">
             <div className="space-y-2">
               <label className="flex items-center gap-2 font-body text-sm"><input type="checkbox" checked={f.certs_enabled} onChange={(e) => set("certs_enabled", e.target.checked)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /> Issue participation certificates</label>
