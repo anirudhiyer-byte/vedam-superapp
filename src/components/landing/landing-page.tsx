@@ -63,7 +63,7 @@ export function LandingPage() {
   return (
     <div className="landing font-[family-name:var(--font-inter)] text-white">
       <style>{`
-        .landing{background:#0b0318}
+        .landing{background:#000000}
         @keyframes ld-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
         @keyframes ld-spinrev{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
         @keyframes ld-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -193,7 +193,7 @@ export function LandingPage() {
       </section>
 
       {/* ===== EXPLORE ===== */}
-      <section id="explore" className="px-6 py-8 sm:px-16 sm:pb-20 sm:pt-8" style={{ background: "#0b0318" }}>
+      <section id="explore" className="px-6 py-8 sm:px-16 sm:pb-20 sm:pt-8" style={{ background: "#000000" }}>
         <div className="mx-auto max-w-[1800px] rounded-[20px] border border-[#7a7a7a] bg-[#171717] p-5 sm:rounded-[30px] sm:p-11" >
           <h2 className="font-medium tracking-tight" style={{ fontSize: "clamp(34px,4.5vw,58px)" }}>Explore VEDAM<span className="font-[family-name:var(--font-playfair)] italic">One</span></h2>
           <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(17px,1.6vw,25px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
@@ -212,7 +212,7 @@ export function LandingPage() {
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer className="flex flex-row flex-wrap gap-8 border-t border-white/10 px-6 py-12 sm:gap-32 sm:px-16 sm:py-14" style={{ background: "#0b0318" }}>
+      <footer className="flex flex-row flex-wrap gap-8 border-t border-white/10 px-6 py-12 sm:gap-32 sm:px-16 sm:py-14" style={{ background: "#000000" }}>
         <div><h4 className="mb-2.5 text-base font-semibold sm:text-xl">Quick Links</h4>
           <Link href="/privacy" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Privacy Policy</Link>
           <Link href="/terms" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Terms of Service</Link>
