@@ -64,7 +64,7 @@ export function LandingPage() {
         @keyframes ld-blink{0%,100%{opacity:1}50%{opacity:.25}}
         .ld-orbit{animation:ld-spin 46s linear infinite}
         .ld-orbit .m .in{animation:ld-spinrev 46s linear infinite}
-        .ld-track{animation:ld-scroll 24s linear infinite}
+        .ld-track{animation:ld-scroll 20s linear infinite}
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-70%}100%{left:170%}}
         .group:hover .ld-shine{animation:ld-shine 0.9s ease-out}
@@ -74,7 +74,7 @@ export function LandingPage() {
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden" style={{ background: "radial-gradient(120% 100% at 80% 35%, #331660 0%, #1a0b38 45%, #0b0318 100%)" }}>
         {/* texture */}
-        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: "radial-gradient(rgba(205,165,255,0.6) 1.3px, transparent 1.6px)", backgroundSize: "26px 26px", opacity: 0.16 }} />
+        <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.28] sm:opacity-[0.16]" style={{ backgroundImage: "radial-gradient(rgba(205,165,255,0.6) 1.3px, transparent 1.6px)", backgroundSize: "24px 24px" }} />
         <div className="pointer-events-none absolute right-16 top-24 z-[1] h-[700px] w-[820px] rounded-full opacity-70 blur-[40px]" style={{ background: "radial-gradient(closest-side, rgba(150,40,220,.45), transparent 70%)" }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[10] h-36" style={{ background: "linear-gradient(to bottom, #000 20%, rgba(0,0,0,0.6) 55%, transparent)" }} />
 
@@ -145,7 +145,7 @@ export function LandingPage() {
               <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(16px,2.1vw,32px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/70" style={{ fontSize: "clamp(15px,1.3vw,19px)", background: "linear-gradient(120deg, rgba(249,125,3,0.30), rgba(138,24,255,0.42))" }}>
+              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/80 hover:shadow-[0_0_34px_rgba(138,24,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ fontSize: "clamp(15px,1.3vw,19px)", background: "linear-gradient(120deg, rgba(249,125,3,0.30), rgba(138,24,255,0.42))" }}>
                 <span className="relative z-10">Start Building</span>
                 <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
               </button>
@@ -168,13 +168,15 @@ export function LandingPage() {
         </div>
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
-        <div className="relative z-[25] mt-6 flex h-[74px] items-center overflow-hidden border-y border-white/20 backdrop-blur-md lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.06)", boxShadow: "0 0 60px rgba(138,24,255,.28) inset" }}>
-          <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-4 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 78%,rgba(11,3,24,.9) 90%,transparent)", fontSize: "clamp(14px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
+        <div className="relative z-[25] mt-6 flex h-[56px] items-center overflow-hidden border-y border-white/25 backdrop-blur-md sm:h-[74px] lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.07)", boxShadow: "0 0 55px rgba(138,24,255,.32) inset" }}>
+          <div className="z-[4] flex h-full flex-shrink-0 flex-col justify-center px-4 leading-[1.05] sm:flex-row sm:items-center sm:gap-1.5 sm:whitespace-nowrap sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 74%,rgba(11,3,24,.9) 88%,transparent)", fontSize: "clamp(15px,2.6vw,34px)" }}><span>Learn From</span> <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-6 h-4 w-auto shrink-0 object-contain sm:mx-10 sm:h-5" />
+              <div key={i} className="flex w-[92px] shrink-0 items-center justify-center sm:w-[150px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/landing/logo-${l}.webp`} alt={l} className="h-4 w-auto object-contain sm:h-5" />
+              </div>
             ))}
           </div>
         </div>

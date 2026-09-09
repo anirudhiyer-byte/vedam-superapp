@@ -166,11 +166,11 @@ export function RegisterForm() {
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+    <div className="rounded-2xl border border-white/12 bg-white/[0.05] p-6 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.6)] backdrop-blur-xl sm:p-8">
       {step === "details" && (
         <>
-          <h1 className="font-display text-2xl font-bold text-heading">Create your account</h1>
-          <p className="mt-1 font-body text-sm text-muted">One login for the entire Vedam ecosystem.</p>
+          <h1 className="font-display text-2xl font-bold text-white">Create your account</h1>
+          <p className="mt-1 font-body text-sm text-white/55">One login for the entire Vedam ecosystem.</p>
 
           <div className="mt-6 space-y-4">
             <Field label="Full name">
@@ -179,10 +179,10 @@ export function RegisterForm() {
 
             <Field label="WhatsApp number">
               <div className="flex">
-                <span className="inline-flex items-center rounded-l-lg border border-r-0 border-border bg-surface-warm px-3 text-sm text-muted">+91</span>
+                <span className="inline-flex items-center rounded-l-lg border border-r-0 border-white/12 bg-white/[0.06] px-3 text-sm text-white/60">+91</span>
                 <input className={inputCls + " rounded-l-none"} value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="numeric" placeholder="98765 43210" />
               </div>
-              <p className="mt-1 font-body text-xs text-muted">We'll send event reminders and updates here on WhatsApp.</p>
+              <p className="mt-1 font-body text-xs text-white/55">We'll send event reminders and updates here on WhatsApp.</p>
             </Field>
 
             <Field label="Email">
@@ -220,7 +220,7 @@ export function RegisterForm() {
 
             <label className="flex items-start gap-2.5 pt-1">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-[color:rgb(var(--accent))]" />
-              <span className="font-body text-xs leading-relaxed text-muted">
+              <span className="font-body text-xs leading-relaxed text-white/55">
                 I agree to Vedam contacting me and processing my details as per the{" "}
                 <a href="/privacy" target="_blank" className="text-accent underline">Privacy Policy</a> and{" "}
                 <a href="/terms" target="_blank" className="text-accent underline">Terms</a>.
@@ -235,7 +235,7 @@ export function RegisterForm() {
               {loading ? "Sending code…" : "Send OTP"}
             </button>
 
-            <p className="text-center font-body text-sm text-muted">
+            <p className="text-center font-body text-sm text-white/55">
               Already have an account?{" "}
               <Link href="/login" className="font-semibold text-accent">Log in</Link>
             </p>
@@ -245,8 +245,8 @@ export function RegisterForm() {
 
       {step === "otp" && (
         <>
-          <h1 className="font-display text-2xl font-bold text-heading">Enter the code</h1>
-          <p className="mt-1 font-body text-sm text-muted">
+          <h1 className="font-display text-2xl font-bold text-white">Enter the code</h1>
+          <p className="mt-1 font-body text-sm text-white/55">
             We sent a 6-digit code to +91 {phone.replace(/\D/g, "").slice(-10)}.
           </p>
           <div className="mt-6 space-y-4">
@@ -255,7 +255,7 @@ export function RegisterForm() {
             <button onClick={verify} disabled={loading} className={primaryBtn}>
               {loading ? "Verifying…" : "Verify phone"}
             </button>
-            <button onClick={() => { setStep("details"); setOtp(""); setError(null); }} className="w-full font-body text-sm text-muted">
+            <button onClick={() => { setStep("details"); setOtp(""); setError(null); }} className="w-full font-body text-sm text-white/55">
               ← Wrong number or email? Edit details
             </button>
           </div>
@@ -264,9 +264,9 @@ export function RegisterForm() {
 
       {step === "email" && (
         <>
-          <h1 className="font-display text-2xl font-bold text-heading">Verify your email</h1>
-          <p className="mt-1 font-body text-sm text-muted">
-            We sent a 6-digit code to <b className="text-foreground">{email}</b>.
+          <h1 className="font-display text-2xl font-bold text-white">Verify your email</h1>
+          <p className="mt-1 font-body text-sm text-white/55">
+            We sent a 6-digit code to <b className="text-white/90">{email}</b>.
           </p>
           <div className="mt-6 space-y-4">
             <input className={otpCls} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="••••••" />
@@ -285,19 +285,19 @@ export function RegisterForm() {
 
       {step === "done" && (
         <>
-          <h1 className="font-display text-2xl font-bold text-heading">You&apos;re in 🎉</h1>
+          <h1 className="font-display text-2xl font-bold text-white">You&apos;re in 🎉</h1>
 
           {emailVerified ? (
-            <p className="mt-2 font-body text-sm leading-relaxed text-muted">
+            <p className="mt-2 font-body text-sm leading-relaxed text-white/55">
               Your account is ready and your email is verified. Welcome to Vedam.
             </p>
           ) : emailError ? (
-            <p className="mt-2 font-body text-sm leading-relaxed text-muted">
-              Your account is ready. We couldn&apos;t send the email code to <b className="text-foreground">{email}</b> just now — you can still explore, and resend it below.
+            <p className="mt-2 font-body text-sm leading-relaxed text-white/55">
+              Your account is ready. We couldn&apos;t send the email code to <b className="text-white/90">{email}</b> just now — you can still explore, and resend it below.
             </p>
           ) : (
-            <p className="mt-2 font-body text-sm leading-relaxed text-muted">
-              Your account is ready. Your email <b className="text-foreground">{email}</b> isn&apos;t verified yet — resend the code below whenever you&apos;re ready.
+            <p className="mt-2 font-body text-sm leading-relaxed text-white/55">
+              Your account is ready. Your email <b className="text-white/90">{email}</b> isn&apos;t verified yet — resend the code below whenever you&apos;re ready.
             </p>
           )}
 
@@ -319,7 +319,7 @@ export function RegisterForm() {
 }
 
 const inputCls =
-  "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-[color:rgb(var(--accent))]";
+  "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-white/90 outline-none transition-colors focus:border-[color:rgb(var(--accent))]";
 const otpCls = inputCls + " text-center text-lg tracking-[0.4em]";
 const primaryBtn =
   "w-full rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60";
@@ -327,7 +327,7 @@ const primaryBtn =
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block font-body text-xs font-semibold text-foreground">{label}</span>
+      <span className="mb-1.5 block font-body text-xs font-semibold text-white/90">{label}</span>
       {children}
     </label>
   );
