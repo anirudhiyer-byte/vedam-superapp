@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { createClient } from "@/lib/supabase/client";
-import { Logo } from "@/components/logo";
 import { useIsAdmin } from "@/hooks/use-is-admin";
 
 const NAV: { label: string; href: string; soon?: boolean }[] = [
@@ -62,11 +61,13 @@ export function Header() {
   if (pathname === "/") return null;
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 text-white backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(11,3,24,0.65))" }}>
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-2 px-5 sm:px-8">
-        <Link href="/" aria-label="Vedam One home" className="flex items-center gap-2">
-          <Logo />
+      <div className="relative mx-auto flex h-[72px] max-w-[1800px] items-center justify-between px-6 sm:px-10">
+        <Link href="/" aria-label="Vedam One home" className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/vedam-logo-dark.png?v=2" alt="Vedam School of Technology" className="h-11 w-auto sm:h-12" />
         </Link>
-        <nav className="ml-4 hidden items-center gap-1 sm:flex md:ml-8">
+        {/* centered, evenly-spaced nav — matches the landing */}
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
           {NAV.map((n) => {
             const active = n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
             if (n.soon && !isAdmin) {
@@ -81,7 +82,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="relative ml-auto" ref={menuRef}>
+        <div className="relative" ref={menuRef}>
           {me ? (
             <div className="flex items-center gap-2.5">
               <span className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-sm font-semibold text-white transition-all hover:border-white/40 hover:shadow-[0_0_16px_rgba(255,201,60,0.4)]">

@@ -62,7 +62,7 @@ export function EventsList() {
         <div aria-hidden className="ev-slide pointer-events-none absolute right-0 top-[-40px] z-0 h-[520px] w-[1100px] opacity-70"
           style={{ background: "radial-gradient(60% 60% at 70% 30%, rgba(0,207,229,.16), transparent 60%), radial-gradient(50% 50% at 95% 40%, rgba(194,0,219,.22), transparent 65%)", filter: "blur(30px)" }} />
         <div className="relative z-10 mx-auto max-w-[1500px] px-8 pb-8 pt-10 sm:px-14 sm:pt-14 lg:px-20">
-          <h1 className="font-[family-name:var(--font-playfair)] italic" style={{ fontSize: "clamp(40px,6vw,60px)", fontWeight: 500, background: "linear-gradient(110deg,#35e8fb 8%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Bootcamps</h1>
+          <h1 className="font-[family-name:var(--font-playfair)] italic" style={{ fontSize: "clamp(40px,6vw,60px)", fontWeight: 500, backgroundImage: "linear-gradient(110deg,#35e8fb 8%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", display: "inline-block" }}>Bootcamps</h1>
           <h2 className="mt-3 font-[family-name:var(--font-inter)] font-normal tracking-tight text-white" style={{ fontSize: "clamp(24px,3.2vw,34px)" }}>Explore AI. Build With It.</h2>
           <p className="mt-4 max-w-[900px] font-[family-name:var(--font-inter)] font-extralight leading-[1.4] text-[#afafaf]" style={{ fontSize: "clamp(15px,1.3vw,21px)" }}>
             Live, beginner-friendly, hands-on sessions where you experiment with AI, build projects and discover what&apos;s possible — all before you step into college.
@@ -123,40 +123,35 @@ export function EventsList() {
 function EventCard({ event, registered }: { event: EventRow; registered?: boolean }) {
   const off = isOffline(event);
   const pts = pointsTotalPossible(event.points_config);
-  // folder-tab silhouette for the purple body: notched top-left where the Date tab sits
-  const folderClip = "polygon(0 46px, 210px 46px, 246px 0, 100% 0, 100% 100%, 0 100%)";
   return (
     <Link href={`/events/${event.event_code}`}
-      className="group relative block overflow-hidden rounded-[18px] border-[5px] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_60px_-10px_rgba(0,207,229,0.5)] sm:rounded-[25px] sm:border-[7px]"
-      style={{ borderColor: "#00cfe5", background: "rgba(30,30,30,0.35)" }}>
-      {/* banner area */}
-      <div className="relative h-[190px] w-full overflow-hidden sm:h-[260px]" style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#1a0b38,#2b135c)" }}>
-        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35))" }} />
+      className="group relative block overflow-hidden rounded-[24px] border border-white/12 bg-white/[0.05] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-[#00cfe5]/50 hover:shadow-[0_0_60px_-12px_rgba(0,207,229,0.5)]"
+      style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)" }}>
+      {/* glossy shine sweep */}
+      <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-20 w-1/2 -skew-x-[18deg]" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.10) 70%, transparent)" }} />
+      <span aria-hidden className="pointer-events-none absolute inset-0 z-10" style={{ background: "linear-gradient(125deg, rgba(255,255,255,0.14), transparent 30%)" }} />
+      {/* banner */}
+      <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px]" style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#2b6ef2,#7b2ff2 55%,#c81ad6)" }}>
+        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.4))" }} />
+        <div className="absolute left-3 top-3 z-20 flex flex-wrap gap-2">
+          {event.category && <span className="rounded-full border border-white/25 bg-black/40 px-3 py-1 font-mono text-[10px] font-semibold text-white backdrop-blur">{event.category}</span>}
+          <span className="flex items-center gap-1.5 rounded-full border border-white/25 bg-black/40 px-3 py-1 font-mono text-[10px] text-white backdrop-blur"><span className="ev-pulse h-1.5 w-1.5 rounded-full" style={{ background: off ? "#F97D03" : "#34c759" }} />{off ? "In person" : "Online"}</span>
+        </div>
         {registered && <span className="absolute right-3 top-3 z-20 rounded-full bg-[#34c759] px-2.5 py-1 font-mono text-[10px] font-bold text-white">Registered</span>}
       </div>
-      {/* the white Date & Time folder-tab (sticks up into the banner) */}
-      <div className="absolute left-0 z-20 rounded-tr-[10px] bg-white px-5 py-2 font-[family-name:var(--font-inter)] text-[13px] text-[#8b8b8b] shadow-md sm:text-[15px]" style={{ top: "calc(100% - 46px - 108px)" }}>
-        <span className="block text-[10px] uppercase tracking-wide text-[#b5b5b5] sm:text-[11px]">Date &amp; Time</span>
-        <span className="block font-medium text-[#2a2a2a]">{eventDateLabel(event)} · {eventTimeLabel(event)}</span>
-      </div>
-      {/* purple gradient folder body (notched top-left) */}
-      <div className="relative px-7 pb-6 pt-[58px]" style={{ background: "linear-gradient(120deg,#2b6ef2 0%,#7b2ff2 45%,#c81ad6 100%)", clipPath: folderClip }}>
-        <div className="font-[family-name:var(--font-inter)] text-lg font-semibold uppercase leading-tight tracking-tight text-white sm:text-2xl">{event.name}</div>
-        <div className="mt-3 flex items-center gap-4">
-          <span className="flex items-center gap-1.5 font-[family-name:var(--font-inter)] text-sm text-white">
-            <span className="ev-pulse h-2 w-2 rounded-full" style={{ background: off ? "#F97D03" : "#34c759" }} />{off ? "In person" : "Online"}
-          </span>
-          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-sm text-white/90">{event.host}</span>}
-        </div>
-        <div className="mt-5 flex items-end justify-end gap-7">
-          {event.max_attendees != null && (
-            <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] text-white/70">Seats</div><div className="font-[family-name:var(--font-inter)] text-base font-bold text-white">{event.max_attendees}</div></div>
-          )}
-          {pts > 0 && (
-            <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] text-white/70">Points</div><div className="font-[family-name:var(--font-inter)] text-base font-bold text-white">+{pts}</div></div>
-          )}
+      {/* info */}
+      <div className="relative z-[5] p-6">
+        <div className="font-[family-name:var(--font-inter)] text-lg font-semibold uppercase leading-tight tracking-tight text-white sm:text-xl">{event.name}</div>
+        <div className="mt-1.5 font-[family-name:var(--font-inter)] text-xs text-white/60">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
+        <div className="mt-4 flex items-center justify-between">
+          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-sm text-white/85">with {event.host}</span>}
+          <div className="ml-auto flex items-end gap-5">
+            {event.max_attendees != null && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-wide text-white/45">Seats</div><div className="font-[family-name:var(--font-inter)] text-sm font-bold text-white">{event.max_attendees}</div></div>}
+            {pts > 0 && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-wide text-white/45">Points</div><div className="font-[family-name:var(--font-inter)] text-sm font-bold text-[#8fe9f5]">+{pts}</div></div>}
+          </div>
         </div>
       </div>
     </Link>
   );
 }
+
