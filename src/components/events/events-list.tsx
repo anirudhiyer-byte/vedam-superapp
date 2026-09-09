@@ -146,9 +146,9 @@ function EventCard({ event, registered }: { event: EventRow; registered?: boolea
         <div className="relative font-[family-name:var(--font-inter)] text-xl font-bold uppercase leading-tight tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] sm:text-2xl">{event.name}</div>
         <div className="relative mt-1.5 font-[family-name:var(--font-inter)] text-[14px] font-medium text-white/90">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
         </div>
-        <div className="relative mt-4 flex items-center justify-between gap-3">
-          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-[15px] font-semibold text-white">with {event.host}</span>}
-          <div className="ml-auto flex items-end gap-6">
+        <div className="relative mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          {event.host && <span className="font-[family-name:var(--font-inter)] text-[14px] font-semibold leading-snug text-white sm:truncate sm:text-[15px]">with {event.host}</span>}
+          <div className="flex items-end gap-6 sm:ml-auto">
             {event.max_attendees != null && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#7ad7ff]">Seats</div><div className="font-[family-name:var(--font-inter)] text-lg font-extrabold text-white">{event.max_attendees}</div></div>}
             {pts > 0 && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#ffd27a]">Points</div><div className="font-[family-name:var(--font-inter)] text-lg font-extrabold text-[#ffe27a]">+{pts}</div></div>}
           </div>

@@ -74,8 +74,8 @@ export function LandingPage() {
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-80%}100%{left:180%}}
         .group:hover .ld-shine{animation:ld-shine 0.75s cubic-bezier(.2,.8,.2,1)}
-        @keyframes ld-silver{0%{background-position:0% 0%}100%{background-position:200% 200%}}
-        .ld-silver{background:repeating-linear-gradient(118deg, rgba(255,255,255,0.14) 0px, rgba(120,124,138,0.10) 1.5px, rgba(255,255,255,0.14) 3px),linear-gradient(118deg,#9a9daa 0%,#d7dae3 18%,#ffffff 30%,#ffffff 38%,#c3c6d2 52%,#8b8e9c 66%,#eef1f7 82%,#ffffff 100%);background-size:100% 100%, 300% 300%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:0 2px 1px rgba(0,0,0,0.30),0 -1px 0 rgba(255,255,255,0.65);animation:ld-silver 6s linear infinite}
+        @keyframes ld-silver{0%{background-position:150% 0}100%{background-position:-150% 0}}100%{background-position:200% 200%}}
+        .ld-silver{background:linear-gradient(90deg,#a9adba 0%,#a9adba 34%,#ffffff 50%,#a9adba 66%,#a9adba 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:ld-silver 4.5s linear infinite}
         @media (prefers-reduced-motion: reduce){.ld-silver{animation:none}}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
@@ -134,9 +134,9 @@ export function LandingPage() {
         {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
         <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[60%] lg:block">
           <Image src="/landing/purple-glow.webp" alt="" width={1000} height={1000} className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-[92%] max-w-none -translate-x-1/2 -translate-y-1/2" />
-          <div className="ld-orbit absolute left-[46%] top-[52%] z-[1] h-0 w-0">
+          <div className="ld-orbit absolute left-[46%] top-[56%] z-[1] h-0 w-0">
             {[0, 90, 180, 270].map((deg, i) => (
-              <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-260px)` }}>
+              <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-235px)` }}>
                 <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={112} height={112} className="h-full w-full object-contain" /></div>
               </div>
             ))}
@@ -160,7 +160,7 @@ export function LandingPage() {
               <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(13px,1.7vw,26px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="group relative inline-flex rounded-full p-[2.5px] transition-all hover:shadow-[0_0_44px_rgba(138,24,255,0.6),0_0_72px_rgba(224,72,155,0.32)] active:scale-[0.98]" style={{ background: "linear-gradient(100deg,#e0489b 0%,#b23bd6 42%,#5b3fd6 58%,#1e2a8c 100%)", boxShadow: "0 0 34px rgba(138,24,255,.5),0 0 60px rgba(224,72,155,.25)" }}>
+              <button onClick={scrollToExplore} className="group relative inline-flex rounded-full p-[1.5px] transition-all hover:shadow-[0_0_28px_rgba(255,47,176,0.75),0_0_56px_rgba(47,155,255,0.6)] active:scale-[0.98]" style={{ background: "linear-gradient(100deg,#ff2fb0 0%,#c04bff 46%,#5b6bff 60%,#2f9bff 100%)", boxShadow: "0 0 22px rgba(255,47,176,.55),0 0 44px rgba(91,107,255,.45)" }}>
                 <span className="relative inline-flex items-center overflow-hidden rounded-full px-5 py-2.5 font-medium tracking-tight text-white backdrop-blur-xl" style={{ fontSize: "clamp(12px,1.05vw,15px)", background: "linear-gradient(180deg,#2b135c,#1a0b38)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20)" }}>
                   <span className="relative z-10 leading-none">Start Building</span>
                   <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent)" }} />
