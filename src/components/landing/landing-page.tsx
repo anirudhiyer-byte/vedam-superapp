@@ -150,14 +150,22 @@ export function LandingPage() {
             <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(15px,1.2vw,20px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
           </div>
           {/* mobile image — below the copy, no overlap */}
-          <div className="relative mt-4 lg:hidden">
-            <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} className="mx-auto h-auto w-[92%]" />
+          <div className="relative mt-4 -mx-6 lg:hidden">
+            {/* mobile orbit — smaller, behind the students */}
+            <div className="ld-orbit pointer-events-none absolute left-1/2 top-[42%] z-[1] h-0 w-0">
+              {[0, 90, 180, 270].map((deg, i) => (
+                <div key={i} className="m absolute left-0 top-0 -m-8 h-16 w-16" style={{ transform: `rotate(${deg}deg) translateY(-120px)` }}>
+                  <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={64} height={64} className="h-full w-full object-contain" /></div>
+                </div>
+              ))}
+            </div>
+            <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} className="relative z-[2] block h-auto w-full" />
           </div>
         </div>
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
         <div className="relative z-[25] mt-6 flex h-[74px] items-center overflow-hidden border-y border-white/20 backdrop-blur-md lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.06)", boxShadow: "0 0 60px rgba(138,24,255,.28) inset" }}>
-          <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-6 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 78%,rgba(11,3,24,.9) 90%,transparent)", fontSize: "clamp(20px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
+          <div className="z-[4] flex h-full flex-shrink-0 items-center gap-1.5 whitespace-nowrap px-4 sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 78%,rgba(11,3,24,.9) 90%,transparent)", fontSize: "clamp(14px,2.6vw,34px)" }}>Learn From <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
