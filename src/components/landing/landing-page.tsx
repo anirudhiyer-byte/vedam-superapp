@@ -27,6 +27,9 @@ export function LandingPage() {
   const [mounted, setMounted] = useState(false);
   const [authed, setAuthed] = useState(false);
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [uid, setUid] = useState("");
   const [points, setPoints] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
@@ -38,8 +41,11 @@ export function LandingPage() {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
         setAuthed(true);
-        const { data: p } = await supabase.from("profiles").select("full_name").eq("id", session.user.id).maybeSingle();
+        const { data: p } = await supabase.from("profiles").select("full_name, phone, email, public_id").eq("id", session.user.id).maybeSingle();
         setName(p?.full_name || "You");
+        setEmail(p?.email || session.user.email || "");
+        setPhone(p?.phone || "");
+        setUid(p?.public_id || "");
         const { data: pts } = await supabase.from("points_ledger").select("points").eq("user_id", session.user.id);
         setPoints((pts as { points: number }[] ?? []).reduce((a, r) => a + (r.points || 0), 0));
       }
@@ -66,8 +72,8 @@ export function LandingPage() {
         .ld-orbit .m .in{animation:ld-spinrev 46s linear infinite}
         .ld-track{animation:ld-scroll 20s linear infinite}
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
-        @keyframes ld-shine{0%{left:-70%}100%{left:170%}}
-        .group:hover .ld-shine{animation:ld-shine 0.9s ease-out}
+        @keyframes ld-shine{0%{left:-80%}100%{left:180%}}
+        .group:hover .ld-shine{animation:ld-shine 0.75s cubic-bezier(.2,.8,.2,1)}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
 
@@ -97,7 +103,11 @@ export function LandingPage() {
                   <button onClick={() => setMenuOpen((o) => !o)} className="grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}</button>
                   {menuOpen && (
                     <div className="absolute right-0 top-12 z-50 w-52 overflow-hidden rounded-xl border border-white/10 bg-[#160a30] py-1.5 text-sm shadow-2xl">
-                      <div className="px-4 py-2 text-white/60">{name}</div>
+                      <div className="border-b border-white/10 px-4 py-2.5">
+                        <div className="font-semibold text-white">{name}</div>
+                        <div className="mt-0.5 text-xs text-white/50">{[email, phone].filter(Boolean).join(" | ")}</div>
+                        {uid && <div className="mt-0.5 font-mono text-[11px] text-white/40">{uid}</div>}
+                      </div>
                       <Link href="/dashboard" className="block px-4 py-2 hover:bg-white/5">Dashboard</Link>
                       <Link href="/leaderboard" className="block px-4 py-2 hover:bg-white/5">Leaderboard</Link>
                       <button onClick={logout} className="block w-full px-4 py-2 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
@@ -145,7 +155,7 @@ export function LandingPage() {
               <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(16px,2.1vw,32px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/80 hover:shadow-[0_0_34px_rgba(138,24,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ fontSize: "clamp(15px,1.3vw,19px)", background: "linear-gradient(120deg, rgba(249,125,3,0.30), rgba(138,24,255,0.42))" }}>
+              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/80 hover:shadow-[0_0_34px_rgba(138,24,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ fontSize: "clamp(15px,1.3vw,19px)", background: "linear-gradient(96deg, rgba(53,232,251,0.30) 0%, rgba(123,92,255,0.42) 55%, rgba(194,0,219,0.38) 100%)" }}>
                 <span className="relative z-10">Start Building</span>
                 <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
               </button>
@@ -173,9 +183,9 @@ export function LandingPage() {
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
-              <div key={i} className="flex w-[92px] shrink-0 items-center justify-center sm:w-[150px]">
+              <div key={i} className="flex w-[104px] shrink-0 items-center justify-center sm:w-[150px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/landing/logo-${l}.webp`} alt={l} className="h-4 w-auto object-contain sm:h-5" />
+                <img src={`/landing/logo-${l}.webp`} alt={l} className="max-h-4 w-auto max-w-[76px] object-contain sm:max-h-5 sm:max-w-[112px]" />
               </div>
             ))}
           </div>
@@ -193,8 +203,8 @@ export function LandingPage() {
                 onMouseEnter={(e) => { if (c.live) e.currentTarget.style.boxShadow = `0 0 85px rgba(${c.glow},0.6)`; }}
                 onMouseLeave={(e) => { e.currentTarget.style.boxShadow = ""; }}>
                 <Image src={`/landing/${c.ill}`} alt={c.title} width={440} height={500} className="h-auto w-full" />
-                {c.live && <span aria-hidden className="pointer-events-none absolute inset-0 z-[3]" style={{ background: "linear-gradient(120deg, rgba(255,255,255,0.16) 0%, transparent 26%, transparent 72%, rgba(255,255,255,0.07) 100%)" }} />}
-                {c.live && <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[4] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />}
+                {c.live && <span aria-hidden className="pointer-events-none absolute inset-0 z-[3]" style={{ background: "linear-gradient(125deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 18%, transparent 40%, transparent 66%, rgba(255,255,255,0.12) 100%)" }} />}
+                {c.live && <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[4] w-2/3 -skew-x-[20deg]" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.10) 70%, transparent)" }} />}
               </Link>
             ))}
           </div>

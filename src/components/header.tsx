@@ -10,7 +10,7 @@ import { useIsAdmin } from "@/hooks/use-is-admin";
 
 const NAV = [
   { label: "Home", href: "/" },
-  { label: "Events", href: "/events" },
+  { label: "Bootcamps", href: "/bootcamps" },
   { label: "CodeSprint", href: "/codesprint" },
   { label: "College Predictor", href: "/predict" },
 ];
