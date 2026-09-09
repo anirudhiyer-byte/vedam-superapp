@@ -141,14 +141,16 @@ function EventCard({ event, registered }: { event: EventRow; registered?: boolea
       {/* GRADIENT info section — richer, premium, with a glossy top highlight */}
       <div className="relative z-[5] px-7 pb-6 pt-5" style={{ background: "linear-gradient(120deg,#2166ff 0%,#7b2ff2 48%,#d21ad6 100%)" }}>
         <span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.18), transparent 45%)" }} />
+        <div className="relative w-[80%]">
         <div className="relative font-[family-name:var(--font-inter)] text-xl font-bold uppercase leading-tight tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] sm:text-2xl">{event.name}</div>
-        <div className="relative mt-1.5 font-[family-name:var(--font-inter)] text-[13px] font-medium text-white/85">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
+        <div className="relative mt-1.5 font-[family-name:var(--font-inter)] text-[14px] font-medium text-white/90">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
         <div className="relative mt-4 flex items-center justify-between gap-3">
-          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-sm font-medium text-white">with {event.host}</span>}
+          {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-[15px] font-semibold text-white">with {event.host}</span>}
           <div className="ml-auto flex items-end gap-6">
-            {event.max_attendees != null && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-wide text-white/70">Seats</div><div className="font-[family-name:var(--font-inter)] text-base font-extrabold text-white">{event.max_attendees}</div></div>}
-            {pts > 0 && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-wide text-white/70">Points</div><div className="font-[family-name:var(--font-inter)] text-base font-extrabold text-[#ffe27a]">+{pts}</div></div>}
+            {event.max_attendees != null && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#7ad7ff]">Seats</div><div className="font-[family-name:var(--font-inter)] text-lg font-extrabold text-white">{event.max_attendees}</div></div>}
+            {pts > 0 && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#ffd27a]">Points</div><div className="font-[family-name:var(--font-inter)] text-lg font-extrabold text-[#ffe27a]">+{pts}</div></div>}
           </div>
+        </div>
         </div>
       </div>
     </Link>

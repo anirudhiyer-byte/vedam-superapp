@@ -73,7 +73,8 @@ export function EventDetail({ code }: { code: string }) {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-8 sm:px-8">
-      <Link href="/events" className="font-mono text-xs text-white/55 hover:text-white">← all events</Link>
+      <style>{`@keyframes ld-shine{0%{left:-70%}100%{left:170%}}.group:hover .ld-shine{animation:ld-shine 0.8s ease-out}`}</style>
+      <Link href="/events" className="font-[family-name:var(--font-inter)] text-xs text-white/55 hover:text-white">← all events</Link>
 
       {/* hero */}
       <div className="relative mt-4 flex min-h-[240px] items-end overflow-hidden rounded-3xl border-2 border-[#00cfe5]/40 text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)]"
@@ -95,8 +96,8 @@ export function EventDetail({ code }: { code: string }) {
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {facts.map((f) => (
               <div key={f.k} className="rounded-2xl border border-white/12 bg-white/[0.05] p-4 backdrop-blur-xl">
-                <div className="font-mono text-[10px] uppercase tracking-wide text-white/45">{f.k}</div>
-                <div className="mt-1 font-display text-base font-semibold text-white">{f.v}</div>
+                <div className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#7ad7ff]">{f.k}</div>
+                <div className="mt-1 font-[family-name:var(--font-inter)] text-[17px] font-semibold text-white">{f.v}</div>
               </div>
             ))}
           </div>
@@ -104,7 +105,7 @@ export function EventDetail({ code }: { code: string }) {
           {pointsLine(event.points_config).length > 0 && (
             <div className="mt-6 rounded-2xl border border-[#7b5cff]/30 p-4 backdrop-blur-xl" style={{ background: "linear-gradient(120deg, rgba(53,232,251,0.08), rgba(194,0,219,0.12))" }}>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-wide text-[#8fe9f5]">Earn Vedam points</span>
+                <span className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#8fe9f5]">Earn Vedam points</span>
                 <span className="font-display text-sm font-semibold text-white">up to {pointsTotalPossible(event.points_config)} pts</span>
               </div>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -126,7 +127,7 @@ export function EventDetail({ code }: { code: string }) {
               <div className="mt-2">
                 {(event.schedule as { time?: string; title?: string }[]).map((s, i) => (
                   <div key={i} className="grid grid-cols-[92px_1fr] gap-4 border-t border-white/10 py-3">
-                    <span className="font-mono text-sm font-semibold text-[#8fe9f5]">{s.time || ""}</span>
+                    <span className="font-[family-name:var(--font-inter)] text-[15px] font-bold text-[#8fe9f5]">{s.time || ""}</span>
                     <span className="font-display font-medium text-white">{s.title || ""}</span>
                   </div>
                 ))}
@@ -136,7 +137,7 @@ export function EventDetail({ code }: { code: string }) {
 
           {wa && (
             <a href={wa} target="_blank" rel="noreferrer"
-              className="mt-6 inline-block rounded-xl border border-white/15 bg-white/[0.06] px-4 py-2.5 text-sm font-medium text-white backdrop-blur transition hover:border-white/40">
+              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[#34c759]/40 bg-[#34c759]/10 px-4 py-2.5 font-[family-name:var(--font-inter)] text-sm font-semibold text-white backdrop-blur-xl transition hover:border-[#34c759] hover:shadow-[0_0_24px_rgba(52,199,89,0.4)]">
               Join the WhatsApp community
             </a>
           )}
@@ -157,7 +158,7 @@ export function EventDetail({ code }: { code: string }) {
                                 <p className="relative mt-3 text-center font-body text-xs text-white/50">We&apos;ve emailed your details + calendar invite.</p>
                 {event.recording_url && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
                   <div className="relative mt-4">
-                    <button onClick={() => setShowRec((v) => !v)} className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-4 py-3 font-display text-sm font-semibold text-[#8fe9f5] backdrop-blur transition hover:border-[#00cfe5]">
+                    <button onClick={() => setShowRec((v) => !v)} className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl border border-[#00cfe5]/50 bg-[#00cfe5]/12 px-4 py-3 font-[family-name:var(--font-inter)] text-sm font-semibold text-[#aef0f8] backdrop-blur-xl transition-all hover:border-[#00cfe5] hover:shadow-[0_0_30px_rgba(0,207,229,0.5)]"><span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)" }} />
                       {showRec ? "▾ Hide recording" : "▶ View recording"}
                     </button>
                   </div>
@@ -178,9 +179,9 @@ export function EventDetail({ code }: { code: string }) {
                 )}
                 <h2 className="relative font-display text-lg font-semibold text-white">Register for this event</h2>
                 <p className="relative mt-1 font-body text-sm text-white/55">Log in to register — it takes a few seconds.</p>
-                <Link href={`/login?next=/events/${event.event_code}`}
-                  className="mt-4 inline-block w-full rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white">
-                  Log in to register
+                <Link href={`/login?next=/events/${event.event_code}`} className="mt-4 group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl border border-white/25 px-6 py-3 font-[family-name:var(--font-inter)] text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl transition-all hover:border-white/60 hover:shadow-[0_0_30px_rgba(123,92,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.32), rgba(123,92,255,0.45) 55%, rgba(194,0,219,0.4))" }}>
+                  <span className="relative z-10">Log in to register</span>
+                  <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)" }} />
                 </Link>
               </div>
             ) : profile ? (

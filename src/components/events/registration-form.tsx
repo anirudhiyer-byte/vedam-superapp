@@ -184,7 +184,7 @@ export function RegistrationForm({
       {error && <p className="font-body text-sm text-red-500">{error}</p>}
 
       <button onClick={submit} disabled={!valid || submitting}
-        className="w-full rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60">
+        className="group relative w-full overflow-hidden rounded-xl border border-white/25 px-5 py-3 font-[family-name:var(--font-inter)] text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] transition-all hover:border-white/60 hover:shadow-[0_0_30px_rgba(123,92,255,0.6)] disabled:opacity-60" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.32), rgba(123,92,255,0.5) 55%, rgba(194,0,219,0.42))" }}>
         {submitting ? "Registering…" : extraFields.length ? "Confirm registration" : "Register"}
       </button>
       {extraFields.length === 0 && (
