@@ -63,7 +63,7 @@ export function LandingPage() {
   return (
     <div className="landing font-[family-name:var(--font-inter)] text-white">
       <style>{`
-        .landing{background:#000000}
+        .landing{background:#0b0318}
         @keyframes ld-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
         @keyframes ld-spinrev{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
         @keyframes ld-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -92,15 +92,15 @@ export function LandingPage() {
           {/* desktop nav */}
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className={["rounded-lg px-5 py-2 text-[15px] font-medium transition-colors", n.href === "/" ? "bg-[#7629fc] text-white" : "text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ")}>{n.label}</Link>
+              <Link key={n.href} href={n.href} className={["rounded-lg px-3.5 py-1.5 text-[15px] font-medium transition-colors", n.href === "/" ? "bg-[#7629fc] text-white" : "text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ")}>{n.label}</Link>
             ))}
           </nav>
           <div className="flex items-center gap-2.5">
             {authed ? (
               <>
-                <span className="flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold"><span className="hidden sm:inline">Total</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden><defs><linearGradient id="goldStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#goldStar)" stroke="#fff6d6" strokeWidth="0.5" /></svg>{points}</span>
+                <span className="flex cursor-default items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold transition-all hover:border-white/40 hover:shadow-[0_0_16px_rgba(255,201,60,0.4)]"><span className="hidden sm:inline">Total</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden><defs><linearGradient id="goldStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#goldStar)" stroke="#fff6d6" strokeWidth="0.5" /></svg>{points}</span>
                 <div ref={menuRef} className="relative">
-                  <button onClick={() => setMenuOpen((o) => !o)} className="grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}</button>
+                  <button onClick={() => setMenuOpen((o) => !o)} className="grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold ring-2 ring-white/0 transition-all hover:ring-white/60 hover:shadow-[0_0_18px_rgba(138,24,255,0.6)]" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}</button>
                   {menuOpen && (
                     <div className="absolute right-0 top-12 z-50 w-52 overflow-hidden rounded-xl border border-white/10 bg-[#160a30] py-1.5 text-sm shadow-2xl">
                       <div className="border-b border-white/10 px-4 py-2.5">
@@ -193,7 +193,7 @@ export function LandingPage() {
       </section>
 
       {/* ===== EXPLORE ===== */}
-      <section id="explore" className="px-6 py-8 sm:px-16 sm:pb-20 sm:pt-8" style={{ background: "#000000" }}>
+      <section id="explore" className="px-6 py-8 sm:px-16 sm:pb-20 sm:pt-8" style={{ background: "#0b0318" }}>
         <div className="mx-auto max-w-[1800px] rounded-[20px] border border-[#7a7a7a] bg-[#171717] p-5 sm:rounded-[30px] sm:p-11" >
           <h2 className="font-medium tracking-tight" style={{ fontSize: "clamp(34px,4.5vw,58px)" }}>Explore VEDAM<span className="font-[family-name:var(--font-playfair)] italic">One</span></h2>
           <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(17px,1.6vw,25px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
@@ -212,7 +212,7 @@ export function LandingPage() {
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer className="flex flex-row flex-wrap gap-8 border-t border-white/10 px-6 py-12 sm:gap-32 sm:px-16 sm:py-14" style={{ background: "#000000" }}>
+      <footer className="flex flex-row flex-wrap gap-8 border-t border-white/10 px-6 py-12 sm:gap-32 sm:px-16 sm:py-14" style={{ background: "#0b0318" }}>
         <div><h4 className="mb-2.5 text-base font-semibold sm:text-xl">Quick Links</h4>
           <Link href="/privacy" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Privacy Policy</Link>
           <Link href="/terms" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Terms of Service</Link>

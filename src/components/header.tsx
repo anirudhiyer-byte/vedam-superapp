@@ -50,7 +50,7 @@ export function Header() {
   const initial = (me?.name?.trim()?.[0] || "V").toUpperCase();
 
   const linkCls = (active: boolean) =>
-    ["rounded-lg px-3.5 py-1.5 font-body text-[15px] font-medium transition-colors",
+    ["rounded-lg px-3 py-1 font-body text-[15px] font-medium transition-colors",
       active ? "bg-[#7629fc] text-white" : "text-white/75 hover:bg-white/10 hover:text-white"].join(" ");
   const itemCls = "flex items-center gap-3 rounded-xl px-3 py-2.5 font-body text-sm font-semibold text-white/90 hover:bg-white/10";
 
@@ -72,7 +72,7 @@ export function Header() {
           {me ? (
             <>
               <button onClick={() => setOpen((v) => !v)} aria-label="Profile menu"
-                className="grid h-10 w-10 place-items-center rounded-full bg-brand-gradient font-display text-base font-extrabold text-white ring-2 ring-transparent transition hover:ring-border-strong">
+                className="grid h-10 w-10 place-items-center rounded-full bg-brand-gradient font-display text-base font-extrabold text-white ring-2 ring-white/0 transition-all hover:ring-white/60 hover:shadow-[0_0_18px_rgba(138,24,255,0.6)]">
                 {initial}
               </button>
               {open && (
