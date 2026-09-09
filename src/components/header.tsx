@@ -24,6 +24,7 @@ export function Header() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [me, setMe] = useState<{ name: string; contact: string; uid: string } | null>(null);
+  const [points, setPoints] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
@@ -36,6 +37,8 @@ export function Header() {
       const name = (p?.full_name || u.email?.split("@")[0] || "Vedam learner") as string;
       const contact = (p?.email || u.email || p?.phone || u.phone || "") as string;
       setMe({ name, contact, uid: (p?.public_id as string) || "" });
+      const { data: pts } = await supabase.from("points_ledger").select("points").eq("user_id", u.id);
+      setPoints((pts as { points: number }[] ?? []).reduce((a, r) => a + (r.points || 0), 0));
     })();
   }, [supabase, pathname]);
 
@@ -80,7 +83,12 @@ export function Header() {
 
         <div className="relative ml-auto" ref={menuRef}>
           {me ? (
-            <>
+            <div className="flex items-center gap-2.5">
+              <span className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-sm font-semibold text-white transition-all hover:border-white/40 hover:shadow-[0_0_16px_rgba(255,201,60,0.4)]">
+                <span className="hidden sm:inline text-white/70">Total</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden><defs><linearGradient id="hdrGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#hdrGold)" stroke="#fff6d6" strokeWidth="0.5" /></svg>
+                {points}
+              </span>
               <button onClick={() => setOpen((v) => !v)} aria-label="Profile menu"
                 className="grid h-10 w-10 place-items-center rounded-full bg-brand-gradient font-display text-base font-extrabold text-white ring-2 ring-white/0 transition-all hover:ring-white/60 hover:shadow-[0_0_18px_rgba(138,24,255,0.6)]">
                 {initial}
@@ -115,7 +123,7 @@ export function Header() {
                   </div>
                 </div>
               )}
-            </>
+            </div>
           ) : (
             <div className="flex items-center gap-2">
               <Link href="/login" className="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10">Log in</Link>
