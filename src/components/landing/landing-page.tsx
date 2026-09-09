@@ -64,7 +64,7 @@ export function LandingPage() {
         @keyframes ld-blink{0%,100%{opacity:1}50%{opacity:.25}}
         .ld-orbit{animation:ld-spin 46s linear infinite}
         .ld-orbit .m .in{animation:ld-spinrev 46s linear infinite}
-        .ld-track{animation:ld-scroll 34s linear infinite}
+        .ld-track{animation:ld-scroll 24s linear infinite}
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-70%}100%{left:170%}}
         .group:hover .ld-shine{animation:ld-shine 0.9s ease-out}
@@ -76,6 +76,7 @@ export function LandingPage() {
         {/* texture */}
         <div className="pointer-events-none absolute inset-0 z-[1]" style={{ backgroundImage: "radial-gradient(rgba(205,165,255,0.6) 1.3px, transparent 1.6px)", backgroundSize: "26px 26px", opacity: 0.16 }} />
         <div className="pointer-events-none absolute right-16 top-24 z-[1] h-[700px] w-[820px] rounded-full opacity-70 blur-[40px]" style={{ background: "radial-gradient(closest-side, rgba(150,40,220,.45), transparent 70%)" }} />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[10] h-36" style={{ background: "linear-gradient(to bottom, #000 20%, rgba(0,0,0,0.6) 55%, transparent)" }} />
 
         {/* HEADER */}
         <header className="relative z-30 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-5 sm:px-10">
@@ -91,8 +92,7 @@ export function LandingPage() {
           <div className="flex items-center gap-2.5">
             {authed ? (
               <>
-                <span className="hidden items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold sm:flex" title="Streak (coming soon)"><span className="grid h-6 w-6 place-items-center rounded-full" style={{ background: "linear-gradient(120deg,#8a4dff,#7629fc)" }}>🔥</span>100</span>
-                <span className="flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold"><span className="hidden sm:inline">Total</span><span className="grid h-6 w-6 place-items-center rounded-full" style={{ background: "linear-gradient(120deg,#8a4dff,#7629fc)" }}>⭐</span>{points}</span>
+                <span className="flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold"><span className="hidden sm:inline">Total</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden><defs><linearGradient id="goldStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#goldStar)" stroke="#fff6d6" strokeWidth="0.5" /></svg>{points}</span>
                 <div ref={menuRef} className="relative">
                   <button onClick={() => setMenuOpen((o) => !o)} className="grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}</button>
                   {menuOpen && (
@@ -100,7 +100,6 @@ export function LandingPage() {
                       <div className="px-4 py-2 text-white/60">{name}</div>
                       <Link href="/dashboard" className="block px-4 py-2 hover:bg-white/5">Dashboard</Link>
                       <Link href="/leaderboard" className="block px-4 py-2 hover:bg-white/5">Leaderboard</Link>
-                      <button onClick={() => mounted && setTheme(isDark ? "light" : "dark")} className="flex w-full items-center justify-between px-4 py-2 hover:bg-white/5">🌙 Theme</button>
                       <button onClick={logout} className="block w-full px-4 py-2 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
                     </div>
                   )}
@@ -121,6 +120,7 @@ export function LandingPage() {
         {/* HERO BODY */}
         {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
         <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[60%] lg:block">
+          <Image src="/landing/purple-glow.webp" alt="" width={1000} height={1000} className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-[92%] max-w-none -translate-x-1/2 -translate-y-1/2" />
           <div className="ld-orbit absolute left-[46%] top-[52%] z-[1] h-0 w-0">
             {[0, 90, 180, 270].map((deg, i) => (
               <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-260px)` }}>
@@ -145,12 +145,16 @@ export function LandingPage() {
               <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(16px,2.1vw,32px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="inline-flex items-center rounded-full border border-white/30 bg-white/[0.10] px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl transition-all hover:border-white/60 hover:bg-[rgba(138,24,255,0.55)]" style={{ fontSize: "clamp(15px,1.3vw,19px)" }}>Start Building</button>
+              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-6 py-3.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/70" style={{ fontSize: "clamp(15px,1.3vw,19px)", background: "linear-gradient(120deg, rgba(249,125,3,0.30), rgba(138,24,255,0.42))" }}>
+                <span className="relative z-10">Start Building</span>
+                <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
+              </button>
             </div>
             <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(15px,1.2vw,20px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>
           </div>
           {/* mobile image — below the copy, no overlap */}
           <div className="relative mt-4 -mx-6 lg:hidden">
+            <Image src="/landing/purple-glow.webp" alt="" width={800} height={800} className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-[115%] max-w-none -translate-x-1/2 -translate-y-1/2" />
             {/* mobile orbit — smaller, behind the students */}
             <div className="ld-orbit pointer-events-none absolute left-1/2 top-[42%] z-[1] h-0 w-0">
               {[0, 90, 180, 270].map((deg, i) => (
@@ -170,7 +174,7 @@ export function LandingPage() {
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
               // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-8 h-6 w-auto shrink-0 object-contain sm:mx-14 sm:h-7" />
+              <img key={i} src={`/landing/logo-${l}.webp`} alt={l} className="mx-6 h-4 w-auto shrink-0 object-contain sm:mx-10 sm:h-5" />
             ))}
           </div>
         </div>
