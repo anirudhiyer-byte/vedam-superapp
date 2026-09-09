@@ -130,3 +130,31 @@ body::after {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* ===== Premium dark scope (dashboard / leaderboard) ===== */
+.vd-premium { position: relative; min-height: 100%; }
+.vd-dark {
+  --background: 11 3 24;
+  --surface: 255 255 255;            /* used via /alpha for glass; see overrides below */
+  --surface-warm: 138 24 255;
+  --foreground: 235 235 247;
+  --heading: 255 255 255;
+  --muted: 165 160 190;
+  --border: 255 255 255;             /* used via /alpha for hairlines */
+  --primary: 249 125 3;
+  --accent: 200 165 255;
+  --border-strong: rgba(255,255,255,0.22);
+  color: rgb(var(--foreground));
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+/* glassify the common surfaces inside the dark scope */
+.vd-dark .bg-surface { background: rgba(255,255,255,0.05) !important; backdrop-filter: blur(14px); }
+.vd-dark .bg-background { background: rgba(255,255,255,0.04) !important; }
+.vd-dark .bg-surface-warm { background: rgba(255,255,255,0.08) !important; }
+.vd-dark .border-border { border-color: rgba(255,255,255,0.12) !important; }
+.vd-dark .border-border-strong { border-color: rgba(255,255,255,0.22) !important; }
+.vd-dark .divide-border > :not([hidden]) ~ :not([hidden]) { border-color: rgba(255,255,255,0.10) !important; }
+.vd-dark .hover\:bg-surface-warm:hover { background: rgba(255,255,255,0.12) !important; }
+/* premium heading font */
+.vd-dark .font-display { font-family: var(--font-inter), system-ui, sans-serif; }
