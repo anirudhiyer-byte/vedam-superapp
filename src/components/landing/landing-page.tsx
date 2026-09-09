@@ -144,10 +144,10 @@ export function LandingPage() {
         {/* copy — constrained to the left so it never sits under the image */}
         <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
           <div className="mx-auto max-w-[560px] pb-10 pt-8 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px] lg:text-left">
-            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(40px,6.5vw,108px)" }}>Vedam</h1>
+            <h1 className="font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(40px,6.5vw,108px)", backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>Vedam</h1>
             <div className="mt-2 flex items-center justify-start gap-4">
-              <span className="font-[family-name:var(--font-playfair)] italic leading-[0.78] tracking-tight" style={{ fontSize: "clamp(31px,4.7vw,75px)", fontWeight: 600, backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>One</span>
-              <span className="h-[32px] w-0.5 bg-white/60 sm:h-[47px]" />
+              <span className="font-[family-name:var(--font-playfair)] italic tracking-tight" style={{ fontSize: "clamp(31px,4.7vw,75px)", fontWeight: 600, lineHeight: 1.05, paddingBottom: "0.12em", backgroundImage: "linear-gradient(180deg,#ffffff 0%,#eef0f4 38%,#b9bcc7 52%,#8f929e 60%,#ffffff 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.25))" }}>One</span>
+              <span className="mt-2 h-[40px] w-0.5 self-end bg-white/60 sm:h-[58px]" />
               <span className="font-semibold leading-[1.05]" style={{ fontSize: "clamp(13px,1.35vw,20px)" }}>The Home of<small className="mt-1 block font-medium tracking-[2.5px] text-white" style={{ fontSize: "clamp(9px,0.85vw,13px)" }}>FUTURE ENGINEERS</small></span>
             </div>
             <div className="mt-8">
@@ -156,7 +156,7 @@ export function LandingPage() {
             </div>
             <div className="mt-10">
               <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-5 py-2.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/80 hover:shadow-[0_0_34px_rgba(138,24,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ fontSize: "clamp(12px,1.05vw,15px)", background: "linear-gradient(96deg, rgba(53,232,251,0.30) 0%, rgba(123,92,255,0.42) 55%, rgba(194,0,219,0.38) 100%)" }}>
-                <span className="relative z-10">Start Building</span>
+                <span className="relative z-10 leading-none">Start Building</span>
                 <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
               </button>
             </div>
@@ -179,7 +179,7 @@ export function LandingPage() {
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
         <div className="relative z-[25] mt-6 flex h-[40px] items-center overflow-hidden border-y border-white/25 backdrop-blur-md sm:h-[52px] lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.07)", boxShadow: "0 0 55px rgba(138,24,255,.32) inset" }}>
-          <div className="z-[4] flex h-full flex-shrink-0 flex-col justify-center px-4 leading-[1.05] sm:flex-row sm:items-center sm:gap-1.5 sm:whitespace-nowrap sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 74%,rgba(11,3,24,.9) 88%,transparent)", fontSize: "clamp(15px,2.6vw,34px)" }}><span>Learn From</span> <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
+          <div className="z-[4] flex h-full flex-shrink-0 flex-col justify-center px-4 leading-[1.05] sm:flex-row sm:items-center sm:gap-1.5 sm:whitespace-nowrap sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 74%,rgba(11,3,24,.9) 88%,transparent)", fontSize: "clamp(13px,2.2vw,29px)" }}><span>Learn From</span> <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
