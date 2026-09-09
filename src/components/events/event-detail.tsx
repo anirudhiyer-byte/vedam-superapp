@@ -74,7 +74,7 @@ export function EventDetail({ code }: { code: string }) {
           <span className="rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-[#8fe9f5] backdrop-blur">
             {event.category || "Vedam Event"}
           </span>
-          <h1 className="mt-3 max-w-[20ch] font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{event.name}</h1>
+          <h1 className="mt-3 max-w-[20ch] font-display text-3xl font-semibold tracking-tight sm:text-4xl">{event.name}</h1>
           {event.host && <p className="mt-2 font-mono text-sm text-white/85">Hosted by Vedam · with {event.host}</p>}
         </div>
       </div>
@@ -84,22 +84,22 @@ export function EventDetail({ code }: { code: string }) {
         <div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {facts.map((f) => (
-              <div key={f.k} className="rounded-2xl border border-border bg-surface p-4">
-                <div className="font-mono text-[10px] uppercase tracking-wide text-muted">{f.k}</div>
-                <div className="mt-1 font-display text-base font-bold text-heading">{f.v}</div>
+              <div key={f.k} className="rounded-2xl border border-white/12 bg-white/[0.05] p-4 backdrop-blur-xl">
+                <div className="font-mono text-[10px] uppercase tracking-wide text-white/45">{f.k}</div>
+                <div className="mt-1 font-display text-base font-semibold text-white">{f.v}</div>
               </div>
             ))}
           </div>
 
           {pointsLine(event.points_config).length > 0 && (
-            <div className="mt-6 rounded-2xl border border-border bg-surface-warm p-4">
+            <div className="mt-6 rounded-2xl border border-[#7b5cff]/30 p-4 backdrop-blur-xl" style={{ background: "linear-gradient(120deg, rgba(53,232,251,0.08), rgba(194,0,219,0.12))" }}>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-wide text-accent">Earn Vedam points</span>
-                <span className="font-display text-sm font-bold text-heading">up to {pointsTotalPossible(event.points_config)} pts</span>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-wide text-[#8fe9f5]">Earn Vedam points</span>
+                <span className="font-display text-sm font-semibold text-white">up to {pointsTotalPossible(event.points_config)} pts</span>
               </div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {pointsLine(event.points_config).map((x) => (
-                  <span key={x.short} className="rounded-full border border-border bg-background px-2.5 py-1 font-body text-xs text-foreground">
+                  <span key={x.short} className="rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 font-body text-xs text-white/85">
                     {x.short} <b className="text-primary">+{x.pts}</b>
                   </span>
                 ))}
@@ -107,17 +107,17 @@ export function EventDetail({ code }: { code: string }) {
             </div>
           )}
 
-          {event.blurb && <div className="mt-6"><h3 className="font-display text-lg font-bold text-heading">About this session</h3><p className="mt-2 font-body text-[15px] leading-relaxed text-foreground/90">{event.blurb}</p></div>}
-          {event.details && <p className="mt-3 whitespace-pre-line font-body text-sm leading-relaxed text-muted">{event.details}</p>}
+          {event.blurb && <div className="mt-6"><h3 className="font-display text-lg font-semibold text-white">About this session</h3><p className="mt-2 font-body text-[15px] font-light leading-relaxed text-white/80">{event.blurb}</p></div>}
+          {event.details && <p className="mt-3 whitespace-pre-line font-body text-sm font-light leading-relaxed text-white/55">{event.details}</p>}
 
           {Array.isArray(event.schedule) && event.schedule.length > 0 && (
             <div className="mt-6">
-              <h3 className="font-display text-lg font-bold text-heading">Schedule</h3>
+              <h3 className="font-display text-lg font-semibold text-white">Schedule</h3>
               <div className="mt-2">
                 {(event.schedule as { time?: string; title?: string }[]).map((s, i) => (
-                  <div key={i} className="grid grid-cols-[92px_1fr] gap-4 border-t border-border py-3">
-                    <span className="font-mono text-sm font-semibold text-accent">{s.time || ""}</span>
-                    <span className="font-display font-semibold text-heading">{s.title || ""}</span>
+                  <div key={i} className="grid grid-cols-[92px_1fr] gap-4 border-t border-white/10 py-3">
+                    <span className="font-mono text-sm font-semibold text-[#8fe9f5]">{s.time || ""}</span>
+                    <span className="font-display font-medium text-white">{s.title || ""}</span>
                   </div>
                 ))}
               </div>
@@ -126,7 +126,7 @@ export function EventDetail({ code }: { code: string }) {
 
           {wa && (
             <a href={wa} target="_blank" rel="noreferrer"
-              className="mt-6 inline-block rounded-xl border border-border px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">
+              className="mt-6 inline-block rounded-xl border border-white/15 bg-white/[0.06] px-4 py-2.5 text-sm font-medium text-white backdrop-blur transition hover:border-white/40">
               Join the WhatsApp community
             </a>
           )}
@@ -134,33 +134,33 @@ export function EventDetail({ code }: { code: string }) {
 
         {/* right: sticky register card */}
         <div className="lg:sticky lg:top-20">
-          <div className="rounded-2xl border border-border bg-surface p-6 shadow-[0_18px_40px_-22px_rgba(43,19,92,0.35)]">
+          <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl shadow-[0_20px_50px_-24px_rgba(0,0,0,0.7)]"><span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(130deg, rgba(255,255,255,0.14), transparent 32%)" }} />
             {registered ? (
               <div>
-                <div className="flex items-center gap-2 rounded-xl border border-border bg-surface-warm px-4 py-3 font-display font-bold text-heading">🎉 You&apos;re registered</div>
+                <div className="relative flex items-center gap-2 rounded-xl border border-[#34c759]/40 bg-[#34c759]/10 px-4 py-3 font-display font-semibold text-white">🎉 You&apos;re registered</div>
                 {!off && joinUrl && (
                   <a href={joinUrl} target="_blank" rel="noreferrer"
-                    className="mt-3 block rounded-xl border border-dashed border-border-strong bg-surface-warm px-4 py-3 text-center font-mono text-sm text-accent">
+                    className="relative mt-3 block rounded-xl border border-dashed border-[#00cfe5]/50 bg-[#00cfe5]/10 px-4 py-3 text-center font-mono text-sm text-[#8fe9f5] backdrop-blur">
                     🔗 {zoomJoinUrl ? "Your personal join link" : "Join link"}
                   </a>
                 )}
-                                <p className="mt-3 text-center font-body text-xs text-muted">We&apos;ve emailed your details + calendar invite.</p>
+                                <p className="relative mt-3 text-center font-body text-xs text-white/50">We&apos;ve emailed your details + calendar invite.</p>
                 {event.submission_enabled && regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
                   <ProjectSubmission registrationId={regInfo.id} points={event.submission_points ?? 0} alreadyUrl={regInfo.github} />
                 )}
               </div>
             ) : regClosed(event) ? (
-              <p className="py-4 text-center font-body text-sm text-muted">Registration for this event has closed.</p>
+              <p className="relative py-4 text-center font-body text-sm text-white/55">Registration for this event has closed.</p>
             ) : !userId ? (
               <div className="text-center">
                 {pointsTotalPossible(event.points_config) > 0 && (
-                  <div className="mb-3 flex items-center justify-between rounded-xl bg-surface-warm px-4 py-3">
-                    <span className="font-body text-sm text-muted">Earn up to</span>
-                    <span className="font-mono text-sm font-bold text-primary">+{pointsTotalPossible(event.points_config)} pts</span>
+                  <div className="relative mb-3 flex items-center justify-between rounded-xl border border-white/12 bg-white/[0.06] px-4 py-3">
+                    <span className="relative font-body text-sm text-white/60">Earn up to</span>
+                    <span className="relative font-mono text-sm font-bold text-[#F97D03]">+{pointsTotalPossible(event.points_config)} pts</span>
                   </div>
                 )}
-                <h2 className="font-display text-lg font-bold text-heading">Register for this event</h2>
-                <p className="mt-1 font-body text-sm text-muted">Log in to register — it takes a few seconds.</p>
+                <h2 className="relative font-display text-lg font-semibold text-white">Register for this event</h2>
+                <p className="relative mt-1 font-body text-sm text-white/55">Log in to register — it takes a few seconds.</p>
                 <Link href={`/login?next=/events/${event.event_code}`}
                   className="mt-4 inline-block w-full rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white">
                   Log in to register
@@ -169,12 +169,12 @@ export function EventDetail({ code }: { code: string }) {
             ) : profile ? (
               <>
                 {pointsTotalPossible(event.points_config) > 0 && (
-                  <div className="mb-4 flex items-center justify-between rounded-xl bg-surface-warm px-4 py-3">
-                    <span className="font-body text-sm text-muted">Earn up to</span>
-                    <span className="font-mono text-sm font-bold text-primary">+{pointsTotalPossible(event.points_config)} pts</span>
+                  <div className="relative mb-4 flex items-center justify-between rounded-xl border border-white/12 bg-white/[0.06] px-4 py-3">
+                    <span className="relative font-body text-sm text-white/60">Earn up to</span>
+                    <span className="relative font-mono text-sm font-bold text-[#F97D03]">+{pointsTotalPossible(event.points_config)} pts</span>
                   </div>
                 )}
-                <h2 className="mb-4 font-display text-lg font-bold text-heading">Register</h2>
+                <h2 className="relative mb-4 font-display text-lg font-semibold text-white">Register</h2>
                 <RegistrationForm event={event} profile={profile} userId={userId} onDone={() => setRegistered(true)} />
               </>
             ) : null}

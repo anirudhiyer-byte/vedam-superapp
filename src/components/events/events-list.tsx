@@ -62,17 +62,17 @@ export function EventsList() {
         <div aria-hidden className="ev-slide pointer-events-none absolute right-0 top-[-40px] z-0 h-[520px] w-[1100px] opacity-70"
           style={{ background: "radial-gradient(60% 60% at 70% 30%, rgba(0,207,229,.16), transparent 60%), radial-gradient(50% 50% at 95% 40%, rgba(194,0,219,.22), transparent 65%)", filter: "blur(30px)" }} />
         <div className="relative z-10 mx-auto max-w-6xl px-6 pb-6 pt-10 sm:px-10 sm:pt-14 lg:px-16">
-          <h1 className="font-[family-name:var(--font-playfair)] italic text-transparent bg-clip-text" style={{ fontSize: "clamp(40px,6vw,60px)", backgroundImage: "linear-gradient(110deg,#35e8fb 8%,#c200db 100%)", fontWeight: 500 }}>Bootcamps</h1>
-          <h2 className="mt-3 font-[family-name:var(--font-inter)] font-normal tracking-tight text-white" style={{ fontSize: "clamp(28px,4vw,40px)" }}>Explore AI. Build With It.</h2>
-          <p className="mt-4 max-w-[1000px] font-[family-name:var(--font-inter)] font-extralight leading-[1.4] text-[#afafaf]" style={{ fontSize: "clamp(16px,1.6vw,25px)" }}>
+          <h1 className="font-[family-name:var(--font-playfair)] italic" style={{ fontSize: "clamp(40px,6vw,60px)", fontWeight: 500, background: "linear-gradient(110deg,#35e8fb 8%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Bootcamps</h1>
+          <h2 className="mt-3 font-[family-name:var(--font-inter)] font-normal tracking-tight text-white" style={{ fontSize: "clamp(24px,3.2vw,34px)" }}>Explore AI. Build With It.</h2>
+          <p className="mt-4 max-w-[900px] font-[family-name:var(--font-inter)] font-extralight leading-[1.4] text-[#afafaf]" style={{ fontSize: "clamp(15px,1.3vw,21px)" }}>
             Live, beginner-friendly, hands-on sessions where you experiment with AI, build projects and discover what&apos;s possible — all before you step into college.
           </p>
         </div>
       </section>
 
       {/* ===== LIST PANEL ===== */}
-      <section className="relative z-10 mx-auto max-w-6xl px-6 pb-24 sm:px-10 lg:px-16">
-        <div className="rounded-[14px] bg-[#171717] p-4 sm:rounded-[21px] sm:p-8">
+      <section className="relative z-10 mx-auto max-w-[1600px] px-4 pb-24 sm:px-8 lg:px-12">
+        <div className="rounded-[14px] bg-[#232323] p-4 sm:rounded-[21px] sm:p-10">
           {/* tabs */}
           <div className="flex items-center gap-5 sm:gap-6">
             {(["upcoming", "past", "featured"] as const).map((v) => (
@@ -110,7 +110,7 @@ export function EventsList() {
               <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-white/50">{q || cat !== "All" ? "Try clearing the search or category." : view === "past" ? "Past sessions appear here after they wrap." : "New sessions drop regularly — check back soon."}</p>
             </div>
           ) : (
-            <div className="mt-7 grid gap-6 sm:grid-cols-2">
+            <div className="mt-7 grid gap-7 sm:grid-cols-2">
               {filtered.map((e) => <EventCard key={e.id} event={e} registered={regs[e.event_code]} />)}
             </div>
           )}
@@ -128,14 +128,14 @@ function EventCard({ event, registered }: { event: EventRow; registered?: boolea
       className="group relative block overflow-hidden rounded-[16px] border-[4px] transition-all duration-300 hover:-translate-y-1 sm:rounded-[25px] sm:border-[6px]"
       style={{ borderColor: "#00cfe5", background: "rgba(30,30,30,0.35)" }}>
       {/* banner area */}
-      <div className="relative h-[150px] w-full overflow-hidden sm:h-[190px]" style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#1a0b38,#2b135c)" }}>
+      <div className="relative h-[170px] w-full overflow-hidden sm:h-[240px]" style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#1a0b38,#2b135c)" }}>
         {/* Date & Time tab */}
         <div className="absolute left-0 top-[42%] rounded-r-md bg-white px-4 py-2 font-[family-name:var(--font-inter)] text-[15px] font-normal text-[#8b8b8b]">Date &amp; Time</div>
         {registered && <span className="absolute right-3 top-3 rounded-full bg-[#34c759] px-2.5 py-1 font-mono text-[10px] font-bold text-white">Registered</span>}
       </div>
       {/* purple gradient info section */}
-      <div className="relative px-6 pb-5 pt-4" style={{ background: "linear-gradient(135deg,#5b1ec9 0%,#8A18FF 45%,#7629fc 100%)" }}>
-        <div className="font-[family-name:var(--font-inter)] text-base font-semibold uppercase tracking-tight text-white sm:text-xl">{event.name}</div>
+      <div className="relative px-7 pb-6 pt-5" style={{ background: "linear-gradient(120deg,#2b6ef2 0%,#7b2ff2 45%,#c81ad6 100%)" }}>
+        <div className="font-[family-name:var(--font-inter)] text-lg font-semibold uppercase tracking-tight text-white sm:text-2xl">{event.name}</div>
         <div className="mt-1 font-[family-name:var(--font-inter)] text-xs text-white/80">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
         <div className="mt-3 flex items-center gap-4">
           <span className="flex items-center gap-1.5 font-[family-name:var(--font-inter)] text-sm text-white">
