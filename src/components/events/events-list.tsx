@@ -59,6 +59,7 @@ export function EventsList() {
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-[8] h-28" style={{ background: "linear-gradient(to bottom, #000 25%, rgba(0,0,0,0.5) 60%, transparent)" }} />
         <div aria-hidden className="ev-slide pointer-events-none absolute right-0 top-[-40px] z-0 h-[520px] w-[1100px] opacity-70"
           style={{ background: "radial-gradient(60% 60% at 70% 30%, rgba(0,207,229,.16), transparent 60%), radial-gradient(50% 50% at 95% 40%, rgba(194,0,219,.22), transparent 65%)", filter: "blur(30px)" }} />
         <div className="relative z-10 mx-auto max-w-[1500px] px-8 pb-4 pt-6 sm:px-14 sm:pt-7 lg:px-20">
@@ -144,13 +145,13 @@ function EventCard({ event, registered }: { event: EventRow; registered?: boolea
         <div className="relative w-[80%]">
         <div className="relative font-[family-name:var(--font-inter)] text-xl font-bold uppercase leading-tight tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] sm:text-2xl">{event.name}</div>
         <div className="relative mt-1.5 font-[family-name:var(--font-inter)] text-[14px] font-medium text-white/90">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
-        <div className="relative mt-4 flex items-center justify-between gap-3 pr-1">
+        </div>
+        <div className="relative mt-4 flex items-center justify-between gap-3">
           {event.host && <span className="truncate font-[family-name:var(--font-inter)] text-[15px] font-semibold text-white">with {event.host}</span>}
           <div className="ml-auto flex items-end gap-6">
             {event.max_attendees != null && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#7ad7ff]">Seats</div><div className="font-[family-name:var(--font-inter)] text-lg font-extrabold text-white">{event.max_attendees}</div></div>}
             {pts > 0 && <div className="text-right"><div className="font-[family-name:var(--font-inter)] text-[11px] font-bold uppercase tracking-wide text-[#ffd27a]">Points</div><div className="font-[family-name:var(--font-inter)] text-lg font-extrabold text-[#ffe27a]">+{pts}</div></div>}
           </div>
-        </div>
         </div>
       </div>
     </Link>

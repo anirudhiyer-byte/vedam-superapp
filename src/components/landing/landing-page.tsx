@@ -74,8 +74,8 @@ export function LandingPage() {
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-80%}100%{left:180%}}
         .group:hover .ld-shine{animation:ld-shine 0.75s cubic-bezier(.2,.8,.2,1)}
-        @keyframes ld-silver{0%{background-position:-200% -200%}100%{background-position:200% 200%}}
-        .ld-silver{background:repeating-linear-gradient(115deg, rgba(255,255,255,0.10) 0px, rgba(120,124,138,0.10) 1px, rgba(255,255,255,0.10) 2px, rgba(150,154,168,0.06) 3px),linear-gradient(120deg,#ffffff 0%,#eef1f7 14%,#b8bcca 40%,#7f8393 52%,#d7dae3 70%,#ffffff 100%);background-size:100% 100%, 220% 220%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:0 2px 1px rgba(0,0,0,0.30),0 -1px 0 rgba(255,255,255,0.6);animation:ld-silver 6s linear infinite}
+        @keyframes ld-silver{0%{background-position:0% 0%}100%{background-position:200% 200%}}
+        .ld-silver{background:repeating-linear-gradient(118deg, rgba(255,255,255,0.14) 0px, rgba(120,124,138,0.10) 1.5px, rgba(255,255,255,0.14) 3px),linear-gradient(118deg,#9a9daa 0%,#d7dae3 18%,#ffffff 30%,#ffffff 38%,#c3c6d2 52%,#8b8e9c 66%,#eef1f7 82%,#ffffff 100%);background-size:100% 100%, 300% 300%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:0 2px 1px rgba(0,0,0,0.30),0 -1px 0 rgba(255,255,255,0.65);animation:ld-silver 6s linear infinite}
         @media (prefers-reduced-motion: reduce){.ld-silver{animation:none}}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
@@ -148,11 +148,11 @@ export function LandingPage() {
         <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
           <div className="mx-auto max-w-[560px] pb-10 pt-8 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px] lg:text-left">
             <div className="inline-block text-left lg:block">
-            <h1 className="ld-silver font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(40px,6.5vw,108px)" }}>Vedam</h1>
+            <h1 className="ld-silver font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(52px,6.5vw,108px)" }}>Vedam</h1>
             <div className="mt-1.5 flex items-center justify-start gap-2.5">
-              <span className="ld-silver font-[family-name:var(--font-playfair)] italic tracking-tight" style={{ fontSize: "clamp(25px,4.7vw,75px)", fontWeight: 600, lineHeight: 1.25, display: "inline-block", paddingRight: "0.08em" }}>One</span>
+              <span className="ld-silver font-[family-name:var(--font-playfair)] italic tracking-tight" style={{ fontSize: "clamp(22px,4.2vw,68px)", fontWeight: 600, lineHeight: 1.15, display: "inline-block", paddingRight: "0.08em", marginTop: "-0.12em" }}>One</span>
               <span className="h-[26px] w-0.5 bg-white/60 sm:h-[46px]" />
-              <span className="font-semibold leading-[1.02]" style={{ fontSize: "clamp(13px,1.3vw,19px)" }}>The Home of<small className="mt-1 block font-medium tracking-[1.5px] text-white" style={{ fontSize: "clamp(9px,0.85vw,13px)" }}>FUTURE ENGINEERS</small></span>
+              <span className="whitespace-nowrap font-semibold leading-[1.05]" style={{ fontSize: "clamp(12px,1.3vw,19px)" }}>The Home of<small className="mt-0.5 block font-medium tracking-[0.5px] text-white" style={{ fontSize: "clamp(11px,0.9vw,14px)" }}>Future Engineers</small></span>
             </div>
             </div>
             <div className="mt-8">
@@ -160,9 +160,11 @@ export function LandingPage() {
               <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(13px,1.7vw,26px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
-              <button onClick={scrollToExplore} className="group relative inline-flex items-center overflow-hidden rounded-full border border-white/30 px-5 py-2.5 font-medium tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] backdrop-blur-xl transition-all hover:border-white/80 hover:shadow-[0_0_34px_rgba(138,24,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ fontSize: "clamp(12px,1.05vw,15px)", background: "linear-gradient(96deg, rgba(53,232,251,0.30) 0%, rgba(123,92,255,0.42) 55%, rgba(194,0,219,0.38) 100%)" }}>
-                <span className="relative z-10 leading-none">Start Building</span>
-                <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)" }} />
+              <button onClick={scrollToExplore} className="group relative inline-flex rounded-full p-[2.5px] transition-all hover:shadow-[0_0_44px_rgba(138,24,255,0.6),0_0_72px_rgba(224,72,155,0.32)] active:scale-[0.98]" style={{ background: "linear-gradient(100deg,#e0489b 0%,#b23bd6 42%,#5b3fd6 58%,#1e2a8c 100%)", boxShadow: "0 0 34px rgba(138,24,255,.5),0 0 60px rgba(224,72,155,.25)" }}>
+                <span className="relative inline-flex items-center overflow-hidden rounded-full px-5 py-2.5 font-medium tracking-tight text-white backdrop-blur-xl" style={{ fontSize: "clamp(12px,1.05vw,15px)", background: "linear-gradient(180deg,#2b135c,#1a0b38)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20)" }}>
+                  <span className="relative z-10 leading-none">Start Building</span>
+                  <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent)" }} />
+                </span>
               </button>
             </div>
             <div className="mt-6 font-normal tracking-[3px] text-transparent bg-clip-text" style={{ fontSize: "clamp(12px,0.95vw,16px)", backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)" }}>LEARN · BUILD · CONNECT · RISE</div>

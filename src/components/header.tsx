@@ -52,15 +52,13 @@ export function Header() {
   const initial = (me?.name?.trim()?.[0] || "V").toUpperCase();
 
   const linkCls = (active: boolean) =>
-    ["font-[family-name:var(--font-inter)] text-[15px] font-medium transition-colors",
-      active
-        ? "rounded bg-[#7629fc] px-1.5 py-0 text-white"
-        : "rounded-lg px-3 py-1 text-white/75 hover:bg-white/10 hover:text-white"].join(" ");
+    ["rounded-lg px-3.5 py-1.5 font-[family-name:var(--font-inter)] text-[15px] font-medium transition-colors",
+      active ? "bg-[#7629fc] text-white" : "text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ");
   const itemCls = "flex items-center gap-3 rounded-xl px-3 py-2.5 font-body text-sm font-semibold text-white/90 hover:bg-white/10";
 
   if (pathname === "/") return null;
   return (
-    <header className="sticky top-0 z-30 border-b border-white/10 text-white backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(11,3,24,0.65))" }}>
+    <header className="sticky top-0 z-30 text-white backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.45) 60%, transparent)" }}>
       <div className="relative mx-auto flex h-[72px] max-w-[1800px] items-center justify-between px-6 sm:px-10">
         <a href="https://www.vedam.org" aria-label="Vedam School of Technology" className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
