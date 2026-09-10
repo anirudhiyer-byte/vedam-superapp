@@ -5,7 +5,7 @@ export type EmailTemplate = "brand" | "sunset" | "minimal" | "dark";
 type Theme = { bg: string; header: string; headerText: string; card: string; text: string; muted: string; footBorder: string; headerExtra?: string; logo: string };
 
 // Absolute base for email images — update on domain cutover to vedam.org.
-const LOGO_BASE = "https://vedam-superapp.vercel.app";
+const LOGO_BASE = "https://one.vedam.org";
 
 const THEMES: Record<EmailTemplate, Theme> = {
   brand:   { bg: "#f4f2f8", header: "linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%)", headerText: "#ffffff", card: "#ffffff", text: "#1c1733", muted: "#7a7790", footBorder: "#ece9f3", logo: LOGO_BASE + "/vedam-logo-dark.png?v=2" },

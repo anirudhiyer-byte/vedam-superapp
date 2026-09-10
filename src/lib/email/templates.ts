@@ -110,7 +110,7 @@ export function confirmationHtml(ev: IcsEvent, name?: string, email?: string): s
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f1f9;margin:0;padding:26px 12px"><tr><td align="center">
   <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 14px 44px rgba(43,19,92,.14)">
     <tr><td style="background:linear-gradient(125deg,#2B135C 0%,#5b1ec9 55%,#8A18FF 100%);padding:32px 34px 30px">
-      <img src="https://vedam-superapp.vercel.app/vedam-logo-dark.png?v=2" alt="Vedam" height="30" style="height:30px;display:block;border:0;margin-bottom:14px" />
+      <img src="https://one.vedam.org/vedam-logo-dark.png?v=2" alt="Vedam" height="30" style="height:30px;display:block;border:0;margin-bottom:14px" />
       <div style="font:800 27px Arial,sans-serif;color:#fff;line-height:1.15">You're in! &#127881;</div>
       <div style="font:400 15px Arial,sans-serif;color:#ddd0ff;margin-top:6px">Your spot is locked for <b style="color:#fff">${ev.name}</b>.</div>
     </td></tr>
