@@ -1,10 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
-import { createClient } from "@/lib/supabase/client";
 
 const NAV = [
   { label: "Home", href: "/" },
@@ -21,44 +17,7 @@ const CARDS = [
 ];
 
 export function LandingPage() {
-  const [supabase] = useState(() => createClient());
-  const router = useRouter();
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [authed, setAuthed] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [uid, setUid] = useState("");
-  const [points, setPoints] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [navOpen, setNavOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-    (async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session?.user) {
-        setAuthed(true);
-        const { data: p } = await supabase.from("profiles").select("full_name, phone, email, public_id").eq("id", session.user.id).maybeSingle();
-        setName(p?.full_name || "You");
-        setEmail(p?.email || session.user.email || "");
-        setPhone(p?.phone || "");
-        setUid(p?.public_id || "");
-        const { data: pts } = await supabase.from("points_ledger").select("points").eq("user_id", session.user.id);
-        setPoints((pts as { points: number }[] ?? []).reduce((a, r) => a + (r.points || 0), 0));
-      }
-    })();
-    const onClick = (e: MouseEvent) => { if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false); };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
-  }, [supabase]);
-
-  const isDark = theme !== "light";
-  const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase() || "V";
   const scrollToExplore = () => document.getElementById("explore")?.scrollIntoView({ behavior: "smooth" });
-  async function logout() { await supabase.auth.signOut(); setMenuOpen(false); router.refresh(); }
 
   return (
     <div className="landing font-[family-name:var(--font-inter)] text-white">
@@ -74,8 +33,8 @@ export function LandingPage() {
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-80%}100%{left:180%}}
         .group:hover .ld-shine{animation:ld-shine 0.75s cubic-bezier(.2,.8,.2,1)}
-        @keyframes ld-silver{0%{background-position:150% 0}100%{background-position:-150% 0}}100%{background-position:200% 200%}}
-        .ld-silver{background:linear-gradient(90deg,#a9adba 0%,#a9adba 34%,#ffffff 50%,#a9adba 66%,#a9adba 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:ld-silver 4.5s linear infinite}
+        @keyframes ld-silver{0%{background-position:200% 0}100%{background-position:-60% 0}}100%{background-position:-150% 0}}100%{background-position:200% 200%}}
+        .ld-silver{background:linear-gradient(100deg,#b4b8c6 0%,#dfe2ea 30%,#ffffff 46%,#ffffff 54%,#dfe2ea 70%,#b4b8c6 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.28));animation:ld-silver 4s linear infinite}
         @media (prefers-reduced-motion: reduce){.ld-silver{animation:none}}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
@@ -87,49 +46,6 @@ export function LandingPage() {
         <div className="pointer-events-none absolute right-16 top-24 z-[1] h-[700px] w-[820px] rounded-full opacity-70 blur-[40px]" style={{ background: "radial-gradient(closest-side, rgba(150,40,220,.45), transparent 70%)" }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[10] h-36" style={{ background: "linear-gradient(to bottom, #000 20%, rgba(0,0,0,0.6) 55%, transparent)" }} />
 
-        {/* HEADER */}
-        <header className="relative z-30 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-5 sm:px-10">
-          <a href="https://www.vedam.org" className="flex items-center">
-            <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-8 w-auto sm:h-9" />
-          </a>
-          {/* desktop nav */}
-          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
-            {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className={["rounded-lg px-3.5 py-1.5 text-[15px] font-medium transition-colors", n.href === "/" ? "bg-[#7629fc] text-white" : "text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ")}>{n.label}</Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-2.5">
-            {authed ? (
-              <>
-                <span className="flex cursor-default items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold transition-all hover:border-white/40 hover:shadow-[0_0_16px_rgba(255,201,60,0.4)]"><span className="hidden sm:inline">Total</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden><defs><linearGradient id="goldStar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#goldStar)" stroke="#fff6d6" strokeWidth="0.5" /></svg>{points}</span>
-                <div ref={menuRef} className="relative">
-                  <button onClick={() => setMenuOpen((o) => !o)} className="grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold ring-2 ring-white/0 transition-all hover:ring-white/60 hover:shadow-[0_0_18px_rgba(138,24,255,0.6)]" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}</button>
-                  {menuOpen && (
-                    <div className="absolute right-0 top-12 z-50 w-52 overflow-hidden rounded-xl border border-white/10 bg-[#160a30] py-1.5 text-sm shadow-2xl">
-                      <div className="border-b border-white/10 px-4 py-2.5">
-                        <div className="font-semibold text-white">{name}</div>
-                        <div className="mt-0.5 text-xs text-white/50">{[email, phone].filter(Boolean).join(" | ")}</div>
-                        {uid && <div className="mt-0.5 font-mono text-[11px] text-white/40">{uid}</div>}
-                      </div>
-                      <Link href="/dashboard" className="block px-4 py-2 hover:bg-white/5">Dashboard</Link>
-                      <Link href="/leaderboard" className="block px-4 py-2 hover:bg-white/5">Leaderboard</Link>
-                      <button onClick={logout} className="block w-full px-4 py-2 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
-                    </div>
-                  )}
-                </div>
-              </>
-            ) : (
-              <Link href="/login" className="rounded-lg bg-[#7629fc] px-3 py-1.5 text-[13px] font-medium">Sign in</Link>
-            )}
-            <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-10 w-10 place-items-center rounded-lg border border-white/15 lg:hidden">☰</button>
-          </div>
-        </header>
-        {navOpen && (
-          <div className="relative z-30 mx-6 mb-2 rounded-xl border border-white/10 bg-[#160a30] p-2 lg:hidden">
-            {NAV.map((n) => <Link key={n.href} href={n.href} className="block rounded-lg px-4 py-2.5 font-medium hover:bg-white/5">{n.label}</Link>)}
-          </div>
-        )}
-
         {/* HERO BODY */}
         {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
         <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[60%] lg:block">
@@ -137,7 +53,7 @@ export function LandingPage() {
           <div className="ld-orbit absolute left-[46%] top-[56%] z-[1] h-0 w-0">
             {[0, 90, 180, 270].map((deg, i) => (
               <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-235px)` }}>
-                <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={112} height={112} className="h-full w-full object-contain" /></div>
+                <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={112} height={112} className="h-full w-full object-contain" style={i === 2 ? { transform: "rotate(180deg)" } : undefined} /></div>
               </div>
             ))}
           </div>
@@ -152,7 +68,7 @@ export function LandingPage() {
             <div className="mt-1.5 flex items-center justify-start gap-2.5">
               <span className="ld-silver font-[family-name:var(--font-playfair)] italic tracking-tight" style={{ fontSize: "clamp(22px,4.2vw,68px)", fontWeight: 600, lineHeight: 1.15, display: "inline-block", paddingRight: "0.08em", marginTop: "-0.12em" }}>One</span>
               <span className="h-[26px] w-0.5 bg-white/60 sm:h-[46px]" />
-              <span className="whitespace-nowrap font-semibold leading-[1.05]" style={{ fontSize: "clamp(12px,1.3vw,19px)" }}>The Home of<small className="mt-0.5 block font-medium tracking-[0.5px] text-white" style={{ fontSize: "clamp(11px,0.9vw,14px)" }}>Future Engineers</small></span>
+              <span className="whitespace-nowrap font-semibold leading-[1.05]" style={{ fontSize: "clamp(12px,1.9vw,26px)" }}>The Home of<small className="mt-0.5 block font-medium tracking-[0.5px] text-white" style={{ fontSize: "clamp(11px,1.4vw,19px)" }}>Future Engineers</small></span>
             </div>
             </div>
             <div className="mt-8">
@@ -176,7 +92,7 @@ export function LandingPage() {
             <div className="ld-orbit pointer-events-none absolute left-1/2 top-[42%] z-[1] h-0 w-0">
               {[0, 90, 180, 270].map((deg, i) => (
                 <div key={i} className="m absolute left-0 top-0 -m-8 h-16 w-16" style={{ transform: `rotate(${deg}deg) translateY(-120px)` }}>
-                  <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={64} height={64} className="h-full w-full object-contain" /></div>
+                  <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={64} height={64} className="h-full w-full object-contain" style={i === 2 ? { transform: "rotate(180deg)" } : undefined} /></div>
                 </div>
               ))}
             </div>
