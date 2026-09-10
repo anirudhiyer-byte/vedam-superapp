@@ -29,26 +29,40 @@ export function SiteHeader() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    (async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+    let mounted = true;
+    async function loadUser(session: Awaited<ReturnType<typeof supabase.auth.getSession>>["data"]["session"]) {
+      if (!mounted) return;
       if (session?.user) {
         setAuthed(true);
         const { data: p } = await supabase.from("profiles").select("full_name, phone, email, public_id").eq("id", session.user.id).maybeSingle();
+        if (!mounted) return;
         setName(p?.full_name || "You");
         setEmail(p?.email || session.user.email || "");
         setPhone(p?.phone || "");
         setUid(p?.public_id || "");
         const { data: pts } = await supabase.from("points_ledger").select("points").eq("user_id", session.user.id);
+        if (!mounted) return;
         setPoints((pts as { points: number }[] ?? []).reduce((a, r) => a + (r.points || 0), 0));
+      } else {
+        // signed out — clear everything so the UI updates instantly
+        setAuthed(false); setName(""); setEmail(""); setPhone(""); setUid(""); setPoints(0); setMenuOpen(false);
       }
-    })();
+    }
+    supabase.auth.getSession().then(({ data }) => loadUser(data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => { loadUser(session); });
     const onClick = (e: MouseEvent) => { if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false); };
     document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    return () => { mounted = false; sub.subscription.unsubscribe(); document.removeEventListener("mousedown", onClick); };
   }, [supabase]);
 
   const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase() || "V";
-  async function logout() { await supabase.auth.signOut(); setMenuOpen(false); router.refresh(); }
+  async function logout() {
+    setMenuOpen(false);
+    setAuthed(false); setName(""); setPoints(0); // instant UI update
+    await supabase.auth.signOut();               // fires onAuthStateChange -> full clear
+    router.push("/");
+    router.refresh();
+  }
 
   // tighter/reduced active pill; Coming-Soon gating for non-staff
   const linkCls = (active: boolean) =>
