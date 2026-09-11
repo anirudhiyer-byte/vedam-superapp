@@ -66,10 +66,10 @@ export function SiteHeader() {
 
   // tighter/reduced active pill; Coming-Soon gating for non-staff
   const linkCls = (active: boolean) =>
-    ["text-[15px] font-medium transition-colors", active ? "rounded bg-[#7629fc] px-2.5 py-0.5 text-white" : "rounded-lg px-3 py-1 text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ");
+    ["text-[15px] font-medium transition-colors", active ? "rounded-full bg-[#7629fc] px-3.5 py-1 text-white" : "rounded-full px-3.5 py-1 text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ");
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.45) 60%, transparent)" }}>
+    <header className="sticky top-0 z-40 backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0.45) 45%, transparent 78%)" }}>
       <div className="relative mx-auto flex max-w-[1800px] items-center justify-between px-6 py-4 sm:px-10">
         <a href="https://www.vedam.org" className="flex items-center">
           <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-9 w-auto sm:h-10" />
@@ -108,8 +108,8 @@ export function SiteHeader() {
               </div>
             </>
           ) : (
-            <Link href="/login" className="relative inline-flex rounded-full p-[1.5px] transition-all hover:shadow-[0_0_22px_rgba(123,92,255,0.7)]" style={{ background: "linear-gradient(100deg,#ff2fb0,#7b5cff 55%,#2f9bff)", boxShadow: "0 0 16px rgba(123,92,255,.55)" }}>
-              <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[15px] font-medium text-white" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Sign in</span>
+            <Link href="/login" className="group/si relative inline-flex rounded-full p-[1.5px] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,47,176,0.7),0_0_50px_rgba(47,155,255,0.55)]" style={{ background: "linear-gradient(100deg,#ff2fb0,#7b5cff 55%,#2f9bff)", boxShadow: "0 0 16px rgba(123,92,255,.55)" }}>
+              <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[15px] font-medium text-white transition-colors group-hover/si:bg-[rgba(138,24,255,0.3)]" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Sign in</span>
             </Link>
           )}
           <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-white lg:hidden">☰</button>
