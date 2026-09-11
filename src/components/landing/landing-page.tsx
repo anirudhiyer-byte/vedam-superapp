@@ -33,8 +33,8 @@ export function LandingPage() {
         .ld-blink{animation:ld-blink 1.2s ease-in-out infinite}
         @keyframes ld-shine{0%{left:-80%}100%{left:180%}}
         .group:hover .ld-shine{animation:ld-shine 0.75s cubic-bezier(.2,.8,.2,1)}
-        @keyframes ld-silver{0%{background-position:200% 0}100%{background-position:-60% 0}}100%{background-position:-150% 0}}100%{background-position:200% 200%}}
-        .ld-silver{background:linear-gradient(100deg,#b4b8c6 0%,#dfe2ea 30%,#ffffff 46%,#ffffff 54%,#dfe2ea 70%,#b4b8c6 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.28));animation:ld-silver 4s linear infinite}
+        @keyframes ld-silver{0%{background-position:200% 0}100%{background-position:-80% 0}}100%{background-position:-60% 0}}100%{background-position:-150% 0}}100%{background-position:200% 200%}}
+        .ld-silver{background:linear-gradient(100deg,#8f93a3 0%,#c9cdd9 30%,#ffffff 44%,#ffffff 50%,#ffffff 56%,#c9cdd9 70%,#8f93a3 100%);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 1px 3px rgba(255,255,255,0.25)) drop-shadow(0 2px 2px rgba(0,0,0,0.3));animation:ld-silver 3.2s ease-in-out infinite}
         @media (prefers-reduced-motion: reduce){.ld-silver{animation:none}}
         @media (prefers-reduced-motion: reduce){.ld-orbit,.ld-orbit .m .in,.ld-track,.ld-blink{animation:none}}
       `}</style>
@@ -52,7 +52,7 @@ export function LandingPage() {
           <Image src="/landing/purple-glow.webp" alt="" width={1000} height={1000} className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-[92%] max-w-none -translate-x-1/2 -translate-y-1/2" />
           <div className="ld-orbit absolute left-[46%] top-[56%] z-[1] h-0 w-0">
             {[0, 90, 180, 270].map((deg, i) => (
-              <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-235px)` }}>
+              <div key={i} className="m absolute left-0 top-0 -m-14 h-28 w-28" style={{ transform: `rotate(${deg}deg) translateY(-270px)` }}>
                 <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={112} height={112} className="h-full w-full object-contain" style={i === 2 ? { transform: "rotate(180deg)" } : undefined} /></div>
               </div>
             ))}
@@ -72,8 +72,8 @@ export function LandingPage() {
             </div>
             </div>
             <div className="mt-8">
-              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(14px,1.7vw,26px)" }}>Learn, Code, Build and Compete.</span>
-              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(13px,1.7vw,26px)" }}>Specially designed for class 12th students</span>
+              <span className="block font-medium tracking-tight text-[#7a7a7a]" style={{ fontSize: "clamp(12px,1.45vw,22px)" }}>Learn, Code, Build and Compete.</span>
+              <span className="mt-2 block italic font-light tracking-tight text-white" style={{ fontSize: "clamp(11px,1.45vw,22px)" }}>Specially designed for class 12th students</span>
             </div>
             <div className="mt-10">
               <button onClick={scrollToExplore} className="group relative inline-flex rounded-full p-[1.5px] transition-all hover:shadow-[0_0_28px_rgba(255,47,176,0.75),0_0_56px_rgba(47,155,255,0.6)] active:scale-[0.98]" style={{ background: "linear-gradient(100deg,#ff2fb0 0%,#c04bff 46%,#5b6bff 60%,#2f9bff 100%)", boxShadow: "0 0 22px rgba(255,47,176,.55),0 0 44px rgba(91,107,255,.45)" }}>
@@ -91,7 +91,7 @@ export function LandingPage() {
             {/* mobile orbit — smaller, behind the students */}
             <div className="ld-orbit pointer-events-none absolute left-1/2 top-[42%] z-[1] h-0 w-0">
               {[0, 90, 180, 270].map((deg, i) => (
-                <div key={i} className="m absolute left-0 top-0 -m-8 h-16 w-16" style={{ transform: `rotate(${deg}deg) translateY(-120px)` }}>
+                <div key={i} className="m absolute left-0 top-0 -m-8 h-16 w-16" style={{ transform: `rotate(${deg}deg) translateY(-138px)` }}>
                   <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={64} height={64} className="h-full w-full object-contain" style={i === 2 ? { transform: "rotate(180deg)" } : undefined} /></div>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export function LandingPage() {
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
         <div className="relative z-[25] mt-6 flex h-[40px] items-center overflow-hidden border-y border-white/25 backdrop-blur-md sm:h-[52px] lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.07)", boxShadow: "0 0 55px rgba(138,24,255,.32) inset" }}>
-          <div className="z-[4] flex h-full flex-shrink-0 flex-col justify-center px-4 leading-[1.05] sm:flex-row sm:items-center sm:gap-1.5 sm:whitespace-nowrap sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 74%,rgba(11,3,24,.9) 88%,transparent)", fontSize: "clamp(13px,2.2vw,29px)" }}><span>Learn From</span> <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
+          <div className="z-[4] flex h-full flex-shrink-0 flex-col justify-center px-4 leading-[1.05] sm:flex-row sm:items-center sm:gap-1.5 sm:whitespace-nowrap sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 74%,rgba(11,3,24,.9) 88%,transparent)", fontSize: "clamp(12px,2vw,26px)" }}><span>Learn From</span> <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
             {[...LOGOS, ...LOGOS].map((l, i) => (
@@ -118,8 +118,8 @@ export function LandingPage() {
       {/* ===== EXPLORE ===== */}
       <section id="explore" className="px-6 py-8 sm:px-16 sm:pb-20 sm:pt-8" style={{ background: "#0b0318" }}>
         <div className="mx-auto max-w-[1800px] rounded-[20px] border border-[#7a7a7a] bg-[#171717] p-5 sm:rounded-[30px] sm:p-11" >
-          <h2 className="whitespace-nowrap font-medium tracking-tight" style={{ fontSize: "clamp(24px,4.1vw,55px)" }}><span className="ld-silver">Explore VEDAM</span><span className="ld-silver font-[family-name:var(--font-playfair)] italic">One</span></h2>
-          <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(12px,1.4vw,23px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
+          <h2 className="whitespace-nowrap font-medium tracking-tight" style={{ fontSize: "clamp(24px,4.1vw,55px)" }}><span className="ld-silver">Explore Vedam </span><span className="ld-silver font-[family-name:var(--font-playfair)] italic">One</span></h2>
+          <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(12px,1.4vw,23px)" }}>Start <span style={{ backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>coding early</span>, build real <span style={{ backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>products with AI</span>, <span style={{ backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>compete in hackathons</span>, join <span style={{ backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>live tech sessions</span> and learn from people working across <span style={{ backgroundImage: "linear-gradient(96deg,#35e8fb 0%,#7b5cff 55%,#c200db 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>MAANG and top tech companies.</span></p>
           <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {CARDS.map((c) => (
               <Link key={c.key} href={c.href} className="group relative block overflow-hidden rounded-[25px] border border-white/15 bg-white/[0.06] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5"
