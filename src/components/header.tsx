@@ -56,7 +56,6 @@ export function Header() {
       active ? "bg-[#7629fc] text-white" : "text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ");
   const itemCls = "flex items-center gap-3 rounded-xl px-3 py-2.5 font-body text-sm font-semibold text-white/90 hover:bg-white/10";
 
-  if (pathname === "/") return null;
   return (
     <header className="sticky top-0 z-30 text-white backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.45) 60%, transparent)" }}>
       <div className="relative mx-auto flex h-[72px] max-w-[1800px] items-center justify-between px-6 sm:px-10">
