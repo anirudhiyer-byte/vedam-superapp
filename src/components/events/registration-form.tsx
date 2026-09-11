@@ -1,4 +1,5 @@
 "use client";
+import { gtmEvent } from "@/lib/analytics/gtm";
 
 import { useMemo, useState } from "react";
 import type { EventRow, EventField } from "@/lib/events";
@@ -151,6 +152,7 @@ export function RegistrationForm({
 
     setSubmitting(false);
     try { await supabase.rpc("record_product_usage", { p_product: "events" }); } catch { /* best effort */ }
+    gtmEvent("bootcamp_register", { event_code: event.event_code, event_name: event.name, category: event.category ?? undefined });
     onDone();
   }
 

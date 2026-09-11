@@ -1,4 +1,5 @@
 "use client";
+import { gtmEvent } from "@/lib/analytics/gtm";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -136,7 +137,7 @@ export function RegisterForm() {
     setLoading(false);
     if (emailErr) {
       setEmailError(emailErr.message);
-      setStep("done");
+      gtmEvent("sign_up", { method: "otp" }); setStep("done");
     } else {
       setStep("email");
     }
@@ -155,7 +156,7 @@ export function RegisterForm() {
     if (error) return setError(error.message);
     setEmailVerified(true);
     try { const { data: u } = await supabase.auth.getUser(); if (u?.user) await supabase.from("profiles").update({ email_verified: true }).eq("id", u.user.id); } catch { /* */ }
-    setStep("done");
+    gtmEvent("sign_up", { method: "otp" }); setStep("done");
   }
 
   async function resendEmailCode() {

@@ -1,4 +1,5 @@
 "use client";
+import { gtmEvent } from "@/lib/analytics/gtm";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -81,6 +82,7 @@ export function LoginForm() {
       utm_campaign: utm.utm_campaign ?? null,
     });
 
+    gtmEvent("login", { method: mode === "phone" ? "otp_sms" : "otp_email" });
     // hard navigation so the fresh session cookie is present on the next request
     window.location.assign(next);
   }
