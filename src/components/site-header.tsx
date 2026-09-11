@@ -108,7 +108,9 @@ export function SiteHeader() {
               </div>
             </>
           ) : (
-            <Link href="/login" className="rounded-lg bg-[#7629fc] px-3.5 py-1.5 text-[15px] font-medium text-white">Sign in</Link>
+            <Link href="/login" className="relative inline-flex rounded-full p-[1.5px] transition-all hover:shadow-[0_0_22px_rgba(123,92,255,0.7)]" style={{ background: "linear-gradient(100deg,#ff2fb0,#7b5cff 55%,#2f9bff)", boxShadow: "0 0 16px rgba(123,92,255,.55)" }}>
+              <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[15px] font-medium text-white" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Sign in</span>
+            </Link>
           )}
           <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-white lg:hidden">☰</button>
         </div>
