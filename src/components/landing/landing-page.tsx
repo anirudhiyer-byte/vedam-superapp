@@ -62,7 +62,7 @@ export function LandingPage() {
 
         {/* copy — constrained to the left so it never sits under the image */}
         <div className="relative z-20 mx-auto max-w-[1800px] px-6 sm:px-10">
-          <div className="mx-auto max-w-[560px] pb-10 pt-8 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px] lg:text-left">
+          <div className="mx-auto max-w-[560px] pb-0 pt-8 text-center sm:pl-16 lg:mx-0 lg:max-w-[48%] lg:pb-[150px] lg:pt-[80px] lg:text-left">
             <div className="inline-block text-left lg:block">
             <h1 className="ld-silver font-[family-name:var(--font-inter)] font-normal uppercase leading-[0.8] tracking-[-0.05em]" style={{ fontSize: "clamp(52px,6.5vw,108px)" }}>Vedam</h1>
             <div className="mt-1.5 flex items-center justify-start gap-2.5">
@@ -101,7 +101,7 @@ export function LandingPage() {
         </div>
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}
-        <div className="relative z-[25] mt-6 flex h-[40px] items-center overflow-hidden border-y border-white/25 backdrop-blur-md sm:h-[52px] lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.07)", boxShadow: "0 0 55px rgba(138,24,255,.32) inset" }}>
+        <div className="relative z-[25] -mt-4 flex h-[40px] items-center overflow-hidden border-y border-white/25 backdrop-blur-md sm:h-[52px] lg:-mt-[46px]" style={{ background: "rgba(255,255,255,.07)", boxShadow: "0 0 55px rgba(138,24,255,.32) inset" }}>
           <div className="z-[4] flex h-full flex-shrink-0 flex-col justify-center px-4 leading-[1.05] sm:flex-row sm:items-center sm:gap-1.5 sm:whitespace-nowrap sm:px-12" style={{ background: "linear-gradient(to right,#0b0318 74%,rgba(11,3,24,.9) 88%,transparent)", fontSize: "clamp(12px,2vw,26px)" }}><span>Learn From</span> <span className="font-[family-name:var(--font-playfair)] italic">Mentors</span></div>
           <div className="pointer-events-none absolute right-0 top-0 z-[2] h-full w-[200px]" style={{ background: "linear-gradient(to left,#0b0318 15%,transparent)" }} />
           <div className="ld-track flex items-center">
