@@ -8,6 +8,7 @@ import { useIsAdmin } from "@/hooks/use-is-admin";
 
 const NAV: { label: string; href: string; soon?: boolean }[] = [
   { label: "Home", href: "/" },
+  { label: "VSAT", href: "/vsat" },
   { label: "Bootcamps", href: "/events" },
   { label: "Codesprint", href: "/codesprint", soon: true },
   { label: "College Predictor", href: "/predict", soon: true },

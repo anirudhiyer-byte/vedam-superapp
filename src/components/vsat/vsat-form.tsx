@@ -19,7 +19,6 @@ const grad = "linear-gradient(135deg,#00cfe5 5%,#c200db 96%)";
 export function VsatForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
-  const [authed, setAuthed] = useState<boolean | null>(null);
   const [done, setDone] = useState(false);
   const [year, setYear] = useState("");
   const [campus, setCampus] = useState("");
@@ -30,27 +29,46 @@ export function VsatForm() {
   useEffect(() => {
     (async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      setAuthed(!!session?.user);
       if (session?.user) {
         const { data } = await supabase.rpc("my_vsat_status");
-        if ((data as { registered?: boolean } | null)?.registered) setDone(true);
+        if ((data as { registered?: boolean } | null)?.registered) { setDone(true); return; }
+        // came back from login/signup with answers filled while logged out → auto-submit
+        try {
+          const raw = localStorage.getItem("vsat_pending");
+          if (raw) {
+            const p = JSON.parse(raw) as { year: string; campus: string; gender: string };
+            localStorage.removeItem("vsat_pending");
+            if (p.year && p.campus && p.gender) { await doSubmit(p.year, p.campus, p.gender, session); return; }
+          }
+        } catch { /* ignore */ }
       }
     })();
+    // eslint-disable-next-line
   }, [supabase]);
 
-  async function submit() {
-    if (!year || !campus || !gender) { setErr("Please answer all fields."); return; }
+  type Session = Awaited<ReturnType<typeof supabase.auth.getSession>>["data"]["session"];
+  async function doSubmit(y: string, c: string, g: string, session: Session) {
     setSaving(true); setErr("");
-    const { error } = await supabase.rpc("record_vsat_interest", { p_year: year, p_campus: campus, p_gender: gender });
+    const { error } = await supabase.rpc("record_vsat_interest", { p_year: y, p_campus: c, p_gender: g });
     if (error) { setErr(error.message); setSaving(false); return; }
-    // fire confirmation email (best effort)
-    const { data: { session } } = await supabase.auth.getSession();
     if (session?.user?.email) {
       const { data: p } = await supabase.from("profiles").select("full_name").eq("id", session.user.id).maybeSingle();
       void fetch("/api/vsat/confirm", { method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ to: session.user.email, name: (p as { full_name?: string })?.full_name, accessToken: session.access_token }) });
     }
     setSaving(false); setDone(true);
+  }
+
+  async function submit() {
+    if (!year || !campus || !gender) { setErr("Please answer all fields."); return; }
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) {
+      // logged out → stash answers, send to signup; we auto-submit on return
+      try { localStorage.setItem("vsat_pending", JSON.stringify({ year, campus, gender })); } catch { /* ignore */ }
+      router.push("/register?next=/vsat");
+      return;
+    }
+    await doSubmit(year, campus, gender, session);
   }
 
   return (
@@ -80,12 +98,6 @@ export function VsatForm() {
                 <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold">You have successfully registered for VSAT.</h2>
                 <p className="mx-auto mt-3 max-w-md text-white/70">Once we go live with the admissions, you&apos;ll receive updates for the same.</p>
                 <p className="mt-4 text-sm text-[#8fe9f5]">For now, a confirmation mail has been sent to you.</p>
-              </div>
-            ) : authed === false ? (
-              <div className="py-10 text-center">
-                <h2 className="font-[family-name:var(--font-inter)] text-2xl font-bold">Sign in to register for VSAT</h2>
-                <p className="mt-2 text-white/60">You need a Vedam One account to register your interest.</p>
-                <button onClick={() => router.push("/login?next=/vsat")} className="mt-5 rounded-lg px-6 py-3 font-semibold text-white" style={{ background: grad }}>Sign in →</button>
               </div>
             ) : (
               <>
