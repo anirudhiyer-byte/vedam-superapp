@@ -26,7 +26,7 @@ export function EventDetail({ code }: { code: string }) {
     (async () => {
       const { data: ev } = await supabase.from("events").select("*").eq("event_code", code).maybeSingle();
       if (active) setEvent((ev as EventRow) ?? null);
-      if (ev) { try { await supabase.rpc("log_event_view", { p_event_id: (ev as EventRow).id }); } catch { /* best effort */ } }
+      if (ev) { try { await supabase.rpc("log_event_view", { p_event_id: (ev as EventRow).id }); } catch { /* best effort */ } try { await supabase.rpc("record_bootcamp_view", { p_event: (ev as EventRow).id }); } catch { /* best effort — self-gates to logged-in + upcoming + not-registered */ } }
       const { data: u } = await supabase.auth.getUser();
       if (u.user && active) {
         setUserId(u.user.id);

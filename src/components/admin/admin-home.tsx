@@ -57,6 +57,8 @@ export function AdminHome() {
             <Link href="/admin/analytics" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Analytics</Link>
             <Link href="/admin/faqs" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">FAQs</Link>
             <Link href="/admin/comms" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Comms hub</Link>
+            <Link href="/admin/dropoffs" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Drop-offs</Link>
+            <Link href="/admin/automations" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Automations</Link>
           </div>
         </div>
 
