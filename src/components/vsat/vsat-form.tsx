@@ -53,9 +53,9 @@ export function VsatForm() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-black text-white">
       {/* ===== CAMPUS IMAGE BAND — full top ~50% ===== */}
-      <div aria-hidden className="absolute inset-x-0 top-0 z-0 h-[46vh] max-h-[532px] min-h-[300px] overflow-hidden bg-[#0d041c]">
+      <div aria-hidden className="absolute inset-x-0 top-0 z-0 h-[34vh] min-h-[220px] overflow-hidden bg-[#0d041c] sm:h-[46vh] sm:min-h-[300px] sm:max-h-[532px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="absolute inset-0 h-full w-full object-cover object-top" />
+        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="absolute inset-0 h-full w-full object-contain object-top sm:object-cover" />
       </div>
 
       {/* back arrow (replaces the header) */}

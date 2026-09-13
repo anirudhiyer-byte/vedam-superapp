@@ -91,7 +91,7 @@ export function LandingPage() {
             {/* mobile orbit — smaller, behind the students */}
             <div className="ld-orbit pointer-events-none absolute left-1/2 top-[42%] z-[1] h-0 w-0">
               {[0, 90, 180, 270].map((deg, i) => (
-                <div key={i} className="m absolute left-0 top-0 -m-8 h-16 w-16" style={{ transform: `rotate(${deg}deg) translateY(-138px)` }}>
+                <div key={i} className={["m absolute left-0 top-0", (i === 0 || i === 3) ? "-m-5 h-10 w-10" : "-m-8 h-16 w-16"].join(" ")} style={{ transform: `rotate(${deg}deg) translateY(-97px)` }}>
                   <div className="in grid h-full w-full place-items-center"><Image src={`/landing/motion-${i + 1}.webp`} alt="" width={64} height={64} className="h-full w-full object-contain" style={i === 2 ? { transform: "rotate(180deg)" } : undefined} /></div>
                 </div>
               ))}
