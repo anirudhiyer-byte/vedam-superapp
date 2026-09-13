@@ -71,8 +71,10 @@ export function SiteHeader() {
     ["text-[15px] font-medium transition-colors", active ? "rounded-full bg-[#7629fc] px-3.5 py-1 text-white" : "rounded-full px-3.5 py-1 text-white/85 hover:bg-[#7629fc] hover:text-white"].join(" ");
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.85) 15%, rgba(0,0,0,0.45) 45%, transparent 78%)" }}>
-      <div className="relative mx-auto flex max-w-[1800px] items-center justify-between px-6 py-4 sm:px-10">
+    <header className="sticky top-0 z-40">
+      {/* fading backdrop — blur + dark gradient, extends below the header and is masked to dissolve smoothly into the hero (no hard cutoff). Content sits above it, crisp. */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[220%] backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 38%, rgba(0,0,0,0) 72%)", maskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)", WebkitMaskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)" }} />
+      <div className="relative z-10 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-4 sm:px-10">
         <a href="https://www.vedam.org" className="flex items-center">
           <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-9 w-auto sm:h-10" />
         </a>
