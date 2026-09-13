@@ -56,6 +56,7 @@ export function SiteHeader() {
     return () => { mounted = false; sub.subscription.unsubscribe(); document.removeEventListener("mousedown", onClick); };
   }, [supabase]);
 
+  if (pathname === "/vsat") return null;
   const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase() || "V";
   async function logout() {
     setMenuOpen(false);
