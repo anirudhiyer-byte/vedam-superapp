@@ -13,7 +13,7 @@ const BENEFITS = [
 ];
 const grad = "linear-gradient(172deg,#00cfe5 26%,#794ede 70%,#c200db 129%)";
 const headGrad = { background: "linear-gradient(138deg,#00cfe5 5%,#c200db 97%)", WebkitBackgroundClip: "text" as const, backgroundClip: "text" as const, WebkitTextFillColor: "transparent" as const, color: "transparent" };
-const field = "h-[51px] w-full appearance-none rounded-md border border-[#7629fc]/70 bg-[rgba(79,79,79,0.29)] px-4 text-[16px] text-white outline-none focus:border-[#00cfe5]";
+const field = "h-[41px] w-full appearance-none rounded-md border border-[#7629fc]/70 bg-[rgba(79,79,79,0.29)] px-4 text-[13px] text-white outline-none focus:border-[#00cfe5]";
 
 export function VsatForm() {
   const [supabase] = useState(() => createClient());
@@ -54,16 +54,8 @@ export function VsatForm() {
     <div className="relative min-h-screen overflow-hidden bg-black text-white">
       {/* ===== CAMPUS IMAGE BAND — full top ~50% ===== */}
       <div aria-hidden className="absolute inset-x-0 top-0 z-0 h-[46vh] max-h-[532px] min-h-[300px] overflow-hidden bg-[#0d041c]">
-        {/* adypu (left campus, centre-right) — diagonal right edge */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/adypu-vsat.webp" alt="Ajeenkya DY Patil University campus" className="absolute bottom-0 right-[26%] h-full w-[52%] object-cover object-bottom" style={{ clipPath: "polygon(0 0, 100% 0, 72% 100%, 0 100%)" }} />
-        {/* su-vsat (right campus) — diagonal left edge, mirrors adypu */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/su-vsat.webp" alt="Sushant University campus" className="absolute bottom-0 right-0 h-full w-[36%] object-cover object-bottom" style={{ clipPath: "polygon(28% 0, 100% 0, 100% 100%, 0 100%)" }} />
-        {/* white diagonal seam between them */}
-        <div className="absolute inset-0" style={{ clipPath: "polygon(73.6% 0, 74% 0, 46.4% 100%, 46% 100%)", background: "#ffffff" }} />
-        {/* dark gradient over the left for the text */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(97deg,#0d041c 28%,rgba(13,4,28,0.55) 44%,transparent 60%)" }} />
+        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="absolute inset-0 h-full w-full object-cover object-bottom" />
       </div>
 
       {/* back arrow (replaces the header) */}
@@ -72,14 +64,14 @@ export function VsatForm() {
       {/* ===== CONTENT ===== */}
       <div className="relative z-10 mx-auto max-w-[1920px] px-6 pb-20 sm:px-10 lg:px-[112px]">
         <p className="pt-20 text-[18px] font-medium tracking-wide sm:pt-24 lg:pt-[84px] lg:text-[20px]">VSAT Interest Form · 2026–27</p>
-        <h1 className="mt-2 max-w-[560px] font-[family-name:var(--font-inter)] font-semibold leading-[1.05] tracking-[-3px]" style={{ fontSize: "clamp(40px,5.6vw,80px)" }}>
+        <h1 className="mt-2 max-w-[560px] font-[family-name:var(--font-inter)] font-semibold leading-[1.05] tracking-[-3px]" style={{ fontSize: "clamp(32px,4.2vw,60px)" }}>
           <span className="block" style={headGrad}>Register now,</span>
           <span className="block font-[family-name:var(--font-playfair)] italic" style={{ ...headGrad, fontWeight: 400 }}>Start Ahead</span>
         </h1>
 
         <div className="mt-10 flex flex-col gap-10 lg:mt-8 lg:flex-row lg:items-start lg:justify-between">
           {/* FORM CARD (left, overlaps the band) */}
-          <div className="relative w-full max-w-[823px] shrink-0 overflow-hidden rounded-[20px] border-[1.3px] border-[#7629fc] bg-[#121212] p-7 shadow-[1.3px_1.3px_13px_1.3px_rgba(255,255,255,0.4)] sm:p-9 lg:w-[823px] lg:px-16 lg:py-11">
+          <div className="relative w-full max-w-[560px] shrink-0 overflow-hidden rounded-[20px] border-[1.3px] border-[#7629fc] bg-[#121212] p-7 shadow-[1.3px_1.3px_13px_1.3px_rgba(255,255,255,0.4)] sm:p-9 lg:mt-2 lg:w-[560px] lg:px-12 lg:py-9">
             {done ? (
               <div className="py-10 text-center">
                 <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full text-3xl text-white" style={{ background: grad }}>✓</div>
@@ -89,23 +81,23 @@ export function VsatForm() {
               </div>
             ) : (
               <>
-                <h2 className="text-[28px] font-bold tracking-tight sm:text-[36px]">Enter your details</h2>
-                <div className="mt-7 space-y-6">
-                  <div><label className="mb-2.5 block text-[18px] font-semibold sm:text-[20px]">Year of passing class 10th*</label>
+                <h2 className="text-[22px] font-bold tracking-tight sm:text-[29px]">Enter your details</h2>
+                <div className="mt-6 space-y-4">
+                  <div><label className="mb-2 block text-[15px] font-semibold sm:text-[16px]">Year of passing class 10th*</label>
                     <select className={field} value={year} onChange={(e) => setYear(e.target.value)}><option value="">Select Year</option>{YEARS.map((y) => <option key={y} value={y}>{y}</option>)}</select></div>
-                  <div><label className="mb-2.5 block text-[18px] font-semibold sm:text-[20px]">Campus Preference*</label>
+                  <div><label className="mb-2 block text-[15px] font-semibold sm:text-[16px]">Campus Preference*</label>
                     <select className={field} value={campus} onChange={(e) => setCampus(e.target.value)}><option value="">Select campus</option>{CAMPUSES.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
-                  <div><label className="mb-2.5 block text-[18px] font-semibold sm:text-[20px]">Gender*</label>
+                  <div><label className="mb-2 block text-[15px] font-semibold sm:text-[16px]">Gender*</label>
                     <select className={field} value={gender} onChange={(e) => setGender(e.target.value)}><option value="">Select</option>{GENDERS.map((g) => <option key={g} value={g}>{g}</option>)}</select></div>
                   {err && <p className="text-sm text-[#ff6a8e]">{err}</p>}
-                  <button disabled={saving} onClick={submit} className="flex h-[51px] w-full items-center justify-center gap-2 rounded-md text-[18px] font-medium text-white disabled:opacity-60" style={{ background: grad }}>{saving ? "Submitting…" : "Submit →"}</button>
+                  <button disabled={saving} onClick={submit} className="flex h-[44px] w-full items-center justify-center gap-2 rounded-md text-[15px] font-medium text-white disabled:opacity-60" style={{ background: grad }}>{saving ? "Submitting…" : "Submit →"}</button>
                 </div>
               </>
             )}
           </div>
 
           {/* BENEFITS (bottom-right, below the band) */}
-          <div className="flex w-full max-w-[819px] flex-col gap-4 lg:mt-[210px]">
+          <div className="flex w-full max-w-[760px] flex-col gap-4 lg:mt-[113px]">
             <p className="text-[22px] font-medium sm:text-[24px]" style={{ background: "linear-gradient(174deg,#00cfe5 10%,#c200db 51%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Early registrants get:</p>
             <div className="grid gap-4 sm:grid-cols-3">
               {BENEFITS.map((b) => (
