@@ -55,23 +55,24 @@ export function VsatForm() {
       {/* ===== full-width image band. Two images share ONE diagonal edge at ~68% =====
            left (adypu) is clipped from 0 → to the seam; right (su-vsat) from the seam → 100%.
            The seam line sits exactly on that shared edge, so it can never drift. */}
-      <div aria-hidden className="absolute inset-x-0 top-0 z-0 h-[300px] overflow-hidden bg-[#0d041c] sm:h-[420px] lg:h-[530px]">
+      <div aria-hidden className="absolute inset-x-0 top-0 z-0 h-[320px] overflow-hidden bg-[#0d041c] sm:h-[460px] lg:h-[600px]">
         {/* left campus: fills 0 → seam. Bottom of the diagonal at 62%, top at 74% (skew) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/adypu-vsat.webp" alt="Ajeenkya DY Patil University campus" className="absolute inset-0 h-full w-full object-cover" style={{ clipPath: "polygon(0 0, 74% 0, 62% 100%, 0 100%)" }} />
+        <img src="/adypu-vsat.webp" alt="Ajeenkya DY Patil University campus" className="absolute inset-0 h-full w-full object-cover object-[center_30%]" style={{ clipPath: "polygon(0 0, 74% 0, 62% 100%, 0 100%)" }} />
         {/* right campus: fills seam → 100%, mirror edge (top 74%, bottom 62%) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/su-vsat.webp" alt="Sushant University campus" className="absolute inset-0 h-full w-full object-cover" style={{ clipPath: "polygon(74% 0, 100% 0, 100% 100%, 62% 100%)" }} />
+        <img src="/su-vsat.webp" alt="Sushant University campus" className="absolute inset-0 h-full w-full object-cover object-[center_30%]" style={{ clipPath: "polygon(74% 0, 100% 0, 100% 100%, 62% 100%)" }} />
         {/* the seam: a thin quad exactly on the shared edge (same 74%→62% coordinates) */}
-        <div className="absolute inset-0" style={{ clipPath: "polygon(74% 0, 74.35% 0, 62.35% 100%, 62% 100%)", background: "linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.15))" }} />
+        <div className="absolute inset-0" style={{ clipPath: "polygon(74% 0, 74.4% 0, 62.4% 100%, 62% 100%)", background: "#ffffff" }} />
         {/* dark gradient over the left for the heading legibility */}
         <div className="absolute inset-0" style={{ background: "linear-gradient(100deg,#0d041c 30%,rgba(13,4,28,0.5) 48%,transparent 64%)" }} />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28" style={{ background: "linear-gradient(to bottom, #000 15%, rgba(0,0,0,0.4) 55%, transparent)" }} />
       </div>
 
       {/* ===== content ===== */}
       <div className="relative z-10 mx-auto max-w-[1839px] px-6 pb-20 sm:px-10 lg:px-[112px]">
-        <p className="pt-16 text-[18px] font-medium tracking-wide sm:pt-20 lg:pt-[81px] lg:text-[20px]">VSAT Interest Form · 2026–27</p>
-        <h1 className="mt-2 max-w-[560px] font-[family-name:var(--font-inter)] font-semibold leading-[1.05] tracking-[-2px]" style={{ fontSize: "clamp(40px,6vw,80px)" }}>
+        <p className="pt-12 text-[18px] font-medium tracking-wide sm:pt-16 lg:pt-[64px] lg:text-[20px]">VSAT Interest Form · 2026–27</p>
+        <h1 className="mt-2 max-w-[560px] font-[family-name:var(--font-inter)] font-semibold leading-[1.05] tracking-[-2px]" style={{ fontSize: "clamp(26px,3.9vw,52px)" }}>
           <span style={headGrad}>Register now, </span>
           <span className="font-[family-name:var(--font-playfair)] italic" style={{ ...headGrad, fontWeight: 400 }}>Start Ahead</span>
         </h1>
@@ -104,7 +105,7 @@ export function VsatForm() {
           </div>
 
           {/* BENEFITS — pushed below the image band on desktop so they never overlap it */}
-          <div className="flex w-full flex-col gap-4 lg:mt-[210px]">
+          <div className="flex w-full flex-col gap-4 lg:mt-[300px]">
             <p className="text-[22px] font-medium sm:text-[24px]" style={{ background: "linear-gradient(174deg,#00cfe5 10%,#c200db 51%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Early registrants get:</p>
             <div className="grid gap-4 sm:grid-cols-3">
               {BENEFITS.map((b) => (
