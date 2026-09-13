@@ -44,7 +44,7 @@ export function LandingPage() {
         {/* texture */}
         <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.28] sm:opacity-[0.16]" style={{ backgroundImage: "radial-gradient(rgba(205,165,255,0.6) 1.3px, transparent 1.6px)", backgroundSize: "24px 24px" }} />
         <div className="pointer-events-none absolute right-16 top-24 z-[1] h-[700px] w-[820px] rounded-full opacity-70 blur-[40px]" style={{ background: "radial-gradient(closest-side, rgba(150,40,220,.45), transparent 70%)" }} />
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-[10] h-36" style={{ background: "linear-gradient(to bottom, #000 20%, rgba(0,0,0,0.6) 55%, transparent)" }} />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[10] h-20" style={{ background: "linear-gradient(to bottom, #000 8%, rgba(0,0,0,0.35) 45%, transparent)" }} />
 
         {/* HERO BODY */}
         {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
