@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 const YEARS = ["2024", "2025", "2026", "2027", "2028"];
-const CAMPUSES = ["Pune — Ajeenkya DY Patil University", "Gurugram — Sushant University", "No preference"];
+const CAMPUSES = ["Pune — Ajeenkya DY Patil University", "Gurugram — Sushant University"];
 const GENDERS = ["Male", "Female", "Other", "Prefer not to say"];
 const BENEFITS = [
   { icon: "🎟️", title: "Concession on VSAT Fee", desc: "Register early and get a reduced VSAT fee." },
@@ -52,10 +52,15 @@ export function VsatForm() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black text-white">
-      {/* ===== CAMPUS IMAGE BAND — full top ~50% ===== */}
-      <div aria-hidden className="absolute inset-x-0 top-0 z-0 h-[34vh] min-h-[220px] overflow-hidden bg-[#0d041c] sm:h-[46vh] sm:min-h-[300px] sm:max-h-[532px]">
+      {/* MOBILE: image in normal flow → content flows BELOW it (consistent on every screen) */}
+      <div className="relative z-0 w-full bg-[#0d041c] lg:hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="absolute inset-0 h-full w-full object-contain object-top sm:object-cover" />
+        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="block h-auto w-full" />
+      </div>
+      {/* DESKTOP: absolute band, heading overlaps on top */}
+      <div aria-hidden className="absolute inset-x-0 top-0 z-0 hidden h-[46vh] max-h-[532px] min-h-[300px] overflow-hidden bg-[#0d041c] lg:block">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="absolute inset-0 h-full w-full object-cover object-top" />
       </div>
 
       {/* back arrow (replaces the header) */}
@@ -63,9 +68,9 @@ export function VsatForm() {
 
       {/* ===== CONTENT ===== */}
       <div className="relative z-10 mx-auto max-w-[1920px] px-6 pb-20 sm:px-10 lg:px-[112px]">
-        <p className="pt-20 text-[18px] font-medium tracking-wide sm:pt-24 lg:pt-[84px] lg:text-[20px]">VSAT Interest Form · 2026–27</p>
-        <h1 className="mt-2 max-w-[560px] font-[family-name:var(--font-inter)] font-semibold leading-[1.05] tracking-[-3px]" style={{ fontSize: "clamp(32px,4.2vw,60px)" }}>
-          <span className="block" style={headGrad}>Register now,</span>
+        <p className="pt-6 text-[18px] font-medium tracking-wide lg:pt-[84px] lg:text-[20px]">VSAT Interest Form · 2026–27</p>
+        <h1 className="mt-2 max-w-[560px] font-[family-name:var(--font-inter)] font-semibold leading-[1.14] tracking-[-3px]" style={{ fontSize: "clamp(32px,4.2vw,60px)" }}>
+          <span className="block pb-[0.12em]" style={headGrad}>Register now,</span>
           <span className="block font-[family-name:var(--font-playfair)] italic" style={{ ...headGrad, fontWeight: 400 }}>Start Ahead</span>
         </h1>
 
@@ -75,9 +80,9 @@ export function VsatForm() {
             {done ? (
               <div className="py-10 text-center">
                 <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full text-3xl text-white" style={{ background: grad }}>✓</div>
-                <h2 className="text-2xl font-bold">You have successfully registered for VSAT.</h2>
-                <p className="mx-auto mt-3 max-w-md text-white/70">Once we go live with the admissions, you&apos;ll receive updates for the same.</p>
-                <p className="mt-4 text-sm text-[#8fe9f5]">For now, a confirmation mail has been sent to you.</p>
+                <h2 className="text-2xl font-bold">Your VSAT Interest Form registration is successful.</h2>
+                <p className="mx-auto mt-3 max-w-md text-white/70">Stay tuned for more updates.</p>
+                <p className="mt-4 text-sm text-[#8fe9f5]">A confirmation mail has been sent to you.</p>
               </div>
             ) : (
               <>
