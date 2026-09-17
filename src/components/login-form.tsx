@@ -14,7 +14,7 @@ export function LoginForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const params = useSearchParams();
-  const next = params.get("next") || "/";
+  const next = decodeURIComponent(params.get("next") || "/");
 
   const [mode, setMode] = useState<Mode>("phone");
   const [sent, setSent] = useState(false);

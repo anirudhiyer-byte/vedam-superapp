@@ -19,7 +19,7 @@ export function RegisterForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const searchParams = useSearchParams();
-  const nextUrl = searchParams.get("next") || "/";
+  const nextUrl = decodeURIComponent(searchParams.get("next") || "/");
 
   const [step, setStep] = useState<Step>("details");
   const [loading, setLoading] = useState(false);
