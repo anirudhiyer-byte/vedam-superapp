@@ -74,8 +74,8 @@ export function CsLanding() {
 
   async function doEnroll() { try { await supabase.rpc("cs_enroll"); } catch {} try { await supabase.rpc("cs_log_enroll"); } catch {} router.push("/codesprint/learn"); }
   function doStartModule(slug: string) { router.push(`/codesprint/learn?module=${slug}`); }
-  const register = () => gate({ kind: "start_codesprint" }, doEnroll, "Create your account to start CodeSprint — it only takes 20 seconds.");
-  const startModule = (slug: string) => gate({ kind: "start_codesprint", moduleSlug: slug }, () => doStartModule(slug), "Create your account to start this module — it only takes 20 seconds.");
+  const register = () => gate({ kind: "start_codesprint" }, doEnroll, "Create your account to start CodeSprint.");
+  const startModule = (slug: string) => gate({ kind: "start_codesprint", moduleSlug: slug }, () => doStartModule(slug), "Create your account to start this module.");
   // resume after login/signup/profile-completion
   useResumeAction((a) => { if (a.kind === "start_codesprint") { if (a.moduleSlug) doStartModule(a.moduleSlug); else void doEnroll(); } });
   const totalHours = useMemo(() => modules.length, [modules]);

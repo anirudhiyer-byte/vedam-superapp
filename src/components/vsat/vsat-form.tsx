@@ -35,7 +35,7 @@ export function VsatForm() {
 
   // logged-in with a complete-enough account -> register; else the gate routes them
   // (logged out -> account choice -> after signup the VSAT-aware Part 2 confirms + records)
-  const onRegister = () => gate({ kind: "vsat_register" }, doRegister, "Sign up to lock in your Early VSAT Registration. It only takes 20 seconds.");
+  const onRegister = () => gate({ kind: "vsat_register" }, doRegister, undefined, { authOnly: true });
 
   // resume a pending vsat_register after login/signup
   useResumeAction((a) => { if (a.kind === "vsat_register") void doRegister(); });

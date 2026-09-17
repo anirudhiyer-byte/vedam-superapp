@@ -68,7 +68,7 @@ export function CollegePredictor() {
     if (!hasInput || !f.stateId || !f.category || !f.gender) { setErr("Please fill your rank/marks, category, seat pool and domicile state."); return; }
     log("predict_clicked", { mode: f.mode, category: f.category, gender: f.gender, stateId: f.stateId });
     localStorage.setItem("cp_pending", JSON.stringify(f));   // so the prediction runs on return
-    gate({ kind: "predict" }, () => runPrediction(f), "Create your free account to see your predicted colleges — it takes 20 seconds.");
+    gate({ kind: "predict" }, () => runPrediction(f), "Create your free account to see your predicted colleges.");
   }
 
   async function openRounds(g: Grouped, r: Row) {

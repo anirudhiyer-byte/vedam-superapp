@@ -187,7 +187,7 @@ export function RegisterForm() {
           ) : (
             <>
               <h1 className="font-display text-xl font-bold text-white">You&apos;re in 🎉 One more step</h1>
-              <p className="mt-2 font-body text-sm leading-relaxed text-white/60">These details are needed to access Bootcamps, events, CodeSprint and other Vedam One products. You can also fill them later from your profile or while accessing any product. <b className="text-[#8fe9f5]">Pro Tip: Do it now — it takes 30 seconds.</b></p>
+              <p className="mt-2 font-body text-sm leading-relaxed text-white/60">These details unlock Bootcamps, events, CodeSprint and other Vedam One products. <b className="text-[#8fe9f5]">Pro Tip: do it now — takes 30 seconds.</b></p>
             </>
           )}
           <div className="mt-5 space-y-4">

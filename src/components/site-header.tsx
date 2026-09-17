@@ -119,9 +119,12 @@ export function SiteHeader() {
               </div>
             </>
           ) : (
-            <Link href="/login" className="group/si relative inline-flex rounded-full p-[1.5px] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,47,176,0.7),0_0_50px_rgba(47,155,255,0.55)]" style={{ background: "linear-gradient(100deg,#ff2fb0,#7b5cff 55%,#2f9bff)", boxShadow: "0 0 16px rgba(123,92,255,.55)" }}>
-              <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[15px] font-medium text-white transition-colors group-hover/si:bg-[rgba(138,24,255,0.3)]" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Sign in</span>
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link href="/login" className="rounded-full px-4 py-1.5 text-[15px] font-medium text-white/85 transition-colors hover:text-white">Sign in</Link>
+              <Link href="/register" className="group/si relative inline-flex rounded-full p-[1.5px] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,47,176,0.7),0_0_50px_rgba(47,155,255,0.55)]" style={{ background: "linear-gradient(100deg,#ff2fb0,#7b5cff 55%,#2f9bff)", boxShadow: "0 0 16px rgba(123,92,255,.55)" }}>
+                <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[15px] font-medium text-white transition-colors group-hover/si:bg-[rgba(138,24,255,0.3)]" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Register</span>
+              </Link>
+            </div>
           )}
           <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-white lg:hidden">☰</button>
         </div>
