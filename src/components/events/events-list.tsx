@@ -9,11 +9,11 @@ import { useResumeAction } from "@/lib/funnel/use-resume-action";
 import type { EventRow } from "@/lib/events";
 import { eventDateLabel, eventTimeLabel, isOffline, pointsTotalPossible } from "@/lib/events";
 
-export function EventsList() {
+export function EventsList({ initialEvents = [] }: { initialEvents?: EventRow[] } = {}) {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const { gate, Modals } = useProductGate();
-  const [events, setEvents] = useState<EventRow[]>([]);
+  const [events, setEvents] = useState<EventRow[]>(initialEvents);
   const [regs, setRegs] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
