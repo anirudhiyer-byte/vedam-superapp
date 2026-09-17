@@ -66,8 +66,9 @@ export function buildRawWithIcs({ to, from, subject, html, ics }: { to: string; 
   return b64url(Buffer.from(msg));
 }
 
+import { fetchResilient } from "@/lib/resilience";
 export async function gmailSend(token: string, raw: string): Promise<{ ok: boolean; error?: string }> {
-  const res = await fetch("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {
+  const res = await fetchResilient("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({ raw }),

@@ -1,10 +1,11 @@
+import { fetchResilient } from "@/lib/resilience";
 /** Zoom Server-to-Server OAuth client (server-only). */
 
 export async function zoomToken(): Promise<string | null> {
   const acc = process.env.ZOOM_ACCOUNT_ID, id = process.env.ZOOM_CLIENT_ID, sec = process.env.ZOOM_CLIENT_SECRET;
   if (!acc || !id || !sec) return null;
   const basic = Buffer.from(`${id}:${sec}`).toString("base64");
-  const res = await fetch(`https://zoom.us/oauth/token?grant_type=account_credentials&account_id=${acc}`, {
+  const res = await fetchResilient(`https://zoom.us/oauth/token?grant_type=account_credentials&account_id=${acc}`, {
     method: "POST", headers: { Authorization: `Basic ${basic}` },
   });
   if (!res.ok) return null;
@@ -16,7 +17,7 @@ export async function zoomToken(): Promise<string | null> {
 export async function addMeetingRegistrant(
   token: string, meetingId: string, email: string, firstName: string, lastName: string
 ): Promise<{ join_url?: string; error?: string }> {
-  const res = await fetch(`https://api.zoom.us/v2/meetings/${meetingId}/registrants`, {
+  const res = await fetchResilient(`https://api.zoom.us/v2/meetings/${meetingId}/registrants`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({ email, first_name: firstName || email.split("@")[0], last_name: lastName || "." }),
@@ -43,7 +44,7 @@ export async function getMeetingReport(token: string, meetingId: string): Promis
   let next = "";
   do {
     const url = `https://api.zoom.us/v2/report/meetings/${encodeMeetingId(meetingId)}/participants?page_size=300${next ? `&next_page_token=${next}` : ""}`;
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    const res = await fetchResilient(url, { headers: { Authorization: `Bearer ${token}` } });
     if (!res.ok) break;
     const j = await res.json();
     for (const p of (j.participants || []) as Record<string, unknown>[]) {

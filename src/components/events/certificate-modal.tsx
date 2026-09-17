@@ -1,7 +1,9 @@
 "use client";
+import dynamic from "next/dynamic";
+const VedamCertificate = dynamic(() => import("@/components/events/vedam-certificate"), { ssr: false, loading: () => null });
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import VedamCertificate from "@/components/events/vedam-certificate";
+
 import { downloadNodePng } from "@/lib/download-node";
 import { linkedInShareUrl, defaultShareText, type CertKind } from "@/lib/events";
 
