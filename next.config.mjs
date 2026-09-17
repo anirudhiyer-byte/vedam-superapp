@@ -1,3 +1,4 @@
+import { withSentryConfig } from "@sentry/nextjs/config";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -8,4 +9,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, { silent: true, widenClientFileUpload: true, webpack: { treeshake: { removeDebugLogging: true } } });
