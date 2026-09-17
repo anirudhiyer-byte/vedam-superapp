@@ -46,8 +46,9 @@ export function LandingPage() {
         <div className="pointer-events-none absolute right-16 top-24 z-[1] h-[700px] w-[820px] rounded-full opacity-70 blur-[40px]" style={{ background: "radial-gradient(closest-side, rgba(150,40,220,.45), transparent 70%)" }} />
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-28" style={{ background: "linear-gradient(to bottom, #000 4%, rgba(0,0,0,0.25) 40%, transparent)" }} />
 
-        {/* HERO BODY */}
-        {/* image layer — absolute to the full-width section so it's flush to the viewport edge (no gap) */}
+        {/* HERO BODY — capped + centered so the image + copy stay aligned on ultra-wide screens */}
+        <div className="relative mx-auto w-full max-w-[1920px]">
+        {/* image layer — absolute, now relative to the centered 1920 container */}
         <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] hidden w-[60%] lg:block">
           <Image src="/landing/purple-glow.webp" alt="" width={1000} height={1000} className="pointer-events-none absolute left-1/2 top-1/2 z-0 w-[92%] max-w-none -translate-x-1/2 -translate-y-1/2" />
           <div className="ld-orbit absolute left-[46%] top-[56%] z-[1] h-0 w-0">
@@ -98,6 +99,7 @@ export function LandingPage() {
             </div>
             <Image src="/landing/hero-students.webp" alt="Vedam students" width={1100} height={800} className="relative z-[2] block h-auto w-full" />
           </div>
+        </div>
         </div>
 
         {/* MARQUEE — translucent band with glow + border, image shows through, bigger logos */}

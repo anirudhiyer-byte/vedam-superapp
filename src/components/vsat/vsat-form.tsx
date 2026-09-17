@@ -51,7 +51,8 @@ export function VsatForm() {
   }, [supabase]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black text-white">
+    <div className="min-h-screen bg-black text-white">
+     <div className="relative mx-auto min-h-screen max-w-[1920px] overflow-hidden">
       {/* MOBILE: image in normal flow → content flows BELOW it (consistent on every screen) */}
       <div className="relative z-0 w-full bg-[#0d041c] lg:hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -122,6 +123,7 @@ export function VsatForm() {
           </div>
         </div>
       </div>
+     </div>
     </div>
   );
 }
