@@ -44,6 +44,7 @@ export function LoginForm() {
   async function sendCode() {
     setError(null);
     if (mode === "phone" && phone.replace(/\D/g, "").length < 10) return setError("Enter a valid WhatsApp number.");
+    if (mode === "phone") { const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null }); if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
     if (mode === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Enter a valid email.");
     if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha.");
 

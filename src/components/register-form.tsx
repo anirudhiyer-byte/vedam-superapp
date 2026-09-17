@@ -58,6 +58,9 @@ export function RegisterForm() {
     if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha.");
 
     setLoading(true);
+    // rate-limit OTP sends (per phone) to prevent SMS abuse — Turnstile already gates bots
+    const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null });
+    if (allowed === false) { setLoading(false); setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
     const utm = readUtm();
     try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone: e164(phone), email: email.trim() }) }); } catch { /* best effort */ }
     const { error } = await supabase.auth.signInWithOtp({
