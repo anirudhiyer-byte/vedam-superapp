@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useIsAdmin } from "@/hooks/use-is-admin";
+import { ProfileGateModal } from "@/components/profile/profile-gate-modal";
 
 const NAV: { label: string; href: string; soon?: boolean }[] = [
   { label: "Home", href: "/" },
@@ -26,6 +27,8 @@ export function SiteHeader() {
   const [uid, setUid] = useState("");
   const [points, setPoints] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [profileComplete, setProfileComplete] = useState(true);
+  const [gateOpen, setGateOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -44,9 +47,12 @@ export function SiteHeader() {
         const { data: pts } = await supabase.from("points_ledger").select("points").eq("user_id", session.user.id);
         if (!mounted) return;
         setPoints((pts as { points: number }[] ?? []).reduce((a, r) => a + (r.points || 0), 0));
+        const { data: pc } = await supabase.rpc("is_profile_complete");
+        if (!mounted) return;
+        setProfileComplete(!!pc);
       } else {
         // signed out — clear everything so the UI updates instantly
-        setAuthed(false); setName(""); setEmail(""); setPhone(""); setUid(""); setPoints(0); setMenuOpen(false);
+        setAuthed(false); setName(""); setEmail(""); setPhone(""); setUid(""); setPoints(0); setMenuOpen(false); setProfileComplete(true);
       }
     }
     supabase.auth.getSession().then(({ data }) => loadUser(data.session));
@@ -96,7 +102,7 @@ export function SiteHeader() {
             <>
               <span className="flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold text-white transition-all hover:border-white/40 hover:shadow-[0_0_16px_rgba(255,201,60,0.4)]"><span className="hidden text-white/70 sm:inline">Total</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden><defs><linearGradient id="shGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#shGold)" stroke="#fff6d6" strokeWidth="0.5" /></svg>{points}</span>
               <div ref={menuRef} className="relative">
-                <button onClick={() => setMenuOpen((o) => !o)} className="grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold text-white ring-2 ring-white/0 transition-all hover:ring-white/60 hover:shadow-[0_0_18px_rgba(138,24,255,0.6)]" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}</button>
+                <button onClick={() => setMenuOpen((o) => !o)} className="relative grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold text-white ring-2 ring-white/0 transition-all hover:ring-white/60 hover:shadow-[0_0_18px_rgba(138,24,255,0.6)]" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}{!profileComplete && <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-[#ff4d6d] text-[10px] font-bold ring-2 ring-black">!</span>}</button>
                 {menuOpen && (
                   <div className="absolute right-0 top-12 z-50 w-52 overflow-hidden rounded-xl border border-white/10 bg-[#160a30] py-1.5 text-sm shadow-2xl">
                     <div className="border-b border-white/10 px-4 py-2.5">
@@ -104,6 +110,7 @@ export function SiteHeader() {
                       <div className="mt-0.5 text-xs text-white/50">{[email, phone].filter(Boolean).join(" | ")}</div>
                       {uid && <div className="mt-0.5 font-mono text-[11px] text-white/40">{uid}</div>}
                     </div>
+                    {!profileComplete && <button onClick={() => { setMenuOpen(false); setGateOpen(true); }} className="flex w-full items-center gap-2 px-4 py-2 text-left text-[#ffb84d] hover:bg-white/5">⚠ Complete your profile</button>}
                     <Link href="/dashboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Dashboard</Link>
                     <Link href="/leaderboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Leaderboard</Link>
                     <button onClick={logout} className="block w-full px-4 py-2 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
@@ -126,6 +133,7 @@ export function SiteHeader() {
             : <Link key={n.href} href={n.href} onClick={() => setNavOpen(false)} className="block rounded-lg px-4 py-2.5 font-medium text-white hover:bg-white/5">{n.label}</Link>)}
         </div>
       )}
+      <ProfileGateModal open={gateOpen} onClose={() => setGateOpen(false)} onComplete={() => { setGateOpen(false); setProfileComplete(true); }} />
     </header>
   );
 }
