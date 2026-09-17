@@ -59,6 +59,7 @@ export function CsPlayer() {
       // pick starting module + lesson
       const startMod = list.find((m) => m.slug === moduleSlug) || list[0];
       if (startMod) {
+        try { await supabase.rpc("cs_log_module_start", { p_module: startMod.id }); } catch { /* best effort — logs the lead + creates the participation shell */ }
         setOpenModule(startMod.id);
         const doneSet = new Set((prog ?? []).map((p) => p.lesson_id));
         const next = startMod.lessons.find((l) => !doneSet.has(l.id)) || startMod.lessons[0];
