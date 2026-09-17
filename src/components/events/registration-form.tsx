@@ -1,7 +1,7 @@
 "use client";
 import { gtmEvent } from "@/lib/analytics/gtm";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { EventRow, EventField } from "@/lib/events";
 import { eventSchema } from "@/lib/events";
 import { createClient } from "@/lib/supabase/client";
@@ -26,12 +26,13 @@ function profileValue(f: EventField, p: Profile): string {
 }
 
 export function RegistrationForm({
-  event, profile, userId, onDone,
+  event, profile, userId, onDone, autoRegister,
 }: {
   event: EventRow;
   profile: Profile;
   userId: string;
   onDone: () => void;
+  autoRegister?: boolean;
 }) {
   const [supabase] = useState(() => createClient());
   const schema = eventSchema(event);
@@ -72,6 +73,7 @@ export function RegistrationForm({
     return String(v ?? "").trim().length > 0;
   };
   const valid = extraFields.every(fieldOk);
+  useEffect(() => { if (autoRegister && extraFields.length === 0) void submit(); /* eslint-disable-next-line */ }, [autoRegister]);
 
   const pick = (re: RegExp, typ?: EventField["type"]) => {
     const merged: Record<string, unknown> = { ...autoVals, ...vals };

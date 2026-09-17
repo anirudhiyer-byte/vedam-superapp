@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { EventRow } from "@/lib/events";
@@ -16,6 +17,8 @@ export function EventDetail({ code }: { code: string }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [registered, setRegistered] = useState(false);
+  const searchParams = useSearchParams();
+  const autoReg = searchParams.get("register") === "1";
   const [zoomJoinUrl, setZoomJoinUrl] = useState<string | null>(null);
   const [regInfo, setRegInfo] = useState<{ id: string; joined: boolean; github: string | null } | null>(null);
   const [loading, setLoading] = useState(true);
@@ -193,7 +196,7 @@ export function EventDetail({ code }: { code: string }) {
                   </div>
                 )}
                 <h2 className="relative mb-4 font-display text-lg font-semibold text-white">Register</h2>
-                <RegistrationForm event={event} profile={profile} userId={userId} onDone={() => setRegistered(true)} />
+                <RegistrationForm event={event} profile={profile} userId={userId} autoRegister={autoReg} onDone={() => setRegistered(true)} />
               </>
             ) : null}
           </div>
