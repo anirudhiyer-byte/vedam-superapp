@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { useProductGate } from "@/components/funnel/use-product-gate";
+import { useResumeAction } from "@/lib/funnel/use-resume-action";
 import VedamCertificate from "@/components/events/vedam-certificate";
 
 type Module = { id: string; slug: string; title: string; subtitle: string | null; taught_by: string | null; level: string | null; duration_label: string | null; thumbnail_url: string | null; lessons: number };
@@ -59,6 +61,8 @@ export function CsLanding() {
   const [authed, setAuthed] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  const { gate, Modals } = useProductGate();
+
   useEffect(() => {
     (async () => {
       const { data } = await supabase.from("cs_modules").select("id, slug, title, subtitle, taught_by, level, duration_label, thumbnail_url, cs_lessons(count)").eq("published", true).order("order");
@@ -68,16 +72,12 @@ export function CsLanding() {
     })();
   }, [supabase]);
 
-  async function register() {
-    if (!authed) { router.push("/login?next=/codesprint"); return; }
-    await supabase.rpc("cs_enroll");
-    router.push("/codesprint/learn");
-  }
-  function startModule(slug: string) {
-    const dest = `/codesprint/learn?module=${slug}`;
-    if (!authed) { router.push(`/login?next=${encodeURIComponent(dest)}`); return; }
-    router.push(dest);
-  }
+  async function doEnroll() { await supabase.rpc("cs_enroll"); router.push("/codesprint/learn"); }
+  function doStartModule(slug: string) { router.push(`/codesprint/learn?module=${slug}`); }
+  const register = () => gate({ kind: "start_codesprint" }, doEnroll, "Create your account to start CodeSprint — it only takes 20 seconds.");
+  const startModule = (slug: string) => gate({ kind: "start_codesprint", moduleSlug: slug }, () => doStartModule(slug), "Create your account to start this module — it only takes 20 seconds.");
+  // resume after login/signup/profile-completion
+  useResumeAction((a) => { if (a.kind === "start_codesprint") { if (a.moduleSlug) doStartModule(a.moduleSlug); else void doEnroll(); } });
   const totalHours = useMemo(() => modules.length, [modules]);
 
   return (
@@ -162,6 +162,7 @@ export function CsLanding() {
         ))}
       </div>
       <p className="mt-3 font-mono text-[10px] text-muted">// {totalHours} modules · self-paced</p>
+      <Modals />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { useProductGate } from "@/components/funnel/use-product-gate";
 import { marksToRank } from "@/lib/cp/marks-to-rank";
 import { CP_STATES, CP_CATEGORIES, CP_GENDERS, CP_STREAMS, CP_YEARS, stateNameToId } from "@/lib/cp/options";
 
@@ -24,6 +25,7 @@ export function CollegePredictor() {
   const [modal, setModal] = useState<{ name: string; program: string; rounds: { round: number; opening_rank: number; closing_rank: number }[] } | null>(null);
 
   const set = (patch: Partial<Form>) => setF((x) => ({ ...x, ...patch }));
+  const { gate, Modals } = useProductGate();
   const log = (event: string, payload: Record<string, unknown> = {}) => { try { supabase.rpc("log_cp_event", { p_event: event, p_session: sid(), p_payload: payload }); } catch { /* */ } };
 
   async function runPrediction(form: Form, resumed = false) {
@@ -65,8 +67,8 @@ export function CollegePredictor() {
     const hasInput = f.mode === "rank" ? !!f.rank : !!f.marks;
     if (!hasInput || !f.stateId || !f.category || !f.gender) { setErr("Please fill your rank/marks, category, seat pool and domicile state."); return; }
     log("predict_clicked", { mode: f.mode, category: f.category, gender: f.gender, stateId: f.stateId });
-    if (!authed) { localStorage.setItem("cp_pending", JSON.stringify(f)); log("redirected_to_signup"); router.push("/register?next=/predict"); return; }
-    runPrediction(f);
+    localStorage.setItem("cp_pending", JSON.stringify(f));   // so the prediction runs on return
+    gate({ kind: "predict" }, () => runPrediction(f), "Create your free account to see your predicted colleges — it takes 20 seconds.");
   }
 
   async function openRounds(g: Grouped, r: Row) {
@@ -160,6 +162,7 @@ export function CollegePredictor() {
           </div>
         </div>
       )}
+      <Modals />
     </div>
   );
 }

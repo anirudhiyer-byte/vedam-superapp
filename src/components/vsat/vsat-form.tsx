@@ -2,10 +2,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { useProductGate } from "@/components/funnel/use-product-gate";
+import { useResumeAction } from "@/lib/funnel/use-resume-action";
 
-const YEARS = ["2024", "2025", "2026", "2027", "2028"];
-const CAMPUSES = ["Pune — Ajeenkya DY Patil University", "Gurugram — Sushant University"];
-const GENDERS = ["Male", "Female", "Other", "Prefer not to say"];
 const BENEFITS = [
   { icon: "🎟️", title: "Concession on VSAT Fee", desc: "Register early and get a reduced VSAT fee." },
   { icon: "🎓", title: "Higher Scholarship", desc: "Get assessed for higher scholarship brackets first." },
@@ -13,39 +12,40 @@ const BENEFITS = [
 ];
 const grad = "linear-gradient(172deg,#00cfe5 26%,#794ede 70%,#c200db 129%)";
 const headGrad = { background: "linear-gradient(138deg,#00cfe5 5%,#c200db 97%)", WebkitBackgroundClip: "text" as const, backgroundClip: "text" as const, WebkitTextFillColor: "transparent" as const, color: "transparent" };
-const field = "h-[41px] w-full appearance-none rounded-md border border-[#7629fc]/70 bg-[rgba(79,79,79,0.29)] px-4 text-[13px] text-white outline-none focus:border-[#00cfe5]";
 
 export function VsatForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const [done, setDone] = useState(false);
-  const [year, setYear] = useState(""); const [campus, setCampus] = useState(""); const [gender, setGender] = useState("");
   const [saving, setSaving] = useState(false); const [err, setErr] = useState("");
 
-  type Session = Awaited<ReturnType<typeof supabase.auth.getSession>>["data"]["session"];
-  async function doSubmit(y: string, c: string, g: string, session: Session) {
+  const { gate, Modals } = useProductGate();
+
+  async function doRegister() {
     setSaving(true); setErr("");
-    const { error } = await supabase.rpc("record_vsat_interest", { p_year: y, p_campus: c, p_gender: g });
+    const { error } = await supabase.rpc("record_vsat_interest");
     if (error) { setErr(error.message); setSaving(false); return; }
+    const { data: { session } } = await supabase.auth.getSession();
     if (session?.user?.email) {
       const { data: p } = await supabase.from("profiles").select("full_name").eq("id", session.user.id).maybeSingle();
       void fetch("/api/vsat/confirm", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ to: session.user.email, name: (p as { full_name?: string })?.full_name, accessToken: session.access_token }) });
     }
     setSaving(false); setDone(true);
   }
-  async function submit() {
-    if (!year || !campus || !gender) { setErr("Please answer all fields."); return; }
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session?.user) { try { localStorage.setItem("vsat_pending", JSON.stringify({ year, campus, gender })); } catch {} router.push("/register?next=/vsat"); return; }
-    await doSubmit(year, campus, gender, session);
-  }
+
+  // logged-in with a complete-enough account -> register; else the gate routes them
+  // (logged out -> account choice -> after signup the VSAT-aware Part 2 confirms + records)
+  const onRegister = () => gate({ kind: "vsat_register" }, doRegister, "Sign up to lock in your Early VSAT Registration. It only takes 20 seconds.");
+
+  // resume a pending vsat_register after login/signup
+  useResumeAction((a) => { if (a.kind === "vsat_register") void doRegister(); });
+
   useEffect(() => {
     (async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
         const { data } = await supabase.rpc("my_vsat_status");
         if ((data as { registered?: boolean } | null)?.registered) { setDone(true); return; }
-        try { const raw = localStorage.getItem("vsat_pending"); if (raw) { const p = JSON.parse(raw); localStorage.removeItem("vsat_pending"); if (p.year && p.campus && p.gender) await doSubmit(p.year, p.campus, p.gender, session); } } catch {}
       }
     })(); // eslint-disable-next-line
   }, [supabase]);
@@ -87,17 +87,10 @@ export function VsatForm() {
               </div>
             ) : (
               <>
-                <h2 className="text-[22px] font-bold tracking-tight sm:text-[29px]">Enter your details</h2>
-                <div className="mt-6 space-y-4">
-                  <div><label className="mb-2 block text-[15px] font-semibold sm:text-[16px]">Year of passing class 10th*</label>
-                    <select className={field} value={year} onChange={(e) => setYear(e.target.value)}><option value="">Select Year</option>{YEARS.map((y) => <option key={y} value={y}>{y}</option>)}</select></div>
-                  <div><label className="mb-2 block text-[15px] font-semibold sm:text-[16px]">Campus Preference*</label>
-                    <select className={field} value={campus} onChange={(e) => setCampus(e.target.value)}><option value="">Select campus</option>{CAMPUSES.map((c) => <option key={c} value={c}>{c}</option>)}</select></div>
-                  <div><label className="mb-2 block text-[15px] font-semibold sm:text-[16px]">Gender*</label>
-                    <select className={field} value={gender} onChange={(e) => setGender(e.target.value)}><option value="">Select</option>{GENDERS.map((g) => <option key={g} value={g}>{g}</option>)}</select></div>
-                  {err && <p className="text-sm text-[#ff6a8e]">{err}</p>}
-                  <button disabled={saving} onClick={submit} className="flex h-[44px] w-full items-center justify-center gap-2 rounded-md text-[15px] font-medium text-white disabled:opacity-60" style={{ background: grad }}>{saving ? "Submitting…" : "Submit →"}</button>
-                </div>
+                <h2 className="text-[24px] font-bold tracking-tight sm:text-[30px]">Register your interest</h2>
+                <p className="mt-2 text-[15px] leading-relaxed text-white/60">Lock in your early-registrant benefits for VSAT 2026–27. One click — no long forms.</p>
+                <button disabled={saving} onClick={onRegister} className="mt-6 flex h-[52px] w-full items-center justify-center gap-2 rounded-md text-[18px] font-semibold text-white disabled:opacity-60" style={{ background: grad }}>{saving ? "Registering…" : "Register for VSAT →"}</button>
+                {err && <p className="mt-3 text-sm text-[#ff6a8e]">{err}</p>}
               </>
             )}
           </div>
@@ -124,6 +117,7 @@ export function VsatForm() {
         </div>
       </div>
      </div>
+      <Modals />
     </div>
   );
 }
