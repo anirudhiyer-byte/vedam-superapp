@@ -12,8 +12,8 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
   const icons = ["👤", "⏱", "👁"];
   return (
     <div
-      className={["relative mx-auto mb-5 grid max-w-[1170px] items-center gap-7 overflow-hidden rounded-[24px] border border-white/10 p-7 sm:grid-cols-[180px_1fr_1fr]",
-        straddle ? "-mt-[64px] pt-[64px] [clip-path:url(#csCardCurveTop)]" : ""].join(" ")}
+      className={["relative mx-auto mb-5 grid max-w-[1170px] items-center gap-7 overflow-hidden rounded-[24px] border border-white/10 sm:grid-cols-[180px_1fr_1fr]",
+        straddle ? "-mt-[135px] px-7 pb-[46px] pt-[118px] [clip-path:url(#csCardCurveTop)]" : "p-7"].join(" ")}
       style={{ background: "radial-gradient(140% 120% at 15% 10%,#17171b 0%,#0a0a0c 46%,#020203 100%)", boxShadow: "0 30px 70px -30px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 0 40px rgba(255,255,255,0.02), inset 0 -1px 0 rgba(0,0,0,0.5)" }}>
       {/* glass sheen */}
       <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,0.06) 0%,transparent 26%,transparent 74%,rgba(255,255,255,0.04) 100%)" }} />
