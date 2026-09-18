@@ -114,6 +114,18 @@ export function SiteHeader() {
                     <Link href="/profile" className="block px-4 py-2 text-white/90 hover:bg-white/5">My Profile</Link>
                     <Link href="/dashboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Dashboard</Link>
                     <Link href="/leaderboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Leaderboard</Link>
+                    {isAdmin && (
+                      <>
+                        <div className="my-1 h-px bg-white/10" />
+                        <div className="px-4 pt-1 pb-0.5 font-mono text-[10px] uppercase tracking-wide text-white/35">Admin</div>
+                        <Link href="/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">⚙ Admin overview</Link>
+                        <Link href="/events?admin=manage" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage Events</Link>
+                        <Link href="/events?admin=analytics" className="block px-4 py-2 text-white/85 hover:bg-white/5">Events Analytics</Link>
+                        <Link href="/codesprint?admin=1" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage CodeSprint</Link>
+                        <Link href="/admin/comms" className="block px-4 py-2 text-white/85 hover:bg-white/5">Communications</Link>
+                        <div className="my-1 h-px bg-white/10" />
+                      </>
+                    )}
                     <button onClick={logout} className="block w-full px-4 py-2 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
                   </div>
                 )}
