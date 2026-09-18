@@ -8,7 +8,7 @@ const NS = "var(--font-nunito), var(--font-inter), system-ui, Arial, sans-serif"
 const PLAY = "var(--font-playfair), Georgia, 'Times New Roman', serif";
 
 // static parts from /public: polka texture, Vedam logo, signature, verified watermark
-const A = { polka: "/cert-polka.webp", logo: "/cert-logo.webp", sign: "/cert-signature.webp", mark: "/verified-watermark.webp" };
+const A = { polka: "/cert-polka.webp", logo: "/vedam-logo.png", sign: "/cert-signature.png", mark: "/verified-watermark.webp" };
 // left ribbon inset from the card edge, and ribbon width
 const RIB_LEFT = 40, RIB_W = 108, CARD_L = 156;   // content starts right of the ribbon
 
