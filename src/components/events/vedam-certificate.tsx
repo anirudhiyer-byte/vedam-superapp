@@ -59,7 +59,7 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
               // eslint-disable-next-line @next/next/no-img-element
               ? <img src={qrDataUrl} alt="Verify QR" style={{ width: 96, height: 96, margin: "0 auto", display: "block", background: "#fff", padding: 4, borderRadius: 6 }} />
               : <div style={{ width: 96, height: 96, margin: "0 auto", background: "#eee", borderRadius: 6 }} />}
-            <div style={{ marginTop: 8, fontSize: 15, color: "#7a7a7a", letterSpacing: "-0.75px" }}>{qrCaption}</div>
+            <div style={{ marginTop: 4, fontSize: 15, color: "#7a7a7a", letterSpacing: "-0.75px" }}>{qrCaption}</div>
           </div>
         )}
 
