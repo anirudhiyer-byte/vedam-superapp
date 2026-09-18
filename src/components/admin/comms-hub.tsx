@@ -30,6 +30,7 @@ export function CommsHub() {
   const [product, setProduct] = useState<Product>("all");
   const [tab, setTab] = useState<"campaigns" | "automations" | "reminders" | "report" | "templates">("campaigns");
   const [tplMode, setTplMode] = useState<"tag" | "build">("tag");
+  const [advRecips, setAdvRecips] = useState<{ user_id: string; email: string | null; phone: string | null; full_name: string | null }[] | null>(null);
 
   const [waTpls, setWaTpls] = useState<WaTpl[]>([]);
   const [emTpls, setEmTpls] = useState<EmTpl[]>([]);
@@ -136,9 +137,10 @@ export function CommsHub() {
         <div className="space-y-4">
           <details className="rounded-2xl border border-border">
             <summary className="cursor-pointer px-4 py-3 font-body text-sm font-semibold text-heading">Advanced audience builder (optional) ▾</summary>
-            <div className="border-t border-border p-4"><AdvancedAudience onResolved={() => { /* resolved recipients available for a future direct-send hook */ }} /></div>
+            <div className="border-t border-border p-4"><AdvancedAudience onResolved={setAdvRecips} /></div>
           </details>
-          <CommsBroadcast channel={channel} product={product} />
+          {advRecips && advRecips.length > 0 && <div className="rounded-lg border border-accent/40 bg-surface px-3 py-2 font-body text-xs text-heading">Using <b>{advRecips.length}</b> recipients from the advanced builder for the send below. <button onClick={() => setAdvRecips(null)} className="ml-2 font-semibold text-accent">clear</button></div>}
+          <CommsBroadcast channel={channel} product={product} overrideRecipients={advRecips} />
         </div>
       ) : tab === "automations" ? (
         <div>

@@ -10,7 +10,7 @@ type EmTpl = { id: string; name: string; subject: string | null; product: string
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
 type DateCond = "any" | "after" | "before" | "between";
 
-export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "email"; product: Product }) {
+export function CommsBroadcast({ channel, product, overrideRecipients }: { channel: "whatsapp" | "email"; product: Product; overrideRecipients?: { user_id: string; email: string | null; phone: string | null; full_name: string | null }[] | null }) {
   const [supabase] = useState(() => createClient());
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,13 +81,16 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
   const toggle = (id: string) => setSelected((s) => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
   const selAll = () => setSelected((s) => { const n = new Set(s); filtered.forEach((r) => n.add(r.id)); return n; });
   const selRows = useMemo(() => rows.filter((r) => selected.has(r.id)), [rows, selected]);
+  const sendRows = useMemo(() => (overrideRecipients && overrideRecipients.length)
+    ? overrideRecipients.map((r) => ({ id: r.user_id, name: r.full_name || "", email: r.email, phone: r.phone, state: null, city: null, points: 0, events_reg: 0, events_attended: 0, cs_enrolled: false, cs_modules: 0, cs_total: 0, cp_used: false } as Row))
+    : selRows, [overrideRecipients, selRows]);
 
   async function send() {
-    if (!templateRef || selRows.length === 0) return;
+    if (!templateRef || sendRows.length === 0) return;
     setSending(true); setResult(null);
     if (channel === "whatsapp") {
       const F: Record<string, (r: Row) => string> = { name: (r) => r.name, state: (r) => r.state || "", city: (r) => r.city || "", points: (r) => String(r.points) };
-      const recips = selRows.filter((r) => r.phone).map((r) => ({ to: r.phone as string, sample: varMaps.length ? { bodyvar: varMaps.map((m) => m.source === "static" ? m.value : (F[m.source]?.(r) ?? "")) } : undefined }));
+      const recips = sendRows.filter((r) => r.phone).map((r) => ({ to: r.phone as string, sample: varMaps.length ? { bodyvar: varMaps.map((m) => m.source === "static" ? m.value : (F[m.source]?.(r) ?? "")) } : undefined }));
       let sent = 0, failed = 0;
       for (let i = 0; i < recips.length; i += 40) {
         const batch = recips.slice(i, i + 40);
@@ -97,7 +100,7 @@ export function CommsBroadcast({ channel, product }: { channel: "whatsapp" | "em
       setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`);
     } else {
       const tpl = emTpls.find((t) => t.id === templateRef);
-      const emails = selRows.filter((r) => r.email).map((r) => r.email as string);
+      const emails = sendRows.filter((r) => r.email).map((r) => r.email as string);
       const { data: s } = await supabase.auth.getSession();
       const bodyInner = tpl ? renderEmailTemplateHtml(tpl).replace(/^[\s\S]*<body[^>]*>|<\/body>[\s\S]*$/g, "") : "";
       let sent = 0, failed = 0;
