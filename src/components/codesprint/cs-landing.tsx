@@ -86,6 +86,7 @@ export function CsLanding() {
   useResumeAction((a) => { if (a.kind === "start_codesprint") { if (a.moduleSlug) doStartModule(a.moduleSlug); else void doEnroll(); } });
   const totalHours = useMemo(() => modules.length, [modules]);
 
+  const IMG_POS = ["50% 18%", "50% 50%", "50% 12%", "50% 40%"];
   const STAR_LINES = ["Learn coding basics, logic and problem-solving", "Learn practical AI app development skills", "Learn HTML and create responsive websites", "Learn prompting, AI tools and workflows"];
   return (
     <div className="bg-[#0d0d0d]">
@@ -100,14 +101,14 @@ export function CsLanding() {
         <div className="hidden lg:block">
           <CsBand>
             {modules.map((m, i) => (
-              <CsModuleCard key={m.id} m={{ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null }} straddle={i === 0} onStart={() => startModule(m.slug)} />
+              <CsModuleCard key={m.id} m={{ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null, imgPos: IMG_POS[i] ?? null }} straddle={i === 0} onStart={() => startModule(m.slug)} />
             ))}
             {modules.length === 0 && <p className="py-10 text-center font-body text-sm text-white/50">Modules are being set up — check back soon.</p>}
           </CsBand>
         </div>
         {/* mobile band + 2-col cards */}
         <div className="lg:hidden">
-          <CsBandMobile modules={modules.map((m, i) => ({ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null }))} onStart={startModule} />
+          <CsBandMobile modules={modules.map((m, i) => ({ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null, imgPos: IMG_POS[i] ?? null }))} onStart={startModule} />
         </div>
       </div>
 

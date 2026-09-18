@@ -18,9 +18,10 @@ function MobileCard({ m, onStart }: { m: CsModule; onStart: () => void }) {
       <div className="flex items-center gap-2.5">
         <div className="relative h-[54px] w-[54px] flex-none rounded-full border border-[rgba(255,160,40,0.6)]" style={{ background: ORANGE }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {m.thumbnail_url ? <img src={m.thumbnail_url} alt="" className="absolute inset-0 h-full w-full rounded-full object-cover object-bottom" /> : null}
+          {m.thumbnail_url ? <img src={m.thumbnail_url} alt="" className="absolute inset-0 h-full w-full rounded-full object-cover" style={{ objectPosition: m.imgPos || "50% 50%" }} /> : null}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoFor(m.taught_by)} alt="" className="absolute -right-1 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white object-contain p-0.5" />
+          <img src={logoFor(m.taught_by)} alt="" className="absolute right-[-7px] top-[32%] z-10 h-[18px] w-[18px] rounded-full bg-white object-contain p-[2px] shadow" />
+          <span className="absolute right-[-1px] top-[62%] z-10 text-[10px] text-[#FFB41F]">★</span>
         </div>
         <div className="flex h-[54px] flex-col justify-between text-left">
           <div className="text-[7px] font-medium tracking-[1.5px] text-[#c9c9c9]">TAUGHT BY</div>

@@ -1,5 +1,5 @@
 "use client";
-export type CsModule = { id: string; slug: string; title: string; subtitle?: string | null; instructor_name?: string | null; taught_by?: string | null; level?: string | null; duration_label?: string | null; thumbnail_url?: string | null; lessons?: number | null };
+export type CsModule = { id: string; slug: string; title: string; subtitle?: string | null; instructor_name?: string | null; taught_by?: string | null; level?: string | null; duration_label?: string | null; thumbnail_url?: string | null; lessons?: number | null; imgPos?: string | null };
 
 /** logo per company: taught_by -> /cs-logo-<slug>.webp (Cars24 -> cs-logo-cars24.webp). */
 const logoFor = (taughtBy?: string | null) => `/cs-logo-${String(taughtBy || "google").toLowerCase().replace(/[^a-z0-9]/g, "")}.webp`;
@@ -24,15 +24,15 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
       {/* instructor */}
       <div className="relative z-[2] mx-auto h-[165px] w-[165px]" style={shift}>
         <div className="absolute inset-0 rounded-full border-[1.5px] border-[rgba(255,160,40,0.6)]" />
-        <div className="absolute inset-[11px] grid place-items-end overflow-hidden rounded-full" style={{ background: "linear-gradient(160deg,#FFB41F,#FD5300)" }}>
+        <div className="absolute inset-[11px] overflow-hidden rounded-full" style={{ background: "linear-gradient(160deg,#FFB41F,#FD5300)" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {m.thumbnail_url ? <img src={m.thumbnail_url} alt={m.instructor_name || ""} className="absolute bottom-0 left-0 h-auto w-full object-contain object-bottom" /> : null}
+          {m.thumbnail_url ? <img src={m.thumbnail_url} alt={m.instructor_name || ""} className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: m.imgPos || "50% 50%" }} /> : null}
         </div>
-        <div className="absolute right-3.5 top-[44%] grid h-10 w-10 place-items-center overflow-hidden rounded-full bg-white shadow">
+        <div className="absolute right-[-4px] top-[34%] z-10 grid h-[34px] w-[34px] place-items-center overflow-hidden rounded-full bg-white shadow-md">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logoFor(m.taught_by)} alt="" className="h-[62%] w-[62%] object-contain" />
         </div>
-        <span className="absolute bottom-5 right-7 text-xl text-[#FFB41F]">★</span>
+        <span className="absolute right-[3px] top-[60%] z-10 text-lg text-[#FFB41F]">★</span>
       </div>
 
       {/* taught by — with circular spotlight glow behind the whole block */}
