@@ -10,6 +10,7 @@ import { CsHero } from "@/components/codesprint/cs-hero";
 import { CsBand } from "@/components/codesprint/cs-band";
 import { CsModuleCard } from "@/components/codesprint/cs-module-card";
 import { CsCertSection } from "@/components/codesprint/cs-cert-section";
+import { CsTestimonials } from "@/components/codesprint/cs-testimonials";
 
 type Module = { id: string; slug: string; title: string; subtitle: string | null; taught_by: string | null; level: string | null; duration_label: string | null; thumbnail_url: string | null; lessons: number };
 
@@ -104,6 +105,9 @@ export function CsLanding() {
 
       {/* CERTIFICATE section */}
       <CsCertSection onStartLearning={register} />
+
+      {/* TESTIMONIALS */}
+      <CsTestimonials />
 
       {/* FAQ (kept until Testimonials section is built) */}
       <div className="mx-auto max-w-5xl px-6 py-14 sm:px-10">
