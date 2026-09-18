@@ -1,7 +1,7 @@
 "use client";
 export type CsModule = { id: string; slug: string; title: string; instructor_name?: string | null; taught_by?: string | null; level?: string | null; duration_label?: string | null; thumbnail_url?: string | null; points_per_lesson?: number | null };
 
-const META_LOGO: Record<string, string> = { google: "/cs-logo-google.webp", microsoft: "/cs-logo-microsoft.webp", amazon: "/cs-logo-amazon.webp", meta: "/cs-logo-meta.webp" };
+const META_LOGO: Record<string, string> = { google: "/cs-logo-google.webp", microsoft: "/cs-logo-microsoft.webp", amazon: "/cs-logo-amazon.webp", meta: "/cs-logo-meta.webp", apple: "/cs-logo-apple.webp" };
 
 /** One module card — instructor circle · TAUGHT BY <company> Instructor · details · Start Free. */
 export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?: boolean; onStart: () => void }) {

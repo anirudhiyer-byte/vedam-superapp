@@ -7,9 +7,9 @@ const ORANGE = "linear-gradient(124deg,#FFB41F 2%,#FD5300 86%)";
 const ORANGE2 = "linear-gradient(107deg,#FFB41F 2%,#FD5300 86%)";
 
 const LOGOS: { f: string; x: number; y: number; s: number }[] = [
-  { f: "/cs-logo-1.webp", x: 17, y: 267, s: 82 }, { f: "/cs-logo-google.webp", x: 471, y: 76, s: 82 },
-  { f: "/cs-logo-cars24.webp", x: 562, y: 481, s: 82 }, { f: "/cs-logo-2.webp", x: 748, y: 256, s: 82 },
-  { f: "/cs-logo-atlassian.webp", x: 170, y: 407, s: 55 }, { f: "/cs-logo-3.webp", x: 275, y: 36, s: 55 },
+  { f: "/cs-logo-amazon.webp", x: 17, y: 267, s: 82 }, { f: "/cs-logo-google.webp", x: 471, y: 76, s: 82 },
+  { f: "/cs-logo-cars24.webp", x: 562, y: 481, s: 82 }, { f: "/cs-logo-microsoft.webp", x: 748, y: 256, s: 82 },
+  { f: "/cs-logo-atlassian.webp", x: 170, y: 407, s: 55 }, { f: "/cs-logo-apple.webp", x: 275, y: 36, s: 55 },
   { f: "/cs-logo-oracle.webp", x: 770, y: 462, s: 55 },
 ];
 const EXPERTS = [{ f: "/cs-expert-1.webp", x: 74, y: 82 }, { f: "/cs-expert-2.webp", x: 662, y: 23 }, { f: "/cs-expert-3.webp", x: 295, y: 441 }];
