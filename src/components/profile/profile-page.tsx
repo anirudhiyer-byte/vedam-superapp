@@ -46,12 +46,14 @@ export function ProfilePage() {
     <PremiumDark>
       <div className="mx-auto max-w-4xl px-4 py-8 text-white">
         {/* PROFILE CARD */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/12 p-6 shadow-[0_24px_70px_-30px_rgba(138,24,255,0.6)]" style={{ background: "linear-gradient(135deg,#2b135c 0%,#160a30 60%,#0b0318 100%)" }}>
-          <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full opacity-40 blur-3xl" style={{ background: "radial-gradient(closest-side,#8A18FF,transparent)" }} />
+        <div className="relative overflow-hidden rounded-[24px] border border-white/12 p-6 shadow-[0_24px_70px_-30px_rgba(138,24,255,0.6)]" style={{ background: "radial-gradient(120% 100% at 80% 20%,#331660 0%,#1a0b38 50%,#0b0318 100%)" }}>
+          <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.14]" style={{ backgroundImage: "radial-gradient(rgba(205,165,255,0.6) 1.2px, transparent 1.5px)", backgroundSize: "22px 22px" }} />
+          <div aria-hidden className="pointer-events-none absolute -right-10 -top-16 h-56 w-56 rounded-full opacity-60 blur-[50px]" style={{ background: "radial-gradient(closest-side,rgba(150,40,220,.5),transparent 70%)" }} />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg,transparent,#7b5cff,transparent)" }} />
           <div className="relative flex flex-wrap items-center gap-5">
-            <div className="grid h-20 w-20 place-items-center rounded-2xl text-2xl font-extrabold text-white" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}</div>
+            <div className="relative grid h-20 w-20 place-items-center rounded-2xl p-[1.5px]" style={{ background: "linear-gradient(135deg,#ff2fb0,#7b5cff 55%,#2f9bff)" }}><div className="grid h-full w-full place-items-center rounded-[14px] text-2xl font-extrabold text-white" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)" }}>{initials}</div></div>
             <div className="flex-1">
-              <div className="font-display text-2xl font-extrabold">{prof?.full_name || "You"}</div>
+              <div className="font-[family-name:var(--font-inter)] text-2xl font-bold tracking-tight" style={{ background: "linear-gradient(138deg,#00cfe5 5%,#c200db 97%)", WebkitBackgroundClip: "text" as const, backgroundClip: "text" as const, WebkitTextFillColor: "transparent" as const, color: "transparent" }}>{prof?.full_name || "You"}</div>
               <div className="mt-0.5 font-mono text-xs text-white/50">{prof?.public_id} · {[prof?.city, prof?.state].filter(Boolean).join(", ")}</div>
             </div>
             <div className="flex gap-3">
@@ -64,7 +66,9 @@ export function ProfilePage() {
 
         {/* TABS */}
         <div className="mt-6 flex flex-wrap gap-2">
-          {TABS.map((t) => <button key={t} onClick={() => setTab(t)} className={["rounded-full px-4 py-1.5 text-sm font-semibold", tab === t ? "bg-[#7629fc] text-white" : "border border-white/15 text-white/70"].join(" ")}>{t}{t === "Certificates" && certs.length ? ` (${certs.length})` : ""}</button>)}
+          {TABS.map((t) => tab === t
+            ? <span key={t} className="relative inline-flex rounded-full p-[1.5px]" style={{ background: "linear-gradient(100deg,#ff2fb0,#7b5cff 55%,#2f9bff)", boxShadow: "0 0 16px rgba(123,92,255,.5)" }}><button onClick={() => setTab(t)} className="rounded-full px-4 py-1.5 text-sm font-semibold text-white" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)" }}>{t}{t === "Certificates" && certs.length ? ` (${certs.length})` : ""}</button></span>
+            : <button key={t} onClick={() => setTab(t)} className="rounded-full border border-white/15 px-4 py-1.5 text-sm font-semibold text-white/70 transition-colors hover:text-white">{t}{t === "Certificates" && certs.length ? ` (${certs.length})` : ""}</button>)}
         </div>
 
         <div className="mt-5">
@@ -88,9 +92,9 @@ export function ProfilePage() {
           {tab === "Points Log" && (
             <div>
               <div className="mb-3 flex gap-2 text-xs">
-                <button onClick={() => setPointSort("date")} className={pointSort === "date" ? "font-bold text-[#8fe9f5]" : "text-white/50"}>By date</button>
+                <button onClick={() => setPointSort("date")} className={pointSort === "date" ? "font-bold text-[#35e8fb]" : "text-white/50"}>By date</button>
                 <span className="text-white/20">·</span>
-                <button onClick={() => setPointSort("product")} className={pointSort === "product" ? "font-bold text-[#8fe9f5]" : "text-white/50"}>By product</button>
+                <button onClick={() => setPointSort("product")} className={pointSort === "product" ? "font-bold text-[#35e8fb]" : "text-white/50"}>By product</button>
               </div>
               <div className="overflow-hidden rounded-xl border border-white/10">
                 <table className="w-full text-left text-sm">
@@ -107,7 +111,7 @@ export function ProfilePage() {
             comms.length ? <div className="space-y-2">{comms.map((c) => (
               <button key={c.id} onClick={() => c.html_snapshot && setOpenComm(c)} className="flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-3 text-left hover:bg-white/[0.06]">
                 <div><div className="font-medium">{c.subject || c.ref_name || "Email"}</div><div className="font-mono text-[11px] text-white/45">✉️ Email · {c.kind} · {new Date(c.sent_at).toLocaleString()}{c.opened_at ? " · opened" : ""}</div></div>
-                {c.html_snapshot && <span className="text-xs text-[#8fe9f5]">View →</span>}
+                {c.html_snapshot && <span className="text-xs font-semibold text-[#35e8fb]">View →</span>}
               </button>
             ))}</div> : <p className="text-white/40">No communications sent to you yet.</p>
           )}

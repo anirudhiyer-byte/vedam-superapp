@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
+import { AdvancedAudience } from "@/components/admin/advanced-audience";
 import { EventReminders } from "@/components/admin/event-reminders";
 import { ReminderNow } from "@/components/admin/reminder-now";
 import { CommsJourneys } from "@/components/admin/comms-journeys";
@@ -132,7 +133,13 @@ export function CommsHub() {
           )}
         </div>
       ) : tab === "campaigns" ? (
-        <CommsBroadcast channel={channel} product={product} />
+        <div className="space-y-4">
+          <details className="rounded-2xl border border-border">
+            <summary className="cursor-pointer px-4 py-3 font-body text-sm font-semibold text-heading">Advanced audience builder (optional) ▾</summary>
+            <div className="border-t border-border p-4"><AdvancedAudience onResolved={() => { /* resolved recipients available for a future direct-send hook */ }} /></div>
+          </details>
+          <CommsBroadcast channel={channel} product={product} />
+        </div>
       ) : tab === "automations" ? (
         <div>
           <p className="mb-2 font-body text-sm font-semibold text-heading">Stage-based automations (if / else-if / else)</p>
