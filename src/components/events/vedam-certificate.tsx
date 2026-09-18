@@ -43,9 +43,11 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
   const cert = (
     <div ref={ref} style={{ position: "relative", width: CW, height: CH, boxSizing: "border-box", padding: 12, borderRadius: 22, background: frameGrad, overflow: "hidden", userSelect: "none", fontFamily: NS }}>
       <div style={{ position: "relative", width: "100%", height: "100%", background: "#fff", borderRadius: 16, overflow: "hidden" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={A.polka} alt="" style={{ position: "absolute", right: -55, top: -120, width: 760, height: 760, objectFit: "cover", opacity: 0.12, pointerEvents: "none" }} />
         {/* polka texture */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={A.polka} alt="" style={{ position: "absolute", right: -55, top: -120, width: 760, height: 760, objectFit: "cover", opacity: 0.1, pointerEvents: "none" }} />
+        <img src={A.polka} alt="" style={{ position: "absolute", right: -55, top: -120, width: 760, height: 760, objectFit: "cover", opacity: 0.2, pointerEvents: "none" }} />
 
         {/* LEFT ribbons — both notch INWARD toward the QR (flat outer edges) */}
         <div style={{ position: "absolute", left: RIB_LEFT, top: 0, width: RIB_W, height: 328, background: grad, clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%)" }} />
