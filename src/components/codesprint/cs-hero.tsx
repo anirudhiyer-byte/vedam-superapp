@@ -12,7 +12,7 @@ const LOGOS: { f: string; x: number; y: number; s: number }[] = [
   { f: "/cs-logo-atlassian.webp", x: 170, y: 407, s: 55 }, { f: "/cs-logo-apple.webp", x: 275, y: 36, s: 55 },
   { f: "/cs-logo-oracle.webp", x: 770, y: 462, s: 55 },
 ];
-const EXPERTS = [{ f: "/cs-expert-1.webp", x: 74, y: 82, pos: "50% 12%" }, { f: "/cs-expert-2.webp", x: 662, y: 23, pos: "50% 55%" }, { f: "/cs-expert-3.webp", x: 295, y: 441, pos: "50% 40%" }];
+const EXPERTS = [{ f: "/cs-expert-1.webp", x: 74, y: 82, pos: "50% 12%" }, { f: "/cs-expert-2.webp", x: 662, y: 23, pos: "50% 15%" }, { f: "/cs-expert-3.webp", x: 295, y: 441, pos: "50% 40%" }];
 const PLUS = [{ x: 484, y: 562 }, { x: 227, y: 45 }, { x: 703, y: 210 }, { x: 735, y: 452 }, { x: 122, y: 402 }, { x: 444, y: 36 }, { x: 354, y: 146, c: "#666" }];
 const BADGES = ["Beginner Friendly", "Certificate on Completion", "No prior experience required"];
 
@@ -34,7 +34,7 @@ export const CsHero = forwardRef<HTMLDivElement, { onStartNow?: () => void }>(fu
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/cs-polka.webp" alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.36]" />
 
-      <div className="relative z-10 mx-auto grid max-w-[1920px] items-center gap-10 px-6 pb-16 pt-8 sm:px-10 lg:grid-cols-[minmax(0,600px)_1fr] lg:items-start lg:gap-6 lg:px-[146px] lg:pb-20 lg:pt-10">
+      <div className="relative z-10 mx-auto grid max-w-[1920px] items-center gap-10 px-6 pb-16 pt-8 sm:px-10 lg:grid-cols-[minmax(0,520px)_1fr] lg:items-start lg:gap-6 lg:px-[146px] lg:pb-20 lg:pt-10">
         {/* LEFT — copy */}
         <div>
           <p className="font-[family-name:var(--font-inter)] text-[15px] font-extralight tracking-wide text-white/90 sm:text-[16px]">START SMART, START EARLY</p>
@@ -57,7 +57,7 @@ export const CsHero = forwardRef<HTMLDivElement, { onStartNow?: () => void }>(fu
         </div>
 
         {/* RIGHT — Tech Experts orbit (static), nudged down to clear the header */}
-        <div className="relative mx-auto mt-8 w-full max-w-[1300px] lg:mt-0">
+        <div className="relative mx-auto mt-8 w-full max-w-[1300px] lg:mt-[-10px]">
           <div className="relative mx-auto aspect-[873/600] w-full" style={{ containerType: "inline-size" }}>
             <Orbit />
           </div>

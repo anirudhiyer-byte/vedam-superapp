@@ -7,7 +7,7 @@ import { useProductGate } from "@/components/funnel/use-product-gate";
 import { useResumeAction } from "@/lib/funnel/use-resume-action";
 import VedamCertificate from "@/components/events/vedam-certificate";
 import { CsHero } from "@/components/codesprint/cs-hero";
-import { CsBand, HeroCurve } from "@/components/codesprint/cs-band";
+import { CsBand } from "@/components/codesprint/cs-band";
 import { CsModuleCard } from "@/components/codesprint/cs-module-card";
 
 type Module = { id: string; slug: string; title: string; subtitle: string | null; taught_by: string | null; level: string | null; duration_label: string | null; thumbnail_url: string | null; lessons: number };
@@ -85,14 +85,9 @@ export function CsLanding() {
 
   return (
     <div className="bg-[#0d0d0d]">
-      {/* ===== DEPLOY TEST BANNER — remove after diagnosis ===== */}
-      <div style={{ position: "sticky", top: 0, zIndex: 9999, background: "#ff0000", color: "#fff", fontSize: 22, fontWeight: 900, textAlign: "center", padding: "14px", letterSpacing: "1px" }}>
-        🔴 DEPLOY TEST — BUILD-777 — if you can see this, the pipeline works 🔴
-      </div>
       {/* HERO (new) with its ⌣ bottom */}
       <div className="relative">
         <CsHero onStartNow={register} />
-        <HeroCurve />
       </div>
 
       {/* ORANGE stats band + module cards on the black section (module 1 straddles the seam) */}
