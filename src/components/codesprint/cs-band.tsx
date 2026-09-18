@@ -31,6 +31,9 @@ export function CsBand({ children }: { children?: React.ReactNode }) {
         <section className="relative z-[2]" style={{ marginTop: "-130px", background: "#141414", borderRadius: "52px 52px 60px 60px/46px 46px 56px 56px", padding: "0 clamp(20px,4vw,70px) 46px" }}>
           <div className="relative pt-10">{children}</div>
         </section>
+
+        {/* thick curved ORANGE band ending — peeks below the black band's curved bottom */}
+        <section aria-hidden className="relative" style={{ zIndex: 1, marginTop: "-96px", background: "linear-gradient(180deg,#FD7B03 0%,#F97101 100%)", borderRadius: "40px 40px 46px 46px/40px 40px 42px 42px", height: "175px" }} />
       </div>
     </div>
   );

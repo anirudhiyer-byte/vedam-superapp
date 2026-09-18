@@ -10,12 +10,12 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
   const company = (m.taught_by || "GOOGLE").trim();
   const meta = [[m.level || "Beginner Level"], [m.duration_label || `${m.lessons ?? ""} lessons`.trim()], ["Popular"]].map((x) => x[0]).filter(Boolean) as string[];
   const icons = ["👤", "⏱", "👁"];
-  const shift = straddle ? { transform: "translateY(-20%)" } as const : undefined;
+  const shift = straddle ? { transform: "translateY(-10%)" } as const : undefined;
   return (
     <div
       className={["relative mx-auto mb-5 grid max-w-[1170px] items-center gap-7 overflow-hidden rounded-[24px] border border-white/30 sm:grid-cols-[180px_1fr_1fr]",
         straddle ? "-mt-[100px] px-7 pb-[16px] pt-[72px] [clip-path:url(#csCardCurveTop)]" : "p-7"].join(" ")}
-      style={{ background: "radial-gradient(140% 120% at 15% 10%,#17171b 0%,#0a0a0c 46%,#020203 100%)", boxShadow: "0 30px 70px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 0 60px rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.55)" }}>
+      style={{ background: "radial-gradient(140% 120% at 15% 10%,#0e0e12 0%,#070709 50%,#010102 100%)", boxShadow: "0 30px 70px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 0 60px rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.55)" }}>
       {/* glass sheen */}
       <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,0.10) 0%,transparent 24%,transparent 72%,rgba(255,255,255,0.07) 100%)" }} />
       {/* clip-path def (once, on the first card) */}

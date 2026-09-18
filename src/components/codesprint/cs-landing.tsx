@@ -83,6 +83,7 @@ export function CsLanding() {
   useResumeAction((a) => { if (a.kind === "start_codesprint") { if (a.moduleSlug) doStartModule(a.moduleSlug); else void doEnroll(); } });
   const totalHours = useMemo(() => modules.length, [modules]);
 
+  const STAR_LINES = ["Learn coding basics, logic and problem-solving", "Learn practical AI app development skills", "Learn HTML and create responsive websites", "Learn prompting, AI tools and workflows"];
   return (
     <div className="bg-[#0d0d0d]">
       {/* HERO (new) with its ⌣ bottom */}
@@ -94,7 +95,7 @@ export function CsLanding() {
       <div id="modules">
         <CsBand>
           {modules.map((m, i) => (
-            <CsModuleCard key={m.id} m={m} straddle={i === 0} onStart={() => startModule(m.slug)} />
+            <CsModuleCard key={m.id} m={{ ...m, subtitle: m.subtitle ?? STAR_LINES[i] ?? null }} straddle={i === 0} onStart={() => startModule(m.slug)} />
           ))}
           {modules.length === 0 && <p className="py-10 text-center font-body text-sm text-white/50">Modules are being set up — check back soon.</p>}
         </CsBand>
