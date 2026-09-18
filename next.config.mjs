@@ -7,6 +7,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Tie the build ID to the git commit so every deploy ships uniquely-hashed
+  // bundles — prevents Vercel from ever serving a stale compiled build.
+  generateBuildId: async () => process.env.VERCEL_GIT_COMMIT_SHA || null,
 };
 
 export default withSentryConfig(nextConfig, { silent: true, widenClientFileUpload: true, webpack: { treeshake: { removeDebugLogging: true } } });
