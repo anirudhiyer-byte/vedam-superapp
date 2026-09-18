@@ -10,18 +10,19 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
   const company = (m.taught_by || "GOOGLE").trim();
   const meta = [[m.level || "Beginner Level"], [m.duration_label || `${m.lessons ?? ""} lessons`.trim()], ["Popular"]].map((x) => x[0]).filter(Boolean) as string[];
   const icons = ["👤", "⏱", "👁"];
+  const shift = straddle ? { transform: "translateY(-20%)" } as const : undefined;
   return (
     <div
-      className={["relative mx-auto mb-5 grid max-w-[1170px] items-center gap-7 overflow-hidden rounded-[24px] border border-white/10 sm:grid-cols-[180px_1fr_1fr]",
+      className={["relative mx-auto mb-5 grid max-w-[1170px] items-center gap-7 overflow-hidden rounded-[24px] border border-white/30 sm:grid-cols-[180px_1fr_1fr]",
         straddle ? "-mt-[100px] px-7 pb-[16px] pt-[72px] [clip-path:url(#csCardCurveTop)]" : "p-7"].join(" ")}
-      style={{ background: "radial-gradient(140% 120% at 15% 10%,#17171b 0%,#0a0a0c 46%,#020203 100%)", boxShadow: "0 30px 70px -30px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 0 40px rgba(255,255,255,0.02), inset 0 -1px 0 rgba(0,0,0,0.5)" }}>
+      style={{ background: "radial-gradient(140% 120% at 15% 10%,#17171b 0%,#0a0a0c 46%,#020203 100%)", boxShadow: "0 30px 70px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 0 60px rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.55)" }}>
       {/* glass sheen */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,0.06) 0%,transparent 26%,transparent 74%,rgba(255,255,255,0.04) 100%)" }} />
+      <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,0.10) 0%,transparent 24%,transparent 72%,rgba(255,255,255,0.07) 100%)" }} />
       {/* clip-path def (once, on the first card) */}
       {straddle && <svg className="absolute h-0 w-0"><defs><clipPath id="csCardCurveTop" clipPathUnits="objectBoundingBox"><path d="M0,0 Q0.5,0.16 1,0 L1,1 L0,1 Z" /></clipPath></defs></svg>}
 
       {/* instructor */}
-      <div className="relative z-[2] mx-auto h-[165px] w-[165px]">
+      <div className="relative z-[2] mx-auto h-[165px] w-[165px]" style={shift}>
         <div className="absolute inset-0 rounded-full border-[1.5px] border-[rgba(255,160,40,0.6)]" />
         <div className="absolute inset-[11px] grid place-items-end overflow-hidden rounded-full" style={{ background: "linear-gradient(160deg,#FFB41F,#FD5300)" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -35,7 +36,7 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
       </div>
 
       {/* taught by — with circular spotlight glow behind the whole block */}
-      <div className="relative z-[2] text-center">
+      <div className="relative z-[2] text-center" style={shift}>
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-[52%] -z-[1] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(closest-side,rgba(255,255,255,0.22),rgba(255,255,255,0.08) 45%,transparent 72%)", filter: "blur(14px)" }} />
         <div className="flex items-center justify-center gap-2.5 text-[12px] font-medium tracking-[4px] text-[#c9c9c9]"><span className="h-px w-11 bg-[linear-gradient(90deg,transparent,#00cfe5)]" />TAUGHT BY<span className="h-px w-11 bg-[linear-gradient(90deg,#00cfe5,transparent)]" /></div>
         <div className="relative mt-1.5"><div className="relative font-[family-name:var(--font-inter)] text-[40px] font-extrabold uppercase tracking-[3px] text-white" style={{ textShadow: "0 2px 10px rgba(255,255,255,0.25)" }}>{company}</div></div>
@@ -43,7 +44,7 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
       </div>
 
       {/* details — green meta icons */}
-      <div className="relative z-[2]">
+      <div className="relative z-[2]" style={shift}>
         <h3 className="font-[family-name:var(--font-inter)] text-[23px] font-bold tracking-tight text-white">{m.title}</h3>
         <div className="mt-3 grid grid-cols-2 gap-x-9 gap-y-2.5 text-[14px] text-white/80">
           {meta.map((p, i) => <span key={p}><span className="text-[#5ce38a]">{icons[i]}</span> {p}</span>)}

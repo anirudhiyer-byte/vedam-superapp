@@ -5,8 +5,8 @@
  *  lower edge; module cards sit on the black (first card straddles via its own -mt). */
 export function CsBand({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="bg-[#0d0d0d]" style={{ paddingLeft: "clamp(12px,2.5vw,60px)", paddingRight: "clamp(12px,2.5vw,60px)" }}>
-      <div className="relative mx-auto max-w-[1780px] pb-10">
+    <div className="bg-[#0d0d0d]">
+      <div className="relative pb-10">
         {/* ORANGE rounded shape (back) */}
         <section className="relative text-center" style={{ background: "linear-gradient(180deg,#FF9E12,#FD7B03 60%,#F97101)", borderRadius: "60px 60px 40px 40px/48px 48px 40px 40px", padding: "82px clamp(24px,5vw,120px) 185px" }}>
           {/* ⌣ top curve — black hero dipping into the orange top */}
@@ -14,7 +14,7 @@ export function CsBand({ children }: { children?: React.ReactNode }) {
           <h2 className="relative z-[2] font-[family-name:var(--font-inter)] font-medium text-white" style={{ fontSize: "clamp(20px,2.1vw,30px)", letterSpacing: "-0.7px" }}>
             Built for coders who want to <span className="font-[family-name:var(--font-playfair)] font-semibold italic">start early</span>
           </h2>
-          <div className="relative z-[2] mx-auto mt-6 flex max-w-[1100px] items-stretch justify-center">
+          <div className="relative z-[2] mx-auto mt-2 flex max-w-[1100px] items-stretch justify-center">
             {[["Courses offered", "4 Industry Led Modules"], ["Duration", "Less than 4 hours each"], ["Taught by", "MAANG Experts"]].map(([lbl, val], i) => (
               <div key={lbl} className="flex flex-1 items-stretch">
                 {i > 0 && <span className="my-1 w-px bg-white/45" />}
