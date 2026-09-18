@@ -1,43 +1,56 @@
 "use client";
-export type CsModule = { id: string; slug: string; title: string; instructor_name?: string | null; taught_by?: string | null; level?: string | null; duration_label?: string | null; thumbnail_url?: string | null; points_per_lesson?: number | null };
+export type CsModule = { id: string; slug: string; title: string; subtitle?: string | null; instructor_name?: string | null; taught_by?: string | null; level?: string | null; duration_label?: string | null; thumbnail_url?: string | null; lessons?: number | null };
 
-const META_LOGO: Record<string, string> = { google: "/cs-logo-google.webp", microsoft: "/cs-logo-microsoft.webp", amazon: "/cs-logo-amazon.webp", meta: "/cs-logo-meta.webp", apple: "/cs-logo-apple.webp" };
+/** logo per company: taught_by -> /cs-logo-<slug>.webp (Cars24 -> cs-logo-cars24.webp). */
+const logoFor = (taughtBy?: string | null) => `/cs-logo-${String(taughtBy || "google").toLowerCase().replace(/[^a-z0-9]/g, "")}.webp`;
 
-/** One module card — instructor circle · TAUGHT BY <company> Instructor · details · Start Free. */
+/** One module card — 3D glass, spotlight glow, green meta icons. First card has a
+ *  downward-C (⌣) curved top and straddles the band seam. */
 export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?: boolean; onStart: () => void }) {
   const company = (m.taught_by || "GOOGLE").trim();
-  const logo = META_LOGO[company.toLowerCase()] || "/cs-logo-google.webp";
-  const points = [m.level && `👤 ${m.level}`, m.duration_label && `⏱ ${m.duration_label}`, "👁 Popular"].filter(Boolean) as string[];
+  const meta = [[m.level || "Beginner Level"], [m.duration_label || `${m.lessons ?? ""} lessons`.trim()], ["Popular"]].map((x) => x[0]).filter(Boolean) as string[];
+  const icons = ["👤", "⏱", "👁"];
   return (
-    <div className={["mx-auto mb-6 grid max-w-[1560px] items-center gap-9 rounded-[28px] border border-white/[0.07] p-8 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] sm:grid-cols-[240px_1fr_1fr]",
-      straddle ? "-mt-[150px]" : ""].join(" ")} style={{ background: "radial-gradient(120% 160% at 12% 40%,#1a1a1a,#0a0a0a 60%)" }}>
+    <div
+      className={["relative mx-auto mb-5 grid max-w-[1170px] items-center gap-7 overflow-hidden rounded-[24px] border border-white/10 p-7 sm:grid-cols-[180px_1fr_1fr]",
+        straddle ? "-mt-[130px] pt-[70px] [clip-path:url(#csCardCurveTop)]" : ""].join(" ")}
+      style={{ background: "linear-gradient(155deg,rgba(38,38,42,0.92),rgba(12,12,14,0.96))", boxShadow: "0 26px 60px -28px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.4)" }}>
+      {/* glass sheen */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,0.06) 0%,transparent 26%,transparent 74%,rgba(255,255,255,0.04) 100%)" }} />
+      {/* clip-path def (once, on the first card) */}
+      {straddle && <svg className="absolute h-0 w-0"><defs><clipPath id="csCardCurveTop" clipPathUnits="objectBoundingBox"><path d="M0,0 Q0.5,0.16 1,0 L1,1 L0,1 Z" /></clipPath></defs></svg>}
+
       {/* instructor */}
-      <div className="relative mx-auto h-[220px] w-[220px]">
+      <div className="relative z-[2] mx-auto h-[165px] w-[165px]">
         <div className="absolute inset-0 rounded-full border-[1.5px] border-[rgba(255,160,40,0.6)]" />
-        <div className="absolute inset-3.5 grid place-items-end overflow-hidden rounded-full bg-white">
+        <div className="absolute inset-[11px] grid place-items-end overflow-hidden rounded-full" style={{ background: "linear-gradient(160deg,#FFB41F,#FD5300)" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {m.thumbnail_url ? <img src={m.thumbnail_url} alt={m.instructor_name || ""} className="h-[96%] w-[88%] object-cover object-bottom" /> : <div className="h-[96%] w-[88%] bg-gradient-to-b from-neutral-300 to-neutral-400" />}
+          {m.thumbnail_url ? <img src={m.thumbnail_url} alt={m.instructor_name || ""} className="absolute bottom-0 left-0 h-auto w-full object-contain object-bottom" /> : null}
         </div>
-        <div className="absolute right-5 top-[44%] grid h-12 w-12 place-items-center overflow-hidden rounded-full bg-white shadow">
+        <div className="absolute right-3.5 top-[44%] grid h-10 w-10 place-items-center overflow-hidden rounded-full bg-white shadow">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logo} alt="" className="h-[62%] w-[62%] object-contain" />
+          <img src={logoFor(m.taught_by)} alt="" className="h-[62%] w-[62%] object-contain" />
         </div>
-        <span className="absolute bottom-8 right-9 text-2xl text-[#FFB41F]">★</span>
+        <span className="absolute bottom-5 right-7 text-xl text-[#FFB41F]">★</span>
       </div>
-      {/* taught by */}
-      <div className="text-center">
-        <div className="flex items-center justify-center gap-3 text-[14px] font-medium tracking-[4px] text-[#c9c9c9]"><span className="h-px w-14 bg-[linear-gradient(90deg,transparent,#00cfe5)]" />TAUGHT BY<span className="h-px w-14 bg-[linear-gradient(90deg,#00cfe5,transparent)]" /></div>
-        <div className="mt-2 font-[family-name:var(--font-inter)] text-[48px] font-extrabold uppercase tracking-[3px] text-white">{company}</div>
-        <div className="-mt-1 font-[family-name:var(--font-playfair)] text-[38px] font-semibold italic" style={{ backgroundImage: "linear-gradient(120deg,#FFB41F,#FD5300)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Instructor</div>
+
+      {/* taught by — with circular spotlight glow behind the whole block */}
+      <div className="relative z-[2] text-center">
+        <div aria-hidden className="pointer-events-none absolute left-1/2 top-[52%] -z-[1] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(closest-side,rgba(255,255,255,0.22),rgba(255,255,255,0.08) 45%,transparent 72%)", filter: "blur(14px)" }} />
+        <div className="flex items-center justify-center gap-2.5 text-[12px] font-medium tracking-[4px] text-[#c9c9c9]"><span className="h-px w-11 bg-[linear-gradient(90deg,transparent,#00cfe5)]" />TAUGHT BY<span className="h-px w-11 bg-[linear-gradient(90deg,#00cfe5,transparent)]" /></div>
+        <div className="relative mt-1.5"><div className="relative font-[family-name:var(--font-inter)] text-[40px] font-extrabold uppercase tracking-[3px] text-white" style={{ textShadow: "0 2px 10px rgba(255,255,255,0.25)" }}>{company}</div></div>
+        <div className="-mt-1 font-[family-name:var(--font-playfair)] text-[32px] font-semibold italic" style={{ backgroundImage: "linear-gradient(120deg,#FFB41F,#FD5300)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Instructor</div>
       </div>
-      {/* details */}
-      <div>
-        <h3 className="font-[family-name:var(--font-inter)] text-[28px] font-bold tracking-tight text-white">{m.title}</h3>
-        <div className="mt-3.5 grid grid-cols-2 gap-x-10 gap-y-2.5 text-[15px] text-white/80">
-          {points.map((p) => <span key={p}>{p}</span>)}
-          <span className="col-span-2">⭐ Learn coding basics, logic and problem-solving</span>
+
+      {/* details — green meta icons */}
+      <div className="relative z-[2]">
+        <h3 className="font-[family-name:var(--font-inter)] text-[23px] font-bold tracking-tight text-white">{m.title}</h3>
+        <div className="mt-3 grid grid-cols-2 gap-x-9 gap-y-2.5 text-[14px] text-white/80">
+          {meta.map((p, i) => <span key={p}><span className="text-[#5ce38a]">{icons[i]}</span> {p}</span>)}
+          <span />
+          <span className="col-span-2"><span className="text-[#5ce38a]">⭐</span> {m.subtitle || "Learn coding basics, logic and problem-solving"}</span>
         </div>
-        <button onClick={onStart} className="mt-5 inline-flex h-12 items-center justify-center rounded-3xl px-20 font-[family-name:var(--font-inter)] text-[16px] font-bold text-white transition-transform hover:-translate-y-0.5" style={{ background: "linear-gradient(95deg,#FD5300,#FFB41F)", boxShadow: "0 8px 20px -6px rgba(253,120,3,0.5)" }}>Start Free</button>
+        <button onClick={onStart} className="mt-4.5 mt-5 inline-flex h-11 items-center justify-center rounded-[22px] px-16 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white transition-transform hover:-translate-y-0.5" style={{ background: "linear-gradient(95deg,#FD5300,#FFB41F)", boxShadow: "0 8px 20px -6px rgba(253,120,3,0.5)" }}>Start Free</button>
       </div>
     </div>
   );

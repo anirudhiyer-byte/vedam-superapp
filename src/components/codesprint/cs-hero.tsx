@@ -84,7 +84,7 @@ function Orbit() {
       {EXPERTS.map((e, i) => (
         <div key={i} className="absolute overflow-hidden rounded-full" style={{ left: pct(e.x, W), top: pct(e.y, H), width: pct(152, W), aspectRatio: "1", background: ORANGE2 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={e.f} alt="" className="absolute inset-0 h-full w-full object-cover object-bottom" />
+          <img src={e.f} alt="" className="absolute bottom-0 left-0 h-auto w-full object-contain object-bottom" />
         </div>
       ))}
       {LOGOS.map((l, i) => (
