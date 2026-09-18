@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { gmailAccessToken, buildRawHtml, gmailSend } from "@/lib/email/gmail";
+import { injectTracking } from "@/lib/email/tracking";
 import { campaignShell, buttonHtml } from "@/lib/email/templates";
 import { linkedInShareUrl, defaultShareText } from "@/lib/events";
 
@@ -57,7 +58,16 @@ export async function POST(req: Request) {
           + `<p style="margin:16px 0 6px;text-align:center;color:#7a7790;font:400 13px Arial,sans-serif">Proud of it? Share it with your network.</p>`
           + shareBtn;
         const subject = certKind === "winner" ? `🏆 You won — ${eventName || "Vedam"}` : `Your certificate — ${eventName || "Vedam"}`;
-        const raw = buildRawHtml({ to: reg.user_email, from: creds.sender, subject, html: campaignShell(body) });
+        const __certHtml = campaignShell(body);
+      let __html = __certHtml;
+      try {
+        const __svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, __svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
+        if (__svcK) { const __svc = createClient(__svcU, __svcK);
+          const { data: __skip } = await __svc.rpc("is_opted_out", { p_email: reg.user_email, p_phone: null, p_channel: "email" });
+          if (!__skip) { const { data: __eid } = await __svc.rpc("email_event_log", { p_user: reg.user_id, p_to: reg.user_email, p_kind: "certificate", p_ref_id: null, p_ref_name: `Certificate — ${reg.full_name ?? ""}`, p_subject: subject, p_template: null, p_html: __certHtml });
+            if (__eid) __html = injectTracking(__certHtml, __eid as string, reg.user_email); } }
+      } catch { /* best effort */ }
+        const raw = buildRawHtml({ to: reg.user_email, from: creds.sender, subject, html: __html });
         const r = await gmailSend(creds.token, raw);
         if (r.ok) sent++; else failures.push({ id: regId, error: r.error || "send failed" });
       } catch (e) {

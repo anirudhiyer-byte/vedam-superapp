@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { gmailAccessToken, buildRawHtml, gmailSend } from "@/lib/email/gmail";
+import { injectTracking } from "@/lib/email/tracking";
 import { campaignShell, buttonHtml } from "@/lib/email/templates";
 
 export const runtime = "nodejs";
@@ -35,7 +36,16 @@ export async function POST(req: Request) {
     for (const to of recipients) {
       const addr = String(to || "").trim();
       if (!addr) continue;
-      const raw = buildRawHtml({ to: addr, from: creds.sender, subject: `Your invite pass — ${eventName || "Vedam"}`, html });
+      const __subj = `Your invite pass — ${eventName || "Vedam"}`;
+      let __html = html;
+      try {
+        const __svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, __svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
+        if (__svcK) { const __svc = createClient(__svcU, __svcK);
+          const { data: __skip } = await __svc.rpc("is_opted_out", { p_email: addr, p_phone: null, p_channel: "email" });
+          if (!__skip) { const { data: __eid } = await __svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: "passes", p_ref_id: null, p_ref_name: `Invite pass — ${eventName || "Vedam"}`, p_subject: __subj, p_template: null, p_html: html });
+            if (__eid) __html = injectTracking(html, __eid as string, addr); } }
+      } catch { /* best effort */ }
+      const raw = buildRawHtml({ to: addr, from: creds.sender, subject: __subj, html: __html });
       const r = await gmailSend(creds.token, raw);
       if (r.ok) sent++; else failures.push({ to: addr, error: r.error || "failed" });
     }
