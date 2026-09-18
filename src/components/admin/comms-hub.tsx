@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { EventReminders } from "@/components/admin/event-reminders";
+import { ReminderNow } from "@/components/admin/reminder-now";
 import { CommsJourneys } from "@/components/admin/comms-journeys";
 import { WhatsAppTemplateBuilder } from "@/components/admin/whatsapp-template-builder";
 import { EmailTemplateComposer } from "@/components/admin/email-template-composer";
@@ -138,7 +139,8 @@ export function CommsHub() {
           <CommsJourneys channel={channel} product={product} />
         </div>
       ) : tab === "reminders" ? (
-        <div className="mt-4">
+        <div className="mt-4 space-y-4">
+          <ReminderNow />
           {product === "events" && (
             <div className="mb-4 rounded-2xl border border-border bg-surface p-4">
               <p className="mb-2 font-body text-sm font-semibold text-heading">Per-event reminders (custom T− / T+)</p>
