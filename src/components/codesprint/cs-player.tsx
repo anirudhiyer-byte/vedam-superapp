@@ -97,15 +97,19 @@ export function CsPlayer() {
     setBusy(false);
   }
 
-  if (loading) return <div className="mx-auto max-w-6xl px-6 py-12"><div className="h-96 animate-pulse rounded-2xl border border-border bg-surface" /></div>;
+  if (loading) return <div className="min-h-screen bg-[#0d0d0d] px-6 py-12"><div className="mx-auto h-96 max-w-6xl animate-pulse rounded-2xl border border-white/10 bg-[#141418]" /></div>;
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-8">
-      <Link href="/codesprint" className="font-mono text-xs text-muted hover:text-foreground">← CodeSprint</Link>
+    <div className="relative min-h-screen overflow-hidden bg-[#0d0d0d]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/cs-polka.webp" alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.14]" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-56" style={{ background: "radial-gradient(120% 100% at 50% 0%,rgba(253,120,3,0.14),transparent 70%)" }} />
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-8">
+      <Link href="/codesprint" className="font-mono text-xs text-white/50 hover:text-white/85">← CodeSprint</Link>
       <div className="mt-3 grid gap-6 lg:grid-cols-[1fr_360px] lg:items-start">
         {/* player */}
         <div>
-          <h1 className="font-display text-2xl font-bold text-heading">{current?.lesson.title || "Select a lesson"}</h1>
+          <h1 className="font-display text-2xl font-bold text-white">{current?.lesson.title || "Select a lesson"}</h1>
           <div className="relative mt-3 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-black">
             {current?.lesson.video_url ? (
               <>
@@ -119,13 +123,13 @@ export function CsPlayer() {
               </>
             ) : <div className="grid h-full place-items-center font-mono text-sm text-white/60">No video linked yet</div>}
           </div>
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border bg-surface p-4">
-            <span className="font-mono text-xs text-muted">Your progress · watch, then mark complete for +10</span>
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#141418] p-4">
+            <span className="font-mono text-xs text-white/50">Your progress · watch, then mark complete for +10</span>
             {current && (done.has(current.lesson.id)
-              ? <span className="rounded-lg bg-surface-warm px-4 py-2 font-mono text-xs font-semibold text-accent">✓ Completed</span>
+              ? <span className="rounded-lg bg-[#FD7B03]/15 px-4 py-2 font-mono text-xs font-semibold text-[#FD8B03]">✓ Completed</span>
               : <button onClick={markComplete} disabled={busy} className="rounded-lg bg-brand-gradient px-5 py-2 text-sm font-semibold text-white disabled:opacity-60">{busy ? "Saving…" : "Mark as completed"}</button>)}
           </div>
-          {toast && <div className="mt-3 rounded-xl border border-border bg-surface-warm px-4 py-3 font-body text-sm text-heading">{toast}</div>}
+          {toast && <div className="mt-3 rounded-xl border border-white/10 bg-[#141418]-warm px-4 py-3 font-body text-sm text-white">{toast}</div>}
           {currentModule && currentModule.lessons.length > 0 && currentModule.lessons.every((l) => done.has(l.id)) && !certs[currentModule.id] && (
             <div className="mt-4">
               <CsQuiz moduleId={currentModule.id} onComplete={(cid) => { if (cid && currentModule) { setCerts((c) => ({ ...c, [currentModule.id]: cid })); setToast("🎉 Module complete! Certificate earned."); setTimeout(() => setToast(null), 4000); } }} />
@@ -135,30 +139,30 @@ export function CsPlayer() {
 
         {/* module accordion */}
         <div className="space-y-2">
-          <p className="font-mono text-xs font-semibold uppercase tracking-wide text-muted">All modules</p>
+          <p className="font-mono text-xs font-semibold uppercase tracking-wide text-white/50">All modules</p>
           {modules.map((m) => {
             const total = m.lessons.length;
             const completed = m.lessons.filter((l) => done.has(l.id)).length;
             const open = openModule === m.id;
             const earned = certs[m.id];
             return (
-              <div key={m.id} className="overflow-hidden rounded-2xl border border-border bg-surface">
+              <div key={m.id} className="overflow-hidden rounded-2xl border border-white/10 bg-[#141418]">
                 <button onClick={() => setOpenModule(open ? null : m.id)} className="flex w-full items-center justify-between gap-2 p-4 text-left">
-                  <div className="min-w-0"><p className="truncate font-display text-sm font-bold text-heading">{m.title}</p>
-                    <p className="font-mono text-[11px] text-muted">{completed}/{total} · {earned ? "✓ certificate earned" : total ? `${Math.round((completed / total) * 100)}%` : "no lessons"}</p></div>
-                  <span className="text-muted">{open ? "▲" : "▼"}</span>
+                  <div className="min-w-0"><p className="truncate font-display text-sm font-bold text-white">{m.title}</p>
+                    <p className="font-mono text-[11px] text-white/50">{completed}/{total} · {earned ? "✓ certificate earned" : total ? `${Math.round((completed / total) * 100)}%` : "no lessons"}</p></div>
+                  <span className="text-white/50">{open ? "▲" : "▼"}</span>
                 </button>
                 {open && (
-                  <div className="border-t border-border">
+                  <div className="border-t border-white/10">
                     {m.lessons.map((l) => (
                       <button key={l.id} onClick={() => setCurrent({ moduleId: m.id, lesson: l })}
-                        className={["flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors hover:bg-surface-warm/50", current?.lesson.id === l.id ? "bg-surface-warm" : ""].join(" ")}>
-                        <span className={done.has(l.id) ? "text-accent" : "text-muted/40"}>{done.has(l.id) ? "✓" : "○"}</span>
-                        <span className="flex-1 truncate text-foreground">{l.title}</span>
+                        className={["flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors hover:bg-[#FD7B03]/10", current?.lesson.id === l.id ? "bg-[#FD7B03]/12" : ""].join(" ")}>
+                        <span className={done.has(l.id) ? "text-[#FD8B03]" : "text-white/40"}>{done.has(l.id) ? "✓" : "○"}</span>
+                        <span className="flex-1 truncate text-white/85">{l.title}</span>
                       </button>
                     ))}
-                    {earned && <button onClick={() => setOpenCert(earned)} className="block w-full border-t border-border px-4 py-2.5 text-left font-mono text-xs font-semibold text-accent hover:bg-surface-warm/50">View certificate →</button>}
-                    {m.lessons.length === 0 && <p className="px-4 py-3 font-body text-xs text-muted">No lessons yet.</p>}
+                    {earned && <button onClick={() => setOpenCert(earned)} className="block w-full border-t border-white/10 px-4 py-2.5 text-left font-mono text-xs font-semibold text-[#FD8B03] hover:bg-[#FD7B03]/10">View certificate →</button>}
+                    {m.lessons.length === 0 && <p className="px-4 py-3 font-body text-xs text-white/50">No lessons yet.</p>}
                   </div>
                 )}
               </div>
@@ -167,6 +171,7 @@ export function CsPlayer() {
         </div>
       </div>
     {openCert && <CertificateModal certId={openCert} onClose={() => setOpenCert(null)} />}
+      </div>
     </div>
   );
 }
