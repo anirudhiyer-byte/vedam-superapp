@@ -85,6 +85,10 @@ export function CsLanding() {
 
   return (
     <div className="bg-[#0d0d0d]">
+      {/* ===== DEPLOY TEST BANNER — remove after diagnosis ===== */}
+      <div style={{ position: "sticky", top: 0, zIndex: 9999, background: "#ff0000", color: "#fff", fontSize: 22, fontWeight: 900, textAlign: "center", padding: "14px", letterSpacing: "1px" }}>
+        🔴 DEPLOY TEST — BUILD-777 — if you can see this, the pipeline works 🔴
+      </div>
       {/* HERO (new) with its ⌣ bottom */}
       <div className="relative">
         <CsHero onStartNow={register} />
