@@ -37,12 +37,13 @@ export async function POST(req: Request) {
     for (const to of recipients) {
       const addr = String(to || "").trim();
       if (!addr) continue;
+      if (svc) { try { const { data: skip } = await svc.rpc("is_opted_out", { p_email: addr, p_phone: null, p_channel: "email" }); if (skip) continue; } catch { /* */ } }
       let trackedHtml = html;
       let eid: string | null = null;
       if (svc) {
         try { const { data } = await svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: "campaign", p_ref_id: null, p_ref_name: subject, p_subject: subject, p_template: null, p_html: html }); eid = data as string; } catch { /* */ }
       }
-      if (eid) trackedHtml = injectTracking(html, eid);
+      if (eid) trackedHtml = injectTracking(html, eid, addr);
       const raw = buildRawHtml({ to: addr, from: creds.sender, subject, html: trackedHtml });
       const r = await gmailSend(creds.token, raw);
       if (r.ok) sent++; else failures.push({ to: addr, error: r.error || "failed" });
