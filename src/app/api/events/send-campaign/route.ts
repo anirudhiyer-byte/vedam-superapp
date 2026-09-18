@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { gmailAccessToken, buildRawHtml, gmailSend } from "@/lib/email/gmail";
 import { campaignShell, type EmailTemplate } from "@/lib/email/templates";
+import { injectTracking } from "@/lib/email/tracking";
 
 export const runtime = "nodejs";
 
@@ -29,12 +30,20 @@ export async function POST(req: Request) {
     if (!isAdmin) return Response.json({ ok: false, error: "Admins only" }, { status: 403 });
 
     const html = campaignShell(body, template);
+    const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const svc = svcKey ? createClient(svcUrl, svcKey) : null;
     let sent = 0;
     const failures: { to: string; error: string }[] = [];
     for (const to of recipients) {
       const addr = String(to || "").trim();
       if (!addr) continue;
-      const raw = buildRawHtml({ to: addr, from: creds.sender, subject, html });
+      let trackedHtml = html;
+      let eid: string | null = null;
+      if (svc) {
+        try { const { data } = await svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: "campaign", p_ref_id: null, p_ref_name: subject, p_subject: subject, p_template: null, p_html: html }); eid = data as string; } catch { /* */ }
+      }
+      if (eid) trackedHtml = injectTracking(html, eid);
+      const raw = buildRawHtml({ to: addr, from: creds.sender, subject, html: trackedHtml });
       const r = await gmailSend(creds.token, raw);
       if (r.ok) sent++; else failures.push({ to: addr, error: r.error || "failed" });
     }
