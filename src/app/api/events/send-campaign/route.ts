@@ -11,8 +11,8 @@ export async function POST(req: Request) {
     const creds = await gmailAccessToken();
     if (!creds) return Response.json({ ok: false, error: "Email not configured" }, { status: 200 });
 
-    const { subject, body, recipients, template, accessToken } = (await req.json()) as {
-      subject: string; body: string; recipients: string[]; template?: EmailTemplate; accessToken?: string;
+    const { subject, body, recipients, template, accessToken, templateId, kind, refName } = (await req.json()) as {
+      subject: string; body: string; recipients: string[]; template?: EmailTemplate; accessToken?: string; templateId?: string; kind?: string; refName?: string;
     };
     if (!subject || !body || !Array.isArray(recipients) || recipients.length === 0)
       return Response.json({ ok: false, error: "Missing subject, body, or recipients" }, { status: 400 });
@@ -29,7 +29,14 @@ export async function POST(req: Request) {
     const { data: isAdmin } = await supa.rpc("is_admin");
     if (!isAdmin) return Response.json({ ok: false, error: "Admins only" }, { status: 403 });
 
-    const html = campaignShell(body, template);
+    let html: string;
+    if (templateId) {
+      const svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
+      const svcC = svcK ? createClient(svcU, svcK) : supa;
+      const { data: tpl } = await svcC.from("email_templates").select("subject, message, template_style, image, buttons, bg_color").eq("id", templateId).maybeSingle();
+      if (tpl) { const { renderEmailTemplateHtml } = await import("@/lib/email/render"); html = renderEmailTemplateHtml(tpl as Parameters<typeof renderEmailTemplateHtml>[0]); }
+      else html = campaignShell(body, template);
+    } else html = campaignShell(body, template);
     const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     const svc = svcKey ? createClient(svcUrl, svcKey) : null;
     let sent = 0;
@@ -41,7 +48,7 @@ export async function POST(req: Request) {
       let trackedHtml = html;
       let eid: string | null = null;
       if (svc) {
-        try { const { data } = await svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: "campaign", p_ref_id: null, p_ref_name: subject, p_subject: subject, p_template: null, p_html: html }); eid = data as string; } catch { /* */ }
+        try { const { data } = await svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: kind || "campaign", p_ref_id: null, p_ref_name: refName || subject, p_subject: subject, p_template: null, p_html: html }); eid = data as string; } catch { /* */ }
       }
       if (eid) trackedHtml = injectTracking(html, eid, addr);
       const raw = buildRawHtml({ to: addr, from: creds.sender, subject, html: trackedHtml });

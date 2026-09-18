@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { gmailAccessToken, buildRawWithIcs, gmailSend } from "@/lib/email/gmail";
+import { injectTracking } from "@/lib/email/tracking";
 import { buildICS, confirmationHtml, type IcsEvent } from "@/lib/email/templates";
 
 export const runtime = "nodejs";
@@ -29,7 +30,14 @@ export async function POST(req: Request) {
     }
 
     const subject = `You're registered: ${event.name} \u00B7 Vedam School of Technology`;
-    const html = confirmationHtml(event, name, to);
+    let html = confirmationHtml(event, name, to);
+    try {
+      const svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
+      if (svcK) { const svc = createClient(svcU, svcK);
+        const { data: skip } = await svc.rpc("is_opted_out", { p_email: to, p_phone: null, p_channel: "email" });
+        if (!skip) { const { data: eid } = await svc.rpc("email_event_log", { p_user: null, p_to: to, p_kind: "confirmation", p_ref_id: null, p_ref_name: `Registration — ${event?.name ?? ""}`, p_subject: subject, p_template: null, p_html: html });
+          if (eid) html = injectTracking(html, eid as string, to); } }
+    } catch { /* best effort */ }
     const ics = buildICS(event, to, creds.sender);
     const raw = buildRawWithIcs({ to, from: creds.sender, subject, html, ics });
     const sent = await gmailSend(creds.token, raw);
