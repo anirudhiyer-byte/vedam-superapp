@@ -8,6 +8,7 @@ import { useResumeAction } from "@/lib/funnel/use-resume-action";
 import VedamCertificate from "@/components/events/vedam-certificate";
 import { CsHero } from "@/components/codesprint/cs-hero";
 import { CsBand } from "@/components/codesprint/cs-band";
+import { CsBandMobile } from "@/components/codesprint/cs-band-mobile";
 import { CsModuleCard } from "@/components/codesprint/cs-module-card";
 import { CsCertSection } from "@/components/codesprint/cs-cert-section";
 import { CsTestimonials } from "@/components/codesprint/cs-testimonials";
@@ -95,12 +96,19 @@ export function CsLanding() {
 
       {/* ORANGE stats band + module cards on the black section (module 1 straddles the seam) */}
       <div id="modules">
-        <CsBand>
-          {modules.map((m, i) => (
-            <CsModuleCard key={m.id} m={{ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null }} straddle={i === 0} onStart={() => startModule(m.slug)} />
-          ))}
-          {modules.length === 0 && <p className="py-10 text-center font-body text-sm text-white/50">Modules are being set up — check back soon.</p>}
-        </CsBand>
+        {/* desktop band + cards */}
+        <div className="hidden lg:block">
+          <CsBand>
+            {modules.map((m, i) => (
+              <CsModuleCard key={m.id} m={{ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null }} straddle={i === 0} onStart={() => startModule(m.slug)} />
+            ))}
+            {modules.length === 0 && <p className="py-10 text-center font-body text-sm text-white/50">Modules are being set up — check back soon.</p>}
+          </CsBand>
+        </div>
+        {/* mobile band + 2-col cards */}
+        <div className="lg:hidden">
+          <CsBandMobile modules={modules.map((m, i) => ({ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null }))} onStart={startModule} />
+        </div>
       </div>
 
       {/* CERTIFICATE section */}

@@ -36,17 +36,17 @@ export const CsHero = forwardRef<HTMLDivElement, { onStartNow?: () => void }>(fu
 
       <div className="relative z-10 mx-auto grid max-w-[1920px] items-center gap-10 px-6 pb-16 pt-8 sm:px-10 lg:grid-cols-[minmax(0,520px)_1fr] lg:items-start lg:gap-6 lg:px-[146px] lg:pb-20 lg:pt-10">
         {/* LEFT — copy */}
-        <div>
+        <div className="text-center lg:text-left">
           <p className="font-[family-name:var(--font-inter)] text-[15px] font-extralight tracking-wide text-white/90 sm:text-[16px]">START SMART, START EARLY</p>
           <h1 className="mt-2.5 inline-block font-[family-name:var(--font-inter)] leading-[1.06] tracking-[-2.3px]" style={{ fontSize: "clamp(33px,4.2vw,60px)" }}>
             <span className="font-semibold" style={{ backgroundImage: ORANGE, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Sprint into<br />College with a<br /></span>
             <span className="font-[family-name:var(--font-playfair)] font-semibold italic" style={{ backgroundImage: ORANGE, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Clear advantage</span>
           </h1>
-          <p className="mt-[34px] max-w-[520px] font-[family-name:var(--font-inter)] font-light leading-[1.4] text-white" style={{ fontSize: "clamp(15px,1.65vw,22px)", letterSpacing: "-0.9px" }}>A free program for Class 12 students<br />aspiring to pursue B.Tech in CS.</p>
+          <p className="mx-auto mt-[34px] max-w-[520px] font-[family-name:var(--font-inter)] font-light leading-[1.4] text-white lg:mx-0" style={{ fontSize: "clamp(15px,1.65vw,22px)", letterSpacing: "-0.9px" }}>A free program for Class 12 students<br />aspiring to pursue B.Tech in CS.</p>
           <button onClick={onStartNow} className="cs-start mt-6">
             <span className="font-[family-name:var(--font-inter)] text-[20px] font-medium tracking-[-1px]" style={{ backgroundImage: "linear-gradient(92deg,#FD5300 0.4%,#FFB41F 74%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Start Now</span>
           </button>
-          <div className="mt-7 flex flex-wrap gap-2.5 sm:flex-nowrap">
+          <div className="mt-7 flex flex-wrap justify-center gap-2.5 sm:flex-nowrap lg:justify-start">
             {BADGES.map((b) => (
               <span key={b} className="inline-flex flex-none items-center gap-1.5 rounded-[8px] px-2.5 py-1" style={{ background: "linear-gradient(-32deg,rgba(52,199,89,0.9) 1%,rgba(30,30,30,0) 42%)" }}>
                 <span className="grid h-3.5 w-3.5 place-items-center rounded-full bg-[#34c759] text-[9px] font-bold text-white">✓</span>
