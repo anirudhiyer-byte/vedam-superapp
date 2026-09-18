@@ -16,10 +16,12 @@ export function EmailTemplateComposer({ product, onSaved }: { product: Product; 
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
   const [buttons, setButtons] = useState<Btn[]>([]);
+  const [bgColor, setBgColor] = useState("");
+  const [testing, setTesting] = useState(false);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
 
-  const html = useMemo(() => renderEmailTemplateHtml({ subject, message, template_style: style, image, buttons }), [subject, message, style, image, buttons]);
+  const html = useMemo(() => renderEmailTemplateHtml({ subject, message, template_style: style, image, buttons, ...(bgColor ? { bg_color: bgColor } : {}) } as Parameters<typeof renderEmailTemplateHtml>[0]), [subject, message, style, image, buttons, bgColor]);
 
   async function upload(file: File) {
     setUploading(true);
@@ -35,10 +37,19 @@ export function EmailTemplateComposer({ product, onSaved }: { product: Product; 
     setMsg(null);
     if (!name.trim() || !subject.trim() || !message.trim()) return setMsg("Name, subject and message are required.");
     setSaving(true);
-    const { error } = await supabase.from("email_templates").insert({ name: name.trim(), subject: subject.trim(), message, template_style: style, image: image || null, buttons, product: product === "general" ? "general" : product });
+    const { error } = await supabase.from("email_templates").insert({ name: name.trim(), subject: subject.trim(), message, template_style: style, image: image || null, buttons, bg_color: bgColor || null, product: product === "general" ? "general" : product });
     setSaving(false);
     if (error) return setMsg(error.message);
     setMsg("Email template saved."); setName(""); setSubject(""); setMessage(""); setImage(""); setButtons([]); onSaved?.();
+  }
+
+  async function sendTest() {
+    setTesting(true); setMsg(null);
+    const { data: { session } } = await supabase.auth.getSession();
+    const res = await fetch("/api/email/send-test", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ html, subject, accessToken: session?.access_token }) });
+    const j = await res.json();
+    setTesting(false);
+    setMsg(j.ok ? `Test sent to ${j.to} — check your inbox.` : (j.error || "Test send failed."));
   }
 
   const field = "w-full rounded-lg border border-border-strong bg-background px-3 py-2.5 text-sm text-foreground outline-none";
@@ -48,6 +59,7 @@ export function EmailTemplateComposer({ product, onSaved }: { product: Product; 
         <div className="grid grid-cols-2 gap-3">
           <label className="block"><span className="mb-1 block font-body text-xs font-semibold">Template name</span><input value={name} onChange={(e) => setName(e.target.value)} placeholder="Recording follow-up" className={field} /></label>
           <label className="block"><span className="mb-1 block font-body text-xs font-semibold">Background style</span><select value={style} onChange={(e) => setStyle(e.target.value)} className={field}>{EMAIL_TEMPLATES.map((t) => <option key={t.key} value={t.key}>{t.label}</option>)}</select></label>
+          <label className="block"><span className="mb-1 block font-body text-xs font-semibold">Custom bg (optional)</span><div className="flex items-center gap-2"><input type="color" value={bgColor || "#ffffff"} onChange={(e) => setBgColor(e.target.value)} className="h-9 w-10 rounded border border-border-strong bg-background" /><input value={bgColor} onChange={(e) => setBgColor(e.target.value)} placeholder="#hex or blank" className={field + " flex-1"} />{bgColor && <button onClick={() => setBgColor("")} className="text-xs text-muted">clear</button>}</div></label>
         </div>
         <label className="block"><span className="mb-1 block font-body text-xs font-semibold">Subject</span><input value={subject} onChange={(e) => setSubject(e.target.value)} className={field} /></label>
         <div>
@@ -70,6 +82,7 @@ export function EmailTemplateComposer({ product, onSaved }: { product: Product; 
         </div>
         {msg && <p className="font-body text-sm text-foreground">{msg}</p>}
         <button onClick={save} disabled={saving} className="rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-60">{saving ? "Saving…" : `Save email template (${product})`}</button>
+        <button onClick={sendTest} disabled={testing} className="ml-2 rounded-xl border border-border-strong px-5 py-3 text-sm font-semibold hover:bg-surface-warm disabled:opacity-60">{testing ? "Sending…" : "Send test to myself"}</button>
       </div>
       <div className="lg:sticky lg:top-20">
         <span className="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wide text-muted">Live preview (branded)</span>
