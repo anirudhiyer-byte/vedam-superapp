@@ -95,7 +95,7 @@ export function CsLanding() {
       <div id="modules">
         <CsBand>
           {modules.map((m, i) => (
-            <CsModuleCard key={m.id} m={{ ...m, subtitle: m.subtitle ?? STAR_LINES[i] ?? null }} straddle={i === 0} onStart={() => startModule(m.slug)} />
+            <CsModuleCard key={m.id} m={{ ...m, subtitle: STAR_LINES[i] ?? m.subtitle ?? null }} straddle={i === 0} onStart={() => startModule(m.slug)} />
           ))}
           {modules.length === 0 && <p className="py-10 text-center font-body text-sm text-white/50">Modules are being set up — check back soon.</p>}
         </CsBand>
