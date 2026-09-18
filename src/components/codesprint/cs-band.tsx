@@ -28,7 +28,7 @@ export function CsBand({ children }: { children?: React.ReactNode }) {
       </section>
 
       {/* BLACK section — module cards; first straddles the seam via negative margin */}
-      <section className="relative z-[4] bg-[#141414] px-6 pb-16 sm:px-10 lg:px-[90px]">
+      <section className="relative z-[1] bg-[#141414] px-6 pb-16 sm:px-10 lg:px-[90px]">
         <div className="relative z-[5]">{children}</div>
       </section>
     </div>
