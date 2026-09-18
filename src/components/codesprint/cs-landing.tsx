@@ -9,6 +9,7 @@ import VedamCertificate from "@/components/events/vedam-certificate";
 import { CsHero } from "@/components/codesprint/cs-hero";
 import { CsBand } from "@/components/codesprint/cs-band";
 import { CsModuleCard } from "@/components/codesprint/cs-module-card";
+import { CsCertSection } from "@/components/codesprint/cs-cert-section";
 
 type Module = { id: string; slug: string; title: string; subtitle: string | null; taught_by: string | null; level: string | null; duration_label: string | null; thumbnail_url: string | null; lessons: number };
 
@@ -101,14 +102,12 @@ export function CsLanding() {
         </CsBand>
       </div>
 
-      {/* CERT + FAQ (kept until those sections are rebuilt) */}
+      {/* CERTIFICATE section */}
+      <CsCertSection onStartLearning={register} />
+
+      {/* FAQ (kept until Testimonials section is built) */}
       <div className="mx-auto max-w-5xl px-6 py-14 sm:px-10">
-        <div className="text-center">
-          <h3 className="font-display text-2xl font-bold text-white">Get a Certificate of Completion at the end</h3>
-          <p className="mx-auto mt-1 max-w-[46ch] font-body text-sm text-white/60">Finish every lesson in a module to earn its certificate — here&apos;s exactly what yours will look like:</p>
-          <div className="mt-6"><CertPreview /></div>
-        </div>
-        <h2 className="mb-4 mt-14 font-display text-2xl font-bold text-white">Got questions?</h2>
+        <h2 className="mb-4 font-display text-2xl font-bold text-white">Got questions?</h2>
         <div className="space-y-2">
           {FAQS.map(([q, a], i) => (
             <div key={i} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
