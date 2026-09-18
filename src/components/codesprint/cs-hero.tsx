@@ -12,7 +12,7 @@ const LOGOS: { f: string; x: number; y: number; s: number }[] = [
   { f: "/cs-logo-atlassian.webp", x: 170, y: 407, s: 55 }, { f: "/cs-logo-apple.webp", x: 275, y: 36, s: 55 },
   { f: "/cs-logo-oracle.webp", x: 770, y: 462, s: 55 },
 ];
-const EXPERTS = [{ f: "/cs-expert-1.webp", x: 74, y: 82 }, { f: "/cs-expert-2.webp", x: 662, y: 23 }, { f: "/cs-expert-3.webp", x: 295, y: 441 }];
+const EXPERTS = [{ f: "/cs-expert-1.webp", x: 74, y: 82, pos: "50% 12%" }, { f: "/cs-expert-2.webp", x: 662, y: 23, pos: "50% 30%" }, { f: "/cs-expert-3.webp", x: 295, y: 441, pos: "50% 40%" }];
 const PLUS = [{ x: 484, y: 562 }, { x: 227, y: 45 }, { x: 703, y: 210 }, { x: 735, y: 452 }, { x: 122, y: 402 }, { x: 444, y: 36 }, { x: 354, y: 146, c: "#666" }];
 const BADGES = ["Beginner Friendly", "Certificate on Completion", "No prior experience required"];
 
@@ -32,9 +32,9 @@ export const CsHero = forwardRef<HTMLDivElement, { onStartNow?: () => void }>(fu
       <style dangerouslySetInnerHTML={{ __html: BTN_CSS }} />
       {/* polka texture — more visible (opacity ~0.28), spans the hero */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/cs-polka.webp" alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.28]" />
+      <img src="/cs-polka.webp" alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.36]" />
 
-      <div className="relative z-10 mx-auto grid max-w-[1920px] items-center gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,600px)_1fr] lg:gap-6 lg:px-[146px] lg:py-20">
+      <div className="relative z-10 mx-auto grid max-w-[1920px] items-center gap-10 px-6 pb-16 pt-8 sm:px-10 lg:grid-cols-[minmax(0,600px)_1fr] lg:items-start lg:gap-6 lg:px-[146px] lg:pb-20 lg:pt-10">
         {/* LEFT — copy */}
         <div>
           <p className="font-[family-name:var(--font-inter)] text-[15px] font-extralight tracking-wide text-white/90 sm:text-[16px]">START SMART, START EARLY</p>
@@ -57,7 +57,7 @@ export const CsHero = forwardRef<HTMLDivElement, { onStartNow?: () => void }>(fu
         </div>
 
         {/* RIGHT — Tech Experts orbit (static), nudged down to clear the header */}
-        <div className="relative mx-auto mt-10 w-full max-w-[940px] lg:mt-10">
+        <div className="relative mx-auto mt-8 w-full max-w-[1040px] lg:mt-0">
           <div className="relative mx-auto aspect-[873/600] w-full" style={{ containerType: "inline-size" }}>
             <Orbit />
           </div>
@@ -78,13 +78,13 @@ function Orbit() {
       {ring(0, 0, W, H, "#fd5300")}{ring(72, 76, 728, 448, "#ffb41f")}
       {ring(154, 165, 565, 270, "#ffb41f", "rgba(0,0,0,0.25)")}{ring(234, 221, 405, 158, "#ffb41f")}
       <div className="absolute -translate-x-1/2 -translate-y-1/2 text-center" style={{ left: "48%", top: "50%" }}>
-        <span className="font-[family-name:var(--font-inter)] font-normal text-white" style={{ fontSize: "clamp(11px,1.55cqw,17px)", textShadow: "2px 2px 6px rgba(255,255,255,0.35)" }}>Tech Experts</span>
+        <span className="font-[family-name:var(--font-inter)] font-normal text-white" style={{ fontSize: "clamp(14px,1.95cqw,21px)", textShadow: "2px 2px 6px rgba(255,255,255,0.35)" }}>Tech Experts</span>
       </div>
       {PLUS.map((p, i) => <span key={i} className="absolute -translate-x-1/2 -translate-y-1/2 opacity-40" style={{ left: pct(p.x, W), top: pct(p.y, H), color: p.c || "#fff", fontSize: "clamp(16px,2.8cqw,28px)" }}>+</span>)}
       {EXPERTS.map((e, i) => (
         <div key={i} className="absolute overflow-hidden rounded-full" style={{ left: pct(e.x, W), top: pct(e.y, H), width: pct(152, W), aspectRatio: "1", background: ORANGE2 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={e.f} alt="" className="absolute bottom-0 left-0 h-auto w-full object-contain object-bottom" />
+          <img src={e.f} alt="" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: e.pos }} />
         </div>
       ))}
       {LOGOS.map((l, i) => (

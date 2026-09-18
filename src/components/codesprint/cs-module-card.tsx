@@ -13,8 +13,8 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
   return (
     <div
       className={["relative mx-auto mb-5 grid max-w-[1170px] items-center gap-7 overflow-hidden rounded-[24px] border border-white/10 p-7 sm:grid-cols-[180px_1fr_1fr]",
-        straddle ? "-mt-[130px] pt-[70px] [clip-path:url(#csCardCurveTop)]" : ""].join(" ")}
-      style={{ background: "linear-gradient(155deg,rgba(38,38,42,0.92),rgba(12,12,14,0.96))", boxShadow: "0 26px 60px -28px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.4)" }}>
+        straddle ? "-mt-[64px] pt-[64px] [clip-path:url(#csCardCurveTop)]" : ""].join(" ")}
+      style={{ background: "radial-gradient(140% 120% at 15% 10%,#17171b 0%,#0a0a0c 46%,#020203 100%)", boxShadow: "0 30px 70px -30px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 0 40px rgba(255,255,255,0.02), inset 0 -1px 0 rgba(0,0,0,0.5)" }}>
       {/* glass sheen */}
       <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,0.06) 0%,transparent 26%,transparent 74%,rgba(255,255,255,0.04) 100%)" }} />
       {/* clip-path def (once, on the first card) */}
@@ -50,7 +50,7 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
           <span />
           <span className="col-span-2"><span className="text-[#5ce38a]">⭐</span> {m.subtitle || "Learn coding basics, logic and problem-solving"}</span>
         </div>
-        <button onClick={onStart} className="mt-4.5 mt-5 inline-flex h-11 items-center justify-center rounded-[22px] px-16 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white transition-transform hover:-translate-y-0.5" style={{ background: "linear-gradient(95deg,#FD5300,#FFB41F)", boxShadow: "0 8px 20px -6px rgba(253,120,3,0.5)" }}>Start Free</button>
+        <button onClick={onStart} className="mt-4.5 mt-5 inline-flex h-11 items-center justify-center rounded-[22px] px-16 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white transition-transform hover:-translate-y-0.5" style={{ background: "linear-gradient(95deg,rgba(253,83,0,0.82),rgba(255,180,31,0.82))", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)", border: "1px solid rgba(255,190,90,0.55)" }}>Start Free</button>
       </div>
     </div>
   );
