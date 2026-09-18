@@ -26,7 +26,7 @@ export function CommsHub() {
   const [supabase] = useState(() => createClient());
   const [channel, setChannel] = useState<Channel>("whatsapp");
   const [product, setProduct] = useState<Product>("all");
-  const [tab, setTab] = useState<"templates" | "broadcast" | "automations" | "spend">("templates");
+  const [tab, setTab] = useState<"campaigns" | "automations" | "reminders" | "report" | "templates">("campaigns");
   const [tplMode, setTplMode] = useState<"tag" | "build">("tag");
 
   const [waTpls, setWaTpls] = useState<WaTpl[]>([]);
@@ -88,7 +88,7 @@ export function CommsHub() {
 
       {/* sub-tabs */}
       <div className="mt-4 inline-flex gap-1 rounded-lg bg-surface-warm p-1">
-        {(["templates", "broadcast", "automations", "spend"] as const).map((t) => (
+        {(["campaigns","automations","reminders","report","templates"] as const).map((t) => (
           <button key={t} onClick={() => setTab(t)} className={["rounded-md px-3 py-1.5 text-xs font-bold capitalize", tab === t ? "bg-surface text-foreground shadow-sm" : "text-muted"].join(" ")}>{t}</button>
         ))}
       </div>
@@ -130,9 +130,14 @@ export function CommsHub() {
           </>
           )}
         </div>
-      ) : tab === "broadcast" ? (
+      ) : tab === "campaigns" ? (
         <CommsBroadcast channel={channel} product={product} />
       ) : tab === "automations" ? (
+        <div>
+          <p className="mb-2 font-body text-sm font-semibold text-heading">Stage-based automations (if / else-if / else)</p>
+          <CommsJourneys channel={channel} product={product} />
+        </div>
+      ) : tab === "reminders" ? (
         <div className="mt-4">
           {product === "events" && (
             <div className="mb-4 rounded-2xl border border-border bg-surface p-4">
