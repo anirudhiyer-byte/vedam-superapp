@@ -109,19 +109,23 @@ export function CsLanding() {
       {/* TESTIMONIALS */}
       <CsTestimonials />
 
-      {/* FAQ (kept until Testimonials section is built) */}
-      <div className="mx-auto max-w-5xl px-6 py-14 sm:px-10">
-        <h2 className="mb-4 font-display text-2xl font-bold text-white">Got questions?</h2>
-        <div className="space-y-2">
+      {/* FAQ */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] px-6 py-16 sm:px-10">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/cs-polka.webp" alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.22]" />
+        <div className="relative z-10 mx-auto max-w-5xl">
+        <style dangerouslySetInnerHTML={{ __html: `.cs-faq-box{position:relative;border-radius:16px;background:radial-gradient(140% 120% at 15% 10%,#141418,#0a0a0c 55%,#050506)}.cs-faq-box::before{content:"";position:absolute;inset:0;border-radius:16px;padding:1px;background:linear-gradient(120deg,rgba(255,180,31,.7),rgba(253,83,0,.28) 40%,rgba(255,180,31,.6));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}` }} />
+        <h2 className="mb-5 font-display text-2xl font-bold text-white">Got questions?</h2>
+        <div className="space-y-3">
           {FAQS.map(([q, a], i) => (
-            <div key={i} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
-              <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="flex w-full items-center justify-between p-4 text-left font-display text-sm font-semibold text-white">{q}<span className="text-white/50">{openFaq === i ? "−" : "+"}</span></button>
-              {openFaq === i && <p className="px-4 pb-4 font-body text-sm text-white/60">{a}</p>}
+            <div key={i} className="cs-faq-box overflow-hidden">
+              <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="flex w-full items-center justify-between p-4 text-left font-display text-sm font-semibold text-white">{q}<span className="text-[#FD8B03]">{openFaq === i ? "−" : "+"}</span></button>
+              {openFaq === i && <p className="px-4 pb-4 font-body text-sm text-white/65">{a}</p>}
             </div>
           ))}
         </div>
-        <p className="mt-3 font-mono text-[10px] text-white/40">// {totalHours} modules · self-paced</p>
-      </div>
+        </div>
+      </section>
       <Modals />
     </div>
   );

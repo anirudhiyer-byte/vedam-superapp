@@ -21,7 +21,7 @@ export function CsTestimonials() {
     <section className="relative overflow-hidden bg-[#0d0d0d] px-6 pb-24 sm:px-10 lg:px-[90px]">
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
       {/* orange spotlight behind the box — left side, half-cut by the edge */}
-      <div aria-hidden className="pointer-events-none absolute left-[-280px] top-1/2 z-0 -translate-y-1/2" style={{ width: "580px", height: "580px", borderRadius: "50%", background: "radial-gradient(closest-side,rgba(253,120,3,0.16),transparent 72%)" }} />
+      <div aria-hidden className="pointer-events-none absolute left-[-280px] top-1/2 z-0 -translate-y-1/2" style={{ width: "580px", height: "580px", borderRadius: "50%", background: "radial-gradient(closest-side,rgba(253,120,3,0.28),transparent 72%)" }} />
       <div className="cs-testi-box relative z-10 overflow-hidden p-6 sm:p-8">
         <div className="cs-marquee-wrap relative overflow-hidden" style={{ paddingLeft: "340px" }}>
           {/* endless-loop track of card images */}
@@ -35,12 +35,10 @@ export function CsTestimonials() {
           <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-[360px]" style={{ background: "linear-gradient(90deg,#0f0f0f 60%,transparent)" }} />
           {/* fixed ORANGE "Trusted by 25k+" card */}
           <div className="absolute left-0 top-0 flex h-full w-[300px] flex-col items-center justify-center rounded-[22px] p-6 text-center" style={{ background: "linear-gradient(155deg,#FFB41F,#FD5300)" }}>
-            <div className="font-[family-name:var(--font-inter)] text-white" style={{ fontSize: "clamp(24px,2.4vw,34px)", fontWeight: 500 }}>Trusted by <b className="font-extrabold">25k+</b></div>
-            <div className="mt-3 flex items-center justify-center gap-3">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/testimonial-group.webp" alt="" className="h-9 w-auto" />
-              <span className="font-[family-name:var(--font-inter)] text-[15px] font-medium text-white">Students</span>
-            </div>
+            <div className="font-[family-name:var(--font-inter)] font-medium text-white" style={{ fontSize: "clamp(20px,2vw,28px)" }}>Trusted by</div>
+            <div className="font-[family-name:var(--font-inter)] font-medium text-white" style={{ fontSize: "clamp(22px,2.3vw,32px)" }}><b className="font-extrabold">25K+</b> Students</div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/testimonial-group.webp" alt="" className="mt-4 h-10 w-auto" />
           </div>
         </div>
       </div>

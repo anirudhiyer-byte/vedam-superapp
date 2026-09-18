@@ -47,7 +47,7 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
         <img src={A.polka} alt="" style={{ position: "absolute", right: -55, top: -120, width: 760, height: 760, objectFit: "cover", opacity: 0.12, pointerEvents: "none" }} />
         {/* polka texture */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={A.polka} alt="" style={{ position: "absolute", right: -55, top: -120, width: 760, height: 760, objectFit: "cover", opacity: 0.2, pointerEvents: "none" }} />
+        <img src={A.polka} alt="" style={{ position: "absolute", right: -55, top: -120, width: 760, height: 760, objectFit: "cover", opacity: 0.4, pointerEvents: "none" }} />
 
         {/* LEFT ribbons — both notch INWARD toward the QR (flat outer edges) */}
         <div style={{ position: "absolute", left: RIB_LEFT, top: 0, width: RIB_W, height: 328, background: grad, clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%)" }} />
