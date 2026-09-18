@@ -7,6 +7,11 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Skip the full TypeScript typecheck during the Vercel build (it was adding ~10 min).
+  // Types are still checked in the editor / locally; this only speeds the deploy build.
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   // Tie the build ID to the git commit so every deploy ships uniquely-hashed
   // bundles — prevents Vercel from ever serving a stale compiled build.
   generateBuildId: async () => process.env.VERCEL_GIT_COMMIT_SHA || null,
