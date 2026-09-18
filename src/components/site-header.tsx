@@ -111,6 +111,7 @@ export function SiteHeader() {
                       {uid && <div className="mt-0.5 font-mono text-[11px] text-white/40">{uid}</div>}
                     </div>
                     {!profileComplete && <button onClick={() => { setMenuOpen(false); setGateOpen(true); }} className="flex w-full items-center gap-2 px-4 py-2 text-left text-[#ffb84d] hover:bg-white/5">⚠ Complete your profile</button>}
+                    <Link href="/profile" className="block px-4 py-2 text-white/90 hover:bg-white/5">My Profile</Link>
                     <Link href="/dashboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Dashboard</Link>
                     <Link href="/leaderboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Leaderboard</Link>
                     <button onClick={logout} className="block w-full px-4 py-2 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
