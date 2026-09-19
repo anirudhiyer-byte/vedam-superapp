@@ -23,7 +23,7 @@ export function CsCertSection({ onStartLearning }: { onStartLearning?: () => voi
 
       <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
         {/* LEFT — heading + button */}
-        <div>
+        <div className="text-center lg:text-left">
           <h2 className="font-[family-name:var(--font-inter)] font-semibold leading-[1.15] text-white" style={{ fontSize: "clamp(21px,2.3vw,34px)", letterSpacing: "-1.1px" }}>
             Get a <span className="font-[family-name:var(--font-playfair)] italic">Certificate</span><br />of Completion at the end
           </h2>
