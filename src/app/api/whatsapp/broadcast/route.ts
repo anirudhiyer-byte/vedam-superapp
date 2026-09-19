@@ -8,8 +8,8 @@ type Recipient = { to: string; sample?: WaSample };
 export async function POST(req: Request) {
   const { user, supabase } = await requireAdmin();
   if (!user) return Response.json({ ok: false, error: "forbidden" }, { status: 403 });
-  const { templateId, messageType, sender, recipients } = await req.json() as {
-    templateId: string; messageType?: string; sender?: string; recipients: Recipient[];
+  const { templateId, messageType, sender, recipients, campaignId, campaignName } = await req.json() as {
+    templateId: string; messageType?: string; sender?: string; recipients: Recipient[]; campaignId?: string; campaignName?: string;
   };
   if (!templateId || !Array.isArray(recipients) || recipients.length === 0)
     return Response.json({ ok: false, error: "templateId + recipients required" }, { status: 400 });
@@ -26,6 +26,7 @@ export async function POST(req: Request) {
       to_number: r.to, template_id: templateId, message_type: messageType || "text",
       status: result.ok ? "sent" : "failed", http_status: result.status, provider_response: result.data as object,
       transaction_id: first?.transaction_id ?? null, cost: first?.cost ?? null, sent_by: user.id,
+      campaign_id: campaignId ?? null, campaign_name: campaignName ?? null,
     });
   }
   if (rows.length) await supabase.from("whatsapp_sends").insert(rows);

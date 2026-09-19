@@ -11,8 +11,8 @@ export async function POST(req: Request) {
     const creds = await gmailAccessToken();
     if (!creds) return Response.json({ ok: false, error: "Email not configured" }, { status: 200 });
 
-    const { subject, body, recipients, template, accessToken, templateId, kind, refName } = (await req.json()) as {
-      subject: string; body: string; recipients: string[]; template?: EmailTemplate; accessToken?: string; templateId?: string; kind?: string; refName?: string;
+    const { subject, body, recipients, template, accessToken, templateId, kind, refName, campaignId } = (await req.json()) as {
+      subject: string; body: string; recipients: string[]; template?: EmailTemplate; accessToken?: string; templateId?: string; kind?: string; refName?: string; campaignId?: string;
     };
     if (!subject || !body || !Array.isArray(recipients) || recipients.length === 0)
       return Response.json({ ok: false, error: "Missing subject, body, or recipients" }, { status: 400 });
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
       let trackedHtml = html;
       let eid: string | null = null;
       if (svc) {
-        try { const { data } = await svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: kind || "campaign", p_ref_id: null, p_ref_name: refName || subject, p_subject: subject, p_template: null, p_html: html }); eid = data as string; } catch { /* */ }
+        try { const { data } = await svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: kind || "campaign", p_ref_id: null, p_ref_name: refName || subject, p_subject: subject, p_template: null, p_html: html, p_campaign: campaignId || null }); eid = data as string; } catch { /* */ }
       }
       if (eid) trackedHtml = injectTracking(html, eid, addr);
       const raw = buildRawHtml({ to: addr, from: creds.sender, subject, html: trackedHtml });

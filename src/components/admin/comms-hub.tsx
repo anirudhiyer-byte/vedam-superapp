@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
+import { CampaignReport } from "@/components/admin/campaign-report";
 import { AdvancedAudience } from "@/components/admin/advanced-audience";
 import { EventReminders } from "@/components/admin/event-reminders";
 import { ReminderNow } from "@/components/admin/reminder-now";
@@ -160,10 +161,12 @@ export function CommsHub() {
           <p className="mb-2 font-body text-sm font-semibold text-heading">Journey automations (if / else-if / else)</p>
           <CommsJourneys channel={channel} product={product} />
         </div>
+      ) : tab === "report" ? (
+        <div className="mt-6"><CampaignReport /></div>
       ) : (
         <div className="mt-6 rounded-2xl border border-dashed border-border-strong bg-surface-warm/40 p-8 text-center">
           <p className="font-display text-lg font-bold text-heading capitalize">{tab} — {pill(product === "all" ? "general" : product)}</p>
-          <p className="mt-1 font-body text-sm text-muted">The product-scoped {tab} (filters + full ticklist + preview) is being built in the next stages. Templates tagging is live now.</p>
+          <p className="mt-1 font-body text-sm text-muted">This section is being built next.</p>
         </div>
       )}
     </div>

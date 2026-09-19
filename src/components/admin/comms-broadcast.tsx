@@ -32,6 +32,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
   const [varMaps, setVarMaps] = useState<{ source: string; value: string }[]>([]);
   const [pvChannel, setPvChannel] = useState<"whatsapp" | "email">(channel);
   const [sending, setSending] = useState(false); const [result, setResult] = useState<string | null>(null);
+  const [campaignName, setCampaignName] = useState("");
 
   useEffect(() => { setPvChannel(channel); }, [channel]);
 
@@ -88,13 +89,16 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
   async function send() {
     if (!templateRef || sendRows.length === 0) return;
     setSending(true); setResult(null);
+    const audDesc = overrideRecipients ? "advanced audience" : [state && `state=${state}`, attend, csState, cpUsed && `cp=${cpUsed}`].filter(Boolean).join(", ");
+    let campaignId: string | null = null;
+    try { const { data: cid } = await supabase.rpc("campaign_create", { p_name: campaignName || `${channel} · ${new Date().toLocaleDateString()}`, p_channel: channel, p_kind: "campaign", p_product: product === "all" ? "global" : product, p_sub_ref: null, p_template: templateRef, p_source: overrideRecipients ? "advanced" : "simple", p_desc: audDesc, p_count: sendRows.length }); campaignId = (cid as string) || null; } catch { /* */ }
     if (channel === "whatsapp") {
       const F: Record<string, (r: Row) => string> = { name: (r) => r.name, state: (r) => r.state || "", city: (r) => r.city || "", points: (r) => String(r.points) };
       const recips = sendRows.filter((r) => r.phone).map((r) => ({ to: r.phone as string, sample: varMaps.length ? { bodyvar: varMaps.map((m) => m.source === "static" ? m.value : (F[m.source]?.(r) ?? "")) } : undefined }));
       let sent = 0, failed = 0;
       for (let i = 0; i < recips.length; i += 40) {
         const batch = recips.slice(i, i + 40);
-        try { const res = await fetch("/api/whatsapp/broadcast", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ templateId: templateRef, messageType, recipients: batch }) });
+        try { const res = await fetch("/api/whatsapp/broadcast", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ templateId: templateRef, messageType, recipients: batch, campaignId, campaignName }) });
           const j = await res.json(); if (j.ok) { sent += j.sent || 0; failed += j.failed || 0; } else failed += batch.length; } catch { failed += batch.length; }
       }
       setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`);
@@ -107,7 +111,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
       for (let i = 0; i < emails.length; i += 40) {
         const batch = emails.slice(i, i + 40);
         try { const res = await fetch("/api/events/send-campaign", { method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ subject: tpl?.subject || "Vedam", body: bodyInner || "<p>&nbsp;</p>", recipients: batch, template: (tpl?.template_style || "brand"), accessToken: s.session?.access_token }) });
+          body: JSON.stringify({ subject: tpl?.subject || "Vedam", body: bodyInner || "<p>&nbsp;</p>", recipients: batch, template: (tpl?.template_style || "brand"), accessToken: s.session?.access_token , campaignId, kind: "campaign", refName: campaignName}) });
           const j = await res.json(); if (j.ok) { sent += j.sent || 0; failed += j.failed || 0; } else failed += batch.length; } catch { failed += batch.length; }
       }
       setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`);
@@ -176,6 +180,8 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
             </table>
           </div>
           {result && <p className="mt-3 font-body text-sm text-foreground">{result}</p>}
+          <label className="mt-3 block"><span className="mb-1 block font-body text-xs font-semibold text-heading">Campaign name (for the report)</span>
+            <input value={campaignName} onChange={(e) => setCampaignName(e.target.value)} placeholder="e.g. Bootcamp reminder — Spotify build" className="w-full max-w-md rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground outline-none [color-scheme:dark]" /></label>
           <button onClick={send} disabled={sending || !templateRef || selected.size === 0} className="mt-3 rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-60">{sending ? "Sending…" : `Send to ${selected.size} →`}</button>
         </div>
 
