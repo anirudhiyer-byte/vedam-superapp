@@ -192,8 +192,8 @@ export function RegisterForm() {
           )}
           <div className="mt-5 space-y-4">
             <div className="grid grid-cols-2 gap-3">
-              <Field label="Class 12 grad year"><select className={inputCls} value={gradYear} onChange={(e) => setGradYear(e.target.value ? Number(e.target.value) : "")}><option value="">Select</option>{GRAD_YEARS.map((y) => <option key={y} value={y}>{y}</option>)}</select></Field>
-              <Field label="Stream"><select className={inputCls} value={stream} onChange={(e) => setStream(e.target.value as typeof stream)}><option value="">Select</option>{STREAMS.map((s) => <option key={s} value={s}>{s}</option>)}</select></Field>
+              <Field label="Class 12 grad year"><select className={inputCls} value={gradYear} onChange={(e) => setGradYear(e.target.value ? Number(e.target.value) : "")}><option value="" className="bg-[#160a30] text-white">Select</option>{GRAD_YEARS.map((y) => <option key={y} value={y} className="bg-[#160a30] text-white">{y}</option>)}</select></Field>
+              <Field label="Stream"><select className={inputCls} value={stream} onChange={(e) => setStream(e.target.value as typeof stream)}><option value="" className="bg-[#160a30] text-white">Select</option>{STREAMS.map((s) => <option key={s} value={s} className="bg-[#160a30] text-white">{s}</option>)}</select></Field>
             </div>
             {stream === "Others" && <Field label="Your stream"><input className={inputCls} value={streamOther} onChange={(e) => setStreamOther(e.target.value)} placeholder="e.g. Commerce" /></Field>}
             <div className="grid grid-cols-2 gap-3">
@@ -216,7 +216,7 @@ export function RegisterForm() {
   );
 }
 
-const inputCls = "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-white/90 outline-none transition-colors focus:border-[color:rgb(var(--accent))]";
+const inputCls = "w-full rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2.5 text-sm text-white/90 outline-none transition-colors [color-scheme:dark] focus:border-[#00cfe5]";
 const otpCls = inputCls + " text-center text-lg tracking-[0.4em]";
 const primaryBtn = "w-full rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60";
 
