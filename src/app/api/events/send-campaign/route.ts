@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       if (eid) trackedHtml = injectTracking(html, eid, addr);
       const raw = buildRawHtml({ to: addr, from: creds.sender, subject, html: trackedHtml });
       const r = await gmailSend(creds.token, raw);
-      if (r.ok) sent++; else failures.push({ to: addr, error: r.error || "failed" });
+      if (r.ok) { sent++; if (r.messageId && eid && svc) { try { await svc.rpc("email_set_msgid", { p_id: eid, p_msgid: r.messageId }); } catch { /* */ } } } else failures.push({ to: addr, error: r.error || "failed" });
     }
     try { await supa.rpc("log_email_sends", { p_n: sent, p_kind: "campaign", p_event: null }); } catch { /* ignore */ }
     return Response.json({ ok: true, sent, failed: failures.length, failures });
