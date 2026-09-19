@@ -67,12 +67,12 @@ export function Leaderboard() {
       <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">
         <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: "0 0 0 3px rgba(249,125,3,.22)" }} />// leaderboard
       </span>
-      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-heading">Top builders</h1>
-      <p className="mt-1 font-body text-sm text-muted">Points earned across every Vedam product.</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-white">Top builders</h1>
+      <p className="mt-1 font-body text-sm text-white/50">Points earned across every Vedam product.</p>
 
       {/* your position summary */}
       {myRow && (
-        <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-border bg-brand-gradient px-5 py-3.5 text-white">
+        <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-white/10 bg-brand-gradient px-5 py-3.5 text-white">
           <span className="font-display text-lg font-extrabold">You're #{myRow.rnk}</span>
           <span className="font-body text-sm text-white/85">of {rows.length} {scope === "state" && !adminState ? `in ${me?.state}` : adminState ? `in ${adminState}` : "nationally"}</span>
           <span className="ml-auto font-mono text-sm font-bold">{myRow.points.toLocaleString("en-IN")} pts</span>
@@ -86,21 +86,21 @@ export function Leaderboard() {
           {(["today", "week", "month", "custom"] as const).map((r) => (
             <button key={r} onClick={() => setRange(r)}
               className={["rounded-lg px-3.5 py-2 font-mono text-xs font-semibold capitalize transition-colors",
-                range === r ? "bg-brand-gradient text-white" : "border border-border-strong bg-surface text-muted hover:text-foreground"].join(" ")}>
+                range === r ? "bg-brand-gradient text-white" : "border border-white/15 bg-white/[0.04] text-white/50 hover:text-white/85"].join(" ")}>
               {r === "week" ? "This week" : r === "month" ? "This month" : r}
             </button>
           ))}
         </div>
         {/* scope toggle (state vs national) for users with a state */}
         {me?.state && !adminState && (
-          <div className="inline-flex rounded-full border border-border bg-surface p-1">
-            <button onClick={() => setScope("state")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "state" ? "bg-heading text-white" : "text-muted"].join(" ")} style={scope === "state" ? { background: "rgb(var(--heading))" } : undefined}>My state · {me.state}</button>
-            <button onClick={() => setScope("national")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "national" ? "bg-heading text-white" : "text-muted"].join(" ")} style={scope === "national" ? { background: "rgb(var(--heading))" } : undefined}>National</button>
+          <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] p-1">
+            <button onClick={() => setScope("state")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "state" ? "bg-heading text-white" : "text-white/50"].join(" ")} style={scope === "state" ? { background: "rgb(var(--heading))" } : undefined}>My state · {me.state}</button>
+            <button onClick={() => setScope("national")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "national" ? "bg-heading text-white" : "text-white/50"].join(" ")} style={scope === "national" ? { background: "rgb(var(--heading))" } : undefined}>National</button>
           </div>
         )}
         {isAdmin && (
-          <label className="ml-auto flex items-center gap-2 font-mono text-xs text-muted">👑 view state
-            <select value={adminState} onChange={(e) => setAdminState(e.target.value)} className="rounded-lg border border-border bg-surface px-2.5 py-1.5 font-body text-sm text-foreground outline-none">
+          <label className="ml-auto flex items-center gap-2 font-mono text-xs text-white/50">👑 view state
+            <select value={adminState} onChange={(e) => setAdminState(e.target.value)} className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 font-body text-sm text-white/85 outline-none">
               <option value="">National</option>
               {allStates.map((s) => <option key={s} value={s}>{s}</option>)}
             </select>
@@ -110,18 +110,18 @@ export function Leaderboard() {
 
       {range === "custom" && (
         <div className="mt-3 flex items-center gap-2">
-          <input type="date" value={from} max={to} onChange={(e) => setFrom(e.target.value)} className="rounded-lg border border-border bg-surface px-2.5 py-2 font-mono text-xs text-foreground" />
-          <span className="font-mono text-xs text-muted">→</span>
-          <input type="date" value={to} min={from} max={today} onChange={(e) => setTo(e.target.value)} className="rounded-lg border border-border bg-surface px-2.5 py-2 font-mono text-xs text-foreground" />
+          <input type="date" value={from} max={to} onChange={(e) => setFrom(e.target.value)} className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-2 font-mono text-xs text-white/85" />
+          <span className="font-mono text-xs text-white/50">→</span>
+          <input type="date" value={to} min={from} max={today} onChange={(e) => setTo(e.target.value)} className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-2 font-mono text-xs text-white/85" />
         </div>
       )}
 
       {loading ? (
-        <div className="mt-8 space-y-3">{[0, 1, 2, 3, 4].map((i) => <div key={i} className="h-16 animate-pulse rounded-2xl border border-border bg-surface" />)}</div>
+        <div className="mt-8 space-y-3">{[0, 1, 2, 3, 4].map((i) => <div key={i} className="h-16 animate-pulse rounded-2xl border border-white/10 bg-white/[0.04]" />)}</div>
       ) : rows.length === 0 ? (
-        <div className="mt-10 rounded-2xl border border-dashed border-border-strong bg-surface p-10 text-center">
-          <p className="font-display text-lg font-bold text-heading">No points {scopeLabel === "nationally" ? "yet" : `in ${scopeLabel} yet`}</p>
-          <p className="mt-1 font-body text-sm text-muted">As people earn points, they&apos;ll show up here.</p>
+        <div className="mt-10 rounded-2xl border border-dashed border-white/15 bg-white/[0.04] p-10 text-center">
+          <p className="font-display text-lg font-bold text-white">No points {scopeLabel === "nationally" ? "yet" : `in ${scopeLabel} yet`}</p>
+          <p className="mt-1 font-body text-sm text-white/50">As people earn points, they&apos;ll show up here.</p>
         </div>
       ) : (
         <>
@@ -149,14 +149,14 @@ export function Leaderboard() {
                 const init = shortName(r.name).split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
                 const mine = r.user_id === me?.id;
                 return (
-                  <div key={r.user_id} className={["flex items-center gap-3.5 rounded-2xl border px-4 py-3", mine ? "border-[#8A18FF] bg-[rgba(138,24,255,0.12)]" : "border-border bg-surface"].join(" ")}>
-                    <span className="w-7 text-center font-mono text-sm font-bold text-muted">{r.rnk}</span>
+                  <div key={r.user_id} className={["flex items-center gap-3.5 rounded-2xl border px-4 py-3", mine ? "border-[#8A18FF] bg-[rgba(138,24,255,0.12)]" : "border-white/10 bg-white/[0.04]"].join(" ")}>
+                    <span className="w-7 text-center font-mono text-sm font-bold text-white/50">{r.rnk}</span>
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full font-display text-xs font-extrabold text-white" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{init}</span>
                     <div className="min-w-0 flex-1">
-                      <div className="truncate font-body text-sm font-medium text-heading">{shortName(r.name)}{mine && <span className="ml-2 rounded-full bg-brand-gradient px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-white">You</span>}</div>
+                      <div className="truncate font-body text-sm font-medium text-white">{shortName(r.name)}{mine && <span className="ml-2 rounded-full bg-brand-gradient px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-white">You</span>}</div>
                       {r.public_id && <div className="font-mono text-[11px] text-[#a49cbe]">{r.public_id}</div>}
                     </div>
-                    {!activeState && r.state && <span className="hidden font-mono text-[11px] text-muted sm:inline">{r.state}</span>}
+                    {!activeState && r.state && <span className="hidden font-mono text-[11px] text-white/50 sm:inline">{r.state}</span>}
                     <span className="font-mono text-sm font-bold text-primary">{r.points.toLocaleString("en-IN")}</span>
                   </div>
                 );

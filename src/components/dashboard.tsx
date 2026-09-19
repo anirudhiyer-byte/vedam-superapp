@@ -65,11 +65,11 @@ export function Dashboard() {
   const csCerts = useMemo(() => certs.filter((c) => c.source === "codesprint"), [certs]);
   const toggleFolder = (k: string) => setOpenFolders((s) => { const n = new Set(s); n.has(k) ? n.delete(k) : n.add(k); return n; });
 
-  if (loading) return <div className="mx-auto max-w-4xl px-6 py-12"><div className="h-72 animate-pulse rounded-2xl border border-border bg-surface" /></div>;
+  if (loading) return <div className="mx-auto max-w-4xl px-6 py-12"><div className="h-72 animate-pulse rounded-2xl border border-white/10 bg-white/[0.04]" /></div>;
   if (!authed) return (
     <div className="mx-auto max-w-md px-6 py-24 text-center">
-      <h1 className="font-display text-2xl font-bold text-heading">Your dashboard</h1>
-      <p className="mt-2 font-body text-sm text-muted">Log in to see your points and certificates.</p>
+      <h1 className="font-display text-2xl font-bold text-white">Your dashboard</h1>
+      <p className="mt-2 font-body text-sm text-white/50">Log in to see your points and certificates.</p>
       <Link href="/login?next=/dashboard" className="mt-5 inline-block rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white">Log in</Link>
     </div>
   );
@@ -79,8 +79,8 @@ export function Dashboard() {
       <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">
         <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: "0 0 0 3px rgba(249,125,3,.22)" }} />// your journey
       </span>
-      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-heading">{name ? `Hey ${name} 👋` : "Your dashboard"}</h1>
-      <p className="mt-1 font-body text-sm text-muted">Your points, certificates and events across the Vedam ecosystem.</p>
+      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-white">{name ? `Hey ${name} 👋` : "Your dashboard"}</h1>
+      <p className="mt-1 font-body text-sm text-white/50">Your points, certificates and events across the Vedam ecosystem.</p>
 
       {/* stats */}
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
@@ -98,26 +98,26 @@ export function Dashboard() {
       </div>
 
       {/* leaderboard link */}
-      <Link href="/leaderboard" className="group relative mt-3 flex items-center justify-between overflow-hidden rounded-2xl border border-border bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-[#8A18FF66]">
-        <div className="flex items-center gap-3"><span className="text-xl">🏆</span><div><p className="font-display text-sm font-bold text-heading">Leaderboard</p><p className="font-mono text-[11px] text-muted">See where you rank</p></div></div>
+      <Link href="/leaderboard" className="group relative mt-3 flex items-center justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all hover:-translate-y-0.5 hover:border-[#8A18FF66]">
+        <div className="flex items-center gap-3"><span className="text-xl">🏆</span><div><p className="font-display text-sm font-bold text-white">Leaderboard</p><p className="font-mono text-[11px] text-white/50">See where you rank</p></div></div>
         <span className="font-mono text-sm text-accent">→</span>
       </Link>
 
       {/* upcoming events */}
       {upcomingRegs.length > 0 && (
         <>
-          <h2 className="mb-3 mt-10 font-display text-lg font-bold text-heading">Your upcoming events</h2>
+          <h2 className="mb-3 mt-10 font-display text-lg font-bold text-white">Your upcoming events</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {upcomingRegs.map((r) => {
               const online = r.events?.mode !== "offline";
               const joinUrl = r.zoom_join_url || r.events?.join_link || null;
               return (
-                <div key={r.id} className="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-4">
-                  <div><p className="truncate font-display text-sm font-semibold text-heading">{r.events?.name || "Vedam event"}</p>
-                    <p className="mt-0.5 font-mono text-xs text-muted">{r.events?.starts_at ? new Date(r.events.starts_at).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) : "Date TBA"}</p></div>
+                <div key={r.id} className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <div><p className="truncate font-display text-sm font-semibold text-white">{r.events?.name || "Vedam event"}</p>
+                    <p className="mt-0.5 font-mono text-xs text-white/50">{r.events?.starts_at ? new Date(r.events.starts_at).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) : "Date TBA"}</p></div>
                   <div className="mt-auto flex gap-2">
                     {online && joinUrl && <a href={joinUrl} target="_blank" rel="noreferrer" className="flex-1 rounded-lg bg-brand-gradient px-3 py-2 text-center text-xs font-semibold text-white">Join</a>}
-                    {r.events?.event_code && <Link href={`/events/${r.events.event_code}`} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">Details</Link>}
+                    {r.events?.event_code && <Link href={`/events/${r.events.event_code}`} className="flex-1 rounded-lg border border-white/10 px-3 py-2 text-center text-xs font-semibold text-white/85 hover:bg-white/[0.05]">Details</Link>}
                   </div>
                 </div>
               );
@@ -127,33 +127,33 @@ export function Dashboard() {
       )}
 
       {/* certificates: Events (per-event subfolders) + CodeSprint (flat) */}
-      <h2 className="mb-3 mt-10 font-display text-lg font-bold text-heading">Your certificates</h2>
+      <h2 className="mb-3 mt-10 font-display text-lg font-bold text-white">Your certificates</h2>
       {eventGroups.length === 0 && csCerts.length === 0 ? (
-        <p className="font-body text-sm text-muted">No certificates yet — take part in an event or finish a CodeSprint module and they&apos;ll show up here.</p>
+        <p className="font-body text-sm text-white/50">No certificates yet — take part in an event or finish a CodeSprint module and they&apos;ll show up here.</p>
       ) : (
         <div className="space-y-2">
           {/* Events top-level folder */}
           {eventGroups.length > 0 && (
-            <div className="overflow-hidden rounded-2xl border border-border bg-surface">
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
               <button onClick={() => toggleFolder("events")} className="flex w-full items-center gap-3 p-4 text-left">
                 <span className="text-xl">{openFolders.has("events") ? "\uD83D\uDCC2" : "\uD83D\uDCC1"}</span>
-                <div className="min-w-0 flex-1"><p className="font-display text-sm font-semibold text-heading">Events</p>
-                  <p className="font-mono text-[11px] text-muted">{eventGroups.length} event{eventGroups.length > 1 ? "s" : ""}</p></div>
-                <span className="font-mono text-xs text-muted">{openFolders.has("events") ? "\u25B2" : "\u25BC"}</span>
+                <div className="min-w-0 flex-1"><p className="font-display text-sm font-semibold text-white">Events</p>
+                  <p className="font-mono text-[11px] text-white/50">{eventGroups.length} event{eventGroups.length > 1 ? "s" : ""}</p></div>
+                <span className="font-mono text-xs text-white/50">{openFolders.has("events") ? "\u25B2" : "\u25BC"}</span>
               </button>
               {openFolders.has("events") && (
-                <div className="space-y-2 border-t border-border p-3">
+                <div className="space-y-2 border-t border-white/10 p-3">
                   {eventGroups.map((g) => {
                     const k = "events:" + g.key; const open = openFolders.has(k);
                     return (
-                      <div key={g.key} className="overflow-hidden rounded-xl border border-border bg-background">
+                      <div key={g.key} className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.05]">
                         <button onClick={() => toggleFolder(k)} className="flex w-full items-center gap-3 p-3 text-left">
                           <span>{open ? "\uD83D\uDCC2" : "\uD83D\uDCC1"}</span>
-                          <div className="min-w-0 flex-1"><p className="truncate font-display text-sm font-semibold text-heading">{g.name}</p>
-                            <p className="font-mono text-[11px] text-muted">{g.certs.length} certificate{g.certs.length > 1 ? "s" : ""} · {g.certs.map((c) => c.kind === "winner" ? "Winner" : "Participation").join(" + ")}</p></div>
-                          <span className="font-mono text-xs text-muted">{open ? "\u25B2" : "\u25BC"}</span>
+                          <div className="min-w-0 flex-1"><p className="truncate font-display text-sm font-semibold text-white">{g.name}</p>
+                            <p className="font-mono text-[11px] text-white/50">{g.certs.length} certificate{g.certs.length > 1 ? "s" : ""} · {g.certs.map((c) => c.kind === "winner" ? "Winner" : "Participation").join(" + ")}</p></div>
+                          <span className="font-mono text-xs text-white/50">{open ? "\u25B2" : "\u25BC"}</span>
                         </button>
-                        {open && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{g.certs.map((c) => <CertCard key={c.id} cert={c} origin={origin} onView={setOpenCert} />)}</div>}
+                        {open && <div className="grid gap-3 border-t border-white/10 p-3 sm:grid-cols-2">{g.certs.map((c) => <CertCard key={c.id} cert={c} origin={origin} onView={setOpenCert} />)}</div>}
                       </div>
                     );
                   })}
@@ -164,14 +164,14 @@ export function Dashboard() {
 
           {/* CodeSprint top-level folder (flat) */}
           {csCerts.length > 0 && (
-            <div className="overflow-hidden rounded-2xl border border-border bg-surface">
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
               <button onClick={() => toggleFolder("codesprint")} className="flex w-full items-center gap-3 p-4 text-left">
                 <span className="text-xl">{openFolders.has("codesprint") ? "\uD83D\uDCC2" : "\uD83D\uDCC1"}</span>
-                <div className="min-w-0 flex-1"><p className="font-display text-sm font-semibold text-heading">CodeSprint</p>
-                  <p className="font-mono text-[11px] text-muted">{csCerts.length} certificate{csCerts.length > 1 ? "s" : ""}</p></div>
-                <span className="font-mono text-xs text-muted">{openFolders.has("codesprint") ? "\u25B2" : "\u25BC"}</span>
+                <div className="min-w-0 flex-1"><p className="font-display text-sm font-semibold text-white">CodeSprint</p>
+                  <p className="font-mono text-[11px] text-white/50">{csCerts.length} certificate{csCerts.length > 1 ? "s" : ""}</p></div>
+                <span className="font-mono text-xs text-white/50">{openFolders.has("codesprint") ? "\u25B2" : "\u25BC"}</span>
               </button>
-              {openFolders.has("codesprint") && <div className="grid gap-3 border-t border-border p-3 sm:grid-cols-2">{csCerts.map((c) => <CertCard key={c.id} cert={c} origin={origin} onView={setOpenCert} />)}</div>}
+              {openFolders.has("codesprint") && <div className="grid gap-3 border-t border-white/10 p-3 sm:grid-cols-2">{csCerts.map((c) => <CertCard key={c.id} cert={c} origin={origin} onView={setOpenCert} />)}</div>}
             </div>
           )}
         </div>
@@ -182,16 +182,16 @@ export function Dashboard() {
       {/* recent activity — collapsible */}
       {rows.length > 0 && (
         <div className="mt-10">
-          <button onClick={() => setShowActivity((v) => !v)} className="flex w-full items-center justify-between rounded-2xl border border-border bg-surface px-4 py-3.5">
-            <span className="font-display text-lg font-bold text-heading">Recent activity</span>
-            <span className="flex items-center gap-2 font-mono text-xs text-muted">{rows.length} entries {showActivity ? "▲" : "▼"}</span>
+          <button onClick={() => setShowActivity((v) => !v)} className="flex w-full items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3.5">
+            <span className="font-display text-lg font-bold text-white">Recent activity</span>
+            <span className="flex items-center gap-2 font-mono text-xs text-white/50">{rows.length} entries {showActivity ? "▲" : "▼"}</span>
           </button>
           {showActivity && (
-            <div className="mt-2 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+            <div className="mt-2 divide-y divide-border overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
               {rows.slice(0, 60).map((r, i) => (
                 <div key={i} className="flex items-center justify-between gap-4 p-4">
-                  <div className="min-w-0"><p className="font-body text-sm font-medium text-foreground">{ACTION_LABEL[r.action] || r.action}{r.events?.name ? <span className="text-muted"> · {r.events.name}</span> : null}</p>
-                    <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wide text-muted">{r.app} · {fdate(r.created_at)}</p></div>
+                  <div className="min-w-0"><p className="font-body text-sm font-medium text-white/85">{ACTION_LABEL[r.action] || r.action}{r.events?.name ? <span className="text-white/50"> · {r.events.name}</span> : null}</p>
+                    <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wide text-white/50">{r.app} · {fdate(r.created_at)}</p></div>
                   <span className="shrink-0 font-display text-sm font-bold text-accent">+{r.points}</span>
                 </div>
               ))}
@@ -215,10 +215,10 @@ function Spark({ seed }: { seed: number }) {
 
 function Stat({ label, value }: { label: string; value: number }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5">
+    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5">
       <span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(125deg, rgba(255,255,255,0.10), transparent 34%)" }} />
-      <div className="font-mono text-[10px] font-semibold uppercase tracking-wide text-muted">{label}</div>
-      <div className="mt-1 font-display text-3xl font-bold text-heading">{value.toLocaleString("en-IN")}</div>
+      <div className="font-mono text-[10px] font-semibold uppercase tracking-wide text-white/50">{label}</div>
+      <div className="mt-1 font-display text-3xl font-bold text-white">{value.toLocaleString("en-IN")}</div>
       <Spark seed={value || 1} />
     </div>
   );
@@ -229,14 +229,14 @@ function CertCard({ cert: c, origin, onView }: { cert: CertRow; origin: string; 
   const completion = c.source === "codesprint";
   const label = completion ? (c.cs_modules?.title || "CodeSprint") : winner ? "Winner" : "Participation";
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-border bg-background p-4">
+    <div className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.05] p-4">
       <div className="flex items-start justify-between gap-2">
-        <span className={["rounded-full px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide", winner ? "bg-[linear-gradient(120deg,#B8860B,#F5C542)] text-[#3a2a00]" : "bg-surface-warm text-accent"].join(" ")}>{completion ? "Completion" : winner ? "\uD83C\uDFC6 Winner" : "Participation"}</span>
-        <span className="font-mono text-[10px] text-muted">{fdate(c.issued_on)}</span>
+        <span className={["rounded-full px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide", winner ? "bg-[linear-gradient(120deg,#B8860B,#F5C542)] text-[#3a2a00]" : "bg-white/[0.05] text-accent"].join(" ")}>{completion ? "Completion" : winner ? "\uD83C\uDFC6 Winner" : "Participation"}</span>
+        <span className="font-mono text-[10px] text-white/50">{fdate(c.issued_on)}</span>
       </div>
-      {completion && <p className="truncate font-display text-xs font-semibold text-heading">{label}</p>}
+      {completion && <p className="truncate font-display text-xs font-semibold text-white">{label}</p>}
       <div className="mt-auto flex gap-2">
-        <button onClick={() => onView(c.id)} className="flex-1 rounded-lg border border-border px-3 py-2 text-center text-xs font-semibold text-foreground hover:bg-surface-warm">View</button>
+        <button onClick={() => onView(c.id)} className="flex-1 rounded-lg border border-white/10 px-3 py-2 text-center text-xs font-semibold text-white/85 hover:bg-white/[0.05]">View</button>
         <a href={linkedInShareUrl(`${origin}/certificate?c=${c.id}`)} target="_blank" rel="noreferrer" className="flex-1 rounded-lg bg-[#0A66C2] px-3 py-2 text-center text-xs font-semibold text-white">Share</a>
       </div>
     </div>
