@@ -82,7 +82,7 @@ export function SiteHeader() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[220%] backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 38%, rgba(0,0,0,0) 72%)", maskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)", WebkitMaskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)" }} />
       <div className="relative z-10 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-4 sm:px-10">
         <a href="https://www.vedam.org" className="flex items-center">
-          <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-9 w-auto sm:h-10" />
+          <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-8 w-auto sm:h-10" />
         </a>
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 lg:flex">
           {NAV.map((n) => {
@@ -132,14 +132,14 @@ export function SiteHeader() {
               </div>
             </>
           ) : (
-            <div className="flex items-center gap-2">
-              <Link href="/login" className="rounded-full px-4 py-1.5 text-[15px] font-medium text-white/85 transition-colors hover:text-white">Sign in</Link>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Link href="/login" className="rounded-full px-2.5 py-1 text-[13px] font-medium text-white/85 transition-colors hover:text-white sm:px-4 sm:py-1.5 sm:text-[15px]">Sign in</Link>
               <Link href="/register" className="group/si relative inline-flex rounded-full p-[1.5px] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,47,176,0.7),0_0_50px_rgba(47,155,255,0.55)]" style={{ background: "linear-gradient(100deg,#ff2fb0,#7b5cff 55%,#2f9bff)", boxShadow: "0 0 16px rgba(123,92,255,.55)" }}>
-                <span className="inline-flex items-center rounded-full px-4 py-1.5 text-[15px] font-medium text-white transition-colors group-hover/si:bg-[rgba(138,24,255,0.3)]" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Register</span>
+                <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[13px] font-medium text-white transition-colors group-hover/si:bg-[rgba(138,24,255,0.3)] sm:px-4 sm:py-1.5 sm:text-[15px]" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Register</span>
               </Link>
             </div>
           )}
-          <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-white lg:hidden">☰</button>
+          <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-9 w-9 flex-none place-items-center rounded-lg border border-white/15 text-white lg:hidden">☰</button>
         </div>
       </div>
       {navOpen && (
