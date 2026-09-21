@@ -54,7 +54,12 @@ export function LoginForm() {
         ? await supabase.auth.signInWithOtp({ phone: e164(phone), options: { shouldCreateUser: false, channel: "sms", captchaToken: captchaToken || undefined } })
         : await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: email.trim().toLowerCase().endsWith("@vedam.org"), captchaToken: captchaToken || undefined } });
     setLoading(false);
-    if (error) { setCaptchaToken(null); setCaptchaReset((x) => x + 1); const friendly = /signups? not allowed/i.test(error.message) ? "No account found with these details yet. Please create an account first." : error.message; return setError(friendly); }
+    if (error) { setCaptchaToken(null); setCaptchaReset((x) => x + 1);
+      let friendly = error.message;
+      if (/signups? not allowed/i.test(error.message)) friendly = mode === "email"
+        ? "No account is verified for this email yet. If you registered with it but skipped email OTP, sign in with your phone number for now — then verify your email from your Profile to enable email sign-in."
+        : "No account found with these details yet. Please create an account first.";
+      return setError(friendly); }
     setSent(true);
   }
 

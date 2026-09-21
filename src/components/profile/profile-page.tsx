@@ -59,7 +59,7 @@ export function ProfilePage() {
             <div className="flex gap-3">
               <Stat label="Points" value={std?.points ?? 0} accent="#ffe27a" />
               <Stat label="National" value={std?.national_rank ? `#${std.national_rank}` : "—"} accent="#7ad7ff" />
-              <Stat label={std?.state ? std.state : "State"} value={std?.state_rank ? `#${std.state_rank}` : (std?.state ? "—" : "add state")} accent="#8fe9f5" />
+              <Stat label={std?.state ? std.state : "State"} value={std?.state_rank ? `#${std.state_rank}` : "—"} accent="#8fe9f5" />
             </div>
           </div>
         </div>

@@ -94,8 +94,8 @@ export function Leaderboard() {
         {/* scope toggle (state vs national) for users with a state */}
         {me?.state && !adminState && (
           <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] p-1">
-            <button onClick={() => setScope("state")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "state" ? "bg-heading text-white" : "text-white/50"].join(" ")} style={scope === "state" ? { background: "rgb(var(--heading))" } : undefined}>My state · {me.state}</button>
-            <button onClick={() => setScope("national")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "national" ? "bg-heading text-white" : "text-white/50"].join(" ")} style={scope === "national" ? { background: "rgb(var(--heading))" } : undefined}>National</button>
+            <button onClick={() => setScope("state")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "state" ? "bg-white/15 text-white" : "text-white/50"].join(" ")}>My state · {me.state}</button>
+            <button onClick={() => setScope("national")} className={["rounded-full px-3.5 py-1.5 font-mono text-xs font-semibold", scope === "national" ? "bg-white/15 text-white" : "text-white/50"].join(" ")}>National</button>
           </div>
         )}
         {isAdmin && (
