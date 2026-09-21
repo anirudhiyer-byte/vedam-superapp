@@ -67,7 +67,7 @@ export function EventEditor({ id }: { id?: string }) {
           certs_enabled: !!e.certs_enabled, podium_enabled: !!e.podium_enabled, share_podium: String(e.share_points_podium ?? 30), share_participation: String(e.share_points_participation ?? 15),
           max_attendees: e.max_attendees ? String(e.max_attendees) : "", reg_close_at: e.reg_close_at ? new Date(e.reg_close_at).toISOString().slice(0, 16) : "",
           ribbon_label: e.ribbon_label || "", ribbon_value: e.ribbon_value || "", dashboard_enabled: e.dashboard_enabled,
-          registration_schema: e.registration_schema?.length ? e.registration_schema : (e.mode === "offline" ? DEFAULT_OFFLINE_REG : DEFAULT_ONLINE_REG),
+          registration_schema: e.registration_schema ?? [],
           points: {
             register: String(e.points_config?.register ?? 0),
             attend: String(e.points_config?.attend ?? 0),
@@ -175,7 +175,6 @@ export function EventEditor({ id }: { id?: string }) {
             <select className={input} value={f.mode} onChange={(e) => {
               const m = e.target.value as Form["mode"];
               set("mode", m);
-              if (!f.registration_schema.length) set("registration_schema", m === "offline" ? DEFAULT_OFFLINE_REG : DEFAULT_ONLINE_REG);
             }}>
               <option value="online">Online</option>
               <option value="offline">In person</option>
