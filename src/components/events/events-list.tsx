@@ -9,11 +9,11 @@ import { useResumeAction } from "@/lib/funnel/use-resume-action";
 import type { EventRow } from "@/lib/events";
 import { eventDateLabel, eventTimeLabel, isOffline, pointsTotalPossible } from "@/lib/events";
 
-export function EventsList({ initialEvents = [] }: { initialEvents?: EventRow[] } = {}) {
+export function EventsList() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const { gate, Modals } = useProductGate();
-  const [events, setEvents] = useState<EventRow[]>(initialEvents);
+  const [events, setEvents] = useState<EventRow[]>([]);
   const [regs, setRegs] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
@@ -39,7 +39,7 @@ export function EventsList({ initialEvents = [] }: { initialEvents?: EventRow[] 
 
   const onRegister = (e: EventRow) => gate({ kind: "register_event", eventCode: e.event_code }, () => {
     router.push(`/events/${e.event_code}?register=1`);
-  }, "Sign up to register for this bootcamp.");
+  }, "Sign up to register for this bootcamp — it takes 20 seconds.");
   useResumeAction((a) => { if (a.kind === "register_event" && a.eventCode) router.push(`/events/${a.eventCode}?register=1`); });
 
   const now = Date.now();
