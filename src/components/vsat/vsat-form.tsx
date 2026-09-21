@@ -28,7 +28,7 @@ export function VsatForm() {
     const { data: { session } } = await supabase.auth.getSession();
     if (session?.user?.email) {
       const { data: p } = await supabase.from("profiles").select("full_name").eq("id", session.user.id).maybeSingle();
-      void fetch("/api/vsat/confirm", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ to: session.user.email, name: (p as { full_name?: string })?.full_name, accessToken: session.access_token }) });
+      void fetch("/api/vsat/confirm", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
     }
     setSaving(false); setDone(true);
   }
