@@ -92,12 +92,17 @@ export function RegisterForm() {
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null });
     gtmEvent("sign_up", { method: "otp" });   // Part-1 done = a Vedam One lead
 
-    // if this is the VSAT flow, record the early interest right away (single-button, no questions)
-    if (isVsat) { try { await supabase.rpc("record_vsat_interest"); } catch { /* */ } }
-
-    // attach email -> sends the 6-digit email code for Part-2 verification
-    try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email.trim() }) }); } catch { /* */ }
-    try { await supabase.auth.updateUser({ email: email.trim() }); } catch { /* */ }
+    // VSAT flow: record early interest + send the confirmation to profiles.email
+    // (verified or not) right away — single button, no questions, no OTP needed.
+    if (isVsat) {
+      try { await supabase.rpc("record_vsat_interest"); } catch { /* */ }
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) void fetch("/api/vsat/confirm", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
+      } catch { /* */ }
+    }
+    // The email-verification OTP is NOT sent here — only when the user taps
+    // "Send code" in Part 2. So skipping Part 2 sends no OTP.
     setLoading(false);
     setStep("part2");
   }
@@ -203,7 +208,7 @@ export function RegisterForm() {
             <Field label={`Verify your email (${email})`}>
               <div className="flex gap-2">
                 <input className={inputCls + " text-center tracking-[0.3em]"} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="Email code" />
-                <button onClick={resendEmailCode} disabled={resendState === "sending"} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{resendState === "sending" ? "…" : resendState === "sent" ? "Sent ✓" : "Resend"}</button>
+                <button onClick={resendEmailCode} disabled={resendState === "sending"} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{resendState === "sending" ? "…" : resendState === "sent" ? "Resend" : "Send code"}</button>
               </div>
             </Field>
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
