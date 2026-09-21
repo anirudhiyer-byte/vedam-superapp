@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
     const subject = "You're registered for VSAT · Vedam School of Technology";
     const body = `
-      <h1 style="margin:0 0 12px;font-size:24px;color:#111">You're registered for VSAT 🎉</h1>
+      <h1 style="margin:0 0 12px;font-size:24px;color:#111">Your interest for VSAT has been registered 🎉</h1>
       <p style="margin:0 0 12px;font-size:15px;color:#333">Hi ${name || "there"},</p>
       <p style="margin:0 0 12px;font-size:15px;color:#333">Thanks for registering your interest in VSAT (Vedam Scholastic Aptitude Test) for the 2026–27 cycle. You're now an early registrant.</p>
       <p style="margin:0 0 12px;font-size:15px;color:#333">Once we go live with admissions, you'll receive updates — including your early-registrant benefits (concession on VSAT fee, higher scholarship assessment, and limited early-intake seats).</p>
