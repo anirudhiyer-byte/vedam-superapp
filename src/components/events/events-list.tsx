@@ -151,7 +151,7 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
   const off = isOffline(event);
   const pts = pointsTotalPossible(event.points_config);
   return (
-    <div className="bc-card group relative rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
+    <div className="bc-card group relative w-[90%] justify-self-start rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
       <div className="relative h-[340px] overflow-hidden rounded-[13px] bg-[#161616]">
         <div className="absolute inset-x-0 top-0 bottom-[40%] overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -174,9 +174,10 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
               <Link href={`/events/${event.event_code}`} className="bc-btn bc-view font-[family-name:var(--font-inter)]">View</Link>
               <button onClick={onRegister} className="bc-btn bc-reg font-[family-name:var(--font-inter)]">{registered ? "Registered" : "Register Now"}</button>
             </div>
-            <div className="flex gap-5 text-center">
-              {event.max_attendees != null && <div><b className="block font-[family-name:var(--font-inter)] text-[19px] font-extrabold leading-none">{event.max_attendees}</b><span className="font-[family-name:var(--font-inter)] text-[11px] opacity-90">Seats</span></div>}
-              {pts > 0 && <div><b className="block font-[family-name:var(--font-inter)] text-[19px] font-extrabold leading-none text-[#ffe27a]">+{pts}</b><span className="font-[family-name:var(--font-inter)] text-[11px] opacity-90">Points</span></div>}
+            <div className="flex items-center gap-1.5 whitespace-nowrap font-[family-name:var(--font-inter)] text-[13px] font-semibold">
+              {event.max_attendees != null && <span>Seats: <b className="font-extrabold">{event.max_attendees}</b></span>}
+              {event.max_attendees != null && pts > 0 && <span className="opacity-40">|</span>}
+              {pts > 0 && <span className="text-[#ffe27a]">Points: <b className="font-extrabold">{pts}</b></span>}
             </div>
           </div>
         </div>
