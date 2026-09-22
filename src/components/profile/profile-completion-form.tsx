@@ -44,7 +44,12 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
     setSent("sending"); setErr("");
     const { error } = await supabase.auth.updateUser({ email: email.trim() });
     setSent(error ? "idle" : "sent");
-    if (error) setErr(error.message);
+    if (error) {
+      const m = error.message || "";
+      if (/database error/i.test(m)) setErr("This email couldn't be verified — it may already be used by another account. Try a different email, or contact support.");
+      else if (/already|exists|registered/i.test(m)) setErr("This email already has an account. Sign in with it instead.");
+      else setErr(m);
+    }
   }
 
   async function save() {

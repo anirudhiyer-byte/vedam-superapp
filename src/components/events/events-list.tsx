@@ -53,7 +53,7 @@ export function EventsList() {
 
   const onRegister = (e: EventRow) => gate({ kind: "register_event", eventCode: e.event_code }, () => {
     router.push(`/events/${e.event_code}?register=1`);
-  }, "Sign up to register for this bootcamp — it takes 20 seconds.");
+  }, "Sign up to register for this bootcamp.");
   useResumeAction((a) => { if (a.kind === "register_event" && a.eventCode) router.push(`/events/${a.eventCode}?register=1`); });
 
   const now = Date.now();
