@@ -111,7 +111,7 @@ export function RegistrationForm({
 
   async function submit(overrideEmail?: string) {
     if (!valid || submitting) return;
-    const regEmail = overrideEmail || emailOverride || profile.email;
+    const regEmail = (typeof overrideEmail === "string" ? overrideEmail : null) || emailOverride || profile.email;
     if (!regEmail) { setGateOpen(true); return; }   // profile incomplete -> ask for details first
     setSubmitting(true);
     setError(null);
@@ -215,7 +215,7 @@ export function RegistrationForm({
 
       {error && <p className="font-body text-sm text-red-500">{error}</p>}
 
-      <button onClick={submit} disabled={!valid || submitting}
+      <button onClick={() => submit()} disabled={!valid || submitting}
         className="group relative w-full overflow-hidden rounded-xl border border-white/25 px-5 py-3 font-[family-name:var(--font-inter)] text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] transition-all hover:border-white/60 hover:shadow-[0_0_30px_rgba(123,92,255,0.6)] disabled:opacity-60" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.32), rgba(123,92,255,0.5) 55%, rgba(194,0,219,0.42))" }}>
         {submitting ? "Registering…" : extraFields.length ? "Confirm registration" : "Register"}
       </button>
