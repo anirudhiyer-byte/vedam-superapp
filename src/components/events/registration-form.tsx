@@ -25,6 +25,19 @@ function profileValue(f: EventField, p: Profile): string {
   return "";
 }
 
+/** A field that maps to a profile detail (name/email/phone/passout/stream/state/city).
+ *  These are handled by the profile gate/popup — never asked as event questions. */
+function isProfileField(f: EventField): boolean {
+  const label = f.label.toLowerCase();
+  return f.type === "phone"
+    || /whats\s*app|phone|mobile|contact/.test(label)
+    || /pass\s*out|passing|year of pass|graduat/.test(label)
+    || /stream/.test(label)
+    || /full name|your name|^name$/.test(label)
+    || /e-?mail/.test(label)
+    || /^state$|^city$|^town$/.test(label);
+}
+
 export function RegistrationForm({
   event, profile, userId, onDone, autoRegister,
 }: {
@@ -43,6 +56,7 @@ export function RegistrationForm({
     const extra: EventField[] = [];
     const vals: Record<string, string> = {};
     for (const f of schema) {
+      if (isProfileField(f)) { const pv = profileValue(f, profile); if (pv) vals[f.key] = pv; continue; }
       const v = profileValue(f, profile);
       if (v) { auto.push(f); vals[f.key] = v; } else { extra.push(f); }
     }

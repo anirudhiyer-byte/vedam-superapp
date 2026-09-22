@@ -14,7 +14,7 @@ const BC_CSS = `
 .bc-card:hover .bc-shine{left:130%}
 .bc-dot{box-shadow:0 0 8px rgba(34,224,106,.9);animation:bc-blink 1.2s ease-in-out infinite}
 @keyframes bc-blink{0%,100%{opacity:1}50%{opacity:.35}}
-.bc-btn{height:32px;display:inline-flex;align-items:center;justify-content:center;padding:0 18px;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s,background .3s;letter-spacing:.2px}
+.bc-btn{height:38px;display:inline-flex;align-items:center;justify-content:center;padding:0 22px;border-radius:11px;font-size:14px;font-weight:600;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s,background .3s;letter-spacing:.2px}
 .bc-btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);transition:left .6s;pointer-events:none}
 .bc-btn:hover::after{left:130%}.bc-btn:hover{transform:translateY(-1px)}
 .bc-view{color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 10px -6px rgba(0,0,0,.5)}
@@ -135,7 +135,7 @@ export function EventsList() {
               <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-white/50">{q || cat !== "All" ? "Try clearing the search or category." : view === "past" ? "Past sessions appear here after they wrap." : "New sessions drop regularly — check back soon."}</p>
             </div>
           ) : (
-            <div className="mt-7 grid gap-7 sm:grid-cols-2">
+            <div className="mt-7 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <style dangerouslySetInnerHTML={{ __html: BC_CSS }} />
               {filtered.map((e) => <EventCard key={e.id} event={e} registered={regs[e.event_code]} onRegister={() => onRegister(e)} />)}
             </div>
@@ -152,31 +152,31 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
   const pts = pointsTotalPossible(event.points_config);
   return (
     <div className="bc-card group relative rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
-      <div className="relative h-[250px] overflow-hidden rounded-[13px] bg-[#161616]">
-        <div className="absolute inset-x-0 top-0 bottom-[44%] overflow-hidden">
+      <div className="relative h-[340px] overflow-hidden rounded-[13px] bg-[#161616]">
+        <div className="absolute inset-x-0 top-0 bottom-[40%] overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {event.banner_url ? <img src={event.banner_url} alt="" className="h-full w-full object-cover" /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-[62%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
+        <div className="absolute inset-x-0 bottom-0 h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
-        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[62%] flex-col justify-end px-4 pb-3.5 text-white">
-          <div className="line-clamp-2 max-w-[62%] font-[family-name:var(--font-inter)] text-[16px] font-bold uppercase leading-[1.12] tracking-[-0.5px]">{event.name}</div>
-          <div className="mt-1.5 flex items-center justify-between gap-2">
-            {event.host ? <div className="font-[family-name:var(--font-inter)] text-[12px]">with {event.host}</div> : <span />}
-            <div className="flex items-center gap-3 whitespace-nowrap font-[family-name:var(--font-inter)] text-[10px]">
-              <span className="flex items-center gap-1"><span className="bc-dot h-[7px] w-[7px] rounded-full" style={{ background: off ? "#ffd27a" : "#22e06a" }} />{event.platform || (off ? "In person" : "Online")}</span>
+        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[50%] flex-col justify-end px-5 pb-5 text-white">
+          <div className="line-clamp-2 max-w-[64%] font-[family-name:var(--font-inter)] text-[22px] font-extrabold uppercase leading-[1.1] tracking-[-0.6px]">{event.name}</div>
+          <div className="mt-2.5 flex items-center justify-between gap-2">
+            {event.host ? <div className="font-[family-name:var(--font-inter)] text-[14px]">with {event.host}</div> : <span />}
+            <div className="flex items-center gap-3 whitespace-nowrap font-[family-name:var(--font-inter)] text-[12px]">
+              <span className="flex items-center gap-1"><span className="bc-dot h-2 w-2 rounded-full" style={{ background: off ? "#ffd27a" : "#22e06a" }} />{event.platform || (off ? "In person" : "Online")}</span>
               <span>{eventDateLabel(event)} · {eventTimeLabel(event)}</span>
             </div>
           </div>
-          <div className="mt-3 flex items-center justify-between">
+          <div className="mt-5 flex items-center justify-between">
             <div className="flex gap-2.5">
               <Link href={`/events/${event.event_code}`} className="bc-btn bc-view font-[family-name:var(--font-inter)]">View</Link>
               <button onClick={onRegister} className="bc-btn bc-reg font-[family-name:var(--font-inter)]">{registered ? "Registered" : "Register Now"}</button>
             </div>
-            <div className="flex gap-4 text-center">
-              {event.max_attendees != null && <div><b className="block font-[family-name:var(--font-inter)] text-[13px] font-extrabold">{event.max_attendees}</b><span className="font-[family-name:var(--font-inter)] text-[9.5px] opacity-90">Seats</span></div>}
-              {pts > 0 && <div><b className="block font-[family-name:var(--font-inter)] text-[13px] font-extrabold text-[#ffe27a]">+{pts}</b><span className="font-[family-name:var(--font-inter)] text-[9.5px] opacity-90">Points</span></div>}
+            <div className="flex gap-5 text-center">
+              {event.max_attendees != null && <div><b className="block font-[family-name:var(--font-inter)] text-[19px] font-extrabold leading-none">{event.max_attendees}</b><span className="font-[family-name:var(--font-inter)] text-[11px] opacity-90">Seats</span></div>}
+              {pts > 0 && <div><b className="block font-[family-name:var(--font-inter)] text-[19px] font-extrabold leading-none text-[#ffe27a]">+{pts}</b><span className="font-[family-name:var(--font-inter)] text-[11px] opacity-90">Points</span></div>}
             </div>
           </div>
         </div>
