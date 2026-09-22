@@ -22,8 +22,10 @@ export async function POST(req: Request) {
     // authoritative recipient = the user's own profiles.email (verified or not)
     const svc = svcKey ? createClient(url, svcKey) : supa;
     const { data: prof } = await svc.from("profiles").select("email, full_name").eq("id", u.user.id).maybeSingle();
-    const to = (prof as { email?: string; full_name?: string } | null)?.email || u.user.email || undefined;
-    const name = (prof as { full_name?: string } | null)?.full_name;
+    const meta = (u.user.user_metadata || {}) as { email?: string; full_name?: string };
+    // email given in step 1 lives in profiles.email, the auth account, or the signup metadata — use whichever is set
+    const to = (prof as { email?: string } | null)?.email || u.user.email || meta.email || undefined;
+    const name = (prof as { full_name?: string } | null)?.full_name || meta.full_name;
     if (!to) return Response.json({ ok: false, error: "No email on file for this account" }, { status: 200 });
 
     const subject = "You're registered for VSAT · Vedam School of Technology";
