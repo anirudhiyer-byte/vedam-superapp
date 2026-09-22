@@ -171,7 +171,7 @@ export function EventDetail({ code }: { code: string }) {
                     </button>
                   </div>
                 )}
-                {regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
+                {event.submission_enabled && regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
                   <ProjectSubmission registrationId={regInfo.id} points={event.submission_points ?? 0} alreadyUrl={regInfo.github} />
                 )}
                 {regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
