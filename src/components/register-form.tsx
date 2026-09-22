@@ -63,6 +63,13 @@ export function RegisterForm() {
     if (allowed === false) { setLoading(false); setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
     const utm = readUtm();
     try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone: e164(phone), email: email.trim() }) }); } catch { /* best effort */ }
+    // one account per phone AND per email — block if either already belongs to a real account
+    try {
+      const cf = await fetch("/api/auth/check-exists", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone: e164(phone), email: email.trim() }) });
+      const cj = await cf.json();
+      if (cj?.conflict === "phone") { setLoading(false); setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError("This WhatsApp number already has an account. Please log in instead."); }
+      if (cj?.conflict === "email") { setLoading(false); setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError("This email already has an account. Please log in instead."); }
+    } catch { /* best effort — don't block signup if the check itself fails */ }
     const { error } = await supabase.auth.signInWithOtp({
       phone: e164(phone),
       options: { shouldCreateUser: true, channel: "sms", captchaToken: captchaToken || undefined,
