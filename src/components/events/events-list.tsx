@@ -135,7 +135,7 @@ export function EventsList() {
               <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-white/50">{q || cat !== "All" ? "Try clearing the search or category." : view === "past" ? "Past sessions appear here after they wrap." : "New sessions drop regularly — check back soon."}</p>
             </div>
           ) : (
-            <div className="mt-7 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-7 grid grid-cols-1 gap-6 sm:grid-cols-2">
               <style dangerouslySetInnerHTML={{ __html: BC_CSS }} />
               {filtered.map((e) => <EventCard key={e.id} event={e} registered={regs[e.event_code]} onRegister={() => onRegister(e)} />)}
             </div>
@@ -162,12 +162,12 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
         <div className="absolute inset-x-0 bottom-0 z-10 flex h-[50%] flex-col justify-end px-5 pb-5 text-white">
           <div className="line-clamp-2 max-w-[64%] font-[family-name:var(--font-inter)] text-[22px] font-extrabold uppercase leading-[1.1] tracking-[-0.6px]">{event.name}</div>
-          <div className="mt-2.5 flex items-center justify-between gap-2">
-            {event.host ? <div className="font-[family-name:var(--font-inter)] text-[14px]">with {event.host}</div> : <span />}
-            <div className="flex items-center gap-3 whitespace-nowrap font-[family-name:var(--font-inter)] text-[12px]">
-              <span className="flex items-center gap-1"><span className="bc-dot h-2 w-2 rounded-full" style={{ background: off ? "#ffd27a" : "#22e06a" }} />{event.platform || (off ? "In person" : "Online")}</span>
-              <span>{eventDateLabel(event)} · {eventTimeLabel(event)}</span>
+          <div className="mt-2.5 flex items-end justify-between gap-3">
+            <div className="min-w-0">
+              {event.host && <div className="truncate font-[family-name:var(--font-inter)] text-[14px]">with {event.host}</div>}
+              <div className="mt-1 flex items-center gap-1.5 font-[family-name:var(--font-inter)] text-[12px]"><span className="bc-dot h-2 w-2 flex-none rounded-full" style={{ background: off ? "#ffd27a" : "#22e06a" }} />{off ? "In person" : "Online"}</div>
             </div>
+            <div className="whitespace-nowrap text-right font-[family-name:var(--font-inter)] text-[16px] font-medium leading-tight">{eventDateLabel(event)} · {eventTimeLabel(event)}</div>
           </div>
           <div className="mt-5 flex items-center justify-between">
             <div className="flex gap-2.5">
