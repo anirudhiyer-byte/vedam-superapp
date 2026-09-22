@@ -34,7 +34,7 @@ export function ProfilePage() {
       setCerts((c as Cert[]) ?? []);
       const { data: pl } = await supabase.from("points_ledger").select("points, action, app, created_at, events(name)").eq("user_id", uid).order("created_at", { ascending: false });
       setPoints((pl as unknown as PointRow[]) ?? []);
-      const { data: em } = await supabase.from("email_events").select("id, kind, ref_name, subject, sent_at, opened_at, html_snapshot").eq("user_id", uid).order("sent_at", { ascending: false });
+      const { data: em } = await supabase.rpc("my_communications");
       setComms((em as Comm[]) ?? []);
     })();
   }, [supabase]);
