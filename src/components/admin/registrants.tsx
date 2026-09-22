@@ -178,7 +178,7 @@ export function Registrants({ id }: { id: string }) {
           </select>
         </div>
         <button onClick={emailPasses} disabled={!targets.length || busy !== null} className={btn}>{busy === "passes" ? "Sending…" : "Email passes"}</button>
-        {event?.zoom_meeting_id && <button onClick={sync} disabled={busy !== null} className={btn}>{busy === "sync" ? "Syncing…" : "Sync attendance from Zoom"}</button>}
+        {(event?.zoom_meeting_id || event?.zoom_id) && <button onClick={sync} disabled={busy !== null} className={btn}>{busy === "sync" ? "Syncing…" : "Sync attendance from Zoom"}</button>}
         <button onClick={awardPoints} disabled={!targets.length || busy !== null} className={btn}>{busy === "award" ? "Awarding…" : "Award attendance points"}</button>
         <span className="font-mono text-xs text-muted">actions apply to {targetLabel}</span>
       </div>
