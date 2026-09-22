@@ -16,14 +16,14 @@ export async function POST(req: Request) {
     if (!isAdmin) return Response.json({ ok: false, error: "Admins only" }, { status: 403 });
 
     const svcClient = createClient(url, svc);
-    const { data: ev } = await svcClient.from("events").select("zoom_meeting_id, zoom_id").eq("id", eventId).maybeSingle();
+    const { data: ev } = await svcClient.from("events").select("zoom_meeting_id, zoom_id, zoom_type").eq("id", eventId).maybeSingle();
     const mid = String((ev as { zoom_meeting_id?: string; zoom_id?: string } | null)?.zoom_meeting_id || (ev as { zoom_id?: string } | null)?.zoom_id || "").replace(/\D/g, "");
     if (!mid) return Response.json({ ok: false, error: "No Zoom meeting on this event" }, { status: 200 });
 
     const token = await zoomToken();
     if (!token) return Response.json({ ok: false, error: "Zoom not configured" }, { status: 200 });
 
-    const { applied, source } = await reconcileAttendance(svcClient as never, token, eventId, mid);
+    const { applied, source } = await reconcileAttendance(svcClient as never, token, eventId, mid, ((ev as { zoom_type?: string } | null)?.zoom_type === "webinar" ? "webinar" : "meeting"));
     return Response.json({ ok: true, applied, source });
   } catch (e) {
     return Response.json({ ok: false, error: String((e as Error)?.message || e) }, { status: 200 });

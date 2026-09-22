@@ -15,10 +15,10 @@ export async function zoomToken(): Promise<string | null> {
 
 /** Register an attendee to a meeting by email → returns their personal join URL. */
 export async function addMeetingRegistrant(
-  token: string, meetingId: string, email: string, firstName: string, lastName: string
+  token: string, meetingId: string, email: string, firstName: string, lastName: string, zType: "meeting" | "webinar" = "meeting"
 ): Promise<{ join_url?: string; error?: string }> {
   const mid = String(meetingId).replace(/\D/g, "");
-  const res = await fetchResilient(`https://api.zoom.us/v2/meetings/${mid}/registrants`, {
+  const res = await fetchResilient(`https://api.zoom.us/v2/${zType}s/${mid}/registrants`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({ email, first_name: firstName || email.split("@")[0], last_name: lastName || "." }),
@@ -40,11 +40,11 @@ export type ReportParticipant = {
 };
 
 /** Pull the authoritative participant report for a past meeting (needs report:read:admin). */
-export async function getMeetingReport(token: string, meetingId: string): Promise<ReportParticipant[]> {
+export async function getMeetingReport(token: string, meetingId: string, zType: "meeting" | "webinar" = "meeting"): Promise<ReportParticipant[]> {
   const out: ReportParticipant[] = [];
   let next = "";
   do {
-    const url = `https://api.zoom.us/v2/report/meetings/${encodeMeetingId(meetingId)}/participants?page_size=300${next ? `&next_page_token=${next}` : ""}`;
+    const url = `https://api.zoom.us/v2/report/${zType}s/${encodeMeetingId(meetingId)}/participants?page_size=300${next ? `&next_page_token=${next}` : ""}`;
     const res = await fetchResilient(url, { headers: { Authorization: `Bearer ${token}` } });
     if (!res.ok) break;
     const j = await res.json();
@@ -72,9 +72,10 @@ export async function reconcileAttendance(
   supa: { from: (t: string) => any; rpc: (fn: string, args: Record<string, unknown>) => Promise<unknown> }, // eslint-disable-line @typescript-eslint/no-explicit-any
   token: string,
   eventId: string,
-  meetingId: string
+  meetingId: string,
+  zType: "meeting" | "webinar" = "meeting"
 ): Promise<{ applied: number; source: "report" | "webhook" }> {
-  const participants = await getMeetingReport(token, meetingId);
+  const participants = await getMeetingReport(token, meetingId, zType);
   let source: "report" | "webhook" = "webhook";
   if (participants.length > 0) {
     await supa.from("zoom_attendance").delete().eq("event_id", eventId);

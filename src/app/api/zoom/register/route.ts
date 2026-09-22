@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     const { data: u } = await supa.auth.getUser(accessToken);
     if (!u?.user) return Response.json({ ok: false, error: "Invalid session" }, { status: 401 });
 
-    const { data: ev } = await supa.from("events").select("zoom_meeting_id, zoom_id").eq("id", eventId).maybeSingle();
+    const { data: ev } = await supa.from("events").select("zoom_meeting_id, zoom_id, zoom_type").eq("id", eventId).maybeSingle();
     const mid = String((ev as { zoom_meeting_id?: string; zoom_id?: string } | null)?.zoom_meeting_id || (ev as { zoom_id?: string } | null)?.zoom_id || "").replace(/\D/g, "");
     if (!mid) return Response.json({ ok: true, skipped: "no zoom meeting id" });
 
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     if (!token) return Response.json({ ok: false, error: "Zoom not configured" }, { status: 200 });
 
     const [first, ...rest] = String(reg.full_name || "").trim().split(/\s+/);
-    const { join_url, error } = await addMeetingRegistrant(token, mid, reg.user_email, first || "", rest.join(" "));
+    const { join_url, error } = await addMeetingRegistrant(token, mid, reg.user_email, first || "", rest.join(" "), ((ev as { zoom_type?: string } | null)?.zoom_type === "webinar" ? "webinar" : "meeting"));
     if (error) return Response.json({ ok: false, error }, { status: 200 });
 
     if (join_url) await supa.from("event_registrations").update({ zoom_join_url: join_url }).eq("id", reg.id);

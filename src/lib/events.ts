@@ -55,6 +55,7 @@ export type EventRow = {
   listing_extra: EventField[] | null;
   points_config: PointsConfig | null;
   zoom_meeting_id: string | null;
+  zoom_type: string | null;
   created_at: string;
 };
 
