@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { EventRow } from "@/lib/events";
 import { isOffline, eventDateLabel, eventTimeLabel, regClosed, pointsLine, pointsTotalPossible } from "@/lib/events";
 import { RegistrationForm } from "@/components/events/registration-form";
+import { LinkedinSubmission } from "@/components/events/linkedin-submission";
 import { ProjectSubmission } from "@/components/events/project-submission";
 
 type Profile = { full_name: string | null; phone: string | null; email: string | null; grad_year: number | null; stream: string | null };
@@ -20,7 +21,7 @@ export function EventDetail({ code }: { code: string }) {
   const searchParams = useSearchParams();
   const autoReg = searchParams.get("register") === "1";
   const [zoomJoinUrl, setZoomJoinUrl] = useState<string | null>(null);
-  const [regInfo, setRegInfo] = useState<{ id: string; joined: boolean; github: string | null } | null>(null);
+  const [regInfo, setRegInfo] = useState<{ id: string; joined: boolean; github: string | null; linkedinPart: string | null; linkedinPodium: string | null; isWinner: boolean } | null>(null);
   const [loading, setLoading] = useState(true);
   const [showRec, setShowRec] = useState(false);
 
@@ -38,8 +39,12 @@ export function EventDetail({ code }: { code: string }) {
         if (active) setProfile((p as Profile) ?? null);
         if (ev) {
           const { data: r } = await supabase.from("event_registrations")
-            .select("id, zoom_join_url, joined, github_url").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
-          if (active) { setRegistered(!!r); setZoomJoinUrl((r as { zoom_join_url?: string } | null)?.zoom_join_url ?? null); if (r) setRegInfo({ id: (r as { id: string }).id, joined: !!(r as { joined?: boolean }).joined, github: (r as { github_url?: string } | null)?.github_url ?? null }); }
+            .select("id, zoom_join_url, joined, github_url, linkedin_post_url, linkedin_podium_url").eq("event_id", (ev as EventRow).id).eq("user_id", u.user.id).maybeSingle();
+          if (active) { setRegistered(!!r); setZoomJoinUrl((r as { zoom_join_url?: string } | null)?.zoom_join_url ?? null); if (r) {
+            const rr = r as { id: string; joined?: boolean; github_url?: string; linkedin_post_url?: string; linkedin_podium_url?: string };
+            const { data: wc } = await supabase.from("certificates").select("id").eq("registration_id", rr.id).eq("kind", "winner").maybeSingle();
+            setRegInfo({ id: rr.id, joined: !!rr.joined, github: rr.github_url ?? null, linkedinPart: rr.linkedin_post_url ?? null, linkedinPodium: rr.linkedin_podium_url ?? null, isWinner: !!wc });
+          } }
         }
       }
       if (active) setLoading(false);
@@ -168,6 +173,9 @@ export function EventDetail({ code }: { code: string }) {
                 )}
                 {event.submission_enabled && regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
                   <ProjectSubmission registrationId={regInfo.id} points={event.submission_points ?? 0} alreadyUrl={regInfo.github} />
+                )}
+                {regInfo?.joined && event.starts_at && new Date(event.starts_at).getTime() < Date.now() && (
+                  <div className="mt-3"><LinkedinSubmission registrationId={regInfo.id} isWinner={regInfo.isWinner} participationPoints={event.share_points_participation ?? 0} podiumPoints={event.share_points_podium ?? 0} alreadyParticipation={regInfo.linkedinPart} alreadyPodium={regInfo.linkedinPodium} /></div>
                 )}
               </div>
             ) : regClosed(event) ? (
