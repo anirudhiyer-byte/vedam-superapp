@@ -203,10 +203,10 @@ export function EventEditor({ id }: { id?: string }) {
               <Row label="Duration (min)"><input type="number" className={input} value={f.duration_minutes} onChange={(e) => set("duration_minutes", e.target.value)} /></Row>
             </div>
             <Row label="Join link"><input className={input} value={f.join_link} onChange={(e) => set("join_link", e.target.value)} /></Row>
-            <Row label="Zoom meeting ID (for attendance tracking)"><input className={input} value={f.zoom_meeting_id} onChange={(e) => set("zoom_meeting_id", e.target.value)} placeholder="e.g. 88123456789" /></Row>
+            <Row label="Zoom meeting ID — REQUIRED for auto-registration + join links + attendance"><input className={input} value={f.zoom_meeting_id} onChange={(e) => set("zoom_meeting_id", e.target.value)} placeholder="e.g. 88123456789 (numeric)" /></Row>
             {f.platform === "Zoom" && (
               <div className="grid gap-4 sm:grid-cols-2">
-                <Row label="Zoom meeting ID"><input className={input} value={f.zoom_id} onChange={(e) => set("zoom_id", e.target.value)} /></Row>
+                <Row label="Meeting ID to show users (optional display)"><input className={input} value={f.zoom_id} onChange={(e) => set("zoom_id", e.target.value)} /></Row>
                 <Row label="Zoom passcode"><input className={input} value={f.zoom_passcode} onChange={(e) => set("zoom_passcode", e.target.value)} /></Row>
               </div>
             )}

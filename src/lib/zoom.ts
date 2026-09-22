@@ -17,7 +17,8 @@ export async function zoomToken(): Promise<string | null> {
 export async function addMeetingRegistrant(
   token: string, meetingId: string, email: string, firstName: string, lastName: string
 ): Promise<{ join_url?: string; error?: string }> {
-  const res = await fetchResilient(`https://api.zoom.us/v2/meetings/${meetingId}/registrants`, {
+  const mid = String(meetingId).replace(/\D/g, "");
+  const res = await fetchResilient(`https://api.zoom.us/v2/meetings/${mid}/registrants`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({ email, first_name: firstName || email.split("@")[0], last_name: lastName || "." }),

@@ -121,7 +121,7 @@ export function RegistrationForm({
       const { data: s } = await supabase.auth.getSession();
       const accessToken = s.session?.access_token;
       if (accessToken) {
-        if (event.zoom_meeting_id) {
+        if (event.zoom_meeting_id || event.zoom_id) {
           try {
             const r = await fetch("/api/zoom/register", {
               method: "POST", headers: { "Content-Type": "application/json" },
