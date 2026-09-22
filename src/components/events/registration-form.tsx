@@ -6,6 +6,7 @@ import type { EventRow, EventField } from "@/lib/events";
 import { eventSchema } from "@/lib/events";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
+import { ProfileGateModal } from "@/components/profile/profile-gate-modal";
 
 type Profile = {
   full_name: string | null;
@@ -48,6 +49,8 @@ export function RegistrationForm({
   autoRegister?: boolean;
 }) {
   const [supabase] = useState(() => createClient());
+  const [gateOpen, setGateOpen] = useState(false);
+  const [emailOverride, setEmailOverride] = useState<string | null>(null);
   const schema = eventSchema(event);
 
   // Split into fields the profile already answers (auto) vs. ones we must ask (extra).
@@ -98,8 +101,18 @@ export function RegistrationForm({
     return String(Array.isArray(v) ? v.join(", ") : v);
   };
 
-  async function submit() {
+  async function onGateComplete() {
+    setGateOpen(false);
+    const { data: pr } = await supabase.from("profiles").select("email").eq("id", userId).maybeSingle();
+    const { data: { session } } = await supabase.auth.getSession();
+    const em = (pr as { email?: string } | null)?.email || session?.user?.email || null;
+    if (em) { setEmailOverride(em); void submit(em); }
+  }
+
+  async function submit(overrideEmail?: string) {
     if (!valid || submitting) return;
+    const regEmail = overrideEmail || emailOverride || profile.email;
+    if (!regEmail) { setGateOpen(true); return; }   // profile incomplete -> ask for details first
     setSubmitting(true);
     setError(null);
     const utm = readUtm();
@@ -107,7 +120,7 @@ export function RegistrationForm({
 
     const { error } = await supabase.from("event_registrations").insert({
       event_id: event.id, event_code: event.event_code, user_id: userId,
-      user_email: profile.email, full_name: profile.full_name,
+      user_email: regEmail, full_name: profile.full_name,
       whatsapp: pick(/whats\s*app|phone|mobile|contact/, "phone"),
       passout_year: pick(/pass\s*out|passing|year of pass|graduat/),
       stream: pick(/stream/),
@@ -145,11 +158,11 @@ export function RegistrationForm({
             if (j?.join_url) joinLink = j.join_url;
           } catch { /* fall back to the generic link */ }
         }
-        if (profile.email) {
+        if (regEmail) {
           void fetch("/api/events/send-confirmation", {
             method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              to: profile.email, name: profile.full_name, accessToken,
+              to: regEmail, name: profile.full_name, accessToken,
               event: {
                 name: event.name, mode: event.mode,
                 dateMs: event.starts_at ? new Date(event.starts_at).getTime() : undefined,
@@ -174,6 +187,7 @@ export function RegistrationForm({
 
   return (
     <div className="space-y-4">
+      <ProfileGateModal open={gateOpen} onClose={() => { setGateOpen(false); setSubmitting(false); }} onComplete={onGateComplete} reason="Complete your profile to register for this event." />
       {/* Confirm-your-details review card */}
       <div className="rounded-xl border border-border bg-background p-4">
         <div className="mb-2 flex items-center justify-between">
