@@ -6,7 +6,8 @@ import { createClient } from "@/lib/supabase/client";
 export function useIsAdmin() {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(() => {
     if (typeof window === "undefined") return null;
-    return sessionStorage.getItem("vedam_is_admin") === "1" ? true : null;   // trust only a positive cache; "0" -> re-verify
+    const cached = sessionStorage.getItem("vedam_is_admin");
+    return cached === null ? null : cached === "1";   // instant on later pages
   });
   useEffect(() => {
     const supabase = createClient();
@@ -17,7 +18,7 @@ export function useIsAdmin() {
         if (!active) return;
         setIsAdmin(!!data);
         sessionStorage.setItem("vedam_is_admin", data ? "1" : "0");
-      } catch { if (active) setIsAdmin((v) => (v === true ? true : false)); }
+      } catch { if (active) setIsAdmin(false); }
     })();
     return () => { active = false; };
   }, []);
