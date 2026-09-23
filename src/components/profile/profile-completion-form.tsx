@@ -42,6 +42,9 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
 
   async function sendCode() {
     setSent("sending"); setErr("");
+    // clear any UNVERIFIED ghost account that owns this email (incomplete prior
+    // signup), so verifying your own email doesn't hit "already used".
+    try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email.trim() }) }); } catch { /* best effort */ }
     const { error } = await supabase.auth.updateUser({ email: email.trim() });
     setSent(error ? "idle" : "sent");
     if (error) {
