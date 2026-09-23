@@ -23,11 +23,10 @@ export function VsatForm() {
 
   async function doRegister() {
     setSaving(true); setErr("");
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session?.user) { setSaving(false); return; }   // not logged in -> never mark registered
     const { error } = await supabase.rpc("record_vsat_interest");
     if (error) { setErr(error.message); setSaving(false); return; }
-    {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
       // send the confirmation regardless of email verification — the route resolves
       // the recipient from profiles.email / auth email / step-1 signup metadata.
       void fetch("/api/vsat/confirm", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });

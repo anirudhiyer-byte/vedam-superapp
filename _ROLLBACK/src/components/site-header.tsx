@@ -21,7 +21,6 @@ export function SiteHeader() {
   const router = useRouter();
   const isAdmin = useIsAdmin();
   const [authed, setAuthed] = useState(false);
-  const [ready, setReady] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -56,7 +55,7 @@ export function SiteHeader() {
         setAuthed(false); setName(""); setEmail(""); setPhone(""); setUid(""); setPoints(0); setMenuOpen(false); setProfileComplete(true);
       }
     }
-    supabase.auth.getSession().then(async ({ data }) => { await loadUser(data.session); setReady(true); });
+    supabase.auth.getSession().then(({ data }) => loadUser(data.session));
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => { loadUser(session); });
     const onClick = (e: MouseEvent) => { if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false); };
     document.addEventListener("mousedown", onClick);
@@ -99,7 +98,7 @@ export function SiteHeader() {
           })}
         </nav>
         <div className="flex items-center gap-2.5">
-          {ready ? (authed ? (
+          {authed ? (
             <>
               <span className="flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 text-sm font-semibold text-white transition-all hover:border-white/40 hover:shadow-[0_0_16px_rgba(255,201,60,0.4)]"><span className="hidden text-white/70 sm:inline">Total</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden><defs><linearGradient id="shGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF1B8" /><stop offset="0.5" stopColor="#FFC93C" /><stop offset="1" stopColor="#E39A00" /></linearGradient></defs><path d="M12 2l2.9 6.3 6.9.7-5.1 4.7 1.5 6.8L12 17.8 5.9 21.2l1.5-6.8L2.3 9.7l6.9-.7z" fill="url(#shGold)" stroke="#fff6d6" strokeWidth="0.5" /></svg>{points}</span>
               <div ref={menuRef} className="relative">
@@ -139,7 +138,7 @@ export function SiteHeader() {
                 <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[13px] font-medium text-white transition-colors group-hover/si:bg-[rgba(138,24,255,0.3)] sm:px-4 sm:py-1.5 sm:text-[15px]" style={{ background: "linear-gradient(180deg,#2b135c,#160a30)", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}>Register</span>
               </Link>
             </div>
-          )) : null}
+          )}
           <button onClick={() => setNavOpen((o) => !o)} className="ml-1 grid h-9 w-9 flex-none place-items-center rounded-lg border border-white/15 text-white lg:hidden">☰</button>
         </div>
       </div>
