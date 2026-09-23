@@ -46,9 +46,9 @@ export const CsHero = forwardRef<HTMLDivElement, { onStartNow?: () => void }>(fu
           <button onClick={onStartNow} className="cs-start mt-6">
             <span className="font-[family-name:var(--font-inter)] text-[20px] font-medium tracking-[-1px]" style={{ backgroundImage: "linear-gradient(92deg,#FD5300 0.4%,#FFB41F 74%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Start Now</span>
           </button>
-          <div className="mx-auto mt-7 flex max-w-[320px] flex-wrap justify-center gap-2.5 sm:max-w-none sm:flex-nowrap lg:mx-0 lg:justify-start">
-            {BADGES.map((b, i) => (
-              <span key={b} className={`inline-flex flex-none items-center gap-1.5 rounded-[8px] px-2.5 py-1 ${i === 2 ? "basis-full justify-center sm:basis-auto sm:justify-start" : ""}`} style={{ background: "linear-gradient(-32deg,rgba(52,199,89,0.9) 1%,rgba(30,30,30,0) 42%)" }}>
+          <div className="mt-7 flex flex-wrap justify-center gap-2.5 sm:flex-nowrap lg:justify-start">
+            {BADGES.map((b) => (
+              <span key={b} className="inline-flex flex-none items-center gap-1.5 rounded-[8px] px-2.5 py-1" style={{ background: "linear-gradient(-32deg,rgba(52,199,89,0.9) 1%,rgba(30,30,30,0) 42%)" }}>
                 <span className="grid h-3.5 w-3.5 place-items-center rounded-full bg-[#34c759] text-[9px] font-bold text-white">✓</span>
                 <span className="whitespace-nowrap font-[family-name:var(--font-inter)] text-[13px] font-normal text-white">{b}</span>
               </span>

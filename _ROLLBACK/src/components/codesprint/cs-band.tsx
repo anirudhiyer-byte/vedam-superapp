@@ -8,9 +8,9 @@ export function CsBand({ children }: { children?: React.ReactNode }) {
     <div className="bg-[#0d0d0d]">
       <div className="relative pb-10">
         {/* ORANGE rounded shape (back) */}
-        <section className="relative text-center" style={{ background: "linear-gradient(180deg,#FF9E12,#FD7B03 60%,#F97101)", borderRadius: "0 0 40px 40px/0 0 40px 40px", padding: "82px clamp(24px,5vw,120px) 185px" }}>
+        <section className="relative text-center" style={{ background: "linear-gradient(180deg,#FF9E12,#FD7B03 60%,#F97101)", borderRadius: "60px 60px 40px 40px/48px 48px 40px 40px", padding: "82px clamp(24px,5vw,120px) 185px" }}>
           {/* ⌣ top curve — black hero dipping into the orange top */}
-          <svg aria-hidden className="absolute left-0 top-[-1px] block h-[90px] w-full" style={{ zIndex: 1 }} viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,0 L1440,0 Q720,100 0,0 Z" fill="#0d0d0d" /></svg>
+          <svg aria-hidden className="absolute left-0 top-[-1px] block h-[90px] w-full" style={{ zIndex: 1 }} viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,0 L1440,0 L1440,8 Q720,100 0,8 Z" fill="#0d0d0d" /></svg>
           <h2 className="relative z-[2] font-[family-name:var(--font-inter)] font-medium text-white" style={{ fontSize: "clamp(20px,2.1vw,30px)", letterSpacing: "-0.7px" }}>
             Built for coders who want to <span className="font-[family-name:var(--font-playfair)] font-semibold italic">start early</span>
           </h2>
@@ -28,10 +28,12 @@ export function CsBand({ children }: { children?: React.ReactNode }) {
         </section>
 
         {/* BLACK rounded shape (front) — overlaps up, holds the module cards */}
-        <section className="relative z-[2]" style={{ marginTop: "-130px", background: "#141414", borderRadius: "52px 52px 60px 60px/46px 46px 56px 56px", padding: "0 clamp(20px,4vw,70px) 46px", boxShadow: "0 3px 0 0 #FD7B03, 0 14px 52px rgba(253,120,3,0.5)" }}>
+        <section className="relative z-[2]" style={{ marginTop: "-130px", background: "#141414", borderRadius: "52px 52px 60px 60px/46px 46px 56px 56px", padding: "0 clamp(20px,4vw,70px) 46px" }}>
           <div className="relative pt-10">{children}</div>
         </section>
 
+        {/* thick curved ORANGE band ending — peeks below the black band's curved bottom */}
+        <section aria-hidden className="relative" style={{ zIndex: 1, marginTop: "-96px", background: "linear-gradient(180deg,#FD7B03 0%,#F97101 100%)", borderRadius: "40px 40px 46px 46px/40px 40px 42px 42px", height: "112px" }} />
       </div>
     </div>
   );

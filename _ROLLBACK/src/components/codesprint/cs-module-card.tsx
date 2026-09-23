@@ -22,9 +22,9 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
       {straddle && <svg className="absolute h-0 w-0"><defs><clipPath id="csCardCurveTop" clipPathUnits="objectBoundingBox"><path d="M0,0 Q0.5,0.16 1,0 L1,1 L0,1 Z" /></clipPath></defs></svg>}
 
       {/* instructor */}
-      <div className="relative z-[2] mx-auto h-[182px] w-[182px]" style={shift}>
+      <div className="relative z-[2] mx-auto h-[165px] w-[165px]" style={shift}>
         <div className="absolute inset-0 rounded-full border-[1.5px] border-[rgba(255,160,40,0.6)]" />
-        <div className="absolute inset-[12px] overflow-hidden rounded-full" style={{ background: "linear-gradient(160deg,#FFB41F,#FD5300)" }}>
+        <div className="absolute inset-[11px] overflow-hidden rounded-full" style={{ background: "linear-gradient(160deg,#FFB41F,#FD5300)" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {m.thumbnail_url ? <img src={m.thumbnail_url} alt={m.instructor_name || ""} className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: m.imgPos || "50% 50%" }} /> : null}
         </div>
@@ -39,18 +39,14 @@ export function CsModuleCard({ m, straddle, onStart }: { m: CsModule; straddle?:
       <div className="relative z-[2] text-center" style={shift}>
         <div aria-hidden className="pointer-events-none absolute left-1/2 top-[52%] -z-[1] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "radial-gradient(closest-side,rgba(255,255,255,0.22),rgba(255,255,255,0.08) 45%,transparent 72%)", filter: "blur(14px)" }} />
         <div className="flex items-center justify-center gap-2.5 text-[12px] font-medium tracking-[4px] text-[#c9c9c9]"><span className="h-px w-11 bg-[linear-gradient(90deg,transparent,#00cfe5)]" />TAUGHT BY<span className="h-px w-11 bg-[linear-gradient(90deg,#00cfe5,transparent)]" /></div>
-        <div className="relative mt-1.5">
-          <style dangerouslySetInnerHTML={{ __html: "@keyframes cs-co-shine{0%{background-position:150% 0}100%{background-position:-150% 0}}.cs-company{background:linear-gradient(110deg,#c4c4ce 0%,#c4c4ce 38%,#ffffff 50%,#c4c4ce 62%,#c4c4ce 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:cs-co-shine 4.5s linear infinite;filter:drop-shadow(0 1px 0 rgba(0,0,0,.4)) drop-shadow(0 2px 3px rgba(0,0,0,.35))}" }} />
-          <span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ width: "320px", height: "130px", borderRadius: "50%", background: "radial-gradient(closest-side,rgba(255,255,255,0.30),transparent 70%)", filter: "blur(16px)" }} />
-          <div className="cs-company relative font-[family-name:var(--font-inter)] text-[44px] font-extrabold uppercase tracking-[3px]">{company}</div>
-        </div>
-        <div className="-mt-1 font-[family-name:var(--font-playfair)] text-[35px] font-semibold italic" style={{ backgroundImage: "linear-gradient(120deg,#FFB41F,#FD5300)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Instructor</div>
+        <div className="relative mt-1.5"><div className="relative font-[family-name:var(--font-inter)] text-[40px] font-extrabold uppercase tracking-[3px] text-white" style={{ textShadow: "0 2px 10px rgba(255,255,255,0.25)" }}>{company}</div></div>
+        <div className="-mt-1 font-[family-name:var(--font-playfair)] text-[32px] font-semibold italic" style={{ backgroundImage: "linear-gradient(120deg,#FFB41F,#FD5300)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Instructor</div>
       </div>
 
       {/* details — green meta icons */}
       <div className="relative z-[2]" style={shift}>
-        <h3 className="font-[family-name:var(--font-inter)] text-[25px] font-bold tracking-tight text-white">{m.title}</h3>
-        <div className="mt-3 grid grid-cols-2 gap-x-9 gap-y-2.5 text-[15px] text-white/80">
+        <h3 className="font-[family-name:var(--font-inter)] text-[23px] font-bold tracking-tight text-white">{m.title}</h3>
+        <div className="mt-3 grid grid-cols-2 gap-x-9 gap-y-2.5 text-[14px] text-white/80">
           {meta.map((p, i) => <span key={p}><span className="text-[#5ce38a]">{icons[i]}</span> {p}</span>)}
           <span />
           <span className="col-span-2"><span className="text-[#5ce38a]">⭐</span> {m.subtitle || "Learn coding basics, logic and problem-solving"}</span>
