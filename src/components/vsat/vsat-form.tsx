@@ -58,12 +58,12 @@ export function VsatForm() {
       {/* MOBILE: image in normal flow → content flows BELOW it (consistent on every screen) */}
       <div className="relative z-0 w-full bg-[#0d041c] lg:hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="block h-auto w-full" />
+        <img src="/vsat-if-bg2.webp" alt="Vedam campuses" className="block h-auto w-full" />
       </div>
       {/* DESKTOP: absolute band, heading overlaps on top */}
       <div aria-hidden className="absolute inset-x-0 top-0 z-0 hidden h-[46vh] max-h-[532px] min-h-[300px] overflow-hidden bg-[#0d041c] lg:block">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/vsat-if-bg.webp" alt="Vedam campuses" className="absolute inset-0 h-full w-full object-cover object-top" />
+        <img src="/vsat-if-bg2.webp" alt="Vedam campuses" className="absolute inset-0 h-full w-full object-cover object-top" />
       </div>
 
       {/* back arrow (replaces the header) */}
