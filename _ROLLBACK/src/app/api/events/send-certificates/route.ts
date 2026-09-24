@@ -60,17 +60,16 @@ export async function POST(req: Request) {
         const subject = certKind === "winner" ? `🏆 You won — ${eventName || "Vedam"}` : `Your certificate — ${eventName || "Vedam"}`;
         const __certHtml = campaignShell(body);
       let __html = __certHtml;
-      let __stampEid: string | null = null;
       try {
         const __svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, __svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
         if (__svcK) { const __svc = createClient(__svcU, __svcK);
           const { data: __skip } = await __svc.rpc("is_opted_out", { p_email: reg.user_email, p_phone: null, p_channel: "email" });
           if (!__skip) { const { data: __eid } = await __svc.rpc("email_event_log", { p_user: reg.user_id, p_to: reg.user_email, p_kind: "certificate", p_ref_id: null, p_ref_name: `Certificate — ${reg.full_name ?? ""}`, p_subject: subject, p_template: null, p_html: __certHtml });
-            if (__eid) { __stampEid = __eid as string; __html = injectTracking(__certHtml, __eid as string, reg.user_email); } } }
+            if (__eid) __html = injectTracking(__certHtml, __eid as string, reg.user_email); } }
       } catch { /* best effort */ }
         const raw = buildRawHtml({ to: reg.user_email, from: creds.sender, subject, html: __html });
         const r = await gmailSend(creds.token, raw);
-        if (r.ok) { sent++; if (r.messageId && __stampEid) { try { await createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!).rpc("email_set_msgid", { p_id: __stampEid, p_msgid: r.messageId }); } catch { /* */ } } } else failures.push({ id: regId, error: r.error || "send failed" });
+        if (r.ok) sent++; else failures.push({ id: regId, error: r.error || "send failed" });
       } catch (e) {
         failures.push({ id: regId, error: String((e as Error)?.message || e).slice(0, 120) });
       }

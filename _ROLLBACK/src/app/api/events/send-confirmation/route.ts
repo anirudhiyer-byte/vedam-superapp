@@ -31,19 +31,17 @@ export async function POST(req: Request) {
 
     const subject = `You're registered: ${event.name} \u00B7 Vedam School of Technology`;
     let html = confirmationHtml(event, name, to);
-    let __stampEid: string | null = null;
     try {
       const svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
       if (svcK) { const svc = createClient(svcU, svcK);
         const { data: skip } = await svc.rpc("is_opted_out", { p_email: to, p_phone: null, p_channel: "email" });
         if (!skip) { const { data: eid } = await svc.rpc("email_event_log", { p_user: null, p_to: to, p_kind: "confirmation", p_ref_id: null, p_ref_name: `Registration — ${event?.name ?? ""}`, p_subject: subject, p_template: null, p_html: html });
-          if (eid) { __stampEid = eid as string; html = injectTracking(html, eid as string, to); } } }
+          if (eid) html = injectTracking(html, eid as string, to); } }
     } catch { /* best effort */ }
     const ics = buildICS(event, to, creds.sender);
     const raw = buildRawWithIcs({ to, from: creds.sender, subject, html, ics });
     const sent = await gmailSend(creds.token, raw);
     if (!sent.ok) return Response.json({ ok: false, error: sent.error }, { status: 200 });
-    if (sent.messageId && __stampEid) { try { await createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!).rpc("email_set_msgid", { p_id: __stampEid, p_msgid: sent.messageId }); } catch { /* */ } }
 
     // Log to the 24h quota ledger (best effort, as the signed-in user).
     if (url && anon && accessToken) {

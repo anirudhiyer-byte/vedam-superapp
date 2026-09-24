@@ -24,17 +24,15 @@ export async function POST(req: Request) {
     const __csSubj = `Your CodeSprint certificate — ${moduleName}`;
     const __csHtml0 = campaignShell(body, "brand");
       let __html = __csHtml0;
-      let __stampEid: string | null = null;
       try {
         const __svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, __svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
         if (__svcK) { const __svc = createClient(__svcU, __svcK);
           const { data: __skip } = await __svc.rpc("is_opted_out", { p_email: user.email, p_phone: null, p_channel: "email" });
           if (!__skip) { const { data: __eid } = await __svc.rpc("email_event_log", { p_user: user.id, p_to: user.email, p_kind: "certificate", p_ref_id: null, p_ref_name: `CodeSprint certificate — ${moduleName}`, p_subject: __csSubj, p_template: null, p_html: __csHtml0 });
-            if (__eid) { __stampEid = __eid as string; __html = injectTracking(__csHtml0, __eid as string, user.email); } } }
+            if (__eid) __html = injectTracking(__csHtml0, __eid as string, user.email); } }
       } catch { /* best effort */ }
     const raw = buildRawHtml({ to: user.email, from: creds.sender, subject: __csSubj, html: __html });
-    const __r = await gmailSend(creds.token, raw);
-    if (__r.messageId && __stampEid) { try { await createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!).rpc("email_set_msgid", { p_id: __stampEid, p_msgid: __r.messageId }); } catch { /* */ } }
+    await gmailSend(creds.token, raw);
     return Response.json({ ok: true });
   } catch (e) {
     return Response.json({ ok: false, error: (e as Error).message }, { status: 200 });

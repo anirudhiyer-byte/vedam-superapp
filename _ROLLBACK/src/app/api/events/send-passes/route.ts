@@ -38,17 +38,16 @@ export async function POST(req: Request) {
       if (!addr) continue;
       const __subj = `Your invite pass — ${eventName || "Vedam"}`;
       let __html = html;
-      let __stampEid: string | null = null;
       try {
         const __svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, __svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
         if (__svcK) { const __svc = createClient(__svcU, __svcK);
           const { data: __skip } = await __svc.rpc("is_opted_out", { p_email: addr, p_phone: null, p_channel: "email" });
           if (!__skip) { const { data: __eid } = await __svc.rpc("email_event_log", { p_user: null, p_to: addr, p_kind: "passes", p_ref_id: null, p_ref_name: `Invite pass — ${eventName || "Vedam"}`, p_subject: __subj, p_template: null, p_html: html });
-            if (__eid) { __stampEid = __eid as string; __html = injectTracking(html, __eid as string, addr); } } }
+            if (__eid) __html = injectTracking(html, __eid as string, addr); } }
       } catch { /* best effort */ }
       const raw = buildRawHtml({ to: addr, from: creds.sender, subject: __subj, html: __html });
       const r = await gmailSend(creds.token, raw);
-      if (r.ok) { sent++; if (r.messageId && __stampEid) { try { await createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!).rpc("email_set_msgid", { p_id: __stampEid, p_msgid: r.messageId }); } catch { /* */ } } } else failures.push({ to: addr, error: r.error || "failed" });
+      if (r.ok) sent++; else failures.push({ to: addr, error: r.error || "failed" });
     }
     try { await supa.rpc("log_email_sends", { p_n: sent, p_kind: "passes", p_event: null }); } catch { /* ignore */ }
     return Response.json({ ok: true, sent, failed: failures.length, failures });
