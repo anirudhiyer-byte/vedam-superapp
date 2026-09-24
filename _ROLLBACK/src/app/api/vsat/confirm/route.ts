@@ -1,7 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { gmailAccessToken, gmailSend, buildRawHtml } from "@/lib/email/gmail";
 import { campaignShell } from "@/lib/email/shell";
-import { injectTracking } from "@/lib/email/tracking";
 
 export const runtime = "nodejs";
 
@@ -36,15 +35,9 @@ export async function POST(req: Request) {
       <p style="margin:0 0 12px;font-size:15px;color:#333">Thanks for registering your interest in VSAT (Vedam Scholastic Aptitude Test) for the 2026–27 cycle. You're now an early registrant.</p>
       <p style="margin:0 0 12px;font-size:15px;color:#333">Once we go live with admissions, you'll receive updates — including your early-registrant benefits (concession on VSAT fee, higher scholarship assessment, and limited early-intake seats).</p>
       <p style="margin:0;font-size:14px;color:#666">No admission commitment required. We'll notify you when the 2027 admission cycle opens.</p>`;
-    let html = campaignShell(body, "brand");
-    let __stampEid: string | null = null;
-    try {
-      const { data: eid } = await svc.rpc("email_event_log", { p_user: u.user.id, p_to: to, p_kind: "vsat_confirmation", p_ref_id: null, p_ref_name: "VSAT interest confirmation", p_subject: subject, p_template: null, p_html: html });
-      if (eid) { __stampEid = eid as string; html = injectTracking(html, eid as string, to); }
-    } catch { /* best effort */ }
+    const html = campaignShell(body, "brand");
     const raw = buildRawHtml({ to, from: creds.sender, subject, html });
     const sent = await gmailSend(creds.token, raw);
-    if (sent.ok && sent.messageId && __stampEid) { try { await svc.rpc("email_set_msgid", { p_id: __stampEid, p_msgid: sent.messageId }); } catch { /* */ } }
     return Response.json({ ok: sent.ok, to, error: sent.ok ? undefined : sent.error }, { status: 200 });
   } catch (e) {
     return Response.json({ ok: false, error: String(e) }, { status: 200 });
