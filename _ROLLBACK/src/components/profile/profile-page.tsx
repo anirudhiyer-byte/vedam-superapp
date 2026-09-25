@@ -6,7 +6,7 @@ import { PremiumDark } from "@/components/premium-dark";
 type Standing = { points: number; national_rank?: number; national_total?: number; state?: string | null; state_rank?: number };
 type Prof = { full_name: string; email: string; phone: string; public_id: string; state: string | null; city: string | null; grad_year: number | null; stream: string | null; created_at: string };
 type Cert = { id: string; kind: string | null; source: string | null; serial: string | null; issued_on: string; event_id: string | null; module_id: string | null };
-type PointRow = { points: number; action: string; app: string; created_at: string; events?: { name: string } | null };
+type PointRow = { points: number; action: string; app: string; created_at: string; object_name?: string | null };
 type Comm = { id: string; kind: string | null; ref_name: string | null; subject: string | null; sent_at: string; opened_at: string | null; html_snapshot: string | null };
 
 const TABS = ["Basic Details", "Certificates", "Points Log", "Communications"] as const;
@@ -32,8 +32,8 @@ export function ProfilePage() {
       const { data: s } = await supabase.rpc("my_standing"); setStd(s as Standing);
       const { data: c } = await supabase.from("certificates").select("id, kind, source, serial, issued_on, event_id, module_id").eq("user_id", uid).order("issued_on", { ascending: false });
       setCerts((c as Cert[]) ?? []);
-      const { data: pl } = await supabase.from("points_ledger").select("points, action, app, created_at, events(name)").eq("user_id", uid).order("created_at", { ascending: false });
-      setPoints((pl as unknown as PointRow[]) ?? []);
+      const { data: pl } = await supabase.rpc("my_points_detailed");
+      setPoints((pl as PointRow[]) ?? []);
       const { data: em } = await supabase.rpc("my_communications");
       setComms((em as Comm[]) ?? []);
     })();
@@ -100,7 +100,7 @@ export function ProfilePage() {
                 <table className="w-full text-left text-sm">
                   <thead className="bg-white/[0.04] text-white/50"><tr><th className="p-3">Activity</th><th className="p-3">Product</th><th className="p-3">When</th><th className="p-3 text-right">Points</th></tr></thead>
                   <tbody>{sortedPoints.map((r, i) => (
-                    <tr key={i} className="border-t border-white/8"><td className="p-3">{r.action}{r.events?.name ? ` — ${r.events.name}` : ""}</td><td className="p-3 capitalize text-white/70">{r.app}</td><td className="p-3 font-mono text-xs text-white/45">{new Date(r.created_at).toLocaleDateString()}</td><td className="p-3 text-right font-semibold text-[#ffe27a]">+{r.points}</td></tr>
+                    <tr key={i} className="border-t border-white/8"><td className="p-3">{r.action}{r.object_name ? ` — ${r.object_name}` : ""}</td><td className="p-3 capitalize text-white/70">{r.app}</td><td className="p-3 font-mono text-xs text-white/45">{new Date(r.created_at).toLocaleDateString()}</td><td className="p-3 text-right font-semibold text-[#ffe27a]">+{r.points}</td></tr>
                   ))}{sortedPoints.length === 0 && <tr><td colSpan={4} className="p-6 text-center text-white/40">No points yet.</td></tr>}</tbody>
                 </table>
               </div>

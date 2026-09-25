@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { ACTION_LABEL, linkedInShareUrl } from "@/lib/events";
 import { CertificateModal } from "@/components/events/certificate-modal";
 
-type LedgerRow = { points: number; action: string; app: string; created_at: string; object_name: string | null };
+type LedgerRow = { points: number; action: string; app: string; created_at: string; events: { name: string | null } | null };
 type CertRow = { id: string; kind: "participation" | "winner" | "completion"; source: string; event_id: string | null; module_id: string | null; issued_on: string; events: { name: string | null } | null; cs_modules: { title: string | null } | null };
 type RegEvent = { id: string; zoom_join_url: string | null; events: { name: string | null; event_code: string | null; starts_at: string | null; mode: string | null; join_link: string | null } | null };
 
@@ -37,7 +37,7 @@ export function Dashboard() {
       const { data: p } = await supabase.from("profiles").select("full_name").eq("id", user.id).single();
       if (active) setName(p?.full_name?.split(" ")[0] ?? "");
       const [{ data: ledger }, { data: cert }, { data: reg }] = await Promise.all([
-        supabase.rpc("my_points_detailed"),
+        supabase.from("points_ledger").select("points, action, app, created_at, events(name)").order("created_at", { ascending: false }),
         supabase.from("certificates").select("id, kind, source, event_id, module_id, issued_on, events(name), cs_modules(title)").eq("user_id", user.id).order("issued_on", { ascending: false }),
         supabase.from("event_registrations").select("id, zoom_join_url, events(name, event_code, starts_at, mode, join_link)").eq("user_id", user.id).order("created_at", { ascending: false }),
       ]);
@@ -190,7 +190,7 @@ export function Dashboard() {
             <div className="mt-2 divide-y divide-border overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
               {rows.slice(0, 60).map((r, i) => (
                 <div key={i} className="flex items-center justify-between gap-4 p-4">
-                  <div className="min-w-0"><p className="font-body text-sm font-medium text-white/85">{ACTION_LABEL[r.action] || r.action}{r.object_name ? <span className="text-white/50"> · {r.object_name}</span> : null}</p>
+                  <div className="min-w-0"><p className="font-body text-sm font-medium text-white/85">{ACTION_LABEL[r.action] || r.action}{r.events?.name ? <span className="text-white/50"> · {r.events.name}</span> : null}</p>
                     <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wide text-white/50">{r.app} · {fdate(r.created_at)}</p></div>
                   <span className="shrink-0 font-display text-sm font-bold text-accent">+{r.points}</span>
                 </div>
