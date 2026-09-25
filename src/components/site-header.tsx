@@ -63,6 +63,18 @@ export function SiteHeader() {
     return () => { mounted = false; sub.subscription.unsubscribe(); document.removeEventListener("mousedown", onClick); };
   }, [supabase]);
 
+  // Re-pull points when something awards them (e.g. completing a CodeSprint lesson).
+  useEffect(() => {
+    async function refreshPoints() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.user) return;
+      const { data: pts } = await supabase.from("points_ledger").select("points").eq("user_id", session.user.id);
+      setPoints((pts as { points: number }[] ?? []).reduce((a, r) => a + (r.points || 0), 0));
+    }
+    window.addEventListener("points:changed", refreshPoints);
+    return () => window.removeEventListener("points:changed", refreshPoints);
+  }, [supabase]);
+
   if (pathname === "/vsat") return null;
   const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase() || "V";
   async function logout() {
