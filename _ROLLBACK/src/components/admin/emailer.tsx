@@ -9,7 +9,7 @@ import {
 
 const BATCH = 40;
 type Btn = { label: string; url: string };
-type Recip = { email: string; name: string; stream: string; source: string; attended: boolean; whatsapp: string; passout: string; answers: Record<string, unknown> | null };
+type Recip = { email: string; name: string; stream: string; source: string; attended: boolean };
 type Tpl = { id: string; name: string; subject: string | null; message: string | null; template_style: string; image: string | null; buttons: Btn[] };
 
 export function Emailer({ id }: { id: string }) {
@@ -44,14 +44,14 @@ export function Emailer({ id }: { id: string }) {
     let active = true;
     (async () => {
       const { data: ev } = await supabase.from("events").select("*").eq("id", id).single();
-      const { data: regs } = await supabase.from("event_registrations").select("user_email, full_name, stream, utm_source, joined, whatsapp, passout_year, answers").eq("event_id", id);
+      const { data: regs } = await supabase.from("event_registrations").select("user_email, full_name, stream, utm_source, joined").eq("event_id", id);
       const { data: q } = await supabase.rpc("email_sent_last_24h");
       if (!active) return;
       setEvent((ev as EventRow) ?? null);
       const seen = new Set<string>(); const list: Recip[] = [];
-      for (const r of (regs ?? []) as { user_email: string; full_name: string; stream: string; utm_source: string; joined: boolean; whatsapp: string; passout_year: string; answers: Record<string, unknown> | null }[]) {
+      for (const r of (regs ?? []) as { user_email: string; full_name: string; stream: string; utm_source: string; joined: boolean }[]) {
         const email = (r.user_email || "").trim(); if (!email || seen.has(email)) continue; seen.add(email);
-        list.push({ email, name: r.full_name || "", stream: r.stream || "", source: r.utm_source || "", attended: !!r.joined, whatsapp: r.whatsapp || "", passout: r.passout_year ? String(r.passout_year) : "", answers: r.answers || null });
+        list.push({ email, name: r.full_name || "", stream: r.stream || "", source: r.utm_source || "", attended: !!r.joined });
       }
       setRecips(list);
       setQuota(typeof q === "number" ? q : null);
@@ -182,13 +182,9 @@ export function Emailer({ id }: { id: string }) {
               {filtered.length === 0 ? <p className="p-3 text-center font-body text-xs text-muted">No matches</p> : filtered.map((r) => (
                 <label key={r.email} className={["flex cursor-pointer items-center gap-2 border-b border-border px-3 py-1.5 text-sm last:border-0", selected.has(r.email) ? "bg-surface-warm" : ""].join(" ")}>
                   <input type="checkbox" checked={selected.has(r.email)} onChange={() => toggle(r.email)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" />
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-foreground">{r.name || r.email} <span className="text-muted">· {r.email}</span>{r.attended && <span className="ml-1 text-[#12703f]">✓</span>}</span>
-                    <span className="mt-0.5 block truncate font-mono text-[10px] text-muted">
-                      {[r.whatsapp && `📱 ${r.whatsapp}`, r.stream, r.passout && `'${r.passout.slice(-2)}`, r.source && `via ${r.source}`].filter(Boolean).join("  ·  ")}
-                      {r.answers && Object.entries(r.answers).filter(([, v]) => v != null && v !== "").map(([k, v]) => `  ·  ${k}: ${String(v)}`).join("")}
-                    </span>
-                  </span>
+                  <span className="min-w-0 flex-1 truncate text-foreground">{r.name || r.email} <span className="text-muted">· {r.email}</span></span>
+                  {r.stream && <span className="shrink-0 font-mono text-[10px] text-muted">{r.stream}</span>}
+                  {r.attended && <span className="shrink-0 font-mono text-[10px] text-[#12703f]">✓</span>}
                 </label>
               ))}
             </div>
