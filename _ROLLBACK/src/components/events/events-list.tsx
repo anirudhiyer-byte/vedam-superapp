@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -150,14 +150,6 @@ export function EventsList() {
 function EventCard({ event, registered, onRegister }: { event: EventRow; registered?: boolean; onRegister: () => void }) {
   const off = isOffline(event);
   const pts = pointsTotalPossible(event.points_config);
-  const nameRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = nameRef.current; if (!el) return;
-    let size = 18; el.style.fontSize = size + "px"; el.style.webkitLineClamp = "2";
-    const overflow = () => el.scrollHeight > el.clientHeight + 1;
-    if (overflow()) el.style.webkitLineClamp = "3";        // 2 lines don't fit -> allow a 3rd
-    while (overflow() && size > 13) { size -= 0.5; el.style.fontSize = size + "px"; }  // shrink only if 3 still overflow
-  }, [event.name]);
   return (
     <div className="bc-card group relative w-[90%] justify-self-start rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
       <div className="relative h-[340px] overflow-hidden rounded-[13px] bg-[#161616]">
@@ -168,8 +160,8 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
         <div className="absolute inset-x-0 bottom-0 h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
-        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[50%] flex-col justify-between px-5 pb-5 pt-3.5 text-white">
-          <div ref={nameRef} className="max-w-[44%] overflow-hidden font-[family-name:var(--font-inter)] text-[18px] font-extrabold uppercase leading-[1.15] tracking-[-0.5px]" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical" }}>{event.name}</div>
+        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[50%] flex-col justify-end px-5 pb-5 text-white">
+          <div className="line-clamp-2 max-w-[64%] font-[family-name:var(--font-inter)] text-[22px] font-extrabold uppercase leading-[1.1] tracking-[-0.6px]">{event.name}</div>
           <div className="mt-2.5 flex items-end justify-between gap-3">
             <div className="min-w-0">
               {event.host && <div className="truncate font-[family-name:var(--font-inter)] text-[14px]">with {event.host}</div>}
