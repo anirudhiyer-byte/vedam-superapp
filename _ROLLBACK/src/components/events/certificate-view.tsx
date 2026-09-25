@@ -81,7 +81,7 @@ export function CertificateView() {
 
       <div className="flex flex-wrap items-center justify-center gap-3">
         <button onClick={() => ref.current && downloadNodePng(ref.current, `vedam-certificate-${certId.slice(0, 8)}.png`)}
-          className="rounded-xl bg-[#2B135C] px-6 py-3 text-sm font-semibold text-white hover:bg-[#3a1a75]">Download PNG</button>
+          className="rounded-xl border border-border px-6 py-3 text-sm font-semibold text-foreground hover:bg-surface-warm">Download PNG</button>
         <button onClick={share} className="rounded-xl bg-[#0A66C2] px-6 py-3 text-sm font-semibold text-white">
           Share on LinkedIn{sharePts > 0 ? ` · +${sharePts} pts` : ""}
         </button>

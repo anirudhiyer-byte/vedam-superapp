@@ -7,7 +7,6 @@ const SOURCES = [
   { key: "vedam_one", label: "Activity ledger (every action)" },
   { key: "bootcamp_participation", label: "Bootcamp participants" },
   { key: "bootcamp_dropoffs", label: "Bootcamp drop-offs" },
-  { key: "bootcamp_audience", label: "Bootcamp — registrants + drop-offs (dropped_off flag)" },
   { key: "codesprint_participation", label: "CodeSprint (per module)" },
   { key: "vsat_registrations", label: "VSAT early registrations" },
 ];
@@ -23,12 +22,9 @@ export function AdvancedAudience({ onResolved }: { onResolved: (recips: Rec[]) =
   const [cols, setCols] = useState<string[]>([]);
   const [conds, setConds] = useState<Cond[]>([{ col: "", op: "=", value: "", join: "AND" }]);
   const [recips, setRecips] = useState<Rec[] | null>(null);
-  const [events, setEvents] = useState<{ id: string; name: string }[]>([]);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const inp = "rounded-lg border border-border-strong bg-background px-2.5 py-1.5 text-sm text-foreground outline-none";
-
-  useEffect(() => { (async () => { const { data } = await supabase.from("events").select("id,name").order("start_at", { ascending: false }); setEvents((data as { id: string; name: string }[]) ?? []); })(); }, [supabase]);
 
   useEffect(() => {
     (async () => {
@@ -64,14 +60,7 @@ export function AdvancedAudience({ onResolved }: { onResolved: (recips: Rec[]) =
             {i > 0 && <select value={c.join} onChange={(e) => setConds((x) => x.map((y, j) => j === i ? { ...y, join: e.target.value as "AND" | "OR" } : y))} className={inp + " w-20"}><option>AND</option><option>OR</option></select>}
             <select value={c.col} onChange={(e) => setConds((x) => x.map((y, j) => j === i ? { ...y, col: e.target.value } : y))} className={inp + " w-52"}><option value="">column…</option>{cols.map((k) => <option key={k} value={k}>{k}</option>)}</select>
             <select value={c.op} onChange={(e) => setConds((x) => x.map((y, j) => j === i ? { ...y, op: e.target.value } : y))} className={inp}>{OPS.map((o) => <option key={o}>{o}</option>)}</select>
-            {!c.op.includes("null") && (c.col === "event_id" ? (
-              <select value={c.value} onChange={(e) => setConds((x) => x.map((y, j) => j === i ? { ...y, value: e.target.value } : y))} className={inp + " w-56"}>
-                <option value="">select bootcamp…</option>
-                {events.map((ev) => <option key={ev.id} value={ev.id}>{ev.name}</option>)}
-              </select>
-            ) : (
-              <input value={c.value} onChange={(e) => setConds((x) => x.map((y, j) => j === i ? { ...y, value: e.target.value } : y))} placeholder="value (use <> to exclude)" className={inp + " w-40"} />
-            ))}
+            {!c.op.includes("null") && <input value={c.value} onChange={(e) => setConds((x) => x.map((y, j) => j === i ? { ...y, value: e.target.value } : y))} placeholder="value (use <> to exclude)" className={inp + " w-40"} />}
             <button onClick={() => setConds((x) => x.filter((_, j) => j !== i))} className="text-muted hover:text-foreground">✕</button>
           </div>
         ))}
