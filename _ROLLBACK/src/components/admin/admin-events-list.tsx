@@ -18,10 +18,6 @@ export function AdminEventsList() {
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<"all" | "upcoming" | "past" | "draft">("all");
   const [copied, setCopied] = useState<string | null>(null);
-  const [selEvent, setSelEvent] = useState("");
-  const [openKpi, setOpenKpi] = useState<null | "reg" | "drop">(null);
-  const [detail, setDetail] = useState<Record<string, unknown>[]>([]);
-  const [detLoading, setDetLoading] = useState(false);
 
   async function load() {
     const { data } = await supabase.rpc("event_manage_stats");
@@ -42,19 +38,6 @@ export function AdminEventsList() {
     const viewers = rows.reduce((s, e) => s + Number(e.viewers), 0);
     return { events: rows.length, registered, dropoff: rows.reduce((s, e) => s + Number(e.dropoff), 0), rate: viewers ? Math.round((registered / viewers) * 100) : null };
   }, [rows]);
-
-  const kpi = useMemo(() => {
-    if (selEvent) { const e = rows.find((r) => r.id === selEvent); const reg = Number(e?.registered ?? 0), vw = Number(e?.viewers ?? 0), dr = Number(e?.dropoff ?? 0); return { registered: reg, dropoff: dr, rate: vw ? Math.round((reg / vw) * 100) : null }; }
-    return { registered: totals.registered, dropoff: totals.dropoff, rate: totals.rate };
-  }, [selEvent, rows, totals]);
-
-  async function openDetail(kind: "reg" | "drop") {
-    if (openKpi === kind) { setOpenKpi(null); return; }
-    setOpenKpi(kind); setDetLoading(true);
-    const rpc = kind === "reg" ? "event_registrants_detail" : "event_dropoffs_detail";
-    const { data } = await supabase.rpc(rpc, { p_event: selEvent || null });
-    setDetail((data as Record<string, unknown>[]) ?? []); setDetLoading(false);
-  }
 
   async function toggleFeatured(e: Stat) {
     await supabase.from("events").update({ featured: !e.featured }).eq("id", e.id);
@@ -88,42 +71,12 @@ export function AdminEventsList() {
         <Link href="/admin/events/new" className="rounded-xl bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white">+ New event</Link>
       </div>
 
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <span className="font-body text-sm text-muted">Scope</span>
-        <select value={selEvent} onChange={(e) => { setSelEvent(e.target.value); setOpenKpi(null); }} className="rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground outline-none [color-scheme:dark]">
-          <option value="">All events</option>
-          {rows.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
-        </select>
-      </div>
       <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Kpi label={selEvent ? "Scoped event" : "Active events"} value={selEvent ? 1 : totals.events} />
-        <Kpi label="Registrations — click to view" value={kpi.registered} accent onClick={() => openDetail("reg")} active={openKpi === "reg"} />
-        <Kpi label="Reg. rate (registered / viewers)" text={kpi.rate == null ? "—" : `${kpi.rate}%`} />
-        <Kpi label="Drop-off — click to view" value={kpi.dropoff} onClick={() => openDetail("drop")} active={openKpi === "drop"} />
+        <Kpi label="Active events" value={totals.events} />
+        <Kpi label="Total registrations" value={totals.registered} accent />
+        <Kpi label="Reg. rate (registered / viewers)" text={totals.rate == null ? "—" : `${totals.rate}%`} />
+        <Kpi label="Drop-off (viewed, didn't register)" value={totals.dropoff} />
       </div>
-      {openKpi && (
-        <div className="mb-6 overflow-x-auto rounded-2xl border border-border bg-surface">
-          <div className="flex items-center justify-between p-3">
-            <span className="font-display text-sm font-bold text-heading">{openKpi === "reg" ? "Registrants" : "Drop-offs"}{selEvent ? "" : " · all events"} ({detail.length})</span>
-            <button onClick={() => setOpenKpi(null)} className="text-xs font-semibold text-accent">close ✕</button>
-          </div>
-          {detLoading ? <div className="p-6 text-center text-muted">Loading…</div> : (
-            <table className="w-full text-left text-sm">
-              <thead className="bg-surface-warm/40 text-muted"><tr>{(openKpi === "reg" ? ["Name", "Email", "WhatsApp", "Passout", "Stream", "Joined", "Mins", "When", "Event"] : ["Name", "Email", "Phone", "Viewed", "Event"]).map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
-              <tbody>
-                {detail.length === 0 ? <tr><td colSpan={9} className="p-6 text-center text-muted">No rows.</td></tr> : detail.map((r, i) => (
-                  <tr key={i} className="border-t border-border">
-                    {(openKpi === "reg"
-                      ? [r.full_name, r.email, r.whatsapp, r.passout_year, r.stream, r.joined ? "Yes" : "No", r.attended_minutes, r.created_at ? new Date(r.created_at as string).toLocaleDateString("en-IN") : "—", r.event_name]
-                      : [r.full_name, r.email, r.phone, r.viewed_at ? new Date(r.viewed_at as string).toLocaleDateString("en-IN") : "—", r.event_name]
-                    ).map((c, j) => <td key={j} className="whitespace-nowrap p-2 text-foreground">{(c as string) ?? "—"}</td>)}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      )}
 
       <div className="mb-4 flex flex-wrap gap-2">
         {(["all", "upcoming", "past", "draft"] as const).map((t) => (
@@ -187,9 +140,9 @@ export function AdminEventsList() {
   );
 }
 
-function Kpi({ label, value, text, accent, onClick, active }: { label: string; value?: number; text?: string; accent?: boolean; onClick?: () => void; active?: boolean }) {
+function Kpi({ label, value, text, accent }: { label: string; value?: number; text?: string; accent?: boolean }) {
   return (
-    <div onClick={onClick} className={["rounded-2xl border p-4", onClick ? "cursor-pointer transition-colors hover:border-accent" : "", active ? "border-accent ring-1 ring-accent" : "border-border", accent ? "bg-brand-gradient text-white" : "bg-surface"].join(" ")}>
+    <div className={["rounded-2xl border border-border p-4", accent ? "bg-brand-gradient text-white" : "bg-surface"].join(" ")}>
       <div className={["font-display text-3xl font-extrabold", accent ? "text-white" : "text-heading"].join(" ")}>{text ?? (value ?? 0).toLocaleString("en-IN")}</div>
       <div className={["mt-1 font-body text-xs", accent ? "text-white/80" : "text-muted"].join(" ")}>{label}</div>
     </div>
