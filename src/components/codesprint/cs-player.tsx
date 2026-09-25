@@ -75,9 +75,20 @@ export function CsPlayer() {
   async function markComplete() {
     if (!current || busy) return;
     setBusy(true);
-    const { data } = await supabase.rpc("cs_complete_lesson", { p_lesson_id: current.lesson.id });
+    const { data, error } = await supabase.rpc("cs_complete_lesson", { p_lesson_id: current.lesson.id });
+    if (error) {
+      setToast(`Couldn't save progress: ${error.message}`);
+      setTimeout(() => setToast(null), 5000);
+      setBusy(false);
+      return;
+    }
     const res = data as { module_complete?: boolean; cert_id?: string } | null;
-    setDone((s) => new Set(s).add(current.lesson.id));
+    // Re-read real persisted state instead of an optimistic guess, so the tick
+    // reflects what's actually in the DB (and survives an exit).
+    const { data: prog } = await supabase.from("cs_progress").select("lesson_id");
+    setDone(new Set((prog ?? []).map((p) => p.lesson_id)));
+    // Tell the header/profile to re-pull points live.
+    window.dispatchEvent(new Event("points:changed"));
     if (res?.module_complete && res.cert_id && currentModule) {
       setCerts((c) => ({ ...c, [currentModule.id]: res.cert_id! }));
       setToast(`🎉 Module complete! Certificate earned (+50 pts).`);
