@@ -121,10 +121,10 @@ export function LoginForm() {
             {mode === "phone" ? (
               <div className="flex">
                 <span className="inline-flex items-center rounded-l-lg border border-r-0 border-white/12 bg-white/[0.06] px-3 text-sm text-white/60">+91</span>
-                <input className={inputCls + " rounded-l-none"} value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="numeric" placeholder="98765 43210" />
+                <input className={inputCls + " rounded-l-none"} value={phone} onChange={(e) => setPhone(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !loading) sendCode(); }} inputMode="numeric" placeholder="98765 43210" />
               </div>
             ) : (
-              <input className={inputCls} value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@example.com" />
+              <input className={inputCls} value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !loading) sendCode(); }} type="email" placeholder="you@example.com" />
             )}
             <Turnstile onToken={setCaptchaToken} resetKey={captchaReset} />
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
@@ -134,7 +134,7 @@ export function LoginForm() {
           </>
         ) : (
           <>
-            <input className={inputCls + " text-center text-lg tracking-[0.4em]"} value={otp} onChange={(e) => setOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="••••••" />
+            <input className={inputCls + " text-center text-lg tracking-[0.4em]"} value={otp} onChange={(e) => setOtp(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !loading) verify(); }} inputMode="numeric" maxLength={6} placeholder="••••••" />
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
             <button onClick={verify} disabled={loading} className={primaryBtn}>
               {loading ? "Verifying…" : "Verify & log in"}
@@ -155,6 +155,6 @@ export function LoginForm() {
 }
 
 const inputCls =
-  "w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-white/90 outline-none transition-colors focus:border-[color:rgb(var(--accent))]";
+  "w-full rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2.5 text-sm text-white/90 outline-none transition-colors [color-scheme:dark] focus:border-[#00cfe5]";
 const primaryBtn =
   "w-full rounded-xl bg-brand-gradient px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60";
