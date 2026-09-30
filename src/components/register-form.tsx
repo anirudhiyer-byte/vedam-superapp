@@ -131,7 +131,7 @@ export function RegisterForm() {
     if (u?.user) {
       await supabase.from("profiles").update({
         grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
-        state, city, email_verified: true,     // -> profile_completed flips true via the DB trigger
+        state, city, email: email.trim(), email_verified: true,     // -> profile_completed flips true via the DB trigger
       }).eq("id", u.user.id);
     }
     setEmailVerified(true); setSavingP2(false);
@@ -139,9 +139,14 @@ export function RegisterForm() {
   }
 
   async function resendEmailCode() {
+    setError(null);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Enter a valid email.");
     setResendState("sending");
+    // clear any stale ghost owning this email (never the caller's own account), then (re)send the code to it
+    try { const { data: { session } } = await supabase.auth.getSession(); await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email.trim(), accessToken: session?.access_token }) }); } catch { /* best effort */ }
     const { error } = await supabase.auth.updateUser({ email: email.trim() });
-    setResendState(error ? "idle" : "sent");
+    if (error) { setResendState("idle"); return setError(error.message || "Couldn't send the code to that email."); }
+    setResendState("sent");
   }
 
   return (
@@ -212,11 +217,14 @@ export function RegisterForm() {
               <Field label="State / UT"><SearchableSelect options={INDIA_STATES} value={state} onChange={(v) => { setState(v); setCity(""); }} placeholder="Select state…" /></Field>
               <Field label="City"><SearchableSelect options={state ? (STATE_CITIES[state] ?? []) : []} value={city} onChange={setCity} placeholder={state ? "Select city…" : "Pick a state first"} disabled={!state} /></Field>
             </div>
-            <Field label={`Verify your email (${email})`}>
+            <Field label="Your email — edit here if it's wrong">
               <div className="flex gap-2">
-                <input className={inputCls + " text-center tracking-[0.3em]"} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") completePart2(); }} inputMode="numeric" maxLength={6} placeholder="Email code" />
-                <button onClick={resendEmailCode} disabled={resendState === "sending"} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{resendState === "sending" ? "…" : resendState === "sent" ? "Resend" : "Send code"}</button>
+                <input className={inputCls} value={email} onChange={(e) => { setEmail(e.target.value); setResendState("idle"); }} onKeyDown={(e) => { if (e.key === "Enter") resendEmailCode(); }} type="email" placeholder="you@example.com" />
+                <button onClick={resendEmailCode} disabled={resendState === "sending"} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{resendState === "sending" ? "…" : resendState === "sent" ? "Sent ✓" : "Send code"}</button>
               </div>
+            </Field>
+            <Field label="Enter the code we emailed you">
+              <input className={inputCls + " text-center tracking-[0.3em]"} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") completePart2(); }} inputMode="numeric" maxLength={6} placeholder="Email code" />
             </Field>
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
             <button onClick={completePart2} disabled={savingP2} className={primaryBtn}>{savingP2 ? "Saving…" : "Complete profile"}</button>

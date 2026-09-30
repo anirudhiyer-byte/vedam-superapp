@@ -152,15 +152,15 @@ export function RegisterForm() {
           <h1 className="font-display text-2xl font-bold text-white">Create your account</h1>
           <p className="mt-1 font-body text-sm text-white/55">Takes 20 seconds — just the essentials to get you in.</p>
           <div className="mt-6 space-y-4">
-            <Field label="Full name"><input className={inputCls} value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Aarav Sharma" /></Field>
+            <Field label="Full name"><input className={inputCls} value={fullName} onChange={(e) => setFullName(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") sendOtp(); }} placeholder="Aarav Sharma" /></Field>
             <Field label="WhatsApp number">
               <div className="flex">
                 <span className="inline-flex items-center rounded-l-lg border border-r-0 border-white/12 bg-white/[0.06] px-3 text-sm text-white/60">+91</span>
-                <input className={inputCls + " rounded-l-none"} value={phone} onChange={(e) => setPhone(e.target.value)} inputMode="numeric" placeholder="98765 43210" />
+                <input className={inputCls + " rounded-l-none"} value={phone} onChange={(e) => setPhone(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") sendOtp(); }} inputMode="numeric" placeholder="98765 43210" />
               </div>
               <p className="mt-1 font-body text-xs text-white/55">We&apos;ll send reminders and updates here on WhatsApp.</p>
             </Field>
-            <Field label="Email"><input className={inputCls} value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="you@example.com" /></Field>
+            <Field label="Email"><input className={inputCls} value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") sendOtp(); }} type="email" placeholder="you@example.com" /></Field>
             <label className="flex items-start gap-2.5 pt-1">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 accent-[color:rgb(var(--accent))]" />
               <span className="font-body text-xs leading-relaxed text-white/55">I agree to Vedam contacting me and processing my details as per the <a href="/privacy" target="_blank" className="text-accent underline">Privacy Policy</a> and <a href="/terms" target="_blank" className="text-accent underline">Terms</a>.</span>
@@ -179,7 +179,7 @@ export function RegisterForm() {
           <h1 className="font-display text-2xl font-bold text-white">Enter the code</h1>
           <p className="mt-1 font-body text-sm text-white/55">We sent a 6-digit code to +91 {phone.replace(/\D/g, "").slice(-10)}.</p>
           <div className="mt-6 space-y-4">
-            <input className={otpCls} value={otp} onChange={(e) => setOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="••••••" />
+            <input className={otpCls} value={otp} onChange={(e) => setOtp(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") verify(); }} inputMode="numeric" maxLength={6} placeholder="••••••" />
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
             <button onClick={verify} disabled={loading} className={primaryBtn}>{loading ? "Verifying…" : "Verify phone"}</button>
             <button onClick={() => { setStep("part1"); setOtp(""); setError(null); }} className="w-full font-body text-sm text-white/55">← Wrong number or email? Edit details</button>
@@ -207,14 +207,14 @@ export function RegisterForm() {
               <Field label="Class 12 grad year"><select className={inputCls} value={gradYear} onChange={(e) => setGradYear(e.target.value ? Number(e.target.value) : "")}><option value="" className="bg-[#160a30] text-white">Select</option>{GRAD_YEARS.map((y) => <option key={y} value={y} className="bg-[#160a30] text-white">{y}</option>)}</select></Field>
               <Field label="Stream"><select className={inputCls} value={stream} onChange={(e) => setStream(e.target.value as typeof stream)}><option value="" className="bg-[#160a30] text-white">Select</option>{STREAMS.map((s) => <option key={s} value={s} className="bg-[#160a30] text-white">{s}</option>)}</select></Field>
             </div>
-            {stream === "Others" && <Field label="Your stream"><input className={inputCls} value={streamOther} onChange={(e) => setStreamOther(e.target.value)} placeholder="e.g. Commerce" /></Field>}
+            {stream === "Others" && <Field label="Your stream"><input className={inputCls} value={streamOther} onChange={(e) => setStreamOther(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") completePart2(); }} placeholder="e.g. Commerce" /></Field>}
             <div className="grid grid-cols-2 gap-3">
               <Field label="State / UT"><SearchableSelect options={INDIA_STATES} value={state} onChange={(v) => { setState(v); setCity(""); }} placeholder="Select state…" /></Field>
               <Field label="City"><SearchableSelect options={state ? (STATE_CITIES[state] ?? []) : []} value={city} onChange={setCity} placeholder={state ? "Select city…" : "Pick a state first"} disabled={!state} /></Field>
             </div>
             <Field label={`Verify your email (${email})`}>
               <div className="flex gap-2">
-                <input className={inputCls + " text-center tracking-[0.3em]"} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="Email code" />
+                <input className={inputCls + " text-center tracking-[0.3em]"} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") completePart2(); }} inputMode="numeric" maxLength={6} placeholder="Email code" />
                 <button onClick={resendEmailCode} disabled={resendState === "sending"} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{resendState === "sending" ? "…" : resendState === "sent" ? "Resend" : "Send code"}</button>
               </div>
             </Field>
