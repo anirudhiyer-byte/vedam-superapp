@@ -34,9 +34,6 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="w-full border-t border-white/10 pt-6 text-center text-[13px] font-medium text-white/60">
-        In case of any queries or problems, please reach out to us at <a href="mailto:connect@vedam.org" className="text-white/85 underline underline-offset-2 hover:text-white">connect@vedam.org</a>
-      </div>
     </footer>
   );
 }
