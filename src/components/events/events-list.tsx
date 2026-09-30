@@ -14,7 +14,7 @@ const BC_CSS = `
 .bc-card:hover .bc-shine{left:130%}
 .bc-dot{box-shadow:0 0 8px rgba(34,224,106,.9);animation:bc-blink 1.2s ease-in-out infinite}
 @keyframes bc-blink{0%,100%{opacity:1}50%{opacity:.35}}
-.bc-btn{height:38px;display:inline-flex;align-items:center;justify-content:center;padding:0 22px;border-radius:11px;font-size:14px;font-weight:600;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s,background .3s;letter-spacing:.2px}
+.bc-btn{height:32px;display:inline-flex;align-items:center;justify-content:center;padding:0 19px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .3s,background .3s;letter-spacing:.2px}
 .bc-btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);transition:left .6s;pointer-events:none}
 .bc-btn:hover::after{left:130%}.bc-btn:hover{transform:translateY(-1px)}
 .bc-view{color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 10px -6px rgba(0,0,0,.5)}
@@ -154,10 +154,10 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
   const nameRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = nameRef.current; if (!el) return;
-    let size = 18; el.style.fontSize = size + "px"; el.style.webkitLineClamp = "2";
+    let size = 16; el.style.fontSize = size + "px"; el.style.webkitLineClamp = "2";
     const overflow = () => el.scrollHeight > el.clientHeight + 1;
     if (overflow()) el.style.webkitLineClamp = "3";        // 2 lines don't fit -> allow a 3rd
-    while (overflow() && size > 13) { size -= 0.5; el.style.fontSize = size + "px"; }  // shrink only if 3 still overflow
+    while (overflow() && size > 11) { size -= 0.5; el.style.fontSize = size + "px"; }  // shrink only if 3 still overflow
   }, [event.name]);
   return (
     <div className="bc-card group relative w-[90%] justify-self-start rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
@@ -170,7 +170,7 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
         <div className="absolute inset-x-0 bottom-0 z-10 flex h-[50%] flex-col justify-between px-5 pb-5 pt-3.5 text-white">
-          <div ref={nameRef} className="max-w-[44%] overflow-hidden font-[family-name:var(--font-inter)] text-[18px] font-extrabold uppercase leading-[1.15] tracking-[-0.5px]" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical" }}>{event.name}</div>
+          <div ref={nameRef} className="max-w-[44%] overflow-hidden pb-[3px] font-[family-name:var(--font-inter)] text-[16px] font-extrabold uppercase leading-[1.3] tracking-[-0.5px]" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical" }}>{event.name}</div>
           <div className="mt-2.5 flex items-end justify-between gap-3">
             <div className="min-w-0">
               {event.host && <div className="truncate font-[family-name:var(--font-inter)] text-[14px]">with {event.host}</div>}

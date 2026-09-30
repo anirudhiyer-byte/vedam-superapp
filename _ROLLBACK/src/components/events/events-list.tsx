@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useProductGate } from "@/components/funnel/use-product-gate";
 import { useResumeAction } from "@/lib/funnel/use-resume-action";
 import type { EventRow } from "@/lib/events";
-import { eventDateLabel, eventTimeLabel, isOffline, pointsTotalPossible } from "@/lib/events";
+import { eventDateLabel, eventTimeLabel, isOffline, pointsTotalPossible, regClosed } from "@/lib/events";
 
 const BC_CSS = `
 .bc-shine{transition:left .7s}
@@ -150,6 +150,7 @@ export function EventsList() {
 function EventCard({ event, registered, onRegister }: { event: EventRow; registered?: boolean; onRegister: () => void }) {
   const off = isOffline(event);
   const pts = pointsTotalPossible(event.points_config);
+  const closed = regClosed(event) || (!!event.starts_at && new Date(event.starts_at).getTime() < Date.now());
   const nameRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = nameRef.current; if (!el) return;
@@ -180,7 +181,9 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
           <div className="mt-5 flex items-center justify-between">
             <div className="flex gap-2.5">
               <Link href={`/events/${event.event_code}`} className="bc-btn bc-view font-[family-name:var(--font-inter)]">View</Link>
-              <button onClick={onRegister} className="bc-btn bc-reg font-[family-name:var(--font-inter)]">{registered ? "Registered" : "Register Now"}</button>
+              {closed && !registered
+                ? <span className="bc-btn bc-reg cursor-not-allowed font-[family-name:var(--font-inter)] opacity-60">Registration Closed</span>
+                : <button onClick={onRegister} className="bc-btn bc-reg font-[family-name:var(--font-inter)]">{registered ? "Registered" : "Register Now"}</button>}
             </div>
             <div className="flex items-center gap-1.5 whitespace-nowrap font-[family-name:var(--font-inter)] text-[13px] font-semibold">
               {event.max_attendees != null && <span>Seats: <b className="font-extrabold">{event.max_attendees}</b></span>}
