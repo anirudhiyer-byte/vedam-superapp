@@ -5,7 +5,7 @@ import { PremiumDark } from "@/components/premium-dark";
 
 type Standing = { points: number; national_rank?: number; national_total?: number; state?: string | null; state_rank?: number };
 type Prof = { full_name: string; email: string; phone: string; public_id: string; state: string | null; city: string | null; grad_year: number | null; stream: string | null; created_at: string };
-type Cert = { id: string; kind: string | null; source: string | null; serial: string | null; issued_on: string; event_id: string | null; module_id: string | null };
+import { CertificatesFolders, type CertRow } from "@/components/certificates-folders";
 type PointRow = { points: number; action: string; app: string; created_at: string; object_name?: string | null };
 type Comm = { id: string; kind: string | null; ref_name: string | null; subject: string | null; sent_at: string; opened_at: string | null; html_snapshot: string | null };
 
@@ -16,7 +16,7 @@ export function ProfilePage() {
   const [tab, setTab] = useState<(typeof TABS)[number]>("Basic Details");
   const [prof, setProf] = useState<Prof | null>(null);
   const [std, setStd] = useState<Standing | null>(null);
-  const [certs, setCerts] = useState<Cert[]>([]);
+  const [certs, setCerts] = useState<CertRow[]>([]);
   const [points, setPoints] = useState<PointRow[]>([]);
   const [comms, setComms] = useState<Comm[]>([]);
   const [pointSort, setPointSort] = useState<"date" | "product">("date");
@@ -30,8 +30,8 @@ export function ProfilePage() {
       const { data: p } = await supabase.from("profiles").select("full_name, email, phone, public_id, state, city, grad_year, stream, created_at").eq("id", uid).maybeSingle();
       setProf(p as Prof);
       const { data: s } = await supabase.rpc("my_standing"); setStd(s as Standing);
-      const { data: c } = await supabase.from("certificates").select("id, kind, source, serial, issued_on, event_id, module_id").eq("user_id", uid).order("issued_on", { ascending: false });
-      setCerts((c as Cert[]) ?? []);
+      const { data: c } = await supabase.from("certificates").select("id, kind, source, event_id, module_id, issued_on, events(name), cs_modules(title)").eq("user_id", uid).order("issued_on", { ascending: false });
+      setCerts((c as unknown as CertRow[]) ?? []);
       const { data: pl } = await supabase.rpc("my_points_detailed");
       setPoints((pl as PointRow[]) ?? []);
       const { data: em } = await supabase.rpc("my_communications");
@@ -81,12 +81,7 @@ export function ProfilePage() {
           )}
 
           {tab === "Certificates" && (
-            certs.length ? <div className="grid gap-3 sm:grid-cols-2">{certs.map((c) => (
-              <div key={c.id} className="rounded-xl border border-white/12 bg-white/[0.04] p-4">
-                <div className="flex items-center justify-between"><span className="font-semibold">{c.kind === "winner" ? "🏆 Winner Certificate" : "🎓 Certificate"}</span><span className="font-mono text-[10px] text-white/40">{new Date(c.issued_on).toLocaleDateString()}</span></div>
-                <div className="mt-1 text-xs text-white/55">{c.source === "codesprint" ? "CodeSprint" : "Bootcamp"} · {c.serial}</div>
-              </div>
-            ))}</div> : <p className="text-white/40">No certificates yet — complete a bootcamp or CodeSprint module to earn one.</p>
+            <CertificatesFolders certs={certs} />
           )}
 
           {tab === "Points Log" && (

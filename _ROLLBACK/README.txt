@@ -1,1 +1,1 @@
-NOTE: traffic-tracker.tsx is NEW — delete on rollback
+NOTE: daily-dashboard.tsx is NEW — delete on rollback
