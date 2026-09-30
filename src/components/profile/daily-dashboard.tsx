@@ -2,10 +2,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type Row = { day: string; traffic: number; attempted: number; partial_reg: number; full_reg: number; bootcamp: number; codesprint: number; dropoff: number };
+type Row = { day: string; traffic: number; traffic_new: number; traffic_returning: number; attempted: number; partial_reg: number; full_reg: number; bootcamp: number; codesprint: number; dropoff: number };
 type Person = { full_name: string | null; email: string | null; phone: string | null; extra: string | null; when_at: string | null };
 type Utm = { utm_source: string; cnt: number };
-type Kind = "traffic" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
+type Kind = "new" | "returning" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
 
 const iso = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
 const fdate = (s: string) => new Date(s).toLocaleDateString("en-IN", { day: "numeric", month: "short" });
@@ -33,9 +33,9 @@ export function DailyDashboard() {
   useEffect(() => { load(); }, [load]);
 
   const t = useMemo(() => rows.reduce((a, r) => ({
-    traffic: a.traffic + r.traffic, attempted: a.attempted + r.attempted, partial: a.partial + r.partial_reg,
+    traffic: a.traffic + r.traffic, tnew: a.tnew + r.traffic_new, tret: a.tret + r.traffic_returning, attempted: a.attempted + r.attempted, partial: a.partial + r.partial_reg,
     full: a.full + r.full_reg, bootcamp: a.bootcamp + r.bootcamp, codesprint: a.codesprint + r.codesprint, dropoff: a.dropoff + r.dropoff,
-  }), { traffic: 0, attempted: 0, partial: 0, full: 0, bootcamp: 0, codesprint: 0, dropoff: 0 }), [rows]);
+  }), { traffic: 0, tnew: 0, tret: 0, attempted: 0, partial: 0, full: 0, bootcamp: 0, codesprint: 0, dropoff: 0 }), [rows]);
   const pct = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
 
   async function openDetail(k: Kind) {
@@ -65,7 +65,8 @@ export function DailyDashboard() {
       </div>
 
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <Kpi label="Traffic" value={t.traffic} onClick={() => openDetail("traffic")} active={openKpi === "traffic"} />
+        <Kpi label="New visitors" value={t.tnew} onClick={() => openDetail("new")} active={openKpi === "new"} />
+        <Kpi label="Returning visitors" value={t.tret} onClick={() => openDetail("returning")} active={openKpi === "returning"} />
         <Kpi label="Attempted reg." value={t.attempted} sub={`${pct(t.attempted, t.traffic)}% of traffic`} onClick={() => openDetail("attempted")} active={openKpi === "attempted"} />
         <Kpi label="Registered partial" value={t.partial} onClick={() => openDetail("partial")} active={openKpi === "partial"} />
         <Kpi label="Registered full" value={t.full} accent onClick={() => openDetail("full")} active={openKpi === "full"} />
@@ -91,16 +92,16 @@ export function DailyDashboard() {
       <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
         <div className="overflow-x-auto rounded-2xl border border-white/12 bg-white/[0.04]">
           <table className="w-full text-left text-xs">
-            <thead className="bg-white/[0.05] text-white/60"><tr>{["Date", "Traffic", "Attempted", "→Reg %", "Partial", "Full", "Drop-off", "Drop %", "Bootcamp", "CodeSprint"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
+            <thead className="bg-white/[0.05] text-white/60"><tr>{["Date", "New", "Returning", "Attempted", "→Reg %", "Partial", "Full", "Drop-off", "Drop %", "Bootcamp", "CodeSprint"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
             <tbody>{rows.map((r) => (
               <tr key={r.day} className="border-t border-white/8">
                 <td className="whitespace-nowrap p-2 font-semibold">{fdate(r.day)}</td>
-                <td className="p-2">{r.traffic}</td><td className="p-2">{r.attempted}</td><td className="p-2 text-white/70">{pct(r.attempted, r.traffic)}%</td>
+                <td className="p-2">{r.traffic_new}</td><td className="p-2">{r.traffic_returning}</td><td className="p-2">{r.attempted}</td><td className="p-2 text-white/70">{pct(r.attempted, r.traffic)}%</td>
                 <td className="p-2">{r.partial_reg}</td><td className="p-2 font-semibold text-[#22e06a]">{r.full_reg}</td>
                 <td className="p-2">{r.dropoff}</td><td className="p-2 text-white/70">{pct(r.dropoff, r.attempted)}%</td>
                 <td className="p-2">{r.bootcamp}</td><td className="p-2">{r.codesprint}</td>
               </tr>
-            ))}{rows.length === 0 && <tr><td colSpan={10} className="p-6 text-center text-white/50">No data in range.</td></tr>}</tbody>
+            ))}{rows.length === 0 && <tr><td colSpan={11} className="p-6 text-center text-white/50">No data in range.</td></tr>}</tbody>
           </table>
         </div>
 
