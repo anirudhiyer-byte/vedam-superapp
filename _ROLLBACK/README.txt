@@ -1,1 +1,1 @@
-NOTE: daily-dashboard.tsx is NEW — delete on rollback
+NOTE: (admin)/admin/daily/page.tsx is NEW — delete on rollback

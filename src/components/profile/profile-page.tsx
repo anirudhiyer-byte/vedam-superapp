@@ -6,8 +6,6 @@ import { PremiumDark } from "@/components/premium-dark";
 type Standing = { points: number; national_rank?: number; national_total?: number; state?: string | null; state_rank?: number };
 type Prof = { full_name: string; email: string; phone: string; public_id: string; state: string | null; city: string | null; grad_year: number | null; stream: string | null; created_at: string };
 import { CertificatesFolders, type CertRow } from "@/components/certificates-folders";
-import { useIsAdmin } from "@/hooks/use-is-admin";
-import { DailyDashboard } from "@/components/profile/daily-dashboard";
 type PointRow = { points: number; action: string; app: string; created_at: string; object_name?: string | null };
 type Comm = { id: string; kind: string | null; ref_name: string | null; subject: string | null; sent_at: string; opened_at: string | null; html_snapshot: string | null };
 
@@ -16,8 +14,6 @@ const TABS = ["Basic Details", "Certificates", "Points Log", "Communications"] a
 export function ProfilePage() {
   const [supabase] = useState(() => createClient());
   const [tab, setTab] = useState<(typeof TABS)[number]>("Basic Details");
-  const isAdmin = useIsAdmin();
-  const [showDash, setShowDash] = useState(false);
   const [prof, setProf] = useState<Prof | null>(null);
   const [std, setStd] = useState<Standing | null>(null);
   const [certs, setCerts] = useState<CertRow[]>([]);
@@ -67,18 +63,6 @@ export function ProfilePage() {
             </div>
           </div>
         </div>
-
-        {isAdmin && (
-          <div className="mt-4">
-            <button onClick={() => setShowDash((v) => !v)} className="rounded-full border border-[#00cfe5]/40 bg-[#00cfe5]/10 px-4 py-2 text-sm font-semibold text-[#8fe9f5] transition-colors hover:bg-[#00cfe5]/20">📊 {showDash ? "Hide Daily Dashboard" : "Daily Dashboard"}</button>
-          </div>
-        )}
-        {isAdmin && showDash && (
-          <div className="mt-5 rounded-[24px] border border-white/12 p-5 sm:p-6" style={{ background: "radial-gradient(120% 100% at 80% 20%,#241049 0%,#150a30 55%,#0b0318 100%)" }}>
-            <h2 className="mb-4 font-[family-name:var(--font-inter)] text-lg font-bold text-white">Daily Dashboard</h2>
-            <DailyDashboard />
-          </div>
-        )}
 
         {/* TABS */}
         <div className="mt-6 flex flex-wrap gap-2">
