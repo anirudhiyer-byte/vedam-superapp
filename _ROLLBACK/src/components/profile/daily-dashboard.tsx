@@ -7,7 +7,7 @@ type Person = { full_name: string | null; email: string | null; phone: string | 
 type Utm = { utm_source: string; cnt: number };
 type Kind = "traffic" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
 
-const iso = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
+const iso = (d: Date) => d.toISOString().slice(0, 10);
 const fdate = (s: string) => new Date(s).toLocaleDateString("en-IN", { day: "numeric", month: "short" });
 const PIE = ["#00cfe5", "#8A18FF", "#F97D03", "#22e06a", "#ff2fb0", "#f5c542", "#2f9bff", "#9b9b9b"];
 
