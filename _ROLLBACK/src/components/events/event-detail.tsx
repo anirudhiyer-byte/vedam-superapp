@@ -85,7 +85,7 @@ export function EventDetail({ code }: { code: string }) {
       <Link href="/events" className="font-[family-name:var(--font-inter)] text-xs text-white/55 hover:text-white">← all events</Link>
 
       {/* hero */}
-      <div className="relative mt-4 flex min-h-[240px] items-end overflow-hidden rounded-3xl border-2 border-[#00cfe5]/40 text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)]"
+      <div className="relative mt-4 flex aspect-[16/9] max-h-[420px] min-h-[220px] items-end overflow-hidden rounded-3xl border-2 border-[#00cfe5]/40 text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)]"
         style={{ background: event.banner_url ? `center/cover url(${event.banner_url})` : "linear-gradient(120deg,#8A18FF,#3a1470 70%,#F97D03)" }}>
         <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(43,19,92,.1), rgba(43,19,92,.82))" }} />
         <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
