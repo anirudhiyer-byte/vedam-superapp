@@ -144,7 +144,7 @@ export function CollegePredictor() {
           <div className="mt-6 overflow-hidden rounded-2xl bg-brand-gradient p-6 text-center text-white">
             <p className="font-display text-xl font-extrabold">Marks don&apos;t get you jobs. Skills do.</p>
             <p className="mt-1 font-body text-sm text-white/85">Start coding from day one with Vedam&apos;s 4-year CS &amp; AI program. Up to 100% scholarships.</p>
-            <a href="/apply" className="mt-4 inline-block rounded-xl bg-white px-6 py-2.5 font-display text-sm font-bold text-heading">Apply via VSAT</a>
+            <a href="/events" className="mt-4 inline-block rounded-xl bg-white px-6 py-2.5 font-display text-sm font-bold text-heading">Apply via VSAT</a>
           </div>
         </div>
       )}

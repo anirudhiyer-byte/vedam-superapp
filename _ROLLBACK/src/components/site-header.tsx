@@ -136,6 +136,7 @@ export function SiteHeader() {
                         <Link href="/events?admin=analytics" className="block px-4 py-2 text-white/85 hover:bg-white/5">Events Analytics</Link>
                         <Link href="/codesprint?admin=1" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage CodeSprint</Link>
                         <Link href="/admin/comms" className="block px-4 py-2 text-white/85 hover:bg-white/5">Communications</Link>
+                        <Link href="/admin/daily" className="block px-4 py-2 text-white/85 hover:bg-white/5">📊 Daily Dashboard</Link>
                         <div className="my-1 h-px bg-white/10" />
                       </>
                     )}

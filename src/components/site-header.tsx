@@ -9,7 +9,7 @@ import { ProfileGateModal } from "@/components/profile/profile-gate-modal";
 
 const NAV: { label: string; href: string; soon?: boolean }[] = [
   { label: "Home", href: "/" },
-  { label: "VSAT", href: "/vsat" },
+  { label: "VSAT", href: "/apply" },
   { label: "Bootcamps", href: "/events" },
   { label: "Codesprint", href: "/codesprint" },
   { label: "College Predictor", href: "/predict", soon: true },
@@ -75,7 +75,7 @@ export function SiteHeader() {
     return () => window.removeEventListener("points:changed", refreshPoints);
   }, [supabase]);
 
-  if (pathname === "/vsat") return null;
+  if (pathname === "/apply") return null;
   const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase() || "V";
   async function logout() {
     setMenuOpen(false);

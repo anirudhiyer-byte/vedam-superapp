@@ -20,7 +20,7 @@ export function RegisterForm() {
   const searchParams = useSearchParams();
   const nextUrl = decodeURIComponent(searchParams.get("next") || "/");
   // if we're inside the VSAT flow, part-2 copy leads with the VSAT confirmation
-  const isVsat = nextUrl.startsWith("/vsat");
+  const isVsat = nextUrl.startsWith("/apply");
 
   const [step, setStep] = useState<Step>("part1");
   const [loading, setLoading] = useState(false);
