@@ -161,15 +161,38 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
   }, [event.name]);
   return (
     <div className="bc-card group relative w-[90%] justify-self-start rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
-      <div className="relative h-[340px] overflow-hidden rounded-[13px] bg-[#161616]">
-        <div className="absolute inset-x-0 top-0 bottom-[40%] overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-[13px] bg-[#161616] sm:aspect-auto sm:h-[340px]">
+        <div className="absolute inset-0 overflow-hidden sm:bottom-[40%]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {event.banner_url ? <img src={event.banner_url} alt="" className="h-full w-full object-cover" /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
+        <div className="absolute inset-x-0 bottom-0 h-[64%] sm:h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
-        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[50%] flex-col justify-between px-5 pb-5 pt-3.5 text-white">
+        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[64%] flex-col gap-[5px] px-4 pb-[13px] pt-3.5 text-white sm:hidden">
+          <div className="max-w-[48%] overflow-hidden break-words font-[family-name:var(--font-inter)] text-[12px] font-extrabold uppercase leading-[1.22] tracking-[-0.3px]" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2 }}>{event.name}</div>
+          <div className="flex items-end justify-between gap-2.5">
+            <div className="min-w-0">
+              {event.host && <div className="truncate font-[family-name:var(--font-inter)] text-[12.5px]">with {event.host}</div>}
+              <div className="mt-0.5 flex items-center gap-1.5 font-[family-name:var(--font-inter)] text-[11px]"><span className="h-1.5 w-1.5 flex-none rounded-full" style={{ background: off ? "#ffd27a" : "#22e06a" }} />{off ? "In person" : "Online"}</div>
+            </div>
+            <div className="whitespace-nowrap text-right font-[family-name:var(--font-inter)] text-[11px] font-medium leading-tight">{eventDateLabel(event)}<br />{eventTimeLabel(event)}</div>
+          </div>
+          <div className="mt-auto flex items-center justify-between gap-2.5">
+            <div className="flex gap-2">
+              <Link href={`/events/${event.event_code}`} className="flex h-8 items-center justify-center rounded-[9px] border border-white/30 bg-white/[0.14] px-4 text-[12px] font-bold">View</Link>
+              {closed && !registered
+                ? <span className="flex h-8 items-center justify-center rounded-[9px] border border-white/50 bg-white/80 px-4 text-[12px] font-bold text-[#151030] opacity-70">Closed</span>
+                : <button onClick={onRegister} className="flex h-8 items-center justify-center rounded-[9px] border border-white bg-white/90 px-4 text-[12px] font-bold text-[#151030]">{registered ? "Registered" : "Register"}</button>}
+            </div>
+            <div className="whitespace-nowrap font-[family-name:var(--font-inter)] text-[11px] font-semibold">
+              {event.max_attendees != null && <span>Seats: <b className="font-extrabold">{event.max_attendees}</b></span>}
+              {event.max_attendees != null && pts > 0 && <span className="px-0.5 opacity-40">|</span>}
+              {pts > 0 && <span className="text-[#ffe27a]">Pts: <b className="font-extrabold">{pts}</b></span>}
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 z-10 hidden h-[50%] flex-col justify-between px-5 pb-5 pt-3.5 text-white sm:flex">
           <div ref={nameRef} className="max-w-[44%] overflow-hidden pb-[3px] font-[family-name:var(--font-inter)] text-[16px] font-extrabold uppercase leading-[1.3] tracking-[-0.5px]" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical" }}>{event.name}</div>
           <div className="mt-2.5 flex items-end justify-between gap-3">
             <div className="min-w-0">
