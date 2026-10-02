@@ -80,7 +80,7 @@ export function EventDetail({ code }: { code: string }) {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-8 sm:px-8">
+    <div className="mx-auto max-w-5xl overflow-x-hidden px-4 py-8 sm:px-8">
       <style>{`@keyframes ld-shine{0%{left:-70%}100%{left:170%}}.group:hover .ld-shine{animation:ld-shine 0.8s ease-out}`}</style>
       <Link href="/events" className="font-[family-name:var(--font-inter)] text-xs text-white/55 hover:text-white">← all events</Link>
 
@@ -90,11 +90,11 @@ export function EventDetail({ code }: { code: string }) {
         <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
         {event.banner_url && <img src={event.banner_url} alt="" className="absolute inset-0 z-[1] h-full w-full object-contain" />}
         <div aria-hidden className="absolute inset-0 z-[2]" style={{ background: "linear-gradient(180deg, rgba(11,3,24,0) 45%, rgba(11,3,24,.55) 78%, rgba(11,3,24,.9) 100%)" }} />
-        <div className="relative z-[3] w-full p-8">
+        <div className="relative z-[3] w-full p-5 sm:p-8">
           <span className="rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-[#8fe9f5] backdrop-blur">
             {event.category || "Vedam Event"}
           </span>
-          <h1 className="mt-3 max-w-[20ch] font-display text-3xl font-semibold tracking-tight sm:text-4xl">{event.name}</h1>
+          <h1 className="mt-2 max-w-[20ch] font-display text-xl font-semibold tracking-tight sm:mt-3 sm:text-4xl">{event.name}</h1>
           {event.host && <p className="mt-2 font-mono text-sm text-white/85">Hosted by Vedam · with {event.host}</p>}
         </div>
       </div>
