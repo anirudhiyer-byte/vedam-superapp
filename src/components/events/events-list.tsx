@@ -164,7 +164,7 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
       <div className="relative aspect-[4/3] overflow-hidden rounded-[13px] bg-[#161616] sm:aspect-auto sm:h-[340px]">
         <div className="absolute inset-0 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {event.banner_url ? <img src={event.banner_url} alt="" className="h-full w-full object-cover" /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
+          {event.banner_url ? <img src={event.banner_url} alt="" className="h-full w-full" style={{ objectFit: (event.banner_fit as "cover" | "contain") || "cover", objectPosition: event.banner_position || "center" }} /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
         </div>
         <div className="absolute inset-x-0 bottom-0 h-[64%] sm:h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
