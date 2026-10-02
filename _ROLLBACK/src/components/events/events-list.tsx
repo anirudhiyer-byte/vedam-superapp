@@ -161,16 +161,19 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
   }, [event.name]);
   return (
     <div className="bc-card group relative w-full rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[13px] bg-[#161616] sm:aspect-auto sm:h-[340px]">
-        <div className="absolute inset-0 overflow-hidden">
+      <div className="relative aspect-[6/5] overflow-hidden rounded-[13px] bg-[#161616] sm:aspect-auto sm:h-[340px]">
+        <div className="absolute inset-x-0 top-0 bottom-[42%] overflow-hidden sm:bottom-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {event.banner_url ? <img src={event.banner_url} alt="" className="h-full w-full object-cover" /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
+          {event.banner_url ? <img src={event.banner_url} alt="" className="h-full w-full" style={{ objectFit: (event.banner_fit as "cover" | "contain") || "cover", objectPosition: event.banner_position || "center" }} /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-[64%] sm:h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
+        <div className="absolute inset-x-0 bottom-0 h-[58%] sm:h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
-        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[64%] flex-col gap-2 px-4 pb-4 pt-4 text-white sm:hidden">
-          <div className="max-w-[48%] overflow-hidden break-words font-[family-name:var(--font-inter)] text-[14px] font-extrabold uppercase leading-[1.22] tracking-[-0.3px]" style={{ display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 2 }}>{event.name}</div>
+        <div className="absolute inset-x-0 bottom-0 z-10 flex h-[58%] flex-col gap-2 px-4 pb-3 pt-3 text-white sm:hidden">
+          <div className="overflow-hidden break-words font-[family-name:var(--font-inter)] text-[13px] font-extrabold uppercase leading-[1.22] tracking-[-0.3px]" style={{ maxHeight: "calc(1.22em * 3)" }}>
+            <i aria-hidden className="float-right block h-[30px] w-[56%]" style={{ shapeOutside: "polygon(0 0,100% 0,100% 100%)", shapeMargin: "7px" }} />
+            {event.name}
+          </div>
           <div className="flex items-end justify-between gap-2.5">
             <div className="min-w-0">
               {event.host && <div className="truncate font-[family-name:var(--font-inter)] text-[14px]">with {event.host}</div>}

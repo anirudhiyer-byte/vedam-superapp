@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -63,7 +63,7 @@ export function EventEditor({ id }: { id?: string }) {
           time: starts ? starts.toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) : "",
           duration_minutes: e.duration_minutes ? String(e.duration_minutes) : "60",
           venue: e.venue || "", map_link: e.map_link || "", schedule: e.schedule || [{ date: "", slots: [{ start: "", end: "" }] }],
-          banner_url: e.banner_url || "", banner_fit: e.banner_fit || "cover", banner_position: e.banner_position || "center", recording_url: e.recording_url || "", whatsapp_community_url: e.whatsapp_community_url || "",
+          banner_url: e.banner_url || "", banner_fit: e.banner_fit || "cover", banner_position: e.banner_position || "center", banner_zoom: Number(e.banner_zoom) || 0, banner_x: e.banner_x ?? 50, banner_y: e.banner_y ?? 50, recording_url: e.recording_url || "", whatsapp_community_url: e.whatsapp_community_url || "",
           certs_enabled: !!e.certs_enabled, podium_enabled: !!e.podium_enabled, share_podium: String(e.share_points_podium ?? 30), share_participation: String(e.share_points_participation ?? 15), submission_enabled: !!e.submission_enabled, submission_pts: String(e.submission_points ?? 20),
           max_attendees: e.max_attendees ? String(e.max_attendees) : "", reg_close_at: e.reg_close_at ? new Date(e.reg_close_at).toISOString().slice(0, 16) : "",
           ribbon_label: e.ribbon_label || "", ribbon_value: e.ribbon_value || "", dashboard_enabled: e.dashboard_enabled,
@@ -114,7 +114,7 @@ export function EventEditor({ id }: { id?: string }) {
       venue: off ? f.venue || null : null,
       map_link: off ? f.map_link || null : null,
       schedule: off ? f.schedule.filter((d) => d.date) : null,
-      banner_url: f.banner_url || null, banner_fit: f.banner_fit, banner_position: f.banner_position, recording_url: f.recording_url || null, whatsapp_community_url: f.whatsapp_community_url || null,
+      banner_url: f.banner_url || null, banner_fit: f.banner_fit, banner_position: f.banner_position, banner_zoom: f.banner_zoom || null, banner_x: f.banner_x, banner_y: f.banner_y, recording_url: f.recording_url || null, whatsapp_community_url: f.whatsapp_community_url || null,
       certs_enabled: f.certs_enabled, podium_enabled: f.podium_enabled, share_points_podium: Number(f.share_podium) || 0, share_points_participation: Number(f.share_participation) || 0,
       submission_enabled: f.submission_enabled, submission_points: Number(f.submission_pts) || 0,
       max_attendees: f.max_attendees ? Number(f.max_attendees) : null,
@@ -239,11 +239,11 @@ export function EventEditor({ id }: { id?: string }) {
                   <option value="right">Focus: Right</option>
                 </select>
               </div>
-              <div className="relative h-[150px] w-[240px] overflow-hidden rounded-lg border border-border-strong bg-[#161616]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={f.banner_url} alt="" className="h-full w-full" style={{ objectFit: f.banner_fit as "cover" | "contain", objectPosition: f.banner_position }} />
-              </div>
-              <p className="font-body text-[11px] text-muted">Live preview of how the image sits on the card. &ldquo;Fill&rdquo; crops to fill (zoomed in); &ldquo;Show full&rdquo; shows the whole image (zoomed out). Focus picks which part shows when filling.</p>
+              {f.banner_fit === "cover" ? (
+                <BannerCropper url={f.banner_url} zoom={f.banner_zoom} x={f.banner_x} y={f.banner_y} onChange={(v) => setF((s0) => ({ ...s0, banner_zoom: v.zoom ?? s0.banner_zoom, banner_x: v.x ?? s0.banner_x, banner_y: v.y ?? s0.banner_y }))} />
+              ) : (
+                <div className="relative aspect-[16/10] w-full max-w-[300px] overflow-hidden rounded-lg border border-border-strong bg-[#161616]">{/* eslint-disable-next-line @next/next/no-img-element */}<img src={f.banner_url} alt="" className="h-full w-full object-contain" /></div>
+              )}
             </div>
           </Row>
         )}
@@ -306,6 +306,34 @@ export function EventEditor({ id }: { id?: string }) {
           <button onClick={() => router.push("/admin/events")} className="ml-auto font-body text-sm text-muted">Cancel</button>
         </div>
       </div>
+    </div>
+  );
+}
+
+function BannerCropper({ url, zoom, x, y, onChange }: { url: string; zoom: number; x: number; y: number; onChange: (v: Partial<{ zoom: number; x: number; y: number }>) => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const drag = useRef<{ sx: number; sy: number; ox: number; oy: number } | null>(null);
+  const z = zoom || 100;
+  const clamp = (n: number) => Math.max(0, Math.min(100, n));
+  function down(e: React.PointerEvent) { drag.current = { sx: e.clientX, sy: e.clientY, ox: x, oy: y }; try { (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId); } catch { /* */ } }
+  function move(e: React.PointerEvent) {
+    if (!drag.current || !ref.current) return;
+    const dx = ((e.clientX - drag.current.sx) / ref.current.clientWidth) * 100;
+    const dy = ((e.clientY - drag.current.sy) / ref.current.clientHeight) * 100;
+    onChange({ x: clamp(drag.current.ox - dx), y: clamp(drag.current.oy - dy) });
+  }
+  function up(e: React.PointerEvent) { drag.current = null; try { (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId); } catch { /* */ } }
+  return (
+    <div className="space-y-2">
+      <div ref={ref} onPointerDown={down} onPointerMove={move} onPointerUp={up}
+        className="relative aspect-[16/10] w-full max-w-[300px] cursor-grab touch-none select-none overflow-hidden rounded-lg border border-border-strong active:cursor-grabbing"
+        style={{ backgroundImage: `url(${url})`, backgroundSize: `${z}%`, backgroundPosition: `${x}% ${y}%`, backgroundRepeat: "no-repeat", backgroundColor: "#161616" }} />
+      <div className="flex items-center gap-2">
+        <span className="font-body text-xs text-muted">Zoom</span>
+        <input type="range" min={50} max={300} value={z} onChange={(e) => onChange({ zoom: Number(e.target.value) })} className="flex-1 accent-[#00cfe5]" />
+        <span className="w-9 text-right font-mono text-xs text-muted">{z}%</span>
+      </div>
+      <p className="font-body text-[11px] text-muted">Drag the image to move it; slide to zoom. Frame it until it fills nicely — this is exactly how it&apos;ll appear on the card.</p>
     </div>
   );
 }

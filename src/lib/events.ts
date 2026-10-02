@@ -37,6 +37,9 @@ export type EventRow = {
   banner_url: string | null;
   banner_fit: string | null;
   banner_position: string | null;
+  banner_zoom: number | null;
+  banner_x: number | null;
+  banner_y: number | null;
   recording_url: string | null;
   whatsapp_community_url: string | null;
   max_attendees: number | null;

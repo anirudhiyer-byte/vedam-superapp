@@ -16,7 +16,7 @@ type Form = {
   name: string; category: string; mode: "online" | "offline"; host: string; blurb: string; details: string;
   platform: string; join_link: string; zoom_id: string; zoom_passcode: string; date: string; time: string; duration_minutes: string;
   venue: string; map_link: string; schedule: ScheduleDay[];
-  banner_url: string; recording_url: string; whatsapp_community_url: string; max_attendees: string; reg_close_at: string;
+  banner_url: string; banner_fit: string; banner_position: string; recording_url: string; whatsapp_community_url: string; max_attendees: string; reg_close_at: string;
   certs_enabled: boolean; podium_enabled: boolean; share_podium: string; share_participation: string; submission_enabled: boolean; submission_pts: string;
   ribbon_label: string; ribbon_value: string; dashboard_enabled: boolean;
   registration_schema: EventField[];
@@ -28,7 +28,7 @@ const blank: Form = {
   name: "", category: "Workshop", mode: "online", host: "", blurb: "", details: "",
   platform: "", join_link: "", zoom_id: "", zoom_passcode: "", date: "", time: "", duration_minutes: "60",
   venue: "", map_link: "", schedule: [{ date: "", slots: [{ start: "", end: "" }] }],
-  banner_url: "", recording_url: "", whatsapp_community_url: "", max_attendees: "", reg_close_at: "",
+  banner_url: "", banner_fit: "cover", banner_position: "center", recording_url: "", whatsapp_community_url: "", max_attendees: "", reg_close_at: "",
   certs_enabled: false, podium_enabled: false, share_podium: "30", share_participation: "15", submission_enabled: false, submission_pts: "20",
   ribbon_label: "", ribbon_value: "", dashboard_enabled: false,
   registration_schema: DEFAULT_ONLINE_REG,
@@ -63,7 +63,7 @@ export function EventEditor({ id }: { id?: string }) {
           time: starts ? starts.toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" }) : "",
           duration_minutes: e.duration_minutes ? String(e.duration_minutes) : "60",
           venue: e.venue || "", map_link: e.map_link || "", schedule: e.schedule || [{ date: "", slots: [{ start: "", end: "" }] }],
-          banner_url: e.banner_url || "", recording_url: e.recording_url || "", whatsapp_community_url: e.whatsapp_community_url || "",
+          banner_url: e.banner_url || "", banner_fit: e.banner_fit || "cover", banner_position: e.banner_position || "center", recording_url: e.recording_url || "", whatsapp_community_url: e.whatsapp_community_url || "",
           certs_enabled: !!e.certs_enabled, podium_enabled: !!e.podium_enabled, share_podium: String(e.share_points_podium ?? 30), share_participation: String(e.share_points_participation ?? 15), submission_enabled: !!e.submission_enabled, submission_pts: String(e.submission_points ?? 20),
           max_attendees: e.max_attendees ? String(e.max_attendees) : "", reg_close_at: e.reg_close_at ? new Date(e.reg_close_at).toISOString().slice(0, 16) : "",
           ribbon_label: e.ribbon_label || "", ribbon_value: e.ribbon_value || "", dashboard_enabled: e.dashboard_enabled,
@@ -114,7 +114,7 @@ export function EventEditor({ id }: { id?: string }) {
       venue: off ? f.venue || null : null,
       map_link: off ? f.map_link || null : null,
       schedule: off ? f.schedule.filter((d) => d.date) : null,
-      banner_url: f.banner_url || null, recording_url: f.recording_url || null, whatsapp_community_url: f.whatsapp_community_url || null,
+      banner_url: f.banner_url || null, banner_fit: f.banner_fit, banner_position: f.banner_position, recording_url: f.recording_url || null, whatsapp_community_url: f.whatsapp_community_url || null,
       certs_enabled: f.certs_enabled, podium_enabled: f.podium_enabled, share_points_podium: Number(f.share_podium) || 0, share_points_participation: Number(f.share_participation) || 0,
       submission_enabled: f.submission_enabled, submission_points: Number(f.submission_pts) || 0,
       max_attendees: f.max_attendees ? Number(f.max_attendees) : null,
@@ -222,6 +222,31 @@ export function EventEditor({ id }: { id?: string }) {
             {uploading && <span className="font-body text-xs text-muted">Uploading…</span>}
           </div>
         </Row>
+
+        {f.banner_url && (
+          <Row label="Image framing">
+            <div className="space-y-2">
+              <div className="flex flex-wrap gap-2">
+                <select className={input + " [color-scheme:dark]"} value={f.banner_fit} onChange={(e) => set("banner_fit", e.target.value)}>
+                  <option value="cover">Fill card (zoom in / crop)</option>
+                  <option value="contain">Show full image (zoom out)</option>
+                </select>
+                <select className={input + " [color-scheme:dark]"} value={f.banner_position} onChange={(e) => set("banner_position", e.target.value)} disabled={f.banner_fit !== "cover"}>
+                  <option value="center">Focus: Center</option>
+                  <option value="top">Focus: Top</option>
+                  <option value="bottom">Focus: Bottom</option>
+                  <option value="left">Focus: Left</option>
+                  <option value="right">Focus: Right</option>
+                </select>
+              </div>
+              <div className="relative h-[150px] w-[240px] overflow-hidden rounded-lg border border-border-strong bg-[#161616]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={f.banner_url} alt="" className="h-full w-full" style={{ objectFit: f.banner_fit as "cover" | "contain", objectPosition: f.banner_position }} />
+              </div>
+              <p className="font-body text-[11px] text-muted">Live preview of how the image sits on the card. &ldquo;Fill&rdquo; crops to fill (zoomed in); &ldquo;Show full&rdquo; shows the whole image (zoomed out). Focus picks which part shows when filling.</p>
+            </div>
+          </Row>
+        )}
 
         <div className="grid gap-4 sm:grid-cols-2">
           <Row label="WhatsApp community URL"><input className={input} value={f.whatsapp_community_url} onChange={(e) => set("whatsapp_community_url", e.target.value)} /></Row>

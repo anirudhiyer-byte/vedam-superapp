@@ -35,6 +35,8 @@ export type EventRow = {
   map_link: string | null;
   schedule: ScheduleDay[] | null;
   banner_url: string | null;
+  banner_fit: string | null;
+  banner_position: string | null;
   recording_url: string | null;
   whatsapp_community_url: string | null;
   max_attendees: number | null;
