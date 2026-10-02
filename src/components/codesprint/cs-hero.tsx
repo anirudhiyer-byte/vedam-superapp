@@ -1,5 +1,5 @@
 "use client";
-import { forwardRef } from "react";
+import { forwardRef, Fragment } from "react";
 
 /** CodeSprint hero — faithful to the reference (v5). Static orbit. Port-responsive.
  *  Assets (drop in /public): cs-polka.webp, cs-expert-1/2/3.webp, and the logo webps below. */
@@ -46,12 +46,15 @@ export const CsHero = forwardRef<HTMLDivElement, { onStartNow?: () => void }>(fu
           <button onClick={onStartNow} className="cs-start mt-6">
             <span className="font-[family-name:var(--font-inter)] text-[20px] font-medium tracking-[-1px]" style={{ backgroundImage: "linear-gradient(92deg,#FD5300 0.4%,#FFB41F 74%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>Start Now</span>
           </button>
-          <div className="mx-auto mt-7 flex max-w-[320px] flex-wrap justify-center gap-2.5 sm:max-w-none sm:flex-nowrap lg:mx-0 lg:justify-start">
+          <div className="mx-auto mt-7 flex flex-wrap items-center justify-center gap-2 sm:flex-nowrap sm:gap-2.5 lg:mx-0 lg:justify-start">
             {BADGES.map((b, i) => (
-              <span key={b} className={`inline-flex flex-none items-center gap-1.5 rounded-[8px] px-2.5 py-1 ${i === 2 ? "basis-full justify-center sm:basis-auto sm:justify-start" : ""}`} style={{ background: "linear-gradient(-32deg,rgba(52,199,89,0.9) 1%,rgba(30,30,30,0) 42%)" }}>
-                <span className="grid h-3.5 w-3.5 place-items-center rounded-full bg-[#34c759] text-[9px] font-bold text-white">✓</span>
-                <span className="whitespace-nowrap font-[family-name:var(--font-inter)] text-[13px] font-normal text-white">{b}</span>
-              </span>
+              <Fragment key={b}>
+                {i === 2 && <span aria-hidden className="w-full basis-full sm:hidden" />}
+                <span className="inline-flex flex-none items-center gap-1 rounded-[8px] px-1.5 py-1 sm:gap-1.5 sm:px-2.5" style={{ background: "linear-gradient(-32deg,rgba(52,199,89,0.9) 1%,rgba(30,30,30,0) 42%)" }}>
+                  <span className="grid h-3 w-3 place-items-center rounded-full bg-[#34c759] text-[8px] font-bold text-white sm:h-3.5 sm:w-3.5 sm:text-[9px]">✓</span>
+                  <span className="whitespace-nowrap font-[family-name:var(--font-inter)] text-[12px] font-normal text-white sm:text-[13px]">{b}</span>
+                </span>
+              </Fragment>
             ))}
           </div>
         </div>
