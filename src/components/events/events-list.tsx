@@ -159,6 +159,13 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
     if (overflow()) el.style.webkitLineClamp = "3";        // 2 lines don't fit -> allow a 3rd
     while (overflow() && size > 11) { size -= 0.5; el.style.fontSize = size + "px"; }  // shrink only if 3 still overflow
   }, [event.name]);
+  const mNameRef = useRef<HTMLDivElement>(null);           // mobile name: shrink to fit its 3-line box
+  useEffect(() => {
+    const el = mNameRef.current; if (!el) return;
+    let size = 13; el.style.fontSize = size + "px";
+    const overflow = () => el.scrollHeight > el.clientHeight + 1;
+    while (overflow() && size > 10) { size -= 0.5; el.style.fontSize = size + "px"; }
+  }, [event.name]);
   return (
     <div className="bc-card group relative w-full rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
       <div className="relative aspect-[6/5] overflow-hidden rounded-[13px] bg-[#161616] sm:aspect-auto sm:h-[340px]">
@@ -170,8 +177,8 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
         <div className="absolute inset-x-0 bottom-0 z-10 flex h-[58%] flex-col gap-2 px-4 pb-3 pt-3 text-white sm:hidden">
-          <div className="overflow-hidden break-words font-[family-name:var(--font-inter)] text-[13px] font-extrabold uppercase leading-[1.22] tracking-[-0.3px]" style={{ maxHeight: "calc(1.22em * 3)" }}>
-            <i aria-hidden className="float-right block h-[30px] w-[56%]" style={{ shapeOutside: "polygon(0 0,100% 0,100% 100%)", shapeMargin: "7px" }} />
+          <div ref={mNameRef} className="overflow-hidden break-words font-[family-name:var(--font-inter)] text-[13px] font-extrabold uppercase leading-[1.22] tracking-[-0.3px]" style={{ maxHeight: "calc(1.22em * 3)" }}>
+            <i aria-hidden className="float-right block h-[28px] w-[54%]" style={{ shapeOutside: "polygon(0 0,100% 0,100% 100%)", shapeMargin: "7px" }} />
             {event.name}
           </div>
           <div className="flex items-end justify-between gap-2.5">
@@ -181,14 +188,14 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
             </div>
             <div className="whitespace-nowrap text-right font-[family-name:var(--font-inter)] text-[12px] font-medium leading-tight">{eventDateLabel(event)}<br />{eventTimeLabel(event)}</div>
           </div>
-          <div className="mt-auto flex items-center justify-between gap-2.5">
-            <div className="flex gap-2">
-              <Link href={`/events/${event.event_code}`} className="flex h-9 items-center justify-center rounded-[9px] border border-white/30 bg-white/[0.14] px-4 text-[13px] font-bold">View</Link>
+          <div className="mt-auto flex items-center justify-between gap-2">
+            <div className="flex flex-none gap-1.5">
+              <Link href={`/events/${event.event_code}`} className="flex h-8 items-center justify-center rounded-[8px] border border-white/30 bg-white/[0.14] px-3 text-[12px] font-bold">View</Link>
               {closed && !registered
-                ? <span className="flex h-9 items-center justify-center rounded-[9px] border border-white/50 bg-white/80 px-4 text-[13px] font-bold text-[#151030] opacity-70">Closed</span>
-                : <button onClick={onRegister} className="flex h-9 items-center justify-center rounded-[9px] border border-white bg-white/90 px-4 text-[13px] font-bold text-[#151030]">{registered ? "Registered" : "Register"}</button>}
+                ? <span className="flex h-8 items-center justify-center rounded-[8px] border border-white/50 bg-white/80 px-3 text-[12px] font-bold text-[#151030] opacity-70">Closed</span>
+                : <button onClick={onRegister} className="flex h-8 items-center justify-center rounded-[8px] border border-white bg-white/90 px-3 text-[12px] font-bold text-[#151030]">{registered ? "Registered" : "Register"}</button>}
             </div>
-            <div className="whitespace-nowrap font-[family-name:var(--font-inter)] text-[12.5px] font-semibold">
+            <div className="whitespace-nowrap font-[family-name:var(--font-inter)] text-[12px] font-semibold">
               {event.max_attendees != null && <span>Seats: <b className="font-extrabold">{event.max_attendees}</b></span>}
               {event.max_attendees != null && pts > 0 && <span className="px-0.5 opacity-40">|</span>}
               {pts > 0 && <span className="text-[#ffe27a]">Pts: <b className="font-extrabold">{pts}</b></span>}
