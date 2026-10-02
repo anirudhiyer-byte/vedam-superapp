@@ -162,7 +162,7 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
   return (
     <div className="bc-card group relative w-full rounded-2xl p-[3px] transition-transform duration-300 hover:-translate-y-1" style={{ background: "linear-gradient(135deg,#00cfe5,#7b2ff7 55%,#c200db)", boxShadow: "0 24px 60px -24px rgba(123,47,247,.45)" }}>
       <div className="relative aspect-[4/3] overflow-hidden rounded-[13px] bg-[#161616] sm:aspect-auto sm:h-[340px]">
-        <div className="absolute inset-0 overflow-hidden sm:bottom-[40%]">
+        <div className="absolute inset-0 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {event.banner_url ? <img src={event.banner_url} alt="" className="h-full w-full object-cover" /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
         </div>
