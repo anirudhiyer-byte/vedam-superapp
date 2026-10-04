@@ -7,7 +7,7 @@ type Person = { full_name: string | null; email: string | null; phone: string | 
 type Utm = { utm_source: string; cnt: number };
 type SrcPage = { source: string; page: string; page_label: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
 type Click = { label: string; path: string; clicks: number; sessions: number };
-type Flow = { page: string; page_label: string; visitors: number; exits: number; exit_pct: number };
+type Flow = { page: string; page_label: string; visitors: number; exits_noreg: number; exits_reg: number; dropoff_exit_pct: number };
 type Kind = "new" | "returning" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
 
 const iso = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
@@ -194,22 +194,23 @@ export function DailyDashboard() {
       </div>
 
       <div className="mt-6 overflow-x-auto rounded-2xl border border-white/12 bg-white/[0.04]">
-        <div className="p-3 text-sm font-bold">Where visitors exit <span className="font-normal text-white/50">— which page they leave the site from (highest first)</span></div>
+        <div className="p-3 text-sm font-bold">Where visitors drop off <span className="font-normal text-white/50">— left the site here WITHOUT registering (the real leak), ranked</span></div>
         <table className="w-full text-left text-xs">
-          <thead className="bg-white/[0.05] text-white/60"><tr>{["Page", "Visitors", "Exited here", "Exit rate"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
+          <thead className="bg-white/[0.05] text-white/60"><tr>{["Page", "Visitors", "Exited without registering", "Exited after registering", "Drop-off exit %"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
           <tbody>{flow.map((r) => (
             <tr key={r.page} className="border-t border-white/8">
               <td className="max-w-[240px] truncate p-2 font-semibold">{r.page_label}</td>
               <td className="p-2">{r.visitors}</td>
-              <td className="p-2">{r.exits}</td>
+              <td className="p-2 font-semibold text-[#ff9db0]">{r.exits_noreg}</td>
+              <td className="p-2 text-white/50">{r.exits_reg}</td>
               <td className="p-2">
                 <div className="flex items-center gap-2">
-                  <div className="h-2 w-24 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full" style={{ width: `${r.exit_pct}%`, background: r.exit_pct >= 70 ? "#ff4d6d" : r.exit_pct >= 40 ? "#f5a623" : "#22e06a" }} /></div>
-                  <span className="text-white/70">{r.exit_pct}%</span>
+                  <div className="h-2 w-24 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full" style={{ width: `${r.dropoff_exit_pct}%`, background: r.dropoff_exit_pct >= 70 ? "#ff4d6d" : r.dropoff_exit_pct >= 40 ? "#f5a623" : "#22e06a" }} /></div>
+                  <span className="text-white/70">{r.dropoff_exit_pct}%</span>
                 </div>
               </td>
             </tr>
-          ))}{flow.length === 0 && <tr><td colSpan={4} className="p-6 text-center text-white/50">No page data in range.</td></tr>}</tbody>
+          ))}{flow.length === 0 && <tr><td colSpan={5} className="p-6 text-center text-white/50">No page data in range.</td></tr>}</tbody>
         </table>
       </div>
 
