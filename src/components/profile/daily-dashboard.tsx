@@ -23,6 +23,10 @@ export function DailyDashboard() {
   const [expandedSrc, setExpandedSrc] = useState<Set<string>>(new Set());
   const [clicks, setClicks] = useState<Click[]>([]);
   const [flow, setFlow] = useState<Flow[]>([]);
+  const [insights, setInsights] = useState<string>("");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiErr, setAiErr] = useState("");
+  const [cooldown, setCooldown] = useState(0);
   const [loading, setLoading] = useState(false);
   const [openKpi, setOpenKpi] = useState<Kind | null>(null);
   const [people, setPeople] = useState<Person[]>([]);
@@ -62,6 +66,20 @@ export function DailyDashboard() {
     setPeople((data as Person[]) ?? []); setPplLoading(false);
   }
 
+  async function generateInsights() {
+    if (aiLoading || cooldown > 0) return;
+    setAiLoading(true); setAiErr(""); setInsights("");
+    try {
+      const res = await fetch("/api/insights", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ from, to }) });
+      const j = await res.json();
+      if (!res.ok) setAiErr(j.error || "Failed to generate insights.");
+      else setInsights(j.insights || "");
+    } catch { setAiErr("Request failed."); }
+    setAiLoading(false);
+    setCooldown(30);
+    const iv = setInterval(() => setCooldown((c) => { if (c <= 1) { clearInterval(iv); return 0; } return c - 1; }), 1000);
+  }
+
   const utmTotal = utm.reduce((s, u) => s + u.cnt, 0);
   let acc = 0;
   const slices = utm.map((u, i) => {
@@ -79,6 +97,17 @@ export function DailyDashboard() {
         <label className="text-xs text-white/60">From<input type="date" value={from} max={to} onChange={(e) => setFrom(e.target.value)} className="mt-1 block rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2 text-sm text-white [color-scheme:dark]" /></label>
         <label className="text-xs text-white/60">To<input type="date" value={to} min={from} max={iso(new Date())} onChange={(e) => setTo(e.target.value)} className="mt-1 block rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2 text-sm text-white [color-scheme:dark]" /></label>
         {loading && <span className="pb-2 text-xs text-white/50">loading…</span>}
+      </div>
+
+      <div className="mb-6 rounded-2xl border border-[#8A18FF]/30 bg-gradient-to-br from-[#8A18FF]/10 to-[#00cfe5]/10 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div><p className="text-sm font-bold text-white">✨ AI insights</p><p className="text-[11px] text-white/55">Claude reads this range&apos;s funnel, sources, exits & clicks and returns prioritized fixes. On-demand only.</p></div>
+          <button onClick={generateInsights} disabled={aiLoading || cooldown > 0} className="shrink-0 rounded-full bg-gradient-to-r from-[#8A18FF] to-[#00cfe5] px-5 py-2 text-sm font-semibold text-white disabled:opacity-50">
+            {aiLoading ? "Analyzing…" : cooldown > 0 ? `Wait ${cooldown}s` : "Generate insights"}
+          </button>
+        </div>
+        {aiErr && <p className="mt-3 rounded-lg bg-[#ff4d6d]/15 p-2 text-xs text-[#ff9db0]">{aiErr}</p>}
+        {insights && <div className="mt-3 max-h-[480px] overflow-auto whitespace-pre-wrap rounded-lg bg-black/30 p-4 text-[13px] leading-relaxed text-white/85">{insights}</div>}
       </div>
 
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">

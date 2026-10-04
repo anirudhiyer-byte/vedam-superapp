@@ -1,1 +1,1 @@
-NOTE: click-tracker.tsx is NEW — delete on rollback
+NOTE: src/app/api/insights/route.ts is NEW — delete on rollback
