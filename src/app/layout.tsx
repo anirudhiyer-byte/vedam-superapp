@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "@/lib/analytics/posthog-provider";
 import { GoogleAnalytics } from "@/lib/analytics/ga";
 import { TrafficTracker } from "@/components/traffic-tracker";
+import { ClickTracker } from "@/components/click-tracker";
 import { UtmCapture } from "@/components/utm-capture";
 
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <PostHogProvider>
             <UtmCapture />
             <TrafficTracker />
+            <ClickTracker />
             {children}
           </PostHogProvider>
         </ThemeProvider>

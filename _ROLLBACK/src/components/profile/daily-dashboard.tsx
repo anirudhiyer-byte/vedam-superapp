@@ -1,11 +1,11 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 type Row = { day: string; traffic: number; traffic_new: number; traffic_returning: number; attempted: number; partial_reg: number; full_reg: number; bootcamp: number; codesprint: number; dropoff: number };
 type Person = { full_name: string | null; email: string | null; phone: string | null; extra: string | null; when_at: string | null };
 type Utm = { utm_source: string; cnt: number };
-type Src = { source: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
+type SrcPage = { source: string; page: string; page_label: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
 type Kind = "new" | "returning" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
 
 const iso = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
@@ -17,7 +17,8 @@ export function DailyDashboard() {
   const [to, setTo] = useState(() => iso(new Date()));
   const [rows, setRows] = useState<Row[]>([]);
   const [utm, setUtm] = useState<Utm[]>([]);
-  const [bySource, setBySource] = useState<Src[]>([]);
+  const [bySourcePage, setBySourcePage] = useState<SrcPage[]>([]);
+  const [expandedSrc, setExpandedSrc] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(false);
   const [openKpi, setOpenKpi] = useState<Kind | null>(null);
   const [people, setPeople] = useState<Person[]>([]);
@@ -29,9 +30,9 @@ export function DailyDashboard() {
     const [{ data: d }, { data: u }, { data: bs }] = await Promise.all([
       sb.rpc("daily_funnel", { p_from: from, p_to: to }),
       sb.rpc("funnel_utm", { p_from: from, p_to: to }),
-      sb.rpc("funnel_by_source", { p_from: from, p_to: to }),
+      sb.rpc("funnel_by_source_page", { p_from: from, p_to: to }),
     ]);
-    setRows((d as Row[]) ?? []); setUtm((u as Utm[]) ?? []); setBySource((bs as Src[]) ?? []); setLoading(false);
+    setRows((d as Row[]) ?? []); setUtm((u as Utm[]) ?? []); setBySourcePage((bs as SrcPage[]) ?? []); setExpandedSrc(new Set()); setLoading(false);
   }, [from, to]);
   useEffect(() => { load(); }, [load]);
 
@@ -40,6 +41,13 @@ export function DailyDashboard() {
     full: a.full + r.full_reg, bootcamp: a.bootcamp + r.bootcamp, codesprint: a.codesprint + r.codesprint, dropoff: a.dropoff + r.dropoff,
   }), { traffic: 0, tnew: 0, tret: 0, attempted: 0, partial: 0, full: 0, bootcamp: 0, codesprint: 0, dropoff: 0 }), [rows]);
   const pct = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
+
+  const srcParents = useMemo(() => {
+    const m = new Map<string, { source: string; visitors: number; attempted: number; registered: number }>();
+    bySourcePage.forEach((r) => { const q = m.get(r.source) ?? { source: r.source, visitors: 0, attempted: 0, registered: 0 }; q.visitors += r.visitors; q.attempted += r.attempted; q.registered += r.registered; m.set(r.source, q); });
+    return Array.from(m.values()).sort((a, b) => b.visitors - a.visitors);
+  }, [bySourcePage]);
+  const toggleSrc = (src: string) => setExpandedSrc((s0) => { const n = new Set(s0); n.has(src) ? n.delete(src) : n.add(src); return n; });
 
   async function openDetail(k: Kind) {
     if (openKpi === k) { setOpenKpi(null); return; }
@@ -122,19 +130,31 @@ export function DailyDashboard() {
       </div>
 
       <div className="mt-6 overflow-x-auto rounded-2xl border border-white/12 bg-white/[0.04]">
-        <div className="p-3 text-sm font-bold">Funnel by source <span className="font-normal text-white/50">— which sources convert vs leak</span></div>
+        <div className="p-3 text-sm font-bold">Funnel by source → landing page <span className="font-normal text-white/50">— click a source to split by the page they landed on</span></div>
         <table className="w-full text-left text-xs">
-          <thead className="bg-white/[0.05] text-white/60"><tr>{["Source", "Visitors", "Attempted", "→Attempt %", "Registered", "→Reg %"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
-          <tbody>{bySource.map((r) => (
-            <tr key={r.source} className="border-t border-white/8">
-              <td className="whitespace-nowrap p-2 font-semibold">{r.source}</td>
-              <td className="p-2">{r.visitors}</td>
-              <td className="p-2">{r.attempted}</td>
-              <td className="p-2 text-white/70">{r.attempt_pct}%</td>
-              <td className="p-2 font-semibold text-[#22e06a]">{r.registered}</td>
-              <td className="p-2 text-white/70">{r.reg_pct}%</td>
-            </tr>
-          ))}{bySource.length === 0 && <tr><td colSpan={6} className="p-6 text-center text-white/50">No source data in range.</td></tr>}</tbody>
+          <thead className="bg-white/[0.05] text-white/60"><tr>{["Source / Landing page", "Visitors", "Attempted", "→Attempt %", "Registered", "→Reg %"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
+          <tbody>{srcParents.map((p0) => (
+            <Fragment key={p0.source}>
+              <tr onClick={() => toggleSrc(p0.source)} className="cursor-pointer border-t border-white/10 hover:bg-white/[0.04]">
+                <td className="whitespace-nowrap p-2 font-semibold">{expandedSrc.has(p0.source) ? "▾" : "▸"} {p0.source}</td>
+                <td className="p-2">{p0.visitors}</td>
+                <td className="p-2">{p0.attempted}</td>
+                <td className="p-2 text-white/70">{p0.visitors ? Math.round((p0.attempted / p0.visitors) * 100) : 0}%</td>
+                <td className="p-2 font-semibold text-[#22e06a]">{p0.registered}</td>
+                <td className="p-2 text-white/70">{p0.attempted ? Math.round((p0.registered / p0.attempted) * 100) : 0}%</td>
+              </tr>
+              {expandedSrc.has(p0.source) && bySourcePage.filter((r) => r.source === p0.source).map((r) => (
+                <tr key={r.source + r.page} className="bg-white/[0.02]">
+                  <td className="whitespace-nowrap p-2 pl-6 text-white/75">└ {r.page_label}</td>
+                  <td className="p-2 text-white/75">{r.visitors}</td>
+                  <td className="p-2 text-white/75">{r.attempted}</td>
+                  <td className="p-2 text-white/60">{r.attempt_pct}%</td>
+                  <td className="p-2 text-[#22e06a]/85">{r.registered}</td>
+                  <td className="p-2 text-white/60">{r.reg_pct}%</td>
+                </tr>
+              ))}
+            </Fragment>
+          ))}{srcParents.length === 0 && <tr><td colSpan={6} className="p-6 text-center text-white/50">No source data in range.</td></tr>}</tbody>
         </table>
       </div>
     </div>
