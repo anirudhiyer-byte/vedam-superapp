@@ -57,7 +57,7 @@ Rank by expected impact. Be specific and quantitative, cite the numbers from the
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01" },
-      body: JSON.stringify({ model: "claude-sonnet-5-5", max_tokens: 4000, thinking: { type: "disabled" }, messages: [{ role: "user", content: prompt }] }),
+      body: JSON.stringify({ model: "claude-sonnet-5-5", max_tokens: 2000, messages: [{ role: "user", content: prompt }] }),
     });
     const raw = await r.text();
     if (!r.ok) return NextResponse.json({ error: `AI error ${r.status}: ${raw.slice(0, 400)}` }, { status: 502 });
