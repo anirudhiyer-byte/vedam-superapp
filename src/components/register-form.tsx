@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
+import { track } from "@/lib/analytics/track";
 import { Turnstile } from "@/components/turnstile";
 import { SearchableSelect } from "@/components/ui/searchable-select";
 import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
@@ -99,7 +100,8 @@ export function RegisterForm() {
     }).eq("id", data.user.id);
     await supabase.from("activity_log").insert({ user_id: data.user.id, event_type: "signup",
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null });
-    gtmEvent("sign_up", { method: "otp" });   // Part-1 done = a Vedam One lead
+    gtmEvent("sign_up", { method: "otp" });
+    track("sign_up", { method: "otp" });   // Part-1 done = a Vedam One lead
 
     // VSAT flow: record early interest + send the confirmation to profiles.email
     // (verified or not) right away — single button, no questions, no OTP needed.
@@ -137,6 +139,7 @@ export function RegisterForm() {
       }).eq("id", u.user.id);
     }
     setEmailVerified(true); setSavingP2(false);
+    track("part2_complete");
     goNext();   // resume the pending action / land back where they came from
   }
 

@@ -59,7 +59,7 @@ export function CsPlayer() {
       if (!session) {
         const dest =
           "/codesprint/learn" + (moduleSlug ? `?module=${moduleSlug}` : "");
-        router.push(`/login?next=${encodeURIComponent(dest)}`);
+        router.push(`/register?next=${encodeURIComponent(dest)}`);
         return;
       }
       await supabase.rpc("cs_enroll");

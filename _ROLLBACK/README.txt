@@ -1,1 +1,1 @@
-NOTE: src/app/api/insights/route.ts is NEW — delete on rollback
+NOTE: src/lib/analytics/track.ts is NEW — delete on rollback

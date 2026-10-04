@@ -14,6 +14,8 @@ const STREAMS = ["PCM", "PCMB", "PCB", "Others"] as const;
 
 type Step = "part1" | "otp" | "part2" | "done";
 
+function sid(): string { try { return localStorage.getItem("v1_sid") || ""; } catch { return ""; } }
+
 export function RegisterForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
@@ -90,7 +92,7 @@ export function RegisterForm() {
 
     const utm = readUtm();
     await supabase.from("profiles").update({
-      full_name: fullName.trim(), email: email.trim(), mobile_verified: true,
+      full_name: fullName.trim(), email: email.trim(), mobile_verified: true, signup_session_id: sid() || null,
       consent_given: true, consent_at: new Date().toISOString(), last_login_at: new Date().toISOString(),
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null,
       referrer: utm.referrer ?? null, landing_path: utm.landing_path ?? null,

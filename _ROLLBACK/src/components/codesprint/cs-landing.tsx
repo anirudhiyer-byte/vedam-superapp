@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { track } from "@/lib/analytics/track";
 import { useProductGate } from "@/components/funnel/use-product-gate";
 import { useResumeAction } from "@/lib/funnel/use-resume-action";
 import VedamCertificate from "@/components/events/vedam-certificate";
@@ -79,7 +78,7 @@ export function CsLanding() {
     })();
   }, [supabase]);
 
-  async function doEnroll() { try { await supabase.rpc("cs_enroll"); } catch {} try { await supabase.rpc("cs_log_enroll"); } catch {} track("codesprint_enrol"); router.push("/codesprint/learn"); }
+  async function doEnroll() { try { await supabase.rpc("cs_enroll"); } catch {} try { await supabase.rpc("cs_log_enroll"); } catch {} router.push("/codesprint/learn"); }
   function doStartModule(slug: string) { router.push(`/codesprint/learn?module=${slug}`); }
   const register = () => gate({ kind: "start_codesprint" }, doEnroll, "Create your account to start CodeSprint.");
   const startModule = (slug: string) => gate({ kind: "start_codesprint", moduleSlug: slug }, () => doStartModule(slug), "Create your account to start this module.");

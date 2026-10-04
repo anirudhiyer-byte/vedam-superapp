@@ -5,6 +5,7 @@ import type { PendingAction } from "@/lib/funnel/pending-action";
 import { stashAction } from "@/lib/funnel/pending-action";
 import { AccountChoiceModal } from "./account-choice-modal";
 import { useRouter } from "next/navigation";
+import { track } from "@/lib/analytics/track";
 import { ProfileGateModal } from "@/components/profile/profile-gate-modal";
 
 /**
@@ -23,7 +24,7 @@ export function useProductGate() {
   const router = useRouter();
   const runGate = useCallback(async (action: PendingAction, run: () => void, reason?: string, opts?: { authOnly?: boolean }) => {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session?.user) { stashAction(action); const nx = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/"; router.push(`/register?next=${encodeURIComponent(nx)}`); return; }
+    if (!session?.user) { track("register_click", { kind: action.kind }); stashAction(action); const nx = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/"; router.push(`/register?next=${encodeURIComponent(nx)}`); return; }
     if (opts?.authOnly) { run(); return; }   // logged in + has the essentials -> go, no full-profile gate
     const { data: complete } = await supabase.rpc("is_profile_complete");
     if (complete) { run(); return; }

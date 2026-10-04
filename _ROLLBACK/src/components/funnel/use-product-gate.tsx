@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { PendingAction } from "@/lib/funnel/pending-action";
 import { stashAction } from "@/lib/funnel/pending-action";
 import { AccountChoiceModal } from "./account-choice-modal";
+import { useRouter } from "next/navigation";
 import { ProfileGateModal } from "@/components/profile/profile-gate-modal";
 
 /**
@@ -19,14 +20,15 @@ export function useProductGate() {
   const [choice, setChoice] = useState<{ action: PendingAction } | null>(null);
   const [gate, setGate] = useState<{ run: () => void; reason?: string } | null>(null);
 
+  const router = useRouter();
   const runGate = useCallback(async (action: PendingAction, run: () => void, reason?: string, opts?: { authOnly?: boolean }) => {
     const { data: { session } } = await supabase.auth.getSession();
-    if (!session?.user) { stashAction(action); setChoice({ action }); return; }
+    if (!session?.user) { stashAction(action); const nx = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/"; router.push(`/register?next=${encodeURIComponent(nx)}`); return; }
     if (opts?.authOnly) { run(); return; }   // logged in + has the essentials -> go, no full-profile gate
     const { data: complete } = await supabase.rpc("is_profile_complete");
     if (complete) { run(); return; }
     setGate({ run, reason });
-  }, [supabase]);
+  }, [supabase, router]);
 
   const Modals = useCallback(() => (
     <>

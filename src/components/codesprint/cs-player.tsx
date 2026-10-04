@@ -6,6 +6,7 @@ import { CertificateModal } from "@/components/events/certificate-modal";
 import { CsQuiz } from "@/components/codesprint/cs-quiz";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { track } from "@/lib/analytics/track";
 
 type Lesson = {
   id: string;
@@ -63,6 +64,7 @@ export function CsPlayer() {
         return;
       }
       await supabase.rpc("cs_enroll");
+      track("codesprint_enrol");
       const { data: mods } = await supabase
         .from("cs_modules")
         .select(
