@@ -59,9 +59,22 @@ Rank by expected impact. Be specific and quantitative, cite the numbers from the
       headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01" },
       body: JSON.stringify({ model: "claude-sonnet-5-5", max_tokens: 2000, messages: [{ role: "user", content: prompt }] }),
     });
-    if (!r.ok) { const t = await r.text(); return NextResponse.json({ error: `AI error: ${r.status} ${t.slice(0, 200)}` }, { status: 502 }); }
-    const j = await r.json();
-    const text = (j.content ?? []).filter((c: { type: string }) => c.type === "text").map((c: { text: string }) => c.text).join("\n") || "No insights returned.";
+    const raw = await r.text();
+    if (!r.ok) return NextResponse.json({ error: `AI error ${r.status}: ${raw.slice(0, 400)}` }, { status: 502 });
+    let j: Record<string, unknown>;
+    try { j = JSON.parse(raw); } catch { return NextResponse.json({ error: "Bad AI response: " + raw.slice(0, 300) }, { status: 502 }); }
+    const blocks = (j.content as { type: string; text?: string }[] | undefined) ?? [];
+    const text = blocks.filter((c) => c.type === "text").map((c) => c.text || "").join("\n").trim();
+    if (!text) {
+      // tell us exactly why it's empty + whether our data was empty
+      const dataCounts = {
+        daily: Array.isArray(daily.data) ? daily.data.length : 0,
+        by_source_page: Array.isArray(bySource.data) ? bySource.data.length : 0,
+        exits: Array.isArray(flow.data) ? flow.data.length : 0,
+        clicks: Array.isArray(clicks.data) ? clicks.data.length : 0,
+      };
+      return NextResponse.json({ error: "Model returned no text.", debug: { stop_reason: j.stop_reason, type: j.type, model: j.model, content_blocks: blocks.length, api_error: j.error, data_row_counts: dataCounts } }, { status: 200 });
+    }
     return NextResponse.json({ insights: text });
   } catch (e) {
     return NextResponse.json({ error: "AI request failed: " + String(e) }, { status: 502 });
