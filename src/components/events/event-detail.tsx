@@ -190,9 +190,9 @@ export function EventDetail({ code }: { code: string }) {
                   </div>
                 )}
                 <h2 className="relative font-display text-lg font-semibold text-white">Register for this event</h2>
-                <p className="relative mt-1 font-body text-sm text-white/55">Log in to register — it takes a few seconds.</p>
-                <Link href={`/login?next=/events/${event.event_code}`} className="mt-4 group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl border border-white/25 px-6 py-3 font-[family-name:var(--font-inter)] text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl transition-all hover:border-white/60 hover:shadow-[0_0_30px_rgba(123,92,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.32), rgba(123,92,255,0.45) 55%, rgba(194,0,219,0.4))" }}>
-                  <span className="relative z-10">Log in to register</span>
+                <p className="relative mt-1 font-body text-sm text-white/55">Register to join — it only takes a few seconds.</p>
+                <Link href={`/register?next=${encodeURIComponent(`/events/${event.event_code}?register=1`)}`} className="mt-4 group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl border border-white/25 px-6 py-3 font-[family-name:var(--font-inter)] text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur-xl transition-all hover:border-white/60 hover:shadow-[0_0_30px_rgba(123,92,255,0.6),inset_0_1px_0_rgba(255,255,255,0.5)] active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.32), rgba(123,92,255,0.45) 55%, rgba(194,0,219,0.4))" }}>
+                  <span className="relative z-10">Register now</span>
                   <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[5] w-1/2 -skew-x-12" style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)" }} />
                 </Link>
               </div>

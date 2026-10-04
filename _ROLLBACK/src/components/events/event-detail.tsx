@@ -80,22 +80,22 @@ export function EventDetail({ code }: { code: string }) {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-8 sm:px-8">
+    <div className="mx-auto max-w-5xl overflow-x-hidden px-4 py-8 sm:px-8">
       <style>{`@keyframes ld-shine{0%{left:-70%}100%{left:170%}}.group:hover .ld-shine{animation:ld-shine 0.8s ease-out}`}</style>
       <Link href="/events" className="font-[family-name:var(--font-inter)] text-xs text-white/55 hover:text-white">← all events</Link>
 
       {/* hero */}
-      <div className="relative mt-4 flex aspect-[16/9] max-h-[420px] min-h-[220px] items-end overflow-hidden rounded-3xl border-2 border-[#00cfe5]/40 text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)]"
+      <div className="relative mt-4 flex max-h-[420px] min-h-[240px] items-end overflow-hidden rounded-3xl border-2 border-[#00cfe5]/40 text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.6)] sm:aspect-[16/9]"
         style={{ background: "linear-gradient(120deg,#2a1a52,#1a0b38 70%,#3a1470)" }}>
         <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
-        {event.banner_url && <img src={event.banner_url} alt="" className="absolute inset-0 z-[1] h-full w-full object-contain" />}
+        {event.banner_url && <div aria-hidden className="absolute inset-0 z-[1]" style={{ backgroundImage: `url(${event.banner_url})`, backgroundSize: event.banner_fit === "contain" ? "contain" : (event.banner_zoom ? `${event.banner_zoom}%` : "cover"), backgroundPosition: `${event.banner_x ?? 50}% ${event.banner_y ?? 50}%`, backgroundRepeat: "no-repeat" }} />}
         <div aria-hidden className="absolute inset-0 z-[2]" style={{ background: "linear-gradient(180deg, rgba(11,3,24,0) 45%, rgba(11,3,24,.55) 78%, rgba(11,3,24,.9) 100%)" }} />
-        <div className="relative z-[3] w-full p-8">
-          <span className="rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-[#8fe9f5] backdrop-blur">
+        <div className="relative z-[3] w-full p-4 sm:p-8">
+          <span className="inline-block rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-[#8fe9f5] backdrop-blur sm:px-3 sm:py-1 sm:text-[11px]">
             {event.category || "Vedam Event"}
           </span>
-          <h1 className="mt-3 max-w-[20ch] font-display text-3xl font-semibold tracking-tight sm:text-4xl">{event.name}</h1>
-          {event.host && <p className="mt-2 font-mono text-sm text-white/85">Hosted by Vedam · with {event.host}</p>}
+          <h1 className="mt-1.5 max-w-full break-words font-display text-[16px] font-semibold leading-snug tracking-tight sm:mt-3 sm:max-w-[20ch] sm:text-4xl sm:leading-tight">{event.name}</h1>
+          {event.host && <p className="mt-1.5 font-mono text-[12px] text-white/85 sm:mt-2 sm:text-sm">Hosted by Vedam · with {event.host}</p>}
         </div>
       </div>
 
