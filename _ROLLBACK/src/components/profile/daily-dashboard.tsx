@@ -6,6 +6,7 @@ type Row = { day: string; traffic: number; traffic_new: number; traffic_returnin
 type Person = { full_name: string | null; email: string | null; phone: string | null; extra: string | null; when_at: string | null };
 type Utm = { utm_source: string; cnt: number };
 type SrcPage = { source: string; page: string; page_label: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
+type Click = { label: string; path: string; clicks: number; sessions: number };
 type Kind = "new" | "returning" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
 
 const iso = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
@@ -19,6 +20,7 @@ export function DailyDashboard() {
   const [utm, setUtm] = useState<Utm[]>([]);
   const [bySourcePage, setBySourcePage] = useState<SrcPage[]>([]);
   const [expandedSrc, setExpandedSrc] = useState<Set<string>>(new Set());
+  const [clicks, setClicks] = useState<Click[]>([]);
   const [loading, setLoading] = useState(false);
   const [openKpi, setOpenKpi] = useState<Kind | null>(null);
   const [people, setPeople] = useState<Person[]>([]);
@@ -27,12 +29,13 @@ export function DailyDashboard() {
   const load = useCallback(async () => {
     setLoading(true); setOpenKpi(null);
     const sb = createClient();
-    const [{ data: d }, { data: u }, { data: bs }] = await Promise.all([
+    const [{ data: d }, { data: u }, { data: bs }, { data: ck }] = await Promise.all([
       sb.rpc("daily_funnel", { p_from: from, p_to: to }),
       sb.rpc("funnel_utm", { p_from: from, p_to: to }),
       sb.rpc("funnel_by_source_page", { p_from: from, p_to: to }),
+      sb.rpc("clicks_summary", { p_from: from, p_to: to }),
     ]);
-    setRows((d as Row[]) ?? []); setUtm((u as Utm[]) ?? []); setBySourcePage((bs as SrcPage[]) ?? []); setExpandedSrc(new Set()); setLoading(false);
+    setRows((d as Row[]) ?? []); setUtm((u as Utm[]) ?? []); setBySourcePage((bs as SrcPage[]) ?? []); setExpandedSrc(new Set()); setClicks((ck as Click[]) ?? []); setLoading(false);
   }, [from, to]);
   useEffect(() => { load(); }, [load]);
 
@@ -155,6 +158,21 @@ export function DailyDashboard() {
               ))}
             </Fragment>
           ))}{srcParents.length === 0 && <tr><td colSpan={6} className="p-6 text-center text-white/50">No source data in range.</td></tr>}</tbody>
+        </table>
+      </div>
+
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-white/12 bg-white/[0.04]">
+        <div className="p-3 text-sm font-bold">Top button clicks <span className="font-normal text-white/50">— which CTAs get engaged (autocaptured)</span></div>
+        <table className="w-full text-left text-xs">
+          <thead className="bg-white/[0.05] text-white/60"><tr>{["Button / link", "Page", "Clicks", "Unique sessions"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
+          <tbody>{clicks.map((c, i) => (
+            <tr key={i} className="border-t border-white/8">
+              <td className="max-w-[260px] truncate p-2 font-semibold">{c.label}</td>
+              <td className="whitespace-nowrap p-2 text-white/70">{c.path}</td>
+              <td className="p-2">{c.clicks}</td>
+              <td className="p-2 text-white/70">{c.sessions}</td>
+            </tr>
+          ))}{clicks.length === 0 && <tr><td colSpan={4} className="p-6 text-center text-white/50">No clicks yet — autocapture starts logging from deploy.</td></tr>}</tbody>
         </table>
       </div>
     </div>

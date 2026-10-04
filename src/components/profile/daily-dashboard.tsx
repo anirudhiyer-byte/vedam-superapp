@@ -7,6 +7,7 @@ type Person = { full_name: string | null; email: string | null; phone: string | 
 type Utm = { utm_source: string; cnt: number };
 type SrcPage = { source: string; page: string; page_label: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
 type Click = { label: string; path: string; clicks: number; sessions: number };
+type Flow = { page: string; page_label: string; visitors: number; exits: number; exit_pct: number };
 type Kind = "new" | "returning" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
 
 const iso = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
@@ -21,6 +22,7 @@ export function DailyDashboard() {
   const [bySourcePage, setBySourcePage] = useState<SrcPage[]>([]);
   const [expandedSrc, setExpandedSrc] = useState<Set<string>>(new Set());
   const [clicks, setClicks] = useState<Click[]>([]);
+  const [flow, setFlow] = useState<Flow[]>([]);
   const [loading, setLoading] = useState(false);
   const [openKpi, setOpenKpi] = useState<Kind | null>(null);
   const [people, setPeople] = useState<Person[]>([]);
@@ -29,13 +31,14 @@ export function DailyDashboard() {
   const load = useCallback(async () => {
     setLoading(true); setOpenKpi(null);
     const sb = createClient();
-    const [{ data: d }, { data: u }, { data: bs }, { data: ck }] = await Promise.all([
+    const [{ data: d }, { data: u }, { data: bs }, { data: ck }, { data: pf }] = await Promise.all([
       sb.rpc("daily_funnel", { p_from: from, p_to: to }),
       sb.rpc("funnel_utm", { p_from: from, p_to: to }),
       sb.rpc("funnel_by_source_page", { p_from: from, p_to: to }),
       sb.rpc("clicks_summary", { p_from: from, p_to: to }),
+      sb.rpc("page_flow", { p_from: from, p_to: to }),
     ]);
-    setRows((d as Row[]) ?? []); setUtm((u as Utm[]) ?? []); setBySourcePage((bs as SrcPage[]) ?? []); setExpandedSrc(new Set()); setClicks((ck as Click[]) ?? []); setLoading(false);
+    setRows((d as Row[]) ?? []); setUtm((u as Utm[]) ?? []); setBySourcePage((bs as SrcPage[]) ?? []); setExpandedSrc(new Set()); setClicks((ck as Click[]) ?? []); setFlow((pf as Flow[]) ?? []); setLoading(false);
   }, [from, to]);
   useEffect(() => { load(); }, [load]);
 
@@ -158,6 +161,26 @@ export function DailyDashboard() {
               ))}
             </Fragment>
           ))}{srcParents.length === 0 && <tr><td colSpan={6} className="p-6 text-center text-white/50">No source data in range.</td></tr>}</tbody>
+        </table>
+      </div>
+
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-white/12 bg-white/[0.04]">
+        <div className="p-3 text-sm font-bold">Where visitors exit <span className="font-normal text-white/50">— which page they leave the site from (highest first)</span></div>
+        <table className="w-full text-left text-xs">
+          <thead className="bg-white/[0.05] text-white/60"><tr>{["Page", "Visitors", "Exited here", "Exit rate"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
+          <tbody>{flow.map((r) => (
+            <tr key={r.page} className="border-t border-white/8">
+              <td className="max-w-[240px] truncate p-2 font-semibold">{r.page_label}</td>
+              <td className="p-2">{r.visitors}</td>
+              <td className="p-2">{r.exits}</td>
+              <td className="p-2">
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-24 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full" style={{ width: `${r.exit_pct}%`, background: r.exit_pct >= 70 ? "#ff4d6d" : r.exit_pct >= 40 ? "#f5a623" : "#22e06a" }} /></div>
+                  <span className="text-white/70">{r.exit_pct}%</span>
+                </div>
+              </td>
+            </tr>
+          ))}{flow.length === 0 && <tr><td colSpan={4} className="p-6 text-center text-white/50">No page data in range.</td></tr>}</tbody>
         </table>
       </div>
 
