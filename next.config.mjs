@@ -16,7 +16,7 @@ const nextConfig = {
   // bundles — prevents Vercel from ever serving a stale compiled build.
   generateBuildId: async () => process.env.VERCEL_GIT_COMMIT_SHA || null,
   async redirects() {
-    return [{ source: "/vsat", destination: "/apply", permanent: true }];
+    return [];
   },
 };
 

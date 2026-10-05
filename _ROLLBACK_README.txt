@@ -1,0 +1,1 @@
+NOTE: /apply UNTOUCHED (early-reg). New /vsat is admin-only. next.config: /vsat->/apply 301 redirect REMOVED. Rollback: restore that redirect line + delete (shell)/vsat + api/vsat + vsat-apply-form.tsx.
