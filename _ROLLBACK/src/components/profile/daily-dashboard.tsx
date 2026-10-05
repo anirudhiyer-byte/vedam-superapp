@@ -72,8 +72,8 @@ export function DailyDashboard() {
     try {
       const res = await fetch("/api/insights", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ from, to }) });
       const j = await res.json();
-      if (!res.ok) setAiErr(j.error || "Failed to generate insights.");
-      else setInsights(j.insights || "");
+      if (j.insights) setInsights(j.insights);
+      else setAiErr((j.error || "Failed.") + (j.debug ? "  —  " + JSON.stringify(j.debug) : ""));
     } catch { setAiErr("Request failed."); }
     setAiLoading(false);
     setCooldown(30);
