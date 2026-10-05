@@ -50,8 +50,10 @@ export default async function Page() {
           </ol>
         </div>
       </div>
-      <div className="flex items-center justify-center px-6 py-10 sm:px-10 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-l lg:border-white/10 lg:bg-white/[0.02]">
-        <VsatApplyForm />
+      <div className="lg:border-l lg:border-white/10 lg:bg-white/[0.02]">
+        <div className="flex items-center justify-center px-6 py-10 sm:px-10 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto">
+          <VsatApplyForm />
+        </div>
       </div>
     </div>
   );
