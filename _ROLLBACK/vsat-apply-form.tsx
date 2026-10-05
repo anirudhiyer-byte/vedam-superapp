@@ -46,43 +46,32 @@ export function VsatApplyForm() {
   // ---- prefill from existing profile; resume saved state ----
   useEffect(() => {
     (async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session?.user) return;
-      const user = session.user;
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
       const { data: p } = await supabase.from("profiles").select("full_name,email,phone,mobile_verified,email_verified,grad_year,stream,stream_other,state,city").eq("id", user.id).maybeSingle();
-      if (p) {
-        const prof = p as Record<string, unknown>;
-        setFullName((prof.full_name as string) ?? "");
-        setEmail((prof.email as string) ?? "");
-        setPhone(((prof.phone as string) ?? "").replace(/^\+91/, ""));
-        if (prof.mobile_verified) setPhoneVerified(true);
-        if (prof.email_verified) setEmailVerified(true);
-        if (prof.grad_year) setGradYear(Number(prof.grad_year));
-        if (prof.stream) setStream(prof.stream as typeof stream);
-        if (prof.stream_other) setStreamOther(prof.stream_other as string);
-        if (prof.state) setState(prof.state as string);
-        if (prof.city) setCity(prof.city as string);
-      }
-      // RESUME saved state: applicant -> dashboard, lead (part 1 done) -> part 2
-      try {
-        const res = await fetch("/api/vsat/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
-        const j = await res.json();
-        if (j.ok && j.app) { router.push("/vsat/dashboard"); return; }
-        if (j.ok && j.lead) setStep("part2");
-      } catch { /* stay on part1 */ }
+      if (!p) return;
+      const prof = p as Record<string, unknown>;
+      setFullName((prof.full_name as string) ?? "");
+      setEmail((prof.email as string) ?? "");
+      setPhone(((prof.phone as string) ?? "").replace(/^\+91/, ""));
+      if (prof.mobile_verified) setPhoneVerified(true);
+      if (prof.email_verified) setEmailVerified(true);
+      if (prof.grad_year) setGradYear(Number(prof.grad_year));
+      if (prof.stream) setStream(prof.stream as typeof stream);
+      if (prof.stream_other) setStreamOther(prof.stream_other as string);
+      if (prof.state) setState(prof.state as string);
+      if (prof.city) setCity(prof.city as string);
     })();
-  }, [supabase, router]);
+  }, [supabase]);
 
   async function makeLead() {
     const utm = readUtm();
-    const triple = (utm.utm_source || utm.utm_medium || utm.utm_campaign)
-      ? `${utm.utm_source ?? ""}/${utm.utm_medium ?? ""}/${utm.utm_campaign ?? ""}` : null;
     const { data: { session } } = await supabase.auth.getSession();
     await fetch("/api/vsat/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
       accessToken: session?.access_token,
       lead: { name: fullName.trim(), email: email.trim(), phone: e164(phone), hearAbout, campusPref,
         utm_source: utm.utm_source, utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign, utm_content: utm.utm_content,
-        full_utm: triple, lead_source: utm.utm_source },
+        primary_utm: utm.utm_campaign, latest_utm: utm.utm_campaign, lead_source: utm.utm_source },
     }) });
     track("vsat_lead_created");
   }
