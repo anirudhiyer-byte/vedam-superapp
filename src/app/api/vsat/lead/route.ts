@@ -14,6 +14,12 @@ export async function POST(req: Request) {
   const L = b.lead ?? {};
   const { data: prof } = await admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle();
   const { data: existing } = await admin.from("lead_manager").select("primary_utm").eq("lead_id", user.id).maybeSingle();
+  // build source/medium/campaign from the three parts (not just the campaign)
+  const s = (L.utm_source as string) || "", m = (L.utm_medium as string) || "", c = (L.utm_campaign as string) || "";
+  const triple = (s || m || c) ? [s, m, c].join("/") : ((L.full_utm as string) ?? null);
+  const priorPrimary = existing?.primary_utm as string | undefined;
+  // keep the real first-touch, but self-heal a stale campaign-only value (no "/")
+  const primaryUtm = (priorPrimary && priorPrimary.includes("/")) ? priorPrimary : triple;
   const row = {
     lead_id: user.id,
     public_id: prof?.public_id ?? null,
@@ -24,11 +30,11 @@ export async function POST(req: Request) {
     campus_preference: L.campusPref ?? null,
     utm_source: L.utm_source ?? null, utm_medium: L.utm_medium ?? null, utm_campaign: L.utm_campaign ?? null,
     utm_content: L.utm_content ?? null, utm_term: L.utm_term ?? null,
-    latest_utm: (L.full_utm as string) ?? null,   // always the newest source/medium/campaign
+    latest_utm: triple,   // always the newest source/medium/campaign
     lead_source: L.lead_source ?? null,
     mobile_verification_status: "verified",
     lead_verification_date: new Date().toISOString(),
-    primary_utm: existing?.primary_utm ?? ((L.full_utm as string) ?? null),  // write-once first-touch source/medium/campaign
+    primary_utm: primaryUtm,  // write-once first-touch (self-heals a stale campaign-only value)
     lead_stage: "lead",
     user_registration_date: new Date().toISOString(),
   };

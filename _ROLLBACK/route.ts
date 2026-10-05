@@ -13,6 +13,7 @@ export async function POST(req: Request) {
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   const L = b.lead ?? {};
   const { data: prof } = await admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle();
+  const { data: existing } = await admin.from("lead_manager").select("primary_utm").eq("lead_id", user.id).maybeSingle();
   const row = {
     lead_id: user.id,
     public_id: prof?.public_id ?? null,
@@ -23,10 +24,11 @@ export async function POST(req: Request) {
     campus_preference: L.campusPref ?? null,
     utm_source: L.utm_source ?? null, utm_medium: L.utm_medium ?? null, utm_campaign: L.utm_campaign ?? null,
     utm_content: L.utm_content ?? null, utm_term: L.utm_term ?? null,
-    primary_utm: L.primary_utm ?? null, latest_utm: L.latest_utm ?? null,
+    latest_utm: (L.full_utm as string) ?? null,   // always the newest source/medium/campaign
     lead_source: L.lead_source ?? null,
     mobile_verification_status: "verified",
     lead_verification_date: new Date().toISOString(),
+    primary_utm: existing?.primary_utm ?? ((L.full_utm as string) ?? null),  // write-once first-touch source/medium/campaign
     lead_stage: "lead",
     user_registration_date: new Date().toISOString(),
   };
