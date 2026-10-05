@@ -153,7 +153,7 @@ export function EventDetail({ code }: { code: string }) {
         </div>
 
         {/* right: sticky register card */}
-        <div id="register-card" className="lg:sticky lg:top-20 scroll-mt-24">
+        <div className="lg:sticky lg:top-20">
           <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl shadow-[0_20px_50px_-24px_rgba(0,0,0,0.7)]"><span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(130deg, rgba(255,255,255,0.14), transparent 32%)" }} />
             {registered ? (
               <div>
@@ -211,20 +211,6 @@ export function EventDetail({ code }: { code: string }) {
           </div>
         </div>
       </div>
-
-      {/* MOBILE sticky Register bar (Option A) — always visible, thumb-reachable; desktop uses the side card */}
-      {!registered && !regClosed(event) && (
-        <>
-          <div className="h-24 lg:hidden" />
-          <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0b0618]/95 px-4 pt-3 backdrop-blur-md lg:hidden" style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom,0px))" }}>
-            {!userId ? (
-              <Link href={`/register?next=${encodeURIComponent(`/events/${event.event_code}?register=1`)}`} className="flex w-full items-center justify-center rounded-xl px-6 py-3.5 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.5), rgba(123,92,255,0.7) 55%, rgba(194,0,219,0.6))" }}>Register now — free</Link>
-            ) : (
-              <button onClick={() => document.getElementById("register-card")?.scrollIntoView({ behavior: "smooth", block: "center" })} className="flex w-full items-center justify-center rounded-xl px-6 py-3.5 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.5), rgba(123,92,255,0.7) 55%, rgba(194,0,219,0.6))" }}>Register now — free</button>
-            )}
-          </div>
-        </>
-      )}
 
       {showRec && event.recording_url && (
         <div className="mt-8">
