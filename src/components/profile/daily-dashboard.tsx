@@ -82,7 +82,7 @@ export function DailyDashboard() {
   }
 
   const utmTotal = utm.reduce((s, u) => s + u.cnt, 0);
-  const visibleRows = showAllDates ? rows : rows.slice(-7);
+  const visibleRows = showAllDates ? rows : rows.slice(0, 7);
   let acc = 0;
   const slices = utm.map((u, i) => {
     const a0 = (acc / (utmTotal || 1)) * 2 * Math.PI; acc += u.cnt;

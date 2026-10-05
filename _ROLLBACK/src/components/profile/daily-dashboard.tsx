@@ -2,7 +2,7 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type Row = { day: string; traffic: number; traffic_new: number; traffic_returning: number; attempted: number; partial_reg: number; full_reg: number; bootcamp: number; codesprint: number; dropoff: number };
+type Row = { day: string; traffic: number; traffic_new: number; traffic_returning: number; attempted: number; partial_reg: number; full_reg: number; bootcamp: number; codesprint: number; bootcamp_mql?: number; codesprint_mql?: number; dropoff: number };
 type Person = { full_name: string | null; email: string | null; phone: string | null; extra: string | null; when_at: string | null };
 type Utm = { utm_source: string; cnt: number };
 type SrcPage = { source: string; page: string; page_label: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
@@ -23,6 +23,7 @@ export function DailyDashboard() {
   const [expandedSrc, setExpandedSrc] = useState<Set<string>>(new Set());
   const [clicks, setClicks] = useState<Click[]>([]);
   const [flow, setFlow] = useState<Flow[]>([]);
+  const [showAllDates, setShowAllDates] = useState(false);
   const [insights, setInsights] = useState<string>("");
   const [aiLoading, setAiLoading] = useState(false);
   const [aiErr, setAiErr] = useState("");
@@ -81,6 +82,7 @@ export function DailyDashboard() {
   }
 
   const utmTotal = utm.reduce((s, u) => s + u.cnt, 0);
+  const visibleRows = showAllDates ? rows : rows.slice(-7);
   let acc = 0;
   const slices = utm.map((u, i) => {
     const a0 = (acc / (utmTotal || 1)) * 2 * Math.PI; acc += u.cnt;
@@ -138,17 +140,22 @@ export function DailyDashboard() {
       <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
         <div className="overflow-x-auto rounded-2xl border border-white/12 bg-white/[0.04]">
           <table className="w-full text-left text-xs">
-            <thead className="bg-white/[0.05] text-white/60"><tr>{["Date", "New", "Returning", "Attempted", "→Reg %", "Partial", "Full", "Drop-off", "Drop %", "Bootcamp", "CodeSprint"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
-            <tbody>{rows.map((r) => (
+            <thead className="bg-white/[0.05] text-white/60"><tr>{["Date", "New", "Returning", "Attempted", "→Reg %", "Partial", "Full", "Drop-off", "Drop %", "Bootcamp", "Bootcamp MQL", "CodeSprint", "CodeSprint MQL"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
+            <tbody>{visibleRows.map((r) => (
               <tr key={r.day} className="border-t border-white/8">
                 <td className="whitespace-nowrap p-2 font-semibold">{fdate(r.day)}</td>
                 <td className="p-2">{r.traffic_new}</td><td className="p-2">{r.traffic_returning}</td><td className="p-2">{r.attempted}</td><td className="p-2 text-white/70">{pct(r.attempted, r.traffic)}%</td>
                 <td className="p-2">{r.partial_reg}</td><td className="p-2 font-semibold text-[#22e06a]">{r.full_reg}</td>
                 <td className="p-2">{r.dropoff}</td><td className="p-2 text-white/70">{pct(r.dropoff, r.attempted)}%</td>
-                <td className="p-2">{r.bootcamp}</td><td className="p-2">{r.codesprint}</td>
+                <td className="p-2">{r.bootcamp}</td><td className="p-2 text-[#22e06a]/80">{r.bootcamp_mql ?? 0}</td><td className="p-2">{r.codesprint}</td><td className="p-2 text-[#22e06a]/80">{r.codesprint_mql ?? 0}</td>
               </tr>
-            ))}{rows.length === 0 && <tr><td colSpan={11} className="p-6 text-center text-white/50">No data in range.</td></tr>}</tbody>
+            ))}{rows.length === 0 && <tr><td colSpan={13} className="p-6 text-center text-white/50">No data in range.</td></tr>}</tbody>
           </table>
+          {rows.length > 7 && (
+            <button onClick={() => setShowAllDates((v) => !v)} className="w-full border-t border-white/8 py-2 text-center text-xs text-[#00cfe5] hover:bg-white/[0.03]">
+              {showAllDates ? "Show last 7 days ↑" : `Show all ${rows.length} days ↓`}
+            </button>
+          )}
         </div>
 
         <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-4">
