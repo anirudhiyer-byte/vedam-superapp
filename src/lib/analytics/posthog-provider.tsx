@@ -16,6 +16,14 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
       capture_pageview: true,
       capture_pageleave: true,
+      // Error tracking: autocapture unhandled JS errors + promise rejections so
+      // every client-side failure shows up in PostHog correlated with the user's
+      // session/funnel. Console errors are left off to avoid noise.
+      capture_exceptions: {
+        capture_unhandled_errors: true,
+        capture_unhandled_rejections: true,
+        capture_console_errors: false,
+      },
     });
   }, []);
 
