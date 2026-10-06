@@ -20,4 +20,18 @@ const nextConfig = {
   },
 };
 
-export default withSentryConfig(nextConfig, { silent: true, widenClientFileUpload: true, webpack: { treeshake: { removeDebugLogging: true } } });
+export default withSentryConfig(nextConfig, {
+  // Org/project identify where to upload source maps. Not secrets — but read from
+  // env so they're set once in Vercel. The auth token (SENTRY_AUTH_TOKEN) is a
+  // secret and is read automatically from env by the plugin; never commit it.
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  // Upload source maps so Sentry shows real file/line/function in stack traces
+  // instead of minified bundle output. Skipped automatically when no auth token
+  // is present (e.g. local builds), so this never breaks a build.
+  sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN },
+  silent: true,
+  widenClientFileUpload: true,
+  disableLogger: true,
+  webpack: { treeshake: { removeDebugLogging: true } },
+});
