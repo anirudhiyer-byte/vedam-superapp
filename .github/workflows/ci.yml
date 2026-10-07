@@ -1,0 +1,41 @@
+name: CI
+
+# The test-gate. Runs on every PR into main and on pushes to main.
+# A red run blocks the merge once this check is marked required in
+# GitHub → Settings → Rules (branch protection).
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Use Corepack to provision the exact pnpm pinned in package.json
+      # ("packageManager": "pnpm@9.15.0"). Avoids the pnpm/action-setup
+      # "multiple versions specified" conflict.
+      - name: Enable Corepack (pnpm)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        # Placeholder Supabase values so the production build can prerender
+        # pages that construct a Supabase client. These are NOT secrets and
+        # never touch a real database — the build only needs them present.
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key-not-a-real-key
+          SUPABASE_SERVICE_ROLE_KEY: placeholder-service-key-not-a-real-key
+        run: pnpm build
