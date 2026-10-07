@@ -3,24 +3,38 @@
 Every database change is a numbered `.sql` file in `supabase/migrations/`.
 No more ad-hoc SQL in the dashboard — that is what caused the Oct 5 outage.
 
-## One-time setup
+## Cloning prod schema into a fresh staging project (no Docker)
+
+The Supabase CLI's `db dump` needs Docker; the reliable no-Docker path is
+`pg_dump` / `psql` directly, using each project's **Session pooler** URI
+(port 5432 — the transaction pooler on 6543 breaks pg_dump).
+
+`pg_dump` must be **>= the server major version** (Supabase is Postgres 17),
+so install the v17 client tools, not v16.
 
 ```bash
-# install the Supabase CLI once
-npm i -g supabase
+# dump prod's structure (schema only, no data)
+pg_dump "PROD_SESSION_POOLER_URI" --schema-only --no-owner --schema=public > baseline.sql
 
-# link the CLI to each project (run once per project)
-supabase link --project-ref <STAGING_PROJECT_REF>   # staging
-supabase link --project-ref obtzrqgoiqemnalmehdx     # production
+# load into an EMPTY staging project (verify it's empty first!)
+psql "STAGING_SESSION_POOLER_URI" < baseline.sql
 ```
 
-To make **staging match production** the first time, clone the prod schema into
-staging once (data stays separate):
+Two things a `--schema=public` dump does NOT carry — apply them to staging by hand:
 
-```bash
-supabase db dump --project-ref obtzrqgoiqemnalmehdx --schema public -f baseline.sql
-# review baseline.sql, then apply it to the staging project
-```
+1. **The auth→public signup trigger** (it lives on `auth.users`, in the `auth`
+   schema). Without it, new signups never get a `profiles` row:
+   ```sql
+   drop trigger if exists trg_on_auth_user_created on auth.users;
+   create trigger trg_on_auth_user_created
+     after insert on auth.users
+     for each row execute function public.handle_new_user();
+   ```
+2. **Extensions** used by the schema — enable in staging before the load:
+   `pg_trgm`, `pgcrypto` (and `pg_net`, `pg_cron` if used).
+
+The `permission denied to change default privileges` errors during load are
+Supabase-managed and safe to ignore.
 
 ## The workflow for every change
 
