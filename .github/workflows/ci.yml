@@ -17,14 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+
+      # Use Corepack to provision the exact pnpm pinned in package.json
+      # ("packageManager": "pnpm@9.15.0"). Avoids the pnpm/action-setup
+      # "multiple versions specified" conflict.
+      - name: Enable Corepack (pnpm)
+        run: corepack enable
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
