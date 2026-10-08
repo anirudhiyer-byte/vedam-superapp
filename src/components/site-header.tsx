@@ -117,36 +117,33 @@ export function SiteHeader() {
               <div ref={menuRef} className="relative">
                 <button onClick={() => setMenuOpen((o) => !o)} className="relative grid h-10 w-10 place-items-center rounded-full text-[15px] font-semibold text-white ring-2 ring-white/0 transition-all hover:ring-white/60 hover:shadow-[0_0_18px_rgba(138,24,255,0.6)]" style={{ background: "linear-gradient(135deg,#9a4dff,#7629fc)" }}>{initials}{!profileComplete && <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-[#ff4d6d] text-[10px] font-bold ring-2 ring-black">!</span>}</button>
                 {menuOpen && (
-                  <div className="absolute right-0 top-12 z-50 flex max-h-[calc(100vh-5rem)] w-52 flex-col overflow-hidden rounded-xl border border-white/10 bg-[#160a30] text-sm shadow-2xl">
-                    {/* pinned identity */}
-                    <div className="flex-none border-b border-white/10 px-4 py-2.5">
+                  <div className="absolute right-0 top-12 z-50 w-52 overflow-hidden rounded-xl border border-white/10 bg-[#160a30] py-1.5 text-sm shadow-2xl">
+                    <div className="border-b border-white/10 px-4 py-2.5">
                       <div className="font-semibold text-white">{name}</div>
                       <div className="mt-0.5 text-xs text-white/50">{[email, phone].filter(Boolean).join(" | ")}</div>
                       {uid && <div className="mt-0.5 font-mono text-[11px] text-white/40">{uid}</div>}
                     </div>
-                    {/* scrolling middle — grows with the button list, scrolls when it can't fit */}
-                    <div className="min-h-0 flex-1 overflow-y-auto py-1.5 [scrollbar-width:thin]">
-                      {!profileComplete && <button onClick={() => { setMenuOpen(false); setGateOpen(true); }} className="flex w-full items-center gap-2 px-4 py-2 text-left text-[#ffb84d] hover:bg-white/5">⚠ Complete your profile</button>}
-                      <Link href="/profile" className="block px-4 py-2 text-white/90 hover:bg-white/5">My Profile</Link>
-                      <Link href="/dashboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Dashboard</Link>
-                      <Link href="/leaderboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Leaderboard</Link>
-                      {isAdmin && (
-                        <>
-                          <div className="my-1 h-px bg-white/10" />
-                          <div className="px-4 pt-1 pb-0.5 font-mono text-[10px] uppercase tracking-wide text-white/35">Admin</div>
-                          <Link href="/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">⚙ Admin overview</Link>
-                          <Link href="/events?admin=manage" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage Events</Link>
-                          <Link href="/events?admin=analytics" className="block px-4 py-2 text-white/85 hover:bg-white/5">Events Analytics</Link>
-                          <Link href="/codesprint?admin=1" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage CodeSprint</Link>
-                          <Link href="/admin/comms" className="block px-4 py-2 text-white/85 hover:bg-white/5">Communications</Link>
-                          <Link href="/admin/daily" className="block px-4 py-2 text-white/85 hover:bg-white/5">📊 Daily Dashboard</Link>
-                          <Link href="/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎯 VSAT registration (internal)</Link>
-                          <Link href="/admin/vsat-early" className="block px-4 py-2 text-white/85 hover:bg-white/5">📈 VSAT Early-Reg Analytics</Link>
-                        </>
-                      )}
-                    </div>
-                    {/* pinned log out */}
-                    <button onClick={logout} className="w-full flex-none border-t border-white/10 px-4 py-2.5 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
+                    {!profileComplete && <button onClick={() => { setMenuOpen(false); setGateOpen(true); }} className="flex w-full items-center gap-2 px-4 py-2 text-left text-[#ffb84d] hover:bg-white/5">⚠ Complete your profile</button>}
+                    <Link href="/profile" className="block px-4 py-2 text-white/90 hover:bg-white/5">My Profile</Link>
+                    <Link href="/dashboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Dashboard</Link>
+                    <Link href="/leaderboard" className="block px-4 py-2 text-white/90 hover:bg-white/5">Leaderboard</Link>
+                    {isAdmin && (
+                      <>
+                        <div className="my-1 h-px bg-white/10" />
+                        <div className="px-4 pt-1 pb-0.5 font-mono text-[10px] uppercase tracking-wide text-white/35">Admin</div>
+                        <Link href="/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">⚙ Admin overview</Link>
+                        <Link href="/admin/growth" className="block px-4 py-2 text-white/85 hover:bg-white/5">📈 Growth</Link>
+                        <Link href="/events?admin=manage" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage Events</Link>
+                        <Link href="/events?admin=analytics" className="block px-4 py-2 text-white/85 hover:bg-white/5">Events Analytics</Link>
+                        <Link href="/codesprint?admin=1" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage CodeSprint</Link>
+                        <Link href="/admin/comms" className="block px-4 py-2 text-white/85 hover:bg-white/5">Communications</Link>
+                        <Link href="/admin/daily" className="block px-4 py-2 text-white/85 hover:bg-white/5">📊 Daily Dashboard</Link>
+                        <Link href="/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎯 VSAT registration (internal)</Link>
+                        <Link href="/admin/vsat-early" className="block px-4 py-2 text-white/85 hover:bg-white/5">📈 VSAT Early-Reg Analytics</Link>
+                        <div className="my-1 h-px bg-white/10" />
+                      </>
+                    )}
+                    <button onClick={logout} className="block w-full px-4 py-2 text-left text-[#ff6a8e] hover:bg-white/5">↪ Log out</button>
                   </div>
                 )}
               </div>

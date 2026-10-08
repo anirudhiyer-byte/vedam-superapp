@@ -54,6 +54,7 @@ export function AdminHome() {
           <h1 className="font-display text-4xl font-extrabold tracking-tight text-heading">Welcome back.</h1>
           <div className="flex flex-wrap gap-2">
             <Link href="/admin/events/new" className="rounded-xl bg-brand-gradient px-5 py-2.5 text-sm font-semibold text-white">+ New event</Link>
+            <Link href="/admin/growth" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">📈 Growth</Link>
             <Link href="/admin/analytics" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Analytics</Link>
             <Link href="/admin/faqs" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">FAQs</Link>
             <Link href="/admin/comms" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Communications</Link>
