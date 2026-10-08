@@ -34,9 +34,14 @@ export async function POST(req: Request) {
     top_button_clicks: (clicks.data ?? []).slice(0, 30),
     glossary: {
       products: "Bootcamp (/events/*), CodeSprint (/codesprint*), VSAT (/apply)",
-      attempted: "sessions that reached /register",
-      registered: "attempted sessions that created an account (partial=phone only, full=completed)",
-      funnel: "visitors -> attempted -> registered(partial/full) -> bootcamp/codesprint enrol",
+      cohort: "a session is RETURNING only if its account existed BEFORE the session started; everyone else (anonymous, or account created during/after the visit) is NEW. Web tracking began 2026-10-01.",
+      new_visitors: "distinct NEW sessions",
+      attempted_new: "NEW sessions that opened /register",
+      converted_new: "attempted_new that ended up with an account",
+      dropoff_new: "attempted_new that never created an account (the real new-visitor leak)",
+      attempted_returning: "existing-account users who opened /register (separate; not part of the new funnel)",
+      funnel: "new_visitors -> attempted_new -> converted_new / dropoff_new",
+      note: "partial_reg/full_reg and 'accounts created' are people-based (profiles created in range, ALL signup paths incl. VSAT/events), so they won't equal the session-based web funnel.",
     },
   };
 

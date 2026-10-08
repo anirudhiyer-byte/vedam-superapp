@@ -2,13 +2,15 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type Row = { day: string; traffic: number; traffic_new: number; traffic_returning: number; attempted: number; partial_reg: number; full_reg: number; bootcamp: number; codesprint: number; bootcamp_mql?: number; codesprint_mql?: number; dropoff: number };
+type Row = { day: string; new_visitors: number; returning_visitors: number; attempted_new: number; converted_new: number; dropoff_new: number; attempted_returning: number; partial_reg: number; full_reg: number; bootcamp: number; bootcamp_mql?: number; codesprint: number; codesprint_mql?: number };
+type Totals = { new_visitors: number; returning_visitors: number; attempted_new: number; converted_new: number; dropoff_new: number; attempted_returning: number; accounts_created: number; registered_partial: number; registered_full: number; bootcamp: number; codesprint: number };
+const ZERO_T: Totals = { new_visitors: 0, returning_visitors: 0, attempted_new: 0, converted_new: 0, dropoff_new: 0, attempted_returning: 0, accounts_created: 0, registered_partial: 0, registered_full: 0, bootcamp: 0, codesprint: 0 };
 type Person = { full_name: string | null; email: string | null; phone: string | null; extra: string | null; when_at: string | null };
 type Utm = { utm_source: string; cnt: number };
 type SrcPage = { source: string; page: string; page_label: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
 type Click = { label: string; path: string; clicks: number; sessions: number };
 type Flow = { page: string; page_label: string; visitors: number; exits_noreg: number; exits_reg: number; dropoff_exit_pct: number };
-type Kind = "new" | "returning" | "attempted" | "partial" | "full" | "bootcamp" | "codesprint" | "dropoff";
+type Kind = "new" | "returning" | "attempted" | "converted" | "dropoff" | "attempted_returning" | "partial" | "full" | "bootcamp" | "codesprint";
 
 const iso = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
 const fdate = (s: string) => new Date(s).toLocaleDateString("en-IN", { day: "numeric", month: "short" });
@@ -18,6 +20,7 @@ export function DailyDashboard() {
   const [from, setFrom] = useState(() => { const d = new Date(); d.setDate(d.getDate() - 13); return iso(d); });
   const [to, setTo] = useState(() => iso(new Date()));
   const [rows, setRows] = useState<Row[]>([]);
+  const [tt, setTt] = useState<Totals | null>(null);
   const [utm, setUtm] = useState<Utm[]>([]);
   const [bySourcePage, setBySourcePage] = useState<SrcPage[]>([]);
   const [expandedSrc, setExpandedSrc] = useState<Set<string>>(new Set());
@@ -36,21 +39,20 @@ export function DailyDashboard() {
   const load = useCallback(async () => {
     setLoading(true); setOpenKpi(null);
     const sb = createClient();
-    const [{ data: d }, { data: u }, { data: bs }, { data: ck }, { data: pf }] = await Promise.all([
+    const [{ data: d }, { data: tot }, { data: u }, { data: bs }, { data: ck }, { data: pf }] = await Promise.all([
       sb.rpc("daily_funnel", { p_from: from, p_to: to }),
+      sb.rpc("funnel_totals", { p_from: from, p_to: to }),
       sb.rpc("funnel_utm", { p_from: from, p_to: to }),
       sb.rpc("funnel_by_source_page", { p_from: from, p_to: to }),
       sb.rpc("clicks_summary", { p_from: from, p_to: to }),
       sb.rpc("page_flow", { p_from: from, p_to: to }),
     ]);
-    setRows((d as Row[]) ?? []); setUtm((u as Utm[]) ?? []); setBySourcePage((bs as SrcPage[]) ?? []); setExpandedSrc(new Set()); setClicks((ck as Click[]) ?? []); setFlow((pf as Flow[]) ?? []); setLoading(false);
+    setRows((d as Row[]) ?? []); setTt(((tot as Totals[]) ?? [])[0] ?? null); setUtm((u as Utm[]) ?? []); setBySourcePage((bs as SrcPage[]) ?? []); setExpandedSrc(new Set()); setClicks((ck as Click[]) ?? []); setFlow((pf as Flow[]) ?? []); setLoading(false);
   }, [from, to]);
   useEffect(() => { load(); }, [load]);
 
-  const t = useMemo(() => rows.reduce((a, r) => ({
-    traffic: a.traffic + r.traffic, tnew: a.tnew + r.traffic_new, tret: a.tret + r.traffic_returning, attempted: a.attempted + r.attempted, partial: a.partial + r.partial_reg,
-    full: a.full + r.full_reg, bootcamp: a.bootcamp + r.bootcamp, codesprint: a.codesprint + r.codesprint, dropoff: a.dropoff + r.dropoff,
-  }), { traffic: 0, tnew: 0, tret: 0, attempted: 0, partial: 0, full: 0, bootcamp: 0, codesprint: 0, dropoff: 0 }), [rows]);
+  // KPI totals come from funnel_totals (whole-range DISTINCT, correct cohort) — not summed per-day rows.
+  const T = tt ?? ZERO_T;
   const pct = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
 
   const srcParents = useMemo(() => {
@@ -112,15 +114,24 @@ export function DailyDashboard() {
         {insights && <div className="mt-3 max-h-[480px] overflow-auto whitespace-pre-wrap rounded-lg bg-black/30 p-4 text-[13px] leading-relaxed text-white/85">{insights}</div>}
       </div>
 
-      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <Kpi label="New visitors" value={t.tnew} onClick={() => openDetail("new")} active={openKpi === "new"} />
-        <Kpi label="Returning visitors" value={t.tret} onClick={() => openDetail("returning")} active={openKpi === "returning"} />
-        <Kpi label="Attempted reg." value={t.attempted} sub={`${pct(t.attempted, t.traffic)}% of traffic`} onClick={() => openDetail("attempted")} active={openKpi === "attempted"} />
-        <Kpi label="Registered partial" value={t.partial} onClick={() => openDetail("partial")} active={openKpi === "partial"} />
-        <Kpi label="Registered full" value={t.full} accent onClick={() => openDetail("full")} active={openKpi === "full"} />
-        <Kpi label="Drop-off" value={t.dropoff} sub={`${pct(t.dropoff, t.attempted)}% of attempts`} onClick={() => openDetail("dropoff")} active={openKpi === "dropoff"} />
-        <Kpi label="Bootcamp regs" value={t.bootcamp} onClick={() => openDetail("bootcamp")} active={openKpi === "bootcamp"} />
-        <Kpi label="CodeSprint enrols" value={t.codesprint} onClick={() => openDetail("codesprint")} active={openKpi === "codesprint"} />
+      {/* New-visitor web funnel: New → Attempted → Converted / Drop-off, all on the new-visitor base */}
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-white/40">New-visitor funnel <span className="font-normal normal-case text-white/35">· web visits tracked from 1 Oct</span></p>
+      <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <Kpi label="New visitors" value={T.new_visitors} onClick={() => openDetail("new")} active={openKpi === "new"} />
+        <Kpi label="Attempted (new)" value={T.attempted_new} sub={`${pct(T.attempted_new, T.new_visitors)}% of new visitors`} onClick={() => openDetail("attempted")} active={openKpi === "attempted"} />
+        <Kpi label="Converted (new)" value={T.converted_new} sub={`${pct(T.converted_new, T.attempted_new)}% of attempts`} accent onClick={() => openDetail("converted")} active={openKpi === "converted"} />
+        <Kpi label="Drop-off (new)" value={T.dropoff_new} sub={`${pct(T.dropoff_new, T.attempted_new)}% of new attempts`} onClick={() => openDetail("dropoff")} active={openKpi === "dropoff"} />
+      </div>
+      {/* Returning + registrations (people-based) shown separately so nothing is mixed into the funnel above */}
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-white/40">Returning & registrations</p>
+      <div className="mb-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <Kpi label="Returning visitors" value={T.returning_visitors} onClick={() => openDetail("returning")} active={openKpi === "returning"} />
+        <Kpi label="Returning → opened register" value={T.attempted_returning} sub="existing accounts" onClick={() => openDetail("attempted_returning")} active={openKpi === "attempted_returning"} />
+        <Kpi label="Registered partial" value={T.registered_partial} onClick={() => openDetail("partial")} active={openKpi === "partial"} />
+        <Kpi label="Registered full" value={T.registered_full} onClick={() => openDetail("full")} active={openKpi === "full"} />
+        <Kpi label="Accounts created (all paths)" value={T.accounts_created} sub="incl. VSAT / events / pre-tracking" />
+        <Kpi label="Bootcamp regs" value={T.bootcamp} onClick={() => openDetail("bootcamp")} active={openKpi === "bootcamp"} />
+        <Kpi label="CodeSprint enrols" value={T.codesprint} onClick={() => openDetail("codesprint")} active={openKpi === "codesprint"} />
       </div>
 
       {openKpi && (
@@ -140,16 +151,18 @@ export function DailyDashboard() {
       <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
         <div className="overflow-x-auto rounded-2xl border border-white/12 bg-white/[0.04]">
           <table className="w-full text-left text-xs">
-            <thead className="bg-white/[0.05] text-white/60"><tr>{["Date", "New", "Returning", "Attempted", "→Reg %", "Partial", "Full", "Drop-off", "Drop %", "Bootcamp", "Bootcamp MQL", "CodeSprint", "CodeSprint MQL"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
+            <thead className="bg-white/[0.05] text-white/60"><tr>{["Date", "New", "Returning", "Attempted (new)", "→Att %", "Converted", "Drop-off", "Drop %", "Ret→reg", "Partial", "Full", "Bootcamp", "Bootcamp MQL", "CodeSprint", "CodeSprint MQL"].map((h) => <th key={h} className="whitespace-nowrap p-2 font-semibold">{h}</th>)}</tr></thead>
             <tbody>{visibleRows.map((r) => (
               <tr key={r.day} className="border-t border-white/8">
                 <td className="whitespace-nowrap p-2 font-semibold">{fdate(r.day)}</td>
-                <td className="p-2">{r.traffic_new}</td><td className="p-2">{r.traffic_returning}</td><td className="p-2">{r.attempted}</td><td className="p-2 text-white/70">{pct(r.attempted, r.traffic)}%</td>
+                <td className="p-2">{r.new_visitors}</td><td className="p-2">{r.returning_visitors}</td><td className="p-2">{r.attempted_new}</td><td className="p-2 text-white/70">{pct(r.attempted_new, r.new_visitors)}%</td>
+                <td className="p-2 font-semibold text-[#22e06a]">{r.converted_new}</td>
+                <td className="p-2">{r.dropoff_new}</td><td className="p-2 text-white/70">{pct(r.dropoff_new, r.attempted_new)}%</td>
+                <td className="p-2 text-white/60">{r.attempted_returning}</td>
                 <td className="p-2">{r.partial_reg}</td><td className="p-2 font-semibold text-[#22e06a]">{r.full_reg}</td>
-                <td className="p-2">{r.dropoff}</td><td className="p-2 text-white/70">{pct(r.dropoff, r.attempted)}%</td>
                 <td className="p-2">{r.bootcamp}</td><td className="p-2 text-[#22e06a]/80">{r.bootcamp_mql ?? 0}</td><td className="p-2">{r.codesprint}</td><td className="p-2 text-[#22e06a]/80">{r.codesprint_mql ?? 0}</td>
               </tr>
-            ))}{rows.length === 0 && <tr><td colSpan={13} className="p-6 text-center text-white/50">No data in range.</td></tr>}</tbody>
+            ))}{rows.length === 0 && <tr><td colSpan={15} className="p-6 text-center text-white/50">No data in range.</td></tr>}</tbody>
           </table>
           {rows.length > 7 && (
             <button onClick={() => setShowAllDates((v) => !v)} className="w-full border-t border-white/8 py-2 text-center text-xs text-[#00cfe5] hover:bg-white/[0.03]">
