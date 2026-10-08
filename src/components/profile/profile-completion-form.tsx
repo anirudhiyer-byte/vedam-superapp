@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { saveProfile } from "@/lib/supabase/profile-write";
 import { SearchableSelect } from "@/components/ui/searchable-select";
 import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
 
@@ -83,10 +84,11 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
       const { error: eErr } = await supabase.auth.verifyOtp({ email: email.trim(), token: emailOtp.replace(/\D/g, ""), type: "email_change" });
       if (eErr) { setSaving(false); return setErr(eErr.message || "Email code didn't work."); }
     }
-    await supabase.from("profiles").update({
+    const { error: saveErr } = await saveProfile(supabase, session.user.id, {
       grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
       state, city, email_verified: true,
-    }).eq("id", session.user.id);
+    });
+    if (saveErr) { setSaving(false); return setErr(saveErr); }
     setSaving(false);
     onComplete();
   }

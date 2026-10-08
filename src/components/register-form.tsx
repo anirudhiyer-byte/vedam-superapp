@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { saveProfile } from "@/lib/supabase/profile-write";
 import { readUtm } from "@/lib/utm";
 import { track } from "@/lib/analytics/track";
 import { Turnstile } from "@/components/turnstile";
@@ -119,12 +120,17 @@ export function RegisterForm() {
     if (error || !data.user) { setLoading(false); return setError(error?.message ?? "That code didn't work. Try again."); }
 
     const utm = readUtm();
-    await supabase.from("profiles").update({
+    // Email + mobile_verified are now guaranteed server-side by the auth triggers,
+    // so this write is a best-effort fast-path for the extra fields. Confirm it
+    // (no silent 0-row failures) and log if it didn't land — but don't block the
+    // user, since the critical fields are already captured by the DB.
+    const { error: p1err } = await saveProfile(supabase, data.user.id, {
       full_name: fullName.trim(), email: email.trim(), mobile_verified: true, signup_session_id: sid() || null,
       consent_given: true, consent_at: new Date().toISOString(), last_login_at: new Date().toISOString(),
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null,
       referrer: utm.referrer ?? null, landing_path: utm.landing_path ?? null,
-    }).eq("id", data.user.id);
+    });
+    if (p1err) console.warn("[register] part-1 profile write did not confirm:", p1err);
     await supabase.from("activity_log").insert({ user_id: data.user.id, event_type: "signup",
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null });
     gtmEvent("sign_up", { method: "otp" });
@@ -159,12 +165,13 @@ export function RegisterForm() {
     const { error: eErr } = await supabase.auth.verifyOtp({ email: email.trim(), token: emailOtp.replace(/\D/g, ""), type: "email_change" });
     if (eErr) { setSavingP2(false); return setError(eErr.message || "Email code didn't work."); }
     const { data: u } = await supabase.auth.getUser();
-    if (u?.user) {
-      await supabase.from("profiles").update({
-        grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
-        state, city, email: email.trim(), email_verified: true,     // -> profile_completed flips true via the DB trigger
-      }).eq("id", u.user.id);
-    }
+    // Critical write: grad_year/stream/state/city have NO server-side fallback,
+    // so a silent failure here loses the user's profile. Confirm + abort on error.
+    const { error: p2err } = await saveProfile(supabase, u?.user?.id, {
+      grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
+      state, city, email: email.trim(), email_verified: true,     // -> profile_completed flips true via the DB trigger
+    });
+    if (p2err) { setSavingP2(false); return setError(p2err); }
     setEmailVerified(true); setSavingP2(false);
     track("part2_complete");
     goNext();   // resume the pending action / land back where they came from
