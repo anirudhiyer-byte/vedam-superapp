@@ -97,7 +97,10 @@ export function VsatApplyForm() {
     if (phoneVerified) { setLoading(true); await supabase.from("profiles").update({ full_name: fullName.trim(), email: email.trim() }).eq("id", (await supabase.auth.getUser()).data.user?.id ?? ""); await makeLead(); setLoading(false); return setStep("part2"); }
     setLoading(true);
     try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone: e164(phone), email: email.trim() }) }); } catch { /* best effort */ }
-    const { error } = await supabase.auth.signInWithOtp({ phone: e164(phone) });
+    // pass name + email in metadata so the DB trigger captures them at account
+    // creation — email must NOT depend on the client-side update after verify.
+    const u = readUtm();
+    const { error } = await supabase.auth.signInWithOtp({ phone: e164(phone), options: { data: { full_name: fullName.trim(), email: email.trim(), consent_given: "true", utm_source: u.utm_source, utm_medium: u.utm_medium, utm_campaign: u.utm_campaign } } });
     setLoading(false);
     if (error) return setError(error.message || "Couldn't send OTP.");
     setStep("otp");
