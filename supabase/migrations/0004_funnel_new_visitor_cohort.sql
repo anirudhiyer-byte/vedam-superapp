@@ -25,10 +25,12 @@
 -- pre-tracking signups aren't lost.
 
 -- ── 1) funnel_totals: correct whole-range DISTINCT counts for the KPI cards ──
+drop function if exists public.funnel_totals(date, date);
 create or replace function public.funnel_totals(p_from date, p_to date)
 returns table(
   new_visitors int, returning_visitors int,
-  attempted_new int, converted_new int, dropoff_new int, attempted_returning int,
+  attempted_new int, converted_new int, converted_full int, converted_partial int,
+  dropoff_new int, attempted_returning int,
   accounts_created int, registered_partial int, registered_full int,
   bootcamp int, codesprint int
 )
@@ -54,6 +56,11 @@ as $function$
     count(*) filter (where is_returning)::int,
     count(*) filter (where hit_register and not is_returning)::int,
     count(*) filter (where hit_register and not is_returning and uid is not null)::int,
+    -- converted split: full vs partial (by the converter's current profile state)
+    count(*) filter (where hit_register and not is_returning and uid is not null
+       and exists(select 1 from public.profiles p where p.id=classed.uid and p.profile_completed))::int,
+    count(*) filter (where hit_register and not is_returning and uid is not null
+       and exists(select 1 from public.profiles p where p.id=classed.uid and p.mobile_verified and not p.profile_completed))::int,
     count(*) filter (where hit_register and not is_returning and uid is null)::int,
     count(*) filter (where hit_register and is_returning)::int,
     (select count(*) from public.profiles p where (p.created_at at time zone 'Asia/Kolkata')::date between p_from and p_to)::int,
