@@ -3,8 +3,8 @@ import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 type Row = { day: string; new_visitors: number; returning_visitors: number; attempted_new: number; converted_new: number; dropoff_new: number; attempted_returning: number; partial_reg: number; full_reg: number; bootcamp: number; bootcamp_mql?: number; codesprint: number; codesprint_mql?: number };
-type Totals = { new_visitors: number; returning_visitors: number; attempted_new: number; converted_new: number; dropoff_new: number; attempted_returning: number; accounts_created: number; registered_partial: number; registered_full: number; bootcamp: number; codesprint: number };
-const ZERO_T: Totals = { new_visitors: 0, returning_visitors: 0, attempted_new: 0, converted_new: 0, dropoff_new: 0, attempted_returning: 0, accounts_created: 0, registered_partial: 0, registered_full: 0, bootcamp: 0, codesprint: 0 };
+type Totals = { new_visitors: number; returning_visitors: number; attempted_new: number; converted_new: number; converted_full: number; converted_partial: number; dropoff_new: number; attempted_returning: number; accounts_created: number; registered_partial: number; registered_full: number; bootcamp: number; codesprint: number };
+const ZERO_T: Totals = { new_visitors: 0, returning_visitors: 0, attempted_new: 0, converted_new: 0, converted_full: 0, converted_partial: 0, dropoff_new: 0, attempted_returning: 0, accounts_created: 0, registered_partial: 0, registered_full: 0, bootcamp: 0, codesprint: 0 };
 type Person = { full_name: string | null; email: string | null; phone: string | null; extra: string | null; when_at: string | null };
 type Utm = { utm_source: string; cnt: number };
 type SrcPage = { source: string; page: string; page_label: string; visitors: number; attempted: number; registered: number; attempt_pct: number; reg_pct: number };
@@ -119,7 +119,7 @@ export function DailyDashboard() {
       <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Kpi label="New visitors" value={T.new_visitors} onClick={() => openDetail("new")} active={openKpi === "new"} />
         <Kpi label="Attempted (new)" value={T.attempted_new} sub={`${pct(T.attempted_new, T.new_visitors)}% of new visitors`} onClick={() => openDetail("attempted")} active={openKpi === "attempted"} />
-        <Kpi label="Converted (new)" value={T.converted_new} sub={`${pct(T.converted_new, T.attempted_new)}% of attempts`} accent onClick={() => openDetail("converted")} active={openKpi === "converted"} />
+        <Kpi label="Converted (new)" value={T.converted_new} sub={`${pct(T.converted_new, T.attempted_new)}% · ${T.converted_full} full · ${T.converted_partial} partial`} accent onClick={() => openDetail("converted")} active={openKpi === "converted"} />
         <Kpi label="Drop-off (new)" value={T.dropoff_new} sub={`${pct(T.dropoff_new, T.attempted_new)}% of new attempts`} onClick={() => openDetail("dropoff")} active={openKpi === "dropoff"} />
       </div>
       {/* Returning + registrations (people-based) shown separately so nothing is mixed into the funnel above */}
