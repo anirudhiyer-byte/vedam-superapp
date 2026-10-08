@@ -1,12 +1,28 @@
 -- Migration 0002 — Fix email capture on signup
 --
--- Bug: handle_new_user copied `new.email` (the auth.users email COLUMN), which
--- is NULL for phone-first signups. The email the user typed in the form lives
--- in raw_user_meta_data->>'email' until email verification completes. Result:
--- ~61 profiles landed with a blank email, leaving them unable to complete their
--- profile (no address to send the verification code to).
+-- Bug: handle_new_user writes `new.email` (the auth.users email COLUMN), which
+-- is ALWAYS NULL for phone-first signups. So the trigger never captured the
+-- email at all — it created every phone-first profile with a blank email and
+-- just the name (from metadata).
 --
--- Fix: fall back to the metadata email, and backfill the existing blanks.
+-- Email was only getting into profiles via a CLIENT-SIDE write in the register
+-- form (profiles.update({email,...}), fired right after the phone OTP verify).
+-- That write is fragile: it never runs if the user abandons at the OTP screen,
+-- and it silently no-ops if it races the fresh session (RLS matches 0 rows and
+-- the code doesn't check the error). Result: 61 phone-first profiles with a
+-- blank email (38 never confirmed phone; 23 real users whose client write
+-- failed — mobile_verified was false for 22 of them). Those 23 then hit a
+-- dead-end: blank email + a read-only email field, so they could never
+-- complete their profile and were gated out of every product (bootcamp too).
+--
+-- Fix: capture the email in the TRIGGER (server-side, at row-creation time) so
+-- it no longer depends on the client write, phone verification, or RLS timing.
+-- Then backfill the 61 existing blanks from the auth metadata.
+--
+-- NOTE (follow-up, not in this migration): the client-side profiles.update in
+-- register-form.tsx line ~122 and completePart2 don't check their error — they
+-- can fail silently (mobile_verified was lost for 22 users the same way). Email
+-- no longer depends on them, but they should be hardened to check + retry.
 
 -- 1) Trigger: capture the typed email even before verification.
 create or replace function public.handle_new_user()
