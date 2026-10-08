@@ -52,7 +52,7 @@ iframe{border:0;width:100%;height:100%;flex:1;background:var(--bg)}
 .pill-live i{width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block}
 .railfoot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
 .railfoot .email{color:var(--mut2);font-size:11px;font-family:var(--mono);padding:10px 11px 4px}
-.railfoot .so{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);cursor:pointer;font-size:13.5px;font-weight:500}
+.railfoot .so{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);cursor:pointer;font-size:13.5px;font-weight:500;text-decoration:none}
 .railfoot .so svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .railfoot .so:hover{color:var(--ink);background:rgba(130,150,255,.07)}
 .topbar{display:none;align-items:center;gap:12px;padding:11px 14px;background:var(--rail);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:30}
@@ -79,8 +79,7 @@ iframe{border:0;width:100%;height:100%;flex:1;background:var(--bg)}
     </div>
     <nav class="nav" id="nav"></nav>
     <div class="railfoot">
-      <div class="email">connect@vedam.org</div>
-      <div class="so"><svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l-5-5 5-5M15 12H5"/></svg><span>Back to admin</span></div>
+      <a class="so" href="/" target="_top"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Back To Home</span></a>
     </div>
   </aside>
   <div class="content">

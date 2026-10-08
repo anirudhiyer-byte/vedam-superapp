@@ -25,12 +25,14 @@ async function guardAdmin() {
  */
 export default async function Page() {
   await guardAdmin();
+  // Full-screen overlay: covers the platform site-header so the Growth shell
+  // (its own Neural Glass sidebar + topbar) owns the whole viewport.
   return (
     <iframe
       src="/growth/index.html"
       title="Vedam Neural CRM — Growth"
-      className="block w-full border-0"
-      style={{ height: "calc(100vh - 72px)", background: "#070a16" }}
+      className="fixed inset-0 z-50 h-full w-full border-0"
+      style={{ background: "#070a16" }}
     />
   );
 }
