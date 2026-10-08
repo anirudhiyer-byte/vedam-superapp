@@ -133,6 +133,11 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 .grid th .menu-btn:hover{color:var(--ink);background:rgba(255,255,255,.08)}
 .grid td{color:var(--ink)} .grid td.mut{color:var(--mut2)}
 .grid tbody tr:hover td{background:rgba(255,255,255,.02)}
+/* sticky Actions column (stays visible on horizontal scroll) */
+.grid th.actcol,.grid td.actcol{position:sticky;right:0;background:var(--head);box-shadow:inset 1px 0 0 var(--line)}
+.grid thead th.actcol{z-index:4}
+.grid tbody td.actcol{z-index:2}
+.grid tbody tr:hover td.actcol{background:#141b3d}
 .grid .chk{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--panel-brd);background:var(--bg2);cursor:pointer;appearance:none;position:relative;vertical-align:middle}
 .grid .chk:checked{background:var(--violet);border-color:var(--violet)}
 .grid .chk:checked::after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
@@ -312,32 +317,12 @@ const CPData = (function(){
   // cr(platform, name, cpl, src, leads, mql) — SAME column shape as College Predictor; DUMMY rows (swap later)
   const cr=(platform,name,cpl,src,leads,mql)=>({platform,name,cpl,utm_link:CP+src,leads,mql,
     cpl_spend:cpl?cpl*leads:0, total_cost:cpl?cpl*leads:0, notes:"", _trash:false});
-  const costRowsActive=[
-    cr("Ads - Google","Google Ads",45,"google_ads",1890,1750),
-    cr("Telegram","CS Telegram",null,"telegram",3240,3100),
-    cr("Ads - Meta","Meta Ads",38,"meta_ads",1420,1310),
-    cr("WhatsApp","WA Broadcast",null,"whatsapp",1120,1080),
-    cr("YouTube","CS YouTube",30,"youtube",980,920),
-    cr("Organic","CS Blog",null,"blog",760,710),
-    cr("Instagram","CS Instagram",null,"instagram",640,590),
-    cr("Organic","CS Quora",null,"quora",540,500)
-  ];
-  const costRowsTrash=[
-    cr("Telegram","Old TG Campaign",12,"tg_old",260,0),
-    cr("Organic","Reddit Test",null,"reddit",95,80)
-  ].map(r=>({...r,_trash:true}));
+  // Rows come from the backend — start empty (no dummy/seed data).
+  const costRowsActive=[];
+  const costRowsTrash=[];
   const _sum=(arr,k)=>arr.reduce((a,x)=>a+(+x[k]||0),0);
-  // cost dashboard — By Platform / UTM (DUMMY)
-  const costDashRows=[
-    {platform:"Ads - Google",     utm:CP+"google_ads", leads:1890, mql:1750},
-    {platform:"Telegram",         utm:CP+"telegram",   leads:3240, mql:3100},
-    {platform:"Ads - Meta",       utm:CP+"meta_ads",   leads:1420, mql:1310},
-    {platform:"WhatsApp",         utm:CP+"whatsapp",   leads:1120, mql:1080},
-    {platform:"YouTube",          utm:CP+"youtube",    leads:980,  mql:920},
-    {platform:"Organic - Blog",   utm:CP+"blog",       leads:760,  mql:710},
-    {platform:"Instagram",        utm:CP+"instagram",  leads:640,  mql:590},
-    {platform:"Organic - Quora",  utm:CP+"quora",      leads:540,  mql:500}
-  ];
+  // cost dashboard — By Platform / UTM (populated from backend)
+  const costDashRows=[];
   const costDashKpis={leads:_sum(costRowsActive,"leads"), mql:_sum(costRowsActive,"mql"),
     mqlPct:_sum(costRowsActive,"leads")?_sum(costRowsActive,"mql")/_sum(costRowsActive,"leads")*100:0,
     cplSpend:_sum(costRowsActive,"cpl_spend"), totalCost:_sum(costRowsActive,"total_cost"),
@@ -351,12 +336,8 @@ const CPData = (function(){
     {key:"applications", label:"Applications", type:"num",  hidden:false},
     {key:"enrollments",  label:"Enrollments",  type:"num",  hidden:false}
   ];
-  // Banner UTMs — DUMMY rows (replace via backend later)
-  const utmRows=[
-    {campaign_name:"Code Sprint Launch", utm_link:APPLY+"banner_launch",    leads:420, applications:58, enrollments:4, _trash:false},
-    {campaign_name:"Hackathon Banner",   utm_link:APPLY+"banner_hackathon", leads:310, applications:41, enrollments:3, _trash:false},
-    {campaign_name:"Winter Sprint",      utm_link:APPLY+"banner_winter",    leads:180, applications:22, enrollments:1, _trash:false}
-  ];
+  // Banner UTMs — rows come from the backend; start empty (no dummy data).
+  const utmRows=[];
 
   const wait=ms=>new Promise(r=>setTimeout(r,ms));
   // summary computed from the live rows, so swapping the dataset updates the cards automatically
@@ -487,14 +468,14 @@ function makeGrid(cfg){
     // table
     let thead="<thead><tr><th style='cursor:default'><input type='checkbox' class='chk' data-all></th>";
     vc.forEach(c=>thead+=`<th draggable="true" data-key="${c.key}"><div class="thin"><span>${c.label}${c.required?' <span class="req">*</span>':''}</span><button class="menu-btn" data-menu="${c.key}">⋯</button></div></th>`);
-    if(cfg.actionsColumn) thead+="<th style='cursor:default'>Actions</th>";
+    if(cfg.actionsColumn) thead+="<th class='actcol' style='cursor:default'>Actions</th>";
     thead+="</tr></thead>";
     let tbody="<tbody>";
     if(!data.length){
       tbody+=`<tr><td colspan="${vc.length+1+(cfg.actionsColumn?1:0)}"><div class="emptyrow">${cfg.emptyState}</div></td></tr>`;
     } else slice.forEach(r=>{
       tbody+=`<tr data-i="${rows.indexOf(r)}"><td><input type="checkbox" class="chk"></td>`+vc.map(c=>cell(c,r)).join("");
-      if(cfg.actionsColumn) tbody+=`<td><span class="rowact"><button data-edit title="Edit"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button data-del title="Delete"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button></span></td>`;
+      if(cfg.actionsColumn) tbody+=`<td class="actcol"><span class="rowact"><button data-edit title="Edit"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button data-del title="Delete"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button></span></td>`;
       tbody+="</tr>";
     });
     tbody+="</tbody>";
@@ -532,7 +513,7 @@ function makeGrid(cfg){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
     el.querySelectorAll("select[data-prow]").forEach(s=>s.addEventListener("change",()=>{rows[+s.dataset.prow].platform=s.value;toast("Platform updated");}));
-    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const r=rows[+tr.dataset.i];r._trash=true;cfg.counts.active--;cfg.counts.trash++;q("[data-ca]").textContent=cfg.counts.active||"";q("[data-ct]").textContent=cfg.counts.trash||"";render();toast("Row moved to Trash");}));
+    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);q("[data-ca]").textContent=cfg.counts.active||"";q("[data-ct]").textContent=cfg.counts.trash||"";render();toast("Row removed");}));
     el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",()=>toast("Inline edit — wire to backend")));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
@@ -651,6 +632,7 @@ const CostListing=makeGrid({
   columns:CPData.getCostColumns,
   getRows:v=>CPData.getCostRows(v),
   counts:{active:CPData.costTotals.active, trash:CPData.costTotals.trash},
+  actionsColumn:true,
   refreshLabel:"Refresh leads & cost",
   searchPlaceholder:"Search name, platform, UTM…",
   filters:[

@@ -281,53 +281,22 @@ const EventsData=(function(){
       comms_spend:comms||0, telegram_spend:tg||0, host_spend:hostS||0, total_spend:total, leads:leads||0,
       payments:pay||0, enrollments:enr||0, status:status, notes:"", _trash:false};
   };
-  const rowsActive=[
-    e(13,"free-ad","Free Career Counselling for BTech in CSE Students","Free Career Co…","2026-10-02","Career Counselling","",53,0,0,0,0,0,0,0,0,"Done"),
-    e(12,"spotify","Build your Own Spotify","Build your Own…","2026-08-14","Bootcamp","Jasbir Singh",1266,0,0,0,0,0,0,0,0,"Done"),
-    e(11,"","","2d-mario","2026-08-08","Bootcamp","Gaurav Roy",949,75255,0,0,0,15000,0,0,0,"Done"),
-    e(10,"mario-ai","Build a Mario-Style 2D Game with AI","Mario AI","2026-08-07","Bootcamp","Gaurav Roy",949,0,0,0,0,0,0,0,0,"Done"),
-    e(9,"","","chatgpt","2026-07-28","Bootcamp","Jasbir Singh",1065,0,0,0,0,0,0,0,0,"Done"),
-    e(8,"chatgpt","Build your own ChatGPT","ChatGPT","2026-08-01","Bootcamp","Jasbir Singh",1009,78134,0,0,0,0,0,0,0,"Done"),
-    e(7,"whatsapp-clone","Build your own Whatsapp Clone with AI","WA Clone","2026-07-25","Bootcamp","Manas Bhardwaj",902,0,0,0,0,0,0,0,0,"Done"),
-    e(6,"xperience-day","Vedam Xperience Day","Xperience","2026-07-24","Campus Event","Jasbir Singh",1240,85000,15255,0,0,0,2,0,0,"Done"),
-    e(5,"finance-tracker","Build an AI Finance Tracker","Finance","2026-07-18","Bootcamp","Amit",878,0,0,0,0,0,0,0,0,"Done"),
-    e(4,"portfolio","Build a Portfolio Site with AI","Portfolio","2026-07-11","Bootcamp","Amit",1180,0,0,0,0,79370,20,0,0,"Done"),
-    e(3,"neural-net","Train your first Neural Net","NeuralNet","2026-07-04","Bootcamp","Gaurav Roy",1320,0,0,0,31815,12500,0,0,0,"Done"),
-    e(2,"campus-tour","Gurugram Campus Open Day","Campus","2026-06-27","Campus Event","Subhesh Kumar",940,88000,14000,0,0,0,0,0,0,"Done"),
-    e(1,"ai-bootcamp","AI Bootcamp Kickoff","Kickoff","2026-06-20","Bootcamp","Jasbir Singh",129,0,0,0,0,0,0,0,0,"Done")
-  ];
-  const rowsTrash=[
-    e(14,"draft-a","Draft — Alumni Meetup","","2026-09-10","Campus Event","Amit",0,0,0,0,0,0,0,0,0,"Scheduled"),
-    e(15,"draft-b","Draft — Hackathon 2026","","2026-09-20","Bootcamp","Gaurav Roy",0,0,0,0,0,0,0,0,0,"Scheduled"),
-    e(16,"draft-c","Draft — Parent Webinar","","2026-09-28","Career Counselling","Jasbir Singh",0,0,0,0,0,0,0,0,0,"Scheduled")
-  ];
-  const summary={uniqueDone:12, rowsTotal:13, totalReg:12871, totalSpend:929218, totalLeads:201};
+  // Rows come from the backend — start empty (no dummy/seed data).
+  const rowsActive=[];
+  const rowsTrash=[];
+  const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0};
 
-  // performance (done events only). utms:0 => no-UTM warning on each
-  const perfEvents=[
-    {name:"Free Career Counselling for BTech in CSE Students", slug:"free-ad", date:"2026-10-02", cat:"Career Counselling", host:"", utms:0, rows:1, reg:53, spend:0, leads:0, pay:0, enr:0, notes:"counselling cse"},
-    {name:"Build your Own Spotify", slug:"spotify", date:"2026-08-14", cat:"Bootcamp", host:"Jasbir Singh", utms:0, rows:1, reg:1266, spend:0, leads:0, pay:0, enr:0, notes:"spotify clone build"},
-    {name:"Build Your own 2d mario game", slug:"2d-mario", date:"2026-08-08", cat:"Bootcamp", host:"Gaurav Roy", utms:0, rows:1, reg:949, spend:90255, leads:0, pay:0, enr:0, notes:"mario game"},
-    {name:"Build a Mario-Style 2D Game with AI", slug:"mario-ai", date:"2026-08-07", cat:"Bootcamp", host:"Gaurav Roy", utms:0, rows:1, reg:949, spend:0, leads:0, pay:0, enr:0, notes:"mario ai"},
-    {name:"Build your own ChatGPT", slug:"chatgpt", date:"2026-08-01", cat:"Bootcamp", host:"Jasbir Singh", utms:0, rows:2, reg:2074, spend:78134, leads:0, pay:0, enr:0, notes:"chatgpt llm"},
-    {name:"Build your own Whatsapp Clone with AI", slug:"whatsapp-clone", date:"2026-07-25", cat:"Bootcamp", host:"Manas Bhardwaj", utms:0, rows:1, reg:902, spend:0, leads:0, pay:0, enr:0, notes:"whatsapp clone"},
-    {name:"Vedam Xperience Day", slug:"xperience-day", date:"2026-07-24", cat:"Campus Event", host:"Jasbir Singh", utms:1, rows:1, reg:1240, spend:100255, leads:120, pay:2, enr:0, notes:"xperience campus"},
-    {name:"Build an AI Finance Tracker", slug:"finance-tracker", date:"2026-07-18", cat:"Bootcamp", host:"Amit", utms:0, rows:1, reg:878, spend:0, leads:0, pay:0, enr:0, notes:"finance tracker"},
-    {name:"Build a Portfolio Site with AI", slug:"portfolio", date:"2026-07-11", cat:"Bootcamp", host:"Amit", utms:1, rows:1, reg:1180, spend:79370, leads:61, pay:1, enr:0, notes:"portfolio site"},
-    {name:"Train your first Neural Net", slug:"neural-net", date:"2026-07-04", cat:"Bootcamp", host:"Gaurav Roy", utms:1, rows:1, reg:1320, spend:44315, leads:20, pay:0, enr:0, notes:"neural net"},
-    {name:"Gurugram Campus Open Day", slug:"campus-tour", date:"2026-06-27", cat:"Campus Event", host:"Subhesh Kumar", utms:0, rows:1, reg:940, spend:102000, leads:0, pay:0, enr:0, notes:"campus open day"},
-    {name:"AI Bootcamp Kickoff", slug:"ai-bootcamp", date:"2026-06-20", cat:"Bootcamp", host:"Jasbir Singh", utms:0, rows:1, reg:111, spend:0, leads:0, pay:0, enr:0, notes:"kickoff"}
-  ];
-  // curated headline KPIs (sample from screenshots)
-  const perfKpis={uniqueEvents:12, registrations:11862, leads:201, payments:3, enrolments:0, l2p:1.49,
-    totalSpend:929218, cpl:4623, cpp:309739, adSpend:640000, inflSpend:45000, commsSpend:0, tgSpend:180000, hostSpend:65000};
+  // performance (done events only) — populated from backend.
+  const perfEvents=[];
+  const perfKpis={uniqueEvents:0, registrations:0, leads:0, payments:0, enrolments:0, l2p:0,
+    totalSpend:0, cpl:0, cpp:0, adSpend:0, inflSpend:0, commsSpend:0, tgSpend:0, hostSpend:0};
 
   const wait=ms=>new Promise(r=>setTimeout(r,ms));
   return {
     CATS, HOSTS, columns, summary, perfEvents, perfKpis,
     getColumns:()=>columns.map(c=>({...c})),
     async getRows(view){ await wait(90); return view==="trash"?rowsTrash:rowsActive; },
-    counts:{active:13, trash:3}
+    counts:{active:0, trash:0}
   };
 })();
 
