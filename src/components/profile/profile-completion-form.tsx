@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { saveProfile } from "@/lib/supabase/profile-write";
 import { SearchableSelect } from "@/components/ui/searchable-select";
 import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
 
@@ -21,8 +22,16 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
   const [city, setCity] = useState("");
   const [emailOtp, setEmailOtp] = useState("");
   const [sent, setSent] = useState<"idle" | "sending" | "sent">("idle");
+  const [cooldown, setCooldown] = useState(0);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState("");
+
+  // resend cooldown ticker
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const t = setInterval(() => setCooldown((c) => c - 1), 1000);
+    return () => clearInterval(t);
+  }, [cooldown]);
 
   useEffect(() => {
     (async () => {
@@ -41,12 +50,15 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
   }, [supabase]);
 
   async function sendCode() {
-    setSent("sending"); setErr("");
+    setErr("");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) return setErr("Enter a valid email address.");
+    setSent("sending");
     // clear any UNVERIFIED ghost account that owns this email (incomplete prior
     // signup), so verifying your own email doesn't hit "already used".
-    try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email.trim() }) }); } catch { /* best effort */ }
+    try { const { data: { session } } = await supabase.auth.getSession(); await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email.trim(), accessToken: session?.access_token }) }); } catch { /* best effort */ }
     const { error } = await supabase.auth.updateUser({ email: email.trim() });
     setSent(error ? "idle" : "sent");
+    if (!error) setCooldown(45);
     if (error) {
       const m = error.message || "";
       if (/database error/i.test(m)) setErr("This email couldn't be verified — it may already be used by another account. Try a different email, or contact support.");
@@ -72,10 +84,11 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
       const { error: eErr } = await supabase.auth.verifyOtp({ email: email.trim(), token: emailOtp.replace(/\D/g, ""), type: "email_change" });
       if (eErr) { setSaving(false); return setErr(eErr.message || "Email code didn't work."); }
     }
-    await supabase.from("profiles").update({
+    const { error: saveErr } = await saveProfile(supabase, session.user.id, {
       grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
       state, city, email_verified: true,
-    }).eq("id", session.user.id);
+    });
+    if (saveErr) { setSaving(false); return setErr(saveErr); }
     setSaving(false);
     onComplete();
   }
@@ -91,11 +104,14 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
         <Field label="State / UT"><SearchableSelect options={INDIA_STATES} value={state} onChange={(v) => { setState(v); setCity(""); }} placeholder="Select state…" /></Field>
         <Field label="City"><SearchableSelect options={state ? (STATE_CITIES[state] ?? []) : []} value={city} onChange={setCity} placeholder={state ? "Select city…" : "Pick a state first"} disabled={!state} /></Field>
       </div>
-      <Field label={`Verify your email (${email})`}>
+      <Field label="Your email — add or fix it here">
         <div className="flex gap-2">
-          <input className={inputCls + " text-center tracking-[0.3em]"} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="Email code" />
-          <button onClick={sendCode} disabled={sent === "sending"} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{sent === "sending" ? "…" : sent === "sent" ? "Sent ✓" : "Send code"}</button>
+          <input className={inputCls} value={email} onChange={(e) => { setEmail(e.target.value); setSent("idle"); setCooldown(0); }} type="email" placeholder="you@example.com" />
+          <button onClick={sendCode} disabled={sent === "sending" || cooldown > 0} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{sent === "sending" ? "Sending…" : cooldown > 0 ? `Resend in ${cooldown}s` : sent === "sent" ? "Resend OTP" : "Send OTP"}</button>
         </div>
+      </Field>
+      <Field label="Enter the code we emailed you">
+        <input className={inputCls + " text-center tracking-[0.3em]"} value={emailOtp} onChange={(e) => setEmailOtp(e.target.value)} inputMode="numeric" maxLength={6} placeholder="Email code" />
       </Field>
       {err && <p className="font-body text-sm text-red-500">{err}</p>}
       <button onClick={save} disabled={saving} className={primaryBtn}>{saving ? "Saving…" : "Complete profile"}</button>

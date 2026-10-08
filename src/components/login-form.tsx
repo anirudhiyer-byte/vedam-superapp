@@ -1,7 +1,7 @@
 "use client";
 import { gtmEvent } from "@/lib/analytics/gtm";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -26,8 +26,29 @@ export function LoginForm() {
   const [otp, setOtp] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaReset, setCaptchaReset] = useState(0);
+  const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const t = setInterval(() => setCooldown((c) => c - 1), 1000);
+    return () => clearInterval(t);
+  }, [cooldown]);
 
   const e164 = (raw: string) => "+91" + raw.replace(/\D/g, "").slice(-10);
+
+  // resend the code on the OTP screen (fresh captcha token from the widget below)
+  async function resendCode() {
+    setError(null);
+    if (mode === "phone") { const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null }); if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
+    if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha to resend.");
+    const { error } =
+      mode === "phone"
+        ? await supabase.auth.signInWithOtp({ phone: e164(phone), options: { shouldCreateUser: false, channel: "sms", captchaToken: captchaToken || undefined } })
+        : await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: email.trim().toLowerCase().endsWith("@vedam.org"), captchaToken: captchaToken || undefined } });
+    setCaptchaToken(null); setCaptchaReset((x) => x + 1);
+    if (error) return setError(error.message);
+    setOtp(""); setCooldown(30);
+  }
 
   async function staffLogin() {
     setError(null);
@@ -135,9 +156,13 @@ export function LoginForm() {
         ) : (
           <>
             <input className={inputCls + " text-center text-lg tracking-[0.4em]"} value={otp} onChange={(e) => setOtp(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !loading) verify(); }} inputMode="numeric" maxLength={6} placeholder="••••••" />
+            <Turnstile onToken={setCaptchaToken} resetKey={captchaReset} />
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
             <button onClick={verify} disabled={loading} className={primaryBtn}>
               {loading ? "Verifying…" : "Verify & log in"}
+            </button>
+            <button onClick={resendCode} disabled={cooldown > 0} className="w-full rounded-xl border border-white/15 px-5 py-2.5 text-sm font-semibold text-accent disabled:opacity-50">
+              {cooldown > 0 ? `Resend OTP in ${cooldown}s` : "Resend OTP"}
             </button>
             <button onClick={() => { setSent(false); setOtp(""); setError(null); }} className="w-full font-body text-sm text-white/55">
               ← Use a different {mode}

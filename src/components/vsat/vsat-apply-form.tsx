@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { saveProfile } from "@/lib/supabase/profile-write";
 import { readUtm } from "@/lib/utm";
 import { track } from "@/lib/analytics/track";
 
@@ -94,10 +95,13 @@ export function VsatApplyForm() {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Enter a valid email.");
     if (phone.replace(/\D/g, "").length < 10) return setError("Enter a valid 10-digit mobile.");
     // existing verified phone: skip OTP, go straight to lead + part 2
-    if (phoneVerified) { setLoading(true); await supabase.from("profiles").update({ full_name: fullName.trim(), email: email.trim() }).eq("id", (await supabase.auth.getUser()).data.user?.id ?? ""); await makeLead(); setLoading(false); return setStep("part2"); }
+    if (phoneVerified) { setLoading(true); const uid = (await supabase.auth.getUser()).data.user?.id; const { error: e1 } = await saveProfile(supabase, uid, { full_name: fullName.trim(), email: email.trim() }); if (e1) console.warn("[vsat] prefill profile write did not confirm:", e1); await makeLead(); setLoading(false); return setStep("part2"); }
     setLoading(true);
     try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone: e164(phone), email: email.trim() }) }); } catch { /* best effort */ }
-    const { error } = await supabase.auth.signInWithOtp({ phone: e164(phone) });
+    // pass name + email in metadata so the DB trigger captures them at account
+    // creation — email must NOT depend on the client-side update after verify.
+    const u = readUtm();
+    const { error } = await supabase.auth.signInWithOtp({ phone: e164(phone), options: { data: { full_name: fullName.trim(), email: email.trim(), consent_given: "true", utm_source: u.utm_source, utm_medium: u.utm_medium, utm_campaign: u.utm_campaign } } });
     setLoading(false);
     if (error) return setError(error.message || "Couldn't send OTP.");
     setStep("otp");
@@ -110,10 +114,13 @@ export function VsatApplyForm() {
     const { data, error } = await supabase.auth.verifyOtp({ phone: e164(phone), token: otp.replace(/\D/g, ""), type: "sms" });
     if (error || !data.user) { setLoading(false); return setError(error?.message || "OTP didn't work."); }
     const utm = readUtm();
-    await supabase.from("profiles").update({
+    // email + mobile_verified guaranteed server-side by the auth triggers; this
+    // is a best-effort fast-path. Confirm + log, don't block the lead.
+    const { error: vErr } = await saveProfile(supabase, data.user.id, {
       full_name: fullName.trim(), email: email.trim(), mobile_verified: true,
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null,
-    }).eq("id", data.user.id);
+    });
+    if (vErr) console.warn("[vsat] verify profile write did not confirm:", vErr);
     await makeLead();                      // <-- LEAD IS CREATED ON OTP VERIFY
     track("sign_up", { method: "otp", surface: "vsat" });
     setPhoneVerified(true); setLoading(false); setStep("part2");
@@ -135,12 +142,12 @@ export function VsatApplyForm() {
       if (eErr) { setSavingP2(false); return setError(eErr.message || "Email code didn't work."); }
     }
     const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      await supabase.from("profiles").update({
-        grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
-        state, city, email: email.trim(), email_verified: true,
-      }).eq("id", user.id);
-    }
+    // Critical write: these details have no server-side fallback. Confirm + abort.
+    const { error: appErr } = await saveProfile(supabase, user?.id, {
+      grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
+      state, city, email: email.trim(), email_verified: true,
+    });
+    if (appErr) { setSavingP2(false); return setError(appErr); }
     const { data: { session } } = await supabase.auth.getSession();
     const res = await fetch("/api/vsat/application", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
       accessToken: session?.access_token,

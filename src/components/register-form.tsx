@@ -1,9 +1,10 @@
 "use client";
 import { gtmEvent } from "@/lib/analytics/gtm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { saveProfile } from "@/lib/supabase/profile-write";
 import { readUtm } from "@/lib/utm";
 import { track } from "@/lib/analytics/track";
 import { Turnstile } from "@/components/turnstile";
@@ -47,8 +48,35 @@ export function RegisterForm() {
   const [emailVerified, setEmailVerified] = useState(false);
   const [resendState, setResendState] = useState<"idle" | "sending" | "sent">("idle");
   const [savingP2, setSavingP2] = useState(false);
+  const [otpCooldown, setOtpCooldown] = useState(0);
+  const [emailCooldown, setEmailCooldown] = useState(0);
+
+  // resend cooldown tickers
+  useEffect(() => {
+    if (otpCooldown <= 0 && emailCooldown <= 0) return;
+    const t = setInterval(() => {
+      setOtpCooldown((c) => (c > 0 ? c - 1 : 0));
+      setEmailCooldown((c) => (c > 0 ? c - 1 : 0));
+    }, 1000);
+    return () => clearInterval(t);
+  }, [otpCooldown, emailCooldown]);
 
   const e164 = (raw: string) => "+91" + raw.replace(/\D/g, "").slice(-10);
+
+  // ---------- resend the phone OTP (no re-validation / no existence check) ----------
+  async function resendPhoneOtp() {
+    setError(null);
+    const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null });
+    if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again.");
+    if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha to resend.");
+    const { error } = await supabase.auth.signInWithOtp({
+      phone: e164(phone),
+      options: { shouldCreateUser: true, channel: "sms", captchaToken: captchaToken || undefined },
+    });
+    setCaptchaToken(null); setCaptchaReset((x) => x + 1);   // token is single-use — force a fresh one
+    if (error) return setError(error.message);
+    setOtp(""); setOtpCooldown(30);
+  }
   const goNext = () => window.location.assign(nextUrl);
 
   // ---------- PART 1: name + WhatsApp + email -> phone OTP ----------
@@ -92,12 +120,17 @@ export function RegisterForm() {
     if (error || !data.user) { setLoading(false); return setError(error?.message ?? "That code didn't work. Try again."); }
 
     const utm = readUtm();
-    await supabase.from("profiles").update({
+    // Email + mobile_verified are now guaranteed server-side by the auth triggers,
+    // so this write is a best-effort fast-path for the extra fields. Confirm it
+    // (no silent 0-row failures) and log if it didn't land — but don't block the
+    // user, since the critical fields are already captured by the DB.
+    const { error: p1err } = await saveProfile(supabase, data.user.id, {
       full_name: fullName.trim(), email: email.trim(), mobile_verified: true, signup_session_id: sid() || null,
       consent_given: true, consent_at: new Date().toISOString(), last_login_at: new Date().toISOString(),
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null,
       referrer: utm.referrer ?? null, landing_path: utm.landing_path ?? null,
-    }).eq("id", data.user.id);
+    });
+    if (p1err) console.warn("[register] part-1 profile write did not confirm:", p1err);
     await supabase.from("activity_log").insert({ user_id: data.user.id, event_type: "signup",
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null });
     gtmEvent("sign_up", { method: "otp" });
@@ -132,12 +165,13 @@ export function RegisterForm() {
     const { error: eErr } = await supabase.auth.verifyOtp({ email: email.trim(), token: emailOtp.replace(/\D/g, ""), type: "email_change" });
     if (eErr) { setSavingP2(false); return setError(eErr.message || "Email code didn't work."); }
     const { data: u } = await supabase.auth.getUser();
-    if (u?.user) {
-      await supabase.from("profiles").update({
-        grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
-        state, city, email: email.trim(), email_verified: true,     // -> profile_completed flips true via the DB trigger
-      }).eq("id", u.user.id);
-    }
+    // Critical write: grad_year/stream/state/city have NO server-side fallback,
+    // so a silent failure here loses the user's profile. Confirm + abort on error.
+    const { error: p2err } = await saveProfile(supabase, u?.user?.id, {
+      grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
+      state, city, email: email.trim(), email_verified: true,     // -> profile_completed flips true via the DB trigger
+    });
+    if (p2err) { setSavingP2(false); return setError(p2err); }
     setEmailVerified(true); setSavingP2(false);
     track("part2_complete");
     goNext();   // resume the pending action / land back where they came from
@@ -151,7 +185,7 @@ export function RegisterForm() {
     try { const { data: { session } } = await supabase.auth.getSession(); await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email.trim(), accessToken: session?.access_token }) }); } catch { /* best effort */ }
     const { error } = await supabase.auth.updateUser({ email: email.trim() });
     if (error) { setResendState("idle"); return setError(error.message || "Couldn't send the code to that email."); }
-    setResendState("sent");
+    setResendState("sent"); setEmailCooldown(45);
   }
 
   return (
@@ -190,8 +224,10 @@ export function RegisterForm() {
           <p className="mt-1 font-body text-sm text-white/55">We sent a 6-digit code to +91 {phone.replace(/\D/g, "").slice(-10)}.</p>
           <div className="mt-6 space-y-4">
             <input className={otpCls} value={otp} onChange={(e) => setOtp(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") verify(); }} inputMode="numeric" maxLength={6} placeholder="••••••" />
+            <Turnstile onToken={setCaptchaToken} resetKey={captchaReset} />
             {error && <p className="font-body text-sm text-red-500">{error}</p>}
             <button onClick={verify} disabled={loading} className={primaryBtn}>{loading ? "Verifying…" : "Verify phone"}</button>
+            <button onClick={resendPhoneOtp} disabled={otpCooldown > 0} className="w-full rounded-xl border border-white/15 px-5 py-2.5 text-sm font-semibold text-accent disabled:opacity-50">{otpCooldown > 0 ? `Resend OTP in ${otpCooldown}s` : "Resend OTP"}</button>
             <button onClick={() => { setStep("part1"); setOtp(""); setError(null); }} className="w-full font-body text-sm text-white/55">← Wrong number or email? Edit details</button>
           </div>
         </>
@@ -225,7 +261,7 @@ export function RegisterForm() {
             <Field label="Your email — edit here if it's wrong">
               <div className="flex gap-2">
                 <input className={inputCls} value={email} onChange={(e) => { setEmail(e.target.value); setResendState("idle"); }} onKeyDown={(e) => { if (e.key === "Enter") resendEmailCode(); }} type="email" placeholder="you@example.com" />
-                <button onClick={resendEmailCode} disabled={resendState === "sending"} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{resendState === "sending" ? "…" : resendState === "sent" ? "Sent ✓" : "Send code"}</button>
+                <button onClick={resendEmailCode} disabled={resendState === "sending" || emailCooldown > 0} className="shrink-0 rounded-lg border border-white/15 px-3 text-xs font-semibold text-accent disabled:opacity-60">{resendState === "sending" ? "Sending…" : emailCooldown > 0 ? `Resend in ${emailCooldown}s` : resendState === "sent" ? "Resend OTP" : "Send OTP"}</button>
               </div>
             </Field>
             <Field label="Enter the code we emailed you">
