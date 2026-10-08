@@ -135,6 +135,7 @@ export function SiteHeader() {
                           <div className="my-1 h-px bg-white/10" />
                           <div className="px-4 pt-1 pb-0.5 font-mono text-[10px] uppercase tracking-wide text-white/35">Admin</div>
                           <Link href="/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">⚙ Admin overview</Link>
+                          <Link href="/admin/growth" className="block px-4 py-2 text-white/85 hover:bg-white/5">📈 Growth</Link>
                           <Link href="/events?admin=manage" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage Events</Link>
                           <Link href="/events?admin=analytics" className="block px-4 py-2 text-white/85 hover:bg-white/5">Events Analytics</Link>
                           <Link href="/codesprint?admin=1" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage CodeSprint</Link>

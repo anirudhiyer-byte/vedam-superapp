@@ -1,0 +1,819 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style id="__merge_shell">
+  /* hide each module's internal left rail; shell provides unified nav */
+  .rail{display:none!important}
+  .shell{grid-template-columns:1fr!important}
+  @media(max-width:820px){.shell{grid-template-columns:1fr!important}}
+  html,body{min-height:100%;}
+</style>
+</head><body>
+<title>Vedam Neural CRM · Code Sprint</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Code Sprint module — "Neural Glass" design system (green accent identity). */
+:root{
+  --bg:#070a16; --bg2:#0b1024; --panel:rgba(20,26,54,0.55); --panel-brd:rgba(130,150,255,0.14);
+  --ink:#f2f5ff; --mut:#aeb8e0; --mut2:#7681b2;
+  --violet:#8b5cf6; --cyan:#22d3ee; --pink:#ff3d9a; --amber:#ffb13d; --green:#34e2b0; --blue:#5b8cff; --orange:#ff8a3d;
+  --rail:rgba(12,16,38,0.72); --line:rgba(130,150,255,0.10); --head:#0f1533; --menu:#141a38;
+  color-scheme:dark;
+  --display:"Sora","Segoe UI",system-ui,sans-serif;
+  --font:"Inter","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);overflow:hidden;
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+#bg{position:fixed;inset:0;z-index:0;display:block}
+.glow{position:fixed;z-index:0;filter:blur(90px);opacity:.5;pointer-events:none}
+.g1{width:460px;height:460px;left:-120px;top:-120px;background:radial-gradient(circle,#5b3df6,transparent 70%)}
+.g2{width:520px;height:520px;right:-160px;bottom:-180px;background:radial-gradient(circle,#0e7490,transparent 70%)}
+.shell{position:relative;z-index:1;display:grid;grid-template-columns:262px 1fr;height:100%}
+
+/* rail / nav tree */
+.rail{background:var(--rail);backdrop-filter:blur(14px);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:20px 12px;gap:2px;overflow:auto}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 10px 18px}
+.logo{width:36px;height:36px;border-radius:10px;flex:none;background:conic-gradient(from 210deg,var(--violet),var(--cyan),var(--pink),var(--violet));box-shadow:0 0 18px rgba(139,92,246,.55)}
+.brand b{font-family:var(--display);font-size:14.5px;font-weight:600;letter-spacing:-.2px;line-height:1.2;display:block}
+.brand span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:3.5px;color:var(--cyan);margin-top:4px}
+.nav a,.nav .parent{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);font-size:13.5px;font-weight:500;text-decoration:none;cursor:pointer;transition:.16s;border:1px solid transparent;user-select:none}
+.nav a:hover,.nav .parent:hover{color:var(--ink);background:rgba(130,150,255,.07)}
+.nav a.on{color:var(--ink);background:linear-gradient(90deg,rgba(139,92,246,.22),rgba(34,211,238,.05));border-color:rgba(139,92,246,.3);box-shadow:inset 0 0 0 1px rgba(139,92,246,.15)}
+.nav svg{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav .lbl{flex:1}
+.nav .chev{width:13px;height:13px;transition:transform .2s;opacity:.7}
+.nav .parent.open>.chev{transform:rotate(180deg)}
+.nav .children{display:none;flex-direction:column;gap:2px;margin:2px 0 2px 14px;padding-left:10px;border-left:1px solid var(--line)}
+.nav .parent.open+.children{display:flex}
+.nav .children a{font-size:13px;padding:9px 11px}
+.nav .caret{margin-left:auto;opacity:.5;font-size:15px}
+.railfoot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.railfoot .email{color:var(--mut2);font-size:11px;font-family:var(--mono);padding:10px 11px 4px}
+.railfoot .so{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);cursor:pointer;font-size:13.5px;font-weight:500}
+.railfoot .so:hover{color:var(--ink);background:rgba(130,150,255,.07)}
+.railfoot .so svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* main */
+.main{overflow:auto;padding:28px 32px 48px}
+.page{display:none}
+.page.on{display:block;animation:fade .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.phead{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.htitle{display:flex;align-items:center;gap:16px}
+.hicon{width:52px;height:52px;border-radius:14px;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,var(--violet),#6d4bd6);box-shadow:0 10px 30px -10px rgba(139,92,246,.6)}
+.hicon svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h1{margin:0;font-family:var(--display);font-size:40px;font-weight:700;letter-spacing:-1.4px;line-height:1.04;
+  background:linear-gradient(92deg,var(--violet),#c4b5fd 85%);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance;filter:drop-shadow(0 0 26px rgba(139,92,246,.25))}
+.page .sub{color:var(--mut);font-size:13px;margin-top:9px;font-family:var(--mono);letter-spacing:.3px}
+.page .subp{color:var(--mut);font-size:13.5px;margin-top:6px}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-size:13px;font-weight:600;padding:11px 16px;border-radius:12px;cursor:pointer;border:1px solid var(--panel-brd);background:var(--panel);color:var(--ink);backdrop-filter:blur(10px);transition:.16s;white-space:nowrap}
+.btn:hover{border-color:rgba(139,92,246,.45);transform:translateY(-1px)}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn.prim{background:linear-gradient(90deg,var(--violet),#6d4bd6);border:none;color:#fff;box-shadow:0 10px 26px -12px rgba(139,92,246,.8)}
+.btn.ghost-green{border-color:rgba(139,92,246,.4);color:var(--violet)}
+
+/* toolbar */
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 14px;align-items:center}
+.search{flex:1;min-width:280px;display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--panel-brd);border-radius:13px;padding:0 15px;backdrop-filter:blur(10px)}
+.search svg{width:17px;height:17px;stroke:var(--mut2);fill:none;stroke-width:1.8}
+.search input{flex:1;background:none;border:none;outline:none;color:var(--ink);font-family:var(--font);font-size:13.5px;padding:13px 0}
+.search input::placeholder{color:var(--mut2)}
+.sel{background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--panel-brd);border-radius:13px;min-width:170px;color:var(--ink);font-family:var(--font);font-size:13.5px;padding:13px 36px 13px 15px;outline:none;cursor:pointer;transition:.15s;appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%237681b2' stroke-width='1.6' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.sel:hover{border-color:rgba(139,92,246,.35)} .sel:focus{border-color:rgba(139,92,246,.55);box-shadow:0 0 0 3px rgba(139,92,246,.12)}
+.sel option{background:var(--bg2);color:var(--ink)}
+.spacer{flex:1}
+
+/* stat cards */
+.stats{display:grid;gap:16px;margin:4px 0 4px}
+.stats.six{grid-template-columns:repeat(6,1fr)} .stats.four{grid-template-columns:repeat(4,1fr)}
+.stat{position:relative;background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:18px;padding:18px 20px 20px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
+.stat:hover{transform:translateY(-4px);border-color:rgba(139,92,246,.4);box-shadow:0 20px 48px -22px var(--glow,rgba(139,92,246,.5))}
+.stat::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--bar)}
+.stat .hd{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase}
+.stat .hd svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;opacity:.8}
+.stat .num{font-family:var(--display);font-size:30px;font-weight:700;margin-top:12px;letter-spacing:-1px;font-variant-numeric:tabular-nums;line-height:1.05}
+.stat .ssub{margin-top:11px;font-size:11.5px;color:var(--mut2);line-height:1.45}
+.sg{--bar:linear-gradient(90deg,var(--green),#9af7df);--glow:rgba(139,92,246,.5)} .sg .num{color:var(--green);text-shadow:0 0 22px rgba(139,92,246,.45)}
+.sc{--bar:linear-gradient(90deg,var(--cyan),#a5f3fc);--glow:rgba(34,211,238,.5)} .sc .num{color:var(--cyan);text-shadow:0 0 22px rgba(34,211,238,.4)}
+.sv{--bar:linear-gradient(90deg,var(--violet),#c4b5fd);--glow:rgba(139,92,246,.6)} .sv .num{color:var(--violet);text-shadow:0 0 22px rgba(139,92,246,.45)}
+.so{--bar:linear-gradient(90deg,var(--orange),#ffc08a);--glow:rgba(255,138,61,.5)} .so .num{color:var(--orange);text-shadow:0 0 22px rgba(255,138,61,.45)}
+.sa{--bar:linear-gradient(90deg,var(--amber),#ffd89b);--glow:rgba(255,177,61,.5)} .sa .num{color:var(--amber);text-shadow:0 0 22px rgba(255,177,61,.45)}
+.sp{--bar:linear-gradient(90deg,var(--pink),#ffa6d4);--glow:rgba(255,61,154,.5)} .sp .num{color:var(--pink);text-shadow:0 0 22px rgba(255,61,154,.45)}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:24px 0 4px}
+.tab{background:none;border:none;color:var(--mut);font-family:var(--font);font-size:14px;font-weight:600;padding:12px 16px;cursor:pointer;position:relative;transition:.15s;display:inline-flex;align-items:center;gap:8px}
+.tab:hover{color:var(--ink)} .tab.on{color:var(--ink)}
+.tab.on::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;background:var(--violet)}
+.tab .pill{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border-radius:20px;background:rgba(139,92,246,.18);color:#c9b8ff}
+.tab .pill:empty{display:none}
+
+/* grid meta */
+.gridmeta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:16px 0 10px}
+.linklike{display:inline-flex;align-items:center;gap:7px;color:var(--mut);font-size:12.5px;font-weight:500;cursor:pointer;border:none;background:none;transition:.15s}
+.linklike:hover{color:var(--ink)} .linklike svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+.tip{color:var(--mut2);font-size:12px;font-style:italic}
+.trashbar{display:flex;align-items:center;gap:10px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.22);border-radius:13px;padding:14px 18px;margin:12px 0;color:var(--mut);font-size:13px}
+.trashbar i{width:8px;height:8px;border-radius:50%;background:var(--violet);box-shadow:0 0 8px var(--violet);flex:none}
+
+/* grid */
+.gridwrap{background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:18px;overflow:auto;max-height:58vh}
+table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:13px}
+.grid th,.grid td{padding:13px 16px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+.grid thead th{position:sticky;top:0;z-index:3;background:var(--head);color:var(--mut);font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:grab}
+.grid thead th.dragover{box-shadow:inset 3px 0 0 var(--green)}
+.grid thead th .thin{display:flex;align-items:center;gap:8px}
+.grid thead th .req{color:var(--pink)}
+.grid th .menu-btn{margin-left:auto;background:none;border:none;color:var(--mut2);cursor:pointer;font-size:15px;line-height:1;padding:0 2px;border-radius:5px}
+.grid th .menu-btn:hover{color:var(--ink);background:rgba(255,255,255,.08)}
+.grid td{color:var(--ink)} .grid td.mut{color:var(--mut2)}
+.grid tbody tr:hover td{background:rgba(255,255,255,.02)}
+/* sticky Actions column (stays visible on horizontal scroll) */
+.grid th.actcol,.grid td.actcol{position:sticky;right:0;background:var(--head);box-shadow:inset 1px 0 0 var(--line)}
+.grid thead th.actcol{z-index:4}
+.grid tbody td.actcol{z-index:2}
+.grid tbody tr:hover td.actcol{background:#141b3d}
+.grid .chk{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--panel-brd);background:var(--bg2);cursor:pointer;appearance:none;position:relative;vertical-align:middle}
+.grid .chk:checked{background:var(--violet);border-color:var(--violet)}
+.grid .chk:checked::after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.alink{color:var(--violet);text-decoration:none}
+.alink:hover{text-decoration:underline}
+.pcell{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid var(--panel-brd);border-radius:9px;padding:6px 10px;font-size:12.5px;color:var(--ink);cursor:pointer;font-family:var(--font)}
+.pcell select{background:none;border:none;color:var(--ink);font-family:var(--font);font-size:12.5px;outline:none;cursor:pointer;appearance:none}
+.pcell svg{width:12px;height:12px;stroke:var(--mut2);fill:none;stroke-width:1.8}
+.rowact{display:inline-flex;gap:8px}
+.rowact button{background:rgba(255,255,255,.05);border:1px solid var(--panel-brd);border-radius:8px;width:30px;height:30px;display:grid;place-items:center;cursor:pointer;color:var(--mut);transition:.15s}
+.rowact button:hover{color:var(--ink);border-color:rgba(139,92,246,.4)}
+.rowact svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+.emptyrow{text-align:center;padding:60px 20px;color:var(--mut)}
+.emptyrow b{display:block;font-family:var(--display);font-size:16px;color:var(--ink);margin-bottom:8px;font-weight:600}
+.emptyrow a{color:var(--violet);cursor:pointer;font-weight:600}
+
+/* column menu + add-column modal */
+.popover{position:fixed;z-index:50;background:var(--menu);border:1px solid var(--panel-brd);border-radius:12px;padding:6px;box-shadow:0 20px 50px -18px rgba(0,0,0,.7);min-width:170px;display:none}
+.popover.on{display:block;animation:fade .15s ease}
+.popover button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;color:var(--ink);font-family:var(--font);font-size:13px;padding:9px 11px;border-radius:8px;cursor:pointer;text-align:left}
+.popover button:hover{background:rgba(139,92,246,.16)} .popover button.danger{color:#ff6b9d}
+.popover button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+.popover .divide{height:1px;background:var(--line);margin:5px 2px}
+.modalbg{position:fixed;inset:0;z-index:60;background:rgba(5,8,20,.6);backdrop-filter:blur(4px);display:none;place-items:center}
+.modalbg.on{display:grid;animation:fade .15s ease}
+.modal{background:var(--menu);border:1px solid var(--panel-brd);border-radius:18px;padding:22px 24px;width:440px;max-width:94vw;max-height:88vh;overflow:auto}
+.modal .mhead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.modal .mhead .x{background:none;border:none;color:var(--mut2);cursor:pointer;font-size:22px;line-height:1;padding:0 2px}
+.modal .mhead .x:hover{color:var(--ink)}
+.modal h3{margin:0;font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.3px;
+  background:linear-gradient(92deg,var(--violet),#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.modal .msub{font-size:12.5px;color:var(--mut);margin:4px 0 16px}
+.modal label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mut2);margin:14px 0 6px}
+.modal input,.modal select{width:100%;background:var(--bg2);border:1px solid var(--panel-brd);border-radius:11px;color:var(--ink);font-family:var(--font);font-size:14px;padding:11px 13px;outline:none}
+.modal input:focus,.modal select:focus{border-color:rgba(139,92,246,.55);box-shadow:0 0 0 3px rgba(139,92,246,.12)}
+.modal .key{font-family:var(--mono);font-size:11.5px;color:var(--mut2);margin-top:6px}
+.modal .acts{display:flex;justify-content:flex-end;gap:10px;margin-top:22px;position:sticky;bottom:-22px;background:var(--menu);padding:12px 0 2px}
+/* type radio cards */
+.topt{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1px solid var(--panel-brd);border-radius:12px;cursor:pointer;margin-bottom:8px;transition:.15s}
+.topt:hover{border-color:rgba(139,92,246,.4)}
+.topt.sel{border-color:var(--violet);box-shadow:inset 0 0 0 1px var(--violet),0 0 0 3px rgba(139,92,246,.12)}
+.topt .radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--mut2);flex:none;margin-top:1px;display:grid;place-items:center;transition:.15s}
+.topt.sel .radio{border-color:var(--violet)}
+.topt.sel .radio::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--violet)}
+.topt .tt b{display:block;font-size:14px;font-weight:600;color:var(--ink);font-family:var(--font)}
+.topt .tt span{display:block;font-size:12px;color:var(--mut2);margin-top:2px}
+/* required-field checkbox */
+.reqrow{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:13.5px;color:var(--ink);cursor:pointer;font-weight:600}
+.reqrow .cb{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--panel-brd);display:grid;place-items:center;flex:none}
+.reqrow.on .cb{background:var(--violet);border-color:var(--violet)}
+.reqrow.on .cb svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:3}
+.reqrow:not(.on) .cb svg{display:none}
+.reqrow .muted{color:var(--mut2);font-size:12px;font-weight:400}
+/* add-row form */
+.formgrid{display:flex;flex-direction:column;gap:2px}
+.formgrid .ffield label .req{color:var(--pink)}
+.btn.prim svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* pagination */
+.pager{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--mut)}
+.pager .rpp{display:flex;align-items:center;gap:8px}
+.pager .rpp select{background:var(--panel);border:1px solid var(--panel-brd);border-radius:9px;color:var(--ink);font-family:var(--mono);font-size:12.5px;padding:6px 26px 6px 10px;appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%237681b2' stroke-width='1.6' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 9px center}
+.pager .nav{display:flex;gap:6px}
+.pager .nav button{background:var(--panel);border:1px solid var(--panel-brd);border-radius:9px;color:var(--mut);width:34px;height:34px;cursor:pointer;font-size:14px}
+.pager .nav button:hover:not(:disabled){color:var(--ink);border-color:rgba(139,92,246,.4)}
+.pager .nav button:disabled{opacity:.35;cursor:default}
+
+/* dashboard controls + kpi + table */
+.dcontrols{background:var(--panel);backdrop-filter:blur(14px);border:1px solid var(--panel-brd);border-radius:18px;padding:20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:16px;margin:22px 0 18px;align-items:end}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--mut2);text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.field label svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7}
+input[type=date]{background:var(--bg2);border:1px solid var(--panel-brd);border-radius:12px;color:var(--ink);font-family:var(--mono);font-size:13px;padding:12px 13px;outline:none;transition:.15s;color-scheme:dark}
+input[type=date]:hover,input[type=date]:focus{border-color:rgba(139,92,246,.5)}
+.dsearch{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--panel-brd);border-radius:12px;padding:0 14px}
+.dsearch svg{width:16px;height:16px;stroke:var(--mut2);fill:none;stroke-width:1.8}
+.dsearch input{flex:1;background:none;border:none;outline:none;color:var(--ink);font-family:var(--font);font-size:13.5px;padding:12px 0}
+.kgrid{display:grid;gap:16px;margin-top:4px}
+.kgrid.k5{grid-template-columns:repeat(5,1fr)}
+.kcard{position:relative;background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:18px;padding:18px 20px 20px;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+.kcard:hover{transform:translateY(-4px);border-color:rgba(139,92,246,.4);box-shadow:0 18px 44px -22px var(--glow)}
+.kcard .hd{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:1.3px;text-transform:uppercase}
+.kcard .hd svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7;opacity:.85}
+.kcard .num{font-family:var(--display);font-size:30px;font-weight:700;margin-top:12px;letter-spacing:-1px;font-variant-numeric:tabular-nums;line-height:1}
+.kcard .cap{margin-top:10px;font-size:11.5px;color:var(--mut2);font-family:var(--mono)}
+.panel{background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:20px;padding:22px 4px 10px;margin-top:22px;position:relative;overflow:hidden}
+.panel .ph{padding:0 20px 14px;font-family:var(--display);font-size:17px;font-weight:600;color:#f4f7ff}
+.dtable-wrap{overflow-x:auto}
+table.dtable{width:100%;border-collapse:separate;border-spacing:0;font-variant-numeric:tabular-nums;min-width:720px}
+.dtable th,.dtable td{padding:14px 20px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line);font-size:13.5px}
+.dtable th:first-child,.dtable td:first-child,.dtable th:nth-child(2),.dtable td:nth-child(2){text-align:left}
+.dtable thead th{background:rgba(139,92,246,.08);color:var(--mut);font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;position:sticky;top:0}
+.dtable tbody td{color:var(--ink);font-family:var(--mono)}
+.dtable tbody td:first-child{font-family:var(--font);font-weight:600}
+.dtable tbody td.lead{color:var(--green)} .dtable tbody td.mqlc{color:var(--cyan)}
+.dtable tbody td.utm{color:var(--mut);max-width:360px;overflow:hidden;text-overflow:ellipsis}
+.dtable tbody tr:hover td{background:rgba(255,255,255,.02)}
+.dempty{text-align:center;padding:50px;color:var(--mut2);font-style:italic}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);z-index:90;background:var(--menu);border:1px solid var(--panel-brd);border-radius:12px;padding:12px 20px;font-size:13px;color:var(--ink);box-shadow:0 18px 50px -16px rgba(0,0,0,.7);opacity:0;pointer-events:none;transition:.28s}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)} #toast b{color:var(--violet)}
+.spin{animation:spin .8s linear infinite} @keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:1200px){.stats.six{grid-template-columns:repeat(3,1fr)}.kgrid.k5{grid-template-columns:repeat(3,1fr)}.dcontrols{grid-template-columns:1fr 1fr}}
+@media(max-width:980px){.stats.six,.stats.four{grid-template-columns:repeat(2,1fr)}.kgrid.k5{grid-template-columns:repeat(2,1fr)}.dcontrols{grid-template-columns:1fr}}
+@media(max-width:820px){.shell{grid-template-columns:1fr}.rail{display:none}.main{padding:20px 16px}h1{font-size:28px}}
+@media(prefers-reduced-motion:reduce){.page.on{animation:none}}
+</style>
+
+<div class="glow g1"></div><div class="glow g2"></div>
+<canvas id="bg"></canvas>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="brand"><div class="logo"></div><div><b>Vedam School<br>of Technology</b><span>CRM</span></div></div>
+    <nav class="nav" id="nav">
+      <a data-inert><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg><span class="lbl">Marketing Overview</span></a>
+      <a data-inert><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg><span class="lbl">Ad-hoc VSAT Journey</span></a>
+      <div class="parent open" data-toggle><svg viewBox="0 0 24 24"><path d="M3 11l16-7-4 16-4-6-8-3z"/></svg><span class="lbl">Marketing Channel</span><svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="children">
+        <a data-inert><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 5a3 3 0 0 1 0 6"/></svg><span class="lbl">Influencers</span><span class="caret">›</span></a>
+        <a data-inert><svg viewBox="0 0 24 24"><path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/></svg><span class="lbl">Telegram</span><span class="caret">›</span></a>
+        <a data-inert><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span class="lbl">Consultants</span><span class="caret">›</span></a>
+        <a data-inert><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-4 1 2-5z"/></svg><span class="lbl">College Predictor</span><span class="caret">›</span></a>
+        <div class="parent open" data-toggle><svg viewBox="0 0 24 24"><path d="M9 8l-5 4 5 4M15 8l5 4-5 4"/></svg><span class="lbl">Code Sprint</span><svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="children">
+          <a data-page="cost-listing" class="on"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg><span class="lbl">Cost &amp; CPL Listing</span></a>
+          <a data-page="cost-dash"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg><span class="lbl">Cost &amp; CPL Dashboard</span></a>
+          <a data-page="utm-listing"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg><span class="lbl">UTM Listing</span></a>
+          <a data-page="utm-dash"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg><span class="lbl">UTM Dashboard</span></a>
+        </div>
+        <a data-inert><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg><span class="lbl">Events</span><span class="caret">›</span></a>
+      </div>
+    </nav>
+    <div class="railfoot">
+      <div class="email">archit.gupta@vedam.org</div>
+      <div class="so" data-inert><svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l-5-5 5-5M15 12H5"/></svg><span>Sign out</span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="page on" id="page-cost-listing"></section>
+    <section class="page" id="page-utm-listing"></section>
+    <section class="page" id="page-cost-dash"></section>
+    <section class="page" id="page-utm-dash"></section>
+  </main>
+</div>
+
+<div class="popover" id="colmenu"></div>
+<div class="modalbg" id="addcol-modal"></div>
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ============================================================================
+   DATA LAYER — the ONE place to swap for the real backend.
+   ============================================================================ */
+const CPData = (function(){
+  const PLATFORMS=["Ads - Google","Ads - Meta","Telegram","WhatsApp","YouTube","Instagram","Organic","Telegram - Manoranjan"];
+  const CP="https://codesprint.vedam.org/?utm_source=";
+  const APPLY="https://apply.vedam.org/?utm_source=code_sprint&utm_medium=";
+
+  // ---- PART A: Cost & CPL listing (9 columns) — layout per screenshot; DUMMY data (replace via backend) ----
+  const costColumns=[
+    {key:"platform",  label:"Platform",   type:"platform", required:true, hidden:false},
+    {key:"name",      label:"Name",       type:"text",   hidden:false},
+    {key:"cpl",       label:"CPL",        type:"money",  hidden:false},
+    {key:"utm_link",  label:"UTM Link",   type:"link",   required:true, hidden:false},
+    {key:"leads",     label:"Leads",      type:"num",    hidden:false},
+    {key:"mql",       label:"MQL",        type:"num",    hidden:false},
+    {key:"cpl_spend", label:"CPL Spend",  type:"money",  hidden:false},
+    {key:"total_cost",label:"Total Cost", type:"money",  hidden:false},
+    {key:"notes",     label:"Notes",      type:"text",   hidden:false}
+  ];
+  // cr(platform, name, cpl, src, leads, mql) — SAME column shape as College Predictor; DUMMY rows (swap later)
+  const cr=(platform,name,cpl,src,leads,mql)=>({platform,name,cpl,utm_link:CP+src,leads,mql,
+    cpl_spend:cpl?cpl*leads:0, total_cost:cpl?cpl*leads:0, notes:"", _trash:false});
+  // Rows come from the backend — start empty (no dummy/seed data).
+  const costRowsActive=[];
+  const costRowsTrash=[];
+  const _sum=(arr,k)=>arr.reduce((a,x)=>a+(+x[k]||0),0);
+  // cost dashboard — By Platform / UTM (populated from backend)
+  const costDashRows=[];
+  const costDashKpis={leads:_sum(costRowsActive,"leads"), mql:_sum(costRowsActive,"mql"),
+    mqlPct:_sum(costRowsActive,"leads")?_sum(costRowsActive,"mql")/_sum(costRowsActive,"leads")*100:0,
+    cplSpend:_sum(costRowsActive,"cpl_spend"), totalCost:_sum(costRowsActive,"total_cost"),
+    blended:_sum(costRowsActive,"leads")?_sum(costRowsActive,"total_cost")/_sum(costRowsActive,"leads"):0};
+
+  // ---- PART B: Banner UTMs (5 columns + Actions, 0 rows) ----
+  const utmColumns=[
+    {key:"campaign_name",label:"Campaign Name",type:"text", required:true, hidden:false},
+    {key:"utm_link",     label:"UTM Link",     type:"link", required:true, hidden:false},
+    {key:"leads",        label:"Leads",        type:"num",  hidden:false},
+    {key:"applications", label:"Applications", type:"num",  hidden:false},
+    {key:"enrollments",  label:"Enrollments",  type:"num",  hidden:false}
+  ];
+  // Banner UTMs — rows come from the backend; start empty (no dummy data).
+  const utmRows=[];
+
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  // summary computed from the live rows, so swapping the dataset updates the cards automatically
+  function summarize(r){
+    const n=new Intl.NumberFormat("en-IN");
+    const leads=_sum(r,"leads"),mql=_sum(r,"mql"),spend=_sum(r,"cpl_spend"),cost=_sum(r,"total_cost");
+    const byP=p=>r.filter(x=>p.test(x.platform)).reduce((a,x)=>a+(+x.leads||0),0);
+    const tg=byP(/Telegram/),yt=byP(/^YouTube/),ig=byP(/Instagram/),wa=byP(/WhatsApp/),ads=byP(/Ads/),org=byP(/Organic/);
+    const sub=leads?`${n.format(tg)} TG · ${n.format(yt)} YT · ${n.format(ig)} IG · ${n.format(wa)} WA · ${n.format(ads)} ads · ${n.format(org)} organic`:"";
+    return {leads, leadsSub:sub, mql, mqlPct:leads?mql/leads*100:0, cplSpend:spend, totalCost:cost, blended:leads?cost/leads:0, rows:r.length};
+  }
+  return {
+    PLATFORMS, costColumns, utmColumns,
+    getCostColumns:()=>costColumns.map(c=>({...c})),
+    getUtmColumns:()=>utmColumns.map(c=>({...c})),
+    async getCostRows(view){ await wait(90); return view==="trash"?costRowsTrash:costRowsActive; },
+    costSummary(view){ return summarize(view==="trash"?costRowsTrash:costRowsActive); },
+    costTotals:{active:costRowsActive.length, trash:costRowsTrash.length},
+    async getUtmRows(view){ await wait(60); return utmRows.filter(r=>view==="trash"?r._trash:!r._trash); },
+    utmRowsRef:utmRows,
+    getCostDash:()=>({rows:costDashRows.map(r=>({...r})), kpis:{...costDashKpis}}),
+    getUtmDash:()=>({rows:utmRows.filter(r=>!r._trash).map(r=>({...r})) })
+  };
+})();
+
+/* ============================================================================
+   SHARED helpers
+   ============================================================================ */
+const fmtN=v=>(v===null||v===undefined||v==="")?"—":Number(v).toLocaleString("en-IN");
+const fmtMoney=v=>(v===null||v===undefined||v==="")?"—":"₹"+Number(v).toLocaleString("en-IN");
+function toast(html){const t=document.getElementById("toast");t.innerHTML=html;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2200);}
+const COUNT_FMT={
+  n:v=>fmtN(Math.round(v)),
+  money:v=>"₹"+Math.round(v).toLocaleString("en-IN"),
+  money2:v=>"₹"+Number(v.toFixed(2)).toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2}),
+  pct1:v=>v.toFixed(1)+"%",
+  pct2:v=>v.toFixed(2)+"%"
+};
+function animateCounts(root){
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  (root||document).querySelectorAll('[data-to]').forEach(el=>{
+    const to=parseFloat(el.dataset.to), fmt=COUNT_FMT[el.dataset.f]||COUNT_FMT.n;
+    if(!isFinite(to)){el.textContent=el.dataset.to;return;}
+    if(reduce){el.textContent=fmt(to);return;}
+    const t0=performance.now(),d=1300;
+    (function tick(t){const k=Math.min((t-t0)/d,1),e=1-Math.pow(1-k,3);
+      el.textContent=fmt(to*e); if(k<1)requestAnimationFrame(tick);})(t0);
+  });
+}
+const EXT='<svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.8;vertical-align:-1px"><path d="M14 4h6v6M20 4l-9 9M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>';
+
+/* ============================================================================
+   GRID factory (used by Cost&CPL Listing and Banner UTM Listing)
+   ============================================================================ */
+function makeGrid(cfg){
+  // cfg: {mount, title, subline(cols,totalRows), columns, getRows, summaryCards(view), counts,
+  //       actionsColumn, refreshLabel, searchPlaceholder, filters[], emptyState, pageSize}
+  let cols=cfg.columns(), rows=[], view="active", search="", filterVals={}, page=1, pageSize=cfg.pageSize||50;
+  const menu=document.getElementById("colmenu"), modal=document.getElementById("addcol-modal");
+  const el=cfg.mount;
+
+  function shell(){
+    const fs=(cfg.filters||[]).map(f=>`<select class="sel" data-fk="${f.key}"><option value="">${f.all}</option>${f.options.map(o=>`<option>${o}</option>`).join("")}</select>`).join("");
+    el.innerHTML=`
+      <div class="phead"><div>
+        <h1>${cfg.title}</h1><div class="sub" data-sub>…</div>
+      </div>
+      <div class="hbtns">
+        <button class="btn" data-csv><svg viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Upload CSV</button>
+        <button class="btn" data-addcol><svg viewBox="0 0 24 24"><path d="M3 5h12M3 12h12M3 19h8M18 9v8M22 13h-8"/></svg>Add Column</button>
+        <button class="btn prim" data-addrow><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Add Row</button>
+        <input type="file" data-file accept=".csv" hidden>
+      </div></div>
+      <div class="toolbar">
+        <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-search placeholder="${cfg.searchPlaceholder}"></div>
+        ${fs}
+        <div class="spacer"></div>
+        <button class="btn ghost-green" data-refresh><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>${cfg.refreshLabel}</button>
+      </div>
+      <div class="stats ${cfg.summaryCards("active").length>4?'six':'four'}" data-stats></div>
+      <div class="tabs" data-tabs>
+        <button class="tab on" data-view="active">Active <span class="pill" data-ca>${cfg.counts.active||""}</span></button>
+        <button class="tab" data-view="trash">Trash <span class="pill" data-ct>${cfg.counts.trash||""}</span></button>
+      </div>
+      <div data-trashbar></div>
+      <div class="gridmeta">
+        <button class="linklike" data-showhidden><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg><span data-hl></span></button>
+        <button class="linklike" data-unhide>Unhide all</button>
+        <span class="tip">Tip: drag a visible column header to reorder. Use the column menu to rename, hide, or delete.</span>
+      </div>
+      <div class="gridwrap"><table class="grid" data-grid></table></div>
+      <div class="pager" data-pager></div>`;
+    wireShell();
+  }
+  const q=s=>el.querySelector(s);
+
+  function visibleCols(){return cols.filter(c=>!c.hidden);}
+  function filtered(){
+    const terms=search.toLowerCase().split(",").map(s=>s.trim()).filter(Boolean);
+    return rows.filter(r=>{
+      for(const k in filterVals){ if(filterVals[k] && r[k]!==filterVals[k]) return false; }
+      if(terms.length){ const hay=Object.values(r).join(" ").toLowerCase(); if(!terms.some(t=>hay.includes(t))) return false; }
+      return true;
+    });
+  }
+  function cell(col,r){
+    const v=r[col.key];
+    if(col.type==="platform"){
+      const opts=CPData.PLATFORMS.map(p=>`<option ${p===v?"selected":""}>${p}</option>`).join("");
+      return `<td><span class="pcell"><select data-prow="${rows.indexOf(r)}">${opts}</select><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></td>`;
+    }
+    if(v===""||v===null||v===undefined) return `<td class="mut">—</td>`;
+    if(col.type==="link"){ const isUrl=/^https?:/.test(v);
+      return isUrl?`<td><a class="alink" href="${v}" target="_blank" rel="noopener">${v.replace(/^https?:\/\//,"").slice(0,34)}… ${EXT}</a></td>`:`<td class="mut">${v}</td>`; }
+    if(col.type==="num") return `<td>${fmtN(v)}</td>`;
+    if(col.type==="money") return `<td>${fmtMoney(v)}</td>`;
+    return `<td>${v}</td>`;
+  }
+  function render(){
+    const vc=visibleCols(), data=filtered();
+    const totalRows = view==="active"?cfg.counts.active:cfg.counts.trash;
+    q("[data-sub]").textContent=`${cols.length} columns · ${totalRows} rows`+(cols.some(c=>c.hidden)?` · ${cols.filter(c=>c.hidden).length} hidden`:"");
+    const hidden=cols.filter(c=>c.hidden).length;
+    q("[data-hl]").textContent=hidden?`Show ${hidden} hidden column${hidden>1?"s":""}`:"No hidden columns";
+    // pagination slice
+    const pages=Math.max(1,Math.ceil(data.length/pageSize)); if(page>pages)page=pages;
+    const start=(page-1)*pageSize, slice=data.slice(start,start+pageSize);
+    // table
+    let thead="<thead><tr><th style='cursor:default'><input type='checkbox' class='chk' data-all></th>";
+    vc.forEach(c=>thead+=`<th draggable="true" data-key="${c.key}"><div class="thin"><span>${c.label}${c.required?' <span class="req">*</span>':''}</span><button class="menu-btn" data-menu="${c.key}">⋯</button></div></th>`);
+    if(cfg.actionsColumn) thead+="<th class='actcol' style='cursor:default'>Actions</th>";
+    thead+="</tr></thead>";
+    let tbody="<tbody>";
+    if(!data.length){
+      tbody+=`<tr><td colspan="${vc.length+1+(cfg.actionsColumn?1:0)}"><div class="emptyrow">${cfg.emptyState}</div></td></tr>`;
+    } else slice.forEach(r=>{
+      tbody+=`<tr data-i="${rows.indexOf(r)}"><td><input type="checkbox" class="chk"></td>`+vc.map(c=>cell(c,r)).join("");
+      if(cfg.actionsColumn) tbody+=`<td class="actcol"><span class="rowact"><button data-edit title="Edit"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button data-del title="Delete"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button></span></td>`;
+      tbody+="</tr>";
+    });
+    tbody+="</tbody>";
+    q("[data-grid]").innerHTML=thead+tbody;
+    wireHeader();
+    const al=q("[data-addrow-link]"); if(al) al.addEventListener("click",()=>q("[data-addrow]").click());
+    const cl=q("[data-csv-link]"); if(cl) cl.addEventListener("click",()=>q("[data-csv]").click());
+    // pager
+    const from=data.length?start+1:0, to=Math.min(start+pageSize,data.length);
+    q("[data-pager]").innerHTML = data.length? `
+      <div class="rpp">Rows per page: <select data-rpp>${[25,50,100].map(n=>`<option ${n===pageSize?"selected":""}>${n}</option>`).join("")}</select></div>
+      <div>Showing ${from}–${to} of ${data.length}</div>
+      <div class="nav"><button data-pg="first" ${page<=1?"disabled":""}>«</button><button data-pg="prev" ${page<=1?"disabled":""}>‹</button>
+        <span style="padding:0 8px;align-self:center">Page ${page} of ${pages}</span>
+        <button data-pg="next" ${page>=pages?"disabled":""}>›</button><button data-pg="last" ${page>=pages?"disabled":""}>»</button></div>` : "";
+    q("[data-pager]").querySelectorAll("[data-pg]").forEach(b=>b.addEventListener("click",()=>{
+      const a=b.dataset.pg; page=a==="first"?1:a==="prev"?page-1:a==="next"?page+1:pages; render();}));
+    const rpp=q("[data-rpp]"); if(rpp) rpp.addEventListener("change",e=>{pageSize=+e.target.value;page=1;render();});
+    renderStats();
+    renderTrashbar();
+  }
+  function renderStats(){
+    const cards=cfg.summaryCards(view);
+    q("[data-stats]").className="stats "+(cards.length>4?"six":"four");
+    q("[data-stats]").innerHTML=cards.map(c=>`
+      <div class="stat ${c.cls}"><div class="hd">${c.label}${c.icon||""}</div>
+      <div class="num" data-to="${c.to}" data-f="${c.f}">0</div>${c.sub?`<div class="ssub">${c.sub}</div>`:""}</div>`).join("");
+    animateCounts(q("[data-stats]"));
+  }
+  function renderTrashbar(){
+    q("[data-trashbar]").innerHTML = view==="trash"
+      ? `<div class="trashbar"><i></i>These rows were deleted but can be restored. Rows older than 30 days will be purged.</div>` : "";
+  }
+  function wireHeader(){
+    q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
+    el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
+    el.querySelectorAll("select[data-prow]").forEach(s=>s.addEventListener("change",()=>{rows[+s.dataset.prow].platform=s.value;toast("Platform updated");}));
+    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);q("[data-ca]").textContent=cfg.counts.active||"";q("[data-ct]").textContent=cfg.counts.trash||"";render();toast("Row removed");}));
+    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",()=>toast("Inline edit — wire to backend")));
+    let dragKey=null;
+    el.querySelectorAll("th[draggable]").forEach(th=>{
+      th.addEventListener("dragstart",()=>dragKey=th.dataset.key);
+      th.addEventListener("dragover",e=>{e.preventDefault();th.classList.add("dragover");});
+      th.addEventListener("dragleave",()=>th.classList.remove("dragover"));
+      th.addEventListener("drop",e=>{e.preventDefault();th.classList.remove("dragover");const tgt=th.dataset.key;if(!dragKey||dragKey===tgt)return;
+        const from=cols.findIndex(c=>c.key===dragKey),to=cols.findIndex(c=>c.key===tgt);const[m]=cols.splice(from,1);cols.splice(to,0,m);render();});
+    });
+  }
+  function openMenu(key,anchor){
+    const col=cols.find(c=>c.key===key),r=anchor.getBoundingClientRect();
+    menu.innerHTML=`
+      <button data-act="rename"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Rename column</button>
+      <button data-act="hide"><svg viewBox="0 0 24 24"><path d="M17.9 17.9A10.4 10.4 0 0 1 12 19C5 19 1 12 1 12a18 18 0 0 1 5.1-5.9m3.9-1A10.4 10.4 0 0 1 12 5c7 0 11 7 11 7a18 18 0 0 1-2.2 3.1M1 1l22 22"/></svg>Hide column</button>
+      <div class="divide"></div>
+      <button class="danger" data-act="delete"${col.required?" disabled style='opacity:.4;cursor:not-allowed'":""}><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>Delete column</button>`;
+    menu.style.left=Math.min(r.left,innerWidth-190)+"px";menu.style.top=(r.bottom+6)+"px";menu.classList.add("on");
+    menu.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{const act=btn.dataset.act;menu.classList.remove("on");
+      if(act==="rename"){const n=prompt("Rename column",col.label);if(n&&n.trim()){col.label=n.trim();render();toast("Column renamed to <b>"+col.label+"</b>");}}
+      if(act==="hide"){col.hidden=true;render();toast("Column hidden");}
+      if(act==="delete"&&!col.required){cols=cols.filter(c=>c.key!==key);render();toast("Column deleted");}
+    }));
+  }
+  const shortName=()=>cfg.title.replace(/\s*Listing$/,"");
+  const CHK='<svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>';
+  const PLUS='<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
+  function openAddCol(){
+    let type="text", req=false;
+    const types=[["text","Text","Plain text (group names, notes)"],["num","Number","Numeric values (counts, amounts)"],
+      ["date","Date","Calendar date"],["link","URL","Link to a webpage"],["ref","Reference","Pointer to a row in another table (campaigns, influencers)"]];
+    modal.innerHTML=`<div class="modal">
+      <div class="mhead"><h3>Add Column to ${shortName()}</h3><button class="x" data-cancel>&times;</button></div>
+      <div class="msub">The new column appears in the table immediately.</div>
+      <label>Column name</label><input data-cn placeholder="e.g. Group Admin Name">
+      <div class="key" data-keyprev>Internal key: —</div>
+      <label>Type</label>
+      <div data-types>${types.map((t,i)=>`<div class="topt ${i===0?'sel':''}" data-type="${t[0]}"><span class="radio"></span><span class="tt"><b>${t[1]}</b><span>${t[2]}</span></span></div>`).join("")}</div>
+      <div class="reqrow" data-req><span class="cb">${CHK}</span>Required field <span class="muted">(Rows can't be saved if this is empty)</span></div>
+      <div class="acts"><button class="btn" data-cancel>Cancel</button><button class="btn prim" data-create>${PLUS}Add Column</button></div>
+    </div>`;
+    modal.classList.add("on");
+    const cn=modal.querySelector("[data-cn]");
+    cn.addEventListener("input",()=>modal.querySelector("[data-keyprev]").textContent="Internal key: "+(cn.value.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_")||"—"));
+    modal.querySelectorAll("[data-type]").forEach(o=>o.addEventListener("click",()=>{modal.querySelectorAll(".topt").forEach(x=>x.classList.remove("sel"));o.classList.add("sel");type=o.dataset.type;}));
+    const rq=modal.querySelector("[data-req]"); rq.addEventListener("click",()=>{req=!req;rq.classList.toggle("on",req);});
+    modal.querySelectorAll("[data-cancel]").forEach(b=>b.addEventListener("click",()=>modal.classList.remove("on")));
+    modal.querySelector("[data-create]").addEventListener("click",()=>{
+      const name=cn.value.trim(); if(!name){cn.focus();return;}
+      const key=name.toLowerCase().replace(/[^a-z0-9]+/g,"_");
+      cols.push({key,label:name,type,hidden:false,required:req});
+      modal.classList.remove("on");render();toast("Column <b>"+name+"</b> added");});
+  }
+  function openAddRow(){
+    const inputFor=c=>{
+      const star=c.required?' <span class="req">*</span>':'';
+      let field;
+      if(c.type==="platform") field=`<select data-f="${c.key}">${CPData.PLATFORMS.map(p=>`<option>${p}</option>`).join("")}</select>`;
+      else if(c.type==="date") field=`<input type="date" data-f="${c.key}">`;
+      else if(c.type==="num"||c.type==="money") field=`<input type="number" data-f="${c.key}" placeholder="${c.type==="money"?"₹0":"0"}">`;
+      else if(c.type==="link") field=`<input type="url" data-f="${c.key}" placeholder="https://">`;
+      else field=`<input data-f="${c.key}" placeholder="—">`;
+      return `<div class="ffield"><label>${c.label}${star}</label>${field}</div>`;
+    };
+    modal.innerHTML=`<div class="modal">
+      <div class="mhead"><h3>Add ${shortName().replace(/^Code Sprint — /,"Code Sprint — ")} Row</h3><button class="x" data-cancel>&times;</button></div>
+      <div class="msub">Fill in the fields below. Required fields marked with <span style="color:var(--pink)">*</span>.</div>
+      <div class="formgrid">${cols.map(inputFor).join("")}</div>
+      <div class="acts"><button class="btn" data-cancel>Cancel</button><button class="btn prim" data-save>${PLUS}Add Row</button></div>
+    </div>`;
+    modal.classList.add("on");
+    modal.querySelectorAll("[data-cancel]").forEach(b=>b.addEventListener("click",()=>modal.classList.remove("on")));
+    modal.querySelector("[data-save]").addEventListener("click",()=>{
+      const miss=cols.filter(c=>c.required && !modal.querySelector(`[data-f="${c.key}"]`).value.trim());
+      if(miss.length){const f=modal.querySelector(`[data-f="${miss[0].key}"]`);f.focus();f.style.borderColor="var(--pink)";toast("<b>"+miss[0].label+"</b> is required");return;}
+      const row={_trash:view==="trash"};
+      cols.forEach(c=>{let v=modal.querySelector(`[data-f="${c.key}"]`).value;
+        if((c.type==="num"||c.type==="money")&&v!=="")v=Number(v);
+        row[c.key]=v;});
+      rows.unshift(row); cfg.counts[view]++; q("[data-c"+(view==="active"?"a":"t")+"]").textContent=cfg.counts[view]||"";
+      modal.classList.remove("on"); render(); toast("Row added");});
+  }
+  function wireShell(){
+    q("[data-search]").addEventListener("input",e=>{search=e.target.value;page=1;render();});
+    el.querySelectorAll("[data-fk]").forEach(s=>s.addEventListener("change",e=>{filterVals[s.dataset.fk]=e.target.value;page=1;render();}));
+    el.querySelectorAll("[data-tabs] .tab").forEach(t=>t.addEventListener("click",async()=>{
+      el.querySelectorAll("[data-tabs] .tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
+      view=t.dataset.view;page=1;rows=await cfg.getRows(view);render();}));
+    q("[data-addrow]").addEventListener("click",openAddRow);
+    q("[data-addcol]").addEventListener("click",openAddCol);
+    q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
+    q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
+    q("[data-refresh]").addEventListener("click",e=>{const ic=e.currentTarget.querySelector("svg");ic.classList.add("spin");e.currentTarget.disabled=true;
+      setTimeout(()=>{ic.classList.remove("spin");e.currentTarget.disabled=false;render();toast("<b>"+cfg.refreshLabel+"</b> complete");},1100);});
+    q("[data-csv]").addEventListener("click",()=>q("[data-file]").click());
+    q("[data-file]").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+      rd.onload=()=>{const lines=rd.result.split(/\r?\n/).filter(Boolean);if(lines.length<2){toast("CSV looks empty");return;}
+        const hdr=lines[0].split(",").map(s=>s.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"));let added=0;
+        lines.slice(1).forEach(line=>{const parts=line.split(",");const o={_trash:false};cols.forEach(c=>o[c.key]="");
+          hdr.forEach((h,i)=>{if(cols.find(c=>c.key===h))o[h]=parts[i]?parts[i].trim():"";});
+          if(Object.values(o).some(v=>v&&v!==false)){rows.unshift(o);added++;}});
+        cfg.counts.active+=added;q("[data-ca]").textContent=cfg.counts.active||"";render();toast("Imported <b>"+added+"</b> rows");};
+      rd.readAsText(f);e.target.value="";});
+    document.addEventListener("click",()=>menu.classList.remove("on"));
+  }
+  async function init(){ shell(); rows=await cfg.getRows("active"); render(); }
+  return { init };
+}
+
+/* ============================================================================
+   Cost & CPL Listing config
+   ============================================================================ */
+const CostListing=makeGrid({
+  mount:document.getElementById("page-cost-listing"),
+  title:"Code Sprint — Cost & CPL Listing",
+  columns:CPData.getCostColumns,
+  getRows:v=>CPData.getCostRows(v),
+  counts:{active:CPData.costTotals.active, trash:CPData.costTotals.trash},
+  actionsColumn:true,
+  refreshLabel:"Refresh leads & cost",
+  searchPlaceholder:"Search name, platform, UTM…",
+  filters:[
+    {key:"platform",all:"All platforms",options:CPData.PLATFORMS},
+    {key:"name",all:"All names",options:["YouTube","Quora","Blogs","Reddit","Manoranjan","TG Broadcast","WA Broadcast","Google Ads","Meta Ads","Instagram"]}
+  ],
+  emptyState:`<b>No entries yet for Code Sprint — Cost & CPL.</b>Click <a data-addrow-link>Add Row</a> or <a data-csv-link>Upload CSV</a> to get started.`,
+  summaryCards:view=>{ const s=CPData.costSummary(view);
+    return [
+      {label:"Total Leads",cls:"sv",to:s.leads,f:"n",sub:s.leadsSub},
+      {label:"MQL",cls:"sg",to:s.mql,f:"n",sub:s.mqlPct.toFixed(1)+"% of leads · PCM/PCMB '25/'26"},
+      {label:"CPL Spend",cls:"sv",to:s.cplSpend,f:"money"},
+      {label:"Total Cost",cls:"sc",to:s.totalCost,f:"money"},
+      {label:"Blended CPL",cls:"sc",to:s.blended,f:"money2"},
+      {label:"Rows",cls:"sp",to:s.rows,f:"n"}
+    ];}
+});
+
+/* ============================================================================
+   Banner UTM Listing config
+   ============================================================================ */
+const UtmListing=makeGrid({
+  mount:document.getElementById("page-utm-listing"),
+  title:"Code Sprint — Banner UTMs Listing",
+  columns:CPData.getUtmColumns,
+  getRows:v=>CPData.getUtmRows(v),
+  counts:{active:0, trash:0},
+  actionsColumn:true,
+  refreshLabel:"Refresh attribution",
+  searchPlaceholder:"Search campaign, UTM… (comma for multiple)",
+  filters:[],
+  emptyState:`<b>No entries yet for Code Sprint — Banner UTMs.</b>Click <a data-addrow-link>Add Row</a> or <a data-csv-link>Upload CSV</a> to get started.`,
+  summaryCards:()=>{ const rows=CPData.utmRowsRef.filter(r=>!r._trash);
+    const leads=rows.reduce((a,r)=>a+(+r.leads||0),0), apps=rows.reduce((a,r)=>a+(+r.applications||0),0), enr=rows.reduce((a,r)=>a+(+r.enrollments||0),0);
+    return [
+      {label:"Total Leads",cls:"sv",to:leads,f:"n"},
+      {label:"Applications",cls:"sc",to:apps,f:"n"},
+      {label:"Enrollments",cls:"sp",to:enr,f:"n"},
+      {label:"L2P %",cls:"sa",to:leads?apps/leads*100:0,f:"pct2"}
+    ];}
+});
+
+/* ============================================================================
+   Cost & CPL Dashboard
+   ============================================================================ */
+function renderCostDash(){
+  const el=document.getElementById("page-cost-dash");
+  const {rows,kpis}=CPData.getCostDash();
+  const IC={users:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg>',
+    trend:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg>'};
+  el.innerHTML=`
+    <div class="phead"><div class="htitle">
+      <div class="hicon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg></div>
+      <div><h1>Code Sprint — Cost &amp; CPL Dashboard</h1><div class="subp">Platform acquisition leads &amp; MQL (all-time).</div></div>
+    </div></div>
+    <div class="dcontrols">
+      <div class="field"><label>Search</label><div class="dsearch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-ds placeholder="Platform or UTM…"></div></div>
+      <div class="field"><label>Platform</label><select class="sel" data-dp style="min-width:0"><option value="">All platforms</option>${[...new Set(rows.map(r=>r.platform))].map(p=>`<option>${p}</option>`).join("")}</select></div>
+      <div class="field"><label>From</label><input type="date" data-df></div>
+      <div class="field"><label>To</label><input type="date" data-dt></div>
+    </div>
+    <div class="kgrid k5">
+      <div class="kcard"><div class="hd">Total Leads ${IC.users}</div><div class="num" data-to="${kpis.leads}" data-f="n" style="color:var(--violet);text-shadow:0 0 22px rgba(139,92,246,.4)">0</div></div>
+      <div class="kcard"><div class="hd">MQL ${IC.users}</div><div class="num" data-to="${kpis.mql}" data-f="n" style="color:var(--green);text-shadow:0 0 22px rgba(139,92,246,.4)">0</div><div class="cap">${kpis.mqlPct}% of leads</div></div>
+      <div class="kcard"><div class="hd">CPL Spend ${IC.trend}</div><div class="num" data-to="${kpis.cplSpend}" data-f="money2" style="color:var(--cyan);text-shadow:0 0 22px rgba(34,211,238,.4)">0</div></div>
+      <div class="kcard"><div class="hd">Total Cost ${IC.trend}</div><div class="num" data-to="${kpis.totalCost}" data-f="money2" style="color:var(--orange);text-shadow:0 0 22px rgba(255,138,61,.4)">0</div></div>
+      <div class="kcard"><div class="hd">Blended CPL ${IC.trend}</div><div class="num" data-to="${kpis.blended}" data-f="money2" style="color:var(--pink);text-shadow:0 0 22px rgba(255,61,154,.4)">0</div></div>
+    </div>
+    <div class="panel"><div class="ph">By Platform / UTM</div><div class="dtable-wrap"><table class="dtable" data-dtable></table></div></div>`;
+  function draw(){
+    const ds=(el.querySelector("[data-ds]").value||"").toLowerCase(), dp=el.querySelector("[data-dp]").value;
+    const list=rows.filter(r=>(!dp||r.platform===dp)&&(!ds||(r.platform+" "+r.utm).toLowerCase().includes(ds)));
+    const head=`<thead><tr><th>Platform</th><th>UTM</th><th>Leads</th><th>MQL</th><th>CPL</th><th>Total Cost</th></tr></thead>`;
+    const body=list.length?list.map(r=>`<tr><td>${r.platform}</td><td class="utm">${r.utm.replace(/^https?:\/\//,"")}</td><td class="lead">${fmtN(r.leads)}</td><td class="mqlc">${fmtN(r.mql)}</td><td class="mut">—</td><td class="mut">—</td></tr>`).join(""):`<tr><td colspan="6"><div class="dempty">No platforms match.</div></td></tr>`;
+    el.querySelector("[data-dtable]").innerHTML=head+"<tbody>"+body+"</tbody>";
+  }
+  el.querySelector("[data-ds]").addEventListener("input",draw);
+  el.querySelector("[data-dp]").addEventListener("change",draw);
+  draw(); animateCounts(el);
+}
+
+/* ============================================================================
+   Banner UTM Dashboard
+   ============================================================================ */
+function renderUtmDash(){
+  const el=document.getElementById("page-utm-dash");
+  const {rows}=CPData.getUtmDash();
+  const leads=rows.reduce((a,r)=>a+(+r.leads||0),0), apps=rows.reduce((a,r)=>a+(+r.applications||0),0), enr=rows.reduce((a,r)=>a+(+r.enrollments||0),0);
+  const l2p=leads?apps/leads*100:0, a2e=apps?enr/apps*100:0;
+  const IC={users:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg>',
+    trend:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg>'};
+  el.innerHTML=`
+    <div class="phead"><div class="htitle">
+      <div class="hicon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg></div>
+      <div><h1>Code Sprint — Banner UTM Dashboard</h1><div class="subp">Leads (by registration date) &amp; applications/enrollments (by payment date), all-time.</div></div>
+    </div></div>
+    <div class="dcontrols">
+      <div class="field"><label>Search</label><div class="dsearch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-ds placeholder="Campaign or UTM…"></div></div>
+      <div class="field"><label>Campaign</label><select class="sel" data-dc style="min-width:0"><option>All-time</option></select></div>
+      <div class="field"><label>From</label><input type="date" data-df></div>
+      <div class="field"><label>To</label><input type="date" data-dt></div>
+    </div>
+    <div class="kgrid k5">
+      <div class="kcard"><div class="hd">Total Leads ${IC.users}</div><div class="num" data-to="${leads}" data-f="n" style="color:var(--violet);text-shadow:0 0 22px rgba(139,92,246,.4)">0</div></div>
+      <div class="kcard"><div class="hd">Applications ${IC.trend}</div><div class="num" data-to="${apps}" data-f="n" style="color:var(--cyan);text-shadow:0 0 22px rgba(34,211,238,.4)">0</div></div>
+      <div class="kcard"><div class="hd">Enrollments ${IC.trend}</div><div class="num" data-to="${enr}" data-f="n" style="color:var(--pink);text-shadow:0 0 22px rgba(255,61,154,.4)">0</div></div>
+      <div class="kcard"><div class="hd">L2P % ${IC.trend}</div><div class="num" data-to="${l2p}" data-f="pct2" style="color:var(--amber);text-shadow:0 0 22px rgba(255,177,61,.4)">0</div></div>
+      <div class="kcard"><div class="hd">A2E % ${IC.trend}</div><div class="num" data-to="${a2e}" data-f="pct2" style="color:var(--violet);text-shadow:0 0 22px rgba(139,92,246,.4)">0</div></div>
+    </div>
+    <div class="panel"><div class="ph">By Banner UTM</div><div class="dtable-wrap"><table class="dtable">
+      <thead><tr><th>Campaign</th><th>UTM</th><th>Leads</th><th>Applications</th><th>Enrollments</th><th>L2P</th></tr></thead>
+      <tbody>${rows.length?rows.map(r=>`<tr><td>${r.campaign_name}</td><td class="utm">${(r.utm_link||"").replace(/^https?:\/\//,"")}</td><td class="lead">${fmtN(r.leads)}</td><td>${fmtN(r.applications)}</td><td>${fmtN(r.enrollments)}</td><td>${r.leads?(r.applications/r.leads*100).toFixed(2)+"%":"—"}</td></tr>`).join(""):`<tr><td colspan="6"><div class="dempty">No banner UTMs match.</div></td></tr>`}</tbody>
+    </table></div></div>`;
+  animateCounts(el);
+}
+
+/* ============================================================================
+   nav + page switching
+   ============================================================================ */
+(function(){
+  const nav=document.getElementById("nav");
+  nav.querySelectorAll("[data-toggle]").forEach(p=>p.addEventListener("click",e=>{e.stopPropagation();p.classList.toggle("open");}));
+  const built={cost:false,utm:false,cd:false,ud:false};
+  nav.querySelectorAll("[data-page]").forEach(a=>a.addEventListener("click",()=>{
+    const pg=a.dataset.page; nav.querySelectorAll("[data-page]").forEach(x=>x.classList.remove("on"));a.classList.add("on");
+    document.querySelectorAll(".page").forEach(s=>s.classList.remove("on"));
+    document.getElementById("page-"+pg).classList.add("on");
+    if(pg==="cost-dash"&&!built.cd){renderCostDash();built.cd=true;} else if(pg==="cost-dash")animateCounts(document.getElementById("page-cost-dash"));
+    if(pg==="utm-dash"&&!built.ud){renderUtmDash();built.ud=true;} else if(pg==="utm-dash")animateCounts(document.getElementById("page-utm-dash"));
+    if(pg==="utm-listing"&&!built.utm){UtmListing.init();built.utm=true;}
+  }));
+  nav.querySelectorAll("[data-inert]").forEach(a=>a.addEventListener("click",()=>toast("That module isn’t part of the Code Sprint prototype yet.")));
+})();
+
+/* ---- Neural particle field ---- */
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const canvas=document.getElementById('bg');let renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});}catch(e){canvas.style.display='none';return;}
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,1,2000);cam.position.z=620;
+  const N=140,R=760;const pos=new Float32Array(N*3),vel=[];
+  for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*R*2;pos[i*3+1]=(Math.random()-.5)*R;pos[i*3+2]=(Math.random()-.5)*R;
+    vel.push([(Math.random()-.5)*.4,(Math.random()-.5)*.4,(Math.random()-.5)*.4]);}
+  const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x8b5cf6,size:4,transparent:true,opacity:.85}));scene.add(pts);
+  const lg=new THREE.BufferGeometry();const linkArr=new Float32Array(N*12);lg.setAttribute('position',new THREE.BufferAttribute(linkArr,3));
+  const lines=new THREE.LineSegments(lg,new THREE.LineBasicMaterial({color:0x22d3ee,transparent:true,opacity:.16}));scene.add(lines);
+  function resize(){renderer.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}
+  resize();addEventListener('resize',resize);
+  let mx=0,my=0;addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5);});
+  const D2=150*150,cap=N*12;
+  function frame(){const p=pg.attributes.position.array;
+    for(let i=0;i<N;i++)for(let a=0;a<3;a++){p[i*3+a]+=vel[i][a];if(Math.abs(p[i*3+a])>R)vel[i][a]*=-1;}
+    pg.attributes.position.needsUpdate=true;let c=0;
+    for(let i=0;i<N&&c<cap-6;i++)for(let j=i+1;j<N&&c<cap-6;j++){const dx=p[i*3]-p[j*3],dy=p[i*3+1]-p[j*3+1],dz=p[i*3+2]-p[j*3+2];
+      if(dx*dx+dy*dy+dz*dz<D2){linkArr[c++]=p[i*3];linkArr[c++]=p[i*3+1];linkArr[c++]=p[i*3+2];linkArr[c++]=p[j*3];linkArr[c++]=p[j*3+1];linkArr[c++]=p[j*3+2];}}
+    lg.setDrawRange(0,c/3);lg.attributes.position.needsUpdate=true;
+    pts.rotation.y+=0.0006;lines.rotation.y=pts.rotation.y;
+    cam.position.x+=(mx*120-cam.position.x)*.03;cam.position.y+=(-my*90-cam.position.y)*.03;cam.lookAt(0,0,0);
+    renderer.render(scene,cam);if(!reduce)requestAnimationFrame(frame);}
+  frame();if(reduce)renderer.render(scene,cam);
+})();
+
+/* boot */
+CostListing.init();
+</script>
+
+
+<script>
+/* --- merge shell deep-link: read #page=X and drive module's own nav --- */
+(function(){
+  function go(){
+    var m=(location.hash||"").match(/page=([a-z0-9\-]+)/i);
+    if(!m) return;
+    var a=document.querySelector('[data-page="'+m[1]+'"]')||document.querySelector('[data-go="'+m[1]+'"]');
+    if(a) a.click();
+  }
+  window.addEventListener("load",function(){setTimeout(go,140);});
+  window.addEventListener("hashchange",go);
+  if(document.readyState==="complete") setTimeout(go,140);
+})();
+</script>
+</body></html>

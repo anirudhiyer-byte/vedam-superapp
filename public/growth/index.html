@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vedam Neural CRM</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#070a16; --bg2:#0b1024; --panel:rgba(20,26,54,0.55); --panel-brd:rgba(130,150,255,0.14);
+  --ink:#f2f5ff; --mut:#aeb8e0; --mut2:#7681b2;
+  --violet:#8b5cf6; --cyan:#22d3ee; --pink:#ff3d9a; --amber:#ffb13d; --green:#34e2b0; --blue:#5b8cff; --orange:#ff8a3d;
+  --rail:rgba(12,16,38,0.72); --line:rgba(130,150,255,0.10); --head:#0f1533; --menu:#141a38;
+  --display:'Sora',system-ui,sans-serif; --font:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  background:
+    radial-gradient(1100px 700px at 82% -8%,rgba(139,92,246,.16),transparent 60%),
+    radial-gradient(900px 620px at -6% 108%,rgba(34,211,238,.13),transparent 58%),
+    linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--ink);font-family:var(--font);overflow:hidden;
+}
+.app{display:grid;grid-template-columns:248px 1fr;height:100vh;height:100dvh}
+.rail{background:var(--rail);backdrop-filter:blur(14px);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:18px 12px;gap:2px;overflow:auto;z-index:40}
+.content{position:relative;min-width:0;display:flex;flex-direction:column}
+iframe{border:0;width:100%;height:100%;flex:1;background:var(--bg)}
+.brandrow{display:flex;align-items:center;gap:11px;padding:6px 8px 16px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.brandimg{width:168px;max-width:100%;height:auto;display:block}
+.logo{width:36px;height:36px;border-radius:10px;flex:none;background:conic-gradient(from 210deg,var(--green),var(--cyan),var(--violet),var(--green));box-shadow:0 0 18px rgba(52,226,176,.55)}
+.brand b{font-family:var(--display);font-size:14.5px;font-weight:600;letter-spacing:-.2px;line-height:1.2;display:block}
+.brand span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:3.5px;color:var(--cyan);margin-top:4px}
+.grp{margin-top:12px}
+.grp>.gl{font-family:var(--mono);font-size:9.5px;letter-spacing:3px;color:var(--mut2);text-transform:uppercase;padding:4px 11px 7px}
+.nav a,.nav .parent{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);font-size:13.5px;font-weight:500;text-decoration:none;cursor:pointer;transition:.16s;border:1px solid transparent;user-select:none}
+.nav a:hover:not(.soon),.nav .parent:hover:not(.soon){color:var(--ink);background:rgba(130,150,255,.07)}
+.nav a.on{color:var(--ink);background:linear-gradient(90deg,rgba(52,226,176,.22),rgba(34,211,238,.05));border-color:rgba(52,226,176,.3);box-shadow:inset 0 0 0 1px rgba(52,226,176,.15)}
+.nav svg{width:18px;height:18px;flex:none;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nav .lbl{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav .chev{width:15px;height:15px;transition:.22s;opacity:.7}
+.parent.open .chev{transform:rotate(180deg)}
+.children{display:none;flex-direction:column;gap:2px;margin:2px 0 4px 14px;padding-left:10px;border-left:1px solid var(--line)}
+.parent.open+.children{display:flex}
+.children a{font-size:12.8px;padding:8px 11px}
+.children svg{width:15px;height:15px}
+/* coming-soon (non-live) items */
+.nav .soon{opacity:.42;cursor:not-allowed}
+.nav .soon:hover{background:transparent;color:var(--mut)}
+.pill-soon{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut2);border:1px solid var(--line);border-radius:999px;padding:2px 6px;flex:none}
+.pill-live{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);border:1px solid rgba(52,226,176,.35);background:rgba(52,226,176,.1);border-radius:999px;padding:2px 6px;flex:none;display:inline-flex;align-items:center;gap:4px}
+.pill-live i{width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block}
+.railfoot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.railfoot .email{color:var(--mut2);font-size:11px;font-family:var(--mono);padding:10px 11px 4px}
+.railfoot .so{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);cursor:pointer;font-size:13.5px;font-weight:500;text-decoration:none}
+.railfoot .so svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.railfoot .so:hover{color:var(--ink);background:rgba(130,150,255,.07)}
+.topbar{display:none;align-items:center;gap:12px;padding:11px 14px;background:var(--rail);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:30}
+.burger{width:40px;height:40px;border-radius:11px;border:1px solid var(--panel-brd);background:var(--panel);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+.burger svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
+.topbar .tt{font-family:var(--display);font-size:14px;font-weight:600}
+.topbar .mlogo{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 210deg,var(--green),var(--cyan),var(--violet),var(--green));box-shadow:0 0 12px rgba(52,226,176,.5);flex:none}
+.scrim{display:none;position:fixed;inset:0;background:rgba(4,6,16,.6);backdrop-filter:blur(2px);z-index:35}
+@media(max-width:860px){
+  .app{grid-template-columns:1fr}
+  .topbar{display:flex}
+  .rail{position:fixed;top:0;left:0;bottom:0;width:272px;transform:translateX(-102%);transition:transform .26s cubic-bezier(.2,.7,.2,1);box-shadow:24px 0 60px rgba(0,0,0,.5)}
+  .rail.open{transform:none}
+  .scrim.on{display:block}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="rail" id="rail">
+    <div class="brandrow">
+      <img src="/vedam-logo-dark.png" alt="Vedam School of Technology" class="brandimg">
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="railfoot">
+      <a class="so" href="/" target="_top"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>Back To Home</span></a>
+    </div>
+  </aside>
+  <div class="content">
+    <div class="topbar">
+      <button class="burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <div class="mlogo"></div>
+      <div class="tt" id="topTitle">Growth</div>
+    </div>
+    <iframe id="frame" title="module" src="about:blank"></iframe>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<script>
+const I = {
+  grid:'<path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',
+  chart:'<path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/>',
+  season:'<path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>',
+  cohort:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
+  vsat:'<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
+  call:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/>',
+  infl:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 5a3 3 0 0 1 0 6"/>',
+  tele:'<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
+  cons:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+  pred:'<circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-4 1 2-5z"/>',
+  sprint:'<path d="M9 8l-5 4 5 4M15 8l5 4-5 4"/>',
+  event:'<rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/>'
+};
+/* live:true modules are navigable; the rest render disabled with a "Soon" pill */
+const MODEL = [
+  { g:"Overview", items:[
+    { id:"season", label:"Season Dashboard", icon:I.season, file:"season.html" },
+    { id:"cohort", label:"Payment Cohort",   icon:I.cohort, file:"cohort.html" },
+    { id:"vsat",   label:"VSAT Campaign Report", icon:I.vsat, file:"vsat.html" },
+  ]},
+  { g:"Operations", items:[
+    { id:"calling", label:"Calling Log", icon:I.call, file:"calling.html" },
+  ]},
+  { g:"Marketing Channels", items:[
+    { id:"infl", label:"Influencers", icon:I.infl, file:"influencers.html", sub:[
+      { label:"Influencer Listing", page:"listing", icon:I.grid },
+      { label:"Influencer Performance", page:"performance", icon:I.chart },
+    ]},
+    { id:"tele", label:"Telegram Channel", icon:I.tele, file:"telegram.html", sub:[
+      { label:"Telegram Listing", page:"listing", icon:I.grid },
+      { label:"Telegram Performance", page:"dashboard", icon:I.chart },
+    ]},
+    { id:"cons", label:"Consultants Channel", icon:I.cons, file:"consultants.html", sub:[
+      { label:"Consultant Listing", page:"listing", icon:I.grid },
+      { label:"Consultant Performance", page:"dashboard", icon:I.chart },
+    ]},
+    { id:"pred", label:"College Predictor", icon:I.pred, file:"predictor.html", sub:[
+      { label:"Cost & CPL Listing", page:"cost-listing", icon:I.grid },
+      { label:"Cost & CPL Dashboard", page:"cost-dash", icon:I.chart },
+      { label:"UTM Listing", page:"utm-listing", icon:I.grid },
+      { label:"UTM Dashboard", page:"utm-dash", icon:I.chart },
+    ]},
+    { id:"sprint", label:"Code Sprint", icon:I.sprint, file:"codesprint.html", live:true, sub:[
+      { label:"Cost & CPL Listing", page:"cost-listing", icon:I.grid },
+      { label:"Cost & CPL Dashboard", page:"cost-dash", icon:I.chart },
+      { label:"UTM Listing", page:"utm-listing", icon:I.grid },
+      { label:"UTM Dashboard", page:"utm-dash", icon:I.chart },
+    ]},
+    { id:"event", label:"Events", icon:I.event, file:"events.html", live:true, sub:[
+      { label:"Events Listing", page:"listing", icon:I.grid },
+      { label:"Events Performance", page:"perf", icon:I.chart },
+    ]},
+  ]},
+];
+
+const nav = document.getElementById("nav");
+const frame = document.getElementById("frame");
+const topTitle = document.getElementById("topTitle");
+const rail = document.getElementById("rail");
+const scrim = document.getElementById("scrim");
+function svg(inner){return '<svg viewBox="0 0 24 24">'+inner+'</svg>';}
+const livePill = '<span class="pill-live"><i></i>Live</span>';
+const soonPill = '<span class="pill-soon">Soon</span>';
+
+MODEL.forEach(group=>{
+  const gd=document.createElement("div"); gd.className="grp";
+  gd.innerHTML='<div class="gl">'+group.g+'</div>';
+  group.items.forEach(it=>{
+    if(it.sub){
+      const p=document.createElement("div");
+      p.className="parent"+(it.live?"":" soon");
+      p.innerHTML=svg(it.icon)+'<span class="lbl">'+it.label+'</span>'+(it.live?'<svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>':soonPill);
+      const ch=document.createElement("div"); ch.className="children";
+      if(it.live){
+        it.sub.forEach(s=>{
+          const a=document.createElement("a");
+          a.dataset.mod=it.id; a.dataset.file=it.file; a.dataset.page=s.page;
+          a.innerHTML=svg(s.icon)+'<span class="lbl">'+s.label+'</span>';
+          a.addEventListener("click",()=>select(a));
+          ch.appendChild(a);
+        });
+        p.addEventListener("click",()=>p.classList.toggle("open"));
+      }
+      gd.appendChild(p); if(it.live) gd.appendChild(ch);
+    } else {
+      const a=document.createElement("a");
+      a.className=it.live?"":"soon";
+      a.innerHTML=svg(it.icon)+'<span class="lbl">'+it.label+'</span>'+(it.live?livePill:soonPill);
+      if(it.live){ a.dataset.mod=it.id; a.dataset.file=it.file; a.addEventListener("click",()=>select(a)); }
+      gd.appendChild(a);
+    }
+  });
+  nav.appendChild(gd);
+});
+
+let curFile=null;
+function labelFor(a){
+  const lbl=a.querySelector(".lbl").textContent;
+  const parentItem=MODEL.flatMap(g=>g.items).find(i=>i.id===a.dataset.mod);
+  if(a.dataset.page && parentItem) return parentItem.label+" · "+lbl;
+  return lbl;
+}
+function select(a, fromHash){
+  nav.querySelectorAll("a").forEach(x=>x.classList.remove("on"));
+  a.classList.add("on");
+  const ch=a.closest(".children");
+  if(ch){ const p=ch.previousElementSibling; if(p&&p.classList.contains("parent")) p.classList.add("open"); }
+  const file=a.dataset.file, page=a.dataset.page||"";
+  const target=page? file+"#page="+page : file;
+  topTitle.textContent=labelFor(a);
+  if(file===curFile && page){
+    try{ frame.contentWindow.location.hash="page="+page; }
+    catch(e){ frame.src=target; }
+  } else { frame.src=target; curFile=file; }
+  if(!fromHash) writeHash(a);
+  closeDrawer();
+}
+function writeHash(a){
+  const h="m="+a.dataset.mod+(a.dataset.page?("&p="+a.dataset.page):"");
+  if(location.hash.slice(1)!==h) history.replaceState(null,"","#"+h);
+}
+function isLive(mod){ const it=MODEL.flatMap(g=>g.items).find(i=>i.id===mod); return it&&it.live; }
+function openFromHash(){
+  const m=(location.hash||"").match(/m=([a-z0-9]+)(?:&p=([a-z0-9\-]+))?/i);
+  if(!m||!isLive(m[1])) return false;
+  const mod=m[1], page=m[2];
+  let a=null;
+  if(page) a=nav.querySelector('a[data-mod="'+mod+'"][data-page="'+page+'"]');
+  if(!a) a=nav.querySelector('a[data-mod="'+mod+'"]');
+  if(a){ select(a,true); return true; }
+  return false;
+}
+function openFirstLive(){
+  const a=nav.querySelector('a[data-mod]');  // first navigable (live) leaf
+  if(a) select(a);
+}
+
+function openDrawer(){ rail.classList.add("open"); scrim.classList.add("on"); }
+function closeDrawer(){ rail.classList.remove("open"); scrim.classList.remove("on"); }
+document.getElementById("burger").addEventListener("click",openDrawer);
+scrim.addEventListener("click",closeDrawer);
+
+if(!openFromHash()) openFirstLive();
+window.addEventListener("hashchange",openFromHash);
+</script>
+</body>
+</html>
