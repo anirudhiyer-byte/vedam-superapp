@@ -47,7 +47,8 @@ function sampleFor(mapping: { source: string; value?: string }[] | undefined, r:
 
 export async function GET(req: Request) {
   const auth = req.headers.get("authorization");
-  if (process.env.CRON_SECRET && auth !== `Bearer ${process.env.CRON_SECRET}`) return new Response("unauthorized", { status: 401 });
+  // fail closed: no secret set, or mismatch -> reject (never run an open blast endpoint)
+  if (!process.env.CRON_SECRET || auth !== `Bearer ${process.env.CRON_SECRET}`) return new Response("unauthorized", { status: 401 });
   const sb = db();
   const { data: journeys } = await sb.from("comms_journeys").select("*").eq("enabled", true);
   const { data: aud } = await sb.rpc("comms_audience_all");

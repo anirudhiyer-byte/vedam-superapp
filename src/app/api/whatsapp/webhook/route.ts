@@ -5,6 +5,15 @@ const db = () => createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env
 /** TrustSignal WhatsApp delivery + inbound (STOP) webhook. */
 export async function POST(req: Request) {
   try {
+    // once WEBHOOK_SECRET is set, reject forgeries. Accept either an
+    // Authorization: Bearer <secret> header OR a ?key=<secret> in the URL
+    // (TrustSignal supports both; use whichever is easier per-API).
+    const sec = process.env.WEBHOOK_SECRET;
+    if (sec) {
+      const hdr = req.headers.get("authorization") || "";
+      const key = new URL(req.url).searchParams.get("key") || "";
+      if (hdr !== `Bearer ${sec}` && key !== sec) return Response.json({ ok: false }, { status: 401 });
+    }
     const body = await req.json().catch(() => ({}));
     const txn = body.transaction_id || body.message_id || body.msg_id;
     const status = (body.status || body.event || "").toLowerCase();

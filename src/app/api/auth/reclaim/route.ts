@@ -14,6 +14,10 @@ export async function POST(req: Request) {
   if (!phone && !email) return Response.json({ ok: true, reclaimed: 0 });
 
   const admin = createClient(url, svc);
+  // per-IP rate limit — unauthenticated account-deletion endpoint must not be hammered
+  const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "unknown";
+  const { data: allowed } = await admin.rpc("rate_limit_hit", { p_key: `reclaim:${ip}`, p_max: 20, p_window: 60 });
+  if (allowed === false) return Response.json({ ok: false, error: "rate limited" }, { status: 429 });
   const { data: ids, error } = await admin.rpc("find_signup_ghosts", { p_phone: phone || null, p_email: email || null });
   if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
   let reclaimed = 0;

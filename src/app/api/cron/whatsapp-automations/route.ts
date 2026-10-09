@@ -53,7 +53,8 @@ async function audience(db: ReturnType<typeof admin>, a: Auto): Promise<Recip[]>
 
 export async function GET(req: Request) {
   const auth = req.headers.get("authorization");
-  if (process.env.CRON_SECRET && auth !== `Bearer ${process.env.CRON_SECRET}`) return new Response("unauthorized", { status: 401 });
+  // fail closed: no secret set, or mismatch -> reject (never run an open blast endpoint)
+  if (!process.env.CRON_SECRET || auth !== `Bearer ${process.env.CRON_SECRET}`) return new Response("unauthorized", { status: 401 });
 
   const db = admin();
   const now = new Date();
