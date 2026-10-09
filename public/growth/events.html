@@ -321,7 +321,7 @@ const EventsData=(function(){
   const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0, acquisition:0, overallCpl:0};
   const perfEvents=[];
   const perfKpis={uniqueEvents:0, registrations:0, leads:0, payments:0, enrolments:0, l2p:0,
-    totalSpend:0, cpl:0, cpp:0, adSpend:0, inflSpend:0, commsSpend:0, tgSpend:0, hostSpend:0, priceSpend:0};
+    totalSpend:0, cpl:0, cpp:0, cplReg:0, adSpend:0, inflSpend:0, commsSpend:0, tgSpend:0, hostSpend:0, priceSpend:0};
   const counts={active:0, trash:0};
 
   const num=v=>(v===null||v===undefined||v==="")?0:Number(v)||0;
@@ -352,7 +352,7 @@ const EventsData=(function(){
       acquisition:num(s.acquisition), overallCpl:num(s.overallCpl) });
     Object.assign(perfKpis,{ uniqueEvents:num(s.uniqueEvents), registrations:num(s.registrations),
       leads:num(s.leads), payments:num(s.payments), enrolments:num(s.enrollments), l2p:num(s.l2p),
-      totalSpend:num(s.totalSpend), cpl:num(s.cpl), cpp:num(s.cpp), adSpend:num(s.adSpend),
+      totalSpend:num(s.totalSpend), cpl:num(s.cpl), cpp:num(s.cpp), cplReg:num(s.overallCpl), adSpend:num(s.adSpend),
       inflSpend:num(s.inflSpend), commsSpend:num(s.commsSpend), tgSpend:num(s.tgSpend), hostSpend:num(s.hostSpend), priceSpend:num(s.priceSpend) });
   }
   async function apiGet(view){
@@ -674,6 +674,7 @@ const Perf=(function(){
     <div class="kgrid kg6">
       <div class="kcard ko"><div class="hd"><span>Unique Events</span><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg></div><div class="num" data-to="${k.uniqueEvents}" data-f="n">0</div></div>
       <div class="kcard kc"><div class="hd"><span>Registrations</span><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg></div><div class="num" data-to="${k.registrations}" data-f="n">0</div></div>
+      <div class="kcard ka"><div class="hd"><span>CPL(Registrations)</span></div><div class="num" data-to="${k.cplReg}" data-f="moneyK">0</div></div>
       <div class="kcard ko"><div class="hd"><span>Leads</span></div><div class="num" data-to="${k.leads}" data-f="n">0</div></div>
       <div class="kcard kv"><div class="hd"><span>Payments</span><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="num" data-to="${k.payments}" data-f="n">0</div></div>
       <div class="kcard kp"><div class="hd"><span>Enrolments</span><svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div><div class="num" data-to="${k.enrolments}" data-f="n">0</div></div>
