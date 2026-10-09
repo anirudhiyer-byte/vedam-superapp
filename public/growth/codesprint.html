@@ -633,7 +633,7 @@ function makeGrid(cfg){
     el.querySelectorAll("[data-tabs] .tab").forEach(t=>t.addEventListener("click",async()=>{
       el.querySelectorAll("[data-tabs] .tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
       view=t.dataset.view;page=1;rows=await cfg.getRows(view);render();}));
-    q("[data-addrow]").addEventListener("click",openAddRow);
+    q("[data-addrow]").addEventListener("click",()=>openAddRow());
     q("[data-addcol]").addEventListener("click",openAddCol);
     q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
     q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
