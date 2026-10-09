@@ -194,12 +194,12 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 .ecard .emeta b{color:var(--ink)}
 .ewarn{display:flex;align-items:center;gap:10px;margin:16px 0;background:rgba(255,93,126,.1);border:1px solid rgba(255,93,126,.3);border-radius:12px;padding:12px 16px;color:var(--red);font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase}
 .ewarn svg{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8}
-.emetrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:16px}
+.emetrics{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:16px}
 .ebox{background:rgba(255,255,255,.03);border:1px solid var(--panel-brd);border-radius:14px;padding:15px 16px}
 .ebox .l{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10.5px;letter-spacing:1px;color:var(--mut2);text-transform:uppercase}
 .ebox .l svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7;opacity:.7}
 .ebox .v{font-family:var(--display);font-size:24px;font-weight:700;margin-top:9px;letter-spacing:-.6px}
-.ebox.reg .v{color:var(--cyan)} .ebox.spend .v{color:var(--pink)} .ebox.cplreg .v{color:var(--amber)} .ebox.leads .v{color:var(--orange)} .ebox.pay .v{color:var(--violet)} .ebox.enr .v{color:var(--cyan)}
+.ebox.reg .v{color:var(--cyan)} .ebox.mql .v{color:var(--green)} .ebox.spend .v{color:var(--pink)} .ebox.cplreg .v{color:var(--amber)} .ebox.leads .v{color:var(--orange)} .ebox.pay .v{color:var(--violet)} .ebox.enr .v{color:var(--cyan)}
 .ebox.drill{cursor:pointer;transition:.15s} .ebox.drill:hover{border-color:rgba(255,138,61,.45);transform:translateY(-2px)}
 
 /* toast */
@@ -304,6 +304,7 @@ const EventsData=(function(){
     {key:"category",        label:"Category",        type:"cat",  hidden:false},
     {key:"host",            label:"Host",            type:"text", hidden:false},
     {key:"registered_count",label:"Registrations",   type:"num",  hidden:false},
+    {key:"mql",             label:"MQL",             type:"num",  hidden:false},
     {key:"utm_link",        label:"UTM Link",        type:"link", hidden:false},
     {key:"total_spend",     label:"Total Spend",     type:"spendtotal",hidden:false},
     {key:"leads",           label:"Leads",           type:"num",  hidden:false},
@@ -335,7 +336,7 @@ const EventsData=(function(){
       category:x.category||"", host:x.host||"", registered_count:num(x.registered_count),
       utm_link:x.utm_link||"", ad_spend:num(x.ad_spend), influencer_spend:num(x.influencer_spend),
       comms_spend:num(x.comms_spend), telegram_spend:num(x.telegram_spend), host_spend:num(x.host_spend),
-      price_spend:num(x.price_spend), total_spend:num(x.total_spend), leads:num(x.leads), payments:num(x.payments),
+      price_spend:num(x.price_spend), total_spend:num(x.total_spend), mql:num(x.leads), leads:0, payments:num(x.payments),
       enrollments:num(x.enrollments), status:dispStatus(x.live_date), notes:x.notes||"", _trash:!!x.is_trashed
     };
   }
@@ -344,7 +345,7 @@ const EventsData=(function(){
     rows.filter(r=>!r._trash).forEach(r=>perfEvents.push({
       slug:r.id, pagelink:r.event_page_link, name:r.event_name, date:r.live_date,
       cat:r.category||"—", host:r.host, reg:r.registered_count, spend:r.total_spend,
-      leads:r.leads, pay:r.payments, enr:r.enrollments, utms:r.utm_link?1:0, rows:1, notes:r.notes||"",
+      leads:r.leads, mql:r.mql, pay:r.payments, enr:r.enrollments, utms:r.utm_link?1:0, rows:1, notes:r.notes||"",
       ad:r.ad_spend, infl:r.influencer_spend, comms:r.comms_spend, tg:r.telegram_spend, hostS:r.host_spend, price:r.price_spend
     }));
   }
@@ -514,7 +515,7 @@ const Listing=(function(){
     const sum=f=>rs.reduce((a,r)=>a+(Number(f(r))||0),0);
     const reg=sum(r=>r.registered_count), spend=sum(r=>r.total_spend);
     const ad=sum(r=>r.ad_spend), tg=sum(r=>r.telegram_spend), infl=sum(r=>r.influencer_spend);
-    return { uniqueDone:rs.length, rowsTotal:rs.length, totalReg:reg, totalSpend:spend, totalLeads:sum(r=>r.leads),
+    return { uniqueDone:rs.length, rowsTotal:rs.length, totalReg:reg, totalSpend:spend, totalLeads:sum(r=>r.leads), totalMql:sum(r=>r.mql),
       acquisition: reg?Math.round((ad+tg+infl)/reg):0, overallCpl: reg?Math.round(spend/reg):0 };
   }
   function renderStats(){
@@ -524,7 +525,7 @@ const Listing=(function(){
       <div class="stat so"><div class="hd">Unique Events</div><div class="num" data-to="${s.uniqueDone}" data-f="n">0</div><div class="ssub">${s.rowsTotal} rows total</div></div>
       <div class="stat sc"><div class="hd">Total Registrations</div><div class="num" data-to="${s.totalReg}" data-f="n">0</div></div>
       <div class="stat sv"><div class="hd">Total Spend</div><div class="num" data-to="${s.totalSpend}" data-f="money">0</div></div>
-      <div class="stat sp"><div class="hd">Total Leads</div><div class="num" data-to="${s.totalLeads}" data-f="n">0</div></div>
+      <div class="stat sp"><div class="hd">MQL</div><div class="num" data-to="${s.totalMql}" data-f="n">0</div></div>
       <div class="stat sa"><div class="hd">Acquisition Spend</div><div class="num" data-to="${s.acquisition}" data-f="money">0</div><div class="ssub">(ads + telegram + influencer) / registrations</div></div>
       <div class="stat sg"><div class="hd">Overall CPL</div><div class="num" data-to="${s.overallCpl}" data-f="money">0</div><div class="ssub">total spend / registrations</div></div>`;
     const anim=animateNext; animateNext=false;
@@ -629,7 +630,7 @@ const Listing=(function(){
         ${field("host","Host","text",idRO)}
         ${field("linked_event","Linked Event","text",false)}
         ${field("utm_link","UTM Link","url",false)}
-        ${EventsData.SPENDS.map(k=>field(k,EventsData.columns.find(c=>c.key===k).label,"num",false)).join("")}
+        ${EventsData.SPENDS.map(k=>field(k,(EventsData.columns.find(c=>c.key===k)||{}).label||k.replace(/_/g," ").replace(/\b\w/g,m=>m.toUpperCase()),"num",false)).join("")}
         ${metricsRO}
         ${field("notes","Notes","text",false)}
       </div>
@@ -679,8 +680,8 @@ const Perf=(function(){
   // Recompute every KPI from the currently shown/selected events (not the global totals)
   function kpisFromShown(){
     const s=perfShown(), sum=f=>s.reduce((a,e)=>a+(Number(f(e))||0),0);
-    const registrations=sum(e=>e.reg), leads=sum(e=>e.leads), payments=sum(e=>e.pay), totalSpend=sum(e=>e.spend);
-    return { uniqueEvents:s.length, registrations, leads, payments, enrolments:sum(e=>e.enr),
+    const registrations=sum(e=>e.reg), leads=sum(e=>e.leads), mql=sum(e=>e.mql), payments=sum(e=>e.pay), totalSpend=sum(e=>e.spend);
+    return { uniqueEvents:s.length, registrations, leads, mql, payments, enrolments:sum(e=>e.enr),
       l2p: leads?Number((payments/leads*100).toFixed(2)):0,
       totalSpend, cpl: leads?Math.round(totalSpend/leads):0, cpp: payments?Math.round(totalSpend/payments):0,
       cplReg: registrations?Math.round(totalSpend/registrations):0,
@@ -692,6 +693,7 @@ const Perf=(function(){
     <div class="kgrid kg6">
       <div class="kcard ko"><div class="hd"><span>Unique Events</span><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg></div><div class="num" data-to="${k.uniqueEvents}" data-f="n">0</div></div>
       <div class="kcard kc"><div class="hd"><span>Registrations</span><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg></div><div class="num" data-to="${k.registrations}" data-f="n">0</div></div>
+      <div class="kcard ka"><div class="hd"><span>MQL</span><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="num" data-to="${k.mql}" data-f="n">0</div></div>
       <div class="kcard ka"><div class="hd"><span>CPL(Registrations)</span></div><div class="num" data-to="${k.cplReg}" data-f="moneyK">0</div></div>
       <div class="kcard kv kclick" data-perfspend><div class="hd"><span>Total Spend</span><svg class="cv" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div><div class="num" data-to="${k.totalSpend}" data-f="moneyK">0</div><div class="cap">click for breakdown</div></div>
       <div class="kcard kv"><div class="hd"><span>Payments</span><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="num" data-to="${k.payments}" data-f="n">0</div></div>
@@ -711,6 +713,7 @@ const Perf=(function(){
       ${warn}
       <div class="emetrics">
         <div class="ebox reg"><div class="l">Registrations</div><div class="v">${fmtN(ev.reg)}</div></div>
+        <div class="ebox mql"><div class="l">MQL</div><div class="v">${fmtN(ev.mql)}</div></div>
         <div class="ebox spend"><div class="l">Total Spend</div><div class="v">${fmtK(ev.spend)}</div></div>
         <div class="ebox cplreg"><div class="l">CPL (Reg)</div><div class="v">${ev.reg?fmtK(Math.round(ev.spend/ev.reg)):'₹0'}</div></div>
         <div class="ebox leads drill" data-drill="leads"><div class="l">Leads <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg></div><div class="v">${fmtN(ev.leads)}</div></div>
