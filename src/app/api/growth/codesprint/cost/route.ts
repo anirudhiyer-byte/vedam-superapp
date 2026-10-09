@@ -20,13 +20,15 @@ function numOrNull(v: unknown): number | null {
 
 function summarize(rows: CostRow[]) {
   const live = rows.filter((r) => !r.is_trashed);
-  const cpls = live.map((r) => r.cpl).filter((v): v is number => v != null);
+  const total_leads = live.reduce((a, r) => a + (r.leads || 0), 0);
+  const total_cost = live.reduce((a, r) => a + Number(r.total_cost || 0), 0);
   return {
-    total_leads: live.reduce((a, r) => a + (r.leads || 0), 0),
+    total_leads,
     total_mql: live.reduce((a, r) => a + (r.mql || 0), 0),
     total_cpl_spend: live.reduce((a, r) => a + Number(r.cpl_spend || 0), 0),
-    total_cost: live.reduce((a, r) => a + Number(r.total_cost || 0), 0),
-    blended_cpl: cpls.length ? Number((cpls.reduce((a, b) => a + b, 0) / cpls.length).toFixed(2)) : 0,
+    total_cost,
+    // Blended CPL = total cost / total leads (not an average of per-row CPLs)
+    blended_cpl: total_leads > 0 ? Number((total_cost / total_leads).toFixed(2)) : 0,
     rows_count: live.length,
   };
 }

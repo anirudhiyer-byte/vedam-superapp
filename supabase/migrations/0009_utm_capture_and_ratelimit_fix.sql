@@ -130,7 +130,7 @@ select r.id, r.platform, r.name, r.utm_link,
   r.cpl_spend, r.total_cost,
   coalesce(r.cpl_override,
     case when coalesce(r.leads_override::bigint, a.leads, 0::bigint) > 0
-         then round(r.cpl_spend / coalesce(r.leads_override::bigint, a.leads, 0::bigint)::numeric, 2)
+         then round(r.total_cost / coalesce(r.leads_override::bigint, a.leads, 0::bigint)::numeric, 2)
          else null::numeric end) as cpl,
   r.notes, r.sort_order, r.is_trashed, r.created_by, r.created_at, r.updated_at,
   r.leads_override, r.mql_override, r.cpl_override,
