@@ -64,7 +64,7 @@ export async function POST(req: Request) {
   const b = await req.json().catch(() => ({}));
   if (!b.event_name && !b.manual_name) return NextResponse.json({ error: "event name is required" }, { status: 400 });
   const ins: Record<string, unknown> = {
-    event_id: null, created_by: gate.userId,
+    created_by: gate.userId,
     manual_name: b.event_name ?? b.manual_name ?? null,
     manual_page_link: b.event_page_link ?? b.manual_page_link ?? null,
     manual_date: b.live_date || null,
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     serial_no: numOrNull(b.serial_no),
   };
   for (const k of SPENDS) ins[k] = num(b[k]);
-  const { data, error } = await svc().from("growth_events_rows").insert(ins).select("id").single();
+  const { data, error } = await svc().from("growth_events_manual").insert(ins).select("id").single();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   const { data: row } = await svc().from("growth_events_view").select("*").eq("id", data.id).single();
   return NextResponse.json({ row });
@@ -101,7 +101,7 @@ export async function PATCH(req: Request) {
     if ("live_date" in b) patch.manual_date = b.live_date || null;
     if ("category" in b) patch.manual_category = b.category ?? null;
     if ("host" in b) patch.manual_host = b.host ?? null;
-    const { error } = await svc().from("growth_events_rows").update(patch).eq("id", b.id);
+    const { error } = await svc().from("growth_events_manual").update(patch).eq("id", b.id);
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   } else {
     // auto overlay: upsert by event_id (identity comes from the events table, read-only)
@@ -125,8 +125,8 @@ export async function DELETE(req: Request) {
 
   if (kind === "manual") {
     const q = hard
-      ? svc().from("growth_events_rows").delete().eq("id", id)
-      : svc().from("growth_events_rows").update({ is_trashed: true }).eq("id", id);
+      ? svc().from("growth_events_manual").delete().eq("id", id)
+      : svc().from("growth_events_manual").update({ is_trashed: true }).eq("id", id);
     const { error } = await q;
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   } else {
