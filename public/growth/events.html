@@ -244,7 +244,18 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 <div class="popover" id="colmenu"></div>
 <div id="toast"></div>
 <div id="evmodal" class="evmodal"></div>
+<div id="spendpop" class="spendpop"></div>
 <style>
+.spendcell{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--ink);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;padding:2px 4px;border-radius:7px;transition:.15s}
+.spendcell:hover{background:rgba(255,138,61,.12);color:var(--orange)}
+.spendcell .cv{width:13px;height:13px;stroke:var(--mut2);fill:none;stroke-width:2;transition:transform .15s}
+.spendcell.open .cv{transform:rotate(180deg)}
+.spendpop{position:fixed;z-index:60;min-width:216px;background:var(--menu);border:1px solid var(--panel-brd);border-radius:12px;box-shadow:0 20px 50px -18px rgba(0,0,0,.7);padding:8px;display:none}
+.spendpop.on{display:block;animation:fade .14s ease}
+.spendpop .sph{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mut2);padding:4px 9px 7px}
+.spendpop .spr{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:7px 9px;border-radius:8px;font-size:13px}
+.spendpop .spr .l{color:var(--mut)} .spendpop .spr .v{font-variant-numeric:tabular-nums;font-weight:600}
+.spendpop .spr.tot{border-top:1px solid var(--line);margin-top:4px;padding-top:9px} .spendpop .spr.tot .l{color:var(--ink);font-weight:600} .spendpop .spr.tot .v{color:var(--orange)}
 .evmodal{position:fixed;inset:0;z-index:80;background:rgba(5,8,18,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
 .evmodal.on{display:flex;animation:fade .18s ease}
 .evmodal .box{width:560px;max-width:100%;max-height:86vh;overflow:auto;background:var(--menu);border:1px solid var(--panel-brd);border-radius:18px;padding:22px 24px;box-shadow:0 30px 70px -24px rgba(0,0,0,.8)}
@@ -282,13 +293,7 @@ const EventsData=(function(){
     {key:"host",            label:"Host",            type:"text", hidden:false},
     {key:"registered_count",label:"Registrations",   type:"num",  hidden:false},
     {key:"utm_link",        label:"UTM Link",        type:"link", hidden:false},
-    {key:"ad_spend",        label:"Ad Spend",        type:"money",hidden:false},
-    {key:"influencer_spend",label:"Influencer Spend",type:"money",hidden:false},
-    {key:"comms_spend",     label:"Comms Spend",     type:"money",hidden:false},
-    {key:"telegram_spend",  label:"Telegram Spend",  type:"money",hidden:false},
-    {key:"host_spend",      label:"Host Spend",      type:"money",hidden:false},
-    {key:"price_spend",     label:"Price Spend",     type:"money",hidden:false},
-    {key:"total_spend",     label:"Total Spend",     type:"money",hidden:false},
+    {key:"total_spend",     label:"Total Spend",     type:"spendtotal",hidden:false},
     {key:"leads",           label:"Leads",           type:"num",  hidden:false},
     {key:"payments",        label:"Payments",        type:"num",  hidden:false},
     {key:"enrollments",     label:"Enrollments",     type:"num",  hidden:false},
@@ -447,6 +452,8 @@ const Listing=(function(){
   }
   function cell(c,r){
     const v=r[c.key];
+    if(c.type==="spendtotal"){ const t=Number(r.total_spend)||0;
+      return `<td><button class="spendcell" data-spendrow="${rows.indexOf(r)}">${t===0?'<span class="mut">0</span>':fmtMoney(t)}<svg viewBox="0 0 24 24" class="cv"><path d="M6 9l6 6 6-6"/></svg></button></td>`; }
     if(c.type==="status") return v?`<td><span class="chip ${v==="Done"?"done":"sched"}">${v}</span></td>`:`<td class="mut">—</td>`;
     if(c.type==="cat") return v?`<td><span class="chip cat">${v}</span></td>`:`<td class="mut">—</td>`;
     if(v===""||v===null||v===undefined) return `<td class="mut">—</td>`;
@@ -493,6 +500,7 @@ const Listing=(function(){
   function wireHeader(){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
+    el.querySelectorAll("[data-spendrow]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openSpendPop(rows[+b.dataset.spendrow],b);}));
     el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i]; if(r) openEdit(r);}));
     el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const i=+e.target.closest("tr").dataset.i; if(i<0||i>=rows.length)return;const r=rows[i];
       if(view==="trash"){
@@ -516,6 +524,22 @@ const Listing=(function(){
       th.addEventListener("drop",e=>{e.preventDefault();th.classList.remove("dragover");const t=th.dataset.key;if(!dragKey||dragKey===t)return;
         const f=cols.findIndex(c=>c.key===dragKey),to=cols.findIndex(c=>c.key===t);const[m]=cols.splice(f,1);cols.splice(to,0,m);render();});
     });
+  }
+  function openSpendPop(r,anchor){
+    if(!r) return;
+    const pop=document.getElementById("spendpop");
+    document.querySelectorAll(".spendcell.open").forEach(x=>x.classList.remove("open"));
+    const items=[["Ad Spend",r.ad_spend],["Influencer Spend",r.influencer_spend],["Comms Spend",r.comms_spend],["Telegram Spend",r.telegram_spend],["Host Spend",r.host_spend],["Price Spend",r.price_spend]];
+    pop.innerHTML=`<div class="sph">Spend breakdown</div>`
+      +items.map(([l,v])=>`<div class="spr"><span class="l">${l}</span><span class="v">${Number(v)?fmtMoney(v):'₹0'}</span></div>`).join("")
+      +`<div class="spr tot"><span class="l">Total Spend</span><span class="v">${fmtMoney(Number(r.total_spend)||0)}</span></div>`;
+    const rc=anchor.getBoundingClientRect();
+    pop.style.visibility="hidden"; pop.classList.add("on");
+    const pw=pop.offsetWidth, ph=pop.offsetHeight;
+    let left=Math.min(rc.left, innerWidth-pw-12);
+    let top=rc.bottom+6; if(top+ph>innerHeight-8) top=Math.max(8, rc.top-ph-6);
+    pop.style.left=left+"px"; pop.style.top=top+"px"; pop.style.visibility="";
+    anchor.classList.add("open");
   }
   function openMenu(key,anchor){
     const col=cols.find(c=>c.key===key),r=anchor.getBoundingClientRect();
@@ -552,7 +576,7 @@ const Listing=(function(){
         }
         await reload(); toast("Imported <b>"+added+"</b> manual bootcamp"+(added===1?"":"s"));};
       rd.readAsText(f);e.target.value="";});
-    document.addEventListener("click",()=>menu.classList.remove("on"));
+    document.addEventListener("click",()=>{menu.classList.remove("on");const sp=document.getElementById("spendpop");if(sp)sp.classList.remove("on");document.querySelectorAll(".spendcell.open").forEach(x=>x.classList.remove("open"));});
   }
   function openForm(r){
     const mod=document.getElementById("evmodal");
