@@ -81,6 +81,7 @@ h1{margin:0;font-family:var(--display);font-size:42px;font-weight:700;letter-spa
 
 /* stat cards */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stats.six{grid-template-columns:repeat(3,1fr)}
 .stat{position:relative;background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:18px;padding:18px 20px 20px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
 .stat:hover{transform:translateY(-4px);border-color:rgba(255,138,61,.4);box-shadow:0 20px 48px -22px var(--glow,rgba(255,138,61,.5))}
 .stat::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--bar)}
@@ -272,7 +273,7 @@ const EventsData=(function(){
   const HOSTS=["Amit","Gaurav Roy","Jasbir Singh","Manas Bhardwaj","Subhesh Kumar"];
   const EV="https://events.vedam.org/";
   const columns=[
-    {key:"serial_no",       label:"Serial No",       type:"num",  required:true, hidden:false},
+    {key:"serial_no",       label:"Serial No",       type:"num",  hidden:false},
     {key:"event_page_link", label:"Event Page Link", type:"link", hidden:false},
     {key:"event_name",      label:"Event Name",      type:"text", required:true, hidden:false},
     {key:"linked_event",    label:"Linked Event",    type:"text", hidden:false},
@@ -286,6 +287,7 @@ const EventsData=(function(){
     {key:"comms_spend",     label:"Comms Spend",     type:"money",hidden:false},
     {key:"telegram_spend",  label:"Telegram Spend",  type:"money",hidden:false},
     {key:"host_spend",      label:"Host Spend",      type:"money",hidden:false},
+    {key:"price_spend",     label:"Price Spend",     type:"money",hidden:false},
     {key:"total_spend",     label:"Total Spend",     type:"money",hidden:false},
     {key:"leads",           label:"Leads",           type:"num",  hidden:false},
     {key:"payments",        label:"Payments",        type:"num",  hidden:false},
@@ -293,43 +295,45 @@ const EventsData=(function(){
     {key:"status",          label:"Status",          type:"status",hidden:false},
     {key:"notes",           label:"Notes",           type:"text", hidden:false}
   ];
-  // Overlay fields the admin may edit; everything else on a row is auto-pulled & read-only.
-  const EDITABLE=new Set(["serial_no","linked_event","utm_link","ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend","notes"]);
+  // Spends (+serial/linked/utm/notes) are always editable. Identity (name/date/category/host/page) is
+  // editable ONLY for manual bootcamp rows; for auto (Vedam One) rows it is read-only.
+  const SPENDS=["ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend","price_spend"];
+  const IDENTITY=["event_name","event_page_link","live_date","category","host"];
 
   // live caches (mutated in place so Listing/Perf references stay valid)
   const rowsActive=[], rowsTrash=[];
-  const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0};
+  const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0, acquisition:0, overallCpl:0};
   const perfEvents=[];
   const perfKpis={uniqueEvents:0, registrations:0, leads:0, payments:0, enrolments:0, l2p:0,
     totalSpend:0, cpl:0, cpp:0, adSpend:0, inflSpend:0, commsSpend:0, tgSpend:0, hostSpend:0};
   const counts={active:0, trash:0};
 
   const num=v=>(v===null||v===undefined||v==="")?0:Number(v)||0;
-  // events.status is just "open"; show a meaningful chip from the date instead.
-  const dispStatus=d=>{ if(!d) return "Scheduled"; const t=new Date(d).getTime(); return (isFinite(t)&&t<Date.now())?"Done":"Scheduled"; };
+  const dispStatus=(d,st)=>{ if(st) return st.charAt(0).toUpperCase()+st.slice(1); if(!d) return "Scheduled"; const t=new Date(d).getTime(); return (isFinite(t)&&t<Date.now())?"Done":"Scheduled"; };
   function mapRow(x){
     const date = x.live_date ? String(x.live_date).slice(0,10) : "";
     return {
-      event_id:x.event_id, serial_no:x.serial_no, event_page_link:x.event_page_link||"",
+      id:x.id, kind:x.kind||"auto", event_id:x.event_id, serial_no:x.serial_no, event_page_link:x.event_page_link||"",
       event_name:x.event_name||"", linked_event:x.linked_event||"", live_date:date,
       category:x.category||"", host:x.host||"", registered_count:num(x.registered_count),
       utm_link:x.utm_link||"", ad_spend:num(x.ad_spend), influencer_spend:num(x.influencer_spend),
       comms_spend:num(x.comms_spend), telegram_spend:num(x.telegram_spend), host_spend:num(x.host_spend),
-      total_spend:num(x.total_spend), leads:num(x.leads), payments:num(x.payments),
+      price_spend:num(x.price_spend), total_spend:num(x.total_spend), leads:num(x.leads), payments:num(x.payments),
       enrollments:num(x.enrollments), status:dispStatus(x.live_date), notes:x.notes||"", _trash:!!x.is_trashed
     };
   }
   function rebuildPerf(rows){
     perfEvents.length=0;
     rows.filter(r=>!r._trash).forEach(r=>perfEvents.push({
-      slug:r.event_id, pagelink:r.event_page_link, name:r.event_name, date:r.live_date,
+      slug:r.id, pagelink:r.event_page_link, name:r.event_name, date:r.live_date,
       cat:r.category||"—", host:r.host, reg:r.registered_count, spend:r.total_spend,
       leads:r.leads, pay:r.payments, enr:r.enrollments, utms:r.utm_link?1:0, rows:1, notes:r.notes||""
     }));
   }
   function applySummary(s){
     Object.assign(summary,{ uniqueDone:num(s.uniqueEvents), rowsTotal:num(s.uniqueEvents),
-      totalReg:num(s.registrations), totalSpend:num(s.totalSpend), totalLeads:num(s.leads) });
+      totalReg:num(s.registrations), totalSpend:num(s.totalSpend), totalLeads:num(s.leads),
+      acquisition:num(s.acquisition), overallCpl:num(s.overallCpl) });
     Object.assign(perfKpis,{ uniqueEvents:num(s.uniqueEvents), registrations:num(s.registrations),
       leads:num(s.leads), payments:num(s.payments), enrolments:num(s.enrollments), l2p:num(s.l2p),
       totalSpend:num(s.totalSpend), cpl:num(s.cpl), cpp:num(s.cpp), adSpend:num(s.adSpend),
@@ -351,16 +355,17 @@ const EventsData=(function(){
   async function apiSend(method,payload){
     const opt={method,credentials:"same-origin"};
     let url="/api/growth/events";
-    if(method==="DELETE"){ url+="?event_id="+encodeURIComponent(payload.event_id); }
+    if(method==="DELETE"){ url+="?id="+encodeURIComponent(payload.id)+"&kind="+(payload.kind||"auto")+(payload.hard?"&hard=1":""); }
     else { opt.headers={"Content-Type":"application/json"}; opt.body=JSON.stringify(payload); }
     const r=await fetch(url,opt); if(!r.ok) throw new Error(await r.text()); return r.json();
   }
   return {
-    CATS, HOSTS, columns, summary, perfEvents, perfKpis, counts, EDITABLE,
+    CATS, HOSTS, columns, summary, perfEvents, perfKpis, counts, SPENDS, IDENTITY,
     getColumns:()=>columns.map(c=>({...c})),
     async getRows(view){ return await apiGet(view); },
+    addEvent:(payload)=>apiSend("POST",payload),
     editOverlay:(payload)=>apiSend("PATCH",payload),
-    delEvent:(event_id)=>apiSend("DELETE",{event_id})
+    delEvent:(id,kind,hard)=>apiSend("DELETE",{id,kind,hard:hard?1:0})
   };
 })();
 
@@ -400,8 +405,10 @@ const Listing=(function(){
     el.innerHTML=`
       <div class="phead"><div><h1>Events Listing</h1><div class="sub" data-sub>20 columns · 13 rows</div></div>
       <div class="hbtns">
+        <button class="btn" data-csv><svg viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Upload CSV</button>
         <button class="btn" data-addcol><svg viewBox="0 0 24 24"><path d="M3 5h12M3 12h12M3 19h8M18 9v8M22 13h-8"/></svg>Add Column</button>
-        <button class="btn prim" data-refresh2><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>Refresh</button>
+        <button class="btn prim" data-addrow><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Add Row</button>
+        <input type="file" data-file accept=".csv" hidden>
         </div></div>
       <div class="toolbar">
         <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-search placeholder="Search event, host, category, UTM, note…"></div>
@@ -471,27 +478,36 @@ const Listing=(function(){
   }
   function renderStats(){
     const s=EventsData.summary;
-    q("[data-stats]").innerHTML=`
-      <div class="stat so"><div class="hd">Unique Events (Done)</div><div class="num" data-to="${s.uniqueDone}" data-f="n">0</div><div class="ssub">${s.rowsTotal} rows total</div></div>
+    const box=q("[data-stats]"); box.className="stats six";
+    box.innerHTML=`
+      <div class="stat so"><div class="hd">Unique Events</div><div class="num" data-to="${s.uniqueDone}" data-f="n">0</div><div class="ssub">${s.rowsTotal} rows total</div></div>
       <div class="stat sc"><div class="hd">Total Registrations</div><div class="num" data-to="${s.totalReg}" data-f="n">0</div></div>
       <div class="stat sv"><div class="hd">Total Spend</div><div class="num" data-to="${s.totalSpend}" data-f="money">0</div></div>
-      <div class="stat sp"><div class="hd">Total Leads</div><div class="num" data-to="${s.totalLeads}" data-f="n">0</div></div>`;
+      <div class="stat sp"><div class="hd">Total Leads</div><div class="num" data-to="${s.totalLeads}" data-f="n">0</div></div>
+      <div class="stat sa"><div class="hd">Acquisition Spend</div><div class="num" data-to="${s.acquisition}" data-f="money">0</div><div class="ssub">(ads + telegram + influencer) / registrations</div></div>
+      <div class="stat sg"><div class="hd">Overall CPL</div><div class="num" data-to="${s.overallCpl}" data-f="money">0</div><div class="ssub">total spend / registrations</div></div>`;
     const anim=animateNext; animateNext=false;
-    if(anim) animateCounts(q("[data-stats]"));
-    else q("[data-stats]").querySelectorAll('[data-to]').forEach(el=>{const to=parseFloat(el.dataset.to),fmt=COUNT_FMT[el.dataset.f]||COUNT_FMT.n; el.textContent=isFinite(to)?fmt(to):el.dataset.to;});
+    if(anim) animateCounts(box);
+    else box.querySelectorAll('[data-to]').forEach(el=>{const to=parseFloat(el.dataset.to),fmt=COUNT_FMT[el.dataset.f]||COUNT_FMT.n; el.textContent=isFinite(to)?fmt(to):el.dataset.to;});
   }
   function wireHeader(){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
     el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i]; if(r) openEdit(r);}));
     el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const i=+e.target.closest("tr").dataset.i; if(i<0||i>=rows.length)return;const r=rows[i];
-      if(view!=="active"){toast("Already in trash");return;}
-      // optimistic — drop now, persist + reconcile in the background
+      if(view==="trash"){
+        if(r.kind!=="manual"){ toast("Auto events can’t be permanently deleted"); return; }
+        rows.splice(i,1); EventsData.counts.trash=Math.max(0,(EventsData.counts.trash||0)-1);
+        animateNext=true;render();toast("Deleted permanently");
+        EventsData.delEvent(r.id,"manual",true).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});
+        return;
+      }
+      // active → move to trash (optimistic; persist + reconcile in background)
       rows.splice(i,1);
       EventsData.counts.active=Math.max(0,(EventsData.counts.active||0)-1);
       EventsData.counts.trash=(EventsData.counts.trash||0)+1;
       animateNext=true;render();toast("Moved to <b>Trash</b>");
-      EventsData.delEvent(r.event_id).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});}));
+      EventsData.delEvent(r.id,r.kind).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});}));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
       th.addEventListener("dragstart",()=>dragKey=th.dataset.key);
@@ -517,58 +533,86 @@ const Listing=(function(){
     q("[data-search]").addEventListener("input",e=>{search=e.target.value;render();});
     el.querySelectorAll("[data-fk]").forEach(s=>s.addEventListener("change",e=>{filters[s.dataset.fk]=e.target.value;render();}));
     el.querySelectorAll(".tabs .tab").forEach(t=>t.addEventListener("click",async()=>{el.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");view=t.dataset.view;rows=await EventsData.getRows(view);render();}));
+    q("[data-addrow]").addEventListener("click",()=>openAdd());
     q("[data-addcol]").addEventListener("click",()=>{const n=prompt("New column name");if(!n||!n.trim())return;cols.push({key:n.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"),label:n.trim(),type:"text",hidden:false});render();toast("Column <b>"+n.trim()+"</b> added");});
     q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
     q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
     const spinReload=async(b,msg)=>{const ic=b.querySelector("svg");ic&&ic.classList.add("spin");b.disabled=true;try{await reload();toast(msg);}catch(e){toast("Refresh failed");}finally{ic&&ic.classList.remove("spin");b.disabled=false;}};
     q("[data-sync]").addEventListener("click",e=>spinReload(e.currentTarget,"<b>Synced</b> — events & attribution refreshed"));
     q("[data-refresh]").addEventListener("click",e=>spinReload(e.currentTarget,"<b>Attribution recomputed</b> from UTMs"));
-    const r2=q("[data-refresh2]"); if(r2) r2.addEventListener("click",e=>spinReload(e.currentTarget,"<b>Refreshed</b>"));
+    q("[data-csv]").addEventListener("click",()=>q("[data-file]").click());
+    q("[data-file]").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+      rd.onload=async()=>{const lines=rd.result.split(/\r?\n/).filter(Boolean);if(lines.length<2){toast("CSV looks empty");return;}
+        const hdr=lines[0].split(",").map(s=>s.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"));
+        const known=["serial_no","event_name","event_page_link","linked_event","live_date","category","host","utm_link","ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend","price_spend","notes"];
+        let added=0;
+        for(const line of lines.slice(1)){ const parts=line.split(","); const o={}; hdr.forEach((h,i)=>{ if(known.includes(h)) o[h]=parts[i]?parts[i].trim():""; });
+          if(!o.event_name) continue;
+          try{ await EventsData.addEvent(o); added++; }catch(err){}
+        }
+        await reload(); toast("Imported <b>"+added+"</b> manual bootcamp"+(added===1?"":"s"));};
+      rd.readAsText(f);e.target.value="";});
     document.addEventListener("click",()=>menu.classList.remove("on"));
   }
-  function openEdit(r){
+  function openForm(r){
     const mod=document.getElementById("evmodal");
-    const money=["ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend"];
+    const isAdd=!r;
+    const isManual=isAdd||r.kind==="manual";   // Add always creates a manual bootcamp
+    const idRO=!isManual;                        // identity read-only only for auto (Vedam One) edit
+    const getv=k=> isAdd ? (k==="category"?EventsData.CATS[0]:"") : (r[k]==null?"":r[k]);
     const field=(key,label,type,ro)=>{
-      const val=r[key]==null?"":r[key];
-      const t=type==="num"?"number":(type==="url"?"url":"text");
+      const v=getv(key);
+      const t=type==="num"?"number":(type==="date"?"date":(type==="url"?"url":"text"));
       return `<div class="ff${type==="url"||key==="notes"?" full":""}"><label>${label}${ro?' <span class="ro">(auto)</span>':''}</label>`
-        +`<input data-ef="${key}" type="${t}" value="${String(val).replace(/"/g,"&quot;")}"${ro?" disabled":""}${type==="num"?' step="any"':''}></div>`;
+        +`<input data-ef="${key}" type="${t}" value="${String(v).replace(/"/g,"&quot;")}"${ro?" disabled":""}${type==="num"?' step="any"':''}></div>`;
     };
-    mod.innerHTML=`<div class="box">
-      <div class="mh"><h3>Edit — ${r.event_name||"Event"}</h3><button class="x" data-x>&times;</button></div>
-      <div class="msub">Event details & counts are auto-pulled and read-only. Edit the spend overlay and UTM below; they save to this event's Growth row.</div>
-      <div class="fg">
-        ${field("event_name","Event Name","text",true)}
-        ${field("serial_no","Serial No","num",false)}
-        ${field("live_date","Event Date","text",true)}
-        ${field("category","Category","text",true)}
-        ${field("host","Host","text",true)}
+    const metricsRO = isAdd ? "" : `
         ${field("registered_count","Registrations","num",true)}
-        ${field("linked_event","Linked Event","text",false)}
-        ${field("utm_link","UTM Link","url",false)}
-        ${money.map(k=>field(k,EventsData.columns.find(c=>c.key===k).label,"num",false)).join("")}
         ${field("total_spend","Total Spend","num",true)}
         ${field("leads","Leads","num",true)}
         ${field("payments","Payments","num",true)}
-        ${field("enrollments","Enrollments","num",true)}
+        ${field("enrollments","Enrollments","num",true)}`;
+    mod.innerHTML=`<div class="box">
+      <div class="mh"><h3>${isAdd?"Add Bootcamp":"Edit — "+(r.event_name||"Event")}</h3><button class="x" data-x>&times;</button></div>
+      <div class="msub">${isManual?"Manual bootcamp — enter details and spends by hand. Registrations / leads stay 0 unless the event also exists in Vedam One.":"Auto event from Vedam One — details &amp; counts are read-only. Edit the spends and UTM below."}</div>
+      <div class="fg">
+        ${field("event_name","Event Name","text",idRO)}
+        ${field("serial_no","Serial No","num",false)}
+        ${field("event_page_link","Event Page Link","url",idRO)}
+        ${field("live_date","Event Date","date",idRO)}
+        ${field("category","Category","text",idRO)}
+        ${field("host","Host","text",idRO)}
+        ${field("linked_event","Linked Event","text",false)}
+        ${field("utm_link","UTM Link","url",false)}
+        ${EventsData.SPENDS.map(k=>field(k,EventsData.columns.find(c=>c.key===k).label,"num",false)).join("")}
+        ${metricsRO}
         ${field("notes","Notes","text",false)}
       </div>
-      <div class="acts"><button class="btn" data-x>Cancel</button><button class="btn prim" data-save>Save</button></div>
+      <div class="acts"><button class="btn" data-x>Cancel</button><button class="btn prim" data-save>${isAdd?"Add Bootcamp":"Save"}</button></div>
     </div>`;
     mod.classList.add("on");
     const close=()=>mod.classList.remove("on");
     mod.querySelectorAll("[data-x]").forEach(b=>b.addEventListener("click",close));
     mod.addEventListener("click",e=>{if(e.target===mod)close();});
     mod.querySelector("[data-save]").addEventListener("click",async()=>{
-      const payload={event_id:r.event_id};
-      mod.querySelectorAll("[data-ef]").forEach(inp=>{const k=inp.dataset.ef; if(!EventsData.EDITABLE.has(k))return;
+      const nameInp=mod.querySelector('[data-ef="event_name"]');
+      if(isManual && nameInp && !nameInp.value.trim()){ nameInp.focus(); toast("<b>Event Name</b> is required"); return; }
+      const editable=new Set([...EventsData.SPENDS,"serial_no","linked_event","utm_link","notes"]);
+      if(isManual) EventsData.IDENTITY.forEach(k=>editable.add(k));
+      const payload={};
+      mod.querySelectorAll("[data-ef]").forEach(inp=>{const k=inp.dataset.ef; if(!editable.has(k))return;
         if(k==="serial_no") payload[k]=inp.value===""?null:Number(inp.value);
-        else if(["ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend"].includes(k)) payload[k]=Number(inp.value)||0;
+        else if(EventsData.SPENDS.includes(k)) payload[k]=Number(inp.value)||0;
         else payload[k]=inp.value;});
-      try{await EventsData.editOverlay(payload);close();await reload();toast("Saved");}catch(err){toast("Save failed");}
+      try{
+        if(isAdd){ await EventsData.addEvent(payload); }
+        else { payload.id=r.id; payload.kind=r.kind; await EventsData.editOverlay(payload); }
+        close(); await reload(); toast(isAdd?"Bootcamp added":"Saved");
+      }catch(err){ toast(isAdd?"Add failed":"Save failed"); }
     });
   }
+  function openEdit(r){ openForm(r); }
+  function openAdd(){ openForm(null); }
   async function reload(){ animateNext=true; rows=await EventsData.getRows(view); render(); }
   async function init(){cols=EventsData.getColumns();shell();animateNext=true;rows=await EventsData.getRows("active");render();}
   return { init };
