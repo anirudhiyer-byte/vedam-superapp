@@ -510,8 +510,15 @@ const Listing=(function(){
     const ca=q("[data-ca]"); if(ca) ca.textContent=EventsData.counts.active||0;
     const ct=q("[data-ct]"); if(ct) ct.textContent=EventsData.counts.trash||0;
   }
+  function summaryFromRows(rs){
+    const sum=f=>rs.reduce((a,r)=>a+(Number(f(r))||0),0);
+    const reg=sum(r=>r.registered_count), spend=sum(r=>r.total_spend);
+    const ad=sum(r=>r.ad_spend), tg=sum(r=>r.telegram_spend), infl=sum(r=>r.influencer_spend);
+    return { uniqueDone:rs.length, rowsTotal:rs.length, totalReg:reg, totalSpend:spend, totalLeads:sum(r=>r.leads),
+      acquisition: reg?Math.round((ad+tg+infl)/reg):0, overallCpl: reg?Math.round(spend/reg):0 };
+  }
   function renderStats(){
-    const s=EventsData.summary;
+    const s=summaryFromRows(filtered());
     const box=q("[data-stats]"); box.className="stats six";
     box.innerHTML=`
       <div class="stat so"><div class="hd">Unique Events</div><div class="num" data-to="${s.uniqueDone}" data-f="n">0</div><div class="ssub">${s.rowsTotal} rows total</div></div>
