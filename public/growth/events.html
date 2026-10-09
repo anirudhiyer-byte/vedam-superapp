@@ -343,7 +343,8 @@ const EventsData=(function(){
     rows.filter(r=>!r._trash).forEach(r=>perfEvents.push({
       slug:r.id, pagelink:r.event_page_link, name:r.event_name, date:r.live_date,
       cat:r.category||"—", host:r.host, reg:r.registered_count, spend:r.total_spend,
-      leads:r.leads, pay:r.payments, enr:r.enrollments, utms:r.utm_link?1:0, rows:1, notes:r.notes||""
+      leads:r.leads, pay:r.payments, enr:r.enrollments, utms:r.utm_link?1:0, rows:1, notes:r.notes||"",
+      ad:r.ad_spend, infl:r.influencer_spend, comms:r.comms_spend, tg:r.telegram_spend, hostS:r.host_spend, price:r.price_spend
     }));
   }
   function applySummary(s){
@@ -667,9 +668,20 @@ const Perf=(function(){
   const el=document.getElementById("page-perf");
   const all=()=>EventsData.perfEvents;
   const q=s=>el.querySelector(s);
+  let curK=null;  // KPIs for the currently shown/selected events (used by the Total Spend breakdown too)
 
-  function kpiStrip(){
-    const k=EventsData.perfKpis;
+  // Recompute every KPI from the currently shown/selected events (not the global totals)
+  function kpisFromShown(){
+    const s=perfShown(), sum=f=>s.reduce((a,e)=>a+(Number(f(e))||0),0);
+    const registrations=sum(e=>e.reg), leads=sum(e=>e.leads), payments=sum(e=>e.pay), totalSpend=sum(e=>e.spend);
+    return { uniqueEvents:s.length, registrations, leads, payments, enrolments:sum(e=>e.enr),
+      l2p: leads?Number((payments/leads*100).toFixed(2)):0,
+      totalSpend, cpl: leads?Math.round(totalSpend/leads):0, cpp: payments?Math.round(totalSpend/payments):0,
+      cplReg: registrations?Math.round(totalSpend/registrations):0,
+      adSpend:sum(e=>e.ad), inflSpend:sum(e=>e.infl), commsSpend:sum(e=>e.comms), tgSpend:sum(e=>e.tg), hostSpend:sum(e=>e.hostS), priceSpend:sum(e=>e.price) };
+  }
+
+  function kpiStrip(k){
     return `
     <div class="kgrid kg6">
       <div class="kcard ko"><div class="hd"><span>Unique Events</span><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg></div><div class="num" data-to="${k.uniqueEvents}" data-f="n">0</div></div>
@@ -712,9 +724,10 @@ const Perf=(function(){
   }
   function render(){
     const shown=perfShown();
+    curK=kpisFromShown();
     el.innerHTML=`
       <div class="phead perfhd"><div><h1>Events Performance</h1>
-        <div class="sub">${EventsData.perfKpis.uniqueEvents} done events · 0 scheduled (excluded) · click leads/payments/enrolments to drill</div></div></div>
+        <div class="sub">${curK.uniqueEvents} event${curK.uniqueEvents===1?"":"s"} shown · click leads/payments/enrolments to drill</div></div></div>
       <div class="perfctl">
         <div class="msdd"><button class="msbtn ${ddOpen?"open":""}" data-ddbtn>
           <svg class="fi" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg>All ${selected.size} events
@@ -722,15 +735,18 @@ const Perf=(function(){
         <div class="search" style="min-width:220px;max-width:320px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-namesearch placeholder="Search event by name…" value="${nameQ}"></div>
         <div class="search" style="min-width:200px;max-width:300px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-notes placeholder="Search notes…" value="${notesQ}"></div>
       </div>
-      ${kpiStrip()}
+      <div data-kpis>${kpiStrip(curK)}</div>
       <div data-cards>${shown.map(eventCard).join("")}</div>`;
     animateCounts(el);
     wire();
   }
+  function bindPerfSpend(){
+    const ps=q("[data-perfspend]"); if(ps) ps.addEventListener("click",e=>{e.stopPropagation();const k=curK||kpisFromShown();
+      openSpendBreakdown(ps,[["Ad Spend",k.adSpend],["Influencer Spend",k.inflSpend],["Comms Spend",k.commsSpend],["Telegram Spend",k.tgSpend],["Host Spend",k.hostSpend],["Price Spend",k.priceSpend]],k.totalSpend);});
+  }
   function wire(){
     q("[data-ddbtn]").addEventListener("click",e=>{e.stopPropagation();ddOpen=!ddOpen;render();});
-    const ps=q("[data-perfspend]"); if(ps) ps.addEventListener("click",e=>{e.stopPropagation();const k=EventsData.perfKpis;
-      openSpendBreakdown(ps, [["Ad Spend",k.adSpend],["Influencer Spend",k.inflSpend],["Comms Spend",k.commsSpend],["Telegram Spend",k.tgSpend],["Host Spend",k.hostSpend],["Price Spend",k.priceSpend]], k.totalSpend);});
+    bindPerfSpend();
     const dds=q("[data-ddsearch]"); if(dds){dds.addEventListener("click",e=>e.stopPropagation());dds.addEventListener("input",e=>{ddSearch=e.target.value;const list=el.querySelector(".mslist");
       const items=all().filter(x=>x.name.toLowerCase().includes(ddSearch.toLowerCase()));
       list.innerHTML=items.map(x=>`<div class="msitem ${selected.has(x.slug)?"sel":""}" data-pick="${x.slug}"><span class="cb"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="t">${x.name}</span><span class="m">${fmtDateL(x.date)} · ${x.rows} row${x.rows>1?"s":""}</span></span></div>`).join("");
@@ -740,7 +756,13 @@ const Perf=(function(){
     if(sa)sa.addEventListener("click",()=>{all().forEach(e=>selected.add(e.slug));render();});
     if(ca)ca.addEventListener("click",()=>{selected.clear();render();});
     bindPicks();
-    const applyPerfSearch=()=>{el.querySelector("[data-cards]").innerHTML=perfShown().map(eventCard).join("");bindDrills();};
+    const applyPerfSearch=()=>{
+      curK=kpisFromShown();
+      const kw=q("[data-kpis]"); if(kw){ kw.innerHTML=kpiStrip(curK);
+        kw.querySelectorAll('[data-to]').forEach(elm=>{const to=parseFloat(elm.dataset.to),fmt=COUNT_FMT[elm.dataset.f]||COUNT_FMT.n; elm.textContent=isFinite(to)?fmt(to):elm.dataset.to;});
+        bindPerfSpend(); }
+      const subEl=q(".perfhd .sub"); if(subEl) subEl.textContent=`${curK.uniqueEvents} event${curK.uniqueEvents===1?"":"s"} shown · click leads/payments/enrolments to drill`;
+      el.querySelector("[data-cards]").innerHTML=perfShown().map(eventCard).join("");bindDrills();};
     const ns=q("[data-namesearch]"); if(ns) ns.addEventListener("input",e=>{nameQ=e.target.value;applyPerfSearch();});
     q("[data-notes]").addEventListener("input",e=>{notesQ=e.target.value;applyPerfSearch();});
     bindDrills();
