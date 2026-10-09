@@ -77,16 +77,23 @@ export function ProfileCompletionForm({ onComplete }: { onComplete: () => void }
     setSaving(true);
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) { setSaving(false); return setErr("Session expired — please refresh."); }
-    // verify email unless already verified
-    const { data: prof } = await supabase.from("profiles").select("email_verified").eq("id", session.user.id).maybeSingle();
-    if (!(prof as { email_verified?: boolean } | null)?.email_verified) {
+    // Re-verify whenever the email isn't verified yet OR the user edited it to a
+    // new address. Reading the stored email and comparing is essential: trusting
+    // the old email_verified flag after an edit would both skip verification AND
+    // (below) mark an unconfirmed new address as verified.
+    const { data: prof } = await supabase.from("profiles").select("email, email_verified").eq("id", session.user.id).maybeSingle();
+    const pr = prof as { email?: string; email_verified?: boolean } | null;
+    const emailChanged = email.trim().toLowerCase() !== (pr?.email || "").trim().toLowerCase();
+    if (!pr?.email_verified || emailChanged) {
       if (emailOtp.replace(/\D/g, "").length < 4) { setSaving(false); return setErr("Enter the code from your email to verify it."); }
       const { error: eErr } = await supabase.auth.verifyOtp({ email: email.trim(), token: emailOtp.replace(/\D/g, ""), type: "email_change" });
       if (eErr) { setSaving(false); return setErr(eErr.message || "Email code didn't work."); }
     }
+    // ALWAYS persist the email itself (the missing line that dropped edited
+    // addresses: OTP went to the new email but profiles.email kept the old one).
     const { error: saveErr } = await saveProfile(supabase, session.user.id, {
       grad_year: Number(gradYear), stream, stream_other: stream === "Others" ? streamOther.trim() : null,
-      state, city, email_verified: true,
+      state, city, email: email.trim(), email_verified: true,
     });
     if (saveErr) { setSaving(false); return setErr(saveErr); }
     setSaving(false);
