@@ -13,6 +13,12 @@ export const metadata: Metadata = { title: "VSAT Registration (internal)" };
  * (same pattern as the Growth modules in /public/growth), embedded full-bleed so
  * it appears unchanged.
  *
+ * This route deliberately sits OUTSIDE the (shell) route group: the shell layout
+ * adds SiteHeader + Footer, which would frame the page and produce a second
+ * scrollbar. The URL is unaffected — route groups do not appear in the path — so
+ * this is still /vsat, and the header's own link to it keeps working.
+ * /vsat/dashboard stays inside the shell, where the nav is useful.
+ *
  * Its "Back" control uses href="/" with target="_top", so it leaves the iframe
  * and lands on this deployment's own home page — staging on staging, prod on prod.
  */
@@ -28,11 +34,12 @@ export default async function Page() {
   }
   if (!isAdmin) redirect("/apply");
 
+  // h-screen + fixed: the iframe owns the only scrollbar on this route.
   return (
     <iframe
       title="Vedam One — Application"
       src="/vedam-one/apply.html"
-      className="block h-[calc(100vh-72px)] w-full border-0 bg-white"
+      className="fixed inset-0 block h-screen w-screen border-0 bg-white"
     />
   );
 }
