@@ -42,10 +42,15 @@ export async function deliverEmail(opts: {
   // 1) per-recipient row (source of truth for tracking) + inject the tracking pixel/links
   let eid: string | null = null;
   try {
+    // IMPORTANT: always pass p_campaign (the 9th arg). Two email_event_log
+    // overloads exist (8-arg and 9-arg); an 8-arg call matches BOTH and Postgres
+    // errors "function is not unique" — which silently killed all email logging.
+    // Passing p_campaign forces a unique match on the 9-arg overload.
     const { data } = await svc.rpc("email_event_log", {
       p_user: opts.userId ?? null, p_to: opts.to, p_kind: opts.kind,
       p_ref_id: opts.refId ?? null, p_ref_name: opts.refName ?? null,
       p_subject: opts.subject, p_template: null, p_html: opts.html,
+      p_campaign: opts.campaignId ?? null,
     });
     if (data) eid = data as string;
   } catch (e) {
