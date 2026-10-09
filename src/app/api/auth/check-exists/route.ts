@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { parseBody, contactSchema } from "@/lib/validation";
 export const dynamic = "force-dynamic";
 
 /** Returns { conflict: "phone" | "email" | null } — whether a real account
@@ -6,8 +7,9 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL, svc = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !svc) return Response.json({ conflict: null });
-  let body: { phone?: string; email?: string };
-  try { body = await req.json(); } catch { return Response.json({ conflict: null }); }
+  const parsed = await parseBody(req, contactSchema);
+  if (!parsed.ok) return Response.json({ conflict: null });
+  const body = parsed.data;
   try {
     const admin = createClient(url, svc);
     // per-IP rate limit — don't let this be used as an account-enumeration oracle

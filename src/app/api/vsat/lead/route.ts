@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { parseBody, vsatLeadSchema } from "@/lib/validation";
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
@@ -6,8 +7,9 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL, svc = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !svc) return Response.json({ ok: false, error: "not configured" }, { status: 500 });
-  let b: { accessToken?: string; lead?: Record<string, unknown> };
-  try { b = await req.json(); } catch { return Response.json({ ok: false, error: "bad request" }, { status: 400 }); }
+  const parsed = await parseBody(req, vsatLeadSchema);
+  if (!parsed.ok) return Response.json({ ok: false, error: "bad request" }, { status: 400 });
+  const b = parsed.data;
   const admin = createClient(url, svc);
   const { data: { user } } = await admin.auth.getUser(b.accessToken || "");
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
