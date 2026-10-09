@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { parseBody, contactSchema } from "@/lib/validation";
 export const dynamic = "force-dynamic";
 
 /** Delete UNVERIFIED, no-activity ghost accounts that already own the phone/email
@@ -8,9 +9,9 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL, svc = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !svc) return Response.json({ ok: false, error: "not configured" }, { status: 500 });
-  let body: { phone?: string; email?: string };
-  try { body = await req.json(); } catch { return Response.json({ ok: false, error: "bad request" }, { status: 400 }); }
-  const phone = (body.phone || "").trim(), email = (body.email || "").trim();
+  const parsed = await parseBody(req, contactSchema);
+  if (!parsed.ok) return Response.json({ ok: false, error: "bad request" }, { status: 400 });
+  const phone = (parsed.data.phone || "").trim(), email = (parsed.data.email || "").trim();
   if (!phone && !email) return Response.json({ ok: true, reclaimed: 0 });
 
   const admin = createClient(url, svc);
