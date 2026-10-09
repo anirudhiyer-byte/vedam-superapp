@@ -10,6 +10,10 @@ export async function POST(req: Request) {
   try { body = await req.json(); } catch { return Response.json({ conflict: null }); }
   try {
     const admin = createClient(url, svc);
+    // per-IP rate limit — don't let this be used as an account-enumeration oracle
+    const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "unknown";
+    const { data: allowed } = await admin.rpc("rate_limit_hit", { p_key: `check-exists:${ip}`, p_max: 30, p_window: 60 });
+    if (allowed === false) return Response.json({ conflict: null });
     const { data } = await admin.rpc("signup_conflict", { p_phone: (body.phone || "").trim() || null, p_email: (body.email || "").trim() || null });
     return Response.json({ conflict: (data as string) || null });
   } catch { return Response.json({ conflict: null }); }

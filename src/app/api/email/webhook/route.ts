@@ -5,6 +5,9 @@ const db = () => createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env
 /** SMTP2GO event webhook — delivered / bounced / opened / clicked → email_events. */
 export async function POST(req: Request) {
   try {
+    // once WEBHOOK_SECRET is set (+ provider URL carries ?key=), reject forgeries
+    const sec = process.env.WEBHOOK_SECRET;
+    if (sec && new URL(req.url).searchParams.get("key") !== sec) return Response.json({ ok: false }, { status: 401 });
     const body = await req.json().catch(() => ({}));
     const events = Array.isArray(body) ? body : Array.isArray(body?.events) ? body.events : [body];
     const d = db();
