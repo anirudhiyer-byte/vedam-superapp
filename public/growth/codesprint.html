@@ -306,10 +306,10 @@ const CPData = (function(){
   const costColumns=[
     {key:"platform",  label:"Platform",   type:"platform", required:true, hidden:false},
     {key:"name",      label:"Name",       type:"text",   hidden:false},
-    {key:"cpl",       label:"CPL",        type:"money",  hidden:false},
+    {key:"cpl",       label:"CPL",        type:"money",  hidden:false, auto:true},
     {key:"utm_link",  label:"UTM Link",   type:"link",   required:true, hidden:false},
-    {key:"leads",     label:"Leads",      type:"num",    hidden:false},
-    {key:"mql",       label:"MQL",        type:"num",    hidden:false},
+    {key:"leads",     label:"Leads",      type:"num",    hidden:false, auto:true},
+    {key:"mql",       label:"MQL",        type:"num",    hidden:false, auto:true},
     {key:"cpl_spend", label:"CPL Spend",  type:"money",  hidden:false},
     {key:"total_cost",label:"Total Cost", type:"money",  hidden:false},
     {key:"notes",     label:"Notes",      type:"text",   hidden:false}
@@ -349,13 +349,37 @@ const CPData = (function(){
     const sub=leads?`${n.format(tg)} TG · ${n.format(yt)} YT · ${n.format(ig)} IG · ${n.format(wa)} WA · ${n.format(ads)} ads · ${n.format(org)} organic`:"";
     return {leads, leadsSub:sub, mql, mqlPct:leads?mql/leads*100:0, cplSpend:spend, totalCost:cost, blended:leads?cost/leads:0, rows:r.length};
   }
+  // ---- live backend cache (filled by getCostRows) ----
+  const _cost={ summary:summarize([]), counts:{active:0,trash:0} };
+  const _mapSummary=s=>({leads:s.total_leads, leadsSub:"", mql:s.total_mql,
+    mqlPct:s.total_leads?s.total_mql/s.total_leads*100:0, cplSpend:s.total_cpl_spend,
+    totalCost:s.total_cost, blended:s.blended_cpl, rows:s.rows_count});
+  async function apiGetCost(view){
+    try{
+      const r=await fetch("/api/growth/codesprint/cost?view="+view,{credentials:"same-origin"});
+      if(!r.ok) throw new Error(await r.text());
+      const d=await r.json();
+      _cost.summary=d.summary||_cost.summary; Object.assign(_cost.counts, d.counts||{});
+      return (d.rows||[]).map(x=>({...x,_trash:!!x.is_trashed}));
+    }catch(e){ toast("Couldn’t load — are you signed in as admin?"); return []; }
+  }
+  async function apiCost(method,payload){
+    const opt={method,credentials:"same-origin"};
+    let url="/api/growth/codesprint/cost";
+    if(method==="DELETE"){ url+="?id="+encodeURIComponent(payload.id); }
+    else { opt.headers={"Content-Type":"application/json"}; opt.body=JSON.stringify(payload); }
+    const r=await fetch(url,opt); if(!r.ok) throw new Error(await r.text()); return r.json();
+  }
   return {
     PLATFORMS, costColumns, utmColumns,
     getCostColumns:()=>costColumns.map(c=>({...c})),
     getUtmColumns:()=>utmColumns.map(c=>({...c})),
-    async getCostRows(view){ await wait(90); return view==="trash"?costRowsTrash:costRowsActive; },
-    costSummary(view){ return summarize(view==="trash"?costRowsTrash:costRowsActive); },
-    costTotals:{active:costRowsActive.length, trash:costRowsTrash.length},
+    async getCostRows(view){ return await apiGetCost(view); },
+    costSummary(){ return _mapSummary(_cost.summary); },
+    costCounts:()=>_cost.counts,
+    addCost:(row)=>apiCost("POST",{platform:row.platform,name:row.name,utm_link:row.utm_link,cpl_spend:row.cpl_spend,total_cost:row.total_cost,notes:row.notes}),
+    editCost:(row)=>apiCost("PATCH",row),
+    delCost:(row)=>apiCost("DELETE",{id:row.id}),
     async getUtmRows(view){ await wait(60); return utmRows.filter(r=>view==="trash"?r._trash:!r._trash); },
     utmRowsRef:utmRows,
     getCostDash:()=>({rows:costDashRows.map(r=>({...r})), kpis:{...costDashKpis}}),
@@ -513,8 +537,10 @@ function makeGrid(cfg){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
     el.querySelectorAll("select[data-prow]").forEach(s=>s.addEventListener("change",()=>{rows[+s.dataset.prow].platform=s.value;toast("Platform updated");}));
-    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);q("[data-ca]").textContent=cfg.counts.active||"";q("[data-ct]").textContent=cfg.counts.trash||"";render();toast("Row removed");}));
-    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",()=>toast("Inline edit — wire to backend")));
+    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",async e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;const r=rows[i];
+      if(cfg.onDelete&&r&&r.id){try{await cfg.onDelete(r);await reload();toast("Row removed");}catch(err){toast("Delete failed");}return;}
+      rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);q("[data-ca]").textContent=cfg.counts.active||"";q("[data-ct]").textContent=cfg.counts.trash||"";render();toast("Row removed");}));
+    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i]; if(cfg.onEdit){openAddRow(r);} else toast("Inline edit — wire to backend");}));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
       th.addEventListener("dragstart",()=>dragKey=th.dataset.key);
@@ -567,9 +593,10 @@ function makeGrid(cfg){
       cols.push({key,label:name,type,hidden:false,required:req});
       modal.classList.remove("on");render();toast("Column <b>"+name+"</b> added");});
   }
-  function openAddRow(){
+  function openAddRow(editRow){
     const inputFor=c=>{
       const star=c.required?' <span class="req">*</span>':'';
+      if(c.auto) return `<div class="ffield"><label>${c.label} <span class="muted" style="font-weight:400">(auto)</span></label><input data-f="${c.key}" disabled placeholder="Auto-pulled from leads" style="opacity:.55"></div>`;
       let field;
       if(c.type==="platform") field=`<select data-f="${c.key}">${CPData.PLATFORMS.map(p=>`<option>${p}</option>`).join("")}</select>`;
       else if(c.type==="date") field=`<input type="date" data-f="${c.key}">`;
@@ -578,21 +605,25 @@ function makeGrid(cfg){
       else field=`<input data-f="${c.key}" placeholder="—">`;
       return `<div class="ffield"><label>${c.label}${star}</label>${field}</div>`;
     };
+    const isEdit=!!editRow;
     modal.innerHTML=`<div class="modal">
-      <div class="mhead"><h3>Add ${shortName().replace(/^Code Sprint — /,"Code Sprint — ")} Row</h3><button class="x" data-cancel>&times;</button></div>
+      <div class="mhead"><h3>${isEdit?"Edit":"Add"} ${shortName().replace(/^Code Sprint — /,"Code Sprint — ")} Row</h3><button class="x" data-cancel>&times;</button></div>
       <div class="msub">Fill in the fields below. Required fields marked with <span style="color:var(--pink)">*</span>.</div>
       <div class="formgrid">${cols.map(inputFor).join("")}</div>
-      <div class="acts"><button class="btn" data-cancel>Cancel</button><button class="btn prim" data-save>${PLUS}Add Row</button></div>
+      <div class="acts"><button class="btn" data-cancel>Cancel</button><button class="btn prim" data-save>${PLUS}${isEdit?"Save":"Add Row"}</button></div>
     </div>`;
     modal.classList.add("on");
+    if(isEdit) cols.forEach(c=>{const el2=modal.querySelector(`[data-f="${c.key}"]`); if(el2&&editRow[c.key]!=null) el2.value=editRow[c.key];});
     modal.querySelectorAll("[data-cancel]").forEach(b=>b.addEventListener("click",()=>modal.classList.remove("on")));
-    modal.querySelector("[data-save]").addEventListener("click",()=>{
+    modal.querySelector("[data-save]").addEventListener("click",async()=>{
       const miss=cols.filter(c=>c.required && !modal.querySelector(`[data-f="${c.key}"]`).value.trim());
       if(miss.length){const f=modal.querySelector(`[data-f="${miss[0].key}"]`);f.focus();f.style.borderColor="var(--pink)";toast("<b>"+miss[0].label+"</b> is required");return;}
       const row={_trash:view==="trash"};
       cols.forEach(c=>{let v=modal.querySelector(`[data-f="${c.key}"]`).value;
         if((c.type==="num"||c.type==="money")&&v!=="")v=Number(v);
         row[c.key]=v;});
+      if(isEdit&&cfg.onEdit){try{await cfg.onEdit({id:editRow.id,...row});modal.classList.remove("on");await reload();toast("Saved");}catch(err){toast("Save failed");}return;}
+      if(cfg.onAdd){try{await cfg.onAdd(row);modal.classList.remove("on");await reload();toast("Row added");}catch(err){toast("Add failed");}return;}
       rows.unshift(row); cfg.counts[view]++; q("[data-c"+(view==="active"?"a":"t")+"]").textContent=cfg.counts[view]||"";
       modal.classList.remove("on"); render(); toast("Row added");});
   }
@@ -619,6 +650,7 @@ function makeGrid(cfg){
       rd.readAsText(f);e.target.value="";});
     document.addEventListener("click",()=>menu.classList.remove("on"));
   }
+  async function reload(){ rows=await cfg.getRows(view); render(); }
   async function init(){ shell(); rows=await cfg.getRows("active"); render(); }
   return { init };
 }
@@ -631,7 +663,10 @@ const CostListing=makeGrid({
   title:"Code Sprint — Cost & CPL Listing",
   columns:CPData.getCostColumns,
   getRows:v=>CPData.getCostRows(v),
-  counts:{active:CPData.costTotals.active, trash:CPData.costTotals.trash},
+  counts:CPData.costCounts(),
+  onAdd:row=>CPData.addCost(row),
+  onDelete:row=>CPData.delCost(row),
+  onEdit:(row)=>CPData.editCost(row).catch(()=>{}),
   actionsColumn:true,
   refreshLabel:"Refresh leads & cost",
   searchPlaceholder:"Search name, platform, UTM…",

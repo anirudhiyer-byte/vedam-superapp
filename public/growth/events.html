@@ -242,6 +242,25 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 
 <div class="popover" id="colmenu"></div>
 <div id="toast"></div>
+<div id="evmodal" class="evmodal"></div>
+<style>
+.evmodal{position:fixed;inset:0;z-index:80;background:rgba(5,8,18,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+.evmodal.on{display:flex;animation:fade .18s ease}
+.evmodal .box{width:560px;max-width:100%;max-height:86vh;overflow:auto;background:var(--menu);border:1px solid var(--panel-brd);border-radius:18px;padding:22px 24px;box-shadow:0 30px 70px -24px rgba(0,0,0,.8)}
+.evmodal .mh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
+.evmodal .mh h3{margin:0;font-family:var(--display);font-size:19px;font-weight:600}
+.evmodal .mh .x{background:none;border:none;color:var(--mut2);font-size:24px;line-height:1;cursor:pointer}
+.evmodal .msub{color:var(--mut2);font-size:12.5px;margin-bottom:16px}
+.evmodal .fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.evmodal .ff{display:flex;flex-direction:column;gap:6px}
+.evmodal .ff.full{grid-column:1/-1}
+.evmodal .ff label{font-size:12px;color:var(--mut);font-weight:600}
+.evmodal .ff label .ro{font-weight:400;color:var(--mut2)}
+.evmodal .ff input{background:var(--bg2);border:1px solid var(--panel-brd);border-radius:10px;padding:11px 12px;color:var(--ink);font-family:var(--font);font-size:13.5px;outline:none}
+.evmodal .ff input:focus{border-color:rgba(255,138,61,.55);box-shadow:0 0 0 3px rgba(255,138,61,.12)}
+.evmodal .ff input:disabled{opacity:.5;cursor:not-allowed}
+.evmodal .acts{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+</style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -274,29 +293,74 @@ const EventsData=(function(){
     {key:"status",          label:"Status",          type:"status",hidden:false},
     {key:"notes",           label:"Notes",           type:"text", hidden:false}
   ];
-  const e=(serial,slug,name,linked,date,cat,host,reg,ad,inf,comms,tg,hostS,leads,pay,enr,status,utm)=>{
-    const total=(ad||0)+(inf||0)+(comms||0)+(tg||0)+(hostS||0);
-    return {serial_no:serial, event_page_link:slug?EV+slug:"", event_name:name, linked_event:linked, live_date:date,
-      category:cat, host:host, registered_count:reg, utm_link:utm||"", ad_spend:ad||0, influencer_spend:inf||0,
-      comms_spend:comms||0, telegram_spend:tg||0, host_spend:hostS||0, total_spend:total, leads:leads||0,
-      payments:pay||0, enrollments:enr||0, status:status, notes:"", _trash:false};
-  };
-  // Rows come from the backend — start empty (no dummy/seed data).
-  const rowsActive=[];
-  const rowsTrash=[];
-  const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0};
+  // Overlay fields the admin may edit; everything else on a row is auto-pulled & read-only.
+  const EDITABLE=new Set(["serial_no","linked_event","utm_link","ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend","notes"]);
 
-  // performance (done events only) — populated from backend.
+  // live caches (mutated in place so Listing/Perf references stay valid)
+  const rowsActive=[], rowsTrash=[];
+  const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0};
   const perfEvents=[];
   const perfKpis={uniqueEvents:0, registrations:0, leads:0, payments:0, enrolments:0, l2p:0,
     totalSpend:0, cpl:0, cpp:0, adSpend:0, inflSpend:0, commsSpend:0, tgSpend:0, hostSpend:0};
+  const counts={active:0, trash:0};
 
-  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  const num=v=>(v===null||v===undefined||v==="")?0:Number(v)||0;
+  // events.status is just "open"; show a meaningful chip from the date instead.
+  const dispStatus=d=>{ if(!d) return "Scheduled"; const t=new Date(d).getTime(); return (isFinite(t)&&t<Date.now())?"Done":"Scheduled"; };
+  function mapRow(x){
+    const date = x.live_date ? String(x.live_date).slice(0,10) : "";
+    return {
+      event_id:x.event_id, serial_no:x.serial_no, event_page_link:x.event_page_link||"",
+      event_name:x.event_name||"", linked_event:x.linked_event||"", live_date:date,
+      category:x.category||"", host:x.host||"", registered_count:num(x.registered_count),
+      utm_link:x.utm_link||"", ad_spend:num(x.ad_spend), influencer_spend:num(x.influencer_spend),
+      comms_spend:num(x.comms_spend), telegram_spend:num(x.telegram_spend), host_spend:num(x.host_spend),
+      total_spend:num(x.total_spend), leads:num(x.leads), payments:num(x.payments),
+      enrollments:num(x.enrollments), status:dispStatus(x.live_date), notes:x.notes||"", _trash:!!x.is_trashed
+    };
+  }
+  function rebuildPerf(rows){
+    perfEvents.length=0;
+    rows.filter(r=>!r._trash).forEach(r=>perfEvents.push({
+      slug:r.event_id, pagelink:r.event_page_link, name:r.event_name, date:r.live_date,
+      cat:r.category||"—", host:r.host, reg:r.registered_count, spend:r.total_spend,
+      leads:r.leads, pay:r.payments, enr:r.enrollments, utms:r.utm_link?1:0, rows:1, notes:r.notes||""
+    }));
+  }
+  function applySummary(s){
+    Object.assign(summary,{ uniqueDone:num(s.uniqueEvents), rowsTotal:num(s.uniqueEvents),
+      totalReg:num(s.registrations), totalSpend:num(s.totalSpend), totalLeads:num(s.leads) });
+    Object.assign(perfKpis,{ uniqueEvents:num(s.uniqueEvents), registrations:num(s.registrations),
+      leads:num(s.leads), payments:num(s.payments), enrolments:num(s.enrollments), l2p:num(s.l2p),
+      totalSpend:num(s.totalSpend), cpl:num(s.cpl), cpp:num(s.cpp), adSpend:num(s.adSpend),
+      inflSpend:num(s.inflSpend), commsSpend:num(s.commsSpend), tgSpend:num(s.tgSpend), hostSpend:num(s.hostSpend) });
+  }
+  async function apiGet(view){
+    try{
+      const r=await fetch("/api/growth/events?view="+view,{credentials:"same-origin"});
+      if(!r.ok) throw new Error(await r.text());
+      const d=await r.json();
+      const rows=(d.rows||[]).map(mapRow);
+      if(view==="trash"){ rowsTrash.length=0; rowsTrash.push(...rows); }
+      else { rowsActive.length=0; rowsActive.push(...rows); rebuildPerf(rows); }
+      if(d.summary) applySummary(d.summary);
+      if(d.counts) Object.assign(counts,d.counts);
+      return rows;
+    }catch(e){ toast("Couldn’t load — are you signed in as admin?"); return []; }
+  }
+  async function apiSend(method,payload){
+    const opt={method,credentials:"same-origin"};
+    let url="/api/growth/events";
+    if(method==="DELETE"){ url+="?event_id="+encodeURIComponent(payload.event_id); }
+    else { opt.headers={"Content-Type":"application/json"}; opt.body=JSON.stringify(payload); }
+    const r=await fetch(url,opt); if(!r.ok) throw new Error(await r.text()); return r.json();
+  }
   return {
-    CATS, HOSTS, columns, summary, perfEvents, perfKpis,
+    CATS, HOSTS, columns, summary, perfEvents, perfKpis, counts, EDITABLE,
     getColumns:()=>columns.map(c=>({...c})),
-    async getRows(view){ await wait(90); return view==="trash"?rowsTrash:rowsActive; },
-    counts:{active:0, trash:0}
+    async getRows(view){ return await apiGet(view); },
+    editOverlay:(payload)=>apiSend("PATCH",payload),
+    delEvent:(event_id)=>apiSend("DELETE",{event_id})
   };
 })();
 
@@ -335,10 +399,9 @@ const Listing=(function(){
     el.innerHTML=`
       <div class="phead"><div><h1>Events Listing</h1><div class="sub" data-sub>20 columns · 13 rows</div></div>
       <div class="hbtns">
-        <button class="btn" data-csv><svg viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Upload CSV</button>
         <button class="btn" data-addcol><svg viewBox="0 0 24 24"><path d="M3 5h12M3 12h12M3 19h8M18 9v8M22 13h-8"/></svg>Add Column</button>
-        <button class="btn prim" data-addrow><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Add Row</button>
-        <input type="file" data-file accept=".csv" hidden></div></div>
+        <button class="btn prim" data-refresh2><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>Refresh</button>
+        </div></div>
       <div class="toolbar">
         <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-search placeholder="Search event, host, category, UTM, note…"></div>
         <select class="sel" data-fk="category"><option value="">All categories</option>${EventsData.CATS.map(c=>`<option>${c}</option>`).join("")}</select>
@@ -413,11 +476,10 @@ const Listing=(function(){
   function wireHeader(){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
-    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i];toast("Edit <b>"+(r.event_name||"row")+"</b> — wire to backend");}));
-    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const i=+e.target.closest("tr").dataset.i; if(i<0||i>=rows.length)return;
-      rows.splice(i,1);
-      if(view==="active"){EventsData.counts.active--;EventsData.counts.trash++;}else{EventsData.counts.trash--;}
-      q("[data-ca]").textContent=EventsData.counts.active;q("[data-ct]").textContent=EventsData.counts.trash;render();toast(view==="active"?"Row moved to <b>Trash</b>":"Row <b>deleted</b>");}));
+    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i]; if(r) openEdit(r);}));
+    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",async e=>{const i=+e.target.closest("tr").dataset.i; if(i<0||i>=rows.length)return;const r=rows[i];
+      if(view!=="active"){toast("Already in trash");return;}
+      try{await EventsData.delEvent(r.event_id);await reload();toast("Moved to <b>Trash</b>");}catch(err){toast("Delete failed");}}));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
       th.addEventListener("dragstart",()=>dragKey=th.dataset.key);
@@ -443,22 +505,59 @@ const Listing=(function(){
     q("[data-search]").addEventListener("input",e=>{search=e.target.value;render();});
     el.querySelectorAll("[data-fk]").forEach(s=>s.addEventListener("change",e=>{filters[s.dataset.fk]=e.target.value;render();}));
     el.querySelectorAll(".tabs .tab").forEach(t=>t.addEventListener("click",async()=>{el.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");view=t.dataset.view;rows=await EventsData.getRows(view);render();}));
-    q("[data-addrow]").addEventListener("click",()=>{const b={_trash:view==="trash"};cols.forEach(c=>b[c.key]="");b.status="Scheduled";b.category=EventsData.CATS[0];rows.unshift(b);EventsData.counts[view]++;q("[data-c"+(view==="active"?"a":"t")+"]").textContent=EventsData.counts[view];render();toast("Event row added — <b>editable</b>");});
     q("[data-addcol]").addEventListener("click",()=>{const n=prompt("New column name");if(!n||!n.trim())return;cols.push({key:n.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"),label:n.trim(),type:"text",hidden:false});render();toast("Column <b>"+n.trim()+"</b> added");});
     q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
     q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
-    const spin=(b,msg)=>{const ic=b.querySelector("svg");ic.classList.add("spin");b.disabled=true;setTimeout(()=>{ic.classList.remove("spin");b.disabled=false;render();toast(msg);},1100);};
-    q("[data-sync]").addEventListener("click",e=>spin(e.currentTarget,"<b>Synced</b> new events from platform"));
-    q("[data-refresh]").addEventListener("click",e=>spin(e.currentTarget,"<b>Attribution recomputed</b> from UTMs"));
-    q("[data-csv]").addEventListener("click",()=>q("[data-file]").click());
-    q("[data-file]").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
-      rd.onload=()=>{const lines=rd.result.split(/\r?\n/).filter(Boolean);if(lines.length<2){toast("CSV looks empty");return;}
-        const hdr=lines[0].split(",").map(s=>s.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"));let added=0;
-        lines.slice(1).forEach(line=>{const p=line.split(",");const o={_trash:false};cols.forEach(c=>o[c.key]="");hdr.forEach((h,i)=>{if(cols.find(c=>c.key===h))o[h]=p[i]?p[i].trim():"";});if(o.event_name){rows.unshift(o);added++;}});
-        EventsData.counts.active+=added;q("[data-ca]").textContent=EventsData.counts.active;render();toast("Imported <b>"+added+"</b> events");};
-      rd.readAsText(f);e.target.value="";});
+    const spinReload=async(b,msg)=>{const ic=b.querySelector("svg");ic&&ic.classList.add("spin");b.disabled=true;try{await reload();toast(msg);}catch(e){toast("Refresh failed");}finally{ic&&ic.classList.remove("spin");b.disabled=false;}};
+    q("[data-sync]").addEventListener("click",e=>spinReload(e.currentTarget,"<b>Synced</b> — events & attribution refreshed"));
+    q("[data-refresh]").addEventListener("click",e=>spinReload(e.currentTarget,"<b>Attribution recomputed</b> from UTMs"));
+    const r2=q("[data-refresh2]"); if(r2) r2.addEventListener("click",e=>spinReload(e.currentTarget,"<b>Refreshed</b>"));
     document.addEventListener("click",()=>menu.classList.remove("on"));
   }
+  function openEdit(r){
+    const mod=document.getElementById("evmodal");
+    const money=["ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend"];
+    const field=(key,label,type,ro)=>{
+      const val=r[key]==null?"":r[key];
+      const t=type==="num"?"number":(type==="url"?"url":"text");
+      return `<div class="ff${type==="url"||key==="notes"?" full":""}"><label>${label}${ro?' <span class="ro">(auto)</span>':''}</label>`
+        +`<input data-ef="${key}" type="${t}" value="${String(val).replace(/"/g,"&quot;")}"${ro?" disabled":""}${type==="num"?' step="any"':''}></div>`;
+    };
+    mod.innerHTML=`<div class="box">
+      <div class="mh"><h3>Edit — ${r.event_name||"Event"}</h3><button class="x" data-x>&times;</button></div>
+      <div class="msub">Event details & counts are auto-pulled and read-only. Edit the spend overlay and UTM below; they save to this event's Growth row.</div>
+      <div class="fg">
+        ${field("event_name","Event Name","text",true)}
+        ${field("serial_no","Serial No","num",false)}
+        ${field("live_date","Event Date","text",true)}
+        ${field("category","Category","text",true)}
+        ${field("host","Host","text",true)}
+        ${field("registered_count","Registrations","num",true)}
+        ${field("linked_event","Linked Event","text",false)}
+        ${field("utm_link","UTM Link","url",false)}
+        ${money.map(k=>field(k,EventsData.columns.find(c=>c.key===k).label,"num",false)).join("")}
+        ${field("total_spend","Total Spend","num",true)}
+        ${field("leads","Leads","num",true)}
+        ${field("payments","Payments","num",true)}
+        ${field("enrollments","Enrollments","num",true)}
+        ${field("notes","Notes","text",false)}
+      </div>
+      <div class="acts"><button class="btn" data-x>Cancel</button><button class="btn prim" data-save>Save</button></div>
+    </div>`;
+    mod.classList.add("on");
+    const close=()=>mod.classList.remove("on");
+    mod.querySelectorAll("[data-x]").forEach(b=>b.addEventListener("click",close));
+    mod.addEventListener("click",e=>{if(e.target===mod)close();});
+    mod.querySelector("[data-save]").addEventListener("click",async()=>{
+      const payload={event_id:r.event_id};
+      mod.querySelectorAll("[data-ef]").forEach(inp=>{const k=inp.dataset.ef; if(!EventsData.EDITABLE.has(k))return;
+        if(k==="serial_no") payload[k]=inp.value===""?null:Number(inp.value);
+        else if(["ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend"].includes(k)) payload[k]=Number(inp.value)||0;
+        else payload[k]=inp.value;});
+      try{await EventsData.editOverlay(payload);close();await reload();toast("Saved");}catch(err){toast("Save failed");}
+    });
+  }
+  async function reload(){ rows=await EventsData.getRows(view); render(); }
   async function init(){cols=EventsData.getColumns();shell();rows=await EventsData.getRows("active");render();}
   return { init };
 })();
@@ -501,7 +600,7 @@ const Perf=(function(){
     return `<div class="ecard" data-ev="${ev.slug}">
       <div class="eh"><div><h2>${ev.name}</h2>
         <div class="emeta">${fmtDateL(ev.date).toUpperCase()} &middot; ${ev.cat.toUpperCase()}${ev.host?` &middot; <b>${ev.host}</b>`:""} &middot; ${ev.utms} UTMs &middot; ${ev.rows} row${ev.rows>1?"s":""}</div></div>
-        <a class="epage" href="https://events.vedam.org/${ev.slug}" target="_blank" rel="noopener">Event Page <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></a></div>
+        ${ev.pagelink?`<a class="epage" href="${ev.pagelink}" target="_blank" rel="noopener">Event Page <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></a>`:""}</div>
       ${warn}
       <div class="emetrics">
         <div class="ebox reg"><div class="l">Registrations</div><div class="v">${fmtN(ev.reg)}</div></div>
@@ -557,7 +656,7 @@ const Perf=(function(){
     render();}));}
   function bindDrills(){ el.querySelectorAll("[data-drill]").forEach(b=>b.addEventListener("click",()=>{const card=b.closest("[data-ev]");const ev=all().find(e=>e.slug===card.dataset.ev);const k=b.dataset.drill;toast("Drill — <b>"+ev[k==="enrolments"?"enr":k==="payments"?"pay":"leads"]+" "+k+"</b> for "+ev.name);}));}
   function closeDD(){ if(ddOpen){ddOpen=false;const b=q("[data-ddbtn]");if(b)b.classList.remove("open");const p=el.querySelector(".mspanel");if(p)p.classList.remove("on");} }
-  function ensure(){ if(inited){animateCounts(el);return;} all().forEach(e=>selected.add(e.slug)); render(); inited=true; }
+  async function ensure(){ try{ await EventsData.getRows("active"); }catch(e){} if(!inited){ inited=true; } if(!selected.size){ all().forEach(e=>selected.add(e.slug)); } render(); }
   return { ensure };
 })();
 
