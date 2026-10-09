@@ -100,12 +100,11 @@ export function CertificateModal({ certId, onClose }: { certId: string; onClose:
           <div className="grid md:grid-cols-[1.15fr_.85fr]">
             {/* cert preview (float 3D) */}
             <div className="grid place-items-center border-b border-border bg-surface-warm/40 p-5 md:border-b-0 md:border-r">
-              <div style={{ perspective: 1400 }}>
-                <div style={{ transform: "rotateX(6deg) rotateY(-7deg)", boxShadow: "-18px 26px 50px -22px rgba(43,19,92,.5)", borderRadius: 12, transition: "transform .3s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "rotateX(3deg) rotateY(-3deg) translateY(-4px)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "rotateX(6deg) rotateY(-7deg)")}>
-                  <VedamCertificate ref={ref} fullName={data.full_name} bootcampName={data.source === "codesprint" ? `${data.event_name} in CodeSprint` : data.event_name} issueDate={data.issued_on} certificateId={certId} qrDataUrl={qr} scale={scale} kind={data.kind} position={data.position} />
-                </div>
+              {/* Flat (no 3D transform): a composited 3D ancestor breaks the
+                  certificate's background-clip:text gradient (name/CodeSprint
+                  render as a solid block). Keep the shadow + rounding only. */}
+              <div style={{ boxShadow: "-18px 26px 50px -22px rgba(43,19,92,.5)", borderRadius: 12 }}>
+                <VedamCertificate ref={ref} fullName={data.full_name} bootcampName={data.source === "codesprint" ? `${data.event_name} in CodeSprint` : data.event_name} issueDate={data.issued_on} certificateId={certId} qrDataUrl={qr} scale={scale} kind={data.kind} position={data.position} />
               </div>
             </div>
 
