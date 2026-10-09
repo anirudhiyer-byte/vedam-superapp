@@ -392,6 +392,7 @@ const EXT='<svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:current
    ============================================================================ */
 const Listing=(function(){
   let cols=[], rows=[], view="active", search="", filters={category:"",host:"",status:""};
+  let animateNext=true;  // KPI roll only on data change
   const el=document.getElementById("page-listing"), menu=document.getElementById("colmenu");
   const q=s=>el.querySelector(s);
 
@@ -475,7 +476,9 @@ const Listing=(function(){
       <div class="stat sc"><div class="hd">Total Registrations</div><div class="num" data-to="${s.totalReg}" data-f="n">0</div></div>
       <div class="stat sv"><div class="hd">Total Spend</div><div class="num" data-to="${s.totalSpend}" data-f="money">0</div></div>
       <div class="stat sp"><div class="hd">Total Leads</div><div class="num" data-to="${s.totalLeads}" data-f="n">0</div></div>`;
-    animateCounts(q("[data-stats]"));
+    const anim=animateNext; animateNext=false;
+    if(anim) animateCounts(q("[data-stats]"));
+    else q("[data-stats]").querySelectorAll('[data-to]').forEach(el=>{const to=parseFloat(el.dataset.to),fmt=COUNT_FMT[el.dataset.f]||COUNT_FMT.n; el.textContent=isFinite(to)?fmt(to):el.dataset.to;});
   }
   function wireHeader(){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
@@ -487,7 +490,7 @@ const Listing=(function(){
       rows.splice(i,1);
       EventsData.counts.active=Math.max(0,(EventsData.counts.active||0)-1);
       EventsData.counts.trash=(EventsData.counts.trash||0)+1;
-      render();toast("Moved to <b>Trash</b>");
+      animateNext=true;render();toast("Moved to <b>Trash</b>");
       EventsData.delEvent(r.event_id).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});}));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
@@ -566,8 +569,8 @@ const Listing=(function(){
       try{await EventsData.editOverlay(payload);close();await reload();toast("Saved");}catch(err){toast("Save failed");}
     });
   }
-  async function reload(){ rows=await EventsData.getRows(view); render(); }
-  async function init(){cols=EventsData.getColumns();shell();rows=await EventsData.getRows("active");render();}
+  async function reload(){ animateNext=true; rows=await EventsData.getRows(view); render(); }
+  async function init(){cols=EventsData.getColumns();shell();animateNext=true;rows=await EventsData.getRows("active");render();}
   return { init };
 })();
 

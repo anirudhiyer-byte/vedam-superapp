@@ -306,10 +306,10 @@ const CPData = (function(){
   const costColumns=[
     {key:"platform",  label:"Platform",   type:"platform", required:true, hidden:false},
     {key:"name",      label:"Name",       type:"text",   hidden:false},
-    {key:"cpl",       label:"CPL",        type:"money",  hidden:false, auto:true},
+    {key:"cpl",       label:"CPL",        type:"money",  hidden:false, override:true},
     {key:"utm_link",  label:"UTM Link",   type:"link",   required:true, hidden:false},
-    {key:"leads",     label:"Leads",      type:"num",    hidden:false, auto:true},
-    {key:"mql",       label:"MQL",        type:"num",    hidden:false, auto:true},
+    {key:"leads",     label:"Leads",      type:"num",    hidden:false, override:true},
+    {key:"mql",       label:"MQL",        type:"num",    hidden:false, override:true},
     {key:"cpl_spend", label:"CPL Spend",  type:"money",  hidden:false},
     {key:"total_cost",label:"Total Cost", type:"money",  hidden:false},
     {key:"notes",     label:"Notes",      type:"text",   hidden:false}
@@ -366,7 +366,7 @@ const CPData = (function(){
   async function apiCost(method,payload){
     const opt={method,credentials:"same-origin"};
     let url="/api/growth/codesprint/cost";
-    if(method==="DELETE"){ url+="?id="+encodeURIComponent(payload.id); }
+    if(method==="DELETE"){ url+="?id="+encodeURIComponent(payload.id)+(payload.hard?"&hard=1":""); }
     else { opt.headers={"Content-Type":"application/json"}; opt.body=JSON.stringify(payload); }
     const r=await fetch(url,opt); if(!r.ok) throw new Error(await r.text()); return r.json();
   }
@@ -377,9 +377,11 @@ const CPData = (function(){
     async getCostRows(view){ return await apiGetCost(view); },
     costSummary(){ return _mapSummary(_cost.summary); },
     costCounts:()=>_cost.counts,
-    addCost:(row)=>apiCost("POST",{platform:row.platform,name:row.name,utm_link:row.utm_link,cpl_spend:row.cpl_spend,total_cost:row.total_cost,notes:row.notes}),
-    editCost:(row)=>apiCost("PATCH",row),
-    delCost:(row)=>apiCost("DELETE",{id:row.id}),
+    addCost:(row)=>apiCost("POST",{platform:row.platform,name:row.name,utm_link:row.utm_link,cpl_spend:row.cpl_spend,total_cost:row.total_cost,notes:row.notes,
+      leads_override:row.leads, mql_override:row.mql, cpl_override:row.cpl}),
+    editCost:(row)=>apiCost("PATCH",{id:row.id,platform:row.platform,name:row.name,utm_link:row.utm_link,cpl_spend:row.cpl_spend,total_cost:row.total_cost,notes:row.notes,
+      leads_override:row.leads, mql_override:row.mql, cpl_override:row.cpl}),
+    delCost:(row,hard)=>apiCost("DELETE",{id:row.id,hard:hard?1:0}),
     async getUtmRows(view){ await wait(60); return utmRows.filter(r=>view==="trash"?r._trash:!r._trash); },
     utmRowsRef:utmRows,
     getCostDash:()=>({rows:costDashRows.map(r=>({...r})), kpis:{...costDashKpis}}),
@@ -420,6 +422,7 @@ function makeGrid(cfg){
   // cfg: {mount, title, subline(cols,totalRows), columns, getRows, summaryCards(view), counts,
   //       actionsColumn, refreshLabel, searchPlaceholder, filters[], emptyState, pageSize}
   let cols=cfg.columns(), rows=[], view="active", search="", filterVals={}, page=1, pageSize=cfg.pageSize||50;
+  let animateNext=true;  // KPI count-up rolls ONLY on data change (load/refresh/add/edit/delete), not on search/filter/paginate
   const menu=document.getElementById("colmenu"), modal=document.getElementById("addcol-modal");
   const el=cfg.mount;
 
@@ -443,8 +446,8 @@ function makeGrid(cfg){
       </div>
       <div class="stats ${cfg.summaryCards("active").length>4?'six':'four'}" data-stats></div>
       <div class="tabs" data-tabs>
-        <button class="tab on" data-view="active">Active <span class="pill" data-ca>${cfg.counts.active||""}</span></button>
-        <button class="tab" data-view="trash">Trash <span class="pill" data-ct>${cfg.counts.trash||""}</span></button>
+        <button class="tab on" data-view="active">Active <span class="pill" data-ca>${cfg.counts.active||0}</span></button>
+        <button class="tab" data-view="trash">Trash <span class="pill" data-ct>${cfg.counts.trash||0}</span></button>
       </div>
       <div data-trashbar></div>
       <div class="gridmeta">
@@ -521,10 +524,19 @@ function makeGrid(cfg){
     renderStats();
     renderTrashbar();
     syncTabCounts();
+    refreshDynamicFilters();
+  }
+  function refreshDynamicFilters(){
+    (cfg.filters||[]).forEach(f=>{ if(!f.dynamic) return;
+      const sel=q(`[data-fk="${f.key}"]`); if(!sel) return;
+      const cur=filterVals[f.key]||"";
+      const vals=[...new Set(rows.map(r=>r[f.key]).filter(v=>v!=null&&String(v).trim()!==""))].sort((a,b)=>String(a).localeCompare(String(b)));
+      sel.innerHTML=`<option value="">${f.all}</option>`+vals.map(v=>`<option${String(v)===cur?" selected":""}>${String(v).replace(/</g,"&lt;")}</option>`).join("");
+    });
   }
   function syncTabCounts(){
-    const ca=q("[data-ca]"); if(ca) ca.textContent=cfg.counts.active||"";
-    const ct=q("[data-ct]"); if(ct) ct.textContent=cfg.counts.trash||"";
+    const ca=q("[data-ca]"); if(ca) ca.textContent=cfg.counts.active||0;
+    const ct=q("[data-ct]"); if(ct) ct.textContent=cfg.counts.trash||0;
   }
   function renderStats(){
     const cards=cfg.summaryCards(view);
@@ -532,7 +544,9 @@ function makeGrid(cfg){
     q("[data-stats]").innerHTML=cards.map(c=>`
       <div class="stat ${c.cls}"><div class="hd">${c.label}${c.icon||""}</div>
       <div class="num" data-to="${c.to}" data-f="${c.f}">0</div>${c.sub?`<div class="ssub">${c.sub}</div>`:""}</div>`).join("");
-    animateCounts(q("[data-stats]"));
+    const anim=animateNext; animateNext=false;
+    if(anim) animateCounts(q("[data-stats]"));
+    else q("[data-stats]").querySelectorAll('[data-to]').forEach(el=>{const to=parseFloat(el.dataset.to),fmt=COUNT_FMT[el.dataset.f]||COUNT_FMT.n; el.textContent=isFinite(to)?fmt(to):el.dataset.to;});
   }
   function renderTrashbar(){
     q("[data-trashbar]").innerHTML = view==="trash"
@@ -544,12 +558,13 @@ function makeGrid(cfg){
     el.querySelectorAll("select[data-prow]").forEach(s=>s.addEventListener("change",()=>{rows[+s.dataset.prow].platform=s.value;toast("Platform updated");}));
     el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;const r=rows[i];
       if(cfg.onDelete&&r&&r.id){
+        const hard=view==="trash";  // trash → permanent delete; active → move to trash
         // optimistic — drop the row now, persist + reconcile in the background (no await = no latency)
         rows.splice(i,1);
         if(view==="active"){cfg.counts.active=Math.max(0,(cfg.counts.active||0)-1);cfg.counts.trash=(cfg.counts.trash||0)+1;}
         else{cfg.counts.trash=Math.max(0,(cfg.counts.trash||0)-1);}
-        render();toast("Row removed");
-        cfg.onDelete(r).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});
+        animateNext=true; render(); toast(hard?"Deleted permanently":"Row removed");
+        cfg.onDelete(r,hard).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});
         return;
       }
       rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);render();toast("Row removed");}));
@@ -609,7 +624,7 @@ function makeGrid(cfg){
   function openAddRow(editRow){
     const inputFor=c=>{
       const star=c.required?' <span class="req">*</span>':'';
-      if(c.auto) return `<div class="ffield"><label>${c.label} <span class="muted" style="font-weight:400">(auto)</span></label><input data-f="${c.key}" disabled placeholder="Auto-pulled from leads" style="opacity:.55"></div>`;
+      if(c.override) return `<div class="ffield"><label>${c.label} <span class="muted" style="font-weight:400">(auto · override)</span></label><input type="number" step="any" data-f="${c.key}" placeholder="Auto — leave blank to auto-pull"></div>`;
       let field;
       if(c.type==="platform") field=`<select data-f="${c.key}">${CPData.PLATFORMS.map(p=>`<option>${p}</option>`).join("")}</select>`;
       else if(c.type==="date") field=`<input type="date" data-f="${c.key}">`;
@@ -626,7 +641,9 @@ function makeGrid(cfg){
       <div class="acts"><button class="btn" data-cancel>Cancel</button><button class="btn prim" data-save>${PLUS}${isEdit?"Save":"Add Row"}</button></div>
     </div>`;
     modal.classList.add("on");
-    if(isEdit) cols.forEach(c=>{const el2=modal.querySelector(`[data-f="${c.key}"]`); if(el2&&editRow[c.key]!=null) el2.value=editRow[c.key];});
+    if(isEdit) cols.forEach(c=>{const el2=modal.querySelector(`[data-f="${c.key}"]`); if(!el2)return;
+      const val=c.override ? editRow[c.key+"_override"] : editRow[c.key];
+      if(val!=null) el2.value=val;});
     modal.querySelectorAll("[data-cancel]").forEach(b=>b.addEventListener("click",()=>modal.classList.remove("on")));
     modal.querySelector("[data-save]").addEventListener("click",async()=>{
       const miss=cols.filter(c=>c.required && !modal.querySelector(`[data-f="${c.key}"]`).value.trim());
@@ -650,8 +667,8 @@ function makeGrid(cfg){
     q("[data-addcol]").addEventListener("click",openAddCol);
     q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
     q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
-    q("[data-refresh]").addEventListener("click",e=>{const ic=e.currentTarget.querySelector("svg");ic.classList.add("spin");e.currentTarget.disabled=true;
-      setTimeout(()=>{ic.classList.remove("spin");e.currentTarget.disabled=false;render();toast("<b>"+cfg.refreshLabel+"</b> complete");},1100);});
+    q("[data-refresh]").addEventListener("click",async e=>{const btn=e.currentTarget,ic=btn.querySelector("svg");ic.classList.add("spin");btn.disabled=true;
+      try{await reload();toast("<b>"+cfg.refreshLabel+"</b> complete");}catch(err){toast("Refresh failed");}finally{ic.classList.remove("spin");btn.disabled=false;}});
     q("[data-csv]").addEventListener("click",()=>q("[data-file]").click());
     q("[data-file]").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
       rd.onload=()=>{const lines=rd.result.split(/\r?\n/).filter(Boolean);if(lines.length<2){toast("CSV looks empty");return;}
@@ -663,8 +680,8 @@ function makeGrid(cfg){
       rd.readAsText(f);e.target.value="";});
     document.addEventListener("click",()=>menu.classList.remove("on"));
   }
-  async function reload(){ rows=await cfg.getRows(view); render(); }
-  async function init(){ shell(); rows=await cfg.getRows("active"); render(); }
+  async function reload(){ animateNext=true; rows=await cfg.getRows(view); render(); }
+  async function init(){ shell(); animateNext=true; rows=await cfg.getRows("active"); render(); }
   return { init };
 }
 
@@ -678,14 +695,14 @@ const CostListing=makeGrid({
   getRows:v=>CPData.getCostRows(v),
   counts:CPData.costCounts(),
   onAdd:row=>CPData.addCost(row),
-  onDelete:row=>CPData.delCost(row),
+  onDelete:(row,hard)=>CPData.delCost(row,hard),
   onEdit:(row)=>CPData.editCost(row).catch(()=>{}),
   actionsColumn:true,
   refreshLabel:"Refresh leads & cost",
   searchPlaceholder:"Search name, platform, UTM…",
   filters:[
     {key:"platform",all:"All platforms",options:CPData.PLATFORMS},
-    {key:"name",all:"All names",options:["YouTube","Quora","Blogs","Reddit","Manoranjan","TG Broadcast","WA Broadcast","Google Ads","Meta Ads","Instagram"]}
+    {key:"name",all:"All names",dynamic:true,options:[]}
   ],
   emptyState:`<b>No entries yet for Code Sprint — Cost & CPL.</b>Click <a data-addrow-link>Add Row</a> or <a data-csv-link>Upload CSV</a> to get started.`,
   summaryCards:view=>{ const s=CPData.costSummary(view);

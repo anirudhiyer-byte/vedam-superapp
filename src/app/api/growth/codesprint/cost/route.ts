@@ -7,7 +7,16 @@ type CostRow = {
   id: string; platform: string; name: string | null; utm_link: string | null;
   leads: number; mql: number; cpl_spend: number; total_cost: number; cpl: number | null;
   notes: string | null; sort_order: number; is_trashed: boolean;
+  leads_override: number | null; mql_override: number | null; cpl_override: number | null;
+  leads_auto: number | null; mql_auto: number | null;
 };
+
+/** "" / null / undefined -> null (auto-pull); anything else -> Number. */
+function numOrNull(v: unknown): number | null {
+  if (v === "" || v === null || v === undefined) return null;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : null;
+}
 
 function summarize(rows: CostRow[]) {
   const live = rows.filter((r) => !r.is_trashed);
@@ -44,6 +53,8 @@ export async function POST(req: Request) {
   const ins = {
     platform: b.platform, name: b.name ?? null, utm_link: b.utm_link ?? null,
     cpl_spend: Number(b.cpl_spend) || 0, total_cost: Number(b.total_cost) || 0,
+    leads_override: numOrNull(b.leads_override), mql_override: numOrNull(b.mql_override),
+    cpl_override: numOrNull(b.cpl_override),
     notes: b.notes ?? null, created_by: gate.userId,
   };
   const { data, error } = await svc().from("growth_cs_cost_rows").insert(ins).select("id").single();
@@ -61,6 +72,7 @@ export async function PATCH(req: Request) {
   const patch: Record<string, unknown> = {};
   for (const k of ["platform", "name", "utm_link", "notes", "sort_order", "is_trashed"]) if (k in b) patch[k] = b[k];
   for (const k of ["cpl_spend", "total_cost"]) if (k in b) patch[k] = Number(b[k]) || 0;
+  for (const k of ["leads_override", "mql_override", "cpl_override"]) if (k in b) patch[k] = numOrNull(b[k]);
   const { error } = await svc().from("growth_cs_cost_rows").update(patch).eq("id", b.id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   const { data: row } = await svc().from("growth_cs_cost_view").select("*").eq("id", b.id).single();
