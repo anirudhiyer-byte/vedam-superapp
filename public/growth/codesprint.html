@@ -366,8 +366,7 @@ const CPData = (function(){
   function summarize(r){
     const n=new Intl.NumberFormat("en-IN");
     const leads=_sum(r,"leads"),mql=_sum(r,"mql"),spend=_sum(r,"cpl_spend"),cost=_sum(r,"total_cost");
-    const cpls=r.map(x=>x.cpl).filter(v=>v!=null&&v!=="").map(Number).filter(v=>isFinite(v));
-    const blended=cpls.length?cpls.reduce((a,b)=>a+b,0)/cpls.length:0;  // Blended CPL = avg of per-row CPLs
+    const blended=leads?cost/leads:0;  // Blended CPL = total cost / total leads
     const byP=p=>r.filter(x=>p.test(x.platform||"")).reduce((a,x)=>a+(+x.leads||0),0);
     const tg=byP(/Telegram/),yt=byP(/^YouTube/),ig=byP(/Instagram/),wa=byP(/WhatsApp/),ads=byP(/Ads/),org=byP(/Organic/);
     const sub=leads?`${n.format(tg)} TG · ${n.format(yt)} YT · ${n.format(ig)} IG · ${n.format(wa)} WA · ${n.format(ads)} ads · ${n.format(org)} organic`:"";
@@ -778,7 +777,7 @@ const CostListing=makeGrid({
     target.leads_override=lo; target.mql_override=mo; target.cpl_override=co;
     target.leads = lo!=null?lo:(target.leads_auto!=null?target.leads_auto:0);
     target.mql   = mo!=null?mo:(target.mql_auto!=null?target.mql_auto:0);
-    target.cpl   = co!=null?co:(target.leads>0?Math.round(target.cpl_spend/target.leads*100)/100:null);
+    target.cpl   = co!=null?co:(target.leads>0?Math.round(target.total_cost/target.leads*100)/100:null);
   },
   actionsColumn:true,
   refreshLabel:"Refresh leads & cost",
