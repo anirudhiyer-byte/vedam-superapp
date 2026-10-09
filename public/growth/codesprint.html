@@ -520,6 +520,11 @@ function makeGrid(cfg){
     const rpp=q("[data-rpp]"); if(rpp) rpp.addEventListener("change",e=>{pageSize=+e.target.value;page=1;render();});
     renderStats();
     renderTrashbar();
+    syncTabCounts();
+  }
+  function syncTabCounts(){
+    const ca=q("[data-ca]"); if(ca) ca.textContent=cfg.counts.active||"";
+    const ct=q("[data-ct]"); if(ct) ct.textContent=cfg.counts.trash||"";
   }
   function renderStats(){
     const cards=cfg.summaryCards(view);
@@ -537,9 +542,17 @@ function makeGrid(cfg){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
     el.querySelectorAll("select[data-prow]").forEach(s=>s.addEventListener("change",()=>{rows[+s.dataset.prow].platform=s.value;toast("Platform updated");}));
-    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",async e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;const r=rows[i];
-      if(cfg.onDelete&&r&&r.id){try{await cfg.onDelete(r);await reload();toast("Row removed");}catch(err){toast("Delete failed");}return;}
-      rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);q("[data-ca]").textContent=cfg.counts.active||"";q("[data-ct]").textContent=cfg.counts.trash||"";render();toast("Row removed");}));
+    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;const r=rows[i];
+      if(cfg.onDelete&&r&&r.id){
+        // optimistic — drop the row now, persist + reconcile in the background (no await = no latency)
+        rows.splice(i,1);
+        if(view==="active"){cfg.counts.active=Math.max(0,(cfg.counts.active||0)-1);cfg.counts.trash=(cfg.counts.trash||0)+1;}
+        else{cfg.counts.trash=Math.max(0,(cfg.counts.trash||0)-1);}
+        render();toast("Row removed");
+        cfg.onDelete(r).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});
+        return;
+      }
+      rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);render();toast("Row removed");}));
     el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i]; if(cfg.onEdit){openAddRow(r);} else toast("Inline edit — wire to backend");}));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
