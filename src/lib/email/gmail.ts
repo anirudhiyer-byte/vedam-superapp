@@ -15,9 +15,11 @@ export async function gmailAccessToken(): Promise<{ token: string; sender: strin
 }
 
 export function encodeSubject(s: string): string {
-  return /[^\x00-\x7F]/.test(s)
-    ? "=?UTF-8?B?" + Buffer.from(s, "utf-8").toString("base64") + "?="
-    : s;
+  // strip CR/LF and other control chars first — a raw newline in an ASCII subject would inject MIME headers (e.g. a Bcc)
+  const clean = s.replace(/[\r\n\t\x00-\x1F\x7F]+/g, " ").trim();
+  return /[^\x00-\x7F]/.test(clean)
+    ? "=?UTF-8?B?" + Buffer.from(clean, "utf-8").toString("base64") + "?="
+    : clean;
 }
 
 const b64url = (buf: Buffer) => buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
