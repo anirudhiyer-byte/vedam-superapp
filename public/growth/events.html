@@ -652,7 +652,10 @@ const Listing=(function(){
    EVENTS PERFORMANCE
    ============================================================================ */
 const Perf=(function(){
-  let selected=new Set(), notesQ="", inited=false, ddOpen=false, ddSearch="";
+  let selected=new Set(), nameQ="", notesQ="", inited=false, ddOpen=false, ddSearch="";
+  const perfShown=()=>all().filter(e=>selected.has(e.slug)
+    && (!nameQ || (e.name||"").toLowerCase().includes(nameQ.toLowerCase()))
+    && (!notesQ || (e.notes||"").toLowerCase().includes(notesQ.toLowerCase())));
   const el=document.getElementById("page-perf");
   const all=()=>EventsData.perfEvents;
   const q=s=>el.querySelector(s);
@@ -700,7 +703,7 @@ const Perf=(function(){
     </div>`;
   }
   function render(){
-    const shown=all().filter(e=>selected.has(e.slug)&&(!notesQ||(e.name+" "+e.notes).toLowerCase().includes(notesQ.toLowerCase())));
+    const shown=perfShown();
     el.innerHTML=`
       <div class="phead perfhd"><div><h1>Events Performance</h1>
         <div class="sub">${EventsData.perfKpis.uniqueEvents} done events · 0 scheduled (excluded) · click leads/payments/enrolments to drill</div></div></div>
@@ -708,7 +711,8 @@ const Perf=(function(){
         <div class="msdd"><button class="msbtn ${ddOpen?"open":""}" data-ddbtn>
           <svg class="fi" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg>All ${selected.size} events
           <svg class="cv" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>${ddPanel()}</div>
-        <div class="search" style="min-width:260px;max-width:360px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-notes placeholder="Search event by name…" value="${notesQ}"></div>
+        <div class="search" style="min-width:220px;max-width:320px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-namesearch placeholder="Search event by name…" value="${nameQ}"></div>
+        <div class="search" style="min-width:200px;max-width:300px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-notes placeholder="Search notes…" value="${notesQ}"></div>
       </div>
       ${kpiStrip()}
       <div data-cards>${shown.map(eventCard).join("")}</div>`;
@@ -728,7 +732,9 @@ const Perf=(function(){
     if(sa)sa.addEventListener("click",()=>{all().forEach(e=>selected.add(e.slug));render();});
     if(ca)ca.addEventListener("click",()=>{selected.clear();render();});
     bindPicks();
-    q("[data-notes]").addEventListener("input",e=>{notesQ=e.target.value;el.querySelector("[data-cards]").innerHTML=all().filter(ev=>selected.has(ev.slug)&&(!notesQ||(ev.name+" "+ev.notes).toLowerCase().includes(notesQ.toLowerCase()))).map(eventCard).join("");bindDrills();});
+    const applyPerfSearch=()=>{el.querySelector("[data-cards]").innerHTML=perfShown().map(eventCard).join("");bindDrills();};
+    const ns=q("[data-namesearch]"); if(ns) ns.addEventListener("input",e=>{nameQ=e.target.value;applyPerfSearch();});
+    q("[data-notes]").addEventListener("input",e=>{notesQ=e.target.value;applyPerfSearch();});
     bindDrills();
     document.addEventListener("click",closeDD);
   }
