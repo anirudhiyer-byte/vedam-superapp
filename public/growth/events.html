@@ -450,9 +450,8 @@ const Listing=(function(){
         <select class="sel" data-fk="status"><option value="">All statuses</option><option>Done</option><option>Scheduled</option></select>
       </div>
       <div class="actionrow">
-        <button class="btn ghost-cyan" data-sync><svg viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>Sync from platform</button>
         <button class="btn ghost-orange" data-refresh><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>Refresh attribution</button>
-        <span class="note">(Sync pulls new events from platform · Refresh recomputes attribution · Scheduled spend shown separately from done spend)</span>
+        <span class="note">(Refresh recomputes attribution · Scheduled spend shown separately from done spend)</span>
       </div>
       <div class="stats" data-stats></div>
       <div class="tabs">
@@ -585,7 +584,6 @@ const Listing=(function(){
     q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
     q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
     const spinReload=async(b,msg,anim="spin")=>{const ic=b.querySelector("svg");ic&&ic.classList.add(anim);b.disabled=true;try{await reload();toast(msg);}catch(e){toast("Refresh failed");}finally{ic&&ic.classList.remove(anim);b.disabled=false;}};
-    q("[data-sync]").addEventListener("click",e=>spinReload(e.currentTarget,"<b>Synced</b> — events & attribution refreshed","syncing"));
     q("[data-refresh]").addEventListener("click",e=>spinReload(e.currentTarget,"<b>Attribution recomputed</b> from UTMs"));
     q("[data-csv]").addEventListener("click",()=>q("[data-file]").click());
     q("[data-file]").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
