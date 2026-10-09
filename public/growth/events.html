@@ -81,6 +81,7 @@ h1{margin:0;font-family:var(--display);font-size:42px;font-weight:700;letter-spa
 
 /* stat cards */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stats.six{grid-template-columns:repeat(3,1fr)}
 .stat{position:relative;background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:18px;padding:18px 20px 20px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
 .stat:hover{transform:translateY(-4px);border-color:rgba(255,138,61,.4);box-shadow:0 20px 48px -22px var(--glow,rgba(255,138,61,.5))}
 .stat::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--bar)}
@@ -175,8 +176,16 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 .ko{--glow:rgba(255,138,61,.5)} .kc{--glow:rgba(34,211,238,.5)} .kv{--glow:rgba(139,92,246,.6)} .kp{--glow:rgba(255,61,154,.5)} .kg{--glow:rgba(52,226,176,.5)} .ka{--glow:rgba(255,177,61,.5)}
 
 /* per-event cards */
-.ecard{background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:20px;padding:22px 24px;margin-top:18px;position:relative;overflow:hidden}
-.ecard::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--pink),var(--violet),var(--orange),var(--cyan))}
+@property --led{syntax:"<angle>";initial-value:0deg;inherits:false}
+.ecard{background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:20px;padding:22px 24px;margin-top:18px;position:relative;overflow:visible}
+/* revolving LED-strip border: a conic gradient masked into a thin ring, rotating */
+.ecard::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2.5px;pointer-events:none;z-index:0;
+  background:conic-gradient(from var(--led),var(--orange) 0deg,var(--orange) 300deg,#ffcf9e 326deg,#ffffff 343deg,#ffcf9e 352deg,var(--orange) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  filter:drop-shadow(0 0 7px rgba(255,138,61,.5));animation:ledspin 4.5s linear infinite}
+.ecard>*{position:relative;z-index:1}
+@keyframes ledspin{to{--led:360deg}}
 .ecard .eh{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .ecard h2{margin:0;font-family:var(--display);font-size:22px;font-weight:600;color:#f4f7ff}
 .ecard .epage{display:inline-flex;align-items:center;gap:6px;color:var(--cyan);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none}
@@ -185,23 +194,24 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 .ecard .emeta b{color:var(--ink)}
 .ewarn{display:flex;align-items:center;gap:10px;margin:16px 0;background:rgba(255,93,126,.1);border:1px solid rgba(255,93,126,.3);border-radius:12px;padding:12px 16px;color:var(--red);font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase}
 .ewarn svg{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8}
-.emetrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:16px}
+.emetrics{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:16px}
 .ebox{background:rgba(255,255,255,.03);border:1px solid var(--panel-brd);border-radius:14px;padding:15px 16px}
 .ebox .l{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10.5px;letter-spacing:1px;color:var(--mut2);text-transform:uppercase}
 .ebox .l svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7;opacity:.7}
 .ebox .v{font-family:var(--display);font-size:24px;font-weight:700;margin-top:9px;letter-spacing:-.6px}
-.ebox.reg .v{color:var(--cyan)} .ebox.spend .v{color:var(--pink)} .ebox.leads .v{color:var(--orange)} .ebox.pay .v{color:var(--violet)} .ebox.enr .v{color:var(--cyan)}
+.ebox.reg .v{color:var(--cyan)} .ebox.spend .v{color:var(--pink)} .ebox.cplreg .v{color:var(--amber)} .ebox.leads .v{color:var(--orange)} .ebox.pay .v{color:var(--violet)} .ebox.enr .v{color:var(--cyan)}
 .ebox.drill{cursor:pointer;transition:.15s} .ebox.drill:hover{border-color:rgba(255,138,61,.45);transform:translateY(-2px)}
 
 /* toast */
 #toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);z-index:90;background:var(--menu);border:1px solid var(--panel-brd);border-radius:12px;padding:12px 20px;font-size:13px;color:var(--ink);box-shadow:0 18px 50px -16px rgba(0,0,0,.7);opacity:0;pointer-events:none;transition:.28s}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)} #toast b{color:var(--orange)}
 .spin{animation:spin .8s linear infinite} @keyframes spin{to{transform:rotate(360deg)}}
+.syncing{animation:syncbob .85s ease-in-out infinite} @keyframes syncbob{0%,100%{transform:translateY(-2px);opacity:.5}50%{transform:translateY(3px);opacity:1}}
 
 @media(max-width:1200px){.kg6{grid-template-columns:repeat(3,1fr)}.kg5{grid-template-columns:repeat(3,1fr)}.emetrics{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:980px){.stats{grid-template-columns:repeat(2,1fr)}.kg6,.kg5,.kg3{grid-template-columns:repeat(2,1fr)}.emetrics{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:820px){.shell{grid-template-columns:1fr}.rail{display:none}.main{padding:20px 16px}h1{font-size:30px}}
-@media(prefers-reduced-motion:reduce){.page.on{animation:none}}
+@media(prefers-reduced-motion:reduce){.page.on{animation:none}.ecard::before{animation:none}}
 </style>
 
 <div class="glow g1"></div><div class="glow g2"></div>
@@ -242,6 +252,39 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 
 <div class="popover" id="colmenu"></div>
 <div id="toast"></div>
+<div id="evmodal" class="evmodal"></div>
+<div id="spendpop" class="spendpop"></div>
+<style>
+.spendcell{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--ink);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;padding:2px 4px;border-radius:7px;transition:.15s}
+.spendcell:hover{background:rgba(255,138,61,.12);color:var(--orange)}
+.spendcell .cv{width:13px;height:13px;stroke:var(--mut2);fill:none;stroke-width:2;transition:transform .15s}
+.spendcell.open .cv{transform:rotate(180deg)}
+.spendpop{position:fixed;z-index:60;min-width:216px;background:var(--menu);border:1px solid var(--panel-brd);border-radius:12px;box-shadow:0 20px 50px -18px rgba(0,0,0,.7);padding:8px;display:none}
+.spendpop.on{display:block;animation:fade .14s ease}
+.spendpop .sph{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mut2);padding:4px 9px 7px}
+.spendpop .spr{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:7px 9px;border-radius:8px;font-size:13px}
+.spendpop .spr .l{color:var(--mut)} .spendpop .spr .v{font-variant-numeric:tabular-nums;font-weight:600}
+.spendpop .spr.tot{border-top:1px solid var(--line);margin-top:4px;padding-top:9px} .spendpop .spr.tot .l{color:var(--ink);font-weight:600} .spendpop .spr.tot .v{color:var(--orange)}
+.kcard.kclick{cursor:pointer} .kcard.kclick:hover{border-color:rgba(255,138,61,.45)}
+.kcard.kclick .cv{width:14px;height:14px;stroke:#7681b2;fill:none;stroke-width:2;transition:transform .15s}
+.kcard.kclick.open .cv{transform:rotate(180deg)}
+.evmodal{position:fixed;inset:0;z-index:80;background:rgba(5,8,18,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+.evmodal.on{display:flex;animation:fade .18s ease}
+.evmodal .box{width:560px;max-width:100%;max-height:86vh;overflow:auto;background:var(--menu);border:1px solid var(--panel-brd);border-radius:18px;padding:22px 24px;box-shadow:0 30px 70px -24px rgba(0,0,0,.8)}
+.evmodal .mh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
+.evmodal .mh h3{margin:0;font-family:var(--display);font-size:19px;font-weight:600}
+.evmodal .mh .x{background:none;border:none;color:var(--mut2);font-size:24px;line-height:1;cursor:pointer}
+.evmodal .msub{color:var(--mut2);font-size:12.5px;margin-bottom:16px}
+.evmodal .fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.evmodal .ff{display:flex;flex-direction:column;gap:6px}
+.evmodal .ff.full{grid-column:1/-1}
+.evmodal .ff label{font-size:12px;color:var(--mut);font-weight:600}
+.evmodal .ff label .ro{font-weight:400;color:var(--mut2)}
+.evmodal .ff input{background:var(--bg2);border:1px solid var(--panel-brd);border-radius:10px;padding:11px 12px;color:var(--ink);font-family:var(--font);font-size:13.5px;outline:none}
+.evmodal .ff input:focus{border-color:rgba(255,138,61,.55);box-shadow:0 0 0 3px rgba(255,138,61,.12)}
+.evmodal .ff input:disabled{opacity:.5;cursor:not-allowed}
+.evmodal .acts{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+</style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -253,7 +296,7 @@ const EventsData=(function(){
   const HOSTS=["Amit","Gaurav Roy","Jasbir Singh","Manas Bhardwaj","Subhesh Kumar"];
   const EV="https://events.vedam.org/";
   const columns=[
-    {key:"serial_no",       label:"Serial No",       type:"num",  required:true, hidden:false},
+    {key:"serial_no",       label:"Serial No",       type:"num",  hidden:false},
     {key:"event_page_link", label:"Event Page Link", type:"link", hidden:false},
     {key:"event_name",      label:"Event Name",      type:"text", required:true, hidden:false},
     {key:"linked_event",    label:"Linked Event",    type:"text", hidden:false},
@@ -262,41 +305,85 @@ const EventsData=(function(){
     {key:"host",            label:"Host",            type:"text", hidden:false},
     {key:"registered_count",label:"Registrations",   type:"num",  hidden:false},
     {key:"utm_link",        label:"UTM Link",        type:"link", hidden:false},
-    {key:"ad_spend",        label:"Ad Spend",        type:"money",hidden:false},
-    {key:"influencer_spend",label:"Influencer Spend",type:"money",hidden:false},
-    {key:"comms_spend",     label:"Comms Spend",     type:"money",hidden:false},
-    {key:"telegram_spend",  label:"Telegram Spend",  type:"money",hidden:false},
-    {key:"host_spend",      label:"Host Spend",      type:"money",hidden:false},
-    {key:"total_spend",     label:"Total Spend",     type:"money",hidden:false},
+    {key:"total_spend",     label:"Total Spend",     type:"spendtotal",hidden:false},
     {key:"leads",           label:"Leads",           type:"num",  hidden:false},
     {key:"payments",        label:"Payments",        type:"num",  hidden:false},
     {key:"enrollments",     label:"Enrollments",     type:"num",  hidden:false},
     {key:"status",          label:"Status",          type:"status",hidden:false},
     {key:"notes",           label:"Notes",           type:"text", hidden:false}
   ];
-  const e=(serial,slug,name,linked,date,cat,host,reg,ad,inf,comms,tg,hostS,leads,pay,enr,status,utm)=>{
-    const total=(ad||0)+(inf||0)+(comms||0)+(tg||0)+(hostS||0);
-    return {serial_no:serial, event_page_link:slug?EV+slug:"", event_name:name, linked_event:linked, live_date:date,
-      category:cat, host:host, registered_count:reg, utm_link:utm||"", ad_spend:ad||0, influencer_spend:inf||0,
-      comms_spend:comms||0, telegram_spend:tg||0, host_spend:hostS||0, total_spend:total, leads:leads||0,
-      payments:pay||0, enrollments:enr||0, status:status, notes:"", _trash:false};
-  };
-  // Rows come from the backend — start empty (no dummy/seed data).
-  const rowsActive=[];
-  const rowsTrash=[];
-  const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0};
+  // Spends (+serial/linked/utm/notes) are always editable. Identity (name/date/category/host/page) is
+  // editable ONLY for manual bootcamp rows; for auto (Vedam One) rows it is read-only.
+  const SPENDS=["ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend","price_spend"];
+  const IDENTITY=["event_name","event_page_link","live_date","category","host"];
 
-  // performance (done events only) — populated from backend.
+  // live caches (mutated in place so Listing/Perf references stay valid)
+  const rowsActive=[], rowsTrash=[];
+  const summary={uniqueDone:0, rowsTotal:0, totalReg:0, totalSpend:0, totalLeads:0, acquisition:0, overallCpl:0};
   const perfEvents=[];
   const perfKpis={uniqueEvents:0, registrations:0, leads:0, payments:0, enrolments:0, l2p:0,
-    totalSpend:0, cpl:0, cpp:0, adSpend:0, inflSpend:0, commsSpend:0, tgSpend:0, hostSpend:0};
+    totalSpend:0, cpl:0, cpp:0, cplReg:0, adSpend:0, inflSpend:0, commsSpend:0, tgSpend:0, hostSpend:0, priceSpend:0};
+  const counts={active:0, trash:0};
 
-  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  const num=v=>(v===null||v===undefined||v==="")?0:Number(v)||0;
+  const dispStatus=(d,st)=>{ if(st) return st.charAt(0).toUpperCase()+st.slice(1); if(!d) return "Scheduled"; const t=new Date(d).getTime(); return (isFinite(t)&&t<Date.now())?"Done":"Scheduled"; };
+  function mapRow(x){
+    const date = x.live_date ? String(x.live_date).slice(0,10) : "";
+    return {
+      id:x.id, kind:x.kind||"auto", event_id:x.event_id, serial_no:x.serial_no, event_page_link:x.event_page_link||"",
+      event_name:x.event_name||"", linked_event:x.linked_event||"", live_date:date,
+      category:x.category||"", host:x.host||"", registered_count:num(x.registered_count),
+      utm_link:x.utm_link||"", ad_spend:num(x.ad_spend), influencer_spend:num(x.influencer_spend),
+      comms_spend:num(x.comms_spend), telegram_spend:num(x.telegram_spend), host_spend:num(x.host_spend),
+      price_spend:num(x.price_spend), total_spend:num(x.total_spend), leads:num(x.leads), payments:num(x.payments),
+      enrollments:num(x.enrollments), status:dispStatus(x.live_date), notes:x.notes||"", _trash:!!x.is_trashed
+    };
+  }
+  function rebuildPerf(rows){
+    perfEvents.length=0;
+    rows.filter(r=>!r._trash).forEach(r=>perfEvents.push({
+      slug:r.id, pagelink:r.event_page_link, name:r.event_name, date:r.live_date,
+      cat:r.category||"—", host:r.host, reg:r.registered_count, spend:r.total_spend,
+      leads:r.leads, pay:r.payments, enr:r.enrollments, utms:r.utm_link?1:0, rows:1, notes:r.notes||"",
+      ad:r.ad_spend, infl:r.influencer_spend, comms:r.comms_spend, tg:r.telegram_spend, hostS:r.host_spend, price:r.price_spend
+    }));
+  }
+  function applySummary(s){
+    Object.assign(summary,{ uniqueDone:num(s.uniqueEvents), rowsTotal:num(s.uniqueEvents),
+      totalReg:num(s.registrations), totalSpend:num(s.totalSpend), totalLeads:num(s.leads),
+      acquisition:num(s.acquisition), overallCpl:num(s.overallCpl) });
+    Object.assign(perfKpis,{ uniqueEvents:num(s.uniqueEvents), registrations:num(s.registrations),
+      leads:num(s.leads), payments:num(s.payments), enrolments:num(s.enrollments), l2p:num(s.l2p),
+      totalSpend:num(s.totalSpend), cpl:num(s.cpl), cpp:num(s.cpp), cplReg:num(s.overallCpl), adSpend:num(s.adSpend),
+      inflSpend:num(s.inflSpend), commsSpend:num(s.commsSpend), tgSpend:num(s.tgSpend), hostSpend:num(s.hostSpend), priceSpend:num(s.priceSpend) });
+  }
+  async function apiGet(view){
+    try{
+      const r=await fetch("/api/growth/events?view="+view,{credentials:"same-origin"});
+      if(!r.ok) throw new Error(await r.text());
+      const d=await r.json();
+      const rows=(d.rows||[]).map(mapRow);
+      if(view==="trash"){ rowsTrash.length=0; rowsTrash.push(...rows); }
+      else { rowsActive.length=0; rowsActive.push(...rows); rebuildPerf(rows); }
+      if(d.summary) applySummary(d.summary);
+      if(d.counts) Object.assign(counts,d.counts);
+      return rows;
+    }catch(e){ toast("Couldn’t load — are you signed in as admin?"); return []; }
+  }
+  async function apiSend(method,payload){
+    const opt={method,credentials:"same-origin"};
+    let url="/api/growth/events";
+    if(method==="DELETE"){ url+="?id="+encodeURIComponent(payload.id)+"&kind="+(payload.kind||"auto")+(payload.hard?"&hard=1":""); }
+    else { opt.headers={"Content-Type":"application/json"}; opt.body=JSON.stringify(payload); }
+    const r=await fetch(url,opt); if(!r.ok) throw new Error(await r.text()); return r.json();
+  }
   return {
-    CATS, HOSTS, columns, summary, perfEvents, perfKpis,
+    CATS, HOSTS, columns, summary, perfEvents, perfKpis, counts, SPENDS, IDENTITY,
     getColumns:()=>columns.map(c=>({...c})),
-    async getRows(view){ await wait(90); return view==="trash"?rowsTrash:rowsActive; },
-    counts:{active:0, trash:0}
+    async getRows(view){ return await apiGet(view); },
+    addEvent:(payload)=>apiSend("POST",payload),
+    editOverlay:(payload)=>apiSend("PATCH",payload),
+    delEvent:(id,kind,hard)=>apiSend("DELETE",{id,kind,hard:hard?1:0})
   };
 })();
 
@@ -306,6 +393,21 @@ const EventsData=(function(){
 const fmtN=v=>(v===null||v===undefined||v==="")?"—":Number(v).toLocaleString("en-IN");
 const fmtMoney=v=>(v===null||v===undefined||v==="")?"—":"₹"+Number(v).toLocaleString("en-IN");
 const fmtMoney0=v=>Number(v)===0?"₹0":fmtMoney(v);
+// shared spend-breakdown popover (used by Listing table cell + Performance Total Spend card)
+function openSpendBreakdown(anchor, items, total){
+  const pop=document.getElementById("spendpop"); if(!pop||!anchor) return;
+  document.querySelectorAll(".spendcell.open,.kcard.open").forEach(x=>x.classList.remove("open"));
+  pop.innerHTML=`<div class="sph">Spend breakdown</div>`
+    +items.map(([l,v])=>`<div class="spr"><span class="l">${l}</span><span class="v">${Number(v)?fmtMoney(v):'₹0'}</span></div>`).join("")
+    +`<div class="spr tot"><span class="l">Total Spend</span><span class="v">${fmtMoney(Number(total)||0)}</span></div>`;
+  const rc=anchor.getBoundingClientRect();
+  pop.style.visibility="hidden"; pop.classList.add("on");
+  const pw=pop.offsetWidth, ph=pop.offsetHeight;
+  const left=Math.min(Math.max(8,rc.left), innerWidth-pw-12);
+  let top=rc.bottom+6; if(top+ph>innerHeight-8) top=Math.max(8, rc.top-ph-6);
+  pop.style.left=left+"px"; pop.style.top=top+"px"; pop.style.visibility="";
+  anchor.classList.add("open");
+}
 const fmtDate=s=>{if(!s)return "—";const[y,m,d]=s.split("-").map(Number);return d+"/"+m+"/"+y;};
 const fmtDateL=s=>{if(!s)return "";const[y,m,d]=s.split("-").map(Number);return d+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m-1]+" "+y;};
 function fmtK(v){ if(v>=1e7)return "₹"+(v/1e7).toFixed(1)+"Cr"; if(v>=1e5)return "₹"+(v/1e5).toFixed(1)+"L"; if(v>=1e3)return "₹"+(v/1e3).toFixed(1)+"K"; return "₹"+Math.round(v); }
@@ -328,6 +430,7 @@ const EXT='<svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:current
    ============================================================================ */
 const Listing=(function(){
   let cols=[], rows=[], view="active", search="", filters={category:"",host:"",status:""};
+  let animateNext=true;  // KPI roll only on data change
   const el=document.getElementById("page-listing"), menu=document.getElementById("colmenu");
   const q=s=>el.querySelector(s);
 
@@ -338,7 +441,8 @@ const Listing=(function(){
         <button class="btn" data-csv><svg viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>Upload CSV</button>
         <button class="btn" data-addcol><svg viewBox="0 0 24 24"><path d="M3 5h12M3 12h12M3 19h8M18 9v8M22 13h-8"/></svg>Add Column</button>
         <button class="btn prim" data-addrow><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Add Row</button>
-        <input type="file" data-file accept=".csv" hidden></div></div>
+        <input type="file" data-file accept=".csv" hidden>
+        </div></div>
       <div class="toolbar">
         <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-search placeholder="Search event, host, category, UTM, note…"></div>
         <select class="sel" data-fk="category"><option value="">All categories</option>${EventsData.CATS.map(c=>`<option>${c}</option>`).join("")}</select>
@@ -346,9 +450,8 @@ const Listing=(function(){
         <select class="sel" data-fk="status"><option value="">All statuses</option><option>Done</option><option>Scheduled</option></select>
       </div>
       <div class="actionrow">
-        <button class="btn ghost-cyan" data-sync><svg viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>Sync from platform</button>
         <button class="btn ghost-orange" data-refresh><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>Refresh attribution</button>
-        <span class="note">(Sync pulls new events from platform · Refresh recomputes attribution · Scheduled spend shown separately from done spend)</span>
+        <span class="note">(Refresh recomputes attribution · Scheduled spend shown separately from done spend)</span>
       </div>
       <div class="stats" data-stats></div>
       <div class="tabs">
@@ -376,6 +479,8 @@ const Listing=(function(){
   }
   function cell(c,r){
     const v=r[c.key];
+    if(c.type==="spendtotal"){ const t=Number(r.total_spend)||0;
+      return `<td><button class="spendcell" data-spendrow="${rows.indexOf(r)}">${t===0?'<span class="mut">0</span>':fmtMoney(t)}<svg viewBox="0 0 24 24" class="cv"><path d="M6 9l6 6 6-6"/></svg></button></td>`; }
     if(c.type==="status") return v?`<td><span class="chip ${v==="Done"?"done":"sched"}">${v}</span></td>`:`<td class="mut">—</td>`;
     if(c.type==="cat") return v?`<td><span class="chip cat">${v}</span></td>`:`<td class="mut">—</td>`;
     if(v===""||v===null||v===undefined) return `<td class="mut">—</td>`;
@@ -399,25 +504,52 @@ const Listing=(function(){
       +`<td><span class="rowact"><button data-edit><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Edit</button><button class="del" data-del><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>Delete</button></span></td></tr>`;});
     tb+="</tbody>";
     q("[data-grid]").innerHTML=thead+tb;
-    wireHeader(); renderStats();
+    wireHeader(); renderStats(); syncTabCounts();
+  }
+  function syncTabCounts(){
+    const ca=q("[data-ca]"); if(ca) ca.textContent=EventsData.counts.active||0;
+    const ct=q("[data-ct]"); if(ct) ct.textContent=EventsData.counts.trash||0;
+  }
+  function summaryFromRows(rs){
+    const sum=f=>rs.reduce((a,r)=>a+(Number(f(r))||0),0);
+    const reg=sum(r=>r.registered_count), spend=sum(r=>r.total_spend);
+    const ad=sum(r=>r.ad_spend), tg=sum(r=>r.telegram_spend), infl=sum(r=>r.influencer_spend);
+    return { uniqueDone:rs.length, rowsTotal:rs.length, totalReg:reg, totalSpend:spend, totalLeads:sum(r=>r.leads),
+      acquisition: reg?Math.round((ad+tg+infl)/reg):0, overallCpl: reg?Math.round(spend/reg):0 };
   }
   function renderStats(){
-    const s=EventsData.summary;
-    q("[data-stats]").innerHTML=`
-      <div class="stat so"><div class="hd">Unique Events (Done)</div><div class="num" data-to="${s.uniqueDone}" data-f="n">0</div><div class="ssub">${s.rowsTotal} rows total</div></div>
+    const s=summaryFromRows(filtered());
+    const box=q("[data-stats]"); box.className="stats six";
+    box.innerHTML=`
+      <div class="stat so"><div class="hd">Unique Events</div><div class="num" data-to="${s.uniqueDone}" data-f="n">0</div><div class="ssub">${s.rowsTotal} rows total</div></div>
       <div class="stat sc"><div class="hd">Total Registrations</div><div class="num" data-to="${s.totalReg}" data-f="n">0</div></div>
       <div class="stat sv"><div class="hd">Total Spend</div><div class="num" data-to="${s.totalSpend}" data-f="money">0</div></div>
-      <div class="stat sp"><div class="hd">Total Leads</div><div class="num" data-to="${s.totalLeads}" data-f="n">0</div></div>`;
-    animateCounts(q("[data-stats]"));
+      <div class="stat sp"><div class="hd">Total Leads</div><div class="num" data-to="${s.totalLeads}" data-f="n">0</div></div>
+      <div class="stat sa"><div class="hd">Acquisition Spend</div><div class="num" data-to="${s.acquisition}" data-f="money">0</div><div class="ssub">(ads + telegram + influencer) / registrations</div></div>
+      <div class="stat sg"><div class="hd">Overall CPL</div><div class="num" data-to="${s.overallCpl}" data-f="money">0</div><div class="ssub">total spend / registrations</div></div>`;
+    const anim=animateNext; animateNext=false;
+    if(anim) animateCounts(box);
+    else box.querySelectorAll('[data-to]').forEach(el=>{const to=parseFloat(el.dataset.to),fmt=COUNT_FMT[el.dataset.f]||COUNT_FMT.n; el.textContent=isFinite(to)?fmt(to):el.dataset.to;});
   }
   function wireHeader(){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
-    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i];toast("Edit <b>"+(r.event_name||"row")+"</b> — wire to backend");}));
-    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const i=+e.target.closest("tr").dataset.i; if(i<0||i>=rows.length)return;
+    el.querySelectorAll("[data-spendrow]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openSpendPop(rows[+b.dataset.spendrow],b);}));
+    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i]; if(r) openEdit(r);}));
+    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const i=+e.target.closest("tr").dataset.i; if(i<0||i>=rows.length)return;const r=rows[i];
+      if(view==="trash"){
+        if(r.kind!=="manual"){ toast("Auto events can’t be permanently deleted"); return; }
+        rows.splice(i,1); EventsData.counts.trash=Math.max(0,(EventsData.counts.trash||0)-1);
+        animateNext=true;render();toast("Deleted permanently");
+        EventsData.delEvent(r.id,"manual",true).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});
+        return;
+      }
+      // active → move to trash (optimistic; persist + reconcile in background)
       rows.splice(i,1);
-      if(view==="active"){EventsData.counts.active--;EventsData.counts.trash++;}else{EventsData.counts.trash--;}
-      q("[data-ca]").textContent=EventsData.counts.active;q("[data-ct]").textContent=EventsData.counts.trash;render();toast(view==="active"?"Row moved to <b>Trash</b>":"Row <b>deleted</b>");}));
+      EventsData.counts.active=Math.max(0,(EventsData.counts.active||0)-1);
+      EventsData.counts.trash=(EventsData.counts.trash||0)+1;
+      animateNext=true;render();toast("Moved to <b>Trash</b>");
+      EventsData.delEvent(r.id,r.kind).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});}));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
       th.addEventListener("dragstart",()=>dragKey=th.dataset.key);
@@ -426,6 +558,10 @@ const Listing=(function(){
       th.addEventListener("drop",e=>{e.preventDefault();th.classList.remove("dragover");const t=th.dataset.key;if(!dragKey||dragKey===t)return;
         const f=cols.findIndex(c=>c.key===dragKey),to=cols.findIndex(c=>c.key===t);const[m]=cols.splice(f,1);cols.splice(to,0,m);render();});
     });
+  }
+  function openSpendPop(r,anchor){
+    if(!r) return;
+    openSpendBreakdown(anchor, [["Ad Spend",r.ad_spend],["Influencer Spend",r.influencer_spend],["Comms Spend",r.comms_spend],["Telegram Spend",r.telegram_spend],["Host Spend",r.host_spend],["Price Spend",r.price_spend]], r.total_spend);
   }
   function openMenu(key,anchor){
     const col=cols.find(c=>c.key===key),r=anchor.getBoundingClientRect();
@@ -443,23 +579,87 @@ const Listing=(function(){
     q("[data-search]").addEventListener("input",e=>{search=e.target.value;render();});
     el.querySelectorAll("[data-fk]").forEach(s=>s.addEventListener("change",e=>{filters[s.dataset.fk]=e.target.value;render();}));
     el.querySelectorAll(".tabs .tab").forEach(t=>t.addEventListener("click",async()=>{el.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");view=t.dataset.view;rows=await EventsData.getRows(view);render();}));
-    q("[data-addrow]").addEventListener("click",()=>{const b={_trash:view==="trash"};cols.forEach(c=>b[c.key]="");b.status="Scheduled";b.category=EventsData.CATS[0];rows.unshift(b);EventsData.counts[view]++;q("[data-c"+(view==="active"?"a":"t")+"]").textContent=EventsData.counts[view];render();toast("Event row added — <b>editable</b>");});
+    q("[data-addrow]").addEventListener("click",()=>openAdd());
     q("[data-addcol]").addEventListener("click",()=>{const n=prompt("New column name");if(!n||!n.trim())return;cols.push({key:n.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"),label:n.trim(),type:"text",hidden:false});render();toast("Column <b>"+n.trim()+"</b> added");});
     q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
     q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
-    const spin=(b,msg)=>{const ic=b.querySelector("svg");ic.classList.add("spin");b.disabled=true;setTimeout(()=>{ic.classList.remove("spin");b.disabled=false;render();toast(msg);},1100);};
-    q("[data-sync]").addEventListener("click",e=>spin(e.currentTarget,"<b>Synced</b> new events from platform"));
-    q("[data-refresh]").addEventListener("click",e=>spin(e.currentTarget,"<b>Attribution recomputed</b> from UTMs"));
+    const spinReload=async(b,msg,anim="spin")=>{const ic=b.querySelector("svg");ic&&ic.classList.add(anim);b.disabled=true;try{await reload();toast(msg);}catch(e){toast("Refresh failed");}finally{ic&&ic.classList.remove(anim);b.disabled=false;}};
+    q("[data-refresh]").addEventListener("click",e=>spinReload(e.currentTarget,"<b>Attribution recomputed</b> from UTMs"));
     q("[data-csv]").addEventListener("click",()=>q("[data-file]").click());
     q("[data-file]").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
-      rd.onload=()=>{const lines=rd.result.split(/\r?\n/).filter(Boolean);if(lines.length<2){toast("CSV looks empty");return;}
-        const hdr=lines[0].split(",").map(s=>s.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"));let added=0;
-        lines.slice(1).forEach(line=>{const p=line.split(",");const o={_trash:false};cols.forEach(c=>o[c.key]="");hdr.forEach((h,i)=>{if(cols.find(c=>c.key===h))o[h]=p[i]?p[i].trim():"";});if(o.event_name){rows.unshift(o);added++;}});
-        EventsData.counts.active+=added;q("[data-ca]").textContent=EventsData.counts.active;render();toast("Imported <b>"+added+"</b> events");};
+      rd.onload=async()=>{const lines=rd.result.split(/\r?\n/).filter(Boolean);if(lines.length<2){toast("CSV looks empty");return;}
+        const hdr=lines[0].split(",").map(s=>s.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_"));
+        const known=["serial_no","event_name","event_page_link","linked_event","live_date","category","host","utm_link","ad_spend","influencer_spend","comms_spend","telegram_spend","host_spend","price_spend","notes"];
+        let added=0;
+        for(const line of lines.slice(1)){ const parts=line.split(","); const o={}; hdr.forEach((h,i)=>{ if(known.includes(h)) o[h]=parts[i]?parts[i].trim():""; });
+          if(!o.event_name) continue;
+          try{ await EventsData.addEvent(o); added++; }catch(err){}
+        }
+        await reload(); toast("Imported <b>"+added+"</b> manual bootcamp"+(added===1?"":"s"));};
       rd.readAsText(f);e.target.value="";});
-    document.addEventListener("click",()=>menu.classList.remove("on"));
+    document.addEventListener("click",()=>{menu.classList.remove("on");const sp=document.getElementById("spendpop");if(sp)sp.classList.remove("on");document.querySelectorAll(".spendcell.open").forEach(x=>x.classList.remove("open"));});
   }
-  async function init(){cols=EventsData.getColumns();shell();rows=await EventsData.getRows("active");render();}
+  function openForm(r){
+    const mod=document.getElementById("evmodal");
+    const isAdd=!r;
+    const isManual=isAdd||r.kind==="manual";   // Add always creates a manual bootcamp
+    const idRO=!isManual;                        // identity read-only only for auto (Vedam One) edit
+    const getv=k=> isAdd ? (k==="category"?EventsData.CATS[0]:"") : (r[k]==null?"":r[k]);
+    const field=(key,label,type,ro)=>{
+      const v=getv(key);
+      const t=type==="num"?"number":(type==="date"?"date":(type==="url"?"url":"text"));
+      return `<div class="ff${type==="url"||key==="notes"?" full":""}"><label>${label}${ro?' <span class="ro">(auto)</span>':''}</label>`
+        +`<input data-ef="${key}" type="${t}" value="${String(v).replace(/"/g,"&quot;")}"${ro?" disabled":""}${type==="num"?' step="any"':''}></div>`;
+    };
+    const metricsRO = isAdd ? "" : `
+        ${field("registered_count","Registrations","num",true)}
+        ${field("total_spend","Total Spend","num",true)}
+        ${field("leads","Leads","num",true)}
+        ${field("payments","Payments","num",true)}
+        ${field("enrollments","Enrollments","num",true)}`;
+    mod.innerHTML=`<div class="box">
+      <div class="mh"><h3>${isAdd?"Add Bootcamp":"Edit — "+(r.event_name||"Event")}</h3><button class="x" data-x>&times;</button></div>
+      <div class="msub">${isManual?"Manual bootcamp — enter details and spends by hand. Registrations / leads stay 0 unless the event also exists in Vedam One.":"Auto event from Vedam One — details &amp; counts are read-only. Edit the spends and UTM below."}</div>
+      <div class="fg">
+        ${field("event_name","Event Name","text",idRO)}
+        ${field("serial_no","Serial No","num",false)}
+        ${field("event_page_link","Event Page Link","url",idRO)}
+        ${field("live_date","Event Date","date",idRO)}
+        ${field("category","Category","text",idRO)}
+        ${field("host","Host","text",idRO)}
+        ${field("linked_event","Linked Event","text",false)}
+        ${field("utm_link","UTM Link","url",false)}
+        ${EventsData.SPENDS.map(k=>field(k,EventsData.columns.find(c=>c.key===k).label,"num",false)).join("")}
+        ${metricsRO}
+        ${field("notes","Notes","text",false)}
+      </div>
+      <div class="acts"><button class="btn" data-x>Cancel</button><button class="btn prim" data-save>${isAdd?"Add Bootcamp":"Save"}</button></div>
+    </div>`;
+    mod.classList.add("on");
+    const close=()=>mod.classList.remove("on");
+    mod.querySelectorAll("[data-x]").forEach(b=>b.addEventListener("click",close));
+    mod.addEventListener("click",e=>{if(e.target===mod)close();});
+    mod.querySelector("[data-save]").addEventListener("click",async()=>{
+      const nameInp=mod.querySelector('[data-ef="event_name"]');
+      if(isManual && nameInp && !nameInp.value.trim()){ nameInp.focus(); toast("<b>Event Name</b> is required"); return; }
+      const editable=new Set([...EventsData.SPENDS,"serial_no","linked_event","utm_link","notes"]);
+      if(isManual) EventsData.IDENTITY.forEach(k=>editable.add(k));
+      const payload={};
+      mod.querySelectorAll("[data-ef]").forEach(inp=>{const k=inp.dataset.ef; if(!editable.has(k))return;
+        if(k==="serial_no") payload[k]=inp.value===""?null:Number(inp.value);
+        else if(EventsData.SPENDS.includes(k)) payload[k]=Number(inp.value)||0;
+        else payload[k]=inp.value;});
+      try{
+        if(isAdd){ await EventsData.addEvent(payload); }
+        else { payload.id=r.id; payload.kind=r.kind; await EventsData.editOverlay(payload); }
+        close(); await reload(); toast(isAdd?"Bootcamp added":"Saved");
+      }catch(err){ toast(isAdd?"Add failed":"Save failed"); }
+    });
+  }
+  function openEdit(r){ openForm(r); }
+  function openAdd(){ openForm(null); }
+  async function reload(){ animateNext=true; rows=await EventsData.getRows(view); render(); }
+  async function init(){cols=EventsData.getColumns();shell();animateNext=true;rows=await EventsData.getRows("active");render();}
   return { init };
 })();
 
@@ -467,33 +667,39 @@ const Listing=(function(){
    EVENTS PERFORMANCE
    ============================================================================ */
 const Perf=(function(){
-  let selected=new Set(), notesQ="", inited=false, ddOpen=false, ddSearch="";
+  let selected=new Set(), nameQ="", notesQ="", inited=false, ddOpen=false, ddSearch="";
+  const perfShown=()=>all().filter(e=>selected.has(e.slug)
+    && (!nameQ || (e.name||"").toLowerCase().includes(nameQ.toLowerCase()))
+    && (!notesQ || (e.notes||"").toLowerCase().includes(notesQ.toLowerCase())));
   const el=document.getElementById("page-perf");
   const all=()=>EventsData.perfEvents;
   const q=s=>el.querySelector(s);
+  let curK=null;  // KPIs for the currently shown/selected events (used by the Total Spend breakdown too)
 
-  function kpiStrip(){
-    const k=EventsData.perfKpis;
+  // Recompute every KPI from the currently shown/selected events (not the global totals)
+  function kpisFromShown(){
+    const s=perfShown(), sum=f=>s.reduce((a,e)=>a+(Number(f(e))||0),0);
+    const registrations=sum(e=>e.reg), leads=sum(e=>e.leads), payments=sum(e=>e.pay), totalSpend=sum(e=>e.spend);
+    return { uniqueEvents:s.length, registrations, leads, payments, enrolments:sum(e=>e.enr),
+      l2p: leads?Number((payments/leads*100).toFixed(2)):0,
+      totalSpend, cpl: leads?Math.round(totalSpend/leads):0, cpp: payments?Math.round(totalSpend/payments):0,
+      cplReg: registrations?Math.round(totalSpend/registrations):0,
+      adSpend:sum(e=>e.ad), inflSpend:sum(e=>e.infl), commsSpend:sum(e=>e.comms), tgSpend:sum(e=>e.tg), hostSpend:sum(e=>e.hostS), priceSpend:sum(e=>e.price) };
+  }
+
+  function kpiStrip(k){
     return `
     <div class="kgrid kg6">
       <div class="kcard ko"><div class="hd"><span>Unique Events</span><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/></svg></div><div class="num" data-to="${k.uniqueEvents}" data-f="n">0</div></div>
       <div class="kcard kc"><div class="hd"><span>Registrations</span><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg></div><div class="num" data-to="${k.registrations}" data-f="n">0</div></div>
-      <div class="kcard ko"><div class="hd"><span>Leads</span></div><div class="num" data-to="${k.leads}" data-f="n">0</div></div>
+      <div class="kcard ka"><div class="hd"><span>CPL(Registrations)</span></div><div class="num" data-to="${k.cplReg}" data-f="moneyK">0</div></div>
+      <div class="kcard kv kclick" data-perfspend><div class="hd"><span>Total Spend</span><svg class="cv" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div><div class="num" data-to="${k.totalSpend}" data-f="moneyK">0</div><div class="cap">click for breakdown</div></div>
       <div class="kcard kv"><div class="hd"><span>Payments</span><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="num" data-to="${k.payments}" data-f="n">0</div></div>
       <div class="kcard kp"><div class="hd"><span>Enrolments</span><svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div><div class="num" data-to="${k.enrolments}" data-f="n">0</div></div>
       <div class="kcard kp"><div class="hd"><span>L2P</span><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg></div><div class="num" data-to="${k.l2p}" data-f="pct2">0</div><div class="cap">(pay × 100) / leads</div></div>
-    </div>
-    <div class="kgrid kg3">
-      <div class="kcard kv"><div class="hd"><span>Total Spend</span><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg></div><div class="num" data-to="${k.totalSpend}" data-f="moneyK">0</div></div>
+      <div class="kcard ko"><div class="hd"><span>Leads</span></div><div class="num" data-to="${k.leads}" data-f="n">0</div></div>
       <div class="kcard kp"><div class="hd"><span>CPL</span></div><div class="num" data-to="${k.cpl}" data-f="moneyK">0</div><div class="cap">total spend / leads</div></div>
       <div class="kcard kv"><div class="hd"><span>CPP</span></div><div class="num" data-to="${k.cpp}" data-f="moneyK">0</div><div class="cap">total spend / payments</div></div>
-    </div>
-    <div class="kgrid kg5">
-      <div class="kcard kc"><div class="hd"><span>Ad Spend</span></div><div class="num" data-to="${k.adSpend}" data-f="moneyK">0</div></div>
-      <div class="kcard kc"><div class="hd"><span>Influencer Spend</span></div><div class="num" data-to="${k.inflSpend}" data-f="moneyK">0</div></div>
-      <div class="kcard kc"><div class="hd"><span>Comms Spend</span></div><div class="num" data-to="${k.commsSpend}" data-f="moneyK">0</div></div>
-      <div class="kcard kc"><div class="hd"><span>Telegram Spend</span></div><div class="num" data-to="${k.tgSpend}" data-f="moneyK">0</div></div>
-      <div class="kcard kc"><div class="hd"><span>Host Spend</span></div><div class="num" data-to="${k.hostSpend}" data-f="moneyK">0</div></div>
     </div>`;
   }
   function eventCard(ev){
@@ -501,11 +707,12 @@ const Perf=(function(){
     return `<div class="ecard" data-ev="${ev.slug}">
       <div class="eh"><div><h2>${ev.name}</h2>
         <div class="emeta">${fmtDateL(ev.date).toUpperCase()} &middot; ${ev.cat.toUpperCase()}${ev.host?` &middot; <b>${ev.host}</b>`:""} &middot; ${ev.utms} UTMs &middot; ${ev.rows} row${ev.rows>1?"s":""}</div></div>
-        <a class="epage" href="https://events.vedam.org/${ev.slug}" target="_blank" rel="noopener">Event Page <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></a></div>
+        ${ev.pagelink?`<a class="epage" href="${ev.pagelink}" target="_blank" rel="noopener">Event Page <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></a>`:""}</div>
       ${warn}
       <div class="emetrics">
         <div class="ebox reg"><div class="l">Registrations</div><div class="v">${fmtN(ev.reg)}</div></div>
         <div class="ebox spend"><div class="l">Total Spend</div><div class="v">${fmtK(ev.spend)}</div></div>
+        <div class="ebox cplreg"><div class="l">CPL (Reg)</div><div class="v">${ev.reg?fmtK(Math.round(ev.spend/ev.reg)):'₹0'}</div></div>
         <div class="ebox leads drill" data-drill="leads"><div class="l">Leads <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg></div><div class="v">${fmtN(ev.leads)}</div></div>
         <div class="ebox pay drill" data-drill="payments"><div class="l">Payments <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="v">${fmtN(ev.pay)}</div></div>
         <div class="ebox enr drill" data-drill="enrolments"><div class="l">Enrolments <svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/></svg></div><div class="v">${fmtN(ev.enr)}</div></div>
@@ -522,23 +729,30 @@ const Perf=(function(){
     </div>`;
   }
   function render(){
-    const shown=all().filter(e=>selected.has(e.slug)&&(!notesQ||(e.name+" "+e.notes).toLowerCase().includes(notesQ.toLowerCase())));
+    const shown=perfShown();
+    curK=kpisFromShown();
     el.innerHTML=`
       <div class="phead perfhd"><div><h1>Events Performance</h1>
-        <div class="sub">${EventsData.perfKpis.uniqueEvents} done events · 0 scheduled (excluded) · click leads/payments/enrolments to drill</div></div></div>
+        <div class="sub">${curK.uniqueEvents} event${curK.uniqueEvents===1?"":"s"} shown · click leads/payments/enrolments to drill</div></div></div>
       <div class="perfctl">
         <div class="msdd"><button class="msbtn ${ddOpen?"open":""}" data-ddbtn>
           <svg class="fi" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg>All ${selected.size} events
           <svg class="cv" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>${ddPanel()}</div>
-        <div class="search" style="min-width:260px;max-width:360px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-notes placeholder="Search notes…" value="${notesQ}"></div>
+        <div class="search" style="min-width:220px;max-width:320px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-namesearch placeholder="Search event by name…" value="${nameQ}"></div>
+        <div class="search" style="min-width:200px;max-width:300px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input data-notes placeholder="Search notes…" value="${notesQ}"></div>
       </div>
-      ${kpiStrip()}
+      <div data-kpis>${kpiStrip(curK)}</div>
       <div data-cards>${shown.map(eventCard).join("")}</div>`;
     animateCounts(el);
     wire();
   }
+  function bindPerfSpend(){
+    const ps=q("[data-perfspend]"); if(ps) ps.addEventListener("click",e=>{e.stopPropagation();const k=curK||kpisFromShown();
+      openSpendBreakdown(ps,[["Ad Spend",k.adSpend],["Influencer Spend",k.inflSpend],["Comms Spend",k.commsSpend],["Telegram Spend",k.tgSpend],["Host Spend",k.hostSpend],["Price Spend",k.priceSpend]],k.totalSpend);});
+  }
   function wire(){
     q("[data-ddbtn]").addEventListener("click",e=>{e.stopPropagation();ddOpen=!ddOpen;render();});
+    bindPerfSpend();
     const dds=q("[data-ddsearch]"); if(dds){dds.addEventListener("click",e=>e.stopPropagation());dds.addEventListener("input",e=>{ddSearch=e.target.value;const list=el.querySelector(".mslist");
       const items=all().filter(x=>x.name.toLowerCase().includes(ddSearch.toLowerCase()));
       list.innerHTML=items.map(x=>`<div class="msitem ${selected.has(x.slug)?"sel":""}" data-pick="${x.slug}"><span class="cb"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><span class="t">${x.name}</span><span class="m">${fmtDateL(x.date)} · ${x.rows} row${x.rows>1?"s":""}</span></span></div>`).join("");
@@ -548,7 +762,15 @@ const Perf=(function(){
     if(sa)sa.addEventListener("click",()=>{all().forEach(e=>selected.add(e.slug));render();});
     if(ca)ca.addEventListener("click",()=>{selected.clear();render();});
     bindPicks();
-    q("[data-notes]").addEventListener("input",e=>{notesQ=e.target.value;el.querySelector("[data-cards]").innerHTML=all().filter(ev=>selected.has(ev.slug)&&(!notesQ||(ev.name+" "+ev.notes).toLowerCase().includes(notesQ.toLowerCase()))).map(eventCard).join("");bindDrills();});
+    const applyPerfSearch=()=>{
+      curK=kpisFromShown();
+      const kw=q("[data-kpis]"); if(kw){ kw.innerHTML=kpiStrip(curK);
+        kw.querySelectorAll('[data-to]').forEach(elm=>{const to=parseFloat(elm.dataset.to),fmt=COUNT_FMT[elm.dataset.f]||COUNT_FMT.n; elm.textContent=isFinite(to)?fmt(to):elm.dataset.to;});
+        bindPerfSpend(); }
+      const subEl=q(".perfhd .sub"); if(subEl) subEl.textContent=`${curK.uniqueEvents} event${curK.uniqueEvents===1?"":"s"} shown · click leads/payments/enrolments to drill`;
+      el.querySelector("[data-cards]").innerHTML=perfShown().map(eventCard).join("");bindDrills();};
+    const ns=q("[data-namesearch]"); if(ns) ns.addEventListener("input",e=>{nameQ=e.target.value;applyPerfSearch();});
+    q("[data-notes]").addEventListener("input",e=>{notesQ=e.target.value;applyPerfSearch();});
     bindDrills();
     document.addEventListener("click",closeDD);
   }
@@ -557,7 +779,7 @@ const Perf=(function(){
     render();}));}
   function bindDrills(){ el.querySelectorAll("[data-drill]").forEach(b=>b.addEventListener("click",()=>{const card=b.closest("[data-ev]");const ev=all().find(e=>e.slug===card.dataset.ev);const k=b.dataset.drill;toast("Drill — <b>"+ev[k==="enrolments"?"enr":k==="payments"?"pay":"leads"]+" "+k+"</b> for "+ev.name);}));}
   function closeDD(){ if(ddOpen){ddOpen=false;const b=q("[data-ddbtn]");if(b)b.classList.remove("open");const p=el.querySelector(".mspanel");if(p)p.classList.remove("on");} }
-  function ensure(){ if(inited){animateCounts(el);return;} all().forEach(e=>selected.add(e.slug)); render(); inited=true; }
+  async function ensure(){ try{ await EventsData.getRows("active"); }catch(e){} if(!inited){ inited=true; } if(!selected.size){ all().forEach(e=>selected.add(e.slug)); } render(); }
   return { ensure };
 })();
 

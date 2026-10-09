@@ -86,6 +86,28 @@ h1{margin:0;font-family:var(--display);font-size:40px;font-weight:700;letter-spa
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M2 4l4 4 4-4' fill='none' stroke='%237681b2' stroke-width='1.6' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
 .sel:hover{border-color:rgba(139,92,246,.35)} .sel:focus{border-color:rgba(139,92,246,.55);box-shadow:0 0 0 3px rgba(139,92,246,.12)}
 .sel option{background:var(--bg2);color:var(--ink)}
+/* multi-select checkbox filter */
+.msf{position:relative}
+.msfbtn{display:inline-flex;align-items:center;gap:10px;min-width:180px;background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--panel-brd);border-radius:13px;color:var(--ink);font-family:var(--font);font-size:13.5px;font-weight:500;padding:13px 15px;cursor:pointer;transition:.15s}
+.msfbtn:hover{border-color:rgba(139,92,246,.4)}
+.msf.active .msfbtn{border-color:rgba(139,92,246,.55);color:#fff;box-shadow:inset 0 0 0 1px rgba(139,92,246,.2)}
+.msfbtn [data-mslabel]{flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.msfbtn .chev{width:14px;height:14px;stroke:#7681b2;fill:none;stroke-width:1.8;flex:none;transition:transform .2s}
+.msf:has(.msfpanel.on) .chev{transform:rotate(180deg)}
+.msfpanel{position:absolute;z-index:45;top:calc(100% + 7px);left:0;width:300px;max-width:88vw;background:var(--menu);border:1px solid var(--panel-brd);border-radius:14px;box-shadow:0 24px 60px -20px rgba(0,0,0,.7);padding:10px;display:none}
+.msfpanel.on{display:block;animation:fade .15s ease}
+.msfsearch input{width:100%;background:var(--bg2);border:1px solid var(--panel-brd);border-radius:10px;padding:9px 11px;color:var(--ink);font-family:var(--font);font-size:13px;outline:none;margin-bottom:8px}
+.msfbar{display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px}
+.msfbar a{color:var(--violet);cursor:pointer;font-weight:600}
+.msflist{max-height:240px;overflow:auto;display:flex;flex-direction:column;gap:2px}
+.msfitem{display:flex;align-items:center;gap:10px;padding:8px 9px;border-radius:9px;cursor:pointer}
+.msfitem:hover{background:rgba(139,92,246,.1)}
+.msfitem .cb{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--panel-brd);flex:none;display:grid;place-items:center;background:var(--bg2)}
+.msfitem.sel .cb{background:var(--violet);border-color:var(--violet)}
+.msfitem .cb svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3;display:none}
+.msfitem.sel .cb svg{display:block}
+.msfitem .t{font-size:13.5px}
+.msfempty{color:#7681b2;font-size:12.5px;padding:10px 9px}
 .spacer{flex:1}
 
 /* stat cards */
@@ -306,10 +328,10 @@ const CPData = (function(){
   const costColumns=[
     {key:"platform",  label:"Platform",   type:"platform", required:true, hidden:false},
     {key:"name",      label:"Name",       type:"text",   hidden:false},
-    {key:"cpl",       label:"CPL",        type:"money",  hidden:false},
+    {key:"cpl",       label:"CPL",        type:"money",  hidden:false, override:true},
     {key:"utm_link",  label:"UTM Link",   type:"link",   required:true, hidden:false},
-    {key:"leads",     label:"Leads",      type:"num",    hidden:false},
-    {key:"mql",       label:"MQL",        type:"num",    hidden:false},
+    {key:"leads",     label:"Leads",      type:"num",    hidden:false, override:true},
+    {key:"mql",       label:"MQL",        type:"num",    hidden:false, override:true},
     {key:"cpl_spend", label:"CPL Spend",  type:"money",  hidden:false},
     {key:"total_cost",label:"Total Cost", type:"money",  hidden:false},
     {key:"notes",     label:"Notes",      type:"text",   hidden:false}
@@ -344,18 +366,47 @@ const CPData = (function(){
   function summarize(r){
     const n=new Intl.NumberFormat("en-IN");
     const leads=_sum(r,"leads"),mql=_sum(r,"mql"),spend=_sum(r,"cpl_spend"),cost=_sum(r,"total_cost");
-    const byP=p=>r.filter(x=>p.test(x.platform)).reduce((a,x)=>a+(+x.leads||0),0);
+    const cpls=r.map(x=>x.cpl).filter(v=>v!=null&&v!=="").map(Number).filter(v=>isFinite(v));
+    const blended=cpls.length?cpls.reduce((a,b)=>a+b,0)/cpls.length:0;  // Blended CPL = avg of per-row CPLs
+    const byP=p=>r.filter(x=>p.test(x.platform||"")).reduce((a,x)=>a+(+x.leads||0),0);
     const tg=byP(/Telegram/),yt=byP(/^YouTube/),ig=byP(/Instagram/),wa=byP(/WhatsApp/),ads=byP(/Ads/),org=byP(/Organic/);
     const sub=leads?`${n.format(tg)} TG · ${n.format(yt)} YT · ${n.format(ig)} IG · ${n.format(wa)} WA · ${n.format(ads)} ads · ${n.format(org)} organic`:"";
-    return {leads, leadsSub:sub, mql, mqlPct:leads?mql/leads*100:0, cplSpend:spend, totalCost:cost, blended:leads?cost/leads:0, rows:r.length};
+    return {leads, leadsSub:sub, mql, mqlPct:leads?mql/leads*100:0, cplSpend:spend, totalCost:cost, blended, rows:r.length};
+  }
+  // ---- live backend cache (filled by getCostRows) ----
+  const _cost={ summary:summarize([]), counts:{active:0,trash:0} };
+  const _mapSummary=s=>({leads:s.total_leads, leadsSub:"", mql:s.total_mql,
+    mqlPct:s.total_leads?s.total_mql/s.total_leads*100:0, cplSpend:s.total_cpl_spend,
+    totalCost:s.total_cost, blended:s.blended_cpl, rows:s.rows_count});
+  async function apiGetCost(view){
+    try{
+      const r=await fetch("/api/growth/codesprint/cost?view="+view,{credentials:"same-origin"});
+      if(!r.ok) throw new Error(await r.text());
+      const d=await r.json();
+      _cost.summary=d.summary||_cost.summary; Object.assign(_cost.counts, d.counts||{});
+      return (d.rows||[]).map(x=>({...x,_trash:!!x.is_trashed}));
+    }catch(e){ toast("Couldn’t load — are you signed in as admin?"); return []; }
+  }
+  async function apiCost(method,payload){
+    const opt={method,credentials:"same-origin"};
+    let url="/api/growth/codesprint/cost";
+    if(method==="DELETE"){ url+="?id="+encodeURIComponent(payload.id)+(payload.hard?"&hard=1":""); }
+    else { opt.headers={"Content-Type":"application/json"}; opt.body=JSON.stringify(payload); }
+    const r=await fetch(url,opt); if(!r.ok) throw new Error(await r.text()); return r.json();
   }
   return {
     PLATFORMS, costColumns, utmColumns,
     getCostColumns:()=>costColumns.map(c=>({...c})),
     getUtmColumns:()=>utmColumns.map(c=>({...c})),
-    async getCostRows(view){ await wait(90); return view==="trash"?costRowsTrash:costRowsActive; },
-    costSummary(view){ return summarize(view==="trash"?costRowsTrash:costRowsActive); },
-    costTotals:{active:costRowsActive.length, trash:costRowsTrash.length},
+    async getCostRows(view){ return await apiGetCost(view); },
+    costSummary(){ return _mapSummary(_cost.summary); },
+    summarizeRows:(r)=>summarize(r||[]),
+    costCounts:()=>_cost.counts,
+    addCost:(row)=>apiCost("POST",{platform:row.platform,name:row.name,utm_link:row.utm_link,cpl_spend:row.cpl_spend,total_cost:row.total_cost,notes:row.notes,
+      leads_override:row.leads, mql_override:row.mql, cpl_override:row.cpl}),
+    editCost:(row)=>apiCost("PATCH",{id:row.id,platform:row.platform,name:row.name,utm_link:row.utm_link,cpl_spend:row.cpl_spend,total_cost:row.total_cost,notes:row.notes,
+      leads_override:row.leads, mql_override:row.mql, cpl_override:row.cpl}),
+    delCost:(row,hard)=>apiCost("DELETE",{id:row.id,hard:hard?1:0}),
     async getUtmRows(view){ await wait(60); return utmRows.filter(r=>view==="trash"?r._trash:!r._trash); },
     utmRowsRef:utmRows,
     getCostDash:()=>({rows:costDashRows.map(r=>({...r})), kpis:{...costDashKpis}}),
@@ -396,11 +447,18 @@ function makeGrid(cfg){
   // cfg: {mount, title, subline(cols,totalRows), columns, getRows, summaryCards(view), counts,
   //       actionsColumn, refreshLabel, searchPlaceholder, filters[], emptyState, pageSize}
   let cols=cfg.columns(), rows=[], view="active", search="", filterVals={}, page=1, pageSize=cfg.pageSize||50;
+  let animateNext=true;  // KPI count-up rolls ONLY on data change (load/refresh/add/edit/delete), not on search/filter/paginate
   const menu=document.getElementById("colmenu"), modal=document.getElementById("addcol-modal");
   const el=cfg.mount;
 
   function shell(){
-    const fs=(cfg.filters||[]).map(f=>`<select class="sel" data-fk="${f.key}"><option value="">${f.all}</option>${f.options.map(o=>`<option>${o}</option>`).join("")}</select>`).join("");
+    const fs=(cfg.filters||[]).map(f=>`<div class="msf" data-msf="${f.key}">
+        <button class="msfbtn" data-msbtn type="button"><span data-mslabel>${f.all}</span><svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="msfpanel" data-mspanel>
+          <div class="msfsearch"><input data-mssearch placeholder="Search…"></div>
+          <div class="msfbar"><a data-msall>Select all</a><a data-msclear>Clear</a></div>
+          <div class="msflist" data-mslist></div>
+        </div></div>`).join("");
     el.innerHTML=`
       <div class="phead"><div>
         <h1>${cfg.title}</h1><div class="sub" data-sub>…</div>
@@ -417,10 +475,10 @@ function makeGrid(cfg){
         <div class="spacer"></div>
         <button class="btn ghost-green" data-refresh><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>${cfg.refreshLabel}</button>
       </div>
-      <div class="stats ${cfg.summaryCards("active").length>4?'six':'four'}" data-stats></div>
+      <div class="stats ${cfg.summaryCards([]).length>4?'six':'four'}" data-stats></div>
       <div class="tabs" data-tabs>
-        <button class="tab on" data-view="active">Active <span class="pill" data-ca>${cfg.counts.active||""}</span></button>
-        <button class="tab" data-view="trash">Trash <span class="pill" data-ct>${cfg.counts.trash||""}</span></button>
+        <button class="tab on" data-view="active">Active <span class="pill" data-ca>${cfg.counts.active||0}</span></button>
+        <button class="tab" data-view="trash">Trash <span class="pill" data-ct>${cfg.counts.trash||0}</span></button>
       </div>
       <div data-trashbar></div>
       <div class="gridmeta">
@@ -438,11 +496,31 @@ function makeGrid(cfg){
   function filtered(){
     const terms=search.toLowerCase().split(",").map(s=>s.trim()).filter(Boolean);
     return rows.filter(r=>{
-      for(const k in filterVals){ if(filterVals[k] && r[k]!==filterVals[k]) return false; }
+      for(const k in filterVals){ const sel=filterVals[k];
+        if(Array.isArray(sel)){ if(sel.length && !sel.includes(String(r[k]??""))) return false; }
+        else if(sel && String(r[k]??"")!==String(sel)) return false; }
       if(terms.length){ const hay=Object.values(r).join(" ").toLowerCase(); if(!terms.some(t=>hay.includes(t))) return false; }
       return true;
     });
   }
+  function optionsFor(f){
+    if(f.dynamic) return [...new Set(rows.map(r=>r[f.key]).filter(v=>v!=null&&String(v).trim()!==""))].map(String).sort((a,b)=>a.localeCompare(b));
+    return (f.options||[]).map(String);
+  }
+  function renderMultiFilter(f){
+    const wrap=el.querySelector(`[data-msf="${f.key}"]`); if(!wrap) return;
+    if(!Array.isArray(filterVals[f.key])) filterVals[f.key]=[];
+    const sel=filterVals[f.key], opts=optionsFor(f);
+    const srch=(wrap.querySelector("[data-mssearch]")&&wrap.querySelector("[data-mssearch]").value||"").toLowerCase();
+    const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+    const list=wrap.querySelector("[data-mslist]");
+    const shown=opts.filter(o=>o.toLowerCase().includes(srch));
+    list.innerHTML=shown.length?shown.map(o=>`<div class="msfitem ${sel.includes(o)?'sel':''}" data-msval="${esc(o)}"><span class="cb"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t">${esc(o)}</span></div>`).join(""):`<div class="msfempty">No options</div>`;
+    const lbl=wrap.querySelector("[data-mslabel]");
+    lbl.textContent = sel.length===0 ? f.all : (sel.length===1 ? sel[0] : `${sel.length} selected`);
+    wrap.classList.toggle("active", sel.length>0);
+  }
+  function syncMultiFilters(){ (cfg.filters||[]).forEach(renderMultiFilter); }
   function cell(col,r){
     const v=r[col.key];
     if(col.type==="platform"){
@@ -496,14 +574,22 @@ function makeGrid(cfg){
     const rpp=q("[data-rpp]"); if(rpp) rpp.addEventListener("change",e=>{pageSize=+e.target.value;page=1;render();});
     renderStats();
     renderTrashbar();
+    syncTabCounts();
+    syncMultiFilters();
+  }
+  function syncTabCounts(){
+    const ca=q("[data-ca]"); if(ca) ca.textContent=cfg.counts.active||0;
+    const ct=q("[data-ct]"); if(ct) ct.textContent=cfg.counts.trash||0;
   }
   function renderStats(){
-    const cards=cfg.summaryCards(view);
+    const cards=cfg.summaryCards(filtered());
     q("[data-stats]").className="stats "+(cards.length>4?"six":"four");
     q("[data-stats]").innerHTML=cards.map(c=>`
       <div class="stat ${c.cls}"><div class="hd">${c.label}${c.icon||""}</div>
       <div class="num" data-to="${c.to}" data-f="${c.f}">0</div>${c.sub?`<div class="ssub">${c.sub}</div>`:""}</div>`).join("");
-    animateCounts(q("[data-stats]"));
+    const anim=animateNext; animateNext=false;
+    if(anim) animateCounts(q("[data-stats]"));
+    else q("[data-stats]").querySelectorAll('[data-to]').forEach(el=>{const to=parseFloat(el.dataset.to),fmt=COUNT_FMT[el.dataset.f]||COUNT_FMT.n; el.textContent=isFinite(to)?fmt(to):el.dataset.to;});
   }
   function renderTrashbar(){
     q("[data-trashbar]").innerHTML = view==="trash"
@@ -513,8 +599,19 @@ function makeGrid(cfg){
     q("[data-all]").addEventListener("change",e=>el.querySelectorAll("tbody .chk").forEach(c=>c.checked=e.target.checked));
     el.querySelectorAll("[data-menu]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openMenu(b.dataset.menu,b);}));
     el.querySelectorAll("select[data-prow]").forEach(s=>s.addEventListener("change",()=>{rows[+s.dataset.prow].platform=s.value;toast("Platform updated");}));
-    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);q("[data-ca]").textContent=cfg.counts.active||"";q("[data-ct]").textContent=cfg.counts.trash||"";render();toast("Row removed");}));
-    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",()=>toast("Inline edit — wire to backend")));
+    el.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{const tr=e.target.closest("tr");const i=+tr.dataset.i;if(i<0||i>=rows.length)return;const r=rows[i];
+      if(cfg.onDelete&&r&&r.id){
+        const hard=view==="trash";  // trash → permanent delete; active → move to trash
+        // optimistic — drop the row now, persist + reconcile in the background (no await = no latency)
+        rows.splice(i,1);
+        if(view==="active"){cfg.counts.active=Math.max(0,(cfg.counts.active||0)-1);cfg.counts.trash=(cfg.counts.trash||0)+1;}
+        else{cfg.counts.trash=Math.max(0,(cfg.counts.trash||0)-1);}
+        animateNext=true; render(); toast(hard?"Deleted permanently":"Row removed");
+        cfg.onDelete(r,hard).then(()=>reload()).catch(()=>{toast("Delete failed — restoring");reload();});
+        return;
+      }
+      rows.splice(i,1);const ck=view==="active"?"active":"trash";cfg.counts[ck]=Math.max(0,(cfg.counts[ck]||0)-1);render();toast("Row removed");}));
+    el.querySelectorAll("[data-edit]").forEach(b=>b.addEventListener("click",e=>{const r=rows[+e.target.closest("tr").dataset.i]; if(cfg.onEdit){openAddRow(r);} else toast("Inline edit — wire to backend");}));
     let dragKey=null;
     el.querySelectorAll("th[draggable]").forEach(th=>{
       th.addEventListener("dragstart",()=>dragKey=th.dataset.key);
@@ -567,9 +664,10 @@ function makeGrid(cfg){
       cols.push({key,label:name,type,hidden:false,required:req});
       modal.classList.remove("on");render();toast("Column <b>"+name+"</b> added");});
   }
-  function openAddRow(){
+  function openAddRow(editRow){
     const inputFor=c=>{
       const star=c.required?' <span class="req">*</span>':'';
+      if(c.override) return `<div class="ffield"><label>${c.label} <span class="muted" style="font-weight:400">(auto · override)</span></label><input type="number" step="any" data-f="${c.key}" placeholder="Auto — leave blank to auto-pull"></div>`;
       let field;
       if(c.type==="platform") field=`<select data-f="${c.key}">${CPData.PLATFORMS.map(p=>`<option>${p}</option>`).join("")}</select>`;
       else if(c.type==="date") field=`<input type="date" data-f="${c.key}">`;
@@ -578,36 +676,50 @@ function makeGrid(cfg){
       else field=`<input data-f="${c.key}" placeholder="—">`;
       return `<div class="ffield"><label>${c.label}${star}</label>${field}</div>`;
     };
+    const isEdit=!!editRow;
     modal.innerHTML=`<div class="modal">
-      <div class="mhead"><h3>Add ${shortName().replace(/^Code Sprint — /,"Code Sprint — ")} Row</h3><button class="x" data-cancel>&times;</button></div>
+      <div class="mhead"><h3>${isEdit?"Edit":"Add"} ${shortName().replace(/^Code Sprint — /,"Code Sprint — ")} Row</h3><button class="x" data-cancel>&times;</button></div>
       <div class="msub">Fill in the fields below. Required fields marked with <span style="color:var(--pink)">*</span>.</div>
       <div class="formgrid">${cols.map(inputFor).join("")}</div>
-      <div class="acts"><button class="btn" data-cancel>Cancel</button><button class="btn prim" data-save>${PLUS}Add Row</button></div>
+      <div class="acts"><button class="btn" data-cancel>Cancel</button><button class="btn prim" data-save>${PLUS}${isEdit?"Save":"Add Row"}</button></div>
     </div>`;
     modal.classList.add("on");
+    if(isEdit) cols.forEach(c=>{const el2=modal.querySelector(`[data-f="${c.key}"]`); if(!el2)return;
+      const val=c.override ? editRow[c.key+"_override"] : editRow[c.key];
+      if(val!=null) el2.value=val;});
     modal.querySelectorAll("[data-cancel]").forEach(b=>b.addEventListener("click",()=>modal.classList.remove("on")));
-    modal.querySelector("[data-save]").addEventListener("click",()=>{
+    modal.querySelector("[data-save]").addEventListener("click",async()=>{
       const miss=cols.filter(c=>c.required && !modal.querySelector(`[data-f="${c.key}"]`).value.trim());
       if(miss.length){const f=modal.querySelector(`[data-f="${miss[0].key}"]`);f.focus();f.style.borderColor="var(--pink)";toast("<b>"+miss[0].label+"</b> is required");return;}
       const row={_trash:view==="trash"};
       cols.forEach(c=>{let v=modal.querySelector(`[data-f="${c.key}"]`).value;
         if((c.type==="num"||c.type==="money")&&v!=="")v=Number(v);
         row[c.key]=v;});
+      if(isEdit&&cfg.onEdit){
+        // optimistic — apply to the local row now (instant KPI update), persist + reconcile in background
+        modal.classList.remove("on");
+        const tgt=rows.find(x=>x.id===editRow.id);
+        if(tgt&&cfg.applyEdit) cfg.applyEdit(tgt,{id:editRow.id,...row});
+        animateNext=true; render(); toast("Saved");
+        Promise.resolve(cfg.onEdit({id:editRow.id,...row})).then(()=>reload()).catch(()=>{toast("Save failed — reverting");reload();});
+        return;
+      }
+      if(cfg.onAdd){try{await cfg.onAdd(row);modal.classList.remove("on");await reload();toast("Row added");}catch(err){toast("Add failed");}return;}
       rows.unshift(row); cfg.counts[view]++; q("[data-c"+(view==="active"?"a":"t")+"]").textContent=cfg.counts[view]||"";
       modal.classList.remove("on"); render(); toast("Row added");});
   }
   function wireShell(){
     q("[data-search]").addEventListener("input",e=>{search=e.target.value;page=1;render();});
-    el.querySelectorAll("[data-fk]").forEach(s=>s.addEventListener("change",e=>{filterVals[s.dataset.fk]=e.target.value;page=1;render();}));
+    wireMultiFilters();
     el.querySelectorAll("[data-tabs] .tab").forEach(t=>t.addEventListener("click",async()=>{
       el.querySelectorAll("[data-tabs] .tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
       view=t.dataset.view;page=1;rows=await cfg.getRows(view);render();}));
-    q("[data-addrow]").addEventListener("click",openAddRow);
+    q("[data-addrow]").addEventListener("click",()=>openAddRow());
     q("[data-addcol]").addEventListener("click",openAddCol);
     q("[data-showhidden]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("Hidden columns shown");});
     q("[data-unhide]").addEventListener("click",()=>{cols.forEach(c=>c.hidden=false);render();toast("All columns visible");});
-    q("[data-refresh]").addEventListener("click",e=>{const ic=e.currentTarget.querySelector("svg");ic.classList.add("spin");e.currentTarget.disabled=true;
-      setTimeout(()=>{ic.classList.remove("spin");e.currentTarget.disabled=false;render();toast("<b>"+cfg.refreshLabel+"</b> complete");},1100);});
+    q("[data-refresh]").addEventListener("click",async e=>{const btn=e.currentTarget,ic=btn.querySelector("svg");ic.classList.add("spin");btn.disabled=true;
+      try{await reload();toast("<b>"+cfg.refreshLabel+"</b> complete");}catch(err){toast("Refresh failed");}finally{ic.classList.remove("spin");btn.disabled=false;}});
     q("[data-csv]").addEventListener("click",()=>q("[data-file]").click());
     q("[data-file]").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
       rd.onload=()=>{const lines=rd.result.split(/\r?\n/).filter(Boolean);if(lines.length<2){toast("CSV looks empty");return;}
@@ -617,9 +729,28 @@ function makeGrid(cfg){
           if(Object.values(o).some(v=>v&&v!==false)){rows.unshift(o);added++;}});
         cfg.counts.active+=added;q("[data-ca]").textContent=cfg.counts.active||"";render();toast("Imported <b>"+added+"</b> rows");};
       rd.readAsText(f);e.target.value="";});
-    document.addEventListener("click",()=>menu.classList.remove("on"));
+    document.addEventListener("click",()=>{menu.classList.remove("on"); el.querySelectorAll("[data-mspanel]").forEach(p=>p.classList.remove("on"));});
   }
-  async function init(){ shell(); rows=await cfg.getRows("active"); render(); }
+  function wireMultiFilters(){
+    (cfg.filters||[]).forEach(f=>{
+      const wrap=el.querySelector(`[data-msf="${f.key}"]`); if(!wrap) return;
+      if(!Array.isArray(filterVals[f.key])) filterVals[f.key]=[];
+      const panel=wrap.querySelector("[data-mspanel]");
+      wrap.querySelector("[data-msbtn]").addEventListener("click",e=>{e.stopPropagation();
+        const open=panel.classList.contains("on");
+        el.querySelectorAll("[data-mspanel]").forEach(p=>p.classList.remove("on"));
+        if(!open){ panel.classList.add("on"); renderMultiFilter(f); const s=wrap.querySelector("[data-mssearch]"); if(s){s.value="";s.focus();} }});
+      panel.addEventListener("click",e=>e.stopPropagation());
+      const srch=wrap.querySelector("[data-mssearch]"); if(srch) srch.addEventListener("input",()=>renderMultiFilter(f));
+      wrap.querySelector("[data-msall]").addEventListener("click",()=>{ filterVals[f.key]=optionsFor(f).slice(); page=1; render(); });
+      wrap.querySelector("[data-msclear]").addEventListener("click",()=>{ filterVals[f.key]=[]; page=1; render(); });
+      wrap.querySelector("[data-mslist]").addEventListener("click",e=>{ const it=e.target.closest("[data-msval]"); if(!it) return;
+        const v=it.dataset.msval, arr=filterVals[f.key]||(filterVals[f.key]=[]); const i=arr.indexOf(v);
+        if(i>=0) arr.splice(i,1); else arr.push(v); page=1; render(); });
+    });
+  }
+  async function reload(){ animateNext=true; rows=await cfg.getRows(view); render(); }
+  async function init(){ shell(); animateNext=true; rows=await cfg.getRows("active"); render(); }
   return { init };
 }
 
@@ -631,20 +762,36 @@ const CostListing=makeGrid({
   title:"Code Sprint — Cost & CPL Listing",
   columns:CPData.getCostColumns,
   getRows:v=>CPData.getCostRows(v),
-  counts:{active:CPData.costTotals.active, trash:CPData.costTotals.trash},
+  counts:CPData.costCounts(),
+  onAdd:row=>CPData.addCost(row),
+  onDelete:(row,hard)=>CPData.delCost(row,hard),
+  onEdit:(row)=>CPData.editCost(row),
+  applyEdit:(target,input)=>{
+    if(input.platform!=null) target.platform=input.platform;
+    if(input.name!=null) target.name=input.name;
+    if(input.utm_link!=null) target.utm_link=input.utm_link;
+    if(input.notes!=null) target.notes=input.notes;
+    target.cpl_spend=Number(input.cpl_spend)||0;
+    target.total_cost=Number(input.total_cost)||0;
+    const toNum=v=>(v===""||v==null?null:(isFinite(Number(v))?Number(v):null));
+    const lo=toNum(input.leads), mo=toNum(input.mql), co=toNum(input.cpl);
+    target.leads_override=lo; target.mql_override=mo; target.cpl_override=co;
+    target.leads = lo!=null?lo:(target.leads_auto!=null?target.leads_auto:0);
+    target.mql   = mo!=null?mo:(target.mql_auto!=null?target.mql_auto:0);
+    target.cpl   = co!=null?co:(target.leads>0?Math.round(target.cpl_spend/target.leads*100)/100:null);
+  },
   actionsColumn:true,
   refreshLabel:"Refresh leads & cost",
   searchPlaceholder:"Search name, platform, UTM…",
   filters:[
     {key:"platform",all:"All platforms",options:CPData.PLATFORMS},
-    {key:"name",all:"All names",options:["YouTube","Quora","Blogs","Reddit","Manoranjan","TG Broadcast","WA Broadcast","Google Ads","Meta Ads","Instagram"]}
+    {key:"name",all:"All names",dynamic:true,options:[]}
   ],
   emptyState:`<b>No entries yet for Code Sprint — Cost & CPL.</b>Click <a data-addrow-link>Add Row</a> or <a data-csv-link>Upload CSV</a> to get started.`,
-  summaryCards:view=>{ const s=CPData.costSummary(view);
+  summaryCards:rowsArg=>{ const s=CPData.summarizeRows(rowsArg||[]);
     return [
       {label:"Total Leads",cls:"sv",to:s.leads,f:"n",sub:s.leadsSub},
       {label:"MQL",cls:"sg",to:s.mql,f:"n",sub:s.mqlPct.toFixed(1)+"% of leads · PCM/PCMB '25/'26"},
-      {label:"CPL Spend",cls:"sv",to:s.cplSpend,f:"money"},
       {label:"Total Cost",cls:"sc",to:s.totalCost,f:"money"},
       {label:"Blended CPL",cls:"sc",to:s.blended,f:"money2"},
       {label:"Rows",cls:"sp",to:s.rows,f:"n"}
