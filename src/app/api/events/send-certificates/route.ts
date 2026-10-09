@@ -1,17 +1,13 @@
 import { createClient } from "@supabase/supabase-js";
-import { gmailAccessToken, buildRawHtml, gmailSend } from "@/lib/email/gmail";
-import { injectTracking } from "@/lib/email/tracking";
+import { deliverEmail } from "@/lib/email/deliver";
 import { campaignShell, buttonHtml } from "@/lib/email/templates";
-import { linkedInShareUrl, defaultShareText } from "@/lib/events";
+import { linkedInShareUrl } from "@/lib/events";
 
 export const runtime = "nodejs";
 
 /** Admin-only: issue (get-or-create) certificates for registrations and email each a view link. */
 export async function POST(req: Request) {
   try {
-    const creds = await gmailAccessToken();
-    if (!creds) return Response.json({ ok: false, error: "Email not configured" }, { status: 200 });
-
     const { registrationIds, origin, eventName, kind, position, accessToken } = (await req.json()) as {
       registrationIds: string[]; origin: string; eventName?: string; kind?: "participation" | "winner"; position?: string | null; accessToken?: string;
     };
@@ -58,19 +54,14 @@ export async function POST(req: Request) {
           + `<p style="margin:16px 0 6px;text-align:center;color:#7a7790;font:400 13px Arial,sans-serif">Proud of it? Share it with your network.</p>`
           + shareBtn;
         const subject = certKind === "winner" ? `🏆 You won — ${eventName || "Vedam"}` : `Your certificate — ${eventName || "Vedam"}`;
-        const __certHtml = campaignShell(body);
-      let __html = __certHtml;
-      let __stampEid: string | null = null;
-      try {
-        const __svcU = process.env.NEXT_PUBLIC_SUPABASE_URL!, __svcK = process.env.SUPABASE_SERVICE_ROLE_KEY;
-        if (__svcK) { const __svc = createClient(__svcU, __svcK);
-          const { data: __skip } = await __svc.rpc("is_opted_out", { p_email: reg.user_email, p_phone: null, p_channel: "email" });
-          if (!__skip) { const { data: __eid } = await __svc.rpc("email_event_log", { p_user: reg.user_id, p_to: reg.user_email, p_kind: "certificate", p_ref_id: null, p_ref_name: `Certificate — ${reg.full_name ?? ""}`, p_subject: subject, p_template: null, p_html: __certHtml });
-            if (__eid) { __stampEid = __eid as string; __html = injectTracking(__certHtml, __eid as string, reg.user_email); } } }
-      } catch { /* best effort */ }
-        const raw = buildRawHtml({ to: reg.user_email, from: creds.sender, subject, html: __html });
-        const r = await gmailSend(creds.token, raw);
-        if (r.ok) { sent++; if (r.messageId && __stampEid) { try { await createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!).rpc("email_set_msgid", { p_id: __stampEid, p_msgid: r.messageId }); } catch { /* */ } } } else failures.push({ id: regId, error: r.error || "send failed" });
+        const html = campaignShell(body);
+
+        const r = await deliverEmail({
+          to: reg.user_email, subject, html, kind: "certificate",
+          userId: reg.user_id, refName: `Certificate — ${reg.full_name ?? ""}`,
+        });
+        if (r.ok) sent++;
+        else failures.push({ id: regId, error: r.error || "send failed" });
       } catch (e) {
         failures.push({ id: regId, error: String((e as Error)?.message || e).slice(0, 120) });
       }
