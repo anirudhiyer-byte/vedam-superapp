@@ -180,7 +180,7 @@ table.grid{border-collapse:separate;border-spacing:0;width:max-content;min-width
 .ecard{background:var(--panel);backdrop-filter:blur(16px);border:1px solid var(--panel-brd);border-radius:20px;padding:22px 24px;margin-top:18px;position:relative;overflow:visible}
 /* revolving LED-strip border: a conic gradient masked into a thin ring, rotating */
 .ecard::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2.5px;pointer-events:none;z-index:0;
-  background:conic-gradient(from var(--led),rgba(255,138,61,.12) 0deg,rgba(255,138,61,.12) 250deg,var(--orange) 318deg,#ffd9b0 345deg,var(--orange) 360deg);
+  background:conic-gradient(from var(--led),var(--orange) 0deg,var(--orange) 300deg,#ffcf9e 326deg,#ffffff 343deg,#ffcf9e 352deg,var(--orange) 360deg);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
   filter:drop-shadow(0 0 7px rgba(255,138,61,.5));animation:ledspin 4.5s linear infinite}
