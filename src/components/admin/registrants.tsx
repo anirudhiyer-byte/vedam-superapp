@@ -10,10 +10,58 @@ type Reg = {
   answers: Record<string, unknown> | null; joined: boolean; attended_minutes: number;
   utm_source: string | null; utm_medium: string | null; utm_campaign: string | null; linkedin_post_url: string | null; linkedin_podium_url: string | null; masterclass_rating: number | null; github_url: string | null;
 };
-type Col = { key: string; label: string; get: (r: Reg) => string };
+type ColType = "text" | "num" | "enum";
+type Col = { key: string; label: string; type: ColType; get: (r: Reg) => string; num?: (r: Reg) => number };
+type NumF = { op: string; value: string };
 
 const cell = (v: unknown) => (Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v));
 const istDate = (s: string) => new Date(s).toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata" });
+const cmp = (n: number, op: string, v: number) => (op === ">=" ? n >= v : op === "<=" ? n <= v : op === ">" ? n > v : op === "<" ? n < v : n === v);
+
+/** Multi-select checklist filter: pick one or more of the distinct values present. Empty = all. */
+function EnumFilter({ options, selected, onChange }: { options: string[]; selected: string[]; onChange: (v: string[]) => void }) {
+  const [open, setOpen] = useState(false);
+  const label = selected.length === 0 ? "All" : `${selected.length} sel`;
+  return (
+    <div className="relative">
+      <button type="button" onClick={() => setOpen((o) => !o)}
+        className="flex w-full min-w-[80px] items-center justify-between gap-1 rounded border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]">
+        <span className={selected.length ? "text-foreground" : "text-muted"}>{label}</span><span className="text-muted">▾</span>
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div className="absolute left-0 z-20 mt-1 max-h-60 w-max min-w-full overflow-auto rounded-lg border border-border bg-surface p-1 shadow-[0_12px_30px_-12px_rgba(43,19,92,.4)]">
+            {selected.length > 0 && <button onClick={() => onChange([])} className="block w-full rounded px-2 py-1 text-left font-mono text-[11px] font-semibold text-accent hover:bg-surface-warm">Clear</button>}
+            {options.length === 0 && <div className="px-2 py-1 font-mono text-[11px] text-muted">—</div>}
+            {options.map((o) => (
+              <label key={o} className="flex cursor-pointer items-center gap-1.5 rounded px-2 py-1 font-mono text-[11px] text-foreground hover:bg-surface-warm">
+                <input type="checkbox" checked={selected.includes(o)}
+                  onChange={() => onChange(selected.includes(o) ? selected.filter((x) => x !== o) : [...selected, o])}
+                  className="h-3 w-3 accent-[color:rgb(var(--accent))]" />
+                <span className="whitespace-nowrap">{o === "" ? "(blank)" : o}</span>
+              </label>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/** Numeric comparison filter: operator + value. */
+function NumFilter({ f, onChange }: { f: NumF; onChange: (f: NumF) => void }) {
+  return (
+    <div className="flex gap-1">
+      <select value={f.op} onChange={(e) => onChange({ ...f, op: e.target.value })}
+        className="rounded border border-border bg-background px-1 py-1 font-mono text-[11px] text-foreground outline-none">
+        <option value=">=">≥</option><option value="<=">≤</option><option value=">">&gt;</option><option value="<">&lt;</option><option value="=">=</option>
+      </select>
+      <input value={f.value} onChange={(e) => onChange({ ...f, value: e.target.value })} inputMode="numeric" placeholder="#"
+        className="w-full min-w-[46px] rounded border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+    </div>
+  );
+}
 
 export function Registrants({ id }: { id: string }) {
   const [supabase] = useState(() => createClient());
@@ -21,7 +69,9 @@ export function Registrants({ id }: { id: string }) {
   const [rows, setRows] = useState<Reg[]>([]);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
-  const [colFilters, setColFilters] = useState<Record<string, string>>({});
+  const [textF, setTextF] = useState<Record<string, string>>({});
+  const [numF, setNumF] = useState<Record<string, NumF>>({});
+  const [enumF, setEnumF] = useState<Record<string, string[]>>({});
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [winnerPos, setWinnerPos] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
@@ -41,25 +91,42 @@ export function Registrants({ id }: { id: string }) {
   const schema: EventField[] = event?.registration_schema ?? [];
   const extraKeys = useMemo(() => schema.map((f) => f.key).filter((k) => !["whatsapp", "passout_year", "stream"].includes(k)), [schema]);
   const keyLabel = (k: string) => schema.find((f) => f.key === k)?.label || k;
+  // 75% is measured against the event's advertised duration (same denominator the points rule uses).
+  const dur = (event as { duration_minutes?: number } | null)?.duration_minutes || 60;
+  const need75 = Math.floor(0.75 * dur);
+  const pctOf = (r: Reg) => (dur > 0 ? Math.round(((r.attended_minutes ?? 0) / dur) * 100) : 0);
 
   const columns = useMemo<Col[]>(() => [
-    { key: "full_name", label: "Name", get: (r) => r.full_name ?? "" },
-    { key: "user_email", label: "Email", get: (r) => r.user_email ?? "" },
-    { key: "whatsapp", label: "WhatsApp", get: (r) => r.whatsapp ?? "" },
-    { key: "passout_year", label: "Passout", get: (r) => r.passout_year ?? "" },
-    { key: "stream", label: "Stream", get: (r) => r.stream ?? "" },
-    { key: "joined", label: "Joined", get: (r) => (r.joined ? "Yes" : "No") },
-    { key: "attended_minutes", label: "Mins", get: (r) => String(r.attended_minutes ?? 0) },
-    { key: "utm_source", label: "Source", get: (r) => r.utm_source ?? "" },
-    { key: "utm_medium", label: "Medium", get: (r) => r.utm_medium ?? "" },
-    { key: "utm_campaign", label: "Campaign", get: (r) => r.utm_campaign ?? "" },
-    { key: "linkedin_post_url", label: "LinkedIn (participation)", get: (r) => r.linkedin_post_url ?? "" },
-    { key: "linkedin_podium_url", label: "LinkedIn (podium)", get: (r) => r.linkedin_podium_url ?? "" },
-    { key: "github_url", label: "GitHub", get: (r) => r.github_url ?? "" },
-    { key: "masterclass_rating", label: "Rating", get: (r) => r.masterclass_rating ? `${r.masterclass_rating}/5` : "" },
-    ...extraKeys.map((k) => ({ key: "a:" + k, label: keyLabel(k), get: (r: Reg) => cell(r.answers?.[k]) })),
-    { key: "created_at", label: "Registered", get: (r) => istDate(r.created_at) },
-  ], [extraKeys]); // eslint-disable-line react-hooks/exhaustive-deps
+    { key: "full_name", label: "Name", type: "text", get: (r) => r.full_name ?? "" },
+    { key: "user_email", label: "Email", type: "text", get: (r) => r.user_email ?? "" },
+    { key: "whatsapp", label: "WhatsApp", type: "text", get: (r) => r.whatsapp ?? "" },
+    { key: "passout_year", label: "Passout", type: "enum", get: (r) => r.passout_year ?? "" },
+    { key: "stream", label: "Stream", type: "enum", get: (r) => r.stream ?? "" },
+    { key: "joined", label: "Joined", type: "enum", get: (r) => (r.joined ? "Yes" : "No") },
+    { key: "attended_minutes", label: "Mins", type: "num", get: (r) => String(r.attended_minutes ?? 0), num: (r) => r.attended_minutes ?? 0 },
+    { key: "attended_pct", label: "Attend %", type: "num", get: (r) => `${pctOf(r)}%`, num: (r) => pctOf(r) },
+    { key: "attend_75", label: "≥75%?", type: "enum", get: (r) => ((r.attended_minutes ?? 0) >= need75 ? "Yes" : "No") },
+    { key: "utm_source", label: "Source", type: "enum", get: (r) => r.utm_source ?? "" },
+    { key: "utm_medium", label: "Medium", type: "enum", get: (r) => r.utm_medium ?? "" },
+    { key: "utm_campaign", label: "Campaign", type: "enum", get: (r) => r.utm_campaign ?? "" },
+    { key: "linkedin_post_url", label: "LinkedIn (participation)", type: "text", get: (r) => r.linkedin_post_url ?? "" },
+    { key: "linkedin_podium_url", label: "LinkedIn (podium)", type: "text", get: (r) => r.linkedin_podium_url ?? "" },
+    { key: "github_url", label: "GitHub", type: "text", get: (r) => r.github_url ?? "" },
+    { key: "masterclass_rating", label: "Rating", type: "num", get: (r) => (r.masterclass_rating ? `${r.masterclass_rating}/5` : ""), num: (r) => r.masterclass_rating ?? 0 },
+    ...extraKeys.map((k) => ({ key: "a:" + k, label: keyLabel(k), type: "text" as ColType, get: (r: Reg) => cell(r.answers?.[k]) })),
+    { key: "created_at", label: "Registered", type: "text", get: (r) => istDate(r.created_at) },
+  ], [extraKeys, dur, need75]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // distinct values for each enum column (from the loaded rows)
+  const enumOptions = useMemo(() => {
+    const m: Record<string, string[]> = {};
+    for (const c of columns) if (c.type === "enum") {
+      const s = new Set<string>();
+      for (const r of rows) s.add(c.get(r));
+      m[c.key] = [...s].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+    }
+    return m;
+  }, [columns, rows]);
 
   const filtered = useMemo(() => {
     const terms = q.toLowerCase().split(/[,;\n]/).map((t) => t.trim()).filter(Boolean);
@@ -70,16 +137,28 @@ export function Registrants({ id }: { id: string }) {
       if (neg.some((t) => hay.includes(t))) return false;
       if (pos.length && !pos.some((t) => hay.includes(t))) return false;
       for (const c of columns) {
-        const f = (colFilters[c.key] || "").toLowerCase().trim();
-        if (f && !c.get(r).toLowerCase().includes(f)) return false;
+        if (c.type === "enum") {
+          const sel = enumF[c.key];
+          if (sel && sel.length && !sel.includes(c.get(r))) return false;
+        } else if (c.type === "num") {
+          const nf = numF[c.key];
+          if (nf && nf.value.trim() !== "") {
+            const v = Number(nf.value);
+            if (!Number.isNaN(v) && !cmp(c.num!(r), nf.op, v)) return false;
+          }
+        } else {
+          const f = (textF[c.key] || "").toLowerCase().trim();
+          if (f && !c.get(r).toLowerCase().includes(f)) return false;
+        }
       }
       return true;
     });
-  }, [rows, q, colFilters, columns]);
+  }, [rows, q, textF, numF, enumF, columns]);
 
   // Actions target the selected rows if any, else the filtered set.
   const targets = useMemo(() => selected.size ? rows.filter((r) => selected.has(r.id)) : filtered, [selected, rows, filtered]);
   const allFilteredSelected = filtered.length > 0 && filtered.every((r) => selected.has(r.id));
+  const anyFilter = !!q || Object.values(textF).some(Boolean) || Object.values(numF).some((x) => x?.value?.trim()) || Object.values(enumF).some((a) => a?.length);
 
   function toggleAll() {
     setSelected((prev) => {
@@ -92,6 +171,7 @@ export function Registrants({ id }: { id: string }) {
   function toggleRow(rid: string) {
     setSelected((prev) => { const n = new Set(prev); n.has(rid) ? n.delete(rid) : n.add(rid); return n; });
   }
+  function clearFilters() { setQ(""); setTextF({}); setNumF({}); setEnumF({}); }
 
   async function token() { const { data } = await supabase.auth.getSession(); return data.session?.access_token; }
 
@@ -162,8 +242,11 @@ export function Registrants({ id }: { id: string }) {
     <div className="mx-auto max-w-6xl px-6 py-8">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-display text-lg font-bold text-heading">{filtered.length} registrant{filtered.length === 1 ? "" : "s"}{selected.size ? ` · ${selected.size} selected` : ""}</h2>
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search (! to exclude)"
-          className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+        <div className="flex items-center gap-2">
+          {anyFilter && <button onClick={clearFilters} className="rounded-lg border border-border px-2.5 py-2 text-xs font-semibold text-muted hover:bg-surface-warm">Clear filters</button>}
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search (! to exclude)"
+            className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+        </div>
       </div>
 
       <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -186,7 +269,7 @@ export function Registrants({ id }: { id: string }) {
       {note && <p className="mb-4 font-body text-sm text-foreground">{note}</p>}
 
       {filtered.length === 0 ? (
-        <p className="font-body text-sm text-muted">No registrants{q || Object.values(colFilters).some(Boolean) ? " match" : " yet"}.</p>
+        <p className="font-body text-sm text-muted">No registrants{anyFilter ? " match" : " yet"}.</p>
       ) : (
         <div className="overflow-x-auto rounded-2xl border border-border">
           <table className="w-full border-collapse text-left text-sm">
@@ -200,9 +283,15 @@ export function Registrants({ id }: { id: string }) {
               <tr className="border-t border-border">
                 <th className="px-3 py-1.5" />
                 {columns.map((c) => (
-                  <th key={c.key} className="px-2 py-1.5">
-                    <input value={colFilters[c.key] || ""} onChange={(e) => setColFilters((f) => ({ ...f, [c.key]: e.target.value }))}
-                      placeholder="filter" className="w-full min-w-[70px] rounded border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+                  <th key={c.key} className="px-2 py-1.5 align-top">
+                    {c.type === "enum" ? (
+                      <EnumFilter options={enumOptions[c.key] || []} selected={enumF[c.key] || []} onChange={(v) => setEnumF((f) => ({ ...f, [c.key]: v }))} />
+                    ) : c.type === "num" ? (
+                      <NumFilter f={numF[c.key] || { op: ">=", value: "" }} onChange={(nf) => setNumF((f) => ({ ...f, [c.key]: nf }))} />
+                    ) : (
+                      <input value={textF[c.key] || ""} onChange={(e) => setTextF((f) => ({ ...f, [c.key]: e.target.value }))}
+                        placeholder="filter" className="w-full min-w-[70px] rounded border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+                    )}
                   </th>
                 ))}
               </tr>
@@ -213,7 +302,9 @@ export function Registrants({ id }: { id: string }) {
                   <td className="px-3 py-2"><input type="checkbox" checked={selected.has(r.id)} onChange={() => toggleRow(r.id)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></td>
                   {columns.map((c) => (
                     <td key={c.key} className={["whitespace-nowrap px-3 py-2", c.key === "full_name" ? "text-foreground" : "text-muted"].join(" ")}>
-                      {c.key === "joined" ? (r.joined ? <span className="text-accent">✓</span> : "—") : c.get(r)}
+                      {c.key === "joined" ? (r.joined ? <span className="text-accent">✓</span> : "—")
+                        : c.key === "attend_75" ? ((r.attended_minutes ?? 0) >= need75 ? <span className="text-accent">✓</span> : "—")
+                        : c.get(r)}
                     </td>
                   ))}
                 </tr>
