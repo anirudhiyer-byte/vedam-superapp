@@ -130,12 +130,12 @@ export function CollegePredictor() {
               <div className="border-b border-border bg-surface-warm/50 px-5 py-3 font-display text-base font-extrabold text-heading">{g.institute}</div>
               <div className="divide-y divide-border">
                 {g.rows.map((r, i) => (
-                  <div key={i} className="flex flex-wrap items-center gap-3 px-5 py-3 text-sm">
-                    <span className="min-w-[220px] flex-1 font-body font-semibold text-foreground">{r.program_name}</span>
+                  <div key={i} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-5 py-3.5 text-sm">
+                    <span className="min-w-[220px] flex-1 font-body font-semibold text-heading">{r.program_name}</span>
                     <span className="font-mono text-xs text-muted">Opening <b className="text-foreground">{r.opening_rank}</b></span>
-                    <span className="font-mono text-xs text-muted">Closing <b className="text-foreground">{r.closing_rank}</b></span>
-                    <span className="rounded-full bg-surface-warm px-2.5 py-1 font-mono text-[10px] font-bold text-muted">{r.sub_category}</span>
-                    <button onClick={() => openRounds(g, r)} className="ml-auto rounded-lg border border-border-strong px-3 py-1.5 font-mono text-[11px] font-semibold text-accent hover:bg-surface-warm">Round-wise details</button>
+                    <span className="font-mono text-xs text-muted">Closing <b className="text-heading">{r.closing_rank}</b></span>
+                    <span className="rounded-full border border-border bg-surface-warm px-2.5 py-1 font-mono text-[10px] font-bold text-heading">{r.sub_category}</span>
+                    <button onClick={() => openRounds(g, r)} className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-border-strong bg-surface-warm px-3.5 py-2 font-mono text-[11px] font-bold text-heading transition hover:border-accent hover:text-accent">Round-wise <span aria-hidden>→</span></button>
                   </div>
                 ))}
               </div>
@@ -151,14 +151,22 @@ export function CollegePredictor() {
 
       {modal && (
         <div onClick={() => setModal(null)} className="fixed inset-0 z-50 grid place-items-center bg-[rgba(20,10,45,.55)] p-4 backdrop-blur-sm">
-          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-2xl bg-surface p-6 shadow-xl">
-            <div className="mb-1 font-mono text-xs text-muted">{modal.name}</div>
+          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-[0_24px_60px_-20px_rgba(43,19,92,.5)]">
+            <div className="mb-1 font-mono text-xs font-semibold uppercase tracking-wide text-accent">{modal.name}</div>
             <div className="font-display text-lg font-extrabold text-heading">{modal.program}</div>
             <div className="mt-4 overflow-hidden rounded-xl border border-border">
-              <div className="grid grid-cols-3 bg-brand-gradient px-4 py-2 font-mono text-[11px] font-bold text-white"><span>Round</span><span className="text-right">Opening</span><span className="text-right">Closing</span></div>
-              {modal.rounds.map((r, i) => <div key={i} className="grid grid-cols-3 border-t border-border px-4 py-2 font-body text-sm"><span>{r.round}</span><span className="text-right">{r.opening_rank}</span><span className="text-right font-semibold text-heading">{r.closing_rank}</span></div>)}
+              <div className="grid grid-cols-3 bg-brand-gradient px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-wide text-white"><span>Round</span><span className="text-right">Opening</span><span className="text-right">Closing</span></div>
+              {modal.rounds.length === 0 ? (
+                <div className="px-4 py-6 text-center font-body text-sm text-muted">No round-wise data for this program.</div>
+              ) : modal.rounds.map((r, i) => (
+                <div key={i} className="grid grid-cols-3 items-center border-t border-border px-4 py-2.5 font-body text-sm odd:bg-surface-warm/40">
+                  <span className="font-semibold text-heading">Round {r.round}</span>
+                  <span className="text-right font-mono text-foreground">{r.opening_rank}</span>
+                  <span className="text-right font-mono font-bold text-heading">{r.closing_rank}</span>
+                </div>
+              ))}
             </div>
-            <button onClick={() => setModal(null)} className="mt-4 w-full rounded-xl border border-border px-4 py-2.5 font-body text-sm font-semibold text-foreground">Close</button>
+            <button onClick={() => setModal(null)} className="mt-4 w-full rounded-xl bg-brand-gradient px-4 py-2.5 font-display text-sm font-bold text-white transition hover:opacity-90">Close</button>
           </div>
         </div>
       )}
