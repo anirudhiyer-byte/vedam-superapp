@@ -13,7 +13,9 @@ export function Footer() {
   const pathname = usePathname();
   if (pathname === "/") return null;
   return (
-    <footer className="flex flex-row flex-wrap gap-8 border-t border-white/10 px-6 py-12 font-[family-name:var(--font-inter)] text-white sm:gap-32 sm:px-16 sm:py-14" style={{ background: "#000000" }}>
+    <footer className="border-t border-white/10 px-6 py-12 font-[family-name:var(--font-inter)] text-white sm:px-16 sm:py-14" style={{ background: "#0A0A0F" }}>
+      <div className="mx-auto flex max-w-6xl flex-col gap-10">
+        <div className="grid gap-10 sm:grid-cols-3 sm:gap-8">
       <div>
         <h4 className="mb-2.5 text-base font-semibold sm:text-xl">Quick Links</h4>
         <Link href="/privacy" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Privacy Policy</Link>
@@ -34,8 +36,10 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="w-full border-t border-white/10 pt-6 text-center text-[13px] font-medium text-white/60">
+        </div>
+        <div className="border-t border-white/10 pt-6 text-center text-[13px] font-medium text-white/60">
         In case of any queries or problems, please reach out to us at <a href="mailto:connect@vedam.org" className="text-white/85 underline underline-offset-2 hover:text-white">connect@vedam.org</a>
+        </div>
       </div>
     </footer>
   );
