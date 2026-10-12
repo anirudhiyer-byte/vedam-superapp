@@ -85,7 +85,7 @@ export function CollegePredictor() {
       <PredictBackground />
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-10 sm:px-10">
       <div className="text-center">
-        <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-accent"><span className="h-1.5 w-1.5 rounded-full bg-brand-gradient" /> Most accurate · 100% free</span>
+        <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-[#C9BDF2]"><span className="h-1.5 w-1.5 rounded-full bg-brand-gradient" /> Most accurate · 100% free</span>
         <h1 className="cp-title mt-3 font-display text-4xl font-extrabold tracking-tight text-[#EDEBF8] sm:text-5xl">JEE Main 2026 <span className="bg-brand-gradient bg-clip-text text-transparent">College Predictor</span><span aria-hidden className="cp-shine">JEE Main 2026 College Predictor</span></h1>
         <p className="mt-3 font-body text-[15px] leading-relaxed text-[#d8d5e6]">Predict your college &amp; branch from your JEE Main 2026 rank — built by experts from <span style={{ fontFamily: "'Product Sans','Google Sans','Inter',Arial,sans-serif", fontWeight: 600 }}><span style={{ color: "#4285F4" }}>G</span><span style={{ color: "#EA4335" }}>o</span><span style={{ color: "#FBBC05" }}>o</span><span style={{ color: "#4285F4" }}>g</span><span style={{ color: "#34A853" }}>l</span><span style={{ color: "#EA4335" }}>e</span></span> &amp; <span style={{ fontFamily: "'Segoe UI',system-ui,sans-serif", fontWeight: 600, color: "#e9e9ef" }}>Microsoft</span>. No hidden charges.</p>
       </div>
@@ -121,24 +121,34 @@ export function CollegePredictor() {
         <div className="mt-8">
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
             <div>
-              <button onClick={() => { setResults(null); setErr(null); }} className="font-mono text-xs font-semibold text-accent">← New search</button>
-              <p className="mt-1 font-body text-sm text-muted">Category: <b className="text-heading">{f.category}</b> · JEE Main 2026 Rank: <b className="text-heading">{rankRange && rankRange[0] !== rankRange[1] ? `${rankRange[0]} – ${rankRange[1]}` : rankRange?.[0]}</b></p>
+              <button onClick={() => { setResults(null); setErr(null); }} className="font-mono text-xs font-semibold text-[#B79AFF] transition hover:text-[#D4C4FF]">← New search</button>
+              <p className="mt-1.5 font-body text-sm text-[#B5B0C9]">Category: <b className="font-semibold text-[#EDEBF8]">{f.category}</b> · JEE Main 2026 Rank: <b className="font-semibold text-[#EDEBF8]">{rankRange && rankRange[0] !== rankRange[1] ? `${rankRange[0]} – ${rankRange[1]}` : rankRange?.[0]}</b></p>
             </div>
-            <span className="font-mono text-xs font-semibold text-muted">{results.reduce((a, g) => a + g.rows.length, 0)} programs · {results.length} institutes</span>
+            <span className="font-mono text-xs font-semibold text-[#B5B0C9]">{results.reduce((a, g) => a + g.rows.length, 0)} programs · {results.length} institutes</span>
           </div>
           {results.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-border-strong bg-surface p-10 text-center"><p className="font-display text-lg font-bold text-heading">No matches for this rank</p><p className="mt-1 font-body text-sm text-muted">Try a different rank, category or seat pool.</p></div>
           ) : results.map((g) => (
             <div key={g.institute} className="mb-4 overflow-hidden rounded-2xl border border-border bg-surface">
-              <div className="border-b border-border bg-surface-warm/50 px-5 py-3 font-display text-base font-extrabold text-heading">{g.institute}</div>
+              <div className="flex items-center justify-between gap-3 border-b border-border bg-surface-warm/50 px-5 py-3">
+                <h3 className="font-display text-base font-extrabold text-heading">{g.institute}</h3>
+                <span className="shrink-0 font-mono text-[11px] font-semibold text-muted">{g.rows.length} program{g.rows.length > 1 ? "s" : ""}</span>
+              </div>
+              <div className="hidden grid-cols-[minmax(0,1fr)_5.5rem_5.5rem_3.5rem_8rem] items-center gap-4 border-b border-border px-5 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-muted sm:grid">
+                <span>Program</span>
+                <span className="text-right">Opening</span>
+                <span className="text-right">Closing</span>
+                <span className="text-center">Quota</span>
+                <span />
+              </div>
               <div className="divide-y divide-border">
                 {g.rows.map((r, i) => (
-                  <div key={i} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-5 py-3.5 text-sm">
-                    <span className="min-w-[220px] flex-1 font-body font-semibold text-heading">{r.program_name}</span>
-                    <span className="font-mono text-xs text-muted">Opening <b className="text-foreground">{r.opening_rank}</b></span>
-                    <span className="font-mono text-xs text-muted">Closing <b className="text-heading">{r.closing_rank}</b></span>
-                    <span className="rounded-full border border-border bg-surface-warm px-2.5 py-1 font-mono text-[10px] font-bold text-heading">{r.sub_category}</span>
-                    <button onClick={() => openRounds(g, r)} className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-border-strong bg-surface-warm px-3.5 py-2 font-mono text-[11px] font-bold text-heading transition hover:border-accent hover:text-accent">Round-wise <span aria-hidden>→</span></button>
+                  <div key={i} className="flex flex-wrap items-center gap-x-4 gap-y-2.5 px-5 py-3.5 sm:grid sm:grid-cols-[minmax(0,1fr)_5.5rem_5.5rem_3.5rem_8rem] sm:gap-4">
+                    <span className="w-full font-body text-sm font-semibold leading-snug text-heading sm:w-auto">{r.program_name}</span>
+                    <span className="font-mono text-xs text-muted sm:text-right sm:text-[13px]"><span className="sm:hidden">Opening </span><b className="font-semibold tabular-nums text-foreground">{r.opening_rank}</b></span>
+                    <span className="font-mono text-xs text-muted sm:text-right sm:text-[13px]"><span className="sm:hidden">Closing </span><b className="font-bold tabular-nums text-heading">{r.closing_rank}</b></span>
+                    <span className="rounded-full border border-border bg-surface-warm px-2.5 py-1 font-mono text-[10px] font-bold text-heading sm:justify-self-center">{r.sub_category}</span>
+                    <button onClick={() => openRounds(g, r)} className="ml-auto inline-flex items-center justify-center gap-1.5 rounded-lg border border-border-strong bg-surface-warm px-3.5 py-2 font-mono text-[11px] font-bold text-heading transition hover:border-accent hover:text-accent sm:ml-0 sm:w-full">Round-wise <span aria-hidden>→</span></button>
                   </div>
                 ))}
               </div>
