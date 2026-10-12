@@ -5,7 +5,6 @@ import { createClient } from "@/lib/supabase/client";
 import { useProductGate } from "@/components/funnel/use-product-gate";
 import { marksToRank } from "@/lib/cp/marks-to-rank";
 import { CP_STATES, CP_CATEGORIES, CP_GENDERS, CP_STREAMS, CP_YEARS, stateNameToId } from "@/lib/cp/options";
-import { PredictBackground } from "@/components/predict/predict-bg";
 
 type Row = { institute_id: number; institute_name: string; program_name: string; opening_rank: number; closing_rank: number; sub_category: string; round: number };
 type Form = { mode: "rank" | "marks"; rank: string; marks: string; category: string; gender: string; stream: string; year: string; stateId: string };
@@ -81,9 +80,7 @@ export function CollegePredictor() {
   const label = "mb-1.5 block font-body text-xs font-bold text-foreground";
 
   return (
-    <div className="relative isolate">
-      <PredictBackground />
-      <div className="relative z-10 mx-auto max-w-5xl px-6 py-10 sm:px-10">
+    <div className="mx-auto max-w-5xl px-6 py-10 sm:px-10">
       <div className="text-center">
         <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-[#C9BDF2]"><span className="h-1.5 w-1.5 rounded-full bg-brand-gradient" /> Most accurate · 100% free</span>
         <h1 className="cp-title mt-3 font-display text-4xl font-extrabold tracking-tight text-[#EDEBF8] sm:text-5xl">JEE Main 2026 <span className="bg-brand-gradient bg-clip-text text-transparent">College Predictor</span><span aria-hidden className="cp-shine">JEE Main 2026 College Predictor</span></h1>
@@ -184,7 +181,6 @@ export function CollegePredictor() {
         </div>
       )}
       <Modals />
-      </div>
     </div>
   );
 }
