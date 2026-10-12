@@ -83,7 +83,7 @@ export function CollegePredictor() {
     <div className="mx-auto max-w-5xl px-6 py-10 sm:px-10">
       <div className="text-center">
         <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-accent"><span className="h-1.5 w-1.5 rounded-full bg-brand-gradient" /> Most accurate · 100% free</span>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">JEE Main 2026 <span className="bg-brand-gradient bg-clip-text text-transparent">College Predictor</span></h1>
+        <h1 className="cp-title mt-3 font-display text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">JEE Main 2026 <span className="bg-brand-gradient bg-clip-text text-transparent">College Predictor</span><span aria-hidden className="cp-shine">JEE Main 2026 College Predictor</span></h1>
         <p className="mt-2 font-body text-sm text-muted">Predict your college &amp; branch from your JEE Main 2026 rank — built by experts from Google &amp; Microsoft. No hidden charges.</p>
       </div>
 
