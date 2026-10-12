@@ -159,24 +159,36 @@ body::after {
 /* premium heading font */
 .vd-dark .font-display { font-family: var(--font-inter), system-ui, sans-serif; }
 
-/* College Predictor title — sweeping white-light highlight */
-.cp-title { position: relative; display: inline-block; }
+/* College Predictor title — sweeping white-light highlight.
+   Block + fit-content keeps the eyebrow above the title AND makes the
+   shine overlay sit tight to the text so the sweep reads across the words. */
+.cp-title {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .cp-shine {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: linear-gradient(100deg, transparent 42%, rgba(255,255,255,0.92) 50%, transparent 58%);
-  background-size: 250% 100%;
+  background-image: linear-gradient(105deg, transparent 43%, rgba(255,255,255,0.85) 50%, transparent 57%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: cpShine 3.4s ease-in-out infinite;
+  animation: cpShine 5s ease-in-out infinite;
 }
+/* sweep left→right over the first ~45%, then rest off-screen for a polished, periodic shine */
 @keyframes cpShine {
-  0%   { background-position: 175% 0; }
-  100% { background-position: -75% 0; }
+  0%   { background-position: 100% 0; }
+  45%  { background-position: 0% 0; }
+  100% { background-position: 0% 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cp-shine { animation: none; display: none; }
