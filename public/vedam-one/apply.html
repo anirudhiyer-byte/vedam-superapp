@@ -203,6 +203,8 @@ ul,ol{padding:0;list-style:none}
 .step .tx{flex:1;min-width:0;padding:0;display:flex;flex-direction:column;gap:6px}
 /* every step title: one line, identical size / weight / leading */
 .step .t{font-size:24px;font-weight:700;line-height:1.15;letter-spacing:-.48px;color:#262626;white-space:nowrap}
+/* while the shell is being scaled, nothing may poke out sideways */
+.shell{overflow-x:clip}
 .step .b{font-size:14px;font-weight:500;line-height:1.35;letter-spacing:-.28px;color:#262626}
 
 /* scholarships — Figma card ~300x318 (1276:94); squared off and 10% smaller */
@@ -218,7 +220,10 @@ ul,ol{padding:0;list-style:none}
 .sch .amt{font-weight:700;letter-spacing:-.32px}
 .sch .amt .p{display:block;font-size:14px;line-height:1.2}
 .sch .amt .b{display:block;font-size:52px;line-height:1.2}
-.sch .t{font-size:17px;font-weight:700;line-height:1.25;letter-spacing:-.34px;white-space:nowrap;margin-top:3px}
+/* safety net: if the page ever renders unscaled on a narrow viewport, the title
+   wraps inside the card instead of spilling out of it */
+.sch .t{font-size:17px;font-weight:700;line-height:1.25;letter-spacing:-.34px;margin-top:3px;
+  overflow-wrap:anywhere;hyphens:auto}
 
 /* headlines — individual cards */
 /* Figma headline tile is a 302.59 square (1276:122) — 10% smaller */
@@ -730,6 +735,30 @@ var NEWS=[
 })();
 
 applyImages(document);
+
+/* ---------------- fit the 1920 design to whatever viewport we get ----------------
+   Every size on this page is a fixed pixel value taken from the Figma frame, which
+   is 1920 wide. A laptop at 125% or 150% Windows scaling hands the browser only
+   1536 or 1280 CSS pixels, so the cards shrink while the type does not — which is
+   how the scholarship titles ended up outside their cards.
+
+   Scaling the whole shell by viewport/1920 keeps every proportion identical to the
+   design at any width. Below FLOOR the type would get too small to read, so we stop
+   there and let the existing <=1180px stacked layout take over.                   */
+(function(){
+  var DESIGN = 1920, MOBILE = 1180, FLOOR = 0.72;
+  var shell = document.querySelector(".shell");
+  function fit(){
+    var w = document.documentElement.clientWidth;
+    if (w > MOBILE && w < DESIGN) {
+      shell.style.zoom = Math.max(FLOOR, w / DESIGN);
+    } else {
+      shell.style.zoom = "";          // 1920+ and mobile both render unscaled
+    }
+  }
+  fit();
+  window.addEventListener("resize", fit, {passive:true});
+})();
 
 /* ---------------- Apply Now / top strip → form ---------------- */
 function jumpToForm(ev){
