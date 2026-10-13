@@ -10,7 +10,7 @@ export default async function Page() {
   let initialEvents: EventRow[] = [];
   try {
     const supabase = await createClient();
-    const { data } = await supabase.from("events").select("*").neq("status", "draft").order("starts_at", { ascending: true });
+    const { data } = await supabase.from("events").select("*").neq("status", "draft").neq("visibility", "private").order("starts_at", { ascending: true });
     if (data) initialEvents = data as EventRow[];
   } catch { /* fall back to client fetch */ }
   return <EventsPage initialEvents={initialEvents} />;
