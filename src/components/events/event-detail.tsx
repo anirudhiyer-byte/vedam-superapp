@@ -26,7 +26,7 @@ export function EventDetail({ code }: { code: string }) {
   const [showRec, setShowRec] = useState(false);
   const payReturn = searchParams.get("pay") === "return";
   const payOrder = searchParams.get("order");
-  const [payState, setPayState] = useState<"confirming" | "paid" | "failed" | null>(null);
+  const [payState, setPayState] = useState<"confirming" | "paid" | "failed" | "unverified" | null>(null);
   const [receiptHref, setReceiptHref] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,7 +64,14 @@ export function EventDetail({ code }: { code: string }) {
     const tick = async () => {
       const { data: s } = await supabase.auth.getSession();
       const token = s.session?.access_token;
-      if (!token) { if (active) setPayState("failed"); return; }
+      if (!token) {
+        // session can still be hydrating right after the redirect (common on mobile) —
+        // retry a few times; NEVER claim "not charged" just because we have no token yet.
+        tries++;
+        if (active && tries < 8) { setTimeout(tick, 2000); return; }
+        if (active) setPayState("unverified");
+        return;
+      }
       try {
         const r = await fetch(`/api/payments/status?order=${encodeURIComponent(payOrder)}&token=${encodeURIComponent(token)}`);
         const j = await r.json();
@@ -74,11 +81,12 @@ export function EventDetail({ code }: { code: string }) {
           setReceiptHref(`/api/payments/receipt?order=${encodeURIComponent(payOrder)}&token=${encodeURIComponent(token)}`);
           return;
         }
+        // ONLY a server-confirmed terminal failure shows the "not charged / try again" message
         if (["failed", "amount_mismatch", "EXPIRED", "TERMINATED"].includes(String(j.status))) { setPayState("failed"); return; }
       } catch { /* keep polling */ }
       tries++;
       if (active && tries < 8) setTimeout(tick, 2000);
-      // else: leave as "confirming" — webhook will finalise; receipt is emailed either way
+      else if (active) setPayState("unverified"); // couldn't confirm in time — stay neutral; receipt is emailed either way
     };
     tick();
     return () => { active = false; };
@@ -192,7 +200,8 @@ export function EventDetail({ code }: { code: string }) {
                 payState === "paid" ? "border-[#34c759]/40 bg-[#34c759]/10 text-white"
                 : payState === "failed" ? "border-[#ff5a5a]/40 bg-[#ff5a5a]/10 text-white"
                 : "border-white/20 bg-white/[0.06] text-white/80"].join(" ")}>
-                {payState === "confirming" && <>⏳ Confirming your payment… <span className="text-white/50">this takes a few seconds. Your receipt will be emailed.</span></>}
+                {payState === "confirming" && <>⏳ Confirming your payment… <span className="text-white/50">this takes a few seconds — please don&apos;t close this tab.</span></>}
+                {payState === "unverified" && <>⏳ We&apos;re still confirming your payment. If it went through, your receipt is on its way by email and your registration will show here shortly — <b>refresh this page</b> in a minute. You have not been charged twice.</>}
                 {payState === "failed" && <>Payment wasn&apos;t completed — you have <b>not</b> been charged or registered. You can try again below.</>}
                 {payState === "paid" && (
                   <div className="flex flex-col gap-2">
@@ -226,6 +235,9 @@ export function EventDetail({ code }: { code: string }) {
                   <div className="mt-3"><LinkedinSubmission registrationId={regInfo.id} isWinner={regInfo.isWinner} participationPoints={event.share_points_participation ?? 0} podiumPoints={event.share_points_podium ?? 0} alreadyParticipation={regInfo.linkedinPart} alreadyPodium={regInfo.linkedinPodium} /></div>
                 )}
               </div>
+            ) : (payState === "confirming" || payState === "unverified") ? (
+              // a payment return is being verified — never show the pay/register button until it resolves (paid → registered, or failed → retry)
+              null
             ) : regClosed(event) ? (
               <p className="relative py-4 text-center font-body text-sm text-white/55">Registration for this event has closed.</p>
             ) : !userId ? (
@@ -259,8 +271,9 @@ export function EventDetail({ code }: { code: string }) {
         </div>
       </div>
 
-      {/* MOBILE sticky Register bar (Option A) — always visible, thumb-reachable; desktop uses the side card */}
-      {!registered && !regClosed(event) && (
+      {/* MOBILE sticky Register bar (Option A) — always visible, thumb-reachable; desktop uses the side card.
+          Hidden while a payment return is being confirmed so the pay button can't reappear mid-confirmation. */}
+      {!registered && !regClosed(event) && (!payState || payState === "failed") && (
         <>
           <div className="h-24 lg:hidden" />
           <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0b0618]/95 px-4 pt-3 backdrop-blur-md lg:hidden" style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom,0px))" }}>

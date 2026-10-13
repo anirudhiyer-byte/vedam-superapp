@@ -38,11 +38,27 @@ export function EventsList() {
     let active = true;
     (async () => {
       const { data } = await supabase.from("events").select("*").neq("status", "draft").neq("visibility", "private").order("starts_at", { ascending: true });
-      if (active && data) setEvents(data as EventRow[]);
+      const pub = (data as EventRow[]) || [];
+      if (active) setEvents(pub);
       const { data: u } = await supabase.auth.getUser();
       if (u.user) {
         const { data: r } = await supabase.from("event_registrations").select("event_code").eq("user_id", u.user.id);
-        if (active && r) setRegs(Object.fromEntries(r.map((x) => [x.event_code, true])));
+        const codes = (r || []).map((x) => x.event_code).filter(Boolean) as string[];
+        if (active) setRegs(Object.fromEntries(codes.map((c) => [c, true])));
+        // Private (unlisted) events are hidden from the public list — but if the user has
+        // registered for one, it's theirs to see, so pull it back into their list.
+        const have = new Set(pub.map((e) => e.event_code));
+        const missing = codes.filter((c) => !have.has(c));
+        if (missing.length) {
+          const { data: priv } = await supabase.from("events").select("*").in("event_code", missing).neq("status", "draft");
+          if (active && priv && priv.length) {
+            setEvents((prev) => {
+              const seen = new Set(prev.map((e) => e.id));
+              return [...prev, ...(priv as EventRow[]).filter((e) => !seen.has(e.id))]
+                .sort((a, b) => (a.starts_at ? new Date(a.starts_at).getTime() : Infinity) - (b.starts_at ? new Date(b.starts_at).getTime() : Infinity));
+            });
+          }
+        }
       }
       if (active) setLoading(false);
     })();
