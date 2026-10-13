@@ -70,19 +70,21 @@ function Tick() {
   );
 }
 
-/** Dark gauge card (results page) — semicircular cyan→violet arc, ticks, rank. */
+/** Dark gauge card (results page) — thick blue→violet speedometer arc with a
+    grey track, vertical tick groups flanking the rank, as in the Figma design. */
 function Gauge({ label }: { label: string | number | undefined }) {
   return (
-    <div className="w-full flex-none rounded-[20px] border-[0.5px] border-[#7629fc] bg-[#101010] px-4 pb-3.5 pt-5 text-center lg:w-[360px]">
+    <div className="w-full flex-none rounded-[20px] border-[0.5px] border-[#7629fc] bg-[#101010] px-4 pb-4 pt-5 text-center lg:w-[360px]">
       <h3 className="font-[family-name:var(--font-inter)] text-[16px] font-medium tracking-[-0.04em] text-white sm:text-[17px]">Predicted College on your Rank</h3>
-      <svg className="mx-auto mt-1 block" width="260" height="104" viewBox="0 0 300 118" aria-hidden>
-        <defs><linearGradient id="cp-gauge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#00cfe5" /><stop offset="1" stopColor="#c200db" /></linearGradient></defs>
-        <path d="M30 108 A120 120 0 0 1 270 108" fill="none" stroke="#2a2a2a" strokeWidth="10" strokeLinecap="round" />
-        <path d="M30 108 A120 120 0 0 1 198 24" fill="none" stroke="url(#cp-gauge)" strokeWidth="10" strokeLinecap="round" />
-        <g stroke="#6a6a6a" strokeWidth="2">
-          <line x1="150" y1="18" x2="150" y2="30" /><line x1="106" y1="24" x2="112" y2="35" /><line x1="194" y1="24" x2="188" y2="35" /><line x1="66" y1="46" x2="76" y2="54" /><line x1="234" y1="46" x2="224" y2="54" />
+      <svg className="mx-auto mt-1.5 block w-full max-w-[320px]" viewBox="0 0 300 166" aria-hidden>
+        <defs><linearGradient id="cp-gauge" x1="0" y1="1" x2="0.9" y2="0"><stop offset="0" stopColor="#4A82E2" /><stop offset="1" stopColor="#7650DF" /></linearGradient></defs>
+        <path d="M50 122 A100 100 0 0 1 250 122" fill="none" stroke="#2A2A2A" strokeWidth="20" strokeLinecap="round" />
+        <path d="M50 122 A100 100 0 0 1 188.8 27.6" fill="none" stroke="url(#cp-gauge)" strokeWidth="20" strokeLinecap="round" />
+        <g stroke="#6a6a6a" strokeWidth="2.4" strokeLinecap="round">
+          <line x1="92" y1="120" x2="92" y2="140" /><line x1="102" y1="123" x2="102" y2="139" /><line x1="112" y1="126" x2="112" y2="138" /><line x1="122" y1="128" x2="122" y2="138" />
+          <line x1="208" y1="120" x2="208" y2="140" /><line x1="198" y1="123" x2="198" y2="139" /><line x1="188" y1="126" x2="188" y2="138" /><line x1="178" y1="128" x2="178" y2="138" />
         </g>
-        <text x="150" y="100" textAnchor="middle" fill="#fff" fontFamily="var(--font-inter), sans-serif" fontWeight="600" fontSize="30">{label}</text>
+        <text x="150" y="140" textAnchor="middle" fill="#fff" fontFamily="var(--font-inter), sans-serif" fontWeight="700" fontSize="34">{label}</text>
       </svg>
     </div>
   );
