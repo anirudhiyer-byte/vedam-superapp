@@ -159,6 +159,14 @@ body::after {
 /* premium heading font */
 .vd-dark .font-display { font-family: var(--font-inter), system-ui, sans-serif; }
 
+/* College Predictor hero (/predict) — two scale variables so the whole frame
+   always lands inside one screen. 1px of --u / --v === 1px of the design frame:
+   --u drives the hero column, --v the white form card. */
+.cp-hero { --u: 0.62px; --v: 0.88px; }
+@media (min-width: 1024px) {
+  .cp-hero { --u: clamp(0.62px, calc((100dvh - 76px) / 845), 1px); --v: var(--u); }
+}
+
 /* College Predictor title — sweeping white-light highlight.
    Block + fit-content keeps the eyebrow above the title AND makes the
    shine overlay sit tight to the text so the sweep reads across the words. */

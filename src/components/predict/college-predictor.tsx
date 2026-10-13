@@ -9,11 +9,10 @@ type Row = { institute_id: number; institute_name: string; program_name: string;
 type Form = { mode: "rank" | "marks"; rank: string; marks: string; category: string; gender: string; stream: string; year: string; stateId: string };
 type Grouped = { institute: string; institute_id: number; rows: Row[] };
 
-const blank: Form = { mode: "marks", rank: "", marks: "", category: "OPEN", gender: "Gender Neutral", stream: "PCM", year: "2026", stateId: "" };
+const blank: Form = { mode: "rank", rank: "", marks: "", category: "OPEN", gender: "Gender Neutral", stream: "PCM", year: "2026", stateId: "" };
 function sid() { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.randomUUID(); localStorage.setItem("cp_sid", s); } return s; }
 
 /* ---------- exact Figma tokens ---------- */
-const GLOW_A = "radial-gradient(50% 50% at 50% 50%, #C200DB 0%, rgba(0,0,0,0) 72.6%)";
 const GLOW_B = "radial-gradient(50% 50% at 50% 50%, rgba(194,0,219,0.7) 0%, rgba(118,41,252,0) 72.6%)";
 const GLOW_C = "radial-gradient(50% 50% at 50% 50%, #C200DB 0%, rgba(138,24,255,0) 72.6%)";
 const SUBMIT_GRAD = "linear-gradient(93.15deg, #7629FC 5.87%, #8A18FF 88.28%)";
@@ -26,37 +25,55 @@ const BLUR = "blur(7.08387px)";
  * transform matrix) inside a 1920-wide reference box that stays centred, so the
  * composition matches the frame on desktop and scales gracefully below it.
  */
-function Glows({ variant }: { variant: "form" | "results" }) {
+function Glows() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="absolute left-1/2 top-0 h-full w-[1920px] -translate-x-1/2">
-        {variant === "form" ? (
-          <>
-            {/* Ellipse 35 */}
-            <div className="absolute" style={{ width: 2562.9, height: 1566.86, left: 678, top: -1138, background: GLOW_A, opacity: 0.7, filter: BLUR, transform: "matrix(-0.34, -0.94, 1, -0.03, 0, 0)" }} />
-            {/* Ellipse 36 */}
-            <div className="absolute" style={{ width: 2629.08, height: 1637.28, left: -205, top: -1081, background: GLOW_A, opacity: 0.7, filter: BLUR, transform: "matrix(-0.92, -0.4, 0.66, -0.75, 0, 0)" }} />
-            {/* Ellipse 37 */}
-            <div className="absolute" style={{ width: 2629.08, height: 1104.52, left: -1581, top: -34, background: GLOW_A, opacity: 0.7, filter: BLUR, transform: "matrix(-0.92, -0.4, 0.66, -0.75, 0, 0)" }} />
-          </>
-        ) : (
-          <>
-            {/* Ellipse 35 */}
-            <div className="absolute" style={{ width: 2928.71, height: 1191.35, left: -35, top: -332, background: GLOW_C, opacity: 0.7, filter: BLUR, transform: "matrix(0.83, -0.55, 0.27, 0.96, 0, 0)" }} />
-            {/* Ellipse 37 */}
-            <div className="absolute" style={{ width: 3431.75, height: 1518.91, left: -2579, top: -23, background: GLOW_B, opacity: 0.7, filter: BLUR, transform: "matrix(-0.92, -0.4, 0.66, -0.75, 0, 0)" }} />
-          </>
-        )}
+        {/* Ellipse 35 */}
+        <div className="absolute" style={{ width: 2928.71, height: 1191.35, left: -35, top: -332, background: GLOW_C, opacity: 0.7, filter: BLUR, transform: "matrix(0.83, -0.55, 0.27, 0.96, 0, 0)" }} />
+        {/* Ellipse 37 */}
+        <div className="absolute" style={{ width: 3431.75, height: 1518.91, left: -2579, top: -23, background: GLOW_B, opacity: 0.7, filter: BLUR, transform: "matrix(-0.92, -0.4, 0.66, -0.75, 0, 0)" }} />
       </div>
     </div>
   );
 }
 
+/* ===================== FORM PAGE (new Figma frame) =====================
+   Everything below is measured off the design frame (1920 × ~900) and driven by
+   two scale variables so the whole page always lands inside one screen:
+     --u  hero scale   --v  form-card scale   (1px === 1px of the design frame)  */
+
+const u = (n: number) => `calc(${n} * var(--u))`;
+const v = (n: number) => `calc(${n} * var(--v))`;
+
+/** Background glows, matched to the design frame (position / size / colour). */
+const HERO_GLOWS: React.CSSProperties[] = [
+  { left: -620, top: 300, width: 1240, height: 1400, background: "radial-gradient(50% 50% at 50% 50%, rgb(85,86,196) 0%, rgba(85,86,196,0) 73%)" },
+  { left: -240, top: 490, width: 1040, height: 1040, background: "radial-gradient(50% 50% at 50% 50%, rgb(6,28,45) 0%, rgba(6,28,45,0) 73%)" },
+  { left: 1530, top: -430, width: 960, height: 1240, background: "radial-gradient(50% 50% at 50% 50%, rgb(79,95,196) 0%, rgba(79,95,196,0) 73%)" },
+  { left: 1680, top: 380, width: 600, height: 480, background: "radial-gradient(50% 50% at 50% 50%, rgb(10,38,56) 0%, rgba(10,38,56,0) 73%)" },
+  { left: 1010, top: -120, width: 280, height: 840, background: "radial-gradient(50% 50% at 50% 50%, rgb(8,20,33) 0%, rgba(8,20,33,0) 73%)" },
+];
+
+function HeroGlows() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute left-1/2 top-0 h-full w-[1920px] -translate-x-1/2">
+        {HERO_GLOWS.map((g, i) => <div key={i} className="absolute" style={{ ...g, filter: "blur(40px)", mixBlendMode: "screen" }} />)}
+      </div>
+    </div>
+  );
+}
+
+const SEAL = "M12.00 1.90 A2.95 2.95 0 0 1 17.05 3.25 A2.95 2.95 0 0 1 20.75 6.95 A2.95 2.95 0 0 1 22.10 12.00 A2.95 2.95 0 0 1 20.75 17.05 A2.95 2.95 0 0 1 17.05 20.75 A2.95 2.95 0 0 1 12.00 22.10 A2.95 2.95 0 0 1 6.95 20.75 A2.95 2.95 0 0 1 3.25 17.05 A2.95 2.95 0 0 1 1.90 12.00 A2.95 2.95 0 0 1 3.25 6.95 A2.95 2.95 0 0 1 6.95 3.25 A2.95 2.95 0 0 1 12.00 1.90 Z";
+
+/** Scalloped green seal + white check, as drawn in the design. */
 function Tick() {
   return (
-    <span aria-hidden className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full" style={{ background: "radial-gradient(closest-side, rgba(24,243,79,0.55), rgba(0,0,0,0))" }}>
-      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-    </span>
+    <svg aria-hidden viewBox="0 0 24 24" className="shrink-0" style={{ width: u(35), height: u(35) }}>
+      <path d={SEAL} fill="#18F34F" />
+      <path d="m7.6 12.2 2.9 2.9 5.9-5.9" fill="none" stroke="#fff" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
@@ -70,35 +87,35 @@ function Ticks({ flip }: { flip?: boolean }) {
   );
 }
 
-const FEATURES: { label: string; bg: string; icon: React.ReactNode }[] = [
+const FEATURES: { lines: [string, string]; bold?: boolean; bg: string; icon: React.ReactNode }[] = [
   {
-    label: "Developed by Experts", bg: "rgba(0,207,229,0.2)",
-    icon: <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="#6DEAF8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 8-5 4 5 4M15 8l5 4-5 4" /></svg>,
+    lines: ["Developed", "by Experts"], bg: "linear-gradient(115deg,#24496F 0%,#3E93B4 45%,#BDEBFA 100%)",
+    icon: <><path d="M3 3v18h18" /><path d="M7 15l4-5 3 3 5-7" /></>,
   },
   {
-    label: "College & Branch Prediction", bg: "rgba(118,41,252,0.5)",
-    icon: <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="#C9B0FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18M7 15l4-5 3 3 5-7" /></svg>,
+    lines: ["College &", "Branch Prediction"], bg: "linear-gradient(135deg,#3F2089 0%,#A782F2 100%)",
+    icon: <><circle cx="18" cy="5" r="2.6" /><circle cx="6" cy="12" r="2.6" /><circle cx="18" cy="19" r="2.6" /><path d="M8.3 10.8 15.7 6.4M8.3 13.2l7.4 4.4" /></>,
   },
   {
-    label: "80,000+ Users", bg: "#C200DB",
-    icon: <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="#FFD6FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="8" r="3" /><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 5a3 3 0 0 1 0 6" /></svg>,
+    lines: ["80,000+", "Users"], bold: true, bg: "linear-gradient(135deg,#55096A 0%,#D47FE4 100%)",
+    icon: <><circle cx="9" cy="8" r="3" /><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 5a3 3 0 0 1 0 6M18 20c0-2-1-3.4-2.5-4.2" /></>,
   },
 ];
 
-/** "Built by experts from" — company logo + the brand-coloured wordmark. */
+/** "Developed by experts from" — company logo + the brand-coloured wordmark. */
 function BuiltBy() {
   return (
-    <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2">
-      <span className="font-[family-name:var(--font-inter)] text-[14px] font-light tracking-[-0.02em] text-white/70 sm:text-[15px]">Built by experts from</span>
-      <span className="inline-flex items-center gap-2">
-        <img src="/cs-logo-google.webp" alt="" className="h-[22px] w-[22px] rounded-[5px]" />
-        <span className="text-[17px] sm:text-[18px]" style={{ fontFamily: "'Product Sans','Google Sans','Inter',Arial,sans-serif", fontWeight: 600 }}>
+    <div className="flex flex-wrap items-center" style={{ marginTop: u(36), columnGap: u(14), rowGap: u(8) }}>
+      <span className="font-[family-name:var(--font-inter)] font-light tracking-[-0.02em] text-white/[0.72]" style={{ fontSize: u(16) }}>Developed by experts from</span>
+      <span className="inline-flex items-center" style={{ gap: u(8) }}>
+        <img src="/cs-logo-google.webp" alt="" style={{ width: u(22), height: u(22), borderRadius: u(5) }} />
+        <span style={{ fontFamily: "'Product Sans','Google Sans','Inter',Arial,sans-serif", fontWeight: 600, fontSize: u(19) }}>
           <span style={{ color: "#4285F4" }}>G</span><span style={{ color: "#EA4335" }}>o</span><span style={{ color: "#FBBC05" }}>o</span><span style={{ color: "#4285F4" }}>g</span><span style={{ color: "#34A853" }}>l</span><span style={{ color: "#EA4335" }}>e</span>
         </span>
       </span>
-      <span className="inline-flex items-center gap-2">
-        <img src="/cs-logo-microsoft.webp" alt="" className="h-[22px] w-[22px] rounded-[5px]" />
-        <span className="text-[17px] sm:text-[18px]" style={{ fontFamily: "'Segoe UI',system-ui,sans-serif", fontWeight: 600, color: "#E9E9EF" }}>Microsoft</span>
+      <span className="inline-flex items-center" style={{ gap: u(8) }}>
+        <img src="/cs-logo-microsoft.webp" alt="" style={{ width: u(22), height: u(22), borderRadius: u(5) }} />
+        <span style={{ fontFamily: "'Segoe UI',system-ui,sans-serif", fontWeight: 600, color: "#E9E9EF", fontSize: u(19) }}>Microsoft</span>
       </span>
     </div>
   );
@@ -176,8 +193,10 @@ export function CollegePredictor() {
   }
 
   const inter = "font-[family-name:var(--font-inter)]";
-  const fieldCls = `${inter} w-full rounded-md bg-[#F2F2F2] px-3.5 py-3 text-[15px] tracking-[-0.04em] text-black outline-none placeholder:text-[#BFBFBF] focus:ring-2 focus:ring-[#7629FC]/40`;
-  const labelCls = `${inter} mb-2 block text-[17px] font-semibold tracking-[-0.04em] text-black sm:text-[20px]`;
+  const fieldCls = `${inter} w-full bg-[#F2F2F2] text-black outline-none placeholder:text-[#BFBFBF] focus:ring-2 focus:ring-[#7629FC]/40`;
+  const fieldSt: React.CSSProperties = { height: v(42), borderRadius: v(7), padding: `0 ${v(14)}`, fontSize: v(17), letterSpacing: "-0.02em" };
+  const labelCls = `${inter} block font-semibold text-black`;
+  const labelSt: React.CSSProperties = { fontSize: v(20), lineHeight: v(24), letterSpacing: "-0.045em", marginBottom: v(10) };
   const th = `${inter} whitespace-nowrap border-r border-[#DDDDDD] px-5 py-4 text-left text-[16px] font-normal tracking-[-0.04em] text-[#7629FC] last:border-r-0 lg:text-[22px]`;
   const td = `${inter} border-r border-[#DDDDDD] px-5 py-4 align-middle text-[14px] tracking-[-0.02em] text-[#1a1a1a] last:border-r-0 lg:text-[15px]`;
   const rankLabel = rankRange && rankRange[0] !== rankRange[1] ? `${rankRange[0]} – ${rankRange[1]}` : rankRange?.[0];
@@ -186,92 +205,97 @@ export function CollegePredictor() {
     <>
       {!results ? (
         /* ================= FORM PAGE (Figma frame 1) ================= */
-        <div className="relative isolate overflow-hidden bg-black">
-          <Glows variant="form" />
-          <div className="relative mx-auto max-w-[1280px] px-6 py-12 sm:px-10 lg:py-16">
-            <div className="grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,540px)] lg:gap-14">
-              {/* ---- left: hero ---- */}
-              <div className="lg:pt-6">
-                <p className={`${inter} text-[18px] font-extralight leading-[30px] text-white sm:text-[20px] sm:leading-[35px]`}>Most Accurate</p>
-                <h1 className={`${inter} mt-2 font-semibold tracking-[-0.06em] text-white text-[44px] leading-[50px] sm:text-[60px] sm:leading-[68px] lg:text-[80px] lg:leading-[90px]`}>
-                  JEE MAIN<br />College Predictor
-                </h1>
+        <div className={`cp-hero relative isolate overflow-hidden bg-black ${inter} lg:h-[calc(100dvh-76px)]`}>
+          <HeroGlows />
+          <div className="relative flex flex-col gap-10 px-6 pb-14 pt-8 lg:h-full lg:flex-row lg:items-start lg:gap-10 lg:px-0 lg:pb-0 lg:pl-[clamp(32px,6.25vw,120px)] lg:pr-[clamp(32px,8.7vw,167px)] lg:pt-[calc(44*var(--u))]">
+            {/* ---- left: hero ---- */}
+            <div className="lg:flex-1" style={{ paddingTop: u(39) }}>
+              <p className="font-light text-white" style={{ fontSize: u(20), lineHeight: 1, letterSpacing: "-0.012em" }}>Most Accurate</p>
+              <h1 style={{ marginTop: u(7) }}>
+                <span className="block font-semibold text-white" style={{ fontSize: u(80), lineHeight: u(90), letterSpacing: "-0.068em" }}>JEE MAIN</span>
+                <span className="block font-[family-name:var(--font-playfair)] italic text-white" style={{ fontWeight: 500, fontSize: u(80), lineHeight: u(90), letterSpacing: "-0.029em" }}>College Predictor</span>
+              </h1>
 
-                <ul className="mt-8 space-y-4">
-                  {["Predict your college & branch from your JEE Main 2026 rank", "No hidden charges · 100% Free"].map((t) => (
-                    <li key={t} className="flex items-start gap-3">
-                      <Tick />
-                      <span className={`${inter} text-[17px] font-light leading-[1.45] tracking-[-0.04em] text-[#18F34F] sm:text-[20px] lg:text-[25px] lg:leading-[42px]`}>{t}</span>
-                    </li>
-                  ))}
-                </ul>
+              <ul className="flex flex-col" style={{ marginTop: u(83), gap: u(17) }}>
+                {["Predict your college & branch from your JEE Main 2026 rank", "No hidden charges 100% Free"].map((t) => (
+                  <li key={t} className="flex items-center" style={{ gap: u(23), minHeight: u(35) }}>
+                    <Tick />
+                    <span style={{ fontSize: u(24), lineHeight: 1.15, letterSpacing: "-0.034em", color: "#18F34F" }}>{t}</span>
+                  </li>
+                ))}
+              </ul>
 
-                <BuiltBy />
+              <BuiltBy />
 
-                <div className="mt-9 flex flex-wrap gap-4">
-                  {FEATURES.map((p) => (
-                    <div key={p.label} className="flex items-center gap-3.5 rounded-[15px] px-5 py-4" style={{ background: "rgba(62,62,62,0.2)" }}>
-                      <span className="grid h-[42px] w-[42px] shrink-0 place-items-center rounded-full" style={{ background: p.bg }}>{p.icon}</span>
-                      <span className={`${inter} max-w-[160px] text-[16px] font-light leading-[28px] tracking-[-0.04em] text-white sm:text-[18px]`}>{p.label}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex flex-wrap" style={{ marginTop: u(64), gap: u(25) }}>
+                {FEATURES.map((p) => (
+                  <div key={p.lines[0]} className="flex items-center border border-white/[0.22] backdrop-blur-[6px]"
+                    style={{ gap: u(11), height: u(94), padding: `0 ${u(26)} 0 ${u(17)}`, borderRadius: u(14), background: "rgba(255,255,255,0.045)" }}>
+                    <span className="grid shrink-0 place-items-center rounded-full" style={{ width: u(42), height: u(42), background: p.bg }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: u(21), height: u(21) }}>{p.icon}</svg>
+                    </span>
+                    <span className="text-white" style={{ fontSize: u(22), lineHeight: u(28), letterSpacing: "-0.02em" }}>
+                      <span className="block" style={p.bold ? { fontWeight: 700, fontSize: u(26) } : undefined}>{p.lines[0]}</span>
+                      <span className="block">{p.lines[1]}</span>
+                    </span>
+                  </div>
+                ))}
               </div>
+            </div>
 
-              {/* ---- right: form card ---- */}
-              <div className="rounded-[20px] bg-white p-6 shadow-[0_30px_80px_-30px_rgba(194,0,219,0.45)] sm:p-8">
-                <div className="flex items-center justify-between gap-3">
-                  <h2 className={`${inter} text-[28px] font-bold tracking-[-0.03em] text-black sm:text-[33px]`}>Enter your details</h2>
-                  <div className="inline-flex rounded-full bg-[#F2F2F2] p-1">
+            {/* ---- right: form card ---- */}
+            <div className="w-full bg-white shadow-[0_40px_120px_-40px_rgba(80,90,200,0.55)] lg:w-[clamp(400px,30.5vw,585px)] lg:flex-none"
+              style={{ borderRadius: v(20), padding: `${v(25)} ${v(32)} ${v(32)}` }}>
+              <h2 className="font-bold text-black" style={{ fontSize: v(36), lineHeight: 1, letterSpacing: "-0.025em" }}>Enter your details</h2>
+
+              <div style={{ marginTop: v(35) }}>
+                <div className="flex items-end justify-between" style={{ gap: v(12), marginBottom: v(10) }}>
+                  <label className={labelCls} style={{ ...labelSt, marginBottom: 0 }}>{f.mode === "rank" ? "JEE Main Rank" : "JEE Main Marks (0–300)"}</label>
+                  <div className="inline-flex shrink-0 rounded-full bg-[#F2F2F2]" style={{ padding: v(3) }}>
                     {(["rank", "marks"] as const).map((m) => (
                       <button key={m} onClick={() => set({ mode: m })}
-                        className={["rounded-full px-3.5 py-1.5 text-[12px] font-bold capitalize transition", f.mode === m ? "text-white" : "text-[#8a8a8a]"].join(" ")}
-                        style={f.mode === m ? { background: SUBMIT_GRAD } : undefined}>{m}</button>
+                        className={["rounded-full font-bold capitalize transition", f.mode === m ? "text-white" : "text-[#8a8a8a]"].join(" ")}
+                        style={{ padding: `${v(3)} ${v(11)}`, fontSize: v(12), ...(f.mode === m ? { background: SUBMIT_GRAD } : {}) }}>{m}</button>
                     ))}
                   </div>
                 </div>
-
-                <div className="mt-6 flex flex-col gap-6">
-                  <div>
-                    <label className={labelCls}>{f.mode === "rank" ? "JEE Main Rank" : "JEE Main Marks (0–300)"}</label>
-                    {f.mode === "rank"
-                      ? <input value={f.rank} onChange={(e) => set({ rank: e.target.value.replace(/\D/g, "") })} inputMode="numeric" placeholder="Enter Rank" className={fieldCls} />
-                      : <input value={f.marks} onChange={(e) => set({ marks: e.target.value.replace(/[^\d.]/g, "") })} inputMode="decimal" placeholder="Enter Marks" className={fieldCls} />}
-                  </div>
-                  <div>
-                    <label className={labelCls}>Seat Pool</label>
-                    <select value={f.gender} onChange={(e) => set({ gender: e.target.value })} className={fieldCls}>{CP_GENDERS.map((g) => <option key={g.value} value={g.value}>{g.label}</option>)}</select>
-                  </div>
-                  <div>
-                    <label className={labelCls}>Category</label>
-                    <select value={f.category} onChange={(e) => set({ category: e.target.value })} className={fieldCls}>{CP_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}</select>
-                  </div>
-                  <div>
-                    <label className={labelCls}>12th Passout Year</label>
-                    <select value={f.year} onChange={(e) => set({ year: e.target.value })} className={fieldCls}>{CP_YEARS.map((y) => <option key={y} value={y}>{y}</option>)}</select>
-                  </div>
-                  <div>
-                    <label className={labelCls}>Preferred Stream</label>
-                    <select value={f.stream} onChange={(e) => set({ stream: e.target.value })} className={fieldCls}>{CP_STREAMS.map((s) => <option key={s} value={s}>{s}</option>)}</select>
-                  </div>
-                  <div>
-                    <label className={labelCls}>Domicile State{authed && f.stateId ? <span className="ml-2 text-[13px] font-normal text-[#8a8a8a]">· autofilled, editable</span> : ""}</label>
-                    <select value={f.stateId} onChange={(e) => set({ stateId: e.target.value })} className={fieldCls}>
-                      <option value="">Select State…</option>
-                      {CP_STATES.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
-                    </select>
-                  </div>
-                </div>
-
-                {err && <p className={`${inter} mt-4 text-[14px] font-medium text-[#d1004b]`}>{err}</p>}
-
-                <button onClick={onPredict} disabled={loading}
-                  className={`${inter} mt-7 flex w-full items-center justify-center gap-2 rounded-md py-3 text-[20px] font-medium tracking-[-0.04em] text-white transition hover:opacity-95 disabled:opacity-60`}
-                  style={{ background: SUBMIT_GRAD }}>
-                  {loading ? "Predicting…" : <>Submit <span aria-hidden>→</span></>}
-                </button>
-                {!authed && <p className={`${inter} mt-3 text-center text-[13px] text-[#8a8a8a]`}>You&apos;ll create a free account to view your predicted colleges.</p>}
+                {f.mode === "rank"
+                  ? <input value={f.rank} onChange={(e) => set({ rank: e.target.value.replace(/\D/g, "") })} inputMode="numeric" placeholder="Enter Rank" className={fieldCls} style={fieldSt} />
+                  : <input value={f.marks} onChange={(e) => set({ marks: e.target.value.replace(/[^\d.]/g, "") })} inputMode="decimal" placeholder="Enter Marks" className={fieldCls} style={fieldSt} />}
               </div>
+
+              <div style={{ marginTop: v(26) }}>
+                <label className={labelCls} style={labelSt}>Seat Pool</label>
+                <select value={f.gender} onChange={(e) => set({ gender: e.target.value })} className={fieldCls} style={fieldSt}>{CP_GENDERS.map((g) => <option key={g.value} value={g.value}>{g.label}</option>)}</select>
+              </div>
+              <div style={{ marginTop: v(26) }}>
+                <label className={labelCls} style={labelSt}>Category</label>
+                <select value={f.category} onChange={(e) => set({ category: e.target.value })} className={fieldCls} style={fieldSt}>{CP_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}</select>
+              </div>
+              <div style={{ marginTop: v(26) }}>
+                <label className={labelCls} style={labelSt}>12th Passout Year</label>
+                <select value={f.year} onChange={(e) => set({ year: e.target.value })} className={fieldCls} style={fieldSt}>{CP_YEARS.map((y) => <option key={y} value={y}>{y}</option>)}</select>
+              </div>
+              <div style={{ marginTop: v(26) }}>
+                <label className={labelCls} style={labelSt}>Preferred Stream</label>
+                <select value={f.stream} onChange={(e) => set({ stream: e.target.value })} className={fieldCls} style={fieldSt}>{CP_STREAMS.map((s) => <option key={s} value={s}>{s}</option>)}</select>
+              </div>
+              <div style={{ marginTop: v(26) }}>
+                <label className={labelCls} style={labelSt}>Domicile State</label>
+                <select value={f.stateId} onChange={(e) => set({ stateId: e.target.value })} className={fieldCls} style={fieldSt}>
+                  <option value="">Select State…</option>
+                  {CP_STATES.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+                </select>
+              </div>
+
+              <button onClick={onPredict} disabled={loading}
+                className="flex w-full items-center justify-center font-medium text-white transition hover:opacity-95 disabled:opacity-60"
+                style={{ marginTop: v(20), height: v(42), borderRadius: v(7), background: SUBMIT_GRAD, fontSize: v(20), letterSpacing: "-0.02em", gap: v(8) }}>
+                {loading ? "Predicting…" : <>Submit <span aria-hidden>→</span></>}
+              </button>
+              {err
+                ? <p className="font-medium text-[#d1004b]" style={{ marginTop: v(8), fontSize: v(13) }}>{err}</p>
+                : !authed && <p className="text-center text-[#8a8a8a]" style={{ marginTop: v(8), fontSize: v(12) }}>You&apos;ll create a free account to view your predicted colleges.</p>}
             </div>
           </div>
         </div>
@@ -280,7 +304,7 @@ export function CollegePredictor() {
         <div className="relative isolate">
           {/* top band: #1E1E1E + glows + title */}
           <section className="relative overflow-hidden bg-[#1E1E1E]">
-            <Glows variant="results" />
+            <Glows />
             <div className="relative mx-auto flex max-w-[1280px] flex-wrap items-end justify-between gap-6 px-6 pb-8 pt-12 sm:px-10">
               <h1 className={`${inter} font-semibold tracking-[-0.04em] text-white text-[40px] leading-[1.05] sm:text-[56px] lg:text-[80px]`}>College Predictor</h1>
               <div className="text-right">
