@@ -129,8 +129,8 @@ export function CollegePredictor() {
           <div className="grid items-start gap-12 lg:grid-cols-[1fr_minmax(0,540px)] lg:gap-14">
             {/* ---------- LEFT: hero ---------- */}
             <div className="lg:pt-6">
-              <p className="text-[18px] font-extralight tracking-[-0.01em] text-white sm:text-[20px]">Most Accurate</p>
-              <h1 className="mt-3 font-semibold leading-[1.06] tracking-[-0.06em] text-white text-[44px] sm:text-[60px] lg:text-[76px]">
+              <p className="font-[family-name:var(--font-inter)] text-[18px] font-extralight leading-[30px] text-white sm:text-[20px] sm:leading-[35px]">Most Accurate</p>
+              <h1 className="mt-2 font-[family-name:var(--font-inter)] font-semibold tracking-[-0.06em] text-white text-[44px] leading-[50px] sm:text-[60px] sm:leading-[68px] lg:text-[80px] lg:leading-[90px]">
                 JEE MAIN<br />College Predictor
               </h1>
 
