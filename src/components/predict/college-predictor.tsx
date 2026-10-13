@@ -77,9 +77,9 @@ function Tick() {
 /** Dark gauge card (results page) — semicircular cyan→violet arc, ticks, rank. */
 function Gauge({ label }: { label: string | number | undefined }) {
   return (
-    <div className="w-full flex-none rounded-[20px] border-[0.5px] border-[#7629fc] bg-[#101010] px-[18px] pb-[18px] pt-[26px] text-center lg:w-[400px]">
-      <h3 className="font-[family-name:var(--font-inter)] text-[18px] font-medium tracking-[-0.04em] text-white sm:text-[20px]">Predicted College on your Rank</h3>
-      <svg className="mx-auto mt-2.5 block" width="300" height="118" viewBox="0 0 300 118" aria-hidden>
+    <div className="w-full flex-none rounded-[20px] border-[0.5px] border-[#7629fc] bg-[#101010] px-4 pb-3.5 pt-5 text-center lg:w-[360px]">
+      <h3 className="font-[family-name:var(--font-inter)] text-[16px] font-medium tracking-[-0.04em] text-white sm:text-[17px]">Predicted College on your Rank</h3>
+      <svg className="mx-auto mt-1 block" width="260" height="104" viewBox="0 0 300 118" aria-hidden>
         <defs><linearGradient id="cp-gauge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#00cfe5" /><stop offset="1" stopColor="#c200db" /></linearGradient></defs>
         <path d="M30 108 A120 120 0 0 1 270 108" fill="none" stroke="#2a2a2a" strokeWidth="10" strokeLinecap="round" />
         <path d="M30 108 A120 120 0 0 1 198 24" fill="none" stroke="url(#cp-gauge)" strokeWidth="10" strokeLinecap="round" />
@@ -203,8 +203,8 @@ export function CollegePredictor() {
   const labelCls = `${inter} block font-semibold text-black`;
   const labelSt: React.CSSProperties = { fontSize: v(20), lineHeight: v(24), letterSpacing: "-0.045em", marginBottom: v(10) };
   // dark results table cells
-  const thd = `${inter} whitespace-nowrap border-b border-r border-white/[0.12] px-6 py-5 text-left text-[18px] font-normal tracking-[-0.04em] text-white last:border-r-0 lg:text-[22px]`;
-  const tdd = `${inter} border-b border-r border-white/[0.08] px-6 py-[18px] align-middle text-[15px] tracking-[-0.02em] text-[#eaeaf2] last:border-r-0 lg:text-[16px]`;
+  const thd = `${inter} whitespace-nowrap border-b border-r border-white/[0.12] px-[18px] py-3.5 text-left text-[15px] font-normal tracking-[-0.03em] text-white last:border-r-0 lg:text-[16px]`;
+  const tdd = `${inter} border-b border-r border-white/[0.08] px-[18px] py-3 align-middle text-[13px] tracking-[-0.02em] text-[#eaeaf2] last:border-r-0 lg:text-[14px]`;
   const rankLabel = rankRange && rankRange[0] !== rankRange[1] ? `${rankRange[0]} – ${rankRange[1]}` : rankRange?.[0];
 
   return (
@@ -310,24 +310,25 @@ export function CollegePredictor() {
         <div className={`relative isolate min-h-screen overflow-hidden bg-black ${inter}`}>
           <Glows />
           <div className="relative mx-auto max-w-[1766px] px-6 pb-16 pt-10 sm:px-10 lg:px-[60px]">
-            {/* ---- header: title + meta + share (left), gauge (right) ---- */}
-            <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+            {/* ---- header: title + meta + new-search (left); share pill + gauge (right) ---- */}
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
               <div className="min-w-0">
-                <h1 className="font-semibold tracking-[-0.04em] text-white text-[44px] leading-[1] sm:text-[60px] lg:text-[80px]">
+                <h1 className="font-semibold tracking-[-0.04em] text-white text-[34px] leading-[1] sm:text-[44px] lg:text-[56px]">
                   College <span className="font-[family-name:var(--font-playfair)] italic">Predictor</span>
                 </h1>
-                <p className="mt-6 text-[20px] font-normal tracking-[-0.04em] text-[#cfcfe0] sm:text-[25px]">Category : <span className="font-semibold text-white">{f.category}</span></p>
-                <p className="mt-3.5 text-[20px] font-normal tracking-[-0.04em] text-[#cfcfe0] sm:text-[25px]">JEE Main 2026 Rank : <span className="font-semibold text-white">{rankLabel}</span></p>
-                <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
-                  <button onClick={share} className="inline-flex items-center gap-3 rounded-[30px] border border-white bg-[#34c759] px-4 py-1.5 text-[17px] font-medium tracking-[-0.04em] text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110 sm:text-[20px]">
-                    {copied ? "Link copied!" : "Share this FREE Predictor Tool"}
-                    <svg viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v14" /></svg>
-                  </button>
-                  <button onClick={() => { setResults(null); setErr(null); }} className="text-[14px] font-semibold text-[#C9BDF2] transition hover:text-white">← New search</button>
-                  <span className="text-[13px] font-medium text-white/50">{results.reduce((a, g) => a + g.rows.length, 0)} programs · {results.length} institutes</span>
-                </div>
+                <p className="mt-5 text-[16px] font-normal tracking-[-0.03em] text-[#cfcfe0] sm:text-[18px]">Category : <span className="font-semibold text-white">{f.category}</span></p>
+                <p className="mt-2.5 text-[16px] font-normal tracking-[-0.03em] text-[#cfcfe0] sm:text-[18px]">JEE Main 2026 Rank : <span className="font-semibold text-white">{rankLabel}</span></p>
+                <button onClick={() => { setResults(null); setErr(null); }} className="mt-5 flex items-center gap-2 text-[15px] font-semibold text-[#C9BDF2] transition hover:text-white">← New search</button>
+                <p className="mt-3 text-[13px] font-medium text-white/50">{results.reduce((a, g) => a + g.rows.length, 0)} programs · {results.length} institutes</p>
               </div>
-              <Gauge label={rankLabel} />
+
+              <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center lg:gap-[26px]">
+                <button onClick={share} className="inline-flex flex-none items-center gap-2.5 whitespace-nowrap rounded-[30px] border border-white bg-[#34c759] py-[7px] pl-4 pr-2 text-[16px] font-medium tracking-[-0.03em] text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110 sm:text-[17px]">
+                  {copied ? "Link copied!" : "Share this FREE Predictor Tool"}
+                  <svg viewBox="0 0 24 24" className="h-[27px] w-[27px] flex-none" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.38-.49.07-1.12.1-1.8-.11-.42-.13-.95-.31-1.63-.6-2.87-1.24-4.75-4.13-4.89-4.32-.14-.19-1.17-1.55-1.17-2.96 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.56.82 1.94.89 2.08.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.17.28.74 1.22 1.59 1.98 1.1.98 2.02 1.28 2.3 1.42.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.11.07.68-.17 1.36z" /></svg>
+                </button>
+                <Gauge label={rankLabel} />
+              </div>
             </div>
 
             {/* ---- dark results table ---- */}
@@ -337,9 +338,12 @@ export function CollegePredictor() {
                 <p className="mt-2 text-[15px] text-white/60">Try a different rank, category or seat pool.</p>
               </div>
             ) : (
-              <div className="mt-9 overflow-hidden rounded-[15px] border-[0.5px] border-[#00cfe5] bg-black">
+              <div className="mt-8 overflow-hidden rounded-[15px] border-[0.5px] border-[#00cfe5] bg-black">
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[980px] border-collapse">
+                  <table className="w-full min-w-[820px] table-fixed border-collapse">
+                    <colgroup>
+                      <col className="w-[17%]" /><col className="w-[33%]" /><col className="w-[13%]" /><col className="w-[13%]" /><col className="w-[9%]" /><col className="w-[15%]" />
+                    </colgroup>
                     <thead>
                       <tr>
                         <th className={thd}>Institute</th>
@@ -354,14 +358,14 @@ export function CollegePredictor() {
                       {results.flatMap((g) => g.rows.map((r, i) => (
                         <tr key={`${g.institute}-${i}`} className="transition hover:bg-white/[0.03]">
                           <td className={`${tdd} bg-[#0a0a0a] font-semibold text-white`}>{i === 0 ? g.institute : ""}</td>
-                          <td className={`${tdd} min-w-[320px]`}>{r.program_name}</td>
+                          <td className={tdd}>{r.program_name}</td>
                           <td className={`${tdd} text-right tabular-nums`}>{r.opening_rank}</td>
                           <td className={`${tdd} text-right font-bold tabular-nums text-white`}>{r.closing_rank}</td>
                           <td className={`${tdd} text-center`}>
-                            <span className="inline-block rounded-full border border-[#7629fc]/50 bg-[#7629fc]/[0.18] px-2.5 py-1 text-[12px] font-bold text-[#b79cff]">{r.sub_category}</span>
+                            <span className="inline-block rounded-full border border-[#7629fc]/50 bg-[#7629fc]/[0.18] px-2.5 py-0.5 text-[11px] font-bold text-[#b79cff]">{r.sub_category}</span>
                           </td>
                           <td className={`${tdd} text-right`}>
-                            <button onClick={() => openRounds(g, r)} className="whitespace-nowrap bg-gradient-to-r from-[#00cfe5] to-[#c200db] bg-clip-text text-[16px] tracking-[-0.04em] text-transparent transition hover:opacity-80 lg:text-[19px]">Round wise details</button>
+                            <button onClick={() => openRounds(g, r)} className="whitespace-nowrap bg-gradient-to-r from-[#00cfe5] to-[#c200db] bg-clip-text text-[14px] tracking-[-0.03em] text-transparent transition hover:opacity-80">Round wise details</button>
                           </td>
                         </tr>
                       )))}
