@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vedam One Apply</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -336,6 +337,15 @@ ul,ol{padding:0;list-style:none}
   .proc .l{width:100%}
   .ab-card{width:300px}.ab-card .ph{height:330px}
   .sec h2,.proc h2{font-size:26px}
+}
+</style>
+
+<style>
+/* ---- one URL, two layouts: phones (<=768px) get the mobile page, everything wider gets the desktop page ---- */
+#mhost{display:none}
+@media (max-width:768px){
+  .annb,.shell{display:none!important}
+  #mhost{display:block}
 }
 </style>
 
@@ -871,5 +881,540 @@ document.getElementById("annLink").addEventListener("click",jumpToForm);
   document.getElementById("again").addEventListener("click",function(){ location.reload(); });
 
   show(1);
+})();
+</script>
+
+<!-- ======= MOBILE VIEW (Figma "Vedam Apply Page - Mobile"), isolated in a shadow root so its
+     CSS / ids never touch the desktop page. Shown only at <=768px. ======= -->
+<div id="mhost"></div>
+<template id="mtpl"><style>
+:host{
+  --ink:#000; --body:#7f7f7f; --muted:#929292; --label:#262626; --field:#b4b4b4;
+  --surface:#fafafa; --panel:#f9f9f9; --hairline:rgba(0,0,0,.05); --err:#d92d20;
+  --violet:#7629fc; --lilac:#ad5dff;
+  --grad:linear-gradient(90deg,#7629fc 3.04%,#ad5dff 97.89%);
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:host{all:initial;display:block;margin:0 auto;max-width:430px;background:#fff;color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+img{display:block}
+.gt{background-image:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.sec{padding:20px}
+.rail{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding:0 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{display:none}
+
+/* top strip — Figma: 20px high */
+.annb{height:20px;display:flex;align-items:center;justify-content:center;background-image:var(--grad);color:#f9f9f9;font-size:12px;font-weight:600;letter-spacing:-.24px}
+.annb a{text-decoration:underline}
+
+/* hero */
+.hero{padding:25px 20px 14.8px;display:flex;flex-direction:column;gap:40px}
+.hero h1{font-size:40px;font-weight:700;line-height:1.2;letter-spacing:-.8px;color:#000}
+.hero h1 .gt{letter-spacing:-2px}
+.hero ul{margin-top:8.9px;list-style:disc;padding-left:21px;color:var(--body);font-size:14px;font-weight:500;line-height:1.5;letter-spacing:-.28px}
+
+/* know before you apply */
+.kb h2{font-size:12px;font-weight:600;line-height:1.2;letter-spacing:.05px;margin-bottom:8px}
+.kb .row{display:flex;gap:4.8px}
+.kb .fact{flex:1;min-width:0;background:var(--surface);border:.37px solid var(--hairline);border-radius:5.56px;padding:7.4px;display:flex;flex-direction:column;gap:7.4px}
+.kb .ico{width:26px;height:26px;border-radius:2.5px;background:#e9e5e5;display:grid;place-items:center;overflow:hidden}
+.kb .ico.bare{background:none}
+.kb .ico img{width:100%;height:100%;object-fit:contain}
+.kb .t{font-size:12px;font-weight:600;line-height:1.2;letter-spacing:-.24px;color:var(--label);white-space:nowrap}
+.kb .v{font-size:10px;font-weight:500;line-height:1.5;letter-spacing:-.2px;color:var(--muted);margin-top:2.5px;white-space:nowrap}
+.kb .elig{display:flex;gap:3px;justify-content:center;margin-top:8px;font-size:8px;letter-spacing:-.16px;color:var(--muted);text-align:center;flex-wrap:wrap}
+.kb .elig b{font-weight:600}.kb .elig span{font-weight:500}
+
+/* form */
+.fwrap{position:relative;width:100%}
+.formcard{background:var(--panel);border-radius:9.24px;padding:10px;display:flex;flex-direction:column;align-items:center;margin:0;backdrop-filter:blur(8px)}
+.pill{position:absolute;top:-16px;right:50px;z-index:2;background:#fa7c02;border:1px solid rgba(249,125,3,.55);border-radius:100px;box-shadow:0 4px 12px rgba(250,124,2,.4);color:#fff;font-size:12px;font-weight:600;line-height:1.35;padding:7px 14px 7px 13px;white-space:nowrap}
+.fhead{text-align:center;padding:12.3px 0 9.9px;display:flex;flex-direction:column;gap:2.5px;line-height:1.35;width:100%}
+.fhead[hidden]{display:none}
+.fhead h2{font-size:20px;font-weight:700;line-height:1.35}
+.fhead p{font-size:10px;font-weight:400}
+.pane{width:100%;max-width:299px;padding:12.3px 0 13.5px;display:flex;flex-direction:column;gap:8.6px}
+.pane[hidden]{display:none}
+.fld{display:flex;flex-direction:column;gap:3.7px;width:100%;min-width:0}
+.fld label{font-size:12px;font-weight:500;line-height:1.35;color:var(--label)}
+.fld input,.fld select{width:100%;height:36px;border:.62px solid var(--field);border-radius:5.5px;padding:0 7.4px;font-family:inherit;font-size:10px;font-weight:400;line-height:1.35;color:var(--label);background:#fff;outline:none}
+.fld[data-f="fullName"] input{border-radius:2.5px}
+.fld input::placeholder{color:var(--field)}
+.fld select.empty{color:var(--field)}
+.fld input:focus,.fld select:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(118,41,252,.12)}
+.fld.bad input,.fld.bad select{border-color:var(--err)}
+.err{font-size:10px;line-height:1.35;color:var(--err)}
+.submit{width:100%;height:32px;border:0;border-radius:6.16px;background-image:var(--grad);color:#f9f9f9;font-size:9.243px;font-weight:600;line-height:1.35}
+.ghost{width:100%;height:32px;border:1px solid var(--hairline);background:#fff;border-radius:6.16px;font-size:9.243px;font-weight:600;color:var(--label)}
+.ftrack{font-size:10px;line-height:1.35;color:var(--label);text-decoration:underline;width:100%}
+.hurray{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:30px 18px;border-radius:12px;color:#fff;background-image:var(--grad)}
+.hurray .ring,.done .tick{width:52px;height:52px;border-radius:50%;display:grid;place-items:center}
+.hurray .ring{background:rgba(255,255,255,.18)}
+.hurray svg,.done .tick svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.hurray h3{font-size:20px;font-weight:700;line-height:1.2}
+.hurray p{font-size:12px;opacity:.9}
+.done{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px 0}
+.done .tick{background-image:var(--grad)}
+.done h3{font-size:20px;font-weight:700}
+.done p{font-size:12px;color:var(--label)}
+.done button{background:none;border:0;font-size:11px;color:var(--label);text-decoration:underline}
+
+/* hiring partners strip */
+.strip{display:flex;align-items:center;height:33px;background:var(--panel);border-radius:4.45px;overflow:hidden;position:relative}
+.strip .tag{flex:none;height:33px;padding:0 4px;display:grid;place-items:center;background-image:var(--grad);color:#fff;font-size:10px;font-weight:700;line-height:1.2;filter:drop-shadow(5.2px 0 2.8px #cacaca);position:relative;z-index:2;white-space:nowrap}
+.strip .mq{flex:1;overflow:hidden;min-width:0}
+.strip .track{display:flex;align-items:center;gap:15px;width:max-content;padding-left:7px;animation:mq 22s linear infinite}
+.strip .track img{height:16px;width:auto;flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.strip .track{animation:none}}
+
+/* already building */
+.h20{font-size:20px;font-weight:700;line-height:1.2;letter-spacing:.04px}
+.h20.semi{font-weight:600}
+.ab .mq{overflow:hidden;margin:10px -20px 0}
+.ab .abtrack{display:flex;width:max-content;animation:marqR 24s linear infinite}
+.ab .abtrack:active{animation-play-state:paused}
+.ab .card{flex:none;width:183px;height:202px;margin-right:8.4px;border-radius:10px;overflow:hidden;background:#eee}
+.ab .card img{width:100%;height:100%;object-fit:cover}
+@keyframes marqR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media (prefers-reduced-motion:reduce){.ab .abtrack{animation:none}.ab .mq{overflow-x:auto}}
+
+/* campuses */
+.camp .grid{display:grid;grid-template-columns:1fr 1fr;gap:5.6px;margin-top:7.4px}
+.camp .c{background:var(--surface);border-radius:5.57px;overflow:hidden;padding:4.8px 6.7px 10px;min-height:176px}
+.camp .ph{height:125px;border-radius:5.2px;overflow:hidden;background:#e6e6e6}
+.camp .ph img{width:100%;height:100%;object-fit:cover;object-position:bottom}
+.camp .n{font-size:12px;font-weight:700;line-height:1.2;letter-spacing:-.24px;margin:10px 0 0 3.7px;color:#000}
+.camp .l{font-size:10px;font-weight:600;line-height:1.5;letter-spacing:-.2px;color:var(--muted);margin:1.5px 0 0 3.7px}
+
+/* curriculum */
+.cur{background:#fff}
+.ytabs{display:flex;gap:6px;margin:0 0 20px}
+.ytab{flex:1;border:1px solid #e3eaf5;background:#fff;border-radius:999px;padding:7px 0;font-size:12px;font-weight:600;color:#475467;transition:.18s}
+.ytab.on{color:#fff;border-color:transparent;background-image:var(--grad)}
+.ccard{display:flex;flex-direction:column;gap:20px;filter:drop-shadow(0 14px 18px rgba(22,62,122,.08));animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.cur .lbl{font-size:14px;font-weight:600;line-height:1.5;color:#3376f6}
+.cur .pt{font-size:20px;font-weight:700;line-height:1.1;letter-spacing:-.5px;color:#101828;margin-top:10px}
+.cur .de{font-size:14px;font-weight:500;line-height:1.45;letter-spacing:-.112px;color:#475467;margin-top:10px}
+.cur .sk,.cur .ot{font-size:14px;font-weight:700;line-height:1.5;letter-spacing:-.21px;color:#101828}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{background:#f2f4f7;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:500;line-height:1.2;color:#101828}
+.ohd{display:flex;align-items:center;justify-content:space-between}
+.navbtn:disabled{opacity:.35;cursor:default}
+.outs{display:flex;gap:8px;margin-top:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 0 8px;margin-bottom:-8px}
+.outs::-webkit-scrollbar{display:none}
+.out{flex:none;width:calc((100% - 8px)/2);scroll-snap-align:start;border:.6px solid #e3eaf5;border-radius:9.5px;background:#fff;overflow:hidden;padding-bottom:10.7px;box-shadow:0 4.75px 13px -3px rgba(28,76,143,.07)}
+.out .prev{height:88px;display:grid;place-items:center;position:relative;overflow:hidden}
+.out .prev::after{content:"";position:absolute;width:107px;height:107px;right:-24px;top:-32px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 68%);pointer-events:none}
+.out .tile{width:59.4px;height:59.4px;border-radius:8.3px;border:.6px solid rgba(255,255,255,.5);box-shadow:0 4.75px 8.3px rgba(6,18,42,.26);transform:rotate(-5deg);position:relative;overflow:hidden;z-index:1}
+.out .tile.big{width:61.8px;height:61.8px}
+.out .tile.soft{border:0}
+.out .tile.plain{border:0;border-radius:0;box-shadow:none}
+.out .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.out .bt{padding:8.3px 9.5px 0;font-size:10px;font-weight:600;line-height:1.28;letter-spacing:-.15px;color:#101828}
+
+/* seniors */
+.sen{padding:15.7px 20px}
+.sen .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.sen h2{font-size:14px;font-weight:600;line-height:1.3}
+.navs{display:flex;gap:6px;flex:none}
+.navbtn{width:20px;height:20px;border-radius:50%;border:1px solid #e3eaf5;background:#fff;display:grid;place-items:center;padding:0;color:#475467}
+.navbtn svg{width:11px;height:11px}
+.sen .rail{gap:11px;margin:0 -20px;padding:3px 20px 8px}
+.vcard{flex:none;width:144px;height:111px;border-radius:6.3px;background:#fff;overflow:hidden;box-shadow:0 0 3.9px rgba(0,0,0,.15);position:relative;scroll-snap-align:start}
+.vcard .th{height:86px;background:#ddd;position:relative}
+.vcard .th img{width:100%;height:100%;object-fit:cover}
+.vcard .play{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center}
+.vcard .play svg{width:8px;height:8px;margin-left:1px;fill:#fff}
+.vcard .cap{display:flex;gap:3px;align-items:flex-start;padding:4px 7.9px;height:25px}
+.vcard .ct{flex:1;min-width:0;font-size:8px;font-weight:500;line-height:1.2;letter-spacing:-.16px;color:#1e1e1e}
+.vcard .cd{flex:none;background:#efefef;color:#000;border-radius:1.6px;padding:1.6px 2.4px;font-size:6px;line-height:1.2}
+
+/* process */
+.proc{background:#f5f5f5;padding:20px;display:flex;flex-direction:column;gap:30px}
+.proc .top{display:flex;flex-direction:column;gap:10.5px;align-items:flex-start}
+.proc h2{font-size:20px;font-weight:700;line-height:1.2;letter-spacing:.05px;color:var(--label)}
+.proc .sub{font-size:12px;font-weight:500;line-height:1.5;letter-spacing:-.24px;color:#797979}
+.applybtn{border:0;border-radius:999px;background-image:var(--grad);color:#f9f9f9;font-size:12px;font-weight:500;padding:5px 10px}
+.steps{display:flex;flex-direction:column;gap:13px}
+.step{display:grid;grid-template-columns:21px 1fr;column-gap:0;align-items:start}
+.step .n{width:21px;height:19.9px;border-radius:999px;background-image:var(--grad);color:#f9f9f9;font-size:8px;font-weight:500;display:grid;place-items:center;margin-top:10px}
+.step .tx{padding:10.9px 10px;display:flex;flex-direction:column;gap:4.3px;color:var(--label)}
+.step .t{font-size:14px;font-weight:700;line-height:1.5;letter-spacing:-.28px}
+.step .b{font-size:12px;font-weight:500;line-height:1.5;letter-spacing:-.24px}
+
+/* scholarships */
+.schs{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.sch{display:flex;align-items:center;gap:20px;padding:20px;border-radius:18.17px;overflow:hidden;color:#f9f9f9;background-image:linear-gradient(180deg,#ad5dff 0%,#7629fc 100%),linear-gradient(90deg,#262626 0%,#262626 100%)}
+.sch:nth-child(2){background-image:linear-gradient(180deg,#ad5dff 17.296%,#7629fc 100%),linear-gradient(90deg,#262626 0%,#262626 100%)}
+.sch:nth-child(3){background-image:linear-gradient(180deg,#ad5dff 25.314%,#7629fc 100%),linear-gradient(90deg,#262626 0%,#262626 100%)}
+.sch .ico{flex:none;width:80px;height:80px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center}
+.sch .ico svg{width:42px;height:42px;fill:#fff}
+.sch .tt{font-size:16px;font-weight:700;line-height:1.2;letter-spacing:-.32px}
+.sch .am{font-size:20px;font-weight:700;line-height:1.2;letter-spacing:-.4px}
+
+/* headlines */
+.news .hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.news h2{font-size:20px;font-weight:700;line-height:1.2;letter-spacing:-.4px}
+.news .rail{gap:9.5px;margin:11.4px -20px 0;padding:0 20px}
+.news .n{flex:none;width:172px;height:172px;border-radius:6.4px;overflow:hidden;background:#fff;border:1px solid #eee;scroll-snap-align:start}
+.news .n img{width:100%;height:100%;object-fit:cover;object-position:top}
+.foot{height:24px}
+</style>
+
+<div class="annb">VSAT 2027 Intake:&nbsp;<a href="#applyForm" id="annLink">Admissions Open Now</a></div>
+
+<!-- hero + know before you apply + form + hiring partners -->
+<section class="hero">
+  <div>
+    <h1>Learn Tech<br>by <span class="gt">Building It</span></h1>
+    <ul>
+      <li>4-year on-campus, new-age CS &amp; AI Program</li>
+      <li>B.Tech degree awarded by UGC-approved partner universities.</li>
+    </ul>
+  </div>
+
+  <div class="kb">
+    <h2>Know Before You Apply</h2>
+    <div class="row">
+      <div class="fact"><span class="ico"><img data-img="icon-deadline" alt=""></span><div><div class="t">Deadline</div><div class="v">10/10/2026</div></div></div>
+      <div class="fact"><span class="ico"><img data-img="icon-exam-date" alt=""></span><div><div class="t">Date of Exam</div><div class="v">10/10/2026</div></div></div>
+      <div class="fact"><span class="ico bare"><img data-img="icon-exam-mode" alt=""></span><div><div class="t">Exam Mode</div><div class="v">Online Exam</div></div></div>
+    </div>
+    <div class="elig"><b>Eligibility</b><span>2026, 2027&nbsp; 12th students with PCM (&gt;50% in PCM &amp; 12th Boards Overall)</span></div>
+  </div>
+
+  <div class="fwrap">
+    <div class="pill">Admission for Batch 2027 Opening Soon</div>
+    <form class="formcard" id="applyForm" novalidate>
+      <div class="fhead" id="formHead"><h2>Start your application</h2><p>2027 intake · Only the top 5% make it</p></div>
+
+      <div class="pane" id="pane1">
+        <div class="fld" data-f="fullName"><label for="fullName">Full name</label><input id="fullName" type="text" placeholder="Your name" autocomplete="name"></div>
+        <div class="fld" data-f="email"><label for="email">Email</label><input id="email" type="email" placeholder="you@email.com" autocomplete="email"></div>
+        <div class="fld" data-f="phone"><label for="phone">Phone</label><input id="phone" type="tel" placeholder="+91" autocomplete="tel"></div>
+        <button type="submit" class="submit">Start application</button>
+        <a class="ftrack" href="#">Strong JEE / coding profile? Fast-track available →</a>
+      </div>
+
+      <div class="pane" id="pane2" hidden>
+        <div class="fld" data-f="passYear"><label for="passYear">Class 12 passing year</label>
+          <select id="passYear" class="empty"><option value="">Select</option><option>2026</option><option>2027</option><option>2025</option><option>2024 or earlier</option></select></div>
+        <div class="fld" data-f="stream"><label for="stream">Stream</label>
+          <select id="stream" class="empty"><option value="">Select</option><option>PCM</option><option>PCB</option><option>PCMB</option><option>Commerce</option><option>Other</option></select></div>
+        <div class="fld" data-f="state"><label for="state">State</label><input id="state" type="text" placeholder="State"></div>
+        <div class="fld" data-f="city"><label for="city">City</label><input id="city" type="text" placeholder="City"></div>
+        <div class="fld" data-f="campus"><label for="campus">Campus preference</label>
+          <select id="campus" class="empty"><option value="">Select</option><option>Ajeenkya DY Patil University — Pune</option><option>Sushant University — Gurugram</option><option>No preference</option></select></div>
+        <div class="fld" data-f="hear"><label for="hear">Where did you hear about us?</label>
+          <select id="hear" class="empty"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Friend or family</option><option>School or teacher</option><option>Education consultant</option><option>Other</option></select></div>
+        <button type="submit" class="submit">Start application</button>
+        <button type="button" class="ghost" id="back2">← Back</button>
+      </div>
+
+      <div class="pane" id="paneHurray" hidden>
+        <div class="hurray">
+          <div class="ring"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3>Hurray — you are a part of Vedam!</h3>
+          <p id="hurraySub">Your details are in. Setting up your VSAT…</p>
+        </div>
+      </div>
+
+      <div class="pane" id="paneDone" hidden>
+        <div class="done">
+          <div class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3>Application submitted</h3>
+          <p id="doneMsg">Our admissions team will reach out with your VSAT slot and next steps.</p>
+          <button type="button" id="again">Start another application</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="strip"><div class="tag">Hiring Partners</div><div class="mq"><div class="track" id="partnerTrack"></div></div></div>
+</section>
+
+<!-- already building -->
+<section class="sec ab" style="padding-top:20px">
+  <h2 class="h20 semi">Already Building, <span class="gt">Already Earning</span></h2>
+  <div class="mq"><div class="abtrack">
+    <div class="card"><img data-img="building-1" alt=""></div>
+    <div class="card"><img data-img="building-2" alt=""></div>
+    <div class="card"><img data-img="building-3" alt=""></div>
+    <div class="card" aria-hidden="true"><img data-img="building-1" alt=""></div>
+    <div class="card" aria-hidden="true"><img data-img="building-2" alt=""></div>
+    <div class="card" aria-hidden="true"><img data-img="building-3" alt=""></div>
+  </div></div>
+</section>
+
+<!-- campuses -->
+<section class="sec camp">
+  <h2 class="h20">Our <span class="gt">Campuses</span></h2>
+  <div class="grid">
+    <div class="c"><div class="ph"><img data-img="campus-adypu" alt=""></div><div class="n">Ajeenkya DY Patil University</div><div class="l">Pune, Maharashtra</div></div>
+    <div class="c"><div class="ph"><img data-img="campus-sushant" alt=""></div><div class="n">Sushant University</div><div class="l">Gurugram, Haryana</div></div>
+  </div>
+</section>
+
+<!-- curriculum -->
+<section class="sec cur">
+  <h2 class="h20" style="margin-bottom:20px">AI First <span class="gt">Curriculum</span></h2>
+  <div class="ytabs" id="yTabs"></div>
+  <div class="ccard" id="curCard"></div>
+</section>
+
+<!-- seniors -->
+<section class="sen">
+  <div class="hd">
+    <h2>All your Queries Answered by <span class="gt">Your Seniors</span></h2>
+    <div class="navs">
+      <button class="navbtn" id="vidPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <button class="navbtn" id="vidNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+  </div>
+  <div class="rail" id="vidRail">
+    <a class="vcard"><div class="th"><img data-img="video-vsat" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="cap"><div class="ct">How I cracked VSAT</div><div class="cd">10:23</div></div></a>
+    <a class="vcard"><div class="th"><img data-img="video-scholarship" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="cap"><div class="ct">Get upto 100% Scholarship!</div><div class="cd">10:23</div></div></a>
+    <a class="vcard"><div class="th"><img data-img="video-explore" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="cap"><div class="ct">Explore Vedam School of Technology</div><div class="cd">10:23</div></div></a>
+  </div>
+</section>
+
+<!-- application process -->
+<section class="proc">
+  <div class="top">
+    <h2>Application <span class="gt">Process</span></h2>
+    <p class="sub">Vedam admits on merit, not marks alone. Here’s how you go from applicant to confirmed seat - Transparent at every step.</p>
+    <button class="applybtn" id="applyNow" type="button">Apply Now</button>
+  </div>
+  <ol class="steps">
+    <li class="step"><span class="n">1</span><div class="tx"><div class="t">Apply Online</div><div class="b">Register for the VSAT.</div></div></li>
+    <li class="step"><span class="n">2</span><div class="tx"><div class="t">Take VSAT</div><div class="b">Give the online proctored test from home within 24 hours.</div></div></li>
+    <li class="step"><span class="n">3</span><div class="tx"><div class="t">Interview</div><div class="b">A quick online interview with industry experts to know you better.</div></div></li>
+    <li class="step"><span class="n">4</span><div class="tx"><div class="t">Get Your Result</div><div class="b">Your result and scholarship are announced within 3 days of the interview.</div></div></li>
+    <li class="step"><span class="n">5</span><div class="tx"><div class="t">Block Your Seat</div><div class="b">Block your seat with a token fee, fully adjusted in your 1st semester fee.</div></div></li>
+  </ol>
+</section>
+
+<!-- scholarships -->
+<section class="sec">
+  <h2 class="h20 gt" style="display:inline-block">Scholarships</h2>
+  <div class="schs">
+    <article class="sch"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3 1.5 8.5 12 14l8.5-4.45V15h2V8.5L12 3Zm-6.5 9.6v3.3c0 1.9 2.9 3.6 6.5 3.6s6.5-1.7 6.5-3.6v-3.3L12 16l-6.5-3.4Z"/></svg></div><div><div class="tt">Merit Based Scholarship</div><div class="am">Upto 100%</div></div></article>
+    <article class="sch"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2.5c-3.2 0-5.4 2.2-5.4 5.2 0 .9.2 1.7.6 2.4-.9.8-1.5 1.9-1.5 3.2 0 .5.1 1 .3 1.4C3.9 15.6 2.5 17.6 2.5 20v1.5h19V20c0-2.4-1.4-4.4-3.5-5.3.2-.4.3-.9.3-1.4 0-1.3-.6-2.4-1.5-3.2.4-.7.6-1.5.6-2.4 0-3-2.2-5.2-5.4-5.2Zm0 2.4c1.7 0 3 1.2 3 2.8 0 1.6-1.3 3-3 3s-3-1.4-3-3c0-1.6 1.3-2.8 3-2.8Z"/></svg></div><div><div class="tt">Women in Tech Scholarship</div><div class="am">Upto 20%</div></div></article>
+    <article class="sch"><div class="ico"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 6.5A1.5 1.5 0 0 1 3.5 5h17A1.5 1.5 0 0 1 22 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 17.5v-11Zm10 1.6a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8Zm0 2.2a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4ZM4.6 8.1h2.2v1.6H4.6V8.1Zm12.6 0h2.2v1.6h-2.2V8.1ZM4.6 14.3h2.2v1.6H4.6v-1.6Zm12.6 0h2.2v1.6h-2.2v-1.6Z"/></svg></div><div><div class="tt">Need Based Scholarship</div><div class="am">Upto 30%</div></div></article>
+  </div>
+</section>
+
+<!-- headlines -->
+<section class="sec news">
+  <div class="hd">
+    <h2>As featured in the <span class="gt">Headlines</span></h2>
+    <div class="navs">
+      <button class="navbtn" id="newsPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <button class="navbtn" id="newsNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+  </div>
+  <div class="rail" id="newsRail"></div>
+</section>
+<div class="foot"></div>
+
+</template>
+<script>
+(function(){
+  var host=document.getElementById("mhost");
+  var R=host.attachShadow({mode:"open"});
+  R.appendChild(document.getElementById("mtpl").content.cloneNode(true));
+
+
+
+function applyImages(scope){
+  (scope||R).querySelectorAll("img[data-img]").forEach(function(el){
+    var s=IMG[el.getAttribute("data-img")]; if(s) el.src=s;
+  });
+}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+applyImages();
+
+/* hiring partners marquee */
+(function(){
+  var P=[{k:"logo-adobe",n:"Adobe"},{k:"logo-flipkart",n:"Flipkart"},{k:"logo-phonepe",n:"PhonePe"},{k:"logo-meta",n:"Meta"}];
+  var one=P.map(function(p){return IMG[p.k]?'<img src="'+IMG[p.k]+'" alt="'+esc(p.n)+'">':'';}).join("");
+  R.getElementById("partnerTrack").innerHTML=one+one+one+one;
+})();
+
+/* headlines */
+(function(){
+  R.getElementById("newsRail").innerHTML=["news-1","news-2","news-3","news-4","news-5"].map(function(k){
+    return IMG[k]?'<div class="n"><img src="'+IMG[k]+'" alt=""></div>':"";
+  }).join("");
+  /* arrows wrap around, same as the desktop headlines rail */
+  var rail=R.getElementById("newsRail"), STEP=181.5;
+  function atEnd(){return rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2;}
+  R.getElementById("newsPrev").addEventListener("click",function(){
+    if(rail.scrollLeft<=2) rail.scrollTo({left:rail.scrollWidth,behavior:"smooth"}); else rail.scrollBy({left:-STEP,behavior:"smooth"});
+  });
+  R.getElementById("newsNext").addEventListener("click",function(){
+    if(atEnd()) rail.scrollTo({left:0,behavior:"smooth"}); else rail.scrollBy({left:STEP,behavior:"smooth"});
+  });
+})();
+
+/* curriculum — 4 years (same content as the desktop page), year tabs instead of the outcomes arrows */
+var GRAD_PV="linear-gradient(-46.21deg,#7629fc 33.66%,#00cfe5 107.13%)",
+    GRAD_OR="linear-gradient(-46.21deg,#ffb41f 33.66%,#fd5300 107.13%)",
+    GRAD_SKY="linear-gradient(180deg,#d7fafb 0%,#3993f4 100%)";
+var YEARS=[
+ {label:"Year 1 Programming Foundation",title:"Programming Foundation",
+  desc:"Learn the basics for AI and Programming by building from year 1",
+  skills:["HTML","CSS","JavaScript","Python","DSA","Maths for CS","Probability & Statistics","Soft Skills"],
+  outs:[{img:"y1-whatsapp",bg:"linear-gradient(180deg,#2bff00 0%,#008932 100%)",t:"Build a Real-Time Chat platform like WhatsApp"},
+        {img:"y1-imdb",bg:"linear-gradient(180deg,#111318 0%,#ffb41f 100%)",t:"Build a database like IMDb for storage & ratings"},
+        {img:"y1-techcrunch",bg:"linear-gradient(180deg,#dffbd7 0%,#20be00 100%)",k:"big",t:"Participate in TechCrunch & Hackathons"}]},
+ {label:"Year 2 Full Stack Mastery",title:"Full Stack Mastery",
+  desc:"You can learn everything needed to build a fully functional web application and launch it successfully.",
+  skills:["Advance DSA","Theory of Computation","System Design","Java","ML","DBMS","Operating System","Full Stack","Soft Skills"],
+  outs:[{img:"y2-linkedin",bg:"#3376f6",k:"plain",t:"Develop an end to end Job Portal like LinkedIn"},
+        {img:"y2-hotstar",bg:GRAD_PV,t:"Build Hotstar like Feed with Search & Categories"},
+        {img:"y2-gsoc",bg:GRAD_OR,k:"soft big",t:"Participate in competitions like SIH, GSoC, & ICPC"}]},
+ {label:"Year 3 AI Expertise & Industry Internship",title:"AI Expertise & Industry Internship",
+  desc:"Build AI based applications ; Intern with top tech companies",
+  skills:["Compiler Design","Computer Networks","Entrepreneur Skills","Foundation in Robotics","Foundation in DevOps","Deep Learning","Foundation in Blockchain"],
+  outs:[{img:"y3-netflix",bg:"linear-gradient(180deg,#101828 0%,#e60f17 100%)",t:"Build a Movie Recommendation System"},
+        {img:"y3-gdocs",bg:"#3376f6",k:"big",t:"Create a Google Doc-like documentation Platform"},
+        {img:"y3-internship",bg:GRAD_SKY,k:"soft big",t:"Go for Industry Internship- Formal Experience"}]},
+ {label:"Year 4 Jobs of 2030 Specialised Tracks",title:"Jobs of 2030 - Specialised Tracks",
+  desc:"Master your journey with Specialisation tracks that will be in-demand jobs of the time!",
+  skills:["Advanced Robotics","Advance Blockchain","NLP","Computer Architecture","Advance DevOps","AI Ethics"],
+  outs:[{img:"y4-coinbase",bg:"linear-gradient(180deg,#0c1b5c 0%,#173fc7 100%)",t:"Build a Cryptocurrency Wallet like Coinbase"},
+        {img:"y4-robot",bg:GRAD_PV,k:"big",t:"Build a robot that detects and avoids obstacles."},
+        {img:"y4-placement",bg:GRAD_SKY,k:"soft big",t:"Prepare for Placements in top Tech Companies"}]}
+];
+(function(){
+  var card=R.getElementById("curCard"), tabs=R.getElementById("yTabs"), i=0;
+  tabs.innerHTML=YEARS.map(function(y,n){return '<button type="button" class="ytab" data-i="'+n+'">Year '+(n+1)+'</button>';}).join("");
+  function render(){
+    var y=YEARS[i];
+    card.style.animation="none"; void card.offsetWidth; card.style.animation="";
+    card.innerHTML=
+      '<div><div class="lbl">'+esc(y.label)+'</div><div class="pt">'+esc(y.title)+'</div><div class="de">'+esc(y.desc)+'</div></div>'+
+      '<div><div class="sk">Skills &amp; Technologies</div><ul class="chips">'+y.skills.map(function(s){return '<li class="chip">'+esc(s)+'</li>';}).join("")+'</ul></div>'+
+      '<div><div class="ohd"><div class="ot">Outcomes</div><div class="navs"><button type="button" class="navbtn" id="outPrev" aria-label="Previous outcome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><button type="button" class="navbtn" id="outNext" aria-label="Next outcome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div></div><div class="outs" id="outRail">'+y.outs.map(function(o){
+        return '<article class="out"><div class="prev" style="background:'+o.bg+'"><div class="tile'+(o.k?" "+o.k:"")+'"><img src="'+(IMG[o.img]||"")+'" alt=""></div></div><div class="bt">'+esc(o.t)+'</div></article>';
+      }).join("")+'</div></div>';
+    tabs.querySelectorAll(".ytab").forEach(function(b,n){b.classList.toggle("on",n===i);});
+    wireOutcomes();
+  }
+  function wireOutcomes(){
+    var rail=R.getElementById("outRail"), pv=R.getElementById("outPrev"), nx=R.getElementById("outNext");
+    function step(){ var c=rail.querySelector(".out"); return c? c.offsetWidth+8 : 180; }
+    function sync(){
+      pv.disabled=rail.scrollLeft<=2;
+      nx.disabled=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2;
+    }
+    pv.addEventListener("click",function(){rail.scrollBy({left:-step(),behavior:"smooth"});});
+    nx.addEventListener("click",function(){rail.scrollBy({left:step(),behavior:"smooth"});});
+    rail.addEventListener("scroll",sync,{passive:true});
+    sync();
+  }
+  tabs.addEventListener("click",function(e){var b=e.target.closest(".ytab"); if(!b)return; i=+b.dataset.i; render();});
+  render();
+})();
+
+/* seniors rail arrows */
+(function(){
+  var rail=R.getElementById("vidRail");
+  R.getElementById("vidPrev").addEventListener("click",function(){rail.scrollBy({left:-155,behavior:"smooth"});});
+  R.getElementById("vidNext").addEventListener("click",function(){rail.scrollBy({left:155,behavior:"smooth"});});
+})();
+
+/* Apply Now / top strip -> form */
+function jumpToForm(ev){
+  if(ev) ev.preventDefault();
+  var f=R.getElementById("applyForm");
+  f.scrollIntoView({behavior:"smooth",block:"center"});
+  setTimeout(function(){
+    var pane=R.querySelector(".pane:not([hidden])");
+    var first=pane&&pane.querySelector("input,select,button");
+    if(first) first.focus({preventScroll:true});
+  },450);
+}
+R.getElementById("applyNow").addEventListener("click",jumpToForm);
+R.getElementById("annLink").addEventListener("click",jumpToForm);
+R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault();});
+
+/* multi-step form (same flow as the desktop page) */
+(function(){
+  var form=R.getElementById("applyForm");
+  var head=R.getElementById("formHead");
+  var panes={1:R.getElementById("pane1"),2:R.getElementById("pane2"),h:R.getElementById("paneHurray"),d:R.getElementById("paneDone")};
+  var STEP1=["fullName","email","phone"], STEP2=["passYear","stream","state","city","campus","hear"];
+  var step=1, touched={1:false,2:false}, data={};
+  var HEADS={1:["Start your application","2027 intake · Only the top 5% make it"],2:["A few more details","Then start your application."]};
+
+  R.querySelectorAll("#applyForm select").forEach(function(s){
+    s.addEventListener("change",function(){ s.classList.toggle("empty",!s.value); if(touched[step])validate(step); });
+  });
+  STEP1.concat(STEP2).forEach(function(id){
+    var el=R.getElementById(id);
+    if(el&&el.tagName==="INPUT") el.addEventListener("input",function(){ if(touched[step])validate(step); });
+  });
+  function errorFor(id){
+    var el=R.getElementById(id), v=(el.value||"").trim();
+    if(id==="fullName") return !v?"Enter your full name":(v.length<2?"Name looks too short":"");
+    if(id==="email")    return !v?"Enter your email":(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)?"":"Enter a valid email address");
+    if(id==="phone")    return !v?"Enter your phone number":(v.replace(/\D/g,"").length<10?"Enter a 10-digit mobile number":"");
+    if(id==="passYear") return !v?"Select your passing year":"";
+    if(id==="stream")   return !v?"Select your stream":"";
+    if(id==="state")    return !v?"Enter your state":"";
+    if(id==="city")     return !v?"Enter your city":"";
+    if(id==="campus")   return !v?"Select a campus preference":"";
+    if(id==="hear")     return !v?"Tell us where you heard about us":"";
+    return "";
+  }
+  function validate(s){
+    var ids=(s===1?STEP1:STEP2), firstBad=null;
+    ids.forEach(function(id){
+      var msg=errorFor(id), wrap=R.querySelector('[data-f="'+id+'"]');
+      wrap.classList.toggle("bad",!!msg);
+      var e=wrap.querySelector(".err");
+      if(msg){ if(!e){e=document.createElement("p");e.className="err";wrap.appendChild(e);} e.textContent=msg; if(!firstBad)firstBad=id; }
+      else if(e){ e.remove(); }
+    });
+    return firstBad;
+  }
+  function collect(ids){ ids.forEach(function(id){ data[id]=(R.getElementById(id).value||"").trim(); }); }
+  function show(s){
+    step=s;
+    Object.keys(panes).forEach(function(k){ panes[k].hidden=(String(k)!==String(s)); });
+    var h=HEADS[s];
+    if(h){ head.hidden=false; head.querySelector("h2").textContent=h[0]; head.querySelector("p").textContent=h[1]; }
+    else head.hidden=true;
+  }
+  form.addEventListener("submit",function(ev){
+    ev.preventDefault();
+    if(step===1){
+      touched[1]=true; var bad=validate(1);
+      if(bad){ R.getElementById(bad).focus(); return; }
+      collect(STEP1); show(2);
+    } else if(step===2){
+      touched[2]=true; var bad2=validate(2);
+      if(bad2){ R.getElementById(bad2).focus(); return; }
+      collect(STEP2);
+      var nm=(data.fullName||"").split(" ")[0];
+      R.getElementById("hurraySub").textContent=(nm?nm+", your":"Your")+" details are in. Setting up your VSAT…";
+      R.getElementById("doneMsg").textContent="Thanks"+(nm?" "+nm:"")+" — our admissions team will reach out on "+(data.email||"your email")+" with your VSAT slot and next steps.";
+      show("h"); setTimeout(function(){ show("d"); },4000);
+    }
+  });
+  R.getElementById("back2").addEventListener("click",function(){ show(1); });
+  R.getElementById("again").addEventListener("click",function(){ location.reload(); });
+  show(1);
+})();
+
 })();
 </script>
