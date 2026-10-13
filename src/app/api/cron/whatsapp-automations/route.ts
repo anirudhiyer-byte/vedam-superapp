@@ -83,7 +83,7 @@ export async function GET(req: Request) {
     if ((a.channel || "whatsapp") === "email") {
       const { data: tpl } = await db.from("email_templates").select("subject, message, template_style, image, buttons").eq("id", a.template_id).maybeSingle();
       if (tpl) { const html = renderEmailTemplateHtml(tpl as EmailTpl);
-        for (const r of recips) { if (!r.email) continue; const res = await sendEmailServer(r.email, (tpl as { subject?: string }).subject || "Vedam", html); if (res.ok) sent++; else failed++; } }
+        for (const r of recips) { if (!r.email) continue; const res = await sendEmailServer(r.email, (tpl as { subject?: string }).subject || "Vedam", html, { kind: "automation", userId: (r as { id?: string }).id ?? null, refId: a.id as string, refName: (a as { name?: string }).name ?? null }); if (res.ok) sent++; else failed++; } }
     } else {
       const logs: Record<string, unknown>[] = [];
       for (const r of recips) {
