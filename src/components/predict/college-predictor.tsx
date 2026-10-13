@@ -52,8 +52,8 @@ const v = (n: number) => `calc(${n} * var(--v))`;
    drops out on some GPUs). Both corners share one ramp for equal intensity. */
 const CORNER_RAMP = "radial-gradient(50% 50% at 50% 50%, rgb(134,128,248) 0%, rgb(108,104,216) 18%, rgb(80,82,172) 33%, rgb(53,60,120) 47%, rgb(31,41,80) 59%, rgb(14,24,42) 71%, rgba(0,0,0,0) 83%)";
 const HERO_GLOWS: { cls: string; st: React.CSSProperties }[] = [
-  { cls: "cp-g1", st: { left: -520, bottom: -560, width: 1560, height: 1560, background: CORNER_RAMP } },
-  { cls: "cp-g2", st: { right: -360, top: -560, width: 1560, height: 1560, background: CORNER_RAMP } },
+  { cls: "cp-g1", st: { left: -560, bottom: -440, width: 1320, height: 900, background: CORNER_RAMP } },
+  { cls: "cp-g2", st: { right: -420, top: -520, width: 1180, height: 1350, background: CORNER_RAMP } },
 ];
 
 function HeroGlows() {
