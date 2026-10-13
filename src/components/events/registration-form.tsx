@@ -17,6 +17,23 @@ type Profile = {
   stream: string | null;
 };
 
+type CashfreeCheckout = { checkout: (o: { paymentSessionId: string; redirectTarget?: string }) => void };
+declare global { interface Window { Cashfree?: (opts: { mode: string }) => CashfreeCheckout } }
+
+/** Lazy-load the Cashfree v3 web SDK and return an initialised checkout instance. */
+function loadCashfree(mode: string): Promise<CashfreeCheckout> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === "undefined") return reject(new Error("no window"));
+    if (window.Cashfree) return resolve(window.Cashfree({ mode }));
+    const s = document.createElement("script");
+    s.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
+    s.async = true;
+    s.onload = () => (window.Cashfree ? resolve(window.Cashfree({ mode })) : reject(new Error("Cashfree SDK unavailable")));
+    s.onerror = () => reject(new Error("Could not load the payment SDK"));
+    document.head.appendChild(s);
+  });
+}
+
 /** Value this field should take from the profile, or "" if the profile can't fill it. */
 function profileValue(f: EventField, p: Profile): string {
   if (f.type === "multiselect" || f.type === "checkbox") return "";
@@ -119,6 +136,41 @@ export function RegistrationForm({
     const utm = readUtm();
     const answers = { ...autoVals, ...vals };
 
+    // PAID EVENT: no registration is created here — collect the snapshot, create a
+    // Cashfree order server-side (amount from the DB), and send the user to checkout.
+    // The registration is materialised only after a verified payment (webhook/status).
+    if (event.is_paid && Number(event.price_amount) > 0) {
+      const reg = {
+        event_code: event.event_code, user_email: regEmail, full_name: profile.full_name,
+        whatsapp: pick(/whats\s*app|phone|mobile|contact/, "phone"),
+        passout_year: pick(/pass\s*out|passing|year of pass|graduat/),
+        stream: pick(/stream/),
+        answers,
+        utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null,
+        utm_campaign: utm.utm_campaign ?? null, referrer: utm.referrer ?? null, landing_path: utm.landing_path ?? null,
+      };
+      try {
+        const { data: s } = await supabase.auth.getSession();
+        const accessToken = s.session?.access_token;
+        const r = await fetch("/api/payments/create-order", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ eventId: event.id, accessToken, reg }),
+        });
+        const j = await r.json();
+        if (!j.ok) {
+          setSubmitting(false);
+          if (j.error === "already_registered") return onDone();
+          return setError(j.error === "Payments not configured" ? "Payments aren't set up yet — please try later." : (j.error || "Could not start payment."));
+        }
+        const cashfree = await loadCashfree(j.mode || "sandbox");
+        cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
+        return; // full-page redirect to Cashfree; we return on the event page via ?pay=return
+      } catch (e) {
+        setSubmitting(false);
+        return setError(String((e as Error)?.message || "Could not start payment."));
+      }
+    }
+
     const { error } = await supabase.from("event_registrations").insert({
       event_id: event.id, event_code: event.event_code, user_id: userId,
       user_email: regEmail, full_name: profile.full_name,
@@ -219,7 +271,7 @@ export function RegistrationForm({
 
       <button onClick={() => submit()} disabled={!valid || submitting}
         className="group relative w-full overflow-hidden rounded-xl border border-white/25 px-5 py-3 font-[family-name:var(--font-inter)] text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] transition-all hover:border-white/60 hover:shadow-[0_0_30px_rgba(123,92,255,0.6)] disabled:opacity-60" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.32), rgba(123,92,255,0.5) 55%, rgba(194,0,219,0.42))" }}>
-        {submitting ? "Registering…" : extraFields.length ? "Confirm registration" : "Register"}
+        {submitting ? (event.is_paid ? "Starting payment…" : "Registering…") : event.is_paid && Number(event.price_amount) > 0 ? `Pay ₹${Number(event.price_amount)} & register` : extraFields.length ? "Confirm registration" : "Register"}
       </button>
       {extraFields.length === 0 && (
         <p className="text-center font-body text-xs text-muted">One tap — we&apos;ll use the details above.</p>

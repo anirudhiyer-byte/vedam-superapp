@@ -57,6 +57,9 @@ export type EventRow = {
   ribbon_value: string | null;
   status: string;
   visibility: string | null;
+  is_paid: boolean | null;
+  price_amount: number | null;
+  currency: string | null;
   registration_schema: EventField[] | null;
   listing_extra: EventField[] | null;
   points_config: PointsConfig | null;
