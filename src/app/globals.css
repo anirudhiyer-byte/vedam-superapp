@@ -176,7 +176,10 @@ body::after {
 @keyframes cp-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-54px, 36px, 0) scale(1.12); } }
 .cp-g1 { animation: cp-drift-a 11s ease-in-out infinite; will-change: transform; }
 .cp-g2 { animation: cp-drift-b 12s ease-in-out infinite; will-change: transform; }
-@media (prefers-reduced-motion: reduce) { .cp-g1, .cp-g2 { animation: none; } }
+/* Results-page glow — larger travel and a faster period so the drift is clearly visible. */
+@keyframes cp-drift-r { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-150px, 80px, 0) scale(1.09); } }
+.cp-rg { animation: cp-drift-r 7s ease-in-out infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .cp-g1, .cp-g2, .cp-rg { animation: none; } }
 
 /* College Predictor title — sweeping white-light highlight.
    Block + fit-content keeps the eyebrow above the title AND makes the

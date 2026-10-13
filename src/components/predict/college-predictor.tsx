@@ -43,6 +43,20 @@ function HeroGlows() {
   );
 }
 
+/** Results-page background — one wide blue glow brightest at the top-right that
+    stretches across the top (down to below the "Home" nav) and fades gradually
+    to the left; drifts a touch faster so the motion is clearly visible. */
+function ResultsGlows() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="cp-rg absolute" style={{
+        top: -520, right: -360, width: 2100, height: 1200, filter: "blur(44px)",
+        background: "radial-gradient(50% 50% at 50% 50%, rgb(134,128,248) 0%, rgb(92,96,206) 20%, rgb(58,68,146) 37%, rgb(32,42,88) 53%, rgb(15,22,44) 67%, rgba(0,0,0,0) 80%)",
+      }} />
+    </div>
+  );
+}
+
 const SEAL = "M12.00 1.90 A2.95 2.95 0 0 1 17.05 3.25 A2.95 2.95 0 0 1 20.75 6.95 A2.95 2.95 0 0 1 22.10 12.00 A2.95 2.95 0 0 1 20.75 17.05 A2.95 2.95 0 0 1 17.05 20.75 A2.95 2.95 0 0 1 12.00 22.10 A2.95 2.95 0 0 1 6.95 20.75 A2.95 2.95 0 0 1 3.25 17.05 A2.95 2.95 0 0 1 1.90 12.00 A2.95 2.95 0 0 1 3.25 6.95 A2.95 2.95 0 0 1 6.95 3.25 A2.95 2.95 0 0 1 12.00 1.90 Z";
 
 /** Scalloped green seal + white check, as drawn in the design. */
@@ -115,7 +129,6 @@ export function CollegePredictor() {
   const [rankRange, setRankRange] = useState<[number, number] | null>(null);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
   const [modal, setModal] = useState<{ name: string; program: string; rounds: { round: number; opening_rank: number; closing_rank: number }[] } | null>(null);
 
   const set = (patch: Partial<Form>) => setF((x) => ({ ...x, ...patch }));
@@ -171,11 +184,11 @@ export function CollegePredictor() {
   }
 
   function share() {
-    try {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch { /* */ }
+    const url = `${window.location.origin}/predict`;
+    const text = `🎓 Predict your JEE Main 2026 college & branch for FREE with Vedam's College Predictor — ${url}`;
+    try { navigator.clipboard.writeText(url); } catch { /* */ }
+    log("share_whatsapp");
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
   }
 
   const inter = "font-[family-name:var(--font-inter)]";
@@ -289,7 +302,7 @@ export function CollegePredictor() {
       ) : (
         /* ================= RESULTS PAGE (Figma frame 2 — dark) ================= */
         <div className={`relative isolate min-h-screen overflow-hidden bg-black ${inter}`}>
-          <HeroGlows />
+          <ResultsGlows />
           <div className="relative mx-auto max-w-[1766px] px-6 pb-16 pt-10 sm:px-10 lg:px-[60px]">
             {/* ---- header: title + meta + new-search (left); share pill + gauge (right) ---- */}
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
@@ -305,7 +318,7 @@ export function CollegePredictor() {
 
               <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center lg:gap-[26px]">
                 <button onClick={share} className="inline-flex flex-none items-center gap-2.5 whitespace-nowrap rounded-[30px] border border-white bg-[#34c759] py-[7px] pl-4 pr-2 text-[16px] font-medium tracking-[-0.03em] text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110 sm:text-[17px]">
-                  {copied ? "Link copied!" : "Share this FREE Predictor Tool"}
+                  Share this FREE Predictor Tool
                   <svg viewBox="0 0 24 24" className="h-[27px] w-[27px] flex-none" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.38-.49.07-1.12.1-1.8-.11-.42-.13-.95-.31-1.63-.6-2.87-1.24-4.75-4.13-4.89-4.32-.14-.19-1.17-1.55-1.17-2.96 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.56.82 1.94.89 2.08.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.17.28.74 1.22 1.59 1.98 1.1.98 2.02 1.28 2.3 1.42.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.11.07.68-.17 1.36z" /></svg>
                 </button>
                 <Gauge label={rankLabel} />
