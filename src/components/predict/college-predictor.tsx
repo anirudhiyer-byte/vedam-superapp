@@ -16,6 +16,8 @@ function sid() { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.ra
 const GLOW_B = "radial-gradient(50% 50% at 50% 50%, rgba(194,0,219,0.7) 0%, rgba(118,41,252,0) 72.6%)";
 const GLOW_C = "radial-gradient(50% 50% at 50% 50%, #C200DB 0%, rgba(138,24,255,0) 72.6%)";
 const SUBMIT_GRAD = "linear-gradient(93.15deg, #7629FC 5.87%, #8A18FF 88.28%)";
+/* Blue gradient echoing the form-page glow tone — used on the dark round-wise modal. */
+const BLUE_GRAD = "linear-gradient(93.15deg, #3B57E8 0%, #7A78F2 100%)";
 const BLUR = "blur(7.08387px)";
 
 /**
@@ -380,24 +382,24 @@ export function CollegePredictor() {
 
       {modal && (
         <div onClick={() => setModal(null)} className="fixed inset-0 z-50 grid place-items-center bg-[rgba(10,5,25,.7)] p-4 backdrop-blur-sm">
-          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-[20px] bg-white p-6">
-            <div className={`${inter} mb-1 text-[13px] font-semibold uppercase tracking-wide text-[#7629FC]`}>{modal.name}</div>
-            <div className={`${inter} text-[19px] font-bold tracking-[-0.03em] text-black`}>{modal.program}</div>
-            <div className="mt-5 overflow-hidden rounded-xl border border-[#DDDDDD]">
-              <div className={`${inter} grid grid-cols-3 px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-white`} style={{ background: SUBMIT_GRAD }}>
+          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-[20px] border-[0.5px] border-[#7629fc]/60 bg-[#101010] p-6">
+            <div className={`${inter} mb-1 text-[13px] font-semibold uppercase tracking-wide text-[#b79cff]`}>{modal.name}</div>
+            <div className={`${inter} text-[19px] font-bold tracking-[-0.03em] text-white`}>{modal.program}</div>
+            <div className="mt-5 overflow-hidden rounded-xl border border-white/10">
+              <div className={`${inter} grid grid-cols-3 px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide text-white`} style={{ background: BLUE_GRAD }}>
                 <span>Round</span><span className="text-right">Opening</span><span className="text-right">Closing</span>
               </div>
               {modal.rounds.length === 0 ? (
-                <div className={`${inter} px-4 py-6 text-center text-[14px] text-[#8a8a8a]`}>No round-wise data for this program.</div>
+                <div className={`${inter} px-4 py-6 text-center text-[14px] text-white/50`}>No round-wise data for this program.</div>
               ) : modal.rounds.map((r, i) => (
-                <div key={i} className={`${inter} grid grid-cols-3 items-center border-t border-[#DDDDDD] px-4 py-2.5 text-[14px] odd:bg-[#FAF8FF]`}>
-                  <span className="font-semibold text-black">Round {r.round}</span>
-                  <span className="text-right tabular-nums text-[#1a1a1a]">{r.opening_rank}</span>
-                  <span className="text-right font-bold tabular-nums text-black">{r.closing_rank}</span>
+                <div key={i} className={`${inter} grid grid-cols-3 items-center border-t border-white/[0.08] px-4 py-2.5 text-[14px] odd:bg-white/[0.03]`}>
+                  <span className="font-semibold text-white">Round {r.round}</span>
+                  <span className="text-right tabular-nums text-[#cfcfe0]">{r.opening_rank}</span>
+                  <span className="text-right font-bold tabular-nums text-white">{r.closing_rank}</span>
                 </div>
               ))}
             </div>
-            <button onClick={() => setModal(null)} className={`${inter} mt-5 w-full rounded-md py-2.5 text-[15px] font-bold text-white`} style={{ background: SUBMIT_GRAD }}>Close</button>
+            <button onClick={() => setModal(null)} className={`${inter} mt-5 w-full rounded-md py-2.5 text-[15px] font-bold text-white`} style={{ background: BLUE_GRAD }}>Close</button>
           </div>
         </div>
       )}
