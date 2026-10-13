@@ -53,7 +53,7 @@ const v = (n: number) => `calc(${n} * var(--v))`;
 const CORNER_RAMP = "radial-gradient(50% 50% at 50% 50%, rgb(134,128,248) 0%, rgb(108,104,216) 18%, rgb(80,82,172) 33%, rgb(53,60,120) 47%, rgb(31,41,80) 59%, rgb(14,24,42) 71%, rgba(0,0,0,0) 83%)";
 const HERO_GLOWS: { cls: string; st: React.CSSProperties }[] = [
   { cls: "cp-g1", st: { left: -320, bottom: -320, width: 640, height: 600, background: CORNER_RAMP } },
-  { cls: "cp-g2", st: { right: -300, top: -300, width: 640, height: 640, background: CORNER_RAMP } },
+  { cls: "cp-g2", st: { right: -300, top: -300, width: 640, height: 600, background: CORNER_RAMP } },
 ];
 
 function HeroGlows() {

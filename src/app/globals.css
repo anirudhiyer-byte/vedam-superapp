@@ -170,10 +170,12 @@ body::after {
 }
 /* Slow, cloud-like drift for the background glows — long, unequal cycles so the
    three never line up, and nothing moves for reduced-motion users. */
+/* Both corners share the same motion profile (mirrored direction) so they fade
+   in and out identically; only the period differs slightly, to stay organic. */
 @keyframes cp-drift-a { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(54px, -36px, 0) scale(1.12); } }
-@keyframes cp-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-48px, 40px, 0) scale(1.13); } }
+@keyframes cp-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-54px, 36px, 0) scale(1.12); } }
 .cp-g1 { animation: cp-drift-a 11s ease-in-out infinite; will-change: transform; }
-.cp-g2 { animation: cp-drift-b 13s ease-in-out infinite; will-change: transform; }
+.cp-g2 { animation: cp-drift-b 12s ease-in-out infinite; will-change: transform; }
 @media (prefers-reduced-motion: reduce) { .cp-g1, .cp-g2 { animation: none; } }
 
 /* College Predictor title — sweeping white-light highlight.
