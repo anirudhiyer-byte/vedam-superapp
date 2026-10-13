@@ -16,8 +16,8 @@ function sid() { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.ra
 const GLOW_B = "radial-gradient(50% 50% at 50% 50%, rgba(194,0,219,0.7) 0%, rgba(118,41,252,0) 72.6%)";
 const GLOW_C = "radial-gradient(50% 50% at 50% 50%, #C200DB 0%, rgba(138,24,255,0) 72.6%)";
 const SUBMIT_GRAD = "linear-gradient(93.15deg, #7629FC 5.87%, #8A18FF 88.28%)";
-/* Blue gradient echoing the form-page glow tone — used on the dark round-wise modal. */
-const BLUE_GRAD = "linear-gradient(93.15deg, #3B57E8 0%, #7A78F2 100%)";
+/* Clearly-blue gradient (cyan-blue → blue, no violet) for the dark round-wise modal. */
+const BLUE_GRAD = "linear-gradient(93.15deg, #0BA5EC 0%, #2E6BFF 100%)";
 const BLUR = "blur(7.08387px)";
 
 /**
