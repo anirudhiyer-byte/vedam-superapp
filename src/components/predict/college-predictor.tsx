@@ -54,22 +54,22 @@ const HERO_GLOWS: { cls: string; st: React.CSSProperties }[] = [
   {
     cls: "cp-g1",
     st: {
-      left: -780, top: 330, width: 1680, height: 1460,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(96,92,214) 0%, rgb(78,78,172) 20%, rgb(57,61,132) 34%, rgb(34,43,86) 48%, rgb(18,28,51) 58%, rgb(7,16,26) 68%, rgba(0,0,0,0) 78%)",
+      left: -820, top: 300, width: 1900, height: 1600,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(126,120,245) 0%, rgb(104,100,214) 18%, rgb(78,80,168) 32%, rgb(52,58,118) 46%, rgb(30,40,78) 58%, rgb(14,24,42) 68%, rgba(0,0,0,0) 80%)",
     },
   },
   {
     cls: "cp-g2",
     st: {
-      left: 1500, top: -640, width: 1020, height: 1620,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(84,98,200) 0%, rgb(64,78,158) 16%, rgb(42,56,111) 32%, rgb(27,43,76) 47%, rgb(14,30,49) 62%, rgb(4,14,22) 77%, rgba(0,0,0,0) 90%)",
+      left: 1440, top: -620, width: 1140, height: 1680,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(112,124,236) 0%, rgb(90,104,198) 16%, rgb(64,80,150) 32%, rgb(42,58,104) 47%, rgb(24,42,70) 62%, rgb(9,20,33) 77%, rgba(0,0,0,0) 90%)",
     },
   },
   {
     cls: "cp-g3",
     st: {
-      left: 1010, top: -196, width: 280, height: 840,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(6,16,25) 0%, rgb(3,10,14) 48%, rgba(0,0,0,0) 80%)",
+      left: 980, top: -220, width: 360, height: 900,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(60,46,120) 0%, rgb(36,28,78) 42%, rgba(0,0,0,0) 78%)",
     },
   },
 ];
