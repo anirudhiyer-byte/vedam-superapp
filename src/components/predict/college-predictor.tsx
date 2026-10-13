@@ -13,30 +13,9 @@ const blank: Form = { mode: "rank", rank: "", marks: "", category: "OPEN", gende
 function sid() { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.randomUUID(); localStorage.setItem("cp_sid", s); } return s; }
 
 /* ---------- exact Figma tokens ---------- */
-const GLOW_B = "radial-gradient(50% 50% at 50% 50%, rgba(194,0,219,0.7) 0%, rgba(118,41,252,0) 72.6%)";
-const GLOW_C = "radial-gradient(50% 50% at 50% 50%, #C200DB 0%, rgba(138,24,255,0) 72.6%)";
 const SUBMIT_GRAD = "linear-gradient(93.15deg, #7629FC 5.87%, #8A18FF 88.28%)";
 /* Clearly-blue gradient (cyan-blue → blue, no violet) for the dark round-wise modal. */
 const BLUE_GRAD = "linear-gradient(93.15deg, #0BA5EC 0%, #2E6BFF 100%)";
-const BLUR = "blur(7.08387px)";
-
-/**
- * Figma background ellipses, reproduced 1:1 (size / offset / opacity / blur /
- * transform matrix) inside a 1920-wide reference box that stays centred, so the
- * composition matches the frame on desktop and scales gracefully below it.
- */
-function Glows() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute left-1/2 top-0 h-full w-[1920px] -translate-x-1/2">
-        {/* Ellipse 35 */}
-        <div className="absolute" style={{ width: 2928.71, height: 1191.35, left: -35, top: -332, background: GLOW_C, opacity: 0.7, filter: BLUR, transform: "matrix(0.83, -0.55, 0.27, 0.96, 0, 0)" }} />
-        {/* Ellipse 37 */}
-        <div className="absolute" style={{ width: 3431.75, height: 1518.91, left: -2579, top: -23, background: GLOW_B, opacity: 0.7, filter: BLUR, transform: "matrix(-0.92, -0.4, 0.66, -0.75, 0, 0)" }} />
-      </div>
-    </div>
-  );
-}
 
 /* ===================== FORM PAGE (new Figma frame) =====================
    Everything below is measured off the design frame (1920 × ~900) and driven by
@@ -310,7 +289,7 @@ export function CollegePredictor() {
       ) : (
         /* ================= RESULTS PAGE (Figma frame 2 — dark) ================= */
         <div className={`relative isolate min-h-screen overflow-hidden bg-black ${inter}`}>
-          <Glows />
+          <HeroGlows />
           <div className="relative mx-auto max-w-[1766px] px-6 pb-16 pt-10 sm:px-10 lg:px-[60px]">
             {/* ---- header: title + meta + new-search (left); share pill + gauge (right) ---- */}
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
