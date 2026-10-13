@@ -16,8 +16,6 @@ function sid() { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.ra
 const GLOW_B = "radial-gradient(50% 50% at 50% 50%, rgba(194,0,219,0.7) 0%, rgba(118,41,252,0) 72.6%)";
 const GLOW_C = "radial-gradient(50% 50% at 50% 50%, #C200DB 0%, rgba(138,24,255,0) 72.6%)";
 const SUBMIT_GRAD = "linear-gradient(93.15deg, #7629FC 5.87%, #8A18FF 88.28%)";
-const BAND_GRAD = "linear-gradient(81.25deg, #00CFE5 -2.23%, #5E29FC 39.52%, #7629FC 80.82%)";
-const GAUGE_GRAD = "linear-gradient(133.19deg, #00CFE5 -4.9%, #C200DB 96.23%)";
 const BLUR = "blur(7.08387px)";
 
 /**
@@ -76,12 +74,20 @@ function Tick() {
   );
 }
 
-/** Figma gauge ticks (Line 213–219): tallest nearest the centre, shrinking outwards. */
-function Ticks({ flip }: { flip?: boolean }) {
-  const hs = [48, 43, 37, 34, 27, 21];
+/** Dark gauge card (results page) — semicircular cyan→violet arc, ticks, rank. */
+function Gauge({ label }: { label: string | number | undefined }) {
   return (
-    <div aria-hidden className={["flex items-center gap-[9px]", flip ? "flex-row-reverse" : ""].join(" ")}>
-      {hs.map((h, i) => <span key={i} className="w-px shrink-0 bg-[#686868]" style={{ height: h }} />)}
+    <div className="w-full flex-none rounded-[20px] border-[0.5px] border-[#7629fc] bg-[#101010] px-[18px] pb-[18px] pt-[26px] text-center lg:w-[400px]">
+      <h3 className="font-[family-name:var(--font-inter)] text-[18px] font-medium tracking-[-0.04em] text-white sm:text-[20px]">Predicted College on your Rank</h3>
+      <svg className="mx-auto mt-2.5 block" width="300" height="118" viewBox="0 0 300 118" aria-hidden>
+        <defs><linearGradient id="cp-gauge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#00cfe5" /><stop offset="1" stopColor="#c200db" /></linearGradient></defs>
+        <path d="M30 108 A120 120 0 0 1 270 108" fill="none" stroke="#2a2a2a" strokeWidth="10" strokeLinecap="round" />
+        <path d="M30 108 A120 120 0 0 1 198 24" fill="none" stroke="url(#cp-gauge)" strokeWidth="10" strokeLinecap="round" />
+        <g stroke="#6a6a6a" strokeWidth="2">
+          <line x1="150" y1="18" x2="150" y2="30" /><line x1="106" y1="24" x2="112" y2="35" /><line x1="194" y1="24" x2="188" y2="35" /><line x1="66" y1="46" x2="76" y2="54" /><line x1="234" y1="46" x2="224" y2="54" />
+        </g>
+        <text x="150" y="100" textAnchor="middle" fill="#fff" fontFamily="var(--font-inter), sans-serif" fontWeight="600" fontSize="30">{label}</text>
+      </svg>
     </div>
   );
 }
@@ -196,8 +202,9 @@ export function CollegePredictor() {
   const fieldSt: React.CSSProperties = { height: v(42), borderRadius: v(7), padding: `0 ${v(14)}`, fontSize: v(17), letterSpacing: "-0.02em" };
   const labelCls = `${inter} block font-semibold text-black`;
   const labelSt: React.CSSProperties = { fontSize: v(20), lineHeight: v(24), letterSpacing: "-0.045em", marginBottom: v(10) };
-  const th = `${inter} whitespace-nowrap border-r border-[#DDDDDD] px-5 py-4 text-left text-[16px] font-normal tracking-[-0.04em] text-[#7629FC] last:border-r-0 lg:text-[22px]`;
-  const td = `${inter} border-r border-[#DDDDDD] px-5 py-4 align-middle text-[14px] tracking-[-0.02em] text-[#1a1a1a] last:border-r-0 lg:text-[15px]`;
+  // dark results table cells
+  const thd = `${inter} whitespace-nowrap border-b border-r border-white/[0.12] px-6 py-5 text-left text-[18px] font-normal tracking-[-0.04em] text-white last:border-r-0 lg:text-[22px]`;
+  const tdd = `${inter} border-b border-r border-white/[0.08] px-6 py-[18px] align-middle text-[15px] tracking-[-0.02em] text-[#eaeaf2] last:border-r-0 lg:text-[16px]`;
   const rankLabel = rankRange && rankRange[0] !== rankRange[1] ? `${rankRange[0]} – ${rankRange[1]}` : rankRange?.[0];
 
   return (
@@ -299,94 +306,71 @@ export function CollegePredictor() {
           </div>
         </div>
       ) : (
-        /* ================= RESULTS PAGE (Figma frame 2) ================= */
-        <div className="relative isolate">
-          {/* top band: #1E1E1E + glows + title */}
-          <section className="relative overflow-hidden bg-[#1E1E1E]">
-            <Glows />
-            <div className="relative mx-auto flex max-w-[1280px] flex-wrap items-end justify-between gap-6 px-6 pb-8 pt-12 sm:px-10">
-              <h1 className={`${inter} font-semibold tracking-[-0.04em] text-white text-[40px] leading-[1.05] sm:text-[56px] lg:text-[80px]`}>College Predictor</h1>
-              <div className="text-right">
-                <button onClick={() => { setResults(null); setErr(null); }} className={`${inter} text-[14px] font-semibold text-[#C9BDF2] transition hover:text-white`}>← New search</button>
-                <p className={`${inter} mt-2 text-[13px] font-medium text-white/60`}>{results.reduce((a, g) => a + g.rows.length, 0)} programs · {results.length} institutes</p>
-              </div>
-            </div>
-          </section>
-
-          {/* gradient band (Rectangle 61, cropped by 63) — carries the meta + gauge */}
-          <section className="relative" style={{ background: BAND_GRAD }}>
-            <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-8 px-6 py-9 sm:px-10">
-              <div>
-                <p className={`${inter} text-[22px] font-normal tracking-[-0.04em] text-white sm:text-[26px] lg:text-[30px] lg:leading-[30px]`}>Category : {f.category}</p>
-                <p className={`${inter} mt-3 text-[22px] font-normal tracking-[-0.04em] text-white sm:text-[26px] lg:text-[30px] lg:leading-[30px]`}>JEE Main 2026 Rank : {rankLabel}</p>
-                <button onClick={share} className={`${inter} mt-5 inline-flex items-center gap-3 rounded-[30px] px-4 py-1.5 text-[17px] font-medium tracking-[-0.04em] text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110 sm:text-[20px]`} style={{ background: "rgba(52,199,89,0.9)" }}>
-                  {copied ? "Link copied!" : "Share this FREE Predictor Tool"}
-                  <svg viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v14" /></svg>
-                </button>
-              </div>
-
-              {/* gauge (Frame 1261156041) */}
-              <div className="w-full max-w-[420px] rounded-[21px] px-4 py-4">
-                <p className={`${inter} text-center text-[18px] font-medium tracking-[-0.04em] text-white sm:text-[21px]`}>Predicted College on your Rank</p>
-                <div className="mt-4 flex items-center justify-center gap-3">
-                  <Ticks flip />
-                  <span className={`${inter} rounded-[21px] px-5 py-2.5 text-[18px] font-medium tracking-[-0.04em] text-white sm:text-[21px]`} style={{ background: GAUGE_GRAD }}>{rankLabel}</span>
-                  <Ticks />
+        /* ================= RESULTS PAGE (Figma frame 2 — dark) ================= */
+        <div className={`relative isolate min-h-screen overflow-hidden bg-black ${inter}`}>
+          <Glows />
+          <div className="relative mx-auto max-w-[1766px] px-6 pb-16 pt-10 sm:px-10 lg:px-[60px]">
+            {/* ---- header: title + meta + share (left), gauge (right) ---- */}
+            <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+              <div className="min-w-0">
+                <h1 className="font-semibold tracking-[-0.04em] text-white text-[44px] leading-[1] sm:text-[60px] lg:text-[80px]">
+                  College <span className="font-[family-name:var(--font-playfair)] italic">Predictor</span>
+                </h1>
+                <p className="mt-6 text-[20px] font-normal tracking-[-0.04em] text-[#cfcfe0] sm:text-[25px]">Category : <span className="font-semibold text-white">{f.category}</span></p>
+                <p className="mt-3.5 text-[20px] font-normal tracking-[-0.04em] text-[#cfcfe0] sm:text-[25px]">JEE Main 2026 Rank : <span className="font-semibold text-white">{rankLabel}</span></p>
+                <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+                  <button onClick={share} className="inline-flex items-center gap-3 rounded-[30px] border border-white bg-[#34c759] px-4 py-1.5 text-[17px] font-medium tracking-[-0.04em] text-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110 sm:text-[20px]">
+                    {copied ? "Link copied!" : "Share this FREE Predictor Tool"}
+                    <svg viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v14" /></svg>
+                  </button>
+                  <button onClick={() => { setResults(null); setErr(null); }} className="text-[14px] font-semibold text-[#C9BDF2] transition hover:text-white">← New search</button>
+                  <span className="text-[13px] font-medium text-white/50">{results.reduce((a, g) => a + g.rows.length, 0)} programs · {results.length} institutes</span>
                 </div>
               </div>
+              <Gauge label={rankLabel} />
             </div>
-          </section>
 
-          {/* table area: #141414 */}
-          <section className="bg-[#141414] pb-16 pt-10">
-            <div className="mx-auto max-w-[1280px] px-6 sm:px-10">
-              {results.length === 0 ? (
-                <div className="rounded-[20px] border border-dashed border-white/20 p-12 text-center">
-                  <p className={`${inter} text-[22px] font-semibold text-white`}>No matches for this rank</p>
-                  <p className={`${inter} mt-2 text-[15px] text-white/60`}>Try a different rank, category or seat pool.</p>
-                </div>
-              ) : (
-                <div className="overflow-hidden rounded-[20px] bg-[#FEFEFE]">
-                  <div className="overflow-x-auto">
-                    <table className="w-full min-w-[980px] border-collapse">
-                      <thead>
-                        <tr className="border-b border-[#DDDDDD]">
-                          <th className={th}>Institute</th>
-                          <th className={th}>Program</th>
-                          <th className={`${th} text-right`}>Opening Rank</th>
-                          <th className={`${th} text-right`}>Closing Rank</th>
-                          <th className={`${th} text-center`}>Quota</th>
-                          <th className={th} />
+            {/* ---- dark results table ---- */}
+            {results.length === 0 ? (
+              <div className="mt-9 rounded-[15px] border border-dashed border-white/20 p-12 text-center">
+                <p className="text-[22px] font-semibold text-white">No matches for this rank</p>
+                <p className="mt-2 text-[15px] text-white/60">Try a different rank, category or seat pool.</p>
+              </div>
+            ) : (
+              <div className="mt-9 overflow-hidden rounded-[15px] border-[0.5px] border-[#00cfe5] bg-black">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[980px] border-collapse">
+                    <thead>
+                      <tr>
+                        <th className={thd}>Institute</th>
+                        <th className={thd}>Program</th>
+                        <th className={`${thd} text-right`}>Opening Rank</th>
+                        <th className={`${thd} text-right`}>Closing Rank</th>
+                        <th className={`${thd} text-center`}>Quota</th>
+                        <th className={thd} />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {results.flatMap((g) => g.rows.map((r, i) => (
+                        <tr key={`${g.institute}-${i}`} className="transition hover:bg-white/[0.03]">
+                          <td className={`${tdd} bg-[#0a0a0a] font-semibold text-white`}>{i === 0 ? g.institute : ""}</td>
+                          <td className={`${tdd} min-w-[320px]`}>{r.program_name}</td>
+                          <td className={`${tdd} text-right tabular-nums`}>{r.opening_rank}</td>
+                          <td className={`${tdd} text-right font-bold tabular-nums text-white`}>{r.closing_rank}</td>
+                          <td className={`${tdd} text-center`}>
+                            <span className="inline-block rounded-full border border-[#7629fc]/50 bg-[#7629fc]/[0.18] px-2.5 py-1 text-[12px] font-bold text-[#b79cff]">{r.sub_category}</span>
+                          </td>
+                          <td className={`${tdd} text-right`}>
+                            <button onClick={() => openRounds(g, r)} className="whitespace-nowrap bg-gradient-to-r from-[#00cfe5] to-[#c200db] bg-clip-text text-[16px] tracking-[-0.04em] text-transparent transition hover:opacity-80 lg:text-[19px]">Round wise details</button>
+                          </td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {results.flatMap((g) => g.rows.map((r, i) => (
-                          <tr key={`${g.institute}-${i}`} className="border-b border-[#DDDDDD] last:border-b-0 hover:bg-[#FAF8FF]">
-                            <td className={`${td} font-semibold text-[#1a1a1a]`}>{i === 0 ? g.institute : ""}</td>
-                            <td className={`${td} min-w-[320px]`}>{r.program_name}</td>
-                            <td className={`${td} text-right tabular-nums`}>{r.opening_rank}</td>
-                            <td className={`${td} text-right font-bold tabular-nums`}>{r.closing_rank}</td>
-                            <td className={`${td} text-center`}>
-                              <span className="rounded-full bg-[#F2F2F2] px-2.5 py-1 text-[11px] font-bold text-[#7629FC]">{r.sub_category}</span>
-                            </td>
-                            <td className={`${td} text-right`}>
-                              <button onClick={() => openRounds(g, r)} className={`${inter} whitespace-nowrap rounded-md px-4 py-2 text-[15px] font-normal tracking-[-0.04em] text-white transition hover:opacity-95 lg:text-[17px]`} style={{ background: SUBMIT_GRAD }}>Round wise details</button>
-                            </td>
-                          </tr>
-                        )))}
-                      </tbody>
-                    </table>
-                  </div>
+                      )))}
+                    </tbody>
+                  </table>
                 </div>
-              )}
-
-              <div className="mt-8 overflow-hidden rounded-[20px] p-7 text-center" style={{ background: SUBMIT_GRAD }}>
-                <p className={`${inter} text-[22px] font-extrabold tracking-[-0.03em] text-white`}>Marks don&apos;t get you jobs. Skills do.</p>
-                <p className={`${inter} mt-1.5 text-[15px] font-light text-white/85`}>Start coding from day one with Vedam&apos;s 4-year CS &amp; AI program. Up to 100% scholarships.</p>
-                <a href="/apply" className={`${inter} mt-5 inline-block rounded-md bg-white px-6 py-2.5 text-[15px] font-bold text-[#7629FC]`}>Apply via VSAT</a>
               </div>
-            </div>
-          </section>
+            )}
+          </div>
         </div>
       )}
 
