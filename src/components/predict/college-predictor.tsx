@@ -54,22 +54,22 @@ const HERO_GLOWS: { cls: string; st: React.CSSProperties }[] = [
   {
     cls: "cp-g1",
     st: {
-      left: -720, top: 224, width: 1440, height: 1400,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(88,84,196) 0%, rgb(67,66,150) 17%, rgb(51,55,120) 29%, rgb(31,39,78) 43%, rgb(19,29,53) 51%, rgb(7,17,26) 63%, rgba(0,0,0,0) 75%)",
+      left: -780, top: 330, width: 1680, height: 1460,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(96,92,214) 0%, rgb(78,78,172) 20%, rgb(57,61,132) 34%, rgb(34,43,86) 48%, rgb(18,28,51) 58%, rgb(7,16,26) 68%, rgba(0,0,0,0) 78%)",
     },
   },
   {
     cls: "cp-g2",
     st: {
-      left: 1530, top: -686, width: 960, height: 1560,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(78,92,190) 0%, rgb(60,72,148) 15%, rgb(40,52,103) 30%, rgb(26,41,72) 45%, rgb(14,29,47) 60%, rgb(4,14,22) 75%, rgba(0,0,0,0) 88%)",
+      left: 1500, top: -640, width: 1020, height: 1620,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(84,98,200) 0%, rgb(64,78,158) 16%, rgb(42,56,111) 32%, rgb(27,43,76) 47%, rgb(14,30,49) 62%, rgb(4,14,22) 77%, rgba(0,0,0,0) 90%)",
     },
   },
   {
     cls: "cp-g3",
     st: {
       left: 1010, top: -196, width: 280, height: 840,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(5,14,22) 0%, rgb(2,8,11) 48%, rgba(0,0,0,0) 80%)",
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(6,16,25) 0%, rgb(3,10,14) 48%, rgba(0,0,0,0) 80%)",
     },
   },
 ];
@@ -224,9 +224,9 @@ export function CollegePredictor() {
     <>
       {!results ? (
         /* ================= FORM PAGE (Figma frame 1) ================= */
-        <div className={`cp-hero relative isolate overflow-hidden bg-black ${inter} lg:h-[calc(100dvh-76px)]`}>
+        <div className={`cp-hero relative isolate overflow-hidden bg-black ${inter} lg:min-h-[calc(100dvh-76px)]`}>
           <HeroGlows />
-          <div className="relative flex flex-col gap-10 px-6 pb-14 pt-8 lg:h-full lg:flex-row lg:items-start lg:gap-10 lg:px-0 lg:pb-0 lg:pl-[clamp(32px,6.25vw,120px)] lg:pr-[clamp(32px,8.7vw,167px)] lg:pt-[calc(40*var(--u))]">
+          <div className="relative flex flex-col gap-10 px-6 pb-14 pt-8 lg:h-full lg:flex-row lg:items-start lg:gap-10 lg:px-0 lg:pb-14 lg:pl-[clamp(32px,6.25vw,120px)] lg:pr-[clamp(32px,8.7vw,167px)] lg:pt-[calc(40*var(--u))]">
             {/* ---- left: hero ---- */}
             <div className="lg:flex-1" style={{ paddingTop: u(39) }}>
               <p className="font-light text-white" style={{ fontSize: u(20), lineHeight: 1, letterSpacing: "-0.012em" }}>Most Accurate</p>

@@ -164,8 +164,9 @@ body::after {
    --u drives the hero column, --v the white form card. */
 .cp-hero { --u: 0.62px; --v: 0.88px; }
 @media (min-width: 1024px) {
-  /* 132px = sticky header (76) + the breathing room kept above the footer (56) */
-  .cp-hero { --u: clamp(0.62px, calc((100dvh - 132px) / 806), 1px); --v: var(--u); }
+  /* Shrink the frame to the viewport so the whole hero + a gap above the footer
+     fit one screen; caps at 1px (design size) on tall screens, never larger. */
+  .cp-hero { --u: clamp(0.58px, calc((100dvh - 170px) / 835), 1px); --v: var(--u); }
 }
 /* Slow, cloud-like drift for the background glows — long, unequal cycles so the
    three never line up, and nothing moves for reduced-motion users. */
