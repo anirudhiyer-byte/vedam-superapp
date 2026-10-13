@@ -68,7 +68,7 @@ export async function GET(req: Request) {
       if (claimErr) continue;
       if ((j.channel || "whatsapp") === "email") {
         const { data: tpl } = await sb.from("email_templates").select("subject, message, template_style, image, buttons").eq("id", br.template_ref).maybeSingle();
-        if (tpl) { const html = renderEmailTemplateHtml(tpl as EmailTpl, { name: r.name }); await sendEmailServer(r.email as string, (tpl as { subject?: string }).subject || "Vedam", html); }
+        if (tpl) { const html = renderEmailTemplateHtml(tpl as EmailTpl, { name: r.name }); await sendEmailServer(r.email as string, (tpl as { subject?: string }).subject || "Vedam", html, { kind: "comms_journey", userId: r.id as string, refId: j.id as string, refName: (j as { name?: string }).name ?? null }); }
       } else {
         const res = await waSendSingle({ to: r.phone as string, templateId: br.template_ref, messageType: br.message_type || "media", sample: sampleFor(br.variable_mapping, r) });
         const d = (res.data as { results?: { transaction_id?: string; cost?: number }[] })?.results?.[0];
