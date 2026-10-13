@@ -37,7 +37,7 @@ export function EventsList() {
   useEffect(() => {
     let active = true;
     (async () => {
-      const { data } = await supabase.from("events").select("*").neq("status", "draft").order("starts_at", { ascending: true });
+      const { data } = await supabase.from("events").select("*").neq("status", "draft").neq("visibility", "private").order("starts_at", { ascending: true });
       if (active && data) setEvents(data as EventRow[]);
       const { data: u } = await supabase.auth.getUser();
       if (u.user) {

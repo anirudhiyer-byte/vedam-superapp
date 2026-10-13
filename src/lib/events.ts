@@ -56,6 +56,7 @@ export type EventRow = {
   ribbon_label: string | null;
   ribbon_value: string | null;
   status: string;
+  visibility: string | null;
   registration_schema: EventField[] | null;
   listing_extra: EventField[] | null;
   points_config: PointsConfig | null;
