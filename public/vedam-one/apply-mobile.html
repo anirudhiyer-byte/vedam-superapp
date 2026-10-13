@@ -53,7 +53,7 @@ img{display:block}
 /* form */
 .fwrap{position:relative;width:100%}
 .formcard{background:var(--panel);border-radius:9.24px;padding:10px;display:flex;flex-direction:column;align-items:center;margin:0;backdrop-filter:blur(8px)}
-.pill{position:absolute;top:-16px;right:50px;z-index:2;background:#fa7c02;border:1px solid rgba(249,125,3,.55);border-radius:100px;box-shadow:0 4px 12px rgba(250,124,2,.4);color:#fff;font-size:12px;font-weight:600;line-height:1.35;padding:7px 14px 7px 13px;white-space:nowrap}
+.pill{position:absolute;top:-16px;left:50%;transform:translateX(-50%);z-index:2;background:#fa7c02;border:1px solid rgba(249,125,3,.55);border-radius:100px;box-shadow:0 4px 12px rgba(250,124,2,.4);color:#fff;font-size:12px;font-weight:600;line-height:1.35;padding:7px 14px 7px 13px;white-space:nowrap}
 .fhead{text-align:center;padding:12.3px 0 9.9px;display:flex;flex-direction:column;gap:2.5px;line-height:1.35;width:100%}
 .fhead[hidden]{display:none}
 .fhead h2{font-size:20px;font-weight:700;line-height:1.35}
@@ -185,9 +185,9 @@ img{display:block}
 .news h2{font-size:20px;font-weight:700;line-height:1.2;letter-spacing:-.4px}
 .news .rail{gap:9.5px;margin:11.4px -20px 0;padding:0 0 0 20px}
 .news .rail::after{content:"";flex:0 0 10.5px}
-.news .n{flex:none;width:172px;height:172px;border-radius:6.4px;overflow:hidden;background:#fff;border:1px solid #eee;scroll-snap-align:start}
-.news .n img{width:100%;height:100%;object-fit:cover;object-position:top}
-.foot{height:24px}
+.news .n{flex:none;width:clamp(140px,44.1vw,230px);aspect-ratio:1/1;border-radius:6.4px;overflow:hidden;background:#fff;border:1px solid #eee;scroll-snap-align:start}
+.news .n img{width:100%;height:100%;object-fit:contain;object-position:top;display:block}
+.foot{height:calc(clamp(32px,9vw,56px) + env(safe-area-inset-bottom,0px))}
 </style>
 </head>
 <body>
@@ -372,13 +372,14 @@ applyImages();
     return IMG[k]?'<div class="n"><img src="'+IMG[k]+'" alt=""></div>':"";
   }).join("");
   /* arrows wrap around, same as the desktop headlines rail */
-  var rail=document.getElementById("newsRail"), STEP=181.5;
+  var rail=document.getElementById("newsRail");
+  function step(){var c=rail.querySelector(".n"); return c?c.getBoundingClientRect().width+9.5:181.5;}
   function atEnd(){return rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2;}
   document.getElementById("newsPrev").addEventListener("click",function(){
-    if(rail.scrollLeft<=2) rail.scrollTo({left:rail.scrollWidth,behavior:"smooth"}); else rail.scrollBy({left:-STEP,behavior:"smooth"});
+    if(rail.scrollLeft<=2) rail.scrollTo({left:rail.scrollWidth,behavior:"smooth"}); else rail.scrollBy({left:-step(),behavior:"smooth"});
   });
   document.getElementById("newsNext").addEventListener("click",function(){
-    if(atEnd()) rail.scrollTo({left:0,behavior:"smooth"}); else rail.scrollBy({left:STEP,behavior:"smooth"});
+    if(atEnd()) rail.scrollTo({left:0,behavior:"smooth"}); else rail.scrollBy({left:step(),behavior:"smooth"});
   });
 })();
 
