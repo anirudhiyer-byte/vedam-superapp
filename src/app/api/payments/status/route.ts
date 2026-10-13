@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { confirmPayment } from "@/lib/payments/confirm";
+import { safeBaseUrl } from "@/lib/payments/base-url";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -28,7 +29,7 @@ export async function GET(req: Request) {
   const p = pr as { user_id: string; status: string; event_id: string } | null;
   if (!p || p.user_id !== u.user.id) return Response.json({ ok: false, error: "not found" }, { status: 404 });
 
-  const res = await confirmPayment(svc, orderId);
+  const res = await confirmPayment(svc, orderId, safeBaseUrl(req));
   const paid = res.ok && (res.status === "paid" || res.status === "already_paid");
   return Response.json({ ok: true, paid, status: res.status });
 }

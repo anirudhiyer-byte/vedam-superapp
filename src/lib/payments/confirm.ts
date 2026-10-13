@@ -18,7 +18,8 @@ type Payment = {
  * so it passes the paid-event guardrail), awards points, sends the confirmation + a
  * separate payment receipt email. Safe to call many times for the same order.
  */
-export async function confirmPayment(svc: SupabaseClient, cfOrderId: string): Promise<{ ok: boolean; status: string; error?: string }> {
+export async function confirmPayment(svc: SupabaseClient, cfOrderId: string, baseUrl?: string): Promise<{ ok: boolean; status: string; error?: string }> {
+  const SITE = (baseUrl || process.env.NEXT_PUBLIC_SITE_URL || "https://one.vedam.org").replace(/\/+$/, "");
   const { data: pRow } = await svc.from("event_payments").select("*").eq("cf_order_id", cfOrderId).maybeSingle();
   const p = pRow as Payment | null;
   if (!p) return { ok: false, status: "not_found", error: "payment row not found" };
@@ -100,6 +101,7 @@ export async function confirmPayment(svc: SupabaseClient, cfOrderId: string): Pr
       zoomId: (ev.zoom_id as string) || undefined, zoomPw: (ev.zoom_passcode as string) || undefined,
       venue: (ev.venue as string) || undefined, mapLink: (ev.map_link as string) || undefined,
       schedule: (ev.schedule as IcsEvent["schedule"]) || null, whatsapp: (ev.whatsapp_community_url as string) || undefined,
+      eventUrl: ev.event_code ? `${SITE}/events/${ev.event_code as string}` : undefined,
     };
     const senderAddr = process.env.SMTP2GO_SENDER || process.env.SENDER_EMAIL || "connect@vedamcoms.org";
     try {

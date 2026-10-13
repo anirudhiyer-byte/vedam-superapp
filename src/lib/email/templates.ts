@@ -12,6 +12,7 @@ export type IcsEvent = {
   platform?: string; join?: string; host?: string; blurb?: string; whatsapp?: string;
   zoomId?: string; zoomPw?: string; venue?: string; mapLink?: string;
   schedule?: { date?: string; slots?: { start?: string; end?: string }[] }[] | null;
+  eventUrl?: string;   // the bootcamp page on the Vedam webapp — always a valid way to join
 };
 
 const fmtICSDate = (ms: number) => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
@@ -103,8 +104,16 @@ export function confirmationHtml(ev: IcsEvent, name?: string, email?: string): s
   const attendanceNote = !isOff ? `<tr><td style="padding:16px 34px 2px"><div style="background:linear-gradient(120deg,#f3eaff,#fdeede);border:1.5px solid #c9a9f0;border-radius:12px;padding:13px 16px;font:400 13.5px/1.55 Arial,sans-serif;color:#3a1c6e">&#9888;&#65039;&nbsp; <b style="color:#2B135C">Important:</b> Join Zoom with this same email${email ? ` (<span style="color:#8A18FF">${email}</span>)` : ""} — attendance is tracked by it. A different account won't count.</div></td></tr>` : "";
   const ctaHref = isOff ? (ev.mapLink || "") : (ev.join || "");
   const ctaLabel = isOff ? "Get directions" : "Join the session";
+  const dash = ev.eventUrl || "";
   const cta = ctaHref ? `<tr><td align="center" style="padding:24px 34px 6px"><a href="${ctaHref}" style="display:inline-block;background:#8A18FF;color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:12px 28px;border-radius:11px">${ctaLabel}</a></td></tr>` : "";
-  const zoomNote = (!isOff && !ev.join) ? `<tr><td style="padding:14px 34px 2px"><div style="background:#fff6ec;border:1px solid #ffe0c2;border-radius:11px;padding:13px 16px;font:400 13px/1.5 Arial,sans-serif;color:#7a5a2a">&#128231;&nbsp; Your personal joining link is in a <b>separate email from Zoom</b> &mdash; please check your inbox (and spam) closer to the session.</div></td></tr>` : "";
+  // online + we have the personal join link: offer the dashboard as an "always works" backup
+  const alsoDash = (!isOff && ev.join && dash) ? `<tr><td align="center" style="padding:9px 34px 2px"><a href="${dash}" style="font:700 13px Arial,sans-serif;color:#8A18FF;text-decoration:none">Or join anytime from your Vedam dashboard &rarr;</a></td></tr>` : "";
+  // online + no personal link yet: point them to the bootcamp page (never "wait for a Zoom email")
+  const zoomNote = (!isOff && !ev.join) ? (
+    dash
+      ? `<tr><td align="center" style="padding:20px 34px 6px"><a href="${dash}" style="display:inline-block;background:#8A18FF;color:#fff;text-decoration:none;font:800 15px Arial,sans-serif;padding:12px 28px;border-radius:11px">Join from your Vedam dashboard</a><div style="font:400 12.5px/1.55 Arial,sans-serif;color:#7a7790;margin-top:10px">Open the bootcamp page anytime to join live &mdash; your personal join link appears right there once the session starts. No need to wait for a separate email.</div></td></tr>`
+      : `<tr><td style="padding:14px 34px 2px"><div style="background:#fff6ec;border:1px solid #ffe0c2;border-radius:11px;padding:13px 16px;font:400 13px/1.5 Arial,sans-serif;color:#7a5a2a">&#128187;&nbsp; Join live from your <b>Vedam dashboard</b> &mdash; open the bootcamp page when the session starts and the join link will be right there.</div></td></tr>`
+  ) : "";
   const wa = ev.whatsapp ? `<tr><td align="center" style="padding:14px 34px 2px"><a href="${ev.whatsapp}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;font:700 14px Arial,sans-serif;padding:11px 24px;border-radius:11px">Join the WhatsApp community</a></td></tr>` : "";
 
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f1f9;margin:0;padding:26px 12px"><tr><td align="center">
@@ -120,6 +129,7 @@ export function confirmationHtml(ev: IcsEvent, name?: string, email?: string): s
     </td></tr>
     ${attendanceNote}
     ${cta}
+    ${alsoDash}
     ${zoomNote}
     ${wa}
     <tr><td align="center" style="padding:16px 34px 0"><p style="font:400 13px Arial,sans-serif;color:#9a97ab;margin:0">&#128206; A calendar invite is attached.</p></td></tr>

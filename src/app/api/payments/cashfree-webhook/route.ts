@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { verifyWebhookSignature } from "@/lib/payments/cashfree";
 import { confirmPayment } from "@/lib/payments/confirm";
+import { safeBaseUrl } from "@/lib/payments/base-url";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,7 +39,7 @@ export async function POST(req: Request) {
     // we only act on payment-related events; confirmPayment itself re-verifies status
     if (orderId && /PAYMENT/i.test(String(payload.type || ""))) {
       const svc = createClient(url, svcKey);
-      await confirmPayment(svc, orderId);
+      await confirmPayment(svc, orderId, safeBaseUrl(req));
     }
   } catch { /* never 500 a webhook — Cashfree would retry; our confirm is idempotent anyway */ }
 
