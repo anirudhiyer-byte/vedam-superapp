@@ -13,7 +13,9 @@ export function Footer() {
   const pathname = usePathname();
   if (pathname === "/") return null;
   return (
-    <footer className="flex flex-row flex-wrap gap-8 border-t border-white/10 px-6 py-12 font-[family-name:var(--font-inter)] text-white sm:gap-32 sm:px-16 sm:py-14" style={{ background: "#000000" }}>
+    /* Same markup, spacing and surface as the landing-page footer, so every
+       route in the shell ends on an identical footer. */
+    <footer className="flex flex-row flex-wrap gap-8 border-t border-white/10 px-6 py-12 font-[family-name:var(--font-inter)] text-white sm:gap-32 sm:px-16 sm:py-14" style={{ background: "#0b0318" }}>
       <div>
         <h4 className="mb-2.5 text-base font-semibold sm:text-xl">Quick Links</h4>
         <Link href="/privacy" className="block text-[15px] font-medium leading-[30px] text-white/80 hover:text-white">Privacy Policy</Link>
