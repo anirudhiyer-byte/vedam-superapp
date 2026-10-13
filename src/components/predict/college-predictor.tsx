@@ -187,7 +187,9 @@ export function CollegePredictor() {
   }
 
   function share() {
-    const url = "https://one.vedam.org/predict";
+    // UTM-tagged link so shares from here are attributable in analytics.
+    const utm = new URLSearchParams({ utm_source: "College Predictor", utm_medium: "WhatsApp", utm_campaign: "CP Results" });
+    const url = `https://one.vedam.org/predict?${utm.toString()}`;
     const text = `🎓 Predict your JEE Main 2026 college & branch for FREE with Vedam's College Predictor — ${url}`;
     try { navigator.clipboard.writeText(url); } catch { /* */ }
     log("share_whatsapp");
