@@ -46,20 +46,39 @@ function Glows() {
 const u = (n: number) => `calc(${n} * var(--u))`;
 const v = (n: number) => `calc(${n} * var(--v))`;
 
-/** Background glows, matched to the design frame (position / size / colour). */
-const HERO_GLOWS: React.CSSProperties[] = [
-  { left: -620, top: 300, width: 1240, height: 1400, background: "radial-gradient(50% 50% at 50% 50%, rgb(85,86,196) 0%, rgba(85,86,196,0) 73%)" },
-  { left: -240, top: 490, width: 1040, height: 1040, background: "radial-gradient(50% 50% at 50% 50%, rgb(6,28,45) 0%, rgba(6,28,45,0) 73%)" },
-  { left: 1530, top: -430, width: 960, height: 1240, background: "radial-gradient(50% 50% at 50% 50%, rgb(79,95,196) 0%, rgba(79,95,196,0) 73%)" },
-  { left: 1680, top: 380, width: 600, height: 480, background: "radial-gradient(50% 50% at 50% 50%, rgb(10,38,56) 0%, rgba(10,38,56,0) 73%)" },
-  { left: 1010, top: -120, width: 280, height: 840, background: "radial-gradient(50% 50% at 50% 50%, rgb(8,20,33) 0%, rgba(8,20,33,0) 73%)" },
+/* Background glows, matched to the design frame. Every stop is sampled off the
+   frame, so the layers stack with plain compositing — no mix-blend-mode, which
+   silently drops out on some GPUs and left the page flat black. Tops are in
+   section space (design y − 76px of sticky header). */
+const HERO_GLOWS: { cls: string; st: React.CSSProperties }[] = [
+  {
+    cls: "cp-g1",
+    st: {
+      left: -720, top: 224, width: 1440, height: 1400,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(88,84,196) 0%, rgb(67,66,150) 17%, rgb(51,55,120) 29%, rgb(31,39,78) 43%, rgb(19,29,53) 51%, rgb(7,17,26) 63%, rgba(0,0,0,0) 75%)",
+    },
+  },
+  {
+    cls: "cp-g2",
+    st: {
+      left: 1530, top: -686, width: 960, height: 1560,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(78,92,190) 0%, rgb(60,72,148) 15%, rgb(40,52,103) 30%, rgb(26,41,72) 45%, rgb(14,29,47) 60%, rgb(4,14,22) 75%, rgba(0,0,0,0) 88%)",
+    },
+  },
+  {
+    cls: "cp-g3",
+    st: {
+      left: 1010, top: -196, width: 280, height: 840,
+      background: "radial-gradient(50% 50% at 50% 50%, rgb(5,14,22) 0%, rgb(2,8,11) 48%, rgba(0,0,0,0) 80%)",
+    },
+  },
 ];
 
 function HeroGlows() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="absolute left-1/2 top-0 h-full w-[1920px] -translate-x-1/2">
-        {HERO_GLOWS.map((g, i) => <div key={i} className="absolute" style={{ ...g, filter: "blur(40px)", mixBlendMode: "screen" }} />)}
+        {HERO_GLOWS.map((g) => <div key={g.cls} className={`absolute ${g.cls}`} style={{ ...g.st, filter: "blur(40px)" }} />)}
       </div>
     </div>
   );
@@ -207,7 +226,7 @@ export function CollegePredictor() {
         /* ================= FORM PAGE (Figma frame 1) ================= */
         <div className={`cp-hero relative isolate overflow-hidden bg-black ${inter} lg:h-[calc(100dvh-76px)]`}>
           <HeroGlows />
-          <div className="relative flex flex-col gap-10 px-6 pb-14 pt-8 lg:h-full lg:flex-row lg:items-start lg:gap-10 lg:px-0 lg:pb-0 lg:pl-[clamp(32px,6.25vw,120px)] lg:pr-[clamp(32px,8.7vw,167px)] lg:pt-[calc(44*var(--u))]">
+          <div className="relative flex flex-col gap-10 px-6 pb-14 pt-8 lg:h-full lg:flex-row lg:items-start lg:gap-10 lg:px-0 lg:pb-0 lg:pl-[clamp(32px,6.25vw,120px)] lg:pr-[clamp(32px,8.7vw,167px)] lg:pt-[calc(40*var(--u))]">
             {/* ---- left: hero ---- */}
             <div className="lg:flex-1" style={{ paddingTop: u(39) }}>
               <p className="font-light text-white" style={{ fontSize: u(20), lineHeight: 1, letterSpacing: "-0.012em" }}>Most Accurate</p>
@@ -251,11 +270,11 @@ export function CollegePredictor() {
               <div style={{ marginTop: v(35) }}>
                 <div className="flex items-end justify-between" style={{ gap: v(12), marginBottom: v(10) }}>
                   <label className={labelCls} style={{ ...labelSt, marginBottom: 0 }}>{f.mode === "rank" ? "JEE Main Rank" : "JEE Main Marks (0–300)"}</label>
-                  <div className="inline-flex shrink-0 rounded-full bg-[#F2F2F2]" style={{ padding: v(3) }}>
+                  <div className="inline-flex shrink-0 rounded-full bg-[#F2F2F2]" style={{ padding: v(4) }}>
                     {(["rank", "marks"] as const).map((m) => (
                       <button key={m} onClick={() => set({ mode: m })}
-                        className={["rounded-full font-bold capitalize transition", f.mode === m ? "text-white" : "text-[#8a8a8a]"].join(" ")}
-                        style={{ padding: `${v(3)} ${v(11)}`, fontSize: v(12), ...(f.mode === m ? { background: SUBMIT_GRAD } : {}) }}>{m}</button>
+                        className={["rounded-full font-bold capitalize transition", f.mode === m ? "text-white" : "text-[#8a8a8a] hover:text-[#5a5a5a]"].join(" ")}
+                        style={{ padding: `${v(6)} ${v(16)}`, fontSize: v(14), ...(f.mode === m ? { background: SUBMIT_GRAD } : {}) }}>{m}</button>
                     ))}
                   </div>
                 </div>

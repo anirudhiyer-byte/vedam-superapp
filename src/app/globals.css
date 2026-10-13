@@ -164,8 +164,18 @@ body::after {
    --u drives the hero column, --v the white form card. */
 .cp-hero { --u: 0.62px; --v: 0.88px; }
 @media (min-width: 1024px) {
-  .cp-hero { --u: clamp(0.62px, calc((100dvh - 76px) / 845), 1px); --v: var(--u); }
+  /* 132px = sticky header (76) + the breathing room kept above the footer (56) */
+  .cp-hero { --u: clamp(0.62px, calc((100dvh - 132px) / 806), 1px); --v: var(--u); }
 }
+/* Slow, cloud-like drift for the background glows — long, unequal cycles so the
+   three never line up, and nothing moves for reduced-motion users. */
+@keyframes cp-drift-a { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(70px, -48px, 0) scale(1.06); } }
+@keyframes cp-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-58px, 56px, 0) scale(1.07); } }
+@keyframes cp-drift-c { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(26px, 34px, 0) scale(1.05); } }
+.cp-g1 { animation: cp-drift-a 52s ease-in-out infinite; will-change: transform; }
+.cp-g2 { animation: cp-drift-b 68s ease-in-out infinite; will-change: transform; }
+.cp-g3 { animation: cp-drift-c 44s ease-in-out infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .cp-g1, .cp-g2, .cp-g3 { animation: none; } }
 
 /* College Predictor title — sweeping white-light highlight.
    Block + fit-content keeps the eyebrow above the title AND makes the
