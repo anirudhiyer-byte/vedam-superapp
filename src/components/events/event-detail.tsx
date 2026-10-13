@@ -24,6 +24,10 @@ export function EventDetail({ code }: { code: string }) {
   const [regInfo, setRegInfo] = useState<{ id: string; joined: boolean; github: string | null; linkedinPart: string | null; linkedinPodium: string | null; isWinner: boolean } | null>(null);
   const [loading, setLoading] = useState(true);
   const [showRec, setShowRec] = useState(false);
+  const payReturn = searchParams.get("pay") === "return";
+  const payOrder = searchParams.get("order");
+  const [payState, setPayState] = useState<"confirming" | "paid" | "failed" | null>(null);
+  const [receiptHref, setReceiptHref] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -51,6 +55,34 @@ export function EventDetail({ code }: { code: string }) {
     })();
     return () => { active = false; };
   }, [supabase, code]);
+
+  // Payment return: re-verify the order server-side (idempotent confirm) and reflect state.
+  useEffect(() => {
+    if (!payReturn || !payOrder) return;
+    let active = true; let tries = 0;
+    setPayState("confirming");
+    const tick = async () => {
+      const { data: s } = await supabase.auth.getSession();
+      const token = s.session?.access_token;
+      if (!token) { if (active) setPayState("failed"); return; }
+      try {
+        const r = await fetch(`/api/payments/status?order=${encodeURIComponent(payOrder)}&token=${encodeURIComponent(token)}`);
+        const j = await r.json();
+        if (!active) return;
+        if (j.paid) {
+          setPayState("paid"); setRegistered(true);
+          setReceiptHref(`/api/payments/receipt?order=${encodeURIComponent(payOrder)}&token=${encodeURIComponent(token)}`);
+          return;
+        }
+        if (["failed", "amount_mismatch", "EXPIRED", "TERMINATED"].includes(String(j.status))) { setPayState("failed"); return; }
+      } catch { /* keep polling */ }
+      tries++;
+      if (active && tries < 8) setTimeout(tick, 2000);
+      // else: leave as "confirming" — webhook will finalise; receipt is emailed either way
+    };
+    tick();
+    return () => { active = false; };
+  }, [payReturn, payOrder, supabase]);
 
   const embedRecording = (url: string | null): string | null => {
     if (!url) return null;
@@ -155,6 +187,21 @@ export function EventDetail({ code }: { code: string }) {
         {/* right: sticky register card */}
         <div id="register-card" className="lg:sticky lg:top-20 scroll-mt-24">
           <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-xl shadow-[0_20px_50px_-24px_rgba(0,0,0,0.7)]"><span aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(130deg, rgba(255,255,255,0.14), transparent 32%)" }} />
+            {payState && (
+              <div className={["relative mb-4 rounded-xl border px-4 py-3 font-body text-sm",
+                payState === "paid" ? "border-[#34c759]/40 bg-[#34c759]/10 text-white"
+                : payState === "failed" ? "border-[#ff5a5a]/40 bg-[#ff5a5a]/10 text-white"
+                : "border-white/20 bg-white/[0.06] text-white/80"].join(" ")}>
+                {payState === "confirming" && <>⏳ Confirming your payment… <span className="text-white/50">this takes a few seconds. Your receipt will be emailed.</span></>}
+                {payState === "failed" && <>Payment wasn&apos;t completed — you have <b>not</b> been charged or registered. You can try again below.</>}
+                {payState === "paid" && (
+                  <div className="flex flex-col gap-2">
+                    <span>✓ Payment successful — you&apos;re registered!</span>
+                    {receiptHref && <a href={receiptHref} target="_blank" rel="noreferrer" className="font-semibold text-[#8fe9f5] underline">⬇ Download receipt</a>}
+                  </div>
+                )}
+              </div>
+            )}
             {registered ? (
               <div>
                 <div className="relative flex items-center gap-2 rounded-xl border border-[#34c759]/40 bg-[#34c759]/10 px-4 py-3 font-display font-semibold text-white">🎉 You&apos;re registered</div>
@@ -218,9 +265,9 @@ export function EventDetail({ code }: { code: string }) {
           <div className="h-24 lg:hidden" />
           <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0b0618]/95 px-4 pt-3 backdrop-blur-md lg:hidden" style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom,0px))" }}>
             {!userId ? (
-              <Link href={`/register?next=${encodeURIComponent(`/events/${event.event_code}?register=1`)}`} className="flex w-full items-center justify-center rounded-xl px-6 py-3.5 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.5), rgba(123,92,255,0.7) 55%, rgba(194,0,219,0.6))" }}>Register now — free</Link>
+              <Link href={`/register?next=${encodeURIComponent(`/events/${event.event_code}?register=1`)}`} className="flex w-full items-center justify-center rounded-xl px-6 py-3.5 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.5), rgba(123,92,255,0.7) 55%, rgba(194,0,219,0.6))" }}>{event.is_paid && Number(event.price_amount) > 0 ? `Register — ₹${Number(event.price_amount)}` : "Register now — free"}</Link>
             ) : (
-              <button onClick={() => document.getElementById("register-card")?.scrollIntoView({ behavior: "smooth", block: "center" })} className="flex w-full items-center justify-center rounded-xl px-6 py-3.5 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.5), rgba(123,92,255,0.7) 55%, rgba(194,0,219,0.6))" }}>Register now — free</button>
+              <button onClick={() => document.getElementById("register-card")?.scrollIntoView({ behavior: "smooth", block: "center" })} className="flex w-full items-center justify-center rounded-xl px-6 py-3.5 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white active:scale-[0.98]" style={{ background: "linear-gradient(96deg, rgba(53,232,251,0.5), rgba(123,92,255,0.7) 55%, rgba(194,0,219,0.6))" }}>{event.is_paid && Number(event.price_amount) > 0 ? `Register — ₹${Number(event.price_amount)}` : "Register now — free"}</button>
             )}
           </div>
         </>
