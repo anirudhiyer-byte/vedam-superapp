@@ -73,6 +73,10 @@ function Tick() {
 /** Dark gauge card (results page) — thick blue→violet speedometer arc with a
     grey track, vertical tick groups flanking the rank, as in the Figma design. */
 function Gauge({ label }: { label: string | number | undefined }) {
+  // Keep the rank clear of the flanking ticks: inner ticks sit at x=96 / x=204
+  // (108px gap). Any unusually long label auto-condenses to fit that gap.
+  const s = String(label ?? "");
+  const long = s.replace(/\s/g, "").length > 4;
   return (
     <div className="w-full flex-none rounded-[20px] border-[0.5px] border-[#7629fc] bg-[#101010] px-4 pb-4 pt-5 text-center lg:w-[360px]">
       <h3 className="font-[family-name:var(--font-inter)] text-[16px] font-medium tracking-[-0.04em] text-white sm:text-[17px]">Predicted College on your Rank</h3>
@@ -81,10 +85,10 @@ function Gauge({ label }: { label: string | number | undefined }) {
         <path d="M50 122 A100 100 0 0 1 250 122" fill="none" stroke="#2A2A2A" strokeWidth="20" strokeLinecap="round" />
         <path d="M50 122 A100 100 0 0 1 188.8 27.6" fill="none" stroke="url(#cp-gauge)" strokeWidth="20" strokeLinecap="round" />
         <g stroke="#6a6a6a" strokeWidth="2.4" strokeLinecap="round">
-          <line x1="92" y1="120" x2="92" y2="140" /><line x1="102" y1="123" x2="102" y2="139" /><line x1="112" y1="126" x2="112" y2="138" /><line x1="122" y1="128" x2="122" y2="138" />
-          <line x1="208" y1="120" x2="208" y2="140" /><line x1="198" y1="123" x2="198" y2="139" /><line x1="188" y1="126" x2="188" y2="138" /><line x1="178" y1="128" x2="178" y2="138" />
+          <line x1="64" y1="120" x2="64" y2="140" /><line x1="76" y1="123" x2="76" y2="139" /><line x1="86" y1="126" x2="86" y2="138" /><line x1="96" y1="128" x2="96" y2="138" />
+          <line x1="236" y1="120" x2="236" y2="140" /><line x1="224" y1="123" x2="224" y2="139" /><line x1="214" y1="126" x2="214" y2="138" /><line x1="204" y1="128" x2="204" y2="138" />
         </g>
-        <text x="150" y="139" textAnchor="middle" fill="#fff" fontFamily="var(--font-inter), sans-serif" fontWeight="700" fontSize="27">{label}</text>
+        <text x="150" y="139" textAnchor="middle" fill="#fff" fontFamily="var(--font-inter), sans-serif" fontWeight="700" fontSize="24" textLength={long ? 104 : undefined} lengthAdjust={long ? "spacingAndGlyphs" : undefined}>{label}</text>
       </svg>
     </div>
   );
