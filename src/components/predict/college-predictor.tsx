@@ -46,32 +46,16 @@ function Glows() {
 const u = (n: number) => `calc(${n} * var(--u))`;
 const v = (n: number) => `calc(${n} * var(--v))`;
 
-/* Background glows, matched to the design frame. Every stop is sampled off the
-   frame, so the layers stack with plain compositing — no mix-blend-mode, which
-   silently drops out on some GPUs and left the page flat black. Tops are in
-   section space (design y − 76px of sticky header). */
+/* Two diagonal corner glows only — bottom-left and top-right — so the gradient
+   reads as a diagonal wash across the empty corners and leaves the area behind
+   the form card clear. Plain stacked gradients (no mix-blend-mode, which drops
+   out on some GPUs). Both corners share one ramp for equal intensity. */
+const CORNER_RAMP = "radial-gradient(50% 50% at 50% 50%, rgb(121,116,222) 0%, rgb(98,95,197) 18%, rgb(74,76,157) 33%, rgb(49,56,111) 47%, rgb(29,38,74) 59%, rgb(13,22,40) 71%, rgba(0,0,0,0) 83%)";
 const HERO_GLOWS: { cls: string; st: React.CSSProperties }[] = [
-  {
-    cls: "cp-g1",
-    st: {
-      left: -960, top: 240, width: 2160, height: 1760,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(138,132,252) 0%, rgb(112,108,224) 18%, rgb(84,86,178) 32%, rgb(56,64,126) 46%, rgb(34,44,86) 58%, rgb(16,26,46) 70%, rgba(0,0,0,0) 82%)",
-    },
-  },
-  {
-    cls: "cp-g2",
-    st: {
-      left: 1360, top: -600, width: 1320, height: 1780,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(124,136,246) 0%, rgb(100,114,210) 16%, rgb(72,90,162) 32%, rgb(48,64,114) 47%, rgb(27,46,76) 62%, rgb(11,22,36) 78%, rgba(0,0,0,0) 90%)",
-    },
-  },
-  {
-    cls: "cp-g3",
-    st: {
-      left: 940, top: -240, width: 420, height: 980,
-      background: "radial-gradient(50% 50% at 50% 50%, rgb(74,54,146) 0%, rgb(44,32,92) 42%, rgba(0,0,0,0) 78%)",
-    },
-  },
+  // bottom-left corner
+  { cls: "cp-g1", st: { left: -860, top: 380, width: 1760, height: 1620, background: CORNER_RAMP } },
+  // top-right corner
+  { cls: "cp-g2", st: { left: 1090, top: -760, width: 1560, height: 1560, background: CORNER_RAMP } },
 ];
 
 function HeroGlows() {

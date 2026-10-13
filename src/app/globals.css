@@ -170,13 +170,11 @@ body::after {
 }
 /* Slow, cloud-like drift for the background glows — long, unequal cycles so the
    three never line up, and nothing moves for reduced-motion users. */
-@keyframes cp-drift-a { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(120px, -78px, 0) scale(1.10); } }
-@keyframes cp-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-104px, 88px, 0) scale(1.11); } }
-@keyframes cp-drift-c { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(60px, 58px, 0) scale(1.09); } }
-.cp-g1 { animation: cp-drift-a 34s ease-in-out infinite; will-change: transform; }
-.cp-g2 { animation: cp-drift-b 42s ease-in-out infinite; will-change: transform; }
-.cp-g3 { animation: cp-drift-c 28s ease-in-out infinite; will-change: transform; }
-@media (prefers-reduced-motion: reduce) { .cp-g1, .cp-g2, .cp-g3 { animation: none; } }
+@keyframes cp-drift-a { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(130px, -84px, 0) scale(1.10); } }
+@keyframes cp-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-120px, 96px, 0) scale(1.11); } }
+.cp-g1 { animation: cp-drift-a 20s ease-in-out infinite; will-change: transform; }
+.cp-g2 { animation: cp-drift-b 24s ease-in-out infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .cp-g1, .cp-g2 { animation: none; } }
 
 /* College Predictor title — sweeping white-light highlight.
    Block + fit-content keeps the eyebrow above the title AND makes the
