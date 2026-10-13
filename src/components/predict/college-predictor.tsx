@@ -84,7 +84,7 @@ export function CollegePredictor() {
       <div className="text-center">
         <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-[#C9BDF2]"><span className="h-1.5 w-1.5 rounded-full bg-brand-gradient" /> Most accurate · 100% free</span>
         <h1 className="cp-title mt-3 font-display text-4xl font-extrabold tracking-tight text-[#EDEBF8] sm:text-5xl">JEE Main 2026 <span className="bg-brand-gradient bg-clip-text text-transparent">College Predictor</span><span aria-hidden className="cp-shine">JEE Main 2026 College Predictor</span></h1>
-        <p className="mt-3 font-body text-[15px] leading-relaxed text-[#d8d5e6]">Predict your college &amp; branch from your JEE Main 2026 rank — built by experts from <span style={{ fontFamily: "'Product Sans','Google Sans','Inter',Arial,sans-serif", fontWeight: 600 }}><span style={{ color: "#4285F4" }}>G</span><span style={{ color: "#EA4335" }}>o</span><span style={{ color: "#FBBC05" }}>o</span><span style={{ color: "#4285F4" }}>g</span><span style={{ color: "#34A853" }}>l</span><span style={{ color: "#EA4335" }}>e</span></span> &amp; <span style={{ fontFamily: "'Segoe UI',system-ui,sans-serif", fontWeight: 600, color: "#e9e9ef" }}>Microsoft</span>. No hidden charges.</p>
+        <p className="mt-3 font-body text-[15px] leading-relaxed text-[#d8d5e6]">Predict your college &amp; branch from your JEE Main 2026 rank — built by experts from <img src="/landing/logo-google.webp" alt="Google" className="mx-0.5 inline-block h-[1.15em] w-auto align-[-0.17em]" /> &amp; <img src="/landing/logo-microsoft.webp" alt="Microsoft" className="mx-0.5 inline-block h-[1em] w-auto align-[-0.12em]" />. No hidden charges.</p>
       </div>
 
       {!results ? (
