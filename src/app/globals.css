@@ -158,3 +158,63 @@ body::after {
 .vd-dark .hover\:bg-surface-warm:hover { background: rgba(255,255,255,0.12) !important; }
 /* premium heading font */
 .vd-dark .font-display { font-family: var(--font-inter), system-ui, sans-serif; }
+
+/* College Predictor hero (/predict) — two scale variables so the whole frame
+   always lands inside one screen. 1px of --u / --v === 1px of the design frame:
+   --u drives the hero column, --v the white form card. */
+.cp-hero { --u: 0.62px; --v: 0.88px; }
+@media (min-width: 1024px) {
+  /* Shrink the frame to the viewport so the whole hero + a gap above the footer
+     fit one screen; caps at 1px (design size) on tall screens, never larger. */
+  .cp-hero { --u: clamp(0.58px, calc((100dvh - 170px) / 835), 1px); --v: var(--u); }
+}
+/* Slow, cloud-like drift for the background glows — long, unequal cycles so the
+   three never line up, and nothing moves for reduced-motion users. */
+/* Both corners share the same motion profile (mirrored direction) so they fade
+   in and out identically; only the period differs slightly, to stay organic. */
+@keyframes cp-drift-a { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(54px, -36px, 0) scale(1.12); } }
+@keyframes cp-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-54px, 36px, 0) scale(1.12); } }
+.cp-g1 { animation: cp-drift-a 11s ease-in-out infinite; will-change: transform; }
+.cp-g2 { animation: cp-drift-b 12s ease-in-out infinite; will-change: transform; }
+/* Results-page corner glows — faster period so the drift is clearly visible,
+   small travel so each glow stays in its corner. */
+@keyframes cp-drift-r1 { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-58px, 42px, 0) scale(1.1); } }
+@keyframes cp-drift-r2 { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(60px, -40px, 0) scale(1.1); } }
+.cp-rg1 { animation: cp-drift-r1 7s ease-in-out infinite; will-change: transform; }
+.cp-rg2 { animation: cp-drift-r2 8s ease-in-out infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .cp-g1, .cp-g2, .cp-rg1, .cp-rg2 { animation: none; } }
+
+/* College Predictor title — sweeping white-light highlight.
+   Block + fit-content keeps the eyebrow above the title AND makes the
+   shine overlay sit tight to the text so the sweep reads across the words. */
+.cp-title {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cp-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(105deg, transparent 43%, rgba(255,255,255,0.85) 50%, transparent 57%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: cpShine 5s ease-in-out infinite;
+}
+/* sweep left→right over the first ~45%, then rest off-screen for a polished, periodic shine */
+@keyframes cpShine {
+  0%   { background-position: 100% 0; }
+  45%  { background-position: 0% 0; }
+  100% { background-position: 0% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cp-shine { animation: none; display: none; }
+}

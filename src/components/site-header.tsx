@@ -31,7 +31,17 @@ export function SiteHeader() {
   const [profileComplete, setProfileComplete] = useState(true);
   const [gateOpen, setGateOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Header starts transparent at the top of the page and fades its backdrop in
+  // once the page is scrolled; it stays sticky throughout.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -92,7 +102,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40">
       {/* fading backdrop — blur + dark gradient, extends below the header and is masked to dissolve smoothly into the hero (no hard cutoff). Content sits above it, crisp. */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[220%] backdrop-blur-md" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 38%, rgba(0,0,0,0) 72%)", maskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)", WebkitMaskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)" }} />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[220%] backdrop-blur-md transition-opacity duration-500 ease-out" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 38%, rgba(0,0,0,0) 72%)", maskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)", WebkitMaskImage: "linear-gradient(to bottom, #000 28%, transparent 70%)", opacity: scrolled ? 1 : 0 }} />
       <div className="relative z-10 mx-auto flex max-w-[1800px] items-center justify-between px-6 py-4 sm:px-10">
         <a href="https://www.vedam.org" className="flex items-center">
           <Image src="/landing/vedam-logo-dark.png" alt="Vedam School of Technology" width={220} height={52} priority className="h-8 w-auto sm:h-10" />
