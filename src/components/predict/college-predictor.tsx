@@ -43,16 +43,14 @@ function HeroGlows() {
   );
 }
 
-/** Results-page background — one wide blue glow brightest at the top-right that
-    stretches across the top (down to below the "Home" nav) and fades gradually
-    to the left; drifts a touch faster so the motion is clearly visible. */
+/** Results-page background — two compact blue glows (top-right by the gauge and
+    lower-left), contained to ~12% of the screen each as in the Figma reference,
+    drifting a touch faster so the motion is clearly visible. */
 function ResultsGlows() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="cp-rg absolute" style={{
-        top: -520, right: -360, width: 2100, height: 1200, filter: "blur(44px)",
-        background: "radial-gradient(50% 50% at 50% 50%, rgb(134,128,248) 0%, rgb(92,96,206) 20%, rgb(58,68,146) 37%, rgb(32,42,88) 53%, rgb(15,22,44) 67%, rgba(0,0,0,0) 80%)",
-      }} />
+      <div className="cp-rg1 absolute" style={{ right: -320, top: -300, width: 640, height: 600, filter: "blur(40px)", background: CORNER_RAMP }} />
+      <div className="cp-rg2 absolute" style={{ left: -320, top: 420, width: 640, height: 600, filter: "blur(40px)", background: CORNER_RAMP }} />
     </div>
   );
 }
