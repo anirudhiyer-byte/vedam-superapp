@@ -5,7 +5,31 @@ import { createOrder, cashfreeConfigured } from "@/lib/payments/cashfree";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://one.vedam.org";
+/**
+ * Resolve the base URL to send Cashfree's return + notify callbacks to, from the
+ * ACTUAL request origin — so a staging payment returns to staging and a prod payment
+ * to prod, instead of a hard-coded domain. Allowlisted to our own hosts so the Origin
+ * header can never be spoofed into an open redirect; falls back to env/prod otherwise.
+ */
+function safeBaseUrl(req: Request): string {
+  const envSite = (process.env.NEXT_PUBLIC_SITE_URL || "https://one.vedam.org").replace(/\/+$/, "");
+  const allow = (h: string) => {
+    h = (h || "").toLowerCase();
+    return h === "vedam.org" || h.endsWith(".vedam.org") || h.endsWith(".vercel.app");
+  };
+  // 1) Origin header — modern browsers send it on same-origin POST
+  const origin = req.headers.get("origin");
+  if (origin) {
+    try { const u = new URL(origin); if (u.protocol === "https:" && allow(u.hostname)) return `${u.protocol}//${u.host}`; } catch { /* */ }
+  }
+  // 2) forwarded host (server-to-server / no Origin)
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host");
+  const proto = (req.headers.get("x-forwarded-proto") || "https").split(",")[0].trim();
+  if (host) {
+    try { const u = new URL(`${proto}://${host}`); if (allow(u.hostname)) return `${u.protocol}//${u.host}`; } catch { /* */ }
+  }
+  return envSite;
+}
 
 /**
  * Start a paid-event registration. Creates a server-side Cashfree order (amount read
@@ -66,6 +90,7 @@ export async function POST(req: Request) {
       referrer: reg.referrer ?? null, landing_path: reg.landing_path ?? null,
     };
 
+    const SITE = safeBaseUrl(req);
     const cfOrderId = "VEDPAY_" + crypto.randomUUID().replace(/-/g, "").slice(0, 20);
     const amount = Number(ev.price_amount);
     const currency = ev.currency || "INR";
