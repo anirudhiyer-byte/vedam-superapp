@@ -43,14 +43,17 @@ function HeroGlows() {
   );
 }
 
-/** Results-page background — two compact blue glows (top-right by the gauge and
-    lower-left), contained to ~12% of the screen each as in the Figma reference,
-    drifting a touch faster so the motion is clearly visible. */
+/** Results-page background — two compact blue glows contained to ~12% of the
+    screen each: top-right by the gauge, and bottom-left anchored to the content
+    so it sits at the table's bottom-left corner. Drifts a touch faster so the
+    motion stays visible. It sits behind the content; its "bottom" tracks the
+    results container, so on a full table the lower-left glow lands at the
+    table's bottom-left corner (the footer is a separate section below). */
 function ResultsGlows() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="cp-rg1 absolute" style={{ right: -320, top: -300, width: 640, height: 600, filter: "blur(40px)", background: CORNER_RAMP }} />
-      <div className="cp-rg2 absolute" style={{ left: -320, top: 420, width: 640, height: 600, filter: "blur(40px)", background: CORNER_RAMP }} />
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      <div className="cp-rg1 absolute" style={{ right: -300, top: -320, width: 760, height: 720, filter: "blur(40px)", background: CORNER_RAMP }} />
+      <div className="cp-rg2 absolute" style={{ left: -300, bottom: -280, width: 720, height: 800, filter: "blur(40px)", background: CORNER_RAMP }} />
     </div>
   );
 }
@@ -182,7 +185,7 @@ export function CollegePredictor() {
   }
 
   function share() {
-    const url = `${window.location.origin}/predict`;
+    const url = "https://one.vedam.org/predict";
     const text = `🎓 Predict your JEE Main 2026 college & branch for FREE with Vedam's College Predictor — ${url}`;
     try { navigator.clipboard.writeText(url); } catch { /* */ }
     log("share_whatsapp");
@@ -301,7 +304,7 @@ export function CollegePredictor() {
         /* ================= RESULTS PAGE (Figma frame 2 — dark) ================= */
         <div className={`relative isolate min-h-screen overflow-hidden bg-black ${inter}`}>
           <ResultsGlows />
-          <div className="relative mx-auto max-w-[1766px] px-6 pb-16 pt-10 sm:px-10 lg:px-[60px]">
+          <div className="relative z-10 mx-auto max-w-[1766px] px-6 pb-16 pt-10 sm:px-10 lg:px-[60px]">
             {/* ---- header: title + meta + new-search (left); share pill + gauge (right) ---- */}
             <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
               <div className="min-w-0">
