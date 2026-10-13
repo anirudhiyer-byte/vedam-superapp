@@ -18,7 +18,8 @@ type Form = {
   venue: string; map_link: string; schedule: ScheduleDay[];
   banner_url: string; banner_fit: string; banner_position: string; recording_url: string; whatsapp_community_url: string; max_attendees: string; reg_close_at: string;
   certs_enabled: boolean; podium_enabled: boolean; share_podium: string; share_participation: string; submission_enabled: boolean; submission_pts: string;
-  ribbon_label: string; ribbon_value: string; dashboard_enabled: boolean;
+  ribbon_label: string; ribbon_value: string; dashboard_enabled: boolean; visibility: "public" | "private";
+  is_paid: boolean; price_amount: string;
   registration_schema: EventField[];
   points: Record<string, string>;
   zoom_meeting_id: string; zoom_type: string;
@@ -30,7 +31,8 @@ const blank: Form = {
   venue: "", map_link: "", schedule: [{ date: "", slots: [{ start: "", end: "" }] }],
   banner_url: "", banner_fit: "cover", banner_position: "center", recording_url: "", whatsapp_community_url: "", max_attendees: "", reg_close_at: "",
   certs_enabled: false, podium_enabled: false, share_podium: "30", share_participation: "15", submission_enabled: false, submission_pts: "20",
-  ribbon_label: "", ribbon_value: "", dashboard_enabled: false,
+  ribbon_label: "", ribbon_value: "", dashboard_enabled: false, visibility: "public",
+  is_paid: false, price_amount: "",
   registration_schema: DEFAULT_ONLINE_REG,
   points: { register: "10", attend: "20", attend_75: "30", share_linkedin: "15" },
   zoom_meeting_id: "", zoom_type: "meeting",
@@ -66,7 +68,8 @@ export function EventEditor({ id }: { id?: string }) {
           banner_url: e.banner_url || "", banner_fit: e.banner_fit || "cover", banner_position: e.banner_position || "center", banner_zoom: Number(e.banner_zoom) || 0, banner_x: e.banner_x ?? 50, banner_y: e.banner_y ?? 50, recording_url: e.recording_url || "", whatsapp_community_url: e.whatsapp_community_url || "",
           certs_enabled: !!e.certs_enabled, podium_enabled: !!e.podium_enabled, share_podium: String(e.share_points_podium ?? 30), share_participation: String(e.share_points_participation ?? 15), submission_enabled: !!e.submission_enabled, submission_pts: String(e.submission_points ?? 20),
           max_attendees: e.max_attendees ? String(e.max_attendees) : "", reg_close_at: e.reg_close_at ? new Date(e.reg_close_at).toISOString().slice(0, 16) : "",
-          ribbon_label: e.ribbon_label || "", ribbon_value: e.ribbon_value || "", dashboard_enabled: e.dashboard_enabled,
+          ribbon_label: e.ribbon_label || "", ribbon_value: e.ribbon_value || "", dashboard_enabled: e.dashboard_enabled, visibility: (e.visibility === "private" ? "private" : "public"),
+          is_paid: !!e.is_paid, price_amount: e.price_amount != null ? String(e.price_amount) : "",
           registration_schema: e.registration_schema ?? [],
           points: {
             register: String(e.points_config?.register ?? 0),
@@ -121,6 +124,10 @@ export function EventEditor({ id }: { id?: string }) {
       reg_close_at: f.reg_close_at ? new Date(f.reg_close_at + ":00+05:30").toISOString() : null,
       ribbon_label: f.ribbon_label.trim() || null, ribbon_value: f.ribbon_value.trim() || null,
       dashboard_enabled: f.dashboard_enabled,
+      visibility: f.visibility,
+      is_paid: f.is_paid,
+      price_amount: f.is_paid ? (Number(f.price_amount) || 0) : null,
+      currency: "INR",
       registration_schema: normalizeSchema(f.registration_schema),
       points_config: Object.fromEntries(
         POINT_ACTIONS.map((a) => [a.key, Number(f.points[a.key] || 0)]).filter(([, v]) => (v as number) > 0)
@@ -133,6 +140,7 @@ export function EventEditor({ id }: { id?: string }) {
   async function save(publish: boolean) {
     setError(null);
     if (!f.name.trim()) return setError("Give the event a name.");
+    if (f.is_paid && !(Number(f.price_amount) > 0)) return setError("Set a valid fee amount (₹) for a paid event.");
     setSaving(true);
     const payload = buildPayload(publish);
 
@@ -251,6 +259,17 @@ export function EventEditor({ id }: { id?: string }) {
         <div className="grid gap-4 sm:grid-cols-2">
           <Row label="WhatsApp community URL"><input className={input} value={f.whatsapp_community_url} onChange={(e) => set("whatsapp_community_url", e.target.value)} /></Row>
           <Row label="Recording link (Drive/YouTube — shown to registered users after the event ends)"><input className={input} value={f.recording_url} onChange={(e) => set("recording_url", e.target.value)} placeholder="https://drive.google.com/file/d/…/view  or  YouTube link" /></Row>
+          <Row label="Visibility">
+            <label className="flex items-center gap-2 font-body text-sm"><input type="checkbox" checked={f.visibility === "private"} onChange={(e) => set("visibility", e.target.checked ? "private" : "public")} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /> Private — unlisted (hidden from the Events list; joinable only via the shared link)</label>
+          </Row>
+          <Row label="Paid event">
+            <div className="space-y-2">
+              <label className="flex items-center gap-2 font-body text-sm"><input type="checkbox" checked={f.is_paid} onChange={(e) => set("is_paid", e.target.checked)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /> Charge a fee to register (Cashfree — pay before registration completes)</label>
+              {f.is_paid && (
+                <label className="flex items-center gap-2 font-mono text-xs text-muted">Amount ₹<input type="number" min="1" step="1" className={input + " w-28"} value={f.price_amount} onChange={(e) => set("price_amount", e.target.value)} placeholder="499" /> INR</label>
+              )}
+            </div>
+          </Row>
           <Row label="Certificates & sharing">
             <div className="space-y-2">
               <label className="flex items-center gap-2 font-body text-sm"><input type="checkbox" checked={f.certs_enabled} onChange={(e) => set("certs_enabled", e.target.checked)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /> Issue participation certificates</label>
