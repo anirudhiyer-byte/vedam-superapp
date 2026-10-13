@@ -46,24 +46,20 @@ function Glows() {
 const u = (n: number) => `calc(${n} * var(--u))`;
 const v = (n: number) => `calc(${n} * var(--v))`;
 
-/* Two diagonal corner glows only — bottom-left and top-right — so the gradient
-   reads as a diagonal wash across the empty corners and leaves the area behind
-   the form card clear. Plain stacked gradients (no mix-blend-mode, which drops
-   out on some GPUs). Both corners share one ramp for equal intensity. */
-const CORNER_RAMP = "radial-gradient(50% 50% at 50% 50%, rgb(121,116,222) 0%, rgb(98,95,197) 18%, rgb(74,76,157) 33%, rgb(49,56,111) 47%, rgb(29,38,74) 59%, rgb(13,22,40) 71%, rgba(0,0,0,0) 83%)";
+/* Two glows, each anchored to a diagonal corner of the hero (bottom-left and
+   top-right), so they always land in those corners whatever the viewport height
+   and leave the centre clear. Plain stacked gradients (no mix-blend-mode, which
+   drops out on some GPUs). Both corners share one ramp for equal intensity. */
+const CORNER_RAMP = "radial-gradient(50% 50% at 50% 50%, rgb(134,128,248) 0%, rgb(108,104,216) 18%, rgb(80,82,172) 33%, rgb(53,60,120) 47%, rgb(31,41,80) 59%, rgb(14,24,42) 71%, rgba(0,0,0,0) 83%)";
 const HERO_GLOWS: { cls: string; st: React.CSSProperties }[] = [
-  // bottom-left corner
-  { cls: "cp-g1", st: { left: -860, top: 380, width: 1760, height: 1620, background: CORNER_RAMP } },
-  // top-right corner
-  { cls: "cp-g2", st: { left: 1090, top: -760, width: 1560, height: 1560, background: CORNER_RAMP } },
+  { cls: "cp-g1", st: { left: -520, bottom: -560, width: 1560, height: 1560, background: CORNER_RAMP } },
+  { cls: "cp-g2", st: { right: -360, top: -560, width: 1560, height: 1560, background: CORNER_RAMP } },
 ];
 
 function HeroGlows() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute left-1/2 top-0 h-full w-[1920px] -translate-x-1/2">
-        {HERO_GLOWS.map((g) => <div key={g.cls} className={`absolute ${g.cls}`} style={{ ...g.st, filter: "blur(40px)" }} />)}
-      </div>
+      {HERO_GLOWS.map((g) => <div key={g.cls} className={`absolute ${g.cls}`} style={{ ...g.st, filter: "blur(40px)" }} />)}
     </div>
   );
 }
