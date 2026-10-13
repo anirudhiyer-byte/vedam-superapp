@@ -47,8 +47,12 @@ export async function confirmPayment(svc: SupabaseClient, cfOrderId: string, bas
   const { data: evRow } = await svc.from("events").select("*").eq("id", p.event_id).maybeSingle();
   const ev = (evRow || {}) as Record<string, unknown>;
 
-  // 3) materialise the registration (idempotent on the existing (event,user) unique)
+  // 3) materialise the registration (idempotent on the existing (event,user) unique).
+  //    The caller that WINS this insert is the single one allowed to run the side-effects
+  //    below — so a webhook racing the return-page status-poll (and webhook retries) can't
+  //    fire them more than once.
   let regId: string | null = p.registration_id;
+  let freshlyCreated = false;
   if (!regId) {
     const snap = (p.answers_snapshot || {}) as Record<string, unknown>;
     const regPayload = { ...snap, event_id: p.event_id, user_id: p.user_id };
@@ -62,14 +66,32 @@ export async function confirmPayment(svc: SupabaseClient, cfOrderId: string, bas
       }
     } else {
       regId = ins.data.id;
+      freshlyCreated = true;
     }
   }
 
-  // 4) points + activity (best effort)
-  try { await svc.rpc("award_event_points_for", { p_user: p.user_id, p_event_id: p.event_id, p_action: "register" }); } catch { /* */ }
+  // 4) mark the payment paid + link the registration (idempotent; safe under concurrent calls)
+  await svc.from("event_payments").update({
+    status: "paid", cf_payment_id: pay?.paymentId ?? null, cf_payment_method: pay?.method ?? null,
+    registration_id: regId, paid_at: new Date().toISOString(), raw: ord.raw,
+  }).eq("id", p.id);
+
+  // SIDE-EFFECTS EXACTLY ONCE: only the caller that actually created the registration row
+  // runs points + the Zoom registrant + emails. A webhook racing the status-poll (or a
+  // webhook retry) would otherwise re-add the Zoom registrant — which makes Zoom send its
+  // join email again — and re-send our confirmation + receipt. Duplicates stop here.
+  if (!freshlyCreated) return { ok: true, status: "already_paid" };
+
+  // 5) register points — direct service-role insert, idempotent via the points_once
+  //    constraint. (award_event_points_for is admin-gated; the webhook has no user session,
+  //    so it writes the ledger row directly as the service role.)
+  try {
+    const regPts = Number((ev.points_config as Record<string, unknown> | null)?.["register"] ?? 0);
+    if (regPts > 0) await svc.from("points_ledger").insert({ user_id: p.user_id, points: regPts, action: "register", app: "events", event_id: p.event_id });
+  } catch { /* already awarded / best effort */ }
   try { await svc.from("activity_log").insert({ user_id: p.user_id, event_type: "event_register", app: "events", metadata: { event_code: ev.event_code, paid: true, order_id: cfOrderId } }); } catch { /* */ }
 
-  // 5) personal Zoom join link (server-side, no user token needed)
+  // 6) personal Zoom join link (server-side, no user token needed)
   let joinLink = (ev.join_link as string) || undefined;
   try {
     const mid = (ev.zoom_meeting_id as string) || (ev.zoom_id as string);
@@ -82,12 +104,6 @@ export async function confirmPayment(svc: SupabaseClient, cfOrderId: string, bas
       }
     }
   } catch { /* fall back to generic join link */ }
-
-  // 6) mark the payment paid + link the registration BEFORE emails (so a mail hiccup can't un-confirm)
-  await svc.from("event_payments").update({
-    status: "paid", cf_payment_id: pay?.paymentId ?? null, cf_payment_method: pay?.method ?? null,
-    registration_id: regId, paid_at: new Date().toISOString(), raw: ord.raw,
-  }).eq("id", p.id);
 
   // 7) emails — event confirmation + separate payment receipt (best effort)
   const to = p.user_email || undefined;
