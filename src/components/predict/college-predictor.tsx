@@ -84,7 +84,7 @@ function Gauge({ label }: { label: string | number | undefined }) {
           <line x1="92" y1="120" x2="92" y2="140" /><line x1="102" y1="123" x2="102" y2="139" /><line x1="112" y1="126" x2="112" y2="138" /><line x1="122" y1="128" x2="122" y2="138" />
           <line x1="208" y1="120" x2="208" y2="140" /><line x1="198" y1="123" x2="198" y2="139" /><line x1="188" y1="126" x2="188" y2="138" /><line x1="178" y1="128" x2="178" y2="138" />
         </g>
-        <text x="150" y="140" textAnchor="middle" fill="#fff" fontFamily="var(--font-inter), sans-serif" fontWeight="700" fontSize="34">{label}</text>
+        <text x="150" y="139" textAnchor="middle" fill="#fff" fontFamily="var(--font-inter), sans-serif" fontWeight="700" fontSize="27">{label}</text>
       </svg>
     </div>
   );
