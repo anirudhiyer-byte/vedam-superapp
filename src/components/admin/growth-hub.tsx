@@ -57,7 +57,7 @@ const GROUPS: { title: string; mods: Mod[] }[] = [
       { key: "influencers", label: "Influencers", desc: "Influencer listing + performance across creators.", icon: I.infl },
       { key: "telegram", label: "Telegram Channel", desc: "Telegram listing + performance.", icon: I.tele },
       { key: "consultants", label: "Consultants Channel", desc: "Consultant listing + performance.", icon: I.cons },
-      { key: "predictor", label: "College Predictor", desc: "Cost & CPL + UTM listing and dashboards.", icon: I.pred },
+      { key: "predictor", label: "College Predictor", desc: "Cost & CPL + UTM listing and dashboards.", icon: I.pred, live: true, href: "/admin/growth/predictor" },
       { key: "codesprint", label: "Code Sprint", desc: "Cost & CPL + UTM listing and dashboards.", icon: I.sprint, live: true, href: "/admin/growth/codesprint" },
       { key: "events", label: "Events", desc: "Events listing + performance.", icon: I.event, live: true, href: "/admin/growth/events" },
     ],
