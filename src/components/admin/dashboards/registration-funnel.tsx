@@ -243,9 +243,10 @@ export function RegistrationFunnel() {
           </table>
           <p className="mt-3 font-[family-name:var(--font-inter)] text-[12px] leading-relaxed text-white/45">
             FTD = today · WTD = week-to-date (Mon) · MTD = month-to-date (IST) · YTD = all data on record.
-            New Visitors are tracked front-end sessions (beacon live since 30 Sep 2026); Registered counts actual signups (profiles),
-            which can exceed tracked sessions — different sources, so the two columns aren&apos;t a strict funnel.
-            ▲▼ = WTD vs last week / MTD vs last month (same days-to-date). Click <b>WTD</b> to unfurl previous weeks, <b>MTD</b> for previous months (each vs the one before it). 2026/2025 are editable hard-data.
+            True funnel, all scoped to the visitor population: New Visitors = tracked front-end sessions (beacon live since 30 Sep 2026);
+            Attempted = those who opened /register; Registered = those visitor sessions that actually completed a signup (so Registered ⊆ Visitors);
+            Drop off = Attempted − Registered; MQL = registered with PCM/PCMB &amp; class-12 year 2026/2027.
+            ▲▼ = WTD vs last week / MTD vs last month (same days-to-date). Click <b>WTD</b> to unfurl previous weeks, <b>MTD</b> for previous months (each vs the one before it). 2026/2025 are editable hard-data for pre-tracking history.
           </p>
         </div>
       )}
