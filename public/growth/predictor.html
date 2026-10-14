@@ -825,9 +825,12 @@ const UtmListing=makeGrid({
 /* ============================================================================
    Cost & CPL Dashboard
    ============================================================================ */
-function renderCostDash(){
+async function renderCostDash(){
   const el=document.getElementById("page-cost-dash");
-  const {rows,kpis}=CPData.getCostDash();
+  // Dashboard reads the SAME live cost rows the Listing fetches (one line per cost entry).
+  const _raw=await CPData.getCostRows("active");
+  const kpis=CPData.costSummary();
+  const rows=_raw.map(r=>({platform:r.platform, utm:r.utm_link||"", leads:+r.leads||0, mql:+r.mql||0}));
   const IC={users:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg>',
     trend:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M21 7v5h-5"/></svg>'};
   el.innerHTML=`
@@ -907,7 +910,7 @@ function renderUtmDash(){
     const pg=a.dataset.page; nav.querySelectorAll("[data-page]").forEach(x=>x.classList.remove("on"));a.classList.add("on");
     document.querySelectorAll(".page").forEach(s=>s.classList.remove("on"));
     document.getElementById("page-"+pg).classList.add("on");
-    if(pg==="cost-dash"&&!built.cd){renderCostDash();built.cd=true;} else if(pg==="cost-dash")animateCounts(document.getElementById("page-cost-dash"));
+    if(pg==="cost-dash"){renderCostDash();}
     if(pg==="utm-dash"&&!built.ud){renderUtmDash();built.ud=true;} else if(pg==="utm-dash")animateCounts(document.getElementById("page-utm-dash"));
     if(pg==="utm-listing"&&!built.utm){UtmListing.init();built.utm=true;}
   }));
