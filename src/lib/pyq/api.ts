@@ -65,7 +65,8 @@ export function revealOf(q: Record<string, unknown>) {
   return {
     correct_key: (q.correct_key as string) ?? null,
     correct_value: q.correct_value == null ? null : Number(q.correct_value),
-    correct_keys: q.qtype === "multi" ? ((q.correct_keys as string[]) ?? null) : null,
+    // multi: the full correct set. mcq: options the official key also accepts (usually null).
+    correct_keys: q.qtype === "numeric" ? null : ((q.correct_keys as string[]) ?? null),
     solution: (q.solution as string) ?? null,
     solution_figure_url: (q.solution_figure_url as string) ?? null,
   };
@@ -116,7 +117,9 @@ export function parseValue(v: unknown): number | null | undefined {
 /** Grade one selection against a question. Returns null awarded when unattempted.
  *  Multi-answer ('multi', graded on selected_keys): any wrong option → marks_wrong;
  *  exactly the correct set → marks_correct; a non-empty strict subset of the
- *  correct set → partial credit marks_correct × |S| / |C| (is_correct false). */
+ *  correct set → partial credit marks_correct × |S| / |C| (is_correct false).
+ *  Single-answer ('mcq'): correct if the pick is correct_key, or one of correct_keys
+ *  when the official key accepts more than one option ("any one of"). */
 export function grade(
   q: { qtype: string; correct_key: string | null; correct_value: number | null; correct_keys?: string[] | null; marks_correct: number; marks_wrong: number },
   selected_key: string | null,
@@ -135,7 +138,7 @@ export function grade(
   if (!hasSel) return { attempted: false, is_correct: null, awarded: 0 };
   const correct = q.qtype === "numeric"
     ? selected_value != null && q.correct_value != null && Number(selected_value) === Number(q.correct_value)
-    : selected_key === q.correct_key;
+    : selected_key === q.correct_key || (!!selected_key && (q.correct_keys ?? []).includes(selected_key));
   // Number(): numeric columns must never be summed as strings.
   return { attempted: true, is_correct: correct, awarded: Number(correct ? q.marks_correct : q.marks_wrong) };
 }

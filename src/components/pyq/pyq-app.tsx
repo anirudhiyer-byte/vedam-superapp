@@ -576,7 +576,9 @@ function Test({ paperId, go, toast, onSubmitted }: {
   const correctKey = a?.reveal?.correct_key ?? null;
   const correctOpt = q.options.find((o) => o.key === correctKey);
   const correctKeys = a?.reveal?.correct_keys ?? [];
-  const isKey = (k: string) => (multi ? correctKeys.includes(k) : k === correctKey);
+  // Single-answer: correct_key plus any other option the official key also accepts.
+  const acceptKeys = multi ? correctKeys : [correctKey, ...correctKeys.filter((k) => k !== correctKey)].filter((k): k is string => !!k);
+  const isKey = (k: string) => acceptKeys.includes(k);
   const partial = multi && isPartial(a?.reveal?.is_correct, a?.reveal?.awarded);
   const ansd = questions.filter((qq) => isAnswered(answers[qq.id])).length;
   const mkd = questions.filter((qq) => answers[qq.id]?.marked_for_later).length;
@@ -662,9 +664,9 @@ function Test({ paperId, go, toast, onSubmitted }: {
               )}
               <div className="hd">
                 ✓ Correct answer: {numeric ? fmtVal(a.reveal.correct_value)
-                  : multi ? correctKeys.map((k, n) => {
+                  : multi || acceptKeys.length > 1 ? acceptKeys.map((k, n) => {
                     const o = q.options.find((x) => x.key === k);
-                    return <span key={k}>{n > 0 && ", "}{k}{o?.text ? <>. <MathText text={o.text} /></> : null}</span>;
+                    return <span key={k}>{n > 0 && (multi ? ", " : " or ")}{k}{o?.text ? <>. <MathText text={o.text} /></> : null}</span>;
                   })
                   : <>{correctKey}{correctOpt?.text ? <>. <MathText text={correctOpt.text} /></> : null}</>}
               </div>
@@ -801,8 +803,12 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
               return <>{key}{o?.text ? <>. <MathText text={o.text} /></> : null}<Fig src={r.option_figure_urls?.[key]} alt={`Option ${key}`} className="ofig sm" /></>;
             };
             // Multi-answer: each chosen / correct option, comma-separated.
-            const keysLabel = (keys?: string[] | null) =>
-              keys?.length ? keys.map((k, n) => <span key={k}>{n > 0 && ", "}{optLabel(k)}</span>) : "—";
+            const keysLabel = (keys?: string[] | null, sep = ", ") =>
+              keys?.length ? keys.map((k, n) => <span key={k}>{n > 0 && sep}{optLabel(k)}</span>) : "—";
+            // Single-answer where the official key accepts more than one option.
+            const alts = !numeric && !multi && r.correct_keys?.length
+              ? [r.correct_key, ...r.correct_keys.filter((k) => k !== r.correct_key)].filter((k): k is string => !!k)
+              : null;
             return (
               <div key={r.id} className="rev">
                 {r.topic && <div className="tp">{r.topic}</div>}
@@ -813,7 +819,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
                     Your answer: {!attempted ? "Not attempted" : numeric ? fmtVal(r.selected_value) : multi ? keysLabel(r.selected_keys) : optLabel(r.selected_key)}
                     {attempted && ` (${Number(r.awarded) > 0 ? "+" : ""}${fmtNum(r.awarded)})`}
                   </span>
-                  <span style={{ color: "var(--ok)" }}>Correct: {numeric ? fmtVal(r.correct_value) : multi ? keysLabel(r.correct_keys) : optLabel(r.correct_key)}</span>
+                  <span style={{ color: "var(--ok)" }}>Correct: {numeric ? fmtVal(r.correct_value) : multi ? keysLabel(r.correct_keys) : alts && alts.length > 1 ? keysLabel(alts, " or ") : optLabel(r.correct_key)}</span>
                 </div>
                 {r.solution && <div className="sol"><MathText text={r.solution} /></div>}
                 <Fig src={r.solution_figure_url} alt={`Solution figure for question ${r.q_no}`} />
