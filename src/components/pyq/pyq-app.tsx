@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 type QOption = { key: string; text: string };
 type Paper = {
   id: string; exam: string; subject: string; year: number; set_label: string | null;
-  title: string; duration_mins: number; marks_correct: number; marks_wrong: number; total_questions: number;
+  title: string; marks_correct: number; marks_wrong: number; marking_note: string | null; total_questions: number;
 };
 type Question = {
   id: string; q_no: number; topic: string | null; qtype: "mcq" | "numeric";
@@ -32,9 +32,20 @@ type ResultData = {
 type Phase = "loading" | "signin" | "picker" | "starting" | "test" | "submitting" | "result";
 
 /* --------------------------------------------------------------- helpers */
-const EXAM_ORDER = ["JEE Main", "WBJEE", "MHT-CET", "Board"];
+const EXAM_ORDER = ["JEE Main", "WBJEE", "MHT-CET", "CBSE Class 12"];
 function barColor(pct: number) { return pct >= 67 ? "#22c55e" : pct >= 34 ? "#f59e0b" : "#ef4444"; }
-function fmtClock(s: number) { const m = Math.floor(s / 60), r = s % 60; return `${String(m).padStart(2, "0")}:${String(r).padStart(2, "0")}`; }
+/** 4 → "4", 4.75 → "4.75", -0.5 → "-0.5" (marks can be fractional, e.g. WBJEE). */
+function fmtNum(n: number | string | null | undefined) {
+  const v = Number(n ?? 0);
+  return Number.isInteger(v) ? String(v) : String(Math.round(v * 100) / 100);
+}
+const FRACTION: Record<string, string> = { "0.25": "¼", "0.5": "½", "0.75": "¾" };
+function fmtMark(n: number) { const a = Math.abs(n); return FRACTION[String(a)] ?? fmtNum(a); }
+/** Marking for one question / paper, as the exam states it: "+4 / −1", "+1 · no negative". */
+function markLabel(correct: number | string, wrong: number | string) {
+  const c = Number(correct), w = Number(wrong);
+  return w === 0 ? `+${fmtMark(c)} · no negative` : `+${fmtMark(c)} / −${fmtMark(w)}`;
+}
 async function jpost<T>(url: string, body: unknown): Promise<T> {
   const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   const j = await r.json(); if (!r.ok) throw new Error(j?.error || "Request failed"); return j as T;
@@ -53,9 +64,10 @@ export function PyqApp() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Record<string, AnswerState>>({});
   const [i, setI] = useState(0);
-  const [secs, setSecs] = useState(0);
   const [result, setResult] = useState<ResultData | null>(null);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  // No countdown — practice is untimed. We only note when the attempt was opened
+  // so the result can show "time taken".
+  const startedAt = useRef<number>(0);
 
   /* ---- bootstrap: require session, then load catalogue ---- */
   useEffect(() => {
@@ -76,26 +88,15 @@ export function PyqApp() {
     return () => { on = false; };
   }, [supabase]);
 
-  /* ---- timer ---- */
-  const stopTimer = useCallback(() => { if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; } }, []);
-  const submit = useCallback(async () => {
-    stopTimer();
+  /* ---- submit (manual only — no timer, no auto-submit) ---- */
+  async function submit() {
     setPhase("submitting");
     try {
-      const spent = paper ? paper.duration_mins * 60 - secs : undefined;
+      const spent = startedAt.current ? Math.round((Date.now() - startedAt.current) / 1000) : undefined;
       const j = await jpost<ResultData>("/api/pyq/attempt/submit", { attempt_id: attemptId, duration_secs: spent });
       setResult(j); setPhase("result");
     } catch (e) { setErr((e as Error).message); setPhase("test"); }
-  }, [attemptId, paper, secs, stopTimer]);
-
-  useEffect(() => {
-    if (phase !== "test") return;
-    timerRef.current = setInterval(() => {
-      setSecs((s) => { if (s <= 1) { return 0; } return s - 1; });
-    }, 1000);
-    return stopTimer;
-  }, [phase, stopTimer]);
-  useEffect(() => { if (phase === "test" && secs === 0 && paper) void submit(); }, [secs, phase, paper, submit]);
+  }
 
   /* ---- start an attempt ---- */
   async function startPaper(p: Paper) {
@@ -111,7 +112,8 @@ export function PyqApp() {
         };
       }
       setAttemptId(j.attempt_id); setPaper(j.paper); setQuestions(j.questions);
-      setAnswers(amap); setI(0); setSecs(j.paper.duration_mins * 60); setResult(null);
+      setAnswers(amap); setI(0); setResult(null);
+      startedAt.current = Date.now();
       setPhase("test");
     } catch (e) { setErr((e as Error).message); setPhase("picker"); }
   }
@@ -160,7 +162,7 @@ export function PyqApp() {
   if (phase === "result" && result) return <Shell><Result data={result} paper={paper} onDone={() => { setPhase("picker"); }} /></Shell>;
   if (phase === "test" && paper) {
     return <Shell wide><Runner
-      paper={paper} questions={questions} answers={answers} i={i} secs={secs} err={err}
+      paper={paper} questions={questions} answers={answers} i={i} err={err}
       setI={setI} choose={choose} toggleMark={toggleMark} toggleReveal={toggleReveal} onSubmit={submit}
     /></Shell>;
   }
@@ -194,7 +196,7 @@ function Picker({ papers, err, onStart }: { papers: Paper[]; err: string; onStar
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b48bff]">PYQ Practice</p>
       <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">Previous-year papers</h1>
-      <p className="mt-2 max-w-2xl text-white/60">Attempt real exam papers in a timed interface. You get +4 for a correct answer, −1 for a wrong one, and instant topic-wise analysis at the end.</p>
+      <p className="mt-2 max-w-2xl text-white/60">Attempt real previous-year papers at your own pace. Each paper follows its exam&apos;s real marking scheme, and you get topic-wise analysis at the end.</p>
       {err && <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-300">{err}</p>}
 
       {byExam.length === 0 && <p className="mt-10 text-white/50">No papers are published yet.</p>}
@@ -212,9 +214,8 @@ function Picker({ papers, err, onStart }: { papers: Paper[]; err: string; onStar
                     <span>{p.year}</span>
                   </div>
                   <div className="mt-2 font-semibold leading-snug">{p.set_label ?? p.title}</div>
-                  <div className="mt-3 flex items-center justify-between text-xs text-white/55">
-                    <span>{p.total_questions} questions</span><span>{p.duration_mins} min</span>
-                  </div>
+                  <div className="mt-3 text-xs text-white/55">{p.total_questions} questions</div>
+                  <div className="mt-1 text-xs text-white/45">{p.marking_note ?? markLabel(p.marks_correct, p.marks_wrong)}</div>
                   <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#b48bff] group-hover:text-white">Start practicing →</div>
                 </button>
               ))}
@@ -227,8 +228,8 @@ function Picker({ papers, err, onStart }: { papers: Paper[]; err: string; onStar
 }
 
 /* ============================================================== runner */
-function Runner({ paper, questions, answers, i, secs, err, setI, choose, toggleMark, toggleReveal, onSubmit }: {
-  paper: Paper; questions: Question[]; answers: Record<string, AnswerState>; i: number; secs: number; err: string;
+function Runner({ paper, questions, answers, i, err, setI, choose, toggleMark, toggleReveal, onSubmit }: {
+  paper: Paper; questions: Question[]; answers: Record<string, AnswerState>; i: number; err: string;
   setI: (n: number) => void; choose: (qid: string, key: string) => void; toggleMark: (qid: string) => void;
   toggleReveal: (qid: string) => void; onSubmit: () => void;
 }) {
@@ -236,7 +237,6 @@ function Runner({ paper, questions, answers, i, secs, err, setI, choose, toggleM
   const a = q ? answers[q.id] : undefined;
   const answered = !!a?.selected_key;
   const revealed = !!a?.revealed && !!a?.reveal;
-  const low = secs <= 60;
   const answeredCount = questions.filter((qq) => answers[qq.id]?.selected_key).length;
 
   if (!q) return <Centered><p className="text-white/60">This paper has no questions.</p></Centered>;
@@ -250,8 +250,8 @@ function Runner({ paper, questions, answers, i, secs, err, setI, choose, toggleM
             <div className="text-xs uppercase tracking-wide text-white/45">{paper.exam} · {paper.subject} · {paper.year}</div>
             <div className="text-sm text-white/70">{paper.set_label}</div>
           </div>
-          <div className={`rounded-full border px-4 py-1.5 font-mono text-sm ${low ? "border-red-500/50 bg-red-500/10 text-red-300" : "border-white/15 bg-white/5 text-white/80"}`}>
-            ⏱ {fmtClock(secs)}
+          <div className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-white/80" title="Marking for this question">
+            {markLabel(q.marks_correct, q.marks_wrong)}
           </div>
         </div>
 
@@ -351,7 +351,7 @@ function Runner({ paper, questions, answers, i, secs, err, setI, choose, toggleM
 function Result({ data, paper, onDone }: { data: ResultData; paper: Paper | null; onDone: () => void }) {
   const s = data.summary;
   const p = data.paper ?? paper;
-  const mins = s.duration_secs != null ? Math.floor(s.duration_secs / 60) : null;
+  const timeTaken = s.duration_secs != null ? `Time taken: ${Math.floor(s.duration_secs / 60)}m ${s.duration_secs % 60}s` : undefined;
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b48bff]">Result</p>
@@ -360,10 +360,10 @@ function Result({ data, paper, onDone }: { data: ResultData; paper: Paper | null
 
       {/* score cards */}
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Score" value={`${s.score} / ${s.max_score}`} accent="#7629fc" />
+        <Stat label="Score" value={`${fmtNum(s.score)} / ${fmtNum(s.max_score)}`} sub={p?.marking_note ?? undefined} accent="#7629fc" />
         <Stat label="Accuracy" value={`${s.accuracy}%`} accent="#22c55e" />
         <Stat label="Correct · Wrong" value={`${s.correct} · ${s.wrong}`} accent="#f59e0b" />
-        <Stat label="Unattempted" value={`${s.unattempted}`} sub={mins != null ? `Time: ${mins} min` : undefined} accent="#64748b" />
+        <Stat label="Unattempted" value={`${s.unattempted}`} sub={timeTaken} accent="#64748b" />
       </div>
 
       {/* topic analysis */}
@@ -399,7 +399,7 @@ function Result({ data, paper, onDone }: { data: ResultData; paper: Paper | null
               <div key={r.id} className="rounded-2xl border border-white/10 bg-[#120a28] p-5">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-semibold text-[#b48bff]">Q{r.q_no}{r.topic ? ` · ${r.topic}` : ""}</span>
-                  <span className={`text-xs font-semibold ${tag.c}`}>{tag.t} {r.is_correct != null ? `(${r.awarded > 0 ? "+" : ""}${r.awarded})` : ""}</span>
+                  <span className={`text-xs font-semibold ${tag.c}`}>{tag.t} {r.is_correct != null ? `(${Number(r.awarded) > 0 ? "+" : ""}${fmtNum(r.awarded)})` : ""}</span>
                 </div>
                 <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-white/90">{r.stem}</p>
                 <div className="mt-3 space-y-1.5">

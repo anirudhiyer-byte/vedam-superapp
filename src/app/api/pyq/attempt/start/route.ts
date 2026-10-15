@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, sanitizeQuestion, type AnswerRow } from "@/lib/pyq/api";
+import { svc, requireUser, sanitizeQuestion, PAPER_COLS, type AnswerRow } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
   const { data: paper, error: pErr } = await db
     .from("pyq_papers")
-    .select("id, exam, subject, year, set_label, title, duration_mins, marks_correct, marks_wrong, total_questions, is_published")
+    .select(PAPER_COLS)
     .eq("id", paperId).maybeSingle();
   if (pErr) return NextResponse.json({ error: pErr.message }, { status: 500 });
   if (!paper || !paper.is_published) return NextResponse.json({ error: "Paper not found" }, { status: 404 });

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, grade } from "@/lib/pyq/api";
+import { svc, requireUser, grade, PAPER_COLS } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -22,7 +22,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
 
   const { data: paper } = await db
     .from("pyq_papers")
-    .select("id, exam, subject, year, set_label, title, duration_mins, marks_correct, marks_wrong, total_questions")
+    .select(PAPER_COLS)
     .eq("id", att.paper_id).maybeSingle();
 
   const { data: qRows } = await db

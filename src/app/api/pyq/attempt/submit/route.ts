@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       { qtype: q.qtype as string, correct_key: (q.correct_key as string) ?? null, correct_value: (q.correct_value as number) ?? null, marks_correct: q.marks_correct as number, marks_wrong: q.marks_wrong as number },
       a?.selected_key ?? null, a?.selected_value ?? null
     );
-    maxScore += (q.marks_correct as number) ?? 4;
+    maxScore += Number(q.marks_correct ?? 4);
     score += g.awarded;
     if (!g.attempted) unattempted++;
     else if (g.is_correct) correct++;

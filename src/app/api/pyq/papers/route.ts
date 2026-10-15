@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, type PaperRow } from "@/lib/pyq/api";
+import { svc, requireUser, PAPER_COLS, type PaperRow } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export async function GET() {
 
   const { data, error } = await svc()
     .from("pyq_papers")
-    .select("id, exam, subject, year, set_label, title, duration_mins, marks_correct, marks_wrong, total_questions, is_published, sort_order")
+    .select(PAPER_COLS)
     .eq("is_published", true)
     .gt("total_questions", 0)
     .order("exam", { ascending: true })

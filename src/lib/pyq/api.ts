@@ -27,9 +27,13 @@ export async function requireUser(): Promise<
 // ---- Shapes -----------------------------------------------------------------
 export type PaperRow = {
   id: string; exam: string; subject: string; year: number; set_label: string | null;
-  title: string; duration_mins: number; marks_correct: number; marks_wrong: number;
+  title: string; marks_correct: number; marks_wrong: number; marking_note: string | null;
   total_questions: number; is_published: boolean; sort_order: number;
 };
+
+/** Columns every paper response carries (marks are numeric — WBJEE uses −0.25/−0.5). */
+export const PAPER_COLS =
+  "id, exam, subject, year, set_label, title, marks_correct, marks_wrong, marking_note, total_questions, is_published, sort_order";
 
 export type QOption = { key: string; text: string };
 
@@ -58,8 +62,8 @@ export function sanitizeQuestion(q: Record<string, unknown>): QuestionPublic {
     qtype: (q.qtype as "mcq" | "numeric") ?? "mcq",
     stem: q.stem as string,
     options: (q.options as QOption[]) ?? [],
-    marks_correct: (q.marks_correct as number) ?? 4,
-    marks_wrong: (q.marks_wrong as number) ?? -1,
+    marks_correct: Number(q.marks_correct ?? 4),
+    marks_wrong: Number(q.marks_wrong ?? -1),
   };
 }
 
@@ -74,5 +78,6 @@ export function grade(
   const correct = q.qtype === "numeric"
     ? selected_value != null && q.correct_value != null && Number(selected_value) === Number(q.correct_value)
     : selected_key === q.correct_key;
-  return { attempted: true, is_correct: correct, awarded: correct ? q.marks_correct : q.marks_wrong };
+  // Number(): numeric columns must never be summed as strings.
+  return { attempted: true, is_correct: correct, awarded: Number(correct ? q.marks_correct : q.marks_wrong) };
 }
