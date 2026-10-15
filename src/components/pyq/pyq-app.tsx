@@ -37,25 +37,27 @@ type Paper = {
 };
 /** Figure URLs (public `pyq-figures` bucket). Option figures are keyed by option letter. */
 type Figs = { stem_figure_url?: string | null; option_figure_urls?: Record<string, string> | null };
+/** 'multi' = one or more options correct (WBJEE Category 3), answered with selected_keys. */
+type QType = "mcq" | "numeric" | "multi";
 type Question = {
-  id: string; q_no: number; topic: string | null; qtype: "mcq" | "numeric";
+  id: string; q_no: number; topic: string | null; qtype: QType;
   stem: string; options: QOption[]; marks_correct: number; marks_wrong: number;
 } & Figs;
 type Reveal = {
-  correct_key: string | null; correct_value: number | null; solution: string | null;
-  solution_figure_url?: string | null; is_correct: boolean | null;
+  correct_key: string | null; correct_value: number | null; correct_keys?: string[] | null; solution: string | null;
+  solution_figure_url?: string | null; is_correct: boolean | null; awarded?: number | null;
 };
 /** `locked` = the server has recorded that the solution was seen (answer can no
  *  longer change); `shown` = the result box is currently open on screen. */
 type AnswerState = {
-  selected_key: string | null; selected_value: number | null; marked_for_later: boolean;
+  selected_key: string | null; selected_value: number | null; selected_keys: string[] | null; marked_for_later: boolean;
   locked: boolean; shown: boolean; reveal?: Reveal;
 };
 type TopicStat = { topic: string; correct: number; attempted: number; total: number; pct: number };
 type ReviewItem = {
-  id: string; q_no: number; topic: string | null; qtype?: "mcq" | "numeric"; stem: string; options: QOption[];
-  correct_key: string | null; correct_value?: number | null; solution: string | null; solution_figure_url?: string | null;
-  selected_key: string | null; selected_value?: number | null;
+  id: string; q_no: number; topic: string | null; qtype?: QType; stem: string; options: QOption[];
+  correct_key: string | null; correct_value?: number | null; correct_keys?: string[] | null; solution: string | null; solution_figure_url?: string | null;
+  selected_key: string | null; selected_value?: number | null; selected_keys?: string[] | null;
   marked_for_later: boolean; is_correct: boolean | null; awarded: number;
 } & Figs;
 type ResultData = {
@@ -104,7 +106,9 @@ function markLabel(correct: number | string, wrong: number | string) {
 const paperMarking = (p: Paper) => p.marking_note ?? markLabel(p.marks_correct, p.marks_wrong);
 /** A numeric answer shown back to the user, exactly as stored (no rounding). */
 const fmtVal = (v: number | string | null | undefined) => (v == null || v === "" ? "—" : String(Number(v)));
-const isAnswered = (a?: AnswerState) => !!a && (a.selected_key != null || a.selected_value != null);
+const isAnswered = (a?: AnswerState) => !!a && (a.selected_key != null || a.selected_value != null || !!a.selected_keys?.length);
+/** Multi-answer partial credit: not fully correct, yet marks were awarded (a wrong option scores marks_wrong ≤ 0). */
+const isPartial = (is_correct: boolean | null | undefined, awarded: number | null | undefined) => is_correct === false && Number(awarded ?? 0) > 0;
 const NUMERIC_RE = /^-?\d+(\.\d+)?$/;
 
 /** A question / option / solution figure. Plain <img>: these are external
@@ -456,8 +460,9 @@ function Test({ paperId, go, toast, onSubmitted }: {
         const j = await jpost<{
           attempt_id: string; paper: Paper; questions: Question[];
           answers: Array<{
-            question_id: string; selected_key: string | null; selected_value: number | null; marked_for_later: boolean; revealed: boolean;
-            correct_key: string | null; correct_value: number | null; solution: string | null; solution_figure_url: string | null; is_correct: boolean | null;
+            question_id: string; selected_key: string | null; selected_value: number | null; selected_keys: string[] | null; marked_for_later: boolean; revealed: boolean;
+            correct_key: string | null; correct_value: number | null; correct_keys: string[] | null; solution: string | null; solution_figure_url: string | null;
+            is_correct: boolean | null; awarded: number | null;
           }>;
         }>("/api/pyq/attempt/start", { paper_id: paperId });
         if (!on) return;
@@ -465,9 +470,12 @@ function Test({ paperId, go, toast, onSubmitted }: {
         for (const a of j.answers ?? []) {
           // The server only sends the answer for questions whose result was already seen.
           amap[a.question_id] = {
-            selected_key: a.selected_key, selected_value: a.selected_value ?? null, marked_for_later: a.marked_for_later,
+            selected_key: a.selected_key, selected_value: a.selected_value ?? null, selected_keys: a.selected_keys ?? null, marked_for_later: a.marked_for_later,
             locked: a.revealed, shown: a.revealed,
-            reveal: a.revealed ? { correct_key: a.correct_key, correct_value: a.correct_value, solution: a.solution, solution_figure_url: a.solution_figure_url, is_correct: a.is_correct } : undefined,
+            reveal: a.revealed ? {
+              correct_key: a.correct_key, correct_value: a.correct_value, correct_keys: a.correct_keys ?? null, solution: a.solution,
+              solution_figure_url: a.solution_figure_url, is_correct: a.is_correct, awarded: a.awarded,
+            } : undefined,
           };
         }
         // Resuming → open on the first question not yet answered.
@@ -490,7 +498,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
 
   function patch(qid: string, next: Partial<AnswerState>) {
     setAnswers((prev) => {
-      const base: AnswerState = prev[qid] ?? { selected_key: null, selected_value: null, marked_for_later: false, locked: false, shown: false };
+      const base: AnswerState = prev[qid] ?? { selected_key: null, selected_value: null, selected_keys: null, marked_for_later: false, locked: false, shown: false };
       return { ...prev, [qid]: { ...base, ...next } };
     });
   }
@@ -502,6 +510,18 @@ function Test({ paperId, go, toast, onSubmitted }: {
     patch(qid, { selected_key: key });
     try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, selected_key: key }); }
     catch (e) { patch(qid, { selected_key: prev }); saveFailed(e); }
+  }
+  /** Multi-answer: tapping an option toggles it in the selection and saves at
+   *  once. An empty selection is sent as [] (clears; stored as NULL). */
+  async function toggleKey(qid: string, key: string) {
+    const st = answers[qid];
+    if (st?.locked) return;
+    const prev = st?.selected_keys ?? null;
+    const cur = prev ?? [];
+    const next = (cur.includes(key) ? cur.filter((k) => k !== key) : [...cur, key]).sort();
+    patch(qid, { selected_keys: next.length ? next : null });
+    try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, selected_keys: next }); }
+    catch (e) { patch(qid, { selected_keys: prev }); saveFailed(e); }
   }
   async function saveValue(qid: string, raw: string) {
     const st = answers[qid];
@@ -549,11 +569,15 @@ function Test({ paperId, go, toast, onSubmitted }: {
   const q = questions[i];
   const a = answers[q.id];
   const numeric = q.qtype === "numeric";
+  const multi = q.qtype === "multi";
   const answered = isAnswered(a);
   const locked = !!a?.locked;
   const rev = answered && !!a?.shown && !!a?.reveal;
   const correctKey = a?.reveal?.correct_key ?? null;
   const correctOpt = q.options.find((o) => o.key === correctKey);
+  const correctKeys = a?.reveal?.correct_keys ?? [];
+  const isKey = (k: string) => (multi ? correctKeys.includes(k) : k === correctKey);
+  const partial = multi && isPartial(a?.reveal?.is_correct, a?.reveal?.awarded);
   const ansd = questions.filter((qq) => isAnswered(answers[qq.id])).length;
   const mkd = questions.filter((qq) => answers[qq.id]?.marked_for_later).length;
   const N = questions.length;
@@ -589,33 +613,38 @@ function Test({ paperId, go, toast, onSubmitted }: {
           {numeric ? (
             <NumericAnswer key={q.id} value={a?.selected_value ?? null} locked={locked} onSave={(v) => saveValue(q.id, v)} />
           ) : (
-            <div className="opts">
-              {q.options.map((o) => {
-                const sel = a?.selected_key === o.key;
-                let cls = "opt";
-                if (rev && o.key === correctKey) cls = "opt correct";
-                else if (rev && sel) cls = "opt wrong";
-                else if (sel) cls = "opt sel";
-                const ofig = q.option_figure_urls?.[o.key];
-                return (
-                  <button key={o.key} className={cls} disabled={locked} onClick={() => choose(q.id, o.key)}>
-                    <span className="k">{o.key}</span>
-                    <span className="otxt">
-                      {o.text && <MathText text={o.text} />}
-                      <Fig src={ofig} alt={`Option ${o.key}`} className="ofig" />
-                    </span>
-                    {rev && o.key === correctKey && <span className="tick" style={{ color: "var(--ok)" }}>✓ correct</span>}
-                    {rev && sel && o.key !== correctKey && <span className="tick" style={{ color: "var(--bad)" }}>✗ your answer</span>}
-                  </button>
-                );
-              })}
-            </div>
+            <>
+              {multi && <div className="multinote">One or more options may be correct.</div>}
+              <div className="opts">
+                {q.options.map((o) => {
+                  const sel = multi ? !!a?.selected_keys?.includes(o.key) : a?.selected_key === o.key;
+                  let cls = "opt";
+                  if (rev && isKey(o.key)) cls = "opt correct";
+                  else if (rev && sel) cls = "opt wrong";
+                  else if (sel) cls = "opt sel";
+                  const ofig = q.option_figure_urls?.[o.key];
+                  return (
+                    <button key={o.key} className={cls} disabled={locked} aria-pressed={multi ? sel : undefined}
+                      onClick={() => (multi ? toggleKey(q.id, o.key) : choose(q.id, o.key))}>
+                      <span className="k">{o.key}</span>
+                      <span className="otxt">
+                        {o.text && <MathText text={o.text} />}
+                        <Fig src={ofig} alt={`Option ${o.key}`} className="ofig" />
+                      </span>
+                      {rev && isKey(o.key) && <span className="tick" style={{ color: "var(--ok)" }}>✓ correct</span>}
+                      {rev && sel && !isKey(o.key) && <span className="tick" style={{ color: "var(--bad)" }}>✗ your answer</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
           )}
 
           <div className="locknote">
             {locked ? "Answer locked — you've seen the solution."
               : answered ? "You can change your answer until you view the result."
               : numeric ? "Enter your answer to enable “Show result”."
+              : multi ? "Select one or more options to enable “Show result”."
               : "Select an option to enable “Show result”."}
           </div>
 
@@ -626,8 +655,17 @@ function Test({ paperId, go, toast, onSubmitted }: {
                   {a.reveal.is_correct ? "✓ Your answer is correct" : `✗ Your answer: ${fmtVal(a.selected_value)}`}
                 </div>
               )}
+              {multi && (
+                <div className={`verdict ${a.reveal.is_correct ? "ok" : partial ? "part" : "no"}`}>
+                  {a.reveal.is_correct ? "✓ Fully correct" : partial ? `◐ Partially correct (+${fmtNum(a.reveal.awarded)})` : "✗ Incorrect"}
+                </div>
+              )}
               <div className="hd">
                 ✓ Correct answer: {numeric ? fmtVal(a.reveal.correct_value)
+                  : multi ? correctKeys.map((k, n) => {
+                    const o = q.options.find((x) => x.key === k);
+                    return <span key={k}>{n > 0 && ", "}{k}{o?.text ? <>. <MathText text={o.text} /></> : null}</span>;
+                  })
                   : <>{correctKey}{correctOpt?.text ? <>. <MathText text={correctOpt.text} /></> : null}</>}
               </div>
               {a.reveal.solution && <div className="sol"><MathText text={a.reveal.solution} /></div>}
@@ -752,25 +790,30 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
           <h3 style={{ fontSize: 16 }}>Question-wise review</h3>
           {data.review.map((r) => {
             const numeric = r.qtype === "numeric";
-            const attempted = numeric ? r.selected_value != null : r.selected_key != null;
+            const multi = r.qtype === "multi";
+            const attempted = numeric ? r.selected_value != null : multi ? !!r.selected_keys?.length : r.selected_key != null;
             const got = r.is_correct === true;
+            const part = multi && isPartial(r.is_correct, r.awarded);
             // An option shown back: letter, its text (as maths) and/or its figure.
             const optLabel = (key: string | null) => {
               if (!key) return "—";
               const o = r.options.find((x) => x.key === key);
               return <>{key}{o?.text ? <>. <MathText text={o.text} /></> : null}<Fig src={r.option_figure_urls?.[key]} alt={`Option ${key}`} className="ofig sm" /></>;
             };
+            // Multi-answer: each chosen / correct option, comma-separated.
+            const keysLabel = (keys?: string[] | null) =>
+              keys?.length ? keys.map((k, n) => <span key={k}>{n > 0 && ", "}{optLabel(k)}</span>) : "—";
             return (
               <div key={r.id} className="rev">
                 {r.topic && <div className="tp">{r.topic}</div>}
                 <div className="q">Q{r.q_no}. <MathText text={r.stem} /></div>
                 <Fig src={r.stem_figure_url} alt={`Figure for question ${r.q_no}`} />
                 <div className="ans">
-                  <span className={`y ${!attempted ? "" : got ? "ok" : "no"}`}>
-                    Your answer: {!attempted ? "Not attempted" : numeric ? fmtVal(r.selected_value) : optLabel(r.selected_key)}
+                  <span className={`y ${!attempted ? "" : got ? "ok" : part ? "part" : "no"}`}>
+                    Your answer: {!attempted ? "Not attempted" : numeric ? fmtVal(r.selected_value) : multi ? keysLabel(r.selected_keys) : optLabel(r.selected_key)}
                     {attempted && ` (${Number(r.awarded) > 0 ? "+" : ""}${fmtNum(r.awarded)})`}
                   </span>
-                  <span style={{ color: "var(--ok)" }}>Correct: {numeric ? fmtVal(r.correct_value) : optLabel(r.correct_key)}</span>
+                  <span style={{ color: "var(--ok)" }}>Correct: {numeric ? fmtVal(r.correct_value) : multi ? keysLabel(r.correct_keys) : optLabel(r.correct_key)}</span>
                 </div>
                 {r.solution && <div className="sol"><MathText text={r.solution} /></div>}
                 <Fig src={r.solution_figure_url} alt={`Solution figure for question ${r.q_no}`} />

@@ -32,22 +32,24 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
 
   const { data: aRows } = await db
     .from("pyq_answers")
-    .select("question_id, selected_key, selected_value, marked_for_later")
+    .select("question_id, selected_key, selected_value, selected_keys, marked_for_later")
     .eq("attempt_id", id);
-  const answerByQ = new Map<string, { selected_key: string | null; selected_value: number | null; marked_for_later: boolean }>();
+  const answerByQ = new Map<string, { selected_key: string | null; selected_value: number | null; selected_keys: string[] | null; marked_for_later: boolean }>();
   for (const a of (aRows ?? [])) answerByQ.set(a.question_id as string, a as never);
 
   const review = (qRows ?? []).map((q) => {
     const a = answerByQ.get(q.id as string);
     const g = grade(
-      { qtype: q.qtype as string, correct_key: (q.correct_key as string) ?? null, correct_value: (q.correct_value as number) ?? null, marks_correct: q.marks_correct as number, marks_wrong: q.marks_wrong as number },
-      a?.selected_key ?? null, a?.selected_value ?? null
+      { qtype: q.qtype as string, correct_key: (q.correct_key as string) ?? null, correct_value: (q.correct_value as number) ?? null, correct_keys: (q.correct_keys as string[]) ?? null, marks_correct: q.marks_correct as number, marks_wrong: q.marks_wrong as number },
+      a?.selected_key ?? null, a?.selected_value ?? null, a?.selected_keys ?? null
     );
     return {
       id: q.id, q_no: q.q_no, topic: q.topic, qtype: q.qtype, stem: q.stem, options: q.options,
       correct_key: q.correct_key, correct_value: q.correct_value == null ? null : Number(q.correct_value), solution: q.solution,
+      correct_keys: (q.correct_keys as string[]) ?? null,
       stem_figure_url: q.stem_figure_url ?? null, solution_figure_url: q.solution_figure_url ?? null, option_figure_urls: q.option_figure_urls ?? null,
       selected_key: a?.selected_key ?? null, selected_value: a?.selected_value == null ? null : Number(a.selected_value),
+      selected_keys: a?.selected_keys ?? null,
       marked_for_later: a?.marked_for_later ?? false,
       is_correct: g.attempted ? g.is_correct : null, awarded: g.attempted ? g.awarded : 0,
     };

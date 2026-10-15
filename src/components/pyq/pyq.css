@@ -186,6 +186,7 @@
 .pyq .rev .ans{font-size:12.5px;margin-top:7px;display:flex;flex-wrap:wrap;gap:12px}
 .pyq .rev .ans .y.ok{color:var(--ok)}
 .pyq .rev .ans .y.no{color:var(--bad)}
+.pyq .rev .ans .y.part{color:var(--orange)}
 .pyq .rev .sol{font-size:12.5px;color:var(--muted);margin-top:7px;border-top:1px dashed var(--line2);padding-top:7px;white-space:pre-wrap}
 .pyq .rev .tp{font-size:11px;color:var(--cyan);font-weight:700}
 .pyq .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;justify-content:center}
@@ -216,6 +217,10 @@
 .pyq .verdict{font-size:13.5px;font-weight:800;margin-bottom:6px}
 .pyq .verdict.ok{color:var(--ok)}
 .pyq .verdict.no{color:var(--bad)}
+.pyq .verdict.part{color:var(--orange)}
+
+/* Multi-answer (one or more options correct) */
+.pyq .multinote{font-size:12.5px;font-weight:700;color:var(--cyan);margin:0 0 10px}
 
 /* Submit confirmation */
 .pyq .modal-bg{position:fixed;inset:0;z-index:60;background:rgba(5,2,14,.72);display:grid;place-items:center;padding:16px}

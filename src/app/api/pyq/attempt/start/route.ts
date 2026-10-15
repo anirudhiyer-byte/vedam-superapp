@@ -55,18 +55,19 @@ export async function POST(req: Request) {
   // Saved answers (for resume). Attach reveal payload where already answered/revealed.
   const { data: aRows } = await db
     .from("pyq_answers")
-    .select("question_id, selected_key, selected_value, marked_for_later, is_correct, awarded, revealed")
+    .select("question_id, selected_key, selected_value, selected_keys, marked_for_later, is_correct, awarded, revealed")
     .eq("attempt_id", attemptId);
   const answers = (aRows ?? []) as AnswerRow[];
 
   const qById = new Map<string, Record<string, unknown>>();
   for (const q of (qRows ?? []) as Array<Record<string, unknown>>) qById.set(q.id as string, q);
-  const hidden = { correct_key: null, correct_value: null, solution: null, solution_figure_url: null };
+  const hidden = { correct_key: null, correct_value: null, correct_keys: null, solution: null, solution_figure_url: null };
   const answerState = answers.map((a) => {
     const q = a.revealed ? qById.get(a.question_id) : undefined;
     return {
       ...a,
       selected_value: a.selected_value == null ? null : Number(a.selected_value),
+      selected_keys: a.selected_keys ?? null,
       is_correct: q ? a.is_correct : null,
       awarded: q && a.awarded != null ? Number(a.awarded) : null,
       ...(q ? revealOf(q) : hidden),

@@ -34,7 +34,9 @@ export async function GET() {
       .from("pyq_answers")
       .select("question_id", { count: "exact", head: true })
       .eq("attempt_id", open.id)
-      .or("selected_key.not.is.null,selected_value.not.is.null"); // MCQ or numeric answer
+      // MCQ, numeric or multi-answer. A cleared multi selection is stored as NULL
+      // (never '{}' — see normKeys), so `not.is.null` is enough for selected_keys.
+      .or("selected_key.not.is.null,selected_value.not.is.null,selected_keys.not.is.null");
     const paper = open.paper as unknown as { total_questions?: number } | null;
     inProgress = { attempt_id: open.id, paper: open.paper, answered: count ?? 0, total: Number(paper?.total_questions ?? 0) };
   }

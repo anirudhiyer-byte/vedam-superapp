@@ -41,11 +41,14 @@ export type QOption = { key: string; text: string };
  *  `pyq-figures` Storage bucket; the solution figure is answer material and is
  *  only ever sent alongside the solution (reveal / review), never with the question. */
 export const QUESTION_COLS =
-  "id, q_no, topic, qtype, stem, options, correct_key, correct_value, solution, marks_correct, marks_wrong, stem_figure_url, solution_figure_url, option_figure_urls";
+  "id, q_no, topic, qtype, stem, options, correct_key, correct_value, correct_keys, solution, marks_correct, marks_wrong, stem_figure_url, solution_figure_url, option_figure_urls";
+
+/** 'multi' = one or more options correct (WBJEE Category 3), answered with selected_keys. */
+export type QType = "mcq" | "numeric" | "multi";
 
 /** Question as sent to the browser DURING an attempt — no answer/solution. */
 export type QuestionPublic = {
-  id: string; q_no: number; topic: string | null; qtype: "mcq" | "numeric";
+  id: string; q_no: number; topic: string | null; qtype: QType;
   stem: string; options: QOption[]; marks_correct: number; marks_wrong: number;
   stem_figure_url: string | null; option_figure_urls: Record<string, string> | null;
 };
@@ -53,7 +56,8 @@ export type QuestionPublic = {
 /** Full question including the answer — only ever returned for a question whose
  *  result the candidate has chosen to see (reveal), or after the attempt is submitted. */
 export type QuestionFull = QuestionPublic & {
-  correct_key: string | null; correct_value: number | null; solution: string | null; solution_figure_url: string | null;
+  correct_key: string | null; correct_value: number | null; correct_keys: string[] | null;
+  solution: string | null; solution_figure_url: string | null;
 };
 
 /** The answer payload shown by "Show result" (and restored on resume). */
@@ -61,22 +65,36 @@ export function revealOf(q: Record<string, unknown>) {
   return {
     correct_key: (q.correct_key as string) ?? null,
     correct_value: q.correct_value == null ? null : Number(q.correct_value),
+    correct_keys: q.qtype === "multi" ? ((q.correct_keys as string[]) ?? null) : null,
     solution: (q.solution as string) ?? null,
     solution_figure_url: (q.solution_figure_url as string) ?? null,
   };
 }
 
 export type AnswerRow = {
-  question_id: string; selected_key: string | null; selected_value: number | null;
+  question_id: string; selected_key: string | null; selected_value: number | null; selected_keys: string[] | null;
   marked_for_later: boolean; is_correct: boolean | null; awarded: number | null; revealed: boolean;
 };
+
+/** A multi-answer selection as stored: deduped, sorted (case-sensitive), and
+ *  NULL — never [] — when empty, so "answered" is just `selected_keys is not null`. */
+export function normKeys(keys: readonly string[] | null | undefined): string[] | null {
+  if (!keys || keys.length === 0) return null;
+  return Array.from(new Set(keys)).sort();
+}
+
+/** Same multi-answer selection? Compares the normalised (sorted) arrays. */
+export function sameKeys(a: readonly string[] | null | undefined, b: readonly string[] | null | undefined): boolean {
+  const x = normKeys(a) ?? [], y = normKeys(b) ?? [];
+  return x.length === y.length && x.every((k, i) => k === y[i]);
+}
 
 export function sanitizeQuestion(q: Record<string, unknown>): QuestionPublic {
   return {
     id: q.id as string,
     q_no: q.q_no as number,
     topic: (q.topic as string) ?? null,
-    qtype: (q.qtype as "mcq" | "numeric") ?? "mcq",
+    qtype: (q.qtype as QType) ?? "mcq",
     stem: q.stem as string,
     options: (q.options as QOption[]) ?? [],
     marks_correct: Number(q.marks_correct ?? 4),
@@ -95,12 +113,24 @@ export function parseValue(v: unknown): number | null | undefined {
   return Number.isFinite(n) ? n : NaN;
 }
 
-/** Grade one selection against a question. Returns null awarded when unattempted. */
+/** Grade one selection against a question. Returns null awarded when unattempted.
+ *  Multi-answer ('multi', graded on selected_keys): any wrong option → marks_wrong;
+ *  exactly the correct set → marks_correct; a non-empty strict subset of the
+ *  correct set → partial credit marks_correct × |S| / |C| (is_correct false). */
 export function grade(
-  q: { qtype: string; correct_key: string | null; correct_value: number | null; marks_correct: number; marks_wrong: number },
+  q: { qtype: string; correct_key: string | null; correct_value: number | null; correct_keys?: string[] | null; marks_correct: number; marks_wrong: number },
   selected_key: string | null,
-  selected_value: number | null
+  selected_value: number | null,
+  selected_keys: string[] | null = null
 ): { attempted: boolean; is_correct: boolean | null; awarded: number } {
+  if (q.qtype === "multi") {
+    const S = normKeys(selected_keys);
+    if (!S) return { attempted: false, is_correct: null, awarded: 0 };
+    const C = new Set(q.correct_keys ?? []);
+    if (S.some((k) => !C.has(k))) return { attempted: true, is_correct: false, awarded: Number(q.marks_wrong) };
+    if (S.length === C.size) return { attempted: true, is_correct: true, awarded: Number(q.marks_correct) };
+    return { attempted: true, is_correct: false, awarded: (Number(q.marks_correct) * S.length) / C.size };
+  }
   const hasSel = q.qtype === "numeric" ? selected_value != null : !!selected_key;
   if (!hasSel) return { attempted: false, is_correct: null, awarded: 0 };
   const correct = q.qtype === "numeric"

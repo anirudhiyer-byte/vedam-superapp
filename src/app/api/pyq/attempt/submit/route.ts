@@ -30,9 +30,9 @@ export async function POST(req: Request) {
 
   const { data: aRows } = await db
     .from("pyq_answers")
-    .select("question_id, selected_key, selected_value, marked_for_later, revealed")
+    .select("question_id, selected_key, selected_value, selected_keys, marked_for_later, revealed")
     .eq("attempt_id", attemptId);
-  const answerByQ = new Map<string, { selected_key: string | null; selected_value: number | null; marked_for_later: boolean; revealed: boolean }>();
+  const answerByQ = new Map<string, { selected_key: string | null; selected_value: number | null; selected_keys: string[] | null; marked_for_later: boolean; revealed: boolean }>();
   for (const a of (aRows ?? [])) answerByQ.set(a.question_id as string, a as never);
 
   let score = 0, maxScore = 0, correct = 0, wrong = 0, unattempted = 0;
@@ -40,11 +40,12 @@ export async function POST(req: Request) {
   const review = questions.map((q) => {
     const a = answerByQ.get(q.id as string);
     const g = grade(
-      { qtype: q.qtype as string, correct_key: (q.correct_key as string) ?? null, correct_value: (q.correct_value as number) ?? null, marks_correct: q.marks_correct as number, marks_wrong: q.marks_wrong as number },
-      a?.selected_key ?? null, a?.selected_value ?? null
+      { qtype: q.qtype as string, correct_key: (q.correct_key as string) ?? null, correct_value: (q.correct_value as number) ?? null, correct_keys: (q.correct_keys as string[]) ?? null, marks_correct: q.marks_correct as number, marks_wrong: q.marks_wrong as number },
+      a?.selected_key ?? null, a?.selected_value ?? null, a?.selected_keys ?? null
     );
     maxScore += Number(q.marks_correct ?? 4);
     score += g.awarded;
+    // A partially-correct multi-answer (is_correct false) counts as wrong here; its partial marks are in `score`.
     if (!g.attempted) unattempted++;
     else if (g.is_correct) correct++;
     else wrong++;
@@ -52,14 +53,16 @@ export async function POST(req: Request) {
     const topic = (q.topic as string) || "General";
     const t = topics.get(topic) ?? { topic, correct: 0, attempted: 0, total: 0, pct: 0 };
     t.total++;
-    if (g.attempted) { t.attempted++; if (g.is_correct) t.correct++; }
+    if (g.attempted) { t.attempted++; if (g.is_correct) t.correct++; } // fully correct only
     topics.set(topic, t);
 
     return {
       id: q.id, q_no: q.q_no, topic: q.topic, qtype: q.qtype, stem: q.stem, options: q.options,
       correct_key: q.correct_key, correct_value: q.correct_value == null ? null : Number(q.correct_value), solution: q.solution,
+      correct_keys: (q.correct_keys as string[]) ?? null,
       stem_figure_url: q.stem_figure_url ?? null, solution_figure_url: q.solution_figure_url ?? null, option_figure_urls: q.option_figure_urls ?? null,
       selected_key: a?.selected_key ?? null, selected_value: a?.selected_value == null ? null : Number(a.selected_value),
+      selected_keys: a?.selected_keys ?? null,
       marked_for_later: a?.marked_for_later ?? false,
       is_correct: g.attempted ? g.is_correct : null, awarded: g.attempted ? g.awarded : 0,
     };
