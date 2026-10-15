@@ -1,23 +1,44 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
+/* PYQ module — replicates the approved "PYQ Exam Prototype" + "PYQ Workflow
+   Wireframe" journey inside the Vedam One shell.
+
+   New user (logged out):   S1 Landing → S2 Create account → S4 Pick paper → S5 Attempt → S6 Result
+   Returning (signed in):   S3 Dashboard → Resume / S4 Pick paper → S5 Attempt → S6 Result
+                            (header "PYQ" lands signed-in users on S3 — skips S1 & S2)
+
+   Deliberate differences from the static prototype, per later product decisions:
+   no timer; answers are NOT locked (re-selectable) and "Show result" appears only
+   once the question is attempted; marks follow each exam's real scheme; S2 is the
+   real Vedam One signup (Part-1 OTP + Part-2 details), not a mock.
+
+   URL is the source of truth so refresh / back work:
+     /pyq                         → S3 (signed in) or S1 (logged out)
+     /pyq?view=register&next=…    → S2
+     /pyq?view=papers[&exam=…]    → S4
+     /pyq?paper=<paperId>         → S5 (starts or resumes)
+     /pyq?result=<attemptId>      → S6 */
+
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { RegisterForm } from "@/components/register-form";
 
 /* ------------------------------------------------------------------ types */
 type QOption = { key: string; text: string };
+type MyStatus = {
+  in_progress_id: string | null;
+  last: { attempt_id: string; score: number; max_score: number; submitted_at: string } | null;
+} | null;
 type Paper = {
-  id: string; exam: string; subject: string; year: number; set_label: string | null;
-  title: string; marks_correct: number; marks_wrong: number; marking_note: string | null; total_questions: number;
+  id: string; exam: string; subject: string; year: number; set_label: string | null; title: string;
+  marks_correct: number; marks_wrong: number; marking_note: string | null; total_questions: number; my?: MyStatus;
 };
 type Question = {
   id: string; q_no: number; topic: string | null; qtype: "mcq" | "numeric";
   stem: string; options: QOption[]; marks_correct: number; marks_wrong: number;
 };
 type Reveal = { correct_key: string | null; solution: string | null; is_correct: boolean | null };
-type AnswerState = {
-  selected_key: string | null; marked_for_later: boolean; revealed: boolean; reveal?: Reveal;
-};
+type AnswerState = { selected_key: string | null; marked_for_later: boolean; revealed: boolean; reveal?: Reveal };
 type TopicStat = { topic: string; correct: number; attempted: number; total: number; pct: number };
 type ReviewItem = {
   id: string; q_no: number; topic: string | null; stem: string; options: QOption[];
@@ -25,100 +46,409 @@ type ReviewItem = {
   marked_for_later: boolean; is_correct: boolean | null; awarded: number;
 };
 type ResultData = {
+  attempt_id?: string; paper?: Paper | null;
   summary: { score: number; max_score: number; correct: number; wrong: number; unattempted: number; attempted: number; accuracy: number; duration_secs: number | null };
-  topic_breakdown: TopicStat[]; review: ReviewItem[]; paper?: Paper | null;
+  topic_breakdown: TopicStat[]; review: ReviewItem[];
 };
+type MeData = {
+  name: string | null;
+  in_progress: { attempt_id: string; paper: Paper; answered: number; total: number } | null;
+  attempts: { attempt_id: string; paper: Paper; submitted_at: string; score: number; max_score: number }[];
+  stats: { papers_attempted: number; avg_accuracy: number | null };
+};
+type Route =
+  | { s: "landing" } | { s: "register" } | { s: "dashboard" }
+  | { s: "picker"; exam?: string } | { s: "test"; paperId: string } | { s: "result"; attemptId: string };
 
-type Phase = "loading" | "signin" | "picker" | "starting" | "test" | "submitting" | "result";
+/* ---------------------------------------------------------------- labels */
+// Prototype order & naming: tiles "CBSE Boards · JEE Main · WBJEE · MH-CET", tabs "Boards · JEE · WBJEE · MH-CET".
+const EXAM_ORDER = ["CBSE Class 12", "JEE Main", "WBJEE", "MHT-CET"];
+const EXAM_TILE: Record<string, { title: string; sub: string }> = {
+  "CBSE Class 12": { title: "CBSE Boards", sub: "Phy · Chem · Maths · CS" },
+  "JEE Main": { title: "JEE Main", sub: "Year → Shift" },
+  "WBJEE": { title: "WBJEE", sub: "All sets" },
+  "MHT-CET": { title: "MH-CET", sub: "PCM / PCB" },
+};
+const EXAM_TAB: Record<string, string> = { "CBSE Class 12": "Boards", "JEE Main": "JEE", "WBJEE": "WBJEE", "MHT-CET": "MH-CET" };
+const SET_WORD: Record<string, string> = { "CBSE Class 12": "Set", "JEE Main": "Shift", "WBJEE": "Set", "MHT-CET": "Shift" };
+const DEFAULT_EXAM = "JEE Main";
+
+const examTitle = (e: string) => EXAM_TILE[e]?.title ?? e;
+const paperName = (p: Pick<Paper, "subject" | "year" | "set_label">) => `${p.subject} · ${p.year}${p.set_label ? ` · ${p.set_label}` : ""}`;
+const fullPaperName = (p: Pick<Paper, "exam" | "subject" | "year" | "set_label">) => `${examTitle(p.exam)} · ${paperName(p)}`;
 
 /* --------------------------------------------------------------- helpers */
-const EXAM_ORDER = ["JEE Main", "WBJEE", "MHT-CET", "CBSE Class 12"];
-function barColor(pct: number) { return pct >= 67 ? "#22c55e" : pct >= 34 ? "#f59e0b" : "#ef4444"; }
-/** 4 → "4", 4.75 → "4.75", -0.5 → "-0.5" (marks can be fractional, e.g. WBJEE). */
 function fmtNum(n: number | string | null | undefined) {
   const v = Number(n ?? 0);
   return Number.isInteger(v) ? String(v) : String(Math.round(v * 100) / 100);
 }
 const FRACTION: Record<string, string> = { "0.25": "¼", "0.5": "½", "0.75": "¾" };
-function fmtMark(n: number) { const a = Math.abs(n); return FRACTION[String(a)] ?? fmtNum(a); }
-/** Marking for one question / paper, as the exam states it: "+4 / −1", "+1 · no negative". */
+const fmtMark = (n: number) => FRACTION[String(Math.abs(n))] ?? fmtNum(Math.abs(n));
 function markLabel(correct: number | string, wrong: number | string) {
   const c = Number(correct), w = Number(wrong);
   return w === 0 ? `+${fmtMark(c)} · no negative` : `+${fmtMark(c)} / −${fmtMark(w)}`;
+}
+const paperMarking = (p: Paper) => p.marking_note ?? markLabel(p.marks_correct, p.marks_wrong);
+const shortDate = (iso: string) => new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "short" });
+const barColor = (pct: number) => (pct >= 67 ? "var(--ok)" : pct >= 34 ? "var(--orange)" : "var(--bad)");
+
+async function jget<T>(url: string): Promise<T> {
+  const r = await fetch(url, { cache: "no-store" });
+  const j = await r.json(); if (!r.ok) throw new Error(j?.error || "Request failed"); return j as T;
 }
 async function jpost<T>(url: string, body: unknown): Promise<T> {
   const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   const j = await r.json(); if (!r.ok) throw new Error(j?.error || "Request failed"); return j as T;
 }
 
-/* =================================================================== app */
-export function PyqApp() {
-  const [supabase] = useState(() => createClient());
-  const [phase, setPhase] = useState<Phase>("loading");
-  const [papers, setPapers] = useState<Paper[]>([]);
-  const [err, setErr] = useState("");
+/** S2 URL — the real RegisterForm reads `next` from the query and lands the user there after signup. */
+const registerUrl = (back: string) => `/pyq?view=register&next=${encodeURIComponent(back)}`;
 
-  // active attempt
-  const [attemptId, setAttemptId] = useState<string>("");
+function parseRoute(signedIn: boolean): { route: Route; normalize?: string } {
+  const q = new URLSearchParams(window.location.search);
+  const here = window.location.pathname + window.location.search;
+  const result = q.get("result");
+  if (result) return signedIn ? { route: { s: "result", attemptId: result } } : { route: { s: "register" }, normalize: registerUrl(here) };
+  const paper = q.get("paper");
+  if (paper) return signedIn ? { route: { s: "test", paperId: paper } } : { route: { s: "register" }, normalize: registerUrl(here) };
+  const view = q.get("view");
+  if (view === "papers") return { route: { s: "picker", exam: q.get("exam") ?? undefined } };
+  if (view === "register") {
+    if (signedIn) return { route: { s: "dashboard" }, normalize: "/pyq" };
+    return q.get("next") ? { route: { s: "register" } } : { route: { s: "register" }, normalize: registerUrl("/pyq?view=papers") };
+  }
+  return { route: signedIn ? { s: "dashboard" } : { s: "landing" } };
+}
+
+/* =================================================================== app */
+export function PyqApp({ signedIn, firstName }: { signedIn: boolean; firstName: string }) {
+  const [route, setRoute] = useState<Route | null>(null);
+  const [papers, setPapers] = useState<Paper[] | null>(null);
+  const [toastMsg, setToastMsg] = useState("");
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resultCache = useRef<Record<string, ResultData>>({});
+
+  const toast = useCallback((m: string) => {
+    setToastMsg(m);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToastMsg(""), 2200);
+  }, []);
+
+  const sync = useCallback(() => {
+    const { route: r, normalize } = parseRoute(signedIn);
+    if (normalize && normalize !== window.location.pathname + window.location.search) window.history.replaceState(null, "", normalize);
+    setRoute(r);
+  }, [signedIn]);
+
+  const go = useCallback((url: string, replace = false) => {
+    if (replace) window.history.replaceState(null, "", url); else window.history.pushState(null, "", url);
+    sync();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [sync]);
+
+  // Re-read the route whenever the query changes — covers our own pushState,
+  // browser back/forward, AND Next <Link> navigations (e.g. clicking "PYQ" in
+  // the Vedam One header while inside the module → back to S3 / S1).
+  const searchParams = useSearchParams();
+  useEffect(() => { sync(); }, [searchParams, sync]);
+  useEffect(() => {
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
+  }, [sync]);
+
+  // Catalogue: needed by S1 (tile counts) and S4. Re-pulled on entering those
+  // screens so per-paper status (Resume / Score) is always fresh.
+  const loadPapers = useCallback(async () => {
+    try { const j = await jget<{ papers: Paper[] }>("/api/pyq/papers"); setPapers(j.papers); }
+    catch (e) { toast((e as Error).message); setPapers((p) => p ?? []); }
+  }, [toast]);
+  useEffect(() => { if (route && (route.s === "landing" || route.s === "picker")) void loadPapers(); }, [route, loadPapers]);
+
+  let screen: React.ReactNode = <Loading />;
+  if (route) {
+    switch (route.s) {
+      case "landing": screen = <Landing papers={papers} go={go} />; break;
+      case "register": screen = <Register />; break;
+      case "dashboard": screen = <Dashboard firstName={firstName} go={go} toast={toast} />; break;
+      case "picker": screen = <Picker key={route.exam ?? "_"} papers={papers} initialExam={route.exam} signedIn={signedIn} go={go} />; break;
+      case "test":
+        screen = <Test key={route.paperId} paperId={route.paperId} go={go} toast={toast}
+          onSubmitted={(id, data) => { resultCache.current[id] = data; go(`/pyq?result=${id}`, true); }} />;
+        break;
+      case "result": screen = <Result key={route.attemptId} attemptId={route.attemptId} cached={resultCache.current[route.attemptId]} go={go} toast={toast} />; break;
+    }
+  }
+
+  return (
+    <div className="pyq">
+      <main className="wrap">{screen}</main>
+      <div className={`toast ${toastMsg ? "show" : ""}`} role="status">{toastMsg}</div>
+    </div>
+  );
+}
+
+function Loading({ label = "Loading…" }: { label?: string }) {
+  return <section className="screen"><div className="loading">{label}</div></section>;
+}
+
+/* ============================================================ S1 Landing */
+function Landing({ papers, go }: { papers: Paper[] | null; go: (u: string) => void }) {
+  const counts = useMemo(() => {
+    const m: Record<string, string> = {};
+    for (const e of EXAM_ORDER) {
+      const list = (papers ?? []).filter((p) => p.exam === e);
+      if (!papers) { m[e] = ""; continue; }
+      if (e === "CBSE Class 12") { const n = new Set(list.map((p) => p.subject)).size; m[e] = `${n} subject${n === 1 ? "" : "s"}`; }
+      else { const n = new Set(list.map((p) => p.year)).size; m[e] = n ? `${n} year${n === 1 ? "" : "s"}` : "Coming soon"; }
+    }
+    return m;
+  }, [papers]);
+
+  return (
+    <section className="screen">
+      <div className="hero">
+        <div>
+          <div className="eyebrow">Previous Year Questions</div>
+          <h1>Attempt real <span className="k">PYQ papers</span> online, free.</h1>
+          <p>Boards, JEE, WBJEE &amp; MH-CET — last 3 years, every set, with instant solutions and a weak-vs-strong analysis after each paper.</p>
+          <div className="cta">
+            <button className="btn primary" onClick={() => go(registerUrl("/pyq?view=papers"))}>Start practicing →</button>
+            <button className="btn ghost" onClick={() => window.location.assign("/login?next=" + encodeURIComponent("/pyq"))}>I already have an account</button>
+          </div>
+        </div>
+        <div className="heroart" aria-hidden>
+          <div className="mini">
+            <div className="mtop"><span className="topicpill">Electromagnetic Induction</span><span className="marks">+4 / −1</span></div>
+            <div className="mq">Self-inductance of a coil depends on:</div>
+            <div className="mo"><i>A</i>Only on geometry</div>
+            <div className="mo"><i>B</i>Only on medium property</div>
+            <div className="mo ok"><i>C</i>Geometry and medium property<span className="t">✓ correct</span></div>
+            <div className="mo"><i>D</i>Value of current through the inductor</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="exam-tiles">
+        {EXAM_ORDER.map((e) => (
+          <button key={e} className="tile panel" onClick={() => go(registerUrl(`/pyq?view=papers&exam=${encodeURIComponent(e)}`))}>
+            <div className="big">{EXAM_TILE[e].title}</div>
+            <div className="sm">{EXAM_TILE[e].sub}</div>
+            <div className="cnt">{counts[e] ? `${counts[e]} ▸` : " "}</div>
+          </button>
+        ))}
+      </div>
+
+      <div className="how">
+        {[
+          ["1", "Pick a paper", "Choose your exam, subject, year and set."],
+          ["2", "Attempt online", "MCQ interface — mark for later, reveal the solution once you answer."],
+          ["3", "See your analysis", "Score, accuracy and topic-wise strengths & gaps."],
+        ].map(([n, t, d]) => (
+          <div key={n} className="c panel">
+            <div className="n">{n}</div>
+            <h3 style={{ fontSize: 16 }}>{t}</h3>
+            <p className="muted" style={{ fontSize: 13.5, margin: "7px 0 0" }}>{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ===================================================== S2 Create account */
+function Register() {
+  // The real Vedam One signup (Part-1: name · WhatsApp · email → OTP, then
+  // Part-2: grad year · stream · state · city). It reads `?next=` from this URL
+  // and returns the user to the paper picker (or the paper they clicked).
+  return (
+    <section className="screen">
+      <div className="regwrap">
+        <div className="eyebrow">Create your free account</div>
+        <div className="native">
+          <Suspense fallback={<div className="loading">Loading…</div>}><RegisterForm /></Suspense>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ========================================================== S3 Dashboard */
+function Dashboard({ firstName, go, toast }: { firstName: string; go: (u: string) => void; toast: (m: string) => void }) {
+  const [me, setMe] = useState<MeData | null>(null);
+  useEffect(() => {
+    let on = true;
+    jget<MeData>("/api/pyq/me").then((d) => { if (on) setMe(d); }).catch((e) => { if (on) { toast((e as Error).message); setMe({ name: null, in_progress: null, attempts: [], stats: { papers_attempted: 0, avg_accuracy: null } }); } });
+    return () => { on = false; };
+  }, [toast]);
+
+  const nm = firstName || (me?.name ?? "").trim().split(/\s+/)[0] || "there";
+  const ip = me?.in_progress;
+  const pct = ip && ip.total ? Math.round((ip.answered / ip.total) * 100) : 0;
+
+  return (
+    <section className="screen">
+      <div className="eyebrow">PYQ Dashboard</div>
+      <h2 style={{ fontSize: 28, marginTop: 6 }}>Welcome back, {nm} 👋</h2>
+      {!me ? <div className="loading">Loading your attempts…</div> : (
+        <div className="dgrid">
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {ip && (
+              <div className="resume">
+                <div className="tag">▶ RESUME IN PROGRESS</div>
+                <h3 style={{ fontSize: 18, marginTop: 6 }}>{fullPaperName(ip.paper)}</h3>
+                <div className="muted" style={{ fontSize: 13, marginTop: 3 }}>
+                  Question {Math.min(ip.answered + 1, ip.total || 1)} of {ip.total} · {ip.answered} answered
+                </div>
+                <div className="pbar"><i style={{ width: `${Math.max(pct, 4)}%` }} /></div>
+                <button className="btn orange" onClick={() => go(`/pyq?paper=${ip.paper.id}`)}>Continue attempt →</button>
+              </div>
+            )}
+            <div className="panel" style={{ padding: 18 }}>
+              <h3 style={{ fontSize: 15 }}>Past attempts</h3>
+              {me.attempts.length === 0 && <div className="empty">No attempts yet — pick a paper to start.</div>}
+              {me.attempts.map((a) => (
+                <button key={a.attempt_id} className="attempt panel" onClick={() => go(`/pyq?result=${a.attempt_id}`)}>
+                  <div>
+                    <b>{fullPaperName(a.paper)}</b>
+                    <div className="muted" style={{ fontSize: 12 }}>{a.submitted_at ? shortDate(a.submitted_at) : ""} · {a.paper.total_questions} Q</div>
+                  </div>
+                  <span className="sc">{fmtNum(a.score)}/{fmtNum(a.max_score)}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="statcol">
+            <div className="stat panel"><b className="num">{me.stats.papers_attempted}</b><span>Papers attempted</span></div>
+            <div className="stat panel"><b className="num">{me.stats.avg_accuracy == null ? "—" : `${me.stats.avg_accuracy}%`}</b><span>Avg accuracy</span></div>
+            <button className="btn primary" style={{ justifyContent: "center" }} onClick={() => go("/pyq?view=papers")}>Browse all papers →</button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+/* ======================================================= S4 Pick a paper */
+function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null; initialExam?: string; signedIn: boolean; go: (u: string, r?: boolean) => void }) {
+  const [exam, setExam] = useState(initialExam && EXAM_ORDER.includes(initialExam) ? initialExam : DEFAULT_EXAM);
+  const [subject, setSubject] = useState("");
+  const [year, setYear] = useState("");
+  const [setLabel, setSetLabel] = useState("");
+
+  const ofExam = useMemo(() => (papers ?? []).filter((p) => p.exam === exam), [papers, exam]);
+  const subjects = useMemo(() => Array.from(new Set(ofExam.map((p) => p.subject))), [ofExam]);
+  const years = useMemo(() => Array.from(new Set(ofExam.map((p) => p.year))).sort((a, b) => b - a), [ofExam]);
+  const sets = useMemo(() => Array.from(new Set(ofExam.map((p) => p.set_label).filter(Boolean) as string[])), [ofExam]);
+  const list = ofExam.filter((p) => (!subject || p.subject === subject) && (!year || String(p.year) === year) && (!setLabel || p.set_label === setLabel));
+
+  function pickExam(e: string) {
+    setExam(e); setSubject(""); setYear(""); setSetLabel("");
+    window.history.replaceState(null, "", `/pyq?view=papers&exam=${encodeURIComponent(e)}`);
+  }
+  // Logged-out visitors are routed through S2 and come straight back to the paper.
+  const open = (paperId: string) => go(signedIn ? `/pyq?paper=${paperId}` : registerUrl(`/pyq?paper=${paperId}`));
+  const word = SET_WORD[exam] ?? "Set";
+
+  return (
+    <section className="screen">
+      <div className="eyebrow">Choose a paper</div>
+      <h2 style={{ fontSize: 26, marginTop: 6 }}>Previous Year Papers</h2>
+      <div className="tabs">
+        {EXAM_ORDER.map((e) => (
+          <button key={e} className={`tab ${e === exam ? "on" : ""}`} onClick={() => pickExam(e)}>{EXAM_TAB[e]}</button>
+        ))}
+      </div>
+      <div className="filters">
+        <select className="sel" value={subject} onChange={(e) => setSubject(e.target.value)}>
+          <option value="">Subject · All</option>
+          {subjects.map((s) => <option key={s} value={s}>Subject · {s}</option>)}
+        </select>
+        <select className="sel" value={year} onChange={(e) => setYear(e.target.value)}>
+          <option value="">Year · All</option>
+          {years.map((y) => <option key={y} value={String(y)}>Year · {y}</option>)}
+        </select>
+        <select className="sel" value={setLabel} onChange={(e) => setSetLabel(e.target.value)}>
+          <option value="">{word} · All</option>
+          {sets.map((s) => <option key={s} value={s}>{word} · {s}</option>)}
+        </select>
+      </div>
+
+      {!papers ? <div className="loading">Loading papers…</div> : list.length === 0 ? (
+        <div className="empty">{ofExam.length === 0 ? `${examTitle(exam)} papers are coming soon.` : "No papers match these filters."}</div>
+      ) : (
+        <div className="papers">
+          {list.map((p) => {
+            const st = p.my;
+            return (
+              <div key={p.id} className="paper panel">
+                <h3 style={{ fontSize: 17 }}>{paperName(p)}</h3>
+                <div className="pm">{p.total_questions} questions · {paperMarking(p)}</div>
+                <div className="foot">
+                  {st?.in_progress_id ? <span className="badge prog">In progress</span>
+                    : st?.last ? <span className="badge done">Score {fmtNum(st.last.score)}/{fmtNum(st.last.max_score)}</span>
+                    : <span className="badge new">Not attempted</span>}
+                  <span className="push">
+                    {st?.in_progress_id ? (
+                      <button className="btn primary sm" onClick={() => open(p.id)}>Resume →</button>
+                    ) : st?.last ? (
+                      <>
+                        <button className="btn ghost sm" onClick={() => go(`/pyq?result=${st.last!.attempt_id}`)}>Review</button>
+                        <button className="btn sm" onClick={() => open(p.id)}>Re-attempt</button>
+                      </>
+                    ) : (
+                      <button className="btn primary sm" onClick={() => open(p.id)}>Attempt →</button>
+                    )}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}
+
+/* ========================================================= S5 Attempt */
+function Test({ paperId, go, toast, onSubmitted }: {
+  paperId: string; go: (u: string, r?: boolean) => void; toast: (m: string) => void;
+  onSubmitted: (attemptId: string, data: ResultData) => void;
+}) {
+  const [attemptId, setAttemptId] = useState("");
   const [paper, setPaper] = useState<Paper | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Record<string, AnswerState>>({});
   const [i, setI] = useState(0);
-  const [result, setResult] = useState<ResultData | null>(null);
-  // No countdown — practice is untimed. We only note when the attempt was opened
-  // so the result can show "time taken".
-  const startedAt = useRef<number>(0);
+  const [failed, setFailed] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const startedAt = useRef(Date.now());
 
-  /* ---- bootstrap: require session, then load catalogue ---- */
   useEffect(() => {
     let on = true;
     (async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!on) return;
-      if (!session?.user) { setPhase("signin"); return; }
       try {
-        const r = await fetch("/api/pyq/papers");
-        const j = await r.json();
+        const j = await jpost<{
+          attempt_id: string; paper: Paper; questions: Question[];
+          answers: Array<{ question_id: string; selected_key: string | null; marked_for_later: boolean; revealed: boolean; correct_key: string | null; solution: string | null; is_correct: boolean | null }>;
+        }>("/api/pyq/attempt/start", { paper_id: paperId });
         if (!on) return;
-        if (!r.ok) throw new Error(j?.error || "Could not load papers");
-        setPapers(j.papers as Paper[]);
-        setPhase("picker");
-      } catch (e) { if (on) { setErr((e as Error).message); setPhase("picker"); } }
+        const amap: Record<string, AnswerState> = {};
+        for (const a of j.answers ?? []) {
+          amap[a.question_id] = {
+            selected_key: a.selected_key, marked_for_later: a.marked_for_later, revealed: a.revealed,
+            reveal: a.selected_key != null ? { correct_key: a.correct_key, solution: a.solution, is_correct: a.is_correct } : undefined,
+          };
+        }
+        // Resuming → open on the first question not yet answered.
+        const firstOpen = j.questions.findIndex((q) => !amap[q.id]?.selected_key);
+        setAttemptId(j.attempt_id); setPaper(j.paper); setQuestions(j.questions); setAnswers(amap);
+        setI(firstOpen > 0 ? firstOpen : 0);
+        startedAt.current = Date.now();
+      } catch (e) { if (on) setFailed((e as Error).message); }
     })();
     return () => { on = false; };
-  }, [supabase]);
+  }, [paperId]);
 
-  /* ---- submit (manual only — no timer, no auto-submit) ---- */
-  async function submit() {
-    setPhase("submitting");
-    try {
-      const spent = startedAt.current ? Math.round((Date.now() - startedAt.current) / 1000) : undefined;
-      const j = await jpost<ResultData>("/api/pyq/attempt/submit", { attempt_id: attemptId, duration_secs: spent });
-      setResult(j); setPhase("result");
-    } catch (e) { setErr((e as Error).message); setPhase("test"); }
-  }
-
-  /* ---- start an attempt ---- */
-  async function startPaper(p: Paper) {
-    setErr(""); setPhase("starting");
-    try {
-      const j = await jpost<{ attempt_id: string; paper: Paper; questions: Question[]; answers: Array<{ question_id: string; selected_key: string | null; marked_for_later: boolean; revealed: boolean; correct_key: string | null; solution: string | null; is_correct: boolean | null }> }>(
-        "/api/pyq/attempt/start", { paper_id: p.id });
-      const amap: Record<string, AnswerState> = {};
-      for (const a of j.answers ?? []) {
-        amap[a.question_id] = {
-          selected_key: a.selected_key, marked_for_later: a.marked_for_later, revealed: a.revealed,
-          reveal: a.selected_key != null ? { correct_key: a.correct_key, solution: a.solution, is_correct: a.is_correct } : undefined,
-        };
-      }
-      setAttemptId(j.attempt_id); setPaper(j.paper); setQuestions(j.questions);
-      setAnswers(amap); setI(0); setResult(null);
-      startedAt.current = Date.now();
-      setPhase("test");
-    } catch (e) { setErr((e as Error).message); setPhase("picker"); }
-  }
-
-  /* ---- answer interactions ---- */
   function patch(qid: string, next: Partial<AnswerState>) {
     setAnswers((prev) => {
       const base: AnswerState = prev[qid] ?? { selected_key: null, marked_for_later: false, revealed: false };
@@ -130,317 +460,203 @@ export function PyqApp() {
     try {
       const j = await jpost<{ reveal: Reveal | null }>("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, selected_key: key });
       if (j.reveal) patch(qid, { reveal: j.reveal });
-    } catch { /* keep local selection; will be re-graded on submit */ }
+    } catch { toast("Couldn't save that answer — check your connection."); }
   }
   async function toggleMark(qid: string) {
-    const nextMark = !(answers[qid]?.marked_for_later);
+    const nextMark = !answers[qid]?.marked_for_later;
     patch(qid, { marked_for_later: nextMark });
     try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, marked_for_later: nextMark }); } catch { /* best effort */ }
   }
   async function toggleReveal(qid: string) {
-    const willReveal = !(answers[qid]?.revealed);
-    patch(qid, { revealed: willReveal });
-    if (willReveal) { try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, reveal: true }); } catch { /* best effort */ } }
+    const will = !answers[qid]?.revealed;
+    patch(qid, { revealed: will });
+    if (will) { try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, reveal: true }); } catch { /* best effort */ } }
+  }
+  async function submit() {
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      const spent = Math.round((Date.now() - startedAt.current) / 1000);
+      const j = await jpost<ResultData>("/api/pyq/attempt/submit", { attempt_id: attemptId, duration_secs: spent });
+      onSubmitted(attemptId, { ...j, paper });
+    } catch (e) { toast((e as Error).message); setSubmitting(false); }
   }
 
-  /* ----------------------------------------------------------- renders */
-  if (phase === "loading" || phase === "starting" || phase === "submitting") {
-    const label = phase === "submitting" ? "Scoring your attempt…" : phase === "starting" ? "Loading your paper…" : "Loading…";
-    return <Shell><div className="grid min-h-[50vh] place-items-center text-white/60">{label}</div></Shell>;
-  }
-  if (phase === "signin") {
-    return <Shell><Centered>
-      <h1 className="text-2xl font-semibold">Sign in to practice</h1>
-      <p className="mt-2 text-white/60">PYQ Practice is part of your Vedam One account.</p>
-      <div className="mt-6 flex justify-center gap-3">
-        <Link href="/login" className="rounded-full border border-white/15 px-5 py-2 text-sm font-medium hover:bg-white/5">Sign in</Link>
-        <Link href="/register" className="rounded-full bg-[#7629fc] px-5 py-2 text-sm font-semibold hover:bg-[#8a3dff]">Register</Link>
-      </div>
-    </Centered></Shell>;
-  }
-  if (phase === "picker") return <Shell><Picker papers={papers} err={err} onStart={startPaper} /></Shell>;
-  if (phase === "result" && result) return <Shell><Result data={result} paper={paper} onDone={() => { setPhase("picker"); }} /></Shell>;
-  if (phase === "test" && paper) {
-    return <Shell wide><Runner
-      paper={paper} questions={questions} answers={answers} i={i} err={err}
-      setI={setI} choose={choose} toggleMark={toggleMark} toggleReveal={toggleReveal} onSubmit={submit}
-    /></Shell>;
-  }
-  return <Shell><Centered><p className="text-white/60">Something went wrong. Please reload.</p></Centered></Shell>;
-}
-
-/* ============================================================== layout */
-function Shell({ children, wide }: { children: React.ReactNode; wide?: boolean }) {
-  return (
-    <div className="min-h-[calc(100vh-4rem)] bg-black px-5 pb-24 pt-10 text-white sm:px-8">
-      <div className={`mx-auto ${wide ? "max-w-6xl" : "max-w-5xl"}`}>{children}</div>
-    </div>
+  if (failed) return (
+    <section className="screen"><div className="empty">{failed}</div>
+      <button className="btn" onClick={() => go("/pyq?view=papers")}>← Back to papers</button></section>
   );
-}
-function Centered({ children }: { children: React.ReactNode }) {
-  return <div className="grid min-h-[50vh] place-items-center text-center">{children}</div>;
-}
+  if (!paper) return <Loading label="Loading your paper…" />;
+  if (submitting) return <Loading label="Scoring your attempt…" />;
+  if (questions.length === 0) return <section className="screen"><div className="empty">This paper has no questions yet.</div></section>;
 
-/* ============================================================== picker */
-function Picker({ papers, err, onStart }: { papers: Paper[]; err: string; onStart: (p: Paper) => void }) {
-  const byExam = useMemo(() => {
-    const m = new Map<string, Paper[]>();
-    for (const p of papers) { if (!m.has(p.exam)) m.set(p.exam, []); m.get(p.exam)!.push(p); }
-    return Array.from(m.entries()).sort((a, b) => {
-      const ia = EXAM_ORDER.indexOf(a[0]), ib = EXAM_ORDER.indexOf(b[0]);
-      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
-    });
-  }, [papers]);
-
-  return (
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b48bff]">PYQ Practice</p>
-      <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">Previous-year papers</h1>
-      <p className="mt-2 max-w-2xl text-white/60">Attempt real previous-year papers at your own pace. Each paper follows its exam&apos;s real marking scheme, and you get topic-wise analysis at the end.</p>
-      {err && <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-300">{err}</p>}
-
-      {byExam.length === 0 && <p className="mt-10 text-white/50">No papers are published yet.</p>}
-
-      <div className="mt-8 space-y-10">
-        {byExam.map(([exam, list]) => (
-          <section key={exam}>
-            <h2 className="mb-3 text-lg font-semibold text-white/90">{exam}</h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {list.map((p) => (
-                <button key={p.id} onClick={() => onStart(p)}
-                  className="group rounded-2xl border border-white/10 bg-[#140a2b] p-5 text-left transition-all hover:-translate-y-0.5 hover:border-[#7629fc]/60 hover:shadow-[0_0_28px_rgba(118,41,252,0.25)]">
-                  <div className="flex items-center gap-2 text-xs text-white/50">
-                    <span className="rounded-full bg-[#7629fc]/20 px-2 py-0.5 font-medium text-[#c4a4ff]">{p.subject}</span>
-                    <span>{p.year}</span>
-                  </div>
-                  <div className="mt-2 font-semibold leading-snug">{p.set_label ?? p.title}</div>
-                  <div className="mt-3 text-xs text-white/55">{p.total_questions} questions</div>
-                  <div className="mt-1 text-xs text-white/45">{p.marking_note ?? markLabel(p.marks_correct, p.marks_wrong)}</div>
-                  <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#b48bff] group-hover:text-white">Start practicing →</div>
-                </button>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ============================================================== runner */
-function Runner({ paper, questions, answers, i, err, setI, choose, toggleMark, toggleReveal, onSubmit }: {
-  paper: Paper; questions: Question[]; answers: Record<string, AnswerState>; i: number; err: string;
-  setI: (n: number) => void; choose: (qid: string, key: string) => void; toggleMark: (qid: string) => void;
-  toggleReveal: (qid: string) => void; onSubmit: () => void;
-}) {
   const q = questions[i];
-  const a = q ? answers[q.id] : undefined;
+  const a = answers[q.id];
   const answered = !!a?.selected_key;
-  const revealed = !!a?.revealed && !!a?.reveal;
-  const answeredCount = questions.filter((qq) => answers[qq.id]?.selected_key).length;
-
-  if (!q) return <Centered><p className="text-white/60">This paper has no questions.</p></Centered>;
+  const rev = answered && !!a?.revealed && !!a?.reveal;
+  const correctKey = a?.reveal?.correct_key ?? null;
+  const correctOpt = q.options.find((o) => o.key === correctKey);
+  const ansd = questions.filter((qq) => answers[qq.id]?.selected_key).length;
+  const mkd = questions.filter((qq) => answers[qq.id]?.marked_for_later).length;
+  const N = questions.length;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
-      {/* main */}
-      <div>
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <div className="text-xs uppercase tracking-wide text-white/45">{paper.exam} · {paper.subject} · {paper.year}</div>
-            <div className="text-sm text-white/70">{paper.set_label}</div>
-          </div>
-          <div className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-white/80" title="Marking for this question">
-            {markLabel(q.marks_correct, q.marks_wrong)}
-          </div>
+    <section className="screen">
+      <div className="examhead">
+        <div>
+          <div className="nm">{fullPaperName(paper)}</div>
+          <div className="muted" style={{ fontSize: 12.5 }}>{N} questions · {paperMarking(paper)}</div>
         </div>
+        <button className="btn sm push" onClick={submit}>Submit test</button>
+      </div>
 
-        <div className="mt-5 rounded-2xl border border-white/10 bg-[#120a28] p-6">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-[#b48bff]">Question {q.q_no}</span>
-            {q.topic && <span className="rounded-full bg-white/5 px-2.5 py-0.5 text-xs text-white/55">{q.topic}</span>}
+      <div className="exam">
+        <div className="qcard panel">
+          <div className="qtop">
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+              <span className="qno">Question {i + 1}<span className="muted" style={{ fontWeight: 600, fontSize: 14 }}>/{N}</span></span>
+              {q.topic && <span className="topicpill">{q.topic}</span>}
+              <span className="marks">{markLabel(q.marks_correct, q.marks_wrong)}</span>
+            </div>
+            <button className={`markbtn ${a?.marked_for_later ? "on" : ""}`} onClick={() => toggleMark(q.id)}>
+              {a?.marked_for_later ? "★ Marked" : "☆ Mark for later"}
+            </button>
           </div>
-          <p className="mt-3 whitespace-pre-wrap text-[15px] leading-relaxed text-white/90">{q.stem}</p>
 
-          <div className="mt-5 space-y-2.5">
+          <div className="stem">{q.stem}</div>
+
+          <div className="opts">
             {q.options.map((o) => {
               const sel = a?.selected_key === o.key;
-              const isCorrect = revealed && a?.reveal?.correct_key === o.key;
-              const isWrongPick = revealed && sel && a?.reveal?.correct_key !== o.key;
-              const base = "flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm transition-all";
-              const cls = isCorrect ? "border-green-500/60 bg-green-500/10"
-                : isWrongPick ? "border-red-500/60 bg-red-500/10"
-                : sel ? "border-[#7629fc] bg-[#7629fc]/15"
-                : "border-white/10 bg-white/[0.03] hover:border-white/25";
+              let cls = "opt";
+              if (rev && o.key === correctKey) cls = "opt correct";
+              else if (rev && sel) cls = "opt wrong";
+              else if (sel) cls = "opt sel";
               return (
-                <button key={o.key} onClick={() => choose(q.id, o.key)} className={`${base} ${cls}`}>
-                  <span className={`grid h-7 w-7 flex-none place-items-center rounded-full border text-xs font-semibold ${sel || isCorrect ? "border-transparent bg-white/90 text-black" : "border-white/20 text-white/70"}`}>{o.key}</span>
-                  <span className="text-white/90">{o.text}</span>
-                  {isCorrect && <span className="ml-auto text-xs font-medium text-green-400">✓ correct</span>}
-                  {isWrongPick && <span className="ml-auto text-xs font-medium text-red-400">✗ your answer</span>}
+                <button key={o.key} className={cls} onClick={() => choose(q.id, o.key)}>
+                  <span className="k">{o.key}</span><span>{o.text}</span>
+                  {rev && o.key === correctKey && <span className="tick" style={{ color: "var(--ok)" }}>✓ correct</span>}
+                  {rev && sel && o.key !== correctKey && <span className="tick" style={{ color: "var(--bad)" }}>✗ your answer</span>}
                 </button>
               );
             })}
           </div>
 
-          {/* reveal / hint */}
-          <div className="mt-4">
-            {answered ? (
-              <button onClick={() => toggleReveal(q.id)} className="rounded-full border border-white/15 px-4 py-1.5 text-sm font-medium text-white/85 hover:bg-white/5">
-                {revealed ? "Hide result" : "Show result"}
-              </button>
-            ) : (
-              <p className="text-xs text-white/40">Select an option to enable “Show result”.</p>
+          <div className="locknote">
+            {answered ? "You can change your answer any time before you submit." : "Select an option to enable “Show result”."}
+          </div>
+
+          {rev && (
+            <div className="resultbox">
+              <div className="hd">✓ Correct answer: {correctKey}{correctOpt ? `. ${correctOpt.text}` : ""}</div>
+              {a?.reveal?.solution && <div className="sol">{a.reveal.solution}</div>}
+            </div>
+          )}
+
+          <div className="qactions">
+            <button className="btn" disabled={i === 0} onClick={() => setI(i - 1)}>← Back to previous</button>
+            {answered && (
+              <button className="btn ghost" onClick={() => toggleReveal(q.id)}>{a?.revealed ? "Hide result" : "Show result"}</button>
             )}
-            {revealed && a?.reveal?.solution && (
-              <div className="mt-3 rounded-xl border border-white/10 bg-black/40 p-4 text-sm leading-relaxed text-white/75">
-                <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-[#b48bff]">Solution</div>
-                <p className="whitespace-pre-wrap">{a.reveal.solution}</p>
-              </div>
-            )}
+            <span className="sp" />
+            <button className="btn primary" disabled={i === N - 1} onClick={() => setI(i + 1)}>Save &amp; Next →</button>
           </div>
         </div>
 
-        {err && <p className="mt-3 text-sm text-red-300">{err}</p>}
-
-        {/* controls */}
-        <div className="mt-5 flex flex-wrap items-center gap-3">
-          <button onClick={() => setI(Math.max(0, i - 1))} disabled={i === 0}
-            className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/85 enabled:hover:bg-white/5 disabled:opacity-40">← Back</button>
-          <button onClick={() => toggleMark(q.id)}
-            className={`rounded-full border px-4 py-2 text-sm font-medium ${a?.marked_for_later ? "border-amber-400/60 bg-amber-400/15 text-amber-300" : "border-white/15 text-white/85 hover:bg-white/5"}`}>
-            {a?.marked_for_later ? "★ Marked for later" : "☆ Mark for later"}
-          </button>
-          {i < questions.length - 1 ? (
-            <button onClick={() => setI(Math.min(questions.length - 1, i + 1))}
-              className="ml-auto rounded-full bg-[#7629fc] px-5 py-2 text-sm font-semibold hover:bg-[#8a3dff]">Save &amp; Next →</button>
-          ) : (
-            <button onClick={onSubmit} className="ml-auto rounded-full bg-green-600 px-5 py-2 text-sm font-semibold hover:bg-green-500">Submit test</button>
-          )}
-        </div>
+        <aside className="palette panel">
+          <h3>Question palette</h3>
+          <div className="legend">
+            <span><i className="lg a" />Answered</span><span><i className="lg m" />Marked</span>
+            <span><i className="lg" />Not done</span><span><i className="lg c" />Current</span>
+          </div>
+          <div className="cells">
+            {questions.map((qq, idx) => {
+              const st = answers[qq.id];
+              let c = "cell";
+              if (idx === i) c += " c";
+              if (st?.selected_key) c += " a"; else if (st?.marked_for_later) c += " m";
+              return <button key={qq.id} className={c} onClick={() => setI(idx)}>{idx + 1}</button>;
+            })}
+          </div>
+          <div className="countline"><span>Answered <b>{ansd}</b></span><span>Marked <b>{mkd}</b></span></div>
+          <button className="btn primary sm" style={{ width: "100%", justifyContent: "center", marginTop: 14 }} onClick={submit}>Submit test</button>
+        </aside>
       </div>
-
-      {/* palette */}
-      <aside className="h-max rounded-2xl border border-white/10 bg-[#120a28] p-5">
-        <div className="flex items-center justify-between text-sm">
-          <span className="font-semibold">Questions</span>
-          <span className="text-white/50">{answeredCount}/{questions.length}</span>
-        </div>
-        <div className="mt-3 grid grid-cols-5 gap-2">
-          {questions.map((qq, idx) => {
-            const st = answers[qq.id];
-            const cur = idx === i;
-            const done = !!st?.selected_key;
-            const mark = !!st?.marked_for_later;
-            const bg = cur ? "bg-white text-black" : mark ? "bg-amber-400/20 text-amber-200 border border-amber-400/40" : done ? "bg-green-500/20 text-green-200 border border-green-500/40" : "bg-white/5 text-white/60 border border-white/10";
-            return <button key={qq.id} onClick={() => setI(idx)} className={`h-9 rounded-lg text-sm font-medium ${bg}`}>{qq.q_no}</button>;
-          })}
-        </div>
-        <div className="mt-4 space-y-1.5 text-xs text-white/50">
-          <div className="flex items-center gap-2"><span className="inline-block h-3 w-3 rounded bg-green-500/40" /> Answered</div>
-          <div className="flex items-center gap-2"><span className="inline-block h-3 w-3 rounded bg-amber-400/40" /> Marked for later</div>
-          <div className="flex items-center gap-2"><span className="inline-block h-3 w-3 rounded bg-white/10" /> Not answered</div>
-        </div>
-        <button onClick={onSubmit} className="mt-5 w-full rounded-full border border-green-500/40 bg-green-600/20 py-2 text-sm font-semibold text-green-200 hover:bg-green-600/30">Submit test</button>
-      </aside>
-    </div>
+    </section>
   );
 }
 
-/* ============================================================== result */
-function Result({ data, paper, onDone }: { data: ResultData; paper: Paper | null; onDone: () => void }) {
-  const s = data.summary;
-  const p = data.paper ?? paper;
-  const timeTaken = s.duration_secs != null ? `Time taken: ${Math.floor(s.duration_secs / 60)}m ${s.duration_secs % 60}s` : undefined;
-  return (
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#b48bff]">Result</p>
-      <h1 className="mt-2 text-3xl font-semibold">{p ? `${p.exam} · ${p.subject} · ${p.year}` : "Your attempt"}</h1>
-      {p?.set_label && <p className="text-white/60">{p.set_label}</p>}
+/* ================================================ S6 Result & analysis */
+function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: ResultData; go: (u: string) => void; toast: (m: string) => void }) {
+  const [data, setData] = useState<ResultData | null>(cached ?? null);
+  const [failed, setFailed] = useState("");
+  useEffect(() => {
+    if (cached) return;
+    let on = true;
+    jget<ResultData>(`/api/pyq/attempt/${attemptId}`).then((d) => { if (on) setData(d); }).catch((e) => { if (on) { setFailed((e as Error).message); toast((e as Error).message); } });
+    return () => { on = false; };
+  }, [attemptId, cached, toast]);
 
-      {/* score cards */}
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Stat label="Score" value={`${fmtNum(s.score)} / ${fmtNum(s.max_score)}`} sub={p?.marking_note ?? undefined} accent="#7629fc" />
-        <Stat label="Accuracy" value={`${s.accuracy}%`} accent="#22c55e" />
-        <Stat label="Correct · Wrong" value={`${s.correct} · ${s.wrong}`} accent="#f59e0b" />
-        <Stat label="Unattempted" value={`${s.unattempted}`} sub={timeTaken} accent="#64748b" />
+  if (failed) return <section className="screen"><div className="empty">{failed}</div><button className="btn" onClick={() => go("/pyq")}>← Back to dashboard</button></section>;
+  if (!data) return <Loading label="Loading your result…" />;
+
+  const s = data.summary;
+  const p = data.paper;
+  const acc = s.attempted ? Math.round((s.correct / s.attempted) * 100) : 0;
+
+  return (
+    <section className="screen">
+      <div className="scorehero">
+        <div className="eyebrow" style={{ color: "#d9c6ff" }}>Result · {p ? fullPaperName(p) : "Your attempt"}</div>
+        <div className="big num">{fmtNum(s.score)}<span> / {fmtNum(s.max_score)}</span></div>
+        <div className="muted" style={{ marginTop: 6 }}>{s.correct} correct · {s.wrong} wrong · {s.unattempted} unattempted</div>
+        <div className="kpis">
+          <div className="kpi panel"><b className="num" style={{ color: "var(--ok)" }}>{s.correct}</b><span>Correct</span></div>
+          <div className="kpi panel"><b className="num" style={{ color: "var(--bad)" }}>{s.wrong}</b><span>Wrong</span></div>
+          <div className="kpi panel"><b className="num">{s.unattempted}</b><span>Skipped</span></div>
+          <div className="kpi panel"><b className="num" style={{ color: "var(--cyan)" }}>{acc}%</b><span>Accuracy</span></div>
+        </div>
       </div>
 
-      {/* topic analysis */}
-      {data.topic_breakdown.length > 0 && (
-        <section className="mt-10">
-          <h2 className="mb-4 text-lg font-semibold">Topic-wise analysis</h2>
-          <div className="space-y-3">
-            {data.topic_breakdown.map((t) => (
-              <div key={t.topic}>
-                <div className="mb-1 flex items-center justify-between text-sm">
-                  <span className="text-white/80">{t.topic}</span>
-                  <span className="text-white/50">{t.correct}/{t.total} · {t.pct}%</span>
-                </div>
-                <div className="h-2.5 overflow-hidden rounded-full bg-white/8">
-                  <div className="h-full rounded-full transition-all" style={{ width: `${t.pct}%`, background: barColor(t.pct) }} />
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="mt-3 text-xs text-white/40">Green ≥ 67% (strong) · Amber 34–66% · Red &lt; 34% (needs work).</p>
-        </section>
-      )}
-
-      {/* question review */}
-      <section className="mt-10">
-        <h2 className="mb-4 text-lg font-semibold">Question-wise review</h2>
-        <div className="space-y-4">
-          {data.review.map((r) => {
-            const correct = r.is_correct === true;
-            const wrong = r.is_correct === false;
-            const tag = correct ? { t: "Correct", c: "text-green-400" } : wrong ? { t: "Wrong", c: "text-red-400" } : { t: "Skipped", c: "text-white/40" };
+      <div className="twocol">
+        <div className="tbars panel">
+          <h3 style={{ fontSize: 16 }}>Strong vs weak — by topic</h3>
+          {data.topic_breakdown.map((t) => (
+            <div key={t.topic} className="tbar">
+              <div className="lab"><span>{t.topic}</span><span className="muted">{t.correct}/{t.total}</span></div>
+              <div className="track"><i style={{ width: `${t.pct}%`, background: barColor(t.pct) }} /></div>
+            </div>
+          ))}
+        </div>
+        <div className="review panel">
+          <h3 style={{ fontSize: 16 }}>Question-wise review</h3>
+          {data.review.map((r, idx) => {
+            const yours = r.selected_key ? r.options.find((o) => o.key === r.selected_key) : null;
+            const right = r.options.find((o) => o.key === r.correct_key);
+            const got = r.is_correct === true;
             return (
-              <div key={r.id} className="rounded-2xl border border-white/10 bg-[#120a28] p-5">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-[#b48bff]">Q{r.q_no}{r.topic ? ` · ${r.topic}` : ""}</span>
-                  <span className={`text-xs font-semibold ${tag.c}`}>{tag.t} {r.is_correct != null ? `(${Number(r.awarded) > 0 ? "+" : ""}${fmtNum(r.awarded)})` : ""}</span>
+              <div key={r.id} className="rev">
+                {r.topic && <div className="tp">{r.topic}</div>}
+                <div className="q">Q{idx + 1}. {r.stem}</div>
+                <div className="ans">
+                  <span className={`y ${r.selected_key == null ? "" : got ? "ok" : "no"}`}>
+                    Your answer: {r.selected_key == null ? "Not attempted" : `${r.selected_key}. ${yours?.text ?? ""}`}
+                    {r.selected_key != null && ` (${Number(r.awarded) > 0 ? "+" : ""}${fmtNum(r.awarded)})`}
+                  </span>
+                  <span style={{ color: "var(--ok)" }}>Correct: {r.correct_key}. {right?.text ?? ""}</span>
                 </div>
-                <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-white/90">{r.stem}</p>
-                <div className="mt-3 space-y-1.5">
-                  {r.options.map((o) => {
-                    const isCorrect = r.correct_key === o.key;
-                    const isYour = r.selected_key === o.key;
-                    const cls = isCorrect ? "border-green-500/50 bg-green-500/10" : isYour ? "border-red-500/50 bg-red-500/10" : "border-white/10";
-                    return (
-                      <div key={o.key} className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm ${cls}`}>
-                        <span className="font-semibold text-white/60">{o.key}</span><span className="text-white/85">{o.text}</span>
-                        {isCorrect && <span className="ml-auto text-xs text-green-400">correct</span>}
-                        {isYour && !isCorrect && <span className="ml-auto text-xs text-red-400">your answer</span>}
-                      </div>
-                    );
-                  })}
-                </div>
-                {r.solution && (
-                  <div className="mt-3 rounded-xl border border-white/10 bg-black/40 p-3 text-sm leading-relaxed text-white/70">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-[#b48bff]">Solution</span>
-                    <p className="mt-1 whitespace-pre-wrap">{r.solution}</p>
-                  </div>
-                )}
+                {r.solution && <div className="sol">{r.solution}</div>}
               </div>
             );
           })}
         </div>
-      </section>
-
-      <div className="mt-8">
-        <button onClick={onDone} className="rounded-full bg-[#7629fc] px-6 py-2.5 text-sm font-semibold hover:bg-[#8a3dff]">← Back to papers</button>
       </div>
-    </div>
-  );
-}
 
-function Stat({ label, value, sub, accent }: { label: string; value: string; sub?: string; accent: string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-[#120a28] p-5">
-      <div className="text-xs uppercase tracking-wide text-white/45">{label}</div>
-      <div className="mt-1 text-2xl font-semibold" style={{ color: accent }}>{value}</div>
-      {sub && <div className="mt-1 text-xs text-white/40">{sub}</div>}
-    </div>
+      <div className="actions">
+        {p && <button className="btn" onClick={() => go(`/pyq?paper=${p.id}`)}>↻ Re-attempt</button>}
+        <button className="btn ghost" onClick={() => go(p ? `/pyq?view=papers&exam=${encodeURIComponent(p.exam)}` : "/pyq?view=papers")}>Next paper</button>
+        <button className="btn primary" onClick={() => go("/pyq")}>Back to dashboard</button>
+      </div>
+    </section>
   );
 }
