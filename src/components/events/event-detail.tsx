@@ -129,14 +129,15 @@ export function EventDetail({ code }: { code: string }) {
         style={{ background: "linear-gradient(120deg,#2a1a52,#1a0b38 70%,#3a1470)" }}>
         <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
         {event.banner_url && <div aria-hidden className="absolute inset-0 z-[1]" style={{ backgroundImage: `url(${event.banner_url})`, backgroundSize: event.banner_fit === "contain" ? "contain" : (event.banner_zoom ? `${event.banner_zoom}%` : "cover"), backgroundPosition: `${event.banner_x ?? 50}% ${event.banner_y ?? 50}%`, backgroundRepeat: "no-repeat" }} />}
-        <div aria-hidden className="absolute inset-0 z-[2]" style={{ background: "linear-gradient(180deg, rgba(11,3,24,0) 45%, rgba(11,3,24,.55) 78%, rgba(11,3,24,.9) 100%)" }} />
-        <div className="relative z-[3] w-full p-4 sm:p-8">
-          <span className="inline-block rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-[#8fe9f5] backdrop-blur sm:px-3 sm:py-1 sm:text-[11px]">
-            {event.category || "Vedam Event"}
-          </span>
-          <h1 className="mt-1.5 max-w-full break-words font-display text-[16px] font-semibold leading-snug tracking-tight sm:mt-3 sm:max-w-[20ch] sm:text-4xl sm:leading-tight">{event.name}</h1>
-          {event.host && <p className="mt-1.5 font-mono text-[12px] text-white/85 sm:mt-2 sm:text-sm">Hosted by Vedam · with {event.host}</p>}
-        </div>
+      </div>
+
+      {/* title block — kept BELOW the banner so it never overlaps the poster's infographic */}
+      <div className="mt-4 sm:mt-5">
+        <span className="inline-block rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-[#8fe9f5]">
+          {event.category || "Vedam Event"}
+        </span>
+        <h1 className="mt-2 break-words font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">{event.name}</h1>
+        {event.host && <p className="mt-1.5 font-mono text-[13px] text-white/60 sm:text-sm">Hosted by Vedam · with {event.host}</p>}
       </div>
 
       <div className="mt-7 grid gap-7 lg:grid-cols-[1fr_340px] lg:items-start">
