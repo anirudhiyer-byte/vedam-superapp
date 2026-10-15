@@ -1,5 +1,7 @@
 "use client";
 
+import { MathText } from "./math-text";
+
 /* PYQ module — replicates the approved "PYQ Exam Prototype" + "PYQ Workflow
    Wireframe" journey inside the Vedam One shell.
 
@@ -523,7 +525,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
             </button>
           </div>
 
-          <div className="stem">{q.stem}</div>
+          <div className="stem"><MathText text={q.stem} /></div>
 
           <div className="opts">
             {q.options.map((o) => {
@@ -534,7 +536,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
               else if (sel) cls = "opt sel";
               return (
                 <button key={o.key} className={cls} onClick={() => choose(q.id, o.key)}>
-                  <span className="k">{o.key}</span><span>{o.text}</span>
+                  <span className="k">{o.key}</span><span><MathText text={o.text} /></span>
                   {rev && o.key === correctKey && <span className="tick" style={{ color: "var(--ok)" }}>✓ correct</span>}
                   {rev && sel && o.key !== correctKey && <span className="tick" style={{ color: "var(--bad)" }}>✗ your answer</span>}
                 </button>
@@ -549,7 +551,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
           {rev && (
             <div className="resultbox">
               <div className="hd">✓ Correct answer: {correctKey}{correctOpt ? `. ${correctOpt.text}` : ""}</div>
-              {a?.reveal?.solution && <div className="sol">{a.reveal.solution}</div>}
+              {a?.reveal?.solution && <div className="sol"><MathText text={a.reveal.solution} /></div>}
             </div>
           )}
 
@@ -637,7 +639,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
             return (
               <div key={r.id} className="rev">
                 {r.topic && <div className="tp">{r.topic}</div>}
-                <div className="q">Q{idx + 1}. {r.stem}</div>
+                <div className="q">Q{idx + 1}. <MathText text={r.stem} /></div>
                 <div className="ans">
                   <span className={`y ${r.selected_key == null ? "" : got ? "ok" : "no"}`}>
                     Your answer: {r.selected_key == null ? "Not attempted" : `${r.selected_key}. ${yours?.text ?? ""}`}
@@ -645,7 +647,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
                   </span>
                   <span style={{ color: "var(--ok)" }}>Correct: {r.correct_key}. {right?.text ?? ""}</span>
                 </div>
-                {r.solution && <div className="sol">{r.solution}</div>}
+                {r.solution && <div className="sol"><MathText text={r.solution} /></div>}
               </div>
             );
           })}
