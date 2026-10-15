@@ -35,18 +35,29 @@ type Paper = {
   id: string; exam: string; subject: string; year: number; set_label: string | null; title: string;
   marks_correct: number; marks_wrong: number; marking_note: string | null; total_questions: number; my?: MyStatus;
 };
+/** Figure URLs (public `pyq-figures` bucket). Option figures are keyed by option letter. */
+type Figs = { stem_figure_url?: string | null; option_figure_urls?: Record<string, string> | null };
 type Question = {
   id: string; q_no: number; topic: string | null; qtype: "mcq" | "numeric";
   stem: string; options: QOption[]; marks_correct: number; marks_wrong: number;
+} & Figs;
+type Reveal = {
+  correct_key: string | null; correct_value: number | null; solution: string | null;
+  solution_figure_url?: string | null; is_correct: boolean | null;
 };
-type Reveal = { correct_key: string | null; solution: string | null; is_correct: boolean | null };
-type AnswerState = { selected_key: string | null; marked_for_later: boolean; revealed: boolean; reveal?: Reveal };
+/** `locked` = the server has recorded that the solution was seen (answer can no
+ *  longer change); `shown` = the result box is currently open on screen. */
+type AnswerState = {
+  selected_key: string | null; selected_value: number | null; marked_for_later: boolean;
+  locked: boolean; shown: boolean; reveal?: Reveal;
+};
 type TopicStat = { topic: string; correct: number; attempted: number; total: number; pct: number };
 type ReviewItem = {
-  id: string; q_no: number; topic: string | null; stem: string; options: QOption[];
-  correct_key: string | null; solution: string | null; selected_key: string | null;
+  id: string; q_no: number; topic: string | null; qtype?: "mcq" | "numeric"; stem: string; options: QOption[];
+  correct_key: string | null; correct_value?: number | null; solution: string | null; solution_figure_url?: string | null;
+  selected_key: string | null; selected_value?: number | null;
   marked_for_later: boolean; is_correct: boolean | null; awarded: number;
-};
+} & Figs;
 type ResultData = {
   attempt_id?: string; paper?: Paper | null;
   summary: { score: number; max_score: number; correct: number; wrong: number; unattempted: number; attempted: number; accuracy: number; duration_secs: number | null };
@@ -91,6 +102,18 @@ function markLabel(correct: number | string, wrong: number | string) {
   return w === 0 ? `+${fmtMark(c)} · no negative` : `+${fmtMark(c)} / −${fmtMark(w)}`;
 }
 const paperMarking = (p: Paper) => p.marking_note ?? markLabel(p.marks_correct, p.marks_wrong);
+/** A numeric answer shown back to the user, exactly as stored (no rounding). */
+const fmtVal = (v: number | string | null | undefined) => (v == null || v === "" ? "—" : String(Number(v)));
+const isAnswered = (a?: AnswerState) => !!a && (a.selected_key != null || a.selected_value != null);
+const NUMERIC_RE = /^-?\d+(\.\d+)?$/;
+
+/** A question / option / solution figure. Plain <img>: these are external
+ *  Storage URLs and are already sized for the web. */
+function Fig({ src, alt, className = "qfig" }: { src?: string | null; alt: string; className?: string }) {
+  if (!src) return null;
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img className={className} src={src} alt={alt} loading="lazy" />;
+}
 const shortDate = (iso: string) => new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "short" });
 const barColor = (pct: number) => (pct >= 67 ? "var(--ok)" : pct >= 34 ? "var(--orange)" : "var(--bad)");
 
@@ -423,6 +446,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
   const [i, setI] = useState(0);
   const [failed, setFailed] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [confirming, setConfirming] = useState(false);
   const startedAt = useRef(Date.now());
 
   useEffect(() => {
@@ -431,18 +455,23 @@ function Test({ paperId, go, toast, onSubmitted }: {
       try {
         const j = await jpost<{
           attempt_id: string; paper: Paper; questions: Question[];
-          answers: Array<{ question_id: string; selected_key: string | null; marked_for_later: boolean; revealed: boolean; correct_key: string | null; solution: string | null; is_correct: boolean | null }>;
+          answers: Array<{
+            question_id: string; selected_key: string | null; selected_value: number | null; marked_for_later: boolean; revealed: boolean;
+            correct_key: string | null; correct_value: number | null; solution: string | null; solution_figure_url: string | null; is_correct: boolean | null;
+          }>;
         }>("/api/pyq/attempt/start", { paper_id: paperId });
         if (!on) return;
         const amap: Record<string, AnswerState> = {};
         for (const a of j.answers ?? []) {
+          // The server only sends the answer for questions whose result was already seen.
           amap[a.question_id] = {
-            selected_key: a.selected_key, marked_for_later: a.marked_for_later, revealed: a.revealed,
-            reveal: a.selected_key != null ? { correct_key: a.correct_key, solution: a.solution, is_correct: a.is_correct } : undefined,
+            selected_key: a.selected_key, selected_value: a.selected_value ?? null, marked_for_later: a.marked_for_later,
+            locked: a.revealed, shown: a.revealed,
+            reveal: a.revealed ? { correct_key: a.correct_key, correct_value: a.correct_value, solution: a.solution, solution_figure_url: a.solution_figure_url, is_correct: a.is_correct } : undefined,
           };
         }
         // Resuming → open on the first question not yet answered.
-        const firstOpen = j.questions.findIndex((q) => !amap[q.id]?.selected_key);
+        const firstOpen = j.questions.findIndex((q) => !isAnswered(amap[q.id]));
         setAttemptId(j.attempt_id); setPaper(j.paper); setQuestions(j.questions); setAnswers(amap);
         setI(firstOpen > 0 ? firstOpen : 0);
         startedAt.current = Date.now();
@@ -451,28 +480,53 @@ function Test({ paperId, go, toast, onSubmitted }: {
     return () => { on = false; };
   }, [paperId]);
 
+  // Esc closes the submit confirmation.
+  useEffect(() => {
+    if (!confirming) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setConfirming(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [confirming]);
+
   function patch(qid: string, next: Partial<AnswerState>) {
     setAnswers((prev) => {
-      const base: AnswerState = prev[qid] ?? { selected_key: null, marked_for_later: false, revealed: false };
+      const base: AnswerState = prev[qid] ?? { selected_key: null, selected_value: null, marked_for_later: false, locked: false, shown: false };
       return { ...prev, [qid]: { ...base, ...next } };
     });
   }
+  const saveFailed = (e: unknown) => toast((e as Error)?.message || "Couldn't save that answer — check your connection.");
   async function choose(qid: string, key: string) {
+    const st = answers[qid];
+    if (st?.locked) return;
+    const prev = st?.selected_key ?? null;
     patch(qid, { selected_key: key });
-    try {
-      const j = await jpost<{ reveal: Reveal | null }>("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, selected_key: key });
-      if (j.reveal) patch(qid, { reveal: j.reveal });
-    } catch { toast("Couldn't save that answer — check your connection."); }
+    try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, selected_key: key }); }
+    catch (e) { patch(qid, { selected_key: prev }); saveFailed(e); }
+  }
+  async function saveValue(qid: string, raw: string) {
+    const st = answers[qid];
+    if (st?.locked) return;
+    const v = raw === "" ? null : Number(raw);
+    const prev = st?.selected_value ?? null;
+    patch(qid, { selected_value: v });
+    try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, selected_value: v }); }
+    catch (e) { patch(qid, { selected_value: prev }); saveFailed(e); }
   }
   async function toggleMark(qid: string) {
     const nextMark = !answers[qid]?.marked_for_later;
     patch(qid, { marked_for_later: nextMark });
     try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, marked_for_later: nextMark }); } catch { /* best effort */ }
   }
+  /** "Show result" fetches the answer from the server (which locks the answer);
+   *  "Hide result" only collapses the box — the lock stays. */
   async function toggleReveal(qid: string) {
-    const will = !answers[qid]?.revealed;
-    patch(qid, { revealed: will });
-    if (will) { try { await jpost("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, reveal: true }); } catch { /* best effort */ } }
+    const st = answers[qid];
+    if (st?.shown) { patch(qid, { shown: false }); return; }
+    if (st?.reveal) { patch(qid, { shown: true }); return; }
+    try {
+      const j = await jpost<{ reveal: Reveal | null }>("/api/pyq/attempt/answer", { attempt_id: attemptId, question_id: qid, reveal: true });
+      if (j.reveal) patch(qid, { reveal: j.reveal, locked: true, shown: true });
+    } catch (e) { toast((e as Error)?.message || "Couldn't load the result — check your connection."); }
   }
   async function submit() {
     if (submitting) return;
@@ -494,13 +548,16 @@ function Test({ paperId, go, toast, onSubmitted }: {
 
   const q = questions[i];
   const a = answers[q.id];
-  const answered = !!a?.selected_key;
-  const rev = answered && !!a?.revealed && !!a?.reveal;
+  const numeric = q.qtype === "numeric";
+  const answered = isAnswered(a);
+  const locked = !!a?.locked;
+  const rev = answered && !!a?.shown && !!a?.reveal;
   const correctKey = a?.reveal?.correct_key ?? null;
   const correctOpt = q.options.find((o) => o.key === correctKey);
-  const ansd = questions.filter((qq) => answers[qq.id]?.selected_key).length;
+  const ansd = questions.filter((qq) => isAnswered(answers[qq.id])).length;
   const mkd = questions.filter((qq) => answers[qq.id]?.marked_for_later).length;
   const N = questions.length;
+  const left = N - ansd;
 
   return (
     <section className="screen">
@@ -509,14 +566,15 @@ function Test({ paperId, go, toast, onSubmitted }: {
           <div className="nm">{fullPaperName(paper)}</div>
           <div className="muted" style={{ fontSize: 12.5 }}>{N} questions · {paperMarking(paper)}</div>
         </div>
-        <button className="btn sm push" onClick={submit}>Submit test</button>
+        <button className="btn sm push" onClick={() => setConfirming(true)}>Submit test</button>
       </div>
 
       <div className="exam">
         <div className="qcard panel">
           <div className="qtop">
             <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-              <span className="qno">Question {i + 1}<span className="muted" style={{ fontWeight: 600, fontSize: 14 }}>/{N}</span></span>
+              {/* The number printed on the paper, so it matches the PDF and answer key. */}
+              <span className="qno">Question {q.q_no}<span className="muted" style={{ fontWeight: 600, fontSize: 14 }}> · {i + 1} of {N}</span></span>
               {q.topic && <span className="topicpill">{q.topic}</span>}
               <span className="marks">{markLabel(q.marks_correct, q.marks_wrong)}</span>
             </div>
@@ -526,39 +584,61 @@ function Test({ paperId, go, toast, onSubmitted }: {
           </div>
 
           <div className="stem"><MathText text={q.stem} /></div>
+          <Fig src={q.stem_figure_url} alt={`Figure for question ${q.q_no}`} />
 
-          <div className="opts">
-            {q.options.map((o) => {
-              const sel = a?.selected_key === o.key;
-              let cls = "opt";
-              if (rev && o.key === correctKey) cls = "opt correct";
-              else if (rev && sel) cls = "opt wrong";
-              else if (sel) cls = "opt sel";
-              return (
-                <button key={o.key} className={cls} onClick={() => choose(q.id, o.key)}>
-                  <span className="k">{o.key}</span><span><MathText text={o.text} /></span>
-                  {rev && o.key === correctKey && <span className="tick" style={{ color: "var(--ok)" }}>✓ correct</span>}
-                  {rev && sel && o.key !== correctKey && <span className="tick" style={{ color: "var(--bad)" }}>✗ your answer</span>}
-                </button>
-              );
-            })}
-          </div>
+          {numeric ? (
+            <NumericAnswer key={q.id} value={a?.selected_value ?? null} locked={locked} onSave={(v) => saveValue(q.id, v)} />
+          ) : (
+            <div className="opts">
+              {q.options.map((o) => {
+                const sel = a?.selected_key === o.key;
+                let cls = "opt";
+                if (rev && o.key === correctKey) cls = "opt correct";
+                else if (rev && sel) cls = "opt wrong";
+                else if (sel) cls = "opt sel";
+                const ofig = q.option_figure_urls?.[o.key];
+                return (
+                  <button key={o.key} className={cls} disabled={locked} onClick={() => choose(q.id, o.key)}>
+                    <span className="k">{o.key}</span>
+                    <span className="otxt">
+                      {o.text && <MathText text={o.text} />}
+                      <Fig src={ofig} alt={`Option ${o.key}`} className="ofig" />
+                    </span>
+                    {rev && o.key === correctKey && <span className="tick" style={{ color: "var(--ok)" }}>✓ correct</span>}
+                    {rev && sel && o.key !== correctKey && <span className="tick" style={{ color: "var(--bad)" }}>✗ your answer</span>}
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           <div className="locknote">
-            {answered ? "You can change your answer any time before you submit." : "Select an option to enable “Show result”."}
+            {locked ? "Answer locked — you've seen the solution."
+              : answered ? "You can change your answer until you view the result."
+              : numeric ? "Enter your answer to enable “Show result”."
+              : "Select an option to enable “Show result”."}
           </div>
 
-          {rev && (
+          {rev && a?.reveal && (
             <div className="resultbox">
-              <div className="hd">✓ Correct answer: {correctKey}{correctOpt ? `. ${correctOpt.text}` : ""}</div>
-              {a?.reveal?.solution && <div className="sol"><MathText text={a.reveal.solution} /></div>}
+              {numeric && (
+                <div className={`verdict ${a.reveal.is_correct ? "ok" : "no"}`}>
+                  {a.reveal.is_correct ? "✓ Your answer is correct" : `✗ Your answer: ${fmtVal(a.selected_value)}`}
+                </div>
+              )}
+              <div className="hd">
+                ✓ Correct answer: {numeric ? fmtVal(a.reveal.correct_value)
+                  : <>{correctKey}{correctOpt?.text ? <>. <MathText text={correctOpt.text} /></> : null}</>}
+              </div>
+              {a.reveal.solution && <div className="sol"><MathText text={a.reveal.solution} /></div>}
+              <Fig src={a.reveal.solution_figure_url} alt={`Solution figure for question ${q.q_no}`} />
             </div>
           )}
 
           <div className="qactions">
             <button className="btn" disabled={i === 0} onClick={() => setI(i - 1)}>← Back to previous</button>
             {answered && (
-              <button className="btn ghost" onClick={() => toggleReveal(q.id)}>{a?.revealed ? "Hide result" : "Show result"}</button>
+              <button className="btn ghost" onClick={() => toggleReveal(q.id)}>{a?.shown ? "Hide result" : "Show result"}</button>
             )}
             <span className="sp" />
             <button className="btn primary" disabled={i === N - 1} onClick={() => setI(i + 1)}>Save &amp; Next →</button>
@@ -576,15 +656,53 @@ function Test({ paperId, go, toast, onSubmitted }: {
               const st = answers[qq.id];
               let c = "cell";
               if (idx === i) c += " c";
-              if (st?.selected_key) c += " a"; else if (st?.marked_for_later) c += " m";
-              return <button key={qq.id} className={c} onClick={() => setI(idx)}>{idx + 1}</button>;
+              if (isAnswered(st)) c += " a"; else if (st?.marked_for_later) c += " m";
+              return <button key={qq.id} className={c} onClick={() => setI(idx)} aria-label={`Question ${qq.q_no}`}>{qq.q_no}</button>;
             })}
           </div>
           <div className="countline"><span>Answered <b>{ansd}</b></span><span>Marked <b>{mkd}</b></span></div>
-          <button className="btn primary sm" style={{ width: "100%", justifyContent: "center", marginTop: 14 }} onClick={submit}>Submit test</button>
+          <button className="btn primary sm" style={{ width: "100%", justifyContent: "center", marginTop: 14 }} onClick={() => setConfirming(true)}>Submit test</button>
         </aside>
       </div>
+
+      {confirming && (
+        <div className="modal-bg" onClick={() => setConfirming(false)}>
+          <div className="modal panel" role="dialog" aria-modal="true" aria-labelledby="pyq-submit-title" onClick={(e) => e.stopPropagation()}>
+            <h3 id="pyq-submit-title">Submit this paper?</h3>
+            <p className="muted">
+              You&apos;ve answered {ansd} of {N}.{" "}
+              {left > 0 ? `${left} unanswered question${left === 1 ? "" : "s"} will score 0. ` : ""}
+              You can&apos;t change answers after submitting.
+            </p>
+            <div className="mact">
+              <button className="btn" autoFocus onClick={() => setConfirming(false)}>Keep attempting</button>
+              <button className="btn primary" onClick={() => { setConfirming(false); void submit(); }}>Submit test</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
+  );
+}
+
+/** Answer box for numeric (integer-type) questions. Saves on "Save answer" or Enter. */
+function NumericAnswer({ value, locked, onSave }: { value: number | null; locked: boolean; onSave: (v: string) => void }) {
+  const saved = value == null ? "" : String(value);
+  const [draft, setDraft] = useState(saved);
+  useEffect(() => { setDraft(saved); }, [saved]);
+  const t = draft.trim().replace(/−/g, "-"); // accept a typographic minus too
+  const valid = t === "" || NUMERIC_RE.test(t);
+  const dirty = t !== saved;
+  const save = () => { if (!locked && valid && dirty) onSave(t); };
+  return (
+    <div className="numans">
+      <label htmlFor="pyq-numans">Your answer</label>
+      <input id="pyq-numans" inputMode="decimal" autoComplete="off" placeholder="Enter a number"
+        value={draft} disabled={locked} aria-invalid={!valid}
+        onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") save(); }} />
+      <button className="btn sm" disabled={locked || !valid || !dirty} onClick={save}>{saved && t === "" ? "Clear answer" : "Save answer"}</button>
+      {!valid && <span className="err">Numbers only (e.g. 25, -3, 2.5)</span>}
+    </div>
   );
 }
 
@@ -632,22 +750,30 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
         </div>
         <div className="review panel">
           <h3 style={{ fontSize: 16 }}>Question-wise review</h3>
-          {data.review.map((r, idx) => {
-            const yours = r.selected_key ? r.options.find((o) => o.key === r.selected_key) : null;
-            const right = r.options.find((o) => o.key === r.correct_key);
+          {data.review.map((r) => {
+            const numeric = r.qtype === "numeric";
+            const attempted = numeric ? r.selected_value != null : r.selected_key != null;
             const got = r.is_correct === true;
+            // An option shown back: letter, its text (as maths) and/or its figure.
+            const optLabel = (key: string | null) => {
+              if (!key) return "—";
+              const o = r.options.find((x) => x.key === key);
+              return <>{key}{o?.text ? <>. <MathText text={o.text} /></> : null}<Fig src={r.option_figure_urls?.[key]} alt={`Option ${key}`} className="ofig sm" /></>;
+            };
             return (
               <div key={r.id} className="rev">
                 {r.topic && <div className="tp">{r.topic}</div>}
-                <div className="q">Q{idx + 1}. <MathText text={r.stem} /></div>
+                <div className="q">Q{r.q_no}. <MathText text={r.stem} /></div>
+                <Fig src={r.stem_figure_url} alt={`Figure for question ${r.q_no}`} />
                 <div className="ans">
-                  <span className={`y ${r.selected_key == null ? "" : got ? "ok" : "no"}`}>
-                    Your answer: {r.selected_key == null ? "Not attempted" : `${r.selected_key}. ${yours?.text ?? ""}`}
-                    {r.selected_key != null && ` (${Number(r.awarded) > 0 ? "+" : ""}${fmtNum(r.awarded)})`}
+                  <span className={`y ${!attempted ? "" : got ? "ok" : "no"}`}>
+                    Your answer: {!attempted ? "Not attempted" : numeric ? fmtVal(r.selected_value) : optLabel(r.selected_key)}
+                    {attempted && ` (${Number(r.awarded) > 0 ? "+" : ""}${fmtNum(r.awarded)})`}
                   </span>
-                  <span style={{ color: "var(--ok)" }}>Correct: {r.correct_key}. {right?.text ?? ""}</span>
+                  <span style={{ color: "var(--ok)" }}>Correct: {numeric ? fmtVal(r.correct_value) : optLabel(r.correct_key)}</span>
                 </div>
                 {r.solution && <div className="sol"><MathText text={r.solution} /></div>}
+                <Fig src={r.solution_figure_url} alt={`Solution figure for question ${r.q_no}`} />
               </div>
             );
           })}

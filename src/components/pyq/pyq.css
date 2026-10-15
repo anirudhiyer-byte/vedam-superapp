@@ -189,3 +189,37 @@
 .pyq .rev .sol{font-size:12.5px;color:var(--muted);margin-top:7px;border-top:1px dashed var(--line2);padding-top:7px;white-space:pre-wrap}
 .pyq .rev .tp{font-size:11px;color:var(--cyan);font-weight:700}
 .pyq .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+
+/* Long formulas: grid/flex children may shrink below their content, and anything
+   wider than the card scrolls inside its own box instead of widening the page. */
+.pyq .exam>*{min-width:0}
+.pyq .stem,.pyq .resultbox .sol,.pyq .resultbox .hd,.pyq .rev .q,.pyq .rev .sol,.pyq .opt .otxt{min-width:0;max-width:100%;overflow-x:auto;overflow-y:hidden;padding-bottom:2px}
+.pyq .katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+
+/* Figures (scanned diagrams on white) */
+.pyq .qfig{display:block;max-width:min(100%,560px);height:auto;margin:0 0 16px;border-radius:10px;background:#fff;padding:6px}
+.pyq .resultbox .qfig,.pyq .rev .qfig{margin:10px 0 2px;max-width:min(100%,480px)}
+.pyq .opt .otxt{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.pyq .ofig{display:block;max-width:100%;max-height:150px;height:auto;border-radius:8px;background:#fff;padding:4px}
+.pyq .ofig.sm{display:inline-block;max-height:56px;vertical-align:middle;margin-left:6px}
+.pyq .opt:disabled{cursor:default}
+.pyq .opt:disabled:not(.sel):not(.correct):not(.wrong):hover{border-color:var(--line2);background:transparent}
+
+/* Numeric (integer-type) answers */
+.pyq .numans{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:2px}
+.pyq .numans label{font-size:13px;font-weight:700;color:var(--muted)}
+.pyq .numans input{width:180px;max-width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:11px;padding:10px 13px;color:var(--ink);font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+.pyq .numans input:focus{outline:2px solid var(--violet);outline-offset:1px}
+.pyq .numans input:disabled{opacity:.75}
+.pyq .numans input[aria-invalid=true]{border-color:var(--bad)}
+.pyq .numans .err{font-size:12px;color:var(--bad)}
+.pyq .verdict{font-size:13.5px;font-weight:800;margin-bottom:6px}
+.pyq .verdict.ok{color:var(--ok)}
+.pyq .verdict.no{color:var(--bad)}
+
+/* Submit confirmation */
+.pyq .modal-bg{position:fixed;inset:0;z-index:60;background:rgba(5,2,14,.72);display:grid;place-items:center;padding:16px}
+.pyq .modal{width:100%;max-width:420px;padding:22px;background:var(--panel);box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.pyq .modal h3{font-size:18px}
+.pyq .modal p{font-size:14px;line-height:1.5;margin:8px 0 18px}
+.pyq .modal .mact{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}

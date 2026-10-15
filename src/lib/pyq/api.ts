@@ -37,17 +37,34 @@ export const PAPER_COLS =
 
 export type QOption = { key: string; text: string };
 
+/** Every question column the PYQ routes read. Figure URLs point at the public
+ *  `pyq-figures` Storage bucket; the solution figure is answer material and is
+ *  only ever sent alongside the solution (reveal / review), never with the question. */
+export const QUESTION_COLS =
+  "id, q_no, topic, qtype, stem, options, correct_key, correct_value, solution, marks_correct, marks_wrong, stem_figure_url, solution_figure_url, option_figure_urls";
+
 /** Question as sent to the browser DURING an attempt — no answer/solution. */
 export type QuestionPublic = {
   id: string; q_no: number; topic: string | null; qtype: "mcq" | "numeric";
   stem: string; options: QOption[]; marks_correct: number; marks_wrong: number;
+  stem_figure_url: string | null; option_figure_urls: Record<string, string> | null;
 };
 
-/** Full question including the answer — only ever returned for a question the
- *  candidate has already attempted (reveal), or after the attempt is submitted. */
+/** Full question including the answer — only ever returned for a question whose
+ *  result the candidate has chosen to see (reveal), or after the attempt is submitted. */
 export type QuestionFull = QuestionPublic & {
-  correct_key: string | null; correct_value: number | null; solution: string | null;
+  correct_key: string | null; correct_value: number | null; solution: string | null; solution_figure_url: string | null;
 };
+
+/** The answer payload shown by "Show result" (and restored on resume). */
+export function revealOf(q: Record<string, unknown>) {
+  return {
+    correct_key: (q.correct_key as string) ?? null,
+    correct_value: q.correct_value == null ? null : Number(q.correct_value),
+    solution: (q.solution as string) ?? null,
+    solution_figure_url: (q.solution_figure_url as string) ?? null,
+  };
+}
 
 export type AnswerRow = {
   question_id: string; selected_key: string | null; selected_value: number | null;
@@ -64,7 +81,18 @@ export function sanitizeQuestion(q: Record<string, unknown>): QuestionPublic {
     options: (q.options as QOption[]) ?? [],
     marks_correct: Number(q.marks_correct ?? 4),
     marks_wrong: Number(q.marks_wrong ?? -1),
+    stem_figure_url: (q.stem_figure_url as string) ?? null,
+    option_figure_urls: (q.option_figure_urls as Record<string, string>) ?? null,
   };
+}
+
+/** Parse a numeric-answer entry. undefined → field not sent; null → cleared;
+ *  NaN → invalid input (caller rejects). */
+export function parseValue(v: unknown): number | null | undefined {
+  if (v === undefined) return undefined;
+  if (v === null || v === "") return null;
+  const n = Number(typeof v === "string" ? v.trim() : v);
+  return Number.isFinite(n) ? n : NaN;
 }
 
 /** Grade one selection against a question. Returns null awarded when unattempted. */

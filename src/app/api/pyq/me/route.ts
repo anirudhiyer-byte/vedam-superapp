@@ -34,7 +34,7 @@ export async function GET() {
       .from("pyq_answers")
       .select("question_id", { count: "exact", head: true })
       .eq("attempt_id", open.id)
-      .not("selected_key", "is", null);
+      .or("selected_key.not.is.null,selected_value.not.is.null"); // MCQ or numeric answer
     const paper = open.paper as unknown as { total_questions?: number } | null;
     inProgress = { attempt_id: open.id, paper: open.paper, answered: count ?? 0, total: Number(paper?.total_questions ?? 0) };
   }

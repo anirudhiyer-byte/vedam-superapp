@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, grade } from "@/lib/pyq/api";
+import { svc, requireUser, grade, revealOf, parseValue } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -7,10 +7,15 @@ export const dynamic = "force-dynamic";
 /** POST /api/pyq/attempt/answer
  *  { attempt_id, question_id, selected_key?, selected_value?, marked_for_later?, reveal? }
  *
- *  Upserts the answer row for one question. When a selection is present the
- *  server grades it and — only then — returns the correct key + solution, so
- *  the "Show result" affordance can appear for an attempted question and never
- *  before. `marked_for_later` and selection can be sent independently. */
+ *  Upserts the answer row for one question and grades it server-side.
+ *  - `selected_key` answers an MCQ; `selected_value` answers a numeric question
+ *    (null / "" clears it).
+ *  - The correct answer + solution are returned ONLY when the candidate asks to
+ *    see the result (`reveal: true`) on an attempted question, or already did so.
+ *    Choosing an option never returns the answer.
+ *  - Once the result has been seen, the answer is locked: a changed selection
+ *    gets 409, so a candidate can't peek at the solution and then switch.
+ *  `marked_for_later` can be sent on its own. */
 export async function POST(req: Request) {
   const gate = await requireUser();
   if (!gate.ok) return gate.res;
@@ -29,14 +34,14 @@ export async function POST(req: Request) {
   // The question must belong to this attempt's paper.
   const { data: q } = await db
     .from("pyq_questions")
-    .select("id, paper_id, qtype, correct_key, correct_value, solution, marks_correct, marks_wrong")
+    .select("id, paper_id, qtype, correct_key, correct_value, solution, solution_figure_url, marks_correct, marks_wrong")
     .eq("id", questionId).maybeSingle();
   if (!q) return NextResponse.json({ error: "Question not found" }, { status: 404 });
   if (att.paper_id !== q.paper_id) return NextResponse.json({ error: "Question not in this paper" }, { status: 400 });
 
+  const parsedValue = parseValue(b.selected_value);
+  if (Number.isNaN(parsedValue)) return NextResponse.json({ error: "Enter a number" }, { status: 400 });
   const selectedKey = (b.selected_key ?? null) as string | null;
-  const selectedValue = b.selected_value === undefined || b.selected_value === null || b.selected_value === ""
-    ? null : Number(b.selected_value);
 
   // Preserve prior values when a field isn't being changed this call.
   const { data: prior } = await db
@@ -44,13 +49,24 @@ export async function POST(req: Request) {
     .select("selected_key, selected_value, marked_for_later, revealed")
     .eq("attempt_id", attemptId).eq("question_id", questionId).maybeSingle();
 
+  const priorKey = (prior?.selected_key ?? null) as string | null;
+  const priorValue = prior?.selected_value == null ? null : Number(prior.selected_value);
   const hasSelectionField = "selected_key" in b || "selected_value" in b;
-  const finalKey = hasSelectionField ? selectedKey : (prior?.selected_key ?? null);
-  const finalValue = hasSelectionField ? selectedValue : (prior?.selected_value ?? null);
+  const finalKey = hasSelectionField ? selectedKey : priorKey;
+  const finalValue = hasSelectionField ? (parsedValue ?? null) : priorValue;
   const marked = "marked_for_later" in b ? !!b.marked_for_later : (prior?.marked_for_later ?? false);
-  const revealed = b.reveal === true ? true : (prior?.revealed ?? false);
+  const wasRevealed = prior?.revealed ?? false;
+
+  // Locked after "Show result".
+  if (wasRevealed && hasSelectionField && (finalKey !== priorKey || finalValue !== priorValue)) {
+    return NextResponse.json({ error: "Your answer is locked because you've seen the solution" }, { status: 409 });
+  }
 
   const g = grade(q, finalKey, finalValue);
+  if (b.reveal === true && !g.attempted) {
+    return NextResponse.json({ error: "Answer the question to see the result" }, { status: 400 });
+  }
+  const revealed = wasRevealed || (b.reveal === true && g.attempted);
 
   const { error: upErr } = await db.from("pyq_answers").upsert({
     attempt_id: attemptId,
@@ -65,10 +81,9 @@ export async function POST(req: Request) {
   }, { onConflict: "attempt_id,question_id" });
   if (upErr) return NextResponse.json({ error: upErr.message }, { status: 500 });
 
-  // Reveal the answer only for an attempted question.
-  const reveal = g.attempted
-    ? { correct_key: q.correct_key, correct_value: q.correct_value, solution: q.solution, is_correct: g.is_correct, awarded: g.awarded }
+  const reveal = revealed && g.attempted
+    ? { ...revealOf(q), is_correct: g.is_correct, awarded: g.awarded }
     : null;
 
-  return NextResponse.json({ ok: true, attempted: g.attempted, marked_for_later: marked, reveal });
+  return NextResponse.json({ ok: true, attempted: g.attempted, marked_for_later: marked, revealed, reveal });
 }

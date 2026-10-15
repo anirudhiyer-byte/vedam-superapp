@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, sanitizeQuestion, PAPER_COLS, type AnswerRow } from "@/lib/pyq/api";
+import { svc, requireUser, sanitizeQuestion, revealOf, PAPER_COLS, QUESTION_COLS, type AnswerRow } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -7,9 +7,10 @@ export const dynamic = "force-dynamic";
 /** POST /api/pyq/attempt/start  { paper_id }
  *  Resumes the user's open attempt for this paper, or creates a new one.
  *  Returns the paper, the sanitised questions (no answers), and — for a
- *  resumed attempt — the saved answer state. For questions the candidate had
- *  already attempted or revealed, the correct key + solution are included so
- *  the client can restore the "Show result" state (mirrors the prototype). */
+ *  resumed attempt — the saved answer state. Only for questions whose result the
+ *  candidate already chose to see are the correct answer, solution and grading
+ *  included (so "Show result" restores); an answered-but-unrevealed question
+ *  carries no hint of whether it is right. */
 export async function POST(req: Request) {
   const gate = await requireUser();
   if (!gate.ok) return gate.res;
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
 
   const { data: qRows, error: qErr } = await db
     .from("pyq_questions")
-    .select("id, q_no, topic, qtype, stem, options, correct_key, correct_value, solution, marks_correct, marks_wrong")
+    .select(QUESTION_COLS)
     .eq("paper_id", paperId).order("q_no", { ascending: true });
   if (qErr) return NextResponse.json({ error: qErr.message }, { status: 500 });
   const questions = (qRows ?? []).map(sanitizeQuestion);
@@ -58,14 +59,18 @@ export async function POST(req: Request) {
     .eq("attempt_id", attemptId);
   const answers = (aRows ?? []) as AnswerRow[];
 
-  const keyById = new Map<string, { correct_key: string | null; solution: string | null }>();
-  for (const q of (qRows ?? []) as Array<Record<string, unknown>>) {
-    keyById.set(q.id as string, { correct_key: (q.correct_key as string) ?? null, solution: (q.solution as string) ?? null });
-  }
+  const qById = new Map<string, Record<string, unknown>>();
+  for (const q of (qRows ?? []) as Array<Record<string, unknown>>) qById.set(q.id as string, q);
+  const hidden = { correct_key: null, correct_value: null, solution: null, solution_figure_url: null };
   const answerState = answers.map((a) => {
-    const attempted = a.selected_key != null || a.selected_value != null;
-    const reveal = (attempted || a.revealed) ? keyById.get(a.question_id) : undefined;
-    return { ...a, correct_key: reveal?.correct_key ?? null, solution: reveal?.solution ?? null };
+    const q = a.revealed ? qById.get(a.question_id) : undefined;
+    return {
+      ...a,
+      selected_value: a.selected_value == null ? null : Number(a.selected_value),
+      is_correct: q ? a.is_correct : null,
+      awarded: q && a.awarded != null ? Number(a.awarded) : null,
+      ...(q ? revealOf(q) : hidden),
+    };
   });
 
   return NextResponse.json({

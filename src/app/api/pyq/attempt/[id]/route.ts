@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, grade, PAPER_COLS } from "@/lib/pyq/api";
+import { svc, requireUser, grade, PAPER_COLS, QUESTION_COLS } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,7 +27,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
 
   const { data: qRows } = await db
     .from("pyq_questions")
-    .select("id, q_no, topic, qtype, stem, options, correct_key, correct_value, solution, marks_correct, marks_wrong")
+    .select(QUESTION_COLS)
     .eq("paper_id", att.paper_id).order("q_no", { ascending: true });
 
   const { data: aRows } = await db
@@ -45,8 +45,9 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
     );
     return {
       id: q.id, q_no: q.q_no, topic: q.topic, qtype: q.qtype, stem: q.stem, options: q.options,
-      correct_key: q.correct_key, correct_value: q.correct_value, solution: q.solution,
-      selected_key: a?.selected_key ?? null, selected_value: a?.selected_value ?? null,
+      correct_key: q.correct_key, correct_value: q.correct_value == null ? null : Number(q.correct_value), solution: q.solution,
+      stem_figure_url: q.stem_figure_url ?? null, solution_figure_url: q.solution_figure_url ?? null, option_figure_urls: q.option_figure_urls ?? null,
+      selected_key: a?.selected_key ?? null, selected_value: a?.selected_value == null ? null : Number(a.selected_value),
       marked_for_later: a?.marked_for_later ?? false,
       is_correct: g.attempted ? g.is_correct : null, awarded: g.attempted ? g.awarded : 0,
     };
