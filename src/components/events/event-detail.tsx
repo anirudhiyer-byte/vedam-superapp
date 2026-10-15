@@ -129,9 +129,15 @@ export function EventDetail({ code }: { code: string }) {
         style={{ background: "linear-gradient(120deg,#2a1a52,#1a0b38 70%,#3a1470)" }}>
         <div aria-hidden className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
         {event.banner_url && <div aria-hidden className="absolute inset-0 z-[1]" style={{ backgroundImage: `url(${event.banner_url})`, backgroundSize: event.banner_fit === "contain" ? "contain" : (event.banner_zoom ? `${event.banner_zoom}%` : "cover"), backgroundPosition: `${event.banner_x ?? 50}% ${event.banner_y ?? 50}%`, backgroundRepeat: "no-repeat" }} />}
-        {/* Banner is kept clean — the event name/category live on the poster itself.
-            An accessible heading is provided off-screen for screen readers + SEO. */}
-        <h1 className="sr-only">{event.name}{event.host ? ` — hosted by Vedam with ${event.host}` : ""}</h1>
+      </div>
+
+      {/* title block — kept BELOW the banner so it never overlaps the poster's infographic */}
+      <div className="mt-4 sm:mt-5">
+        <span className="inline-block rounded-full border border-[#00cfe5]/50 bg-[#00cfe5]/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-[#8fe9f5]">
+          {event.category || "Vedam Event"}
+        </span>
+        <h1 className="mt-2 break-words font-display text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">{event.name}</h1>
+        {event.host && <p className="mt-1.5 font-mono text-[13px] text-white/60 sm:text-sm">Hosted by Vedam · with {event.host}</p>}
       </div>
 
       <div className="mt-7 grid gap-7 lg:grid-cols-[1fr_340px] lg:items-start">
