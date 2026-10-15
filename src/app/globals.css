@@ -218,3 +218,34 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .cp-shine { animation: none; display: none; }
 }
+
+/* PeerPath · Talk to a Senior — component classes (colours come from the .pp wrapper, see (shell)/peerpath/peerpath.css) */
+@layer components {
+  .pp-btn-primary {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-pp-violet-500 px-5 text-[15px] font-semibold text-white transition hover:bg-pp-violet-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pp-violet-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .pp-btn-secondary {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-pp-line bg-pp-card px-4 text-[14px] font-semibold text-pp-ink transition hover:border-pp-violet-200 hover:bg-pp-violet-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pp-violet-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .pp-chip {
+    @apply inline-flex min-h-[36px] items-center rounded-full border border-pp-line bg-pp-card px-3.5 text-[13px] font-medium text-pp-ink transition hover:border-pp-violet-200;
+  }
+  .pp-chip-on {
+    @apply border-pp-violet-500 bg-pp-violet-500 text-white hover:border-pp-violet-500;
+  }
+  .pp-tag {
+    @apply inline-flex items-center rounded-full bg-pp-violet-50 px-2.5 py-1 text-[12px] font-medium text-pp-violet-700;
+  }
+  .pp-card {
+    @apply rounded-2xl border border-pp-line bg-pp-card shadow-pp-card;
+  }
+  .pp-field {
+    @apply min-h-[48px] w-full rounded-xl border border-pp-line bg-[#0c0718] px-3.5 text-pp-ink placeholder:text-[#7d7694] focus:border-pp-violet-500 focus:outline-none focus:ring-2 focus:ring-pp-violet-100;
+  }
+  .pp-label {
+    @apply text-[14px] font-semibold text-pp-ink;
+  }
+  .pp-eyebrow {
+    @apply text-[12px] font-semibold uppercase tracking-[0.06em] text-pp-muted;
+  }
+}

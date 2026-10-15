@@ -1,0 +1,32 @@
+/* PeerPath · Talk to a Senior — dark theme tokens, scoped to the .pp wrapper. */
+.pp {
+  --pp-page: 0 0 0;
+  --pp-card: 18 11 36;
+  --pp-soft: 28 19 52;
+  --pp-line: 50 40 78;
+  --pp-ink: 236 232 245;
+  --pp-muted: 168 161 189;
+  --pp-heading: 255 255 255;
+  --pp-cream: 40 26 12;
+  --pp-violet-50: 33 18 66;
+  --pp-violet-100: 48 24 98;
+  --pp-violet-200: 88 52 160;
+  --pp-violet-500: 118 41 252;
+  --pp-violet-600: 145 82 255;
+  --pp-violet-700: 204 172 255;
+  --pp-orange-50: 44 27 8;
+  --pp-orange-500: 249 125 3;
+  --pp-orange-700: 255 182 112;
+  color: rgb(var(--pp-ink));
+  color-scheme: dark;
+}
+
+/* 16px inputs stop iOS from zooming on focus */
+.pp input,
+.pp select,
+.pp textarea {
+  font-size: 16px;
+}
+
+/* Component classes (.pp-btn-primary, .pp-card, …) live in globals.css under @layer components,
+   so Tailwind utilities on the same element still win. */

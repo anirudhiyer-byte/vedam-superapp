@@ -13,6 +13,7 @@ const NAV: { label: string; href: string; soon?: boolean }[] = [
   { label: "Bootcamps", href: "/events" },
   { label: "Codesprint", href: "/codesprint" },
   { label: "College Predictor", href: "/predict", soon: true },
+  { label: "PeerPath", href: "/peerpath", soon: true },
 ];
 
 export function SiteHeader() {
@@ -153,6 +154,7 @@ export function SiteHeader() {
                           <Link href="/admin/daily" className="block px-4 py-2 text-white/85 hover:bg-white/5">📊 Daily Dashboard</Link>
                           <Link href="/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎯 VSAT registration (internal)</Link>
                           <Link href="/admin/vsat-early" className="block px-4 py-2 text-white/85 hover:bg-white/5">📈 VSAT Early-Reg Analytics</Link>
+                          <Link href="/peerpath/talk-to-senior/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎓 PeerPath admin</Link>
                         </>
                       )}
                     </div>
