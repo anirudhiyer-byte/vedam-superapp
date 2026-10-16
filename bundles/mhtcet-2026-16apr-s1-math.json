@@ -1,0 +1,1871 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "16 April · Shift 1",
+  "title": "MHT-CET 2026 · Mathematics · 16 April Shift 1",
+  "marks_correct": 2,
+  "marks_wrong": 0,
+  "marking_note": "+2 correct · no negative marking",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1O5CBP8_HuG-EnqxgJ5WmwqwvlCCQjNxu"
+ },
+ "questions": [
+  {
+   "q_no": 101,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A ball is thrown in the air. Its height at any time $t$ is given by $h = 3 + 14t - 5t^{2}$, then the maximum height it can reach",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe height is a downward-opening quadratic in $t$. Its largest value occurs where the rate of change of height, $dh/dt$, is zero.\n\nStep 2: Finding the time of maximum height:\n$$\\frac{dh}{dt} = 14 - 10t = 0 \\Rightarrow t = 1.4$$\nThe second derivative is $\\frac{d^{2}h}{dt^{2}} = -10 < 0$, so this is a maximum.\n\nStep 3: Computing the height:\n$$h(1.4) = 3 + 14(1.4) - 5(1.4)^{2} = 3 + 19.6 - 9.8 = 12.8$$\nOptions (A), (C) and (D) are 12.9, 12.7 and 12.6, which come from arithmetic slips such as using $t = 1.5$ or $t = 1.3$.\n\nStep 4: Check:\nUsing $t = 1.3$: $3 + 18.2 - 8.45 = 12.75$. Using $t = 1.5$: $3 + 21 - 11.25 = 12.75$. Both are below 12.8, confirming the peak.\n\nFinal Answer:\nThe maximum height is 12.8.\n$$\\boxed{\\text{(B) } 12.8}$$\n\nQuick Tip: Differentiate h, set the derivative to zero and put that time back into h.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12.9$"
+    },
+    {
+     "key": "B",
+     "text": "$12.8$"
+    },
+    {
+     "key": "C",
+     "text": "$12.7$"
+    },
+    {
+     "key": "D",
+     "text": "$12.6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 102,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $(1 + i) \\cdot (1 + 2i) \\ldots \\ldots \\ldots (1 + ni) = x + iy$ (Where $i = \\sqrt{-1}$), then the value of $(2) \\cdot (5) \\cdot (10) \\ldots \\ldots \\ldots (1 + n^{2})$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor a complex number $z = p + iq$, the product $z\\bar{z} = |z|^{2} = p^{2} + q^{2}$.\nAlso, $|z_1 z_2| = |z_1||z_2|$.\n\nStep 2: Take the modulus squared:\nGiven $(1 + i)(1 + 2i) \\cdots (1 + ni) = x + iy$.\nTaking the squared modulus on both sides:\n$$|1 + i|^{2}|1 + 2i|^{2} \\cdots |1 + ni|^{2} = x^{2} + y^{2}$$\n\nStep 3: Evaluate each factor:\n$|1 + ki|^{2} = 1 + k^{2}$. So the left side is\n$$(1 + 1)(1 + 4)(1 + 9) \\cdots (1 + n^{2}) = 2 \\cdot 5 \\cdot 10 \\cdots (1 + n^{2})$$\nThis is exactly the product asked for.\n\nStep 4: Result:\nThe required product equals $x^{2} + y^{2}$. Option (D), $x^{2} - y^{2}$, would be the real part of the square, not the modulus squared. Options (A) and (C) involve square roots of $x$ and $y$, which do not arise.\n\nFinal Answer:\nThe product equals $x^{2} + y^{2}$.\n$$\\boxed{\\text{(B) } x^{2} + y^{2}}$$\n\nQuick Tip: Take the modulus squared on both sides of the given product.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sqrt{x} + \\sqrt{y}}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} + y^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{x} + \\sqrt{y}}{\\sqrt{x} - \\sqrt{y}}$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} - y^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 103,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The number of arrangements of the numbers strictly between 10 and 1000 formed with the digits 0, 1, 2, 3, 4, 5, 6 without repetition is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNumbers strictly between 10 and 1000 have either 2 or 3 digits, with no digit repeated and digits taken from $\\{0, 1, 2, 3, 4, 5, 6\\}$. A number cannot begin with 0.\n\nStep 2: Two-digit numbers:\nTens digit: 6 choices (1 to 6). Units digit: any of the remaining 6 digits (including 0).\nCount = $6 \\times 6 = 36$.\nThe number 10 is among these but is not strictly greater than 10, so remove it: $36 - 1 = 35$.\n\nStep 3: Three-digit numbers:\nHundreds digit: 6 choices. Tens digit: 6 remaining choices. Units digit: 5 remaining choices.\nCount = $6 \\times 6 \\times 5 = 180$.\n\nStep 4: Total:\n$$35 + 180 = 215$$\nOption (C) 216 would result from forgetting to exclude 10 itself.\nOption (A) counts only three-digit numbers.\n\nFinal Answer:\nThere are 35 two-digit and 180 three-digit numbers.\n$$\\boxed{\\text{(B) } 215}$$\n\nQuick Tip: Count two-digit and three-digit numbers separately, then remove 10 itself.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$180$"
+    },
+    {
+     "key": "B",
+     "text": "$215$"
+    },
+    {
+     "key": "C",
+     "text": "$216$"
+    },
+    {
+     "key": "D",
+     "text": "$222$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 104,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The value of $\\frac{\\sin^{2}3A}{\\sin^{2}A} - \\frac{\\cos^{2}3A}{\\cos^{2}A}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nTriple angle formulas: $\\sin 3A = 3\\sin A - 4\\sin^{3}A$ and $\\cos 3A = 4\\cos^{3}A - 3\\cos A$.\n\nStep 2: Rewrite the ratios:\n$$\\frac{\\sin 3A}{\\sin A} = 3 - 4\\sin^{2}A, \\qquad \\frac{\\cos 3A}{\\cos A} = 4\\cos^{2}A - 3$$\n\nStep 3: Use difference of squares:\nThe expression is $(3 - 4\\sin^{2}A)^{2} - (4\\cos^{2}A - 3)^{2}$.\n$$= \\left[(3 - 4\\sin^{2}A) - (4\\cos^{2}A - 3)\\right]\\left[(3 - 4\\sin^{2}A) + (4\\cos^{2}A - 3)\\right]$$\nFirst bracket: $6 - 4(\\sin^{2}A + \\cos^{2}A) = 2$.\nSecond bracket: $4(\\cos^{2}A - \\sin^{2}A) = 4\\cos 2A$.\n\nStep 4: Result:\n$$2 \\times 4\\cos 2A = 8\\cos 2A$$\nOptions (A), (C) and (D) are off by a constant factor or use $\\sin 2A$.\n\nFinal Answer:\nThe expression simplifies to $8\\cos 2A$.\n$$\\boxed{\\text{(B) } 8\\cos 2A}$$\n\nQuick Tip: Use $\\sin 3A/\\sin A = 3 - 4\\sin^{2}A$ and $\\cos 3A/\\cos A = 4\\cos^{2}A - 3$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\cos 2A$"
+    },
+    {
+     "key": "B",
+     "text": "$8\\cos 2A$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{8}\\cos 2A$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}\\sin 2A$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 105,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $0 \\le x \\le \\frac{\\pi}{2}$, then the number of values of $x$ for which $\\sin x - \\sin 2x + \\sin 3x = 0$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nGroup $\\sin 3x + \\sin x$ with the sum-to-product formula: $\\sin 3x + \\sin x = 2\\sin 2x\\cos x$.\n\nStep 2: Factor the equation:\n$$2\\sin 2x\\cos x - \\sin 2x = 0 \\Rightarrow \\sin 2x\\,(2\\cos x - 1) = 0$$\n\nStep 3: Solve each factor in the interval:\n$\\sin 2x = 0$: $2x = 0, \\pi, \\ldots$ so $x = 0$ or $x = \\frac{\\pi}{2}$ in $[0, \\pi/2]$.\n$\\cos x = \\frac{1}{2}$: $x = \\frac{\\pi}{3}$.\n\nStep 4: Count:\nThe values are $0, \\frac{\\pi}{3}, \\frac{\\pi}{2}$, so there are 3 values. Both endpoints are allowed because the interval is closed. Option (B) 2 would drop one endpoint, and (D) 4 has no extra root.\n\nFinal Answer:\nRoots are $0$, $\\pi/3$ and $\\pi/2$.\n$$\\boxed{\\text{(C) } 3}$$\n\nQuick Tip: Combine $\\sin 3x + \\sin x$ into $2\\sin 2x\\cos x$, then factor $\\sin 2x$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 106,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The number of lines passing through A (3, 4) and the sum of whose non-zero intercepts is zero is (are)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIf the nonzero intercepts on the axes are $a$ and $b$, the line is $\\frac{x}{a} + \\frac{y}{b} = 1$. The sum is zero when $b = -a$.\n\nStep 2: Form the equation:\n$$\\frac{x}{a} + \\frac{y}{-a} = 1 \\Rightarrow x - y = a$$\n\nStep 3: Use the point (3, 4):\n$$3 - 4 = a \\Rightarrow a = -1$$\nThe line is $x - y = -1$, with intercepts $-1$ and $1$, which sum to zero.\nThe line through (3, 4) and the origin has both intercepts equal to zero, so it has no nonzero intercepts and does not count here.\n\nStep 4: Final count:\nOnly one such line exists.\n\nFinal Answer:\nExactly one line, $x - y = -1$, fits.\n$$\\boxed{\\text{(A) } 1}$$\n\nQuick Tip: Write the intercept form with intercepts $a$ and $-a$ and use the point.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 107,
+   "topic": "Pair of Straight Lines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $4ab = 3h^{2}$, then the ratio of the slopes of the lines represented by $ax^{2} + 2hxy + by^{2} = 0$ is...",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor $ax^{2} + 2hxy + by^{2} = 0$, the slopes $m_1, m_2$ satisfy $m_1 + m_2 = -\\frac{2h}{b}$ and $m_1 m_2 = \\frac{a}{b}$.\n\nStep 2: Form an expression free of a, b, h:\n$$\\frac{(m_1 + m_2)^{2}}{m_1 m_2} = \\frac{4h^{2}}{ab}$$\nSince $4ab = 3h^{2}$, we have $h^{2} = \\frac{4ab}{3}$, so $\\frac{4h^{2}}{ab} = \\frac{16}{3}$.\n\nStep 3: Solve for the ratio:\nLet $r = m_1/m_2$. Then $\\frac{(r + 1)^{2}}{r} = \\frac{16}{3}$.\n$$3r^{2} + 6r + 3 = 16r \\Rightarrow 3r^{2} - 10r + 3 = 0 \\Rightarrow r = 3 \\text{ or } \\tfrac{1}{3}$$\n\nStep 4: Result:\nThe slopes are in the ratio $3 : 1$, which is the same pair as $1 : 3$ read the other way round. Among the options, $1 : 3$ is listed as (D).\n\nFinal Answer:\nThe slopes are in the ratio $1 : 3$.\n$$\\boxed{\\text{(D) } 1 : 3}$$\n\nQuick Tip: Use the sum and product of slopes and solve for the ratio.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{2} : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3} : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 108,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The equations of the tangent to the curve $x^{2} + y^{2} = 10$, where the tangent is parallel to the line $2x + y - 1 = 0$, are",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe circle $x^{2} + y^{2} = 10$ has centre at the origin and radius $\\sqrt{10}$. A tangent parallel to $2x + y - 1 = 0$ has slope $m = -2$.\n\nStep 2: Condition for tangency:\nFor $y = mx + c$ to touch $x^{2} + y^{2} = r^{2}$, we need $c^{2} = r^{2}(1 + m^{2})$.\n$$c^{2} = 10(1 + 4) = 50 \\Rightarrow c = \\pm 5\\sqrt{2}$$\n\nStep 3: Write the tangents:\n$$y = -2x \\pm 5\\sqrt{2} \\Rightarrow 2x + y = \\pm 5\\sqrt{2}$$\nOptions (A), (C), (D) with $\\sqrt{2}, 2\\sqrt{2}, 3\\sqrt{2}$ give distances from the origin of $\\sqrt{2/5}$, $\\sqrt{8/5}$ and $\\sqrt{18/5}$, not $\\sqrt{10}$.\n\nStep 4: Check:\nDistance from origin to $2x + y - 5\\sqrt{2} = 0$ is $\\frac{5\\sqrt{2}}{\\sqrt{5}} = \\sqrt{10}$, equal to the radius, as needed.\n\nFinal Answer:\nThe tangents are $2x + y = \\pm 5\\sqrt{2}$.\n$$\\boxed{\\text{(B) } 2x + y = \\pm 5\\sqrt{2}}$$\n\nQuick Tip: A tangent $y = mx + c$ to a circle of radius $r$ needs $c^{2} = r^{2}(1 + m^{2})$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2x + y = \\pm\\sqrt{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2x + y = \\pm 5\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2x + y = \\pm 2\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2x + y = \\pm 3\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 109,
+   "topic": "Hyperbola",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the line $y = 2x + \\lambda$ is a tangent to the hyperbola $36x^{2} - 25y^{2} = 3600$, then $\\lambda =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nDivide $36x^{2} - 25y^{2} = 3600$ by 3600 to get $\\frac{x^{2}}{100} - \\frac{y^{2}}{144} = 1$. So $a^{2} = 100$ and $b^{2} = 144$.\n\nStep 2: Tangency condition:\nThe line $y = mx + c$ touches $\\frac{x^{2}}{a^{2}} - \\frac{y^{2}}{b^{2}} = 1$ when $c^{2} = a^{2}m^{2} - b^{2}$.\n\nStep 3: Apply:\nHere $m = 2$, so\n$$c^{2} = 100(4) - 144 = 256 \\Rightarrow c = \\pm 16$$\nSo $\\lambda = \\pm 16$. The values 36, 25 and 9 do not satisfy $c^{2} = 256$.\n\nStep 4: Check:\nSubstituting $y = 2x + 16$: $36x^{2} - 25(4x^{2} + 64x + 256) = 3600$ gives $-64x^{2} - 1600x - 10000 = 0$, i.e. $x^{2} + 25x + 156.25 = 0$, with discriminant $625 - 625 = 0$. This confirms tangency.\n\nFinal Answer:\nThe tangent condition gives $\\lambda = \\pm 16$.\n$$\\boxed{\\text{(C) } \\pm 16}$$\n\nQuick Tip: Reduce the hyperbola to standard form and use $c^{2} = a^{2}m^{2} - b^{2}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pm 36$"
+    },
+    {
+     "key": "B",
+     "text": "$\\pm 25$"
+    },
+    {
+     "key": "C",
+     "text": "$\\pm 16$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pm 9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 110,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\lim_{x \\to 0} \\frac{(5^{x} - 1)^{4}\\,\\mathrm{cosec}\\,(x\\log 5)}{\\tan(x\\log 5) \\cdot \\log(1 + x^{2}\\log 25)} = \\ldots \\ldots$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNear $x = 0$: $5^{x} - 1 \\approx x\\log 5$, $\\tan(x\\log 5) \\approx x\\log 5$, $\\mathrm{cosec}(x\\log 5) \\approx \\frac{1}{x\\log 5}$, and $\\log(1 + u) \\approx u$.\n\nStep 2: Replace each part:\nNumerator: $(x\\log 5)^{4} \\cdot \\frac{1}{x\\log 5} = (x\\log 5)^{3}$.\nDenominator: $x\\log 5 \\cdot x^{2}\\log 25 = x\\log 5 \\cdot x^{2} \\cdot 2\\log 5 = 2x^{3}(\\log 5)^{2}$.\n\nStep 3: Divide:\n$$\\frac{x^{3}(\\log 5)^{3}}{2x^{3}(\\log 5)^{2}} = \\frac{\\log 5}{2}$$\n\nStep 4: Match the option:\n$\\frac{\\log 5}{2} = \\log 5^{1/2} = \\log\\sqrt{5}$, which is option (B).\n\nFinal Answer:\nThe limit equals half of $\\log 5$.\n$$\\boxed{\\text{(B) } \\log\\sqrt{5}}$$\n\nQuick Tip: Replace each factor by its small-x approximation.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5\\log 5$"
+    },
+    {
+     "key": "B",
+     "text": "$\\log\\sqrt{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$(\\log 5)^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{4}\\log 5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 111,
+   "topic": "Mathematical Logic",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Simplest form of the following switching circuit is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Reading the circuit:\nThe figure shows three parallel branches between the battery and the lamp. Branch 1 has $S_1$ and $S_2$ in series, branch 2 has $S_1$ and $S_2'$ in series, and branch 3 has $S_1'$ and $S_2$ in series.\n\nStep 2: Boolean expression:\nSeries means AND and parallel means OR:\n$$(S_1 \\wedge S_2) \\vee (S_1 \\wedge S_2') \\vee (S_1' \\wedge S_2)$$\n\nStep 3: Simplify:\nCombine the first two terms: $S_1 \\wedge (S_2 \\vee S_2') = S_1 \\wedge T = S_1$.\nThe expression becomes $S_1 \\vee (S_1' \\wedge S_2)$.\nBy the absorption identity $p \\vee (\\sim p \\wedge q) = p \\vee q$, this is $S_1 \\vee S_2$.\n\nStep 4: Final circuit:\n$S_1 \\vee S_2$ is a circuit with $S_1$ and $S_2$ in parallel. This matches option (B), where two switches are drawn on parallel branches. Option (A) is a series circuit, (C) is $S_1 \\wedge S_2'$, and (D) is $S_1 \\vee S_2'$.\n\nFinal Answer:\nThe circuit reduces to $S_1$ or $S_2$, two switches in parallel.\n$$\\boxed{\\text{(B) } S_1 \\text{ and } S_2 \\text{ in parallel}}$$\n\nQuick Tip: Write the Boolean expression of the circuit and simplify.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "m26-16apr-s1-q111-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "m26-16apr-s1-q111-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "m26-16apr-s1-q111-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "m26-16apr-s1-q111-optD.png"
+    }
+   ],
+   "stem_figure": "m26-16apr-s1-q111.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 112,
+   "topic": "Solutions of Triangle",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "With usual notations in $\\triangle ABC$, if $b\\cos^{2}\\frac{C}{2} + c\\cos^{2}\\frac{B}{2} = \\frac{3a}{2}$ then",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nHalf-angle identity: $\\cos^{2}\\frac{\\theta}{2} = \\frac{1 + \\cos\\theta}{2}$. Projection formula: $a = b\\cos C + c\\cos B$.\n\nStep 2: Rewrite the given condition:\n$$\\frac{b(1 + \\cos C)}{2} + \\frac{c(1 + \\cos B)}{2} = \\frac{3a}{2}$$\n$$b + c + (b\\cos C + c\\cos B) = 3a$$\n\nStep 3: Use the projection formula:\n$b\\cos C + c\\cos B = a$, so $b + c + a = 3a$, giving $b + c = 2a$.\n\nStep 4: Interpret:\n$a = \\frac{b + c}{2}$ means $a$ is the arithmetic mean of $b$ and $c$, so $b, a, c$ are in A.P. This is option (C). Option (A) would need $b = \\frac{a + c}{2}$, and (B) would need $c = \\frac{a + b}{2}$.\n\nFinal Answer:\n$b + c = 2a$, so $b, a, c$ are in A.P.\n$$\\boxed{\\text{(C) } b, a, c \\text{ in A.P.}}$$\n\nQuick Tip: Use $\\cos^{2}(x/2) = (1 + \\cos x)/2$ and the projection formula $a = b\\cos C + c\\cos B$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a, b, c$ are in A.P."
+    },
+    {
+     "key": "B",
+     "text": "$a, c, b$ are in A.P."
+    },
+    {
+     "key": "C",
+     "text": "$b, a, c$ are in A.P."
+    },
+    {
+     "key": "D",
+     "text": "$a, b, c$ are in G.P"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 113,
+   "topic": "Solutions of Triangle",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a triangle ABC, with usual notations $a = \\sqrt{3} + 1$, $b = \\sqrt{3} - 1$ and $\\angle C = 60^\\circ$ then the values of $\\angle A$ and $\\angle B$ respectively are",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNapier's analogy: $\\tan\\frac{A - B}{2} = \\frac{a - b}{a + b}\\cot\\frac{C}{2}$.\n\nStep 2: Compute:\n$a - b = 2$ and $a + b = 2\\sqrt{3}$, so $\\frac{a - b}{a + b} = \\frac{1}{\\sqrt{3}}$.\n$\\cot 30^\\circ = \\sqrt{3}$.\n$$\\tan\\frac{A - B}{2} = \\frac{1}{\\sqrt{3}} \\cdot \\sqrt{3} = 1 \\Rightarrow \\frac{A - B}{2} = 45^\\circ$$\nSo $A - B = 90^\\circ$.\n\nStep 3: Use the angle sum:\n$A + B = 180^\\circ - 60^\\circ = 120^\\circ$. Solving $A - B = 90^\\circ$ and $A + B = 120^\\circ$:\n$$A = 105^\\circ, \\quad B = 15^\\circ$$\n\nStep 4: Check:\nOption (A) satisfies both conditions. Options (B) and (D) have $A - B = 80^\\circ$ and $100^\\circ$, and (C) has $A - B = 60^\\circ$, so none fits.\n\nFinal Answer:\nA is 105 degrees and B is 15 degrees.\n$$\\boxed{\\text{(A) } 105^\\circ, 15^\\circ}$$\n\nQuick Tip: Use the tangent rule: $\\tan\\frac{A - B}{2} = \\frac{a - b}{a + b}\\cot\\frac{C}{2}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$105^\\circ, 15^\\circ$"
+    },
+    {
+     "key": "B",
+     "text": "$100^\\circ, 20^\\circ$"
+    },
+    {
+     "key": "C",
+     "text": "$90^\\circ, 30^\\circ$"
+    },
+    {
+     "key": "D",
+     "text": "$110^\\circ, 10^\\circ$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 114,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Inverse of $\\begin{bmatrix} 3 & -2 \\\\ 1 & 4 \\end{bmatrix}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor $A = \\begin{bmatrix} p & q \\\\ r & s \\end{bmatrix}$, $A^{-1} = \\frac{1}{ps - qr}\\begin{bmatrix} s & -q \\\\ -r & p \\end{bmatrix}$.\n\nStep 2: Determinant:\n$$|A| = 3 \\cdot 4 - (-2)(1) = 12 + 2 = 14$$\n\nStep 3: Adjoint and inverse:\nSwap the diagonal entries and change the signs of the off-diagonal entries:\n$$\\mathrm{adj}\\,A = \\begin{bmatrix} 4 & 2 \\\\ -1 & 3 \\end{bmatrix}$$\n$$A^{-1} = \\frac{1}{14}\\begin{bmatrix} 4 & 2 \\\\ -1 & 3 \\end{bmatrix} = \\begin{bmatrix} \\frac{2}{7} & \\frac{1}{7} \\\\ -\\frac{1}{14} & \\frac{3}{14} \\end{bmatrix}$$\n\nStep 4: Check:\nRow 1 times column 1 of $A$: $\\frac{2}{7} \\cdot 3 + \\frac{1}{7} \\cdot 1 = \\frac{6 + 1}{7} = 1$. This matches option (A); the other options have wrong signs or entries.\n\nFinal Answer:\nThe inverse is $\\frac{1}{14}\\begin{bmatrix} 4 & 2 \\\\ -1 & 3 \\end{bmatrix}$.\n$$\\boxed{\\text{(A) } \\begin{bmatrix} 2/7 & 1/7 \\\\ -1/14 & 3/14 \\end{bmatrix}}$$\n\nQuick Tip: Use $A^{-1} = \\mathrm{adj}\\,A / |A|$ for a 2 by 2 matrix.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\begin{bmatrix} \\frac{2}{7} & \\frac{1}{7} \\\\ -\\frac{1}{14} & \\frac{3}{14} \\end{bmatrix}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\begin{bmatrix} \\frac{3}{14} & -\\frac{1}{7} \\\\ \\frac{1}{14} & \\frac{2}{7} \\end{bmatrix}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{bmatrix} \\frac{2}{7} & -\\frac{1}{7} \\\\ \\frac{1}{14} & \\frac{3}{14} \\end{bmatrix}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\begin{bmatrix} -\\frac{3}{14} & \\frac{1}{7} \\\\ \\frac{1}{14} & \\frac{2}{7} \\end{bmatrix}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 115,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $A = \\begin{bmatrix} 5a & -b \\\\ 3 & 2 \\end{bmatrix}$ and $A\\,(\\mathrm{adj}\\,A) = AA^{T}$, Then $5a + b =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\n$A\\,(\\mathrm{adj}\\,A) = |A|\\,I$. Here $|A| = 10a + 3b$.\n\nStep 2: Compute $AA^{T}$:\n$$AA^{T} = \\begin{bmatrix} 5a & -b \\\\ 3 & 2 \\end{bmatrix}\\begin{bmatrix} 5a & 3 \\\\ -b & 2 \\end{bmatrix} = \\begin{bmatrix} 25a^{2} + b^{2} & 15a - 2b \\\\ 15a - 2b & 13 \\end{bmatrix}$$\n\nStep 3: Compare with $(10a + 3b)\\,I$:\nOff-diagonal: $15a - 2b = 0$, so $b = \\frac{15a}{2}$.\nEntry (2,2): $13 = 10a + 3b$.\nSubstitute: $10a + \\frac{45a}{2} = \\frac{65a}{2} = 13 \\Rightarrow a = \\frac{2}{5}$, so $b = 3$.\nCheck entry (1,1): $25 \\cdot \\frac{4}{25} + 9 = 13$. Correct.\n\nStep 4: Compute:\n$5a + b = 2 + 3 = 5$. Options (A), (B) and (D) do not match.\n\nFinal Answer:\n$a = 2/5$ and $b = 3$, so $5a + b = 5$.\n$$\\boxed{\\text{(C) } 5}$$\n\nQuick Tip: $A\\,\\mathrm{adj}\\,A$ equals the determinant times identity; compare entries with $AA^{T}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{15}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 116,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $y = \\tan^{-1}\\left[\\frac{x - \\sqrt{1 - x^{2}}}{x + \\sqrt{1 - x^{2}}}\\right]$, then $\\frac{dy}{dx} =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nSubstitute $x = \\sin\\theta$, so $\\sqrt{1 - x^{2}} = \\cos\\theta$ with $\\theta = \\sin^{-1}x$.\n\nStep 2: Simplify the argument:\n$$\\frac{\\sin\\theta - \\cos\\theta}{\\sin\\theta + \\cos\\theta} = \\frac{\\tan\\theta - 1}{\\tan\\theta + 1} = \\tan\\left(\\theta - \\frac{\\pi}{4}\\right)$$\n\nStep 3: Reduce y:\n$$y = \\tan^{-1}\\left[\\tan\\left(\\theta - \\frac{\\pi}{4}\\right)\\right] = \\theta - \\frac{\\pi}{4} = \\sin^{-1}x - \\frac{\\pi}{4}$$\n\nStep 4: Differentiate:\n$$\\frac{dy}{dx} = \\frac{1}{\\sqrt{1 - x^{2}}}$$\nThe constant $\\pi/4$ drops out. Option (A) has the wrong sign, and (C) and (D) are constants.\n\nFinal Answer:\n$y = \\sin^{-1}x - \\pi/4$, so $dy/dx = 1/\\sqrt{1 - x^{2}}$.\n$$\\boxed{\\text{(B) } \\frac{1}{\\sqrt{1 - x^{2}}}}$$\n\nQuick Tip: Put $x = \\sin\\theta$ so the fraction becomes $\\tan(\\theta - \\pi/4)$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{-1}{\\sqrt{1 - x^{2}}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\sqrt{1 - x^{2}}}$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$-1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 117,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\cos\\left(\\cos^{-1}\\left(-\\frac{1}{2}\\right) + \\frac{\\pi}{3}\\right) =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe principal value of $\\cos^{-1}$ lies in $[0, \\pi]$.\n\nStep 2: Evaluate the inner term:\n$$\\cos^{-1}\\left(-\\frac{1}{2}\\right) = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$$\n\nStep 3: Add and evaluate:\n$$\\cos\\left(\\frac{2\\pi}{3} + \\frac{\\pi}{3}\\right) = \\cos\\pi = -1$$\n\nStep 4: Check the options:\nOption (A) 0 would need an angle of $\\pi/2$, (C) 1 would need 0 or $2\\pi$, and (D) $\\frac{1}{2}$ would need $\\pi/3$. Only $-1$ matches the angle $\\pi$.\n\nFinal Answer:\nThe angle is $\\pi$, so the cosine is $-1$.\n$$\\boxed{\\text{(B) } -1}$$\n\nQuick Tip: $\\cos^{-1}(-1/2)$ is $2\\pi/3$, so the angle becomes $\\pi$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$-1$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 118,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\sin^{-1}\\left(\\frac{12}{13}\\right) + \\cos^{-1}\\left(\\frac{4}{5}\\right) + \\tan^{-1}\\left(\\frac{63}{16}\\right) =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nConvert to a common form: $\\sin^{-1}\\frac{12}{13} = \\tan^{-1}\\frac{12}{5}$ (3-4-5 style triangle 5, 12, 13) and $\\cos^{-1}\\frac{4}{5} = \\tan^{-1}\\frac{3}{4}$.\n\nStep 2: Add the first two:\nSince $\\frac{12}{5} \\cdot \\frac{3}{4} = \\frac{9}{5} > 1$, the formula for $\\tan^{-1}p + \\tan^{-1}q$ gains a $\\pi$:\n$$\\tan^{-1}\\frac{12}{5} + \\tan^{-1}\\frac{3}{4} = \\pi + \\tan^{-1}\\frac{\\frac{12}{5} + \\frac{3}{4}}{1 - \\frac{9}{5}} = \\pi + \\tan^{-1}\\left(-\\frac{63}{16}\\right) = \\pi - \\tan^{-1}\\frac{63}{16}$$\n\nStep 3: Add the third:\n$$\\left(\\pi - \\tan^{-1}\\frac{63}{16}\\right) + \\tan^{-1}\\frac{63}{16} = \\pi$$\n\nStep 4: Check:\nNumerically: $67.38^\\circ + 36.87^\\circ + 75.75^\\circ = 180^\\circ$. The value is $\\pi$, option (C).\n\nFinal Answer:\nThe three angles add up to $\\pi$.\n$$\\boxed{\\text{(C) } \\pi}$$\n\nQuick Tip: Convert each term to an arctangent and add using the tangent formula.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3\\pi}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 119,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $f(x) = \\frac{4x + 3}{6x - 4}$, $x \\ne \\frac{2}{3}$ and $(f\\circ f)(x) = g(x)$ where $g : R - \\{\\frac{2}{3}\\} \\to R - \\{\\frac{2}{3}\\}$, then $(g \\circ g \\circ g \\circ g \\circ g)(3) =$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\n$g = f \\circ f$. If $g(x) = x$, then repeating $g$ any number of times leaves the input unchanged.\n\nStep 2: Compute $f(f(x))$:\n$$f(f(x)) = \\frac{4 \\cdot \\frac{4x + 3}{6x - 4} + 3}{6 \\cdot \\frac{4x + 3}{6x - 4} - 4}$$\nMultiply top and bottom by $6x - 4$:\nNumerator: $16x + 12 + 18x - 12 = 34x$.\nDenominator: $24x + 18 - 24x + 16 = 34$.\n\nStep 3: Identify g:\n$g(x) = \\frac{34x}{34} = x$, the identity function on $\\mathbb{R} - \\{\\frac{2}{3}\\}$.\n\nStep 4: Apply five times:\n$(g \\circ g \\circ g \\circ g \\circ g)(3) = 3$. Options (B), (C) and (D) are not obtained from an identity map.\n\nFinal Answer:\ng is the identity, so the answer is 3.\n$$\\boxed{\\text{(A) } 3}$$\n\nQuick Tip: Compute $f \\circ f$ first; it turns out to be the identity.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$3^{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3^{5}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 120,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the derivative of the function $f(x) = \\begin{cases} ax^{2} + b & \\text{if } x < -1 \\\\ bx^{2} + ax + 4 & \\text{if } x \\ge -1 \\end{cases}$ is continuous everywhere then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor the derivative to exist and be continuous, $f$ must be continuous at $-1$, differentiable at $-1$, and $f'$ must have equal left and right limits there.\n\nStep 2: Continuity of f at $x = -1$:\nLeft value: $a(1) + b = a + b$. Right value: $b(1) + a(-1) + 4 = b - a + 4$.\n$$a + b = b - a + 4 \\Rightarrow a = 2$$\n\nStep 3: Matching derivatives:\nLeft derivative: $2ax$ at $-1$ gives $-2a$. Right derivative: $2bx + a$ at $-1$ gives $-2b + a$.\n$$-2a = -2b + a \\Rightarrow 3a = 2b \\Rightarrow b = 3$$\n\nStep 4: Check:\nWith $a = 2, b = 3$: left value 5, right value $3 - 2 + 4 = 5$. Left slope $-4$, right slope $-6 + 2 = -4$. Both agree. Option (A).\n\nFinal Answer:\nContinuity gives $a = 2$ and matching slopes gives $b = 3$.\n$$\\boxed{\\text{(A) } a = 2,\\ b = 3}$$\n\nQuick Tip: Match function values and derivative values at $x = -1$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a = 2, b = 3$"
+    },
+    {
+     "key": "B",
+     "text": "$a = 3, b = 2$"
+    },
+    {
+     "key": "C",
+     "text": "$a = -2, b = 3$"
+    },
+    {
+     "key": "D",
+     "text": "$a = -3, b = -2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 121,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The derivative of $\\log_{8}(\\log_{5}x)$ w. r. t. $x$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nChange of base: $\\log_{8}u = \\frac{\\log u}{\\log 8}$ and $\\log_{5}x = \\frac{\\log x}{\\log 5}$.\n\nStep 2: Write the function:\n$$y = \\frac{1}{\\log 8}\\log\\left(\\frac{\\log x}{\\log 5}\\right)$$\n\nStep 3: Differentiate:\nThe derivative of $\\log u$ is $u'/u$. Here $u = \\frac{\\log x}{\\log 5}$, so $u' = \\frac{1}{x\\log 5}$.\n$$\\frac{dy}{dx} = \\frac{1}{\\log 8} \\cdot \\frac{1/(x\\log 5)}{(\\log x)/\\log 5} = \\frac{1}{x\\log 8\\,\\log x}$$\n\nStep 4: Match:\nThe $\\log 5$ cancels completely, so option (D) is the answer. Options (A), (B), (C) keep a stray $\\log 5$ factor.\n\nFinal Answer:\nThe $\\log 5$ factor cancels, leaving $1/(x\\log 8\\log x)$.\n$$\\boxed{\\text{(D) } \\frac{1}{x\\log 8\\,\\log x}}$$\n\nQuick Tip: Convert to natural logs and use the chain rule.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{\\log_{5}8\\log x}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{x\\log 5\\log x}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{x\\log x\\log 8\\log 5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{x\\log 8\\log x}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 122,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $y^{\\frac{1}{m}} + y^{\\frac{-1}{m}} = 2x$, then $(x^{2} - 1)y_{1}^{2} =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nLet $t = y^{1/m}$. The equation $t + \\frac{1}{t} = 2x$ is a quadratic in $t$.\n\nStep 2: Solve for y:\n$t^{2} - 2xt + 1 = 0$ gives $t = x + \\sqrt{x^{2} - 1}$ (taking the root with the plus sign).\n$$y = \\left(x + \\sqrt{x^{2} - 1}\\right)^{m}$$\n\nStep 3: Differentiate:\n$$y_1 = m\\left(x + \\sqrt{x^{2} - 1}\\right)^{m - 1}\\left(1 + \\frac{x}{\\sqrt{x^{2} - 1}}\\right) = m\\left(x + \\sqrt{x^{2} - 1}\\right)^{m - 1}\\frac{\\sqrt{x^{2} - 1} + x}{\\sqrt{x^{2} - 1}}$$\n$$y_1 = \\frac{m\\,y}{\\sqrt{x^{2} - 1}}$$\n\nStep 4: Square and rearrange:\n$(x^{2} - 1)y_1^{2} = m^{2}y^{2}$. This is option (B). The other options do not carry the factor $m^{2}$ with $y^{2}$.\n\nFinal Answer:\nThe result is $m^{2}y^{2}$.\n$$\\boxed{\\text{(B) } m^{2}y^{2}}$$\n\nQuick Tip: Solve for $y^{1/m}$ and write $y$ as a power of $x + \\sqrt{x^{2} - 1}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$my^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$m^{2}y^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$m^{2}y$"
+    },
+    {
+     "key": "D",
+     "text": "$my$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 123,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A triangle has two fixed vertices A $(a, 0)$ and B$(0, b)$. Let its third vertex C is moving along the line $x = y$. If $s$ is the area of triangle ABC, then $\\frac{ds}{dx} =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nArea of a triangle with vertices $(x_1, y_1), (x_2, y_2), (x_3, y_3)$ is $\\frac{1}{2}\\left|x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2)\\right|$.\n\nStep 2: Set up with C = (x, x):\nA = (a, 0), B = (0, b), C = (x, x):\n$$s = \\frac{1}{2}\\left[a(b - x) + 0 \\cdot (x - 0) + x(0 - b)\\right] = \\frac{1}{2}\\left[ab - (a + b)x\\right]$$\nThis is the area when the vertices are listed in the order that gives a positive determinant.\n\nStep 3: Differentiate with respect to x:\n$$\\frac{ds}{dx} = -\\frac{a + b}{2}$$\n\nStep 4: Match:\nThis is option (B). Options (A), (C), (D) have the wrong coefficient or sign for $x$.\n\nFinal Answer:\nThe area is linear in $x$ with slope $-(a + b)/2$.\n$$\\boxed{\\text{(B) } -\\frac{a + b}{2}}$$\n\nQuick Tip: Write the area using the determinant formula with C = (x, x).",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a + b$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\left(\\frac{a + b}{2}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{a - b}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{a}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 124,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The function $f(x) = \\tan^{-1}(\\sin x + \\cos x)$ is an increasing function in the interval.....",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\n$\\tan^{-1}u$ is an increasing function of $u$. So $f$ increases exactly where $u = \\sin x + \\cos x$ increases.\n\nStep 2: Derivative:\n$$\\frac{d}{dx}(\\sin x + \\cos x) = \\cos x - \\sin x$$\nWe need $\\cos x - \\sin x > 0$, i.e. $\\sqrt{2}\\cos\\left(x + \\frac{\\pi}{4}\\right) > 0$.\n\nStep 3: Solve:\n$x + \\frac{\\pi}{4} \\in \\left(-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right)$, so $x \\in \\left(-\\frac{3\\pi}{4}, \\frac{\\pi}{4}\\right)$.\n\nStep 4: Match with the options:\nThe interval $\\left(-\\frac{\\pi}{2}, \\frac{\\pi}{4}\\right)$ lies inside this range, so $f$ increases there: option (D). Options (A), (B), (C) all contain points beyond $\\pi/4$ where $\\cos x < \\sin x$.\n\nFinal Answer:\n$f$ increases where $\\cos x$ exceeds $\\sin x$.\n$$\\boxed{\\text{(D) } \\left(-\\frac{\\pi}{2}, \\frac{\\pi}{4}\\right)}$$\n\nQuick Tip: The inverse tangent is increasing, so we need $\\sin x + \\cos x$ increasing.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(0, \\frac{\\pi}{2}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{-\\pi}{2}, \\frac{\\pi}{2}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{\\pi}{4}, \\frac{\\pi}{2}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{-\\pi}{2}, \\frac{\\pi}{4}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 125,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The minimum value of $\\frac{\\log x}{x}$ in the interval $(2, \\infty)$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nLet $f(x) = \\frac{\\log x}{x}$. Its stationary points come from $f'(x) = 0$.\n\nStep 2: Differentiate:\n$$f'(x) = \\frac{1 - \\log x}{x^{2}}$$\n$f' = 0$ at $x = e$. For $x < e$, $f' > 0$ (increasing). For $x > e$, $f' < 0$ (decreasing).\n\nStep 3: Analyse the interval $(2, \\infty)$:\n$e \\approx 2.718$ lies in $(2, \\infty)$, and it gives a maximum value $\\frac{1}{e}$, not a minimum.\nAfter $x = e$ the function keeps decreasing and approaches 0 as $x \\to \\infty$, but never reaches 0, because $\\log x > 0$ there.\n\nStep 4: Conclusion:\nThere is no smallest value attained. So the minimum does not exist, option (D). Option (C) $1/e$ is the maximum.\n\nFinal Answer:\nThe function peaks at $x = e$ and has no minimum.\n$$\\boxed{\\text{(D) Does not exist}}$$\n\nQuick Tip: Differentiate: the function has a maximum at $x = e$ and decreases afterwards.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$e$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{e}$"
+    },
+    {
+     "key": "D",
+     "text": "Does not exist"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 126,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int \\frac{(x+1)(x+\\log x)^{2}}{x}\\,dx =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIf the integrand has the form $g(u)u'$, substitute $u$ as the inner function. Look at the derivative of $x + \\log x$.\n\nStep 2: Spot the substitution:\n$$u = x + \\log x \\Rightarrow du = \\left(1 + \\frac{1}{x}\\right)dx = \\frac{x+1}{x}\\,dx$$\nThe factor $\\frac{x+1}{x}dx$ in the integrand is exactly $du$.\n\nStep 3: Integrate:\n$$\\int u^{2}\\,du = \\frac{u^{3}}{3} + c = \\frac{(x + \\log x)^{3}}{3} + c$$\n\nStep 4: Check:\nDifferentiating the answer gives $(x + \\log x)^{2}\\left(1 + \\frac{1}{x}\\right) = \\frac{(x+1)(x + \\log x)^{2}}{x}$, the integrand. Options (A), (B) and (D) divide by $x$, which would add a factor that is not in the derivative.\n\nFinal Answer:\nThe integral is $\\frac{(x + \\log x)^{3}}{3}$ plus c.\n$$\\boxed{\\text{(C) } \\frac{(x + \\log x)^{3}}{3} + c}$$\n\nQuick Tip: Notice that $\\frac{x+1}{x}\\,dx$ is the differential of $x + \\log x$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(\\frac{x+\\log x}{x}\\right)^{2} + c$, where c is the constant of integration"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{(x+\\log x)^{2}}{x} + c$, where c is the constant of integration"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{(x+\\log x)^{3}}{3} + c$, where c is the constant of integration"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{(x+\\log x)^{3}}{3x} + c$, where c is the constant of integration"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 127,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int \\cot^{4}x\\,dx$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nUse $\\cot^{2}x = \\mathrm{cosec}^{2}x - 1$ to reduce the power.\n\nStep 2: Split the integrand:\n$$\\cot^{4}x = \\cot^{2}x(\\mathrm{cosec}^{2}x - 1) = \\cot^{2}x\\,\\mathrm{cosec}^{2}x - \\cot^{2}x$$\n\nStep 3: Integrate each part:\nFirst part: let $t = \\cot x$, $dt = -\\mathrm{cosec}^{2}x\\,dx$, so $\\int \\cot^{2}x\\,\\mathrm{cosec}^{2}x\\,dx = -\\frac{\\cot^{3}x}{3}$.\nSecond part: $-\\int \\cot^{2}x\\,dx = -\\int (\\mathrm{cosec}^{2}x - 1)dx = \\cot x + x$.\n\nStep 4: Combine:\n$$\\int \\cot^{4}x\\,dx = -\\frac{\\cot^{3}x}{3} + \\cot x + x + c$$\nOptions (A), (B) and (D) have the wrong sign on $\\cot^{3}x/3$ or the wrong coefficient of $\\cot x$.\n\nFinal Answer:\nThe integral is $-\\frac{\\cot^{3}x}{3} + \\cot x + x + c$.\n$$\\boxed{\\text{(C) } -\\frac{\\cot^{3}x}{3} + \\cot x + x + c}$$\n\nQuick Tip: Write $\\cot^{4}x$ as $\\cot^{2}x(\\mathrm{cosec}^{2}x - 1)$ and integrate in two parts.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\cot^{3}x}{3} - \\cot x + x + c$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\cot^{3}x}{3} + \\cot x + x + c$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{\\cot^{3}x}{3} + \\cot x + x + c$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\cot^{3}x}{3} - 2\\cot x + x + c$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 128,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int \\frac{\\cos^{3}x}{\\sin^{2}x + \\sin x}\\,dx =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nWrite $\\cos^{3}x\\,dx = \\cos^{2}x \\cdot \\cos x\\,dx = (1 - \\sin^{2}x)\\,d(\\sin x)$.\n\nStep 2: Substitute:\nLet $t = \\sin x$, $dt = \\cos x\\,dx$.\n$$\\int \\frac{1 - t^{2}}{t^{2} + t}\\,dt = \\int \\frac{(1 - t)(1 + t)}{t(t + 1)}\\,dt = \\int \\frac{1 - t}{t}\\,dt$$\n\nStep 3: Integrate:\n$$\\int \\left(\\frac{1}{t} - 1\\right)dt = \\log|t| - t + c = \\log(\\sin x) - \\sin x + c$$\n\nStep 4: Check the options:\nOption (B) matches. Options (A) and (D) use $\\cos x$ as the variable, and option (C) has the wrong sign on $\\sin x$.\n\nFinal Answer:\nThe integral is $\\log(\\sin x) - \\sin x + c$.\n$$\\boxed{\\text{(B) } \\log(\\sin x) - \\sin x + c}$$\n\nQuick Tip: Substitute $t = \\sin x$ and cancel the common factor $1 + t$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\log(\\cos x) + \\cos x + c$, where c is the constant of integration"
+    },
+    {
+     "key": "B",
+     "text": "$\\log(\\sin x) - \\sin x + c$, where c is the constant of integration"
+    },
+    {
+     "key": "C",
+     "text": "$\\log(\\sin x) + \\sin x + c$, where c is the constant of integration"
+    },
+    {
+     "key": "D",
+     "text": "$\\log(\\cos x) - \\cos x + c$, where c is the constant of integration"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 129,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int_{\\pi/6}^{\\pi/3} \\frac{\\sin x - \\cos x}{1 + \\sin x \\cos x}\\,dx =$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe limits $\\pi/6$ and $\\pi/3$ add up to $\\pi/2$. So we can use $\\int_{a}^{b} f(x)dx = \\int_{a}^{b} f(a + b - x)dx$ with $a + b = \\pi/2$.\n\nStep 2: Apply the reflection:\nLet $f(x) = \\frac{\\sin x - \\cos x}{1 + \\sin x \\cos x}$. Then\n$$f\\left(\\frac{\\pi}{2} - x\\right) = \\frac{\\cos x - \\sin x}{1 + \\cos x \\sin x} = -f(x)$$\n\nStep 3: Conclude:\nSo $I = \\int f(x)dx = \\int f\\left(\\frac{\\pi}{2} - x\\right)dx = -I$, giving $2I = 0$ and $I = 0$.\n\nStep 4: Check:\nThe function is negative for $x < \\pi/4$ and positive for $x > \\pi/4$, and the two areas are equal in size. So the integral is 0, option (A).\n\nFinal Answer:\nThe integrand is odd about $\\pi/4$, so the integral is 0.\n$$\\boxed{\\text{(A) } 0}$$\n\nQuick Tip: Use the reflection $x \\to \\frac{\\pi}{2} - x$ on a symmetric interval.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{12}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{24}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi^{2}}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 130,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int_{0}^{\\log 5} \\frac{e^{x}\\sqrt{e^{x} - 1}}{e^{x} + 3}\\,dx =$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nRemove the square root with $u = \\sqrt{e^{x} - 1}$, so $e^{x} = u^{2} + 1$ and $e^{x}dx = 2u\\,du$.\n\nStep 2: Change the limits:\nAt $x = 0$: $u = 0$. At $x = \\log 5$: $u = \\sqrt{4} = 2$.\nAlso $e^{x} + 3 = u^{2} + 4$.\n\nStep 3: Rewrite and integrate:\n$$I = \\int_{0}^{2} \\frac{u \\cdot 2u\\,du}{u^{2} + 4} = 2\\int_{0}^{2} \\frac{u^{2}}{u^{2} + 4}\\,du = 2\\int_{0}^{2} \\left(1 - \\frac{4}{u^{2} + 4}\\right)du$$\n$$= 2\\left[u - 2\\tan^{-1}\\frac{u}{2}\\right]_{0}^{2} = 2\\left[2 - 2 \\cdot \\frac{\\pi}{4}\\right]$$\n\nStep 4: Result:\n$$I = 4 - \\pi$$\nOptions (A) and (B) have $\\pi/4$ instead of $\\pi$, and (C) is $2 - \\pi$, which is negative and cannot be right for a positive integrand.\n\nFinal Answer:\nThe substitution gives $4 - \\pi$.\n$$\\boxed{\\text{(D) } 4 - \\pi}$$\n\nQuick Tip: Let $u = \\sqrt{e^{x} - 1}$ so that $e^{x}dx = 2u\\,du$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2 - \\frac{\\pi}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$4 - \\frac{\\pi}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$2 - \\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$4 - \\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 131,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The integrating factor of the differential equation $(1 + t^{2}) + (x - e^{\\tan^{-1}t})\\frac{dt}{dx} = 0$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe equation is $(1 + t^{2}) + (x - e^{\\tan^{-1}t})\\frac{dt}{dx} = 0$. Rewrite to get $\\frac{dx}{dt}$.\n\nStep 2: Rearrange:\n$$(x - e^{\\tan^{-1}t})\\frac{dt}{dx} = -(1 + t^{2}) \\Rightarrow \\frac{dx}{dt} = -\\frac{x - e^{\\tan^{-1}t}}{1 + t^{2}}$$\n$$\\frac{dx}{dt} + \\frac{x}{1 + t^{2}} = \\frac{e^{\\tan^{-1}t}}{1 + t^{2}}$$\nThis is linear in $x$ with $P = \\frac{1}{1 + t^{2}}$.\n\nStep 3: Integrating factor:\n$$\\text{I.F.} = e^{\\int P\\,dt} = e^{\\int \\frac{dt}{1 + t^{2}}} = e^{\\tan^{-1}t}$$\n\nStep 4: Result:\nOption (A). Options (B) and (D) carry a minus sign that cannot come from an exponential, and (C) has the wrong sign inside the exponent.\n\nFinal Answer:\nThe integrating factor is $e^{\\tan^{-1}t}$.\n$$\\boxed{\\text{(A) } e^{\\tan^{-1}t}}$$\n\nQuick Tip: Rewrite so x is the dependent variable: $\\frac{dx}{dt} + Px = Q$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$e^{\\tan^{-1}t}$"
+    },
+    {
+     "key": "B",
+     "text": "$-e^{\\tan^{-1}t}$"
+    },
+    {
+     "key": "C",
+     "text": "$e^{-\\tan^{-1}t}$"
+    },
+    {
+     "key": "D",
+     "text": "$-e^{-\\tan^{-1}t}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 132,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The degree of the differential equation obtained from the equation $(y - a)^{2} = 4(x - b)$ [where $a$ and b are arbitrary constants] is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nTwo arbitrary constants mean the differential equation is of order 2. Degree is the power of the highest order derivative after clearing radicals and fractions.\n\nStep 2: Differentiate twice:\n$$2(y - a)y' = 4 \\Rightarrow (y - a)y' = 2$$\n$$y'^{2} + (y - a)y'' = 0$$\n\nStep 3: Eliminate a:\nFrom the first, $y - a = \\frac{2}{y'}$. Substitute:\n$$y'^{2} + \\frac{2y''}{y'} = 0 \\Rightarrow y'^{3} + 2y'' = 0$$\n\nStep 4: Read order and degree:\nThe highest derivative is $y''$ (order 2), and it appears to the first power. So the degree is 1. Options (B) and (C) use the power 3 of $y'$, which is a lower-order derivative.\n\nFinal Answer:\nThe equation $y'^{3} + 2y'' = 0$ has degree 1.\n$$\\boxed{\\text{(A) } 1}$$\n\nQuick Tip: Eliminate both constants by differentiating twice.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "not defined"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 133,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The solution of the differential equation $(x + 2y^{3})\\frac{dy}{dx} - y = 0$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe equation is not linear in $y$, but it is linear in $x$ when written with $\\frac{dx}{dy}$.\n\nStep 2: Rewrite:\n$$\\frac{dx}{dy} = \\frac{x + 2y^{3}}{y} \\Rightarrow \\frac{dx}{dy} - \\frac{1}{y}x = 2y^{2}$$\nHere $P = -\\frac{1}{y}$ and $Q = 2y^{2}$.\n\nStep 3: Integrating factor:\n$$\\text{I.F.} = e^{-\\int \\frac{dy}{y}} = e^{-\\log y} = \\frac{1}{y}$$\n\nStep 4: Solve:\n$$\\frac{x}{y} = \\int \\frac{1}{y} \\cdot 2y^{2}\\,dy = \\int 2y\\,dy = y^{2} + c$$\n$$x = (c + y^{2})\\,y$$\nThis matches option (A). The others mix $x$ and $y$ in forms that do not satisfy the equation.\n\nFinal Answer:\nThe solution is $x = (c + y^{2})y$.\n$$\\boxed{\\text{(A) } x = (c + y^{2})\\,y}$$\n\nQuick Tip: Treat x as a function of y and use the linear form $\\frac{dx}{dy} + Px = Q$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x = (c + y^{2})y$, where c is the constant of integration"
+    },
+    {
+     "key": "B",
+     "text": "$y = (c + y^{2})x$, where c is the constant of integration"
+    },
+    {
+     "key": "C",
+     "text": "$x = (c + y)y$, where c is the constant of integration"
+    },
+    {
+     "key": "D",
+     "text": "$y = (c + x^{2})$, where c is the constant of integration"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 134,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The rate of reduction is proportional to the square root of a persons existing assets at that moment. If his assets at the beginning are 10000 and they dwindle down to 5625 in 2 years, then the person will be bankrupt in",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nLet $A$ be the assets at time $t$. The rate of reduction is proportional to $\\sqrt{A}$, so $\\frac{dA}{dt} = -k\\sqrt{A}$.\n\nStep 2: Solve:\n$$\\frac{dA}{\\sqrt{A}} = -k\\,dt \\Rightarrow 2\\sqrt{A} = -kt + C$$\nSo $\\sqrt{A}$ falls linearly with time.\n\nStep 3: Use the data:\nAt $t = 0$: $\\sqrt{10000} = 100$. At $t = 2$: $\\sqrt{5625} = 75$.\n$\\sqrt{A}$ drops by 25 in 2 years, so the rate is 12.5 per year.\n\nStep 4: Bankruptcy time:\nAssets are zero when $\\sqrt{A} = 0$: $t = \\frac{100}{12.5} = 8$ years. Option (C).\n\nFinal Answer:\nThe root of assets falls by 12.5 a year, reaching 0 at 8 years.\n$$\\boxed{\\text{(C) } 8\\ \\text{years}}$$\n\nQuick Tip: Separate variables: $\\frac{dA}{dt} = -k\\sqrt{A}$, then use the two data points.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4 years"
+    },
+    {
+     "key": "B",
+     "text": "6 years"
+    },
+    {
+     "key": "C",
+     "text": "8 years"
+    },
+    {
+     "key": "D",
+     "text": "10 years"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 135,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If a vector $3\\hat{i} + 4\\hat{j} - 5\\hat{k}$ is rotated through a certain angle about the origin in the anti-clockwise direction, then the components of the new vector are $a + 1, -3, 5$ . The possible values of $a$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nRotating a vector about the origin changes its direction but not its magnitude.\n\nStep 2: Original magnitude squared:\n$$|3\\hat{i} + 4\\hat{j} - 5\\hat{k}|^{2} = 9 + 16 + 25 = 50$$\n\nStep 3: New vector:\nThe new vector is $(a + 1)\\hat{i} - 3\\hat{j} + 5\\hat{k}$, with magnitude squared $(a + 1)^{2} + 9 + 25$.\n$$(a + 1)^{2} + 34 = 50 \\Rightarrow (a + 1)^{2} = 16 \\Rightarrow a + 1 = \\pm 4$$\n\nStep 4: Values of a:\n$a = 3$ or $a = -5$. This is option (D). Check: $a = 3$ gives $(4, -3, 5)$ and $a = -5$ gives $(-4, -3, 5)$, both of squared length $16 + 9 + 25 = 50$.\n\nFinal Answer:\nLength is preserved, so $(a + 1)^{2} = 16$.\n$$\\boxed{\\text{(D) } -5 \\text{ or } 3}$$\n\nQuick Tip: A rotation keeps the length of the vector unchanged.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$ or $3$"
+    },
+    {
+     "key": "B",
+     "text": "$5$ or $-3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$ or $-2$"
+    },
+    {
+     "key": "D",
+     "text": "$-5$ or $3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 136,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let A, B, C, D be the points in the plane with position vectors $-2\\hat{i} - \\hat{j}$, $4\\hat{i}$, $3\\hat{i} + 3\\hat{j}$ and $-3\\hat{i} + 2\\hat{j}$ respectively, then $\\square$ABCD is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nPoints: A(-2, -1), B(4, 0), C(3, 3), D(-3, 2). Check vectors of opposite sides to test for a parallelogram.\n\nStep 2: Opposite sides:\n$\\overrightarrow{AB} = (6, 1)$, $\\overrightarrow{DC} = (6, 1)$. So $AB$ and $DC$ are equal and parallel, hence ABCD is a parallelogram.\n\nStep 3: Adjacent sides:\n$\\overrightarrow{AD} = (-1, 3)$. $|AB| = \\sqrt{37}$, $|AD| = \\sqrt{10}$, which are different, so it is not a rhombus.\n$\\overrightarrow{AB} \\cdot \\overrightarrow{AD} = -6 + 3 = -3 \\neq 0$, so the angle is not a right angle and it is not a rectangle.\n\nStep 4: Result:\nABCD is a parallelogram that is neither a rhombus nor a rectangle, option (A). Since it is not a rectangle or rhombus, it cannot be a square either.\n\nFinal Answer:\nOpposite sides match, but sides and angle are unequal.\n$$\\boxed{\\text{(A) Parallelogram, not rhombus or rectangle}}$$\n\nQuick Tip: Compare opposite sides, then adjacent side lengths and angle.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "a parallelogram which is neither a rhombus nor a reactangle"
+    },
+    {
+     "key": "B",
+     "text": "a square"
+    },
+    {
+     "key": "C",
+     "text": "a rectangle but not a square"
+    },
+    {
+     "key": "D",
+     "text": "a rhombus but not a square"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 137,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $\\bar{a} = \\hat{i} + \\hat{j}$, $\\bar{c} = \\hat{i} - \\hat{j}$ and a vector $\\bar{b}$ be such that $\\bar{a} \\times \\bar{b} = \\bar{c}$ and $\\bar{a} \\cdot \\bar{b} = 3$ then $|\\bar{b}| =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nUse the triple product identity $\\vec{a} \\times (\\vec{a} \\times \\vec{b}) = (\\vec{a} \\cdot \\vec{b})\\vec{a} - (\\vec{a} \\cdot \\vec{a})\\vec{b}$.\n\nStep 2: Compute the left side with the given data:\n$\\vec{a} \\times \\vec{c} = (\\hat{i} + \\hat{j}) \\times (\\hat{i} - \\hat{j}) = -\\hat{k} - \\hat{k} = -2\\hat{k}$. Here $\\vec{a} \\cdot \\vec{a} = 2$ and $\\vec{a} \\cdot \\vec{b} = 3$.\n$$3(\\hat{i} + \\hat{j}) - 2\\vec{b} = -2\\hat{k}$$\n\nStep 3: Solve for b:\n$$\\vec{b} = \\frac{3(\\hat{i} + \\hat{j}) + 2\\hat{k}}{2} = \\tfrac{3}{2}\\hat{i} + \\tfrac{3}{2}\\hat{j} + \\hat{k}$$\n\nStep 4: Magnitude:\n$$|\\vec{b}|^{2} = \\frac{9}{4} + \\frac{9}{4} + 1 = \\frac{11}{2} \\Rightarrow |\\vec{b}| = \\sqrt{\\frac{11}{2}}$$\nCheck: $\\vec{a} \\times \\vec{b} = \\hat{i} - \\hat{j} = \\vec{c}$ and $\\vec{a} \\cdot \\vec{b} = 3$. Option (C).\n\nFinal Answer:\n$\\vec{b} = \\left(\\frac{3}{2}, \\frac{3}{2}, 1\\right)$, so $|\\vec{b}| = \\sqrt{\\frac{11}{2}}$.\n$$\\boxed{\\text{(C) } \\sqrt{\\frac{11}{2}}}$$\n\nQuick Tip: Take the cross product of a with both sides to get an expression for b.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{11}{\\sqrt{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{11}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{11}{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{11}{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 138,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The acute angle between the vector $2\\hat{i} + \\hat{j} - 3\\hat{k}$ and the plane containing the vectors $2\\hat{i} + 3\\hat{j} - \\hat{k}$ and $\\hat{i} - \\hat{j} + 2\\hat{k}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe normal to the plane containing $\\vec{p} = 2\\hat{i} + 3\\hat{j} - \\hat{k}$ and $\\vec{q} = \\hat{i} - \\hat{j} + 2\\hat{k}$ is $\\vec{n} = \\vec{p} \\times \\vec{q}$. The angle $\\theta$ between a vector and a plane satisfies $\\sin\\theta = \\frac{|\\vec{v} \\cdot \\vec{n}|}{|\\vec{v}||\\vec{n}|}$.\n\nStep 2: Normal vector:\n$$\\vec{n} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 3 & -1 \\\\ 1 & -1 & 2 \\end{vmatrix} = (6 - 1)\\hat{i} - (4 + 1)\\hat{j} + (-2 - 3)\\hat{k} = 5\\hat{i} - 5\\hat{j} - 5\\hat{k}$$\nDivide by 5: $\\vec{n} \\parallel (1, -1, -1)$.\n\nStep 3: Dot product:\n$\\vec{v} = (2, 1, -3)$. $\\vec{v} \\cdot \\vec{n} = 2 - 1 + 3 = 4$. $|\\vec{v}| = \\sqrt{14}$, $|\\vec{n}| = \\sqrt{3}$.\n\nStep 4: Angle:\n$$\\sin\\theta = \\frac{4}{\\sqrt{14}\\sqrt{3}} = \\frac{4}{\\sqrt{42}} \\Rightarrow \\theta = \\sin^{-1}\\frac{4}{\\sqrt{42}}$$\nOption (B) and (D) use cosine, which would give the angle with the normal, not with the plane. Option (A).\n\nFinal Answer:\nThe sine of the angle is 4 over root 42.\n$$\\boxed{\\text{(A) } \\sin^{-1}\\frac{4}{\\sqrt{42}}}$$\n\nQuick Tip: Find the plane normal as a cross product and use $\\sin\\theta = \\frac{|\\vec{v} \\cdot \\vec{n}|}{|\\vec{v}||\\vec{n}|}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sin^{-1}\\left(\\frac{4}{\\sqrt{42}}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\cos^{-1}\\left(\\frac{4}{\\sqrt{42}}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sin^{-1}\\left(\\frac{3}{\\sqrt{42}}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\cos^{-1}\\left(\\frac{3}{\\sqrt{42}}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 139,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A parallelogram is constructed on $5\\bar{a} + 2\\bar{b}$ and $\\bar{a} - 3\\bar{b}$ as its adjacent sides, with $|\\bar{a}| = 2\\sqrt{2}$, $|\\bar{b}| = 3$ . The angle between $\\bar{a}$ and $\\bar{b}$ is $\\frac{\\pi}{4}$ . Then the length of the diagonals of the parallelogram are",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor adjacent sides $\\vec{u}$ and $\\vec{v}$, the diagonals are $\\vec{u} + \\vec{v}$ and $\\vec{u} - \\vec{v}$.\n\nStep 2: Dot product of a and b:\n$$\\vec{a} \\cdot \\vec{b} = 2\\sqrt{2} \\cdot 3\\cos\\frac{\\pi}{4} = 6\\sqrt{2} \\cdot \\frac{1}{\\sqrt{2}} = 6$$\n$|\\vec{a}|^{2} = 8$, $|\\vec{b}|^{2} = 9$.\n\nStep 3: First diagonal:\n$\\vec{u} + \\vec{v} = 6\\vec{a} - \\vec{b}$:\n$$|6\\vec{a} - \\vec{b}|^{2} = 36(8) + 9 - 12(6) = 288 + 9 - 72 = 225 \\Rightarrow 15$$\n\nStep 4: Second diagonal:\n$\\vec{u} - \\vec{v} = 4\\vec{a} + 5\\vec{b}$:\n$$|4\\vec{a} + 5\\vec{b}|^{2} = 16(8) + 25(9) + 40(6) = 128 + 225 + 240 = 593 \\Rightarrow \\sqrt{593}$$\nThe lengths are 15 and $\\sqrt{593}$, option (A). Options (B), (C), (D) give squared values instead of lengths.\n\nFinal Answer:\nThe diagonals are 15 and $\\sqrt{593}$.\n$$\\boxed{\\text{(A) } 15,\\ \\sqrt{593}}$$\n\nQuick Tip: The diagonals are the sum and the difference of the adjacent sides.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$15, \\sqrt{593}$"
+    },
+    {
+     "key": "B",
+     "text": "$15, 593$"
+    },
+    {
+     "key": "C",
+     "text": "$225, 593$"
+    },
+    {
+     "key": "D",
+     "text": "$20, 593$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 140,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The lines $\\frac{x-2}{1} = \\frac{y-3}{1} = \\frac{z-4}{-k}$ and $\\frac{x-1}{k} = \\frac{y-4}{2} = \\frac{z-5}{1}$ are coplanar if",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nTwo lines through $(x_{1}, y_{1}, z_{1})$ and $(x_{2}, y_{2}, z_{2})$ with direction ratios $(l_{1}, m_{1}, n_{1})$ and $(l_{2}, m_{2}, n_{2})$ are coplanar if the determinant of the connecting vector and the two directions is zero.\n\nStep 2: Data:\nLine 1 passes through (2, 3, 4) with direction $(1, 1, -k)$. Line 2 passes through (1, 4, 5) with direction $(k, 2, 1)$. Connecting vector: $(-1, 1, 1)$.\n\nStep 3: Expand the determinant:\n$$\\begin{vmatrix} -1 & 1 & 1 \\\\ 1 & 1 & -k \\\\ k & 2 & 1 \\end{vmatrix} = -1(1 + 2k) - 1(1 + k^{2}) + 1(2 - k) = -k^{2} - 3k$$\n\nStep 4: Solve:\n$-k(k + 3) = 0$, so $k = 0$ or $k = -3$. Option (A). Options (B), (C), (D) fail the check: for $k = 1$, the determinant is $-4 \\neq 0$.\n\nFinal Answer:\nThe determinant gives $k^{2} + 3k = 0$.\n$$\\boxed{\\text{(A) } k = 0,\\ -3}$$\n\nQuick Tip: Use the determinant condition for coplanar lines.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$k = 0, -3$"
+    },
+    {
+     "key": "B",
+     "text": "$k = -1, 3$"
+    },
+    {
+     "key": "C",
+     "text": "$k = 1, 2$"
+    },
+    {
+     "key": "D",
+     "text": "$k = 2, 4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 141,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The direction ratios of the normal to the plane passing through (1, 0, 0), (0, 1, 0) which makes an angle of measure $45^\\circ$ with the plane $2x + 3y = 7$ are....",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA plane $ax + by + cz = d$ through (1, 0, 0) gives $d = a$. Through (0, 1, 0) gives $d = b$. So $a = b$ and the normal is $(a, a, c)$.\n\nStep 2: Apply the angle formula:\nNormal of $2x + 3y = 7$ is $(2, 3, 0)$, with magnitude $\\sqrt{13}$.\n$$\\cos 45^\\circ = \\frac{|2a + 3a|}{\\sqrt{2a^{2} + c^{2}}\\sqrt{13}} = \\frac{5a}{\\sqrt{13}\\sqrt{2a^{2} + c^{2}}}$$\n\nStep 3: Solve for c:\nSquaring: $\\frac{1}{2} = \\frac{25a^{2}}{13(2a^{2} + c^{2})}$, so $13(2a^{2} + c^{2}) = 50a^{2}$, giving $13c^{2} = 24a^{2}$, so $c = a\\sqrt{\\frac{24}{13}}$.\n\nStep 4: Direction ratios:\nScale by $\\sqrt{13}$: $(a, a, c) \\to (\\sqrt{13}, \\sqrt{13}, \\sqrt{24}) = (\\sqrt{13}, \\sqrt{13}, 2\\sqrt{6})$. Option (D).\n\nFinal Answer:\nThe normal has direction ratios $\\sqrt{13}$, $\\sqrt{13}$, $2\\sqrt{6}$.\n$$\\boxed{\\text{(D) } \\sqrt{13},\\ \\sqrt{13},\\ 2\\sqrt{6}}$$\n\nQuick Tip: The plane through (1,0,0) and (0,1,0) has normal (a, a, c); use the angle formula.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{6}, 1, 1$"
+    },
+    {
+     "key": "B",
+     "text": "$1, 1, \\sqrt{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{13}, \\sqrt{13}, \\sqrt{6}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{13}, \\sqrt{13}, 2\\sqrt{6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 142,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The lines $\\frac{x-1}{-1} = \\frac{y+2}{1} = \\frac{z-3}{-2}$ and $\\frac{x-1}{1} = \\frac{y+2}{1} = \\frac{z+1}{-2}$ are",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nLine 1: point $P_{1}(1, -2, 3)$, direction $\\vec{d}_{1} = (-1, 1, -2)$. Line 2: point $P_{2}(1, -2, -1)$, direction $\\vec{d}_{2} = (1, 1, -2)$.\n\nStep 2: Parallel or perpendicular?:\nThe directions are not proportional, so the lines are not parallel.\n$\\vec{d}_{1} \\cdot \\vec{d}_{2} = -1 + 1 + 4 = 4 \\neq 0$, so they are not perpendicular.\n\nStep 3: Intersecting or skew?:\n$\\overrightarrow{P_{1}P_{2}} = (0, 0, -4)$.\n$$\\begin{vmatrix} 0 & 0 & -4 \\\\ -1 & 1 & -2 \\\\ 1 & 1 & -2 \\end{vmatrix} = -4\\left[(-1)(1) - (1)(1)\\right] = -4(-2) = 8 \\neq 0$$\n\nStep 4: Result:\nA nonzero triple product means the lines do not lie in one plane. They do not meet and are not parallel, so they are skew. Option (D).\n\nFinal Answer:\nThe scalar triple product is 8, not zero, so they are skew.\n$$\\boxed{\\text{(D) skew lines}}$$\n\nQuick Tip: Check parallel, perpendicular, then test the scalar triple product for intersection.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "intersecting but not perpendicular"
+    },
+    {
+     "key": "B",
+     "text": "parallel"
+    },
+    {
+     "key": "C",
+     "text": "perpendicular"
+    },
+    {
+     "key": "D",
+     "text": "skew lines"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 143,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the product of the distances of the point (1, 2, 3) from the origin and the plane $2x - 3y + z + k = 0$ is 7, then the value of k is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nDistance of $(1, 2, 3)$ from the origin: $\\sqrt{1 + 4 + 9} = \\sqrt{14}$.\n\nStep 2: Distance from the plane:\nFor $2x - 3y + z + k = 0$: numerator $|2 - 6 + 3 + k| = |k - 1|$; denominator $\\sqrt{4 + 9 + 1} = \\sqrt{14}$.\n$$d = \\frac{|k - 1|}{\\sqrt{14}}$$\n\nStep 3: Use the product:\n$$\\sqrt{14} \\cdot \\frac{|k - 1|}{\\sqrt{14}} = |k - 1| = 7$$\nSo $k = 8$ or $k = -6$.\n\nStep 4: Match:\nAmong the options, only $k = 8$ appears. Options (B), (C), (D) give $|k - 1| = 9, 6, 4$, not 7. Option (A).\n\nFinal Answer:\n$|k - 1| = 7$ gives $k = 8$ among the options.\n$$\\boxed{\\text{(A) } 8}$$\n\nQuick Tip: Distance from origin is $\\sqrt{14}$; the plane distance is $\\frac{|k - 1|}{\\sqrt{14}}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 144,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The vector equation of the line whose cartesian equations are $x = 2, 2y - 3z + 7 = 0$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe line is the intersection of the planes $x = 2$ and $2y - 3z + 7 = 0$. Its direction is perpendicular to both normals.\n\nStep 2: Direction:\nNormals: $\\vec{n}_{1} = (1, 0, 0)$ and $\\vec{n}_{2} = (0, 2, -3)$.\n$$\\vec{n}_{1} \\times \\vec{n}_{2} = (0 \\cdot (-3) - 0 \\cdot 2,\\ 0 \\cdot 0 - 1 \\cdot (-3),\\ 1 \\cdot 2 - 0) = (0, 3, 2)$$\n\nStep 3: A point on the line:\nTake $y = 0$: $-3z + 7 = 0$, so $z = \\frac{7}{3}$. The point is $\\left(2, 0, \\frac{7}{3}\\right)$.\n\nStep 4: Write the equation:\n$$\\vec{r} = 2\\hat{i} + \\tfrac{7}{3}\\hat{k} + \\lambda(3\\hat{j} + 2\\hat{k})$$\nThis is option (C). Option (A) and (B) use a point like $(2, 2, -3)$, which gives $4 + 9 + 7 \\neq 0$ in $2y - 3z + 7$, so it is not on the line.\n\nFinal Answer:\nPoint $\\left(2, 0, \\frac{7}{3}\\right)$ with direction (0, 3, 2).\n$$\\boxed{\\text{(C) } \\vec{r} = \\left(2\\hat{i} + \\tfrac{7}{3}\\hat{k}\\right) + \\lambda\\left(3\\hat{j} + 2\\hat{k}\\right)}$$\n\nQuick Tip: Find a point on the line and the direction as the cross product of the two plane normals.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\vec{r} = (2\\hat{i} + 2\\hat{j} - 3\\hat{k}) + \\lambda(2\\hat{j} - 3\\hat{k})$"
+    },
+    {
+     "key": "B",
+     "text": "$\\vec{r} = (2\\hat{i} + 2\\hat{j} - 3\\hat{k}) + \\lambda(2\\hat{i} - 3\\hat{j})$"
+    },
+    {
+     "key": "C",
+     "text": "$\\vec{r} = (2\\hat{i} + \\frac{7}{3}\\hat{k}) + \\lambda(3\\hat{j} + 2\\hat{k})$"
+    },
+    {
+     "key": "D",
+     "text": "$\\vec{r} = (-2\\hat{i} + \\frac{7}{3}\\hat{k}) + \\lambda(3\\hat{j} + 2\\hat{k})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 145,
+   "topic": "Linear Programming",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The feasible region represented by the constraints $y - 2x \\leq 4, x + y \\geq 5, x \\leq 4, y \\geq 2, x, y \\geq 0$ is ...........",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nConstraints: $y - 2x \\leq 4$, $x + y \\geq 5$, $x \\leq 4$, $y \\geq 2$, $x, y \\geq 0$. The feasible region is the intersection of all these half planes.\n\nStep 2: Corner points:\n$y = 2$ with $x + y = 5$: $(3, 2)$.\n$y = 2$ with $x = 4$: $(4, 2)$.\n$x = 4$ with $y = 2x + 4$: $(4, 12)$.\n$y = 2x + 4$ with $x + y = 5$: $x = \\frac{1}{3}$, $y = \\frac{14}{3}$: $\\left(\\frac{1}{3}, \\frac{14}{3}\\right)$.\nPoints on $x = 0$ are excluded: there $y \\leq 4$ by the first constraint, but $x + y \\geq 5$ needs $y \\geq 5$.\n\nStep 3: Shape:\nThe region is enclosed by four lines: a quadrilateral with vertices $(3, 2), (4, 2), (4, 12), \\left(\\frac{1}{3}, \\frac{14}{3}\\right)$. It is bounded and convex.\n\nStep 4: Result:\nA convex bounded region with 4 corner points, option (A).\n\nFinal Answer:\nThe region is a quadrilateral with four corners.\n$$\\boxed{\\text{(A) convex bounded region with 4 corner points}}$$\n\nQuick Tip: Find the corner points by pairing boundary lines.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "a convex bounded region with 4 corner points"
+    },
+    {
+     "key": "B",
+     "text": "an unbounded region"
+    },
+    {
+     "key": "C",
+     "text": "a convex bounded region with 5 corner points"
+    },
+    {
+     "key": "D",
+     "text": "no feasible region"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 146,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A fair die is thrown at random. Let A be the event that the number obtained on the die is a non-even prime number and B be the event that the number obtained on the die is an odd number.\nLet $p : P(A) = \\frac{1}{3}$, $q$ : A and B are independent events.\nThen the truth values of statements $p$ and $q$ respectively are.....",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA = non-even prime numbers on a die = $\\{3, 5\\}$ (2 is prime but even). B = odd numbers = $\\{1, 3, 5\\}$.\n\nStep 2: Statement p:\n$P(A) = \\frac{2}{6} = \\frac{1}{3}$, so $p$ is TRUE.\n\nStep 3: Statement q:\n$A \\cap B = \\{3, 5\\}$, so $P(A \\cap B) = \\frac{1}{3}$.\n$P(A)P(B) = \\frac{1}{3} \\cdot \\frac{1}{2} = \\frac{1}{6}$.\nSince $\\frac{1}{3} \\neq \\frac{1}{6}$, the events are not independent, so $q$ is FALSE.\n\nStep 4: Result:\nThe truth values are T, F. Option (B).\n\nFinal Answer:\np is true, but A and B are not independent.\n$$\\boxed{\\text{(B) T, F}}$$\n\nQuick Tip: List the favourable outcomes of A and B, then test $P(A \\cap B) = P(A)P(B)$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "T , T"
+    },
+    {
+     "key": "B",
+     "text": "T , F"
+    },
+    {
+     "key": "C",
+     "text": "F , T"
+    },
+    {
+     "key": "D",
+     "text": "F , F"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 147,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Three ships A, B, C sail from England to India. If the odds in favour of their safe arrival are 2:5, 3:7 and 6:11 respectively, then the probability that the exactly two ships arrive safely is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nOdds in favour $m : n$ mean probability $\\frac{m}{m + n}$.\n\nStep 2: Individual probabilities:\nA: $\\frac{2}{7}$, not safe $\\frac{5}{7}$. B: $\\frac{3}{10}$, not safe $\\frac{7}{10}$. C: $\\frac{6}{17}$, not safe $\\frac{11}{17}$.\n\nStep 3: Three cases for exactly two:\nA and B safe, C not: $\\frac{2 \\cdot 3 \\cdot 11}{1190} = \\frac{66}{1190}$.\nA and C safe, B not: $\\frac{2 \\cdot 7 \\cdot 6}{1190} = \\frac{84}{1190}$.\nB and C safe, A not: $\\frac{5 \\cdot 3 \\cdot 6}{1190} = \\frac{90}{1190}$.\n\nStep 4: Add:\n$$\\frac{66 + 84 + 90}{1190} = \\frac{240}{1190} = \\frac{24}{119}$$\nOption (A). Options (B), (C), (D) are individual terms or arithmetic slips.\n\nFinal Answer:\nThe three cases add up to $\\frac{240}{1190} = \\frac{24}{119}$.\n$$\\boxed{\\text{(A) } \\frac{24}{119}}$$\n\nQuick Tip: Convert odds to probabilities and add the three two-safe cases.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{24}{119}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{24}{1190}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{66}{1190}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{84}{1190}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 148,
+   "topic": "Probability Distribution",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A random variable X has the probability distribution\n$X = x$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8\n$P(X = x)$ | 0.23 | 0.15 | 0.12 | 0.10 | 0.20 | 0.07 | 0.08 | 0.05\nfor the events E = {X is a prime number} and F = $\\{X \\leq 3\\}$, then $P(E \\cup F) =$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\n$E = \\{2, 3, 5, 7\\}$ (primes) and $F = \\{1, 2, 3\\}$ $(X \\leq 3)$. Read the probabilities from the table.\n\nStep 2: Compute each part:\n$P(E) = 0.15 + 0.12 + 0.20 + 0.08 = 0.55$.\n$P(F) = 0.23 + 0.15 + 0.12 = 0.50$.\n$E \\cap F = \\{2, 3\\}$, so $P(E \\cap F) = 0.15 + 0.12 = 0.27$.\n\nStep 3: Apply the formula:\n$$P(E \\cup F) = 0.55 + 0.50 - 0.27 = 0.78$$\n\nStep 4: Check by listing:\n$E \\cup F = \\{1, 2, 3, 5, 7\\}$: $0.23 + 0.15 + 0.12 + 0.20 + 0.08 = 0.78$. Option (D).\n\nFinal Answer:\n$P(E \\cup F) = 0.55 + 0.50 - 0.27 = 0.78$.\n$$\\boxed{\\text{(D) } 0.78}$$\n\nQuick Tip: Use $P(E \\cup F) = P(E) + P(F) - P(E \\cap F)$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.55$"
+    },
+    {
+     "key": "B",
+     "text": "$0.70$"
+    },
+    {
+     "key": "C",
+     "text": "$0.87$"
+    },
+    {
+     "key": "D",
+     "text": "$0.78$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 149,
+   "topic": "Probability Distribution",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The probability distribution of a random variable X is given by\n$X = x$ | 1 | 2 | 3 | 4\n$P(X = x)$ | $k$ | $2k$ | $3k$ | $4k$\nThen the c.d.f. of X is given by",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe probabilities sum to 1, and the c.d.f. is $F(x) = P(X \\leq x)$.\n\nStep 2: Find k:\n$$k + 2k + 3k + 4k = 10k = 1 \\Rightarrow k = \\frac{1}{10}$$\nSo the probabilities are $\\frac{1}{10}, \\frac{2}{10}, \\frac{3}{10}, \\frac{4}{10}$.\n\nStep 3: Cumulative sums:\n$F(1) = \\frac{1}{10}$. $F(2) = \\frac{1}{10} + \\frac{2}{10} = \\frac{3}{10}$. $F(3) = \\frac{3}{10} + \\frac{3}{10} = \\frac{6}{10}$. $F(4) = \\frac{6}{10} + \\frac{4}{10} = 1$.\n\nStep 4: Match:\nThe table with $\\frac{1}{10}, \\frac{3}{10}, \\frac{6}{10}, 1$ is option (A). Option (B) has a decreasing step, and (C) and (D) do not end in 1 or increase steadily.\n\nFinal Answer:\nThe c.d.f. values are $\\frac{1}{10}$, $\\frac{3}{10}$, $\\frac{6}{10}$ and 1.\n$$\\boxed{\\text{(A) } F = \\tfrac{1}{10}, \\tfrac{3}{10}, \\tfrac{6}{10}, 1}$$\n\nQuick Tip: Find k from the total probability, then add up the probabilities.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$X = x$ | 1 | 2 | 3 | 4\n$F(X = x)$ | $\\frac{1}{10}$ | $\\frac{3}{10}$ | $\\frac{6}{10}$ | $1$"
+    },
+    {
+     "key": "B",
+     "text": "$X = x$ | 1 | 2 | 3 | 4\n$F(X = x)$ | $\\frac{3}{10}$ | $\\frac{1}{10}$ | $\\frac{6}{10}$ | $1$"
+    },
+    {
+     "key": "C",
+     "text": "$X = x$ | 1 | 2 | 3 | 4\n$F(X = x)$ | $\\frac{1}{10}$ | $\\frac{3}{10}$ | $\\frac{5}{10}$ | $\\frac{1}{10}$"
+    },
+    {
+     "key": "D",
+     "text": "$X = x$ | 1 | 2 | 3 | 4\n$F(X = x)$ | $\\frac{1}{10}$ | $\\frac{6}{10}$ | $\\frac{3}{10}$ | $1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 150,
+   "topic": "Probability Distribution",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two dice are thrown successively 4 times and getting a doublet is called a success. The probability of getting at least 1 success is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA throw of two dice has 36 outcomes, and 6 of them are doublets. So $p = \\frac{1}{6}$ and $q = \\frac{5}{6}$ per throw. Four independent throws make a binomial experiment with $n = 4$.\n\nStep 2: Use the complement:\n$$P(\\text{at least one}) = 1 - P(\\text{none}) = 1 - \\left(\\frac{5}{6}\\right)^{4}$$\n\nStep 3: Compute:\n$$\\left(\\frac{5}{6}\\right)^{4} = \\frac{625}{1296}$$\n$$1 - \\frac{625}{1296} = \\frac{671}{1296}$$\n\nStep 4: Result:\nOption (D). Option (C) $\\frac{625}{1296}$ is the probability of no success at all.\n\nFinal Answer:\nThe probability is $1 - \\left(\\frac{5}{6}\\right)^{4} = \\frac{671}{1296}$.\n$$\\boxed{\\text{(D) } \\frac{671}{1296}}$$\n\nQuick Tip: Use the complement: 1 minus the probability of no doublet in four throws.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{50}{1296}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1246}{1296}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{625}{1296}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{671}{1296}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

@@ -1,0 +1,1870 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Chemistry",
+  "year": 2026,
+  "set_label": "17 April · Shift 1",
+  "title": "MHT-CET 2026 · Chemistry · 17 April Shift 1",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "+1 correct · no negative marking",
+  "sort_order": 20,
+  "duration_mins": 60,
+  "source_file_id": "1N5F51FtCF-eJV_upMBdp2dGYBd6P_28n"
+ },
+ "questions": [
+  {
+   "q_no": 51,
+   "topic": "Some Basic Concepts of Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the number of molecules present in $2.24\\ \\mathrm{dm^{3}}$ of carbon dioxide at STP ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nAt STP, one mole of an ideal gas occupies $22.4\\ \\mathrm{dm^{3}}$. One mole contains $6.022 \\times 10^{23}$ molecules (Avogadro's number).\nSo we first convert the given volume into moles, then into molecules.\nStep 2: Key Formula or Approach\nMoles $n = \\frac{V}{22.4\\ \\mathrm{dm^{3}}}$ and number of molecules $N = n \\times N_A$.\nStep 3: Detailed Explanation\nMoles of $\\mathrm{CO_2}$:\n$$n = \\frac{2.24}{22.4} = 0.1\\ \\mathrm{mol}$$\nNumber of molecules:\n$$N = 0.1 \\times 6.022 \\times 10^{23} = 6.022 \\times 10^{22}$$\nOptions (A) and (B) come from slips in the multiplication, and (D) $0.1 \\times 10^{23}$ equals $1 \\times 10^{22}$, which is not the product above. Only $6.022 \\times 10^{22}$ matches the calculation.\nFinal Answer:\n$2.24\\ \\mathrm{dm^{3}}$ of $\\mathrm{CO_2}$ at STP is 0.1 mol, which holds $6.022 \\times 10^{22}$ molecules. This is option (C).\n$$\\boxed{6.022 \\times 10^{22}\\ \\text{(C)}}$$\nQuick Tip: At STP one mole of any gas occupies $22.4\\ \\mathrm{dm^{3}}$, so find the moles first and multiply by Avogadro's number.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2.011 \\times 10^{22}$"
+    },
+    {
+     "key": "B",
+     "text": "$3.011 \\times 10^{22}$"
+    },
+    {
+     "key": "C",
+     "text": "$6.022 \\times 10^{22}$"
+    },
+    {
+     "key": "D",
+     "text": "$0.1 \\times 10^{23}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 52,
+   "topic": "Structure of Atom",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is uncertainty in velocity of an electron if uncertainty in measurement of position is 50 pm ? ($m_e = 9.1 \\times 10^{-31}$ kg, $h = 6.63 \\times 10^{-34}$ Js, $\\pi = 3.142$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nHeisenberg's uncertainty principle says the position and momentum of a particle cannot both be known exactly. The product of their uncertainties has a minimum value.\nStep 2: Key Formula or Approach\n$$\\Delta x \\cdot m\\,\\Delta v \\ge \\frac{h}{4\\pi} \\quad \\Rightarrow \\quad \\Delta v = \\frac{h}{4\\pi m\\,\\Delta x}$$\nStep 3: Detailed Explanation\nConvert the position uncertainty: $\\Delta x = 50\\ \\mathrm{pm} = 5 \\times 10^{-11}$ m.\nDenominator: $4\\pi m \\Delta x = 4(3.142)(9.1 \\times 10^{-31})(5 \\times 10^{-11}) = 5.718 \\times 10^{-40}$.\n$$\\Delta v = \\frac{6.63 \\times 10^{-34}}{5.718 \\times 10^{-40}} = 1.16 \\times 10^{6}\\ \\mathrm{m\\,s^{-1}}$$\nThe other options do not follow from this calculation.\nFinal Answer:\nThe minimum uncertainty in the electron's velocity is $1.16 \\times 10^{6}$ m/s, option (B).\n$$\\boxed{1.16 \\times 10^{6}\\ \\mathrm{m\\,s^{-1}}\\ \\text{(B)}}$$\nQuick Tip: Use Heisenberg's relation $\\Delta v = h/(4\\pi m \\Delta x)$ with $\\Delta x = 5 \\times 10^{-11}$ m.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.98 \\times 10^{6}\\ \\mathrm{ms^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.16 \\times 10^{6}\\ \\mathrm{ms^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.61 \\times 10^{6}\\ \\mathrm{ms^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$3.77 \\times 10^{6}\\ \\mathrm{ms^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 53,
+   "topic": "Classification of Elements and Periodicity in Properties",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following elements belongs to group 2 and sixth period of periodic table?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nGroup 2 holds the alkaline earth metals: Be, Mg, Ca, Sr, Ba, Ra, going down periods 2 to 7.\nStep 2: Detailed Explanation\nCounting down the group: Be (period 2), Mg (3), Ca (4), Sr (5), Ba (6), Ra (7).\nSo the group 2, sixth period element is barium (Ba).\nRubidium (Rb) and caesium (Cs) are group 1 alkali metals, in periods 5 and 6. Strontium is group 2 but sits in period 5.\nSo only barium fits both conditions.\nFinal Answer:\nBarium is the group 2 element of period 6. This is option (D).\n$$\\boxed{\\text{Barium (D)}}$$\nQuick Tip: Group 2 elements are alkaline earth metals; the one in the sixth period is barium.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Rubidium"
+    },
+    {
+     "key": "B",
+     "text": "Strontium"
+    },
+    {
+     "key": "C",
+     "text": "Caesium"
+    },
+    {
+     "key": "D",
+     "text": "Barium"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 54,
+   "topic": "Chemical Bonding and Molecular Structure",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify a molecule having highest dipole moment from following.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nDipole moment depends on bond polarity and on molecular shape. Bond dipoles can cancel in a symmetric shape.\nStep 2: Detailed Explanation\n$\\mathrm{BeF_2}$ is linear, so the two Be-F dipoles cancel and the moment is zero.\n$\\mathrm{CHCl_3}$ is tetrahedral and the three C-Cl dipoles partly cancel, giving about 1.0 D.\n$\\mathrm{NH_3}$ is pyramidal with a lone pair, giving about 1.47 D.\n$\\mathrm{H_2O}$ is bent with two lone pairs and very polar O-H bonds, giving about 1.85 D, the highest of the four.\nFinal Answer:\nWater has the highest dipole moment, option (B).\n$$\\boxed{\\mathrm{H_2O}\\ \\text{(B)}}$$\nQuick Tip: Compare dipole moments: $\\mathrm{BeF_2}$ is linear and zero, and water has the largest value among the rest.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{NH_3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{H_2O}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CHCl_3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{BeF_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 55,
+   "topic": "States of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$V_0$ and $V_t$ are volumes of an ideal gas at $0^\\circ\\mathrm{C}$ and $t^\\circ\\mathrm{C}$ respectively, find ratio $\\frac{V_t}{V_0}$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nCharles's law: at constant pressure, the volume of a fixed amount of gas changes by $\\frac{1}{273}$ of its volume at $0^\\circ\\mathrm{C}$ for each degree Celsius.\nStep 2: Detailed Explanation\n$$V_t = V_0 + \\frac{V_0}{273}\\,t = V_0\\left(1 + \\frac{t}{273}\\right)$$\nDividing by $V_0$:\n$$\\frac{V_t}{V_0} = 1 + \\frac{t}{273}$$\nCheck: at $t = 0$ the ratio is 1, as it should be. Option (A) gives 0 at $t = 0$, so it cannot be right.\nFinal Answer:\nThe ratio is $1 + \\frac{t}{273}$, option (C).\n$$\\boxed{1 + \\frac{t}{273}\\ \\text{(C)}}$$\nQuick Tip: Charles's law gives $V_t = V_0\\left(1 + \\frac{t}{273}\\right)$ at constant pressure.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{273} \\times t$"
+    },
+    {
+     "key": "B",
+     "text": "$1 + 273 \\times t$"
+    },
+    {
+     "key": "C",
+     "text": "$1 + \\frac{t}{273}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{273 + t}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 56,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following equations is used to obtain enthalpy change of a reaction?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nEnthalpy is a state function, so the change for a reaction depends only on the initial (reactants) and final (products) states.\nStep 2: Detailed Explanation\nChange = final minus initial:\n$$\\Delta H = \\sum \\Delta H_P - \\sum \\Delta H_R$$\nA positive value means heat is absorbed, and a negative value means heat is released. Option (B) reverses the sign, (C) adds the terms, and (D) divides them, which has no physical meaning.\nFinal Answer:\nThe correct relation is products minus reactants, option (A).\n$$\\boxed{\\Delta H = \\sum \\Delta H_P - \\sum \\Delta H_R\\ \\text{(A)}}$$\nQuick Tip: Enthalpy change is products minus reactants.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\Delta H = \\sum \\Delta H_P - \\sum \\Delta H_R$"
+    },
+    {
+     "key": "B",
+     "text": "$\\Delta H = \\sum \\Delta H_R - \\sum \\Delta H_P$"
+    },
+    {
+     "key": "C",
+     "text": "$\\Delta H = \\sum \\Delta H_P + \\sum \\Delta H_R$"
+    },
+    {
+     "key": "D",
+     "text": "$\\Delta H = \\frac{\\sum \\Delta H_P}{\\sum \\Delta H_R}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 57,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A system is provided 50 J of heat and work done on the system is 10 J. What is change in internal energy ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nFirst law of thermodynamics: $\\Delta U = q + w$, where $q$ is heat absorbed by the system and $w$ is work done on the system.\nStep 2: Detailed Explanation\nHeat is given to the system, so $q = +50$ J.\nWork is done on the system, so $w = +10$ J.\n$$\\Delta U = 50 + 10 = 60\\ \\mathrm{J}$$\nOption (A) subtracts the work, which would be right only if the system did the work, so it does not apply here.\nFinal Answer:\nThe internal energy rises by 60 J, option (B).\n$$\\boxed{60\\ \\mathrm{J}\\ \\text{(B)}}$$\nQuick Tip: Use the first law $\\Delta U = q + w$ with both terms positive here.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$40$ J"
+    },
+    {
+     "key": "B",
+     "text": "$60$ J"
+    },
+    {
+     "key": "C",
+     "text": "$30$ J"
+    },
+    {
+     "key": "D",
+     "text": "$50$ J"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 58,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "At $25^\\circ\\mathrm{C}$ standard enthalpy of combustion of $\\mathrm{H_2}$, Cyclohexene and cyclohexane are -241, -3800 and -3920 kJ $\\mathrm{mol^{-1}}$ respectively. What is the heat of hydrogenation of cyclohexene?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nHydrogenation of cyclohexene is $\\mathrm{C_6H_{10} + H_2 \\rightarrow C_6H_{12}}$. By Hess's law we can build it from the combustion equations.\nStep 2: Key Formula or Approach\nAdd the combustion of cyclohexene and of $\\mathrm{H_2}$, then reverse the combustion of cyclohexane:\n$$\\Delta H_{hyd} = \\Delta H_c(\\mathrm{H_2}) + \\Delta H_c(\\mathrm{C_6H_{10}}) - \\Delta H_c(\\mathrm{C_6H_{12}})$$\nStep 3: Detailed Explanation\n$$\\Delta H_{hyd} = (-241) + (-3800) - (-3920)$$\n$$= -4041 + 3920 = -121\\ \\mathrm{kJ}$$\nThe negative sign means the reaction is exothermic. The value $-242$ would double the $\\mathrm{H_2}$ term, and 121 or 363 have wrong signs or terms.\nFinal Answer:\nThe heat of hydrogenation is $-121$ kJ, option (A).\n$$\\boxed{-121\\ \\mathrm{kJ}\\ \\text{(A)}}$$\nQuick Tip: Apply Hess's law: $\\Delta H_{hyd} = \\Delta H_c(\\mathrm{H_2}) + \\Delta H_c(\\text{cyclohexene}) - \\Delta H_c(\\text{cyclohexane})$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-121$ kJ"
+    },
+    {
+     "key": "B",
+     "text": "$-242$ kJ"
+    },
+    {
+     "key": "C",
+     "text": "$121$ kJ"
+    },
+    {
+     "key": "D",
+     "text": "$363$ kJ"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 59,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the solubility in mol $\\mathrm{dm^{-3}}$ of sparingly soluble salt BA at 293 K if its solubility product is $8.56 \\times 10^{-5}$ at same temperature.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nBA dissociates as $\\mathrm{BA \\rightleftharpoons B^{+} + A^{-}}$. If the solubility is $S$ mol $\\mathrm{dm^{-3}}$, each ion has concentration $S$.\nStep 2: Key Formula or Approach\n$$K_{sp} = [\\mathrm{B^{+}}][\\mathrm{A^{-}}] = S^{2}$$\nStep 3: Detailed Explanation\n$$S = \\sqrt{8.56 \\times 10^{-5}} = \\sqrt{85.6 \\times 10^{-6}} = 9.252 \\times 10^{-3}\\ \\mathrm{mol\\ dm^{-3}}$$\nCheck: $(9.252 \\times 10^{-3})^{2} = 85.6 \\times 10^{-6}$. The other values, when squared, give $6.6 \\times 10^{-5}$, $7.7 \\times 10^{-5}$ and $6.0 \\times 10^{-5}$, which do not match the given $K_{sp}$.\nFinal Answer:\nThe solubility is $9.252 \\times 10^{-3}$ mol $\\mathrm{dm^{-3}}$, option (C).\n$$\\boxed{9.252 \\times 10^{-3}\\ \\mathrm{mol\\ dm^{-3}}\\ \\text{(C)}}$$\nQuick Tip: For a 1:1 salt, $K_{sp} = S^{2}$, so $S = \\sqrt{K_{sp}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8.123 \\times 10^{-3}$"
+    },
+    {
+     "key": "B",
+     "text": "$8.780 \\times 10^{-3}$"
+    },
+    {
+     "key": "C",
+     "text": "$9.252 \\times 10^{-3}$"
+    },
+    {
+     "key": "D",
+     "text": "$7.756 \\times 10^{-3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 60,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following salts does not undergo hydrolysis ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA salt hydrolyses when at least one of its ions comes from a weak acid or a weak base. Ions from strong acids and strong bases do not react with water.\nStep 2: Detailed Explanation\nAmmonium nitrate: $\\mathrm{NH_4^{+}}$ comes from a weak base, so it hydrolyses.\nSodium acetate: $\\mathrm{CH_3COO^{-}}$ comes from a weak acid, so it hydrolyses.\nAmmonium cyanide: both ions are weak, so both hydrolyse.\nSodium nitrate: $\\mathrm{Na^{+}}$ is from strong NaOH and $\\mathrm{NO_3^{-}}$ is from strong $\\mathrm{HNO_3}$, so neither reacts with water and the solution stays neutral.\nFinal Answer:\nSodium nitrate is the salt of a strong acid and a strong base, so it does not hydrolyse. This is option (D).\n$$\\boxed{\\text{Sodium nitrate (D)}}$$\nQuick Tip: A salt of a strong acid and strong base does not hydrolyse.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Ammonium nitrate"
+    },
+    {
+     "key": "B",
+     "text": "Sodium acetate"
+    },
+    {
+     "key": "C",
+     "text": "Ammonium cyanide"
+    },
+    {
+     "key": "D",
+     "text": "Sodium nitrate"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 61,
+   "topic": "Redox Reactions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following reactions is NOT an example of redox reaction?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA redox reaction has a change in oxidation number of at least one element. If no oxidation numbers change, the reaction is not redox.\nStep 2: Detailed Explanation\n(A) $\\mathrm{Cl_2}$ goes from 0 to $-1$, and S in $\\mathrm{SO_2}$ goes from $+4$ to $+6$: redox.\n(B) Zn goes from 0 to $+2$ and Cu goes from $+2$ to 0: redox.\n(C) H goes from 0 to $+1$ and O goes from 0 to $-2$: redox.\n(D) $\\mathrm{HCl + H_2O \\rightarrow H_3O^{+} + Cl^{-}}$: H stays $+1$, Cl stays $-1$, O stays $-2$. It is only a proton transfer (acid-base).\nFinal Answer:\nReaction (D) involves no change in oxidation number, so it is not a redox reaction. Option (D).\n$$\\boxed{\\text{(D)}}$$\nQuick Tip: In a redox reaction oxidation numbers change; ionisation of HCl in water has no such change.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Cl_2 + 2H_2O + SO_2 \\longrightarrow 4H^{+} + SO_4^{2-} + 2Cl^{-}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Cu^{2+} + Zn \\longrightarrow Cu + Zn^{2+}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{2H_2 + O_2 \\longrightarrow 2H_2O}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{HCl + H_2O \\longrightarrow H_3O^{+} + Cl^{-}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 62,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from the following is NOT polymorphic form of silica ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nSilica ($\\mathrm{SiO_2}$) exists in several crystalline forms, called polymorphs: quartz ($\\alpha$ and $\\beta$), tridymite and cristobalite.\nStep 2: Detailed Explanation\nCristobalite, $\\alpha$-quartz and $\\beta$-quartz are all forms of $\\mathrm{SiO_2}$.\nAragonite is a form of calcium carbonate, $\\mathrm{CaCO_3}$, and has nothing to do with silica.\nSo it is the one that is not a polymorph of silica.\nFinal Answer:\nAragonite is not a form of silica, so the answer is option (D).\n$$\\boxed{\\text{Aragonite (D)}}$$\nQuick Tip: Silica forms quartz, tridymite and cristobalite; aragonite is calcium carbonate.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Cristobalite"
+    },
+    {
+     "key": "B",
+     "text": "$\\alpha$ - quartz"
+    },
+    {
+     "key": "C",
+     "text": "$\\beta$ - quartz"
+    },
+    {
+     "key": "D",
+     "text": "Aragonite"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 63,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which among the following is haloalkyne?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA haloalkyne (alkynyl halide) is an alkyne in which the halogen is attached to an sp carbon, that is, to a carbon of the $\\mathrm{C{\\equiv}C}$ bond.\nStep 2: Detailed Explanation\nChloroethyne is $\\mathrm{HC \\equiv C{-}Cl}$. The chlorine is bonded directly to a triple-bonded carbon, so it fits the definition exactly.\nIn the other three names the chlorine sits on a saturated $sp^{3}$ carbon next to or away from the triple bond, so the halogen is not on the alkyne carbon itself.\nFinal Answer:\nChloroethyne has chlorine on the sp carbon itself, so it is the haloalkyne asked for. This is option (A).\n$$\\boxed{\\text{Chloroethyne (A)}}$$\nQuick Tip: A haloalkyne has the halogen directly on a triple-bonded carbon.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Chloroethyne"
+    },
+    {
+     "key": "B",
+     "text": "3 - Chloropropyne"
+    },
+    {
+     "key": "C",
+     "text": "1 - Chloropent - 2 - yne"
+    },
+    {
+     "key": "D",
+     "text": "4 - Chloropent - 2 - yne"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 64,
+   "topic": "Basic Principles of Organic Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following statements is NOT true about homologous series?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA homologous series is a family of compounds with the same functional group and similar chemical properties, whose neighbouring members differ by a fixed unit.\nStep 2: Detailed Explanation\n(A) Same functional group: true.\n(B) Same type of carbon skeleton: true.\n(D) Similar chemical properties: true.\n(C) Neighbouring members differ by a methylene group, $\\mathrm{-CH_2-}$ (14 mass units), not an ethylene group, which is $\\mathrm{C_2H_4}$. So (C) is not true.\nFinal Answer:\nThe difference is a $\\mathrm{CH_2}$ group, so statement (C) is the false one.\n$$\\boxed{\\text{(C)}}$$\nQuick Tip: Successive members of a homologous series differ by a methylene ($\\mathrm{CH_2}$) group.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Each member of a series has same functional group."
+    },
+    {
+     "key": "B",
+     "text": "Each member has same type of carbon skeleton."
+    },
+    {
+     "key": "C",
+     "text": "Each member differs by ethylene group from next member."
+    },
+    {
+     "key": "D",
+     "text": "All members of series possess similar chemical properties."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 65,
+   "topic": "Basic Principles of Organic Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is IUPAC name of following compound?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nThe figure shows a seven-membered ring with an OH on one ring carbon, a methyl group and an ethyl group on other ring carbons. The parent is cycloheptanol, and the carbon with OH is C-1.\nStep 2: Key Formula or Approach\nRules: OH gets locant 1. Then choose the direction giving the lowest set of locants to substituents. If the sets tie, the alphabetically first substituent gets the lower number.\nStep 3: Detailed Explanation\nFrom the OH carbon, going one way the ethyl-bearing carbon is third and the methyl-bearing carbon is sixth. Going the other way, it is the methyl-bearing carbon that is third and the ethyl-bearing carbon that is sixth. The locant set is $\\{3, 6\\}$ either way.\nEthyl comes before methyl alphabetically, so ethyl takes 3 and methyl takes 6.\nName: 3-ethyl-6-methylcycloheptanol.\nOption (A) puts methyl at 3 and ethyl at 6, which breaks the alphabetical tie rule.\nFinal Answer:\nThe compound is 3-ethyl-6-methylcycloheptanol, option (C).\n$$\\boxed{\\text{3-Ethyl-6-methylcycloheptanol (C)}}$$\nQuick Tip: Number from the carbon with OH, then give the substituents the lowest locants, alphabetical order breaks ties.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3 - Methyl - 6 - ethyl cycloheptanol"
+    },
+    {
+     "key": "B",
+     "text": "3 - Ethylcyclooctanol"
+    },
+    {
+     "key": "C",
+     "text": "3 - Ethyl - 6 - methylcycloheptanol"
+    },
+    {
+     "key": "D",
+     "text": "1 - Ethyl - 5 - methylcycloheptan - 3 - ol"
+    }
+   ],
+   "stem_figure": "m26-17apr-s1-q065.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 66,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following elements is NOT present in mustard gas?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nMustard gas is the chemical warfare agent bis(2-chloroethyl) sulphide.\nStep 2: Detailed Explanation\nIts formula is $\\mathrm{(ClCH_2CH_2)_2S}$. It contains carbon, hydrogen, chlorine and sulphur.\nThere is no nitrogen in the molecule. (Nitrogen mustards are different compounds.)\nFinal Answer:\nNitrogen is absent from mustard gas, option (B).\n$$\\boxed{\\text{N (B)}}$$\nQuick Tip: Mustard gas is $\\mathrm{ClCH_2CH_2{-}S{-}CH_2CH_2Cl}$, so it has no nitrogen.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Cl"
+    },
+    {
+     "key": "B",
+     "text": "N"
+    },
+    {
+     "key": "C",
+     "text": "S"
+    },
+    {
+     "key": "D",
+     "text": "C"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 67,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When excess of chlorine is used in the chlorination of methane find the major product obtained.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nChlorination of methane is a free radical substitution. It goes step by step: $\\mathrm{CH_4 \\rightarrow CH_3Cl \\rightarrow CH_2Cl_2 \\rightarrow CHCl_3 \\rightarrow CCl_4}$.\nStep 2: Detailed Explanation\nEach step replaces one H by Cl. When chlorine is in excess and the reaction continues, substitution does not stop at the first products.\nAll four hydrogens are replaced, so the major product is $\\mathrm{CCl_4}$ (tetrachloromethane).\nFinal Answer:\nExcess chlorine replaces all four hydrogens, giving tetrachloromethane, option (D).\n$$\\boxed{\\mathrm{CCl_4}\\ \\text{(D)}}$$\nQuick Tip: With excess chlorine every hydrogen is replaced and the final product is carbon tetrachloride.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Chloromethane"
+    },
+    {
+     "key": "B",
+     "text": "Dichloromethane"
+    },
+    {
+     "key": "C",
+     "text": "Trichloromethane"
+    },
+    {
+     "key": "D",
+     "text": "Tetrachloromethane"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 68,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Alkenes on oxidation with $\\mathrm{KMnO_4}$ in dil $\\mathrm{H_2SO_4}$ forms",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nAcidified $\\mathrm{KMnO_4}$ is a strong oxidant. It breaks the double bond completely, and any aldehyde formed is oxidised further.\nStep 2: Detailed Explanation\nThe alkene splits into two fragments at the double bond. A $\\mathrm{=CH_2}$ end becomes $\\mathrm{CO_2}$, and a $\\mathrm{=CHR}$ end becomes RCOOH.\nSince aldehydes cannot survive the oxidising medium, they go on to the carboxylic acid.\nThe class of product asked in the question is alkanoic acid.\nFinal Answer:\nAlkenes give carboxylic acids (alkanoic acids), option (D).\n$$\\boxed{\\text{Alkanoic acid (D)}}$$\nQuick Tip: Acidified $\\mathrm{KMnO_4}$ cleaves the C=C bond and oxidises the fragments to carboxylic acids.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Alkanol"
+    },
+    {
+     "key": "B",
+     "text": "Alkanal"
+    },
+    {
+     "key": "C",
+     "text": "Alkanone"
+    },
+    {
+     "key": "D",
+     "text": "Alkanoic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 69,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Find the volume occupied by a particle in a simple cubic unit cell if the radius of a particle in it is 190 pm.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA simple cubic unit cell contains one atom. The volume occupied by the particle is the volume of one sphere of radius $r$.\nStep 2: Key Formula or Approach\n$$V = \\frac{4}{3}\\pi r^{3}$$\nStep 3: Detailed Explanation\nConvert: $190\\ \\mathrm{pm} = 190 \\times 10^{-10}\\ \\mathrm{cm} = 1.9 \\times 10^{-8}$ cm.\n$$r^{3} = (1.9 \\times 10^{-8})^{3} = 6.859 \\times 10^{-24}\\ \\mathrm{cm^{3}}$$\n$$V = 4.189 \\times 6.859 \\times 10^{-24} = 2.873 \\times 10^{-23}\\ \\mathrm{cm^{3}}$$\nFinal Answer:\nThe volume occupied by the particle is $2.873 \\times 10^{-23}\\ \\mathrm{cm^{3}}$, option (D).\n$$\\boxed{2.873 \\times 10^{-23}\\ \\mathrm{cm^{3}}\\ \\text{(D)}}$$\nQuick Tip: Volume of one sphere is $\\frac{4}{3}\\pi r^{3}$, with $r = 190\\ \\mathrm{pm} = 1.9 \\times 10^{-8}$ cm.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6.410 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "B",
+     "text": "$3.625 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$5.715 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.873 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 70,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the number of unit cells in $1\\ \\mathrm{cm^{3}}$ of metal if it forms simple cubic structure with unit cell edge length 500 pm.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nThe number of unit cells equals total volume divided by the volume of one unit cell. For a cube of edge $a$, the cell volume is $a^{3}$.\nStep 2: Detailed Explanation\nEdge: $500\\ \\mathrm{pm} = 5 \\times 10^{-8}$ cm.\n$$a^{3} = (5 \\times 10^{-8})^{3} = 125 \\times 10^{-24} = 1.25 \\times 10^{-22}\\ \\mathrm{cm^{3}}$$\n$$N = \\frac{1}{1.25 \\times 10^{-22}} = 8.0 \\times 10^{21}$$\nThe other options come from a wrong cube or a wrong conversion of picometres.\nFinal Answer:\nThere are $8.0 \\times 10^{21}$ unit cells in $1\\ \\mathrm{cm^{3}}$, option (C).\n$$\\boxed{8.0 \\times 10^{21}\\ \\text{(C)}}$$\nQuick Tip: Divide $1\\ \\mathrm{cm^{3}}$ by the volume of one cell, $a^{3}$ with $a = 500\\ \\mathrm{pm} = 5 \\times 10^{-8}$ cm.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4.0 \\times 10^{21}$"
+    },
+    {
+     "key": "B",
+     "text": "$2.0 \\times 10^{21}$"
+    },
+    {
+     "key": "C",
+     "text": "$8.0 \\times 10^{21}$"
+    },
+    {
+     "key": "D",
+     "text": "$3.0 \\times 10^{21}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 71,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following concentrations of solutions of urea in water exhibits minimum freezing point depression?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nDepression in freezing point is a colligative property. It depends on the number of solute particles per kg of solvent, not on what the solute is.\nStep 2: Key Formula or Approach\n$$\\Delta T_f = i\\,K_f\\,m$$\nUrea does not ionise, so $i = 1$ for every solution, and the water is the same, so $K_f$ is fixed.\nStep 3: Detailed Explanation\nThen $\\Delta T_f \\propto m$.\nThe molalities are 0.12, 0.18, 0.08 and 0.06 m. The smallest is 0.06 m.\nSo the 0.06 m solution has the smallest depression, $\\Delta T_f = 1.86 \\times 0.06 = 0.11$ K, and its freezing point is closest to that of pure water.\nFinal Answer:\nThe 0.06 m solution shows the minimum depression, option (D).\n$$\\boxed{0.06\\ \\mathrm{m}\\ \\text{(D)}}$$\nQuick Tip: Freezing point depression is proportional to molality, so pick the lowest molality.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.12$ m"
+    },
+    {
+     "key": "B",
+     "text": "$0.18$ m"
+    },
+    {
+     "key": "C",
+     "text": "$0.08$ m"
+    },
+    {
+     "key": "D",
+     "text": "$0.06$ m"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 72,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate van't Hoff factor for aqueous solution of 0.02 m formic acid if it freezes at -0.045 $^\\circ\\mathrm{C}$.\n[ $K_f$ = 1.86 K kg $\\mathrm{mol^{-1}}$ and freezing point of water = $0^\\circ\\mathrm{C}$ ]",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nFormic acid partly ionises in water, so the number of particles is a little more than the number of moles dissolved. The van't Hoff factor $i$ measures this ratio.\nStep 2: Key Formula or Approach\n$$\\Delta T_f = i\\,K_f\\,m \\quad \\Rightarrow \\quad i = \\frac{\\Delta T_f}{K_f\\,m}$$\nStep 3: Detailed Explanation\nFreezing point of solution is $-0.045^\\circ$C, so $\\Delta T_f = 0 - (-0.045) = 0.045$ K.\n$$i = \\frac{0.045}{1.86 \\times 0.02} = \\frac{0.045}{0.0372} = 1.21$$\nA value above 1 but well below 2 fits a weak acid that ionises only slightly.\nFinal Answer:\nThe van't Hoff factor is 1.21, option (A).\n$$\\boxed{1.21\\ \\text{(A)}}$$\nQuick Tip: Use $\\Delta T_f = iK_f m$ with $\\Delta T_f = 0.045$ K.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.21$"
+    },
+    {
+     "key": "B",
+     "text": "$1.46$"
+    },
+    {
+     "key": "C",
+     "text": "$1.68$"
+    },
+    {
+     "key": "D",
+     "text": "$1.05$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 73,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the molar mass of nonvolatile solute when 4 g of it is dissolved in 100 g solvent that boils at 319.4 K [$K_b$ = 2.4 K kg $\\mathrm{mol^{-1}}$; B.P of pure solvent = 319 K]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nDissolving a nonvolatile solute raises the boiling point. The rise depends on the molality of the solution.\nStep 2: Key Formula or Approach\n$$\\Delta T_b = K_b\\,m = K_b\\,\\frac{w_2 \\times 1000}{M_2\\,w_1}$$\nStep 3: Detailed Explanation\n$\\Delta T_b = 319.4 - 319 = 0.4$ K, $w_2 = 4$ g, $w_1 = 100$ g.\n$$M_2 = \\frac{K_b\\,w_2 \\times 1000}{\\Delta T_b\\,w_1} = \\frac{2.4 \\times 4 \\times 1000}{0.4 \\times 100} = \\frac{9600}{40} = 240\\ \\mathrm{g\\,mol^{-1}}$$\nFinal Answer:\nThe molar mass of the solute is 240 g/mol, option (C).\n$$\\boxed{240\\ \\mathrm{g\\,mol^{-1}}\\ \\text{(C)}}$$\nQuick Tip: Use $\\Delta T_b = K_b \\times \\frac{w_2 \\times 1000}{M_2 \\times w_1}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$220\\ \\mathrm{g\\,mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$230\\ \\mathrm{g\\,mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$240\\ \\mathrm{g\\,mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$250\\ \\mathrm{g\\,mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 74,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the emf of cell, $\\mathrm{Cu_{(s)}|Cu^{2+}_{(1M)}|Ag^{+}_{(1M)}|Ag}$ is 0.463 V at $25^\\circ\\mathrm{C}$ and standard potential of Cu electrode is 0.337 V. Find the standard potential of Ag electrode",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nThe cell is Cu | $\\mathrm{Cu^{2+}}$ (1 M) || $\\mathrm{Ag^{+}}$ (1 M) | Ag. Copper is the anode (oxidation) and silver is the cathode (reduction).\nStep 2: Key Formula or Approach\nBoth concentrations are 1 M, so the cell is at standard conditions:\n$$E_{cell} = E^\\circ_{Ag} - E^\\circ_{Cu}$$\nStep 3: Detailed Explanation\n$$0.463 = E^\\circ_{Ag} - 0.337$$\n$$E^\\circ_{Ag} = 0.463 + 0.337 = 0.800\\ \\mathrm{V}$$\nA negative value cannot come out, because the cell emf is positive and silver is above copper in the series.\nFinal Answer:\nThe standard potential of the silver electrode is 0.8 V, option (C).\n$$\\boxed{0.8\\ \\mathrm{V}\\ \\text{(C)}}$$\nQuick Tip: At 1 M both ions, $E_{cell} = E^\\circ_{cathode} - E^\\circ_{anode}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.128$ V"
+    },
+    {
+     "key": "B",
+     "text": "$-0.128$ V"
+    },
+    {
+     "key": "C",
+     "text": "$0.8$ V"
+    },
+    {
+     "key": "D",
+     "text": "$-0.8$ V"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 75,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following hot aqueous solutions is used to dip carbon rods of $\\mathrm{H_2 - O_2}$ fuel cell ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nIn the $\\mathrm{H_2}$-$\\mathrm{O_2}$ fuel cell, porous carbon electrodes carrying a catalyst dip into a hot aqueous solution of an alkali.\nStep 2: Detailed Explanation\nThe electrolyte is aqueous KOH. At the anode, hydrogen is oxidised: $\\mathrm{2H_2 + 4OH^{-} \\rightarrow 4H_2O + 4}e^{-}$.\nAt the cathode, oxygen is reduced: $\\mathrm{O_2 + 2H_2O + 4}e^{-}\\mathrm{ \\rightarrow 4OH^{-}}$.\nThe $\\mathrm{OH^{-}}$ ions carry current through the solution, so a hydroxide solution is needed.\nFinal Answer:\nThe carbon rods dip in hot aqueous KOH, option (B).\n$$\\boxed{\\mathrm{KOH}\\ \\text{(B)}}$$\nQuick Tip: The $\\mathrm{H_2}$-$\\mathrm{O_2}$ fuel cell uses a hot concentrated alkaline electrolyte, KOH.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{KCl}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{KOH}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{H_2SO_4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{NH_4Cl}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 76,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The conductivity of 0.02 M of KCl solution at 298 K is 0.0123 $\\mathrm{ohm^{-1}cm^{-1}}$. If the resistance of the cell containing this solution is 120 ohms, what is the value of the cell constant ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nCell constant is the ratio $l/A$ of the conductivity cell. Conductivity is $\\kappa = \\frac{1}{R} \\cdot \\frac{l}{A}$.\n\nStep 2: Key Formula or Approach\n$$G^{*} = \\frac{l}{A} = \\kappa R$$\n\nStep 3: Detailed Explanation\n$$G^{*} = 0.0123\\ \\mathrm{ohm^{-1}cm^{-1}} \\times 120\\ \\mathrm{ohm} = 1.476\\ \\mathrm{cm^{-1}}$$\nThe molarity 0.02 M is not needed for this step, because the conductivity already contains that information.\n\nFinal Answer:\nThe cell constant is $1.476\\ \\mathrm{cm^{-1}}$, option (D).\n$$\\boxed{1.476\\ \\mathrm{cm^{-1}}\\ \\text{(D)}}$$\n\nQuick Tip: Cell constant $= \\kappa \\times R$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.050\\ \\mathrm{cm^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.025\\ \\mathrm{cm^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.376\\ \\mathrm{cm^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.476\\ \\mathrm{cm^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 77,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Half life of zero order reaction is 1 hour. If initial concentration of reactant is 2.0 mol $\\mathrm{L^{-1}}$, find the time required to decrease concentration from 0.50 to 0.25 mol $\\mathrm{L^{-1}}$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA zero order reaction has a constant rate, so the concentration falls by the same amount in each equal time. The half life is $t_{1/2} = \\frac{[A]_0}{2k}$.\n\nStep 2: Key Formula or Approach\n$$k = \\frac{[A]_0}{2\\,t_{1/2}} = \\frac{2.0}{2 \\times 1} = 1.0\\ \\mathrm{mol\\,L^{-1}h^{-1}}$$\n\nStep 3: Detailed Explanation\nThe concentration falls from 0.50 to 0.25, a drop of 0.25 mol/L.\n$$t = \\frac{0.25}{1.0} = 0.25\\ \\mathrm{h}$$\nFor a zero order reaction the time does not depend on the starting point of the drop, only on the size of the drop.\n\nFinal Answer:\nThe time needed is 0.25 hour, option (A).\n$$\\boxed{0.25\\ \\text{hour (A)}}$$\n\nQuick Tip: For zero order, $k = [A]_0/(2t_{1/2})$ and $t = \\Delta[A]/k$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.25 hour"
+    },
+    {
+     "key": "B",
+     "text": "0.50 hour"
+    },
+    {
+     "key": "C",
+     "text": "1.00 hour"
+    },
+    {
+     "key": "D",
+     "text": "4.00 hour"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 78,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the term used for the minimum kinetic energy required for the reactant molecules to undergo reaction?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nColliding molecules react only if they carry at least a certain minimum energy. That threshold is the activation energy $E_a$.\n\nStep 2: Detailed Explanation\nActivation energy is the minimum energy the reactant molecules must have to cross the energy barrier and form products.\nPotential energy and thermal energy are general forms of energy, and bond energy is the energy to break a bond. None of these names the threshold for reaction.\n\nFinal Answer:\nThe term is activation energy, option (D).\n$$\\boxed{\\text{Activation energy (D)}}$$\n\nQuick Tip: The minimum energy that reactants must have to react is the activation energy.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Potential energy"
+    },
+    {
+     "key": "B",
+     "text": "Bond energy"
+    },
+    {
+     "key": "C",
+     "text": "Thermal energy"
+    },
+    {
+     "key": "D",
+     "text": "Activation energy"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 79,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If time required for 90 % completion of a first order reaction is '$t$'. What is the time required for 99.9 % completion of reaction at same temperature?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nFor a first order reaction $t = \\frac{2.303}{k}\\log\\frac{[A]_0}{[A]}$.\n\nStep 2: Key Formula or Approach\nFor $x$ percent completion, $[A]_0/[A] = 100/(100 - x)$.\n\nStep 3: Detailed Explanation\n90 percent: $t = \\frac{2.303}{k}\\log 10 = \\frac{2.303}{k}$.\n99.9 percent: $t' = \\frac{2.303}{k}\\log 1000 = \\frac{2.303}{k} \\times 3$.\nSo $t' = 3t$.\n\nFinal Answer:\nThe time for 99.9 percent completion is $3t$, option (A).\n$$\\boxed{3t\\ \\text{(A)}}$$\n\nQuick Tip: For first order, $t = \\frac{2.303}{k}\\log\\frac{100}{100 - x}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3t$"
+    },
+    {
+     "key": "B",
+     "text": "$2t$"
+    },
+    {
+     "key": "C",
+     "text": "$t$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3t}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 80,
+   "topic": "Nanochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify a nanomaterial having all three dimensions less than 100 nm?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nNanomaterials are classed by how many dimensions lie in the nanoscale (1 to 100 nm).\n\nStep 2: Detailed Explanation\nThin films have one dimension (thickness) in the nanoscale.\nFibres and nanotubes have two dimensions (diameter) in the nanoscale and a long length.\nQuantum dots have all three dimensions in the nanoscale, so they are zero-dimensional nanomaterials.\n\nFinal Answer:\nQuantum dots have all three dimensions below 100 nm, option (C).\n$$\\boxed{\\text{Quantum dots (C)}}$$\n\nQuick Tip: Quantum dots are zero-dimensional nanomaterials, with all dimensions in the nanoscale.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Fibers"
+    },
+    {
+     "key": "B",
+     "text": "Thin films"
+    },
+    {
+     "key": "C",
+     "text": "Quantum dots"
+    },
+    {
+     "key": "D",
+     "text": "Nanotubes"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 81,
+   "topic": "Surface Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following is NOT an example of oil in water emulsion?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nIn an O/W emulsion, oil droplets are dispersed in water. In a W/O emulsion, water droplets are dispersed in oil.\n\nStep 2: Detailed Explanation\nMilk: fat droplets in water, O/W. Vanishing cream: O/W. Paint (as an emulsion paint): O/W.\nButter: tiny water droplets in a fat phase, so it is W/O.\nSo butter is the one that is not O/W.\n\nFinal Answer:\nButter is a water in oil emulsion, so the answer is option (B).\n$$\\boxed{\\text{Butter (B)}}$$\n\nQuick Tip: Butter is a water in oil emulsion; milk, paint and vanishing cream are oil in water type.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Paint"
+    },
+    {
+     "key": "B",
+     "text": "Butter"
+    },
+    {
+     "key": "C",
+     "text": "Vanishing cream"
+    },
+    {
+     "key": "D",
+     "text": "Milk"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 82,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following catalysts is used in contact process of industrial production of sulfuric acid using $\\mathrm{SO_2}$ and $\\mathrm{O_2}$ (air).",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nThe contact process makes sulphuric acid. The key step is $\\mathrm{2SO_2 + O_2 \\rightleftharpoons 2SO_3}$ on a solid catalyst.\n\nStep 2: Detailed Explanation\nAmong the options, platinised asbestos is the catalyst used for this step ($\\mathrm{V_2O_5}$ is the other common one).\nFinely divided nickel is used in hydrogenation. Co-Th is used in Fischer-Tropsch type synthesis. Fe-Cr is used for the water gas shift reaction.\n\nFinal Answer:\nThe catalyst is platinised asbestos, option (B).\n$$\\boxed{\\text{Platinised asbestos (B)}}$$\n\nQuick Tip: The contact process oxidises $\\mathrm{SO_2}$ to $\\mathrm{SO_3}$ over a catalyst of platinised asbestos or $\\mathrm{V_2O_5}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Ni (finely divided)"
+    },
+    {
+     "key": "B",
+     "text": "Platinised asbestos"
+    },
+    {
+     "key": "C",
+     "text": "Co-Th"
+    },
+    {
+     "key": "D",
+     "text": "Fe-Cr"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 83,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following compounds has lowest thermal stability?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nThermal stability of an interhalogen XX' depends on the strength of the X-X' bond. Bond strength decreases as the difference in size from the bonded atoms leads to poorer overlap and as the atoms get larger.\n\nStep 2: Detailed Explanation\nClF, BrF and BrCl contain smaller halogens, giving shorter bonds. In IBr, the large iodine atom makes a longer bond with poor overlap, so the bond is the weakest.\nThe weakest bond breaks most easily on heating, so IBr is the least stable.\n\nFinal Answer:\nIBr has the lowest thermal stability, option (A).\n$$\\boxed{\\mathrm{IBr}\\ \\text{(A)}}$$\n\nQuick Tip: Stability falls as the bond becomes longer and weaker; IBr has the largest, weakest bond.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{IBr}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{BrCl}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{BrF}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{ClF}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 84,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Why transition elements have more tendency to form interstitial compounds?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nInterstitial compounds form when small atoms such as H, B, C or N are trapped inside the lattice of a metal.\n\nStep 2: Detailed Explanation\nTransition metals have crystal lattices with vacant spaces (voids) between the atoms, and these spaces are the right size for small non-metal atoms.\nSo the tendency comes from the presence of interstitial sites in the lattice, which is statement (A).\n\nFinal Answer:\nThe cause is the presence of interstitial voids in the lattice, option (A).\n$$\\boxed{\\text{(A)}}$$\n\nQuick Tip: Small atoms like H, C, N fit into the voids in the metal lattice.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Presence of interstitial sites (voids) in the crystal lattice"
+    },
+    {
+     "key": "B",
+     "text": "They have reducing property"
+    },
+    {
+     "key": "C",
+     "text": "They have low ionization enthalpy"
+    },
+    {
+     "key": "D",
+     "text": "They have same atomic size."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 85,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is EAN of Co in $\\mathrm{[Co(NH_3)_6]^{3+}}$?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nEffective atomic number (EAN) is the total number of electrons around the central metal after accepting electron pairs from ligands.\n\nStep 2: Key Formula or Approach\n$$\\text{EAN} = Z - (\\text{oxidation state}) + 2 \\times (\\text{coordination number})$$\n\nStep 3: Detailed Explanation\nCo has $Z = 27$. The complex is $\\mathrm{[Co(NH_3)_6]^{3+}}$, so the oxidation state is $+3$ and the coordination number is 6.\n$$\\text{EAN} = 27 - 3 + 2(6) = 36$$\nThis equals the atomic number of krypton, a noble gas.\n\nFinal Answer:\nThe EAN of cobalt is 36, option (C).\n$$\\boxed{36\\ \\text{(C)}}$$\n\nQuick Tip: EAN = atomic number - oxidation state + 2 x coordination number.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "24"
+    },
+    {
+     "key": "B",
+     "text": "27"
+    },
+    {
+     "key": "C",
+     "text": "36"
+    },
+    {
+     "key": "D",
+     "text": "30"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 86,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the total number of complexes from following list having monodentate ligands in them\n(a) Tetracyanonickelate (II) ion\n(b) Potassium hexafluoroaluminate (III)\n(c) Tetraamminecopper(II) ion\n(d) Potassium trioxalatoaluminate (III)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA monodentate ligand binds the metal through one donor atom. Bidentate ligands bind through two.\n\nStep 2: Detailed Explanation\n(a) Tetracyanonickelate(II): $\\mathrm{CN^{-}}$ is monodentate.\n(b) Potassium hexafluoroaluminate(III): $\\mathrm{F^{-}}$ is monodentate.\n(c) Tetraamminecopper(II): $\\mathrm{NH_3}$ is monodentate.\n(d) Potassium trioxalatoaluminate(III): oxalate is bidentate, so this one is excluded.\nThree complexes, (a), (b) and (c), have only monodentate ligands.\n\nFinal Answer:\nThree of the listed complexes have monodentate ligands, option (B).\n$$\\boxed{3\\ \\text{(B)}}$$\n\nQuick Tip: Cyanide, fluoride and ammine are monodentate; oxalate is bidentate.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4"
+    },
+    {
+     "key": "B",
+     "text": "3"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 87,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following reactions is used for the preparation of alkyl fluorides from alkyl chlorides?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nHalogen exchange reactions swap one halogen for another.\n\nStep 2: Detailed Explanation\nSwarts reaction: $\\mathrm{R\\text{-}Cl + AgF \\rightarrow R\\text{-}F + AgCl}$. This is the fluoride preparation.\nFinkelstein reaction gives alkyl iodides using NaI in dry acetone.\nSandmeyer reaction converts diazonium salts to aryl halides with Cu(I) salts. Fittig reaction joins aryl halides with sodium to give biaryls.\n\nFinal Answer:\nThe alkyl fluoride preparation is the Swarts reaction, option (C).\n$$\\boxed{\\text{Swarts reaction (C)}}$$\n\nQuick Tip: Swarts reaction converts alkyl chlorides or bromides to fluorides using metallic fluorides like AgF.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Sandmeyeres reaction"
+    },
+    {
+     "key": "B",
+     "text": "Fittig reaction"
+    },
+    {
+     "key": "C",
+     "text": "Swartz reaction"
+    },
+    {
+     "key": "D",
+     "text": "Finkelstein reaction"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 88,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which among the following is allylic halide?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nIn an allylic halide the halogen is attached to an $sp^{3}$ carbon that is next to a carbon-carbon double bond.\n\nStep 2: Detailed Explanation\n(A) $\\mathrm{CH_3CH_2CH_2X}$ has no double bond: ordinary alkyl halide.\n(B) $\\mathrm{C_6H_5CH_2X}$: halogen on the carbon next to a benzene ring, a benzylic halide.\n(C) $\\mathrm{CH_2 = CH\\text{-}CH_2X}$: halogen on the $sp^{3}$ carbon next to the double bond, so allylic.\n(D) $\\mathrm{CH_3CH{=}CH\\text{-}X}$: halogen on the double bond carbon itself, a vinylic halide.\n\nFinal Answer:\nCompound (C) is the allylic halide, option (C).\n$$\\boxed{\\text{(C)}}$$\n\nQuick Tip: An allylic halide has the halogen on a carbon adjacent to a C=C double bond.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3 - CH_2 - CH_2 - X}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{C_6H_5 - CH_2 - X}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CH_2 = CH - CH_2 - X}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{CH_3 - CH = CH - X}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 89,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify ' Z' in the following reaction.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nThe figure shows Ar-OH reacting with an acyl chloride $\\mathrm{Cl\\text{-}CO\\text{-}R}$ in the presence of pyridine, giving Z and HCl. This is acylation of phenol.\n\nStep 2: Detailed Explanation\nThe OH oxygen attacks the carbonyl carbon and chloride leaves. The acyl group replaces the hydrogen of OH, forming an ester in which the aryl group is on the oxygen: $\\mathrm{R\\text{-}CO\\text{-}O\\text{-}Ar}$.\nPyridine takes up the HCl formed, which pushes the reaction forward.\nThe option that shows R-C(=O)-O-Ar is the third structure (C). The structure Ar-CO-OR (B) has the aryl group on carbon and so is an ester of an aromatic acid, and Ar-CO-R (D) is a ketone.\n\nFinal Answer:\nZ is the phenyl ester $\\mathrm{R\\text{-}CO\\text{-}O\\text{-}Ar}$, option (C).\n$$\\boxed{\\mathrm{R\\text{-}CO\\text{-}O\\text{-}Ar}\\ \\text{(C)}}$$\n\nQuick Tip: Phenol with an acid chloride in pyridine gives a phenyl ester, $\\mathrm{RCOOAr}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Ar - O - R}$"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "m26-17apr-s1-q089-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "m26-17apr-s1-q089-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "m26-17apr-s1-q089-optD.png"
+    }
+   ],
+   "stem_figure": "m26-17apr-s1-q089.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 90,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify trihydric phenol from following.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nPhenols are classed by the number of OH groups on the ring: monohydric (1), dihydric (2), trihydric (3).\n\nStep 2: Detailed Explanation\nHydroquinone (1,4-dihydroxybenzene) has two OH groups. Catechol (1,2-dihydroxybenzene) has two. O-cresol (2-methylphenol) has one.\nPyrogallol (1,2,3-trihydroxybenzene) has three OH groups, so it is trihydric.\n\nFinal Answer:\nPyrogallol is the trihydric phenol, option (D).\n$$\\boxed{\\text{Pyrogallol (D)}}$$\n\nQuick Tip: Pyrogallol has three OH groups on the benzene ring.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Hydroquinone"
+    },
+    {
+     "key": "B",
+     "text": "Catechol"
+    },
+    {
+     "key": "C",
+     "text": "O-Cresol"
+    },
+    {
+     "key": "D",
+     "text": "Pyrogallol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 91,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from the following is a correct decreasing order of boiling points for following organic compounds ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nFor compounds of similar molar mass, boiling points depend on intermolecular forces. Hydrogen bonding is the strongest, then dipole-dipole forces.\n\nStep 2: Detailed Explanation\nCarboxylic acids form strong hydrogen bonds and exist as dimers, giving the highest boiling points.\nAlcohols form hydrogen bonds, but weaker than the acid dimers.\nKetones and aldehydes have no hydrogen bonding between their own molecules, only dipole-dipole forces. Ketones have a slightly larger dipole due to two electron-donating alkyl groups, so ketones boil higher than aldehydes.\nOrder: acid > alcohol > ketone > aldehyde.\n\nFinal Answer:\nThe correct decreasing order is acid, alcohol, ketone, aldehyde, option (B).\n$$\\boxed{\\text{Acid} > \\text{Alcohol} > \\text{Ketone} > \\text{Aldehyde (B)}}$$\n\nQuick Tip: Boiling point order follows hydrogen bonding: acid, then alcohol, then ketone, then aldehyde.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Aldehyde > Ketone > Alcohol > Carboxylic acid"
+    },
+    {
+     "key": "B",
+     "text": "Carboxylic acid > Alcohol > Ketone > Aldehyde"
+    },
+    {
+     "key": "C",
+     "text": "Ketone > Aldehyde > Carboxylic acid > Alcohol"
+    },
+    {
+     "key": "D",
+     "text": "Alcohol > Aldehyde > Ketone > Carboxylic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 92,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When will be the acidic character of carboxylic acid higher in following cases ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\n$K_a$ measures how far an acid ionises. $pK_a = -\\log K_a$, so the two move in opposite directions.\n\nStep 2: Detailed Explanation\nA larger $K_a$ means more ionisation and hence a stronger acid. Since $pK_a = -\\log K_a$, a larger $K_a$ gives a smaller $pK_a$.\nSo higher acidic character goes with higher $K_a$ and lower $pK_a$, which is option (C).\nOptions (A), (B) and (D) pair the values in ways that cannot hold, because $K_a$ and $pK_a$ cannot both be lower or both be higher.\n\nFinal Answer:\nAcidity is greater when $K_a$ is higher and $pK_a$ is lower, option (C).\n$$\\boxed{\\text{High } K_a,\\ \\text{low } pK_a\\ \\text{(C)}}$$\n\nQuick Tip: A stronger acid has a larger $K_a$ and a smaller $pK_a$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Lower $K_a$ and $pK_a$ values"
+    },
+    {
+     "key": "B",
+     "text": "Lower $K_a$ value and higher $pK_a$ value"
+    },
+    {
+     "key": "C",
+     "text": "Higher $K_a$ value and lower $pK_a$ value"
+    },
+    {
+     "key": "D",
+     "text": "Higher $K_a$ and $pK_a$ values"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 93,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the major product obtained when ethyl amine is reacted with excess of methyl iodide ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nAmines react with alkyl halides by nucleophilic substitution. With excess alkyl halide the reaction goes on until the nitrogen carries four groups (exhaustive alkylation).\n\nStep 2: Detailed Explanation\n$\\mathrm{C_2H_5NH_2 \\rightarrow C_2H_5NHCH_3 \\rightarrow C_2H_5N(CH_3)_2 \\rightarrow [C_2H_5N(CH_3)_3]^{+}I^{-}}$.\nEach step adds one methyl group. After three methylations the nitrogen has the ethyl group and three methyl groups.\nThe final product is ethyltrimethylammonium iodide. The ethyl group stays, so tetramethylammonium iodide cannot form.\n\nFinal Answer:\nThe major product is ethyltrimethylammonium iodide, option (B).\n$$\\boxed{\\text{Ethyltrimethylammonium iodide (B)}}$$\n\nQuick Tip: Excess $\\mathrm{CH_3I}$ alkylates the amine fully, giving a quaternary ammonium salt.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Tetramethylammonium iodide"
+    },
+    {
+     "key": "B",
+     "text": "Ethyltrimethylammonium iodide"
+    },
+    {
+     "key": "C",
+     "text": "Ethyldimethylamine"
+    },
+    {
+     "key": "D",
+     "text": "Ethylmethylamine"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 94,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify correct decreasing order of basic strength of amines",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nBasic strength depends on the availability of the nitrogen lone pair. Alkyl groups push electrons and make the lone pair more available. In aniline the lone pair is delocalised into the ring.\n\nStep 2: Detailed Explanation\nDimethylamine has two electron-donating methyl groups, so it is more basic than methylamine.\nMethylamine is more basic than ammonia, which has no alkyl group.\nAniline is the weakest base, as the lone pair is spread over the benzene ring by resonance.\nOrder: $\\mathrm{(CH_3)_2NH > CH_3NH_2 > NH_3 > C_6H_5NH_2}$.\n\nFinal Answer:\nThe order is dimethylamine, methylamine, ammonia, aniline, option (B).\n$$\\boxed{\\mathrm{(CH_3)_2NH > CH_3NH_2 > NH_3 > C_6H_5NH_2}\\ \\text{(B)}}$$\n\nQuick Tip: Aliphatic amines are stronger bases than ammonia, which is stronger than aniline.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3NH_2 > (CH_3)_2NH > C_6H_5NH_2 > NH_3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{(CH_3)_2NH > CH_3NH_2 > NH_3 > C_6H_5NH_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{NH_3 > CH_3NH_2 > (CH_3)_2NH > C_6H_5NH_2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{C_6H_5NH_2 > (CH_3)_2NH > CH_3NH_2 > NH_3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 95,
+   "topic": "Green Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following compounds is used to prepare adipic acid, enzymatically in Green technology developed by Darth and Frost?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nConventional adipic acid synthesis uses benzene, a carcinogenic feedstock. Draths and Frost developed an alternative route.\n\nStep 2: Detailed Explanation\nIn their method, glucose, a renewable carbohydrate, is converted by a genetically modified microbe (E. coli) to cis,cis-muconic acid.\nCatalytic hydrogenation of this acid then gives adipic acid.\nSo glucose is the starting compound.\n\nFinal Answer:\nGlucose is used in the green synthesis of adipic acid, option (B).\n$$\\boxed{\\text{Glucose (B)}}$$\n\nQuick Tip: Draths and Frost developed a green route to adipic acid from glucose using genetically modified bacteria.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Sucrose"
+    },
+    {
+     "key": "B",
+     "text": "Glucose"
+    },
+    {
+     "key": "C",
+     "text": "Lactose"
+    },
+    {
+     "key": "D",
+     "text": "Maltose"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 96,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which carbon atom (numbered from 1' to 5') of ribose lacks the oxygen to form deoxyribose ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nRibose is the sugar of RNA and deoxyribose is the sugar of DNA. The name means a sugar with one oxygen removed.\n\nStep 2: Detailed Explanation\nIn ribose the carbons 2' and 3' both carry an OH group. In deoxyribose the OH at the 2' position is replaced by H.\nThe 3' OH remains (it forms the phosphodiester link) and the 5' carbon carries a $\\mathrm{CH_2OH}$ group.\n\nFinal Answer:\nThe 2' carbon lacks the oxygen in deoxyribose, option (C).\n$$\\boxed{2'\\ \\text{(C)}}$$\n\nQuick Tip: Deoxyribose has no OH on the 2' carbon.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5'"
+    },
+    {
+     "key": "B",
+     "text": "3'"
+    },
+    {
+     "key": "C",
+     "text": "2'"
+    },
+    {
+     "key": "D",
+     "text": "1'"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 97,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following amino acids does NOT contain chiral carbon?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nA chiral carbon is bonded to four different groups.\n\nStep 2: Detailed Explanation\nThe alpha carbon of an amino acid carries $\\mathrm{NH_2}$, COOH, H and the side chain R.\nIn glycine, R is H, so the alpha carbon has two identical H atoms and is not chiral.\nValine, alanine and isoleucine have different R groups (isopropyl, methyl, sec-butyl), so their alpha carbons are chiral. Isoleucine has one more chiral carbon in its side chain.\n\nFinal Answer:\nGlycine contains no chiral carbon, option (C).\n$$\\boxed{\\text{Glycine (C)}}$$\n\nQuick Tip: Glycine has two hydrogens on its alpha carbon, so it is not chiral.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Valine"
+    },
+    {
+     "key": "B",
+     "text": "Alanine"
+    },
+    {
+     "key": "C",
+     "text": "Glycine"
+    },
+    {
+     "key": "D",
+     "text": "Isoleucine"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 98,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following oils is mainly a saturated fats?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nOils rich in saturated fatty acids are solid or semi-solid at cool temperature, while oils rich in unsaturated fatty acids stay liquid.\n\nStep 2: Detailed Explanation\nCoconut oil contains about 90 percent saturated fatty acids, mainly lauric acid.\nOlive oil is mainly monounsaturated (oleic acid). Safflower oil is mainly polyunsaturated (linoleic acid). Fish oil is rich in polyunsaturated omega-3 acids.\n\nFinal Answer:\nCoconut oil is mainly saturated, option (A).\n$$\\boxed{\\text{Coconut oil (A)}}$$\n\nQuick Tip: Coconut oil is rich in saturated fatty acids like lauric acid.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Coconut oil"
+    },
+    {
+     "key": "B",
+     "text": "Olive oil"
+    },
+    {
+     "key": "C",
+     "text": "Safflower oil"
+    },
+    {
+     "key": "D",
+     "text": "Fish oil"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 99,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following is a homopolymer ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nHomopolymers have one kind of repeating unit. Copolymers are made from two or more monomers.\n\nStep 2: Detailed Explanation\nPolyacrylonitrile is made from acrylonitrile alone, so it is a homopolymer.\nBuna-N is made from butadiene and acrylonitrile, so it is a copolymer.\nUrea-formaldehyde resin is made from urea and formaldehyde, and polycarbonate is made from bisphenol-A and a carbonate source, so both come from two monomers.\n\nFinal Answer:\nPolyacrylonitrile is the homopolymer, option (A).\n$$\\boxed{\\text{Polyacrylonitrile (A)}}$$\n\nQuick Tip: A homopolymer is made from one type of monomer; polyacrylonitrile comes from acrylonitrile only.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Polyacrylonitrile"
+    },
+    {
+     "key": "B",
+     "text": "Buna - N"
+    },
+    {
+     "key": "C",
+     "text": "Urea formaldehyde resin"
+    },
+    {
+     "key": "D",
+     "text": "Polycarbonate"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 100,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following polymers is used to obtain articles like rain coats?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept\nEach option is the repeating unit of a different polymer.\n\nStep 2: Detailed Explanation\n(A) Polythene: bags, bottles. (B) Polyacrylonitrile (orlon): fibres. (C) PVC, with Cl on alternate carbons: raincoats, hand bags, vinyl flooring. (D) Teflon: non-stick coating.\nSo raincoats are made from PVC, option (C).\n\nFinal Answer:\nPVC is used for raincoats, option (C).\n$$\\boxed{\\text{PVC (C)}}$$\n\nQuick Tip: Polyvinyl chloride (PVC) is used for raincoats, pipes and similar items.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\left[\\mathrm{CH_2 - CH_2}\\right]-_{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\left[\\mathrm{CH_2 - \\underset{CN}{CH}}\\right]-_{n}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\left[\\mathrm{CH_2 - \\underset{Cl}{CH}}\\right]-_{n}$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\left[\\mathrm{CF_2 - CF_2}\\right]-_{n}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

@@ -1,0 +1,1835 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Chemistry",
+  "year": 2026,
+  "set_label": "17 April · Shift 2",
+  "title": "MHT-CET 2026 · Chemistry · 17 April Shift 2",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "+1 correct · no negative marking",
+  "sort_order": 20,
+  "duration_mins": 60,
+  "source_file_id": "1qBRy-flO4crqkFO5s3C8NAfvxipxg2qp"
+ },
+ "questions": [
+  {
+   "q_no": 51,
+   "topic": "Some Basic Concepts of Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "How many moles of potassium chlorate are heated to produce $11.2\\ \\mathrm{L}$ oxygen at STP ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nHeating potassium chlorate decomposes it into potassium chloride and oxygen. We need the moles of $\\mathrm{KClO_3}$ that give $11.2\\ \\mathrm{L}$ of $\\mathrm{O_2}$ at STP. At STP one mole of any gas occupies $22.4\\ \\mathrm{L}$.\n\nStep 2: Key Formula or Approach:\n$$\\mathrm{2KClO_3 \\rightarrow 2KCl + 3O_2}$$\nSo 2 mol of $\\mathrm{KClO_3}$ give 3 mol of $\\mathrm{O_2}$.\n\nStep 3: Detailed Explanation:\nMoles of $\\mathrm{O_2}$ formed:\n$$n(\\mathrm{O_2}) = \\frac{11.2}{22.4} = 0.5\\ \\mathrm{mol}$$\nFrom the equation, $n(\\mathrm{KClO_3}) = \\frac{2}{3} \\times n(\\mathrm{O_2})$.\n$$n(\\mathrm{KClO_3}) = \\frac{2}{3} \\times 0.5 = \\frac{1}{3}\\ \\mathrm{mol}$$\nThe value $\\frac{1}{2}$ would come from a 1:1 ratio and $\\frac{2}{3}$ from inverting the ratio, so neither fits the balanced equation.\n\nFinal Answer:\nMoles of potassium chlorate needed are one third of a mole, option (B).\n$$\\boxed{\\frac{1}{3}\\ \\mathrm{mol}}$$\n\nQuick Tip: Write the decomposition equation and use 22.4 L per mole at STP.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$ mole"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3}$ mole"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4}$ mole"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{3}$ mole"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 52,
+   "topic": "Structure of Atom",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Find the energy of third stationary orbit of Bohr's model of hydrogen atom if the energy of ground state is $-E$ J",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe energy of an electron in the $n^{th}$ Bohr orbit of hydrogen is inversely proportional to $n^{2}$. The ground state is $n = 1$ and the third orbit is $n = 3$.\n\nStep 2: Key Formula or Approach:\n$$E_{n} = -\\frac{13.6}{n^{2}}\\ \\mathrm{eV} = \\frac{E_{1}}{n^{2}}$$\nHere $E_{1} = -E$ J is the ground state energy.\n\nStep 3: Detailed Explanation:\nFor the third stationary orbit, $n = 3$.\n$$E_{3} = \\frac{E_{1}}{3^{2}} = \\frac{-E}{9}$$\nOption (A) corresponds to $n^{2} = 2$, option (B) to $n = 2$ (second orbit) and option (D) to $n = 4$ (fourth orbit). None of these is the third orbit.\n\nFinal Answer:\nThe energy of the third orbit is one ninth of the ground state energy, so option (C) is correct.\n$$\\boxed{-\\frac{E}{9}\\ \\mathrm{J}}$$\n\nQuick Tip: In a hydrogen atom the orbit energy varies as 1/n squared.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{E}{2}$ J"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{E}{4}$ J"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{E}{9}$ J"
+    },
+    {
+     "key": "D",
+     "text": "$-\\frac{E}{16}$ J"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 53,
+   "topic": "Chemical Bonding and Molecular Structure",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following statements regarding Pi ($\\pi$) bond is NOT true ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA pi ($\\pi$) bond forms when two half filled p orbitals overlap sideways (laterally). It always forms after a sigma bond has already been formed along the internuclear axis.\n\nStep 2: Check statement (A):\nLateral overlap is less effective than head-on overlap, so the pi bond is weaker than the sigma bond. (A) is TRUE.\n\nStep 3: Check statements (B) and (C):\nPi bonds form by lateral overlap of two half filled p orbitals, so (B) is TRUE. The sigma bond forms first and the pi bond follows, so (C) is TRUE.\n\nStep 4: Check statement (D):\nAdding a pi bond between two atoms increases the electron density between the nuclei and pulls them closer. For example, carbon-carbon bond length falls from 154 pm (single) to 134 pm (double) to 120 pm (triple). So the pi bond decreases the bond length and (D) is NOT true.\n\nFinal Answer:\nThe statement that is not true is (D).\n$$\\boxed{\\text{(D)}}$$\n\nQuick Tip: A pi bond adds to bonding between two atoms, so it pulls them closer.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It is weaker than sigma bond."
+    },
+    {
+     "key": "B",
+     "text": "It is formed by lateral overlapping of two half filled P orbitals."
+    },
+    {
+     "key": "C",
+     "text": "It is formed after the formation of sigma bond."
+    },
+    {
+     "key": "D",
+     "text": "The presence of Pi ($\\pi$) bond increases the bond length of covalent bond."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 54,
+   "topic": "Chemical Bonding and Molecular Structure",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the number of lone pair and bond pair electrons present in the valence shell of central atom in $\\mathrm{BrF_3}$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn $\\mathrm{BrF_3}$ the central atom is bromine. It has 7 valence electrons (group 17). Three of them pair with fluorine atoms to form three Br-F bonds.\n\nStep 2: Key Formula or Approach:\nBond pairs = number of atoms bonded to the central atom = 3.\nLone pairs = $\\frac{7-3}{2} = 2$.\n\nStep 3: Detailed Explanation:\nBromine uses 3 of its 7 electrons for bonding, leaving 4 electrons, which form 2 lone pairs.\nSo the valence shell has 3 bond pairs and 2 lone pairs, five electron pairs in total. The shape is T-shaped (trigonal bipyramidal arrangement with the two lone pairs in equatorial positions).\nOptions with only 1 lone pair, or with only 2 bond pairs, do not match three Br-F bonds and seven valence electrons.\n\nFinal Answer:\nCentral bromine carries 2 lone pairs and 3 bond pairs, option (C).\n$$\\boxed{\\text{2 lone pairs and 3 bond pairs}}$$\n\nQuick Tip: Count valence electrons of Br and subtract those used for three Br-F bonds.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1 _ Lone pair and 2 _ Bond pair of electrons"
+    },
+    {
+     "key": "B",
+     "text": "2 _ Lone pair and 2 _ Bond pair of electrons"
+    },
+    {
+     "key": "C",
+     "text": "2 _ Lone pair and 3 _ Bond pair of electrons"
+    },
+    {
+     "key": "D",
+     "text": "1 _ Lone pair and 3 _ Bond pair of electrons"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 55,
+   "topic": "States of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A gas at $10\\ ^\\circ\\mathrm{C}$ occupies a volume of 283 mL. if it is heated to $20\\ ^\\circ\\mathrm{C}$ keeping the pressure constant. What is the new volume of gas ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAt constant pressure, the volume of a fixed amount of gas is directly proportional to its absolute (Kelvin) temperature. This is Charles' law.\n\nStep 2: Key Formula or Approach:\n$$\\frac{V_{1}}{T_{1}} = \\frac{V_{2}}{T_{2}}$$\nConvert the temperatures: $T_{1} = 10 + 273 = 283$ K and $T_{2} = 20 + 273 = 293$ K.\n\nStep 3: Detailed Explanation:\n$$V_{2} = V_{1} \\times \\frac{T_{2}}{T_{1}} = 283 \\times \\frac{293}{283} = 293\\ \\mathrm{mL}$$\nDoubling the Celsius temperature would wrongly give 566 mL (option A), but Charles' law needs Kelvin. The volume rises by only about 3.5 percent, so 450 and 350 mL are far too large.\n\nFinal Answer:\nThe new volume is 293 mL, option (D).\n$$\\boxed{293\\ \\mathrm{mL}}$$\n\nQuick Tip: At constant pressure the volume is proportional to the Kelvin temperature.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$566\\ \\mathrm{mL}$"
+    },
+    {
+     "key": "B",
+     "text": "$450\\ \\mathrm{mL}$"
+    },
+    {
+     "key": "C",
+     "text": "$350\\ \\mathrm{mL}$"
+    },
+    {
+     "key": "D",
+     "text": "$293\\ \\mathrm{mL}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 56,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the quantity of heat released from system when 2 moles of and ideal gas compressed isothermally from volume $25\\ \\mathrm{dm^{3}}$ to $10\\ \\mathrm{dm^{3}}$ at constant external pressure 4 bar.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe compression is isothermal, and for an ideal gas the internal energy depends only on temperature. So $\\Delta U = 0$ and the first law gives $q = -w$.\n\nStep 2: Key Formula or Approach:\nWork done on the gas against a constant external pressure: $w = -p_{ex}(V_{2} - V_{1})$.\nUse 1 bar $\\times$ 1 $\\mathrm{dm^{3}}$ = 100 J.\n\nStep 3: Detailed Explanation:\n$V_{2} - V_{1} = 10 - 25 = -15\\ \\mathrm{dm^{3}}$.\n$$w = -4 \\times (-15) = +60\\ \\mathrm{bar\\ dm^{3}} = 60 \\times 100 = 6000\\ \\mathrm{J} = +6.0\\ \\mathrm{kJ}$$\nThe sign is positive, so 6.0 kJ of work is done on the system. Since $\\Delta U = q + w = 0$:\n$$q = -6.0\\ \\mathrm{kJ}$$\nThe negative sign means 6.0 kJ of heat is released by the system. The number of moles (2) is not needed because the pressure is constant and the volumes are given.\n\nFinal Answer:\nHeat released is 6.0 kJ, option (D).\n$$\\boxed{6.0\\ \\mathrm{kJ}}$$\n\nQuick Tip: For an ideal gas at constant temperature the internal energy does not change, so q = -w.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5.5\\ \\mathrm{kJ}$"
+    },
+    {
+     "key": "B",
+     "text": "$5.0\\ \\mathrm{kJ}$"
+    },
+    {
+     "key": "C",
+     "text": "$6.5\\ \\mathrm{kJ}$"
+    },
+    {
+     "key": "D",
+     "text": "$6.0\\ \\mathrm{kJ}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 57,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the standard enthalpy of combustion of carbon monoxide if\n$\\Delta_{f}H^\\circ(\\mathrm{CO}) = -110\\ \\mathrm{kJ\\,mol^{-1}}$\n$\\Delta_{f}H^\\circ(\\mathrm{CO_2}) = -393\\ \\mathrm{kJ\\,mol^{-1}}$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nCombustion of carbon monoxide is $\\mathrm{CO + \\frac{1}{2}O_2 \\rightarrow CO_2}$. The enthalpy of formation of $\\mathrm{O_2}$ (an element in its standard state) is zero.\n\nStep 2: Key Formula or Approach:\n$$\\Delta_{c}H^\\circ = \\sum \\Delta_{f}H^\\circ(\\text{products}) - \\sum \\Delta_{f}H^\\circ(\\text{reactants})$$\n\nStep 3: Detailed Explanation:\n$$\\Delta_{c}H^\\circ = \\Delta_{f}H^\\circ(\\mathrm{CO_2}) - \\left[\\Delta_{f}H^\\circ(\\mathrm{CO}) + \\tfrac{1}{2}\\Delta_{f}H^\\circ(\\mathrm{O_2})\\right]$$\n$$= -393 - (-110 + 0) = -283\\ \\mathrm{kJ\\,mol^{-1}}$$\nOption (A), -503, adds the two values instead of subtracting. Option (B) is the formation enthalpy of CO itself, and (D), -383, comes from a slip in arithmetic.\n\nFinal Answer:\nThe enthalpy of combustion of CO is -283 kJ per mole, option (C).\n$$\\boxed{-283\\ \\mathrm{kJ\\,mol^{-1}}}$$\n\nQuick Tip: Combustion of CO gives CO2, so subtract the enthalpy of formation of CO from that of CO2.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-503\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$-110\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$-283\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$-383\\ \\mathrm{kJ\\,mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 58,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following processes is an endothermic ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAn endothermic process absorbs heat from the surroundings, so $\\Delta H$ is positive. An exothermic process releases heat.\n\nStep 2: Check option (A):\nMixing aqueous NaOH and HCl is neutralisation, which releases about 57 kJ per mole of water formed. It is exothermic.\n\nStep 3: Check option (B):\nFormation of ammonia by the Haber process, $\\mathrm{N_2 + 3H_2 \\rightarrow 2NH_3}$, has $\\Delta H = -92$ kJ. It is exothermic.\n\nStep 4: Check options (C) and (D):\nIce melting needs heat to break hydrogen bonds in the solid (fusion), so it is endothermic. Freezing of water is the reverse and releases heat, so it is exothermic.\n\nFinal Answer:\nOnly melting of ice absorbs heat, so option (C) is correct.\n$$\\boxed{\\text{(C) Ice melts at room temperature}}$$\n\nQuick Tip: An endothermic process absorbs heat from the surroundings.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "The aqueous NaOH and HCl solutions mixed together."
+    },
+    {
+     "key": "B",
+     "text": "Formation of ammonia by Haber process."
+    },
+    {
+     "key": "C",
+     "text": "Ice melts at room temperature."
+    },
+    {
+     "key": "D",
+     "text": "The freezing of liquid water."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 59,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The solubility of sapringly soluble salt $\\mathrm{AB_2}$ is $18.78 \\times 10^{-4}\\ \\mathrm{g/dm^{3}}$ What is its solubility product ? (Molar mass of $\\mathrm{AB_2} = 187.8\\ \\mathrm{g\\,mol^{-1}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\n$\\mathrm{AB_2}$ dissociates as $\\mathrm{AB_2 \\rightleftharpoons A^{2+} + 2B^{-}}$. If the solubility is $S$ mol $\\mathrm{dm^{-3}}$, then $[\\mathrm{A^{2+}}] = S$ and $[\\mathrm{B^{-}}] = 2S$.\n\nStep 2: Convert solubility to molar units:\n$$S = \\frac{18.78 \\times 10^{-4}}{187.8} = 1 \\times 10^{-5}\\ \\mathrm{mol\\ dm^{-3}}$$\n\nStep 3: Find the solubility product:\n$$K_{sp} = [\\mathrm{A^{2+}}][\\mathrm{B^{-}}]^{2} = S \\cdot (2S)^{2} = 4S^{3}$$\n$$K_{sp} = 4 \\times (10^{-5})^{3} = 4 \\times 10^{-15}$$\nForgetting the factor 4 gives $1 \\times 10^{-15}$, which is not an option, so the factor 4 from $(2S)^{2}$ matters.\n\nFinal Answer:\nThe solubility product is $4 \\times 10^{-15}$, option (B).\n$$\\boxed{4 \\times 10^{-15}}$$\n\nQuick Tip: Convert g per dm3 to mol per dm3 and use Ksp = 4S cubed.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2 \\times 10^{-15}$"
+    },
+    {
+     "key": "B",
+     "text": "$4 \\times 10^{-15}$"
+    },
+    {
+     "key": "C",
+     "text": "$6 \\times 10^{-15}$"
+    },
+    {
+     "key": "D",
+     "text": "$8 \\times 10^{-15}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 60,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the pH of resulting solution when $20\\ \\mathrm{mL}\\ \\frac{M}{10}$ NaOH and $10\\ \\mathrm{mL}\\ \\frac{M}{10}\\ \\mathrm{H_2SO_4}$ are mixed together ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNaOH is a monoacidic base and $\\mathrm{H_2SO_4}$ is a dibasic acid. We must compare the moles of $\\mathrm{OH^{-}}$ with those of $\\mathrm{H^{+}}$.\n\nStep 2: Moles of each:\nMoles of NaOH = $20 \\times 0.1 = 2$ millimol, so $\\mathrm{OH^{-}}$ = 2 millimol.\nMoles of $\\mathrm{H_2SO_4}$ = $10 \\times 0.1 = 1$ millimol, giving $\\mathrm{H^{+}}$ = 2 millimol.\n\nStep 3: Neutralisation:\n$$\\mathrm{2NaOH + H_2SO_4 \\rightarrow Na_2SO_4 + 2H_2O}$$\nThe $\\mathrm{OH^{-}}$ and $\\mathrm{H^{+}}$ are exactly equal, so both are used up completely. The resulting solution is sodium sulphate, a salt of a strong acid and strong base, which does not hydrolyse. So $[\\mathrm{H^{+}}] = 10^{-7}$ and pH = 7.\npH 0, 2 or 10 would need leftover acid or base, which does not happen here.\n\nFinal Answer:\nThe solution is neutral, so pH = 7, option (C).\n$$\\boxed{\\mathrm{pH} = 7}$$\n\nQuick Tip: Compare the moles of OH- with the moles of H+ before finding pH.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 61,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is correct relationship between solubility and solubility product for silver oxalate ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nSilver oxalate is $\\mathrm{Ag_2C_2O_4}$. It dissociates as $\\mathrm{Ag_2C_2O_4 \\rightleftharpoons 2Ag^{+} + C_2O_4^{2-}}$.\n\nStep 2: Express ions in solubility S:\n$[\\mathrm{Ag^{+}}] = 2S$ and $[\\mathrm{C_2O_4^{2-}}] = S$.\n\nStep 3: Detailed Explanation:\n$$K_{sp} = (2S)^{2} \\cdot S = 4S^{3}$$\n$$S^{3} = \\frac{K_{sp}}{4} \\Rightarrow S = \\sqrt[3]{\\frac{K_{sp}}{4}}$$\nOption (A) multiplies instead of dividing, option (B) inverts the fraction, and option (D) has a fourth root, which does not follow from $K_{sp} = 4S^{3}$.\n\nFinal Answer:\nThe correct relation is $S = \\sqrt[3]{K_{sp}/4}$, option (C).\n$$\\boxed{S = \\sqrt[3]{\\frac{K_{sp}}{4}}}$$\n\nQuick Tip: Write the dissociation of Ag2C2O4 and express Ksp in terms of S.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$S = \\sqrt[3]{K_{sp} \\times 4}$"
+    },
+    {
+     "key": "B",
+     "text": "$S = \\sqrt[3]{\\frac{4}{K_{sp}}}$"
+    },
+    {
+     "key": "C",
+     "text": "$S = \\sqrt[3]{\\frac{K_{sp}}{4}}$"
+    },
+    {
+     "key": "D",
+     "text": "$S = \\sqrt[4]{\\frac{K_{sp}}{27}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 62,
+   "topic": "Redox Reactions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify oxidation number of Sulphur respectively in $\\mathrm{SO_2}$ and $\\mathrm{SO_4^{2-}}$ .",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe sum of oxidation numbers of all atoms in a species equals its charge. Oxygen is -2 here.\n\nStep 2: Oxidation number in sulphur dioxide:\nLet the oxidation number of S be $x$: $x + 2(-2) = 0$, so $x = +4$.\n\nStep 3: Oxidation number in the sulphate ion:\n$x + 4(-2) = -2$, so $x = +6$.\n\nFinal Answer:\nSulphur has oxidation numbers +4 and +6, option (B). Option (A) reverses the order, while +3 does not occur in either.\n$$\\boxed{+4,\\ +6}$$\n\nQuick Tip: Fix oxygen at -2 and make the sum equal the total charge.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$+6, +4$"
+    },
+    {
+     "key": "B",
+     "text": "$+4, +6$"
+    },
+    {
+     "key": "C",
+     "text": "$+4, +3$"
+    },
+    {
+     "key": "D",
+     "text": "$+3, +4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 63,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify colour change when NaCl solution is titrated against $\\mathrm{AgNO_3}$ solution using fluorescein indicator.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nTitration of chloride with silver nitrate using fluorescein is the Fajans method. Fluorescein is an adsorption indicator, and the colour change occurs on the surface of the AgCl precipitate.\n\nStep 2: Before the end point:\nChloride ions are in excess, so AgCl adsorbs $\\mathrm{Cl^{-}}$ and becomes negatively charged. The fluorescein anion is repelled, so the solution stays pale yellow (yellowish green).\n\nStep 3: At the end point:\nAfter all chloride is used, one extra drop of $\\mathrm{Ag^{+}}$ makes the precipitate positively charged. The fluorescein anions are now adsorbed on it, forming a reddish pink coloured surface complex.\nSo the colour changes from pale yellow to reddish pink. A change from colourless would not apply, because the fluorescein solution is already yellow.\n\nFinal Answer:\nThe colour change is pale yellow to reddish pink, option (C).\n$$\\boxed{\\text{Pale yellow to reddish pink}}$$\n\nQuick Tip: Fluorescein is an adsorption indicator, so the colour change happens on the precipitate surface.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Colourless to pale yellow"
+    },
+    {
+     "key": "B",
+     "text": "Reddish pink to pale yellow"
+    },
+    {
+     "key": "C",
+     "text": "Pale yellow to reddish pink"
+    },
+    {
+     "key": "D",
+     "text": "Colourless to reddish pink"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 64,
+   "topic": "s-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from the following metal chlorides does not contain water of crystallisation ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nSalts of small cations with high charge density hydrate easily because the cation strongly attracts water molecules. A large cation with low charge density, such as Cs, holds water poorly.\n\nStep 2: Look at each chloride:\nLiCl crystallises as $\\mathrm{LiCl \\cdot 2H_2O}$ (Li is small). $\\mathrm{MgCl_2}$ crystallises as $\\mathrm{MgCl_2 \\cdot 6H_2O}$. $\\mathrm{BeCl_2}$ forms a hydrate, $\\mathrm{BeCl_2 \\cdot 4H_2O}$.\n\nStep 3: Caesium chloride:\nCs is the largest of these cations and has the lowest charge density, so $\\mathrm{CsCl}$ crystallises in the anhydrous form. So CsCl is the chloride with no water of crystallisation.\n\nFinal Answer:\nCsCl is anhydrous, so option (C) is correct.\n$$\\boxed{\\mathrm{CsCl}}$$\n\nQuick Tip: Small, highly polarising cations hold water of hydration; large cations do not.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{LiCl}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{MgCl_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CsCl}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{BeCl_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 65,
+   "topic": "Organic Chemistry: Basic Principles and Techniques",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the name of second lower homologue of $\\mathrm{CH_3(CH_2)_2COOH}$ ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nHomologues in a series differ by a $\\mathrm{-CH_2-}$ group. The given compound $\\mathrm{CH_3(CH_2)_2COOH}$ has 4 carbons, so it is butanoic acid.\n\nStep 2: Go down the series:\nFirst lower homologue: remove one $\\mathrm{CH_2}$, giving propanoic acid (3 carbons).\nSecond lower homologue: remove another $\\mathrm{CH_2}$, giving ethanoic acid $\\mathrm{CH_3COOH}$ (2 carbons).\n\nStep 3: Check options:\nMethanoic acid is the third lower homologue, propanoic acid is the first lower, and pentanoic acid is a higher homologue.\n\nFinal Answer:\nThe second lower homologue is ethanoic acid, option (B).\n$$\\boxed{\\text{Ethanoic acid}}$$\n\nQuick Tip: Each lower homologue has one CH2 group fewer.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Methanoic acid"
+    },
+    {
+     "key": "B",
+     "text": "Ethanoic acid"
+    },
+    {
+     "key": "C",
+     "text": "Propanoic acid"
+    },
+    {
+     "key": "D",
+     "text": "Pentanoic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 66,
+   "topic": "Organic Chemistry: Basic Principles and Techniques",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "How many chiral carbon atoms are present in 2-Iodo-3, 4, 5-trimethylhexane ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA chiral carbon is $sp^{3}$ hybridised and bonded to four different groups.\nFirst draw the structure: $\\mathrm{CH_3 - CH(I) - CH(CH_3) - CH(CH_3) - CH(CH_3) - CH_3}$ (carbons 1 to 6).\n\nStep 2: Test carbons one by one:\nC-1 and C-6 are $\\mathrm{CH_3}$ groups, so they are not chiral.\nC-2 has H, I, $\\mathrm{CH_3}$ and the rest of the chain: chiral.\nC-3 has H, $\\mathrm{CH_3}$, C-2 side and C-4 side, all different: chiral.\nC-4 has H, $\\mathrm{CH_3}$, C-3 side and C-5 side, all different: chiral.\nC-5 has H, $\\mathrm{CH_3}$ (the substituent), $\\mathrm{CH_3}$ (C-6) and C-4 side. Two groups are the same methyl, so it is not chiral.\n\nStep 3: Count:\nChiral carbons are C-2, C-3 and C-4, which is 3 in total.\n\nFinal Answer:\nThree chiral carbons, option (B).\n$$\\boxed{3}$$\n\nQuick Tip: A chiral carbon has four different groups attached.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 67,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the product 'B' in the following reaction\n$$\\text{Toluene} \\xrightarrow{\\text{Chromyl chloride}/\\mathrm{CS_2}} A \\xrightarrow{\\mathrm{H_3O^{+}}} B$$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nToluene reacts with chromyl chloride ($\\mathrm{CrO_2Cl_2}$) in carbon disulphide. This is the Etard reaction.\n\nStep 2: Reaction steps:\n$$\\mathrm{C_6H_5CH_3} \\xrightarrow{\\mathrm{CrO_2Cl_2/CS_2}} \\text{Etard complex } (A) \\xrightarrow{\\mathrm{H_3O^{+}}} \\mathrm{C_6H_5CHO}\\ (B)$$\nA is the brown chromium complex (Etard complex), and its hydrolysis gives benzaldehyde.\n\nStep 3: Why not the others:\nThe reaction stops at the aldehyde stage because the complex protects it from further oxidation. So benzoic acid is not formed. Benzal chloride and benzyl alcohol are not products of this reaction.\n\nFinal Answer:\nB is benzaldehyde, option (B).\n$$\\boxed{\\text{Benzaldehyde}}$$\n\nQuick Tip: Chromyl chloride in CS2 oxidises the methyl group to a chromium complex, which hydrolyses to an aldehyde.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Benzal chloride"
+    },
+    {
+     "key": "B",
+     "text": "Benzaldehyde"
+    },
+    {
+     "key": "C",
+     "text": "Benzyl alcohol"
+    },
+    {
+     "key": "D",
+     "text": "Benzoic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 68,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the 'A' in the following reaction.\n$\\mathrm{CaC_2 + H_2O \\rightarrow A + Ca(OH)_2}$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nCalcium carbide contains the carbide ion $\\mathrm{C_2^{2-}}$. It is hydrolysed by water, taking two protons.\n\nStep 2: Reaction:\n$$\\mathrm{CaC_2 + 2H_2O \\rightarrow HC \\equiv CH + Ca(OH)_2}$$\nSo A is ethyne (acetylene).\n\nStep 3: Check options:\nEthene and propene need double bonds, which carbide does not give. Propyne forms from magnesium carbide $\\mathrm{Mg_2C_3}$, not from calcium carbide.\n\nFinal Answer:\nA is ethyne, option (B).\n$$\\boxed{\\text{Ethyne}}$$\n\nQuick Tip: Calcium carbide gives the simplest alkyne with water.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Ethene"
+    },
+    {
+     "key": "B",
+     "text": "Ethyne"
+    },
+    {
+     "key": "C",
+     "text": "Propene"
+    },
+    {
+     "key": "D",
+     "text": "Propyne"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 69,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the number of atoms in 1 g metal that forms bcc crystal structure $[\\rho \\times a^{3} = 6.6 \\times 10^{-22}\\ \\mathrm{g}]$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA bcc unit cell has Z = 2 atoms. Density of the metal is $\\rho = \\frac{ZM}{N_{A}a^{3}}$, so we can get the molar mass from $\\rho a^{3}$.\n\nStep 2: Find the molar mass:\n$$M = \\frac{\\rho a^{3} N_{A}}{Z} = \\frac{6.6 \\times 10^{-22} \\times 6.022 \\times 10^{23}}{2} \\approx 198.7\\ \\mathrm{g\\,mol^{-1}}$$\n\nStep 3: Atoms in 1 g:\n$$N = \\frac{N_{A}}{M} = \\frac{6.022 \\times 10^{23}}{198.7} = 3.03 \\times 10^{21}$$\nThis is option (C). The other values do not follow from Z = 2.\n\nFinal Answer:\n1 g of the metal contains $3.03 \\times 10^{21}$ atoms, option (C).\n$$\\boxed{3.03 \\times 10^{21}}$$\n\nQuick Tip: Use density = $Z M/(N_{A} a^{3})$ with Z = 2 for bcc to get M, then divide $N_{A}$ by M.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4.05 \\times 10^{21}$"
+    },
+    {
+     "key": "B",
+     "text": "$5.12 \\times 10^{21}$"
+    },
+    {
+     "key": "C",
+     "text": "$3.03 \\times 10^{21}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.47 \\times 10^{21}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 70,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following dopants is used in germanium to form n-type semiconductor ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nGermanium is in group 14 with four valence electrons. For an n-type semiconductor the dopant must give extra electrons, so it must be a group 15 element.\n\nStep 2: Options:\nB (boron), In (indium) and Ga (gallium) are group 13 elements with three valence electrons. They leave holes and give a p-type semiconductor.\nP (phosphorus) is in group 15 with five valence electrons. Four form bonds with Ge and the fifth is free, giving n-type.\n\nFinal Answer:\nThe dopant is phosphorus, option (D).\n$$\\boxed{\\mathrm{P}}$$\n\nQuick Tip: n-type needs a group 15 dopant with five valence electrons.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "B"
+    },
+    {
+     "key": "B",
+     "text": "In"
+    },
+    {
+     "key": "C",
+     "text": "Ga"
+    },
+    {
+     "key": "D",
+     "text": "P"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 71,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the void volume of bcc unit cell if volume of unit cell is $8.0 \\times 10^{-23}\\ \\mathrm{cm^{3}}$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe packing efficiency of a bcc structure is 68 percent, so 32 percent of the unit cell volume is void space.\n\nStep 2: Calculation:\n$$V_{void} = 0.32 \\times 8.0 \\times 10^{-23} = 2.56 \\times 10^{-23}\\ \\mathrm{cm^{3}}$$\nThe value $5.44 \\times 10^{-23}\\ \\mathrm{cm^{3}}$ is the volume occupied by atoms (68 percent), so it is not the void volume.\n\nFinal Answer:\nThe void volume is $2.56 \\times 10^{-23}\\ \\mathrm{cm^{3}}$, option (D).\n$$\\boxed{2.56 \\times 10^{-23}\\ \\mathrm{cm^{3}}}$$\n\nQuick Tip: Packing efficiency of bcc is 68 percent, so 32 percent is empty.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3.08 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "B",
+     "text": "$4.16 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$5.44 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.56 \\times 10^{-23}\\ \\mathrm{cm^{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 72,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the molar mass of a nonvolatile solute if 6.4 g of it dissolved in 100 g water produces a relative lowering in vapour pressure of $0.016$ at 300 K.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nRaoult's law for a non-volatile solute: the relative lowering of vapour pressure equals the mole fraction of the solute, $\\frac{p^{0} - p}{p^{0}} = x_{2} \\approx \\frac{n_{2}}{n_{1}}$ for a dilute solution.\n\nStep 2: Moles of solvent:\n$n_{1} = \\frac{100}{18} = 5.556$ mol of water.\n\nStep 3: Solve for the molar mass:\n$$0.016 = \\frac{w_{2}/M_{2}}{n_{1}} = \\frac{6.4}{M_{2} \\times 5.556}$$\n$$M_{2} = \\frac{6.4}{0.016 \\times 5.556} = \\frac{6.4}{0.0889} = 72\\ \\mathrm{g\\,mol^{-1}}$$\nThis is option (C). The temperature of 300 K is not needed for this calculation.\n\nFinal Answer:\nThe molar mass of the solute is about 72 g/mol, option (C).\n$$\\boxed{72\\ \\mathrm{g\\,mol^{-1}}}$$\n\nQuick Tip: Relative lowering equals the mole fraction of solute, which is about n2/n1 for a dilute solution.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$60\\ \\mathrm{gmol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$66\\ \\mathrm{gmol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$72\\ \\mathrm{gmol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$84\\ \\mathrm{gmol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 73,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the cryoscopic constant of a solvent if depression in freezing point of $0.3$ m solution of nonelectrolyte is $0.48$ K",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor a non-electrolyte, the depression in freezing point is directly proportional to molality: $\\Delta T_{f} = K_{f}\\,m$.\n\nStep 2: Calculation:\n$$K_{f} = \\frac{\\Delta T_{f}}{m} = \\frac{0.48}{0.3} = 1.6\\ \\mathrm{K\\ kg\\ mol^{-1}}$$\nOnly option (B) satisfies this relation.\n\nFinal Answer:\nThe cryoscopic constant is 1.6 K kg/mol, option (B).\n$$\\boxed{1.6\\ \\mathrm{K\\ kg\\ mol^{-1}}}$$\n\nQuick Tip: Use the depression equal to Kf times molality.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.1\\ \\mathrm{K\\ kg\\ mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.6\\ \\mathrm{K\\ kg\\ mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.2\\ \\mathrm{K\\ kg\\ mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.6\\ \\mathrm{K\\ kg\\ mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 74,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the correct statement from following.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nColligative properties depend on the number of solute particles, not their nature. Electrolytes dissociate into ions, so they give more particles.\n\nStep 2: Check (A):\nA non-volatile solute lowers the vapour pressure of the solvent, so (A) is false.\n\nStep 3: Check (B):\nA non-volatile solute raises the boiling point (elevation), so (B) is false.\n\nStep 4: Check (C):\n$\\pi = iCRT$ with $i > 1$ for electrolytes. So an electrolyte solution has a greater osmotic pressure than a non-electrolyte of the same concentration. (C) is true.\n\nStep 5: Check (D):\nThe freezing point itself is a property of the solvent. Its depression is the colligative property, so (D) as stated is false.\n\nFinal Answer:\nOnly statement (C) is correct.\n$$\\boxed{\\text{(C)}}$$\n\nQuick Tip: Electrolytes give more particles, so they have a larger colligative effect.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "The vapour pressure of a solvent increases by dissolving nonvolatile solute into it."
+    },
+    {
+     "key": "B",
+     "text": "The boiling point of solvent decreases by dissolving a nonvolatile solute into it."
+    },
+    {
+     "key": "C",
+     "text": "The osmotic pressure of electrolytic solution is greater than nonelectrolytic solution of the same concentration."
+    },
+    {
+     "key": "D",
+     "text": "The freezing point of solvent is a colligative properly."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 75,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the change in oxidation number of Pb at positive electrode of lead accumulator acting as galvanic cell ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn a lead accumulator working as a galvanic cell (discharging), the positive electrode is the cathode, where reduction occurs. It is made of $\\mathrm{PbO_2}$.\n\nStep 2: Half reaction:\n$$\\mathrm{PbO_2 + 4H^{+} + SO_4^{2-} + 2e^{-} \\rightarrow PbSO_4 + 2H_2O}$$\n\nStep 3: Oxidation numbers:\nIn $\\mathrm{PbO_2}$, Pb is +4. In $\\mathrm{PbSO_4}$, Pb is +2. So the oxidation number decreases by 2.\nAt the negative electrode Pb goes from 0 to +2, which is an increase, but that is not the electrode asked about.\n\nFinal Answer:\nPb changes from +4 to +2, a decrease of 2, option (D).\n$$\\boxed{\\text{decreases by 2}}$$\n\nQuick Tip: The positive plate is PbO2, which is reduced to PbSO4.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "increases by 1"
+    },
+    {
+     "key": "B",
+     "text": "decreases by 1"
+    },
+    {
+     "key": "C",
+     "text": "increases by 2"
+    },
+    {
+     "key": "D",
+     "text": "decreases by 2"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 76,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The graphical variation of molar conductivity $(\\Lambda)$ against square root of molar concentration $(\\sqrt{c})$ of certain electrolyte 'X' is linear with intercept on y axis. Identify X from following.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor a strong electrolyte the Debye-Huckel-Onsager equation applies: $\\Lambda_m = \\Lambda_m^{0} - A\\sqrt{c}$. Plotting $\\Lambda_m$ against $\\sqrt{c}$ gives a straight line whose intercept on the y axis is $\\Lambda_m^{0}$.\n\nStep 2: Weak electrolytes:\n$\\mathrm{CH_3COOH}$, $\\mathrm{NH_4OH}$ and $\\mathrm{HCOOH}$ are weak electrolytes. Their degree of dissociation rises sharply on dilution, so $\\Lambda_m$ rises steeply at low concentration and the curve cannot be extrapolated to a limiting value.\n\nStep 3: Strong electrolyte:\n$\\mathrm{CH_3COONa}$ is a salt that dissociates completely, so it is a strong electrolyte and gives the linear plot with an intercept.\n\nFinal Answer:\nThe electrolyte X is sodium acetate, option (D).\n$$\\boxed{\\mathrm{CH_3COONa}}$$\n\nQuick Tip: Only strong electrolytes give a straight line with a finite intercept on the molar conductivity axis.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3COOH}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{NH_4OH}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{HCOOH}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{CH_3COONa}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 77,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If standard reduction potential $(E^{0})$ of $(\\mathrm{Al^{+3}_{(aq)}|Al_{(s)}})$, $(\\mathrm{Fe^{+2}_{(aq)}|Fe_{(s)}})$, $(\\mathrm{Cu^{+2}_{(aq)}|Cu_{(s)}})$ and $(\\mathrm{Ag^{+1}_{(aq)}|Ag_{(s)}})$ are $-1.66$ V, $-0.44$ V, $+0.34$ V and $+0.79$ V respectively. Which of the following reaction is non spontaneous ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA redox reaction is spontaneous if $E^{0}_{cell} = E^{0}_{reduction\\ (cathode)} - E^{0}_{reduction\\ (anode)} > 0$.\n\nStep 2: Check (A):\n$\\mathrm{2Ag + Fe^{2+} \\rightarrow 2Ag^{+} + Fe}$. Silver is oxidised (anode, 0.79 V) and $\\mathrm{Fe^{2+}}$ is reduced (cathode, -0.44 V). $E^{0}_{cell} = -0.44 - 0.79 = -1.23$ V. This is negative, so (A) is NON spontaneous.\n\nStep 3: Check (B), (C), (D):\n(B) Al anode, Cu cathode: $0.34 - (-1.66) = +2.00$ V, spontaneous.\n(C) Fe anode, Cu cathode: $0.34 - (-0.44) = +0.78$ V, spontaneous.\n(D) Al anode, Fe cathode: $-0.44 - (-1.66) = +1.22$ V, spontaneous.\n\nFinal Answer:\nOnly reaction (A) has a negative cell potential, so it is non spontaneous.\n$$\\boxed{\\text{(A)}}$$\n\nQuick Tip: A reaction is spontaneous when the cell EMF, E(cathode) minus E(anode), is positive.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{2Ag_{(s)} + Fe^{+2}_{(aq)} \\rightarrow 2Ag^{+1}_{(aq)} + Fe_{(s)}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{2Al_{(s)} + 3Cu^{+2}_{(aq)} \\rightarrow 2Al^{+3}_{(aq)} + 3Cu_{(s)}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{Fe_{(s)} + Cu^{+2}_{(aq)} \\rightarrow Fe^{+2}_{(aq)} + Cu_{(s)}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{2Al_{(s)} + 3Fe^{+2}_{(aq)} \\rightarrow 2Al^{+3}_{(aq)} + 3Fe_{(s)}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 78,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For the reaction $\\mathrm{2NOBr_{(g)} \\rightarrow 2NO_{(g)} + Br_{2(g)}}$ rate law is $r = k[\\mathrm{NOBr}]^{2}$, if rate constant is $1.62\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}$ and concentration of NOBr is $2 \\times 10^{-3}\\ \\mathrm{mol\\,L^{-1}}$. What is the rate of reaction ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe rate law is $r = k[\\mathrm{NOBr}]^{2}$. The unit of k is $\\mathrm{mol\\,dm^{-3}\\,s^{-1}}$ as given, and $1\\ \\mathrm{L} = 1\\ \\mathrm{dm^{3}}$, so the concentration $2 \\times 10^{-3}\\ \\mathrm{mol\\,L^{-1}}$ is $2 \\times 10^{-3}\\ \\mathrm{mol\\,dm^{-3}}$.\n\nStep 2: Calculation:\n$$r = 1.62 \\times (2 \\times 10^{-3})^{2} = 1.62 \\times 4 \\times 10^{-6} = 6.48 \\times 10^{-6}\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}$$\nThe other options come from errors in squaring (for example, not squaring the concentration gives $3.24 \\times 10^{-3}$, which is not listed).\n\nFinal Answer:\nThe rate of the reaction is $6.48 \\times 10^{-6}\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}$, option (B).\n$$\\boxed{6.48 \\times 10^{-6}\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}}$$\n\nQuick Tip: Convert the concentration to the same units as k and substitute into the rate law.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4.05 \\times 10^{-5}\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$6.48 \\times 10^{-6}\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.12 \\times 10^{-5}\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$8.63 \\times 10^{-6}\\ \\mathrm{mol\\,dm^{-3}\\,s^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 79,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In first order reaction 20 millimole of reactant is reduced to 10 millimole in $1.151$ minute. Find rate constant.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nReactant falls from 20 to 10 millimole, which is half of the initial amount. So 1.151 minute is the half-life of this first order reaction.\n\nStep 2: Key Formula or Approach:\n$$k = \\frac{0.693}{t_{1/2}} = \\frac{2.303\\log 2}{t_{1/2}}$$\n\nStep 3: Calculation:\n$$k = \\frac{0.693}{1.151} = 0.602\\ \\mathrm{min^{-1}}$$\nUsing $2.303 \\times 0.3010 = 0.6932$, we get $\\frac{0.6932}{1.151} = 0.6023\\ \\mathrm{min^{-1}}$, option (A).\n\nFinal Answer:\nThe rate constant is 0.6023 per minute, option (A).\n$$\\boxed{0.6023\\ \\mathrm{min^{-1}}}$$\n\nQuick Tip: Time taken for 50 percent change is the half-life, and k = 0.693 / t half.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.6023\\ \\mathrm{minute^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$6.120\\ \\mathrm{minute^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.3010\\ \\mathrm{minute^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.010\\ \\mathrm{minute^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 80,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is an example of second order reaction ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe order of a reaction comes from experiments, not from the balanced equation. Known results: hydrogen peroxide decomposition is first order, acetaldehyde decomposition is 3/2 order, and $\\mathrm{2NO_2 + F_2 \\rightarrow 2NO_2F}$ follows $r = k[\\mathrm{NO_2}][\\mathrm{F_2}]$.\n\nStep 2: Go through the options:\n(A) $r = k[\\mathrm{H_2O_2}]$, first order.\n(B) $r = k[\\mathrm{CH_3CHO}]^{3/2}$, order 1.5.\n(C) $r = k[\\mathrm{NO_2}][\\mathrm{F_2}]$, order 1 + 1 = 2, second order.\n(D) $r = k[\\mathrm{NO}]^{2}[\\mathrm{H_2}]$, third order.\n\nFinal Answer:\nReaction (C) is of second order.\n$$\\boxed{\\text{(C)}}$$\n\nQuick Tip: Second order means the rate depends on the sum of powers of concentration equal to 2.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{2\\,H_2O_{2(l)} \\rightarrow 2H_2O_{(l)} + O_{2(g)}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CH_3CHO_{(g)} \\rightarrow CH_{4(g)} + CO_{(g)}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{2\\,NO_{2(g)} + F_{2(g)} \\rightarrow 2NO_2F_{(g)}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{2\\,NO_{(g)} + 2H_{2(g)} \\rightarrow N_{2(g)} + 2H_2O_{(l)}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 81,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following noble gases exhibits higher oxidation states ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNoble gases are chemically inert because of closed shells and high ionisation enthalpy. Xenon, the largest of the common ones, has the lowest ionisation enthalpy and vacant d orbitals.\n\nStep 2: Reasoning:\nXenon forms compounds like $\\mathrm{XeF_2}$ (+2), $\\mathrm{XeF_4}$ (+4), $\\mathrm{XeF_6}$ (+6) and $\\mathrm{XeO_3}$ (+6). Krypton forms only $\\mathrm{KrF_2}$ (+2). Neon and argon form no stable compounds.\n\nFinal Answer:\nXenon shows higher oxidation states, option (D).\n$$\\boxed{\\text{Xe}}$$\n\nQuick Tip: Xenon has low ionisation enthalpy and can use its empty d orbitals.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Ne"
+    },
+    {
+     "key": "B",
+     "text": "Ar"
+    },
+    {
+     "key": "C",
+     "text": "Kr"
+    },
+    {
+     "key": "D",
+     "text": "Xe"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 82,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following pair of elements in their respective oxidation states develops same value of calculated spin only magnetic moment ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Key Formula or Approach:\n$\\mu = \\sqrt{n(n+2)}$ BM, where n is the number of unpaired electrons. Same n gives same $\\mu$.\n\nStep 2: Find n for each ion:\n$\\mathrm{Ti^{3+}}$: $3d^{1}$, n = 1. $\\mathrm{Zn^{2+}}$: $3d^{10}$, n = 0.\n$\\mathrm{Cr^{2+}}$: $3d^{4}$, n = 4. $\\mathrm{Fe^{2+}}$: $3d^{6}$, n = 4.\n$\\mathrm{Cr^{3+}}$: $3d^{3}$, n = 3. $\\mathrm{Cu^{2+}}$: $3d^{9}$, n = 1.\n\nStep 3: Match the pairs:\n(A) 1 and 0, different. (B) 4 and 4, same. (C) 3 and 1, different. (D) 0 and 1, different. So (B) is correct, with $\\mu = \\sqrt{24} = 4.9$ BM.\n\nFinal Answer:\n$\\mathrm{Cr^{2+}}$ and $\\mathrm{Fe^{2+}}$ both have four unpaired electrons, option (B).\n$$\\boxed{\\mathrm{Cr^{2+}}\\ \\text{and}\\ \\mathrm{Fe^{2+}}}$$\n\nQuick Tip: Count unpaired electrons: equal n gives equal spin only moment.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Ti^{3+}}$ and $\\mathrm{Zn^{2+}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Cr^{2+}}$ and $\\mathrm{Fe^{2+}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{Cr^{3+}}$ and $\\mathrm{Ti^{3+}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{Zn^{2+}}$ and $\\mathrm{Cu^{2+}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 83,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the atomic number of first post actinoid element ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe actinoid series runs from actinium (89) to lawrencium (103). The element after Lr is the first post actinoid (a 6d series element).\n\nStep 2: Identify:\nThe next atomic number is 104, rutherfordium (Rf). It sits below hafnium in group 4. The values 101 (Md) belongs to actinoids, while 108 and 110 are further along the 6d series.\n\nFinal Answer:\nThe first post actinoid element has atomic number 104, option (C).\n$$\\boxed{104}$$\n\nQuick Tip: Actinoids end at lawrencium (103), so the next element is the first post actinoid.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "101"
+    },
+    {
+     "key": "B",
+     "text": "108"
+    },
+    {
+     "key": "C",
+     "text": "104"
+    },
+    {
+     "key": "D",
+     "text": "110"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 84,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the EAN of metal ion in $\\mathrm{[Cu(NH_3)_4]^{2+}}$ ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Key Formula or Approach:\n$$EAN = Z - (\\text{oxidation state}) + 2 \\times (\\text{number of ligands})$$\nEach $\\mathrm{NH_3}$ is a monodentate ligand donating 2 electrons.\n\nStep 2: Calculation:\nFor $\\mathrm{[Cu(NH_3)_4]^{2+}}$: Cu has Z = 29 and oxidation state +2.\n$$EAN = 29 - 2 + 2 \\times 4 = 27 + 8 = 35$$\nThe value 27 is the electron count of $\\mathrm{Cu^{2+}}$ alone, 29 is the atomic number, and 36 would be krypton, which this complex does not reach.\n\nFinal Answer:\nEAN of copper is 35, option (A).\n$$\\boxed{35}$$\n\nQuick Tip: Effective atomic number = atomic number minus oxidation state plus 2 times number of ligands.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "35"
+    },
+    {
+     "key": "B",
+     "text": "27"
+    },
+    {
+     "key": "C",
+     "text": "29"
+    },
+    {
+     "key": "D",
+     "text": "36"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 85,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify a ligand with lowest field strength among the following.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe spectrochemical series arranges ligands by crystal field splitting power: $\\mathrm{I^{-} < Br^{-} < Cl^{-} < F^{-} < OH^{-} < H_2O < NH_3 < en < CN^{-}}$.\n\nStep 2: Compare:\nOf the four ligands given, bromide is at the weak end, $\\mathrm{OH^{-}}$ comes after the halides, $\\mathrm{H_2O}$ is stronger and en is stronger still. So $\\mathrm{Br^{-}}$ has the lowest field strength.\n\nFinal Answer:\nBromide is the weakest field ligand here, option (A).\n$$\\boxed{\\mathrm{Br^{-}}}$$\n\nQuick Tip: In the spectrochemical series, halides are weak field ligands and $\\mathrm{Br^{-}}$ is weaker than $\\mathrm{OH^{-}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Br^{-}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{OH^{-}}$"
+    },
+    {
+     "key": "C",
+     "text": "en"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{H_2O}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 86,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the product obtained when 2-chlorobutane is heated with aqueous solution of potassium hydroxide.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nWith aqueous KOH, the hydroxide ion acts as a nucleophile and replaces halogen (substitution). With alcoholic KOH it acts as a base and removes HX (elimination).\n\nStep 2: Reaction:\n$$\\mathrm{CH_3CHClCH_2CH_3 + KOH(aq) \\xrightarrow{\\Delta} CH_3CH(OH)CH_2CH_3 + KCl}$$\nChlorine on C-2 is replaced by OH on C-2, giving butan-2-ol. The alkenes (but-1-ene and but-2-ene) would need alcoholic KOH, and butan-1-ol would need the halogen on C-1.\n\nFinal Answer:\nThe product is butan-2-ol, option (D).\n$$\\boxed{\\text{Butan-2-ol}}$$\n\nQuick Tip: Aqueous KOH causes substitution; alcoholic KOH causes elimination.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "But - 1 - ene"
+    },
+    {
+     "key": "B",
+     "text": "But - 2 - ene"
+    },
+    {
+     "key": "C",
+     "text": "Butan - 1 - ol"
+    },
+    {
+     "key": "D",
+     "text": "Butan - 2 - ol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 87,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the product obtained when 2- Chloro - 2 - methylbutane is reacted with sodium metal in presence of dry ether?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn the Wurtz reaction, two alkyl halide molecules react with sodium metal in dry ether to give an alkane with double the carbon skeleton: $\\mathrm{2R\\text{-}X + 2Na \\rightarrow R\\text{-}R + 2NaX}$.\n\nStep 2: Structure of R:\n2-Chloro-2-methylbutane is $\\mathrm{(CH_3)_2C(Cl)CH_2CH_3}$. The alkyl group R is $\\mathrm{(CH_3)_2C\\text{-}CH_2CH_3}$ (tert-pentyl).\n\nStep 3: Coupling:\n$$\\mathrm{CH_3CH_2C(CH_3)_2 - C(CH_3)_2CH_2CH_3}$$\nThe longest chain has 6 carbons: $\\mathrm{C_1H_3\\text{-}C_2H_2\\text{-}C_3(CH_3)_2\\text{-}C_4(CH_3)_2\\text{-}C_5H_2\\text{-}C_6H_3}$. Methyl groups sit on C-3 (two) and C-4 (two), so the name is 3,3,4,4-tetramethylhexane. Octane-based names have an 8 carbon chain and do not fit, because the product has only 10 carbons in total, 6 in the chain plus 4 methyls.\n\nFinal Answer:\nThe product is 3,3,4,4-tetramethylhexane, option (D).\n$$\\boxed{\\text{3, 3, 4, 4-tetramethylhexane}}$$\n\nQuick Tip: Wurtz coupling joins two alkyl groups at the carbons that carried the halogen.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2, 2, 3, 3 - tetramethyloctane"
+    },
+    {
+     "key": "B",
+     "text": "3, 3, 4, 4 - tetramethyloctane"
+    },
+    {
+     "key": "C",
+     "text": "2, 2, 3, 3 - tetramethylhexane"
+    },
+    {
+     "key": "D",
+     "text": "3, 3, 4, 4 - tetramethylhexane"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 88,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which among the following has highest melting point ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nMelting point depends on intermolecular forces and on how well molecules pack in the crystal.\n\nStep 2: o-Nitrophenol:\nIn o-nitrophenol the -OH and $\\mathrm{-NO_2}$ groups are close, so they form intramolecular hydrogen bonds. This leaves little hydrogen bonding between molecules, so its melting point is low (about 45 C).\n\nStep 3: p-Nitrophenol:\nIn p-nitrophenol the groups are far apart, so only intermolecular hydrogen bonds form, linking many molecules together. It also packs well. Its melting point is about 114 C, the highest here.\n\nStep 4: Others:\nPhenol melts at about 41 C and p-cresol at about 35 C, both lower because they lack the strongly polar nitro group.\n\nFinal Answer:\np-Nitrophenol has the highest melting point, option (C).\n$$\\boxed{\\text{p-Nitrophenol}}$$\n\nQuick Tip: Strong intermolecular hydrogen bonding and good packing raise the melting point.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Phenol"
+    },
+    {
+     "key": "B",
+     "text": "o-Nitrophenol"
+    },
+    {
+     "key": "C",
+     "text": "p-Nitrophenol"
+    },
+    {
+     "key": "D",
+     "text": "p-Cresol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 89,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following alcohols on addition of Lucas reagent reacts fast and turns the reagent turbid instantly.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nLucas reagent is anhydrous $\\mathrm{ZnCl_2}$ in concentrated HCl. The alcohol is converted to an alkyl chloride, which is insoluble and makes the solution turbid.\n\nStep 2: Reactivity:\nThe rate depends on the stability of the carbocation formed: tertiary > secondary > primary. Tertiary alcohols give turbidity instantly, secondary in about 5 minutes, and primary only on heating.\n\nStep 3: Options:\nn-Butyl alcohol and iso-butyl alcohol are primary. sec-Butyl alcohol is secondary. tert-Butyl alcohol is tertiary, so it reacts fastest.\n\nFinal Answer:\ntert-Butyl alcohol, option (D).\n$$\\boxed{\\text{tert-Butyl alcohol}}$$\n\nQuick Tip: Tertiary alcohols give the most stable carbocation, so the turbidity appears at once.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "n - Butyl alcohol"
+    },
+    {
+     "key": "B",
+     "text": "sec - Butyl alcohol"
+    },
+    {
+     "key": "C",
+     "text": "iso - Butyl alcohol"
+    },
+    {
+     "key": "D",
+     "text": "tert - Butyl alcohol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 90,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which among the following does NOT undergo Williamson's synthesis?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nWilliamson synthesis forms an ether by an SN2 reaction of an alkoxide with a primary alkyl halide: $\\mathrm{R\\text{-}ONa + R'\\text{-}X \\rightarrow R\\text{-}O\\text{-}R' + NaX}$.\n\nStep 2: Check the options:\n(A) $\\mathrm{C_2H_5Br}$ is a primary alkyl halide, so it works.\n(B) The structure shown is $\\mathrm{(CH_3)_2CH\\text{-}CH_2Br}$, isobutyl bromide, a primary halide, so it works.\n(C) $\\mathrm{C_6H_5\\text{-}Br}$ is bromobenzene. The C-Br bond has partial double bond character from resonance, and backside attack at an sp2 carbon is blocked by the ring, so SN2 cannot occur.\n(D) $\\mathrm{C_6H_5CH_2Br}$ is benzylic and reacts readily.\n\nFinal Answer:\nBromobenzene does not undergo Williamson's synthesis, option (C).\n$$\\boxed{\\mathrm{C_6H_5Br}}$$\n\nQuick Tip: Williamson synthesis needs an alkyl halide that can undergo SN2; aryl halides cannot.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{C_2H_5Br}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CH_3 - \\underset{\\displaystyle CH_3}{\\underset{|}{C}H} - CH_2 - Br}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{C_6H_5 - Br}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{C_6H_5 - CH_2 - Br}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 91,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the product 'Y' in the following reaction Benzonitrile $\\mathrm{\\xrightarrow{C_6H_5MgBr/dry\\ ether} X \\xrightarrow{H_3O^{+}} Y + MgBr(OH) + NH_3}$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA Grignard reagent attacks the electrophilic carbon of a nitrile group, forming an imine salt. Acid hydrolysis then converts it to a ketone.\n\nStep 2: Reaction:\n$$\\mathrm{C_6H_5CN + C_6H_5MgBr \\rightarrow C_6H_5\\text{-}C(=NMgBr)\\text{-}C_6H_5}\\ (X)$$\n$$X + \\mathrm{H_3O^{+} \\rightarrow C_6H_5\\text{-}CO\\text{-}C_6H_5}\\ (Y) + \\mathrm{MgBr(OH) + NH_3}$$\nY is benzophenone. The ammonia released matches the equation given in the question, which shows that the imine nitrogen was lost during hydrolysis.\n\nFinal Answer:\nY is benzophenone, option (A).\n$$\\boxed{\\text{Benzophenone}}$$\n\nQuick Tip: Grignard reagents add to the nitrile carbon, and hydrolysis of the imine gives a ketone.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Benzophenone"
+    },
+    {
+     "key": "B",
+     "text": "Benzylalcohol"
+    },
+    {
+     "key": "C",
+     "text": "Benzaldehyde"
+    },
+    {
+     "key": "D",
+     "text": "Benzoic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 93,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following amines when heated with ethanolic KOH and chloroform forms aryl isocyanide ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nHeating a primary amine with chloroform and alcoholic KOH gives an isocyanide (carbylamine), which has a foul smell. This is the carbylamine reaction, a test for primary amines.\n\nStep 2: Check the options:\nBenzenamine (aniline) is $\\mathrm{C_6H_5NH_2}$, a primary aromatic amine, so it gives phenyl isocyanide.\nN-methylaniline is secondary, N,N-dimethylaniline is tertiary, and ethylethanamine (diethylamine) is secondary. They do not give this reaction.\n$$\\mathrm{C_6H_5NH_2 + CHCl_3 + 3KOH \\rightarrow C_6H_5NC + 3KCl + 3H_2O}$$\n\nFinal Answer:\nBenzenamine is the primary amine, option (A).\n$$\\boxed{\\text{Benzenamine}}$$\n\nQuick Tip: Only primary amines give the carbylamine reaction.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Benzenamine"
+    },
+    {
+     "key": "B",
+     "text": "N -methylaniline"
+    },
+    {
+     "key": "C",
+     "text": "N, N - Dimethylaniline"
+    },
+    {
+     "key": "D",
+     "text": "Ethylethanamine"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 94,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify false statement from following regarding preparation of amines by Hofmann degradation method.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn Hofmann bromamide degradation: $\\mathrm{R\\text{-}CONH_2 + Br_2 + 4KOH \\rightarrow R\\text{-}NH_2 + K_2CO_3 + 2KBr + 2H_2O}$.\n\nStep 2: Check (A), (C), (D):\n(A) An amide is converted to a primary amine, true.\n(C) The amine has one carbon fewer than the amide, so its molar mass is lower, true.\n(D) The reagent is $\\mathrm{Br_2}$ with aqueous KOH, true.\n\nStep 3: Check (B):\nThe carbonyl carbon is lost as carbonate through an isocyanate intermediate. It is not reduced to $\\mathrm{-CH_2-}$. Reduction of the carbonyl to $\\mathrm{CH_2}$ happens when amide is reduced with $\\mathrm{LiAlH_4}$, giving an amine with the same number of carbons. So (B) is false.\n\nFinal Answer:\nThe false statement is (B).\n$$\\boxed{\\text{(B)}}$$\n\nQuick Tip: Hofmann bromamide reaction removes the carbonyl carbon as carbonate; it does not reduce it.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It is useful to convert amides to primary amines."
+    },
+    {
+     "key": "B",
+     "text": "In this -CO-group is reduced to $\\mathrm{-CH_2-}$ group."
+    },
+    {
+     "key": "C",
+     "text": "Molar mass of the amine obtained is always less than the amide."
+    },
+    {
+     "key": "D",
+     "text": "The reagent used is $\\mathrm{Br_2}$ and $\\mathrm{KOH_{(aq)}}$ ."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 95,
+   "topic": "Chemistry in Everyday Life",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify medicinaly important compound extracted from citrus fruits?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nCitrus fruits (lemon, orange, amla-like fruits) are a major natural source of vitamin C, also called ascorbic acid. It is used to prevent and treat scurvy.\n\nStep 2: Options:\nAntimicrobials, analgesics and antiseptics are classes of drugs, not substances taken from citrus fruits. Vitamin C is a specific compound obtained from them.\n\nFinal Answer:\nThe compound is vitamin C, option (B).\n$$\\boxed{\\text{Vitamin C}}$$\n\nQuick Tip: Citrus fruits such as lemon and orange are rich in ascorbic acid.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Antimicrobials"
+    },
+    {
+     "key": "B",
+     "text": "Vit. C"
+    },
+    {
+     "key": "C",
+     "text": "Analgesics"
+    },
+    {
+     "key": "D",
+     "text": "Antiseptics"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 96,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following is a protein of muscles ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nMuscles contract because of two proteins, actin and myosin. Myosin is the main structural and motor protein of muscle.\n\nStep 2: Options:\nKeratin is found in hair, nails and skin. Legumelin is a protein from legumes (pulses). Insulin is a hormone made by the pancreas. So myosin is the muscle protein.\n\nFinal Answer:\nThe muscle protein is myosin, option (B).\n$$\\boxed{\\text{Myosin}}$$\n\nQuick Tip: Myosin is the contractile protein of muscle.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Keratin"
+    },
+    {
+     "key": "B",
+     "text": "Myosin"
+    },
+    {
+     "key": "C",
+     "text": "Legumelin"
+    },
+    {
+     "key": "D",
+     "text": "Insulin"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 97,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following enzymes cleaves glycosidic bond in sucrose?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nSucrose is a disaccharide made of glucose and fructose joined by a glycosidic bond. Hydrolysis of this bond is catalysed by invertase (sucrase).\n\nStep 2: Options:\nAmylose is a starch component, not an enzyme. Trypsin digests proteins. Maltase splits maltose into two glucose units. Invertase splits sucrose into glucose and fructose, and the mixture is called invert sugar.\n\nFinal Answer:\nInvertase, option (C).\n$$\\boxed{\\text{Invertase}}$$\n\nQuick Tip: Invertase hydrolyses sucrose to glucose and fructose.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Amylose"
+    },
+    {
+     "key": "B",
+     "text": "Trypsin"
+    },
+    {
+     "key": "C",
+     "text": "Invertase"
+    },
+    {
+     "key": "D",
+     "text": "Maltase"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 98,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following polymer is obtained by addition polymerization?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAddition polymerisation joins monomers that contain double bonds, without loss of any small molecule. Condensation polymerisation joins bifunctional monomers with loss of water, ammonia or similar.\n\nStep 2: Option (A):\nThe structure $\\mathrm{[CH_2\\text{-}CH(CN)]}_{n}$ is polyacrylonitrile, made from acrylonitrile $\\mathrm{CH_2 = CH\\text{-}CN}$ by addition polymerisation.\n\nStep 3: Other options:\n(B) $\\mathrm{[NH\\text{-}(CH_2)_5\\text{-}CO]}_{n}$ is nylon-6, made from caprolactam by ring-opening, a condensation type polyamide.\n(C) The ester chain with $\\mathrm{\\text{-}O\\text{-}CH_2CH_2\\text{-}O\\text{-}CO\\text{-}C_6H_4\\text{-}CO\\text{-}}$ is terylene (PET), formed from ethylene glycol and terephthalic acid by condensation.\n(D) The chain with $\\mathrm{\\text{-}O\\text{-}CH(CH_3)\\text{-}CH_2\\text{-}CO\\text{-}O\\text{-}CH(C_2H_5)\\text{-}CH_2\\text{-}CO\\text{-}}$ is PHBV, a polyester made by condensation of hydroxy acids.\n\nFinal Answer:\nOnly polyacrylonitrile is an addition polymer, option (A).\n$$\\boxed{\\text{Polyacrylonitrile}}$$\n\nQuick Tip: Addition polymers form from unsaturated monomers without loss of small molecules.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{[CH_2 - \\underset{\\displaystyle CN}{\\underset{|}{C}H}]_n}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{[NH - (CH_2)_5 - CO]}_{n}$"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "m26-17apr-s2-q098-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "m26-17apr-s2-q098-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 99,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the polymer used to prepare disposable cups and plates.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nPolystyrene (from styrene, $\\mathrm{C_6H_5CH{=}CH_2}$) is a light, rigid, brittle thermoplastic that can be moulded easily or expanded into foam.\n\nStep 2: Uses:\nIt is used for disposable cups, plates, packing material (thermocol) and insulation. Polypropylene is used for ropes and containers, PET for bottles and fibres, and HDPE for pipes and toys.\n\nFinal Answer:\nThe polymer is polystyrene, option (B).\n$$\\boxed{\\text{Polystyrene}}$$\n\nQuick Tip: Polystyrene is light, rigid and cheap, so it is moulded into disposable ware.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Polypropylene"
+    },
+    {
+     "key": "B",
+     "text": "Polystyrene"
+    },
+    {
+     "key": "C",
+     "text": "Polyethylene terephthalate"
+    },
+    {
+     "key": "D",
+     "text": "High density polyethylene"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 100,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following is a first stage in preparation of viscose rayon ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nViscose rayon is regenerated cellulose. The process has three stages: alkali cellulose formation, xanthate formation, and regeneration of cellulose.\n\nStep 2: Stage by stage:\nStage 1: $\\mathrm{Cell\\text{-}OH + NaOH \\rightarrow Cell\\text{-}ONa + H_2O}$ (alkali cellulose).\nStage 2: $\\mathrm{Cell\\text{-}ONa + CS_2 \\rightarrow Cell\\text{-}O\\text{-}C({=}S)\\text{-}SNa}$ (cellulose xanthate), shown in the figure for option (D).\nStage 3: The xanthate is converted to xanthic acid ($\\mathrm{Cell\\text{-}O\\text{-}C({=}S)\\text{-}SH}$, figure of option C), which decomposes to regenerate cellulose when extruded into an acid bath.\n\nStep 3: Match:\nOption (A) is the first stage. The figures in (B), (C) and (D) are xanthate and xanthic acid species of later stages, so they are not first.\n\nFinal Answer:\nThe first stage is $\\mathrm{Cell\\text{-}OH + NaOH}$, option (A).\n$$\\boxed{\\mathrm{Cell\\text{-}OH + NaOH}}$$\n\nQuick Tip: Viscose rayon begins by treating cellulose with sodium hydroxide to make alkali cellulose.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Cell - OH + NaOH}$"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "m26-17apr-s2-q100-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "m26-17apr-s2-q100-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "m26-17apr-s2-q100-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

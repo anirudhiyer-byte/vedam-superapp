@@ -1,0 +1,1867 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Chemistry",
+  "year": 2026,
+  "set_label": "16 April · Shift 1",
+  "title": "MHT-CET 2026 · Chemistry · 16 April Shift 1",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "+1 correct · no negative marking",
+  "sort_order": 20,
+  "duration_mins": 60,
+  "source_file_id": "1O5CBP8_HuG-EnqxgJ5WmwqwvlCCQjNxu"
+ },
+ "questions": [
+  {
+   "q_no": 51,
+   "topic": "Some Basic Concepts of Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the amount of aluminium present in $\\mathrm{Al_2(SO_4)_3}$ if the compound contains 4 g of sulfur.\n[Molar mass of sulfur = 32 g/mol , Molar mass of Al =27 g/mol ]",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nOne formula unit of $\\mathrm{Al_2(SO_4)_3}$ holds 2 aluminium atoms and 3 sulfur atoms. So the mole ratio of Al to S in the compound is always 2 : 3.\nStep 2: Key Formula or Approach:\nMoles = mass / molar mass. Convert the 4 g of sulfur to moles, scale by 2/3 to get moles of Al, then convert back to grams.\nStep 3: Detailed Explanation:\nMoles of S = $\\frac{4}{32} = 0.125$ mol.\nMoles of Al = $0.125 \\times \\frac{2}{3} = 0.0833$ mol.\nMass of Al = $0.0833 \\times 27 = 2.25$ g.\nOption (B) 2.50 g, (C) 2.0 g and (D) 2.75 g do not match this ratio. They come from using a wrong ratio such as 1 : 1 or from rounding errors.\nFinal Answer:\nThe compound holds 2.25 g of aluminium.\n(A) 2.25 g\nQuick Tip: Find moles of sulfur, then use the 2 Al : 3 S ratio in the formula.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2.25$ g"
+    },
+    {
+     "key": "B",
+     "text": "$2.50$ g"
+    },
+    {
+     "key": "C",
+     "text": "$2.0$ g"
+    },
+    {
+     "key": "D",
+     "text": "$2.75$ g"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 52,
+   "topic": "Structure of Atom",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the observed electronic configuration of Cu ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFilling by the Aufbau order would give $[\\mathrm{Ar}]\\,3d^{9}4s^{2}$ for copper (Z = 29). But a completely filled d subshell has extra stability from symmetry and exchange energy.\nStep 2: Detailed Explanation:\nOne electron from 4s moves into 3d. This makes the 3d subshell full ($3d^{10}$) and leaves 4s half filled ($4s^{1}$).\nThe observed configuration is therefore $[\\mathrm{Ar}]\\,3d^{10}4s^{1}$.\nOption (A) is the expected Aufbau configuration, not the observed one. Options (C) and (D) do not add up to 29 electrons in total: $18 + 5 + 2 = 25$ and $18 + 6 + 2 = 26$ belong to Mn and Fe.\nStep 3: Check:\nTotal electrons in option (B): $18 + 10 + 1 = 29$, which matches Cu.\nFinal Answer:\nCopper is an exception with a fully filled 3d subshell.\n(B) $[\\mathrm{Ar}]\\,3d^{10}4s^{1}$\nQuick Tip: Copper takes a completely filled 3d subshell by moving one 4s electron into 3d.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[\\mathrm{Ar}]3d^{9}4s^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$[\\mathrm{Ar}]3d^{10}4s^{1}$"
+    },
+    {
+     "key": "C",
+     "text": "$[\\mathrm{Ar}]3d^{5}4s^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$[\\mathrm{Ar}]3d^{6}4s^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 53,
+   "topic": "Structure of Atom",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the energy of an electron in a hydrogen atom in a stationary state corresponding to n = 2 ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn Bohr's model the energy of the electron in a hydrogen atom depends only on the principal quantum number $n$. It is negative because the electron is bound to the nucleus.\nStep 2: Key Formula or Approach:\n$$E_{n} = -\\frac{2.18 \\times 10^{-18}}{n^{2}}\\ \\mathrm{J}$$\nStep 3: Detailed Explanation:\nFor $n = 2$:\n$$E_{2} = -\\frac{2.18 \\times 10^{-18}}{4} = -5.45 \\times 10^{-19}\\ \\mathrm{J}$$\nOption (C) $-4.35 \\times 10^{-18}$ J is twice the ground state energy, which would need $n$ below 1, so it is not possible. Option (D) is even larger in size than that. Option (B) does not follow from any integer $n$ in the formula.\nStep 4: Check:\nThe ground state energy is $-2.18 \\times 10^{-18}$ J, and the $n = 2$ level must lie one quarter of that value, which matches option (A).\nFinal Answer:\nThe energy at n = 2 is $-5.45 \\times 10^{-19}$ J.\n(A) $-5.45 \\times 10^{-19}$ J\nQuick Tip: Use $E_{n} = -2.18 \\times 10^{-18}\\ \\mathrm{J}/n^{2}$ and put $n = 2$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-5.45 \\times 10^{-19}$ J"
+    },
+    {
+     "key": "B",
+     "text": "$-2.40 \\times 10^{-19}$ J"
+    },
+    {
+     "key": "C",
+     "text": "$-4.35 \\times 10^{-18}$ J"
+    },
+    {
+     "key": "D",
+     "text": "$-6.70 \\times 10^{-18}$ J"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 54,
+   "topic": "The p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify increasing order of acidity for following diprotic acids in aqueous solutions.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAcidity of hydrides of one group depends on how easily the H-E bond breaks to release $\\mathrm{H^{+}}$. A weaker bond means a stronger acid.\nStep 2: Key Formula or Approach:\nGoing down group 16 from S to Se to Te, the atom gets bigger, so the E-H bond gets longer and its bond enthalpy falls.\nStep 3: Detailed Explanation:\nBond enthalpy order: S-H > Se-H > Te-H.\nThe weaker the bond, the easier the release of $\\mathrm{H^{+}}$ in water.\nSo acid strength rises as $\\mathrm{H_2S < H_2Se < H_2Te}$.\nOptions (B), (C) and (D) place Te or Se at the wrong position and so reverse or scramble this bond-strength trend.\nStep 4: Check:\nTypical $pK_{a1}$ values are about 7.0 for $\\mathrm{H_2S}$, 3.9 for $\\mathrm{H_2Se}$ and 2.6 for $\\mathrm{H_2Te}$. A smaller $pK_{a}$ means a stronger acid, which agrees with option (A).\nFinal Answer:\nAcidity increases down the group from $\\mathrm{H_2S}$ to $\\mathrm{H_2Te}$.\n(A) $\\mathrm{H_2S < H_2Se < H_2Te}$\nQuick Tip: Down the group the H-E bond gets longer and weaker, so acidity rises.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{H_2S < H_2Se < H_2Te}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{H_2Se < H_2S < H_2Te}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{H_2Te < H_2S < H_2Se}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{H_2Se < H_2Te < H_2S}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 55,
+   "topic": "Chemical Bonding and Molecular Structure",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following molecules is paramagnetic?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA molecule is paramagnetic when its molecular orbital configuration has at least one unpaired electron.\nStep 2: Key Formula or Approach:\nFill the MO energy levels. For $\\mathrm{O_2}$ and $\\mathrm{F_2}$, the order is $\\sigma 2p_{z}$ below $\\pi 2p$.\nStep 3: Detailed Explanation:\n$\\mathrm{Li_2}$: $\\sigma 1s^{2}\\ \\sigma^{*}1s^{2}\\ \\sigma 2s^{2}$. All paired, diamagnetic.\n$\\mathrm{N_2}$: $\\ldots\\ \\pi 2p_{x}^{2}\\ \\pi 2p_{y}^{2}\\ \\sigma 2p_{z}^{2}$. All paired, diamagnetic.\n$\\mathrm{O_2}$: 16 electrons, with the last two going singly into the two degenerate $\\pi^{*}2p_{x}$ and $\\pi^{*}2p_{y}$ orbitals. Two unpaired electrons, so paramagnetic.\n$\\mathrm{F_2}$: the $\\pi^{*}$ orbitals are completely filled. All paired, diamagnetic.\nStep 4: Final Check:\nOnly $\\mathrm{O_2}$, which is option (C), has unpaired electrons.\nFinal Answer:\nOnly $\\mathrm{O_2}$ has unpaired electrons in its MO diagram.\n(C) $\\mathrm{O_2}$\nQuick Tip: Write the MO configuration and look for unpaired electrons.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Li_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{N_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{O_2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{F_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 56,
+   "topic": "States of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following statements is true about ideal gas ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAn ideal gas follows $PV = nRT$ at every pressure and temperature. Its molecules have negligible volume and no mutual attraction, and all collisions are perfectly elastic.\nStep 2: Detailed Explanation:\nReal gases deviate from this behaviour, because their molecules have finite volume and attract one another. A gas that obeys the gas laws exactly under all conditions is only a theoretical model.\nSo the statement \"It does not exist\" is the true one here.\nOption (A) describes a real gas, since an ideal gas obeys Boyle's and Charles' laws exactly. Option (B) does not describe an ideal gas, because its collisions are perfectly elastic. Option (D) also does not describe it, because an ideal gas has no intermolecular attraction and loses no kinetic energy in collisions.\nStep 3: Final Answer:\nOption (C) is the statement that holds.\nFinal Answer:\nAn ideal gas is only a hypothetical model.\n(C) It does not exist\nQuick Tip: An ideal gas is a theoretical model that no real gas fully matches.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It shows deviation from Boyle's law and Charles' law."
+    },
+    {
+     "key": "B",
+     "text": "Its molecules are not perfectly elastic."
+    },
+    {
+     "key": "C",
+     "text": "It does not exist."
+    },
+    {
+     "key": "D",
+     "text": "Intermolecular attraction is present in it, hence a collision takes place with loss of kinetic energy."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 57,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the change in entropy of surrounding for the reaction,\n$\\mathrm{H_{2(g)} + 1/2O_{2(g)} \\rightarrow H_2O_{(l)}}$\nat 298 K if standard enthalpy of formation of water is $-286$ kJ ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe heat given out by the reaction is absorbed by the surroundings at constant temperature and pressure. So the entropy change of the surroundings is tied to $\\Delta H$ of the reaction.\nStep 2: Key Formula or Approach:\n$$\\Delta S_{surr} = -\\frac{\\Delta H}{T}$$\nStep 3: Detailed Explanation:\nThe reaction forms 1 mol of liquid water, so $\\Delta H = \\Delta_{f}H^{\\circ} = -286$ kJ = $-286000$ J.\n$$\\Delta S_{surr} = -\\frac{-286000}{298} = +959.7\\ \\mathrm{J\\,K^{-1}}$$\nThe value is positive because the surroundings absorb heat from an exothermic reaction. Options (B), (C) and (D) do not result from dividing 286000 J by 298 K.\nStep 4: Check:\n$286000/298 = 959.73$, which matches option (A).\nFinal Answer:\nSurroundings gain 286 kJ of heat at 298 K.\n(A) $959.7\\ \\mathrm{J\\,K^{-1}}$\nQuick Tip: Surroundings gain the heat released: $\\Delta S_{surr} = -\\Delta H / T$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$959.7\\ \\mathrm{JK^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$801.5\\ \\mathrm{JK^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$850.7\\ \\mathrm{JK^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$980.0\\ \\mathrm{JK^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 58,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a particular reaction, 4 kJ heat is released by the system and 12 kJ work done on the system. Calculate the $\\Delta H$ and $\\Delta U$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe first law states $\\Delta U = q + w$, with the sign taken from the system's point of view. Heat released by the system is negative, and work done on the system is positive.\nStep 2: Key Formula or Approach:\n$\\Delta U = q + w$, and $\\Delta H = q_{p}$ (heat exchanged at constant pressure).\nStep 3: Detailed Explanation:\n$q = -4$ kJ and $w = +12$ kJ.\n$$\\Delta U = -4 + 12 = +8\\ \\mathrm{kJ}$$\nThe heat change at constant pressure is the enthalpy change, so $\\Delta H = -4$ kJ.\nOptions (A) and (D) give $\\Delta H = +4$ kJ, which wrongly treats the heat as absorbed. Option (C) gives $\\Delta U = -16$ kJ, which would be $-4 - 12$, wrongly treating the work as done by the system.\nStep 4: Final Answer:\n$\\Delta H = -4$ kJ and $\\Delta U = 8$ kJ.\nFinal Answer:\n$\\Delta H = -4$ kJ and $\\Delta U = 8$ kJ.\n(B) $\\Delta H = -4$ kJ, $\\Delta U = 8$ kJ\nQuick Tip: $\\Delta U = q + w$ with $q = -4$ and $w = +12$; $\\Delta H$ equals $q$ at constant pressure.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\Delta H = 4$ kJ and $\\Delta U = 16$ kJ"
+    },
+    {
+     "key": "B",
+     "text": "$\\Delta H = -4$ kJ and $\\Delta U = 8$ kJ"
+    },
+    {
+     "key": "C",
+     "text": "$\\Delta H = -4$ kJ and $\\Delta U = -16$ kJ"
+    },
+    {
+     "key": "D",
+     "text": "$\\Delta H = 4$ kJ and $\\Delta U = -16$ kJ"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 59,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following relations is correct for a reaction $\\mathrm{S_{(s)} + O_{2(g)} \\rightarrow SO_{2(g)}}$ ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\n$\\Delta H$ and $\\Delta U$ differ by the work term due to change in the number of moles of gas.\nStep 2: Key Formula or Approach:\n$$\\Delta H = \\Delta U + \\Delta n_{g}RT$$\nStep 3: Detailed Explanation:\nIn $\\mathrm{S_{(s)} + O_{2(g)} \\rightarrow SO_{2(g)}}$, only gases are counted: reactant gas = 1 mol of $\\mathrm{O_2}$, product gas = 1 mol of $\\mathrm{SO_2}$.\nSo $\\Delta n_{g} = 1 - 1 = 0$.\nThen $\\Delta H = \\Delta U$.\nOptions (A) and (B) need a nonzero $\\Delta n_{g}$. Option (C) says $\\Delta H = 0$, which has no basis because combustion releases heat.\nStep 4: Final Answer:\n$\\Delta H = \\Delta U$, option (D).\nFinal Answer:\n$\\Delta n_{g}$ is zero, so $\\Delta H$ equals $\\Delta U$.\n(D) $\\Delta H = \\Delta U$\nQuick Tip: Count gaseous moles: one mole of gas on each side, so $\\Delta n_{g}$ is zero.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\Delta H > \\Delta U$"
+    },
+    {
+     "key": "B",
+     "text": "$\\Delta H < \\Delta U$"
+    },
+    {
+     "key": "C",
+     "text": "$\\Delta H = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\Delta H = \\Delta U$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 60,
+   "topic": "Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The solubility product of a sparingly soluble salt BA is $6.4 \\times 10^{-13}$.\nCalculate it's solubility in $\\mathrm{g\\ dm^{-3}}$ .\nMolar mass of salt is $190\\mathrm{g\\ mol^{-1}}$ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nBA dissociates as $\\mathrm{BA \\rightleftharpoons B^{+} + A^{-}}$. If solubility is $S$ mol/L, both ion concentrations equal $S$.\nStep 2: Key Formula or Approach:\n$$K_{sp} = S \\times S = S^{2}$$\nStep 3: Detailed Explanation:\n$$S = \\sqrt{6.4 \\times 10^{-13}} = 8 \\times 10^{-7}\\ \\mathrm{mol\\ dm^{-3}}$$\nSolubility in grams per $\\mathrm{dm^{3}}$ = $8 \\times 10^{-7} \\times 190 = 1.52 \\times 10^{-4}\\ \\mathrm{g\\ dm^{-3}}$.\nOptions (B), (C) and (D) do not come from this calculation.\nStep 4: Final Answer:\nSolubility is $1.52 \\times 10^{-4}\\ \\mathrm{g\\ dm^{-3}}$, option (A).\nFinal Answer:\nSolubility is $1.52 \\times 10^{-4}$ g per $\\mathrm{dm^{3}}$.\n(A) $1.52 \\times 10^{-4}\\ \\mathrm{g\\ dm^{-3}}$\nQuick Tip: For a 1:1 salt, $S = \\sqrt{K_{sp}}$; multiply by molar mass for g per $\\mathrm{dm^{3}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.52 \\times 10^{-4}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.25 \\times 10^{-4}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.1 \\times 10^{-4}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.9 \\times 10^{-4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 61,
+   "topic": "Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The solubility of AgCl in 0.1 M NaCl is S mol/L. If the solubility product of AgCl is $1.8 \\times 10^{-10}$, then S is approximately:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNaCl is fully ionised and gives $[\\mathrm{Cl^{-}}] = 0.1$ M. This common ion suppresses the dissolving of AgCl.\nStep 2: Key Formula or Approach:\n$$K_{sp} = [\\mathrm{Ag^{+}}][\\mathrm{Cl^{-}}]$$\nChloride from AgCl itself is tiny next to 0.1 M, so we take $[\\mathrm{Cl^{-}}] \\approx 0.1$.\nStep 3: Detailed Explanation:\n$$S = [\\mathrm{Ag^{+}}] = \\frac{1.8 \\times 10^{-10}}{0.1} = 1.8 \\times 10^{-9}\\ \\mathrm{M}$$\nIn pure water the solubility would be $\\sqrt{1.8 \\times 10^{-10}} = 1.34 \\times 10^{-5}$ M.\nThe common ion effect reduces it by about four orders of magnitude.\nOptions (B), (C) and (D) are smaller by a further factor of 10 or more and do not obey the $K_{sp}$ expression.\nStep 4: Final Answer:\n$S = 1.8 \\times 10^{-9}$ M, option (A).\nFinal Answer:\nS is $1.8 \\times 10^{-9}$ M because of the common ion effect.\n(A) $1.8 \\times 10^{-9}$ M\nQuick Tip: The common ion $\\mathrm{Cl^{-}}$ from NaCl is 0.1 M, so $S = K_{sp} / 0.1$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.8 \\times 10^{-9}$ M"
+    },
+    {
+     "key": "B",
+     "text": "$1.8 \\times 10^{-10}$ M"
+    },
+    {
+     "key": "C",
+     "text": "$1.8 \\times 10^{-11}$ M"
+    },
+    {
+     "key": "D",
+     "text": "$1.8 \\times 10^{-12}$ M"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 62,
+   "topic": "Equilibrium",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify from following a weak electrolyte based on their dissociation nature in aqueous medium.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA strong electrolyte ionises almost completely in water. A weak electrolyte ionises only slightly and sets up an equilibrium.\nStep 2: Detailed Explanation:\nNaOH and KOH are strong bases and dissociate completely into metal ions and $\\mathrm{OH^{-}}$.\nHI is a strong acid and ionises fully into $\\mathrm{H^{+}}$ and $\\mathrm{I^{-}}$.\n$\\mathrm{NH_3}$ reacts with water only to a small extent:\n$$\\mathrm{NH_3 + H_2O \\rightleftharpoons NH_4^{+} + OH^{-}}$$\nIts $K_{b}$ is about $1.8 \\times 10^{-5}$, so very few molecules ionise.\nStep 3: Final Answer:\n$\\mathrm{NH_3}$ is the weak electrolyte, option (A).\nFinal Answer:\nAmmonia is a weak base and a weak electrolyte.\n(A) $\\mathrm{NH_3}$\nQuick Tip: Strong bases and strong acids ionise fully; ammonia ionises only slightly.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{NH_3}$"
+    },
+    {
+     "key": "B",
+     "text": "NaOH"
+    },
+    {
+     "key": "C",
+     "text": "KOH"
+    },
+    {
+     "key": "D",
+     "text": "HI"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 63,
+   "topic": "Redox Reactions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the oxidation number of oxygen in $\\mathrm{KO_2}$ ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn $\\mathrm{KO_2}$, potassium is an alkali metal with oxidation state +1. The compound contains the superoxide ion $\\mathrm{O_2^{-}}$.\nStep 2: Key Formula or Approach:\nThe sum of oxidation numbers in a neutral compound is zero.\nStep 3: Detailed Explanation:\nLet the oxidation number of each O be $x$.\n$$(+1) + 2x = 0 \\Rightarrow x = -\\frac{1}{2}$$\nA fractional value arises because two oxygen atoms share one negative charge in the superoxide ion.\nOption (A) $-2$ is for oxides, option (C) $-1$ is for peroxides like $\\mathrm{Na_2O_2}$, and option (D) $+2$ is found only in $\\mathrm{OF_2}$.\nStep 4: Final Answer:\nThe oxidation number of oxygen is $-1/2$, option (B).\nFinal Answer:\nSuperoxide oxygen has oxidation state $-1/2$.\n(B) $-\\frac{1}{2}$\nQuick Tip: $\\mathrm{KO_2}$ is a superoxide with the $\\mathrm{O_2^{-}}$ ion.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2$"
+    },
+    {
+     "key": "B",
+     "text": "$-1/2$"
+    },
+    {
+     "key": "C",
+     "text": "$-1$"
+    },
+    {
+     "key": "D",
+     "text": "$+2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 64,
+   "topic": "Hydrogen",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The most abundant element in the universe is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nStars and interstellar gas are made mainly of the lightest element, formed first after the Big Bang.\nStep 2: Detailed Explanation:\nHydrogen makes up about 75 percent of the universe by mass, and helium makes up most of the rest. All heavier elements together are only a small fraction.\nSodium, magnesium and potassium are present only in trace amounts on cosmic scales. They are more common on Earth, but not in the universe as a whole.\nStep 3: Final Answer:\nHydrogen is the most abundant element, option (A).\nFinal Answer:\nHydrogen is the most abundant element.\n(A) Hydrogen\nQuick Tip: Hydrogen makes up about 75 percent of the mass of the universe.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Hydrogen"
+    },
+    {
+     "key": "B",
+     "text": "Sodium"
+    },
+    {
+     "key": "C",
+     "text": "Magnesium"
+    },
+    {
+     "key": "D",
+     "text": "Potassium"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 65,
+   "topic": "The s-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following compounds is formed when chlorine reacts with dry slake lime $\\mathrm{Ca(OH)_2}$ ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nChlorine reacts with dry slaked lime to form bleaching powder. It is a mixed salt of hypochlorite and chloride.\nStep 2: Detailed Explanation:\n$$\\mathrm{Ca(OH)_2 + Cl_2 \\rightarrow CaOCl_2 + H_2O}$$\nThe product has the formula $\\mathrm{CaOCl_2}$, often written $\\mathrm{Ca(OCl)Cl}$. The other formulae $\\mathrm{CaO_2Cl_2}$ and $\\mathrm{CaOCl}$ are not the product of this reaction. $\\mathrm{CaCl_2}$ alone would form only if the hypochlorite part were absent.\nStep 3: Final Answer:\nThe compound formed is $\\mathrm{CaOCl_2}$, option (A).\nFinal Answer:\nBleaching powder, $\\mathrm{CaOCl_2}$, forms.\n(A) $\\mathrm{CaOCl_2}$\nQuick Tip: Chlorine and dry slaked lime give bleaching powder, $\\mathrm{CaOCl_2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CaOCl_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CaO_2Cl_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CaOCl}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{CaCl_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 66,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is an aromatic alcohol?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAn aromatic alcohol (like benzyl alcohol) has the $-\\mathrm{OH}$ group attached to an $sp^{3}$ carbon of a side chain, and not directly to the benzene ring. If $-\\mathrm{OH}$ sits on the ring, the compound is a phenol.\nStep 2: Detailed Explanation:\nThe figure shows four structures.\n(I) A benzene ring with $-\\mathrm{OH}$ directly on the ring: phenol.\n(II) A benzene ring with $-\\mathrm{CH_2OH}$: benzyl alcohol, an aromatic alcohol.\n(III) A ring with $-\\mathrm{CH_2OH}$ and an ethyl group in the meta position: also an aromatic alcohol.\n(IV) A ring with $-\\mathrm{OH}$ directly on the ring and an ethyl group: a substituted phenol.\nSo only (II) and (III) are aromatic alcohols.\nStep 3: Final Answer:\nII and III only, option (B).\nFinal Answer:\nStructures II and III have $\\mathrm{CH_2OH}$ on the ring.\n(B) II and III only\nQuick Tip: An aromatic alcohol has OH on a side chain carbon, not directly on the ring.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "I Only"
+    },
+    {
+     "key": "B",
+     "text": "II and III Only"
+    },
+    {
+     "key": "C",
+     "text": "I, II, III and IV"
+    },
+    {
+     "key": "D",
+     "text": "I and IV Only"
+    }
+   ],
+   "stem_figure": "m26-16apr-s1-q066.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 67,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What type of following reactions, the oxidative rancidity is?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nRancidity is the spoiling of fats and oils. In oxidative rancidity, oxygen from air attacks unsaturated fatty acid chains.\nStep 2: Detailed Explanation:\nThe process starts when a hydrogen next to a double bond is removed to form a free radical. The radical reacts with $\\mathrm{O_2}$ to give a peroxy radical, and that takes a hydrogen from another molecule to continue the chain. Steps are initiation, propagation and termination.\nSo it is a free radical chain reaction. It is not a simple addition, substitution or displacement reaction.\nStep 3: Final Answer:\nOption (C), free radical chain reaction.\nFinal Answer:\nOxidative rancidity is a free radical chain reaction.\n(C) free radical chain reaction\nQuick Tip: Oxidative rancidity of fats goes through a radical chain mechanism.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "addition"
+    },
+    {
+     "key": "B",
+     "text": "substitution"
+    },
+    {
+     "key": "C",
+     "text": "free radical chain reaction"
+    },
+    {
+     "key": "D",
+     "text": "displacement"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 68,
+   "topic": "Organic Chemistry: Basic Principles and Techniques",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Find the number of hyperconjugation structures in the isopropyl carbocation.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nHyperconjugation counts the number of $\\alpha$-hydrogens, i.e. the C-H bonds on carbons next to the positively charged carbon. Each such C-H bond gives one hyperconjugative structure.\nStep 2: Detailed Explanation:\nThe isopropyl cation is $\\mathrm{(CH_3)_2CH^{+}}$. The cationic carbon is attached to two $\\mathrm{CH_3}$ groups.\nEach $\\mathrm{CH_3}$ carries 3 hydrogens, so total $\\alpha$-hydrogens = $3 + 3 = 6$.\nThe H on the cationic carbon itself is not an $\\alpha$-hydrogen.\nSo there are 6 hyperconjugation structures. The value 3 counts one methyl only, and 9 is for the tert-butyl cation.\nStep 3: Final Answer:\nSix structures, option (B).\nFinal Answer:\nThere are 6 alpha hydrogens, so 6 structures.\n(B) 6\nQuick Tip: Count the alpha C-H bonds next to the positive carbon.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$9$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 69,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following alkenes is highly stabilized ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nStability of an alkene rises with the number of alkyl groups on the $\\mathrm{C{=}C}$ carbons. Alkyl groups donate electron density and add hyperconjugation.\nStep 2: Detailed Explanation:\nCount alkyl groups on the double bond:\n$\\mathrm{R_2C{=}CR_2}$: 4 groups (tetra-substituted).\n$\\mathrm{R_2C{=}CH_2}$: 2 groups.\n$\\mathrm{RCH{=}CHR}$: 2 groups.\n$\\mathrm{RCH{=}CH_2}$: 1 group.\nThe tetra-substituted alkene has the most $\\alpha$-hydrogens and the lowest heat of hydrogenation, so it is the most stable.\nStep 3: Final Answer:\nOption (A), $\\mathrm{R_2C{=}CR_2}$.\nFinal Answer:\nThe tetra-substituted alkene is the most stable.\n(A) $\\mathrm{R_2C{=}CR_2}$\nQuick Tip: More alkyl groups on the double bond give more hyperconjugation and higher stability.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{R_2C = CR_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{R_2C{=}CH_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{RCH{=}CHR}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{RCH{=}CH_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 70,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following alkanes is NOT obtained when a mixture of ethyl iodide and n-propyl iodide is subjected to Wurtz reaction?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn the Wurtz reaction, two alkyl halides react with sodium in dry ether to join their alkyl groups: $\\mathrm{R\\text{-}X + R'\\text{-}X + 2Na \\rightarrow R\\text{-}R' + 2NaX}$.\nStep 2: Detailed Explanation:\nWith $\\mathrm{C_2H_5I}$ (ethyl) and $\\mathrm{n\\text{-}C_3H_7I}$ (propyl), three couplings are possible:\nEthyl + ethyl gives butane (4 carbons).\nPropyl + propyl gives n-hexane (6 carbons).\nEthyl + propyl gives n-pentane (5 carbons).\nPropane has only 3 carbons, and no combination of 2 + 3 or 2 + 2 or 3 + 3 carbons gives 3. So propane is not formed.\nStep 3: Final Answer:\nOption (B), propane.\nFinal Answer:\nCoupling gives $\\mathrm{C_4}$, $\\mathrm{C_5}$ and $\\mathrm{C_6}$ alkanes, never $\\mathrm{C_3}$.\n(B) Propane\nQuick Tip: Wurtz couples two alkyl groups: $\\mathrm{C_2{+}C_2}$, $\\mathrm{C_3{+}C_3}$ and $\\mathrm{C_2{+}C_3}$ are the only products.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "n-Butane"
+    },
+    {
+     "key": "B",
+     "text": "Propane"
+    },
+    {
+     "key": "C",
+     "text": "n-Pentane"
+    },
+    {
+     "key": "D",
+     "text": "n-Hexane"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 71,
+   "topic": "The Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A compound forms hcp structure. What is the number of tetrahedral voids formed in 0.8 mol of it.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn a close-packed structure (hcp or ccp), every atom has 2 tetrahedral voids and 1 octahedral void.\nStep 2: Detailed Explanation:\nNumber of atoms in 0.8 mol = $0.8 \\times 6.022 \\times 10^{23} = 4.818 \\times 10^{23}$.\nNumber of tetrahedral voids = $2 \\times 4.818 \\times 10^{23} = 9.635 \\times 10^{23}$.\nOption (A) is the number of atoms (one void per atom). Option (C) equals 1.5 voids per atom and (D) is a half void per atom, neither matches the 2 per atom rule.\nStep 3: Final Answer:\nOption (B), $9.635 \\times 10^{23}$.\nFinal Answer:\nTetrahedral voids are twice the number of atoms.\n(B) $9.635 \\times 10^{23}$\nQuick Tip: There are two tetrahedral voids per atom in hcp.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4.818 \\times 10^{23}$"
+    },
+    {
+     "key": "B",
+     "text": "$9.635 \\times 10^{23}$"
+    },
+    {
+     "key": "C",
+     "text": "$7.227 \\times 10^{23}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.410 \\times 10^{23}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 72,
+   "topic": "The Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the number of atoms present in 90 g of metal if it forms bcc structure.\n[ $\\rho \\times a^{3} = 1.8 \\times 10^{-22}$ g ]",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor a cubic cell, density $\\rho = \\frac{ZM}{N_{A}a^{3}}$, where $Z$ is the number of atoms per cell. For bcc, $Z = 2$.\nStep 2: Key Formula or Approach:\n$$M = \\frac{\\rho a^{3}N_{A}}{Z}$$\nStep 3: Detailed Explanation:\n$$M = \\frac{1.8 \\times 10^{-22} \\times 6.022 \\times 10^{23}}{2} = 54.2\\ \\mathrm{g/mol}$$\nMoles in 90 g = $90/54.2 = 1.66$ mol.\nAtoms = $1.66 \\times 6.022 \\times 10^{23} \\approx 1.0 \\times 10^{24}$.\nStep 4: Check:\nAlternatively, mass per atom = $\\rho a^{3}/Z = 0.9 \\times 10^{-22}$ g, so atoms in 90 g = $90/0.9 \\times 10^{-22} = 1.0 \\times 10^{24}$. The other options would need 2, 3 or 4 times as many atoms and do not fit.\nFinal Answer:\nThe 90 g sample holds $1.0 \\times 10^{24}$ atoms.\n(B) $1.0 \\times 10^{24}$\nQuick Tip: Use density formula to get molar mass, then moles and atoms.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4.0 \\times 10^{24}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.0 \\times 10^{24}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.0 \\times 10^{24}$"
+    },
+    {
+     "key": "D",
+     "text": "$3.0 \\times 10^{24}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 73,
+   "topic": "The Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In the fcc structure, the number of tetrahedral holes per sphere is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAn fcc (ccp) cell has 4 atoms per unit cell, and tetrahedral holes sit inside the cell at 8 positions.\nStep 2: Detailed Explanation:\nTetrahedral holes per cell = 8. Atoms per cell = 4.\n$$\\frac{8}{4} = 2$$\nSo each sphere has 2 tetrahedral holes. Option (A) 1 is the octahedral count per sphere, and 4 and 8 are not ratios in this lattice.\nStep 3: Final Answer:\nTwo tetrahedral holes per sphere, option (C).\nFinal Answer:\nfcc has 8 tetrahedral holes for 4 spheres.\n(C) 2\nQuick Tip: An fcc cell has 4 spheres and 8 tetrahedral holes.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 74,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For a binary solution, when a nonvolatile nonelectrolyte solute is dissolved in solvent, the vapour pressure of solvent decreases by 20 % . what is mole fraction of solvent in solution ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nRaoult's law for a nonvolatile solute says $\\frac{p^{0} - p}{p^{0}} = x_{solute}$.\nStep 2: Detailed Explanation:\nA 20 percent decrease means $\\frac{p^{0} - p}{p^{0}} = 0.20$, so $x_{solute} = 0.20$.\n$$x_{solvent} = 1 - 0.20 = 0.80$$\nOption (C) 0.2 is the solute fraction. Options (A) and (B) are not related to the data.\nStep 3: Final Answer:\nMole fraction of solvent is 0.8, option (D).\nFinal Answer:\nSolvent mole fraction is 1 minus the lowering.\n(D) 0.8\nQuick Tip: Relative lowering of vapour pressure equals the mole fraction of solute.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.02$"
+    },
+    {
+     "key": "B",
+     "text": "$0.08$"
+    },
+    {
+     "key": "C",
+     "text": "$0.2$"
+    },
+    {
+     "key": "D",
+     "text": "$0.8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 75,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the boiling point of an aqueous solution containing 18 g glucose in 100 g water if the molal elevation constant of water is $0.5\\mathrm{K\\ kg\\ mol^{-1}}$.\n[Molar mass of glucose $= 180\\mathrm{g\\ mol^{-1}}$ and boiling point of water $= 100^{\\circ}\\mathrm{C}$]",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nBoiling point elevation is $\\Delta T_{b} = K_{b}m$, where $m$ is molality (mol per kg of solvent).\nStep 2: Detailed Explanation:\nMoles of glucose = $18/180 = 0.1$ mol. Mass of water = 100 g = 0.1 kg.\n$$m = \\frac{0.1}{0.1} = 1\\ \\mathrm{mol/kg}$$\n$$\\Delta T_{b} = 0.5 \\times 1 = 0.5\\ \\mathrm{K}$$\nBoiling point of solution = $100 + 0.5 = 100.5\\ ^{\\circ}\\mathrm{C}$.\nOption (A) ignores the elevation. Options (C) and (D) would need a molality of 2 or 3.\nStep 3: Final Answer:\n$100.5\\ ^{\\circ}\\mathrm{C}$, option (B).\nFinal Answer:\nThe boiling point becomes $100.5\\ ^{\\circ}\\mathrm{C}$.\n(B) $100.5\\ ^{\\circ}\\mathrm{C}$\nQuick Tip: $\\Delta T_{b} = K_{b}$ times molality; add to $100\\ ^{\\circ}\\mathrm{C}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100^{\\circ}\\mathrm{C}$"
+    },
+    {
+     "key": "B",
+     "text": "$100.5^{\\circ}\\mathrm{C}$"
+    },
+    {
+     "key": "C",
+     "text": "$101.0^{\\circ}\\mathrm{C}$"
+    },
+    {
+     "key": "D",
+     "text": "$101.5^{\\circ}\\mathrm{C}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 76,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is the colligative property of a solution?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA colligative property depends on the number of solute particles in a fixed amount of solvent, not on what the solute is. The four standard ones are relative lowering of vapour pressure, elevation of boiling point, depression of freezing point and osmotic pressure.\nStep 2: Detailed Explanation:\nOsmotic pressure follows $\\pi = CRT$. It depends only on the molar concentration of particles, so it is a colligative property in the direct sense.\nVapour pressure, boiling point and freezing point are properties of the solution that change when a solute is added, but the colligative quantity is the lowering, elevation or depression and not the raw value itself.\nStep 3: Final Answer:\nOption (C), osmotic pressure, is the colligative property.\nFinal Answer:\nOsmotic pressure depends only on particle number.\n(C) Osmotic pressure\nQuick Tip: Colligative properties depend on the number of solute particles; osmotic pressure is the standard example.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "vapour pressure"
+    },
+    {
+     "key": "B",
+     "text": "boiling point"
+    },
+    {
+     "key": "C",
+     "text": "osmotic pressure"
+    },
+    {
+     "key": "D",
+     "text": "Freezing point"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 77,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the reaction from following so that the standard potential of $\\mathrm{Cu^{+2}/Cu}$ electrode is 0.34 V. with respective to SHE ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nBy IUPAC convention, a standard electrode potential refers to the reduction half reaction measured against the standard hydrogen electrode (SHE).\nStep 2: Detailed Explanation:\nFor the $\\mathrm{Cu^{2+}/Cu}$ electrode, the reduction is\n$$\\mathrm{Cu^{2+} + 2e^{-} \\rightarrow Cu}, \\quad E^\\circ = +0.34\\ \\mathrm{V}$$\nOption (A) is the reverse (oxidation), so its potential would be $-0.34$ V. Options (C) and (D) involve $\\mathrm{Cu^{+}}$ and $\\mathrm{Cu^{3+}}$, which are not the $\\mathrm{Cu^{2+}/Cu}$ couple, and are oxidations.\nStep 3: Final Answer:\nOption (B) is the reaction for $E^\\circ = 0.34$ V.\nFinal Answer:\nStandard potentials are for reduction half reactions.\n(B) $\\mathrm{Cu^{2+} + 2e^{-} \\rightarrow Cu}$\nQuick Tip: Standard electrode potentials are written for reduction half reactions.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Cu \\rightarrow Cu^{+2} + 2e^{-}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Cu^{+2} + 2e^{-} \\rightarrow Cu}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{Cu^{+} \\rightarrow Cu^{+2} + e^{-}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{Cu^{+3} \\rightarrow Cu^{+2} + e^{-}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 78,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The cells A and B contain aqueous solutions of ferrous chloride and ferric chloride respectively. The mass of iron deposited by the same quantity of electricity in cells A and B is in the ratio.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFaraday's law: for the same charge, the mass deposited is proportional to the equivalent mass, i.e. $M/z$, where $z$ is the number of electrons needed per ion.\nStep 2: Detailed Explanation:\nCell A (ferrous chloride): $\\mathrm{Fe^{2+} + 2e^{-} \\rightarrow Fe}$, $z = 2$.\nCell B (ferric chloride): $\\mathrm{Fe^{3+} + 3e^{-} \\rightarrow Fe}$, $z = 3$.\n$$\\frac{m_A}{m_B} = \\frac{M/2}{M/3} = \\frac{3}{2}$$\nThe mass of iron in cell A is 1.5 times that in cell B. Options (A), (B) and (C) come from ignoring the charge on the ion or inverting the ratio.\nStep 3: Final Answer:\nThe ratio is $3 : 2$, option (D).\nFinal Answer:\nMass deposited goes as 1/z, so the ratio is 3 to 2.\n(D) $3 : 2$\nQuick Tip: Moles of Fe deposited per faraday are 1/2 for $\\mathrm{Fe^{2+}}$ and 1/3 for $\\mathrm{Fe^{3+}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$3 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$3 : 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 79,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What happens during the discharge of a lead storage battery?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn a lead storage battery the anode is Pb and the cathode is $\\mathrm{PbO_2}$, both dipping in dilute $\\mathrm{H_2SO_4}$.\nStep 2: Detailed Explanation:\nOverall discharge reaction:\n$$\\mathrm{Pb + PbO_2 + 2H_2SO_4 \\rightarrow 2PbSO_4 + 2H_2O}$$\nSulfuric acid is used up, which also lowers the density of the electrolyte.\nNo $\\mathrm{SO_2}$ gas is produced. Pb is a reactant, not a product, during discharge. $\\mathrm{PbSO_4}$ is formed on discharge, and consumed only during recharging.\nStep 3: Final Answer:\n$\\mathrm{H_2SO_4}$ is consumed, option (C).\nFinal Answer:\nDischarge uses up sulfuric acid.\n(C) $\\mathrm{H_2SO_4}$ is consumed\nQuick Tip: On discharge both plates turn to $\\mathrm{PbSO_4}$ and sulfuric acid is used up.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{SO_2}$ is evolved"
+    },
+    {
+     "key": "B",
+     "text": "Pb is formed"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{H_2SO_4}$ is consumed"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{PbSO_4}$ is consumed"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 80,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The rate constant of reaction is $1.5 \\times 10^{7}\\ \\mathrm{s^{-1}}$ at 300 K and $3.0 \\times 10^{7}\\ \\mathrm{s^{-1}}$ at 330 K. What is the activation energy for the reaction? [ $R \\times 2.303 = 19.15\\ \\mathrm{J\\,K^{-1}mol^{-1}}$]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe Arrhenius equation compares rate constants at two temperatures and links them to the activation energy $E_a$.\nStep 2: Key Formula or Approach:\n$$\\log\\frac{k_2}{k_1} = \\frac{E_a}{2.303R}\\left(\\frac{T_2 - T_1}{T_1 T_2}\\right)$$\nStep 3: Detailed Explanation:\n$k_2/k_1 = 3.0 \\times 10^{7}/1.5 \\times 10^{7} = 2$, so $\\log 2 = 0.301$.\n$\\frac{T_2 - T_1}{T_1 T_2} = \\frac{30}{300 \\times 330} = \\frac{1}{3300}$.\n$$E_a = \\frac{0.301 \\times 19.15 \\times 3300}{1} = 19022\\ \\mathrm{J\\,mol^{-1}} \\approx 19.02\\ \\mathrm{kJ\\,mol^{-1}}$$\nOptions (A), (B) and (D) differ from this result in the third digit or more.\nStep 4: Final Answer:\n$E_a = 19.02\\ \\mathrm{kJ\\,mol^{-1}}$, option (C).\nFinal Answer:\nRate doubles from 300 K to 330 K, so Ea is 19.02 kJ/mol.\n(C) $19.02\\ \\mathrm{kJ\\,mol^{-1}}$\nQuick Tip: Use the two-temperature Arrhenius equation with 2.303R given.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$18.02\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$20.1\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$19.02\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$21.5\\ \\mathrm{kJ\\,mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 81,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The rate constant for the reaction $\\mathrm{2N_2O_5 \\rightarrow 4NO_2 + O_2}$ is $3.0 \\times 10^{-5}\\ \\mathrm{s^{-1}}$. If the rate is $2.4 \\times 10^{-5}$ mole $\\mathrm{L^{-1}s^{-1}}$ then the concentration of $\\mathrm{N_2O_5}$ (mol $\\mathrm{L^{-1}}$) is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe unit of $k$ is $\\mathrm{s^{-1}}$, which tells us the reaction is first order in $\\mathrm{N_2O_5}$.\nSo rate = $k[\\mathrm{N_2O_5}]$.\nStep 2: Detailed Explanation:\n$$2.4 \\times 10^{-5} = 3.0 \\times 10^{-5} \\times [\\mathrm{N_2O_5}]$$\n$$[\\mathrm{N_2O_5}] = \\frac{2.4 \\times 10^{-5}}{3.0 \\times 10^{-5}} = 0.8\\ \\mathrm{mol\\,L^{-1}}$$\nOptions (A) and (B) are greater than 0.8 and would give a larger rate.\nOption (C) $0.04$ would give a rate of only $1.2 \\times 10^{-6}\\ \\mathrm{mol\\,L^{-1}s^{-1}}$.\nStep 3: Final Answer:\n$[\\mathrm{N_2O_5}] = 0.8\\ \\mathrm{mol\\,L^{-1}}$, option (D).\nFinal Answer:\nUnits of k show first order: rate = k times concentration.\n(D) $0.8\\ \\mathrm{mol\\,L^{-1}}$\nQuick Tip: The unit of k shows a first order reaction, so rate = $k[\\mathrm{N_2O_5}]$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.4$"
+    },
+    {
+     "key": "B",
+     "text": "$1.2$"
+    },
+    {
+     "key": "C",
+     "text": "$0.04$"
+    },
+    {
+     "key": "D",
+     "text": "$0.8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 82,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is order of radioactive decay of a substance ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nRadioactive decay rate depends on how many unstable nuclei remain: $-\\frac{dN}{dt} = \\lambda N$.\nStep 2: Detailed Explanation:\nThe rate is directly proportional to the first power of $N$. This is the rate law of a first order reaction.\n$$N = N_0 e^{-\\lambda t}, \\quad t_{1/2} = \\frac{0.693}{\\lambda}$$\nThe half life does not depend on the starting amount, which is a clear sign of first order. Zero, 1.5 and second order laws would give different dependence of rate on $N$.\nStep 3: Final Answer:\nOrder = 1, option (B).\nFinal Answer:\nDecay rate is proportional to N, so first order.\n(B) 1\nQuick Tip: Radioactive decay rate is proportional to the number of nuclei present.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$1.5$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 83,
+   "topic": "Nanochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Nano materials not applied in",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNano materials have particles of 1-100 nm. Their size gives them unusual strength, optical and electrical properties, so they are used in speciality applications.\nStep 2: Detailed Explanation:\nScratch-proof glass uses nano coatings, so (A) is an application.\nElectronic devices use nano scale transistors and quantum dots, so (B) is an application.\nSelf-cleaning materials use nano titanium dioxide coatings, so (D) is an application.\nConventional water treatment relies on ordinary processes such as sedimentation, filtration and chlorination, without nano materials.\nStep 3: Final Answer:\nOption (C) is the one where nano materials are not applied.\nFinal Answer:\nConventional water treatment does not use nano materials.\n(C) Conventional water treatment\nQuick Tip: Nano materials suit special uses like glass coatings, electronics and self cleaning surfaces.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Manufacturing of scratch proof glasses"
+    },
+    {
+     "key": "B",
+     "text": "Electronic devices"
+    },
+    {
+     "key": "C",
+     "text": "Conventional water treatment"
+    },
+    {
+     "key": "D",
+     "text": "self cleaning material"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 84,
+   "topic": "Surface Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following properties is responsible for the development of colour to the colloids?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nColloidal particles are 1-1000 nm, comparable to the wavelength of visible light. They therefore scatter light strongly.\nStep 2: Detailed Explanation:\nThe Tyndall effect is the scattering of light by colloidal particles. The colour a colloid shows depends on which wavelengths are scattered and which pass through. Small particles scatter blue light more, so a sol often looks bluish from the side and reddish when viewed against the light.\nBrownian motion, electrophoresis and electrokinetic effects describe motion and charge of particles, not how they treat light.\nStep 3: Final Answer:\nThe colour is linked to the Tyndall effect, option (A).\nFinal Answer:\nLight scattering by particles (Tyndall effect) gives colour.\n(A) Tyndall effect\nQuick Tip: Colloidal particles scatter light (Tyndall effect), which gives the coloured appearance.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Tyndall effect"
+    },
+    {
+     "key": "B",
+     "text": "Brownian motion"
+    },
+    {
+     "key": "C",
+     "text": "Electrophoresis"
+    },
+    {
+     "key": "D",
+     "text": "Electroosmosis"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 85,
+   "topic": "Transition and Inner Transition Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the factor responsible for colour of transition metal compounds.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn a compound of a transition metal ion, the five d orbitals split into two energy groups because of surrounding ligands.\nStep 2: Detailed Explanation:\nAn electron can jump from a lower d level to a higher d level by absorbing a photon of visible light. This is a d-d transition. The colour we see is the complement of the colour absorbed.\nThis needs partly filled d orbitals. Ions with $d^{0}$ or $d^{10}$ configurations, such as $\\mathrm{Sc^{3+}}$ and $\\mathrm{Zn^{2+}}$, are colourless.\ns-p mixing, ionisation and shielding effect do not produce absorption in the visible range.\nStep 3: Final Answer:\nd-d transitions, option (A).\nFinal Answer:\nd-d transitions absorb visible light.\n(A) $d$-$d$ transitions\nQuick Tip: Partly filled d orbitals split in a ligand field and absorb visible light for d-d jumps.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "d-d transitions"
+    },
+    {
+     "key": "B",
+     "text": "s-p mixing"
+    },
+    {
+     "key": "C",
+     "text": "Ionisation"
+    },
+    {
+     "key": "D",
+     "text": "Shielding effect"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 86,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the number of unpaired electrons present and geometry respectively of $\\mathrm{[Co(NH_3)_6]^{3+}}$ complex.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nCount the d electrons of the metal ion, then decide spin state from the ligand strength. Six ligands around the metal give an octahedral geometry.\nStep 2: Detailed Explanation:\nCo has atomic number 27 and $\\mathrm{[Ar]}3d^{7}4s^{2}$. So $\\mathrm{Co^{3+}}$ is $3d^{6}$.\n$\\mathrm{NH_3}$ is a strong field ligand, so the crystal field splitting is large and electrons pair up: $t_{2g}^{6}e_{g}^{0}$.\nUnpaired electrons = 0, so the complex is diamagnetic.\nSix $\\mathrm{NH_3}$ ligands give an octahedral shape ($d^{2}sp^{3}$ hybridisation).\nOptions (A) and (B) call it square planar, which needs 4 ligands.\nOption (C) gives 4 unpaired electrons, which is the high spin case and does not occur with ammonia.\nStep 3: Final Answer:\n0 unpaired electrons and octahedral, option (D).\nFinal Answer:\nLow spin d6 gives 0 unpaired electrons, octahedral.\n(D) 0, octahedral\nQuick Tip: $\\mathrm{Co^{3+}}$ is $d^{6}$; ammonia is a strong field ligand giving a low spin octahedral complex.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0, square planar"
+    },
+    {
+     "key": "B",
+     "text": "2, square planar"
+    },
+    {
+     "key": "C",
+     "text": "4, octahedral"
+    },
+    {
+     "key": "D",
+     "text": "0, octahedral"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 87,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify oxidation state of cobalt ion in the complex, $\\mathrm{[Co(NH_3)_5Br]SO_4}$ .",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe charge on the complex ion is set by the counter ion outside the brackets.\nStep 2: Detailed Explanation:\nSulfate is $\\mathrm{SO_4^{2-}}$, so the complex ion $\\mathrm{[Co(NH_3)_5Br]}$ has charge $+2$.\nLet the oxidation state of Co be $x$. $\\mathrm{NH_3}$ is neutral (0), and $\\mathrm{Br^{-}}$ contributes $-1$.\n$$x + 5(0) + (-1) = +2 \\Rightarrow x = +3$$\nSo cobalt is in the +3 state.\nStep 3: Final Answer:\nOption (B), $+3$.\nFinal Answer:\nCo is +3 in the complex.\n(B) $+3$\nQuick Tip: Sulfate carries -2, so the complex ion is +2; ammonia is neutral and bromide is -1.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$+2$"
+    },
+    {
+     "key": "B",
+     "text": "$+3$"
+    },
+    {
+     "key": "C",
+     "text": "$+1$"
+    },
+    {
+     "key": "D",
+     "text": "$+4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 88,
+   "topic": "Halogen Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following alkyl halides is hydrolyzed most rapidly by the $\\mathrm{SN^{2}}$ mechanism ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn an $\\mathrm{SN^{2}}$ reaction the nucleophile attacks from the back side of the carbon in a single step. Bulky groups near that carbon block the attack.\nStep 2: Detailed Explanation:\nOrder of reactivity in $\\mathrm{SN^{2}}$: methyl > primary > secondary > tertiary.\n$\\mathrm{CH_3\\text{-}Br}$ is methyl with three small H atoms, so the carbon is easily approached.\n$\\mathrm{CH_3CH_2Br}$ is primary, slower. $\\mathrm{(CH_3)_2CHBr}$ is secondary, slower still. $\\mathrm{(CH_3)_3CBr}$ is tertiary, so crowded that $\\mathrm{SN^{2}}$ is almost blocked.\nStep 3: Final Answer:\nOption (A), $\\mathrm{CH_3\\text{-}Br}$.\nFinal Answer:\nLeast hindered carbon reacts fastest in SN2.\n(A) $\\mathrm{CH_3\\text{-}Br}$\nQuick Tip: SN2 is fastest where the carbon is least crowded: methyl halide.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3\\text{-}Br}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{(CH_3)_3C\\text{-}Br}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CH_3\\text{-}CH_2\\text{-}Br}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{(CH_3)_2CH\\text{-}Br}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 89,
+   "topic": "Halogen Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following alkyl halides undergoes $\\mathrm{SN^{1}}$ reaction most readily?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn $\\mathrm{SN^{1}}$ the slow step is ionisation of the C-X bond to a carbocation. A better leaving group means faster ionisation.\nStep 2: Detailed Explanation:\nAll four compounds give the same tert-butyl carbocation, so only the leaving group differs.\nC-X bond strength falls in the order C-F > C-Cl > C-Br > C-I.\nLeaving group ability rises as $\\mathrm{F^{-} < Cl^{-} < Br^{-} < I^{-}}$, because the larger halide ion carries its charge better.\nSo $\\mathrm{(CH_3)_3C\\text{-}I}$ ionises most readily.\nStep 3: Final Answer:\nOption (D), the tert-butyl iodide.\nFinal Answer:\nIodide is the best leaving group in SN1.\n(D) $\\mathrm{(CH_3)_3C\\text{-}I}$\nQuick Tip: All four share the same tert-butyl carbocation; the best leaving group goes fastest.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{(CH_3)_3C\\text{-}F}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{(CH_3)_3C\\text{-}Cl}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{(CH_3)_3C\\text{-}Br}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{(CH_3)_3C\\text{-}I}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 90,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the nature of alcohols in aqueous medium?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAlcohols have an $\\mathrm{-OH}$ group, but in water they ionise only to a negligible extent.\nStep 2: Detailed Explanation:\nAlcohols are very weak acids ($pK_a$ about 16-18 for simple alcohols, close to water) and equally feeble bases. A solution of an alcohol in water does not change the pH noticeably and does not change the colour of litmus.\nSo, in aqueous medium, alcohols behave as neutral compounds.\nStep 3: Final Answer:\nOption (C), neutral.\nFinal Answer:\nAlcohols do not change the pH of water.\n(C) Neutral\nQuick Tip: Alcohols are neutral to litmus: both their acidic and basic character are extremely weak.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Acidic"
+    },
+    {
+     "key": "B",
+     "text": "Basic"
+    },
+    {
+     "key": "C",
+     "text": "Neutral"
+    },
+    {
+     "key": "D",
+     "text": "Amphoteric"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 91,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of following observations is found in Tollens test for aldehydes?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nTollens reagent is ammoniacal silver nitrate, $\\mathrm{[Ag(NH_3)_2]^{+}}$. Aldehydes are oxidised by it and silver ions are reduced to metallic silver.\nStep 2: Detailed Explanation:\n$$\\mathrm{RCHO + 2[Ag(NH_3)_2]^{+} + 3OH^{-} \\rightarrow RCOO^{-} + 2Ag + 4NH_3 + 2H_2O}$$\nThe silver deposits as a shining layer (silver mirror) on the wall of the test tube on gentle warming.\nA pink or magenta colour is seen in Schiff's test. A brick-red precipitate is seen in Fehling's test.\nStep 3: Final Answer:\nA silver mirror, option (B).\nFinal Answer:\nTollens test gives a silver mirror.\n(B) Ag layer on the test tube\nQuick Tip: Tollens reagent deposits a silver mirror with aldehydes on warming.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "The formation of pink or magenta color upon the addition of the reagent to the sample solution."
+    },
+    {
+     "key": "B",
+     "text": "Formation of an Ag layer on sides of test tube upon addition and warming of the reagent."
+    },
+    {
+     "key": "C",
+     "text": "Formation of brick-red precipitate upon heating with reagent."
+    },
+    {
+     "key": "D",
+     "text": "Appearance of red color upon shaking with reagent."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 92,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An organic compound $\\mathrm{CH_3\\text{-}CH{=}CH\\text{-}CH_2\\text{-}CHO}$ is taken in two different containers A and B. Sample in A is treated with $\\mathrm{H_2}$ / Ni forming new compound P. Sample in B is treated with $\\mathrm{LiAlH_4}$ and hydrolyzed further forming new compound Q. Identify P and Q.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe compound $\\mathrm{CH_3CH{=}CH\\text{-}CH_2CHO}$ has two reducible groups: a $\\mathrm{C{=}C}$ bond and an aldehyde. The two reagents differ in what they reduce.\nStep 2: Detailed Explanation:\nIn A, catalytic hydrogenation with $\\mathrm{H_2/Ni}$ adds hydrogen to the double bond and also reduces $\\mathrm{-CHO}$ to $\\mathrm{-CH_2OH}$.\n$$\\mathrm{P = CH_3(CH_2)_3CH_2OH}$$\nIn B, $\\mathrm{LiAlH_4}$ reduces $\\mathrm{-CHO}$ to $\\mathrm{-CH_2OH}$ but does not touch an isolated $\\mathrm{C{=}C}$.\n$$\\mathrm{Q = CH_3CH{=}CH\\text{-}CH_2CH_2OH}$$\nSo P is pentan-1-ol and Q is pent-3-en-1-ol.\nStep 3: Final Answer:\nOption (D) matches both products.\nFinal Answer:\nH2/Ni reduces both groups; LiAlH4 only the aldehyde.\n(D) P = pentan-1-ol, Q = pent-3-en-1-ol\nQuick Tip: $\\mathrm{H_2/Ni}$ reduces C=C and CHO; $\\mathrm{LiAlH_4}$ reduces only CHO.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{P = Q = CH_3\\text{-}CH{=}CH\\text{-}CH_2\\text{-}CH_2OH}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{P = Q = CH_3(CH_2)_3CH_2OH}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{P = CH_3(CH_2)_3CHO}$ and $\\mathrm{Q = CH_3(CH_2)_3CH_2OH}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{P = CH_3(CH_2)_3CH_2OH}$ and $\\mathrm{Q = CH_3\\text{-}CH{=}CH\\text{-}CH_2\\text{-}CH_2OH}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 93,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the common name for the simplest carboxylic acid, $\\mathrm{HCOOH}$ ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nCommon names of many carboxylic acids come from their natural sources.\nStep 2: Detailed Explanation:\n$\\mathrm{HCOOH}$ was first isolated from red ants, and Latin for ant is formica. So it is formic acid. Its IUPAC name is methanoic acid.\nAcetic acid is $\\mathrm{CH_3COOH}$, propanoic acid is $\\mathrm{C_2H_5COOH}$, and butanoic acid is $\\mathrm{C_3H_7COOH}$.\nStep 3: Final Answer:\nFormic acid, option (B).\nFinal Answer:\n$\\mathrm{HCOOH}$ is formic acid (methanoic acid).\n(B) Formic acid\nQuick Tip: $\\mathrm{HCOOH}$ is named after ants, Latin formica.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Acetic acid"
+    },
+    {
+     "key": "B",
+     "text": "Formic acid"
+    },
+    {
+     "key": "C",
+     "text": "Propanoic acid"
+    },
+    {
+     "key": "D",
+     "text": "Butanoic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 94,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following reactions uses diazonium salt ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA diazonium salt $\\mathrm{ArN_2^{+}X^{-}}$ is made by diazotisation of a primary aromatic amine. It is a useful intermediate.\nStep 2: Detailed Explanation:\nIn the Sandmeyer reaction, the diazonium group is replaced by $\\mathrm{-Cl}$, $\\mathrm{-Br}$ or $\\mathrm{-CN}$ using $\\mathrm{CuCl}$, $\\mathrm{CuBr}$ or $\\mathrm{CuCN}$. So it uses a diazonium salt.\nMendius reaction reduces nitriles to primary amines. Hofmann rearrangement (bromamide) converts an amide to an amine with one fewer carbon. The carbylamine reaction converts a primary amine and chloroform into an isocyanide. None of these involve a diazonium salt.\nStep 3: Final Answer:\nSandmeyer reaction, option (A).\nFinal Answer:\nThe Sandmeyer reaction replaces the diazonium group.\n(A) Sandmeyer reaction\nQuick Tip: Sandmeyer converts aryl diazonium salt to aryl halide using CuX.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Sandmeyer reaction"
+    },
+    {
+     "key": "B",
+     "text": "Mendius reaction"
+    },
+    {
+     "key": "C",
+     "text": "Hofmann rearrangement reaction"
+    },
+    {
+     "key": "D",
+     "text": "carbylamine reaction"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 95,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following statements is NOT correct?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAmines are classed as primary, secondary or tertiary by the number of carbon groups attached to the nitrogen atom.\nStep 2: Detailed Explanation:\n(A) Primary amines have N-H bonds, so they form intermolecular hydrogen bonds. This is correct.\n(B) Tertiary butylamine is $\\mathrm{(CH_3)_3C\\text{-}NH_2}$. The nitrogen carries only one alkyl group, so it is a primary amine. The word \"tertiary\" refers to the carbon. This is correct.\n(C) Tertiary amines have no N-H bond, so no intermolecular hydrogen bonding. This is correct.\n(D) Isopropylamine is $\\mathrm{(CH_3)_2CH\\text{-}NH_2}$. Nitrogen again carries only one alkyl group, so it is primary. Calling it secondary is wrong.\nStep 3: Final Answer:\nThe incorrect statement is (D).\nFinal Answer:\nIsopropylamine is a primary amine, not secondary.\n(D) (D) is not correct\nQuick Tip: Classify amines by the number of alkyl groups on nitrogen, not on carbon.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Primary amines show intermolecular hydrogen bonds."
+    },
+    {
+     "key": "B",
+     "text": "Tertiary butylamine is a primary amine."
+    },
+    {
+     "key": "C",
+     "text": "Tertiary amines do not show inter molecular hydrogen bonds."
+    },
+    {
+     "key": "D",
+     "text": "iso-propylamine is a secondary amine."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 96,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the linkage in backbone of single strand of DNA ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA nucleotide is made of a base, a pentose sugar and a phosphate group. Nucleotides join through phosphodiester bonds to form a strand.\nStep 2: Detailed Explanation:\nThe phosphate on one nucleotide links the 3' carbon of one sugar to the 5' carbon of the next sugar. So the backbone reads sugar - phosphate - sugar - phosphate.\nBases hang off the sugars and are not part of the backbone itself.\nWritten from the phosphate end, the repeating pattern is phosphate - sugar - phosphate, which is what option (D) states.\nStep 3: Final Answer:\nOption (D), phosphate - sugar - phosphate.\nFinal Answer:\nThe DNA backbone alternates phosphate and sugar.\n(D) Phosphate-sugar-phosphate\nQuick Tip: The backbone alternates sugar and phosphate; the phosphate links two sugars.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Base- phosphate -sugar"
+    },
+    {
+     "key": "B",
+     "text": "Phosphate -base -sugar"
+    },
+    {
+     "key": "C",
+     "text": "Sugar -phosphate- base"
+    },
+    {
+     "key": "D",
+     "text": "Phosphate -sugar-phosphate"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 97,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following ionic species is present in hemoglobin and responsible for transformation of oxygen ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nHaemoglobin is a protein that carries oxygen in blood. Each heme group holds one metal ion at the centre of a porphyrin ring.\nStep 2: Detailed Explanation:\nThe metal ion is $\\mathrm{Fe^{2+}}$. It binds oxygen reversibly and carries it from the lungs to the tissues.\n$\\mathrm{Mg^{2+}}$ is present in chlorophyll, $\\mathrm{Co^{3+}}$ is in vitamin $\\mathrm{B_{12}}$, and $\\mathrm{Ca^{2+}}$ is found in bones and in blood clotting, but none is in haemoglobin.\nStep 3: Final Answer:\n$\\mathrm{Fe^{2+}}$, option (C).\nFinal Answer:\nHaemoglobin contains $\\mathrm{Fe^{2+}}$.\n(C) $\\mathrm{Fe^{2+}}$\nQuick Tip: Haemoglobin contains iron in the +2 state inside a heme group.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Ca^{+2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Co^{+3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{Fe^{+2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{Mg^{+2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 98,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following processes develops cross-links in elastomer?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nNatural rubber is a soft elastomer. Its chains slide over each other easily, so it is sticky and weak.\nStep 2: Detailed Explanation:\nIn vulcanisation, rubber is heated with sulfur at 373-415 K. Sulfur forms bridges between neighbouring chains at the double bonds. These cross-links give strength, stiffness and elastic recovery.\nGalvanisation is coating iron with zinc. Polymerisation builds the chains but does not specifically add cross-links to an elastomer. Hydration is the addition of water.\nStep 3: Final Answer:\nVulcanisation, option (B).\nFinal Answer:\nVulcanisation makes sulfur cross-links in rubber.\n(B) Vulcanization\nQuick Tip: Vulcanisation adds sulfur cross-links to rubber.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "galvanization"
+    },
+    {
+     "key": "B",
+     "text": "vulcanization"
+    },
+    {
+     "key": "C",
+     "text": "polymerization"
+    },
+    {
+     "key": "D",
+     "text": "hydration"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 99,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is not a basis of classification of polymers ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThere are several standard ways to classify polymers.\nStep 2: Detailed Explanation:\nSource: natural, semi-synthetic, synthetic. Structure: linear, branched, cross-linked. Mode of polymerisation: addition or condensation. Molecular forces: elastomers, fibres, thermoplastics, thermosetting.\nThe \"number of monomers\" in a chain is not a standard classification basis. Homopolymer versus copolymer depends on the type of monomers, not on how many units there are.\nStep 3: Final Answer:\nOption (B) is not a basis.\nFinal Answer:\nNumber of monomers is not a classification basis.\n(B) Number of monomers\nQuick Tip: Polymers are classified by source, structure, mode of polymerisation and intermolecular forces.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Source"
+    },
+    {
+     "key": "B",
+     "text": "Number of monomers"
+    },
+    {
+     "key": "C",
+     "text": "Method of preparation"
+    },
+    {
+     "key": "D",
+     "text": "Structure"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 100,
+   "topic": "Green Chemistry and Chemistry in Everyday Life",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following detergents is used as germicide?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nCationic detergents have a positively charged head, usually a quaternary ammonium group, with a long hydrocarbon tail.\nStep 2: Detailed Explanation:\nBecause of the positive charge, they kill bacteria and are used as germicides, for example cetyltrimethylammonium bromide. They are also used in hair conditioners.\nAnionic detergents (like sodium dodecylbenzene sulfonate) are mainly cleaning agents for laundry. Non-ionic detergents are used in dishwashing liquids and are mild.\nStep 3: Final Answer:\nCationic detergent, option (C).\nFinal Answer:\nCationic detergents act as germicides.\n(C) Cationic detergent\nQuick Tip: Cationic detergents are quaternary ammonium salts with germicidal action.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Anionic detergent"
+    },
+    {
+     "key": "B",
+     "text": "Non ionic detergent (an ester)"
+    },
+    {
+     "key": "C",
+     "text": "Cationic detergent"
+    },
+    {
+     "key": "D",
+     "text": "Non ionic detergents (an ether)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
