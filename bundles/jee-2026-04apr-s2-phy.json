@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "4 Apr · Shift 2",
+  "title": "JEE Main 2026 · Physics · 4 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1--X1Ji7n5hnB75pdDEBPkt7CGXHzrSkG"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match the LIST-I with LIST-II\nList-I | List-II\nA. Planck's constant | I. $ML^{2}T^{-2}$\nB. Stopping potential | II. $T^{-1}$\nC. Work function | III. $ML^{2}T^{-1}$\nD. Threshold frequency | IV. $ML^{2}T^{-3}A^{-1}$\nChoose the correct answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = h\\nu \\Rightarrow [h] = \\frac{[E]}{[\\nu]} = \\frac{ML^{2}T^{-2}}{T^{-1}} = ML^{2}T^{-1} \\rightarrow \\text{III}$\n$U = qV \\Rightarrow [V] = \\frac{[U]}{[q]} = \\frac{ML^{2}T^{-2}}{AT} = ML^{2}T^{-3}A^{-1} \\rightarrow \\text{IV}$\n$K_{max} = h\\nu - \\phi \\Rightarrow [\\phi] = [K_{max}] = ML^{2}T^{-2} \\rightarrow \\text{I}$\n[Threshold frequency] = [frequency] = $T^{-1} \\rightarrow \\text{II}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-III, B-IV, C-I, D-II"
+    },
+    {
+     "key": "B",
+     "text": "A-I, B-II, C-III, D-IV"
+    },
+    {
+     "key": "C",
+     "text": "A-IV, B-III, C-I, D-II"
+    },
+    {
+     "key": "D",
+     "text": "A-I, B-IV, C-III, D-II"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two cars A and B are moving in the same direction along a straight line with speeds 100 km/h and 80 km/h, respectively such that car A is moving ahead of car B. A person in car B throws a stone with a speed v so that it hits the car A with a speed of 5 m/s. The value of v is ________ km/h.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let velocity of stone relative to ground = $v_{0}$\nThen $v_{0} - 80 = v$ .........(1)\nVelocity of stone wrt A = $v_{0} - 100 = 5 \\times \\frac{36}{10}$\n$v_{0} = 118$ km/hr\n(1) $\\rightarrow 118 - 80 = v = 38$ km/hr $\\rightarrow$ (3)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "18"
+    },
+    {
+     "key": "B",
+     "text": "28"
+    },
+    {
+     "key": "C",
+     "text": "38"
+    },
+    {
+     "key": "D",
+     "text": "48"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "At t = 0, a body of mass 100 g starts moving under the influence of a force $(5\\hat{i} + 10\\hat{j})\\ \\mathrm{N}$. After 2 s its position is $(2x\\hat{i} + 5y\\hat{j})\\ \\mathrm{m}$. The ratio x : y is ________ .",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a_{x} = \\frac{5}{0.1} = 50\\ \\mathrm{m/s^{2}}$ $\\quad a_{x} = \\frac{10}{0.1} = 100\\ \\mathrm{m/s^{2}}$\n$x = u_{x}t + \\frac{1}{2}a_{x}t^{2} = 0 + \\frac{1}{2}(50)(2)^{2} = 100$\n$y = u_{y}t + \\frac{1}{2}a_{y}t^{2} = 0 + \\frac{1}{2}(100)(2)^{2} = 200$\n$\\vec{r} = 100\\hat{j} + 200\\hat{j} = 2x\\hat{i} + 5y\\hat{j} \\Rightarrow x = 50,\\ y = 40$\nx : y = 50 : 40 = 5:4",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1 : 2"
+    },
+    {
+     "key": "B",
+     "text": "2 : 5"
+    },
+    {
+     "key": "C",
+     "text": "5 : 2"
+    },
+    {
+     "key": "D",
+     "text": "5 : 4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If x and y coordinates of a projectile as a function of time (t) are given as 24t and $43.6t - 4.9t^{2}$, respectively, then the angle (in degrees) made by the projectile with horizontal when t = 2 s is ______ .",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x = 24t \\Rightarrow v_{x} = 24$\n$y = 43.6t - 4.9t^{2}$\n$\\Rightarrow v_{y} = 43.6 - 4.9 \\times 2 \\times t = 24$ (at t = 2s)\n$\\Rightarrow \\tan\\theta = \\frac{v_{y}}{v_{x}} = \\frac{24}{24} = 1 \\Rightarrow \\theta = 45^\\circ$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "60"
+    },
+    {
+     "key": "B",
+     "text": "45"
+    },
+    {
+     "key": "C",
+     "text": "30"
+    },
+    {
+     "key": "D",
+     "text": "75"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The height in terms of radius of the earth (R), at which the acceleration due to gravity becomes $\\frac{g}{9}$, where g is acceleration due to gravity on earth's surface, is _________ .",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{GM}{r^{2}} = \\frac{1}{9} \\cdot \\frac{GM}{R^{2}} \\Rightarrow r = 3R$\n$h = r - R = 2R$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3}R$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{2}R$"
+    },
+    {
+     "key": "C",
+     "text": "2 R"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{9}R$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A metal string A is suspended from a rigid support and its free end is attached to a block of mass M. Second block having mass 2 M is suspended at the bottom of the first block using a string B. The area of cross sections of strings A and B are same. The ratio of lengths of strings of A to B is 2 and the ratio of their Young's moduli $(Y_{A}/Y_{B})$ is 0.5 . The ratio of elongations in A to B is ___________ .",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: string A of length $2l$, Young's modulus Y, area A, elongation $\\Delta l_{1}$, tension $T_{1}$, holding block M; string B of length $l$, Young's modulus 2Y, area A, elongation $\\Delta l_{2}$, tension $T_{2}$, holding block 2M)\n$T_{1} = 3mg, \\quad T_{2} = 2mg$\nFor B\n$\\frac{2Mg/A}{\\Delta l_{2}/l} = 2Y$ .........(1)\nFor A\n$\\frac{3Mg/A}{\\Delta l_{1}/2l} = y$ .........(2)\n(1) / (2) : $\\frac{\\Delta l_{1}}{\\Delta l_{2}} = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "8"
+    },
+    {
+     "key": "D",
+     "text": "6"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-phy-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A water spray gun is attached to a hose of cross sectional area $30\\ \\mathrm{cm^{2}}$. The gun comprises of 10 perforations each of cross sectional area of $15\\ \\mathrm{mm^{2}}$. If the water flows in the hose with the speed of $50\\ \\mathrm{cm/s}$, calculate the speed at which the water flows out from each perforation. (Neglect any edge effects)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A_{1}v_{1} = A_{2}v_{2}$\n$30 \\times 50 = (15 \\times 10^{-2}\\ \\mathrm{cm^{2}}) \\times 10 \\times v \\Rightarrow v = 1000$ cm/s\n$v = 10$ m/s",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "100 m/s"
+    },
+    {
+     "key": "B",
+     "text": "10 m/s"
+    },
+    {
+     "key": "C",
+     "text": "1000 m/s"
+    },
+    {
+     "key": "D",
+     "text": "$15 \\times 10^{2}$ m/s"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Kinetic Theory",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R\nAssertion A: If the average kinetic energy of $\\mathrm{H_2}$ and $\\mathrm{O_2}$ molecules, kept in two different sized containers are same, then their temperatures will be same.\nReason R: The r.m.s. speed of $\\mathrm{H_2}$ and $\\mathrm{O_2}$ molecules are same at same temperature.\nChoose the correct answer from the options given below",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$K = \\frac{5}{2}kT \\Rightarrow$ A is correct\n$v_{rms} = \\sqrt{\\frac{3RT}{M}} \\Rightarrow$ B is false",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both A and R are true and R is the correct explantion of A"
+    },
+    {
+     "key": "B",
+     "text": "Both A and R are true but R is NOT the correct explanation of A"
+    },
+    {
+     "key": "C",
+     "text": "A is true but R is false"
+    },
+    {
+     "key": "D",
+     "text": "A is false but R is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The temperature of a metal strip having coefficient of linear expansion $\\alpha$ is increased from $T_{1}$ to $T_{2}$ resulting in increase of its length by $\\Delta L_{1}$. The temperature is further increased from $T_{2}$ to $T_{3}$ such that the increase in its length is $\\Delta L_{2}$.\nGiven $T_{3} + T_{1} = 2T_{2}$ and $T_{2} - T_{1} = \\Delta T$, the value of $\\Delta L_{2}$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: strip at $T_{1}$ with length $L_{0}$ $\\xrightarrow{\\Delta T\\uparrow,\\ \\Delta L_{1}\\uparrow}$ strip at $T_{2}$ with length $L_{0}(1 + \\alpha\\Delta T)$ $\\xrightarrow{\\Delta T\\uparrow,\\ \\Delta L_{2}\\uparrow}$ strip at $T_{3}$)\n$T_{3} + T_{1} = 2T_{2} = T_{2} - T_{1} = T_{3} - T_{2} = \\Delta T$\n$\\Delta L_{1} = L_{0}\\alpha\\Delta T$\n$\\Delta L_{2} = L_{0}(1 + \\alpha\\Delta T) \\cdot \\alpha\\Delta T$\n$= (L_{0}\\alpha\\Delta T)(1 + \\alpha\\Delta T) = \\Delta L_{1}(1 + \\alpha\\Delta T)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\Delta L_{1}\\left[1 + 2\\alpha^{2}(\\Delta T)^{2}\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\Delta L_{1}\\left[1 + \\alpha^{2}(\\Delta T)^{2}\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\Delta L_{1}[1 + 2\\alpha\\Delta T]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\Delta L_{1}[1 + \\alpha\\Delta T]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-phy-q34-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A uniform disc of radius R and mass M is free to oscillate about the axis A as shown in the figure. For small oscillations the time period is _________ .\n( g is acceleration due to gravity)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = 2\\pi\\sqrt{\\frac{I}{Mgl}} = 2\\pi\\sqrt{\\frac{\\frac{5}{4}MR^{2}}{MgR}} = 2\\pi\\sqrt{\\frac{5R}{4g}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\pi\\sqrt{\\frac{5R}{4g}}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\pi\\sqrt{\\frac{2R}{3g}}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\pi\\sqrt{\\frac{3R}{2g}}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\pi\\sqrt{\\frac{3R}{g}}$"
+    }
+   ],
+   "stem_figure": "j26-04apr-s2-phy-q35.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A rigid dipole undergoes a simple harmonic motion about its centre in the presence of an electric field $\\vec{E}_{1} = E_{0}\\hat{x}$. If another electric field $\\vec{E}_{2} = 2E_{0}(\\hat{y} + \\hat{z})$ is introduced to the system, what will be the percentage change in the frequency of the oscillation (approximate)?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = 2\\pi\\sqrt{\\frac{I}{pE}} = \\frac{1}{f} \\Rightarrow f \\propto \\sqrt{E}$\n$f_{1} \\propto \\sqrt{E_{0}}$\n$\\vec{E} = E_{0}\\hat{x} + 2E_{0}\\hat{y} + 2E_{0}\\hat{z}$\n$\\Rightarrow |\\vec{E}| = 3E_{0}$\n$f_{2} \\propto \\sqrt{3E_{0}}$\n$\\%\\,\\text{change} = \\frac{f_{2} - f_{1}}{f_{1}} \\times 100 = \\left(\\frac{\\sqrt{3} - 1}{1}\\right) \\times 100 = 73\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "73%"
+    },
+    {
+     "key": "B",
+     "text": "63%"
+    },
+    {
+     "key": "C",
+     "text": "83%"
+    },
+    {
+     "key": "D",
+     "text": "53%"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "From the circuit given below, the capacitance between terminals A and B shown in the circuit is _________ $\\mu F$.\n(take $C_{1} = C_{2} = C_{3} = 1\\ \\mu F$ and $C_{4} = 2\\ \\mu F$.)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Redraw the circuit\n(Redrawn circuit: two $1\\ \\mu F$ capacitors in parallel, in series with $2\\ \\mu F$, between A and B; this branch is in parallel with a $1\\ \\mu F$ capacitor)\n$C_{AB} = 2\\ \\mu F$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2"
+    },
+    {
+     "key": "B",
+     "text": "7/2"
+    },
+    {
+     "key": "C",
+     "text": "7/3"
+    },
+    {
+     "key": "D",
+     "text": "5/2"
+    }
+   ],
+   "stem_figure": "j26-04apr-s2-phy-q37.png",
+   "solution_figure": "j26-04apr-s2-phy-q37-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R\nAssertion A: In electrostatics, a conductor does not store any net charge inside.\nReason R: Inside the capacitor (with no dielectric medium), the free charge carriers, if placed between the plates of capacitor, experience force and drift.\nChoose the correct answer from the options given below",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Assertion is correct.\nReason is correct.\nReason does not explain the assertion. Both statements are unrelated.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both A and R are true and R is the correct explanation of A"
+    },
+    {
+     "key": "B",
+     "text": "Bothe A and R are true but R is NOT the correct explanation of A"
+    },
+    {
+     "key": "C",
+     "text": "A is true but R is false"
+    },
+    {
+     "key": "D",
+     "text": "A is false but R is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Magnetism and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A solenoid has a core made of material with relative permeability 400 . The magnetic field produced in the interior of solenoid is 1.0 T . The magnetic intensity in SI units is $\\alpha \\times 10^{5}$. The value of $\\alpha$ is ________ .\n(Free space permeability $\\mu_{0} = 4\\pi \\times 10^{-7}$ SI units.)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B = \\mu H \\Rightarrow H = \\frac{B}{\\mu} = \\frac{1}{400 \\times 4\\pi \\times 10^{-7}} = \\frac{10^{5}}{16\\pi} = \\alpha \\times 10^{5}$\n$\\alpha = \\frac{1}{16\\pi}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{25}{\\pi}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{16\\pi}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\pi}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{4\\pi}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A magnetic field vector in an electromagnetic wave is represented by $\\vec{B} = B_{0}\\sin\\left(2\\pi\\nu t - \\frac{2\\pi x}{\\lambda}\\right)\\hat{j}$. Its associated electric field vector is ________ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: axes x, y, z with $\\vec{B}$ along y, wave velocity c along x, and $\\vec{E}$ shown)\n$E_{0} = cB_{0}$\n$= \\nu\\lambda B_{0}$\n$\\vec{E} = \\vec{B} \\times \\vec{C}$\n$\\vec{E}$ should ln along $-\\hat{k}$ (as per right hand rule)\n$\\vec{E} = -\\nu\\lambda B_{0}\\sin\\left(2\\pi\\nu t - \\frac{2\\pi x}{\\lambda}\\right)\\hat{k}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\vec{E} = -\\nu\\lambda B_{0}\\sin\\left(2\\pi\\nu t - \\frac{2\\pi x}{\\lambda}\\right)\\hat{k}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\vec{E} = -\\nu\\lambda B_{0}\\sin\\left(2\\pi\\nu t - \\frac{2\\pi x}{\\lambda}\\right)\\hat{i}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\vec{E} = \\nu\\lambda B_{0}\\sin\\left(2\\pi\\nu t - \\frac{2\\pi x}{\\lambda}\\right)\\hat{k}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\vec{E} = \\nu\\lambda B_{0}\\sin\\left(2\\pi\\nu t - \\frac{2\\pi x}{\\lambda}\\right)\\hat{i}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-phy-q40-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A convex lens is made from glass material having refractive index of 1.4 with same radius of curvature on both sides. The ratio of its focal length and radius of curvature is _________ .",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{f} = (1.4 - 1)\\left(\\frac{1}{R} - \\frac{1}{-R}\\right) = \\frac{0.8}{R}$\n$\\frac{f}{R} = 1.25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.5"
+    },
+    {
+     "key": "B",
+     "text": "2.5"
+    },
+    {
+     "key": "C",
+     "text": "0.8"
+    },
+    {
+     "key": "D",
+     "text": "1.25"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An unpolarized light of certain intensity passes through a combination of two polarizers whose transmission axes are at $30^\\circ$ and $90^\\circ$, respectively, with respect to the horizontal axis. A third polarizer with its transmission axis at $60^\\circ$ with the horizontal axis is placed between the two existing polarizers. The ratio of the output intensities with and without the third polarizer is __________ .",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Without third polarizer:\n$I_{1} = \\frac{I_{0}}{2} \\times \\cos^{2}60^\\circ$\nWith third polarizer:\n$I_{2} = \\frac{I_{0}}{2} \\times \\cos^{2}30^\\circ \\times \\cos^{2}30^\\circ$\n$\\frac{I_{2}}{I_{1}} = \\frac{9}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3/4"
+    },
+    {
+     "key": "B",
+     "text": "4/3"
+    },
+    {
+     "key": "C",
+     "text": "9/4"
+    },
+    {
+     "key": "D",
+     "text": "4/9"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In Rutherford's alpha-particle scattering experiment, only a few alpha particles rebound back because\nA. The size of gold nucleus is very small as compared to the size of gold atom.\nB. Alpha particle and gold nucleus have equal charge.\nC. The impact parameter is minimum for a few alpha particles.\nD. A few alpha particles have very high kinetic energy.\nE. Only a few alpha particles undergo head-on collision with the nuclei.\nChoose the correct answer from the options given below:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Only a few $\\alpha$-particles rebound back, because :\n$\\rightarrow$ Size of sold nucleus is very small\n$\\rightarrow$ Impact parameter is very small for very few $\\alpha$-particles\n$\\rightarrow$ Head on collision occurs for very few $\\alpha$-particles",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A, B Only"
+    },
+    {
+     "key": "B",
+     "text": "B, E Only"
+    },
+    {
+     "key": "C",
+     "text": "C, D Only"
+    },
+    {
+     "key": "D",
+     "text": "A, C, E Only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The de Broglie wavelength associated with an electron accelerated through a potential difference V is $\\lambda_{e}$ and the de Broglie wavelength associated with a proton accelerated through the same potential difference is $\\lambda_{p}$. If their corresponding masses are $m_{e}$ and $m_{p}$, respectively, then the ratio of their de Broglie wavelengths $\\left(\\frac{\\lambda_{e}}{\\lambda_{p}}\\right)$ is ________ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda_{e} = \\frac{\\lambda}{\\sqrt{2m_{e}eV}}, \\quad \\lambda_{p} = \\frac{\\lambda}{\\sqrt{2m_{p}eV}}$\n$\\frac{\\lambda_{e}}{\\lambda_{p}} = \\sqrt{\\frac{m_{p}}{m_{e}}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{\\frac{m_{p}}{m_{e}}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{\\frac{m_{e}}{m_{p}}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{m_{p}}{m_{e}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{m_{p}}{m_{e}}\\right)^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements: one is labelled as Assertion A and the other is labelled as Reason R\nAssertion A: A diode under reverse-biased condition provides very small current which is nearly independent of voltage until a critical limit at which the current increases drastically.\nReason R: Below the critical voltage limit, only majority charge carriers flow which increases drastically above critical voltage.\nchoose the correct answer from the options given below",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In reverse bias, only minority charge carriers flow (before breakdown).",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both A and R are true and R is the correct explanation of A"
+    },
+    {
+     "key": "B",
+     "text": "Both A and R are true but R is NOT the correct explanation of A"
+    },
+    {
+     "key": "C",
+     "text": "A is true but R is false"
+    },
+    {
+     "key": "D",
+     "text": "A is false but R is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Semiconductor Electronics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A diode has Zener voltage of 10 V and maximum power dissipation of 0.5 W , then the minimum resistance to be used in series with this diode for safety when it is connected to a 25 V power supply is ____________ $\\Omega$.",
+   "correct_key": null,
+   "correct_value": 300,
+   "correct_keys": null,
+   "solution": "(Figure: 25 V supply in series with resistor R and the Zener diode (10 V); current I)\nFor diode :\n$P = VI$\n$0.5 = 10 \\times I$\n$\\Rightarrow I = 0.05$ A\nPotential difference across R = $25 - 10 = 15$V\n$15 = IR \\Rightarrow R = \\frac{15}{I} = \\frac{15}{0.05} = 300\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-phy-q46-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Motion in a Plane",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A gun mounted on the ground fires bullets in all directions with same speed. The farthest distance the bullets could reach is 6.4 m . The speed of the bullets from the gun is _______ m/s.\n(take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": "$R_{max} = \\frac{u^{2}}{g} = 6.4 \\Rightarrow u = \\sqrt{6.4 \\times 10} = 8\\ \\mathrm{m/s}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Magnetism and Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two identical small bar magnets each of dipole moment $3\\sqrt{5}\\ \\mathrm{J/T}$ are placed at a center to center separation of 10 cm , with their axes perpendicular to each other as shown in figure. The value of magnetic field at the point P midway between the magnets is $\\alpha \\times 10^{-3}\\ \\mathrm{T}$. The value of $\\alpha$ is ______ .\n$(\\mu_{0} = 4\\pi \\times 10^{-7}\\ \\mathrm{Tm/A})$",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "(Figure: at P, $B_{1}$ along the line joining the magnets and $B_{2}$ perpendicular to it)\n$B = \\sqrt{B_{1}^{2} + B_{2}^{2}}$\n$\\Rightarrow \\sqrt{5}\\,\\frac{\\mu_{0}}{4\\pi} \\cdot \\frac{M}{r^{3}}$\n$\\Rightarrow 12 \\times 10^{-3} \\quad \\therefore \\alpha = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-04apr-s2-phy-q48.png",
+   "solution_figure": "j26-04apr-s2-phy-q48-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A circular coil of radius 2 cm and 125 turns carries a current of 1 A . The coil is placed in a uniform magnetic field of magnitude 0.4 T . The axis of the coil makes an angle of $30^\\circ$ with the direction of the magnetic field. The torque acting on the coil is $\\alpha \\times 10^{-4}$ N.m. The value of $\\alpha$ is ________ .\n$(\\pi = 3.14)$",
+   "correct_key": null,
+   "correct_value": 314,
+   "correct_keys": null,
+   "solution": "$\\tau = MB\\sin\\theta = NiA.B.\\sin\\theta$\n$= 125 \\times 1 \\times \\pi(0.02)^{2} \\times 0.4 \\times \\sin 30^\\circ$\n$= 314 \\times 10^{-4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a double slit experiment, when one of the slits is covered by a transparent mica sheet of refractive index 1.56 , the central fringe shifts to the position of $7^{th}$ bright fringe, obtained with both slits uncovered. If the light source wavelength is 450 nm , the thickness of mica sheet is $\\alpha \\times 10^{-9}$ m . The value of $\\alpha$ is _______ .",
+   "correct_key": null,
+   "correct_value": 5625,
+   "correct_keys": null,
+   "solution": "$7 \\times \\frac{D\\lambda}{d} = \\frac{D}{d}(\\mu - 1)t$\n$\\Rightarrow t = \\frac{7\\lambda}{\\mu - 1} = 5625 \\times 10^{-9}$ m",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

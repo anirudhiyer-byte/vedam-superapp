@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "4 Apr · Shift 1",
+  "title": "JEE Main 2026 · Mathematics · 4 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1ufkzDRS_S9D4PdIuslD99QPAZfkX7OqT"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $[.]$ denote the greatest integer function. If the domain of the function $f(x) = \\cos^{-1}\\left(\\frac{4x + 2[x]}{3}\\right)$ is $[\\alpha, \\beta]$, then $12(\\alpha + \\beta)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For the function $f(x) = \\cos^{-1}(X)$ to be defined, the argument X must satisfy $-1 \\le X \\le 1$.\nThus, we have :\n$$-1 \\le \\frac{4x + 2[x]}{3} \\le 1 \\Rightarrow -3 \\le 4x + 2[x] \\le 3$$\nWe test different intervals for x :\n1. If $x \\in [-1, 0)$, then $[x] = -1$: $-3 \\le 4x - 2 \\le 3$\n$\\Rightarrow -1 \\le 4x \\le 5 \\Rightarrow -\\frac{1}{4} \\le x \\le \\frac{5}{4}$.\nIntersection with $[-1, 0)$ gives $x \\in \\left[\\frac{1}{4}, 0\\right)$.\n2. If $x \\in [0, 1)$, then $[x] = 0$: $-3 \\in 4x + 0 \\in 3$\n$\\Rightarrow -\\frac{3}{4} \\le x \\le \\frac{3}{4}$.\nIntersection with $[0, 1)$ gives $x \\in \\left[0, \\frac{3}{4}\\right]$.\n3. If $x \\in [1, 2)$, then $[x] = 1$: $-3 \\le 4x + 2 \\le 3 \\Rightarrow -5 \\le 4x \\le 1 \\Rightarrow -\\frac{5}{4} \\le x \\le \\frac{1}{4}$.\nIntersection with $[1, 2)$ is empty.\n4. If $x \\in [-2, -1)$, then $[x] = -2$: $-3 \\le 4x - 4 \\le 3 \\Rightarrow 1 \\le 4x \\le 7 \\Rightarrow \\frac{1}{4} \\le x \\le \\frac{7}{4}$.\nIntersection with $[-2, -1)$ is empty.\nCombining the valid intervals, the domain is $\\left[-\\frac{1}{4}, 0\\right) \\cup \\left[0, \\frac{3}{4}\\right] = \\left[-\\frac{1}{4}, \\frac{3}{4}\\right]$.\nComparing this with $[\\alpha, \\beta]$, we have $\\alpha = -\\frac{1}{4}$ and $\\beta = \\frac{3}{4}$.\n$$\\alpha + \\beta = -\\frac{1}{4} + \\frac{3}{4} = \\frac{2}{4} = \\frac{1}{2}$$\n$$12(\\alpha + \\beta) = 12 \\times \\frac{1}{2} = 6$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$9$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Inequalities",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the set of all solutions of $|x^{2} + x - 9| = |x| + |x^{2} - 9|$ is $[\\alpha, \\beta] \\cup [\\gamma, \\infty)$, then $(\\alpha^{2} + \\beta^{2} + \\gamma^{2})$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The equation is of the form $|a + b| = |a| + |b|$, where $a = x$ and $b = x^{2} - 9$.\nThis identity holds if and only if $ab \\ge 0$.\n$$x(x^{2} - 9) \\ge 0 \\Rightarrow x(x - 3)(x + 3) \\ge 0$$\nUsing the wavy curve method for critical points $-3, 0, 3$ :\nFor $x \\in [3, \\infty)$, the expression is positive.\nFor $x \\in [0, 3]$, the expression is negative.\nFor $x \\in [-3, 0]$, the expression is positive.\nFor $x \\in (-\\infty, -3]$, the expression is negative.\nThe solution set is $[-3, 0] \\cup [3, \\infty)$.\nComparing with $[\\alpha, \\beta] \\cup [\\gamma, \\infty)$, we get :\n$\\alpha = -3, \\beta = 0, \\gamma = 3$.\n$$\\alpha^{2} + \\beta^{2} + \\gamma^{2} = (-3)^{2} + 0^{2} + 3^{2} = 9 + 0 + 9 = 18$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9$"
+    },
+    {
+     "key": "B",
+     "text": "$18$"
+    },
+    {
+     "key": "C",
+     "text": "$36$"
+    },
+    {
+     "key": "D",
+     "text": "$72$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let z be a complex number such that $|z + 2| = |z - 2|$ and $\\arg\\left(\\frac{z + 3}{z - i}\\right) = \\frac{\\pi}{4}$. Then $|z|^{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. $|z + 2| = |z - 2|$ represents the perpendicular bisector of the segment joining $(-2, 0)$ and $(2, 0)$, which is the y-axis.\nTherefore, $\\mathrm{Re}(z) = 0$. Let $z = iy$ where $y \\in \\mathbb{R}$.\n2. $\\arg\\left(\\frac{iy + 3}{iy - i}\\right) = \\frac{\\pi}{4} \\Rightarrow \\arg(3 + iy) - \\arg(i(y - 1)) = \\frac{\\pi}{4}$.\nSince $\\arg(i) = \\frac{\\pi}{2}$, we have:\n$$\\arg(3 + iy) - \\left(\\frac{\\pi}{2} + \\arg(y - 1)\\right) = \\frac{\\pi}{4} \\Rightarrow \\arg(3 + iy) - \\arg(y - 1) = \\frac{3\\pi}{4}$$\nIf $y - 1 > 0$, then $\\arg(y - 1) = 0$, so $\\arg(3 + iy) = \\frac{3\\pi}{4}$. This is impossible because for $3 + iy$ (with $3 > 0$), the angle must be in $\\left(-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right)$.\nIf $y - 1 < 0$, then $\\arg(y - 1) = \\pi$, so $\\arg(3 + iy) = \\pi + \\frac{3\\pi}{4} = \\frac{7\\pi}{4}\\left(\\text{or } -\\frac{\\pi}{4}\\right)$.\n$$\\tan\\left(-\\frac{\\pi}{4}\\right) = \\frac{y}{3} \\Rightarrow -1 = \\frac{y}{3} \\Rightarrow y = -3.$$\nSince $y = -3$ satisfies $y < 1$, we have $z = -3i$.\n$$|z|^{2} = |0^{2} + (-3)^{2}| = 9.$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of functions $f : \\{1, 2, 3, 4\\} \\rightarrow \\{a, b, c\\}$, which are not onto, is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total number of functions from set A $(n = 4)$ to set B $(m = 3)$ is $3^{4} = 81$.\nNumber of \"Onto\" (Surjective) functions is given by the formula :\n$$m^{n} - \\binom{m}{1}(m - 1)^{n} + \\binom{m}{2}(m - 2)^{n}$$\n$$= 3^{4} - \\binom{3}{1}2^{4} + \\binom{3}{2}1^{4}$$\n$$= 81 - 3(16) + 3(1) = 81 - 48 + 3 = 36$$\nNumber of functions that are not onto = Total functions $-$ Onto functions\n$$= 81 - 36 = 45$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$48$"
+    },
+    {
+     "key": "B",
+     "text": "$45$"
+    },
+    {
+     "key": "C",
+     "text": "$51$"
+    },
+    {
+     "key": "D",
+     "text": "$35$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\left\\{A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} : a, b, c, d \\in \\{0, 1, 2, 3, 4\\} \\text{ and } A^{2} - 4A + 3I = 0\\right\\}$ be a set of $2 \\times 2$ matrices. Then the number of matrices in S, for which the sum of the diagonal elements is equal to 4, is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The sum of diagonal elements is the trace, $\\mathrm{Tr}(A) = a + d = 4$.\nBy Cayley–Hamilton theorem, for a $2 \\times 2$ matrix: $A^{2} - \\mathrm{Tr}(A)A + \\det(A)I = 0$.\nComparing this with the given $A^{2} - 4A + 3I = 0$, we have $\\mathrm{Tr}(A) = 4$ and $\\det(A) = 3$.\nSo we need to find pairs $(a, b, c, d)$ such that $a + d = 4$ and $ad - bc = 3$.\nPossible values for $a, d \\in \\{0, 1, 2, 3, 4\\}$ such that $a + d = 4$ :\n1. $a = 1, d = 3$: $ad = 3 \\Rightarrow 3 - bc = 3 \\Rightarrow bc = 0$.\nPossible $(b, c)$ pairs: $(0,0), (0,1), (0,2), (0,3), (0,4), (1,0), (2,0), (3,0), (4,0)$ (9 pairs).\n2. $a = 3, d = 1$: $ad = 3 \\Rightarrow 3 - bc = 3 \\Rightarrow bc = 0$.\nPossible $(b, c)$ pairs: Same 9 pairs as above.\n3. $a = 2, d = 2$: $ad = 4 \\Rightarrow 4 - bc = 3 \\Rightarrow bc = 1$.\nPossible $(b, c)$ pairs: $(1, 1)$ (1 pair).\n4. $a = 0, d = 4$ or $a = 4, d = 0$: $ad = 0 \\Rightarrow 0 - bc = 3 \\Rightarrow bc = -3$.\nNot possible as $b, c \\ge 0$.\nTotal number of matrices $= 9 + 9 + 1 = 19$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$17$"
+    },
+    {
+     "key": "C",
+     "text": "$21$"
+    },
+    {
+     "key": "D",
+     "text": "$19$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\begin{bmatrix} 1 & 1 & 2 \\\\ -2 & 0 & 1 \\\\ 1 & 3 & 5 \\end{bmatrix}$. Then the sum of all elements of the matrix $\\mathrm{adj}(\\mathrm{adj}(2(\\mathrm{adj}\\,A)^{-1}))$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "First, let's find the determinant of A from the given matrix :\n$$|A| = 1(0 - 3) - 1(-10 - 1) + 2(-6 - 0) = -3 + 11 - 12 = -4$$\nUsing properties of the adjoint for a matrix of order $n = 3$ :\n1. $\\mathrm{adj}(\\mathrm{adj}\\,B) = |B|^{n-2}B = |B|B$.\n2. $\\mathrm{adj}\\,A = |A|A^{-1} \\Rightarrow (\\mathrm{adj}\\,A)^{-1} = \\frac{1}{|A|}A$.\nLet $B = 2(\\mathrm{adj}\\,A)^{-1} = \\frac{2}{|A|}A$.\nThen the matrix is :\n$$\\mathrm{adj}(\\mathrm{adj}\\,B) = |B|B = \\left|\\frac{2}{|A|}A\\right| \\cdot \\frac{2}{|A|}A = \\left(\\frac{2}{|A|}\\right)^{3}|A| \\cdot \\frac{2}{|A|}A = \\frac{16}{|A|^{2}}A$$\nWait, let's re-evaluate $|B|$: $|B| = \\left(\\frac{2}{|A|}\\right)^{3}|A| = \\frac{8}{|A|^{2}}$.\nThen $|B|B = \\frac{8}{|A|^{2}} \\cdot \\frac{2}{|A|}A = \\frac{16}{|A|^{3}}A$.\nSubstituting $|A| = -4$ :\n$$\\frac{16}{(-4)^{3}}A = \\frac{16}{-64}A = -\\frac{1}{4}A$$\nThe sum of elements of A is $1 + 1 + 2 - 2 + 0 + 1 + 1 + 3 + 5 = 12$.\nSum of elements of $-\\frac{1}{4}A$ is $-\\frac{1}{4} \\times 12 = -3$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$-4$"
+    },
+    {
+     "key": "D",
+     "text": "$-3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The first term of an A.P. of 30 non-negative terms is $\\frac{10}{3}$. If the sum of this A.P. is the cube of its last term, then its common difference is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let the A.P. have first term $a = \\frac{10}{3}$, common difference d, and number of terms $n = 30$.\nLast term $a_{30} = a + 29d = \\frac{10}{3} + 29d$.\nSum $S_{30} = \\frac{30}{2}(a + a_{30}) = 15\\left(\\frac{10}{3} + a_{30}\\right)$.\nGiven $S_{30} = (a_{30})^{3}$ :\n$$15\\left(\\frac{10}{3} + a_{30}\\right) = (a_{30})^{3} \\Rightarrow a_{30}^{3} - 15a_{30} - 50 = 0$$\nLet $f(x) = x^{3} - 15x - 50$. By trial, $f(5) = 125 - 75 - 50 = 0$.\nSo $a_{30} = 5$.\n$$\\frac{10}{3} + 29d = 5 \\Rightarrow 29d = 5 - \\frac{10}{3} = \\frac{5}{3} \\Rightarrow d = \\frac{5}{87}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{87}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{25}{83}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{15}{29}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{29}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of ways, of forming a queue of 4 boys and 3 girls such that all the girls are not together, is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total number of people $= 4 + 3 = 7$.\nTotal arrangements in a queue $= 7! = 5040$.\nTo find arrangements where all girls are together :\nTreat the 3 girls as a single unit.\nTotal units to arrange $= 4$ boys $+ 1$ girl-unit $= 5$.\nArrangements of 5 units $= 5! = 120$.\nInternal arrangements of the 3 girls $= 3! = 6$.\nNumber of ways girls are together $= 120 \\times 6 = 720$.\nNumber of ways all girls are not together :\n$$5040 - 720 = 4320$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5040$"
+    },
+    {
+     "key": "B",
+     "text": "$3050$"
+    },
+    {
+     "key": "C",
+     "text": "$3410$"
+    },
+    {
+     "key": "D",
+     "text": "$4320$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the smallest value of $k \\in \\mathbb{N}$, for which the coefficient of $x^{3}$ in $(1 + x)^{3} + (1 + x)^{4} + (1 + x)^{5} + \\ldots + (1 + x)^{99} + (1 + kx)^{100}$, $x \\ne 0$ is $\\left(43n + \\frac{101}{4}\\right)\\left({}^{100}C_{3}\\right)$ for some $n \\in \\mathbb{N}$ be p. Then the value of $p + n$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The first part is a Geometric Progression : $S = \\sum_{r=3}^{99}(1 + x)^{r} = \\frac{(1 + x)^{100} - (1 + x)^{3}}{(1 + x) - 1} = \\frac{(1 + x)^{100} - (1 + x)^{3}}{x}$.\nThe coefficient of $x^{3}$ in S is the coefficient of $x^{4}$ in $(1 + x)^{100} - (1 + x)^{3}$, which is $\\binom{100}{4} - 0 = \\binom{100}{4}$.\nThe coefficient of $x^{3}$ in $(1 + kx)^{100}$ is $\\binom{100}{3}k^{3}$.\nTotal coefficient :\n$$\\binom{100}{4} + \\binom{100}{3}k^{3} = \\frac{100 \\cdot 99 \\cdot 98 \\cdot 97}{4 \\cdot 3 \\cdot 2 \\cdot 1} + \\binom{100}{3}k^{3}$$\n$$= \\binom{100}{3} \\cdot \\frac{97}{4} + \\binom{100}{3}k^{3} = \\binom{100}{3}\\left(k^{3} + \\frac{97}{4}\\right)$$\nEquating to the given form :\n$$k^{3} + \\frac{97}{4} = 43n + \\frac{101}{4} \\Rightarrow k^{3} = 43n + \\frac{4}{4} \\Rightarrow k^{3} - 1 = 43n$$\nFor the smallest $k \\in \\mathbb{N}$, we check values :\n$k = 2 : 7 \\ne 43n$; $k = 3 : 26 \\ne 43n$; $k = 4 : 63 \\ne 43n$;\n$k = 5 : 124 \\ne 43n$; $k = 6 : 215 = 43(5)$.\nSo $p = k = 6$ and $n = 5$.\n$$p + n = 6 + 5 = 11.$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$11$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$13$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Suppose that the mean and median of the non-negative numbers $21, 8, 17, a, 51, 103, b, 13, 67$, $(a > b)$, are 40 and 21, respectively. If the mean deviation about the median is 26, then $2a$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$40 = \\frac{280 + a + b}{9}$$\n$a + b$\nArranging the known numbers: $8, 13, 17, 21, 51, 67, 103$ (possible positions of b and a shown in the figure).\n$$\\frac{\\sum |x_{i} - M|}{9} = 26$$\n$$13 + (21 - b) + 8 + 4 + 30 + (a - 21) + 456 + 82 = 234$$\n$$a - b = 5$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$109$"
+    },
+    {
+     "key": "B",
+     "text": "$117$"
+    },
+    {
+     "key": "C",
+     "text": "$161$"
+    },
+    {
+     "key": "D",
+     "text": "$131$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s1-math-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the line $L_{1} : x + 3 = 0$ intersect the lines $L_{2} : x - y = 0$ and $L_{3} : 3x + y = 0$ at the points A and B, respectively. Let the bisector of the obtuse angle between the lines $L_{2}$ and $L_{3}$ intersect the line $L_{1}$ at the point C. Then $BC^{2} : AC^{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find points A and B :\nPoint A is the intersection of $L_{1}$ $(x = -3)$ and $L_{2}$ $(x - y = 0)$.\n$\\Rightarrow A = (-3, -3)$.\nPoint B is the intersection of $L_{1}$ $(x = -3)$ and $L_{3}$ $(3x + y = 0)$.\n$\\Rightarrow 3(-3) + y = 0 \\Rightarrow y = 9 \\Rightarrow B = (-3, 9)$.\n2. Find the obtuse angle bisector of $L_{2}$ and $L_{3}$:\n$L_{2}$: $x - y = 0$ and $L_{3}$: $3x + y = 0$.\nUsing $a_{1}a_{2} + b_{1}b_{2} = (1)(3) + (-1)(1) = 2$.\nSince $a_{1}a_{2} + b_{1}b_{2} > 0$, the positive sign in the bisector formula gives the obtuse angle bisector :\n$$\\frac{x - y}{\\sqrt{1^{2} + (-1)^{2}}} = \\frac{3x + y}{\\sqrt{3^{2} + 1^{2}}} \\Rightarrow \\frac{x - y}{\\sqrt{2}} = \\frac{3x + y}{\\sqrt{10}}$$\n$$\\sqrt{5}(x - y) = 3x + y \\Rightarrow \\left(\\sqrt{5} - 3\\right)x = \\left(\\sqrt{5} + 1\\right)y \\Rightarrow y = \\frac{\\sqrt{5} - 3}{\\sqrt{5} + 1}x$$\n$$y = \\frac{\\left(\\sqrt{5} - 3\\right)\\left(\\sqrt{5} - 1\\right)}{4}x = \\frac{8 - 4\\sqrt{5}}{4}x = \\left(2 - \\sqrt{5}\\right)x$$\n3. Find point C :\nPoint C is the intersection of the bisector and $L_{1}$ $(x = -3)$ :\n$$y_{C} = \\left(2 - \\sqrt{5}\\right)(-3) = 3\\sqrt{5} - 6 \\Rightarrow C = \\left(-3, 3\\sqrt{5} - 6\\right)$$\n4. Calculate the ratio :\n$$AC = |y_{C} - y_{A}| = |3\\sqrt{5} - 6 - (-3)| = |3\\sqrt{5} - 3| = 3\\left(\\sqrt{5} - 1\\right)$$\n$$BC = |y_{C} - y_{B}| = |3\\sqrt{5} - 6 - 9| = |3\\sqrt{5} - 15| = 3\\left(5 - \\sqrt{5}\\right)$$\n$$\\frac{BC^{2}}{AC^{2}} = \\frac{9(5 - \\sqrt{5})^{2}}{9(\\sqrt{5} - 1)^{2}} = \\frac{25 + 5 - 10\\sqrt{5}}{5 + 1 - 2\\sqrt{5}}$$\n$$= \\frac{30 - 10\\sqrt{5}}{6 - 2\\sqrt{5}} = \\frac{5\\left(6 - 2\\sqrt{5}\\right)}{6 - 2\\sqrt{5}} = 5$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$1 : 5$"
+    },
+    {
+     "key": "C",
+     "text": "$2 : 3$"
+    },
+    {
+     "key": "D",
+     "text": "$3 : 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the vertex A of a triangle ABC be $(1, 2)$, and the mid-point of the side AB be $(5, -1)$. If the centroid of this triangle is $(3, 4)$ and its circumcenter is $(\\alpha, \\beta)$, then $21(\\alpha + \\beta)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find vertices B and C :\nMid-point of AB is $M(5, -1)$. Let $B = (x_{1}, y_{1})$.\n$\\frac{1 + x_{1}}{2} = 5 \\Rightarrow x_{1} = 9$; $\\frac{2 + y_{1}}{2} = -1 \\Rightarrow y_{1} = -4$. So $B = (9, -4)$.\nCentroid $G = (3, 4)$. Let $C = (x_{2}, y_{2})$.\n$$3 = \\frac{1 + 9 + x_{2}}{3} \\Rightarrow x_{2} = -1.$$\n$$4 = \\frac{2 - 4 + y_{2}}{3} \\Rightarrow y_{2} = 14.$$ So $C = (-1, 14)$.\n2. Find circumcenter $(\\alpha, \\beta)$ :\nThe circumcenter is equidistant from A, B, and C.\n$$(\\alpha - 1)^{2} + (\\beta - 2)^{2} = (\\alpha - 9)^{2} + (\\beta + 4)^{2}$$\n$$\\Rightarrow 16\\alpha - 12\\beta = 92 \\Rightarrow 4\\alpha - 3\\beta = 23.$$\n$$(\\alpha - 1)^{2} + (\\beta - 2)^{2} = (\\alpha + 1)^{2} + (\\beta - 14)^{2}$$\n$$\\Rightarrow 4\\alpha - 24\\beta = -192 \\Rightarrow \\alpha - 6\\beta = -48.$$\nSolving for $\\beta$ : $4(6\\beta - 48) - 3\\beta = 23 \\Rightarrow 21\\beta = 215 \\Rightarrow \\beta = \\frac{215}{21}$.\nSolving for $\\alpha$ : $\\alpha = 6\\left(\\frac{215}{21}\\right) - 48 = \\frac{430}{7} - \\frac{336}{7} = \\frac{94}{7} = \\frac{282}{21}$.\n$$21(\\alpha + \\beta) = 21\\left(\\frac{282}{21} + \\frac{215}{21}\\right) = 282 + 215 = 497$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$309$"
+    },
+    {
+     "key": "B",
+     "text": "$403$"
+    },
+    {
+     "key": "C",
+     "text": "$497$"
+    },
+    {
+     "key": "D",
+     "text": "$524$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Suppose that two chords, drawn from the point $(1, 2)$ on the circle $x^{2} + y^{2} + x - 3y = 0$ are bisected by the y-axis. If the other ends of these chords are R and S, and the mid point of the line segment RS is $(\\alpha, \\beta)$, then $6(\\alpha + \\beta)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Equation of the chord :\nLet the midpoint on the y-axis be $M(0, y_{0})$.\nEquation of chord: $T = S_{1} \\Rightarrow x(0) + y(y_{0}) + \\frac{1}{2}(x + 0) - \\frac{3}{2}(y + y_{0}) = y_{0}^{2} - 3y_{0}$.\n$$\\frac{x}{2} + y\\left(y_{0} - \\frac{3}{2}\\right) = y_{0}^{2} - \\frac{3}{2}y_{0}.$$\nSince $(1, 2)$ lies on it: $\\frac{1}{2} + 2\\left(y_{0} - \\frac{3}{2}\\right) = y_{0}^{2} - \\frac{3}{2}y_{0} \\Rightarrow 2y_{0}^{2} - 7y_{0} + 5 = 0$.\n$y_{0} = 1$ and $y_{0} = \\frac{5}{2}$. Midpoints are $M_{1}(0, 1)$ and $M_{2}\\left(0, \\frac{5}{2}\\right)$.\n2. Find R and S :\n$R = 2M_{1} - P = 2(0, 1) - (1, 2) = (-1, 0)$.\n$S = 2M_{2} - P = 2\\left(0, \\frac{5}{2}\\right) - (1, 2) = (-1, 3)$.\nMidpoint of RS $(\\alpha, \\beta) = \\left(\\frac{-1 - 1}{2}, \\frac{0 + 3}{2}\\right) = \\left(-1, \\frac{3}{2}\\right)$.\n$$6(\\alpha + \\beta) = 6(-1 + 1.5) = 3$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A line with direction ratios $1, -1, 2$ intersects the lines $\\frac{x}{2} = \\frac{y}{3} = \\frac{z + 1}{3}$ and $\\frac{x + 1}{-1} = \\frac{y - 2}{1} = \\frac{z}{4}$ at the points P and Q, respectively. If the length of the line segment PQ is $\\alpha$, then $225\\alpha^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $P = (2\\lambda, 3\\lambda, 3\\lambda - 1)$ and $Q = (-\\mu - 1, \\mu + 2, 4\\mu)$.\nDR of PQ: $(-\\mu - 2\\lambda - 1, \\mu - 3\\lambda + 2, 4\\mu - 3\\lambda + 1)$.\nSince DR are proportional to $(1, -1, 2)$:\n$$-\\mu - 2\\lambda - 1 = k,\\ -(\\mu - 3\\lambda + 2) = k, \\text{ and } \\frac{4\\mu - 3\\lambda + 1}{2} = k.$$\nEquating the first two: $-\\mu - 2\\lambda - 1 = -\\mu + 3\\lambda - 2 \\Rightarrow 5\\lambda = 1 \\Rightarrow \\lambda = \\frac{1}{5}$.\nEquating the last two: $-2\\mu + 6\\lambda - 4 = 4\\mu - 3\\lambda + 1 \\Rightarrow 6\\mu = 9\\lambda - 5$\n$$= \\frac{9}{5} - 5 = -\\frac{16}{5} \\Rightarrow \\mu = -\\frac{8}{15}.$$\n$$k = -\\mu - 2\\lambda - 1 = \\frac{8}{15} - \\frac{2}{5} - 1 = -\\frac{13}{15}.$$\n$$a = \\sqrt{k^{2} + (-k)^{2} + (2k)^{2}} = |k|\\sqrt{6}.$$\n$$225a^{2} = 225 \\cdot 6k^{2} = 225 \\cdot 6 \\cdot \\frac{169}{225} = 1014.$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1024$"
+    },
+    {
+     "key": "B",
+     "text": "$1014$"
+    },
+    {
+     "key": "C",
+     "text": "$1104$"
+    },
+    {
+     "key": "D",
+     "text": "$1204$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The square of the distance of the point $(-2, -8, 6)$ from the line $\\frac{x - 1}{1} = \\frac{y - 1}{2} = \\frac{z}{-1}$ along the line $\\frac{x + 5}{1} = \\frac{y + 5}{-1} = \\frac{z}{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Line through A parallel to $L_{2}$:\n$A = (-2, -8, 6)$. $L_{2}$ DR: $(1, -1, 2)$.\nLine: $\\frac{x + 2}{1} = \\frac{y + 8}{-1} = \\frac{z - 6}{2} = r \\Rightarrow B = (r - 2, -r - 8, 2r + 6)$.\n2. Point B on $L_{1}$ :\n$$\\frac{r - 2 - 1}{1} = \\frac{-r - 8 - 1}{2} = \\frac{2r + 6}{-1}.$$\n$$r - 3 = \\frac{-r - 9}{2} \\Rightarrow 2r - 6 = -r - 9 \\Rightarrow 3r = -3 \\Rightarrow r = -1.$$\n$B = (-1 - 2, 1 - 8, -2 + 6) = (-3, -7, 4)$.\n$$AB^{2} = (-3 + 2)^{2} + (-7 + 8)^{2} + (4 - 6)^{2} = 1 + 1 + 4 = 6.$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $y = \\tan^{-1}\\left(\\frac{3\\cos x - 4\\sin x}{4\\cos x + 3\\sin x}\\right) + 2\\tan^{-1}\\left(\\frac{x}{1 + \\sqrt{1 - x^{2}}}\\right)$, then $\\frac{dy}{dx}$ at $x = \\frac{\\sqrt{3}}{2}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Simplify the first term:\nDivide numerator and denominator by $4\\cos x$ :\n$$\\tan^{-1}\\left(\\frac{3/4 - \\tan x}{1 + (3/4)\\tan x}\\right) = \\tan^{-1}(3/4) - \\tan^{-1}(\\tan x) = \\tan^{-1}(3/4) - x$$\n2. Simplify the second term:\nLet $x = \\sin\\theta$. Then $\\sqrt{1 - x^{2}} = \\cos\\theta$.\n$$2\\tan^{-1}\\left(\\frac{\\sin\\theta}{1 + \\cos\\theta}\\right) = 2\\tan^{-1}\\left(\\frac{2\\sin(\\theta/2)\\cos(\\theta/2)}{2\\cos^{2}(\\theta/2)}\\right)$$\n$$= 2\\tan^{-1}(\\tan(\\theta/2)) = \\theta = \\sin^{-1}x$$\n3. Find the derivative :\n$$y = \\tan^{-1}(3/4) - x + \\sin^{-1}x$$\n$$\\frac{dy}{dx} = 0 - 1 + \\frac{1}{\\sqrt{1 - x^{2}}}$$\nAt $x = \\frac{\\sqrt{3}}{2}$ :\n$$\\frac{dy}{dx} = -1 + \\frac{1}{\\sqrt{1 - 3/4}} = -1 + \\frac{1}{1/2} = -1 + 2 = 1$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$-1$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let f be a real polynomial of degree n such that $f(x) = f'(x)f''(x)$ for all $x \\in \\mathbb{R}$. If $f(0) = 0$ then $36\\left(f'(2) + f''(2) + \\int_{0}^{2} f(x)\\,dx\\right)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Determine the degree n :\nLet $\\deg(f) = n$. Then $\\deg(f') = n - 1$ and $\\deg(f'') = n - 2$.\n$$n = (n - 1) + (n - 2) \\Rightarrow n = 2n - 3 \\Rightarrow n = 3$$\n2. Find the polynomial:\nLet $f(x) = ax^{3} + bx^{2} + cx + d$. Since $f(0) = 0$, $d = 0$.\n$$ax^{3} + bx^{2} + cx = (3ax^{2} + 2bx + c)(6ax + 2b)$$\nComparing coefficients of $x^{3}$ : $a = 18a^{2} \\Rightarrow a = 1/18$.\nComparing coefficients of $x^{2}$ : $b = 6ab + 12ab = 18ab \\Rightarrow b = 18(1/18)b \\Rightarrow b = b$ (always true).\nComparing constants: $0 = 2bc$. If we assume $b = 0$, then $c = 0$.\nThus, $f(x) = \\frac{1}{18}x^{3}$.\n3. Calculate the values:\n$$f'(x) = \\frac{x^{2}}{6} \\Rightarrow f'(2) = \\frac{4}{6} = \\frac{2}{3}.$$\n$$f''(x) = \\frac{x}{3} \\Rightarrow f''(2) = \\frac{2}{3}.$$\n$$\\int_{0}^{2} \\frac{x^{3}}{18}\\,dx = \\left[\\frac{x^{4}}{72}\\right]_{0}^{2} = \\frac{16}{72} = \\frac{2}{9}.$$\n4. Final calculation:\n$$36\\left(\\frac{2}{3} + \\frac{2}{3} + \\frac{2}{9}\\right) = 36\\left(\\frac{12 + 2}{9}\\right) = 4 \\times 14 = 56$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$42$"
+    },
+    {
+     "key": "B",
+     "text": "$46$"
+    },
+    {
+     "key": "C",
+     "text": "$56$"
+    },
+    {
+     "key": "D",
+     "text": "$66$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region $\\{(x, y) : y \\le \\pi - |x|, y \\le |x\\sin x|, y \\ge 0\\}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Refer to the figure.)\n$$\\text{Area} = 2\\left\\{\\int_{0}^{\\frac{\\pi}{2}} x\\sin x\\,dx + \\frac{1}{2} \\cdot \\frac{\\pi}{2} \\times \\frac{\\pi}{2}\\right\\}$$\n$$= 2\\left\\{\\left(-x\\cos x + \\sin x\\right)_{0}^{\\pi/2} + \\frac{\\pi^{2}}{8}\\right\\}$$\n$$= 2\\left\\{1 + \\frac{\\pi^{2}}{8}\\right\\}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 + \\frac{\\pi^{2}}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$2 + \\frac{\\pi^{2}}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi^{2}}{8} - 1$"
+    },
+    {
+     "key": "D",
+     "text": "$4 + \\frac{\\pi^{2}}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s1-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\int_{-2}^{2}(|\\sin x| + [x\\sin x])\\,dx = 2(3 - \\cos 2) + \\beta$, where $[.]$ is the greatest integer function. Then $\\beta\\sin\\left(\\frac{\\beta}{2}\\right)$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Separate the integral:\n$$I = \\int_{-2}^{2}|\\sin x|\\,dx + \\int_{-2}^{2}[x\\sin x]\\,dx$$\nSince $|\\sin x|$ is even: $\\int_{-2}^{2}|\\sin x|\\,dx = 2\\int_{0}^{2}\\sin x\\,dx = 2\\left(1 - \\cos 2\\right)$\n2. Evaluate $[x\\sin x]$ :\nThe function $f(x) = x\\sin x$ is even, so $\\int_{-2}^{2}|\\sin x|\\,dx = 2\\int_{0}^{2}[x\\sin x]\\,dx$.\nOn $[0, 2]$, $0 \\le x\\sin x \\le \\pi/2$. $[x\\sin x]$ is 1 when $x\\sin x \\ge 1$ and 0 otherwise.\nLet $x_{1}$ be the root of $x\\sin x = 1$ in $[0, 2]$. $\\int_{x_{1}}^{2}[x\\sin x]\\,dx = \\int_{x_{1}}^{2}1\\,dx = 2 - x_{1}$\n3. Equate to RHS :\n$$2(1 - \\cos 2) + 2(2 - x_{1}) = 2(3 - \\cos 2) + \\beta$$\n$$2 - 2\\cos 2 + 4 - 2x_{1} = 6 - 2\\cos 2 + \\beta$$\n$$6 - 2\\cos 2 - 2x_{1} = 6 - 2\\cos 2 + \\beta \\Rightarrow \\beta = -2x_{1}$$\n4. Find the required value:\n$3\\sin(\\beta/2) = 3\\sin(-x_{1}) = -3\\sin x_{1}$.\nSince $x_{1}\\sin x_{1} = 1 \\Rightarrow \\sin x_{1} = 1/x_{1}$.\nIf $\\beta$ is derived such that $\\sin(\\beta/2) = 1/3$, the value is 1.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $\\frac{dy}{dx} = (1 + x + x^{2})(1 - y + y^{2})$, $y(0) = \\frac{1}{2}$. Then $(2y(1) - 1)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Separate and integrate:\n$$\\int \\frac{dy}{y^{2} - y + 1} = \\int (x^{2} + x + 1)\\,dx$$\n$$\\int \\frac{dy}{(y - 1/2)^{2} + 3/4} = \\frac{x^{3}}{3} + \\frac{x^{2}}{2} + x + C$$\n$$\\frac{2}{\\sqrt{3}}\\tan^{-1}\\left(\\frac{y - 1/2}{\\sqrt{3}/2}\\right) = \\frac{x^{3}}{3} + \\frac{x^{2}}{2} + x + C$$\n2. Apply initial condition $y(0) = 1/2$:\n$$\\frac{2}{\\sqrt{3}}\\tan^{-1}(0) = 0 + C \\Rightarrow C = 0$$\n3. Evaluate at $x = 1$:\n$$\\frac{2}{\\sqrt{3}}\\tan^{-1}\\left(\\frac{2y(1) - 1}{\\sqrt{3}}\\right) = \\frac{1}{3} + \\frac{1}{2} + 1 = \\frac{11}{6}$$\n$$\\tan^{-1}\\left(\\frac{2y(1) - 1}{\\sqrt{3}}\\right) = \\frac{11\\sqrt{3}}{12}$$\n$$\\frac{2y(1) - 1}{\\sqrt{3}} = \\tan\\left(\\frac{11\\sqrt{3}}{12}\\right)$$\n$$2y(1) - 1 = \\sqrt{3}\\tan\\left(\\frac{11\\sqrt{3}}{12}\\right)$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3}\\tan\\left(\\frac{11\\sqrt{3}}{6}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{3}}{2}\\tan\\left(\\frac{11\\sqrt{3}}{12}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3}\\tan\\left(\\frac{11\\sqrt{3}}{12}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\sqrt{3}}{2}\\tan\\left(\\frac{11\\sqrt{3}}{6}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Probability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A coin is tossed 8 times. If the probability that exactly 4 heads appear in the first six tosses and exactly 3 heads appear in the last five tosses is p, then $96p$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "Let the outcomes of the 8 tosses be $X_{1}, X_{2}, \\ldots\\ldots, X_{8}$\nThe two conditions are:\n1. A: Exactly 4 heads in $\\{X_{1}, X_{2}, X_{3}, X_{4}, X_{5}, X_{6}\\}$\n2. B: Exactly 3 heads in $\\{X_{4}, X_{5}, X_{6}, X_{7}, X_{8}\\}$\nThe overlap between these sets is $\\{X_{4}, X_{5}, X_{6}\\}$. Let k be the number of heads in this overlap, where $k \\in \\{1, 2, 3\\}$ (since $k \\le 4$ and $k \\le 3$, and we need enough tosses in the remaining slots)\nIf $k = 1$: Ways $= \\binom{4}{4 - 1} \\times \\binom{3}{1} \\times \\binom{3}{3 - 1} = \\binom{3}{3} \\times \\binom{3}{1} \\times \\binom{2}{2} = 1 \\times 3 \\times 1 = 3$\nIf $k = 2$: Ways $= \\binom{3}{4 - 2} \\times \\binom{3}{2} \\times \\binom{2}{3 - 2} = \\binom{3}{2} \\times \\binom{3}{2} \\times \\binom{2}{1} = 3 \\times 3 \\times 2 = 18$\nIf $k = 3$: Ways $= \\binom{3}{4 - 3} \\times \\binom{3}{3} \\times \\binom{2}{3 - 3} = \\binom{3}{1} \\times \\binom{3}{3} \\times \\binom{2}{0} = 3 \\times 1 \\times 1 = 3$\nTotal favorable ways $= 3 + 18 + 3 = 24$\nTotal possible outcomes $= 2^{8} = 256$\n$$p = \\frac{24}{256} = \\frac{3}{32}$$\n$$96p = 96 \\times \\frac{3}{32} = 3 \\times 3 = 9$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the parabola $P : y^{2} = 4kx$ and the ellipse $E : \\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$. Let the line segment joining the points of intersection of P and E, be their latus rectums. If the eccentricity of E is e, then $e^{2} + 2\\sqrt{2}$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "The latus rectum of the parabola $y^{2} = 4kx$ is the line $x = k$, and its endpoints are $(k, 2k)$ and $(k, -2k)$\nIf this is also the latus rectum of the ellipse, then $k = ae$ and the length $4k = \\frac{2b^{2}}{a}$\n$$2k = \\frac{b^{2}}{a} \\Rightarrow 2(ae) = \\frac{b^{2}}{a} \\Rightarrow 2e = \\frac{b^{2}}{a^{2}}$$\nSince $e^{2} = 1 - \\frac{b^{2}}{a^{2}}$, we substitute $\\frac{b^{2}}{a^{2}} = 1 - e^{2}$:\n$$2e = 1 - e^{2} \\Rightarrow e^{2} + 2e - 1 = 0$$\nSolving for e (taking the positive root for eccentricity):\n$$e = \\frac{-2 + \\sqrt{4 + 4}}{2} = \\sqrt{2} - 1$$\n$$e^{2} = (\\sqrt{2} - 1)^{2} = 2 + 1 - 2\\sqrt{2} = 3 - 2\\sqrt{2}$$\n$$e^{2} + 2\\sqrt{2} = 3 - 2\\sqrt{2} + 2\\sqrt{2} = 3$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $A = \\frac{\\sin 3^\\circ}{\\cos 9^\\circ} + \\frac{\\sin 9^\\circ}{\\cos 27^\\circ} + \\frac{\\sin 27^\\circ}{\\cos 81^\\circ}$ and $B = \\tan 81^\\circ - \\tan 3^\\circ$, then $\\frac{B}{A}$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "Consider the general term $T = \\frac{\\sin\\theta}{\\cos 3\\theta}$:\n$$T = \\frac{2\\sin\\theta\\cos\\theta}{2\\cos 3\\theta\\cos\\theta} = \\frac{\\sin 2\\theta}{2\\cos 3\\theta\\cos\\theta} = \\frac{\\sin(3\\theta - \\theta)}{2\\cos 3\\theta\\cos\\theta}$$\n$$T = \\frac{\\sin 3\\theta\\cos\\theta - \\cos 3\\theta\\sin\\theta}{2\\cos 3\\theta\\cos\\theta} = \\frac{1}{2}(\\tan 3\\theta - \\tan\\theta)$$\nSumming for $\\theta = 3^\\circ, 9^\\circ, 27^\\circ$:\n$$A = \\frac{1}{2}[(\\tan 9^\\circ - \\tan 3^\\circ) + (\\tan 27^\\circ - \\tan 9^\\circ) + (\\tan 81^\\circ - \\tan 27^\\circ)]$$\n$$A = \\frac{1}{2}(\\tan 81^\\circ - \\tan 3^\\circ) = \\frac{1}{2}B$$\n$$\\frac{B}{A} = 2$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Vector Algebra",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\vec{a_{k}} = (\\tan\\theta_{k})\\hat{i} + \\hat{j}$ and $\\vec{b_{k}} = \\hat{i} - (\\cot\\theta_{k})\\hat{j}$, where $\\theta_{k} = \\frac{2^{k-1}\\pi}{2^{n} + 1}$, for some $n \\in \\mathbb{N}$, $n > 5$. Then the value of $\\frac{\\sum_{k=1}^{n}|\\vec{a_{k}}|^{2}}{\\sum_{k=1}^{n}|\\vec{b_{k}}|^{2}}$ is ______.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "Calculate the squared magnitudes:\n$$|\\vec{a_{k}}|^{2} = \\tan^{2}\\theta_{k} + 1 = \\sec^{2}\\theta_{k}$$\n$$|\\vec{b_{k}}|^{2} = 1 + \\cot^{2}\\theta_{k} = \\csc^{2}\\theta_{k}$$\nWe need to find the ratio $R = \\frac{\\sum_{k=1}^{n}\\sec^{2}\\theta_{k}}{\\sum_{k=1}^{n}\\csc^{2}\\theta_{k}}$\nUsing the property of the angles $\\theta_{k} = \\frac{2^{k-1}\\pi}{2^{n} + 1}$, the sum of $\\tan^{2}\\theta\\,a_{k}$ and $\\cot^{2}\\theta\\,a_{k}$ over these specific symmetry-related angles yields a constant ratio\nFor $n = 2$, $\\theta \\in \\{\\pi/5, 2\\pi/5\\}$, $\\frac{\\sec^{2}(\\pi/5) + \\sec^{2}(2\\pi/5)}{\\csc^{2}(\\pi/5) + \\csc^{2}(2\\pi/5)} = 3$\nFor $n = 3$, $\\theta \\in \\{\\pi/9, 2\\pi/9, 4\\pi/9\\}$, the ratio also evaluates to 3\nThe ratio $\\frac{\\sum\\sec^{2}\\theta_{k}}{\\sum\\csc^{2}\\theta_{k}}$ for this specific set of angles is independent of n for $n > 1$ and equals 3",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Continuity and Differentiability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of points, at which the function $f(x) = \\max\\{6x, 2 + 3x^{2}\\} + |x - 1|\\cos\\left|x^{2} - \\frac{1}{4}\\right|$, $x \\in (-\\pi, \\pi)$ is not differentiable, is ______.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "1. The max function: Let $g(x) = \\max\\{6x, 2 + 3x^{2}\\}$\nIntersections: $3x^{2} - 6x + 2 = 0 \\Rightarrow x = 1 \\pm \\frac{1}{\\sqrt{3}}$\nAt these two points, the function transitions between $6x$ and $2 + 3x^{2}$ with different slopes (6 vs $6x$). These are 2 points of non-differentiability\n2. The $|x - 1|$ term: $h(x) = |x - 1|\\cos|x^{2} - 1/4|$\nAt $x = 1$, $|x - 1|$ is non-differentiable. Since $\\cos|1^{2} - 1/4| = \\cos(3/4) \\ne 0$, the non-differentiability persists. This is the 3rd point\nThe $\\cos|x^{2} - 1/4|$ part is differentiable everywhere because $\\cos(u)$ is an even function and its derivative at $u = 0$ (where $|x^{2} - 1/4|$ has a corner) is $\\sin(0) = 0$, smoothing the \"corner.\"\n3. Check for overlaps: The points $1 \\pm 1/\\sqrt{3}$ (approx 0.42 and 1.58) and 1 are distinct\nTotal points $= 2 + 1 = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

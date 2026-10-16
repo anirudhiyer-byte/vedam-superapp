@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "2 Apr · Shift 2",
+  "title": "JEE Main 2026 · Mathematics · 2 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1Xi3i4xPGtFpj7IrSe2MsDHJnXT6OG8QC"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta$ be the roots of the equation $x^{2} - 3x + r = 0$ and $\\frac{\\alpha}{2}, 2\\beta$ be the roots of the equation $x^{2} + 3x + r = 0$. If the roots of the equation $x^{2} + 6x = m$ are $2\\alpha + \\beta + 2r$ and $\\alpha - 2\\beta - \\frac{r}{2}$, then m is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2} - 3x + r = 0$ has roots $\\alpha$, $\\beta$\n$\\alpha + \\beta = 3$ .........(i)\n$\\alpha\\beta = r$ ..........(ii)\n$x^{2} + 3x + r = 0$ has roots $\\alpha/2$, $2\\beta$\n$\\frac{\\alpha}{2} + 2\\beta = -3$ .........(iii)\nFrom (i) and (iii)\n$\\alpha = 6,\\ \\beta = -3$\nand from (ii)\n$r = -18$\nNow\n$x^{2} + 6x - m = 0$ has roots $2\\alpha + \\beta + 2r$ and $\\alpha - 2\\beta - \\frac{r}{2}$\n$2\\alpha + \\beta + 2r = -27$\nand $\\alpha - 2\\beta - \\frac{r}{2} = 21$\nso $-m = (-27)(21)$\n$\\Rightarrow m = 567$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-135$"
+    },
+    {
+     "key": "B",
+     "text": "$-567$"
+    },
+    {
+     "key": "C",
+     "text": "$135$"
+    },
+    {
+     "key": "D",
+     "text": "$567$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the circles $C_1 : |z| = r$ and $C_2 : |z - 3 - 4i| = 5$, $z \\in \\mathbf{C}$, be such that $C_2$ lies within $C_1$. If $z_1$ moves on $C_1$, $z_2$ moves on $C_2$ and $\\min|z_1 - z_2| = 2$, then $\\max|z_1 - z_2|$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(See figure: $C_2$ with centre $(3, 4)$ inside $C_1$; the line through O(0,0) and $(3, 4)$ meets $C_1$ at R and Q and $C_2$ at O and P, with $OR = 12$, radius 5 and $PQ = 2$.)\n$\\text{Max}\\,|z_1 - z_2| = OR + OP$\n$= 12 + 5 + 5$\n$= 22$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12$"
+    },
+    {
+     "key": "B",
+     "text": "$17$"
+    },
+    {
+     "key": "C",
+     "text": "$22$"
+    },
+    {
+     "key": "D",
+     "text": "$24$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-02apr-s2-math-q02-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the system of equations\n$x + 5y + 6z = 4,$\n$2x + 3y + 4z = 7,$\n$x + 6y + az = b$\nhas infinitely many solutions, then the point $(a, b)$ lies on the line :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x + 5y + 6z = 4$\n$2x + 3y + 4z = 7$\n$x + 6y + az = b$\n$D = 0 \\Rightarrow \\begin{vmatrix} 1 & 5 & 6 \\\\ 2 & 3 & 4 \\\\ 1 & 6 & a \\end{vmatrix} = 0$\n$\\Rightarrow$ expanding with $R_3$\n$(20 - 18) - 6(4 - 12) + a(3 - 10) = 0$\n$\\Rightarrow a = \\frac{50}{7}$\nalso $D_z = 0$\n$\\Rightarrow \\begin{vmatrix} 1 & 5 & 4 \\\\ 2 & 3 & 7 \\\\ 1 & 6 & b \\end{vmatrix} = 0$\n$\\Rightarrow$ expanding with $R_3$\n$(35 - 12) - 6(7 - 8) + b(3 - 10) = 0$\n$\\Rightarrow b = \\frac{29}{7}$\nso $a - b = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$y - x = 3$"
+    },
+    {
+     "key": "B",
+     "text": "$x - y = 3$"
+    },
+    {
+     "key": "C",
+     "text": "$x + y = 11$"
+    },
+    {
+     "key": "D",
+     "text": "$x + y = 12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $a_1, a_2, a_3, \\ldots\\ldots$ be an A.P. and $g_1 = a_1, g_2, g_3, \\ldots\\ldots$ be an increasing G.P. If $a_1 = a_2 + g_2 = 1$ and $a_3 + g_3 = 4$, then $a_{10} + g_5$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $a_1 = g_1$, $a = 1$\n$a_2 = 1 + d$, $\\quad a_3 = 1 + 2d$\n$g_2 = r$, $\\quad g_3 = r^{2}$\nNow, $a_2 + g_2 = 1$\n$\\Rightarrow 1 + d + r = 1$\n$\\Rightarrow d + r = 0 \\quad \\Rightarrow d = -r$\nand $a_3 + g_3 = 4$\n$\\Rightarrow 1 + 2d + r^{2} = 4$\nput $d = -r$\n$\\Rightarrow (r - 1)^{2} = 4$\n$\\Rightarrow r - 1 = \\pm 2$\n$\\Rightarrow r = 3, -1$\n$r = 3$ for increassing GP\n$d = -3$\nNow $a_{10} + g_5$\n$= 1 + 9d + r^{4}$\n$= 1 - 27 + 81$\n$= 55$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$81$"
+    },
+    {
+     "key": "B",
+     "text": "$76$"
+    },
+    {
+     "key": "C",
+     "text": "$62$"
+    },
+    {
+     "key": "D",
+     "text": "$55$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum $\\frac{1^{3}}{1} + \\frac{1^{3} + 2^{3}}{1 + 3} + \\frac{1^{3} + 2^{3} + 3^{3}}{1 + 3 + 5} + \\ldots$ up to 8 terms, is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T_r = \\frac{1^{3} + 2^{3} + \\cdots + r^{3}}{1 + 3 + 5 + \\cdots + (2r - 1)}$\n$= \\frac{\\left(\\frac{r(r+1)}{2}\\right)^{2}}{r^{2}} = \\frac{(r+1)^{2}}{4}$\nSo sum $= \\frac{1}{4}\\sum_{r=1}^{8} (r+1)^{2}$\n$= \\frac{1}{4}\\left[1^{2} + 2^{2} + \\cdots + 9^{2} - 1^{2}\\right]$\n$= \\frac{1}{4}\\left(\\frac{9 \\cdot 10 \\cdot 19}{6} - 1\\right) = 71$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$70$"
+    },
+    {
+     "key": "B",
+     "text": "$71$"
+    },
+    {
+     "key": "C",
+     "text": "$72$"
+    },
+    {
+     "key": "D",
+     "text": "$73$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If for $3 \\le r \\le 30$, $\\left({}^{30}C_{30-r}\\right) + 3\\left({}^{30}C_{31-r}\\right) + 3\\left({}^{30}C_{32-r}\\right) + \\left({}^{30}C_{33-r}\\right) = {}^{m}C_{r}$ then m equals :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "${}^{3}C_{3}\\,{}^{30}C_{30-r} + {}^{3}C_{2} \\cdot {}^{30}C_{31-r} + {}^{3}C_{1} \\cdot {}^{30}C_{32-r} + {}^{3}C_{8} \\cdot {}^{30}C_{33-r}$\n$= {}^{33}C_{33-r} = {}^{33}C_{r}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$31$"
+    },
+    {
+     "key": "B",
+     "text": "$32$"
+    },
+    {
+     "key": "C",
+     "text": "$33$"
+    },
+    {
+     "key": "D",
+     "text": "$34$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P_n$ denote the total number of triangles formed by joining the vertices of an n–side regular polygon. If $P_{n+1} - P_n = 66$ then the sum of all distinct prime divisors of n is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P_n = {}^{n}C_{3}$\n$\\Rightarrow P_{n+1} - P_n = 66$\n$\\Rightarrow {}^{n+1}C_{3} - {}^{n}C_{3} = 66$\n$\\Rightarrow \\frac{(n+1) \\cdot n \\cdot (n-1)}{6} - \\frac{n(n-1)(n-2)}{6} = 66$\n$\\Rightarrow n(n-1).3 = 6\\ .\\ 66$\n$\\Rightarrow n(n-1) = 132$\n$\\Rightarrow n^{2} - n - 132 = 0$\n$\\Rightarrow (n - 12)(n + 11) = 0$\n$\\Rightarrow n = 12, \\quad n = -11$ (Rejected)\nNow\nsum of prime diviser of 12\n$= 2 + 3 = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$7$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A man throws a fair coin repeatedly. He gets 10 points for each head he throws and 5 points for each tail he throws. If the probability that he gets exactly 30 points is $\\frac{m}{n}$ where $\\gcd(m, n) = 1$, then $m + n$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "HHH + HHTT + HTTTT + TTTTTT\n$\\frac{1}{8} + {}^{4}C_{2} \\cdot \\frac{1}{16} + {}^{5}C_{1} \\cdot \\frac{1}{32} + \\frac{1}{64}$\n$= \\frac{1}{8} + \\frac{6}{16} + \\frac{5}{32} + \\frac{1}{64}$\n$= \\frac{8 + 24 + 10 + 1}{64} = \\frac{43}{64}$\nso $m + n = 43 + 64$\n$= 107$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$53$"
+    },
+    {
+     "key": "B",
+     "text": "$55$"
+    },
+    {
+     "key": "C",
+     "text": "$107$"
+    },
+    {
+     "key": "D",
+     "text": "$105$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The mean and variance of n observations are 8 and 16, respectively. If the sum of the first $(n - 1)$ observations is 48 and the sum of squares of the first $(n - 1)$ observations is 496, then the value of n is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{(x_1 + x_2 + \\cdots + x_{n-1}) + x_n}{n} = 8$\n$\\Rightarrow 48 + x_n = 8n$\n$\\Rightarrow x_n = 8(n - 6)$ .........(i)\nand $\\frac{x_1^{2} + x_2^{2} + \\cdots + x_{n-1}^{2} + x_n^{2}}{n} - 64 = 16$\n$\\Rightarrow 496 + x_n^{2} = 80n$\n$\\Rightarrow x_n^{2} = 80n - 496$ .......(ii)\nfrom (1) and (ii)\n$64(n - 6)^{2} = 16(5n - 31)$\n$\\Rightarrow 4(n^{2} - 12n + 36) = 5n - 31$\n$\\Rightarrow 4n^{2} - 53n + 175 = 0$\n$\\Rightarrow (4n - 25)(n - 7) = 0$\n$\\Rightarrow n = 7,\\ n = \\frac{25}{4} \\notin N$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$21$"
+    },
+    {
+     "key": "B",
+     "text": "$16$"
+    },
+    {
+     "key": "C",
+     "text": "$13$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a circle pass through the origin and its centre be the point of intersection of two mutually perpendicular lines $x + (k - 1)y + 3 = 0$ and $2x + k^{2}y - 4 = 0$. If the line $x - y + 2 = 0$ intersects the circle at the points A and B, then $(AB)^{2}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x + (k - 1)y + 3 = 0$\nand $2x + k^{2}y - 4 = 0$\nlines are perpendicular so\n$\\left(\\frac{-1}{k-1}\\right)\\left(\\frac{-2}{k^{2}}\\right) = -1$\n$\\Rightarrow k^{3} - k^{2} = -2$\n$\\Rightarrow k = -1$\nso lines are\n$x - 2y + 3 = 0$\nand $2x + y - 4 = 0$\nPOI is $(1, 2)$ which is centre\nCirce passes through origin so $r = \\sqrt{5}$\nEquation of circle\n$x^{2} + y^{2} - 2x - 4y = 0$\nsolving it with line\n$y = x + 2$\ngives\n$x^{2} + (x + 2)^{2} - 2x - 4(x + 2) = 0$\n$\\Rightarrow x^{2} + x^{2} + 4x + 4 - 2x - 4x - 8 = 0$\n$\\Rightarrow 2x^{2} - 2x - 4 = 0$\n$\\Rightarrow x^{2} - x - 2 = 0$\n$\\Rightarrow (x - 2)(x + 1) = 0$\n$\\Rightarrow x = -1, 2$\nso points $A(-1, 1)$ and $B(2, 4)$\n$AB = \\sqrt{18} \\Rightarrow AD^{2} = 18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$27$"
+    },
+    {
+     "key": "C",
+     "text": "$18$"
+    },
+    {
+     "key": "D",
+     "text": "$34$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let O be the origin, and P and Q be two points on the rectangular hyperbola $xy = 12$ such that the mid point of the line segment PQ is $\\left(\\frac{1}{2}, -\\frac{1}{2}\\right)$ Then the area of the triangle OPQ equals :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left(t, \\frac{12}{t}\\right)$ —— $\\left(\\frac{1}{2}, \\frac{-1}{2}\\right)$ —— $\\left(P, \\frac{12}{P}\\right)$\n$\\frac{t + p}{2} = \\frac{1}{2}$ and $\\frac{12}{t} + \\frac{12}{p} = -1$\n$\\Rightarrow t + P = 1$ ..........(i)\n$\\Rightarrow \\frac{t + p}{tp} = -\\frac{1}{12}$\n$\\Rightarrow tP = -12$ ..........(ii)\nFrom (i) and (ii)\n$t = 4, P = -3$\nso $P(4, 3)$ and $Q(-3, -4)$\nArea of $\\Delta OPQ = \\left|\\frac{1}{2}\\begin{vmatrix} 0 & 0 & 1 \\\\ 4 & 3 & 1 \\\\ -3 & -4 & 1 \\end{vmatrix}\\right|$\n$= \\left|\\frac{1}{2}(-16 + 9)\\right| = \\frac{7}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{7}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{9}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the parabola $y = x^{2} + px + q$ passing through the point $(1, -1)$ be such that the distance between its vertex and the x-axis is minimum. Then the value of $p^{2} + q^{2}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y = x^{2} + px + q$\n$(1, -1)$ satisfies it\n$-1 = 1 + p + q \\Rightarrow p + q = -2$\nCo-ordinate of vertex $\\left(-\\frac{p}{2}, -\\frac{(p^{2} - 4q)}{4}\\right)$\n$= \\left(-\\frac{p}{2}, -\\frac{(p^{2} + 4p + 4)}{4}\\right)$\ndistance of vertex from x-axis\n$= \\left|\\frac{4 + p^{2} + 4p}{4}\\right| = \\left|\\frac{(p + 2)^{2}}{4}\\right|$\nminimum distance $= 0$ when $p = -2$\nso $p = -2 \\quad \\Rightarrow q = 0$\n$p^{2} + q^{2} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P = \\{\\theta \\in [0, 4\\pi] : \\tan^{2}\\theta \\ne 1\\}$ and $S = \\{a \\in \\mathbf{Z} : 2(\\cos^{8}\\theta - \\sin^{8}\\theta)\\sec 2\\theta = a^{2},\\ \\theta \\in P\\}$. Then $n(S)$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2\\left(\\cos^{8}\\theta - \\sin^{8}\\theta\\right)\\sec(2\\theta) = a^{2}$\n$\\Rightarrow 2\\left(\\cos^{4}\\theta + \\sin^{4}\\theta\\right)\\left(\\cos^{2}\\theta - \\sin^{2}\\theta\\right)\\sec 2\\theta = a^{2}$\n$\\Rightarrow 2\\left(1 - \\frac{1}{2}\\sin^{2}2\\theta\\right) = a^{2}$\n$\\Rightarrow 2 - \\sin^{2}2\\theta = a^{2}$\n$\\Rightarrow \\sin^{2}2\\theta = 2 - a^{2}$\n$\\because a \\in z$, only possibility $a^{2} = 1$\n$\\Rightarrow \\sin^{2}2\\theta = 1$\n$\\Rightarrow 2\\theta = (2n + 1)\\frac{\\pi}{2}$\n$\\Rightarrow \\theta = (2n + 1)\\frac{\\pi}{4}$\nbut at $\\theta = (2n + 1)\\frac{\\pi}{4}$, $\\tan^{2}\\theta = 1$\nso no possible value of $\\theta$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the vectors $\\vec{a} = -\\hat{i} + \\hat{j} + 3\\hat{k}$ and $\\vec{b} = \\hat{i} + 3\\hat{j} + \\hat{k}$. For some $\\lambda, \\mu \\in \\mathbf{R}$, let $\\vec{c} = \\lambda\\vec{a} + \\mu\\vec{b}$. If $\\vec{c} \\cdot \\left(3\\hat{i} - 6\\hat{j} + 2\\hat{k}\\right) = 10$ and $\\vec{c} \\cdot \\left(\\hat{i} + \\hat{j} + \\hat{k}\\right) = -2$, then $|\\vec{c}|^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{c} = \\lambda\\vec{a} + \\mu\\vec{b}$\n$= \\lambda(-1, 1, 3) + \\mu(1, 3, 1)$\n$= (-\\lambda + \\mu, \\lambda + 3\\mu, 3\\lambda + \\mu)$\nNow $\\vec{c} \\cdot (3, -6, 2) = 10$\n$\\Rightarrow 3(-\\lambda + \\mu) - 6(\\lambda + 3\\mu) + 2(3\\lambda + \\mu) = 10$\n$\\Rightarrow -3\\lambda - 13\\mu = 10$\n$\\Rightarrow 3\\lambda + 13\\mu = 10$ ..........(i)\nand $\\vec{c} \\cdot (1, 1, 1) = -2$\n$\\Rightarrow -\\lambda + \\mu + \\lambda + 3\\mu + 3\\lambda + \\mu = -2$\n$\\Rightarrow 3\\lambda + 5\\mu = -2$ ...........(ii)\nfrom (i) and (ii)\n$\\lambda = 1, \\mu = -1$\nso $\\vec{c} = \\vec{a} - \\vec{b} = (-2, -2, 2)$\n$\\Rightarrow |\\vec{c}|^{2} = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$12$"
+    },
+    {
+     "key": "C",
+     "text": "$14$"
+    },
+    {
+     "key": "D",
+     "text": "$15$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the point A be the foot of perpendicular drawn from the point $P(a, b, 0)$ on the line $\\frac{x - 1}{2} = \\frac{y - 2}{1} = \\frac{z - \\alpha}{3}$. If the midpoint of the line segment PA is $\\left(0, \\frac{3}{4}, \\frac{-1}{4}\\right)$ then the value of $a^{2} + b^{2} + \\alpha^{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(See figure: $P(a, b, 0)$, midpoint $M\\left(0, \\frac{3}{4}, \\frac{-1}{4}\\right)$, foot $A\\left(-a, \\frac{6}{4} - b, -\\frac{1}{2}\\right)$.)\n$\\frac{x - 1}{2} = \\frac{y - 2}{1} = \\frac{z - \\alpha}{3} = \\lambda$\nputting point A in line\n$\\frac{-a - 1}{2} = \\frac{6}{4} - b - 2 = \\frac{\\frac{-1}{2} - \\alpha}{3}$\nby solving we get\n$a = 0, b = 0, \\alpha = 1$\nso $a^{2} + b^{2} + \\alpha^{2} = 0 + 0 + 1 = 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-02apr-s2-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two adjacent sides of a parallelogram PQRS are given by $\\overrightarrow{PQ} = \\hat{j} + \\hat{k}$ and $\\overrightarrow{PS} = \\hat{i} - \\hat{j}$. If the side PS is rotated about the point P by an acute angle $\\alpha$ in the plane of the parallelogram so that it becomes perpendicular to the side PQ, then $\\sin^{2}\\left(\\frac{5\\alpha}{2}\\right) - \\sin^{2}\\left(\\frac{\\alpha}{2}\\right)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(See figure: parallelogram PQRS with $\\overrightarrow{PQ} = \\hat{j} + \\hat{k}$, angle SPQ $= 90^\\circ - \\alpha$, PS rotated by $\\alpha$.)\n$\\cos(90^\\circ - \\alpha) = \\left|\\frac{(1, -1, 0) \\cdot (0, 1, 1)}{\\sqrt{2}\\sqrt{2}}\\right|$\n$= \\frac{1}{2}$\n$\\Rightarrow \\sin\\alpha = \\frac{1}{2} \\Rightarrow \\alpha = \\frac{\\pi}{6}$\nNow $\\sin^{2}\\frac{5\\alpha}{2} - \\sin^{2}\\frac{\\alpha}{2}$\n$= \\sin 3\\alpha \\cdot \\sin 2\\alpha$\n$= \\sin\\frac{3\\pi}{6} \\cdot \\sin\\frac{2\\pi}{6} = \\frac{\\sqrt{3}}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{3}}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2\\sqrt{3}}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-02apr-s2-math-q16-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $\\int_{0}^{20\\pi} \\left(\\sin^{4}x + \\cos^{4}x\\right)dx$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int_{0}^{20\\pi} \\left(\\sin^{4}x + \\cos^{4}x\\right)dx$\n$= 20\\int_{0}^{\\pi} \\left(\\sin^{4}x + \\cos^{4}x\\right)dx$\n$= 40\\int_{0}^{\\pi/2} \\left(\\sin^{4}x + \\cos^{4}x\\right)dx$\n$\\because \\int_{0}^{\\pi/2} \\sin^{4}x\\,dx = \\int_{0}^{\\pi/2} \\cos^{4}x\\,dx = \\frac{3\\pi}{16}$\n$\\Rightarrow I = 40 \\cdot \\frac{6\\pi}{16} = 15\\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{15\\pi}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$25\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$15\\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{25\\pi}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x)$ be a polynomial of degree 5, and have extrema at $x = 1$ and $x = -1$. If $\\lim_{x \\to 0}\\left(\\frac{f(x)}{x^{3}}\\right) = -5$, then $f(2) - f(-2)$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to 0} \\frac{f(x)}{x^{3}} = -5$\nso let\n$f(x) = ax^{5} + bx^{4} - 5x^{3}$\n$\\Rightarrow f'(x) = 5ax^{4} + 4bx^{3} - 15x^{2}$ ............(i)\nNow, $f'(1) = 0$\n$\\Rightarrow 5a + 4b - 15 = 0$ ...........(ii)\nand $f'(-1) = 0$\n$\\Rightarrow 5a - 4b - 15 = 0$ ...........(iii)\nfrom (i) and (ii)\n$\\Rightarrow f(x) = 3x^{5} - 5x^{3}$\nNow $f(2) - f(-2)$\n$= 3.32 - 5.8 - (3(-32) - 5(-8))$\n$= 192 - 80 = 112$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$50$"
+    },
+    {
+     "key": "C",
+     "text": "$92$"
+    },
+    {
+     "key": "D",
+     "text": "$112$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\int\\left(\\frac{16x + 24}{x^{2} + 2x - 15}\\right)dx$. If $f(4) = 14\\log_e 3$ and $f(7) = \\log_e(2^{\\alpha} \\cdot 3^{\\beta})$, $\\alpha, \\beta \\in \\mathbf{N}$, then $\\alpha + \\beta$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\int\\left(\\frac{16x + 24}{x^{2} + 2x - 15}\\right)dx$\n$= \\int \\frac{8(2x + 2) + 8}{x^{2} + 2x - 15}dx$\n$= 8\\int \\frac{2x + 2}{x^{2} + 2x - 15}dx + \\int \\frac{(x + 5) - (x - 3)}{(x + 5)(x - 3)}dx$\n$\\Rightarrow f'(x) = 8\\ln\\left|x^{2} + 2x - 15\\right| + \\ln\\left|\\frac{x - 3}{x + 5}\\right| + c$\nGiven $f(4) = 14\\ln 3$\n$\\Rightarrow 14\\ln 3 = 8\\ln 9 + \\ln\\left|\\frac{1}{9}\\right| + c$\n$\\Rightarrow c = 0$\nNow $f(7) = 8\\ln 48 - \\ln 3$\n$= \\ln\\left(\\frac{48^{8}}{3}\\right) = \\ln\\left(2^{32} \\cdot 3^{7}\\right)$\nso $\\alpha = 32, \\beta = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$31$"
+    },
+    {
+     "key": "B",
+     "text": "$37$"
+    },
+    {
+     "key": "C",
+     "text": "$39$"
+    },
+    {
+     "key": "D",
+     "text": "$41$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $x = x(y)$ be the solution of the differential equation $2y^{2}\\frac{dx}{dy} - 2xy + x^{2} = 0$, $y > 1$, $x(e) = e$. Then $x(e^{2})$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2y^{2}\\frac{dx}{dy} - 2xy + x^{2} = 0$\n$\\Rightarrow 2y\\frac{(ydx - xdy)}{x^{2}} + dy = 0$\n$\\Rightarrow -2 \\cdot d\\left(\\frac{y}{x}\\right) + \\frac{dy}{y} = 0$\n$\\Rightarrow \\frac{-2y}{x} + \\ln y = c$\n$\\because x(e) = e$\n$-2 + 1 = c \\Rightarrow c = -1$\nso $-\\frac{2y}{x} + \\ln y = -1$\nto find $x(e^{2})$ put $y = e^{2}$\n$-\\frac{2e^{2}}{x} + 2 = -1$\n$\\Rightarrow \\frac{2e^{2}}{x} = 3$\n$\\Rightarrow x = \\frac{2e^{2}}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}e^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}e^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$e^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2e^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A = \\{2, 3, 4, 5, 6\\}$. Let R be a relation on the set $A \\times A$ given by $(x, y)R(z, w)$ if and only if x divides z and $y \\le w$ Then the number of elements in R is ________.",
+   "correct_key": null,
+   "correct_value": 120,
+   "correct_keys": null,
+   "solution": "$A = \\{2, 3, 4, 5, 6\\}$\n$(x, y)\\,R\\,(z, w)$ if x divides z and $y \\le w$\nfor $x = 2$, $z = 2, 4, 6$\n$x = 3$, $z = 3, 6$\n$x = 4$, $z = 4$\n$x = 5$, $z = 5$\n$x = 6$, $z = 6$\nand for $y \\le w$\ntotal cases $= 5 + 4 + 3 + 2 + 1$\n$= 15$\nnumber of elements is $R = 8 \\times 15 = 120$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Matrices",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the matrices $A = \\begin{bmatrix} 2 & -2 \\\\ 4 & -2 \\end{bmatrix}$ and $B = \\begin{bmatrix} 3 & 9 \\\\ 1 & 3 \\end{bmatrix}$. If matrices P and Q are such that $PA = B$ and $AQ = B$ then the absolute value of the sum of the diagonal elements of $2(P + Q)$ is ________.",
+   "correct_key": null,
+   "correct_value": 34,
+   "correct_keys": null,
+   "solution": "$A = \\begin{bmatrix} 2 & -2 \\\\ 4 & -2 \\end{bmatrix}, B = \\begin{bmatrix} 3 & 9 \\\\ 1 & 3 \\end{bmatrix}$\n$PA = B$\n$\\Rightarrow P = BA^{-1}$\n$\\Rightarrow P = \\begin{bmatrix} 3 & 9 \\\\ 1 & 3 \\end{bmatrix}\\frac{1}{4}\\begin{bmatrix} -2 & 2 \\\\ -4 & 2 \\end{bmatrix}$\n$= \\frac{1}{2}\\begin{bmatrix} -21 & 12 \\\\ -7 & 4 \\end{bmatrix}$\n$AQ = B$\n$\\Rightarrow Q = A^{-1}.\\ b$\n$= \\frac{1}{2}\\begin{bmatrix} -1 & 1 \\\\ -2 & 1 \\end{bmatrix}\\begin{bmatrix} 3 & 9 \\\\ 1 & 3 \\end{bmatrix}$\n$= \\frac{1}{2}\\begin{bmatrix} -2 & -6 \\\\ -5 & -15 \\end{bmatrix}$\nsum of diagonal elements of $2(P + Q)$\n$= 2\\left[-\\frac{21}{2} + \\frac{4}{2} - \\frac{2}{2} - \\frac{15}{2}\\right]$\n$= -17 - 17$\n$= -34$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let A be the point $(3, 0)$ and circles with variable diameter AB touch the circle $x^{2} + y^{2} = 36$ internally. Let the curve C be the locus of the point B. If the eccentricity of C is e, then $72e^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 18,
+   "correct_keys": null,
+   "solution": "(See figure: circle $x^{2} + y^{2} = 36$ with $A(3, 0)$ marked.)\nLet $B(h, k)$\nCircle with AB as diameter\n$(x - h)(x - 3) + y(y - k) = 0$\n$\\Rightarrow x^{2} + y^{2} - (h + 3)x - ky + 3h = 0$\nCentre $\\left(\\frac{h + 3}{2}, \\frac{k}{2}\\right)$\nCircle touch internelly so\n$c_1c_2 = |r_1 - r_2|$\n$\\Rightarrow \\sqrt{\\left(\\frac{h + 3}{2}\\right)^{2} + \\left(\\frac{k}{2}\\right)^{2}} = 6 - \\frac{1}{2}\\sqrt{(h - 3)^{2} + k^{2}}$\n$\\Rightarrow \\sqrt{(x + 3)^{2} + y^{2}} + \\sqrt{(x - 3)^{2} + y^{2}} = 12$\n$\\Rightarrow 2a = 12 \\quad \\Rightarrow a = 6$ ............(i)\nfocii are $(-3, 0)$ and $(3, 0)$\n$2ae = 6$ ...........(ii)\nfrom (i) and (ii)\n$e = \\frac{1}{2} \\Rightarrow 72e^{2} = 72 \\cdot \\frac{1}{4} = 18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-02apr-s2-math-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Area Under Curves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the area of the region bounded by $16x^{2} - 9y^{2} = 144$ and $8x - 3y = 24$ is A, then $3(A + 6\\log_e(3))$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 24,
+   "correct_keys": null,
+   "solution": "$16x^{2} - 9y^{2} = 144$\nsolving it with $8x - 3y = 24$\n$16x^{2} - (8x - 24)^{2} = 144$\n$\\Rightarrow 16x^{2} - 64(x^{2} - 6x + 9) = 144$\n$\\Rightarrow x^{2} - 4(x^{2} - 6x + 9) = 9$\n$\\Rightarrow 3x^{2} - 24x + 45 = 0$\n$\\Rightarrow x^{2} - 8x + 15 = 0$\n$\\Rightarrow x = 3, 5$\n(See figure: region between the right branch of the hyperbola and the line from $(3, 0)$ to $x = 5$.)\nArea $= \\int_{3}^{5}\\left(\\sqrt{\\frac{16x^{2} - 144}{9}} - \\left(\\frac{8x - 24}{3}\\right)\\right)dx$\n$= \\frac{4}{3}\\int_{3}^{5}\\left(\\sqrt{x^{2} - 9} - \\frac{2x}{3} + 18\\right)dx$\n$= \\frac{4}{3}\\left(\\frac{x}{2}\\sqrt{x^{2} - 9} - \\frac{9}{2}\\ln\\left|x + \\sqrt{x^{2} - 9}\\right|\\right)_{3}^{5} - \\frac{8}{3}\\frac{\\left(x^{2}\\right)_{3}^{5}}{2} + 8(x)_{3}^{5}$\n$= \\frac{4}{3}\\left[\\frac{5}{2} \\cdot 4 - \\frac{9}{2}\\ln 9 + \\frac{9}{2}\\ln 3\\right] - \\frac{8}{3}\\frac{16}{2} + 16$\n$= \\frac{40}{3} - \\frac{9}{2} \\cdot \\frac{4}{3}\\ln 3 - \\frac{64}{3} + 16$\n$\\Rightarrow A = 8 - 6\\ln 3$\nso $3(A + 6\\ln 3)$\n$= 3(8 - 6\\ln 3 + 6\\ln 3) = 24$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-02apr-s2-math-q24-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Continuity and Differentiability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of points in the interval $[2, 4]$, at which the function $f(x) = \\left[x^{2} - x - \\frac{1}{2}\\right]$, where $[\\cdot]$ denotes the greatest integer function, is discontinuous, is ________.",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "$f(x) = \\left[x^{2} - x - \\frac{1}{2}\\right]$\nlet $P(x) = x^{2} - x - \\frac{1}{2}$\n(See figure: parabola with vertex at $x = \\frac{1}{2}$; $P(2) = \\frac{3}{2}$, $P(4) = 12 - \\frac{1}{2} = \\frac{23}{2}$.)\nso range of $P(x) \\leftarrow [1.5, 11.5]$\nTotal 10 linegers in the range.\nso $P(x)$ has 1 x such that\n$P(x) = n,\\ n \\in \\{2, 3, \\ldots\\ldots, 11\\}$\n$\\Rightarrow$ Total 10 discontinuities.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-02apr-s2-math-q25-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

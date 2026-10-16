@@ -1,0 +1,860 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "2 Apr · Shift 1",
+  "title": "JEE Main 2026 · Physics · 2 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1aHSdPZTrnUv02hVyyWrWe5N-KimcYzrT"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The dimensional formula of $\\frac{1}{2}\\epsilon_{o}E^{2}$ ($\\epsilon_{o}$ = permittivity of vacuum and E = electric field) is $M^{a}L^{b}T^{c}$. The value of $2a - b + c$ = ______.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The term $\\frac{1}{2}\\epsilon_{0}E^{2}$ represents the energy density (energy per unit volume) of an electric field. By analyzing the dimensions of energy and volume, we can find the dimensions of the given expression.\nDimensional formula of Energy $[E] = M^{1}L^{2}T^{-2}$\nDimensional formula of Volume $[V] = L^{3}$\nEnergy density $u = \\frac{\\text{Energy}}{\\text{Volume}}$.\n$$[u] = \\frac{M^{1}L^{2}T^{-2}}{L^{3}} = M^{1}L^{-1}T^{-2}$$\nComparing this with the given dimensional formula $M^{a}L^{b}T^{c}$, we get :\n$a = 1$\n$b = -1$\n$c = -2$\n$2a - b + c$ :\n$2(1) - (-1) + (-2) = 2 + 1 - 2 = 1$\nFinal Answer: 1",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$-1$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The diameter of a wire measured by a screw gauge of least count $0.001\\ \\mathrm{cm}$ is $0.08\\ \\mathrm{cm}$. The length measured by a scale of least count $0.1\\ \\mathrm{cm}$ is $150\\ \\mathrm{cm}$. When a weight of $100\\ \\mathrm{N}$ is applied to the wire, the extension in length is $0.5\\ \\mathrm{cm}$, measured by a micrometer of least count $0.001\\ \\mathrm{cm}$. The error in the measured Young's modulus is $\\alpha \\times 10^{9}\\ \\mathrm{N/m^{2}}$. The value of $\\alpha$ is ______.\n(Ignore the contribution of the load to Young's modulus error calculation)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Young's Modulus is given by $Y = \\frac{F \\cdot L}{A \\cdot \\Delta L} = \\frac{4FL}{\\pi d^{2}\\Delta L}$. The fractional error in Young's modulus, (ignoring load error as given), is expressed as $\\frac{\\Delta Y}{Y} = \\frac{\\Delta L_{0}}{L_{0}} + 2\\frac{\\Delta d}{d} + \\frac{\\Delta(\\Delta L)}{\\Delta L}$\nLoad $F = 100\\ \\mathrm{N}$\nLength $L = 150\\ \\mathrm{cm} = 1.5\\ \\mathrm{m}, \\Delta L = 0.1\\ \\mathrm{cm}$\nDiameter $d = 0.08\\ \\mathrm{cm} = 8 \\times 10^{-4}\\ \\mathrm{m}, \\Delta d = 0.001\\ \\mathrm{cm}$\nExtension $x = 0.5\\ \\mathrm{cm} = 5 \\times 10^{-3}\\ \\mathrm{m}, \\Delta x = 0.001\\ \\mathrm{cm}$\n$$Y = \\frac{4 \\times 100 \\times 1.5}{\\pi \\times \\left(8 \\times 10^{-4}\\right)^{2} \\times \\left(5 \\times 10^{-3}\\right)} = \\frac{600}{\\pi \\times 64 \\times 10^{-8} \\times 5 \\times 10^{-3}} = \\frac{15}{8\\pi} \\times 10^{11}\\ \\mathrm{N/m^{2}}$$\n$$\\frac{\\Delta Y}{Y} = \\frac{0.1}{150} + 2\\left(\\frac{0.001}{0.08}\\right) + \\frac{0.001}{0.5}$$\n$$\\frac{\\Delta Y}{Y} = \\frac{1}{1500} + \\frac{1}{40} + \\frac{1}{500} = \\frac{2 + 75 + 6}{3000} = \\frac{83}{3000}$$\n$$\\Delta Y = Y \\times \\frac{83}{3000} = \\left(\\frac{15}{8\\pi} \\times 10^{11}\\right) \\times \\frac{83}{3000} = \\frac{83}{1600\\pi} \\times 10^{11} = \\frac{83}{16\\pi} \\times 10^{9}\\ \\mathrm{N/m^{2}}$$\n$$\\alpha = \\frac{83}{16 \\times 3.14159} \\approx \\frac{83}{50.265} \\approx 1.65$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.3$"
+    },
+    {
+     "key": "B",
+     "text": "$1.65$"
+    },
+    {
+     "key": "C",
+     "text": "$0.13$"
+    },
+    {
+     "key": "D",
+     "text": "$0.25$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The velocity of a particle is given as $\\vec{v} = -x\\hat{i} + 2y\\hat{j} - z\\hat{k}\\ \\mathrm{m/s}$. The magnitude of acceleration at point $(1, 2, 4)$ is ______ $\\mathrm{m/s^{2}}$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$a = v_{x}\\frac{dv_{x}}{dx} + v_{y}\\frac{dv_{y}}{dv} + v_{z}\\frac{dv_{z}}{dz}$$\n$v = x\\hat{i} + 2y\\hat{j} - z\\hat{k}$\n$\\frac{dv_{x}}{dx} = -\\hat{i},\\ \\frac{dv_{y}}{dy} = 2\\hat{j},\\ \\frac{dv_{z}}{dz} = -\\hat{k}$\n$a = (-x)(-\\hat{i}) + (2y)(2\\hat{j}) + (-z)(-\\hat{k}) = x\\hat{i} + 4y\\hat{j} + z\\hat{k}$\nEvaluate acceleration at the specified point (1, 2, 4) :\n$a = (1)\\hat{i} + 4(2)\\hat{j} + (4)\\hat{k} = \\hat{i} + 8\\hat{j} + 4\\hat{k}$\n$|a| = \\sqrt{1^{2} + 8^{2} + 4^{2}} = \\sqrt{1 + 64 + 16} = \\sqrt{81} = 9\\ \\mathrm{m/s^{2}}$\nFinal Answer: 9",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{6}$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{33}$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The position of an object having mass $0.1\\ \\mathrm{kg}$ as a function of time t is given as $\\vec{r} = \\left(10t^{2}\\hat{i} + 5t^{3}\\hat{j}\\right)\\ \\mathrm{m}$. At $t = 1\\ \\mathrm{s}$, which of the following statements are correct?\nA. The linear momentum $\\vec{p} = (2\\hat{i} + 1.5\\hat{j})\\ \\mathrm{kg\\,m/s}$.\nB. The force acting on the object $\\vec{F} = (2\\hat{i} + 3\\hat{j})\\ \\mathrm{N}$.\nC. The angular momentum of the object about its origin $\\vec{L} = 15\\hat{k}\\ \\mathrm{Js}$.\nD. The torque acting on the object about its origin $\\vec{\\tau} = 20\\hat{k}\\ \\mathrm{Nm}$.\nChoose the correct answer from the options given below:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given $r = 10t^{2}\\hat{i} + 5t^{3}\\hat{j}$ and $m = 0.1\\ \\mathrm{kg}$\n$$v = \\frac{dr}{dt} = 20t\\hat{i} + 15t^{2}\\hat{j}$$\n$$a = \\frac{dv}{dt} = 20\\hat{i} + 30t\\hat{j}$$\nEvaluate all vectors at t = 1s :\n$r = 10\\hat{i} + 5\\hat{j}$\n$v = 20\\hat{i} + 15\\hat{j}$\n$a = 20\\hat{i} + 30\\hat{j}$\nStatement A : $p = mv = 0.1(20\\hat{i} + 15\\hat{j}) = 2\\hat{i} + 1.5\\hat{j}\\ \\mathrm{kg\\,m/s}$ (Statement A is Correct).\nStatement B : $F = ma = 0.1(20\\hat{i} + 30\\hat{j}) = 2\\hat{i} + 3\\hat{j}\\ \\mathrm{N}$. (Statement B is Correct).\nStatement C: $L = r \\times p = (10\\hat{i} + 5\\hat{j}) \\times (2\\hat{i} + 1.5\\hat{j})$\n$L = (10)(1.5)(\\hat{i} \\times \\hat{j}) + (5)(2)(\\hat{j} \\times \\hat{i}) = 15\\hat{k} - 10\\hat{k} = 5\\hat{k}\\ \\mathrm{Js}$\n(Statement C is Incorrect)\nStatement D : $\\tau = r \\times F = (10\\hat{i} + 5\\hat{j}) \\times (2\\hat{i} + 3\\hat{j})$\n$\\tau = (10)(3)(\\hat{i} \\times \\hat{j}) + (5)(2)(\\hat{j} \\times \\hat{i}) = 30\\hat{k} - 10\\hat{k} = 20\\hat{k}\\ \\mathrm{Nm}$.\n(Statement D is Correct).\nFinal Answer: A, B and D only",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A, B and C only"
+    },
+    {
+     "key": "B",
+     "text": "B, C and D only"
+    },
+    {
+     "key": "C",
+     "text": "A, C and D only"
+    },
+    {
+     "key": "D",
+     "text": "A, B and D only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A planet $(P_{1})$ is moving around the star of mass $2M$ in the orbit of radius $R$. Another planet $(P_{2})$ is moving around another star of mass $4M$ in a orbit of radius $2R$. Ratio of time periods of revolution of $P_{2}$ and $P_{1}$ is ______.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = 2\\pi\\sqrt{\\frac{R^{3}}{GM}}$, meaning $T \\propto \\sqrt{\\frac{R^{3}}{M}}$\nFor Planet 1 $(P_{1})$ : Radius $R_{1} = R$, Central Mass $M_{1} = 2M$.\n$$T_{1} \\propto \\sqrt{\\frac{R^{3}}{2M}}$$\nFor Planet 2 $(P_{2})$ : Radius $R_{2} = 2R$, Central Mass $M_{2} = 4M$.\n$$T_{2} \\propto \\sqrt{\\frac{(2R)^{3}}{4M}} = \\sqrt{\\frac{8R^{3}}{4M}} = \\sqrt{\\frac{2R^{3}}{M}}$$\nDivide $T_{2}$ by $T_{1}$ to find the ratio:\n$$\\frac{T_{2}}{T_{1}} = \\sqrt{\\frac{\\frac{2R^{3}}{M}}{\\frac{R^{3}}{2M}}} = \\sqrt{\\frac{2}{\\frac{1}{2}}} = \\sqrt{4} = 2$$\nFinal Answer: 2",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle is rotating in a circular path and at any instant its motion can be described as $\\theta = \\frac{5t^{4}}{40} - \\frac{t^{3}}{3}$. The angular acceleration of the particle after 10 seconds is ______ $\\mathrm{rad/s^{2}}$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\theta = \\frac{5t^{4}}{40} - \\frac{t^{3}}{3} = \\frac{t^{4}}{8} - \\frac{t^{3}}{3}$$\n$$\\omega = \\frac{d\\theta}{dt} = \\frac{4t^{3}}{8} - \\frac{3t^{2}}{3} = 0.5t^{3} - t^{2}$$\n$$\\alpha = \\frac{d\\omega}{dt} = 1.5t^{2} - 2t$$\nSubstitute t = 10 seconds\n$\\alpha = 1.5(10)^{2} - 2(10)$\n$\\alpha(10) = 1.5(100) - 20 = 150 - 20 = 130$\nFinal Answer: 130",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$150$"
+    },
+    {
+     "key": "B",
+     "text": "$120$"
+    },
+    {
+     "key": "C",
+     "text": "$130$"
+    },
+    {
+     "key": "D",
+     "text": "$170$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A parallel plate air capacitor has a capacitance C. When it is half filled as show in figure with a dielectric constant $K = 5$, the percentage increase in the capacitance is ______.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The initial capacitance with air (K = 1) is $C = \\frac{\\epsilon_{0}A}{d}$.\nThe new configuration consists of two capacitors in series: $C_{1}$ (with dielectric K = 5 and thickness $\\frac{d}{2}$) and $C_{2}$ (with air K = 1 and thickness $\\frac{d}{2}$).\n$$C_{1} = \\frac{5\\epsilon_{0}A}{d/2} = 10\\frac{\\epsilon_{0}A}{d} = 10C$$\n$$C_{2} = \\frac{1\\epsilon_{0}A}{d/2} = 2\\frac{\\epsilon_{0}A}{d} = 2C$$\n$$C_{eq} = \\frac{C_{1}C_{2}}{C_{1} + C_{2}} = \\frac{(10C)(2C)}{10C + 2C} = \\frac{20C^{2}}{12C} = \\frac{5}{3}C$$\n$$\\text{Percentage Increase} = \\frac{C_{eq} - C}{C} \\times 100 = \\left(\\frac{5/3C - C}{C}\\right) \\times 100 = \\frac{2}{3} \\times 100$$\nPercentage Increase $\\approx 66.67$\nFinal Answer: 66.67",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$33.34$"
+    },
+    {
+     "key": "B",
+     "text": "$66.67$"
+    },
+    {
+     "key": "C",
+     "text": "$200$"
+    },
+    {
+     "key": "D",
+     "text": "$400$"
+    }
+   ],
+   "stem_figure": "j26-02apr-s1-phy-q32.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Heat is supplied to a diatomic gas at constant pressure. Then the ratio of $\\Delta Q : \\Delta U : \\Delta W$ is ______.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For an ideal gas, the First Law of Thermodynamics states $\\Delta Q = \\Delta U + \\Delta W$. For an isobaric (constant pressure) process, heat supplied is $\\Delta Q = nC_{P}\\Delta T$, change in internal energy is $\\Delta U = nC_{V}\\Delta T$, and work done is $\\Delta W = nR\\Delta T$. A diatomic gas has 5 degrees of freedom at standard temperatures.\nFor a diatomic gas, the molar heat capacity at constant volume is $C_{V} = \\frac{5}{2}R$ and at constant pressure is $C_{P} = \\frac{7}{2}R$.\n$$\\Delta Q = n\\left(\\frac{7}{2}R\\right)\\Delta T$$\n$$\\Delta U = n\\left(\\frac{5}{2}R\\right)\\Delta T$$\n$\\Delta W = nR\\Delta T$\n$\\Delta Q : \\Delta U : \\Delta W : = \\frac{7}{2} : \\frac{5}{2} : 1$\nRatio $= 7 : 5 : 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2 : 3 : 5$"
+    },
+    {
+     "key": "B",
+     "text": "$5 : 3 : 2$"
+    },
+    {
+     "key": "C",
+     "text": "$2 : 5 : 7$"
+    },
+    {
+     "key": "D",
+     "text": "$7 : 5 : 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Electrostatic Potential",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two charged conducting spheres $S_{1}$ and $S_{2}$ of radii $8\\ \\mathrm{cm}$ and $18\\ \\mathrm{cm}$ are connected to each other by a wire. After equilibrium is established, the ratio of electric fields on $S_{1}$ and $S_{2}$ spheres are $E_{S1}$ and $E_{S2}$ respectively. The value of $\\frac{E_{S1}}{E_{S2}}$ is ______.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "When two conducting spheres are connected by a wire, charge flows until they reach the same electrical potential $(V_{1} = V_{2})$. The electric field at the surface of a conducting sphere is given by $E = \\frac{V}{R}$.\n$$V_{1} = V_{2} \\Rightarrow \\frac{kQ_{1}}{R_{1}} = \\frac{kQ_{2}}{R_{2}}$$\nelectric field on each sphere's surface in terms of potential:\n$$E_{S1} = \\frac{kQ_{1}}{R_{1}^{2}} = \\frac{V_{1}}{R_{1}}$$\n$$E_{S2} = \\frac{kQ_{2}}{R_{2}^{2}} = \\frac{V_{2}}{R_{2}}$$\n$$\\frac{E_{S1}}{E_{S2}} = \\frac{V_{1}/R_{1}}{V_{2}/R_{2}}$$\nSince $V_{1} = V_{2}$\n$$\\frac{E_{S1}}{E_{S2}} = \\frac{R_{2}}{R_{1}}$$\n$$\\frac{E_{S1}}{E_{S2}} = \\frac{18}{8} = \\frac{9}{4}$$\nFinal Answer: 9/4",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{9}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{9}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The equation of a plane progressive wave is given by $y = 5\\cos\\pi\\left(200t - \\frac{x}{150}\\right)$ where x and y are in cm and t is in second. The velocity of the wave is ______ m/s.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$y = 5\\cos\\left(\\pi\\left(200t - \\frac{x}{150}\\right)\\right)$$\n$$y = 5\\cos\\left(200\\pi t - \\frac{\\pi x}{150}\\right)$$\n$\\omega = 200\\pi$\n$$k = \\frac{\\pi}{150} = \\frac{\\omega}{k} = \\frac{200\\pi}{\\pi/150} = 200 \\times 150 = 30000\\ \\mathrm{cm}$$\n$v = 300\\ \\mathrm{m/s}$\nFinal Answer: 300",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$120$"
+    },
+    {
+     "key": "B",
+     "text": "$150$"
+    },
+    {
+     "key": "C",
+     "text": "$200$"
+    },
+    {
+     "key": "D",
+     "text": "$300$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two short electric dipoles A and B having dipole moment $p_{1}$ and $p_{2}$ respectively are placed with their axis mutually perpendicular as shown in the figure. The resultant electric field at a point x is making an angle of $60^\\circ$ with the line joining points O and x. The ratio of the dipole moments $p_{2}/p_{1}$ is ______.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Assume Dipole A (moment $p_{1}$) lies along the x-axis, and Dipole B (moment $p_{2}$) lies along the y-axis (mutually perpendicular).\nPoint X lies on the axial line of Dipole A and the equatorial line of Dipole B.\nThe electric field due to A at point X is $E_{A} = \\frac{2kp_{1}}{r^{3}}$ (directed horizontally).\nThe electric field due to B at point X is $E_{B} = \\frac{kp_{2}}{r^{3}}$ (directed vertically).\nThe resultant electric field makes an angle of $60^\\circ$ with the line OX. Therefore,\n$$\\tan\\left(60^\\circ\\right) = \\frac{E_{B}}{E_{A}}$$\n$$\\sqrt{3} = \\frac{\\frac{kp_{2}}{r^{3}}}{\\frac{2kp_{1}}{r^{3}}} = \\frac{p_{2}}{2p_{1}}$$\n$$\\frac{p_{2}}{p_{1}} = 2\\sqrt{3}$$\nFinal Answer : $2\\sqrt{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": "j26-02apr-s1-phy-q36.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the given circuit (shown in part (A)) the time dependent input voltage $v_{in}(t)$ and corresponding output $v_{0}(t)$ are shown in part (B) and part (C), respectively. Identify the components that are used in the circuit between points X and Y.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In positive half cycle, branch AB gives constant 5 V output. In negative half cycle, branch xy gives constant 5 V output.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "j26-02apr-s1-phy-q37-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "j26-02apr-s1-phy-q37-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "j26-02apr-s1-phy-q37-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "j26-02apr-s1-phy-q37-optD.png"
+    }
+   ],
+   "stem_figure": "j26-02apr-s1-phy-q37.png",
+   "solution_figure": "j26-02apr-s1-phy-q37-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When a coil is placed in a time dependent magnetic field the power dissipated in it is P. The number of turns, area of the coil and radius of the coil wire are N, A and r respectively. For a second coils number of turns, area of the coil and radius of the coil wire are 2N, 2A and 3r respectively. When the first coil is replaced with second coil the power dissipated in it is $\\sqrt{2}\\alpha P$. The value of $\\alpha$ is ______.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Induced EMF: $\\varepsilon = -NA\\frac{dB}{dt}$\nPower Dissipated: $P = \\frac{\\varepsilon^{2}}{R}$\nThe resistance of the coil is $R = \\rho\\frac{l}{A_{wire}}$. The total length of the wire $l$ is proportional to the number of turns N and the loop circumference. Since Area $A \\propto R_{loop}^{2}$, the circumference is proportional to $\\sqrt{A}$.\nTherefore, $R \\propto \\frac{N\\sqrt{A}}{r^{2}}$, where r is the wire radius.\nSubstitute EMF and R into the power equation:\n$$P \\propto \\frac{(NA)^{2}}{\\frac{N\\sqrt{A}}{r^{2}}} = NA^{3/2}r^{2}$$\nFor the second coil, $P' \\propto (2N)(2A)^{3/2}(3r)^{2}$\n$$P' \\propto (2N)\\left(2\\sqrt{2}A^{3/2}\\right)\\left(9r^{2}\\right) = 36\\sqrt{2}\\left(NA^{3/2}r^{2}\\right)$$\n$P' = 36\\sqrt{2}P$\n$\\alpha = 36$\nFinal Answer: 36",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$36$"
+    },
+    {
+     "key": "B",
+     "text": "$128\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$16$"
+    },
+    {
+     "key": "D",
+     "text": "$64$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two identical long current carrying wires are bent into the shapes shown in the following figures. If the magnitude of magnetic fields at the centres P and Q of a semicircular arc are $B_{1}$ and $B_{2}$ respectively, then the ratio $\\frac{B_{1}}{B_{2}}$ is ______.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Both semi-infinite straight segments and the semicircular arc produce magnetic fields in the same direction at the center point P.\n$$B_{1} = B_{\\text{straight 1}} + B_{\\text{straight 2}} + B_{\\text{arc}} = \\frac{\\mu_{0}I}{4\\pi r} + \\frac{\\mu_{0}I}{4\\pi r} + \\frac{\\mu_{0}I}{4r} = \\frac{\\mu_{0}I}{4\\pi r}(2 + \\pi)$$\nThe outgoing wire segment produces no magnetic field at center Q (since $dl \\times r = 0$). Only one semi-infinite straight wire and the arc contribute.\n$$B_{2} = B_{\\text{straight 1}} + 0 + B_{\\text{arc}} = \\frac{\\mu_{0}I}{4\\pi r} + \\frac{\\mu_{0}I}{4r} = \\frac{\\mu_{0}I}{4\\pi r}(1 + \\pi)$$\n$$\\frac{B_{1}}{B_{2}} = \\frac{B_{1}}{B_{2}} = \\frac{\\frac{\\mu_{0}I}{4\\pi r}(2 + \\pi)}{\\frac{\\mu_{0}I}{4\\pi r}(1 + \\pi)} = \\frac{2 + \\pi}{1 + \\pi}$$\nFinal answer : $\\frac{2 + \\pi}{1 + \\pi}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2+\\pi}{1+\\pi}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1+\\pi}{1-\\pi}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2+\\pi}{1-\\pi}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1+\\pi}{2-\\pi}$"
+    }
+   ],
+   "stem_figure": "j26-02apr-s1-phy-q39.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For a thin symmetric prism made of glass (refractive index 1.5), the ratio of incident angle and minimum deviation will be ______.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Minimum Deviation $\\left(\\delta_{m}\\right) : \\delta_{m} = (\\mu - 1)A$\nAt minimum deviation, the angle of incidence ($i$) equals the angle of emergence (e). Total deviation relates to prism angle A by $i + e = A + \\delta$.\nCalculate the minimum deviation for glass $(\\mu = 1.5)$ :\n$$\\delta_{m} = (1.5 - 1)A = 0.5A = \\frac{A}{2}$$\nApply the condition for minimum deviation (i = e) :\n$i + i = A + \\delta_{m}$\n$$2i = A + \\frac{A}{2} = \\frac{3A}{2}$$\n$$i = \\frac{3A}{4}$$\n$$\\text{Ratio} = \\frac{i}{\\delta_{m}} = \\frac{\\frac{3A}{4}}{\\frac{A}{2}} = \\frac{3}{2}$$\nFinal Answer: 3:2",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3 : 4$"
+    },
+    {
+     "key": "B",
+     "text": "$3 : 2$"
+    },
+    {
+     "key": "C",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Refer the figure given below. $\\mu_{1}$ and $\\mu_{2}$ are refractive indices of air and lens material. The height of image will be ______ cm.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{\\mu_{2}}{v} - \\frac{\\mu_{1}}{u} = \\frac{\\mu_{2} - \\mu_{1}}{R}$$\n$$m = \\frac{h_{i}}{h_{o}} = \\frac{\\mu_{1}v}{\\mu_{2}u}$$\nso $u = -40\\ \\mathrm{cm}$\n$R = -20\\ \\mathrm{cm}$\n$\\mu_{2} = 1.54$\n$$\\frac{1.54}{v} - \\frac{1}{-40} = \\frac{1.54 - 1}{-20}$$\n$$\\frac{1.54}{v} + 0.025 = \\frac{0.54}{-20}$$\n$$\\frac{1.54}{v} + 0.025 = -0.027$$\n$$\\frac{1.54}{v} = -0.052 \\Rightarrow v \\approx -29.6\\ \\mathrm{cm}$$\n$$m = \\frac{1 \\times (-29.6)}{1.54 \\times (-40)} \\approx 0.48$$\n$h_{i} = m \\times h_{o} = 0.48 \\times 2\\ \\mathrm{cm} \\approx 0.96\\ \\mathrm{cm}$\nFinal Answer: 1",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$0.5$"
+    },
+    {
+     "key": "C",
+     "text": "$1.2$"
+    },
+    {
+     "key": "D",
+     "text": "$0.25$"
+    }
+   ],
+   "stem_figure": "j26-02apr-s1-phy-q41.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For a certain metal, when monochromatic light of wavelength $\\lambda$ is incident, the stopping potential for photoelectrons is $3V_{0}$. When the same metal is illuminated by light of wavelength $2\\lambda$, then the stopping potential becomes $V_{0}$. The threshold wavelength for photoelectric emission for the given metal is $\\alpha\\lambda$. The value of $\\alpha$ is ______.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{hc}{\\lambda} = \\Phi + eV_{s}$$\nThe threshold wavelength $(\\lambda_{0})$ is related to the work function by $\\Phi = \\frac{hc}{\\lambda_{0}}$.\nFor the incident wavelength $\\lambda$, the stopping potential is $3V_{0}$ :\n$$\\frac{hc}{\\lambda} = \\frac{hc}{\\lambda_{0}} + 3eV_{0} \\quad \\text{(Equation 1)}$$\nFor the incident wavelength $2\\lambda$, the stopping potential is $V_{0}$ :\n$$\\frac{hc}{2\\lambda} = \\frac{hc}{\\lambda_{0}} + eV_{0} \\quad \\text{(Equation 2)}$$\nmultiply Equation 2 by 3 :\n$$\\frac{3hc}{2\\lambda} = \\frac{3hc}{\\lambda_{0}} + 3eV_{0} \\quad \\text{(Equation 3)}$$\nSubtract Equation 1 from Equation 3:\n$$\\frac{3hc}{2\\lambda} - \\frac{hc}{\\lambda} = \\frac{3hc}{\\lambda_{0}} - \\frac{hc}{\\lambda_{0}}$$\n$$\\frac{hc}{2\\lambda} = \\frac{2hc}{\\lambda_{0}}$$\n$\\lambda_{0} = 4\\lambda$\n$\\alpha = 4$\nFinal Answer: 4",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electromagnetic wave travelling in x-direction is described by field equation $E_{y} = 300\\sin\\omega\\left(t - \\frac{x}{c}\\right)$. If the electron is restricted to move in y-direction only with speed of $1.5 \\times 10^{6}\\ \\mathrm{m/s}$ then ratio of maximum electric and magnetic forces acting on the electron is ______.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The magnitudes of the electric field $(E_{0})$ and magnetic field $(B_{0})$ in an electromagnetic wave are related by $c = \\frac{E_{0}}{B_{0}}$.\n$E_{y} = 300\\sin\\omega\\left(t - \\frac{x}{c}\\right)$, meaning the wave propagates in the x -direction and the electric field oscillates in the y -direction.\nTherefore, the magnetic field must oscillate in the z-direction to satisfy $E \\times B \\parallel v_{wave}$.\nThe electron moves purely in the y-direction with velocity $v = 1.5 \\times 10^{6}\\ \\mathrm{m/s}$.\nThe maximum electric force is $F_{e(max)} = eE_{0}$.\nSince the velocity $(\\hat{j})$ is completely perpendicular to the magnetic field $(\\hat{k})$, the maximum magnetic force is $F_{m(max)} = evB_{0}\\sin\\left(90^\\circ\\right) = evB_{0}$.\n$$\\text{Ratio} = \\frac{F_{e(max)}}{F_{m(max)}} = \\frac{eE_{0}}{evB_{0}}$$\n$$\\text{Ratio} = \\frac{eE_{0}}{ev\\left(\\frac{E_{0}}{c}\\right)} = \\frac{c}{v} = \\frac{3 \\times 10^{8}}{1.5 \\times 10^{6}} = 200$$\nFinal Answer : 200",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$200$"
+    },
+    {
+     "key": "B",
+     "text": "$150$"
+    },
+    {
+     "key": "C",
+     "text": "$400$"
+    },
+    {
+     "key": "D",
+     "text": "$300$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Angular momentum of an electron in a hydrogen atom is $\\frac{3h}{\\pi}$, then the energy of the electron is ______ eV.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{nh}{2\\pi} = \\frac{3h}{\\pi}$$\n$$n = \\frac{3h \\times 2\\pi}{\\pi \\times h} = 6$$\n$$E_{6} = -\\frac{13.6}{6^{2}}\\ \\mathrm{eV} = -\\frac{13.6}{36}\\ \\mathrm{eV}$$\n$E_{6} \\approx -0.377\\ \\mathrm{eV}$\n$-0.377$ eV to two decimal places gives $-0.38$ eV, which correlates perfectly\nFinl Answer : $-0.38$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-1.51$"
+    },
+    {
+     "key": "B",
+     "text": "$-0.85$"
+    },
+    {
+     "key": "C",
+     "text": "$-0.38$"
+    },
+    {
+     "key": "D",
+     "text": "$-0.28$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A liquid drop of diameter $2\\ \\mathrm{mm}$ breaks into 512 droplets. The change in surface energy is $\\alpha \\times 10^{-6}\\ \\mathrm{J}$. The value of $\\alpha$ is ______. (Take surface tension of liquid $= 0.08\\ \\mathrm{N/m}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The diameter of the large drop is 2 mm , so its initial radius is $R = 1\\ \\mathrm{mm} = 10^{-3}\\ \\mathrm{m}$.\nEquating initial and final volumes for n = 512 droplets:\n$$\\frac{4}{3}\\pi R^{3} = 512 \\times \\frac{4}{3}\\pi r^{3}$$\n$$R^{3} = 512r^{3} \\Rightarrow r = \\frac{R}{\\sqrt[3]{512}} = \\frac{R}{8}$$\nCalculate the initial surface area $(A_{i})$ and the total final surface area $(A_{f})$ :\n$A_{i} = 4\\pi R^{2}$\n$$A_{f} = 512 \\times 4\\pi r^{2} = 512 \\times 4\\pi\\left(\\frac{R}{8}\\right)^{2} = 512 \\times 4\\pi\\left(\\frac{R^{2}}{64}\\right) = 8 \\times 4\\pi R^{2}$$\n$$\\Delta A = A_{f} - A_{i} = 8\\left(4\\pi R^{2}\\right) - 4\\pi R^{2} = 28\\pi R^{2}$$\nCalculate the change in surface energy using $T = 0.08\\ \\mathrm{N/m}$\n$\\Delta U = 0.08 \\times 28\\pi \\times \\left(10^{-3}\\right)^{2}$\n$\\Delta U = 0.08 \\times 28 \\times 3.1415 \\times 10^{-6}$\n$\\Delta U \\approx 7.03 \\times 10^{-6}\\ \\mathrm{J}$\nFinal Answer: 7",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$11$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In single slit diffraction pattern, the wavelength of light used is $628\\ \\mathrm{nm}$ and slit width is $0.2\\ \\mathrm{mm}$, the angular width of central maximum is $\\alpha \\times 10^{-2}$ degrees. The value of $\\alpha$ is ______.",
+   "correct_key": null,
+   "correct_value": 36,
+   "correct_keys": null,
+   "solution": "In a single slit diffraction pattern, the angular width of the central maximum $(2\\theta)$ is H-is given by the formula:\n$$2\\theta = \\frac{2\\lambda}{a}$$\n$\\lambda = 628\\ \\mathrm{nm} = 628 \\times 10^{-9}\\ \\mathrm{m}$\nGiven slit width, $a = 0.2\\ \\mathrm{mm} = 0.2 \\times 10^{-3}\\ \\mathrm{m}$\nThe angular width in radians is: $\\Delta\\theta = \\frac{2 \\times 628 \\times 10^{-9}}{0.2 \\times 10^{-3}} = \\frac{1256 \\times 10^{-9}}{2 \\times 10^{-4}} = 6280 \\times 10^{-6} = 6.28 \\times 10^{-3}\\ \\mathrm{rad}$\n$$\\Delta\\theta\\,(\\text{in degrees}) = 6.28 \\times 10^{-3} \\times \\frac{180}{\\pi}$$\n$$\\Delta\\theta = 6.28 \\times 10^{-3} \\times \\frac{180}{3.14} = 2 \\times 10^{-3} \\times 180 = 360 \\times 10^{-3} = 36 \\times 10^{-2}\\ \\text{degrees}$$\n$\\alpha = 36$\nFinal Answer: 36",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Thermodynamics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A vessel contains $0.15\\ \\mathrm{m^{3}}$ of a gas at pressure 8 bar and temperature $140\\ ^\\circ\\mathrm{C}$ with $c_{p} = 3R$ and $c_{v} = 2R$. It is expanded adiabatically till pressure falls to 1 bar. The work done during this process is ______ kJ.\n(R is gas constant)",
+   "correct_key": null,
+   "correct_value": 120,
+   "correct_keys": null,
+   "solution": "$$W = \\frac{P_{1}V_{1} - P_{2}V_{2}}{\\gamma - 1}$$\ninitial state variables: $P_{1} = 8\\ \\mathrm{bar} = 8 \\times 10^{5}\\ \\mathrm{Pa}, V_{1} = 0.15\\ \\mathrm{m^{3}}$\nadiabatic index $\\gamma : c_{p} = 3R$ and $c_{v} = 2R$, so $\\gamma = \\frac{3R}{2R} = 1.5 = \\frac{3}{2}$.\nfinal state pressure: $P_{2} = 1\\ \\mathrm{bar} = 1 \\times 10^{5}\\ \\mathrm{Pa}$\n$$P_{1}V_{1}^{\\gamma} = P_{2}V_{2}^{\\gamma} \\Rightarrow \\left(8 \\times 10^{5}\\right)(0.15)^{1.5} = \\left(1 \\times 10^{5}\\right)V_{2}^{1.5}$$\n$$8 = \\left(\\frac{V_{2}}{0.15}\\right)^{1.5} \\Rightarrow \\frac{V_{2}}{0.15} = 8^{\\frac{2}{3}} = \\left(2^{3}\\right)^{\\frac{2}{3}} = 4$$\n$V_{2} = 4 \\times 0.15 = 0.6\\ \\mathrm{m^{3}}$\n$$W = \\frac{\\left(8 \\times 10^{5}\\right)(0.15) - \\left(1 \\times 10^{5}\\right)(0.6)}{1.5 - 1} = \\frac{1.2 \\times 10^{5} - 0.6 \\times 10^{5}}{0.5} = \\frac{0.6 \\times 10^{5}}{0.5} = 1.2$$\n$W = 120\\ \\mathrm{kJ}$\nFinal Answer : 120",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "$1\\ \\mu\\mathrm{C}$ charge moving with velocity $\\vec{v} = (\\hat{i} - 2\\hat{j} + 3\\hat{k})\\ \\mathrm{m/s}$ in the region of magnetic field $\\vec{B} = (2\\hat{i} + 3\\hat{j} - 5\\hat{k})\\ \\mathrm{T}$. The magnitude of force acting on it is $\\sqrt{\\alpha} \\times 10^{-6}\\ \\mathrm{N}$. The value of $\\alpha$ is ______.",
+   "correct_key": null,
+   "correct_value": 171,
+   "correct_keys": null,
+   "solution": "$q = 1\\ \\mu\\mathrm{C} = 10^{-6}\\ \\mathrm{C}$\n$\\vec{v} = \\hat{i} - 2\\hat{j} + 3\\hat{k}\\ \\mathrm{m/s}$\n$\\vec{B} = 2\\hat{i} + 3\\hat{j} - 5\\hat{k}\\ \\mathrm{T}$\n$\\vec{v} \\times \\vec{B} = \\hat{i}(10 - 9) - \\hat{j}(-5 - 6) + \\hat{k}(3 + 4) = \\hat{i} + 11\\hat{j} + 7\\hat{k}$\n$|\\vec{v} \\times \\vec{B}| = \\sqrt{1^{2} + 11^{2} + 7^{2}} = \\sqrt{1 + 121 + 49} = \\sqrt{171}$\nCalculate the magnitude of the force:\n$F = q|\\vec{v} \\times \\vec{B}| = 10^{-6} \\times \\sqrt{171} = \\sqrt{171} \\times 10^{-6}\\ \\mathrm{N}$\nCompare with the given format $\\sqrt{\\alpha} \\times 10^{-6}\\ \\mathrm{N}$\n$\\alpha = 171$\nFinal Answer: 171",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A uniform wire of length $\\ell$ of weight w is suspended from the roof with a weight of W at the other end. The stress in the wire at $\\frac{\\ell}{3}$ distance from the top is $\\left(\\frac{W}{A} + \\frac{2}{\\gamma}\\frac{w}{A}\\right)$, where, A is the cross sectional area of the wire. The value of $\\gamma$ is ______.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "The point of interest is at a distance of $\\frac{\\ell}{3}$ from the top.\nTherefore, the length of the wire hanging below this point is $\\ell - \\frac{\\ell}{3} = \\frac{2\\ell}{3}$.\nSince the weight of the wire is uniformly distributed, the weight of this lower portion of the wire is $\\frac{2}{3}w$.\nThe total force (F) acting downwards at this cross-section is the sum of the weight suspended at the bottom (W) and the weight of the wire below the point:\n$$F = W + \\frac{2}{3}w$$\n$$\\text{Stress} = \\frac{F}{A} = \\frac{W + \\frac{2}{3}w}{A} = \\frac{W}{A} + \\frac{2}{3}\\frac{w}{A}$$\n$\\left(\\frac{W}{A} + \\frac{2}{\\gamma}\\frac{w}{A}\\right)$, we can equate the $\\frac{2}{\\gamma} = \\frac{2}{3} \\Rightarrow \\gamma = 3$\nFinal Answer: 3",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A tub is filled with water and a wooden cube $10\\ \\mathrm{cm} \\times 10\\ \\mathrm{cm} \\times 10\\ \\mathrm{cm}$ is placed in the water. The wooden cube is found to float on the water with a part of it submerged in water. When a metal coin is placed on the wooden cube, the submerged part is increased by $3.87\\ \\mathrm{cm}$. The mass of the metal coin is ______ gram. (Take water density as $1\\ \\mathrm{g/cm^{3}}$ and density of wood as $0.4\\ \\mathrm{g/cm^{3}}$)",
+   "correct_key": null,
+   "correct_value": 387,
+   "correct_keys": null,
+   "solution": "According to Archimedes' principle, the buoyant force on a floating object is equal to the weight of the fluid it displaces. When an additional mass is placed on the object, the additional buoyant force generated by the newly submerged volume exactly balances the weight of the added mass.\nThe dimensions of the wooden cube are $10\\ \\mathrm{cm} \\times 10\\ \\mathrm{cm} \\times 10\\ \\mathrm{cm}$.\nThe cross-sectional area (A) of the cube's base is $10\\ \\mathrm{cm} \\times 10\\ \\mathrm{cm} = 100\\ \\mathrm{cm^{2}}$.\nWhen the coin is added, the submerged depth increases by $\\Delta x = 3.87\\ \\mathrm{cm}$.\nthe additional volume of water displaced $(\\Delta V)$ :\n$\\Delta V = A \\times \\Delta x = 100\\ \\mathrm{cm^{2}} \\times 3.87\\ \\mathrm{cm} = 387\\ \\mathrm{cm^{3}}$\nBy Archimedes' principle, the weight of the metal coin equals the weight of the additionally displaced water:\n$m_{coin}g = \\left(\\Delta V \\times \\rho_{water}\\right)g$\n$m_{coin} = \\Delta V \\times \\rho_{water}$\n$m_{coin} = 387\\ \\mathrm{cm^{3}} \\times 1\\ \\mathrm{g/cm^{3}} = 387\\ \\mathrm{g}$\nFinal Answer : 387",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

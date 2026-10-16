@@ -1,0 +1,819 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "2 Apr · Shift 2",
+  "title": "JEE Main 2026 · Physics · 2 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1kZE3HdJ5gRpawmS9b2AlgUyC5NWvQoJb"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Dimensions of universal gravitational constant (G) in terms of Planck's constant (h), distance (L), mass (M) and time (T) are __________ .",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$G = [h]^{a}[L]^{b}[M]^{c}[T]^{d}$\n$\\Rightarrow M^{-1}L^{3}T^{-2} = [M^{1}L^{2}T^{-1}]^{a}[L]^{b}[M]^{c}[T]^{d}$\n$\\Rightarrow M^{-1}L^{3}T^{-2} = M^{a+c}L^{2a+b}T^{-a+d}$\n$\\Rightarrow -1 = a + c$ ..........(i)\n$3 = 2a + b$ ..........(ii)\n& $-2 = -a + d$ ..........(iii)\nBy checking the options correct answer is (2) as\n4 variables using 3 equations cannot be solved",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[hTLM^{-2}]$"
+    },
+    {
+     "key": "B",
+     "text": "$[hT^{-1}LM^{-2}]$"
+    },
+    {
+     "key": "C",
+     "text": "$[hTL^{2}M^{-2}]$"
+    },
+    {
+     "key": "D",
+     "text": "$[h^{-1}T^{-1}LM^{-2}]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A 0.5 kg mass is in contact against the inner wall of a cylindrical drum of radius 4 m rotating about its vertical axis. The minimum rotational speed of the drum to enable the mass to remain stuck to the wall (without falling) is 5 rad/s. The coefficient of friction between the drum's inner wall surface and mass is ________. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Normal reaction on block\n$N = m\\omega^{2}r$\nWeight is balanced by friction\n$\\therefore f_{s} = mg$\n$\\because f_{s} \\le \\mu N$\n$\\Rightarrow mg \\le \\mu m\\omega^{2}r$\n$\\Rightarrow \\mu \\ge \\frac{g}{\\omega^{2}r}$\n$\\Rightarrow \\mu \\ge 0.1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.1"
+    },
+    {
+     "key": "B",
+     "text": "0.5"
+    },
+    {
+     "key": "C",
+     "text": "0.7"
+    },
+    {
+     "key": "D",
+     "text": "0.3"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Centre of Mass and System of Particles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two blocks of masses 2 kg and 1 kg respectively, are tied to the ends of a string which passes over a light frictionless pulley as shown in the figure below. The masses are held at rest at the same horizontal level and then released. The distance traversed by the centre of mass in 2 s is _________ m. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Acceleration of system $= \\frac{(2-1)}{2+1}g = \\frac{10}{3}\\ \\mathrm{m/s^{2}}$\nIn 2 second distance $= \\frac{1}{2}\\left(\\frac{10}{3}\\right)(2)^{2}$\n$= \\frac{20}{3}\\ \\mathrm{m}$\n2 kg block moves up and 1 kg block moves down\n$\\therefore$ Distance covered by COM\n$= \\frac{\\frac{20}{3}\\times 2 - \\frac{20}{3}\\times 1}{2+1} = 2.22\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3.33"
+    },
+    {
+     "key": "B",
+     "text": "3.12"
+    },
+    {
+     "key": "C",
+     "text": "2.22"
+    },
+    {
+     "key": "D",
+     "text": "1.42"
+    }
+   ],
+   "stem_figure": "j26-02apr-s2-phy-q28.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle having charge $10^{-9}\\ \\mathrm{C}$ moving in x-y plane in fields of $0.4\\ \\hat{j}\\ \\mathrm{N/C}$ and $4 \\times 10^{-3}\\ \\hat{k}\\ \\mathrm{T}$ experiences a force of $(4\\hat{i} + 2\\hat{j}) \\times 10^{-10}\\ \\mathrm{N}$. The velocity of the particle at that instant is _______ m/s.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\vec{v} = v_{1}\\hat{i} + v_{2}\\hat{j} + v_{3}\\hat{k}$\n$\\therefore \\vec{F} = q\\vec{E} + q(\\vec{v} \\times \\vec{B})$\n$\\Rightarrow \\vec{F} = 0.4 \\times 10^{-9}\\hat{j} + 4 \\times 10^{-12}(\\vec{v}_{2}\\hat{i} - \\vec{v}_{1}\\hat{j})$\n$\\Rightarrow \\vec{F} = (4v_{2} \\times 10^{-12})\\hat{i} + (4 - 0.04v_{1})10^{-10}\\ \\hat{j}$\nCompare with\n$\\vec{F} = (4\\hat{i} + 2\\hat{j}) \\times 10^{-10}$\n$\\Rightarrow v_{2} = 100$ and $v_{1} = 50$\nOnly x and y components can be found from the given information",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$50\\hat{i} + 100\\hat{j}$"
+    },
+    {
+     "key": "B",
+     "text": "$100\\hat{i} + 50\\hat{j}$"
+    },
+    {
+     "key": "C",
+     "text": "$-50\\hat{i} + 100\\hat{j}$"
+    },
+    {
+     "key": "D",
+     "text": "$50\\hat{i} - 100\\hat{j}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If X and Y are the inputs, the given circuit works as ________.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Circuit with intermediate outputs $Y_{1}, Y_{2}, Y_{3}, Y_{4}$ shown in figure.)\nTruth table\nX | Y | $Y_{1}$ | $Y_{2}$ | $Y_{3}$ | $Y_{4}$\n0 | 0 | 1 | 1 | 0 | 1\n0 | 1 | 1 | 0 | 1 | 0\n1 | 0 | 0 | 1 | 1 | 0\n1 | 1 | 0 | 0 | 1 | 0\nNOR gate",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "OR gate"
+    },
+    {
+     "key": "B",
+     "text": "AND gate"
+    },
+    {
+     "key": "C",
+     "text": "NAND gate"
+    },
+    {
+     "key": "D",
+     "text": "NOR gate"
+    }
+   ],
+   "stem_figure": "j26-02apr-s2-phy-q30.png",
+   "solution_figure": "j26-02apr-s2-phy-q30-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If a body of mass 1 kg falls on the earth from infinity, it attains velocity (v) and kinetic energy (k) on reaching the surface of earth. The values of v and k respectively are _________.\n(Take radius of earth to be 6400 km and $g = 9.8\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Using cons. of M.E\n$\\frac{-GMm}{R} + K = 0 \\Rightarrow K = mgR$\n$\\Rightarrow K = 6.27 \\times 10^{7}\\ \\mathrm{J}$\n$\\Rightarrow v = 11.2\\ \\mathrm{km/s}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "11.2 km/s; $6.27 \\times 10^{7}\\ \\mathrm{J}$"
+    },
+    {
+     "key": "B",
+     "text": "11.2 km/s; $12.54 \\times 10^{7}\\ \\mathrm{J}$"
+    },
+    {
+     "key": "C",
+     "text": "8.8 km/s; $6.27 \\times 10^{7}\\ \\mathrm{J}$"
+    },
+    {
+     "key": "D",
+     "text": "8.8 km/s; $12.54 \\times 10^{7}\\ \\mathrm{J}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a screw gauge the zero of main scale reference line coincides with the fifth division of the circular scale when two studs are in contact. There are 100 divisions in circular scale and pitch of screw gauge is 0.1 mm . When diameter of a sphere is measured, the reading of main scale is 5 mm and $50^{\\text{th}}$ division of circular scale coincides with the reference line of main scale. The diameter of sphere is _________ mm.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Least count $= \\frac{0.1}{100}\\ \\mathrm{mm}$\nZero reading $= 5 \\times$ L.C $= .005$ mm\nReading $= 5\\ \\mathrm{mm} + 50 \\times$ L.C $= 5.050$ mm\n$\\therefore$ Corrected reading $= 5.050 - 0.005$\n$= 5.045$ mm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5.045"
+    },
+    {
+     "key": "B",
+     "text": "5.055"
+    },
+    {
+     "key": "C",
+     "text": "5.450"
+    },
+    {
+     "key": "D",
+     "text": "5.550"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The surface tension of a soap bubble is 0.03 N/m. The work done in increasing the diameter of bubble from 2 cm to 6 cm is $\\alpha\\pi \\times 10^{-4}\\ \\mathrm{J}$. The value of $\\alpha$ is _________ . (Take $\\pi = 3.14$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Work done $= S\\Delta A$\n$S\\pi(d_{2}^{2} - d_{1}^{2}) \\times 2$\n$= 2 \\times .03\\ \\pi\\ (36 - 4)10^{-4}$\n$= 1.92\\ \\pi \\times 10^{-4}\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.86"
+    },
+    {
+     "key": "B",
+     "text": "0.64"
+    },
+    {
+     "key": "C",
+     "text": "1.92"
+    },
+    {
+     "key": "D",
+     "text": "7.68"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A mixture of carbon dioxide and oxygen has volume $8310\\ \\mathrm{cm^{3}}$, temperature 300 K , pressure 100 kPa and mass 13.2 g . The number of moles of carbon dioxide and oxygen gases in the mixture respectively are ________ .\n(Assume both carbon dioxide and oxygen gases behave like ideal gases) [ R = 8.31 J/mol.K]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because n = \\frac{PV}{RT} = \\frac{10^{5} \\times 8310 \\times 10^{-6}}{8.31 \\times 300}$\n$\\Rightarrow n = \\frac{1}{3}$\nLet $n_{1}$ = no of moles of $\\mathrm{CO_2}$\n$\\therefore n_{1} \\times 44 + \\left(\\frac{1}{3} - n_{1}\\right)32 = 13.2$\n$\\Rightarrow n_{1} = 0.21$ and $n_{2} = 0.12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.15 and 0.18"
+    },
+    {
+     "key": "B",
+     "text": "0.25 and 0.08"
+    },
+    {
+     "key": "C",
+     "text": "0.21 and 0.12"
+    },
+    {
+     "key": "D",
+     "text": "0.13 and 0.20"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If an air bubble of diameter 2 mm rises steadily through a liquid of density $2000\\ \\mathrm{kg/m^{3}}$ at a rate of 0.5 cm/s, then the coefficient of viscosity of liquid is __________ Poise. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Assuming density of air negligible balancing upward buoyant and downward viscous forces\n$6\\pi\\eta rv = \\frac{4}{3}\\pi r^{3}\\rho g$\n$\\Rightarrow \\eta = .88$ SI unit\n$\\Rightarrow \\eta = 8.8$ poise",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.88"
+    },
+    {
+     "key": "B",
+     "text": "8.8"
+    },
+    {
+     "key": "C",
+     "text": "88.8"
+    },
+    {
+     "key": "D",
+     "text": "0.088"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A spherical ball of mass 2 kg falls from a height of 10 m and is brought to rest after penetrating 10 cm into sand. The average force exerted by sand on the ball is __________ N.\n(Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Applying work energy theorem\n$mgh - Fs = 0$\n$\\Rightarrow F = \\frac{2 \\times 10 \\times 10.1}{0.1} = 2020\\ \\mathrm{N}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1980"
+    },
+    {
+     "key": "B",
+     "text": "2020"
+    },
+    {
+     "key": "C",
+     "text": "2000"
+    },
+    {
+     "key": "D",
+     "text": "1000"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electromagnetic wave travels in free space along the x–direction. At a particular point in space and time, $\\vec{B} = 2 \\times 10^{-7}\\hat{j}\\ \\mathrm{T}$ is associated with this wave. The value of corresponding electric field $\\vec{E}$ at this point is __________ V/m.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = CB = 60$\nAs wave travels along $\\vec{E} \\times \\vec{B}$\nSo direction of $\\vec{E}$ is $-\\hat{k}$\n$\\therefore \\vec{E} = -60\\hat{k}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$60\\hat{k}$"
+    },
+    {
+     "key": "B",
+     "text": "$-60\\hat{k}$"
+    },
+    {
+     "key": "C",
+     "text": "$30\\hat{k}$"
+    },
+    {
+     "key": "D",
+     "text": "$-600\\hat{k}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two resistors of $200\\ \\Omega$ and $400\\ \\Omega$ are connected in series with a battery of 100 V . A bulb rated at 200 V, 100 W is connected across the $400\\ \\Omega$ resistance. The potential drop across the bulb is _________ V.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Circuit: 200 and 400 in series with 100 V battery; $R_{\\mathrm{bulb}} = 400$ connected across the 400 resistor — see figure.)\n$R_{eq} = 400\\ \\Omega \\Rightarrow I = \\frac{1}{4}\\ \\mathrm{A}$\n$\\therefore$ Potential drop = 50 V",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "25"
+    },
+    {
+     "key": "B",
+     "text": "50"
+    },
+    {
+     "key": "C",
+     "text": "66.6"
+    },
+    {
+     "key": "D",
+     "text": "100"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-02apr-s2-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two metal plates (A, B) are kept horizontally with separation of $\\left(\\frac{12}{\\pi}\\right)\\mathrm{cm}$, with plate A on the top. An atomizer jet sprays oil (density $1.5\\ \\mathrm{g/cm^{3}}$) droplets of radius 1 mm horizontally. All oil droplets carry a charge 5 nC . The potentials $V_{A}$ and $V_{B}$ are required on plates A and B respectively in order to ensure the droplets do not descend. The values of $V_{A}$ and $V_{B}$ are ________ .\n(Neglect the air resistance to the droplets and take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For equilibrium\n$F_{e} = mg$\n$\\Rightarrow q\\left(\\frac{\\Delta V}{l}\\right) = \\frac{4}{3}\\pi r^{3}\\rho g$\n$\\Rightarrow \\Delta V = 480\\ \\mathrm{V}$\nUpper plate should be at low potential.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "100 V and 580 V"
+    },
+    {
+     "key": "B",
+     "text": "580 V and 100 V"
+    },
+    {
+     "key": "C",
+     "text": "60 V and 400 V"
+    },
+    {
+     "key": "D",
+     "text": "0 V and –200 V"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two point charges $8\\ \\mu\\mathrm{C}$ and $-2\\ \\mu\\mathrm{C}$ are located at $x = 2$ cm and $x = 4$ cm, respectively on the x-axis. The ratio of electric flux due to these charges through two spheres of radii 3 cm and 5 cm with their centers at the origin is ________ .",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\phi_{1}(r = 3\\,\\mathrm{cm}) = \\frac{8\\ \\mu\\mathrm{C}}{\\varepsilon_{0}}$\n$\\phi_{2}(r = 5\\,\\mathrm{cm}) = \\frac{(8-2)\\ \\mu\\mathrm{C}}{\\varepsilon_{0}}$\n$\\therefore \\frac{\\phi_{1}}{\\phi_{2}} = \\frac{4}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4 : 1"
+    },
+    {
+     "key": "B",
+     "text": "3 : 4"
+    },
+    {
+     "key": "C",
+     "text": "4 : 3"
+    },
+    {
+     "key": "D",
+     "text": "4 : 5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The figure given below shows an LCR series circuit with two switches $S_{1}$ and $S_{2}$. When switch $S_{1}$ is closed keeping $S_{2}$ open, the phase difference ($\\phi$) between the current and source voltage is $30^\\circ$ and phase difference is $60^\\circ$ when $S_{2}$ is closed keeping $S_{1}$ open. The value of $(3L_{1} - L_{2})$ is ___________ H.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "When $S_{1}$ is closed\n$\\tan 30^\\circ = \\frac{X_{C} - X_{L_{1}}}{R}$ .....(1)\nWhen $S_{2}$ is closed\n$\\tan 60^\\circ = \\frac{X_{C} - X_{L_{2}}}{R}$ ........(2)\n$(1) \\div (2)$\n$\\frac{1}{3} = \\frac{X_{C} - X_{L_{1}}}{X_{C} - X_{L_{2}}}$\n$\\Rightarrow 3X_{L_{1}} - X_{L_{2}} = 2X_{C}$\n$\\Rightarrow 300(3L_{1} - L_{2}) = 2 \\times \\frac{100}{3}$\n$\\Rightarrow 3L_{1} - L_{2} = \\frac{2}{9}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{9}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{9}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "3"
+    }
+   ],
+   "stem_figure": "j26-02apr-s2-phy-q42.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A circular current loop of radius R is placed inside square loop of side length $L$ ($L \\gg R$) such that they are co-planar and their centers coincide. The permeability of free space is $\\mu_{0}$. The mutual inductance between circular loop and square loop is __________ .",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let I current flowing in square loop\nB(centre) $= \\frac{\\mu_{0}I}{4\\pi\\left(\\frac{L}{2}\\right)}(2\\sin 45^\\circ) \\times 4$\nand flux $\\phi = \\pi R^{2}B$\n$\\therefore$ Mutual inductance\n$M = 2\\sqrt{2}\\frac{\\mu_{0}R^{2}}{L}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\sqrt{2}\\frac{\\mu_{0}L^{2}}{R}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{2}\\frac{\\mu_{0}L^{2}}{R}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{2}\\frac{\\mu_{0}R^{2}}{L}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{2}\\frac{\\mu_{0}R^{2}}{L}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The binding energy per nucleon of $\\mathrm{{}^{209}_{83}Bi}$ is ____ MeV .\n[Take $m\\left(\\mathrm{{}^{209}_{83}Bi}\\right) = 208.980388\\,\\mathrm{u}$, $m_{p} = 1.007825\\,\\mathrm{u}$, $m_{n} = 1.008665\\,\\mathrm{u}$, $1\\,\\mathrm{u} = 931\\ \\mathrm{MeV/c^{2}}$ ]",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Mass defect $= (83 \\times 1.007825 + 126 \\times 1.008665) - 208.980388$\n$= 1.760877$ u\n$\\therefore$ B.E $= 1.760877 \\times 931$ MeV\n$\\therefore$ B.E/nucleon $= 7.84$ MeV",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "7.48"
+    },
+    {
+     "key": "B",
+     "text": "7.84"
+    },
+    {
+     "key": "C",
+     "text": "8.79"
+    },
+    {
+     "key": "D",
+     "text": "6.94"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The equation of motion of a particle is given by $x = a\\sin(50t + \\pi/3)\\,\\mathrm{cm}$. The particle will come to rest at time $t_{1}$ and it will have zero acceleration at time $t_{2}$. The $t_{1}$ and $t_{2}$ respectively are ___________ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x = a\\sin(50t + \\pi/3)$\nParticle will come to rest at extreme positions\n$\\Rightarrow 50t_{1} + \\pi/3 = (2n + 1)\\pi/2$\nParticle will have zero acceleration at mean postion\n$\\Rightarrow 50t_{2} + \\frac{\\pi}{3} = n\\pi$\n$\\therefore t_{1} = \\frac{\\pi}{300}$ and $t_{2} = \\frac{\\pi}{75}$\nThere will be infinite values. We have reported minimum values.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{300}\\,\\mathrm{s}, \\frac{\\pi}{75}\\,\\mathrm{s}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{75}\\,\\mathrm{s}, \\frac{\\pi}{300}\\,\\mathrm{s}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{300}\\,\\mathrm{s}, \\frac{\\pi}{25}\\,\\mathrm{s}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{50}\\,\\mathrm{s}, \\frac{\\pi}{100}\\,\\mathrm{s}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a Young's double slit experiment, the intensity at some point on the screen is found to be $\\frac{3}{4}$ times of the maximum of the interference pattern. The path difference between the interfering waves at this point is $\\frac{\\lambda}{x}$ where $\\lambda$ is wavelength of the incident light. The value of x is _________ .",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "In YDSE\n$I = I_{\\max}\\cos^{2}\\left(\\frac{\\Delta\\phi}{2}\\right)$\n$\\Rightarrow \\frac{3}{4} = \\cos^{2}\\left(\\frac{\\Delta\\phi}{2}\\right)$\n$\\Rightarrow \\cos\\left(\\frac{\\Delta\\phi}{2}\\right) = \\pm\\frac{\\sqrt{3}}{2}$\n$\\Rightarrow \\Delta\\phi = \\frac{\\pi}{3}, \\frac{5\\pi}{3}$\n$\\therefore \\Delta\\phi = \\frac{2\\pi}{\\lambda}\\Delta x$\n$\\Rightarrow \\Delta x = \\frac{\\lambda}{6}, \\frac{5\\lambda}{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Atoms",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Using Bohr's model, calculate the ratio of the magnetic fields generated due to the motion of the electrons in the $2^{\\text{nd}}$ and $4^{\\text{th}}$ orbits of hydrogen atom _______ .",
+   "correct_key": null,
+   "correct_value": 32,
+   "correct_keys": null,
+   "solution": "Magnetic field due to a moving charge $\\propto \\frac{v}{r^{2}}$\nFrom bohr model $r \\propto n^{2}$ and $v \\propto \\frac{1}{n}$\n$\\therefore$ Magnetic field $\\propto \\frac{1}{n^{5}}$\n$\\therefore$ ratio $= \\left(\\frac{4}{2}\\right)^{5} = 32$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Thermodynamics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "5 moles of unknown gas is heated at constant volume from $10\\ ^\\circ\\mathrm{C}$ to $20\\ ^\\circ\\mathrm{C}$. The molar specific heat of this gas at constant pressure $c_{p} = 8$ cal/mol. °C and R = 8.36 J/mol.°C. The change in the internal energy of the gas is __________ calorie.",
+   "correct_key": null,
+   "correct_value": 300,
+   "correct_keys": null,
+   "solution": "$C_{V} = C_{P} - R = 8 - \\frac{8.36}{4.18} = 6\\ \\mathrm{cal/mol\\text{-}k}$\n$\\because \\Delta U = nC_{V}\\Delta T = 5 \\times 6 \\times 10 = 300$ cal.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If sunlight is focused on a paper using convex lens, it starts burning the paper in shortest time when the lens is kept at 30 cm above the paper. If the radius of curvature of the lens is 60 cm then the refractive index of the lens material is $\\frac{\\alpha}{10}$. The value of $\\alpha$ is __________.",
+   "correct_key": null,
+   "correct_value": 20,
+   "correct_keys": null,
+   "solution": "To burn fastest it should be kept at focus.\n$\\Rightarrow F = 30$ cm\nUsing lens maker formula\n$\\frac{1}{30} = (\\mu - 1)\\left(\\frac{1}{60} - \\frac{1}{-60}\\right) \\Rightarrow \\mu = 2$\n(In this solution both surfaces are assumed spherical with R = 60 cm)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Moment of inertia about an axis AB for a rod of mass 40 kg and length 3 m is same as that of a solid sphere of mass of 10 kg and radius R about an axis parallel to AB axis with separation of 3 m as shown in figure below. The value of R is given as $\\sqrt{\\frac{\\alpha}{2}}$. The value of $\\alpha$ is ___________.",
+   "correct_key": null,
+   "correct_value": 15,
+   "correct_keys": null,
+   "solution": "$I_{\\mathrm{rod}} = I_{\\mathrm{sphere}}$\n$\\Rightarrow \\frac{(40)(3)^{2}}{3} = \\frac{2}{5} \\times 10R^{2} + 10 \\times 3^{2}$\n$\\Rightarrow R = \\sqrt{15/2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-02apr-s2-phy-q50.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "4 Apr · Shift 2",
+  "title": "JEE Main 2026 · Mathematics · 4 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "185Jm5mVYe3cZhi7m5x5_S2aaApU6LJzI"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the function $f : [1, \\infty) \\to [1, \\infty)$ defined by $f(x) = (x - 1)^{4} + 1$ among the two statements:\n(I) The set $S = \\{x \\in [1, \\infty) : f(x) = f^{-1}(x)\\}$ contains exactly two elements, and\n(II) The set $S = \\{x \\in [1, \\infty) : f(x) = f^{-1}(x + 1)\\}$ is an empty set,",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(I) $f(x) = f^{-1}(x) = x$\n$(x - 1)^{4} + 1 = x \\Rightarrow x = 1, 2$\n(II) $f(x) = (x - 1)^{4} + 1$\n$y = (x - 1)^{4} + 1$\n$x = (y - 1)^{1/4} + 1$\n$f^{-1}(x) = (x - 1)^{1/4} + 1$\n$f(x) = f^{-1}(x + 1)$\n$(x - 1)^{4} + 1 = x^{1/4} + 1$\n$(x - 1)^{4} = x^{1/4} \\Rightarrow$ There will be one Sol. so only \"I\" is true",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "only (I) is TRUE"
+    },
+    {
+     "key": "B",
+     "text": "only (II) is TRUE"
+    },
+    {
+     "key": "C",
+     "text": "both (I) and (II) are TRUE"
+    },
+    {
+     "key": "D",
+     "text": "neither (I) nor (II) is TRUE"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\{z \\in \\mathbb{C} : z^{2} + 4z + 16 = 0\\}$. Then $\\sum_{z \\in S} |z + \\sqrt{3}i|^{2}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$z^{2} + 4z + 16 = 0$\n$(z - 4\\omega)(z - 4\\omega^{2}) = 0$\n$z = 4\\omega$ or $4\\omega^{2}$\n$z = 4\\left(\\frac{-1}{2} + \\frac{i\\sqrt{3}}{2}\\right)$ or $4\\left(\\frac{-1}{2} - \\frac{i\\sqrt{3}}{2}\\right)$\n$z = -2 + 2\\sqrt{3}i$ or $-2 - 2\\sqrt{3}i$\n$z + \\sqrt{3}i = -2 + 3\\sqrt{3}i$ or $-2 - \\sqrt{3}i$\n$|z + \\sqrt{3}i|^{2} = 31$ or $7$\n$\\sum |z + \\sqrt{3}i|^{2} = 38$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$42$"
+    },
+    {
+     "key": "B",
+     "text": "$23$"
+    },
+    {
+     "key": "C",
+     "text": "$27$"
+    },
+    {
+     "key": "D",
+     "text": "$38$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the system of equations: $x + y + z = 5$, $x + 2y + 3z = 9$, $x + 3y + \\lambda z = \\mu$ has infinitely many solutions, then the value of $\\lambda + \\mu$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & 2 & 3 \\\\ 1 & 3 & \\lambda \\end{vmatrix} = 0$\n$\\lambda = 5$\n$\\Delta_z = \\begin{vmatrix} 1 & 1 & 5 \\\\ 1 & 2 & 9 \\\\ 1 & 3 & \\mu \\end{vmatrix} = 0$\n$\\mu = 13 \\Rightarrow \\lambda + \\mu = 18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$18$"
+    },
+    {
+     "key": "C",
+     "text": "$19$"
+    },
+    {
+     "key": "D",
+     "text": "$21$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha = 1$ and $\\beta = 1 + i\\sqrt{2}$, where $i = \\sqrt{-1}$ are two roots of the equation $x^{3} + ax^{2} + bx + c = 0$, $a, b, c \\in \\mathbb{R}$ then $\\int_{-1}^{1} (x^{3} + ax^{2} + bx + c)\\,dx$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Since the coefficients a, b, c are real, complex roots must occur in conjugate pairs. Given roots: $x_1 = 1$ and $x_2 = 1 + i\\sqrt{2}$. Therefore, the third root is $x_3 = 1 - i\\sqrt{2}$. The polynomial is $f(x) = (x - x_1)(x - x_2)(x - x_3)$:\n$f(x) = (x - 1)[(x - 1 - i\\sqrt{2})(x - 1 + i\\sqrt{2})]$\n$f(x) = x^{3} - 3x^{2} + 5x - 3$\nNow, evaluate the integral:\n$\\int_{-1}^{1} (x^{3} - 3x^{2} + 5x - 3)\\,dx$\nUsing properties of even and odd functions: $\\int_{-a}^{a} (\\text{odd})\\,dx = 0$ and $\\int_{-a}^{a} (\\text{even})\\,dx = 2\\int_{0}^{a} (\\text{even})\\,dx$.\n$\\int_{-1}^{1} x^{3}\\,dx = 0, \\quad \\int_{-1}^{1} 5x\\,dx = 0$\nIntegral $= 2\\int_{0}^{1} (-3x^{2} - 3)\\,dx = 2[-x^{3} - 3x]_{0}^{1} = 2(-1 - 3) = -8$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$-8$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the quadratic equation $(\\lambda + 2)x^{2} - 3\\lambda x + 4\\lambda = 0$, $\\lambda \\ne -2$, has two positive roots, then the number of possible integral values of $\\lambda$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For the quadratic $Ax^{2} + Bx + C = 0$ to have two positive roots:\n1. Discriminant $D \\ge 0$:\n$(-3\\lambda)^{2} - 4(\\lambda + 2)(4\\lambda) \\ge 0$\n$9\\lambda^{2} - 16\\lambda^{2} - 32\\lambda \\ge 0 \\Rightarrow -7\\lambda^{2} - 32\\lambda \\ge 0$\n$7\\lambda^{2} + 32\\lambda \\le 0 \\Rightarrow \\lambda(7\\lambda + 32) \\le 0$\n$\\lambda \\in \\left[-\\frac{32}{7}, 0\\right]$\n2. Product of roots $P > 0$:\n$\\frac{4\\lambda}{\\lambda + 2} > 0 \\Rightarrow \\lambda \\in (-\\infty, -2) \\cup (0, \\infty)$\n3. Sum of roots $S > 0$:\n$\\frac{3\\lambda}{\\lambda + 2} > 0 \\Rightarrow \\lambda \\in (-\\infty, -2) \\cup (0, \\infty)$\nIntersection of conditions:\nThe intersection of $\\left[-\\frac{32}{7}, 0\\right]$ and $((-\\infty, -2) \\cup (0, \\infty))$ is $\\left[-\\frac{32}{7}, -2\\right)$\nTotal number of integral values $= 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\begin{bmatrix} 1 & 2 & 7 \\\\ 4 & -2 & 8 \\\\ 3 & 8 & -7 \\end{bmatrix}$ and $\\det(A - \\alpha I) = 0$, where $a$ is a real number. If the largest possible value of $a$ is $p$, then the circle $(x - p)^{2} + (y - 2p)^{2} = 320$, intersects the co-ordinate axes at :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|A - \\alpha I| = \\begin{vmatrix} 1 - \\alpha & 2 & 7 \\\\ 4 & -2 - \\alpha & 8 \\\\ 3 & 8 & -7 - \\alpha \\end{vmatrix} = 0$\n$R_1 \\to R_1 + R_2 + R_3$\n$(8 - \\alpha)\\begin{vmatrix} 1 & 1 & 1 \\\\ 4 & -2 - \\alpha & 8 \\\\ 3 & 8 & -7 - \\alpha \\end{vmatrix} = 0$\n$(8 - \\alpha)(\\alpha^{2} + 16\\alpha + 40) = 0$\n$\\alpha = 8, -8 \\pm \\sqrt{24}$\nSo $P = 8$\n$C : (x - 8)^{2} + (y - 16)^{2} = 320$\nCircle intersects coordinate ones at 3 points",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1 point"
+    },
+    {
+     "key": "B",
+     "text": "2 points"
+    },
+    {
+     "key": "C",
+     "text": "3 points"
+    },
+    {
+     "key": "D",
+     "text": "4 points"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-math-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $a = \\frac{1}{4} + \\frac{1}{8} + \\frac{1}{16} + \\ldots \\infty$ and $\\beta = \\frac{1}{3} + \\frac{1}{9} + \\frac{1}{27} + \\ldots \\infty$. Then the value of $(0.2)^{\\log_{\\sqrt{5}}(a)} + (0.04)^{\\log_{5}(\\beta)}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha = \\frac{\\frac{1}{4}}{1 - \\frac{1}{2}} = \\frac{1}{2}$\n$\\beta = \\frac{\\frac{1}{3}}{1 - \\frac{1}{3}} = \\frac{1}{2}$\n$(0.2)^{\\log_{\\sqrt{5}}\\alpha} + (0.04)^{\\log_{5}\\beta} = (0.2)^{\\log_{5}\\alpha^{2}} + \\left((0.2)^{2}\\right)^{\\log_{5}\\beta}$\n$= (0.2)^{\\log_{5}\\alpha^{2}} + (0.2)^{\\log_{5}\\beta^{2}}$\n$= 2 \\cdot \\left(\\frac{1}{5}\\right)^{\\log_{5} 1/4}$\n$= 2 \\times 4 = 8$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$25$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For 10 observations $x_1, x_2, \\ldots, x_{10}$, if $\\sum_{i=1}^{10} (x_i + 2)^{2} = 180$ and $\\sum_{i=1}^{10} (x_i - 1)^{2} = 90$. then their standard deviation is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sum x_i^{2} + 4\\sum x_i + 40 = 180$\n$\\sum x_i^{2} - 2\\sum x_i + 10 = 90$\n$\\sum x_i^{2} = 100$\n$\\sum x_i = 10$\n$\\sigma^{2} = \\frac{\\sum x_i^{2}}{10} - \\left(\\frac{\\sum x_i}{10}\\right)^{2}$\n$\\sigma^{2} = 10 - 1^{2} = 9$\n$\\sigma = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In the expansion of of $\\left(9x - \\frac{1}{3\\sqrt{x}}\\right)^{18}$, $x > 0$ if the term independent of $x$ is $(221)k$, then $k$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T_{r+1} = {}^{18}C_{r}(9x)^{18-r}\\left(\\frac{-1}{3\\sqrt{x}}\\right)^{r}$\n$T_{r+1} = {}^{18}C_{r}\\,9^{18-r}\\left(\\frac{-1}{3}\\right)^{r} x^{18 - 3r/2}$\n$18 - \\frac{3r}{2} = 0$\n$r = 12$\n$T_{13} = {}^{18}C_{12}\\,9^{6}\\left(\\frac{-1}{3}\\right)^{12} = 221K$\n${}^{18}C_{12} = 221K$\n$K = \\frac{{}^{18}C_{12}}{221} = 84$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$84$"
+    },
+    {
+     "key": "B",
+     "text": "$78$"
+    },
+    {
+     "key": "C",
+     "text": "$168$"
+    },
+    {
+     "key": "D",
+     "text": "$198$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P(3\\cos a, 2\\sin a)$, $\\alpha \\ne 0$, be a point on the ellipse $\\frac{x^{2}}{9} + \\frac{y^{2}}{4} = 1$, $Q$ be a point on the circle $x^{2} + y^{2} - 14x - 14y + 82 = 0$ and $R$ be a point on the line $x + y = 5$ such that the centroid of the triangle $PQR$ is $\\left(2 + \\cos\\alpha, 3 + \\frac{2}{3}\\sin\\alpha\\right)$. Then the sum of the ordinates of all possible points $R$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E : \\frac{x^{2}}{9} + \\frac{y^{2}}{4} = 1 \\Rightarrow P = (3\\cos\\alpha, 2\\sin\\alpha)$\n$C : (x - 7)^{2} + (y - 7)^{2} = 16 \\Rightarrow Q = (7 + 4\\cos\\theta, 7 + 4\\sin\\theta)$\n$L : x + y = 5 \\Rightarrow R = (t, 5 - t)$\nCentroid $= \\left(\\frac{3\\cos\\alpha + 7 + 4\\cos\\theta + t}{3}, \\frac{2\\sin\\alpha + 7 + 4\\sin\\theta + 5 - t}{3}\\right)$\n$= \\left(2 + \\cos\\alpha, 3 + \\frac{2}{3}\\sin\\alpha\\right)$\n$\\Rightarrow 7 + 4\\cos\\theta + t = 6$\n$12 + 4\\sin\\theta - t = 9$\n$4\\cos\\theta = -1 - t$\n$4\\sin\\theta = -3 + t$\n$(t + 1)^{2} + (t - 3)^{2} = 16$\n$t^{2} - 2t - 3 = 0 \\Rightarrow t = -1, 3$\n$y_R = 5 - t = 6, 2$\nSum $= 8$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $H : \\frac{x^{2}}{a^{2}} - \\frac{y^{2}}{b^{2}} = 1$ be a hyperbola such that the distance between its foci is 6 and the distance between its directrices is $\\frac{8}{3}$ If the line $x = \\alpha$ intersects the hyperbola $H$ at the points $A$ and $B$ such that the area of the triangle $AOB$ is $4\\sqrt{15}$ where $O$ is the origin, then $\\alpha^{2}$ equals :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2ae = 6 \\Rightarrow ae = 3$\n$2\\frac{a}{e} = \\frac{8}{3} \\Rightarrow \\frac{a}{e} = \\frac{4}{3}$\n$a^{2} = 4$\n$a^{2}e^{2} = 9$\n$a^{2} + b^{2} = 9$\n$b^{2} = 5$\n$H : \\frac{x^{2}}{4} - \\frac{y^{2}}{5} = 1$\n$\\Delta_{AOB} = \\frac{1}{2} \\times 2b\\tan\\theta \\times a\\sec\\theta = 4\\sqrt{15}$\n$ab\\frac{\\sin\\theta}{\\cos^{2}\\theta} = 4\\sqrt{15}$\n$2\\sqrt{5}\\frac{\\sin\\theta}{\\cos^{2}\\theta} = 4\\sqrt{5}$\n$2\\sqrt{3}\\cos^{2}\\theta = \\sin\\theta$\n$2\\sqrt{3} - 2\\sqrt{3}\\sin^{2}\\theta = \\sin\\theta$\n$(2\\sin\\theta - \\sqrt{3})(\\sqrt{3}\\sin\\theta + 2) = 0$\n$\\sin\\theta = \\frac{\\sqrt{3}}{2}$ or $\\frac{-2}{\\sqrt{3}}$ (Rejected)\n$\\alpha^{2} = a^{2}\\sec^{2}\\theta = \\frac{4}{1 - \\sin^{2}\\theta} = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12$"
+    },
+    {
+     "key": "B",
+     "text": "$16$"
+    },
+    {
+     "key": "C",
+     "text": "$24$"
+    },
+    {
+     "key": "D",
+     "text": "$25$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-math-q11-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\max_{0 \\le x \\le \\pi}\\left(16\\sin\\left(\\frac{x}{2}\\right)\\cos^{3}\\left(\\frac{x}{2}\\right)\\right)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$k = 16\\sin\\frac{x}{2}\\cos^{3}\\frac{x}{2}$\n$k = 4\\left(2\\sin\\frac{x}{2}\\cos\\frac{x}{2}\\right)\\left(2\\cos^{2}\\frac{x}{2}\\right)$\n$k = 4\\sin x(1 + \\cos x)$\n$k = 4\\sin x + 2\\sin 2x$\n$\\frac{dk}{dx} = 4\\cos x + 4\\cos 2x$\n$\\frac{dk}{dx} = 4(\\cos x + 2\\cos^{2}x - 1)$\n$\\frac{dk}{dx} = 4(2\\cos x - 1)(\\cos x + 1)$\nSign of $\\frac{dk}{dx}$: $(+)$ on $\\left(0, \\frac{\\pi}{3}\\right)$, $(-)$ on $\\left(\\frac{\\pi}{3}, \\pi\\right)$\nfor $k_{\\max} \\Rightarrow x = \\frac{\\pi}{3}$\n$k_{\\max} = 4\\sin\\frac{\\pi}{3} + 2\\sin\\frac{2\\pi}{3}$\n$= 3\\sqrt{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$4\\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$6\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The shortest distance between the lines $\\vec{r} = \\left(\\frac{1}{3}\\hat{i} + 2\\hat{j} + \\frac{8}{3}\\hat{k}\\right) + \\lambda(2\\hat{i} - 5\\hat{j} + 6\\hat{k})$ and $\\vec{r} = \\left(-\\frac{2}{3}\\hat{i} - \\frac{1}{3}\\hat{k}\\right) + \\mu(\\hat{j} - \\hat{k})$, $\\lambda, \\mu \\in \\mathbb{N}$, i is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L_1 : A = \\left(\\frac{1}{3}, 2, \\frac{8}{3}\\right)$, $\\vec{P} = 2i - 5j + 6k$\n$L_2 : B = \\left(-\\frac{2}{3}, 0, \\frac{-1}{3}\\right)$, $\\vec{q} = j - k$\n$\\overrightarrow{BA} = i + 2j + 3k$\n$\\vec{p} \\times \\vec{q} = \\begin{vmatrix} i & j & k \\\\ 2 & -5 & 6 \\\\ 0 & 1 & -1 \\end{vmatrix} = -i + 2j + 2k$\n$SD = \\left|\\frac{\\overrightarrow{BA} \\cdot (\\vec{p} \\times \\vec{q})}{|\\vec{p} \\times \\vec{q}|}\\right|$\n$SD = \\frac{9}{3} = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{15}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\left(2\\alpha + 1, \\alpha^{2} - 3\\alpha, \\frac{\\alpha - 1}{2}\\right)$ is the image of $(\\alpha, 2\\alpha, 1)$ in the line $\\frac{x - 2}{3} = \\frac{y - 1}{2} = \\frac{z}{1}$, then the possible value(s) of $\\alpha$ is (are) :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\overrightarrow{A'A} = (\\alpha + 1)i + (\\alpha^{2} - 5\\alpha)j + \\left(\\frac{\\alpha - 3}{2}\\right)k$\n$\\vec{P} = 3i + 2j + k$\n$\\overrightarrow{A'A} \\cdot \\vec{P} = 0$\n$3(\\alpha + 1) + 2(\\alpha^{2} - 5\\alpha) + \\left(\\frac{\\alpha - 3}{2}\\right) = 0$\n$4\\alpha^{2} - 13\\alpha + 3 = 0$\n$(4\\alpha - 1)(\\alpha - 3) = 0$\n$\\alpha = 3$ or $\\frac{-1}{4}$\n$N = \\left(\\frac{3\\alpha + 1}{2}, \\frac{\\alpha^{2} - \\alpha}{2}, \\frac{\\alpha + 1}{4}\\right)$\nfor $\\alpha = 3 \\Rightarrow N = (5, 3, 1)$ lies on the line\n$\\alpha = -1/4 \\Rightarrow N = \\left(\\frac{1}{8}, \\frac{3}{16}, \\frac{3}{16}\\right)$ Does not lie on the line\nSo $\\alpha = 3$ only",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Only 3"
+    },
+    {
+     "key": "B",
+     "text": "Only 3 and $-1$"
+    },
+    {
+     "key": "C",
+     "text": "Only 3, $\\frac{1}{4}$ and $-1$"
+    },
+    {
+     "key": "D",
+     "text": "Only 3 and $\\frac{1}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-math-q14-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\hat{u}$ and $\\hat{v}$ be unit vectors inclined at an acute angle such that $|\\hat{u} \\times \\hat{v}| = \\frac{\\sqrt{3}}{2}$. If $\\vec{A} = \\lambda\\hat{u} + \\hat{v} + (\\hat{u} \\times \\hat{v})$ then $\\lambda$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find the angle $\\theta$ between $\\hat{u}$ and $\\hat{v}$:\n$|\\hat{u} \\times \\hat{v}| = |\\hat{u}||\\hat{v}|\\sin\\theta = \\sin\\theta = \\frac{\\sqrt{3}}{2}$\nSince $\\theta$ is acute, $\\theta = 60^\\circ$. Thus $\\hat{u} \\cdot \\hat{v} = \\cos 60^\\circ = \\frac{1}{2}$\n2. Take dot products of $\\vec{A}$ with $\\hat{u}$ and $\\hat{v}$:\n$\\vec{A} \\cdot \\hat{u} = \\lambda(\\hat{u} \\cdot \\hat{u}) + (\\hat{v} \\cdot \\hat{u}) + (\\hat{u} \\times \\hat{v}) \\cdot \\hat{u} = \\lambda(1) + \\frac{1}{2} + 0 = \\lambda + \\frac{1}{2}$\n$\\vec{A} \\cdot \\hat{v} = \\lambda(\\hat{u} \\cdot \\hat{v}) + (\\hat{v} \\cdot \\hat{v}) + (\\hat{u} \\times \\hat{v}) \\cdot \\hat{v} = \\lambda\\left(\\frac{1}{2}\\right) + 1 + 0 = \\frac{\\lambda}{2} + 1$\n3. Solve for $\\lambda$:\nFrom the first equation: $\\lambda = (\\vec{A} \\cdot \\hat{u}) - \\frac{1}{2}$.\nFrom the second equation: $\\frac{\\lambda}{2} = (\\vec{A} \\cdot \\hat{v}) - 1 \\Rightarrow \\lambda = 2(\\vec{A} \\cdot \\hat{v}) - 2$\nTo eliminate the constants, multiply the first by $\\frac{4}{3}$ and the second by $\\frac{2}{3}$:\n$\\frac{4}{3}(\\vec{A} \\cdot \\hat{u}) - \\frac{2}{3}(\\vec{A} \\cdot \\hat{v}) = \\frac{4}{3}\\left(\\lambda + \\frac{1}{2}\\right) - \\frac{2}{3}\\left(\\frac{\\lambda}{2} + 1\\right)$\n$= \\frac{4\\lambda}{3} + \\frac{2}{3} - \\frac{\\lambda}{3} - \\frac{2}{3} = \\frac{3\\lambda}{3} = \\lambda$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{3}(\\vec{A} \\cdot \\hat{u}) - \\frac{2}{3}(\\vec{A} \\cdot \\hat{v})$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}(\\vec{A} \\cdot \\hat{u}) - \\frac{1}{3}(\\vec{A} \\cdot \\hat{v})$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{3}(\\vec{A} \\cdot \\hat{u}) + \\frac{2}{3}(\\vec{A} \\cdot \\hat{v})$"
+    },
+    {
+     "key": "D",
+     "text": "$(\\vec{A} \\cdot \\hat{u}) - \\frac{1}{2}(\\vec{A} \\cdot \\hat{v})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let for some $\\alpha \\in \\mathbb{R}$, $f : \\mathbb{R} \\to \\mathbb{R}$ be a function satisfying $f(x + y) = f(x) + 2y^{2} + y + axy$ for all $x, y \\in \\mathbb{R}$. If $f(0) = -1$ and $f(1) = 2$, then the value of $\\sum_{n=1}^{5} (a + f(n))$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "To find the functional form, set $x = 0$ in the given equation:\n$f(0 + y) = f(0) + 2y^{2} + y + a(0)y$\n$f(y) = -1 + 2y^{2} + y \\Rightarrow f(x) = 2x^{2} + x - 1$\nVerify this with $f(1) = 2 : f(1) = 2(1)^{2} + 1 - 1 = 2$. This is consistent. Now, substitute $f(x)$ back into the original functional equation to find $a$:\n$f(x + y) = 2(x + y)^{2} + (x + y) - 1 = 2x^{2} + 4xy + 2y^{2} + x + y - 1$\n$(2x^{2} + x - 1) + 2y^{2} + y + 4xy = f(x) + 2y^{2} + y + 4xy$\nComparing with $f(x) + 2y^{2} + y + axy$, we get $a = 4$. The summation is:\n$\\sum_{n=1}^{5} (4 + f(n)) = \\sum_{n=1}^{5} (4 + 2n^{2} + n - 1) = \\sum_{n=1}^{5} (2n^{2} + n + 3)$\n$= 2\\sum_{n=1}^{5} n^{2} + \\sum_{n=1}^{5} n + \\sum_{n=1}^{5} 3$\n$= 2\\left(\\frac{5 \\cdot 6 \\cdot 11}{6}\\right) + \\frac{5 \\cdot 6}{2} + 5(3)$\n$= 110 + 15 + 15 = 140$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$110$"
+    },
+    {
+     "key": "B",
+     "text": "$140$"
+    },
+    {
+     "key": "C",
+     "text": "$150$"
+    },
+    {
+     "key": "D",
+     "text": "$170$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\{(a, b, c) : a, b, c$ are non-negative integers and $a + b + 2c = 22\\}$. Then $n(A)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We need to find the number of non-negative integer solutions to $a + b + 2c = 22$. The variable $c$ can take values from 0 to 11 because $2c \\le 22$. For a fixed value of $c$, the equation becomes:\n$a + b = 22 - 2c$\nThe number of non-negative integer solutions for $a + b = k$ is given by $k + 1$. Here, for each $c$, the number of solutions is $(22 - 2c) + 1 = 23 - 2c$. Total number of solutions $n(A)$ is the sum of solutions for all possible $c$:\n$n(A) = \\sum_{c=0}^{11} (23 - 2c)$\nThis is an Arithmetic Progression:\n$c = 0 \\Rightarrow 23$\n$c = 1 \\Rightarrow 21$\n$c = 11 \\Rightarrow 1$\nThe sum is $\\frac{\\text{number of terms}}{2}(\\text{first term} + \\text{last term}) = \\frac{12}{2}(23 + 1) = 6 \\times 24 = 144$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$121$"
+    },
+    {
+     "key": "B",
+     "text": "$124$"
+    },
+    {
+     "key": "C",
+     "text": "$144$"
+    },
+    {
+     "key": "D",
+     "text": "$169$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region bounded by the curves $x + 3y^{2} = 0$ and $x + 4y^{2} = 1$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P_1 : y^{2} = -\\frac{x}{3}$\n$P_1 : y^{2} = -\\frac{x}{3}$\n$y^{2} = -\\frac{x}{3} = -\\frac{1}{4}(x - 1)$\n$-4x = -3x + 3$\n$x = -3 \\Rightarrow y^{2} = 1 \\Rightarrow y = \\pm 1$\n$A = \\int_{-1}^{1} \\left\\{(1 - 4y^{2}) - (-3y^{2})\\right\\} dy$\n$A = 2\\int_{0}^{1} (1 - y^{2})\\,dy$\n$A = \\frac{4}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation:\n$$\\frac{dy}{dx} + \\left(\\frac{6x^{2} + (3x^{2} + 2x^{3} + 4)e^{-2x}}{(x^{3} + 2)(2 + e^{-2x})}\\right)y = 2 + e^{-2x}.$$\n$x \\in (-1, 2)$., satisfying $y(0) = \\frac{3}{2}$. If $y(1) = \\alpha(2 + e^{-2})$. then $a$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$IF = e^{\\int \\frac{6x^{2} + (3x^{2} + 2x^{3} + 4)e^{-2x}}{(x^{3} + 2)(2 + e^{-2x})}dx} = e^{\\int \\frac{6x^{2} + (3x^{2} - 2x^{3} - 4)e^{-2x} + (4x^{3} + 8)e^{-2x}}{(x^{3} + 2)(2 + e^{-2x})}dx}$\n$IF = e^{\\ln\\left(\\frac{x^{3} + 2}{2 + e^{-2x}}\\right)} = \\frac{x^{3} + 2}{2 + e^{-2x}}$\n$y \\cdot \\left(\\frac{x^{3} + 2}{2 + e^{-2x}}\\right) = \\int (2 + e^{-2x})\\left(\\frac{x^{3} + 2}{2 + e^{-2x}}\\right)dx$\n$y\\left(\\frac{x^{3} + 2}{2 + e^{-2x}}\\right) = \\frac{x^{4}}{4} + 2x + c$\n$y(0) = \\frac{3}{2} \\Rightarrow \\frac{3}{2} \\cdot \\frac{2}{3} = c \\Rightarrow c = 1$\n$y\\left(\\frac{x^{3} + 2}{2 + e^{-2x}}\\right) = \\frac{x^{4}}{4} + 2x + 1$\n$x = 1$\n$y(1) \\cdot \\left(\\frac{3}{2 + e^{-2}}\\right) = \\frac{1}{4} + 2 + 1 = \\frac{13}{4}$\n$y(1) = \\frac{13}{12}(2 + e^{-2})$\n$\\alpha = \\frac{13}{12}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{13}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{6}{13}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{12}{13}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{13}{12}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The integral $\\int_{0}^{1} \\cot^{-1}(1 + x + x^{2})\\,dx$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{0}^{1} \\cot^{-1}(1 + x + x^{2})\\,dx = \\int_{0}^{1} \\tan^{-1}\\left(\\frac{1}{1 + x + x^{2}}\\right)dx$\n$I = \\int_{0}^{1} \\tan^{-1}\\left(\\frac{(x + 1) - x}{1 + (x + 1)x}\\right)dx$\n$I = \\int_{0}^{1} \\tan^{-1}(x + 1)\\,dx - \\int_{0}^{1} \\tan^{-1}x\\,dx$\n$x + 1 = t$\n$dx = dt$\n$I = \\int_{1}^{2} \\tan^{-1}t\\,dt - \\int_{0}^{1} \\tan^{-1}x\\,dx$\nUsing integration by parts\n$I = \\left[t\\tan^{-1}t - \\frac{1}{2}\\ln(1 + t^{2})\\right]_{1}^{2} - \\left[n\\tan^{-1}n - \\frac{1}{2}\\ln(1 + n^{2})\\right]_{0}^{1}$\n$= 2\\tan^{-1}2 - \\frac{1}{2}\\ln\\left(\\frac{5}{4}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\tan^{-1}2 + \\frac{1}{2}\\log_{e}\\left(\\frac{5}{4}\\right) + \\frac{\\pi}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\tan^{-1}2 + \\frac{1}{2}\\log_{e}\\left(\\frac{5}{4}\\right) - \\frac{\\pi}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\tan^{-1}2 - \\frac{1}{2}\\log_{e}\\left(\\frac{5}{4}\\right) + \\frac{\\pi}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\tan^{-1}2 - \\frac{1}{2}\\log_{e}\\left(\\frac{5}{4}\\right) - \\frac{\\pi}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Probability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "From a month of 31 days, 3 different dates are selected at random. If the probability that these dates are in an increasing A.P. is equal to $\\frac{a}{b}$ where $a, b \\in \\mathbb{N}$ and $\\gcd(a, b) = 1$, then $a + b$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 944,
+   "correct_keys": null,
+   "solution": "Let selected dates are $D_1, D_2, D_3$\n$2D_2 = D_1 + D_3 =$ Even\n$p = \\frac{\\text{Both Even} + \\text{Both odd}}{\\text{Total}}$\n$p = \\frac{{}^{15}C_{2} + {}^{16}C_{2}}{{}^{31}C_{3}} = \\frac{45}{899} = \\frac{a}{b}$\n$a + b = 944$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Continuity and Differentiability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f(x) = \\begin{cases} e^{x-1} & , x < 0 \\\\ x^{2} - 5x + 6 & , x \\ge 0 \\end{cases}$ and $g(x) = f(|x|) + |f(x)|$. If the number of points where $g$ is not continuous and is not differentiable are $\\alpha$ and $\\beta$ respectively, then $\\alpha + \\beta$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$f(x) = \\begin{cases} e^{x-1} & , x < 0 \\\\ x^{2} - 5x + 6 & , x \\ge 0 \\end{cases}$\n[Graph of $y = f(x)$]\n[Graph of $y = f(|x|)$]: always continuous but Not Differentiable at $x = 0$\n[Graph of $y = |f(x)|$]: Discontinuous at $x = 0$ and Not differentiable at $x = 0, 2, 3$\nFor $g(x) = f(|x|) + |f(x)|$\nDiscontinuous at $x = 0$\nNot differentiable at $x = 0, 2, 3$\n$\\alpha = 1$\n$\\beta = 3$\n$\\alpha + \\beta = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Straight Lines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A, B$ be points on the two half-lines $x - \\sqrt{3}|y| = a, \\alpha > 0$ at a distance of $a$ from their point of intersection $P$. The line segment $AB$ meets the angle bisector of the given half-lines at the point $Q$. If $PQ = \\frac{9}{2}$ and $R$ is the radius of the circumcircle of $\\Delta PAB$, then $\\frac{\\alpha^{2}}{R}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "[Figure: $P(\\alpha, 0)$, $A\\left(\\alpha + \\frac{\\sqrt{3}}{2}\\alpha, \\frac{\\alpha}{2}\\right)$, $Q\\left(\\alpha + \\frac{\\sqrt{3}}{2}\\alpha, 0\\right)$, $B\\left(\\alpha + \\frac{\\sqrt{3}}{2}\\alpha, -\\frac{\\alpha}{2}\\right)$]\n$PQ = \\frac{\\sqrt{3}}{2}\\alpha = \\frac{9}{2} \\Rightarrow \\alpha = 3\\sqrt{3}$\nSince $\\Delta^{le}$ is equilaterep $\\Delta^{le}$\n$R = \\frac{abc}{4\\Delta} = \\frac{a^{3}}{4 \\cdot \\frac{\\sqrt{3}}{4}a^{2}} = \\frac{a}{\\sqrt{3}} = \\frac{\\alpha}{\\sqrt{3}}$\n$R = 3$\n$\\frac{\\alpha^{2}}{R} = \\frac{27}{3} = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-math-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A, B$ and $C$ be the vertices of a variable right angled triangle inscribed in the parabola $y^{2} = 16x$. Let the vertex $B$ containing the right angle be $(4, 8)$ and the locus of the centroid of $\\Delta ABC$ be a conic $C_0$ Then three times the length of latus rectum of $C_0$ is ________.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "[Figure: $B(4, 8)$, $A(4t_1^{2}, 8t_1)$, $C(4t_2^{2}, 8t_2)$ on $y^{2} = 16x$]\n$m_1 \\cdot m_2 = -1$\n$\\frac{8(t_1 - 1)}{4(t_1^{2} - 1)} \\cdot \\frac{8(t_2^{2} - 1)}{4(t_2^{2} - 1)} = -1$\n$\\frac{2}{t_1 + 1} \\cdot \\frac{2}{t_2 + 1} = -1$\n$(t_1 + 1)(t_2 + 1) = -4$\n$\\Rightarrow t_1^{2} + t_2^{2} + t_1 t_2 + 5 = 0$\nLet Centroid be $(h, k)$\n$h = \\frac{4(t_1^{2} + t_2^{2} + 1)}{3} = \\frac{4(-t_1 t_2 - 4)}{3}$\n$k = \\frac{8(t_1 + t_2 + 1)}{3}$\n$(3k - 8)^{2} = 64(t_1^{2} + t_2^{2} + 2t_1 t_2)$\n$(3k - 8)^{2} = 64(t_1 t_2 - 5)$\n$(3k - 8)^{2} = 64\\left(\\frac{16 - 3h}{4} - 5\\right)$\n$\\left(y - \\frac{8}{3}\\right)^{2} = -\\frac{16}{3}\\left(x + \\frac{4}{3}\\right)$\n$3\\,l(LR) = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-04apr-s2-math-q24-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f$ be a twice differentiable function such that $f(x) = \\int_{0}^{x} \\tan(t - x)\\,dt - \\int_{0}^{x} f(t)\\tan t\\,dt$, $x \\in \\left(-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right)$. Then $f''\\left(\\frac{\\pi}{6}\\right) + 12f'\\left(-\\frac{\\pi}{6}\\right) + f\\left(\\frac{\\pi}{6}\\right)$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$f(x) = \\int_{0}^{x} \\tan(t - x)\\,dt - \\int_{0}^{x} f(t)\\tan t\\,dt$\n$f(x) = \\int_{0}^{x} \\tan(-t)\\,dt - \\int_{0}^{x} f(t)\\tan t\\,dt$\n$f'(x) = -\\tan x - f(x)\\tan x$\n$\\int \\frac{f'(x)\\,dx}{1 + f(x)} = -\\int \\tan x\\,dx$\n$\\ln(1 + f(x)) = -\\ln\\sec x + \\ln c$\n$1 + f(x) = \\frac{c}{\\sec x} = c\\cos x$\n$f(x) = c\\cos x - 1$\n$f(0) = 0 \\Rightarrow c = 1$\n$f(x) = \\cos x - 1$\n$f'(x) = -\\sin x$\n$f''(x) = -\\cos x$\n$f''\\left(\\frac{\\pi}{6}\\right) + 12f'\\left(-\\frac{\\pi}{6}\\right) + f\\left(\\frac{\\pi}{6}\\right) = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
