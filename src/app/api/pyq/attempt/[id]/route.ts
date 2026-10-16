@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, grade, PAPER_COLS, QUESTION_COLS } from "@/lib/pyq/api";
+import { svc, requireUser, grade, isScored, PAPER_COLS, QUESTION_COLS } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -37,7 +37,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
   const answerByQ = new Map<string, { selected_key: string | null; selected_value: number | null; selected_keys: string[] | null; marked_for_later: boolean }>();
   for (const a of (aRows ?? [])) answerByQ.set(a.question_id as string, a as never);
 
-  const review = (qRows ?? []).map((q) => {
+  const review = (qRows ?? []).filter((q) => isScored(q.qtype)).map((q) => {
     const a = answerByQ.get(q.id as string);
     const g = grade(
       { qtype: q.qtype as string, correct_key: (q.correct_key as string) ?? null, correct_value: (q.correct_value as number) ?? null, correct_keys: (q.correct_keys as string[]) ?? null, marks_correct: q.marks_correct as number, marks_wrong: q.marks_wrong as number },

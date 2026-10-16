@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, grade, revealOf, parseValue, normKeys, sameKeys, type QOption } from "@/lib/pyq/api";
+import { svc, requireUser, grade, revealOf, parseValue, normKeys, sameKeys, isScored, type QOption } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -39,6 +39,8 @@ export async function POST(req: Request) {
     .eq("id", questionId).maybeSingle();
   if (!q) return NextResponse.json({ error: "Question not found" }, { status: 404 });
   if (att.paper_id !== q.paper_id) return NextResponse.json({ error: "Question not in this paper" }, { status: 400 });
+  // Board theory questions are read-only (their answer is shown with the question, never graded).
+  if (!isScored(q.qtype)) return NextResponse.json({ error: "This question is for reading only" }, { status: 400 });
 
   const parsedValue = parseValue(b.selected_value);
   if (Number.isNaN(parsedValue)) return NextResponse.json({ error: "Enter a number" }, { status: 400 });

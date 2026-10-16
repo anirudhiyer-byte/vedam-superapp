@@ -29,11 +29,13 @@ export type PaperRow = {
   id: string; exam: string; subject: string; year: number; set_label: string | null;
   title: string; marks_correct: number; marks_wrong: number; marking_note: string | null;
   total_questions: number; is_published: boolean; sort_order: number;
+  instructions: string | null; sections: { name: string; note?: string | null }[] | null;
+  duration_mins: number | null; max_marks: number | null; theory_questions: number;
 };
 
 /** Columns every paper response carries (marks are numeric — WBJEE uses −0.25/−0.5). */
 export const PAPER_COLS =
-  "id, exam, subject, year, set_label, title, marks_correct, marks_wrong, marking_note, total_questions, is_published, sort_order";
+  "id, exam, subject, year, set_label, title, marks_correct, marks_wrong, marking_note, total_questions, is_published, sort_order, instructions, sections, duration_mins, max_marks, theory_questions";
 
 export type QOption = { key: string; text: string };
 
@@ -41,16 +43,25 @@ export type QOption = { key: string; text: string };
  *  `pyq-figures` Storage bucket; the solution figure is answer material and is
  *  only ever sent alongside the solution (reveal / review), never with the question. */
 export const QUESTION_COLS =
-  "id, q_no, topic, qtype, stem, options, correct_key, correct_value, correct_keys, solution, marks_correct, marks_wrong, stem_figure_url, solution_figure_url, option_figure_urls";
+  "id, q_no, topic, qtype, stem, options, correct_key, correct_value, correct_keys, solution, marks_correct, marks_wrong, stem_figure_url, solution_figure_url, option_figure_urls, section, or_stem, or_stem_figure_url, or_solution, or_solution_figure_url";
 
-/** 'multi' = one or more options correct (WBJEE Category 3), answered with selected_keys. */
-export type QType = "mcq" | "numeric" | "multi";
+/** 'multi' = one or more options correct (WBJEE Category 3), answered with selected_keys.
+ *  'theory' = board-paper subjective question: read-only, never graded or scored. */
+export type QType = "mcq" | "numeric" | "multi" | "theory";
+
+/** Theory questions are read-only practice and never count towards the score. */
+export const isScored = (qtype: unknown) => qtype !== "theory";
 
 /** Question as sent to the browser DURING an attempt — no answer/solution. */
 export type QuestionPublic = {
   id: string; q_no: number; topic: string | null; qtype: QType;
   stem: string; options: QOption[]; marks_correct: number; marks_wrong: number;
   stem_figure_url: string | null; option_figure_urls: Record<string, string> | null;
+  section: string | null; or_stem: string | null; or_stem_figure_url: string | null;
+  /** Theory only — read-only questions carry their marking-scheme answer for Show/Hide.
+   *  Always null for scored questions (their answer comes only via reveal). */
+  solution: string | null; solution_figure_url: string | null;
+  or_solution: string | null; or_solution_figure_url: string | null;
 };
 
 /** Full question including the answer — only ever returned for a question whose
@@ -91,6 +102,7 @@ export function sameKeys(a: readonly string[] | null | undefined, b: readonly st
 }
 
 export function sanitizeQuestion(q: Record<string, unknown>): QuestionPublic {
+  const theory = q.qtype === "theory";
   return {
     id: q.id as string,
     q_no: q.q_no as number,
@@ -102,6 +114,15 @@ export function sanitizeQuestion(q: Record<string, unknown>): QuestionPublic {
     marks_wrong: Number(q.marks_wrong ?? -1),
     stem_figure_url: (q.stem_figure_url as string) ?? null,
     option_figure_urls: (q.option_figure_urls as Record<string, string>) ?? null,
+    section: (q.section as string) ?? null,
+    or_stem: (q.or_stem as string) ?? null,
+    or_stem_figure_url: (q.or_stem_figure_url as string) ?? null,
+    ...(theory
+      ? {
+          solution: (q.solution as string) ?? null, solution_figure_url: (q.solution_figure_url as string) ?? null,
+          or_solution: (q.or_solution as string) ?? null, or_solution_figure_url: (q.or_solution_figure_url as string) ?? null,
+        }
+      : { solution: null, solution_figure_url: null, or_solution: null, or_solution_figure_url: null }),
   };
 }
 
@@ -126,6 +147,7 @@ export function grade(
   selected_value: number | null,
   selected_keys: string[] | null = null
 ): { attempted: boolean; is_correct: boolean | null; awarded: number } {
+  if (!isScored(q.qtype)) return { attempted: false, is_correct: null, awarded: 0 };
   if (q.qtype === "multi") {
     const S = normKeys(selected_keys);
     if (!S) return { attempted: false, is_correct: null, awarded: 0 };

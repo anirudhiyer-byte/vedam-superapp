@@ -4,7 +4,7 @@ import { svc, requireUser } from "@/lib/pyq/api";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const PAPER_EMBED = "paper:pyq_papers(id, exam, subject, year, set_label, title, marks_correct, marks_wrong, marking_note, total_questions)";
+const PAPER_EMBED = "paper:pyq_papers(id, exam, subject, year, set_label, title, marks_correct, marks_wrong, marking_note, total_questions, theory_questions)";
 
 /** GET /api/pyq/me — the returning-user PYQ Dashboard (S3).
  *  { name, in_progress: {attempt_id, paper, answered, total} | null,
@@ -37,8 +37,10 @@ export async function GET() {
       // MCQ, numeric or multi-answer. A cleared multi selection is stored as NULL
       // (never '{}' — see normKeys), so `not.is.null` is enough for selected_keys.
       .or("selected_key.not.is.null,selected_value.not.is.null,selected_keys.not.is.null");
-    const paper = open.paper as unknown as { total_questions?: number } | null;
-    inProgress = { attempt_id: open.id, paper: open.paper, answered: count ?? 0, total: Number(paper?.total_questions ?? 0) };
+    const paper = open.paper as unknown as { total_questions?: number; theory_questions?: number } | null;
+    // Progress counts only the answerable questions (board theory is read-only).
+    const total = Number(paper?.total_questions ?? 0) - Number(paper?.theory_questions ?? 0);
+    inProgress = { attempt_id: open.id, paper: open.paper, answered: count ?? 0, total };
   }
 
   const submitted = rows.filter((a) => a.status === "submitted");

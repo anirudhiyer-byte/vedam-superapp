@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { svc, requireUser, grade, QUESTION_COLS } from "@/lib/pyq/api";
+import { svc, requireUser, grade, isScored, QUESTION_COLS } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,7 +26,8 @@ export async function POST(req: Request) {
     .from("pyq_questions")
     .select(QUESTION_COLS)
     .eq("paper_id", att.paper_id).order("q_no", { ascending: true });
-  const questions = (qRows ?? []) as Array<Record<string, unknown>>;
+  // Only answerable questions are graded; board theory questions are read-only.
+  const questions = ((qRows ?? []) as Array<Record<string, unknown>>).filter((q) => isScored(q.qtype));
 
   const { data: aRows } = await db
     .from("pyq_answers")

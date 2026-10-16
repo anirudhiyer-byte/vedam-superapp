@@ -5,9 +5,13 @@ import { MathText } from "./math-text";
 /* PYQ module — replicates the approved "PYQ Exam Prototype" + "PYQ Workflow
    Wireframe" journey inside the Vedam One shell.
 
+   Everyone enters on S1 Landing (header "PYQ" → /pyq), new or returning.
    New user (logged out):   S1 Landing → S2 Create account → S4 Pick paper → S5 Attempt → S6 Result
-   Returning (signed in):   S3 Dashboard → Resume / S4 Pick paper → S5 Attempt → S6 Result
-                            (header "PYQ" lands signed-in users on S3 — skips S1 & S2)
+   Returning (signed in):   S1 Landing (Continue / My dashboard) → S3 Dashboard → Resume / S4 → S5 → S6
+   Board papers: Section A is answered and scored; Sections B–E ('theory') are
+   read-only — the question is shown with a Show/Hide answer toggle.
+   S5 has a Back button: progress (answers + current question) is saved and the
+   paper resumes at the same question later.
 
    Deliberate differences from the static prototype, per later product decisions:
    no timer; answers are NOT locked (re-selectable) and "Show result" appears only
@@ -15,7 +19,8 @@ import { MathText } from "./math-text";
    real Vedam One signup (Part-1 OTP + Part-2 details), not a mock.
 
    URL is the source of truth so refresh / back work:
-     /pyq                         → S3 (signed in) or S1 (logged out)
+     /pyq                         → S1 (everyone)
+     /pyq?view=dashboard          → S3 (signed in; logged out → S1)
      /pyq?view=register&next=…    → S2
      /pyq?view=papers[&exam=…]    → S4
      /pyq?paper=<paperId>         → S5 (starts or resumes)
@@ -34,14 +39,21 @@ type MyStatus = {
 type Paper = {
   id: string; exam: string; subject: string; year: number; set_label: string | null; title: string;
   marks_correct: number; marks_wrong: number; marking_note: string | null; total_questions: number; my?: MyStatus;
+  /** Board papers: printed General Instructions, section notes, time and max marks; how many questions are read-only theory. */
+  instructions?: string | null; sections?: { name: string; note?: string | null }[] | null;
+  duration_mins?: number | null; max_marks?: number | null; theory_questions?: number;
 };
 /** Figure URLs (public `pyq-figures` bucket). Option figures are keyed by option letter. */
 type Figs = { stem_figure_url?: string | null; option_figure_urls?: Record<string, string> | null };
-/** 'multi' = one or more options correct (WBJEE Category 3), answered with selected_keys. */
-type QType = "mcq" | "numeric" | "multi";
+/** 'multi' = one or more options correct (WBJEE Category 3), answered with selected_keys.
+ *  'theory' = board subjective question: read-only, shown with a Show/Hide answer, never scored. */
+type QType = "mcq" | "numeric" | "multi" | "theory";
 type Question = {
   id: string; q_no: number; topic: string | null; qtype: QType;
   stem: string; options: QOption[]; marks_correct: number; marks_wrong: number;
+  section?: string | null; or_stem?: string | null; or_stem_figure_url?: string | null;
+  /** Theory only (the server sends these for read-only questions; null otherwise). */
+  solution?: string | null; solution_figure_url?: string | null; or_solution?: string | null; or_solution_figure_url?: string | null;
 } & Figs;
 type Reveal = {
   correct_key: string | null; correct_value: number | null; correct_keys?: string[] | null; solution: string | null;
@@ -110,6 +122,15 @@ const isAnswered = (a?: AnswerState) => !!a && (a.selected_key != null || a.sele
 /** Multi-answer partial credit: not fully correct, yet marks were awarded (a wrong option scores marks_wrong ≤ 0). */
 const isPartial = (is_correct: boolean | null | undefined, awarded: number | null | undefined) => is_correct === false && Number(awarded ?? 0) > 0;
 const NUMERIC_RE = /^-?\d+(\.\d+)?$/;
+const isTheory = (q: { qtype?: QType }) => q.qtype === "theory";
+const theoryCount = (p: Pick<Paper, "theory_questions">) => Number(p.theory_questions ?? 0);
+/** "16 questions" or, for a board paper, "16 objective + 17 theory questions". */
+const questionCountLabel = (p: Pick<Paper, "total_questions" | "theory_questions">) => {
+  const t = theoryCount(p);
+  return t ? `${p.total_questions - t} objective + ${t} theory questions` : `${p.total_questions} questions`;
+};
+const marksWord = (n: number | string) => `${fmtNum(n)} mark${Number(n) === 1 ? "" : "s"}`;
+const DASHBOARD = "/pyq?view=dashboard";
 
 /** A question / option / solution figure. Plain <img>: these are external
  *  Storage URLs and are already sized for the web. */
@@ -141,12 +162,13 @@ function parseRoute(signedIn: boolean): { route: Route; normalize?: string } {
   const paper = q.get("paper");
   if (paper) return signedIn ? { route: { s: "test", paperId: paper } } : { route: { s: "register" }, normalize: registerUrl(here) };
   const view = q.get("view");
+  if (view === "dashboard") return signedIn ? { route: { s: "dashboard" } } : { route: { s: "landing" }, normalize: "/pyq" };
   if (view === "papers") return { route: { s: "picker", exam: q.get("exam") ?? undefined } };
   if (view === "register") {
-    if (signedIn) return { route: { s: "dashboard" }, normalize: "/pyq" };
+    if (signedIn) return { route: { s: "dashboard" }, normalize: DASHBOARD };
     return q.get("next") ? { route: { s: "register" } } : { route: { s: "register" }, normalize: registerUrl("/pyq?view=papers") };
   }
-  return { route: signedIn ? { s: "dashboard" } : { s: "landing" } };
+  return { route: { s: "landing" } };
 }
 
 /* =================================================================== app */
@@ -196,7 +218,7 @@ export function PyqApp({ signedIn, firstName }: { signedIn: boolean; firstName: 
   let screen: React.ReactNode = <Loading />;
   if (route) {
     switch (route.s) {
-      case "landing": screen = <Landing papers={papers} go={go} />; break;
+      case "landing": screen = <Landing papers={papers} go={go} signedIn={signedIn} firstName={firstName} />; break;
       case "register": screen = <Register />; break;
       case "dashboard": screen = <Dashboard firstName={firstName} go={go} toast={toast} />; break;
       case "picker": screen = <Picker key={route.exam ?? "_"} papers={papers} initialExam={route.exam} signedIn={signedIn} go={go} />; break;
@@ -221,7 +243,12 @@ function Loading({ label = "Loading…" }: { label?: string }) {
 }
 
 /* ============================================================ S1 Landing */
-function Landing({ papers, go }: { papers: Paper[] | null; go: (u: string) => void }) {
+function Landing({ papers, go, signedIn, firstName }: { papers: Paper[] | null; go: (u: string) => void; signedIn: boolean; firstName: string }) {
+  // Signed-in visitors skip signup: tiles and CTAs go straight to the papers / their dashboard.
+  const toPapers = (exam?: string) => {
+    const url = exam ? `/pyq?view=papers&exam=${encodeURIComponent(exam)}` : "/pyq?view=papers";
+    go(signedIn ? url : registerUrl(url));
+  };
   const counts = useMemo(() => {
     const m: Record<string, string> = {};
     for (const e of EXAM_ORDER) {
@@ -237,12 +264,21 @@ function Landing({ papers, go }: { papers: Paper[] | null; go: (u: string) => vo
     <section className="screen">
       <div className="hero">
         <div>
-          <div className="eyebrow">Previous Year Questions</div>
+          <div className="eyebrow">{signedIn && firstName ? `Welcome back, ${firstName}` : "Previous Year Questions"}</div>
           <h1>Attempt real <span className="k">PYQ papers</span> online, free.</h1>
           <p>Boards, JEE, WBJEE &amp; MH-CET — last 3 years, every set, with instant solutions and a weak-vs-strong analysis after each paper.</p>
           <div className="cta">
-            <button className="btn primary" onClick={() => go(registerUrl("/pyq?view=papers"))}>Start practicing →</button>
-            <button className="btn ghost" onClick={() => window.location.assign("/login?next=" + encodeURIComponent("/pyq"))}>I already have an account</button>
+            {signedIn ? (
+              <>
+                <button className="btn primary" onClick={() => toPapers()}>Continue practising →</button>
+                <button className="btn ghost" onClick={() => go(DASHBOARD)}>My dashboard</button>
+              </>
+            ) : (
+              <>
+                <button className="btn primary" onClick={() => toPapers()}>Start practicing →</button>
+                <button className="btn ghost" onClick={() => window.location.assign("/login?next=" + encodeURIComponent("/pyq"))}>I already have an account</button>
+              </>
+            )}
           </div>
         </div>
         <div className="heroart" aria-hidden>
@@ -259,7 +295,7 @@ function Landing({ papers, go }: { papers: Paper[] | null; go: (u: string) => vo
 
       <div className="exam-tiles">
         {EXAM_ORDER.map((e) => (
-          <button key={e} className="tile panel" onClick={() => go(registerUrl(`/pyq?view=papers&exam=${encodeURIComponent(e)}`))}>
+          <button key={e} className="tile panel" onClick={() => toPapers(e)}>
             <div className="big">{EXAM_TILE[e].title}</div>
             <div className="sm">{EXAM_TILE[e].sub}</div>
             <div className="cnt">{counts[e] ? `${counts[e]} ▸` : " "}</div>
@@ -279,6 +315,17 @@ function Landing({ papers, go }: { papers: Paper[] | null; go: (u: string) => vo
             <p className="muted" style={{ fontSize: 13.5, margin: "7px 0 0" }}>{d}</p>
           </div>
         ))}
+      </div>
+
+      {/* Wireframe S1: "Why it's free". */}
+      <div className="why panel">
+        <div className="eyebrow">Why it&apos;s free</div>
+        <h3 style={{ fontSize: 18, marginTop: 6 }}>Real papers, real answer keys — no fee, no limits.</h3>
+        <p className="muted">
+          Vedam School of Technology runs PYQ Practice as a free resource for every student preparing for the Boards
+          and entrance exams. Create one free account, attempt as many papers as you like, and come back to your
+          progress any time.
+        </p>
       </div>
     </section>
   );
@@ -339,7 +386,7 @@ function Dashboard({ firstName, go, toast }: { firstName: string; go: (u: string
                 <button key={a.attempt_id} className="attempt panel" onClick={() => go(`/pyq?result=${a.attempt_id}`)}>
                   <div>
                     <b>{fullPaperName(a.paper)}</b>
-                    <div className="muted" style={{ fontSize: 12 }}>{a.submitted_at ? shortDate(a.submitted_at) : ""} · {a.paper.total_questions} Q</div>
+                    <div className="muted" style={{ fontSize: 12 }}>{a.submitted_at ? shortDate(a.submitted_at) : ""} · {a.paper.total_questions - theoryCount(a.paper)} Q</div>
                   </div>
                   <span className="sc">{fmtNum(a.score)}/{fmtNum(a.max_score)}</span>
                 </button>
@@ -411,7 +458,7 @@ function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null;
             return (
               <div key={p.id} className="paper panel">
                 <h3 style={{ fontSize: 17 }}>{paperName(p)}</h3>
-                <div className="pm">{p.total_questions} questions · {paperMarking(p)}</div>
+                <div className="pm">{questionCountLabel(p)} · {paperMarking(p)}</div>
                 <div className="foot">
                   {st?.in_progress_id ? <span className="badge prog">In progress</span>
                     : st?.last ? <span className="badge done">Score {fmtNum(st.last.score)}/{fmtNum(st.last.max_score)}</span>
@@ -451,14 +498,18 @@ function Test({ paperId, go, toast, onSubmitted }: {
   const [failed, setFailed] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [confirming, setConfirming] = useState(false);
+  const [showInstr, setShowInstr] = useState(false);
+  /** Theory questions whose marking-scheme answer is open on screen. */
+  const [shownAns, setShownAns] = useState<Record<string, boolean>>({});
   const startedAt = useRef(Date.now());
+  const savedPos = useRef<string | null>(null);
 
   useEffect(() => {
     let on = true;
     (async () => {
       try {
         const j = await jpost<{
-          attempt_id: string; paper: Paper; questions: Question[];
+          attempt_id: string; paper: Paper; questions: Question[]; last_question_id?: string | null;
           answers: Array<{
             question_id: string; selected_key: string | null; selected_value: number | null; selected_keys: string[] | null; marked_for_later: boolean; revealed: boolean;
             correct_key: string | null; correct_value: number | null; correct_keys: string[] | null; solution: string | null; solution_figure_url: string | null;
@@ -478,15 +529,42 @@ function Test({ paperId, go, toast, onSubmitted }: {
             } : undefined,
           };
         }
-        // Resuming → open on the first question not yet answered.
-        const firstOpen = j.questions.findIndex((q) => !isAnswered(amap[q.id]));
+        // Resuming → open where the candidate left off (Back saves it); else the
+        // first answerable question not yet answered.
+        const lastIdx = j.last_question_id ? j.questions.findIndex((q) => q.id === j.last_question_id) : -1;
+        const firstOpen = j.questions.findIndex((q) => !isTheory(q) && !isAnswered(amap[q.id]));
+        savedPos.current = j.last_question_id ?? null;
         setAttemptId(j.attempt_id); setPaper(j.paper); setQuestions(j.questions); setAnswers(amap);
-        setI(firstOpen > 0 ? firstOpen : 0);
+        setI(lastIdx >= 0 ? lastIdx : firstOpen > 0 ? firstOpen : 0);
+        // Board papers open with their General Instructions on a fresh attempt.
+        setShowInstr(!!j.paper.instructions && (j.answers ?? []).length === 0 && lastIdx < 0);
         startedAt.current = Date.now();
       } catch (e) { if (on) setFailed((e as Error).message); }
     })();
     return () => { on = false; };
   }, [paperId]);
+
+  /** Remember the current question on the server (resume point). */
+  const savePosition = useCallback(async (qid: string) => {
+    if (!attemptId || savedPos.current === qid) return;
+    savedPos.current = qid;
+    try { await jpost("/api/pyq/attempt/position", { attempt_id: attemptId, question_id: qid }); }
+    catch { savedPos.current = null; /* best effort; retried on the next move */ }
+  }, [attemptId]);
+  const currentQid = questions[i]?.id;
+  useEffect(() => {
+    if (!currentQid) return;
+    const t = setTimeout(() => { void savePosition(currentQid); }, 600);
+    return () => clearTimeout(t);
+  }, [currentQid, savePosition]);
+
+  /** Back: leave the paper at any moment. Answers are saved as they're given;
+   *  this also saves the current question so "Resume" opens right here. */
+  async function leavePaper() {
+    if (currentQid) await savePosition(currentQid);
+    toast("Progress saved — resume from this question any time.");
+    go(paper ? `/pyq?view=papers&exam=${encodeURIComponent(paper.exam)}` : "/pyq?view=papers");
+  }
 
   // Esc closes the submit confirmation.
   useEffect(() => {
@@ -580,29 +658,73 @@ function Test({ paperId, go, toast, onSubmitted }: {
   const acceptKeys = multi ? correctKeys : [correctKey, ...correctKeys.filter((k) => k !== correctKey)].filter((k): k is string => !!k);
   const isKey = (k: string) => acceptKeys.includes(k);
   const partial = multi && isPartial(a?.reveal?.is_correct, a?.reveal?.awarded);
-  const ansd = questions.filter((qq) => isAnswered(answers[qq.id])).length;
+  const theory = isTheory(q);
+  const scoredQs = questions.filter((qq) => !isTheory(qq));
+  const nTheory = questions.length - scoredQs.length;
+  const ansd = scoredQs.filter((qq) => isAnswered(answers[qq.id])).length;
   const mkd = questions.filter((qq) => answers[qq.id]?.marked_for_later).length;
   const N = questions.length;
-  const left = N - ansd;
+  const left = scoredQs.length - ansd;
+  // Section banner on the first question of each board-paper section.
+  const newSection = !!q.section && (i === 0 || questions[i - 1].section !== q.section);
+  const sectionNote = q.section ? paper.sections?.find((x) => x.name === q.section)?.note ?? null : null;
+  const ansOpen = !!shownAns[q.id];
+  // Palette groups: one block per section (a single unnamed block for entrance exams).
+  const groups: { name: string | null; items: { qq: Question; idx: number }[] }[] = [];
+  questions.forEach((qq, idx) => {
+    const name = qq.section ?? null;
+    const g = groups[groups.length - 1];
+    if (g && g.name === name) g.items.push({ qq, idx }); else groups.push({ name, items: [{ qq, idx }] });
+  });
+  const paperMeta = [
+    questionCountLabel({ total_questions: N, theory_questions: nTheory }),
+    // Time / max marks are shown only for board papers (printed on the paper); entrance papers carry a placeholder duration.
+    paper.max_marks && paper.duration_mins ? `Time: ${paper.duration_mins % 60 === 0 ? `${paper.duration_mins / 60} hours` : `${paper.duration_mins} min`}` : null,
+    paper.max_marks ? `Max marks: ${fmtNum(paper.max_marks)}` : null,
+    paperMarking(paper),
+  ].filter(Boolean).join(" · ");
 
   return (
     <section className="screen">
       <div className="examhead">
+        <button className="btn sm ghost backbtn" onClick={() => void leavePaper()} title="Leave now — your progress is saved">← Back</button>
         <div>
           <div className="nm">{fullPaperName(paper)}</div>
-          <div className="muted" style={{ fontSize: 12.5 }}>{N} questions · {paperMarking(paper)}</div>
+          <div className="muted" style={{ fontSize: 12.5 }}>{paperMeta}</div>
         </div>
-        <button className="btn sm push" onClick={() => setConfirming(true)}>Submit test</button>
+        <span className="push" style={{ display: "flex", gap: 8 }}>
+          {paper.instructions && (
+            <button className="btn sm ghost" aria-expanded={showInstr} onClick={() => setShowInstr((v) => !v)}>
+              {showInstr ? "Hide instructions" : "Instructions"}
+            </button>
+          )}
+          <button className="btn sm" onClick={() => setConfirming(true)}>Submit test</button>
+        </span>
       </div>
+
+      {showInstr && paper.instructions && (
+        <div className="instr panel">
+          <h3>General Instructions</h3>
+          <div className="instr-body"><MathText text={paper.instructions} /></div>
+          <button className="btn sm" onClick={() => setShowInstr(false)}>Start reading the paper →</button>
+        </div>
+      )}
 
       <div className="exam">
         <div className="qcard panel">
+          {newSection && (
+            <div className="secbanner">
+              <b>{q.section}</b>
+              {sectionNote && <span>{sectionNote}</span>}
+            </div>
+          )}
           <div className="qtop">
             <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
               {/* The number printed on the paper, so it matches the PDF and answer key. */}
               <span className="qno">Question {q.q_no}<span className="muted" style={{ fontWeight: 600, fontSize: 14 }}> · {i + 1} of {N}</span></span>
+              {q.section && <span className="secpill">{q.section}</span>}
               {q.topic && <span className="topicpill">{q.topic}</span>}
-              <span className="marks">{markLabel(q.marks_correct, q.marks_wrong)}</span>
+              <span className="marks">{theory ? `${marksWord(q.marks_correct)} · read-only` : markLabel(q.marks_correct, q.marks_wrong)}</span>
             </div>
             <button className={`markbtn ${a?.marked_for_later ? "on" : ""}`} onClick={() => toggleMark(q.id)}>
               {a?.marked_for_later ? "★ Marked" : "☆ Mark for later"}
@@ -611,8 +733,34 @@ function Test({ paperId, go, toast, onSubmitted }: {
 
           <div className="stem"><MathText text={q.stem} /></div>
           <Fig src={q.stem_figure_url} alt={`Figure for question ${q.q_no}`} />
+          {/* Internal choice, printed as "OR" in the board paper. */}
+          {q.or_stem && (
+            <>
+              <div className="ordiv"><span>OR</span></div>
+              <div className="stem"><MathText text={q.or_stem} /></div>
+              <Fig src={q.or_stem_figure_url} alt={`Figure for the OR question ${q.q_no}`} />
+            </>
+          )}
 
-          {numeric ? (
+          {theory ? (
+            <>
+              <div className="locknote">Read-only question — it isn&apos;t answered or scored here. Show the answer when you&apos;re ready.</div>
+              {ansOpen && (
+                <div className="resultbox theory">
+                  <div className="hd">Answer (marking scheme)</div>
+                  {q.solution ? <div className="sol"><MathText text={q.solution} /></div> : <div className="sol">No answer printed in the marking scheme.</div>}
+                  <Fig src={q.solution_figure_url} alt={`Answer figure for question ${q.q_no}`} />
+                  {q.or_stem && (q.or_solution || q.or_solution_figure_url) && (
+                    <>
+                      <div className="hd" style={{ marginTop: 12 }}>Answer to the OR question</div>
+                      {q.or_solution && <div className="sol"><MathText text={q.or_solution} /></div>}
+                      <Fig src={q.or_solution_figure_url} alt={`Answer figure for the OR question ${q.q_no}`} />
+                    </>
+                  )}
+                </div>
+              )}
+            </>
+          ) : numeric ? (
             <NumericAnswer key={q.id} value={a?.selected_value ?? null} locked={locked} onSave={(v) => saveValue(q.id, v)} />
           ) : (
             <>
@@ -642,15 +790,15 @@ function Test({ paperId, go, toast, onSubmitted }: {
             </>
           )}
 
-          <div className="locknote">
+          {!theory && <div className="locknote">
             {locked ? "Answer locked — you've seen the solution."
               : answered ? "You can change your answer until you view the result."
               : numeric ? "Enter your answer to enable “Show result”."
               : multi ? "Select one or more options to enable “Show result”."
               : "Select an option to enable “Show result”."}
-          </div>
+          </div>}
 
-          {rev && a?.reveal && (
+          {!theory && rev && a?.reveal && (
             <div className="resultbox">
               {numeric && (
                 <div className={`verdict ${a.reveal.is_correct ? "ok" : "no"}`}>
@@ -677,7 +825,11 @@ function Test({ paperId, go, toast, onSubmitted }: {
 
           <div className="qactions">
             <button className="btn" disabled={i === 0} onClick={() => setI(i - 1)}>← Back to previous</button>
-            {answered && (
+            {theory ? (
+              <button className="btn ghost" aria-expanded={ansOpen} onClick={() => setShownAns((m) => ({ ...m, [q.id]: !m[q.id] }))}>
+                {ansOpen ? "Hide answer" : "Show answer"}
+              </button>
+            ) : answered && (
               <button className="btn ghost" onClick={() => toggleReveal(q.id)}>{a?.shown ? "Hide result" : "Show result"}</button>
             )}
             <span className="sp" />
@@ -690,17 +842,24 @@ function Test({ paperId, go, toast, onSubmitted }: {
           <div className="legend">
             <span><i className="lg a" />Answered</span><span><i className="lg m" />Marked</span>
             <span><i className="lg" />Not done</span><span><i className="lg c" />Current</span>
+            {nTheory > 0 && <span><i className="lg t" />Read-only</span>}
           </div>
-          <div className="cells">
-            {questions.map((qq, idx) => {
-              const st = answers[qq.id];
-              let c = "cell";
-              if (idx === i) c += " c";
-              if (isAnswered(st)) c += " a"; else if (st?.marked_for_later) c += " m";
-              return <button key={qq.id} className={c} onClick={() => setI(idx)} aria-label={`Question ${qq.q_no}`}>{qq.q_no}</button>;
-            })}
-          </div>
-          <div className="countline"><span>Answered <b>{ansd}</b></span><span>Marked <b>{mkd}</b></span></div>
+          {groups.map((g) => (
+            <div key={g.name ?? "_"}>
+              {g.name && <div className="palsec">{g.name}</div>}
+              <div className="cells">
+                {g.items.map(({ qq, idx }) => {
+                  const st = answers[qq.id];
+                  let c = "cell";
+                  if (idx === i) c += " c";
+                  if (isTheory(qq)) c += st?.marked_for_later ? " t m" : " t";
+                  else if (isAnswered(st)) c += " a"; else if (st?.marked_for_later) c += " m";
+                  return <button key={qq.id} className={c} onClick={() => setI(idx)} aria-label={`Question ${qq.q_no}`}>{qq.q_no}</button>;
+                })}
+              </div>
+            </div>
+          ))}
+          <div className="countline"><span>Answered <b>{ansd}</b>{nTheory > 0 && <> / {scoredQs.length}</>}</span><span>Marked <b>{mkd}</b></span></div>
           <button className="btn primary sm" style={{ width: "100%", justifyContent: "center", marginTop: 14 }} onClick={() => setConfirming(true)}>Submit test</button>
         </aside>
       </div>
@@ -710,8 +869,9 @@ function Test({ paperId, go, toast, onSubmitted }: {
           <div className="modal panel" role="dialog" aria-modal="true" aria-labelledby="pyq-submit-title" onClick={(e) => e.stopPropagation()}>
             <h3 id="pyq-submit-title">Submit this paper?</h3>
             <p className="muted">
-              You&apos;ve answered {ansd} of {N}.{" "}
+              You&apos;ve answered {ansd} of {scoredQs.length}.{" "}
               {left > 0 ? `${left} unanswered question${left === 1 ? "" : "s"} will score 0. ` : ""}
+              {nTheory > 0 ? "The theory sections are for reading only and aren't scored. " : ""}
               You can&apos;t change answers after submitting.
             </p>
             <div className="mact">
@@ -757,7 +917,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
     return () => { on = false; };
   }, [attemptId, cached, toast]);
 
-  if (failed) return <section className="screen"><div className="empty">{failed}</div><button className="btn" onClick={() => go("/pyq")}>← Back to dashboard</button></section>;
+  if (failed) return <section className="screen"><div className="empty">{failed}</div><button className="btn" onClick={() => go(DASHBOARD)}>← Back to dashboard</button></section>;
   if (!data) return <Loading label="Loading your result…" />;
 
   const s = data.summary;
@@ -770,6 +930,9 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
         <div className="eyebrow" style={{ color: "#d9c6ff" }}>Result · {p ? fullPaperName(p) : "Your attempt"}</div>
         <div className="big num">{fmtNum(s.score)}<span> / {fmtNum(s.max_score)}</span></div>
         <div className="muted" style={{ marginTop: 6 }}>{s.correct} correct · {s.wrong} wrong · {s.unattempted} unattempted</div>
+        {p && theoryCount(p) > 0 && (
+          <div className="muted" style={{ marginTop: 4, fontSize: 12.5 }}>Score covers the objective questions. The theory sections are read-only practice.</div>
+        )}
         <div className="kpis">
           <div className="kpi panel"><b className="num" style={{ color: "var(--ok)" }}>{s.correct}</b><span>Correct</span></div>
           <div className="kpi panel"><b className="num" style={{ color: "var(--bad)" }}>{s.wrong}</b><span>Wrong</span></div>
@@ -832,7 +995,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
       <div className="actions">
         {p && <button className="btn" onClick={() => go(`/pyq?paper=${p.id}`)}>↻ Re-attempt</button>}
         <button className="btn ghost" onClick={() => go(p ? `/pyq?view=papers&exam=${encodeURIComponent(p.exam)}` : "/pyq?view=papers")}>Next paper</button>
-        <button className="btn primary" onClick={() => go("/pyq")}>Back to dashboard</button>
+        <button className="btn primary" onClick={() => go(DASHBOARD)}>Back to dashboard</button>
       </div>
     </section>
   );

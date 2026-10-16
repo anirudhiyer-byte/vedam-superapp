@@ -228,3 +228,23 @@
 .pyq .modal h3{font-size:18px}
 .pyq .modal p{font-size:14px;line-height:1.5;margin:8px 0 18px}
 .pyq .modal .mact{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+
+/* Back button, instructions, board-paper sections and read-only theory questions */
+.pyq .examhead .backbtn{flex:none}
+.pyq .instr{padding:18px 20px;margin-bottom:16px}
+.pyq .instr h3{font-size:15px;margin-bottom:8px}
+.pyq .instr-body{color:var(--muted);font-size:13.5px;line-height:1.6;white-space:pre-line;margin-bottom:14px;overflow-x:auto}
+.pyq .secbanner{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:-6px -6px 14px;padding:10px 12px;border-radius:11px;background:rgba(138,24,255,.10);border:1px solid rgba(138,24,255,.28)}
+.pyq .secbanner b{font-size:14px;letter-spacing:.02em}
+.pyq .secbanner span{font-size:12.5px;color:var(--muted)}
+.pyq .secpill{font-size:11px;font-weight:800;color:#d9c6ff;border:1px solid rgba(138,24,255,.45);border-radius:999px;padding:2px 9px}
+.pyq .ordiv{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--muted);font-weight:800;font-size:12.5px;letter-spacing:.12em}
+.pyq .ordiv::before,.pyq .ordiv::after{content:"";flex:1;height:1px;background:var(--line2)}
+.pyq .resultbox.theory{border-color:rgba(0,207,229,.35);background:rgba(0,207,229,.06)}
+.pyq .resultbox.theory .hd{color:var(--cyan)}
+.pyq .palsec{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:12px 0 7px}
+.pyq .cell.t{border-style:dashed;color:var(--muted);background:transparent}
+.pyq .cell.t.m{border-color:var(--mark);color:var(--mark)}
+.pyq .lg.t{border-style:dashed}
+.pyq .why{padding:20px 22px;margin-top:18px;border-radius:15px}
+.pyq .why p{font-size:14px;margin:8px 0 0;max-width:72ch}

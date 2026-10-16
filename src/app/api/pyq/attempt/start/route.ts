@@ -37,12 +37,13 @@ export async function POST(req: Request) {
   // Resume an in-progress attempt, else create one.
   const { data: open } = await db
     .from("pyq_attempts")
-    .select("id, started_at")
+    .select("id, started_at, last_question_id")
     .eq("user_id", gate.userId).eq("paper_id", paperId).eq("status", "in_progress")
     .order("started_at", { ascending: false }).limit(1).maybeSingle();
 
   let attemptId = open?.id as string | undefined;
   let startedAt = open?.started_at as string | undefined;
+  const lastQuestionId = (open?.last_question_id as string | null | undefined) ?? null;
   if (!attemptId) {
     const { data: created, error: cErr } = await db
       .from("pyq_attempts")
@@ -77,6 +78,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
     attempt_id: attemptId,
     started_at: startedAt,
+    last_question_id: lastQuestionId,
     paper,
     questions,
     answers: answerState,
