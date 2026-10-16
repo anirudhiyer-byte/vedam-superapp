@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "8 Apr · Shift 2",
+  "title": "JEE Main 2026 · Mathematics · 8 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1ZpLrVBAAEdKDS38wvFZQqfqBTeSoOOan"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the relation $R$ on the set $\\{-2, -1, 0, 1, 2\\}$ defined by $(a, b)$ in $\\in R$ if and only if $1 + ab > 0$. Then, among the statements:\nI. The number of elements in $R$ is 17\nII. $R$ is an equivalence relation",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(a, a) \\in R$ because $1 + a^{2} > 0$\n$\\therefore$ Reflexive\nIf $1 + ab > 0 \\Rightarrow 1 + ba > 0$\n$\\therefore (a, b) \\in R$ and $(b, a) \\in R$\n$(-2, 0) \\in R (0, 1) \\in R$\nBut $(-2, 1) \\notin R$\nHence it is not transitive\n$\\therefore$ It is not equivalence\nTotal number of elements in the relation $R$ is 17\nBecause Total elements $= 25$\nBut $(-2, 1)(-2, 2)(-1, 2)(1, -2)(2, -2)(2, -1)$\n$(-1, 1)$ and $(1, -1)$ are not in relation.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Only I is true"
+    },
+    {
+     "key": "B",
+     "text": "Only II is true"
+    },
+    {
+     "key": "C",
+     "text": "Both I and II are true"
+    },
+    {
+     "key": "D",
+     "text": "Neither I nor II is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of values of $z \\in \\mathbb{C}$, satisfying the equations\n$|z - (4 + 8i)| = \\sqrt{10}$ and $|z - (3 + 5i)| + |z - (5 + 11i)| = 4\\sqrt{5}$, is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(x - 4)^{2} + (y - 8)^{2} = 10 \\rightarrow$ circle\n$\\sqrt{(x - 3)^{2} + (y - 5)^{2}} + \\sqrt{(x - 5)^{2} + (y - 11)^{2}} = 4\\sqrt{5} \\rightarrow$ ellipse\n[Figure: ellipse with foci $(3, 5)$ and $(5, 11)$, centre $(4, 8)$, and the circle centred at $(4, 8)$]\n$2a = 4\\sqrt{5}, 2ae = \\sqrt{4 + 36} = 2\\sqrt{10}$\n$e = \\frac{1}{\\sqrt{2}}$\n$b^{2} = a^{2}(1 - e^{2}) = 20\\left(1 - \\frac{1}{2}\\right) = 10$\n$b = r \\Rightarrow$ circle touches the ellipse internally at end of minor axis.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-math-q02-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the system of linear equations:\n$x + y + z = 6$,\n$x + 2y + 5z = 10$,\n$2x + 3y + \\lambda z = \\mu$\nhas infinitely many solutions, then the value of $\\lambda + \\mu$ equals:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "for Infinite Many-solution\n$\\Delta = 0$ and $\\Delta_1 = \\Delta_2 = \\Delta_3 = 0$\n$\\Delta = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & 2 & 5 \\\\ 2 & 3 & \\lambda \\end{vmatrix} = 0$\n$(2\\lambda - 15) - (\\lambda - 10) + (-1) = 0$\n$\\lambda = 6$\nSum of equation 1 and 2\n$2x + 3y + 6z = 16$\nequation (3) is $2x + 3y + 6z = \\mu$\nfor $\\infty$ many So $\\mu = 16$\n$\\therefore \\lambda + \\mu = 6 + 16$\n$= 22$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12$"
+    },
+    {
+     "key": "B",
+     "text": "$16$"
+    },
+    {
+     "key": "C",
+     "text": "$22$"
+    },
+    {
+     "key": "D",
+     "text": "$28$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\begin{bmatrix} \\alpha & 1 & 2 \\\\ 2 & 3 & 0 \\\\ 0 & 4 & 5 \\end{bmatrix}$ and $B = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & -5\\alpha & 0 \\\\ 0 & 4\\alpha & -2\\alpha \\end{bmatrix} + \\mathrm{adj}(A)$. If $\\det(B) = 66$, then $\\det(\\mathrm{adj}(A))$ equals :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A = \\begin{bmatrix} \\alpha & 1 & 2 \\\\ 2 & 3 & 0 \\\\ 0 & 4 & 5 \\end{bmatrix}$\n$\\mathrm{adj}(A) = \\begin{bmatrix} 15 & 3 & -6 \\\\ -10 & 5\\alpha & 4 \\\\ 8 & -4\\alpha & 3\\alpha - 2 \\end{bmatrix}$\nNow $B = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & -5\\alpha & 0 \\\\ 0 & 4\\alpha & -2\\alpha \\end{bmatrix} + \\begin{bmatrix} 15 & 3 & -6 \\\\ -10 & 5\\alpha & 4 \\\\ 8 & -4\\alpha & 3\\alpha - 2 \\end{bmatrix}$\n$= \\begin{bmatrix} 16 & 3 & -6 \\\\ -10 & 0 & 4 \\\\ 8 & 0 & \\alpha - 2 \\end{bmatrix}$\nAs $|B| = 66 \\quad \\therefore \\alpha = 1$\nNow $|\\mathrm{adj}\\,A| = |A|^{n-1} = |A|^{2}$\n$|A| = \\begin{vmatrix} 1 & 1 & 2 \\\\ 2 & 3 & 0 \\\\ 0 & 4 & 5 \\end{vmatrix} = 21$\n$\\therefore |\\mathrm{adj}\\,A| = 21^{2} = 441$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$289$"
+    },
+    {
+     "key": "B",
+     "text": "$361$"
+    },
+    {
+     "key": "C",
+     "text": "$441$"
+    },
+    {
+     "key": "D",
+     "text": "$529$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha = 3 + 4 + 8 + 9 + 13 + 14 + \\ldots$ upto 40 terms. If $(\\tan\\beta)^{\\frac{\\alpha}{1020}}$ is a root of the equation $x^{2} + x - 2 = 0$, $\\beta \\in \\left(0, \\frac{\\pi}{2}\\right)$ then $\\sin^{2}\\beta + 3\\cos^{2}\\beta$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha = (3 + 8 + 13 \\ldots$ upto 20 terms$) + (4 + 9 + 14 + \\ldots$ upto 20 terms$)$\n$= \\frac{20}{2}[6 + 19 \\times 5] + \\frac{20}{2}(8 + 19 \\times 5) = 2040$\n$(\\tan\\beta)^{\\frac{2040}{1020}} = \\tan^{2}\\beta$\nNow, roots of $x^{2} + x - 2 = 0$\n$x^{2} + 2x - x - 2 = 0$\n$x(x + 2) - (x + 2) = 0$\n$\\Rightarrow x = -2, 1$\n$\\Rightarrow \\tan^{2}\\beta = 1$\n$\\beta = \\frac{\\pi}{4}$\n$\\therefore \\sin^{2}\\frac{\\pi}{4} + 3\\cos^{2}\\frac{\\pi}{4}$\n$\\frac{1}{2} + \\frac{3}{2} \\Rightarrow 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A candidate has to go to the examination centre to appear in an examination. The candidate uses only one means of transportation for the entire distance out of bus, scooter and car. The probabilities of the candidate going by bus, scooter and car, respectively, are $\\frac{2}{5}, \\frac{1}{5}$ and $\\frac{2}{5}$. The probabilities that the candidate reaches late at the examination centre are $\\frac{1}{5}, \\frac{1}{3}$ and $\\frac{1}{4}$ if the candidate uses bus, scooter and car, respectively. Given that the candidate reached late at the examination centre, the probability that the candidate travelled by bus is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Prob of being late\n$P(L) = \\left(\\frac{2}{5} \\times \\frac{1}{5}\\right) + \\left(\\frac{1}{5} \\times \\frac{1}{3}\\right) + \\left(\\frac{2}{5} \\times \\frac{1}{4}\\right)$\n$= \\frac{2}{25} + \\frac{1}{15} + \\frac{2}{20} = \\frac{37}{150}$\n$P(\\text{Requiral}) = \\frac{\\frac{2}{25}}{\\frac{37}{150}} = \\frac{12}{37}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{11}{37}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{12}{37}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{13}{37}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{14}{37}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A set of four observations has mean 1 and variance 13. Another set of six observations has mean 2 and variance 1. Then, the variance of all these 10 observations is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given $\\bar{x} = 1, \\sigma_1^{2} = 13$\n$\\bar{y} = 2, \\sigma_2^{2} = 1$\nCombined variance $= \\frac{n_1\\sigma_1^{2} + n_2\\sigma_2^{2}}{n_1 + n_2} + \\frac{n_1 n_2}{(n_1 + n_2)^{2}}(\\bar{x} - \\bar{y})^{2}$\n$= \\frac{4 \\times 13 + 6 \\times 1}{10} + \\frac{4 \\times 6}{10^{2}}(2 - 1)^{2}$\n$\\frac{58}{10} + \\frac{24}{100} = \\frac{580 + 24}{100} = \\frac{604}{100} = 6.04$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5.96$"
+    },
+    {
+     "key": "B",
+     "text": "$6.14$"
+    },
+    {
+     "key": "C",
+     "text": "$6.04$"
+    },
+    {
+     "key": "D",
+     "text": "$6.24$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $26\\left(\\frac{2^{3}}{3}({}^{12}C_{2}) + \\frac{2^{5}}{5}({}^{12}C_{4}) + \\frac{2^{7}}{7}({}^{12}C_{6}) + \\ldots + \\frac{2^{13}}{13}({}^{12}C_{12})\\right) = 3^{13} - \\alpha$, then $\\alpha$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "General term\n$T_r = \\frac{2^{2r+1}}{2^{(2r+1)}} \\cdot {}^{12}C_{2r}$\n$= \\frac{2^{2r+1}}{13} \\cdot {}^{13}C_{2r+1}$\nNow Sum of series $= \\sum_{r=1}^{6} \\frac{1}{13} \\cdot {}^{13}C_{2r+1} \\cdot 2^{2r+1}$\n$= \\frac{1}{13}\\left\\{{}^{13}C_{3} \\cdot 2^{3} + {}^{13}C_{5} \\cdot 2^{5} + \\ldots + {}^{13}C_{13} \\cdot 2^{13}\\right\\}$\nNow, $(1 + x)^{13} - (1 - x)^{13} = 2\\left\\{{}^{13}C_{1} \\cdot x + {}^{13}C_{3}x^{3} + \\ldots + {}^{13}C_{13} \\cdot x^{13}\\right\\}$\nAt $x = 2$\n$3^{13} - (-1)^{13} = 2\\{13.2 + 13.5\\}$\n$= 2(26 + 13.5)$\n$\\therefore \\alpha = 51$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$45$"
+    },
+    {
+     "key": "B",
+     "text": "$48$"
+    },
+    {
+     "key": "C",
+     "text": "$51$"
+    },
+    {
+     "key": "D",
+     "text": "$54$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A person has three different bags and four different books. The number of ways, in which he can put these books in the bags so that no bag is empty, is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B_1 \\quad B_2 \\quad B_3$\n$1 \\quad 1 \\quad 2$\nNo. of ways $= \\frac{4!}{2!2!} \\times 3! = 6 \\times 6 = 36$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$18$"
+    },
+    {
+     "key": "B",
+     "text": "$36$"
+    },
+    {
+     "key": "C",
+     "text": "$39$"
+    },
+    {
+     "key": "D",
+     "text": "$72$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If a straight line drawn through the point of intersection of the lines $4x + 3y - 1 = 0$ and $3x + 4y - 1 = 0$, meets the co-ordinate axes at the points $P$ and $Q$, then the locus of the mid point of $PQ$ is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[Figure: line meeting the axes at $(0, 2k)$ and $(2h, 0)$ with mid point $M(h, k)$]\nlocus of $M \\equiv \\frac{x}{2h} + \\frac{y}{2k} = 1 \\quad \\ldots(1)$\nlocus of P.O.I. of\n$3x + 4y = 1$\n$4x + 3y = 1$\n$x = \\frac{1}{7}; y = \\frac{1}{7}$\n$\\therefore \\frac{1}{7} \\cdot \\frac{1}{2h} + \\frac{1}{7} \\cdot \\frac{1}{2k} = 1$\n$\\frac{1}{x} + \\frac{1}{y} = 14$\n$x + y - 14xy = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x + y - 7 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x + y - 14xy = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$2x + y + 14xy = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x + 2y - 14xy = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-math-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $O$ be the vertex of the parabola $y^{2} = 4x$ and its chords $OP$ and $OQ$ are perpendicular to each other. If the locus of the mid-point of the line segment $PQ$ is a conic $C$, then the length of its latus rectum is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[Figure: parabola with vertex $O$, $P(t_1^{2}, 2t_1)$, $Q(t_2^{2}, 2t_2)$, mid point $R(h, k)$, slopes $m_1, m_2$ of $OP, OQ$]\n$t_1 t_2 = -4$\n$2h = t_1^{2} + t_2^{2} \\qquad 2k = 2(t_1 + t_2)$\n$2h = k^{2} - 2t_1 t_2$\n$2h = k^{2} + 8$\n$k^{2} = 2h - 8$\n$= 2(h - 4)$\nL.R. $= 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-math-q11-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha = 3\\sin^{-1}\\left(\\frac{6}{11}\\right)$ and $\\beta = 3\\cos^{-1}\\left(\\frac{4}{9}\\right)$, where inverse trigonometric functions take only the principal values. Given below are two statements:\nStatement I: $\\cos(\\alpha + \\beta) > 0$\nStatement II: $\\cos(\\alpha) < 0$\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{2} < \\frac{6}{11} < \\frac{1}{\\sqrt{2}}$\n$\\sin^{-1}\\left(\\frac{1}{2}\\right) < \\sin^{-1}\\left(\\frac{6}{11}\\right) < \\sin^{-1}\\left(\\frac{1}{\\sqrt{2}}\\right)$\n$\\frac{\\pi}{6} < 3\\sin^{-1}\\left(\\frac{6}{11}\\right) < \\frac{\\pi}{4}$\n$\\frac{\\pi}{2} < \\alpha < \\frac{3\\pi}{4} \\quad \\therefore \\cos\\alpha < 0$\n$0 < \\frac{4}{9} < \\frac{1}{2}$\n$\\frac{\\pi}{3} < \\cos^{-1}\\left(\\frac{4}{9}\\right) < \\frac{\\pi}{2}$\n$\\pi < 3\\cos^{-1}\\left(\\frac{4}{9}\\right) < \\frac{3\\pi}{2}$\n$\\pi < \\beta < \\frac{3\\pi}{2}$\nNow $\\frac{3\\pi}{2} < \\alpha + \\beta < \\frac{9\\pi}{4}$\n$\\therefore \\cos(\\alpha + \\beta) > 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "C",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is false but Statement II is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the function $f(x) = e^{\\sin|x|} - |x|$, $x \\in$ in $\\mathbb{R}$ consider the following statements:\nStatement I: $f$ is differentiable for all $x \\in \\mathbb{R}$\nStatement II: $f$ is increasing in $\\left(-\\pi, -\\frac{\\pi}{2}\\right)$\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = e^{\\sin|x|} - |x|; \\ x \\in \\mathbb{R}$\n$f(x) = \\begin{cases} e^{\\sin x} - x; & x > 0 \\\\ e^{-\\sin x} + x; & x < 0 \\end{cases}$\nLHD at $x = 0$\n$f'(x) = e^{-\\sin x}(-\\cos x) + 1$\nat $x = 0$\n$= -1 + 1$\n$= 0$\nRHD at $x = 0$\n$f'(x) = e^{\\sin x}.\\cos x - 1$\nat $x = 0$\n$= 1 - 1$\n$= 0$\nDiff at $x = 0$\nStatement 1 is true\nand for $x \\in \\left(-\\pi, \\frac{-\\pi}{2}\\right)$\n$f(x) = e^{-\\sin x} + x$\n$f'(x) = -e^{-\\sin x}\\cos x + 1$\nfor $x \\in \\left(-\\pi, \\frac{-\\pi}{2}\\right) \\quad \\cos x < 0$\n$\\therefore f'(x) > 0$\n$\\therefore f(x)$ is increasing",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "C",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is false but Statement II is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 4\\hat{i} - \\hat{j} + 3\\hat{k}$, $\\vec{b} = 10\\hat{i} + 2\\hat{j} - \\hat{k}$ and a vector $\\vec{c}$ such that $2(\\vec{a} \\times \\vec{b}) + 3(\\vec{b} \\times \\vec{c}) = \\vec{0}$. If $\\vec{a} \\cdot \\vec{c} = 15$, then $\\vec{c} \\cdot (\\hat{i} + \\hat{j} - 3\\hat{k})$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2(\\vec{a} \\times \\vec{b}) - 3(\\vec{c} \\times \\vec{b}) = 0$\n$(2\\vec{a} - 3\\vec{c}) \\times \\vec{b} = 0$\n$|\\vec{b}| = 2\\vec{a} - 3\\vec{c}$\n$2\\vec{a} - 3\\vec{c} = \\lambda\\vec{b}$\n$\\vec{c} = \\frac{2\\vec{a} - \\lambda\\vec{b}}{3} \\quad \\ldots(1)$\n$\\vec{a} \\cdot \\vec{c} = 15$\n$\\left(\\frac{2\\vec{a} - \\lambda\\vec{b}}{3}\\right) \\cdot \\vec{a} = 15$\n$\\frac{2|a|^{2} - \\lambda\\vec{b} \\cdot \\vec{a}}{3} = 15$\n$2(26) - \\lambda(40 - 2 - 3) = 45$\n$\\lambda = \\frac{1}{5}$\n$\\Rightarrow \\vec{c} \\cdot (\\hat{i} + \\hat{j} - 3\\hat{k}) = \\frac{\\left(2(4\\hat{i} - \\hat{j} + 3k) - \\frac{1}{5}(10\\hat{i} + 2\\hat{j} - k) \\cdot (\\hat{i} + \\hat{j} - 3\\hat{k})\\right)}{3}$\n$= \\frac{2(4 - 1 - 9) - \\frac{1}{5}(10 + 2 + 3)}{3} = -5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-6$"
+    },
+    {
+     "key": "B",
+     "text": "$-5$"
+    },
+    {
+     "key": "C",
+     "text": "$-4$"
+    },
+    {
+     "key": "D",
+     "text": "$-3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the foot of perpendicular from the point $(\\lambda, 2, 3)$ on the line $\\frac{x - 4}{1} = \\frac{y - 9}{2} = \\frac{z - 5}{1}$ be the point $(1, \\mu, 2)$. Then the distance between the lines $\\frac{x - 1}{2} = \\frac{y - 2}{3} = \\frac{z + 4}{6}$ and $\\frac{x - \\lambda}{2} = \\frac{y - \\mu}{3} = \\frac{z + 5}{6}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L_1 \\equiv \\frac{x - 4}{1} = \\frac{y - 9}{2} = \\frac{z - 5}{1}$, Subsitute $(1, \\mu, 2)$\n$\\frac{1 - 4}{1} = \\frac{\\mu - 9}{2} = \\frac{2 - 5}{1}$\n$\\mu - 9 = -6$\n$\\mu = 3$\nLet $\\perp$r vector $(1 - \\lambda, \\mu - 2, 2 - 3)$\ni.e. $(1 - \\lambda, 1, -1)$\nAs Apply condition of $\\perp$r $(1 - \\lambda).1 + 1.2 + (-1).1 = 0$\n$\\Rightarrow \\lambda = 2$\nNow dist between line $L_A \\equiv \\frac{x - 1}{2} = \\frac{y - 2}{3} = \\frac{z + 4}{6}$\n$L_B = \\frac{x - 2}{2} = \\frac{y - 3}{3} = \\frac{z + 5}{6}$\n$d = \\left|\\frac{(\\vec{a}_2 - \\vec{a}_1) \\times \\vec{b}}{|b|}\\right| = \\frac{\\sqrt{146}}{7}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{12}{7}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{145}}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{146}}{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\sqrt{143}}{7}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of the integral $\\int_{0}^{2} \\frac{\\sqrt{x(x^{2} + x + 1)}}{(\\sqrt{x + 1})(\\sqrt{x^{4} + x^{2} + 1})}dx$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{0}^{2} \\sqrt{\\frac{x(x^{2} + x + 1)}{(x + 1)(x^{2} - x + 1)(x^{2} + x + 1)}}dx$\n$= \\int_{0}^{2} \\sqrt{\\frac{x}{x^{3} + 1}}dx$\n$\\left(x^{3/2} = t \\Rightarrow \\frac{3}{2}x^{1/2}dx = dt\\right)$\n$= \\frac{2}{3}\\int_{0}^{2^{3/2}} \\frac{dt}{\\sqrt{t^{2} + 1}}$\n$= \\frac{2}{3}\\left(\\ln\\left(t + \\sqrt{t^{2} + 1}\\right)\\right)_{0}^{2^{3/2}}$\n$= \\frac{2}{3}\\ln\\left(2^{3/2} + 3\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{3}\\log_{e}(3 - 2\\sqrt{2})$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}\\log_{e}(4 + \\sqrt{2})$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}\\log_{e}(3 + 2\\sqrt{2})$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3}\\log_{e}(1 + 6\\sqrt{2})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation .\n$x\\sqrt{1 - x^{2}}\\,dy + \\left(y\\sqrt{1 - x^{2}} - x\\cos^{-1}x\\right)dx = 0$, $x \\in (0, 1)$ $\\lim_{x \\to 1^{-}} y(x) = 1$. Then $y\\left(\\frac{1}{2}\\right)$ equals :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x\\sqrt{1 - x^{2}}\\,dy + \\left(y\\sqrt{1 - x^{2}} - x\\cos^{-1}x\\right) \\cdot dx = 0$\n$\\frac{dy}{dx} + \\frac{y}{x} = \\frac{\\cos^{-1}x}{\\sqrt{1 - x^{2}}}$\n$P = \\frac{1}{x}; Q = \\frac{\\cos^{-1}x}{\\sqrt{1 - x^{2}}}$\nI.F. $= e^{\\int \\frac{1}{x}dx}$\n$= e^{\\ln x} = x$\n$y \\cdot x = \\int \\frac{x\\cos^{-1}x}{\\sqrt{1 - x^{2}}}dx + c$\ndet $\\cos^{-1}x = t$\n$\\frac{-1}{\\sqrt{1 - x^{2}}}dx = dt$\n$-\\int t \\cdot \\cos t\\,dt$\n$\\Rightarrow -[t\\sin t + \\cos t]$\n$\\therefore y \\cdot x = -\\sqrt{1 - x^{2}}\\cos^{-1}x - x + C$\nAs $\\mathop{dt}_{x \\to 1^{-}} y(x) = 1$\n$1.1 = -1 - \\sqrt{1 - 1^{2}}\\cos^{-1}1 + c$\n$c = 2$\n$\\therefore x.y = 2 - x - \\sqrt{1 - x^{2}}\\cos^{-1}x$\nAt $x = \\frac{1}{2}$\n$y = 3 - \\frac{\\pi}{\\sqrt{3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3 - \\frac{\\pi}{\\sqrt{3}}$"
+    },
+    {
+     "key": "B",
+     "text": "$4 - \\sqrt{3}\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$4 - \\frac{2\\pi}{\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$3 - \\frac{\\pi}{2\\sqrt{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f : (1, \\infty) \\to \\mathbb{R}$ be a function defined as $f(x) = \\frac{x - 1}{x + 1}$. Let $f^{i+1}(x) = f(f^{i}(x))$, $i = 1, 2, \\ldots, 25$, where $f^{1}(x) = f(x)$. If $g(x) + f^{26}(x) = 0$, $x \\in (1, \\infty)$, then the area of the region bounded by the curves $y = g(x)$, $2y = 2x - 3$, $y = 0$ and $x = 4$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f^{2}(x) = f(f(x)) = \\frac{\\frac{x - 1}{x + 1} - 1}{\\frac{x - 1}{x + 1} + 1} = \\frac{-1}{x}$\n$f^{3}(x) = f(f^{2}(x)) = f\\left(\\frac{-1}{x}\\right) = \\frac{1 + x}{1 - x}$\n$f^{4}(x) = f(f^{3}(x)) = f\\left(f\\left(\\frac{-1}{x}\\right)\\right) = x$\n$f^{5}(x) = f(f^{4}(x)) = f(x)$\n$f^{6}(x) = f(f^{5}(x)) = f(f(x)) = \\frac{-1}{x}$\n$f^{26}(x) = \\frac{-1}{x}$\n$g(x) = \\frac{1}{x}$\n[Figure: $y = \\frac{1}{x}$, the line through $\\left(\\frac{3}{2}, 0\\right)$ and $\\left(2, \\frac{1}{2}\\right)$, and $x = 4$, with the region shaded]\n$x - \\frac{3}{2} = \\frac{1}{x} \\Rightarrow 2x^{2} - 3x - 2 = 0$\n$\\Rightarrow x = \\frac{-1}{2}, 2$\nReq. area $= \\int_{2}^{4} \\frac{1}{x}dx + \\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2}$\n$= \\frac{1}{8} + (\\ln x)_{2}^{4} = \\frac{1}{8} + \\ln 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{8} + \\log_{e}2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{4} + \\log_{e}2$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{6} + 3\\log_{e}2$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{6} + \\log_{e}2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\begin{cases} \\frac{1}{3} & , x \\le \\pi/2 \\\\ \\frac{b(1 - \\sin x)}{(\\pi - 2x)^{2}} & x > \\pi/2 \\end{cases}$. If $f$ is continuous at $x = \\pi/2$, then the value of $\\int_{0}^{3b-6} |x^{2} + 2x - 3|\\,dx$ is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to \\frac{\\pi}{2}^{-}} f(x) = \\lim_{x \\to \\frac{\\pi}{2}^{+}} f(x)$\nLHL $= \\frac{1}{3}$\nRHL $= \\lim_{x \\to \\frac{\\pi}{2}^{+}} \\frac{b(1 - \\sin x)}{(\\pi - 2x)^{2}}$\n$= \\lim_{h \\to 0} \\frac{b\\left(1 - \\sin\\left(\\frac{\\pi}{2} + h\\right)\\right)}{\\left(\\pi - 2\\left(\\frac{\\pi}{2} + h\\right)\\right)^{2}}$\n$= \\lim_{h \\to 0} \\frac{b(1 - \\cos h)}{4h^{2}}$\n$= \\lim_{h \\to 0} \\frac{b \\cdot 2 \\cdot \\sin^{2}\\frac{h}{2}}{4h^{2}} = \\frac{2b}{16} = \\frac{b}{8}$\n$\\therefore \\frac{1}{3} = \\frac{b}{8} \\Rightarrow b = \\frac{8}{3}$\n$I = \\int_{0}^{2} |x^{2} + 2x - 3|\\,dx$\n$= \\int_{0}^{1} -(x^{2} + 2x - 3)\\,dx + \\int_{1}^{2} (x^{2} + 2x - 3)\\,dx$\n$= \\left[-\\frac{x^{3}}{3} - \\frac{2x^{2}}{2} + 3x\\right]_{0}^{1} + \\left[\\frac{x^{3}}{3} + \\frac{2x^{2}}{2} - 3x\\right]_{1}^{2}$\n$= \\left(-\\frac{1}{3} - 1 + 3\\right) + \\left(\\frac{8}{3} + 4 - 6 - \\frac{1}{3} - 1 + 3\\right)$\n$= \\frac{5}{3} + \\frac{7}{3} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\frac{x^{2}}{f(a^{2} + 7a + 3)} + \\frac{y^{2}}{f(3a + 15)} = 1$ represent an ellipse with major axis along y-axis, where $f$ is a strictly decreasing positive function on $\\mathbb{R}$. If the set of all possible values of $a$ is $\\mathbb{R} - [\\alpha, \\beta]$, then $\\alpha^{2} + \\beta^{2}$ is equal to:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(3a + 15) > f(a^{2} + 7a + 3)$\n$3a + 15 < a^{2} + 7a + 3$\n$a^{2} + 4a - 12 > 0$\n$(a + 6)(a - 2) > 0$\n$a \\in \\mathbb{R} - [-6, 2]$\n$\\alpha = -6, \\beta = 2$\n$\\alpha^{2} + \\beta^{2} = 36 + 4$\n$= 40$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$28$"
+    },
+    {
+     "key": "B",
+     "text": "$40$"
+    },
+    {
+     "key": "C",
+     "text": "$61$"
+    },
+    {
+     "key": "D",
+     "text": "$24$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Logarithms",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The sum of squares of all the real solutions of the equation\n$\\log_{(x+1)}(2x^{2} + 5x + 3) = 4 - \\log_{(2x+3)}(x^{2} + 2x + 1)$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$\\log_{x+1}(2x^{2} + 5x + 3) + \\log_{2x+3}(x + 1)^{2} = 4$\n$\\log_{x+1}(2x + 3)(x + 1) + 2\\log_{2x+3}(x + 1) = 4$\n$\\log_{x+1}(2x + 3) + 1 + 2\\log_{2x+3}(x + 1) = 4$\n$t + \\frac{2}{t} = 3$\n$t^{2} - 3t + 2 = 0$\n$(t - 1)(t - 2) = 0$\n$t = 1, 2$\nC-1 : $\\log_{x+1} 2x + 3 = 1$\n$2x + 3 = x + 1$\n$x = -2$\nC-2 : $\\log_{x+1}(2x + 3) = 2$\n$2x + 3 = (x + 1)^{2}$\n$x = \\pm\\sqrt{2}$\nCheck the domain $\\therefore x \\ne -\\sqrt{2} - 2$ and $-2$\n$\\therefore x = \\sqrt{2}$\n$\\therefore (\\sqrt{2})^{2} = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\int_{\\pi/4}^{3\\pi/4} \\left(\\cot\\left(x - \\frac{\\pi}{3}\\right)\\cot\\left(x + \\frac{\\pi}{3}\\right) + 1\\right)dx = \\alpha\\log_{e}(\\sqrt{3} - 1)$, then $9\\alpha^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "$\\int_{\\pi/6}^{\\pi/4} \\left(\\left(\\cot\\left(x - \\frac{\\pi}{3}\\right)\\cot\\left(x + \\frac{\\pi}{3}\\right) + 1\\right)\\right)dx$\nusing $\\cot(A - B) = \\frac{\\cot B\\cot A + 1}{\\cot B - \\cot A}$\n$\\Rightarrow \\int_{\\pi/6}^{\\pi/4} -\\frac{1}{\\sqrt{3}}\\left[\\cot\\left(x - \\frac{\\pi}{3}\\right) - \\cot\\left(x + \\frac{\\pi}{3}\\right)\\right]dx$\n$\\Rightarrow \\frac{-1}{\\sqrt{3}}\\left[\\ln\\left|\\frac{\\sin\\left(x - \\frac{\\pi}{3}\\right)}{\\sin\\left(x + \\frac{\\pi}{3}\\right)}\\right|\\right]_{\\frac{\\pi}{6}}^{\\frac{\\pi}{4}}$\n$= \\frac{-1}{\\sqrt{3}}\\left[\\ln\\left|\\left(\\frac{\\sin 15^\\circ}{\\sin 75^\\circ}\\right)\\right| - \\ln\\left|\\frac{\\sin 30^\\circ}{\\sin 90^\\circ}\\right|\\right]$\n$= \\frac{-1}{\\sqrt{3}}\\left[\\ln(\\tan 15^\\circ) - \\ln\\left(\\frac{1}{2}\\right)\\right]$\n$= \\frac{-1}{\\sqrt{3}}\\left[\\ln(2 - \\sqrt{3}) + \\ln 2\\right]$\n$\\Rightarrow \\frac{-1}{\\sqrt{3}}\\ln(4 - 2\\sqrt{3}) = \\frac{-2}{\\sqrt{3}}\\ln(\\sqrt{3} - 1)$\n$\\therefore \\alpha = \\frac{-2}{\\sqrt{3}} \\therefore 9\\alpha^{2} = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let a line $L_1$ pass through the origin and be perpendicular to the lines\n$L_2 : \\vec{r} = (3 + t)\\hat{i} + (2t - 1)\\hat{j} + (2t + 4)\\hat{k}$ and\n$L_3 : \\vec{r} = (3 + 2s)\\hat{i} + (3 + 2s)\\hat{j} + (2 + s)\\hat{k}$, $t, s \\in \\mathbb{R}$.\nIf $(a, b, c)$, $a \\in \\mathbb{Z}$, is the point on $L_3$ at a distance of $\\sqrt{17}$ from the point of intersection of $L_1$ and $L_2$, then $(a + b + c)^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "Direction of line $L_1 = \\vec{v}_2 \\times \\vec{v}_3$\n$= \\begin{vmatrix} i & j & k \\\\ 1 & 2 & 2 \\\\ 2 & 2 & 1 \\end{vmatrix} = -2i + 3j - 2k$\n$\\therefore L_1 = \\vec{0} + \\lambda(-2i + 3j - 2k)$\nNow point of intersec line of $L_2$ and $L_3$\n$-2\\lambda = 3 + t, \\quad \\ldots(1)$\n$3\\lambda = 2t - 1$ and $\\quad \\ldots(2)$\n$-2\\lambda = 2t + 4 \\quad \\ldots(3)$\nfrom (1) and (3)\n$3 + t = 2t + 4$\n$t = -1$\n$-2\\lambda = 2$\n$\\lambda = -1$\n$\\therefore$ Point of intersection $(2, -3, 2)$\nThe point $(a, b, c)$ lies on $L_3$ it has the form $(3 + 2s, 3 + 2s, 2 + s)$\nDist from $(2, -3, 2)$ from it $\\sqrt{17}$\n$\\therefore (3 + 2s - 2)^{2} + (3 + 2s + 3)^{2} + (2 + s - 2)^{2} = 17$\n$9s^{2} + 28s + 20 = 0$\n$s = -10/9, -2$\nas $a, b, c \\in \\mathbb{Z}$\n$\\therefore s = -2$\n$a = -1$\n$b = -1$\n$c = 0$\n$(a + b + c)^{2} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Circles",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the circle $C : x^{2} + y^{2} - 6x - 8y - 11 = 0$. Let a variable chord $AB$ of the circle $C$ subtend a right angle at the origin. If the locus of the foot of the perpendicular drawn from the origin on the chord $AB$ is the circle $x^{2} + y^{2} - \\alpha x - \\beta y - \\gamma = 0$, then $\\alpha + \\beta + 2\\gamma$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 18,
+   "correct_keys": null,
+   "solution": "Equation of $AB$\n[Figure: chord $AB$ of the circle subtending $90^\\circ$ at $O(0, 0)$, foot of perpendicular $P(h, k)$, $m_{AB} = -\\frac{h}{k}$, $m_{OP} = \\frac{k}{h}$]\n$y - k = -\\frac{h}{k}(x - h)$\n$hx + ky = h^{2} + k^{2}$\nH.F. : $\\frac{hx + ky}{h^{2} + k^{2}} = 1$\nNow, $x^{2} + y^{2} - (6x + 8y)\\left(\\frac{hx + ky}{h^{2} + k^{2}}\\right) - 11\\left(\\frac{hx + ky}{h^{2} + k^{2}}\\right)^{2} = 0$\nNow coeff of $x^{2}$ + coeff of $y^{2} = 0$\n$2 - \\frac{6h + 8k}{h^{2} + k^{2}} - \\frac{11}{h^{2} + k^{2}} = 0$\n$2h^{2} + 2k^{2} - 6h - 8k - 11 = 0$\n$x^{2} + y^{2} - 3x - 4y - 55 = 0$\n$\\alpha + \\beta + 2\\gamma = 3 + 4 + 11$\n$= 18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-math-q24-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f$ be a polynomial function such that\n$\\log_{2}(f(x)) = \\left(\\log_{2}\\left(2 + \\frac{2}{3} + \\frac{2}{9} + \\ldots\\ldots \\infty\\right)\\right) \\cdot \\log_{3}\\left(1 + \\frac{f(x)}{f(1/x)}\\right)$, $x > 0$ and $f(6) = 37$. Then $\\sum_{n=1}^{10} f(n)$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 395,
+   "correct_keys": null,
+   "solution": "$S = 2 + \\frac{2}{3} + \\frac{2}{9} + \\cdots$\n$= \\frac{2}{1 - 1/3} = 3$\n$\\log_{2}(f'(x)) = \\log_{2}3.\\log_{3}\\left(1 + \\frac{f(x)}{f\\left(\\frac{1}{x}\\right)}\\right)$\n$= \\log_{2}\\left(1 + \\frac{f(x)}{f\\left(\\frac{1}{x}\\right)}\\right)$\n$\\Rightarrow f(x) + f\\left(\\frac{1}{x}\\right) = f(x) \\cdot f\\left(\\frac{1}{x}\\right)$\n$\\therefore f(x) = 1 + x^{n}$ and $f(6) = 37$\n$\\therefore n = 2$\n$\\therefore f(x) = 1 + x^{2}$\nNow $\\sum_{n=1}^{10} f(n)$\n$\\sum_{n=1}^{10} 1 + n^{2}$\n$\\Rightarrow 10 + \\frac{10 \\times 11 \\times 21}{6} \\Rightarrow 395$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

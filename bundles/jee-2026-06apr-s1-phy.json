@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "6 Apr · Shift 1",
+  "title": "JEE Main 2026 · Physics · 6 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1gK_intcfSqw2QPMe0mCXYnqyeAZ9Fwf_"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The density $\\rho$ of a uniform cylinder is determined by measuring its mass m, length l and diameter d. The measured values of m, l and d are $97.42 \\pm 0.02$ g, $8.35 \\pm 0.05$ mm and $20.20 \\pm 0.02$ mm, respectively. Calculated percentage fractional error in $\\rho$ is _________.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\rho = \\frac{m}{\\pi\\frac{d^{2}}{4}l} = \\frac{4m}{\\pi d^{2}l}$\n$\\frac{\\Delta\\rho}{\\rho} = \\frac{\\Delta m}{m} + 2\\frac{\\Delta d}{d} + \\frac{\\Delta d}{l}$\n$\\Rightarrow \\frac{\\Delta\\rho}{\\rho} = \\frac{0.02}{97.42} + \\left(\\frac{0.02}{20.20} \\times 2\\right) + \\left(\\frac{0.05}{8.35}\\right)$\n$= 0.82\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.63%"
+    },
+    {
+     "key": "B",
+     "text": "0.82%"
+    },
+    {
+     "key": "C",
+     "text": "0.72%"
+    },
+    {
+     "key": "D",
+     "text": "0.25%"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The potential energy of a particle changes with distance x from a fixed origin as $V = \\frac{A\\sqrt{x}}{x + B}$, where A and B are constant with appropriate dimensions. The dimensions of AB are ________.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$[V] = \\frac{[A][\\sqrt{x}]}{[x + B]}$\n$[ML^{2}T^{-2}] = \\frac{[A][L^{1/2}]}{[L]}$ $\\quad [\\because [x] = [B] = [L]]$\n$\\Rightarrow [A] = [ML^{5/2}T^{-2}]$\nSo, $[AB] = [ML^{5/2}T^{-2}]\\,[L] = [M^{1}L^{7/2}T^{-2}]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[M^{1}L^{5/2}T^{-2}]$"
+    },
+    {
+     "key": "B",
+     "text": "$[M^{3/2}L^{5/2}T^{-2}]$"
+    },
+    {
+     "key": "C",
+     "text": "$[M^{1}L^{2}T^{-2}]$"
+    },
+    {
+     "key": "D",
+     "text": "$[M^{1}L^{7/2}T^{-2}]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The rain drop of mass 1 g , starts with zero velocity from a height of 1 km . It hits the ground with a speed of 5 m/s. The work done by the unknown resistive force is __________ J.\n(take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Using work energy theorem\n$mgh + W_{res} = \\frac{1}{2}mv^{2} - \\frac{1}{2}m(0)^{2}$\n$\\Rightarrow (1 \\times 10^{-3})(10)(10^{3}) + W_{res} = \\frac{1}{2}(1 \\times 10^{-3})(5)^{2} - 0$\n$\\Rightarrow W_{res} = 0.0125 - 10$\n$= -9.9875$ J",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-8.75$"
+    },
+    {
+     "key": "B",
+     "text": "$-8.35$"
+    },
+    {
+     "key": "C",
+     "text": "$-9.55$"
+    },
+    {
+     "key": "D",
+     "text": "$-9.98$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two blocks (P and Q) with respectively masses 2 kg and 1.5 kg are joined by a massless thread. These blocks are mounted on a frictionless pully which is fixed on the edge of a cube (S), as shown in the figure below. Block P is positioned on the top surface which has no friction and block Q is in contact with side-surface, having coefficient friction $\\mu$. The cube (S) moves towards the right with acceleration of $\\frac{g}{2}$, where g is gravitational acceleration. During this movement the block P and Q remain stationary. The value of $\\mu$ is _______.\n(take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Solving with respect to cube [Both blocks are at rest with respect to cube]\n(Figure: FBD of P — $N_{1}$ up, 2g down, T to the right, pseudo force $2(g/2)$ to the left)\n$N_{1} = 2g = 20$ N\n$T = 2(g/2) = 10$ N\n(Figure: FBD of Q — T and $\\mu N_{2}$ up, 1.5g down, $N_{2}$ to the right, pseudo force $1.5(g/2)$ to the left)\n$\\therefore N_{2} = 1.5(g/2) = 7.5$ N\n$1.5g = T + \\mu N_{2}$\n$\\Rightarrow 15 = 10 + \\mu(7.5)$\n$\\Rightarrow \\mu = \\frac{5}{7.5} = \\frac{2}{3} = 0.67$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.3"
+    },
+    {
+     "key": "B",
+     "text": "0.67"
+    },
+    {
+     "key": "C",
+     "text": "1"
+    },
+    {
+     "key": "D",
+     "text": "0.5"
+    }
+   ],
+   "stem_figure": "j26-06apr-s1-phy-q29.png",
+   "solution_figure": "j26-06apr-s1-phy-q29-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A lift of mass 1600 kg is supported by thick iron wire. If the maximum stress which the wire can withstand is $4 \\times 10^{8}\\ \\mathrm{N/m^{2}}$ and its radius is 4 mm , then maximum acceleration the lift can take is ________ $\\mathrm{m/s^{2}}$.\n(take $g = 10\\ \\mathrm{m/s^{2}}$ and $\\pi = 3.14$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: block m with tension T upward, mg downward, acceleration a upward)\n$\\therefore T - mg = ma$\n$\\Rightarrow T = m(g + a)$\n$\\therefore$ Breaking stree $(\\sigma) = \\frac{F}{A}$\nhere F = T\n$\\Rightarrow \\sigma = \\frac{T}{A}$\n$\\Rightarrow T = \\sigma A$\n$\\Rightarrow m(g + a) = \\sigma A$\n$\\Rightarrow a = \\frac{\\sigma A}{m} - g = \\frac{(4 \\times 10^{8})(\\pi(4 \\times 10^{-3})^{2})}{1600} - 10$\n$= 2.56\\ \\mathrm{m/s^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2.56"
+    },
+    {
+     "key": "B",
+     "text": "3.89"
+    },
+    {
+     "key": "C",
+     "text": "4.32"
+    },
+    {
+     "key": "D",
+     "text": "5.16"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A solid sphere of radius 4 cm and mass 5 kg is rotating (rotation axis is passing through the centre of the sphere) with an angular velocity of 1200 rpm . It is brought to rest in 10 s by applying a constant torque. The torque applied and the number of rotations it made before it comes to rest are _______ and ________ respectively.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because \\omega = \\omega_{0} + \\alpha t$\n$0 = \\left(1200 \\times \\frac{2\\pi}{60}\\right) + \\alpha(10)$ $\\quad \\left[\\because 1\\mathrm{rpm} = \\frac{2\\pi}{60}\\mathrm{rad}\\right]$\n$\\Rightarrow \\alpha = -4\\pi\\ \\mathrm{rad/sec^{2}}$\n$\\because I = \\frac{2}{5}mR^{2} = \\frac{2}{5}(5)(4 \\times 10^{-2})^{2}$\n$\\Rightarrow I = 32 \\times 10^{-4}\\ \\mathrm{kgm^{2}}$\n$\\therefore$ Torque $\\tau = I\\alpha$\n$= -(32 \\times 10^{-4})(4\\pi)$ Nm\n$= -0.0128\\pi$ Nm\n$\\because 0 = \\left(\\frac{\\omega_{0} + \\omega}{2}\\right)t$\n$= \\left(\\frac{0 + 1200}{20}\\right)\\left(\\frac{10}{60}\\right) = 100\\mathrm{rot}$ $\\quad \\left[\\because 10\\sec = \\frac{10}{60}\\min\\right]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.128\\pi$ Nm, 100"
+    },
+    {
+     "key": "B",
+     "text": "$0.128\\pi$ Nm, 50"
+    },
+    {
+     "key": "C",
+     "text": "$0.128\\pi$ Nm, 50"
+    },
+    {
+     "key": "D",
+     "text": "$0.0128\\pi$ Nm, 100"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A smooth inclined plane ends in a vertical circular loop, as shown in the figure. A small body is released from height h as shown. If the body exerts a force of three times its weight on the plane at the highest point of circle then the height $h = \\alpha R$. The value of $\\alpha$ is _________.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: at the top of the loop, velocity $v$ horizontal, $N_{1}$ and mg downward)\n$\\because N_{1} + mg = \\frac{mv_{1}^{2}}{R}$\n$3mg + mg = \\frac{mv_{1}^{2}}{R}$\n$\\Rightarrow v_{1}^{2} = 4gR$\nUsing mechanical energy conservation b/w top of inclined plane and top of circular part.\n$mgh + 0 = \\frac{1}{2}mv_{1}^{2} + mgR$\n$mgh = \\frac{m}{2}(4gR) + mgR$\n$\\Rightarrow h = 3R$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "3"
+    },
+    {
+     "key": "D",
+     "text": "6"
+    }
+   ],
+   "stem_figure": "j26-06apr-s1-phy-q32.png",
+   "solution_figure": "j26-06apr-s1-phy-q32-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Centre of Mass",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The position of center of mass of three masses 2 kg, 3 kg and 15 kg placed with respect to mid point (p) of normal bisector, as shown in the figure is _________.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: altitude $= 10\\cos 60^\\circ = 5$ m, half-base $= 10\\sin 60^\\circ = 5\\sqrt{3}$ m; with origin at P: 15 kg at (0, 2.5) m, masses at $(-5\\sqrt{3}, -2.5)$ m and $(5\\sqrt{3}, -2.5)$ m)\n$\\vec{r}_{cm} = \\frac{m_{1}\\vec{r}_{1} + m_{2}\\vec{r}_{2} + m_{3}\\vec{r}_{3}}{m_{1} + m_{2} + m_{3}}$\n$= \\frac{15(2.5\\hat{j}) + 3(5\\sqrt{3}\\hat{i} - 2.5\\hat{j}) + 2(-5\\sqrt{3}\\hat{i} - 2.5\\hat{j})}{15 + 3 + 2}$\n$= \\frac{\\sqrt{3}}{4}\\hat{i} + 1.25\\hat{j}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(\\frac{\\sqrt{3}}{4}, 1.25\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{\\sqrt{3}}{4}, 1.0\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "(0, 0)"
+    },
+    {
+     "key": "D",
+     "text": "(1.25, 0)"
+    }
+   ],
+   "stem_figure": "j26-06apr-s1-phy-q33.png",
+   "solution_figure": "j26-06apr-s1-phy-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The two wires A and B of equal cross-section but of different materials are joined together. The ratio of Young's modulus of wire A and wire B is 20/11. When the joined wire is kept under certain tension the elongations in the wires A and B are equal. If the length of wire A is 2.2 m , then the length of wire B is _________ m .",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given that $\\frac{Y_{A}}{Y_{B}} = \\frac{20}{11}, \\frac{A_{A}}{A_{B}} = 1, \\frac{\\Delta L_{A}}{\\Delta L_{B}} = 1, L_{A} = 2.2\\mathrm{m}$\nWhen both are joined under certain tension, $T_{A} = T_{B}$\n$\\Delta L_{A} = \\Delta L_{B}$\n$\\frac{T_{A}L_{A}}{A_{A}Y_{A}} = \\frac{T_{B}L_{B}}{A_{B}Y_{B}}$\n$\\Rightarrow L_{B} = \\left(\\frac{T_{A}}{T_{B}}\\right)\\left(\\frac{A_{B}}{A_{A}}\\right)\\left(\\frac{Y_{B}}{Y_{A}}\\right)L_{A}$\n$= (1)(1)\\left(\\frac{11}{20}\\right)(2.2) = 1.21\\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.1"
+    },
+    {
+     "key": "B",
+     "text": "2.22"
+    },
+    {
+     "key": "C",
+     "text": "1.21"
+    },
+    {
+     "key": "D",
+     "text": "4.44"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two closed vessels of same volume are joined through a narrow tube and both vessels are filled with air of pressure 90 kPa and temperature 400 K . Keeping the temperature of one vessel constant at 400 K the second vessel temperature is raised to 500 K . The final pressure in the vessels is _______ kPa .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Since total no. of moles will be constant.\n$(n_{1} + n_{2})_{i} = (n_{1} + n_{2})_{f}$\n$\\left[\\because n = \\frac{PV}{RT}\\right]$\n$\\frac{90V}{R(400)} + \\frac{90V}{R(400)} = \\frac{P_{f}V}{R(400)} + \\frac{P_{f}V}{R(500)}$\n$\\Rightarrow P_{f} = 100$ kPa",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "100"
+    },
+    {
+     "key": "B",
+     "text": "120"
+    },
+    {
+     "key": "C",
+     "text": "90"
+    },
+    {
+     "key": "D",
+     "text": "105"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In interference experiment the path difference between two interfering waves at a point A on the screen is $\\lambda/3$, where $\\lambda$ is the wavelength of these waves, and at another point B the path difference is $\\lambda/6$. The ratio of intensities at points A and B is __________.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because \\Delta\\phi = \\frac{2\\pi}{\\lambda}\\Delta x$ $\\quad$ Considering $I_{1} = I_{2} = I$\nAt point A,\n$\\Delta\\phi_{A} = \\frac{2\\pi}{\\lambda}\\left(\\frac{\\lambda}{3}\\right) = \\frac{2\\pi}{3}$\n$I_{A} = I_{1} + I_{2} + 2\\sqrt{I_{1}I_{2}}\\cos(\\Delta\\phi_{A})$\n$= I + I + 2\\sqrt{II}\\cos(2\\pi/3)$\n$I_{A} = I$\nAt point B,\n$\\Delta\\phi_{B} = \\frac{2\\pi}{\\lambda}\\left(\\frac{\\lambda}{6}\\right) = \\frac{\\pi}{3}$\n$I_{B} = I + I + 2\\sqrt{II}\\cos(\\pi/3)$\n$= 3I$\n$I_{A}/I_{B} = 1/3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "1/3"
+    },
+    {
+     "key": "D",
+     "text": "1/4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle is executing simple harmonic motion. Its amplitude is A and time period is 5 sec . The time required by it to move from x = A to $x = \\frac{A}{\\sqrt{2}}$ is _________ sec.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: phasor circle of radius A; the phasor turns through $\\theta$ from x = A to the projection $x = A/\\sqrt{2}$)\nUsing phasor\n$\\cos\\theta = \\frac{A/\\sqrt{2}}{A}$\n$\\Rightarrow \\theta = \\frac{\\pi}{4}$\n$\\because \\theta = \\omega t$\n$\\frac{\\pi}{4} = \\left(\\frac{2\\pi}{T}\\right)t \\Rightarrow t = \\frac{T}{8} = 5/8\\sec$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1/4"
+    },
+    {
+     "key": "B",
+     "text": "5/4"
+    },
+    {
+     "key": "C",
+     "text": "5/8"
+    },
+    {
+     "key": "D",
+     "text": "3/8"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-06apr-s1-phy-q37-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A thin half ring of radius 35 cm is uniformly charged with a total charge of Q coulomb. If the magnitude of the electric field at centre of the half ring is 100 V/m, then the value of Q is ___________ nC .\n$(\\epsilon_{0} = 8.85 \\times 10^{-12}\\ \\mathrm{C^{2}/Nm^{2}}$ and $\\pi = 3.14)$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: half ring of radius R with linear charge density $\\lambda$; field at centre along the symmetry axis)\nElectric field $E = \\frac{2k\\lambda}{R}$\nHere $\\lambda = \\frac{Q}{l} = \\frac{Q}{\\pi R}$\nSo $E = \\frac{2kQ}{\\pi R^{2}}$\n$100 = \\frac{2(9 \\times 10^{9})(Q)}{(3.14)(35 \\times 10^{-2})^{2}}$\n$\\Rightarrow Q = 2.14 \\times 10^{-9}$ C",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2.14"
+    },
+    {
+     "key": "B",
+     "text": "2.44"
+    },
+    {
+     "key": "C",
+     "text": "3.25"
+    },
+    {
+     "key": "D",
+     "text": "0.7"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-06apr-s1-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The maximum rated power of the LED is 2 mW and it is used in the circuit with input voltage of 5 V as shown in the figure below. The current through resistance $R_{S}$ is 0.5 mA.\nThe minimum value of the resistance of $R_{S}$, to ensure that the LED is not damaged is ________ $\\mathrm{k\\Omega}$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We have to keep the value of $R_{S}$ such that even if whole current of battery passes through the LED, it doesn't get damaged.\nPower of LED = iV\n$2 \\times 10^{-3} = i(V)$\n$\\Rightarrow 2 \\times 10^{-3} = (0.5 \\times 10^{-3})V$\n$\\Rightarrow V = 4$ volt\n(Figure: potential 5 V before $R_{S}$ (current 0.5 mA), 4 V after it across both branches, 0 V at the bottom rail)\n$R_{S} = \\frac{5 - 4}{0.5 \\times 10^{-3}}$\n$R_{S} = 2000\\ \\Omega$\n$\\Rightarrow R_{S} = 2\\ \\mathrm{k\\Omega}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "4"
+    },
+    {
+     "key": "D",
+     "text": "5"
+    }
+   ],
+   "stem_figure": "j26-06apr-s1-phy-q39.png",
+   "solution_figure": "j26-06apr-s1-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A point light source emits E.M. waves in free space. A detector, placed at a distance of L m, measures the intensity as $I_{0}$. The detector is now shifted to another location on the same spherical surface ensuring the angle between original location and new location as $45^\\circ$. The measured intensity at new location will be __________.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: point source at centre of a sphere of radius R; points A and B on it separated by $45^\\circ$)\n$\\because$ Intensity $I = \\frac{\\mathrm{Power}(P)}{4\\pi R^{2}}$\n& It will be same at both points A and B.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{I_{0}}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$I_{0}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{I_{0}}{\\sqrt{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{I_{0}}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-06apr-s1-phy-q40-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A spherical interface lens of radius R separates two media of refractive indices 1 and 1.4 respectively as shown in the figure below. A point source is placed at a distance of 4R in front of spherical interface. The magnitude of the magnification of point source image is ________ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: sign convention — negative to the left, positive to the right of the surface)\n$u = -4R, R = +R, n_{i} = 1, n_{r} = 1.4$\n$\\because \\frac{n_{r}}{v} - \\frac{n_{i}}{u} = \\frac{n_{r} - n_{i}}{R}$\n$\\Rightarrow \\frac{1.4}{v} - \\frac{1}{(-4R)} = \\frac{1.4 - 1}{R}$\n$\\Rightarrow \\frac{1.4}{v} + \\frac{1}{4R} = \\frac{4}{10R}$\n$\\Rightarrow \\frac{1.4}{v} = \\frac{4}{10R} - \\frac{1}{4R} = \\frac{6}{40R}$\n$\\Rightarrow v = \\frac{40R(1.4)}{60} = \\frac{56R}{6}$\nMagnification $m = \\frac{\\left(\\frac{v}{n_{r}}\\right)}{\\left(\\frac{u}{n_{i}}\\right)} = \\frac{v}{u} \\times \\frac{n_{i}}{n_{r}}$\n$= \\left(\\frac{56R}{6}\\right)\\left(\\frac{1}{-4R}\\right) \\times \\frac{1}{1.4}$\n$= -1.66$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.66"
+    },
+    {
+     "key": "B",
+     "text": "2.33"
+    },
+    {
+     "key": "C",
+     "text": "2.66"
+    },
+    {
+     "key": "D",
+     "text": "1.33"
+    }
+   ],
+   "stem_figure": "j26-06apr-s1-phy-q41.png",
+   "solution_figure": "j26-06apr-s1-phy-q41-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A small cube of side 1 mm is placed at the centre of a circular loop of radius 10 cm carrying a current of 2 A . The magnetic energy stored inside the cube is $\\alpha \\times 10^{-14}$ J. The value of $\\alpha$ is ______ .\n$(\\mu_{o} = 4\\pi \\times 10^{-7}\\ \\mathrm{Tm/A}, \\pi = 3.14)$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Magnetic energy = (energy density) volume\n$= \\left(\\frac{B^{2}}{2\\mu_{0}}\\right)(a^{3})$\n$\\because B = \\frac{\\mu_{0}i}{2R} = \\frac{(4\\pi \\times 10^{-7})(2)}{2(10 \\times 10^{-2})}$ T\n$B = 4\\pi \\times 10^{-6}$ T\n$a = 1\\mathrm{mm} = 1 \\times 10^{-3}$\nSo magnetic energy\n$= \\frac{(4\\pi \\times 10^{-6})^{2}}{2(4\\pi \\times 10^{-7})}(1 \\times 10^{-3})^{3}$\n$= 6.28 \\times 10^{-14}$ J",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6.28"
+    },
+    {
+     "key": "B",
+     "text": "$6.28 \\times 10^{-6}$"
+    },
+    {
+     "key": "C",
+     "text": "628"
+    },
+    {
+     "key": "D",
+     "text": "$6.28 \\times 10^{-4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An inductor of inductance 10 mH having resistance of $100\\ \\Omega$ is connected to battery of E.M.F. 1.0 V through a switch as shown in the figure below. After switch is closed, the ratio of instantaneous voltages across the inductor when the current passing through it is 2 mA and 4 mA is _________ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: series loop of L, R and cell $\\varepsilon$ with current i; $V_{A}$ between L and R, $V_{B}$ at both ends)\nvoltage across inductor is $V_{A} - V_{B} = \\varepsilon - iR$\nRatio of voltages $= \\frac{\\varepsilon - i_{1}R}{\\varepsilon - i_{2}R}$\n$= \\frac{(1) - (2 \\times 10^{-3})(100)}{1 - (4 \\times 10^{-3})(100)}$\n$= \\frac{0.8}{0.6} = 4/3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4/3"
+    },
+    {
+     "key": "B",
+     "text": "3/4"
+    },
+    {
+     "key": "C",
+     "text": "5/3"
+    },
+    {
+     "key": "D",
+     "text": "3/5"
+    }
+   ],
+   "stem_figure": "j26-06apr-s1-phy-q43.png",
+   "solution_figure": "j26-06apr-s1-phy-q43-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The ratio of momentum of the photons of the $1^{st}$ and $2^{nd}$ line of Balmer series of Hydrogen atoms is $\\alpha/\\beta$. The possible values of $\\alpha$ and $\\beta$ are :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because \\frac{1}{\\lambda} = Rz^{2}\\left(\\frac{1}{n_{1}^{2}} - \\frac{1}{n_{2}^{2}}\\right)$\nand momentum of photon $p = \\frac{h}{\\lambda}$\nSo $p = \\frac{h}{\\lambda} = Rhz^{2}\\left(\\frac{1}{n_{1}^{2}} - \\frac{1}{n_{2}^{2}}\\right)$\nFor $1^{st}$ line of polmer series\n$n_{1} = 2, n_{2} = 3$\nFor $2^{nd}$ line of polmer series\n$n_{1} = 2, n_{2} = 4$\n$\\frac{p_{1}}{p_{2}} = \\frac{Rhz^{2}\\left(\\frac{1}{2^{2}} - \\frac{1}{3^{2}}\\right)}{Rhz^{2}\\left(\\frac{1}{2^{2}} - \\frac{1}{4^{2}}\\right)}$\n$\\Rightarrow \\frac{p_{1}}{p_{2}} = \\left(\\frac{5}{36}\\right) \\times \\left(\\frac{16}{3}\\right) = \\frac{20}{27} = \\frac{\\alpha}{\\beta}$\n$\\alpha = 20, \\beta = 27$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "27 and 20"
+    },
+    {
+     "key": "B",
+     "text": "3 and 16"
+    },
+    {
+     "key": "C",
+     "text": "5 and 36"
+    },
+    {
+     "key": "D",
+     "text": "20 and 27"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A LCR series circuit driven with $E_{rms} = 90$ V at frequency $f_{d} = 30$ Hz has resistance $R = 80\\ \\Omega$, an inductance with inductive reactance $X_{L} = 20.0\\ \\Omega$ and capacitance with capacitive reactance $X_{C} = 80.0\\ \\Omega$. The power factor of the circuit is _________.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Power factor $\\cos\\phi = \\frac{R}{\\sqrt{R^{2} + (x_{C} - x_{L})^{2}}}$\n$= \\frac{80}{\\sqrt{(80)^{2} + (80 - 20)^{2}}} = 0.8$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.8"
+    },
+    {
+     "key": "B",
+     "text": "0.64"
+    },
+    {
+     "key": "C",
+     "text": "0.9"
+    },
+    {
+     "key": "D",
+     "text": "0.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Refer to the circuit diagram given below. The heat generated across the $6\\ \\Omega$ resistance in 100 second is $\\frac{\\alpha}{100}$ J . The value of $\\alpha$ is _______. (Nearest integer)",
+   "correct_key": null,
+   "correct_value": 3477,
+   "correct_keys": null,
+   "solution": "(Figure: taking the right-hand junction as 0 V, the left end is at 2 V, the junction x joins $3\\Omega$, $4\\Omega$ and the $6\\Omega$ branch whose cell end is at 3 V)\nNet outgoing current is zero from x\n$\\frac{x - 2}{3} + \\frac{x - 0}{4} + \\frac{x - 3}{6} = 0$\n$\\Rightarrow 4x - 8 + 3x + 2x - 6 = 0 \\Rightarrow x = \\frac{14}{9}$ V\nPotenteal difference across $6\\Omega$ is $\\left(3 - \\frac{14}{9}\\right)V = \\frac{13}{9}V$\nSo heat generated $H = \\frac{V^{2}}{R}t$\n$H = \\left(\\frac{13}{9}\\right)^{2}\\left(\\frac{1}{6}\\right)(100) = \\frac{\\alpha}{100}$\n$\\Rightarrow \\alpha = 3477$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-06apr-s1-phy-q46.png",
+   "solution_figure": "j26-06apr-s1-phy-q46-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An unpolarized light of intensity $I_{0}$ passes through polarizer and then through a certain optically active solution and finally it goes to analyser. If the angle between analyser and polariser is $0^\\circ$ and intensity of light emerged from analyser is $\\frac{3}{8}I_{0}$, the angle of rotation of the light by the solution with respect to analyser is ________ degrees.",
+   "correct_key": null,
+   "correct_value": 30,
+   "correct_keys": null,
+   "solution": "(Figure: $I_{0}$ → polarizer → $\\frac{I_{0}}{2}$ → analyzer at angle $\\theta$ → $\\frac{I_{0}}{2}\\cos^{2}\\theta$)\nGiven that\n$\\frac{I_{0}}{2}\\cos^{2}\\theta = \\frac{3I_{0}}{8}$\n$\\Rightarrow \\cos\\theta = \\frac{\\sqrt{3}}{2} \\Rightarrow \\theta = 30^\\circ$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-06apr-s1-phy-q47-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Nuclei",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The energy released when $\\frac{7}{17.13}$ kg of $\\mathrm{^{7}_{3}Li}$ is converted into $\\mathrm{^{4}_{2}He}$ by proton bombardment is $\\alpha \\times 10^{32}$ eV. The value of $\\alpha$ is _________ . (Nearest integer)\n(Mass of $\\mathrm{^{7}_{3}Li} = 7.0183$u, mass of $\\mathrm{^{4}_{2}He} = 4.004$u, mass of proton $= 1.008$u and $1\\mathrm{u} = 931\\ \\mathrm{MeV/c^{2}}$ and Avogadro number $= 6.0 \\times 10^{23}$)",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$\\mathrm{^{7}_{3}Li} + \\mathrm{proton} \\rightarrow 2\\,\\mathrm{^{4}_{2}He}$\nEnergy released for one lithium atom is Q\n$\\Rightarrow Q = (\\Delta m)c^{2}$\n$= (m_{Li} + m_{proton} - 2m_{He})c^{2}$\n$= [7.0183 + 1.008 - 2(4.004)]931\\mathrm{MeV}$\n$Q = (17.031 \\times 10^{6}\\ \\mathrm{eV})$\nTotal no. of lithium atoms\n$= \\frac{7}{17.13} \\times \\frac{1}{7 \\times 10^{-3}} \\times 6 \\times 10^{23}$\n$= \\frac{6 \\times 10^{23}}{17.13}$\nSo total energy released\n$(17.037 \\times 10^{6})\\left(\\frac{6}{17.13} \\times 10^{26}\\right)$ eV\n$= 5.96 \\times 10^{26}$ eV",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Electrostatics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A three coulomb charge moves from the point (0, $-2$, $-5$) to the point (5, 1, 2) in an electric field expressed as $\\vec{E} = 2x\\hat{i} + 3y^{2}\\hat{j} + 4\\hat{k}\\ \\mathrm{N/C}$. The work done in moving the charge is _______ J.",
+   "correct_key": null,
+   "correct_value": 186,
+   "correct_keys": null,
+   "solution": "$W = \\int \\vec{F}.d\\vec{r}$\n$= \\int Q\\vec{E}.d\\vec{r}$\n$= \\int_{(0,-2,-5)}^{(5,1,2)} 3(2x\\hat{i} + 3y^{2}\\hat{j} + 4\\hat{k}).(dx\\hat{i} + dy\\hat{j} + dz\\hat{k})$\n$= 3\\left[x^{2} + y^{3} + 4z\\right]_{(0,-2,-5)}^{(5,1,2)}$\n$= 3[\\{(5)^{2} + (1)^{3} + 4(2)\\} - \\{(10)^{2} + (-2)^{3} + 4(-5)\\}]$\n$= 186$ J",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Thermodynamics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A certain gas is isothermally compressed to $\\left(\\frac{1}{3}\\right)^{rd}$ of its initial volume ($V_{0} = 3$ litre) by applying required pressure. If the bulk modulus of the gas is $3 \\times 10^{5}\\ \\mathrm{N/m^{2}}$, the magnitude of work done on the gas is ______ J.",
+   "correct_key": null,
+   "correct_value": 989,
+   "correct_keys": null,
+   "solution": "Work done by gas in isothermal process is\n$W = nRT\\ln\\left(\\frac{V_{F}}{V_{i}}\\right)$ or $P_{i}V_{i}\\ln\\left(\\frac{V_{f}}{V_{i}}\\right)$\n$\\because P_{i}$ = Bulk modulus (for isothermal process)\n$= 3 \\times 10^{5}\\ \\mathrm{N/m^{2}}$\n$V_{i} = 3$ ltr $= 3 \\times 10^{-3}\\ \\mathrm{m^{3}}$\n$V_{f} = \\left(\\frac{1}{3}\\right)V_{i} = 1\\mathrm{ltr} = 1 \\times 10^{-3}\\ \\mathrm{m^{3}}$\nSo $W = (3 \\times 10^{5})(3 \\times 10^{-3})\\ln\\left(\\frac{1}{3}\\right)$\n$= -900\\ln(3) = -900(1.0986)$\n$= -988.74$ J\nAs asked in question, work done on the gas is negative of work done by the gas so that will be equal to 988.74 J\nSo Answer is 989 J (Closest integer)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

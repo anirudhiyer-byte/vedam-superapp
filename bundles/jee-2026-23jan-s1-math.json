@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "23 Jan · Shift 1",
+  "title": "JEE Main 2026 · Mathematics · 23 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1rZ3MtKobhUlw12WtLRDwSKhUIGeSFyln"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A rectangle is formed by the lines $x = 0$, $y = 0$, $x = 3$ and $y = 4$. Let the line L be perpendicular to $3x + y + 6 = 0$ and divide the area of the rectangle into two equal parts. Then the distance of the point $\\left(\\frac{1}{2}, -5\\right)$ from the line L is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equation of L is $y = \\frac{1}{3}x + \\lambda$\nline L will pass through intersection point of daigonal beacuse line L divide the area of the rectanlge into two equal parts\nL passes through $\\left(\\frac{3}{2}, 2\\right)$\n$2 = \\frac{1}{2} + \\lambda$\n$\\lambda = \\frac{3}{2}$\n$\\frac{1}{3}x - y + \\frac{3}{2} = 0$\ndistance from $\\left(\\frac{1}{2}, -5\\right)$\n$$\\left|\\frac{\\frac{1}{6} + 5 + \\frac{3}{2}}{\\sqrt{\\frac{1}{9} + 1}}\\right| = \\frac{\\frac{40}{6}}{\\frac{\\sqrt{10}}{3}} = 2\\sqrt{10}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3\\sqrt{10}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{10}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{10}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-math-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha$ and $\\beta$ respectively be the maximum and the minimum values of the function $f(\\theta) = 4\\left(\\sin^{4}\\left(\\frac{7\\pi}{2} - \\theta\\right) + \\sin^{4}(11\\pi + \\theta)\\right) - 2\\left(\\sin^{6}\\left(\\frac{3\\pi}{2} - \\theta\\right) + \\sin^{6}(9\\pi - \\theta)\\right), \\theta \\in R$. Then $\\alpha + 2\\beta$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(\\theta) = 4\\left(\\cos^{4}\\theta + \\sin^{4}\\theta\\right) - 2\\left(\\cos^{6}\\theta + \\sin^{6}\\theta\\right)$\n$f(\\theta) = 2\\left(1 - 2\\sin^{2}\\theta\\cos^{2}\\theta\\right) - 2\\left(1 - 3\\sin^{2}\\theta\\cos^{2}\\theta\\right)$\n$f(\\theta) = 2 - \\frac{1}{2}\\sin^{2}(2\\theta)$\n$\\alpha = 2$ ; $\\beta = \\frac{3}{2}$\n$\\alpha + 2\\beta = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = -\\hat{i} + \\hat{j} + 2\\hat{k}$, $\\vec{b} = \\hat{i} - \\hat{j} - 3\\hat{k}$, $\\vec{c} = \\vec{a} \\times \\vec{b}$ and $\\vec{d} = \\vec{c} \\times \\vec{a}$. Then $(\\vec{a} - \\vec{b}) \\cdot \\vec{d}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Method -I\n$\\vec{c} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ -1 & 1 & 2 \\\\ 1 & -1 & -3 \\end{vmatrix}$ ; $\\vec{d} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ -1 & -1 & 0 \\\\ -1 & 1 & 2 \\end{vmatrix}$\n$\\vec{c} = -\\hat{i} - \\hat{j}$ ; $\\vec{d} = -2\\hat{i} + 2\\hat{j} - 2\\hat{k}$\n$\\vec{a} - \\vec{b} = -2\\hat{i} + 2\\hat{j} + 5\\hat{k}$\n$(\\vec{a} - \\vec{b}) \\cdot \\vec{d} = 4 + 4 - 10$\n$= -2$\nMethod -II\n$\\vec{c} \\perp^{r} \\vec{a}$ ; $\\vec{d} \\perp^{r} \\vec{a}$\n$\\vec{c} \\perp^{r} \\vec{b}$ and $\\vec{d} \\perp^{r} \\vec{c}$\nSo $\\vec{d}$ lies in plane of $\\vec{a}$ and $\\vec{b}$ and perpenducular to $\\vec{a}$\n$\\vec{d} = \\left(\\vec{a} \\times \\vec{b}\\right) \\times \\vec{a}$\n$\\vec{d} = |\\vec{a}|^{2}\\vec{b} - \\left(\\vec{a} \\cdot \\vec{b}\\right)\\vec{a}$\n$\\vec{d} = 6\\vec{b} + 8\\vec{a}$\n$\\left(\\vec{a} - \\vec{b}\\right) \\cdot \\vec{d} = \\left(\\vec{a} - \\vec{b}\\right) \\cdot \\left(6\\vec{b} + 8\\vec{a}\\right)$\n$= 8|\\vec{a}|^{2} - 6|\\vec{b}|^{2} - 2\\vec{a} \\cdot \\vec{b}$\n$= 48 - 66 + 16 = -2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$-4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A building construction work can be completed by two masons A and B together in $22.5$ days. Mason A alone can complete the construction work in $24$ days less than mason B alone. Then mason A alone will complete the construction work in :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let time taken by mason A alone to complete the work be in $x$ days so, mason B along take $x + 24$ days\nwork done by A in one day $= \\frac{1}{x}$\nwork done by B in one day $= \\frac{1}{x + 24}$\nSo work done by A + B in one day $= \\frac{1}{22.5}$\n$\\frac{1}{x} + \\frac{1}{x + 24} = \\frac{1}{22.5}$\n$x^{2} - 21x - 540 = 0$\n$x = 36$ or $x = -15$ (Rej.)\n$x = 36$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$36$ days"
+    },
+    {
+     "key": "B",
+     "text": "$42$ days"
+    },
+    {
+     "key": "C",
+     "text": "$24$ days"
+    },
+    {
+     "key": "D",
+     "text": "$30$ days"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\begin{cases} \\frac{ax^{2} + 2ax + 3}{4x^{2} + 4x - 3}, & x \\neq -\\frac{3}{2}, \\frac{1}{2} \\\\ b, & x = -\\frac{3}{2}, \\frac{1}{2} \\end{cases}$ be continuous at $x = -\\frac{3}{2}$. If $fof(x) = \\frac{7}{5}$, then $x$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\lim_{x \\to \\frac{-3}{2}} \\frac{ax^{2} + 2ax + 3}{(2x - 1)(2x + 3)}$$\n{at $x = -\\frac{3}{2}$ denominator is zero so numerator should be zero}\n$a\\left(-\\frac{3}{2}\\right)^{2} + 2a\\left(-\\frac{3}{2}\\right) + 3 = 0$\n$\\frac{3a}{4} = 3 \\Rightarrow a = 4$\n$$f(x) = \\begin{cases} \\frac{(2x + 1)(2x + 3)}{(2x - 1)(2x + 3)} & x \\neq \\frac{-3}{2}, \\frac{1}{2} \\\\ b & x = \\frac{-3}{2}, \\frac{1}{2} \\end{cases}$$\n$$f(x) = \\begin{cases} \\frac{2x + 1}{2x - 1} & x \\neq \\frac{-3}{2}, \\frac{1}{2} \\\\ b & x = \\frac{-3}{2}, \\frac{1}{2} \\end{cases}$$\n$$f(f(x)) = f\\left(\\frac{2x + 1}{2x - 1}\\right) = \\frac{2\\left(\\frac{2x + 1}{2x - 1}\\right) + 1}{2\\left(\\frac{2x + 1}{2x - 1}\\right) - 1} = \\frac{7}{5}$$\n$x = 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1.4$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of all possible values of $n \\in N$, so that the coefficients of $x$, $x^{2}$ and $x^{3}$ in the expansion of $(1 + x^{2})^{2}(1 + x)^{n}$, are in arithmetic progression is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "coefficients of $x = {}^{n}C_{1}$\ncoefficients of $x^{2} = 2 + {}^{n}C_{1}$\ncoefficients of $x^{3} = 2 \\cdot {}^{n}C_{1} + {}^{n}C_{3}$\n$2(2 + {}^{n}C_{2}) = {}^{n}C_{1} + 2\\,{}^{n}C_{1} + {}^{n}C_{3}$\n$4 + n(n - 1) = 3n + \\frac{n(n - 1)(n - 2)}{6}$\n$n^{3} - 9n^{2} + 26n - 24 = 0$\n$n = 2, 3, 4$\nsum of all possible value of $x \\in N$ is $= 2 + 3 + 4 = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $\\frac{{}^{100}C_{50}}{51} + \\frac{{}^{100}C_{51}}{52} + \\ldots + \\frac{{}^{100}C_{100}}{101}$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\sum_{r=50}^{100} \\frac{{}^{100}C_{r}}{r + 1} = \\frac{1}{101}\\sum_{r=50}^{100} {}^{101}C_{r+1}$$\n$$= \\frac{1}{101} \\times \\frac{2^{101}}{2} = \\frac{2^{100}}{101}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2^{100}}{100}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2^{101}}{100}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2^{101}}{101}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2^{100}}{101}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the domain of the function $f(x) = \\log_{3}\\log_{5}\\log_{7}\\left(9x - x^{2} - 13\\right)$ be the interval $(m, n)$. Let the hyperbola $\\frac{x^{2}}{a^{2}} - \\frac{y^{2}}{b^{2}} = 1$ have eccentricity $\\frac{n}{3}$ and the length of the latus rectum $\\frac{8m}{3}$. Then $b^{2} - a^{2}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\log_{7}(9x - x^{2} - 13)$\n$9x - x^{2} - 13 > 7$\n$x^{2} - 9x + 20 < 0$\n$(x - 4)(x - 5) < 0$\n$x \\in (45)$\n$\\sqrt{1 + \\frac{b^{2}}{a^{2}}} = \\frac{5}{3}$\n$\\frac{b}{a} = \\frac{4}{3}$ ; $\\frac{2b^{2}}{a} = \\frac{32}{3}$\n$b = 4$ and $a = 3$\n$b^{2} - a^{2} = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9$"
+    },
+    {
+     "key": "B",
+     "text": "$11$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $x^{4}\\,dy + \\left(4x^{3}y + 2\\sin x\\right)dx = 0, x > 0, y\\left(\\frac{\\pi}{2}\\right) = 0$. Then $\\pi^{4}y\\left(\\frac{\\pi}{3}\\right)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{4}dy + 4x^{3}y\\,dx + 2\\sin x\\,dx = 0$\n$\\int\\left(x^{4}dy + 4x^{3}y\\,dx\\right) + 2\\int \\sin x\\,dx = 0$\n$\\int d\\left(x^{4}y\\right) = -2\\int \\sin x\\,dx$\n$x^{4}y = 2\\cos x + C$ ; $f\\left(\\frac{\\pi}{2}\\right) = 0$\n$c = 0$\n$f(x) = \\frac{2\\cos x}{x^{4}}$\n$$f\\left(\\frac{\\pi}{3}\\right) = \\frac{2 \\times 1/2}{\\left(\\frac{\\pi}{3}\\right)^{4}}$$\n$\\pi^{4}f\\left(\\frac{\\pi}{3}\\right) = 81$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$81$"
+    },
+    {
+     "key": "B",
+     "text": "$64$"
+    },
+    {
+     "key": "C",
+     "text": "$92$"
+    },
+    {
+     "key": "D",
+     "text": "$72$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the direction cosines of two lines satisfy the equations : $4l + m - n = 0$ and $2mn + 10nl + 3lm = 0$. Then the cosine of the acute angle between these lines is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$n = 4l + m$\n$2mn + 10nl + 3lm = 0$\n$2m(4l + m) + 10l(4l + m) + 3lm = 0$\n$40l^{2} + 21lm + 2m^{2} = 0$\n$(8l + m)(5l + 2m) = 0$\nCase-I : $m = -8l$, $n = -4l$, d.c. $(1, -8, -4)$\nCase-II : $m = -\\frac{5l}{2}$, $h = \\frac{3l}{2}$, d.c. $\\left(1, -\\frac{5}{2}, \\frac{3}{2}\\right)$, d.c. $(2, -5, 3)$\n$$\\cos\\theta = \\left|\\frac{2 + 40 - 12}{\\sqrt{1 + 64 + 16}\\sqrt{4 + 25 + 9}}\\right|$$\n$$\\cos\\theta = \\frac{30}{9\\sqrt{38}}$$\n$$\\cot\\theta = \\frac{10}{3\\sqrt{38}}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{10}{\\sqrt{38}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{10}{3\\sqrt{38}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{10}{7\\sqrt{38}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{20}{3\\sqrt{38}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the mean and variance of $8$ numbers $-10, -7, -1, x, y, 9, 2, 16$ be $\\frac{7}{2}$ and $\\frac{293}{4}$, respectively. Then the mean of $4$ numbers $x, y, x + y + 1, |x - y|$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{-10 - 7 - 1 + x + y + 9 + 2 + 16}{8} = \\frac{7}{2}$$\n$x + y = 19$\n$$\\frac{\\sum x_{i}^{2}}{8} - (\\bar{x})^{2} = \\frac{293}{4}$$\n$$\\frac{10^{2} + 7^{2} + 1^{2} + x^{2} + y^{2} + 2^{2} + 9^{2} + 16^{2}}{8} - \\frac{49}{4} = \\frac{293}{4}$$\nput $y = 19 - x$\n$x = 12$ and $y = 7$\n$$\\frac{(1 + x + y) + (x) + (y) + (|y - x|)}{4} = \\frac{20 + 12 + 7 + 5}{4}$$\n$= 11$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$11$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the line $y - x = 1$ intersect the ellipse $\\frac{x^{2}}{2} + \\frac{y^{2}}{1} = 1$ at the points A and B. Then the angle made by the line segment AB at the center of the ellipse is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{x^{2}}{2} + \\frac{(1 + x)^{2}}{1} = 1$$\n$x = 0$ ; $x = -\\frac{4}{3}$\n$B\\left(-\\frac{4}{3}, -\\frac{1}{3}\\right)$\n$\\tan\\alpha = \\frac{1}{4}$\ntotal angle $= \\frac{\\pi}{2} + \\tan^{-1}\\left(\\frac{1}{4}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2} + 2\\tan^{-1}\\left(\\frac{1}{4}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\pi - \\tan^{-1}\\left(\\frac{1}{4}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2} + \\tan^{-1}\\left(\\frac{1}{4}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{2} - \\tan^{-1}\\left(\\frac{1}{4}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-math-q12-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Among the statements :\nI : If $\\begin{vmatrix} 1 & \\cos\\alpha & \\cos\\beta \\\\ \\cos\\alpha & 1 & \\cos\\gamma \\\\ \\cos\\beta & \\cos\\gamma & 1 \\end{vmatrix} = \\begin{vmatrix} 0 & \\cos\\alpha & \\cos\\beta \\\\ \\cos\\alpha & 0 & \\cos\\gamma \\\\ \\cos\\beta & \\cos\\gamma & 0 \\end{vmatrix}$, then $\\cos^{2}\\alpha + \\cos^{2}\\beta + \\cos^{2}\\gamma = \\frac{3}{2}$ and\nII : If $\\begin{vmatrix} x^{2} + x & x + 1 & x - 2 \\\\ 2x^{2} + 3x - 1 & 3x & 3x - 3 \\\\ x^{2} + 2x + 3 & 2x - 1 & 2x - 1 \\end{vmatrix} = px + q$ then $p^{2} = 196q^{2}$ :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$1 - \\cos^{2}\\gamma - \\cos\\alpha\\left(\\cos\\alpha - \\cos\\beta\\cos\\gamma\\right) + \\cos\\beta\\left(\\cos\\alpha\\cos\\gamma - \\cos\\beta\\right)$\n$= -\\cos\\alpha\\left(0 - \\cos\\beta\\cos\\gamma\\right) + \\cos\\beta\\left(\\cos\\alpha\\cos\\gamma\\right)$\n$\\Rightarrow 1 - \\mathrm{con}^{2}\\gamma - \\cos^{2}\\alpha + \\cos\\alpha\\cos\\beta\\cos\\gamma + \\cos\\alpha\\cos\\beta\\cos\\gamma - \\cos^{2}\\beta$\n$= \\cos\\alpha\\cos\\beta\\cos\\gamma + \\cos\\alpha\\cos\\beta\\cos\\gamma$\n$\\Rightarrow \\cos^{2}\\alpha + \\cos^{2}\\beta + \\cos^{2}\\gamma = 1$\nSo, first statement is false\nput $x = 0$ for q\n$q = \\begin{vmatrix} 0 & 1 & -2 \\\\ -1 & 0 & -3 \\\\ 3 & -1 & -1 \\end{vmatrix}$\n$q = -12$\nput $x = 1$ for p\n$p + q = \\begin{vmatrix} 2 & 2 & -1 \\\\ 4 & 3 & 3 \\\\ 6 & 1 & 1 \\end{vmatrix}$\n$p = 54$\n$p^{2} \\neq 196q^{2}$\nSo second statement is also false.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "only I is true"
+    },
+    {
+     "key": "B",
+     "text": "both are true"
+    },
+    {
+     "key": "C",
+     "text": "only II is true"
+    },
+    {
+     "key": "D",
+     "text": "both are false"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\int \\frac{\\left(2 - x^{2}\\right) \\cdot e^{x}}{(\\sqrt{1 + x})(1 - x)^{3/2}}\\,dx$. If $f(0) = 0$, then $f\\left(\\frac{1}{2}\\right)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$f(x) = \\int e^{x}\\left(\\frac{1 + 1 - x^{2}}{\\sqrt{1 + x}(1 - x)^{3/2}}\\right)dx$$\n$$= \\int e^{x}\\left(\\frac{1 - x^{2}}{\\sqrt{1 + x}(1 - x)^{3/2}} + \\frac{1}{\\sqrt{1 + x}(1 - x)^{3/2}}\\right)dx$$\n$$= \\int e^{x}\\left(\\sqrt{\\frac{1 + x}{1 - x}} + \\frac{1}{\\sqrt{1 + x}(1 - x)^{3/2}}\\right)dx$$\n$$= e^{x}\\sqrt{\\frac{1 + x}{1 - x}} + c \\quad \\left\\{\\because \\int e^{x}\\left(f(x) + f'(x)\\right)dx\\right\\} = e^{x}f(x) + c$$\n$f(0) = 0$\n$c = -1$\n$$f(x) = e^{x}\\sqrt{\\frac{1 + x}{1 - x}} - 1$$\n$$\\left(\\frac{1}{2}\\right) = \\sqrt{e}\\sqrt{\\frac{\\frac{3}{2}}{\\frac{1}{2}}} - 1$$\n$$f\\left(\\frac{1}{2}\\right) = \\sqrt{3e} - 1$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3e} - 1$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{2e} - 1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3e} + 1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{2e} + 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of the integral $\\int_{\\frac{\\pi}{24}}^{\\frac{5\\pi}{24}} \\frac{dx}{1 + \\sqrt[3]{\\tan 2x}}$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$I = \\int_{\\pi/24}^{5\\pi/24} \\frac{dx}{1 + \\left(\\tan(2x)\\right)^{1/3}}$$\nKing property use\n$$I = \\int_{\\pi/24}^{5\\pi/24} \\frac{dx}{1 + \\left(\\cot(2x)\\right)^{1/3}}$$\nadd\n$$2I = \\int_{\\pi/24}^{\\pi/24} dx$$\n$$2I = \\frac{5\\pi}{24} - \\frac{\\pi}{24}$$\n$$2I = \\frac{\\pi}{6}$$\n$$I = \\frac{\\pi}{12}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{18}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{12}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha$ and $\\beta(\\alpha < \\beta)$ are the roots of the equation $\\left(-2 + \\sqrt{3}\\right)\\left(|\\sqrt{x} - 3|\\right) + \\left(x - 6\\sqrt{x}\\right) + \\left(9 - 2\\sqrt{3}\\right) = 0, x \\geq 0$, then $\\sqrt{\\frac{\\beta}{\\alpha}} + \\sqrt{\\alpha\\beta}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left(-2 + \\sqrt{3}\\right)\\left|\\sqrt{x} - 3\\right| + x - 6\\sqrt{x} + 9 - 2\\sqrt{3} = 0$\n$\\left(-2 + \\sqrt{3}\\right)\\left|\\sqrt{x} - 3\\right| + \\left(\\sqrt{x} - 3\\right)^{2} - 2\\sqrt{3} = 0$\n$\\left|\\sqrt{x} - 3\\right|^{2} + \\left(-2 + \\sqrt{3}\\right)\\left|\\sqrt{x} - 3\\right| - 2\\sqrt{3} = 0$\n$\\sqrt{x} - 3 = t$\n$t^{2} - 2t + \\sqrt{3}t - 2\\sqrt{3} = 0$\n$t\\left(t - 2\\right) + \\sqrt{3}\\left(t - 2\\right) = 0$\n$t = 2$ or $t = -\\sqrt{3}$ (Rej.)\n$\\left|\\sqrt{x} - 3\\right| = 2$\n$\\sqrt{x} - 3 = 2$ or $\\sqrt{x} - 3 = -2$\n$x = 25$ ; $x = 1$\n$\\alpha = 1$ ; $\\beta = 25$\n$\\sqrt{\\frac{25}{1}} + \\sqrt{25} = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$11$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The vertices B and C of a triangle ABC lie on the line $\\frac{x}{1} = \\frac{1 - y}{-2} = \\frac{z - 2}{3}$. The coordinates of A and B are $(1, 6, 3)$ and $(4, 9, \\alpha)$ respectively and C is at a distance of $10$ units from B. The area (in sq. units) of $\\Delta ABC$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{4}{1} = \\frac{1 - 9}{-2} = \\frac{\\alpha - 2}{3}$\n$\\alpha = 14$\nArea $= \\frac{1}{2} \\times \\left|\\overrightarrow{AD}\\right| \\times 10$\nLet $D(\\lambda, 2\\lambda + 1, 3\\lambda + 2)$\n$\\overrightarrow{AD} = (\\lambda - 1)\\hat{i} + (2\\lambda - 5)\\hat{j} + (3\\lambda - 1)\\hat{k}$\n$\\overrightarrow{AD} \\cdot \\vec{P} = 0$\n$\\lambda - 1 + 4\\lambda - 10 + 9\\lambda - 3 = 0$\n$14\\lambda = 14$\n$\\lambda = 1$\n$\\overrightarrow{AD} = -3\\hat{j} + 2\\hat{k}$\n$\\left|\\overrightarrow{AD}\\right| = \\sqrt{13}$\nArea $= \\frac{1}{2} \\times \\sqrt{13} \\times 10$\n$= 5\\sqrt{13}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5\\sqrt{13}$"
+    },
+    {
+     "key": "B",
+     "text": "$20\\sqrt{13}$"
+    },
+    {
+     "key": "C",
+     "text": "$10\\sqrt{13}$"
+    },
+    {
+     "key": "D",
+     "text": "$15\\sqrt{13}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-math-q17-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\{-2, -1, 0, 1, 2, 3, 4\\}$. Let R be a relation on A defined by $xRy$ if and only if $2x + y \\leq 2$. Let $l$ be the number of elements in R. Let $m$ and $n$ be the minimum number of elements required to be added in R to make it reflexive and symmetric relations respectively. Then $l + m + n$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$R\\{(-2, -2) (-2, -1) (-2, 0) (-2, 1) (-2, 2) (-2, 3) (-2, 4)$\n$(-1, -2) (-1, -2) (-1, -1) (-1, 0) (-1, 1) (-1, 2) (-1, 3) (-1, 4)$\n$(0, -2) (0, -1) (0, 0) (0, 1) (0, 2)$\n$(1, -2) (1, -1) (1, 0) (2, -2)\\}$\n$l = 23$\nmininum number of element to be added to make it reflexive $\\{(1, 1) (2, 2) (3, 3) (4, 4)\\}$\n$m = 4$\nminimum number of element to be added to make it symmetric\n$\\{(3, -2) (4, -2) (2, -1) (2, 0) (3, -1) (4, -1)\\}$\n$n = 6$\n$l + m + n = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$33$"
+    },
+    {
+     "key": "B",
+     "text": "$34$"
+    },
+    {
+     "key": "C",
+     "text": "$35$"
+    },
+    {
+     "key": "D",
+     "text": "$32$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\{z : 3 \\leq |2z - 3(1 + i)| \\leq 7\\}$ be a set of complex number. Then $\\min_{z \\in S}\\left|\\left(z + \\frac{1}{2}(5 + 3i)\\right)\\right|$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{3}{2} \\leq \\left|z - \\frac{3}{2}(1 + i)\\right| \\leq \\frac{7}{2}$\n$\\min_{z \\in S}\\left|z - \\left(-\\frac{5}{2} - \\frac{3}{2}i\\right)\\right|$\nminimum $= AB = AC - BC = 5 - \\frac{7}{2} = \\frac{3}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-math-q19-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Number of solutions of $\\sqrt{3}\\cos 2\\theta + 8\\cos\\theta + 3\\sqrt{3} = 0, \\theta \\in [-3\\pi, 2\\pi]$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sqrt{3}\\left(2\\cos^{2}\\theta - 1\\right) + 8\\cos\\theta + 3\\sqrt{3} = 0$\n$2\\sqrt{3}\\cos^{2}\\theta + 8\\cos\\theta + 2\\sqrt{3} = 0$\n$2\\sqrt{3}\\cos^{2}\\theta + 6\\cos\\theta + 2\\cos 8 + 2\\sqrt{3} = 0$\n$2\\sqrt{3}\\cos\\theta\\left(\\cos\\theta + \\sqrt{3}\\right) + 2\\left(\\cos\\theta + \\sqrt{3}\\right) = 0$\n$\\cos\\theta = -\\sqrt{3}$ (Reject) or $\\cos\\theta = -\\frac{1}{\\sqrt{3}}$\n$\\cos\\theta = -\\frac{1}{\\sqrt{3}}$ ; $Q \\in [-3\\pi\\ 2\\pi]$\n$\\theta$ will have 5 value in $[-3\\pi\\ 2\\pi]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of $4$-letter words, with or without meaning, which can be formed using the letters PQRPQRSTUVP, is ______.",
+   "correct_key": null,
+   "correct_value": 1422,
+   "correct_keys": null,
+   "solution": "$3 \\rightarrow P$, $2 \\rightarrow Q$, $2 \\rightarrow R, S, T, U, V$\nType | Eg. | Selection | Avg.\n$3 + 1$ | PPPT | ${}^{1}C_{1}\\,{}^{6}C_{1}$ | ${}^{1}C_{1}\\,{}^{6}C_{1}\\frac{4!}{3!} = 24$\n$2 + 2$ | PPQQ | ${}^{3}C_{2}$ | ${}^{3}C_{2}\\frac{4!}{2!2!} = 18$\n$2 + 1 + 1$ | PPQR | ${}^{3}C_{1}\\,{}^{6}C_{2}$ | ${}^{3}C_{1}\\,{}^{6}C_{2}\\frac{4!}{2!} = 540$\n$1 + 1 + 1 + 1$ | PQRS | ${}^{7}C_{4}$ | ${}^{7}C_{4}4! = 840$\n$24 + 18 + 540 + 840 = 1422$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Matrices and Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $|A| = 6$, where A is a $3 \\times 3$ matrix. If $\\left|\\operatorname{adj}\\left(3\\operatorname{adj}\\left(A^{2} \\cdot \\operatorname{adj}(2A)\\right)\\right)\\right| = 2^{m} \\cdot 3^{n}, m, n \\in N$, then $m + n$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 62,
+   "correct_keys": null,
+   "solution": "$$\\left|\\operatorname{adj}\\left(3\\operatorname{adj}\\left(A^{2} \\cdot \\operatorname{adj}(2A)\\right)\\right)\\right|$$\n$$= \\left|3\\operatorname{adj}\\left(A^{2} \\cdot \\operatorname{adj}(2A)\\right)\\right|^{3-1} = 3^{6}\\left|\\operatorname{adj}\\left(A^{2} \\cdot \\operatorname{adj}(2A)\\right)\\right|^{2}$$\n$$= 3^{6}\\left(\\left|A^{2} \\cdot \\operatorname{adj}(2A)\\right|^{2}\\right)^{3-1} = 3^{6}\\left|A^{2}\\right|^{4}\\left|\\operatorname{adj}(2A)\\right|^{4}$$\n$$= 3^{6}|A|^{8}|2A|^{8}$$\n$$= 3^{6}|A|^{8} \\cdot 2^{24}|A|^{8}$$\n$$= 3^{6} \\cdot 2^{24}|A|^{16}$$\n$$= 3^{6} \\cdot 2^{24} \\cdot 2^{16} \\cdot 3^{16}$$\n$$= 2^{40}2^{22}$$\n$m = 40, n = 22$\n$m + n = 62$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f$ be a twice differentiable non-negative function such that $(f(x))^{2} = 25 + \\int_{0}^{x}\\left((f(t))^{2} + \\left(f'(t)\\right)^{2}\\right)dt$. Then the mean of $f\\left(\\log_{e}(1)\\right), f\\left(\\log_{e}(2)\\right), \\ldots, f\\left(\\log_{e}(625)\\right)$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 1565,
+   "correct_keys": null,
+   "solution": "$2f(x)f'(x) = (f(x))^{2} + \\left(f'(x)\\right)^{2}$\n$\\left(f'(x) - f(x)\\right)^{2} = 0$\n$f'(x) = f(x)$\n$\\int \\frac{f'(x)}{f(x)} = \\int 1$\n$\\ln f(x) = x + C$ ; $f(0) = 5$\n$C = \\ln 5$\n$f(x) = 5e^{x}$\n$$\\frac{f(\\ln 1) + f(\\ln 2) + f(\\ln 3) + \\cdots + f(\\ln 625)}{625}$$\n$$= \\frac{5(1 + 2 + \\cdots + 625)}{625} = 5 \\times \\frac{625(626)}{625 \\times 2}$$\n$= 1565$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Probability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "From the first $100$ natural numbers, two numbers first $a$ and then $b$ are selected randomly without replacement. If the probability that $a - b \\geq 10$ is $\\frac{m}{n}$, $\\gcd(m, n) = 1$, then $m + n$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 311,
+   "correct_keys": null,
+   "solution": "$a - b \\geq 10$\nIf $a = 100$ than $b$ can be $\\{1, 2, 3, \\ldots, 90\\}$\nIf $a = 99$ than $b$ can be $\\{1, 2, \\ldots, 89\\}$\n$\\vdots$\nIf $a = 11$ than $b$ can be $\\{1\\}$\ntotal favourable case $= 1 + 2 + 3 + \\ldots + 90$\ntotal case $= 100 \\times 99$\n$$\\text{Reg. Probability} = \\frac{\\frac{90 \\times 91}{2}}{100 \\times 99}$$\n$$= \\frac{91}{220} = \\frac{m}{n}$$\n$m + n = 311$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Application of Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the area of the region bounded by the curve $y = \\max\\{\\sin x, \\cos x\\}$, lines $x = 0$, $x = \\frac{3\\pi}{2}$, and the x-axis be A. Then, $A + A^{2}$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "$$A = \\int_{0}^{\\pi/4}\\cos x\\,dx + \\int_{\\pi/4}^{\\pi}\\sin x\\,dx - \\int_{\\pi}^{5\\pi/4}\\sin x\\,dx - \\int_{5\\pi/4}^{3\\pi/2}\\cos x\\,dx$$\n$$A = [\\sin x]_{0}^{\\pi/4} - [\\cos x]_{\\pi/4}^{\\pi} + [\\cos x]_{\\pi}^{5\\pi/4} - [\\sin x]_{5\\pi/4}^{3\\pi/2}$$\n$$A = \\frac{1}{\\sqrt{2}} + 1 + \\frac{1}{\\sqrt{2}} - \\frac{1}{\\sqrt{2}} + 1 + 1 - \\frac{1}{\\sqrt{2}}$$\n$= 3$\n$A^{2} + A = 9 + 3 = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-math-q25-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

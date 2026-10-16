@@ -1,0 +1,782 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "23 Jan · Shift 2",
+  "title": "JEE Main 2026 · Physics · 23 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1e5sS5jGXdFyRH7FUI67j9oJrN-OK6nTL"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The current passing through a conducting loop in the form of equilateral triangle of side $4\\sqrt{3}$ cm is 2 A. The magnetic field at its centroid is $\\alpha \\times 10^{-5}$ T. The value of $\\alpha$ is _________.\n(Given : $\\mu_{0} = 4\\pi \\times 10^{-7}$ SI units)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$R = 4\\sqrt{3} \\times \\frac{\\sqrt{3}}{2} \\times \\frac{1}{3} = 2\\ \\mathrm{cm}$\n$B = \\frac{\\mu_{0}I}{4\\pi R}\\left(\\sin 60^\\circ + \\sin 60^\\circ\\right) \\times 3$\n$= \\frac{10^{-7} \\times 2}{2 \\times 10^{-2}}\\left(\\frac{\\sqrt{3}}{2} + \\frac{\\sqrt{3}}{2}\\right) \\times 3$\n$= 3\\sqrt{3} \\times 10^{-5} = \\alpha \\times 10^{-5} \\Rightarrow \\alpha = 3\\sqrt{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3\\sqrt{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s2-phy-q26-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two short dipoles (A, B), A having charges $\\pm 2\\ \\mu\\mathrm{C}$ and length 1 cm and B having charges $\\pm 4\\ \\mu\\mathrm{C}$ and length 1 cm are placed with their centres 80 cm apart as shown in the figure. The electric field at a point P, equi-distant from the centres of both dipoles is _______ N/C.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P_{1} = 4 \\times 10^{-6} \\times 10^{-2} \\quad P_{2} = 2 \\times 10^{-6} \\times 10^{-2}$\n$E_{1} = \\frac{kP_{1}}{r^{3}} \\quad E_{2} = \\frac{2kP_{2}}{r^{3}}$\n$E = \\sqrt{E_{1}^{2} + E_{2}^{2}} = \\frac{9\\sqrt{2}}{16} \\times 10^{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{9}{16}\\sqrt{2} \\times 10^{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{9}{16}\\sqrt{2} \\times 10^{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$9\\sqrt{2} \\times 10^{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$4.5\\sqrt{2} \\times 10^{4}$"
+    }
+   ],
+   "stem_figure": "j26-23jan-s2-phy-q27.png",
+   "solution_figure": "j26-23jan-s2-phy-q27-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Suppose a long solenoid of 100 cm length, radius 2 cm having 500 turns per unit length, carries a current $I = 10 \\sin(\\omega t)$ A, where $\\omega = 1000\\ \\mathrm{rad/s}$. A circular conducting loop (B) of radius 1 cm is coaxially slided through the solenoid at a speed $v = 1\\ \\mathrm{cm/s}$. The r.m.s. current through the loop when the coil B is inserted 10 cm inside the solenoid is $\\frac{\\alpha}{\\sqrt{2}}\\ \\mu\\mathrm{A}$. The value of $\\alpha$ is ______.\n[Resistance of the loop $= 10\\ \\Omega$]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$n = 500, I = 10\\sin(1000t);$\nAssuming the solenoid to be infinitely long :\n$\\phi = BA = \\mu_{0}nI \\cdot \\pi r^{2} \\Rightarrow e = -\\frac{d\\phi}{dt} = -\\mu_{0}n\\pi r^{2}.\\frac{dI}{dt}$\ninduced current $= i = \\frac{e}{R} = \\frac{\\mu_{0}n\\pi r^{2}}{R} \\cdot 10 \\times 1000 \\times \\cos(1000t)$\n$i_{rms} = \\frac{i_{0}}{\\sqrt{2}} = 197.4 \\simeq 197$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "100"
+    },
+    {
+     "key": "B",
+     "text": "80"
+    },
+    {
+     "key": "C",
+     "text": "197"
+    },
+    {
+     "key": "D",
+     "text": "280"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "To compare EMF of two cells using potentiometer the balancing lengths obtained are 200 cm and 150 cm. The least count of scale is 1 cm. The percentage error in the ratio of EMFs is ________.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "ratio $= r = \\frac{E_{1}}{E_{2}} = \\frac{\\ell_{1}}{\\ell_{2}}$\n$\\Rightarrow \\frac{dr}{r} = \\frac{d\\ell_{1}}{\\ell_{1}} + \\frac{d\\ell_{2}}{\\ell_{2}} = \\frac{1}{200} + \\frac{1}{150}$\n$\\Rightarrow \\frac{dr}{r} \\times 100 = 1.167\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.55"
+    },
+    {
+     "key": "B",
+     "text": "1.75"
+    },
+    {
+     "key": "C",
+     "text": "1.65"
+    },
+    {
+     "key": "D",
+     "text": "1.45"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A circular loop of radius 7 cm is placed in uniform magnetic field of 0.2 T directed perpendicular to plane of loop. The loop is converted into a square loop in 0.5 s. The EMF induced in the loop is _______ mV.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$e = \\frac{B\\Delta A}{\\Delta t}; 2\\pi r = 4\\ell \\Rightarrow \\ell = \\pi r/2$\n$A_{i} = \\pi r^{2}, \\quad A_{f} = \\ell^{2} = \\pi^{2}r^{2}/4$\n$e = \\frac{B\\left(\\pi r^{2} - \\pi^{2}r^{2}/4\\right)}{0.5} = -1.32\\ \\mathrm{mV}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6.6"
+    },
+    {
+     "key": "B",
+     "text": "1.32"
+    },
+    {
+     "key": "C",
+     "text": "13.2"
+    },
+    {
+     "key": "D",
+     "text": "8.25"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The ratio of speeds of electromagnetic waves in vacuum and a medium, having dielectric constant k = 3 and permeability of $\\mu = 2\\mu_{0}$, is\n($\\mu_{0}$ = permeability of vacuum)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mu = \\frac{c}{v} = \\sqrt{\\mu_{r}\\varepsilon_{r}} = \\sqrt{2 \\times 3} = \\sqrt{6} : 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "36 : 1"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{6} : 1$"
+    },
+    {
+     "key": "C",
+     "text": "6 : 1"
+    },
+    {
+     "key": "D",
+     "text": "3 : 2"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A small metallic sphere of diameter 2 mm and density $10.5\\ \\mathrm{g/cm^{3}}$ is dropped in glycerine having viscosity 10 Poise and density $1.5\\ \\mathrm{g/cm^{3}}$ respectively. The terminal velocity attained by the sphere is ____ cm/s.\n($\\pi = \\frac{22}{7}$ and $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$v_{T} = \\frac{2}{9} \\cdot \\frac{r^{2}(\\rho - \\sigma)g}{\\eta} = \\frac{2}{9} \\cdot \\frac{\\left(10^{-3}\\right)^{2}(10.5 - 1.5) \\times 10^{3} \\times 10}{10 \\times \\frac{1}{10}}$\n$= 0.02\\ \\mathrm{m/s} = 2\\ \\mathrm{cm/s}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3.0"
+    },
+    {
+     "key": "B",
+     "text": "1.5"
+    },
+    {
+     "key": "C",
+     "text": "2.0"
+    },
+    {
+     "key": "D",
+     "text": "1.0"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "One mole of an ideal diatomic gas expands from volume V to 2V isothermally at a temperature $27^\\circ$ C and does W joule of work. If the gas undergoes same magnitude of expansion adiabatically from $27^\\circ$ C doing the same amount of work W, then its final temperature will be (close to) ________ $^\\circ$C.\n($\\log_{e}2 = 0.693$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$W = nRT\\,\\ell n\\frac{V_{2}}{V_{1}}$\n$= 1 \\times R \\times 300\\,\\ell n\\left(\\frac{2V}{V}\\right)$\nFor adiabatic process : $\\Delta Q = 0 = \\Delta U + \\Delta W$\n$\\Rightarrow \\Delta U = -W = -R \\times 300\\,\\ell n 2$\n$nC_{v}\\Delta T = -R \\times 300 \\times \\ell n 2$\n$\\Rightarrow 1 \\times \\frac{5R}{2} \\times \\Delta T = -R \\times 300 \\times \\ell n 2$\n$\\Rightarrow \\Delta T = -83.16^\\circ\\mathrm{C}$\nfinal temperature $= 27 - 83 = -56^\\circ\\mathrm{C}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-189$"
+    },
+    {
+     "key": "B",
+     "text": "$-117$"
+    },
+    {
+     "key": "C",
+     "text": "$-30$"
+    },
+    {
+     "key": "D",
+     "text": "$-56$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two charges $7\\ \\mu\\mathrm{C}$ and $-2\\ \\mu\\mathrm{C}$ are placed at $(-9, 0, 0)$ cm and $(9, 0, 0)$ cm respectively in an external field $E = \\frac{A}{r^{2}}\\hat{r}$, where $A = 9 \\times 10^{5}\\ \\mathrm{N/C.m^{2}}$. Considering the potential at infinity is 0, the electrostatic energy of the configuration is ________J.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given electric field is produced by a point charge placed at origin :\n$\\vec{E} = \\frac{kq}{r^{2}}\\hat{r} = \\frac{A}{r^{2}} \\cdot \\hat{r} \\Rightarrow q = 10^{-4}\\ \\mathrm{c}$\n$U = \\frac{k \\times 7 \\times 10^{-6} \\times 10^{-4}}{0.09} - \\frac{k \\times 2 \\times 10^{-6} \\times 10^{-4}}{0.09} - \\frac{k \\times 7 \\times 2 \\times 10^{-12}}{2 \\times 0.09}$\n$= 49.3\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "24.3"
+    },
+    {
+     "key": "B",
+     "text": "49.3"
+    },
+    {
+     "key": "C",
+     "text": "$-90.7$"
+    },
+    {
+     "key": "D",
+     "text": "1.4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s2-phy-q36-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A block is sliding down on an inclined plane of slope $\\theta$ and at an instant t = 0 this block is given an upward momentum so that it starts moving up on the inclined surface with velocity u. The distance (S) travelled by the block before its velocity become zero, is ________.\n(g = gravitational acceleration)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Bonus\n$v^{2} = u^{2} + 2as \\Rightarrow 0^{2} = u^{2} + 2(-g\\sin\\theta) \\cdot s$\n$s = \\frac{u^{2}}{2g\\sin\\theta}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{u^{2}}{4g\\sin\\theta}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{u^{2}}{\\sqrt{2}g\\cos\\theta}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2u^{2}}{g\\cos\\theta}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{u^{2}}{2g\\cos\\theta}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following pair of nuclei are isobars of the element ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "${}_{1}\\mathrm{H}^{3}$ and ${}_{2}\\mathrm{He}^{3}$ are isobars",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "${}^{198}_{80}\\mathrm{Hg}$ and ${}^{197}_{79}\\mathrm{Au}$"
+    },
+    {
+     "key": "B",
+     "text": "${}^{3}_{1}\\mathrm{H}$ and ${}^{3}_{2}\\mathrm{He}$"
+    },
+    {
+     "key": "C",
+     "text": "${}^{236}_{92}\\mathrm{U}$ and ${}^{238}_{92}\\mathrm{U}$"
+    },
+    {
+     "key": "D",
+     "text": "${}^{2}_{1}\\mathrm{H}$ and ${}^{3}_{1}\\mathrm{H}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A paratrooper jumps from an aeroplane and opens a parachute after 2 s of free fall and starts deaccelerating with $3\\ \\mathrm{m/s^{2}}$. At 10 m height from ground, while descending with the help of parachute, the speed of paratrooper is 5 m/s. The initial height of the airplane is _______m.\n($g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$h_{1} = 0 + \\frac{1}{2}(10)2^{2} = 20\\ \\mathrm{m}$\n$5^{2} = 20^{2} + 2(-3)h_{2}$\n$\\Rightarrow h_{2} = 62.5\\ \\mathrm{m}$\nheight $= h_{1} + h_{2} + 10$\n$= 20 + 62.5 + 10$\n$= 92.5\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "82.5"
+    },
+    {
+     "key": "B",
+     "text": "62.5"
+    },
+    {
+     "key": "C",
+     "text": "92.5"
+    },
+    {
+     "key": "D",
+     "text": "20"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s2-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of mass 14 kg initially at rest explodes and breaks into three fragments of masses in the ratio 2 : 2 : 3. The two pieces of equal masses fly off perpendicular to each other with a speed of 18 m/s each. The velocity of the heavier fragment is _______ m/s.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2m + 2m + 3m = 14 \\Rightarrow m = 2\\ \\mathrm{kg}$\n$6v = 4 \\times 18 \\times \\sqrt{2}$\n$\\Rightarrow v = 12\\sqrt{2}\\ \\mathrm{m/s}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "12"
+    },
+    {
+     "key": "B",
+     "text": "$12\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$24\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$10\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s2-phy-q40-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the given logic gate circuit, which of the following is the correct truth table ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "First row values are shown in the figure. Other values can be checked similarly.\nn | m | z\n0 | 0 | 1\n0 | 1 | 1\n1 | 1 | 0\n1 | 0 | 0",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "n | m | z\n0 | 0 | 1\n0 | 1 | 1\n1 | 1 | 0\n1 | 0 | 0"
+    },
+    {
+     "key": "B",
+     "text": "n | m | z\n0 | 0 | 0\n0 | 1 | 1\n1 | 1 | 0\n1 | 0 | 1"
+    },
+    {
+     "key": "C",
+     "text": "n | m | z\n0 | 0 | 1\n0 | 1 | 0\n1 | 1 | 1\n1 | 0 | 0"
+    },
+    {
+     "key": "D",
+     "text": "n | m | z\n0 | 0 | 1\n0 | 1 | 0\n1 | 1 | 0\n1 | 0 | 0"
+    }
+   ],
+   "stem_figure": "j26-23jan-s2-phy-q41.png",
+   "solution_figure": "j26-23jan-s2-phy-q41-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Kinetic Theory",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An air bubble of volume $2.9\\ \\mathrm{cm^{3}}$ rises from the bottom of a swimming pool of 5 m deep. At the bottom of the pool water temperature is $17\\ ^\\circ\\mathrm{C}$. The volume of the bubble when it reaches the surface, where the water temperature is $27\\ ^\\circ\\mathrm{C}$, is ________ $\\mathrm{cm^{3}}$.\n($g = 10\\ \\mathrm{m/s^{2}}$, density of water $= 10^{3}\\ \\mathrm{kg/m^{3}}$, and 1 atm pressure is $10^{5}$ Pa)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{P_{2}V_{2}}{T_{2}} = \\frac{P_{1}V_{1}}{T_{1}}$\n$\\Rightarrow \\frac{10^{5} \\times V}{300} = \\frac{\\left(10^{5} + 10^{3} \\times 10 \\times 5\\right) \\times 2.9}{290}$\n$\\Rightarrow V = 4.5\\ \\mathrm{cm^{3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4.5"
+    },
+    {
+     "key": "B",
+     "text": "3.0"
+    },
+    {
+     "key": "C",
+     "text": "4.2"
+    },
+    {
+     "key": "D",
+     "text": "2.0"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The internal energy of a monotomic gas is 3nRT. One mole of helium is kept in a cylinder having internal cross section area of $17\\ \\mathrm{cm^{2}}$ and fitted with a light movable frictionless piston. The gas is heated slowly by suppling 126 J heat. If the temperature rises by $4\\ ^\\circ\\mathrm{C}$, then the piston will move ______ cm.\n(atmospheric pressure $= 10^{5}$ Pa)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$U = 3nRT \\Rightarrow \\Delta U = 3nR\\Delta T = 3 \\times 1 \\times R \\times 4 = 12R$\n$W = Q - \\Delta U = 126 - 12 \\times 8.314 = P\\Delta V$\n$\\Delta V = \\frac{26.232}{10^{5}} = A \\times h = 17 \\times 10^{-4} \\times h$\n$\\Rightarrow h = 0.1543\\ \\mathrm{m} = 15.43\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.45"
+    },
+    {
+     "key": "B",
+     "text": "15.5"
+    },
+    {
+     "key": "C",
+     "text": "1.55"
+    },
+    {
+     "key": "D",
+     "text": "14.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A parallel plate capacitor with plate separation 5 mm is charged by a battery. On introducing a mica sheet of 2 mm and maintaining the connections of the plates with the terminals of the battery, it is found that it draws 25% more charge from the battery. The dielectric constant of mica is ________.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C_{0} = \\frac{\\varepsilon_{0}A}{5} \\quad C = \\frac{\\varepsilon_{0}A}{5 - 2 + \\frac{2}{K}}$\n$\\Delta q = V \\cdot \\Delta C$\n$0.25 \\times q_{0} = V\\left(C - C_{0}\\right) \\Rightarrow 0.25 \\times C_{0} \\cdot V = V\\left(C - C_{0}\\right)$\n$\\Rightarrow 1.25C_{0} = C \\Rightarrow 1.25 \\times \\frac{\\varepsilon_{0}A}{5} = \\frac{\\varepsilon_{0}A}{5 - 2 + \\frac{2}{K}}$\n$\\Rightarrow K = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2.0"
+    },
+    {
+     "key": "B",
+     "text": "1.0"
+    },
+    {
+     "key": "C",
+     "text": "1.5"
+    },
+    {
+     "key": "D",
+     "text": "2.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s2-phy-q44-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When an unpolarized light falls at a particular angle on a glass plate (placed in air), it is observed that the reflected beam is linearly polarized. The angle of refracted beam with respect to the normal is _____.\n($\\tan^{-1}(1.52) = 57.7^\\circ$, refractive indices of air and glass are 1.00 and 1.52, respectively.)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\theta_{p} = \\tan^{-1}(\\mu)$\n$= \\tan^{-1}(1.52)$\n$= 57.7^\\circ$\n$r + 57.7^\\circ = 90^\\circ$\n$\\Rightarrow r = 32.3^\\circ$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$32.3^\\circ$"
+    },
+    {
+     "key": "B",
+     "text": "$39.6^\\circ$"
+    },
+    {
+     "key": "C",
+     "text": "$36.3^\\circ$"
+    },
+    {
+     "key": "D",
+     "text": "$42.6^\\circ$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s2-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Waves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The velocity of sound in air is doubled when the temperature is raised from $0\\ ^\\circ\\mathrm{C}$ to $\\alpha\\ ^\\circ\\mathrm{C}$. The value of $\\alpha$ is _______.",
+   "correct_key": null,
+   "correct_value": 819,
+   "correct_keys": null,
+   "solution": "$v \\propto \\sqrt{T} \\Rightarrow \\frac{2v}{v} = \\sqrt{\\frac{T'}{273}} \\Rightarrow T' = 273 \\times 4$\n$t = 273 \\times 4 - 273 = 819^\\circ\\mathrm{C}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Units and Measurements",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A ball of radius r and density $\\rho$ dropped through a viscous liquid of density $\\sigma$ and viscosity $\\eta$ attains its terminal velocity at time t, given by $t = A\\rho^{a}r^{b}\\eta^{c}\\sigma^{d}$, where A is a constant and a, b, c and d are integers. The value of $\\frac{b+c}{a+d}$ is ________.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$t = A \\cdot \\rho^{a}r^{b}\\eta^{c}\\sigma^{d}$\n$\\Rightarrow T = \\left(ML^{-3}\\right)^{a+d} \\cdot L^{b} \\cdot \\left(ML^{-1}T^{-1}\\right)^{c}$\n$T = M^{a+d+c} \\cdot L^{-3a-3d+b-c} \\cdot T^{-c}$\n$a + d + c = 0$ .....(1)\n$3a + 3d - b + c = 0$ .....(2)\n$-c = 1$ .....(3)\nsolving (1), (2) & (3) : $a + d = 1, b = 2, c = -1$\n$\\frac{b+c}{a+d} = \\frac{2-1}{1} = 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Nuclei",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The average energy released per fission for the nucleus of ${}^{235}_{92}\\mathrm{U}$ is 190 MeV. When all the atoms of 47 g pure ${}^{235}_{92}\\mathrm{U}$ undergo fission process, the energy released is $\\alpha \\times 10^{23}$ MeV. The value of $\\alpha$ is ______.\n(Avogadro Number $= 6 \\times 10^{23}$ per mole)",
+   "correct_key": null,
+   "correct_value": 228,
+   "correct_keys": null,
+   "solution": "Total energy released $= \\frac{47}{235} \\times 6 \\times 10^{23} \\times 190\\ \\mathrm{MeV}$\n$= 228 \\times 10^{23}\\ \\mathrm{MeV}$\nAns. $\\rightarrow$ 228",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Ray Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The size of the images of an object, formed by a thin lens are equal when the object is placed at two different positions 8 cm and 24 cm from the lens. The focal length of the lens is _______ cm.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "$|m| = \\frac{f}{|u - f|}$\none case $\\rightarrow u = 8$, other case : $u = 24$\nin the two eases magnitude of magnification will be equal :\n$\\frac{f}{f - 8} = \\frac{f}{24 - f} \\Rightarrow f = 16\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Suppose there is a uniform circular disc of mass M kg and radius r m shown in figure. The shaded regions are cut out from the disc. The moment of inertia of the remainder about the axis A of the disc is given by $\\frac{x}{256}Mr^{2}$. The value of x is _______.",
+   "correct_key": null,
+   "correct_value": 109,
+   "correct_keys": null,
+   "solution": "mass of removed disc $= m = \\frac{M}{\\pi r^{2}}\\left(\\pi\\left(\\frac{r}{4}\\right)^{2}\\right)$\n$= M/16$\nmoment of inatia of removed disc\n$= I_{1} = I_{cm} + mx^{2} = \\frac{m(r/4)^{2}}{2} + m(3r/4)^{2}$\nmoment of inentia of original disc $= I = \\frac{Mr^{2}}{2}$\n$= I - 2I_{1}$\n$= \\frac{Mr^{2}}{2} - 2I_{1} = \\frac{109Mr^{2}}{256}$\nAns $\\rightarrow 109$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-23jan-s2-phy-q50.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

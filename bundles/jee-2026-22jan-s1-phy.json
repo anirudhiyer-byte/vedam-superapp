@@ -1,0 +1,799 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "22 Jan · Shift 1",
+  "title": "JEE Main 2026 · Physics · 22 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1UBuIsYhzTgxYswDTobSaLiMMDIWH_9-m"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match the List-I with List-II\nList-I | List-II\nA. Spring constant | I. $\\mathrm{ML^{2}T^{-2}K^{-1}}$\nB. Thermal conductivity | II. $\\mathrm{ML^{0}T^{-2}}$\nC. boltzmann constant | III. $\\mathrm{ML^{2}T^{-3}A^{-2}}$\nD. Inductive reactance | IV. $\\mathrm{MLT^{-3}K^{-1}}$\nChoose the correct answer from the options given below:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) $[K] = \\frac{[F]}{[x]}$ $\\quad [K] = \\mathrm{M^{1}L^{1}T^{-3}K^{-1}}$\n(B) Thermal Conductivity as $= \\frac{dQ}{dt} = KA\\frac{dt}{dx}$\n(C) Bolteman constant $= \\mathrm{M^{1}L^{2}T^{-2}K^{-1}}$\n(D) Inductine Reactance $\\Rightarrow x_{L} = \\omega L$\n$[x_{L}] = \\mathrm{M^{1}L^{2}T^{-3}A^{-2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-I, B-IV, C-II, D-III"
+    },
+    {
+     "key": "B",
+     "text": "A-II, B-IV, C-I, D-III"
+    },
+    {
+     "key": "C",
+     "text": "A-III, B-II, C-IV, D-I"
+    },
+    {
+     "key": "D",
+     "text": "A-II, B-I, C-IV, D-III"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A cylindrical tube AB of length $l$, closed at both ends contains an ideal gas of 1 mole having molecular weight M. The tube is rotated in a horizontal plane with constant angular velocity $\\omega$ about an axis perpendicular to AB and passing throught the edge at end A, as shown in the figure. If $P_{A}$ and $P_{B}$ are the pressures at A and B respectively, then\n(Consider the temperature is same at all points in the tube)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Net force on element\n$\\Rightarrow dF = (P + dP)A - PA$\n$\\Rightarrow dPA = (dm)\\,x\\,\\omega^{2}$\n$\\Rightarrow dP = \\frac{dm}{A}\\omega^{2}x \\quad ....(1)$\nA = Area of crossection\n$\\left.\\begin{matrix} dm = \\delta A\\,dx \\\\ PM = \\delta RT \\end{matrix}\\right\\} \\quad ....(2)$\nfrom (1) & (2)\n$dP = \\frac{PM}{RT}\\omega^{2}x\\,dx \\Rightarrow \\int_{P_{A}}^{P_{B}}\\frac{dP}{P} = \\frac{M\\omega^{2}}{RT}\\int_{0}^{L}x\\,dx \\Rightarrow \\ln\\left(\\frac{P_{B}}{P_{A}}\\right) = \\frac{M\\omega^{2}L^{2}}{2RT} \\Rightarrow P_{B} = P_{A}e^{\\left(\\frac{M\\omega^{2}L^{2}}{2RT}\\right)}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$P_{B} = P_{A}\\exp\\left(M\\omega^{2}l^{2}/RT\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$P_{B} = P_{A}\\exp\\left(M\\omega^{2}l^{2}/3RT\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$P_{B} = P_{A}\\exp\\left(M\\omega^{2}l^{2}/2RT\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$P_{B} = P_{A}$"
+    }
+   ],
+   "stem_figure": "j26-22jan-s1-phy-q27.png",
+   "solution_figure": "j26-22jan-s1-phy-q27-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The minimum frequency of photon required to break a particle of mass 15.348 amu into 4 $\\alpha$ particles is ________ kHz.\n[mass of He nucleus $= 4.002$ amu, $1\\ \\mathrm{amu} = 1.66 \\times 10^{-27}\\ \\mathrm{kg}$, $h = 6.6 \\times 10^{-34}\\ \\mathrm{J.s}$ and $c = 3 \\times 10^{8}\\ \\mathrm{m/s}$]",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta Q = \\Delta mC^{2} = h\\nu$\n$\\Rightarrow h\\nu = [4 \\times 4.002 - 15.348] \\times 1.66 \\times 10^{-27} \\times 9 \\times 10^{16}$\n$\\Rightarrow \\nu = 14.94 \\times 10^{19}$ KHz",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9 \\times 10^{19}$"
+    },
+    {
+     "key": "B",
+     "text": "$14.94 \\times 10^{20}$"
+    },
+    {
+     "key": "C",
+     "text": "$9 \\times 10^{20}$"
+    },
+    {
+     "key": "D",
+     "text": "$14.94 \\times 10^{19}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A solid sphere of mass 5 kg and radius 10 cm is kept in contact with another solid sphere of mass 10 kg and radius 20 cm. the moment of inertia of this pair of spheres about the tangent passing through the point of contact is ______________ $\\mathrm{kg.m^{2}}$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\left[\\frac{2}{5}M_{1}R_{1}^{2} + M_{1}R_{1}^{2}\\right] + \\left[\\frac{2}{5}M_{2}R_{2}^{2} + M_{2}R_{2}^{2}\\right]$\n$= \\frac{7}{5}\\left[M_{1}R_{1}^{2} + M_{2}R_{2}^{2}\\right] = \\frac{7}{5}\\left[5 \\times 100 + 10 \\times 400\\right] \\times 10^{-4}$\n$= 63 \\times 10^{-2} = 0.63\\ \\mathrm{kg - m^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.72$"
+    },
+    {
+     "key": "B",
+     "text": "$0.18$"
+    },
+    {
+     "key": "C",
+     "text": "$0.63$"
+    },
+    {
+     "key": "D",
+     "text": "$0.36$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A meter bridge with two resistances $R_{1}$ and $R_{2}$ as shown in figure was balanced (null point) at 40 cm from the point P. The null point changed to 50 cm from the point P, when $16\\ \\Omega$ resistance is connected in parallel to $R_{2}$. The values of resistances $R_{1}$ and $R_{2}$ are _________.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "here $\\frac{R_{1}}{40} = \\frac{R_{2}}{60} \\Rightarrow \\frac{R_{1}}{R_{2}} = \\frac{2}{3}$ .... (1)\nhere $R_{1} = \\frac{16R_{2}}{16 + R_{2}}$ .... (2)\nfrom (1) & (2) $\\frac{16R_{2}}{16 + R_{2}} = \\frac{2}{3}R_{2}$\n$\\Rightarrow 24 = 16 + R_{2}$\n$\\Rightarrow R_{2} = 8\\Omega$\n$\\Rightarrow R_{1} = \\frac{16}{3}\\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$R_{2} = 16\\Omega, R_{1} = \\frac{16}{3}\\Omega$"
+    },
+    {
+     "key": "B",
+     "text": "$R_{2} = 4\\Omega, R_{1} = \\frac{4}{3}\\Omega$"
+    },
+    {
+     "key": "C",
+     "text": "$R_{2} = 12\\Omega, R_{1} = \\frac{12}{3}\\Omega$"
+    },
+    {
+     "key": "D",
+     "text": "$R_{2} = 8\\Omega, R_{1} = \\frac{16}{3}\\Omega$"
+    }
+   ],
+   "stem_figure": "j26-22jan-s1-phy-q30.png",
+   "solution_figure": "j26-22jan-s1-phy-q30-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The volume of an ideal gas increases 8 times and temperature becomes $(1/4)^{th}$ of initial temperature during a reversible change. If there is no exchange of heat in this process ($\\Delta Q = 0$) then identify the gas from the following options (Assuming the gases given in the options are ideal gases):",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$TV^{\\gamma - 1} = $ const\n$\\Rightarrow T_{0}V_{0}^{\\gamma - 1} = \\frac{T_{0}}{4}(8V_{0})^{\\gamma - 1}$\n$\\Rightarrow (8)^{\\gamma - 1} = 4$\n$\\Rightarrow 3(\\gamma - 1) = 2$\n$\\Rightarrow \\gamma = \\frac{5}{3} \\rightarrow$ monoatomic gas $\\rightarrow$ He",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "He"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CO_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{NH_3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{O_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A simple pendulum has a bob with mass m and charge q. The pendulum string has negligible mass. When a uniform and horizontal electric field $\\vec{E}$ is applied, the tension in the string changes. The final tension in the string, when pendulum attains an equilibrium position is _____________.\n(g: acceleration due to gravity)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = \\sqrt{(QE)^{2} + (mg)^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$mg - qE$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{m^{2}g^{2} + q^{2}E^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$mg + qE$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{m^{2}g^{2} - q^{2}E^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A projectile is thrown upward at an angle $60^\\circ$ with the horizontal. The speed of the projectile is 20 m/s when its direction of motion is $45^\\circ$ with the horizontal. The initial speed of the projectile is ______m/s.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Horizontal component of velocity remains constant\nso $u\\cos 60^\\circ = 20\\cos 45^\\circ$\n$\\Rightarrow u = 20\\sqrt{2}$ m/sec",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20\\sqrt{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$20\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$40\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$40$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Three identical coils $C_{1}$, $C_{2}$ and $C_{3}$ are closely placed such that they share a common axis. $C_{2}$ is exactly midway. $C_{1}$ carries current I in anti-clockwise direction while $C_{3}$ carries current I in clockwise direction. An induced current flows through $C_{2}$ will be in clockwise direction when:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For $I_{2}$ to be clockwise\n$\\Rightarrow C_{1}$ should move towards $C_{2}$ so that induced current in $C_{2}$ repel $C_{1}$.\n$\\Rightarrow C_{3}$ should move away from $C_{2}$ so that induced current in $C_{2}$ attract $C_{3}$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$C_{1}$ moves away from $C_{2}$ and $C_{3}$ moves towards $C_{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$C_{1}$ and $C_{3}$ moves with equal speeds towards $C_{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$C_{1}$ moves towards $C_{2}$ and $C_{3}$ moves away from $C_{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$C_{1}$ and $C_{3}$ moves with equal speeds away from $C_{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Find the correct combination of A, B, C and D inputs which can cause the LED to glow.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$X = \\overline{\\overline{A}.\\overline{B}}$\n$X = A + B$\n& $Y = \\overline{C + D} = \\overline{C}.\\overline{D}$\nfor LED to Glow. It should be forword based so $x = 1$ & $y = 0$\nfor - 1 $\\rightarrow$ $A = 1$, $B = 0$, $C = 0$, $D = 0$; here $X = 1$, $Y = 1$\nfor - 2 $X = 1, Y = 1$\nfor - 3 $X = 1, Y = 0$\nfor - 4 $X = 0, Y = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1000"
+    },
+    {
+     "key": "B",
+     "text": "0100"
+    },
+    {
+     "key": "C",
+     "text": "1101"
+    },
+    {
+     "key": "D",
+     "text": "0011"
+    }
+   ],
+   "stem_figure": "j26-22jan-s1-phy-q35.png",
+   "solution_figure": "j26-22jan-s1-phy-q35-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Electric field in a region is given by $\\vec{E} = Ax\\hat{i} + By\\hat{j}$, where $A = 10\\ \\mathrm{V/m^{2}}$ and $B = 5\\ \\mathrm{V/m^{2}}$. If the electric potential at a point (10, 20) is 500 V, then the electric potential at origin is _______ V.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "As $\\Delta V = -\\int E.d\\vec{r}$\n$V_{P} - V_{O} = -\\int_{r_{0}}^{r_{P}}\\left(10x\\,dx + 5y\\,dy\\right)$\n$\\Rightarrow 500 - V_{O} = \\left[-5x^{2}\\right]_{0}^{10} - \\left[\\frac{5}{2}y^{2}\\right]_{0}^{20}$\n$= -500 - 1000$\n$\\Rightarrow V_{O} = 2000$ volt",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2000$"
+    },
+    {
+     "key": "B",
+     "text": "$500$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$1000$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Six point charges are kept $60^\\circ$ apart from each other on the circumference of a circle of radius R as shown in figure. The net electric field at the center of the circle is _________.\n($\\epsilon_{0}$ is permittivity of free space)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "If E = field due to each charge then\n$E_{net} = 2E = \\frac{2KQ}{R^{2}}$\n$\\vec{E}_{net} = \\frac{-2KQ}{R^{2}}\\sin 60^\\circ i + \\frac{2KQ}{R^{2}}\\cos 60^\\circ j = \\frac{Q}{4\\pi\\epsilon_{0}R^{2}}\\left[-\\sqrt{3}i + j\\right]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{Q}{4\\pi\\varepsilon_{0}R^{2}}\\left(\\sqrt{3}\\hat{i} - \\hat{j}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\left(\\frac{5Q}{8\\pi\\varepsilon_{0}R^{2}}\\right)\\left(\\hat{i} - 3\\hat{j}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{Q}{4\\pi\\varepsilon_{0}R^{2}}\\left(\\sqrt{3}\\hat{i} - \\hat{j}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\frac{5Q}{8\\pi\\varepsilon_{0}R^{2}}\\left(\\hat{i} + \\sqrt{3}\\hat{j}\\right)$"
+    }
+   ],
+   "stem_figure": "j26-22jan-s1-phy-q37.png",
+   "solution_figure": "j26-22jan-s1-phy-q37-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Rods x and y of equal dimensions but of different matierals are joined as shown in figure. Temperatures of end points A and F are maintained at $100\\ ^\\circ\\mathrm{C}$ and $40\\ ^\\circ\\mathrm{C}$ respectively. Given the thermal conductivity of rod x is three times of that of rod y, the temperature at junction points B and E are (close to):",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "so $R_{x} = \\frac{L}{3KA} = R$\n$R_{y} = \\frac{L}{KA} = 3R$\nhere $T_{C} = T_{D} = T$ also $R_{eq} = \\frac{11R}{2}$\n& $\\frac{dQ}{dt} = \\frac{100 - 40}{\\frac{11R}{2}} = \\frac{120}{11R}$\nNow $\\frac{dQ}{dt} = \\frac{100 - T_{B}}{R} = \\frac{120}{11R}$\n$\\Rightarrow T_{B} = 100 - \\frac{120}{11}$\n$T_{B} = \\frac{980}{11} \\simeq 89^\\circ C$\n& $\\frac{dQ}{dt} = \\frac{T_{E} - 40}{3R} = \\frac{120}{11R}$\n$\\Rightarrow T_{E} = 40 + \\frac{360}{11}$\n$T_{E} = \\frac{800}{11} = 72.7 \\simeq 73^\\circ C$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$80\\ ^\\circ\\mathrm{C}$ and $60\\ ^\\circ\\mathrm{C}$ respectively"
+    },
+    {
+     "key": "B",
+     "text": "$80\\ ^\\circ\\mathrm{C}$ and $70\\ ^\\circ\\mathrm{C}$ respectively"
+    },
+    {
+     "key": "C",
+     "text": "$89\\ ^\\circ\\mathrm{C}$ and $73\\ ^\\circ\\mathrm{C}$ respectively"
+    },
+    {
+     "key": "D",
+     "text": "$60\\ ^\\circ\\mathrm{C}$ and $45\\ ^\\circ\\mathrm{C}$ respectively"
+    }
+   ],
+   "stem_figure": "j26-22jan-s1-phy-q38.png",
+   "solution_figure": "j26-22jan-s1-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider an equilateral prism (refractive index $\\sqrt{2}$). A ray of light is incident on its one surface at a certain angle $i$. if the emergent ray is found to graze along the other surface then the angle of refraction at the incident surface is close to _________.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "for graze $\\rightarrow e = 90^\\circ$\nso $\\sqrt{2} \\times \\sin r_{2} = 1 \\times \\sin 90^\\circ$\n$\\sin r_{2} = \\frac{1}{\\sqrt{2}}$\n$\\Rightarrow r_{1} = 45^\\circ$\n$r_{1} = 15^\\circ$ [as $r_{1} + r_{2} = 60^\\circ$]",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20^\\circ$"
+    },
+    {
+     "key": "B",
+     "text": "$40^\\circ$"
+    },
+    {
+     "key": "C",
+     "text": "$30^\\circ$"
+    },
+    {
+     "key": "D",
+     "text": "$15^\\circ$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-22jan-s1-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "XPQY is a vertical smooth long loop having a total resistance R where PX is parallel to QY and separation between them is $l$. A constant magnetic field B perpendicular to the plane of the loop exists in the entire space. A rod CD of length $L\\,(L > l)$ and mass m is made to slide down from rest under the gravity as shown in figure. The terminal speed acquired by the rod is _________ m/s.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Motional emf $\\Rightarrow E = BV_{0}l$\nCurrento in loop $\\Rightarrow I = \\frac{E}{R} = BV_{0}l$\nfor terminal velocity\n$\\Rightarrow F_{magnetic} = F_{gravity}$\n$I\\ell B = mg \\Rightarrow \\frac{B^{2}\\ell^{2}v_{0}}{R} = mg \\Rightarrow v_{0} = \\frac{mgR}{B^{2}\\ell^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{mgR}{B^{2}l^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{8mgR}{B^{2}l^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2mgR}{B^{2}l^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2mgR}{B^{2}L^{2}}$"
+    }
+   ],
+   "stem_figure": "j26-22jan-s1-phy-q40.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The escape velocity from a spherical planet A is 10 km/s. The escape velocity from another planet B whose density and radius are 10% of those of planet A, is ____________ m/s.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_{e} = \\sqrt{\\frac{2GM}{R}} = \\sqrt{2G\\rho\\frac{4}{3}\\frac{\\pi R^{3}}{R}} = \\sqrt{\\frac{8}{3}G\\pi\\rho R^{2}}$\nSo $V_{e} \\propto \\sqrt{\\rho R^{2}}$\n$\\frac{(V_{e})_{A}}{(V_{e})_{B}} = \\sqrt{\\frac{\\rho_{A}}{\\rho_{B}}\\left(\\frac{R_{A}}{R_{B}}\\right)^{2}} \\quad \\left(\\rho_{B} = \\frac{\\rho_{A}}{10}, R_{B} = \\frac{R_{A}}{10}\\right)$\n$\\Rightarrow \\frac{10{,}000}{V_{B}} = \\sqrt{\\frac{\\rho_{A}}{\\left(\\frac{\\rho_{A}}{10}\\right)}\\left(\\frac{R_{A}}{\\frac{R_{A}}{10}}\\right)^{2}} = 10\\sqrt{10}$\n$\\Rightarrow V_{B} = \\frac{1000}{\\sqrt{10}} = 100\\sqrt{10}\\ \\mathrm{m/sec}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1000$"
+    },
+    {
+     "key": "B",
+     "text": "$1000\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$200\\sqrt{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$100\\sqrt{10}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "7.9 MeV $\\alpha$-particle scatters from a target material of atomic number 79. From the given data the estimated diameter of nuclei of the target material is (approximately) _______ m.\n$\\left[\\frac{1}{4\\pi\\varepsilon_{0}} = 9 \\times 10^{9}\\ \\mathrm{Nm^{2}/C^{2}}\\ \\text{and electron charge} = 1.6 \\times 10^{-19}\\ \\mathrm{C}\\right]$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "If '$\\alpha$'-Particle just reaches the surface of target atom then $K_{i} + U_{i} = K_{f} + U_{f}$\n$\\Rightarrow 7.9\\ \\mathrm{MeV} + 0 = 0 + \\frac{KQq}{R} \\quad \\begin{bmatrix} Q = 79e \\\\ q = 2e \\end{bmatrix}$\n$\\Rightarrow 7.9 \\times 10^{6} \\times e = 9 \\times 10^{9} \\times \\frac{79e.2e}{R}$\n$\\Rightarrow R = 2.88 \\times 10^{-14}$ m\nDiameter $= 5.76 \\times 10^{-14}$ m",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.69 \\times 10^{-12}$"
+    },
+    {
+     "key": "B",
+     "text": "$5.76 \\times 10^{-14}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.44 \\times 10^{-13}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.88 \\times 10^{-14}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Net gravitational force at the center of a square is found to be $F_{1}$ when four particles having mass M, 2M, 3M and 4M are placed at the four corners of the square as shown in figure and it is $F_{2}$ when the positons of 3 M and 4 M are interchanged. The ratio $\\frac{F_{1}}{F_{2}}$ is $\\frac{a}{\\sqrt{5}}$. the value of $a$ is ___________.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F_{1} = \\sqrt{2}\\frac{G2M.m}{d^{2}}$\n$F_{2} = \\frac{GMm}{d^{2}}\\sqrt{1 + 9} = \\sqrt{10}\\frac{GMm}{d^{2}}$\nso $\\frac{F_{1}}{F_{2}} = \\frac{2\\sqrt{2}}{\\sqrt{10}} = \\frac{2}{\\sqrt{5}} = \\frac{\\alpha}{\\sqrt{5}}$\n$\\Rightarrow \\alpha = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": "j26-22jan-s1-phy-q43.png",
+   "solution_figure": "j26-22jan-s1-phy-q43-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\nStatement I: Pressure of a fluid is exerted only on a solid surface in contact as the fluid-pressure does not exist everywhere in a still fluid.\nStatement II: Excess potential energy of the molecules on the surface of a liquid, when compared to interior, results in surface tension.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Statement I $\\rightarrow$ wrong\nStatement II $\\rightarrow$ Correct",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "B",
+     "text": "Statement I is false but Statement II is true"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are false"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Electromagnetic Waves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The electric field of a plane electromagnetic wave, travelling in an unknown non-magnetic medium is given by,\n$E_{y} = 20\\sin(3 \\times 10^{6}x - 4.5 \\times 10^{14}t)\\ \\mathrm{V/m}$\n(where x, t and other values have S.I. units). The dielectric constant of the medium is ___________\n(Speed of light in free space is $3 \\times 10^{8}$ m/s)",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$w = 4.5 \\times 10^{14}$\n$k = 3 \\times 10^{6}$\n$v = \\frac{w}{K} = \\frac{4.5 \\times 10^{14}}{3 \\times 10^{6}}$\n$v = 1.5 \\times 10^{8}$\nas $v = \\frac{C}{\\mu} \\Rightarrow 1.5 \\times 10^{8} = \\frac{3 \\times 10^{8}}{\\mu}$\n$\\Rightarrow \\mu = 2 = \\sqrt{\\varepsilon_{r}\\mu_{r}}$\nas $\\mu_{r} = 1$\nthen $\\varepsilon_{r} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Waves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two loudspeakers ($L_{1}$ and $L_{2}$) are placed with a separation of 10 m, as shown in figure. Both speakers are fed with an audio input signal of same frequency with constant volume. A voice recorder, initially at point A, at equidistance to both loud speakers, is moved by 25 m along the line AB while monitoring the audio signal. The measured signal was found to undergo 10 cycles of minima and maxima during the movement. The frequency of the input signal is _______ Hz.\n(Speed of sound in air is 324 m/s and $\\sqrt{5} = 2.23$)",
+   "correct_key": null,
+   "correct_value": 600,
+   "correct_keys": null,
+   "solution": "$L_{1}B = \\sqrt{40^{2} + (25)^{2}} = 20\\sqrt{5}$\n$L_{2}B = \\sqrt{(40)^{2} + (30)^{2}} = 50$\nPath difference $\\Rightarrow \\Delta = l_{2}B - l_{1}B$\n$= 50 - 20\\sqrt{5} = 10\\lambda$\n$\\lambda = 5 - 2\\sqrt{5}$ m [As 10 cycle of maxima & minima $= 10\\lambda$]\n$f = \\frac{C}{\\lambda} = \\frac{324}{5 - 2\\sqrt{5}} = 600\\ \\mathrm{Hz}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-22jan-s1-phy-q47.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A parallel beam of light travelling in air (refractive index 1.0) is incident on a convex spherical glass surface of radius of curvature 50 cm. Refractive index of glass is 1.5. The rays converge to a point at a distance x cm from the centre of the curvature of the spherical surface. The value of x is ________ cm.",
+   "correct_key": null,
+   "correct_value": 100,
+   "correct_keys": null,
+   "solution": "$\\frac{1.5}{v} - \\frac{1}{\\infty} = \\frac{1.5 - 1}{50}$\n$v = 150$ cm\nDistance from center of curvature $= 150 - 50 = 100$ cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A circular disc has radius $R_{1}$ and thickness $T_{1}$. Another circular disc made of the same material has radius $R_{2}$ and thickness $T_{2}$. If the moment of inertia of both discs are same and $\\frac{R_{1}}{R_{2}} = 2$ then $\\frac{T_{1}}{T_{2}} = \\frac{1}{\\alpha}$. The value of $\\alpha$ is _________.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "As moment of inertia of both disc are same then $\\frac{M_{1}R_{1}^{2}}{2} = \\frac{M_{2}R_{2}^{2}}{2}$\n$\\Rightarrow \\rho \\times \\left(\\pi R_{1}^{2}\\right) \\times \\frac{T_{1}R_{1}^{2}}{2} = \\rho\\left(\\pi R_{2}^{2}\\right) \\times T_{2} \\times \\frac{R_{2}^{2}}{2}$\n$\\Rightarrow \\frac{T_{1}}{T_{2}} = \\left(\\frac{R_{2}}{R_{1}}\\right)^{4} = \\frac{1}{16} = \\frac{1}{\\alpha}$\n$\\alpha = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

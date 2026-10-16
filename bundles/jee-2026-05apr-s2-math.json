@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "5 Apr · Shift 2",
+  "title": "JEE Main 2026 · Mathematics · 5 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1lfx8ESyZNzUpJY_TpTF4vXwgVks7ExMq"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta$ be the roots of the equation $x^{2} - x + p = 0$ and $\\gamma, \\delta$ be the roots the equation $x^{2} - 4x + q = 0$; $p, q \\in \\mathbb{Z}$. If $\\alpha, \\beta, \\gamma, \\delta$ are in G.P., then $|p + q|$ equals :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Since $\\alpha$ and $\\beta$ are roots of $x^{2} - x + p = 0$, we have:\n• $\\alpha + \\beta = 1$\n• $\\alpha\\beta = p$\n2. Since $\\gamma$ and $\\delta$ are roots of $x^{2} - 4x + q = 0$, we have :\n• $\\gamma + \\delta = 4$\n• $\\gamma\\delta = q$\n3. Let the terms of the G.P. be $\\alpha = a$, $\\beta = ar$, $\\gamma = ar^{2}$, and $\\delta = ar^{3}$.\n4. Substituting these into the sum equations:\n• $a(1 + r) = 1$\n• $ar^{2}(1 + r) = 4$\n5. Dividing the second equation by the first:\n$r^{2} = 4 \\Rightarrow r = \\pm 2$\n6. Case 1: If $r = 2$, then $a(3) = 1 \\Rightarrow a = 1/3$.\n• $p = \\alpha\\beta = a^{2}r = \\left(\\frac{1}{3}\\right)^{2}(2) = \\frac{2}{9}$.\nSince $p \\in \\mathbb{Z}$, this is rejected.\n7. Case 2: If $r = -2$, then $a(1 - 2) = 1 \\Rightarrow a = -1$.\n• The terms are: $\\alpha = -1$, $\\beta = 2$, $\\gamma = -4$, $\\delta = 8$.\n• $p = \\alpha\\beta = (-1)(2) = -2$ (an integer).\n• $q = \\gamma\\delta = (-4)(8) = -32$ (an integer).\n8. Calculation of $|p + q|$:\n$|p + q| = |-2 - 32| = |-34| = 34$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$32$"
+    },
+    {
+     "key": "C",
+     "text": "$34$"
+    },
+    {
+     "key": "D",
+     "text": "$38$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $z_{1}, z_{2} \\in \\mathbb{C}$ be the distinct solutions of the equation $z^{2} + 4z - (1 + 12i) = 0$. Then $|z_{1}|^{2} + |z_{2}|^{2}$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Using the quadratic formula for $z^{2} + 4z - (1 + 12i) = 0$:\n$z = \\frac{4 - \\sqrt{16 + 4(1 + 12i)}}{2} = 2 - \\sqrt{4 + 1 + 12i} = 2 - \\sqrt{5 + 12i}$\n2. To find $\\sqrt{5 + 12i}$, let $x + iy = \\sqrt{5 + 12i}$. Squaring both sides:\n$x^{2} - y^{2} = 5$, $2xy = 12$\nBy inspection or solving, $x = 3$ and $y = 2$ satisfy $(3 + 2i)^{2} = 9 - 4 + 12i = 5 + 12i$\n3. The roots are:\n• $z_{1} = -2 + (3 + 2i) = 1 + 2i$\n• $z_{2} = -2 - (3 + 2i) = -5 - 2i$\n4. Calculating the squared magnitudes:\n• $|z_{1}|^{2} = 1^{2} + 2^{2} = 5$\n• $|z_{2}|^{2} = (-5)^{2} + (-2)^{2} = 25 + 4 = 29$\n5. Sum : $|z_{1}|^{2} + |z_{2}|^{2} = 5 + 29 = 34$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$18$"
+    },
+    {
+     "key": "B",
+     "text": "$22$"
+    },
+    {
+     "key": "C",
+     "text": "$29$"
+    },
+    {
+     "key": "D",
+     "text": "$34$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $f : \\mathbb{N} \\to \\mathbb{Z}$ is defined by $f(n) = \\begin{vmatrix} n & -1 & -5 \\\\ -2n^{2} & 3(2k + 1) & 2k + 1 \\\\ -3n^{3} & 3k(2k + 1) & 3k(k + 2) + 1 \\end{vmatrix}$, $k \\in \\mathbb{N}$, and $\\sum_{n=1}^{k} f(n) = 98$. then $k$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. The summation $\\sum f(n)$ applies to the first column (the only column containing $n$) :\n$\\sum_{n=1}^{k} f(n) = \\begin{vmatrix} \\sum n & 1 & 5 \\\\ 2\\sum n^{2} & 3(2k + 1) & 2k + 1 \\\\ 3\\sum n^{3} & 3k(2k + 1) & 3k(k + 2) + 1 \\end{vmatrix}$\n2. Recall the sum formulas: $\\sum n = \\frac{k(k + 1)}{2}$, $\\sum n^{2} = \\frac{k(k + 1)(2k + 1)}{6}$, $\\sum n^{3} = \\frac{k^{2}(k + 1)^{2}}{4}$.\n3. Substituting these into the determinant and simplifying the first column:\n• $C_{11} = \\frac{k(k + 1)}{2}$\n• $C_{21} = 2\\frac{k(k + 1)(2k + 1)}{6} = \\frac{k(k + 1)(2k + 1)}{3}$\n• $C_{31} = 3\\frac{k^{2}(k + 1)^{2}}{4}$\n4. Through row and column operations (or expanding and simplifying), the determinant reduces to:\n$\\sum_{n=1}^{k} f(n) = \\frac{7}{6}k(k + 1)(2k + 1)$\n5. Given $\\sum f(n) = 98$:\n$\\frac{7}{6}k(k + 1)(2k + 1) = 98$\n$k(k + 1)(2k + 1) = \\frac{98 \\times 6}{7} = 14 \\times 6 = 84$\n6. Testing integer values for $k$ :\n• If $k = 3$: $3(4)(7) = 84$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $M$ be a $3 \\times 3$ matrix such that $M\\begin{pmatrix} 1 \\\\ 0 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}$, $M\\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 1 \\\\ 2 \\end{pmatrix}$ and $M\\begin{pmatrix} 0 \\\\ 0 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} -1 \\\\ 1 \\\\ 1 \\end{pmatrix}$. If $M\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 7 \\\\ 11 \\end{pmatrix}$, then $x + y + z$ equals :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$M\\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 2 \\\\ 3 \\end{bmatrix}$\n$\\begin{bmatrix} a_{11} & a_{12} & a_{13} \\\\ a_{11} & a_{22} & a_{23} \\\\ a_{31} & a_{32} & a_{33} \\end{bmatrix}_{3 \\times 3} \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\end{bmatrix}_{3} = \\begin{bmatrix} 1 \\\\ 2 \\\\ 3 \\end{bmatrix}$\n$\\begin{bmatrix} a_{11} \\\\ a_{21} \\\\ a_{31} \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 2 \\end{bmatrix}$\n$\\begin{bmatrix} a_{12} \\\\ a_{22} \\\\ a_{32} \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 2 \\end{bmatrix}$\n$\\begin{bmatrix} a_{13} \\\\ a_{23} \\\\ a_{33} \\end{bmatrix} = \\begin{bmatrix} -1 \\\\ 1 \\\\ 1 \\end{bmatrix}$\n$M = \\begin{bmatrix} 1 & 0 & -1 \\\\ 2 & 1 & 1 \\\\ 3 & 2 & 1 \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 7 \\\\ 11 \\end{bmatrix}$\n$\\begin{bmatrix} x - z \\\\ 2x + y + z \\\\ 3x + 2y + z \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 7 \\\\ 1 \\end{bmatrix}$\n$x - z = 1$ ........(1)\n$2x + y + z = 7$ ........(2)\n$3x + 2y + z = 11$ ........(3)\n(3) – (2)\n$x + 4 + z = 7$\n$x + z = 3$\n$x - z = 1$\n$2x = 4 \\Rightarrow x = 2$, $z = 1$\n$6 + 2y + 1 = 11$\n$y = 2$\n$x + y + z = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$11$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the sum of the first 10 terms of the series $\\frac{1}{1 + 1^{4} \\times 4} + \\frac{2}{1 + 2^{4} \\times 4} + \\frac{3}{1 + 3^{4} \\times 4} + \\dots$ is $\\frac{m}{n}$ $\\gcd(m, n) = 1$, then $m + n$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. The general term is $T_{r} = \\frac{r}{1 + 4r^{4}}$.\n2. Factorize the denominator using Sophie Germain's identity:\n$1 + 4r^{4} = (2r^{2} + 1)^{2} - (2r)^{2} = (2r^{2} - 2r + 1)(2r^{2} + 2r + 1)$\n3. Split the general term using partial fractions :\n$T_{r} = \\frac{1}{4}\\left[\\frac{(2r^{2} + 2r + 1) - (2r^{2} - 2r + 1)}{(2r^{2} - 2r + 1)(2r^{2} + 2r + 1)}\\right] = \\frac{1}{4}\\left[\\frac{1}{2r^{2} - 2r + 1} - \\frac{1}{2r^{2} + 2r + 1}\\right]$\n4. Note that $2(r + 1)^{2} - 2(r + 1) + 1 = 2(r^{2} + 2r + 1) - 2r - 2 + 1 = 2r^{2} + 2r + 1$\n5. This is a telescoping series. The sum of the first 10 terms is :\n$S_{10} = \\frac{1}{4}\\left[1 - \\frac{1}{221}\\right] = \\frac{1}{4}\\left[\\frac{220}{221}\\right] = \\frac{55}{221}$\n6. Since $\\gcd(55, 221) = 1$, we have $m = 55$ and $n = 221$.\n7. Calculation of $m + n$ :\n$m + n = 55 + 221 = 276$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$256$"
+    },
+    {
+     "key": "B",
+     "text": "$264$"
+    },
+    {
+     "key": "C",
+     "text": "$276$"
+    },
+    {
+     "key": "D",
+     "text": "$284$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A_{1}, A_{2}, A_{3}, \\dots, A_{39}$ be 39 arithmetic means between the numbers 59 and 159. Then the mean of $A_{25}, A_{28}, A_{31}$ and $A_{36}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Let the common difference of the arithmetic progression (A.P.) be $d$.\n2. The sequence is $59, A_{1}, A_{2}, \\dots, A_{39}, 159$. This contains $39 + 2 = 41$ terms.\n3. The $41^{st}$ term is :\n$159 = 59 + (41 - 1)d$\n$100 = 40d \\Rightarrow d = 2.5$\n4. The $k^{th}$ arithmetic mean $A_{k}$ is the $(k + 1)^{th}$ term of the A.P. :\n$A_{k} = 59 + kd$\n5. We need the mean of $A_{25}, A_{28}, A_{31}$, and $A_{36}$\n$\\text{Mean} = \\frac{A_{25} + A_{28} + A_{31} + A_{36}}{4}$\n$\\text{Mean} = \\frac{(59 + 25d) + (59 + 28d) + (59 + 31d) + (59 + 36d)}{4}$\n$\\text{Mean} = \\frac{4 \\times 59 + (25 + 28 + 31 + 36)d}{4}$\n$\\text{Mean} = 59 + \\frac{120d}{4} = 59 + 30d$\n6. Substitute $d = 2.5$ :\n$\\text{Mean} = 59 + 30(2.5) = 59 + 75 = 134$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$129$"
+    },
+    {
+     "key": "B",
+     "text": "$136$"
+    },
+    {
+     "key": "C",
+     "text": "$131.50$"
+    },
+    {
+     "key": "D",
+     "text": "$134$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The coefficient of $x^{2}$ in the expansion of $\\left(2x^{2} + \\frac{1}{x}\\right)^{10}$, $x \\neq 0$, is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. The general term $T_{r+1}$ in the expansion of $\\left(2x^{2} + \\frac{1}{x}\\right)^{10}$ is:\n$T_{r+1} = {}^{10}C_{r}(2x^{2})^{10-r}\\left(\\frac{1}{x}\\right)^{r}$\n$T_{r+1} = {}^{10}C_{r} \\cdot 2^{10-r} \\cdot x^{2(10-r)} \\cdot x^{-r}$\n$T_{r+1} = {}^{10}C_{r} \\cdot 2^{10-r} \\cdot x^{20-3r}$\n2. To find the coefficient of $x^{2}$, set the exponent of $x$ to 2:\n$20 - 3r = 2 \\Rightarrow 3r = 18 \\Rightarrow r = 6$\n3. The coefficient is :\n$\\text{Coeff} = {}^{10}C_{6} \\cdot 2^{10-6} = {}^{10}C_{4} \\cdot 2^{4}$\n${}^{10}C_{4} = \\frac{10 \\times 9 \\times 8 \\times 7}{4 \\times 3 \\times 2 \\times 1} = 210$\n$\\text{Coeff} = 210 \\times 16 = 3360$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3240$"
+    },
+    {
+     "key": "B",
+     "text": "$3360$"
+    },
+    {
+     "key": "C",
+     "text": "$3480$"
+    },
+    {
+     "key": "D",
+     "text": "$3600$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The probabilities that players A and B of a team are selected for the captaincy for a tournament are 0.6 and 0.4, respectively. If A is selected the captain, the probability that the team wins the tournament is 0.8 and if B is selected the captain, the probability that the team wins the tournament is 0.7. Then the probability, that the team wins the tournament, is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Let $E_{1}$ be the event that A is selected, $P(E_{1}) = 0.6$.\n2. Let $E_{2}$ be the event that B is selected, $P(E_{2}) = 0.4$.\n3. Let $W$ be the event that the team wins.\n4. Given conditional probabilities:\n$P(W|E_{1}) = 0.8$\n$P(W|E_{2}) = 0.7$\n5. Using the Theorem of Total Probability:\n$P(W) = P(E_{1})P(W|E_{1}) + P(E_{2})P(W|E_{2})$\n$P(W) = (0.6)(0.8) + (0.4)(0.7)$\n$P(W) = 0.48 + 0.28 = 0.76$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.74$"
+    },
+    {
+     "key": "B",
+     "text": "$0.76$"
+    },
+    {
+     "key": "C",
+     "text": "$0.72$"
+    },
+    {
+     "key": "D",
+     "text": "$0.78$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A box contains 5 blue, 6 yellow and 4 red balls. The number of ways, of drawing 8 balls containing at least two balls of each colour, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Total balls to draw = 8. At least 2 balls of Blue (B), Yellow (Y), and Red (R) are required.\n2. Let the distribution be $(b, y, r)$ such that $b + y + r = 8$, where $b \\geq 2$, $y \\geq 2$, $r \\geq 2$.\n3. Possible combinations:\n• Case 1: $(4, 2, 2) \\Rightarrow {}^{5}C_{4} \\cdot {}^{6}C_{2} \\cdot {}^{4}C_{2} = 5 \\times 15 \\times 6 = 450$\n• Case 2: $(2, 4, 2) \\Rightarrow {}^{5}C_{2} \\cdot {}^{6}C_{4} \\cdot {}^{4}C_{2} = 10 \\times 15 \\times 6 = 900$\n• Case 3: $(2, 2, 4) \\Rightarrow {}^{5}C_{2} \\cdot {}^{6}C_{2} \\cdot {}^{4}C_{4} = 10 \\times 15 \\times 1 = 150$\n• Case 4: $(3, 3, 2) \\Rightarrow {}^{5}C_{3} \\cdot {}^{6}C_{3} \\cdot {}^{4}C_{2} = 10 \\times 20 \\times 6 = 1200$\n• Case 5: $(3, 2, 3) \\Rightarrow {}^{5}C_{3} \\cdot {}^{6}C_{2} \\cdot {}^{4}C_{3} = 10 \\times 15 \\times 4 = 600$\n• Case 6: $(2, 3, 3) \\Rightarrow {}^{5}C_{2} \\cdot {}^{6}C_{3} \\cdot {}^{4}C_{3} = 10 \\times 20 \\times 4 = 800$\n4. Total ways $= 450 + 900 + 150 + 1200 + 600 + 800 = 4100$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4100$"
+    },
+    {
+     "key": "B",
+     "text": "$4140$"
+    },
+    {
+     "key": "C",
+     "text": "$4230$"
+    },
+    {
+     "key": "D",
+     "text": "$4290$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A variable $X$ takes values $0, 0, 2, 6, 12, 20, \\dots, n(n - 1)$ with frequencies ${}^{n}C_{0}, {}^{n}C_{1}, {}^{n}C_{2}, {}^{n}C_{3}, {}^{n}C_{4}, {}^{n}C_{5}, \\dots, {}^{n}C_{n}$ respectively. If the mean of this data is 60, then its median is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. The general value is $x_{r} = r(r - 1)$ for $r = 0, 1, 2, \\dots, n$.\n2. The frequency for $x_{r}$ is $f_{r} = {}^{n}C_{r}$.\n3. The mean $\\bar{X} = \\frac{\\sum f_{r}x_{r}}{\\sum f_{r}} = 60$.\n• $\\sum f_{r} = \\sum_{r=0}^{n} {}^{n}C_{r} = 2^{n}$\n• $\\sum f_{r}x_{r} = \\sum_{r=0}^{n} r(r - 1)\\,{}^{n}C_{r}$\nUsing $r(r - 1)\\,{}^{n}C_{r} = n(n - 1)\\,{}^{n-2}C_{r-2}$ :\n$\\sum_{r=2}^{n} n(n - 1)\\,{}^{n-2}C_{r-2} = n(n - 1)2^{n-2}$\n4. Substitute into the mean formula:\n$60 = \\frac{n(n - 1)2^{n-2}}{2^{n}} = \\frac{n(n - 1)}{4}$\n$n(n - 1) = 240 \\Rightarrow n^{2} - n - 240 = 0$\n$(n - 16)(n + 15) = 0 \\Rightarrow n = 16$\n(since $n \\in \\mathbb{N}$)\n5. To find the median, we look for the value $x_{r}$ where the cumulative frequency first exceeds $\\frac{1}{2}\\sum f_{r} = 2^{15}$.\n6. Since the frequency distribution ${}^{16}C_{r}$ is symmetric, the middle of the sum $\\sum_{r=0}^{16} {}^{16}C_{r}$ occurs at $r = 8$.\n7. The median value is $x_{8} = 8(8 - 1) = 8 \\times 7 = 56$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$56$"
+    },
+    {
+     "key": "B",
+     "text": "$42$"
+    },
+    {
+     "key": "C",
+     "text": "$72$"
+    },
+    {
+     "key": "D",
+     "text": "$90$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the point P be the vertex of the parabola $y = x^{2} - 6x + 12$. If a line passing through the point P intersects the circle $x^{2} + y^{2} - 2x - 4y + 3 = 0$ at the points R and S, then the maximum value of $(PR + PS)^{2}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find the vertex P of the parabola $y = x^{2} - 6x + 12$:\n• $x = -\\frac{b}{2a} = \\frac{6}{2} = 3$.\n• $y = (3)^{2} - 6(3) + 12 = 9 - 18 + 12 = 3$.\n• So, P is $(3, 3)$.\n2. Consider the circle $x^{2} + y^{2} - 2x - 4y + 3 = 0$:\n• Center $C = (1, 2)$.\n• Radius $r = \\sqrt{1^{2} + 2^{2} - 3} = \\sqrt{2}$.\n3. Let a line through $P(3, 3)$ with inclination $\\theta$ be $x = 3 + r\\cos\\theta$, $y = 3 + r\\sin\\theta$.\n4. Substitute into the circle equation:\n$(3 + r\\cos\\theta)^{2} + (3 + r\\sin\\theta)^{2} - 2(3 + r\\cos\\theta) - 4(3 + r\\sin\\theta) + 3 = 0$\n$r^{2} + r(4\\cos\\theta + 2\\sin\\theta) + 3 = 0$\n5. Let the roots be $r_{1}$ and $r_{2}$. Since P is outside the circle, $PR = |r_{1}|$ and $PS = |r_{2}|$ are distances in the same direction, so $PR + PS = |r_{1} + r_{2}|$.\n$|r_{1} + r_{2}| = |4\\cos\\theta + 2\\sin\\theta|$\n6. The maximum value of $4\\cos\\theta + 2\\sin\\theta$ is $\\sqrt{4^{2} + 2^{2}} = \\sqrt{20}$.\n7. Thus, the maximum value of $(PR + PS)^{2}$ is $\\left(\\sqrt{20}\\right)^{2} = 20$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$20$"
+    },
+    {
+     "key": "C",
+     "text": "$25$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Parabola",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the directrix of the parabola $P : y^{2} = 8x$, cut x-axis at the point A. Let $B(\\alpha, \\beta), \\alpha > 1$, be a point on P such that the slope of AB is $3/5$. If BC is a focal chord of P, then six times the area of $\\Delta ABC$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. For $y^{2} = 8x$, $a = 2$. Focus $S = (2, 0)$. Directrix is $x = -2$.\n2. Point A (intersection of directrix and x-axis) is $(-2, 0)$.\n3. $B(\\alpha, \\beta)$ lies on $y^{2} = 8x \\Rightarrow \\beta^{2} = 8\\alpha$.\n4. Slope AB $= \\frac{\\beta - 0}{\\alpha + 2} = \\frac{3}{5} \\Rightarrow 5\\beta = 3\\alpha + 6$.\n5. Solving $\\beta^{2} = 8\\left(\\frac{5\\beta - 6}{3}\\right) \\Rightarrow 3\\beta^{2} - 40\\beta + 48 = 0$\n• Roots: $\\beta = 12$ or $\\beta = 4/3$.\n• If $\\beta = 12$, $\\alpha = 18$ (satisfies $\\alpha > 1$). So $B = (18, 12)$.\n6. BC is a focal chord through $S(2, 0)$. For $y^{2} = 4ax$, if one end is $(at^{2}, 2at)$, the other is $\\left(\\frac{a^{2}}{t}, -\\frac{2a}{t}\\right)$.\n• $B = (2 \\cdot 3^{2}, 2 \\cdot 2 \\cdot 3) \\Rightarrow t = 3$.\n• $C = (2/3^{2}, -4/3) = (2/9, -4/3)$.\n7. Area of $\\Delta ABC$ with $A(-2, 0)$, $B(18, 12)$, $C(2/9, -4/3)$:\n$\\text{Area} = \\frac{1}{2}\\left|-2(12 + 4/3) + 18(-4/3 - 0) + 2/9(0 - 12)\\right| = \\frac{80}{3}$\n8. $6 \\times \\text{Area} = 6 \\times \\frac{80}{3} = 160$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$80$"
+    },
+    {
+     "key": "B",
+     "text": "$160$"
+    },
+    {
+     "key": "C",
+     "text": "$174$"
+    },
+    {
+     "key": "D",
+     "text": "$192$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Hyperbola",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the eccentricity $e$ of a hyperbola satisfy the equation $6e^{2} - 11e + 3 = 0$. If the foci of the hyperbola are $(3, 5)$ and $(3, -4)$, then the length of its latus rectum is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Solve $6e^{2} - 11e + 3 = 0$: $(2e - 3)(3e - 1) = 0 \\Rightarrow e = 3/2$ (since $e > 1$ for hyperbola).\n2. Distance between foci $(3, 5)$ and $(3, -4) = 2ae = 9$ (Note: Assuming a typo in the coordinate $(3, 4)$ to match the given options; the distance must be 9 for the result to align with Option C).\n3. $2a\\left(\\frac{3}{2}\\right) = 9 \\Rightarrow 3a = 9 \\Rightarrow a = 3$.\n4. $b^{2} = a^{2}(e^{2} - 1) = 9\\left(\\frac{9}{4} - 1\\right) = 9\\left(\\frac{5}{4}\\right) = \\frac{45}{4}$.\n5. Length of latus rectum $= \\frac{2b^{2}}{a} = \\frac{2(45/4)}{3} = \\frac{45/2}{3} = \\frac{15}{2}$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{11}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{17}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{15}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{17}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a triangle PQR be such that P and Q lie on the line $\\frac{x + 3}{8} = \\frac{y - 4}{2} = \\frac{z + 1}{2}$ and are at a distance of 6 units from $R(1, 2, 3)$. If $(\\alpha, \\beta, \\gamma)$ is the centroid of $\\Delta PQR$, then $\\alpha + \\beta + \\gamma$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Any point on the line is $P, Q = (8\\lambda - 3, 2\\lambda + 4, 2\\lambda - 1)$.\n2. Distance from $R(1, 2, 3)$ is 6: $(8\\lambda - 4)^{2} + (2\\lambda + 2)^{2} + (2\\lambda - 4)^{2} = 36$.\n3. $64\\lambda^{2} - 64\\lambda + 16 + 4\\lambda^{2} + 8\\lambda + 4 + 4\\lambda^{2} - 16\\lambda + 16 = 36$.\n4. $72\\lambda^{2} - 72\\lambda + 36 = 36 \\Rightarrow 72\\lambda(\\lambda - 1) = 0 \\Rightarrow \\lambda = 0, 1$.\n5. Points are $P(-3, 4, -1)$ and $Q(5, 6, 1)$.\n6. Centroid $(\\alpha, \\beta, \\gamma) = \\left(\\frac{-3 + 5 + 1}{3}, \\frac{4 + 6 + 2}{3}, \\frac{-1 + 1 + 3}{3}\\right) = (1, 4, 1)$.\n7. $\\alpha + \\beta + \\gamma = 1 + 4 + 1 = 6$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the distance of the point $(a, 2, 5)$ from the image of the point $(1, 2, 7)$ in the line $\\frac{x}{1} = \\frac{y - 1}{1} = \\frac{z - 2}{2}$ is 4, then the sum of all possible values of $a$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find image of $A(1, 2, 7)$ in line $L : \\frac{x}{1} = \\frac{y - 1}{1} = \\frac{z - 2}{2}$.\n2. Foot of perpendicular $M = (\\lambda, \\lambda + 1, 2\\lambda + 2)$. Vector $AM = (\\lambda - 1, \\lambda - 1, 2\\lambda - 5)$.\n3. $AM \\cdot (1, 1, 2) = 0 \\Rightarrow \\lambda - 1 + \\lambda - 1 + 4\\lambda - 10 = 0 \\Rightarrow 6\\lambda = 12 \\Rightarrow \\lambda = 2$.\n4. $M = (2, 3, 6)$. Image $A' = 2M - A = (3, 4, 5)$.\n5. Distance of $(a, 2, 5)$ from $(3, 4, 5)$ is 4:\n$(a - 3)^{2} + (2 - 4)^{2} + (5 - 5)^{2} = 16 \\Rightarrow (a - 3)^{2} + 4 = 16 \\Rightarrow (a - 3)^{2} = 12$\n6. $a - 3 = \\pm\\sqrt{12} \\Rightarrow a = 3 \\pm 2\\sqrt{3}$\n7. Sum of values $= \\left(3 + 2\\sqrt{3}\\right) + \\left(3 - 2\\sqrt{3}\\right) = 6$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$11$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let O be the origin, $\\overrightarrow{OP} = \\vec{a}$ and $\\overrightarrow{OQ} = \\vec{b}$. If R is the point on $\\overrightarrow{OP}$ such that $\\overrightarrow{OP} = 5\\overrightarrow{OR}$, and M is the point such that $\\overrightarrow{OQ} = 5\\overrightarrow{RM}$, then $\\overrightarrow{PM}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. From the given relation $\\overrightarrow{OP} = 5\\overrightarrow{OR}$, we have:\n$\\overrightarrow{OR} = \\frac{1}{5}\\overrightarrow{OP} = \\frac{1}{5}\\vec{a}$\n2. The relation $\\overrightarrow{OQ} = 5\\overrightarrow{RM}$ can be written in terms of position vectors as:\n$\\vec{b} = 5\\left(\\overrightarrow{OM} - \\overrightarrow{OR}\\right)$\n3. Substitute $\\overrightarrow{OR} = \\frac{1}{5}\\vec{a}$ into the equation:\n$\\vec{b} = 5\\overrightarrow{OM} - 5\\left(\\frac{1}{5}\\vec{a}\\right)$\n$\\vec{b} = 5\\overrightarrow{OM} - \\vec{a}$\n$5\\overrightarrow{OM} = \\vec{a} + \\vec{b} \\Rightarrow \\overrightarrow{OM} = \\frac{1}{5}\\left(\\vec{a} + \\vec{b}\\right)$\n4. Now, find the vector $\\overrightarrow{PM}$ :\n$\\overrightarrow{PM} = \\overrightarrow{OM} - \\overrightarrow{OP}$\n$\\overrightarrow{PM} = \\frac{1}{5}\\left(\\vec{a} + \\vec{b}\\right) - \\vec{a}$\n$\\overrightarrow{PM} = \\frac{\\vec{a} + \\vec{b} - 5\\vec{a}}{5} = \\frac{\\vec{b} - 4\\vec{a}}{5}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{5}(\\vec{a} - 4\\vec{b})$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{5}(\\vec{b} - 4\\vec{a})$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{5}(-\\vec{a} + 4\\vec{b})$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{5}(-\\vec{b} + 4\\vec{a})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\lim_{y \\to 0} \\frac{(1 - \\cos(xy))\\tan(xy)}{y^{3}}$. Then the number of solutions of the equation $f(x) = \\sin x$, $x \\in \\mathbb{R}$ :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Evaluate the limit for $f(x)$ :\n$f(x) = \\lim_{y \\to 0} \\frac{2\\sin^{2}\\left(\\frac{xy}{2}\\right)\\tan(xy)}{y^{3}}$\n2. Using standard limits $\\lim_{\\theta \\to 0} \\frac{\\sin\\theta}{\\theta} = 1$ and $\\lim_{\\theta \\to 0} \\frac{\\tan\\theta}{\\theta} = 1$:\n$f(x) = \\lim_{y \\to 0} \\frac{2\\left(\\frac{xy}{2}\\right)^{2} \\cdot (xy)}{y^{3}} = \\lim_{y \\to 0} \\frac{2 \\cdot \\frac{x^{2}y^{2}}{4} \\cdot xy}{y^{3}}$\n$f(x) = \\frac{2x^{3}y^{3}}{4y^{3}} = \\frac{x^{3}}{2}$\n3. The given equation is $f(x) = \\sin x$:\n$\\frac{x^{3}}{2} = \\sin x \\Rightarrow x^{3} = 2\\sin x$\n4. Analyze the intersections of $y = x^{3}$ and $y = 2\\sin x$ :\n• At $x = 0$, both are 0 (Solution 1).\n• For $x > 0$, the slope of $2\\sin x$ at the origin is 2, while the slope of $x^{3}$ is 0. Thus, $2\\sin x$ starts above $x^{3}$. Since $2\\sin x$ is bounded by 2 and $x^{3}$ grows infinitely, they must intersect once for $x > 0$. (Solution 2).\n• Since both functions are odd, there is a symmetric intersection for $x < 0$. (Solution 3).\n5. Total number of solutions is 3.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $(2^{1-a} + 2^{1+a})$, $f(a)$ $(3^{a} + 3^{-a})$ be in A.P. and $\\alpha$ be the minimum value of $f(a)$. Then the value of the integral $\\int_{\\log_{e}(\\alpha - 1)}^{\\log_{e}(\\alpha)} \\frac{dx}{(e^{2x} - e^{-2x})}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Since the terms are in A.P.:\n$2f(a) = \\left(2^{1-a} + 2^{1+a}\\right) + \\left(3^{a} + 3^{-a}\\right)$\n$2f(a) = 2(2^{a} + 2^{-a}) + (3^{a} + 3^{-a})$\n2. Using AM–GM inequality, the minimum value of $\\left(t + \\frac{1}{t}\\right)$ for $t > 0$ is 2.\n$2^{a} + 2^{-a} \\geq 2$\n$3^{a} + 3^{-a} \\geq 2$\n3. Therefore, $2f(a) \\geq 2(2) + 2 = 6 \\Rightarrow f(a) \\geq 3$. So $\\alpha = 3$.\n4. The integral becomes:\n$I = \\int_{\\ln 2}^{\\ln 3} \\frac{dx}{e^{2x} - e^{-2x}} = \\int_{\\ln 2}^{\\ln 3} \\frac{e^{2x}\\,dx}{e^{4x} - 1}$\n5. Let $u = e^{2x} \\Rightarrow du = 2e^{2x}\\,dx$.\nLimits: $x = \\ln 2 \\Rightarrow u = 4$; $x = \\ln 3 \\Rightarrow u = 9$.\n$I = \\frac{1}{2}\\int_{4}^{9} \\frac{du}{u^{2} - 1} = \\frac{1}{2}\\left[\\frac{1}{2}\\ln\\left|\\frac{u - 1}{u + 1}\\right|\\right]_{4}^{9}$\n$I = \\frac{1}{4}\\left[\\ln\\left(\\frac{8}{10}\\right) - \\ln\\left(\\frac{3}{5}\\right)\\right] = \\frac{1}{4}\\ln\\left(\\frac{4/5}{3/5}\\right) = \\frac{1}{4}\\ln\\left(\\frac{4}{3}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}\\log_{e}\\left(\\frac{4}{3}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{4}\\log_{e}\\left(\\frac{4}{3}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2}\\log_{e}\\left(\\frac{8}{5}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{4}\\log_{e}\\left(\\frac{8}{5}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f : [1, \\infty) \\to \\mathbb{R}$ be a differentiable function defined as $f(x) = \\int_{1}^{x} f(t)\\,dt + (1 - x)(\\ln x - 1) + e$. Then the value of $f(f(1))$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find $f(1)$ from the definition:\n$f(1) = \\int_{1}^{1} f(t)\\,dt + (1 - 1)(\\ln 1 - 1) + e = 0 + 0 + e = e$\n2. Differentiate $f(x)$ with respect to $x$ using Leibniz rule:\n$f'(x) = f(x) + \\left[-1(\\ln x - 1) + (1 - x)\\frac{1}{x}\\right]$\n$f'(x) - f(x) = -\\ln x + 1 + \\frac{1}{x} - 1 = \\frac{1}{x} - \\ln x$\n3. This is a linear differential equation with IF $= e^{\\int -1\\,dx} = e^{-x}$ :\n$\\frac{d}{dx}\\left(f(x)e^{-x}\\right) = e^{-x}\\left(\\frac{1}{x} - \\ln x\\right)$\n4. Integrating both sides:\n$f(x)e^{-x} = \\int e^{-x}\\frac{1}{x}\\,dx - \\int e^{-x}\\ln x\\,dx$\nUsing integration by parts on $\\int e^{-x}\\ln x\\,dx$ (with $u = \\ln x$):\n$\\int e^{-x}\\ln x\\,dx = -e^{-x}\\ln x + \\int e^{-x}\\frac{1}{x}\\,dx$\nSo, $f(x)e^{-x} = e^{-x}\\ln x + C \\Rightarrow f(x) = \\ln x + Ce^{x}$.\n5. Using $f(1) = e$: $e = \\ln 1 + Ce^{1} \\Rightarrow Ce = e \\Rightarrow C = 1$.\n$f(x) = \\ln x + e^{x}$\n6. Calculate $f(f(1)) = f(e)$:\n$f(e) = \\ln e + e^{e} = 1 + e^{e}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(1 + e^{e})$"
+    },
+    {
+     "key": "B",
+     "text": "$(1 + e)$"
+    },
+    {
+     "key": "C",
+     "text": "$(1 + e + e^{e})$"
+    },
+    {
+     "key": "D",
+     "text": "$1 + 2e$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x)$ and $g(x)$ be twice differentiable functions satisfying $f''(x) = g''(x)$ for all $x \\in \\mathbb{R}$, $f'(1) = 2g'(1) = 4$ and $g(2) = 3f(2) = 9$. Then $f(25) - g(25)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Given $f''(x) = g''(x) \\Rightarrow (f - g)''(x) = 0$.\n2. Integrating once: $(f - g)'(x) = c_{1}$.\n3. Using $f'(1) = 4$ and $2g'(1) = 4 \\Rightarrow g'(1) = 2$:\n$c_{1} = f'(1) - g'(1) = 4 - 2 = 2$\nSo, $(f - g)'(x) = 2$.\n4. Integrating again: $(f - g)(x) = 2x + c_{2}$.\n5. Using $g(2) = 9$ and $3f(2) = 9 \\Rightarrow f(2) = 3$:\n$(f - g)(2) = 3 - 9 = -6$\nSubstitute $x = 2$ into the equation: $-6 = 2(2) + c_{2} \\Rightarrow c_{2} = -10$.\n6. The expression for the difference is $(f - g)(x) = 2x - 10$.\n7. Calculate for $x = 25$:\n$f(25) - g(25) = 2(25) - 10 = 50 - 10 = 40$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$40$"
+    },
+    {
+     "key": "C",
+     "text": "$-20$"
+    },
+    {
+     "key": "D",
+     "text": "$-40$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A = \\{1, 4, 7\\}$ and $B = \\{2, 3, 8\\}$. Then the number of elements, in the relation $R = \\{((a_{1}, b_{1}), (a_{2}, b_{2})) \\in ((A \\times B) \\times (A \\times B)) : a_{1} + b_{2}$ divides $a_{2} + b_{1}\\}$ is ________.",
+   "correct_key": null,
+   "correct_value": 18,
+   "correct_keys": null,
+   "solution": "A / B | 2 | 3 | 8\n1 | 3 | 4 | 9\n4 | 6 | 7 | 12\n7 | 9 | 10 | 15\nNow $b_{1} + a_{2}$ divides $a_{1} + b_{2}$\n$a_{1} + b_{2}$ | $a_{2} + b_{1}$ | No. of Pass\n15 | 3, 15 | 2\n12 | 3, 4, 6, 12 | 4\n10 | 10 | 1\n9 | 3, 9 | 6\n7 | 7 | 1\n6 | 3, 6 | 2\n4 | 4 | 1\n3 | 3 | 1\n |  | 18",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Straight Lines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "From the point $(-1, -1)$, two rays are sent making angles of $45^{\\circ}$C with the line $x + y = 0$. These rays get reflected from the mirror $x + 2y = 1$. If the equations of the reflected rays are $ax + by = 9$ and $cx + dy = 7$, $a, b, c, d \\in \\mathbb{Z}$, then the value of $ad + bc$ is ________.",
+   "correct_key": null,
+   "correct_value": 7,
+   "correct_keys": null,
+   "solution": "$(-1, -1)$\n$y = -x$\n$\\tan 45^{\\circ} = \\left|\\frac{m + 1}{1 - m}\\right|$\n$1 = \\left|\\frac{m + 1}{1 - m}\\right|$\n$|m - 1| = |m + 1|$\n$m = 0$ or $m = \\infty$\n$y + 1 = 0(x + 1)$, $y = -1$ | $y + 1 = \\frac{1}{0}(x + 1)$, $x = -1$\n$\\frac{x + 1}{1} = \\frac{y + 1}{2} = -2\\left(\\frac{-1 - 2 - 1}{5}\\right)$\n$x + 1 = \\frac{y + 1}{2} = \\frac{8}{5}$\n$x = \\frac{3}{5}$\n$y + 1 = \\frac{16}{5}$\n$y = \\frac{11}{5}$\n$\\left(\\frac{3}{5}, \\frac{11}{5}\\right)$\n$(3, -1)$\n$m = \\frac{\\frac{11}{5} + 1}{\\frac{3}{5} - 3} = \\frac{\\frac{16}{5}}{\\frac{-12}{8}} = \\frac{-4}{3}$\n$y + 1 = \\frac{-4}{3}(x - 3)$\n$3y + 3 = -4x + 12$\n$4x + 3y = 9$\n$a = 4$, $b = 3$\n$\\left(\\frac{3}{5}, \\frac{11}{5}\\right)$ $(-1, 1)$\n$m = \\frac{\\frac{11}{5} - 1}{\\frac{3}{5} + 1} = \\frac{\\frac{6}{5}}{\\frac{8}{5}} = \\frac{3}{4}$\n$y - 1 = \\frac{3}{4}(x + 1)$\n$4y - 4 = 3x + 3$\n$-3x + 4y = 7$\n$c = -3$, $d = 4$\n$ad + bc = 16 - 9 = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Trigonometric Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $S = \\left\\{\\theta \\in [-\\pi, \\pi] : \\cos\\theta\\cos\\frac{5\\theta}{2} = \\cos 7\\theta\\cos\\frac{7\\theta}{2}\\right\\}$ then $n(S)$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 19,
+   "correct_keys": null,
+   "solution": "1. Use the identity $2\\cos A\\cos B = \\cos(A + B) + \\cos(A - B)$ :\n$\\cos\\left(\\frac{7\\theta}{2}\\right) + \\cos\\left(\\frac{3\\theta}{2}\\right) = \\cos\\left(\\frac{21\\theta}{2}\\right) + \\cos\\left(\\frac{7\\theta}{2}\\right)$\n2. This simplifies to :\n$\\cos\\left(\\frac{21\\theta}{2}\\right) = \\cos\\left(\\frac{3\\theta}{2}\\right)$\n3. The general solution is:\n$\\frac{21\\theta}{2} = 2n\\pi \\pm \\frac{3\\theta}{2}$\n4. Case 1: $\\frac{21\\theta}{2} = 2n\\pi + \\frac{3\\theta}{2}$\n$\\Rightarrow 9\\theta = 2n\\pi \\Rightarrow \\theta = \\frac{2n\\pi}{9}$\nValues in $[-\\pi, \\pi]$ : $\\pm\\frac{2\\pi}{9}, \\pm\\frac{4\\pi}{9}, \\pm\\frac{6\\pi}{9}, \\pm\\frac{8\\pi}{9}, 0$. (9 values)\n5. Case 2: $\\frac{21\\theta}{2} = 2n\\pi - \\frac{3\\theta}{2}$\n$\\Rightarrow 12\\theta = 2n\\pi \\Rightarrow \\theta = \\frac{n\\pi}{6}$\nValues in $[-\\pi, \\pi]$ : $\\pm\\frac{\\pi}{6}, \\pm\\frac{2\\pi}{6}, \\pm\\frac{3\\pi}{6}, \\pm\\frac{4\\pi}{6}, \\pm\\frac{5\\pi}{6}, \\pm\\pi, 0$.\n6. Removing duplicates (like $0, \\pm\\frac{\\pi}{3}, \\pm\\frac{2\\pi}{3}$) and counting unique values in $[-\\pi, \\pi]$ gives $n(S) = 19$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Area Under Curves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be a function such that $f(x) + 3f\\left(\\frac{\\pi}{2} - x\\right) = \\sin x$, $x \\in \\mathbb{R}$. Let the maximum value of $f$ on $\\mathbb{R}$ be $\\alpha$. If the area of the region bounded by the curves $g(x) = x^{2}$ and $h(x) = \\beta x^{3}$, $\\beta > 0$, is $\\alpha^{2}$, then $30\\beta^{3}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "1. Given $f(x) + 3f\\left(\\frac{\\pi}{2} - x\\right) = \\sin x$ (Eq. 1).\n2. Replace $x$ with $\\frac{\\pi}{2} - x$ : $f\\left(\\frac{\\pi}{2} - x\\right) + 3f(x) = \\cos x$ (Eq 2).\n3. Solve the system for $f(x)$ : Multiply Eq 2 by 3: $3f\\left(\\frac{\\pi}{2} - x\\right) + 9f(x) = 3\\cos x$. Subtract Eq 1:\n$8f(x) = 3\\cos x - \\sin x \\Rightarrow f(x) = \\frac{3\\cos x - \\sin x}{8}$.\n4. The maximum value $\\alpha$ of $A\\cos x + B\\sin x$ is $\\sqrt{A^{2} + B^{2}}$ : $\\alpha = \\frac{\\sqrt{3^{2} + (-1)^{2}}}{8} = \\frac{\\sqrt{10}}{8}$.\n5. Area between $x^{2}$ and $\\beta x^{3}$ for $\\beta > 0$:\nIntersection at $x^{2} = \\beta x^{3} \\Rightarrow x = 0$, $x = 1/\\beta$.\nArea $A = \\int_{0}^{1/\\beta} (x^{2} - \\beta x^{3})\\,dx = \\left[\\frac{x^{3}}{3} - \\frac{\\beta x^{4}}{4}\\right]_{0}^{1/\\beta} = \\frac{1}{3\\beta^{3}} - \\frac{1}{4\\beta^{3}} = \\frac{1}{12\\beta^{3}}$.\n6. Given Area $= \\alpha^{2}$. $\\Rightarrow \\frac{1}{12\\beta^{3}} = \\left(\\frac{\\sqrt{10}}{8}\\right)^{2} = \\frac{10}{64} = \\frac{5}{32}$\n7. $\\frac{1}{\\beta^{3}} = \\frac{12 \\times 5}{32} = \\frac{60}{32} = \\frac{15}{8}$.\n8. $30\\beta^{3} = 30 \\times \\frac{8}{15} = 2 \\times 8 = 16$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $(\\tan x)^{1/2}\\,dy = \\left(\\sec^{3}x - (\\tan x)^{3/2}y\\right)dx$, $0 < x < \\frac{\\pi}{2}$, $y\\left(\\frac{\\pi}{4}\\right) = \\frac{6\\sqrt{2}}{5}$. If $y\\left(\\frac{\\pi}{3}\\right) = \\frac{4}{5}\\alpha$ then $\\alpha^{4}$ equals ________.",
+   "correct_key": null,
+   "correct_value": 48,
+   "correct_keys": null,
+   "solution": "$(\\tan x)^{1/2}\\,dy = \\left(\\sec^{3}x - (\\tan x)^{3/2}y\\right)dx$\n$\\frac{dy}{dx} = \\frac{\\sec^{3}x}{(\\tan x)^{1/2}} - (\\tan x)y$\n$\\frac{dy}{dx} + (\\tan x)y = \\frac{\\sec^{3}x}{(\\tan x)^{1/2}}$\n$\\text{I.F} = e^{\\int \\tan x\\,dx} = \\sec x$\n$y \\times \\sec x = \\int \\frac{\\sec^{2}x \\times \\sec^{2}x}{(\\tan x)^{1/2}}\\,dx$\n$\\tan x = u^{2}$\n$\\sec^{2}x\\,dx = 2u\\,dx$\n$y \\times \\sec x = \\int \\frac{2u\\,dx}{u} \\times \\left(1 + u^{4}\\right)$\n$y \\times \\sec x = 2u + \\frac{2u^{5}}{5} + c$\n$y\\sec x = 2\\sqrt{\\tan x} + \\frac{2(\\tan x)^{5/2}}{5} + c$\nPut $x = \\frac{\\pi}{4}$, $y = \\frac{6\\sqrt{2}}{5}$\n$\\frac{6\\sqrt{2}}{5} \\times \\sqrt{2} = 2 + \\frac{2}{5} + c$\n$c = 0$\n$y\\sec x = 2\\sqrt{\\tan x} + \\frac{2}{5}(\\tan x)^{5/2}$\nPut $x = \\frac{\\pi}{3}$, $y = \\frac{4\\alpha}{5}$\n$\\frac{4\\alpha}{5} = (3)^{1/4} + \\frac{3}{5} + 3^{1/4}$\n$\\frac{4\\alpha}{5} = \\frac{8}{5} + 3^{1/4}$\n$\\alpha = 2 \\times 3^{1/4}$\n$\\alpha^{4} = 18 \\times 3 = 48$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

@@ -1,0 +1,859 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "6 Apr · Shift 2",
+  "title": "JEE Main 2026 · Physics · 6 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1dVBHOYnFuTakHkjpsKhnH87lFb_GvFY3"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The percentage error in the calculated volume of a sphere, if there is 2% error in its diameter measurement, is ________ .",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V = \\frac{4}{3}\\pi\\left(\\frac{d}{2}\\right)^{3} = \\frac{\\pi}{6}d^{3}$\n$\\frac{\\Delta V}{V} = 3\\frac{\\Delta d}{d}$\n$\\frac{\\Delta V}{V} \\times 100\\% = 3\\left(\\frac{\\Delta d}{d} \\times 100\\%\\right)$\n$= 3 \\times 2\\%$\n$= 6\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "6"
+    },
+    {
+     "key": "D",
+     "text": "8"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List - I with List - II.\nList - I | List - II\nA. Boltzmann constant | I. $\\left[M^{-1}L^{3}T^{-2}\\right]$\nB. Stefan's constant | II. $\\left[ML^{2}T^{-1}\\right]$\nC. Planck's constant | III. $\\left[ML^{2}T^{-2}K^{-1}\\right]$\nD. Gravitational constant | IV. $\\left[ML^{0}T^{-3}K^{-4}\\right]$\nChoose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) $K.E. = \\frac{3}{2}KT$\n$K = \\frac{2}{3}\\frac{K.E.}{T}$\n$[K] = \\frac{M^{1}L^{2}T^{-2}}{K^{-1}}$\n$= M^{1}L^{2}T^{-2}K^{-1}$\n(B) $\\frac{dQ}{dt} = e\\sigma A\\left(T_{b}^{4} - T_{s}^{4}\\right)$\n$\\sigma = \\frac{dQ/dt}{eA\\left(T_{b}^{4} - T_{s}^{4}\\right)}$\n$[\\sigma] = \\frac{M^{1}L^{2}T^{-3}}{[0]L^{2}K^{4}}$\n$= M^{1}L^{0}T^{-3}K^{-4}$\n(C) $P = \\frac{h}{\\lambda} \\Rightarrow h = P\\lambda$\n$[h] = (M^{1}L^{1}T^{-1})(L^{1})$\n$= M^{1}L^{2}T^{-1}$\n(D) $F = \\frac{Gm_{1}m_{2}}{r^{2}}$\n$G = \\frac{Fr^{2}}{m_{1}m_{2}}$\n$[G] = \\frac{M^{1}L^{3}T^{-2}}{M^{2}}$\n$= M^{-1}L^{3}T^{-2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-I, B-II, C-III, D-IV"
+    },
+    {
+     "key": "B",
+     "text": "A-IV, B-III, C-II, D-I"
+    },
+    {
+     "key": "C",
+     "text": "A-III, B-IV, C-II, D-I"
+    },
+    {
+     "key": "D",
+     "text": "A-II, B-I, C-IV, D-III"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A solid sphere (A) of mass 5 m and a spherical shell (B) of mass m, both having same radius, are placed on a rough surface. When a force of same magnitude is applied tangentially at the highest points of A and B, they start rolling without slipping with an acceleration of $a_{A}$ and $a_{B}$, respectively. The ratio of $a_{A}$ and $a_{B}$ is ________ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: force F at the top, friction fr at the contact point A, $a_{com} = a$, angular acceleration $\\alpha$)\nT.m $\\Rightarrow F - fr = ma$ ......(1)\nR.m $\\Rightarrow FR + frR = I\\alpha$ ......(2)\nCond $\\Rightarrow a_{A} = 0$\n$a = R\\alpha$ ......(3)\nby using (2) and (3) $\\rightarrow$\n$F + fr = \\frac{Ia}{R^{2}}$ ......(4)\nby (1) + (4) $\\rightarrow$\n$2F = \\left(m + \\frac{I}{R^{2}}\\right)a$\n$a = \\frac{2F}{m + \\frac{I}{R^{2}}}$\nfor solid sphere (A) $\\Rightarrow$\n$a_{A} = \\frac{2F}{5m + \\frac{2(5m)R^{2}}{5R^{2}}} = \\frac{2F}{7m}$\nfor hollow sphere (B) $\\Rightarrow$\n$a_{B} = \\frac{2F}{m + \\frac{2mR^{2}}{3R^{2}}} = \\frac{6F}{5m}$\n$\\frac{a_{A}}{a_{B}} = \\frac{2}{7} \\times \\frac{5}{6} = \\frac{5}{21}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5:21"
+    },
+    {
+     "key": "B",
+     "text": "6:10"
+    },
+    {
+     "key": "C",
+     "text": "21:25"
+    },
+    {
+     "key": "D",
+     "text": "1:5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-06apr-s2-phy-q28-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of mass 1 kg moves along a straight line with a velocity $v = 2x^{2}$. The work done by the body during displacement from x = 0 to 5 m is ________ J.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$v = 2x^{2}$\n$a = v\\frac{dv}{dx} = (2x^{2})(4x)$\n$F = ma = 8x^{3}$\n$\\omega = \\int F\\,dx = \\int_{0}^{5} 8x^{3}\\,dx$\n$\\omega = 2\\left(x^{4}\\right)_{0}^{5} = 1250$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0"
+    },
+    {
+     "key": "B",
+     "text": "250"
+    },
+    {
+     "key": "C",
+     "text": "1250"
+    },
+    {
+     "key": "D",
+     "text": "1000"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A cylinder with adiabatic walls is closed at both ends and is divided into two compartments by a frictionless adiabatic piston. Ideal gas is filled in both (left and right) the compartments at same P, V, T. Heating is started from left side until pressure changes to 27 P/8. If initial volume of each compartment was 9 litres then the final volume in right-hand side compartment is _______ litres.\n(for this ideal gas $C_{P}/C_{V} = 1.5$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Heating process is slow so piston is in equilibrium. i.e both side pressure is equal and right side process is adiabatic\nso, $P_{f}V_{f}^{\\gamma} = P_{i}V_{i}^{\\gamma}$\n$\\left(\\frac{27P}{8}\\right)(V)^{1.5} = P(9)^{1.5}$\n$V = 9\\left(\\frac{4}{9}\\right) = 4$ lit.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "14"
+    },
+    {
+     "key": "D",
+     "text": "9"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For an electromagnetic wave propagating through vacuum, $\\vec{k}, \\vec{E}$ and $\\omega$ represent propagation vector, electric field and angular frequency, respectively. The magnetic field associated with this wave is represented by :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Theoretical",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\vec{E} \\times \\vec{k}}{\\omega}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\vec{k} \\times \\vec{E}}{\\omega}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\omega(\\vec{E} \\times \\vec{K})$"
+    },
+    {
+     "key": "D",
+     "text": "$\\omega(\\vec{k} \\times \\vec{E})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two identical bodies A and B of equal masses have initial velocities $\\vec{v}_{1} = 4\\hat{i}\\ \\mathrm{m/s}$ and $\\vec{v}_{2} = 4\\hat{j}\\ \\mathrm{m/s}$ respectively. The body A has acceleration $\\vec{a}_{1} = 6\\hat{i} + 6\\hat{j}\\ \\mathrm{m/s^{2}}$ while the acceleration of the other body B is zero. The centre of mass of the two bodies moves in _______ path.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{V}_{com} = \\frac{m(4\\hat{i}) + m(4\\hat{j})}{m + m} = 2\\hat{i} + 2\\hat{j}$\n$\\vec{a}_{com} = \\frac{m(6\\hat{i} + 6\\hat{j}) + 0}{m + m} = 3\\hat{i} + 3\\hat{j}$\n$\\vec{V} \\parallel \\vec{a} \\rightarrow$ straight line motion.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "circular"
+    },
+    {
+     "key": "B",
+     "text": "parabolic"
+    },
+    {
+     "key": "C",
+     "text": "straight line"
+    },
+    {
+     "key": "D",
+     "text": "elliptical"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Figure represents the extension $(\\Delta l)$ of a wire of length 1 meter, suspended from the ceiling of the room at one end with a load W connected to the other end. If the cross-sectional area of the wire is $10^{-5}\\ \\mathrm{m^{2}}$ then the Young's modulus of the wire is _______ $\\mathrm{N/m^{2}}$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{W}{A} = \\gamma\\frac{\\Delta\\ell}{\\ell}$\n$\\gamma = \\frac{\\ell}{A}\\left(\\frac{W}{\\Delta\\ell}\\right) = \\frac{\\ell}{A}\\left(\\frac{1}{\\text{slope}}\\right)$\n$\\gamma = \\frac{1}{10^{-5}\\left(\\frac{10^{-4}}{10}\\right)} = 10^{10}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.0 \\times 10^{11}$"
+    },
+    {
+     "key": "B",
+     "text": "$2.0 \\times 10^{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.0 \\times 10^{10}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.0 \\times 10^{11}$"
+    }
+   ],
+   "stem_figure": "j26-06apr-s2-phy-q33.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A cylindrical vessel of 40 cm radius is completely filled with water and its capacity is 528 $\\mathrm{dm^{3}}$ (dm : decimeter) The vessel is placed on a solid block of exactly same height as vessel. If a small hole is made at 70 cm below the top of water level, then horizontal range of water falling on the ground in the beginning is ________ cm.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V = \\pi r^{2}h$\n$528 \\times 10^{-3} = \\frac{22}{7}(0.4)^{2}h$\n$h = 1.05$ m\nhole is at 0.7 m below top, velocity = $V = \\sqrt{2 \\times 10 \\times 0.7}$\n$V = \\sqrt{14}$\ntime to hit ground = t\n$t = \\sqrt{\\frac{2(1.05 + 0.35)}{10}} = \\frac{\\sqrt{28}}{10}$\nRange = $vt = \\sqrt{14}\\,\\frac{\\sqrt{28}}{10}$ m\n$= \\frac{14\\sqrt{2}}{10}$ m $= 140\\sqrt{2}$ cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$120\\sqrt{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$140\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$140\\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$120\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If 2 mole of an ideal monoatomic gas at temperature T, is mixed with 6 mole of another ideal monoatomic gas at temperature 2T then the temperature of mixture is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$Q_{1} + Q_{2} = 0$, final temperature = $T_{0}$\n$2(C)(T_{0} - T) + 6(C)(T_{0} - 2T) = 0$\n$2T_{0} - 2T + 6T_{0} - 12T = 0$\n$T_{0} = \\frac{7T}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{2}T$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5}{4}T$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{7}{2}T$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{4}T$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A spring stretches by 2 mm when it is loaded with a mass of 200 g . From equilibrium position the mass is further pulled down by 2 mm and released. The frequency associated with the system and maximum energy in the spring are______ Hz and _______ J, respectively.\n(Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equilibrium, $kx = mg$\n$k(2 \\times 10^{-3}) = (200 \\times 10^{-3})(10)$\n$k = 1000$ N/m\n$f = \\frac{\\omega}{2\\pi} = \\frac{1}{2\\pi}\\sqrt{\\frac{k}{m}}$\n$f = \\frac{1}{2\\pi}\\sqrt{\\frac{1000}{0.2}} = \\frac{5\\sqrt{50}}{\\pi}$ Hz\nmaximum energy in spring when it is maximum streched (4 mm)\n$E_{max} = \\frac{1}{2}(1000)(4 \\times 10^{-3})^{2}$\n$= 8 \\times 10^{-3}$ J",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5\\sqrt{50}}{\\pi}$ and $8 \\times 10^{-3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5\\sqrt{50}}{\\pi}$ and 8"
+    },
+    {
+     "key": "C",
+     "text": "$10\\sqrt{50}$ and $2 \\times 10^{-3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5\\sqrt{50}}{\\pi}$ and $16 \\times 10^{-3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The electric potential as a function of x, y is given by $V = 5\\left(x^{2} - y^{2}\\right)$ V. The electric field at a point (2,3) m is V/m.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V = 5x^{2} - 5y^{2}$\n$\\vec{E} = -\\left[\\frac{\\delta V}{\\delta x}\\hat{i} + \\frac{\\delta V}{\\delta y}\\hat{j}\\right]$\n$\\vec{E} = -10x\\hat{i} + 10y\\hat{j}$\nat (2, 3)\n$\\vec{E} = -20\\hat{i} + 30\\hat{j}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(-20\\hat{i} + 30\\hat{j})$"
+    },
+    {
+     "key": "B",
+     "text": "$(20\\hat{i} - 30\\hat{j})$"
+    },
+    {
+     "key": "C",
+     "text": "$(20\\hat{i} + 45\\hat{j})$"
+    },
+    {
+     "key": "D",
+     "text": "$(-4\\hat{i} + 6\\hat{j})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A current of 30 A each flows in opposite directions in two conducting wires, placed parallel to each other at a distance of 8 cm . The magnetic field at the mid point between the two wires is _____ $\\mu$T.\n$\\left(\\frac{\\mu_{o}}{4\\pi} = 10^{-7}\\ \\mathrm{N/A^{2}}\\right)$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B = \\frac{2\\mu_{0}i}{2\\pi r} = \\frac{2(4\\pi \\times 10^{-7})30}{2\\pi(0.04)}$\n$B = 3 \\times 10^{-4}\\ \\mathrm{T} = 300\\ \\mu\\mathrm{T}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "30"
+    },
+    {
+     "key": "B",
+     "text": "300"
+    },
+    {
+     "key": "C",
+     "text": "150"
+    },
+    {
+     "key": "D",
+     "text": "0.0"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A square loop of side 2 cm is placed in a time varying magnetic field with magnitude as $B = 0.4\\sin(300t)$ Tesla. The normal to the plane of loop makes an angle of $60^\\circ$ with the field. The maximum induced emf produced in the loop is _________ mV .",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\phi = \\vec{B} \\cdot \\vec{A} = BA\\cos\\theta$\n$= (0.4\\sin(300t))(0.02)^{2}\\cos 60^\\circ$\n$\\phi = 8\\sin(300t) \\times 10^{-5}$\nemf $= \\frac{d\\phi}{dt} = 2400 \\times 10^{-5}\\cos(300t)$\nmaximum (emf) $= 24 \\times 10^{-3}$ V\n$= 24$ mV",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "12"
+    },
+    {
+     "key": "B",
+     "text": "18"
+    },
+    {
+     "key": "C",
+     "text": "21"
+    },
+    {
+     "key": "D",
+     "text": "24"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A sphere of capacitance 100 pF is charged to a potential of 100 V . Another identical uncharged metal sphere is brought in contact with the charged sphere, then the change in the total energy stored on these spheres, when they touch is $\\alpha \\times 10^{-7}$ J . The value of $\\alpha$ is _________ .\n(combined capacitance of spheres is 200 pF )",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$U_{i} = \\frac{1}{2}CV^{2} = \\frac{1}{2}\\left(10^{-10}\\right)\\left(100\\right)^{2} = 5 \\times 10^{-7}$ J\nwhen touch, charge will be half-half, i.e potential also be 50 V on each.\n$U_{f} = 2\\left(\\frac{1}{2}\\left(10^{-10}\\right)\\left(50\\right)^{2}\\right) = \\frac{5}{2} \\times 10^{-7}$ J\n$\\left|\\Delta U\\right| = \\left|\\frac{5}{2} \\times 10^{-7} - 5 \\times 10^{-7}\\right| = \\frac{5}{2} \\times 10^{-7}$ J\n$\\Rightarrow$ (should be magnitude of change/Loss)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{7}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{9}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The energy released if hydrogen atoms are combined to form $\\mathrm{{}^{4}_{2}He}$ is _________ MeV .\n(Take binding energies per nucleon of $\\mathrm{{}^{2}_{1}H}$ and $\\mathrm{{}^{4}_{2}He}$ as 1.1 MeV and 7.2 MeV , respectively)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Released energy = $(B.E)_{Product} - (B.E)_{Reactant}$\n$= 4(7.2) - 2(1.1) \\times 2 = 24.4$ MeV",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6.1"
+    },
+    {
+     "key": "B",
+     "text": "24.4"
+    },
+    {
+     "key": "C",
+     "text": "26.6"
+    },
+    {
+     "key": "D",
+     "text": "5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Angle of minimum deviation is equal to the half of the angle of prism in an equilateral prism. The refractive index of the prism is ________ .",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\delta_{min} = 2i - A = \\frac{A}{2} \\Rightarrow i = \\frac{3A}{4} = \\frac{3 \\times 60}{4} = 45^\\circ$\nin case of $\\delta_{min}$, $r_{1} = r_{2} = \\frac{A}{2} = 30^\\circ$\nsnell's law ($1^{st}$ refraction) $\\rightarrow 1\\sin 45^\\circ = \\mu\\sin 30^\\circ$\n$\\mu = \\sqrt{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.5"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "1.65"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Refer to the logic circuit given below. For two inputs (A = 1, B = 1) and (A = 0, B = 1), output ( Y ) will be ________ .",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: OR gate output $\\overline{A} + B$ and AND gate output $\\overline{A} \\cdot B$ feed a NOR gate giving Y)\n$Y = \\overline{\\overline{A} + B + \\overline{A} \\cdot B} = \\overline{\\overline{A} + B} \\cdot \\overline{\\overline{A} \\cdot B}$\n$Y = \\left(A \\cdot \\overline{B}\\right) \\cdot \\left(A + \\overline{B}\\right)$\n$A = 1, B = 1 \\Rightarrow Y = (1 \\cdot 0) \\cdot (1 + 0) = 0 \\cdot (1) = 0$\n$A = 0, B = 1 \\Rightarrow Y = (0 \\cdot 0) \\cdot (0 + 0) = 0 \\cdot 0 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1, 0 respectively"
+    },
+    {
+     "key": "B",
+     "text": "0, 1 respectively"
+    },
+    {
+     "key": "C",
+     "text": "0, 0 respectively"
+    },
+    {
+     "key": "D",
+     "text": "1, 1 respectively"
+    }
+   ],
+   "stem_figure": "j26-06apr-s2-phy-q43.png",
+   "solution_figure": "j26-06apr-s2-phy-q43-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The velocity at which 6 kg mass (shown in figure) strikes the ground when it is released from a height of 6 m above the ground is ________ m/s. Assume pulley is massless and string is light and inextensible.\n(Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Apply WET $\\Rightarrow \\omega_{g} = \\Delta KE$\n$6(10)(6) - 2(10)(6) = \\frac{1}{2}(6 + 2)V^{2}$\n$V = \\sqrt{60} = 7.74$ m/s",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "7.74"
+    },
+    {
+     "key": "B",
+     "text": "7.20"
+    },
+    {
+     "key": "C",
+     "text": "6.55"
+    },
+    {
+     "key": "D",
+     "text": "4.50"
+    }
+   ],
+   "stem_figure": "j26-06apr-s2-phy-q44.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a Young double slit experiment, the wavelength of incident light is 6000 Å, the separation between slits $S_{1}$ and $S_{2}$ is 5 cm and the distance between slits plane and screen is 50 cm , as shown in the figure below. If the resultant intensity at P is equal to the intensity due to individual slits, the path difference between interfering waves is ________ Å.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "C"
+   ],
+   "solution": "$I = I_{0} + I_{0} + 2\\sqrt{I_{0}}\\sqrt{I_{0}}\\cos\\phi = I_{0}$\n$\\cos\\phi = \\frac{-1}{2}$\n$\\phi = 2n\\pi \\pm \\frac{2\\pi}{3}, n = 0, 1, 2, .....$\n$\\phi = \\frac{2\\pi}{\\lambda}\\Delta x = 2n\\pi \\pm \\frac{2\\pi}{3}$\n$\\Delta x = \\left(n \\pm \\frac{1}{3}\\right)\\lambda, \\lambda = 6000$ Å\n$n = 0, \\Delta x = \\frac{6000}{3} = 2000$ Å\n$n = 1, \\Delta x = \\left(1 + \\frac{1}{3}\\right)6000 = 8000$ Å\nor $\\left(1 - \\frac{1}{3}\\right)6000 = 4000$ Å",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4000"
+    },
+    {
+     "key": "B",
+     "text": "3000"
+    },
+    {
+     "key": "C",
+     "text": "2000"
+    },
+    {
+     "key": "D",
+     "text": "1000"
+    }
+   ],
+   "stem_figure": "j26-06apr-s2-phy-q45.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Laws of Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A block takes t time to slide down a plane inclined at $45^\\circ$ to the horizontal. If the surface is made smooth (frictionless), the block takes time $\\frac{t}{2}$ to slide down the plane. The coefficient of friction between the block and the inclined plane is $\\left(\\frac{\\alpha}{100}\\right)$. The value of $\\alpha$ is _______ .",
+   "correct_key": null,
+   "correct_value": 75,
+   "correct_keys": null,
+   "solution": "$t = \\sqrt{\\frac{2h}{a}}$\n$a \\rightarrow$ net acceleratation\n$h \\rightarrow$ displacement\n$t \\propto \\frac{1}{\\sqrt{a}}$\n$\\frac{t}{\\frac{t}{2}} = \\sqrt{\\frac{g/\\sqrt{2}}{\\frac{g}{\\sqrt{2}} - \\mu\\frac{g}{\\sqrt{2}}}}$\n$2 = \\frac{1}{\\sqrt{1 - \\mu}}$\n$\\mu = \\frac{3}{4} = \\frac{\\alpha}{100} \\Rightarrow \\alpha = 75$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The de Broglie wavelength for an electron accelerated through the potential difference of $V_{1}$ volt is $\\lambda_{1}$. When the potential difference is changed to $V_{2}$ volt, the associated de Broglie wavelength is increased by 50%. If $\\left(V_{1}/V_{2}\\right) = (9/\\alpha)$ , then the value of $\\alpha$ is _______ .",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$\\lambda = \\frac{h}{P} = \\frac{h}{\\sqrt{2mKE}} = \\frac{h}{\\sqrt{2mev}}$\n$\\lambda \\propto \\frac{1}{\\sqrt{V}}$\n$\\frac{3\\lambda/2}{\\lambda} = \\sqrt{\\frac{V_{1}}{V_{2}}} \\Rightarrow \\frac{V_{1}}{V_{2}} = \\frac{9}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A moving coil of galvanometer when shunted with $2\\Omega$ resistance gives a full scale deflection for a current of 500 mA . When a resistance of $470\\Omega$ is connected in series it gives a full scale deflection for 10 V potential applied on it. The value of resistance of galvanometer coil is _______ $\\Omega$.",
+   "correct_key": null,
+   "correct_value": 50,
+   "correct_keys": null,
+   "solution": "Ammeter\n(Figure: galvanometer $R_{g}$ carrying $I_{g}$ in parallel with $2\\ \\Omega$, total current 0.5 A)\n$I_{g}R_{g} = (0.5 - I_{g})(2)$ .....(i)\nVoltmeter\n(Figure: galvanometer $R_{g}$ in series with $470\\ \\Omega$, current $I_{g}$)\n$I_{g}(R_{g} + 470) = 10$ .....(ii)\nby (i) and (ii) $\\Rightarrow R_{g} = 50\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-06apr-s2-phy-q48-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two cells of emfs 1 V and 2 V and internal resistance $2\\Omega$ and $1\\Omega$, respectively connected in parallel, gave a current of 1 A through an external resistance. If the polarity of one cell is reversed, then value of current through the external resistance will be $\\frac{\\alpha}{5}$ A. The value of $\\alpha$ is ______ .",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "(Figure: equivalent cell emf with $r_{eq}$ in series with external resistance R, current i)\nIn same polarity, emf $= \\frac{\\frac{1}{2} + \\frac{2}{1}}{\\frac{1}{2} + \\frac{1}{1}} = \\frac{5}{3}$, $\\quad r_{eq} = \\frac{2 \\times 1}{2 + 1} = \\frac{2}{3}$\n$i = \\frac{5/3}{\\frac{2}{3} + R} = 1$\n$R = 1\\ \\Omega$\nif polarity is reversed, emf $= \\frac{\\frac{-1}{2} + \\frac{2}{1}}{\\frac{1}{2} + \\frac{1}{1}} = 1$, $\\quad r_{eq} = \\frac{2}{3}$\n$i = \\frac{emf}{r_{eq} + R} = \\frac{1}{\\frac{2}{3} + 1} = \\frac{3}{5}$ A",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-06apr-s2-phy-q49-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Ray Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A concave mirror of focal length 10 cm forms an image which is double the size of object when the object is placed at two different positions. The distance between the two positions of the object is __________ cm.",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "$M_{T} = \\frac{-V}{U} = \\pm 2$\nif $M_{T} = +2 \\Rightarrow V = -2U$\n$\\frac{1}{-2U} + \\frac{1}{U} = \\frac{1}{-10} \\Rightarrow U_{1} = -5$ cm\nif $M_{T} = -2 \\Rightarrow V = +2U$\n$\\frac{1}{2U} + \\frac{1}{U} = \\frac{1}{-10} \\Rightarrow U_{2} = -15$ cm\ndistance = $|U_{2} - U_{1}| = 10$ cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

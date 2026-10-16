@@ -1,0 +1,819 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "23 Jan · Shift 1",
+  "title": "JEE Main 2026 · Physics · 23 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1duaFd5cevuMuYeSlqIrgEOu99bzSTRWI"
+ },
+ "questions": [
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Four persons measure the length of a rod as $20.00\\ \\mathrm{cm}$, $19.75\\ \\mathrm{cm}$, $17.01\\ \\mathrm{cm}$ and $18.25\\ \\mathrm{cm}$. The relative error in the measurement of average length of the rod is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\ell_{1} = 20.00\\ \\mathrm{cm}$\n$\\ell_{2} = 19.75\\ \\mathrm{cm}$\n$\\ell_{3} = 17.01\\ \\mathrm{cm}$\n$\\ell_{4} = 18.25\\ \\mathrm{cm}$\n$\\ell_{\\text{mean}} = \\frac{\\ell_{1} + \\ell_{2} + \\ell_{3} + \\ell_{4}}{4} = 18.7525$\n$\\ell_{\\text{mean}} = 18.75$\nAbsolute error in $\\ell_{1} \\Rightarrow |\\Delta\\ell_{1}| = |\\ell_{1} - \\ell_{m}|$\n$\\Delta\\ell_{m} = \\frac{|\\Delta\\ell_{1}| + |\\Delta\\ell_{2}| + |\\Delta\\ell_{3}| + |\\Delta\\ell_{4}|}{4}$\n$= \\frac{1.25 + 1.00 + 1.74 + 0.50}{4}$\n$\\Delta\\ell_{m} = 1.1225$\nRelative error $= \\frac{\\Delta\\ell_{m}}{\\ell_{m}} = \\frac{1.12}{18.75} = 0.059$\n$= 0.06$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.08"
+    },
+    {
+     "key": "B",
+     "text": "0.06"
+    },
+    {
+     "key": "C",
+     "text": "0.18"
+    },
+    {
+     "key": "D",
+     "text": "0.24"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two small balls with masses m and 2m are attached to both ends of a rigid rod of length d and negligible mass. If angular momentum of this system is L about an axis (A) passing through its centre of mass and perpendicular to the rod then angular velocity of the system about A is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "m $\\longleftarrow d \\longrightarrow$ 2m\nWe know for two mass system, angular momentum is\n$L = \\mu d^{2}\\omega$\nreduced mass $= \\frac{m_{1}m_{2}}{m_{1} + m_{2}}$\n$L = \\left(\\frac{m \\times 2m}{m + 2m}\\right)d^{2}\\omega$\n$L = \\frac{2}{3}md^{2}\\omega$\n$\\omega = \\frac{3L}{2md^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}\\frac{L}{md^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2L}{md^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{3}\\frac{L}{md^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2L}{5md^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A $20\\ \\mathrm{m}$ long uniform copper wire held horizontally is allowed to fall under the gravity ($g = 10\\ \\mathrm{m/s^{2}}$) through a uniform horizontal magnetic field of $0.5$ Gauss perpendicular to the length of the wire. The induced EMF across the wire when it travells a vertical distance of $200\\ \\mathrm{m}$ is ________ mV.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$v^{2} = u^{2} + 2as$\n$v^{2} = (2)(10)(200)$\n$v = 20\\sqrt{10}$\n$\\text{emf} = Bv\\ell$\n$= 0.5 \\times 10^{-4} \\times 20\\sqrt{10} \\times 20$\n$= 20\\sqrt{10} \\times 10^{-3}\\ \\mathrm{V}$\n$\\text{emf} = 20\\sqrt{10}\\ \\mathrm{mV}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20\\sqrt{10}$"
+    },
+    {
+     "key": "B",
+     "text": "$0.2\\sqrt{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$200\\sqrt{10}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{10}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a screw gauge, the zero of the circular scale lies 3 divisions above the horizontal pitch line when their metallic studs are brought in contact. Using this instrument thickness of a sheet is measured. If pitch scale reading is $1\\ \\mathrm{mm}$ and the circular scale reading is 51 then the correct thickness of the sheet is ______ mm.\n[Assume least count is $0.01\\ \\mathrm{mm}$]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|-\\text{ve zero error}| = 3 \\times L \\cdot C$\n$\\text{Reading} = M \\cdot S \\cdot R + C \\cdot C \\times L \\cdot C + |-\\text{ve zero error}|$\n$= 1\\ \\mathrm{mm} + 51 \\times 0.01\\ \\mathrm{mm} + 3 \\times 0.01\\ \\mathrm{mm}$\n$= 1.54\\ \\mathrm{mm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.48"
+    },
+    {
+     "key": "B",
+     "text": "1.50"
+    },
+    {
+     "key": "C",
+     "text": "1.54"
+    },
+    {
+     "key": "D",
+     "text": "1.51"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-phy-q30-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A thin prism with angle $5^\\circ$ of refractive index $1.72$ is combined with another prism of refractive index $1.9$ to produce dispersion without deviation. The angle of second prism is ________.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\delta_{\\text{mean deviation}} = (\\mu_{\\text{yellow}} - 1)A$\n$\\delta_{\\text{net}} = 0$\n$\\delta_{1} = \\delta_{2}$\n$(\\mu_{y} - 1)A = (\\mu'_{y} - 1)A'$\n$(1.72 - 1)5^\\circ = (1.9 - 1)A'$\n$\\frac{72 \\times 5}{90} = 4^\\circ = A'$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5^\\circ$"
+    },
+    {
+     "key": "B",
+     "text": "$4^\\circ$"
+    },
+    {
+     "key": "C",
+     "text": "$6^\\circ$"
+    },
+    {
+     "key": "D",
+     "text": "$4.5^\\circ$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An object is projected with kinetic energy K from a point A at an angle $60^\\circ$ with the horizontal. The ratio of the difference in kinetic energies at points B and C to that at point A (see figure), in the absence of air friction is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_{A} = V = V_{C}$\n$KE_{C} = \\frac{1}{2}mv^{2}$\n$KE_{B} = \\frac{1}{2}m(V\\cos 60)^{2} = \\frac{1}{2}\\frac{mv^{2}}{4}$\n$\\frac{KE_{C} - KE_{B}}{KE_{A}} = \\frac{\\frac{1}{2}mv^{2} - \\frac{1}{8}mv^{2}}{\\frac{1}{2}mv^{2}} = \\frac{\\frac{3}{8}}{\\frac{1}{2}} = \\frac{3}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3 : 4"
+    },
+    {
+     "key": "B",
+     "text": "2 : 3"
+    },
+    {
+     "key": "C",
+     "text": "1 : 2"
+    },
+    {
+     "key": "D",
+     "text": "1 : 4"
+    }
+   ],
+   "stem_figure": "j26-23jan-s1-phy-q32.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider light travelling from a medium A to medium B separated by a plane interface. If the light undergoes total internal reflection during its travel from medium A to B and the speed of light in media A and B are $2.4 \\times 10^{8}\\ \\mathrm{m/s}$ and $2.7 \\times 10^{8}\\ \\mathrm{m/s}$, respectively, then the value of critical angle is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sin\\theta_{C} = \\frac{\\mu_{R}}{\\mu_{D}} \\qquad \\mu = \\frac{c}{v}$\n$\\sin\\theta_{C} = \\frac{v_{D}}{v_{R}} = \\frac{2.4 \\times 10^{8}}{2.7 \\times 10^{8}}$\n$\\sin\\theta_{C} = \\frac{8}{9}$\n$\\tan\\theta_{C} = \\frac{8}{\\sqrt{17}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\cos^{-1}\\left(\\frac{8}{9}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan^{-1}\\left(\\frac{8}{\\sqrt{17}}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\cot^{-1}\\left(\\frac{3}{\\sqrt{13}}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sin^{-1}\\left(\\frac{9}{8}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-phy-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A small bob A of mass m is attached to a massless rigid rod of length $1\\ \\mathrm{m}$ pivoted at point P and kept at an angle of $60^\\circ$ with vertical as shown in figure. At distance of $1\\ \\mathrm{m}$ below point P, an identical bob B is kept at rest on a smooth horizontal surface that extends to a circular track of radius R as shown in figure. If bob B just manages to complete the circular path of radius R upto a point Q after being hit elastically by bob A, then radius R is __________m.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Kinetic energy of A just before striking B.\n$mg(1 - 1\\cos 60) = \\frac{1}{2}mv^{2}$\n$\\frac{mg}{2} = \\frac{1}{2}mv^{2}$\n$V = \\sqrt{10}$\nDue to elastic collision velocity gets transferred to ball (B)\nFor it to complete circle\n$V = \\sqrt{5gR}$\n$\\sqrt{10} = \\sqrt{5gR}$\n$\\frac{1}{5} = R$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2 - \\sqrt{3}}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2 + \\sqrt{3}}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{5}$"
+    }
+   ],
+   "stem_figure": "j26-23jan-s1-phy-q34.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A simple pendulum of string length $30\\ \\mathrm{cm}$ performs 20 oscillations in $10\\ \\mathrm{s}$. The length of the string required for the pendulum to perform 40 oscillations in the same time duration is _______ cm.\n[Assume that the mass of the pendulum remains same.]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$20T_{1} = 40T_{2}$\n$20 \\times 20\\sqrt{\\frac{30}{g}} = 40 \\times 20\\sqrt{\\frac{\\ell}{g}}$\n$\\frac{30}{g} = 4\\frac{\\ell}{g}$\n$\\ell = 7.5\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.75"
+    },
+    {
+     "key": "B",
+     "text": "15"
+    },
+    {
+     "key": "C",
+     "text": "7.5"
+    },
+    {
+     "key": "D",
+     "text": "120"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A wire of uniform resistance $\\lambda\\ \\Omega/\\mathrm{m}$ is bent into a circle of radius r and another piece of wire with length 2r is connected between points A and B (AOB) as shown in figure. The equivalent resistance between points A and B is __________$\\Omega$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{R_{eq}} = \\frac{2}{\\lambda\\pi r} + \\frac{1}{2\\lambda r} + \\frac{2}{\\lambda 3\\pi r}$\n$= \\frac{12 + 3\\pi + 4}{6\\lambda\\pi r}$\n$R_{eq} = \\frac{6\\lambda\\pi r}{16 + 3\\pi}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3\\pi\\lambda r}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{6\\pi\\lambda r}{3\\pi + 16}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\pi\\lambda r$"
+    },
+    {
+     "key": "D",
+     "text": "$(\\pi + 1)2r\\lambda$"
+    }
+   ],
+   "stem_figure": "j26-23jan-s1-phy-q36.png",
+   "solution_figure": "j26-23jan-s1-phy-q36-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List – I with List – II.\nList – I (Relation) | List – II (Law)\nA. $\\oint \\vec{E} \\cdot d\\vec{l} = -\\frac{d}{dt}\\oint \\vec{B} \\cdot d\\vec{a}$ | I. Ampere's circuital law\nB. $\\oint \\vec{B} \\cdot d\\vec{l} = \\mu_{0}\\left(I + \\varepsilon_{0}\\frac{d\\phi_{E}}{dt}\\right)$ | II. Faraday's laws of electromagnetic induction\nC. $\\oint \\vec{E} \\cdot d\\vec{a} = \\frac{1}{\\varepsilon_{0}}\\int_{V} \\rho\\, dv$ | III. Ampere - Maxwell law\nD. $\\oint \\vec{B} \\cdot d\\vec{l} = \\mu_{0}I$ | IV. Gauss's law of electrostatics\nChoose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Theory based",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-IV, B-I, C-II, D-III"
+    },
+    {
+     "key": "B",
+     "text": "A-II, B-III, C-I, D-IV"
+    },
+    {
+     "key": "C",
+     "text": "A-II, B-III, C-IV, D-I"
+    },
+    {
+     "key": "D",
+     "text": "A-I, B-IV, C-III, D-II"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The strain-stress plot for materials A, B, C and D is shown in the figure. Which material has the largest Young's modulus ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$Y = \\frac{\\text{stress}}{\\text{strain}}$\n$Y \\propto \\frac{1}{\\text{slope}}$\nC has highest Young modulus",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "B"
+    },
+    {
+     "key": "B",
+     "text": "C"
+    },
+    {
+     "key": "C",
+     "text": "A"
+    },
+    {
+     "key": "D",
+     "text": "D"
+    }
+   ],
+   "stem_figure": "j26-23jan-s1-phy-q38.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two blocks with masses $100\\ \\mathrm{g}$ and $200\\ \\mathrm{g}$ are attached to the ends of springs A and B as shown in figure. The energy stored in A is E. The energy stored in B, when spring constants $k_{A}$, $k_{B}$ of A and B, respectively satisfy the relation $4k_{A} = 3k_{B}$, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = \\frac{1}{2}Kx^{2} \\quad [Kx = mg]$\n$E = \\frac{1}{2}K\\frac{m^{2}g^{2}}{K^{2}}$\n$E = \\frac{1}{2}\\frac{m^{2}g^{2}}{K}$\n$\\frac{E_{A}}{E_{B}} = \\frac{\\frac{m^{2}g^{2}}{2K_{A}}}{\\frac{(2m)^{2}g^{2}}{2K_{B}}} = \\frac{1}{4}\\frac{K_{B}}{K_{A}}$\n$4E \\times \\frac{3}{4} = E_{B}$\n$3E = E_{B}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3E"
+    },
+    {
+     "key": "B",
+     "text": "2E"
+    },
+    {
+     "key": "C",
+     "text": "4E"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{3}E$"
+    }
+   ],
+   "stem_figure": "j26-23jan-s1-phy-q39.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The moment of inertia of a square loop made of four uniform solid cylinders, each having radius R and length L ($R < L$) about an axis passing through the mid points of opposite sides, is (Take the mass of the entire loop as M) :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let mass of each rod is $M_{1}$\n$I = \\left(\\frac{M_{1}R^{2}}{4} + \\frac{M_{1}\\ell^{2}}{12}\\right) \\times 2 \\ldots$ for rod (1) & (2)\n$\\left(\\frac{M_{1}R^{2}}{2} + \\frac{M_{1}\\ell^{2}}{4}\\right) \\times 2 \\ldots$ for rod (3) & (4)\n$I = \\frac{3}{2}M_{1}R^{2} + \\frac{2}{3}M_{1}\\ell^{2}$\n$= \\frac{3}{2}\\frac{M}{4}R^{2} + \\frac{2}{3}\\frac{M}{4}\\ell^{2}$\n$= \\frac{3}{8}MR^{2} + \\frac{M\\ell^{2}}{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{8}MR^{2} + \\frac{7}{12}ML^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{4}MR^{2} + \\frac{1}{6}ML^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{4}MR^{2} + \\frac{7}{12}ML^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{8}MR^{2} + \\frac{1}{6}ML^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-23jan-s1-phy-q40-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a perfectly inelastic collision, two spheres made of the same material with masses $15\\ \\mathrm{kg}$ and $25\\ \\mathrm{kg}$, moving in opposite directions with speeds of $10\\ \\mathrm{m/s}$ and $30\\ \\mathrm{m/s}$, respectively, strike each other and stick together. The rise in temperature (in $^\\circ\\mathrm{C}$), if all the heat produced during the collision is retained by these spheres, is :\n(specific heat of sphere material $31\\ \\mathrm{cal/kg}\\,{}^\\circ\\mathrm{C}$ and $1\\ \\mathrm{cal} = 4.2\\ \\mathrm{J}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$KE_{\\text{lost}} = \\frac{1}{2}\\mu v_{r}^{2}(1 - e^{2})$\n($\\mu$ = reduced mass)\nFor $e = 0$\n$\\frac{1}{2}\\mu v_{r}^{2} = 15c\\Delta\\theta + 25c\\Delta\\theta$\n$\\frac{1}{2} \\times \\frac{15 \\times 25}{15 + 25}(30 + 10)^{2} = 40 \\times 31 \\times 4.2\\Delta\\theta$\n$\\frac{1}{2} \\times \\frac{15 \\times 25}{1} \\times \\frac{1}{31 \\times 4.2} = \\Delta\\theta = 1.44$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.15"
+    },
+    {
+     "key": "B",
+     "text": "1.95"
+    },
+    {
+     "key": "C",
+     "text": "1.44"
+    },
+    {
+     "key": "D",
+     "text": "1.75"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two point charges 2q and q are placed at vertex A and centre of face CDEF of the cube as shown in figure. The electric flux passing through the cube is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\phi = \\left(\\frac{2q}{8\\varepsilon_{0}}\\right) + \\left(\\frac{q}{2\\varepsilon_{0}}\\right) \\rightarrow$ for face centre\nvertex charge\n$\\phi = \\frac{3q}{4\\varepsilon_{0}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{q}{\\varepsilon_{0}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3q}{4\\varepsilon_{0}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3q}{\\varepsilon_{0}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3q}{2\\varepsilon_{0}}$"
+    }
+   ],
+   "stem_figure": "j26-23jan-s1-phy-q42.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Magnetism and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements : one is labelled as Assertion (A) and the other is labelled as Reason (R).\nConsider a ferromagnetic material :\nAssertion (A) : The individual atoms in a ferromagnetic material possess a magnetic dipole moment and interact with one another in such a way that they spontaneously align themselves forming domains.\nReason (R) : At high enough temperature, the domain structure of ferromagnetic material disintegrates. Thus, magnetization will disappear at high enough temperature known as Curie temperature.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Theory based\nFerromagnetic material has domains\nAt temperature greater than curie temperature ferromagnetic material becomes paramagnetic material.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
+    },
+    {
+     "key": "B",
+     "text": "(A) is false but (R) is true"
+    },
+    {
+     "key": "C",
+     "text": "(A) is true but (R) is false"
+    },
+    {
+     "key": "D",
+     "text": "Both (A) and (R) are true but (R) is not the correct explanation of (A)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The de Broglie wavelength of an oxygen molecule at $27^\\circ\\mathrm{C}$ is $x \\times 10^{-12}\\ \\mathrm{m}$. The value of x is (take Planck's constant $= 6.63 \\times 10^{-34}\\ \\mathrm{J\\,s}$, Boltzmann constant $= 1.38 \\times 10^{-23}\\ \\mathrm{J/K}$, mass of oxygen molecule $= 5.31 \\times 10^{-26}\\ \\mathrm{kg}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda = \\frac{h}{\\sqrt{3mkT}}$ for gas molecule\n$\\lambda = \\frac{6.63 \\times 10^{-34}}{\\sqrt{3 \\times 1.38 \\times 10^{-23} \\times 5.31 \\times 10^{-26} \\times 300}}$\n$\\lambda = 25.8 \\times 10^{-12}\\ \\mathrm{m}$\n$x = 25.8$\n$x \\approx 26$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "26"
+    },
+    {
+     "key": "B",
+     "text": "30"
+    },
+    {
+     "key": "C",
+     "text": "24"
+    },
+    {
+     "key": "D",
+     "text": "20"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In hydrogen atom spectrum, ($R \\rightarrow$ Rydberg's constant)\n(A) the maximum wavelength of the radiation of Lyman series is $\\frac{4}{3R}$\n(B) the Balmer series lies in the visible region of the spectrum\n(C) the minimum wavelength of the radiation of Paschen series is $\\frac{9}{R}$\n(D) the minimum wavelength of Lyman series is $\\frac{5}{4R}$\nChoose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) Maximum wavelength Lyman series $\\frac{1}{\\lambda} = R\\left(1 - \\frac{1}{4}\\right), \\ \\lambda = \\frac{4}{3R}$\n(ii) Balmer lies in visible region\n(iii) Minimum wavelength Paschen series $\\frac{1}{\\lambda} = R\\left(\\frac{1}{9} - \\frac{1}{\\infty}\\right), \\ \\lambda = \\frac{9}{R}$\n(iv) Minimum wavelength Lyman series $\\frac{1}{\\lambda} = R\\left(1 - \\frac{1}{\\infty}\\right), \\ \\lambda = \\frac{1}{R}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "B, D Only"
+    },
+    {
+     "key": "B",
+     "text": "A, B Only"
+    },
+    {
+     "key": "C",
+     "text": "A, B and C Only"
+    },
+    {
+     "key": "D",
+     "text": "A, B and D Only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In two separate Young's double-slit experimental set-ups and two monochromatic light sources of different wavelengths are used to get fringes of equal width. The ratios of the slits separations and that of the wavelengths of light used are $2 : 1$ and $1 : 2$ respectively. The corresponding ratio of the distances between the slits and the respective screens ($D_{1}/D_{2}$) is _________.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$\\beta_{1} = \\beta_{2}$\n$\\frac{\\lambda_{1}D_{1}}{d_{1}} = \\frac{\\lambda_{2}D_{2}}{d_{2}}$\n$\\frac{D_{1}}{D_{2}} = \\frac{\\lambda_{2}}{\\lambda_{1}}\\frac{d_{1}}{d_{2}} = \\frac{2}{1} \\times \\frac{2}{1}$\n$\\frac{D_{1}}{D_{2}} = \\frac{4}{1}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The space between the plates of a parallel plate capacitor of capacitance C (without any dielectric) is now filled with three dielectric slabs of dielectric constants $K_{1} = 2$, $K_{2} = 3$ and $K_{3} = 5$ (as shown in figure). If new capacitance is $\\frac{n}{3}C$ then the value of n is ________.",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": "$C_{eq.} = \\frac{2c \\times 3c}{5c} + \\frac{2c \\times 5c}{7c}$\n$= \\frac{(42 + 50)c}{35}$\n$\\frac{92c}{35} = \\frac{nc}{3}$\n$n = \\frac{92 \\times 3}{35} = 7.88$\n$n = 8 \\ldots$ nearest integer",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-23jan-s1-phy-q47.png",
+   "solution_figure": "j26-23jan-s1-phy-q47-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Alternating Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Using a variable frequency a.c. voltage source the maximum current measured in the given LCR circuit is $50\\ \\mathrm{mA}$ for $V = 5\\sin(100t)$. The values of L and R are shown in the figure. The capacitance of the capacitor (C) used is ________$\\mu\\mathrm{F}$.",
+   "correct_key": null,
+   "correct_value": 50,
+   "correct_keys": null,
+   "solution": "$\\omega^{2} = \\frac{1}{LC}$\n$100 \\times 100 = \\frac{1}{2C}$\n$C = \\frac{10^{6}}{2 \\times 100 \\times 100}\\ \\mu F$\n$C = 50\\ \\mu\\mathrm{F}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-23jan-s1-phy-q48.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Electromagnetic Waves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The equation of the electric field of an electromagnetic wave propagating through free space is given by : $E = \\sqrt{377}\\sin(6.27 \\times 10^{3}t - 2.09 \\times 10^{-5}x)\\ \\mathrm{N/C}$. The average power of the electromagnetic wave is $\\left(\\frac{1}{\\alpha}\\right)\\mathrm{W/m^{2}}$. The value of $\\alpha$ is ________.\n$\\left(\\text{Take } \\sqrt{\\frac{\\mu_{0}}{\\varepsilon_{0}}} = 377 \\text{ in SI units}\\right)$",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$\\frac{Watt}{m^{2}} \\Rightarrow$ Clearly it is asking about intensity\n$I = \\frac{1}{2}\\varepsilon_{o}E_{0}^{2}C = \\frac{1}{2}\\varepsilon_{o}377\\frac{1}{\\sqrt{\\mu_{0}\\varepsilon_{0}}}$\n$= \\frac{1}{2}377\\sqrt{\\frac{\\varepsilon_{0}}{\\mu_{0}}} = \\frac{377}{2} \\times \\frac{1}{377}$\n$I = \\frac{1}{2} = \\frac{1}{\\alpha}$\n$\\alpha = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Electromagnetic Induction",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A simple pendulum made of mass $10\\ \\mathrm{g}$ and a metallic wire of length $10\\ \\mathrm{cm}$ is suspended vertically in a uniform magnetic field of $2\\ \\mathrm{T}$. The magnetic field direction is perpendicular to the plane of oscillations of the pendulum. If the pendulum is released from an angle of $60^\\circ$ with vertical, then maximum induced EMF between the point of suspension and point of oscillation is __________ mV. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": null,
+   "correct_value": 100,
+   "correct_keys": null,
+   "solution": "Energy conservation\n$mg\\ell(1 - \\cos 60) = \\frac{1}{2}m\\ell^{2}\\omega^{2}$\n$\\sqrt{\\frac{g}{\\ell}} = \\omega$\n$\\text{emf} = \\frac{B\\omega\\ell^{2}}{2}$\n$= 2 \\times \\sqrt{\\frac{g}{\\ell}} \\times \\frac{\\ell^{2}}{2}$\n$= \\sqrt{100} \\times \\frac{1}{100} = \\frac{1}{10} = 100\\ \\mathrm{mV}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

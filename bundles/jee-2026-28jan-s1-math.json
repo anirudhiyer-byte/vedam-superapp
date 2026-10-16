@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "28 Jan · Shift 1",
+  "title": "JEE Main 2026 · Mathematics · 28 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1MW-8IhAObQao8ztOFYAn7edr7h7njiOz"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f$ be a polynomial function such that $f\\left(x^{2}+1\\right) = x^{4} + 5x^{2} + 2$, for all $x \\in \\mathbb{R}$. Then $\\int_{0}^{3} f(x)\\,dx$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f\\left(x^{2}+1\\right) = x^{4} + 5x^{2} + 2$\n$f\\left(x^{2}+1\\right) = \\left(x^{2}+1\\right)^{2} + 3\\left(x^{2}+1\\right) - 2$\n$f(x) = x^{2} + 3x - 2$\n$\\int_{0}^{3} f(x)\\,dx = \\int_{0}^{3}\\left(x^{2}+3x-2\\right)dx$\n$= \\left[\\frac{x^{3}}{3} + \\frac{3x^{2}}{2} - 2x\\right]_{0}^{3}$\n$\\Rightarrow \\left[9 + \\frac{27}{2} - 6 - 0\\right] = \\frac{33}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{27}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{33}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{41}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\{1,2,3,4,5,6,7,8,9\\}$. Let $x$ be the number of 9-digit numbers formed using the digits of the set $S$ such that only one digit is repeated and it is repeated exactly twice. Let $y$ be the number of 9-digit numbers formed using the digits of the set $S$ such that only two digits are repeated and each of these is repeated exactly twice. Then :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$S = \\{1,2,3,4,5,6,7,8,9\\}$\n$x = {}^{9}C_{8} \\cdot {}^{8}C_{1}\\,\\frac{9!}{2} = 9 \\times 4 \\times 9!$\n$y = {}^{9}C_{7}\\,{}^{7}C_{2} \\times \\frac{9!}{2!\\,2!} = \\frac{9 \\times 8 \\times 7 \\times 6 \\times 9!}{2 \\times 2 \\times 2 \\times 2}$\n$21x = 4y$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$56x = 9y$"
+    },
+    {
+     "key": "B",
+     "text": "$29x = 5y$"
+    },
+    {
+     "key": "C",
+     "text": "$21x = 4y$"
+    },
+    {
+     "key": "D",
+     "text": "$45x = 7y$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $x\\frac{dy}{dx} - \\sin 2y = x^{3}\\left(2 - x^{3}\\right)\\cos^{2}y$, $x \\ne 0$. If $y(2) = 0$, then $\\tan(y(1))$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x\\frac{dy}{dx} - \\sin 2y = x^{3}\\left(2 - x^{3}\\right)\\cos^{2}y$\n$\\frac{1}{\\cos^{2}y}\\frac{dy}{dx} - \\frac{1}{x}\\frac{2\\sin y\\cos y}{\\cos^{2}y} = x^{2}\\left(2 - x^{3}\\right)$\n$\\sec^{2}y\\frac{dy}{dx} - \\frac{1}{x}(2\\tan y) = x^{2}\\left(2 - x^{3}\\right)$\nLet $\\tan y = z$\n$\\sec^{2}y\\frac{dy}{dx} = \\frac{dz}{dx}$\n$\\frac{dz}{dx} - \\frac{2}{x}z = x^{2}\\left(2 - x^{3}\\right)$\n$\\text{I.F.} = e^{-\\int\\frac{2}{x}dx} \\Rightarrow e^{-2\\ln|x|} = \\frac{1}{x^{2}}$\n$\\Rightarrow z\\left(\\frac{1}{x^{2}}\\right) = \\int x^{2}\\left(2 - x^{3}\\right) \\times \\frac{1}{x^{2}}dx$\n$\\frac{z}{x^{2}} = 2x - \\frac{x^{4}}{4} + C$\n$\\frac{\\tan y}{x^{2}} = 2x - \\frac{x^{4}}{4} + C$\n$y(2) = 0$\n$0 = 4 - \\frac{16}{4} + C \\Rightarrow C = 0$\n$\\frac{\\tan y}{x^{2}} = 2x - \\frac{x^{4}}{4}$\n$\\tan y = 2x^{3} - \\frac{x^{6}}{4}$\n$y(1) = ?,\\ x = 1$\n$\\tan(y(1)) = 2 - \\frac{1}{4} = \\frac{7}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{3}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{7}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{7}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let A, B and C be three $2 \\times 2$ matrices with real entries such that $B = (I + A)^{-1}$ and $A + C = I$. If $BC = \\begin{bmatrix} 1 & -5 \\\\ -1 & 2 \\end{bmatrix}$ and $CB\\begin{bmatrix} x_{1} \\\\ x_{2} \\end{bmatrix} = \\begin{bmatrix} 12 \\\\ -6 \\end{bmatrix}$, then $x_{1} + x_{2}$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B = (I + A)^{-1}$\npre multiply by $(I + A)$\n$(I + A)B = (I + A)(I + A)^{-1}$\n$B + AB = I$ ..........(1)\npost multiply by $(I + A)$\n$B(I + A) = (I + A)^{-1}(I + A)$\n$B + BA = I$ ..........(2)\nfrom (1) and (2)\n$AB = BA$\nNow $A + C = I$\npre multiply by $B$: $BA + BC = B$ ..........(3)\npost multiply by $B$: $AB + CB = B$ ..........(4)\nfrom (3) and (4): $BC = CB$\nNow $BC = CB = \\begin{bmatrix} 1 & -5 \\\\ -1 & 2 \\end{bmatrix}$\n$\\begin{bmatrix} 1 & -5 \\\\ -1 & 2 \\end{bmatrix}\\begin{bmatrix} x_{1} \\\\ x_{2} \\end{bmatrix} = \\begin{bmatrix} 12 \\\\ -6 \\end{bmatrix}$\n$x_{1} - 5x_{2} = 12,\\quad -x_{1} + 2x_{2} = -6$\n$x_{1} = -2,\\ x_{2} = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $\\sum_{k=1}^{\\infty}(-1)^{k+1}\\left(\\frac{k(k+1)}{k!}\\right)$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sum_{k=1}^{\\infty}(-1)^{k+1}\\frac{k(k+1)}{k!}$\n$\\sum_{k=1}^{\\infty}(-1)^{k+1}\\frac{k+1}{(k-1)!}$\n$\\sum_{k=1}^{\\infty}(-1)^{k+1}\\frac{k-1}{(k-1)!} + \\frac{2}{(k-1)!}$\n$\\sum_{k=2}^{\\infty}(-1)^{k+1}\\frac{1}{(k-2)!} + 2\\sum_{k=1}^{\\infty}(-1)^{k+1}\\frac{1}{(k-1)!}$\n$\\left(-\\frac{1}{0!} + \\frac{1}{1!} - \\frac{1}{2!} + \\frac{1}{3!}\\ldots\\infty\\right) + 2\\left(\\frac{1}{0!} - \\frac{1}{1!} + \\frac{1}{2!} - \\frac{1}{3!}\\ldots\\right)$\n$\\Rightarrow \\left(\\frac{1}{0!} - \\frac{1}{1!} + \\frac{1}{2!} - \\frac{1}{3!}\\ldots\\infty\\right) = e^{-1} = \\frac{1}{e}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1/e$"
+    },
+    {
+     "key": "B",
+     "text": "$2/e$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{e}$"
+    },
+    {
+     "key": "D",
+     "text": "$e/2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A bag contains 10 balls out of which $k$ are red and $(10 - k)$ are black, where $0 \\le k \\le 10$. If three balls are drawn at random without replacement and all of them are found to be black, then the probability that the bag contains 1 red and 9 black balls is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$10 \\to k$ Red, $10 - k$ Black\n$\\dfrac{\\dfrac{{}^{9}C_{3}}{{}^{10}C_{3}}}{\\dfrac{{}^{3}C_{3} + {}^{4}C_{3} + {}^{5}C_{3} + \\cdots {}^{9}C_{3} + {}^{10}C_{3}}{{}^{10}C_{3}}}$\n$\\Rightarrow \\dfrac{{}^{9}C_{3}}{{}^{3}C_{3} + {}^{4}C_{3} + {}^{5}C_{3}\\ldots {}^{10}C_{3}}$\n$\\Rightarrow \\dfrac{{}^{9}C_{3}}{{}^{11}C_{4}} = \\dfrac{\\frac{9!}{3!\\,6!}}{\\frac{11!}{4!\\,7!}} = \\frac{14}{55}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{14}{55}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{7}{55}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{7}{110}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{11}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $z$ be a complex number such that $|z - 6| = 5$ and $|z + 2 - 6i| = 5$. Then the value of $z^{3} + 3z^{2} - 15z + 141$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|z - 6| = 5$ : Circle $C_{1}(6, 0)$, $r_{1} = 5$\n$|z - (-2 + 6i)| = 5$ : Circle $C_{2}(-2, 6)$, $r_{2} = 5$\n$C_{1}C_{2} = \\sqrt{8^{2} + 6^{2}} = 10$\n$r_{1} + r_{2} = 10$\n$C_{1}C_{2} = r_{1} + r_{2}$ so both circles touch externally\n$Z$ divides $C_{1}(6,0)$ and $C_{2}(-2,6)$ in ratio $5 : 5$\n$Z \\equiv (2, 3)$\nNow $z^{3} + 3z^{2} - 15z + 141$ with $z = 2 + 3i = \\alpha$, $\\beta = 2 - 3i$\n$\\alpha + \\beta = 4,\\ \\alpha\\beta = 13$\n$z^{2} - 4z + 13 = 0$\nOn dividing $z^{3} + 3z^{2} - 15z + 141$ by $z^{2} - 4z + 13$, quotient $z + 7$, remainder $50$\n$\\Rightarrow 50$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$50$"
+    },
+    {
+     "key": "B",
+     "text": "$42$"
+    },
+    {
+     "key": "C",
+     "text": "$37$"
+    },
+    {
+     "key": "D",
+     "text": "$61$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $g(x) = 3x^{2} + 2x - 3$, $f(0) = -3$ and $4g(f(x)) = 3x^{2} - 32x + 72$, then $f(g(2))$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$g(x) = 3x^{2} + 2x - 3$\n$f(0) = -3$\n$4g(f(x)) = 3x^{2} - 32x + 72$\n$4\\left\\{3(f(x))^{2} + 2f(x) - 3\\right\\} = 3x^{2} - 32x + 72$\nLet $f(x) = y$\n$12y^{2} + 8y - 12 - 3x^{2} + 32x - 72 = 0$\n$12y^{2} + 8y + \\left(-3x^{2} + 32x - 84\\right) = 0$\n$y = \\frac{-8 \\pm \\sqrt{64 - 48\\left(-3x^{2} + 32x - 84\\right)}}{24}$\n$f(x) = \\frac{-8 \\pm 4(3x - 16)}{24}$\n$\\because f(0) = -3 \\therefore$ we will take $+$ sign\n$f(x) = \\frac{-8 + 4(3x - 16)}{24}$\nNow $f(g(x))$, $g(2) = 13$\n$f(13) = \\frac{-8 + 4(3 \\times 13 - 16)}{24} = \\frac{7}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{7}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{7}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{25}{6}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{25}{6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For three unit vectors $\\vec{a}, \\vec{b}, \\vec{c}$ satisfying $|\\vec{a} - \\vec{b}|^{2} + |\\vec{b} - \\vec{c}|^{2} + |\\vec{c} - \\vec{a}|^{2} = 9$ and $|2\\vec{a} + k\\vec{b} + k\\vec{c}| = 3$, the positive value of $k$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left|\\vec{a} + \\vec{b}\\right|^{2} + \\left|\\vec{b} - \\vec{c}\\right|^{2} + \\left|\\vec{c} - \\vec{a}\\right|^{2} = 9$\n$2\\left(a^{2} + b^{2} + c^{2}\\right) - 2\\left(\\vec{a}\\cdot\\vec{b} + \\vec{b}\\cdot\\vec{c} + \\vec{c}\\cdot\\vec{a}\\right) = 9$\n$2 \\times 3 - 2\\left(\\vec{a}\\cdot\\vec{b} + \\vec{b}\\cdot\\vec{c} + \\vec{c}\\cdot\\vec{a}\\right) = 9$\n$3 + 2\\left(\\vec{a}\\cdot\\vec{b} + \\vec{b}\\cdot\\vec{c} + \\vec{c}\\cdot\\vec{a}\\right) = 0$\n$\\left(\\vec{a} + \\vec{b} + \\vec{c}\\right)^{2} = 0$\nSo $\\vec{a} + \\vec{b} + \\vec{c} = 0$\n$\\vec{b} + \\vec{c} = -\\vec{a}$\nNow $|2\\vec{a} + k(\\vec{b} + \\vec{c})| = 3$\n$|(2 - k)\\vec{a}| = 3$\n$|2 - k| = 3$\n$2 - k = \\pm 3$\n$k = -1,\\ k = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Trigonometric Identities",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\frac{\\tan(A - B)}{\\tan A} + \\frac{\\sin^{2}C}{\\sin^{2}A} = 1$, $A, B, C \\in \\left(0, \\frac{\\pi}{2}\\right)$, then :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{\\tan(A - B)}{\\tan A} + \\frac{\\sin^{2}C}{\\sin^{2}A} = 1$\n$\\frac{\\tan A - \\tan B}{(1 + \\tan A\\tan B)\\tan A} + \\frac{\\mathrm{cosec}^{2}A}{\\mathrm{cosec}^{2}C} = 1$\n$\\frac{\\tan A - \\tan B}{(1 + \\tan A\\tan B)\\tan A} + \\frac{1 + \\cot^{2}A}{1 + \\cot^{2}C} = 1$\nLet $\\tan A = x,\\ \\tan B = y,\\ \\tan C = z$\n$\\frac{x - y}{(1 + xy)x} + \\frac{1 + \\frac{1}{x^{2}}}{1 + \\frac{1}{z^{2}}} = 1$\n$\\frac{x - y}{x(1 + xy)} + \\frac{z^{2}\\left(x^{2} + 1\\right)}{x^{2}\\left(z^{2} + 1\\right)} = 1$\nafter solving we will get\n$z^{2} = xy$\nSo $\\tan^{2}C = \\tan A \\cdot \\tan B$\n$\\tan A, \\tan C, \\tan B$ are in G.P.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan A, \\tan C, \\tan B$, are in A.P."
+    },
+    {
+     "key": "B",
+     "text": "$\\tan A, \\tan C, \\tan B$, are in G.P."
+    },
+    {
+     "key": "C",
+     "text": "$\\tan A, \\tan B, \\tan C$, are in G.P."
+    },
+    {
+     "key": "D",
+     "text": "$\\tan A, \\tan B, \\tan C$, are in A.P."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The common difference of the A.P. $a_{1}, a_{2}, \\ldots, a_{m}$ is 13 more than the common difference of the A.P. $b_{1}, b_{2}, \\ldots, b_{n}$. If $b_{31} = -277$, $b_{43} = -385$ and $a_{78} = 327$, then $a_{1}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a_{1}, a_{2}, \\ldots, a_{m} \\Rightarrow$ Let common difference $= d + 13$\n$b_{1}, b_{2}, \\ldots, b_{n} \\Rightarrow$ common difference $= d$\n$b_{31} = -277 = b_{1} + 30d$\n$b_{43} = -385 = b_{1} + 42d$\n$108 = -12d$\n$d = -9$\n$a_{78} \\Rightarrow a_{1} + 77(d + 13) = 327$\n$a_{1} + 77 \\times 4 = 327$\n$a_{1} = 327 - 308 = 19$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$24$"
+    },
+    {
+     "key": "B",
+     "text": "$21$"
+    },
+    {
+     "key": "C",
+     "text": "$16$"
+    },
+    {
+     "key": "D",
+     "text": "$19$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region $R = \\left\\{(x, y) : xy \\le 8,\\ 1 \\le y \\le x^{2},\\ x \\ge 0\\right\\}$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$xy \\le 8,\\ 1 \\le y \\le x^{2},\\ x \\ge 0$\n$A = \\int_{1}^{2}\\left(x^{2} - 1\\right)dx + \\int_{2}^{8}\\left(\\frac{8}{x} - 1\\right)dx$\n$A = \\left[\\frac{x^{3}}{3} - x\\right]_{1}^{2} + \\left[8\\ln x - x\\right]_{2}^{8}$\n$A = \\frac{8}{3} - 2 - \\frac{1}{3} + 1 + 8\\ln 8 - 8 - 8\\ln 2 + 2$\n$A = 16\\ln 2 - \\frac{14}{3}$\n$= \\frac{2}{3}(24\\ln 2 - 7)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3}\\left(24\\log_{e}(2) - 7\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3}\\left(40\\log_{e}(2) + 27\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{3}\\left(49\\log_{e}(2) - 15\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{3}\\left(20\\log_{e}(2) + 9\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-math-q12-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let ABC be an equilateral triangle with orthocenter at the origin and the side BC on the line $x + 2\\sqrt{2}y = 4$. If the co-ordinates of the vertex A are $(\\alpha, \\beta)$, then the greatest integer less than or equal to $\\left|\\alpha + \\sqrt{2}\\beta\\right|$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$G(0, 0)$ is centroid/orthocenter; $BC : x + 2\\sqrt{2}y + 4 = 0$\n$= \\frac{x - 0}{1} = \\frac{y - 0}{2\\sqrt{2}} = \\frac{-1(0 + 0 + 4)}{9}$\n$\\frac{x}{1} = \\frac{y}{2\\sqrt{2}} = \\frac{-4}{9}$\n$x = \\frac{-4}{9},\\ y = \\frac{-8\\sqrt{2}}{9}$\n$D\\left(-\\frac{4}{9}, \\frac{-8\\sqrt{2}}{9}\\right)$; $A(\\alpha, \\beta)$, $G(0,0)$ divide $AD$ in $2 : 1$\n$\\frac{\\alpha - \\frac{8}{9}}{3} = 0,\\ \\frac{\\beta - \\frac{16\\sqrt{2}}{9}}{3} = 0$\n$\\alpha = \\frac{8}{9},\\quad \\beta = \\frac{16\\sqrt{2}}{9}$\nNow $\\left|\\alpha + \\sqrt{2}\\beta\\right| = \\left|\\frac{8}{9} + \\frac{32}{9}\\right| = \\left|\\frac{40}{9}\\right| = 4.4$\n$[4.4] = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-math-q13-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\int\\left(\\frac{1 - 5\\cos^{2}x}{\\sin^{5}x\\cos^{2}x}\\right)dx = f(x) + C$, where C is the constant of integration, then $f\\left(\\frac{\\pi}{6}\\right) - f\\left(\\frac{\\pi}{4}\\right)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\int\\frac{1 - 5\\cos^{2}x}{\\sin^{5}x\\cos^{2}x}dx = f(x) + c$\n$\\int\\frac{\\sec^{2}x}{\\sin^{5}x}dx - \\int\\frac{5}{\\sin^{5}x}dx$\nIntegration by parts\n$\\int\\underset{\\mathrm{II}}{\\sec^{2}x}\\;\\underset{\\mathrm{I}}{\\frac{1}{\\sin^{5}x}}dx - \\int\\frac{5}{\\sin^{5}x}dx$\n$\\frac{1}{\\sin^{5}x}\\tan x - \\int\\frac{-1}{\\left(\\sin^{5}x\\right)^{2}} \\times 5\\sin^{4}x\\cos x\\tan x\\,dx - \\int\\frac{5}{\\sin^{5}x}dx + C$\n$\\frac{\\tan x}{\\sin^{5}x} + \\int\\frac{5}{\\sin^{5}x}dx - \\int\\frac{5}{\\sin^{5}x}dx + C$\nSo $f(x) = \\frac{\\tan x}{\\sin^{5}x}$\nNow $f\\left(\\frac{\\pi}{6}\\right) - f\\left(\\frac{\\pi}{4}\\right)$\n$\\Rightarrow \\frac{\\tan\\pi/6}{(\\sin\\pi/6)^{5}} - \\frac{\\tan\\pi/4}{(\\sin\\pi/4)^{5}}$\n$\\Rightarrow \\frac{1}{\\sqrt{3} \\times \\left(\\frac{1}{2}\\right)^{5}} - \\frac{1}{\\left(\\frac{1}{\\sqrt{2}}\\right)^{5}}$\n$\\frac{32}{\\sqrt{3}} - 4\\sqrt{2}$\n$\\frac{4}{\\sqrt{3}}\\left(8 - \\sqrt{6}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{\\sqrt{3}}(8 - \\sqrt{6})$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\sqrt{3}}(26 - \\sqrt{3})$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\sqrt{3}}(26 + \\sqrt{3})$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{\\sqrt{3}}(4 + \\sqrt{6})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the distances of the point $(1, 2, a)$ from the line $\\frac{x - 1}{1} = \\frac{y}{2} = \\frac{z - 1}{1}$ along the lines $L_{1} : \\frac{x - 1}{3} = \\frac{y - 2}{4} = \\frac{z - a}{b}$ and $L_{2} : \\frac{x - 1}{1} = \\frac{y - 2}{4} = \\frac{z - a}{c}$ are equal, then $a + b + c$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let equation of line AB $\\vec{r} = (1, 2, a) + \\lambda(3, 4, b)$\nSo $B(1 + 3\\lambda, 2 + 4\\lambda, a + \\lambda b)$ lies on line BC So\n$\\frac{1 + 3\\lambda - 1}{1} = \\frac{2 + 4\\lambda}{2} = \\frac{a + \\lambda b - 1}{a}$\nSo $\\lambda = 1$ and $a + b - 1 = 3$\nequation line AC $\\vec{r} = (1, 2, a) + \\mu(1, 4, c)$\nSo $C(1 + \\mu, 2 + 4\\mu, a + \\mu c)$ lies on line BC so\n$\\frac{1 + \\mu - 1}{1} = \\frac{2 + 4\\mu}{2} = \\frac{a + \\mu c - 1}{a}$\n$\\mu = -1$, $a - c - 1 = -1 \\Rightarrow a = c$\n$B(4, 6, 4)$, $C(0, -2, 0)$\n$AB^{2} = AC^{2}$\n$9 + 16 + (a - 4)^{2} = 1 + 16 + a^{2}$\n$a = 3,\\ c = 3,\\ b = 1$\n$a + b + c = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $\\lim_{x \\to 0}\\frac{\\log_{e}\\left(\\sec(ex) \\cdot \\sec\\left(e^{2}x\\right) \\cdot \\ldots \\cdot \\sec\\left(e^{10}x\\right)\\right)}{e^{2} - e^{2\\cos x}}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to 0}\\frac{\\log_{e}\\left(\\sec(ex)\\sec\\left(e^{2}x\\right)\\ldots\\sec e^{10}x\\right)}{e^{2} - e^{2\\cos x}}$\n$\\lim_{x \\to 0}\\frac{\\ln(\\sec ex) + \\ln\\left(\\sec\\left(e^{2}x\\right)\\right) + \\cdots \\ln\\left(\\sec\\left(e^{10}x\\right)\\right)}{e^{2\\cos x}\\left(e^{2 - 2\\cos x} - 1\\right)}$\n$\\lim_{x \\to 0}\\frac{\\ln(\\sec x) + \\ln\\left(\\sec e^{2}x\\right) + \\cdots \\ln\\left(\\sec e^{10}x\\right)}{e^{2} \\times (2 - 2\\cos x)}$\n$\\lim_{x \\to 0}\\frac{-\\ln(\\cos x)}{e^{2}(2 - 2\\cos x)} - \\frac{\\ln\\left(\\cos e^{2}x\\right)}{e^{2}(2 - 2\\cos x)}\\cdots\\frac{-\\ln\\left(\\cos e^{10}x\\right)}{e^{2}(2 - 2\\cos x)}$\n$\\lim_{x \\to 0}\\frac{-(\\cos x - 1)}{e^{2}(2(1 - \\cos x))} \\cdot \\frac{\\left(\\cos^{2}x - 1\\right)}{e^{2}(2(1 - \\cos x))}\\cdots\\frac{-\\left(\\cos e^{10}x - 1\\right)}{e^{2}(2(1 - \\cos x))}$\n$\\left(\\lim_{x \\to 0}+\\frac{(ex)^{2}}{2 \\times 2\\left(\\frac{x^{2}}{2}\\right)} + \\frac{\\left(e^{2}x\\right)^{2}}{2 \\times 2\\left(\\frac{x^{2}}{2}\\right)} + \\cdots\\frac{\\left(e^{10}x\\right)^{2}}{2 \\times 2\\left(\\frac{x^{2}}{2}\\right)}\\right)$\n$\\frac{1}{e^{2}}\\left(\\frac{e^{2}}{2} + \\frac{e^{4}}{2} + \\cdots\\frac{e^{20}}{2}\\right)$\n$\\frac{1}{2}\\frac{1}{e^{2}}\\frac{e^{2}\\left(e^{20} - 1\\right)}{e^{2} - 1} = \\frac{e^{20} - 1}{2\\left(e^{2} - 1\\right)}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\left(e^{20} - 1\\right)}{2\\left(e^{2} - 1\\right)}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\left(e^{10} - 1\\right)}{2\\left(e^{2} - 1\\right)}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\left(e^{10} - 1\\right)}{2e^{2}\\left(e^{2} - 1\\right)}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\left(e^{20} - 1\\right)}{2e^{2}\\left(e^{2} - 1\\right)}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The mean and variance of 10 observations are 9 and 34.2, respectively. If 8 of these observations are 2, 3, 5, 10, 11, 13, 15, 21, then the mean deviation about the median of all the 10 observations is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Data: $2, 3, 5, 10, 11, 13, 15, 21, x, y$\n$\\bar{x} = \\frac{2 + 3 + 5 + 10 + 11 + 13 + 15 + 21 + x + y}{10} = 9$\n$x + y = 10$\n$\\sigma^{2} = \\frac{\\sum x_{i}^{2}}{n} - \\left(\\frac{\\sum x_{i}}{n}\\right)^{2} = \\frac{342}{10}$\n$\\frac{2^{2} + 3^{2} + 5^{2} + x^{2} + y^{2}}{10} - (9)^{2} = \\frac{342}{10}$\n$\\frac{1094 + x^{2} + y^{2}}{10} = \\frac{342 + 810}{10}$\n$x^{2} + y^{2} = 58$\nSo $x = 7$ and $y = 3$\nNow data $\\Rightarrow 2, 3, 3, 5, 7, 10, 11, 13, 15, 21$\nMedian $= \\frac{7 + 10}{2} = 8.5$\nMean Deviation $= \\frac{|8.5 - 2| + |8.5 - 3| + \\cdots + |8.5 - 21|}{10} = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha, \\beta$, where $\\alpha < \\beta$, are the roots of the equation $\\lambda x^{2} - (\\lambda + 3)x + 3 = 0$ such that $\\frac{1}{\\alpha} - \\frac{1}{\\beta} = \\frac{1}{3}$, then the sum of all possible values of $\\lambda$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda x^{2} - (\\lambda + 3)x + 3 = 0$\n$\\alpha + \\beta = \\frac{\\lambda + 3}{\\lambda},\\quad \\alpha\\beta = \\frac{3}{\\lambda}$\n$\\frac{1}{\\alpha} - \\frac{1}{\\beta} = \\frac{1}{3}$\n$\\frac{\\beta - \\alpha}{\\alpha\\beta} = \\frac{1}{3}$\n$\\frac{\\sqrt{(\\lambda + 3)^{2} - 12\\lambda}}{|\\lambda| \\times \\frac{3}{\\lambda}} = \\frac{1}{3}$\nSq. $(\\lambda + 3)^{2} - 12\\lambda = 1$\n$\\lambda^{2} + 9 + 6\\lambda - 12\\lambda = 1$\n$\\lambda^{2} - 6\\lambda + 8 = 0$\nsum $= 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = x$ be the equation of a chord of the circle $C_{1}$ (in the closed half-plane $x \\ge 0$) of diameter 10 passing through the origin. Let $C_{2}$ be another circle described on the given chord as its diameter. If the equation of the chord of the circle $C_{2}$, which passes through the point $(2, 3)$ and is farthest from the center of $C_{2}$, is $x + ay + b = 0$, then $a - b$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C_{1} : (x - 5)^{2} + y^{2} = 25$\n$C_{1} : x^{2} + y^{2} - 10x = 0$\n$y = x$\n$2x^{2} - 10x = 0$\n$2x(x - 5) = 0$\n$x = 0$ OR $x = 5$\n$(0, 0)$ and $(5, 5)$\n$C_{2} \\equiv (x - 0)(x - 5) + (y - 0)(y - 5) = 0$\n$x^{2} + y^{2} - 5x - 5y = 0$, centre $O\\left(\\frac{5}{2}, \\frac{5}{2}\\right)$\n$M_{OA} = \\frac{\\frac{5}{2} - 3}{\\frac{5}{2} - 2} = \\frac{-1/2}{1/2} = -1$\nSo slope of chord $= 1$\nequation $y - 3 = 1(x - 2)$\n$x - y + 1 = 0$\n$a = -1,\\ b = 1$\n$a - b = -2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-6$"
+    },
+    {
+     "key": "B",
+     "text": "$-2$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-math-q19-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Theory of Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\left\\{x^{3} + ax^{2} + bx + c : a, b, c \\in \\mathbb{N}\\ \\text{and}\\ a, b, c \\le 20\\right\\}$ be a set of polynomials. Then the number of polynomials in S, which are divisible by $x^{2} + 2$, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{3} + ax^{2} + bx + c$ is divisible by $x^{2} + 2$\nSo $x^{3} + ax^{2} + bx + 2 = x\\left(x^{2} + 2\\right) + a\\left(x^{2} + 2\\right) + (b - 2)x + (c - 2a)$ is divisible by $x^{2} + 2$\nSo $b - 2 = 0$ and $c - 2a = 0$\n$b = 2$ and $c = 2a$\n$a = 1, 2, 3, \\ldots, 10$ with $b = 2$ and $c = 2, 4, 6, \\ldots, 20$\nSo total polynomials $= 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$120$"
+    },
+    {
+     "key": "C",
+     "text": "$20$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a G.P., if the product of the first three terms is 27 and the set of all possible values for the sum of its first three terms is $\\mathbb{R} - (a, b)$, then $a^{2} + b^{2}$ is equal to __________.",
+   "correct_key": null,
+   "correct_value": 90,
+   "correct_keys": null,
+   "solution": "Let 3 terms be $\\frac{a}{r}, a, ar$\n$\\frac{a}{r} \\times a \\times ar = 27$\n$a^{3} = 27$\n$a = 3$\nSum $= \\frac{3}{r} + 3 + 3r$\n$\\Rightarrow 3\\left(r + \\frac{1}{r} + 1\\right)$\nRange of $r + \\frac{1}{r} \\in (-\\infty, -2] \\cup [2, \\infty)$\n$r + \\frac{1}{r} + 1 \\in (-\\infty, -1] \\cup [3, \\infty)$\n$3\\left(r + \\frac{1}{r} + 1\\right) \\in (-\\infty, -3] \\cup [9, \\infty)$\nso $3\\left(r + \\frac{1}{r} + 1\\right) \\in \\mathbb{R} - (-3, 9)$\n$a = -3,\\ b = 9$\n$a^{2} + b^{2} = 9 + 81 = 90$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "For some $\\theta \\in \\left(0, \\frac{\\pi}{2}\\right)$, let the eccentricity and the length of the latus rectum of the hyperbola $x^{2} - y^{2}\\sec^{2}\\theta = 8$ be $e_{1}$ and $l_{1}$, respectively, and let the eccentricity and the length of the latus rectum of the ellipse $x^{2}\\sec^{2}\\theta + y^{2} = 6$ be $e_{2}$ and $l_{2}$, respectively. If $e_{1}^{2} = e_{2}^{2}\\left(\\sec^{2}\\theta + 1\\right)$, then $\\left(\\frac{l_{1}l_{2}}{e_{1}e_{2}}\\right)\\tan^{2}\\theta$ is equal to __________.",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": "$x^{2} - y^{2}\\sec^{2}\\theta = 8$\n$\\frac{x^{2}}{8} - \\frac{y^{2}}{8\\cos^{2}\\theta} = 1$\n$e_{1} = \\sqrt{1 + \\frac{8\\cos^{2}\\theta}{8}} = \\sqrt{1 + \\cos^{2}\\theta}$\n$l_{1} = \\frac{2b^{2}}{a} = \\frac{2 \\times 8\\cos^{2}\\theta}{2\\sqrt{2}} = 4\\sqrt{2}\\cos^{2}\\theta$\n$\\frac{x^{2}}{6\\cos^{2}\\theta} + \\frac{y^{2}}{6} = 1$\n$e_{2} = \\sqrt{1 - \\frac{6\\cos^{2}\\theta}{6}} = \\sqrt{1 - \\cos^{2}\\theta}$\n$l_{2} = \\frac{2 \\times 6\\cos^{2}\\theta}{\\sqrt{6}} = 2\\sqrt{6}\\cos^{2}\\theta$\nNow $e_{1}^{2} = e_{2}^{2}\\left(\\sec^{2}\\theta + 1\\right)$\n$1 + \\cos^{2}\\theta = \\left(1 - \\cos^{2}\\theta\\right)\\left(\\frac{1 + \\cos^{2}\\theta}{\\cos^{2}\\theta}\\right)$\n$\\cos^{2}\\theta = 1 - \\cos^{2}\\theta$\n$\\cos^{2}\\theta = \\frac{1}{2}$\nSo, $e_{1} = \\sqrt{\\frac{3}{2}},\\ l_{1} = 2\\sqrt{2},\\ e_{2} = \\sqrt{\\frac{1}{2}},\\ l_{2} = \\sqrt{6}$\n$\\Rightarrow \\left(\\frac{l_{1}l_{2}}{e_{1}e_{2}}\\right)\\tan^{2}\\theta = \\frac{2\\sqrt{2} \\times \\sqrt{6}}{\\sqrt{\\frac{3}{2}} \\times \\sqrt{\\frac{1}{2}}} \\times 1$\n$\\Rightarrow 4 \\times 2 = 8$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The value of $\\sum_{r=1}^{20}\\left(\\left\\lfloor\\sqrt{\\pi\\left(\\int_{0}^{r} x\\,|\\sin\\pi x|\\,dx\\right)}\\right\\rfloor\\right)$ is __________.",
+   "correct_key": null,
+   "correct_value": 210,
+   "correct_keys": null,
+   "solution": "$\\sum_{r=1}^{20}\\sqrt{\\pi\\int_{0}^{r} x\\,|\\sin\\pi x|\\,dx}$\nLet $I_{r} = \\pi\\int_{0}^{r} x\\,|\\sin\\pi x|\\,dx$ ..........(1)\nApply king rule\n$I_{r} = \\pi\\int_{0}^{r}(r - x)\\,|\\sin\\pi x|\\,dx$ ..........(2)\n(1) + (2)\n$2I_{r} = \\pi\\int_{0}^{r} r\\,|\\sin\\pi x|\\,dx$\n$I_{r} = \\frac{\\pi r}{2}\\int_{0}^{r}|\\sin\\pi x|\\,dx$\nNow $r = 1$\n$I_{1} = \\frac{\\pi}{2}\\int_{0}^{1}|\\sin\\pi x|\\,dx$\nLet $\\pi x = t$, $\\pi\\,dx = dt$\n$I_{1} = \\frac{1}{2}\\int_{0}^{\\pi}|\\sin t|\\,dt$\n$I_{1} = \\frac{1}{2} \\times 2 = 1 = 1^{2}$\n$I_{2} = \\frac{2\\pi}{2}\\int_{0}^{2}|\\sin\\pi x|\\,dx = \\int_{0}^{2\\pi}|\\sin t|\\,dt = 4 = 2^{2}$\n$I_{3} = 3^{2}$\nSo $\\sum_{r=1}^{20}\\left|\\sqrt{I_{r}}\\right| = \\sqrt{I_{1}} + \\sqrt{I_{2}}\\ldots\\sqrt{I_{20}}$\n$= 1 + 2 + \\ldots 20 = \\frac{20 \\times 21}{2} = 210$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $k = \\tan\\left(\\frac{\\pi}{4} + \\frac{1}{2}\\cos^{-1}\\left(\\frac{2}{3}\\right)\\right) + \\tan\\left(\\frac{1}{2}\\sin^{-1}\\left(\\frac{2}{3}\\right)\\right)$, then the number of solutions of the equation $\\sin^{-1}(kx - 1) = \\sin^{-1}x - \\cos^{-1}x$ is __________.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$k = \\tan\\left(\\frac{\\pi}{4} + \\frac{1}{2}\\cos^{-1}\\frac{2}{3}\\right) + \\tan\\left(\\frac{1}{2}\\sin^{-1}\\frac{2}{3}\\right)$\n$= \\tan\\left(\\frac{\\pi}{4} + \\frac{1}{2}\\cos^{-1}\\frac{2}{3}\\right) + \\tan\\left(\\frac{\\pi}{4} - \\frac{1}{2}\\cos^{-1}\\frac{2}{3}\\right)$\nLet $\\frac{1}{2}\\cos^{-1}\\frac{2}{3} = \\theta \\Rightarrow \\cos 2\\theta = \\frac{2}{3}$\n$\\Rightarrow \\tan\\left(\\frac{\\pi}{4} + \\theta\\right) + \\tan\\left(\\frac{\\pi}{4} - \\theta\\right)$\n$\\frac{1 + \\tan\\theta}{1 - \\tan\\theta} + \\frac{1 - \\tan\\theta}{1 + \\tan\\theta}$\n$k = 2\\left(\\frac{1 + \\tan^{2}\\theta}{1 - \\tan^{2}\\theta}\\right) = \\frac{2}{\\cos 2\\theta} = \\frac{2}{2/3} = 3$\n$\\sin^{-1}(3x - 1) = \\sin^{-1}x - \\cos^{-1}x$\n$\\sin^{-1}(3x - 1) = 2\\sin^{-1}x - \\frac{\\pi}{2}$\ntaking sin both side\n$\\sin\\left(\\sin^{-1}(3x - 1)\\right) = \\sin\\left(2\\sin^{-1}x - \\frac{\\pi}{2}\\right)$\n$3x - 1 = -\\cos\\left(2\\sin^{-1}x\\right)$\nLet $\\sin^{-1}x = \\theta$, $x = \\sin\\theta$\n$3x - 1 = -\\cos 2\\theta = -\\left(1 - 2\\sin^{2}\\theta\\right) = -1 + 2x^{2}$\n$2x^{2} - 3x = 0$\n$x(2x - 3) = 0$\n$x = 0$ OR $x = 3/2$\nOnly $x = 0$ is valid, so Only 1 solution",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Vector Algebra",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let PQR be a triangle such that $\\overrightarrow{PQ} = -2\\hat{i} - \\hat{j} + 2\\hat{k}$ and $\\overrightarrow{PR} = a\\hat{i} + b\\hat{j} - 4\\hat{k}$, $a, b \\in \\mathbb{Z}$. Let S be the point on QR, which is equidistant from the lines PQ and PR. If $|\\overrightarrow{PR}| = 9$ and $\\overrightarrow{PS} = \\hat{i} - 7\\hat{j} + 2\\hat{k}$, then the value of $3a - 4b$ is __________.",
+   "correct_key": null,
+   "correct_value": 37,
+   "correct_keys": null,
+   "solution": "PS is internal angle bisector of PQ and PR\n$\\lambda\\left(\\frac{\\overrightarrow{PQ}\\cdot\\overrightarrow{PR}}{\\left|\\overrightarrow{PQ}\\right|\\left|\\overrightarrow{PR}\\right|}\\right) = \\overrightarrow{PS}$\n$a = 7,\\quad b = -4$\nBut with these values\n$\\overrightarrow{QS} = \\overrightarrow{PS} - \\overrightarrow{PQ} = (3, -6, 0)$\n$\\overrightarrow{SR} = \\overrightarrow{PR} - \\overrightarrow{PS} = (6, -3, -6)$\n$\\overrightarrow{QS}$ and $\\overrightarrow{SR}$ are not collinear vectors which contradicts the information given in question\n$3a - 4b = 3(7) - 4(-4) = 37$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

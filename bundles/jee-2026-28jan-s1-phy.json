@@ -1,0 +1,824 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "28 Jan · Shift 1",
+  "title": "JEE Main 2026 · Physics · 28 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1yVIfIv1RmKcv_alywD1P6i6SXubuZ2du"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The electric current in the circuit is given as $i = i_{0}(t/T)$. The r.m.s current for the period $t = 0$ to $t = T$ is________.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$i_{rms}^{2} = \\frac{\\int_{0}^{T}\\left(i_{0}^{2}t^{2}/T^{2}\\right)dt}{\\int_{0}^{T}dt} = \\frac{i_{0}^{2}}{T^{3}}\\cdot\\frac{T^{3}}{3} = \\frac{i_{0}^{2}}{3}$\n$i_{rms} = \\frac{i_{0}}{\\sqrt{3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{i_{0}}{\\sqrt{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$i_{0}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{i_{0}}{\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{i_{0}}{\\sqrt{6}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assuming in forward bias condition there is a voltage drop of $0.7\\ \\mathrm{V}$ across a silicon diode, the current through diode $D_{1}$ in the circuit is __________ mA. (Assume all diodes in the given circuit are identical)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$12 - 0.3 \\times 10^{3}I - 0.7 = 0$\n$\\frac{11.3}{0.3 \\times 10^{3}} = I$\n$37.66 \\times 10^{-3}\\ \\mathrm{A} = I$\nCurrent through diode $D_{1}$, $I_{1} = I/2$\n$I_{1} = 18.83\\ \\mathrm{mA}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "18.8"
+    },
+    {
+     "key": "B",
+     "text": "20.15"
+    },
+    {
+     "key": "C",
+     "text": "17.6"
+    },
+    {
+     "key": "D",
+     "text": "11.7"
+    }
+   ],
+   "stem_figure": "j26-28jan-s1-phy-q27.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the two cells having same EMF E and internal resistance r, the current passing through the external resistor $6\\ \\Omega$ is same when both the cells are connected either in parallel or in series. The value of internal resistance r is ___________ $\\Omega$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In series, $i_{1} = \\frac{2E}{6 + 2r}$\nIn parallel, $i_{2} = \\frac{E}{6 + \\frac{r}{2}}$\n$i_{1} = i_{2} \\Rightarrow \\frac{2E}{6 + 2r} = \\frac{E}{6 + \\frac{r}{2}}$\n$12 + r = 6 + 2r$\n$r = 6\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "9"
+    },
+    {
+     "key": "B",
+     "text": "6"
+    },
+    {
+     "key": "C",
+     "text": "3"
+    },
+    {
+     "key": "D",
+     "text": "4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Water drops fall from a tap on the floor, 5 m below, at regular intervals of time, the first drop strikes the floor when the sixth drop begins to fall. The height at which the fourth drop will be from ground, at the instant when the first drop strikes the ground is ___________m.\n$(g = 10\\ \\mathrm{m/s^{2}})$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Time to reach ground $= \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\times 5}{10}} = 1\\ \\mathrm{sec}$\nFive drops per second\nTime between each drop = 0.2 sec.\nTime of fall for $4^{th}$ drop is $1 - 0.6 = 0.4$ sec\nHeight fall of $4^{th}$ drop is $= \\frac{1}{2} \\times 10 \\times 0.4^{2} = 0.8\\ \\mathrm{m}$\nHeight from ground $= 5 - 0.8 = 4.2\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4.2"
+    },
+    {
+     "key": "B",
+     "text": "4.0"
+    },
+    {
+     "key": "C",
+     "text": "3.8"
+    },
+    {
+     "key": "D",
+     "text": "2.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle of mass m falls from rest through a resistive medium having resistive force, $F = -kv$, where v is the velocity of the particle and k is a constant. Which of the following graphs represents velocity (v) versus time (t) ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$m \\cdot \\frac{dv}{dt} = mg - kv$\n$\\int_{0}^{v} \\frac{dv}{mg - kv} = \\int_{0}^{t} \\frac{dt}{m}$\n$\\frac{-1}{k}\\ln\\left(\\frac{mg - kv}{mg}\\right) = \\frac{t}{m}$\n$v = \\frac{mg}{k}\\left(1 - e^{-kt/m}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q30-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q30-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q30-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q30-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When both jaws of vernier callipers touch each other, zero mark of the vernier scale is right to zero mark of main scale, $4^{th}$ mark on vernier scale coincides with certain mark on the main scale. While measuring the length of a cylinder, observer observes 15 divisions on main scale and 5th division of vernier scale coincides with a main scale division. Meausred length of cylinder is _________ mm.\n(Least count of Vernier calliper = 0.1 mm)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Reading = MSR + (VSR $\\times$ LC) $-$ (zero Error)\n$= 15\\ \\mathrm{mm} + (5 \\times 0.1\\ \\mathrm{mm}) - (4 \\times 0.1\\ \\mathrm{mm})$\nReading $= 15.1\\ \\mathrm{mm}$\n$\\therefore \\ell = 15.1\\ \\mathrm{mm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "15.9"
+    },
+    {
+     "key": "B",
+     "text": "15.1"
+    },
+    {
+     "key": "C",
+     "text": "15.4"
+    },
+    {
+     "key": "D",
+     "text": "15.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two wires A and B made of different matierals of lengths 6.0 cm and 5.4 cm, respectively and area of cross sections $3.0 \\times 10^{-5}\\ \\mathrm{m^{2}}$ and $4.5 \\times 10^{-5}\\ \\mathrm{m^{2}}$, respectively are stretched by the same magnitude under a given load. The ratio of the Young's modulus of A to that of B is $x : 3$. The value of x is ________.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = \\frac{F/A}{\\Delta\\ell/\\ell} \\Rightarrow Y = \\frac{F\\ell}{A\\Delta\\ell}$\n$\\frac{Y_{A}}{Y_{B}} = \\frac{\\ell_{A}}{\\ell_{B}}\\left(\\frac{A_{B}}{A_{A}}\\right)$\n$= \\frac{6}{5.4}\\left(\\frac{4.5 \\times 10^{-5}}{3 \\times 10^{-5}}\\right) = \\frac{9}{5.4} = \\frac{5}{3} \\Rightarrow \\frac{x}{3} = \\frac{5}{3}$\n$x = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "4"
+    },
+    {
+     "key": "D",
+     "text": "1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A block of mass 5 kg is moving on an inclined plane which makes an angle of $30^\\circ$ with the horizontal. Friction coefficient between the block and inclined plane surface is $\\frac{\\sqrt{3}}{2}$. The force to be applied on the block so that the block will move down without acceleration is ___________N. $(g = 10\\ \\mathrm{m/s^{2}})$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$mg\\sin 30^\\circ = F + \\mu mg\\cos 30^\\circ$\n$F = 5 \\times 10 \\times \\frac{1}{2} - \\frac{\\sqrt{3}}{2} \\times 5 \\times 10 \\times \\frac{\\sqrt{3}}{2}$\n$F = 25 - \\frac{75}{2} = 25 - 37.5$\n$F = -12.5\\ \\mathrm{N}$\n$\\therefore$ force will be downward on incline of magnitude 12.5 N",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "7.5"
+    },
+    {
+     "key": "B",
+     "text": "15"
+    },
+    {
+     "key": "C",
+     "text": "12.5"
+    },
+    {
+     "key": "D",
+     "text": "25"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-phy-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An atom ${}^{8}_{3}X$ is bombarded by shower of fundamental particles and in 10 s this atom absorbed 10 electrons, 10 protons and 9 neutrons. The percentage growth in the surface area of the nucleons is recorded by :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Surface area $x \\propto A^{2/3}$\n$X_{i} = 8^{2/3}K = 4K$\n$X_{f} = (8 + 10 + 9)^{2/3}K = 9K$\n% increase in surface area of nucleus\n$x_{i} = \\frac{9K - 4K}{4K} \\times 100 = 125\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$250\\%$"
+    },
+    {
+     "key": "B",
+     "text": "$225\\%$"
+    },
+    {
+     "key": "C",
+     "text": "$150\\%$"
+    },
+    {
+     "key": "D",
+     "text": "$900\\%$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The magnitudes of power of a biconvex lens (refractive index 1.5) and that of a plano-concave lens (refractive index = 1.7) are same. If the curvature of planoconcave lens exactly matches with the curvature of back surface of the biconvex lens, then ratio of radius of curvature of front and back surface of the biconvex lens is _______.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|P_{A}| = |P_{B}|$\n$0.5\\left(\\frac{1}{R_{1}} + \\frac{1}{R_{2}}\\right) = \\frac{0.7}{R_{2}}$\n$\\frac{5}{R_{1}} = \\frac{2}{R_{2}}$\n$\\frac{R_{1}}{R_{2}} = \\frac{5}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2 : 5"
+    },
+    {
+     "key": "B",
+     "text": "5 : 12"
+    },
+    {
+     "key": "C",
+     "text": "5 : 2"
+    },
+    {
+     "key": "D",
+     "text": "12 : 5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-phy-q35-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following best represents the temperature versus heat supplied graph for water, in the range of $-20\\ ^\\circ\\mathrm{C}$ to $120\\ ^\\circ\\mathrm{C}$ ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We know that temperature will rise from $-10^\\circ\\mathrm{C}$ to $0^\\circ\\mathrm{C}$ (ice) and then it remain constant because it change its state from ice to water and know again it raise its temperature from $0^\\circ$ to $100^\\circ\\ \\mathrm{C}$ and then again remain constant because its change state from water to steam and know again its temperature will rise according to this most accurate graph from given option will be option 4.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q36-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q36-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q36-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "j26-28jan-s1-phy-q36-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement I : A plane wave after passing through prism remains as plane wave but passing through small pin hole may become spherical wave.\nStatement II : The curvature of a spherical wave emerging from a slit will increase for increasing slit width.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Increasing the slit width 'a' decreases the diffraction angle $(\\theta = \\lambda/a)$ and reduces the spreading of the wave. A narrower slit produces a more pronounced spherical wave (high curvature) while a wider slit leads to a flatter, less curved wave.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "C",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is false but Statement II is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In the following p-V diagram the equation of state along the curved path is given by $(V - 2)^{2} = 4ap$ where a is a constant. The total work done in the closed path is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "w = Area of parabola\n$= \\frac{2}{3}$(Area of rectangle AC31A)\n$= \\frac{2}{3}P_{0}(3 - 1) = \\frac{4P_{0}}{3}$\nWhen $V = 1$\n$(1 - 2)^{2} = 4aP_{0}$\n$P_{0} = \\frac{1}{4a}$\n$w = \\frac{4}{3}P_{0} = \\frac{4}{3}\\frac{1}{4a} = \\frac{1}{3a}$\n$w_{gas} = \\frac{-1}{3a}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{1}{a}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2a}$"
+    },
+    {
+     "key": "C",
+     "text": "$+\\frac{1}{3a}$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\frac{1}{3a}$"
+    }
+   ],
+   "stem_figure": "j26-28jan-s1-phy-q38.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two point charges of 1 nC and 2 nC are placed at the two corners of equilateral triangle of side 3 cm. The work done in bringing a charge of 3 nC from infinity to the third corner of the triangle is ______$\\mu$J.\n$\\frac{1}{4\\pi\\varepsilon_{0}} = 9 \\times 10^{9}\\ \\mathrm{N.m^{2}/C^{2}}$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$W = \\left(\\frac{kq_{1}}{\\ell} + \\frac{kq_{2}}{\\ell}\\right)q_{3}$\n$= \\frac{9 \\times 10^{9}}{3 \\times 10^{-2}}\\left(3 \\times 10^{-9}\\right) \\times 3 \\times 10^{-9}$\n$= 27 \\times 10^{-7}\\ \\mathrm{J} = 2.7\\ \\mu\\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3.3"
+    },
+    {
+     "key": "B",
+     "text": "5.4"
+    },
+    {
+     "key": "C",
+     "text": "2.7"
+    },
+    {
+     "key": "D",
+     "text": "27"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two circular discs of radius each 10 cm are joined at their centres by a rod of length 30 cm and mass 600 gm as shown in figure. If the mass of each disc is 600 gm and applied torque between two discs is $43 \\times 10^{5}$ dyne.cm, the angular acceleration of the discs about the given axis AB is _________ $\\mathrm{rad/s^{2}}$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha = \\frac{\\tau}{I}$\n$I = \\frac{1}{4}mR^{2} + mR^{2} + \\frac{1}{4}mR^{2} + m(2R)^{2} + \\frac{m(3R)^{2}}{12} + m\\left(\\frac{R}{2}\\right)^{2}$\n$= \\left(\\frac{3}{2} + 4 + 1\\right)mR^{2} = \\frac{13}{2}mR^{2} = \\frac{13}{2} \\times 600 \\times 10^{2} = 39 \\times 10^{4}$\n$\\alpha = \\frac{43 \\times 10^{5}}{39 \\times 10^{4}}\\ \\mathrm{rad/s^{2}} = \\frac{430}{39}\\ \\mathrm{rad/s^{2}} \\approx 11\\ \\mathrm{rad/s^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "22"
+    },
+    {
+     "key": "B",
+     "text": "100"
+    },
+    {
+     "key": "C",
+     "text": "11"
+    },
+    {
+     "key": "D",
+     "text": "27"
+    }
+   ],
+   "stem_figure": "j26-28jan-s1-phy-q40.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The magnetic field at the centre of a current carrying circular loop of radius R is $16\\ \\mu\\mathrm{T}$. The magnetic field at a distance $x = \\sqrt{3}R$ on its axis from the centre is ______ $\\mu$T.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{\\mu_{0}I}{2R} = 16\\ \\mu\\mathrm{T}$\n$\\frac{\\mu_{0}IR^{2}}{2\\left(x^{2} + R^{2}\\right)^{3/2}} = \\frac{\\mu_{0}IR^{2}}{2 \\times 8R^{3}} = 2\\ \\mu\\mathrm{T}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "8"
+    },
+    {
+     "key": "D",
+     "text": "2"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The electric field of an electromagnetic wave travelling through a medium is given by $\\vec{E}(x, t) = 25\\sin(2.0 \\times 10^{15}t - 10^{7}x)\\hat{n}$ then the refractive index of the medium is ________.\n(All given measurement are in SI units)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\omega = 2 \\times 10^{15}\\ \\mathrm{rad/s}$\n$k = 10^{7}\\ \\mathrm{m^{-1}}$\n$V = \\frac{2\\pi}{k} \\cdot \\frac{\\omega}{2\\pi} = \\frac{\\omega}{k} = \\frac{2 \\times 10^{15}}{10^{7}} = 2 \\times 10^{8} = \\frac{C}{1.5}$\n$\\Rightarrow \\mu = 1.5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.5"
+    },
+    {
+     "key": "B",
+     "text": "1.2"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "1.7"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Three long straight wires carrying current are arranged mutually parallel as shown in the figure. The force experienced by 15 cm length of wire Q is _______.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F_{net} = \\frac{\\mu_{0}}{2\\pi}I_{0}\\left(\\frac{I_{1}}{d_{1}} + \\frac{I_{2}}{d_{2}}\\right)\\ell$\n$F_{net} = 2 \\times 10^{-7} \\times 1\\left(\\frac{3}{3} + \\frac{2}{2}\\right) \\times \\frac{15 \\times 10^{-2}}{10^{-2}}$\n$= 4 \\times 15 \\times 10^{-7}$\n$F_{net} = 6 \\times 10^{-6}\\ \\mathrm{N}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6 \\times 10^{-7}\\ \\mathrm{N}$ towards P"
+    },
+    {
+     "key": "B",
+     "text": "$6 \\times 10^{-7}\\ \\mathrm{N}$ towards R"
+    },
+    {
+     "key": "C",
+     "text": "$6 \\times 10^{-6}\\ \\mathrm{N}$ towards R"
+    },
+    {
+     "key": "D",
+     "text": "$6 \\times 10^{-6}\\ \\mathrm{N}$ towards P"
+    }
+   ],
+   "stem_figure": "j26-28jan-s1-phy-q43.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "10 kg of ice at $-10\\ ^\\circ\\mathrm{C}$ is added to 100 kg of water to lower its temperature from $25\\ ^\\circ\\mathrm{C}$. Consider no heat exchange to surroundings. The decrement to the temperature of water is _______ $^\\circ\\mathrm{C}$.\n(specific heat of ice = $2100\\ \\mathrm{J/kg.^\\circ C}$, specific heat of water = $4200\\ \\mathrm{J/kg.^\\circ C}$, latent heat of fusion of ice = $3.36 \\times 10^{5}\\ \\mathrm{J/kg}$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$10 \\times 3.36 \\times 10^{5} + 10 \\times 2100 \\times 10 + 10 \\times 4200 \\times (T - 0)$\n$= 100 \\times 4200 \\times (25 - T)$\n$\\Rightarrow T = 15^\\circ\\mathrm{C}$\n$\\Delta T = 25 - 15 = 10^\\circ\\mathrm{C}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "11.6"
+    },
+    {
+     "key": "B",
+     "text": "6.67"
+    },
+    {
+     "key": "C",
+     "text": "15"
+    },
+    {
+     "key": "D",
+     "text": "10"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In the potentiometer, when the cell in the secondary circuit is shunted with $4\\ \\Omega$ resistance, the balance is obtained at the length 120 cm of wire. Now when the same cell is shunted with $12\\ \\Omega$ resistance, the balance is shifted to a length of 180 cm . The internal resistance of cell is _________$\\Omega$.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let E is emf and r is internal resistance of cell.\n$\\frac{E \\cdot 4}{r + 4} = 120K$\n$\\frac{E \\cdot 12}{r + 12} = 180K$\n$\\Rightarrow \\frac{1}{3}\\frac{r + 12}{r + 4} = \\frac{2}{3}$\n$r + 12 = 2(r + 4)$\n$\\Rightarrow r = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6"
+    },
+    {
+     "key": "B",
+     "text": "12"
+    },
+    {
+     "key": "C",
+     "text": "3"
+    },
+    {
+     "key": "D",
+     "text": "4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-28jan-s1-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Ray Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A convex lens of refractive index 1.5 and focal length $f = 18$ cm is immersed in water. The difference in focal lengths of the given lens when it is in water and in air is $a \\times f$. The value of a is _______.\n(refractive index of water = 4/3)",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{f_{Air}} = \\left(\\frac{1.5 - 1}{1}\\right)\\left(\\frac{1}{R_{1}} + \\frac{1}{R_{2}}\\right)$\n$\\frac{1}{f_{water}} = \\left(\\frac{1.5 - 4/3}{4/3}\\right)\\left(\\frac{1}{R_{1}} + \\frac{1}{R_{2}}\\right)$\n$\\Rightarrow \\frac{f_{water}}{f_{air}} = \\frac{0.5}{0.5/4} = 4$\n$\\Rightarrow f_{water} - f_{air} = 3f$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Oscillations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The displacement of a particle, executing simple harmonic motion with time period T, is expressed as $x(t) = A\\sin\\omega t$, where A is the amplitude. The maximum value of potential energy of this oscillator is found at $t = T/2\\beta$. The value of $\\beta$ is _______.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "Potential energy is maximum at extreme position The particle starting at mean position reaches extreme position in time $T/4$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The ratio of de Broglie wavelength of a deutron with kinetic energy E to that of an alpha particle with kinetic energy 2E, is $n : 1$. The value of n is _______.\n(Assume mass of proton = mass of neutron) :",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$\\lambda = \\frac{h}{mv} = \\frac{h}{\\sqrt{2m \\cdot KE}}$\n$\\frac{\\lambda_{d}}{\\lambda_{\\alpha}} = \\sqrt{\\frac{m_{\\alpha} \\cdot KE_{\\alpha}}{m_{d} \\cdot KE_{d}}} = \\sqrt{\\frac{4m \\cdot 2E}{2m \\cdot E}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

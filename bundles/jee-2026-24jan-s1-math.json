@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "24 Jan · Shift 1",
+  "title": "JEE Main 2026 · Mathematics · 24 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1Dcv-Lkg16mNFKg9RrS2jEI7Ecz_-giMZ"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta \\in \\mathbb{R}$ be such that the function $f(x) = \\begin{cases} 2\\alpha\\left(x^{2} - 2\\right) + 2\\beta x & , x < 1 \\\\ (\\alpha + 3)x + (\\alpha - \\beta) & , x \\ge 1 \\end{cases}$ be differentiable at all $x \\in \\mathbb{R}$. Then $34(\\alpha + \\beta)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$f(x) = \\begin{cases} 2\\alpha\\left(x^{2} - 2\\right) + 2\\beta x & , x < 1 \\\\ (\\alpha + 3)x + (\\alpha - \\beta) & , x \\ge 1 \\end{cases}$$\ndifferentiable at $x = 1$\n$\\Rightarrow$ continuity at $x = 1$\n$\\Rightarrow -2\\alpha + 2\\beta = (\\alpha + \\beta) + (\\alpha - \\beta)$\n$\\Rightarrow -2\\alpha + 2\\beta = 2\\alpha - \\beta + 3$\n$\\Rightarrow 3\\beta = 4\\alpha + 3$ ..........(1)\nNow\n$$f'(x) = \\begin{cases} 4\\alpha x + 2\\beta & , x < 1 \\\\ \\alpha + 3 & , x > 1 \\end{cases}$$\n$\\Rightarrow$ at $x = 1$\n$4\\alpha + 2\\beta = \\alpha + 3$ ..........(2)\n$\\Rightarrow \\alpha = \\frac{3}{17}, \\beta = \\frac{21}{17}$\n$\\Rightarrow 34(\\alpha + \\beta) = 48$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$36$"
+    },
+    {
+     "key": "B",
+     "text": "$24$"
+    },
+    {
+     "key": "C",
+     "text": "$48$"
+    },
+    {
+     "key": "D",
+     "text": "$84$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The mean and variance of a data of 10 observations are 10 and 2, respectively. If an observations $\\alpha$ in this data is replaced by $\\beta$, then the mean and variance become 10.1 and 1.99 , respectively. Then $\\alpha + \\beta$ equals :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given $x_1 + x_2 + \\dots + x_9 + \\alpha = 100$ ..........(1)\nand $$2 = \\frac{\\sum_{i=1}^{9} x_i^{2} + \\alpha^{2}}{10} - (10)^{2}$$\n$\\Rightarrow x_1^{2} + \\dots + x_9^{2} + \\alpha^{2} = 1020$ ..........(2)\nIf $\\alpha$ replaced by $\\beta$\n$\\Rightarrow x_1 + \\dots + x_9 + \\beta = 101$ ..........(3)\nand $$1.99 = \\frac{\\sum_{i=1}^{9} x_i^{2} + \\beta^{2}}{10} - (10.1)^{2}$$\n$\\Rightarrow x_1^{2} + x_2^{2} + \\dots + x_9^{2} + \\beta^{2} = 1040$ ..........(4)\n(1) – (3)    (2) – (4)\n$\\alpha - \\beta = -1$    $\\alpha^{2} - \\beta^{2} = -20$\n$\\alpha + \\beta = 20$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$15$"
+    },
+    {
+     "key": "B",
+     "text": "$20$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\frac{1}{25!} + \\frac{1}{3!\\,23!} + \\frac{1}{5!\\,21!} + \\dots$ up to 13 terms. If $13S = \\frac{2^{k}}{n!}$, $k \\in \\mathbb{N}$, then $n + k$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$S = \\frac{1}{26!}\\left({}^{26}C_{1} + {}^{26}C_{3} + \\dots + {}^{26}C_{25}\\right)$$\n$$\\Rightarrow S = \\frac{2^{25}}{26!}$$\n$$\\Rightarrow 13S = \\frac{2^{25} \\times 13}{(25)!\\,26}$$\n$$\\Rightarrow 13S = \\frac{2^{24}}{(25)!}$$\n$\\Rightarrow n + k = 49$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$49$"
+    },
+    {
+     "key": "B",
+     "text": "$51$"
+    },
+    {
+     "key": "C",
+     "text": "$50$"
+    },
+    {
+     "key": "D",
+     "text": "$52$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the domain of the function $f(x) = \\log_{\\left(10x^{2} - 17x + 7\\right)}\\left(18x^{2} - 11x + 1\\right)$ is $(-\\infty, a) \\cup (b, c) \\cup (d, \\infty) - \\{e\\}$, then $90(a + b + c + d + e)$ equals :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For domain\n$18x^{2} - 11x + 1 > 0 \\cap 10x^{2} - 17x + 7 > 0 \\cap 10x^{2} - 17x + 7 \\ne 1$\n$(2x - 1)(ax - 1) > 0 \\cap (x - 1)(10x - 7) > 0 \\cap 10x^{2} - 17x + 6 \\ne 0$\n$$\\Rightarrow x \\in \\left(-\\infty, \\frac{1}{9}\\right) \\cup \\left(\\frac{1}{2}, \\infty\\right) \\cap x \\in \\left(-\\infty, \\frac{7}{10}\\right) \\cup (1, \\infty) \\cap x \\ne \\frac{6}{5}, \\frac{1}{2}$$\n$$\\Rightarrow x \\in \\left(-\\infty, \\frac{1}{9}\\right) \\cup \\left(\\frac{1}{2}, \\frac{7}{10}\\right) \\cup (1, \\infty) - \\left\\{\\frac{6}{5}\\right\\}$$\n$90(a + b + c + d + e) = 316$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$170$"
+    },
+    {
+     "key": "B",
+     "text": "$316$"
+    },
+    {
+     "key": "C",
+     "text": "$307$"
+    },
+    {
+     "key": "D",
+     "text": "$177$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider an A.P. : $a_1, a_2, \\dots, a_n$ ; $a_1 > 0$. If $a_2 - a_1 = \\frac{-3}{4}$, $a_n = \\frac{1}{4}a_1$, and $\\sum_{i=1}^{n} a_i = \\frac{525}{2}$, then $\\sum_{i=1}^{17} a_i$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a_2 - a_1 = -3/4$, $\\Rightarrow d = \\frac{-3}{4}$\n$$a_n = \\frac{a_1}{4} \\Rightarrow a_1 + (n - 1)\\left(\\frac{-3}{4}\\right) = \\frac{a_1}{4}$$\n$$\\Rightarrow \\frac{3a_1}{4} = (n - 1)\\frac{3}{4}$$\n$\\Rightarrow a_1 = n - 1$\n$$\\sum_{i=1}^{n} a_i = \\frac{525}{2} \\Rightarrow \\frac{n}{2}\\left[2a_1 + (n - 1)\\left(\\frac{-3}{4}\\right)\\right] = \\frac{525}{2}$$\n$$\\Rightarrow n\\left[2a_1 + (a_1)\\left(\\frac{-3}{4}\\right)\\right] = 525$$\n$$\\Rightarrow (a_1 + 1)\\left(\\frac{5a_1}{4}\\right) = 525$$\n$\\Rightarrow a_1(a_1 + 1) = 420$\n$\\Rightarrow a_1 = 20$ or $a_1 = -21$ (Rejected)\n$$\\Rightarrow \\sum_{i=1}^{17} a_i = \\frac{17}{2}\\left(40 + 16 \\times \\frac{-3}{4}\\right)$$\n$$= \\frac{17}{2}(28) = 238$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$238$"
+    },
+    {
+     "key": "B",
+     "text": "$952$"
+    },
+    {
+     "key": "C",
+     "text": "$136$"
+    },
+    {
+     "key": "D",
+     "text": "$476$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a circle of radius 4 pass through the origin O , the points $A\\left(-\\sqrt{3}a, 0\\right)$ and $B\\left(0, -\\sqrt{2}b\\right)$, where a and b are real parameters and $ab \\ne 0$. Then the locus of the centroid of $\\Delta OAB$ is a circle of radius :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[Figure: right triangle with O(0,0), A$\\left(-\\sqrt{3}a, 0\\right)$, B$\\left(0, -\\sqrt{2}b\\right)$]\nGiven radius $= 4$\n$\\Rightarrow AB = 8$\n$\\Rightarrow 3a^{2} + 2b^{2} = 64$\nlet centroid $= (h, k)$\n$\\Rightarrow 3h = -\\sqrt{3}a$, $3k = -\\sqrt{2}b$\n$$\\Rightarrow a = -\\sqrt{3}h, \\ b = \\frac{-3k}{\\sqrt{2}}$$\n$$\\Rightarrow 3(3h) + 2\\left(\\frac{9k^{2}}{2}\\right) = 64$$\n$$x^{2} + y^{2} = \\frac{64}{9}$$\nradias $= 8/3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{7}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{11}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{8}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s1-math-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the function $$f(x) = \\frac{e^{x}\\left(e^{\\tan x - x} - 1\\right) + \\log_e(\\sec x + \\tan x) - x}{\\tan x - x}$$ is continuous at $x = 0$, then the value of $f(0)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$f(x) = \\lim_{x \\to 0} \\frac{e^{x}\\left(e^{\\tan x - x} - 1\\right) + \\log_e(\\sec x + \\tan x) - x}{\\tan x - x}$$\n$$\\Rightarrow f(0) = \\lim_{x \\to 0} \\frac{e^{x}\\left(e^{\\tan x - x} - 1\\right)}{\\tan x - x} + \\lim_{x \\to 0} \\frac{\\ln(\\sec x + \\tan x) - x}{\\tan x - x}$$\n$$= 1 + \\lim_{x \\to 0} 3\\,\\frac{\\ln(\\sec x + \\tan x) - x}{x^{3}}$$\nUsing LH Rule\n$$\\Rightarrow f(0) = 1 + 3.\\lim_{x \\to 0} \\frac{\\left(\\frac{\\sec x + \\tan x + \\sec^{2} x}{\\sec x + \\tan x}\\right) - 1}{3x^{3}}$$\n$$f(0) = 1 + \\lim_{x \\to 0} \\frac{\\sec x - 1}{x^{2}}$$\n$$= 1 + \\frac{1}{2} = \\frac{3}{2}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A_1$ be the bounded area enclosed by the curves $y = x^{2} + 2$, $x + y = 8$ and y-axis that lies in the first quadrant. Let $A_2$ be the bounded area enclosed by the curves $y = x^{2} + 2$, $y^{2} = x$, $x = 2$, and y-axis that lies in the first quadrant. Then $A_1 - A_2$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For $A_1$\n$y = x^{2} + 2$, $x + y = 8$\nCoradinates of $A_1 = (2, 6)$\n$$A_1 = \\int_{0}^{2} (8 - x) - \\left(x^{2} + 2\\right) dx$$\n$$= 6x - \\frac{x^{2}}{2} - \\frac{x^{3}}{3}\\Big|_{0}^{2}$$\n$$= \\frac{22}{3}$$\nFor $A_2$\n$$A_2 = \\int_{0}^{2} \\left(x^{2} + 2\\right) - \\sqrt{x}\\,dx$$\n$$= \\frac{x^{3}}{3} + 2x - x^{3/2}.\\frac{2}{3}\\Big|_{0}^{2}$$\n$$= \\frac{20}{3} - \\frac{4\\sqrt{2}}{3}$$\n$$A_1 - A_2 = \\frac{2}{3} + \\frac{4\\sqrt{2}}{3} = \\frac{2}{3}\\left(2\\sqrt{2} + 1\\right)$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3}\\left(3\\sqrt{2} + 1\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}\\left(4\\sqrt{2} + 1\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}\\left(\\sqrt{2} + 1\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{3}\\left(2\\sqrt{2} + 1\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s1-math-q08-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $$\\frac{\\sqrt{3}\\operatorname{cosec} 20^\\circ - \\sec 20^\\circ}{\\cos 20^\\circ \\cos 40^\\circ \\cos 60^\\circ \\cos 80^\\circ}$$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$E = \\frac{\\sqrt{3}\\operatorname{cosec} 20^\\circ - \\sec 20^\\circ}{\\frac{\\cos 20^\\circ \\cos 40^\\circ \\cos 80^\\circ}{2}}$$\n$$= \\frac{2\\left(\\sqrt{3}\\cos 20^\\circ - \\sin 20^\\circ\\right)}{\\sin 20^\\circ \\cos 20^\\circ . \\frac{\\sin(8 \\times 20^\\circ)}{8 \\times \\sin 20^\\circ}}$$\n$$= \\frac{16 \\times 2\\left(\\frac{\\sqrt{3}}{2}\\cos 20^\\circ - \\frac{1}{2}\\sin 20^\\circ\\right)}{\\cos 20^\\circ \\sin 20^\\circ}$$\n$$= \\frac{32\\sin(40^\\circ)}{\\cos 20^\\circ \\sin 20^\\circ} = 64$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$64$"
+    },
+    {
+     "key": "B",
+     "text": "$16$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$32$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "From a lot containing 10 defective and 90 non-defective bulbs, 8 bulbs are selected one by one with replacement. Then the probability of getting at least 7 defective bulbs is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total Sample Space $= 100^{8}$.\nways to get atleast 7 defective = exactly 7 defective + exactly 8 defective.\n$= {}^{8}C_{7}.10^{7}.90 + {}^{8}C_{8} \\times 10^{8}$\n$$\\text{Probability} = \\frac{8 \\times 10^{7} \\times 90 + 1 \\times 10^{8}}{10^{16}}$$\n$$= \\frac{72 + 1}{10^{8}} = \\frac{73}{10^{8}}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{7}{10^{7}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{67}{10^{8}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{81}{10^{8}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{73}{10^{8}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\cot x = \\frac{5}{12}$ for some $x \\in \\left(\\pi, \\frac{3\\pi}{2}\\right)$, then $\\sin 7x\\left(\\cos\\frac{13x}{2} + \\sin\\frac{13x}{2}\\right) + \\cos 7x\\left(\\cos\\frac{13x}{2} - \\sin\\frac{13x}{2}\\right)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\cot x = \\frac{5}{12}$    $x \\in \\left(\\pi, \\frac{3\\pi}{2}\\right)$\n$$E = \\sin 7x + \\cos\\frac{13x}{2} + \\cos 7x \\cos\\frac{13x}{2} + \\sin 7x \\sin\\frac{13x}{2} - \\cos 7x \\sin\\frac{13x}{2}$$\n$$E = \\sin 7x + \\cos\\frac{13x}{2} - \\cos 7x \\sin\\frac{13x}{2} + \\cos 7x \\cos\\frac{13x}{2} - \\sin 7x \\sin\\frac{13x}{2}$$\n$$= \\sin\\left(7x - \\frac{13x}{2}\\right) + \\cos\\left(7x - \\frac{13x}{2}\\right)$$\n$$E = \\sin\\frac{x}{2} + \\cos\\left(\\frac{x}{2}\\right)$$\n$$E^{2} = 1 + \\sin x = 1 - \\frac{12}{13} = \\frac{1}{13}$$\nbut $\\frac{x}{2} \\in \\left(\\frac{\\pi}{2}, \\frac{3\\pi}{4}\\right)$\n$\\Rightarrow \\sin\\frac{x}{2} + \\cos\\frac{x}{2} > 0$\n$$E = \\frac{1}{\\sqrt{13}}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{\\sqrt{26}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\sqrt{13}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{\\sqrt{13}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{6}{\\sqrt{26}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let 729, 81, 9, 1, ........ be a sequence and $P_n$ denote the product of the first n terms of this sequence. If $2\\sum_{n=1}^{40} \\left(P_n\\right)^{\\frac{1}{n}} = \\frac{3^{\\alpha} - 1}{3^{\\beta}}$ and $\\gcd(\\alpha, \\beta) = 1$, then $\\alpha + \\beta$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "729, 81, 9, 1,..........\nIt is GP with $a = 729$, $r = \\frac{1}{9}$\n$$\\Rightarrow a_n = (729)\\left(\\frac{1}{9}\\right)^{n - 1} = 9^{3} \\cdot \\frac{1}{9^{n - 1}} = 9^{\\frac{1}{n - 9}}.$$\n$P_n = a_1 a_2 \\dots a_n$\n$= 9^{3} \\cdot 9^{2} \\cdot 9^{1} \\cdot 9^{0}, \\dots$\n$= 9^{\\frac{n}{2}(7 - n)}$\n$$2\\sum_{n=1}^{40} 9^{\\frac{7 - n}{2}} = \\frac{3^{\\alpha} - 1}{3^{\\beta}}$$\n$$\\Rightarrow 2\\sum_{n=1}^{40} 3^{7 - n} = \\frac{3^{\\alpha} - 1}{3^{\\beta}}$$\n$$\\Rightarrow 2\\sum_{n=1}^{40} 3^{7 - n} = \\frac{3^{40} - 1}{3^{33}}$$\n$\\Rightarrow \\alpha + \\beta = 73$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$75$"
+    },
+    {
+     "key": "B",
+     "text": "$73$"
+    },
+    {
+     "key": "C",
+     "text": "$74$"
+    },
+    {
+     "key": "D",
+     "text": "$76$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\left\\{z \\in \\mathbb{C} : \\left|\\frac{z - 6i}{z - 2i}\\right| = 1 \\text{ and } \\left|\\frac{z - 8 + 2i}{z + 2i}\\right| = \\frac{3}{5}\\right\\}$. Then $\\sum_{z \\in S} |z|^{2}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|Z - 6i| = |Z - 2i|$\n$\\Rightarrow$ Per Pendicular Bisector of $(0, 6)$ and $(0, 2)$\n$Z = x + 4i$    $x \\in \\mathbb{R}$\n$\\Rightarrow 5|z - 8 + 2i| = 3|z + 2i|$\n$5|(x - 8) + 6i| = 3|x + 6i|$\n$25\\left((x - 8)^{2} + 36\\right) = 9\\left(x^{2} + 36\\right)$\n$\\Rightarrow (x - 5)(x - 20) = -36$\n$\\Rightarrow x^{2} - 25x + 136 = 0$. (roots $x_1$, $x_2$)\n$x_1^{2} + x_2^{2} = 625 - 2(136) = 353$\n$\\sum |z|^{2} = x_1^{2} + 16 + x_2^{2} + 16 = 353 + 32 = 385$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$398$"
+    },
+    {
+     "key": "B",
+     "text": "$413$"
+    },
+    {
+     "key": "C",
+     "text": "$423$"
+    },
+    {
+     "key": "D",
+     "text": "$385$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let R be a relation defined on the set $\\{1, 2, 3, 4\\} \\times \\{1, 2, 3, 4\\}$ by $R = \\{((a, b), (c, d)) : 2a + 3b = 3c + 4d\\}$. Then the number of elements in R is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2a + 3b = 3 + 4d$\n$\\Rightarrow 2(a - 2d) = 3(c - b)$\n$\\Rightarrow a - 2d$ must be multiple of 3\nand $c - b$ must be multiple of 2\n$\\Rightarrow (a, d) = (1, 2), (2, 1), (2, 4), (3, 3), (4, 2)$\n$\\Rightarrow 3(c - b) = -6, 0, -12, -6, 0$\n$\\Rightarrow (c - b) = -2, 0, -4, -2, 0$\nNo of Pairs $(b, c)$: 2, 4, 0, 2, 4\nTotal $= 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$18$"
+    },
+    {
+     "key": "C",
+     "text": "$15$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the lines $L_1 : \\vec{r} = \\hat{i} + 2\\hat{j} + 3\\hat{k} + \\lambda(2\\hat{i} + 3\\hat{j} + 4\\hat{k}), \\lambda \\in \\mathbb{R}$ and $L_2 : \\vec{r} = (4\\hat{i} + \\hat{j}) + \\mu(5\\hat{i} + 2\\hat{j} + \\hat{k}), \\mu \\in \\mathbb{R}$, intersect at the point R . Let P and Q be the points lying on lines $L_1$ and $L_2$, respectively, such that $|\\overrightarrow{PR}| = \\sqrt{29}$ and $|\\overrightarrow{PQ}| = \\sqrt{\\frac{47}{3}}$. If the point P lies in the first octant, then $27(QR)^{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{r}_1 = (1, 2, 3) + \\lambda(2, 3, 4)$\n$\\vec{r}_2 = (4, 1, 0) + \\mu(5, 2, 1)$\nFor interseching R\n$1 + 2\\lambda = u + 5\\mu, 2 + 3\\lambda = 1 + 2\\mu, 3 + 4\\lambda = \\mu.$\n$\\Rightarrow \\lambda = \\mu = -1$\n$R : (-1, -1, -1)$\nNow\n$|\\overrightarrow{PR}| = \\sqrt{29} \\Rightarrow (2 + 2\\lambda)^{2} + (3 + 3\\lambda)^{2} + (4 + 4\\lambda)^{2} = 29$\n$\\Rightarrow (\\lambda + 1)^{2}(4 + 9 + 16) = 29$\n$\\Rightarrow (\\lambda + 1)^{2} = 1$\n$\\Rightarrow \\lambda + 1 = 1, -1$\n$\\Rightarrow \\lambda = 0, -2$\n$\\Rightarrow P = (1, 2, 3)$ or $(-3, -4, -5)$\n$\\Rightarrow P = (1, 2, 3)$\nand $|\\overrightarrow{PQ}| = \\sqrt{47/3}$\n$$\\Rightarrow (5\\mu + 3)^{2} + (2\\mu - 1)^{2} + (\\mu - 3)^{2} = \\frac{47}{3}$$\n$$\\Rightarrow 30\\mu^{2} + 19 + 20\\mu = \\frac{47}{3}$$\n$\\Rightarrow 90\\mu^{2} + 60\\mu + 10 = 0$\n$\\Rightarrow 9\\mu^{2} + 6\\mu + 1 = 0.$\n$\\Rightarrow \\mu = -1/3$\n$$\\Rightarrow Q = \\left(7/3, \\frac{1}{3} - 1/3\\right)$$\n$= 27(QR)^{2} = 360$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$360$"
+    },
+    {
+     "key": "B",
+     "text": "$320$"
+    },
+    {
+     "key": "C",
+     "text": "$340$"
+    },
+    {
+     "key": "D",
+     "text": "$348$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let each of the two ellipses $E_1 : \\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1, (a > b)$ and $E_2 : \\frac{x^{2}}{A^{2}} + \\frac{y^{2}}{B^{2}} = 1, (A < B)$ have eccentricity $\\frac{4}{5}$. Let the lengths of the latus recta of $E_1$ and $E_2$ be $l_1$ and $l_2$, respectively, such that $2l_1^{2} = 9l_2$. If the distance between the foci of $E_1$ is 8 , then the distance between the foci of $E_2$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E_1 : \\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$  $(a > b)$\n$E_2 : \\frac{x^{2}}{A^{2}} + \\frac{y^{2}}{B^{2}} = 1$  $(A < B)$\ngiven $b^{2} = a^{2}\\left(1 - \\frac{16}{25}\\right)$,  $A^{2} = B^{2}\\left(1 - \\frac{16}{25}\\right)$\n$\\Rightarrow b^{2} = \\frac{9a^{2}}{25}$,  $A^{2} = \\frac{9B^{2}}{25}$,  and  $2ae = 8$.\n$l_1 = \\frac{2b^{2}}{a}$,  $l_2 = \\frac{2A^{2}}{B}$\n$$\\Rightarrow 2 \\times \\frac{4b^{4}}{a^{2}} = 9.\\frac{2A^{2}}{B}$$\n$$\\Rightarrow \\frac{4 \\times 3^{4}}{25} = \\frac{9.9B^{2}}{25^{2} \\times 12}$$\n$\\Rightarrow B = 4$\n$$\\text{distance} = 2 \\times 4 \\times \\frac{4}{5}$$\n$$= \\frac{32}{5}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{16}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{8}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{32}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{96}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of the real solutions of the equation : $x|x + 3| + |x - 1| - 2 = 0$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x|x + 3| + |x - 1| - 2 = 0$\nIf $x \\ge 1 \\Rightarrow x^{2} + 3x + x - 1 - 2 = 0$\n$\\Rightarrow x^{2} + 4x - 3 = 0$\n$$\\Rightarrow x = \\frac{-4 \\pm \\sqrt{16 + 12}}{2}$$\n$$= \\frac{-4 \\pm 2\\sqrt{7}}{2}$$\n$= -2 + \\sqrt{7}, -2 - \\sqrt{7}$ Rejected\nIf $x \\in (-3, 1)$\n$x^{2} + 3x + 1 - x - 2 = 0$\n$$\\Rightarrow x^{2} + 2x - 1 = 0 \\Rightarrow x = \\frac{-2 \\pm \\sqrt{4 + 4}}{2}$$\n$$= \\frac{-2 \\pm 2\\sqrt{2}}{2}$$\n$\\Rightarrow x = -1 + \\sqrt{2}, -1 - \\sqrt{2}$ Both accepted\nIf $x \\le -3$\n$-x^{2} - 3x - x + 1 - 2 = 0$\n$$\\Rightarrow x^{2} + 4x + 1 = 0 \\Rightarrow x = \\frac{-4 \\pm \\sqrt{12}}{2}$$\n$$x = \\frac{-4 \\pm 2\\sqrt{3}}{2}$$\n$x = -2 - \\sqrt{3}, -2 + \\sqrt{3}$ (Rejected)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A(1, 0)$, $B(2, -1)$ and $C\\left(\\frac{7}{3}, \\frac{4}{3}\\right)$ be three points. If the equation of the bisector of the angle ABC is $\\alpha x + \\beta y = 5$, then the value of $\\alpha^{2} + \\beta^{2}$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equation of AB  $x + y - 1 = 0$\nEquation of BC : $7x - y - 15 = 0$\nEquation of Bisectors\n$$\\frac{x + y - 1}{\\sqrt{2}} = \\pm\\frac{(7x - y - 15)}{5\\sqrt{2}}$$\n$\\Rightarrow B_1 : -x + 3y + 5 = 0$,  $B_2 : 3x + y - 5 = 0$\nNow $(1, 0)$ and $\\left(\\frac{7}{3}, \\frac{4}{3}\\right)$ must lie on opp. side of\nBisector $\\Rightarrow B_1 \\Rightarrow -x + 3y + 5 = 0$\n$\\alpha = 1, \\beta = -3 \\Rightarrow \\alpha^{2} + \\beta^{2} = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$13$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s1-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 2\\hat{i} + \\hat{j} - 2\\hat{k}$, $\\vec{b} = \\hat{i} + \\hat{j}$ and $\\vec{c} = \\vec{a} \\times \\vec{b}$. Let $\\vec{d}$ be a vector such that $|\\vec{d} - \\vec{a}| = \\sqrt{11}$, $|\\vec{c} \\times \\vec{d}| = 3$ and the angle between $\\vec{c}$ and $\\vec{d}$ is $\\frac{\\pi}{4}$. Then $\\vec{a} \\cdot \\vec{d}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{a} = (2, 1, -2), \\vec{b} = (1, 1, 0), \\vec{c} = \\vec{a} \\times \\vec{b}$\nNow $|\\vec{c} \\times \\vec{d}| = 3$\nand $$\\vec{c} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 1 & -2 \\\\ 1 & 1 & 0 \\end{vmatrix}$$\n$= (2, -2, 1)$\n$|\\vec{c}||\\vec{d}|\\sin\\pi/4 = 3$\n$$\\Rightarrow 3|\\vec{d}|\\frac{1}{\\sqrt{2}} = 3$$\n$\\Rightarrow |\\vec{d}| = \\sqrt{2}$\nNow $|\\vec{d} - \\vec{a}| = \\sqrt{11} \\Rightarrow |\\vec{d}|^{2} + |\\vec{a}|^{2} - 2\\vec{a} \\cdot \\vec{d} = 11$\n$\\Rightarrow 2 + 9 - 2\\vec{a} \\cdot \\vec{d} = 11$\n$\\Rightarrow \\vec{a} \\cdot \\vec{d} = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$11$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(t) = \\int \\left(\\frac{1 - \\sin\\left(\\log_e t\\right)}{1 - \\cos\\left(\\log_e t\\right)}\\right) dt, t > 1$. If $f\\left(e^{\\pi/2}\\right) = -e^{\\pi/2}$ and $f\\left(e^{\\pi/4}\\right) = \\alpha e^{\\pi/4}$, then $\\alpha$ equals :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Consider $$\\frac{1 - \\sin\\theta}{1 - \\cos\\theta} = \\frac{1 - \\sin\\theta}{2\\sin^{2}\\theta/2}$$\n$$= \\frac{1}{2}\\operatorname{cosec}^{2}\\theta/2 - \\cot\\theta/2$$\n$$\\Rightarrow \\int \\left(\\frac{1}{2}\\operatorname{cosec}^{2}\\left(\\frac{\\ln t}{2}\\right) - \\cot\\frac{(\\ln t)}{2}\\right) dt$$\n$$f(t) = -t\\cot\\left(\\frac{\\ln t}{2}\\right) + c$$\nPut $t = e^{\\pi/2} \\Rightarrow \\ln t = \\pi/2$\n$-e^{+\\pi/2} = -e^{\\pi/2} \\times 1 + c \\Rightarrow c = 0$\n$$f\\left(e^{\\pi/4}\\right) = -e^{\\pi/4}\\cot\\left(\\frac{\\pi}{8}\\right) = -\\left(\\sqrt{2} + 1\\right)e^{\\pi/4}$$\n$\\Rightarrow \\alpha = -\\left(\\sqrt{2} + 1\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-1 - 2\\sqrt{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$-1 - \\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$1 + \\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$-1 + \\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Matrices",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of $3 \\times 2$ matrices A, which can be formed using the elements of the set $\\{-2, -1, 0, 1, 2\\}$ such that the sum of all the diagonal elements of $A^{T}A$ is 5 , is ________.",
+   "correct_key": null,
+   "correct_value": 312,
+   "correct_keys": null,
+   "solution": "$$A = \\begin{bmatrix} a & b \\\\ c & d \\\\ e & f \\end{bmatrix}$$\n$$\\Rightarrow A^{T}A = \\begin{bmatrix} a & c & e \\\\ b & d & f \\end{bmatrix}\\begin{bmatrix} a & b \\\\ c & d \\\\ e & f \\end{bmatrix}$$\n$$= \\begin{bmatrix} \\Sigma a^{2} & \\Sigma ab \\\\ \\Sigma ab & \\Sigma b^{2} \\end{bmatrix}$$\n$\\Rightarrow a^{2} + b^{2} + c^{2} + d^{2} + e^{2} + f^{2} = 5$\nC – 1: $1 + 1 + 1 + 1 + 1 + 0 = {}^{6}C_{5} \\times 2 = 192$\nC – 2: $4 + 1 + 0 + 0 + 0 + 0 = {}^{6}C_{1} \\times 2 \\times {}^{5}C_{1} \\times 2 = 120$\nAns $= 312$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let a line L passing through the point $P(1, 1, 1)$ be perpendicular to the lines $\\frac{x - 4}{4} = \\frac{y - 1}{1} = \\frac{z - 1}{1}$ and $\\frac{x - 17}{1} = \\frac{y - 71}{1} = \\frac{z}{0}$. Let the line L intersect the yz-plane at the point Q. Another line parallel to L and passing through the point $S(1, 0, -1)$ intersects the yz-plane at the point R. Then the square of the area of the parallelogram PQRS is equal to ________.",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$$\\text{Direction ratio of given line} = \\begin{vmatrix} \\hat{n} & \\hat{j} & \\hat{k} \\\\ 4 & 1 & 1 \\\\ 1 & 1 & 0 \\end{vmatrix} = (-1, 1, 3)$$\nEquation of line L: $\\frac{x - 1}{-1} = \\frac{y - 1}{1} = \\frac{z - 1}{3} = \\lambda$\n$\\Rightarrow (1 - \\lambda, 1 + \\lambda, 1 + 3\\lambda)$ any point on L\nFor yz plane $\\Rightarrow x = 0 \\Rightarrow \\lambda = 1$\nQ : (0, 2, 4)\nEquation of other line : $(1 - \\delta, 0 + \\delta, -1 + 3\\delta)$\nFor R : Put $x = 0 \\Rightarrow \\delta = 1$\nR : (0, 1, 2)\nVector area of PQRS\n$$= \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 0 & -1 & -2 \\\\ 1 & -1 & -3 \\end{vmatrix}$$\n$= (1, -2, 1)$\nArea $= \\sqrt{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s1-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Application of Derivatives",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $(2\\alpha, \\alpha)$ be the largest interval in which the function $f(t) = \\frac{|t + 1|}{t^{2}}, t < 0$, is strictly decreasing. Then the local maximum value of the function $g(x) = 2\\log_e(x - 2) + \\alpha x^{2} + 4x - \\alpha, x > 2$, is ________.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$f(t) = \\frac{|t + 1|}{t^{2}}$  $t < 0$\n$$\\Rightarrow f(t) = \\begin{cases} \\frac{-t - 1}{t^{2}} ; & t \\le -1 \\\\ \\frac{t + 1}{t^{2}} ; & -1 < t < 0 \\end{cases}$$\n$$\\Rightarrow f'(t) = \\begin{cases} \\frac{t(t + 2)}{t^{4}} ; & t < -1 \\\\ -\\frac{t(t + 2)}{t^{4}} ; & -1 < t < 0 \\end{cases}$$\nIf $t \\in (-1, 0) \\Rightarrow f'(t) > 0$\nIf $t \\in (-\\infty, -2) \\Rightarrow f'(f) > 0$\nIf $t \\in (-2, -1) \\Rightarrow f'(t) < 0$\n$\\Rightarrow \\alpha = -1$\nNow\n$g(x) = 2\\ln(x - 2) + \\alpha x^{2} + 4x - \\alpha$  $x > 2$\n$\\Rightarrow g(x) = 2\\ln(x - 2) - x^{2} + 4x + 1; x > 2$\n$$\\Rightarrow g'(x) = \\frac{2}{x - 2} - 2x + 4$$\n$$g'(x) = \\frac{-2(x - 1)}{(x - 2)}(x - 3) \\quad x > 2$$\n[Sign scheme: $+$ before $x = 3$, $-$ after $x = 3$]\n$\\Rightarrow g(x)$ max at $x = 3$\n$\\Rightarrow g(3) = -9 + 12 + 1$\n$= 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s1-math-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of numbers greater than 5000, less than 9000 and divisible by 3, that can be formed using the digits 0, 1, 2, 5, 9, if the repetition of the digits is allowed, is ________.",
+   "correct_key": null,
+   "correct_value": 42,
+   "correct_keys": null,
+   "solution": "N = a b c d  using  0, 1, 2, 5, 9\n0, 9 : gives remainder 0 $\\Rightarrow 3k$ type\n1 : gives remainder 1 $\\Rightarrow 3k + 1$ type\n2, 5 : gives remainder 2 $\\Rightarrow 3k + 2$ type\nsince less than 9000\n$\\Rightarrow$ N = 5 b c d type\n$\\Rightarrow b + c + d$ gives remaninder 1 when divided by 3\n$b + c + d = 3k + 1$ type\n$(3k, 3k, 3k + 1)$  $(3k, 3k + 2, 3k + 2)$  $(3k + 1, 3k + 1, 3k + 2)$\n$\\Rightarrow {}^{3}C_{1} \\times 2 \\times 2 + {}^{3}C_{1} \\times 2 \\times 2 \\times 2 + {}^{3}C_{1} \\times 2 \\times 1 \\times 1$\n$= 12 + 24 + 6 = 42$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let a differentiable function $f$ satisfy the equation $\\int_{0}^{36} f\\left(\\frac{tx}{36}\\right) dt = 4\\alpha f(x)$. If $y = f(x)$ is a standard parabola passing through the points $(2, 1)$ and $(-4, \\beta)$, then $\\beta^{\\alpha}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 64,
+   "correct_keys": null,
+   "solution": "Given\n$$\\int_{0}^{36} f\\left(\\frac{tx}{36}\\right) dt = 4\\alpha f(x)$$\nlet $\\frac{tx}{36} = z \\Rightarrow dt = \\frac{36}{x}$\n$$\\Rightarrow \\frac{36}{x}\\int_{0}^{x} f(z)\\,dz = 4\\alpha f(x)$$\n$$\\Rightarrow 9\\int_{0}^{x} f(z)\\,dz = \\alpha x f(x)$$\nDiff. w.r.t x\n$\\Rightarrow 9f(x) = \\alpha f(x) + \\alpha x f'(x)$\n$\\Rightarrow (9 - \\alpha)f(x) = \\alpha x f'(x)$\n$$\\Rightarrow (9 - \\alpha)y = \\alpha x \\cdot \\frac{dy}{dx}$$\n$$\\Rightarrow \\frac{dx}{x} = \\frac{\\alpha}{9 - \\alpha}\\frac{dy}{y}$$\n$$\\Rightarrow \\ln|x| = \\frac{\\alpha}{(9 - \\alpha)}\\ln|y| + C$$\npassing through (2,1)\n$\\Rightarrow C = \\ln 2$\n$$\\Rightarrow \\ln\\left|\\frac{x}{2}\\right| = \\frac{\\alpha}{(9 - \\alpha)}\\ln|y|$$\n$$\\Rightarrow |y| = \\left|\\frac{x}{2}\\right|^{\\frac{9 - \\alpha}{\\alpha}}$$\n$$\\Rightarrow \\frac{\\alpha}{9 - \\alpha} = \\frac{1}{2} \\Rightarrow \\alpha = 3$$\npassing through $(-4, \\beta)$\n$\\Rightarrow \\beta = 4 \\Rightarrow \\beta^{3} = 2^{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

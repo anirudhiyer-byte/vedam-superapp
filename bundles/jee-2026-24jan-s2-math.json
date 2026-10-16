@@ -1,0 +1,819 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "24 Jan · Shift 2",
+  "title": "JEE Main 2026 · Mathematics · 24 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1ioj1upPW5gOpBzChVtfrmHlHycbiCAbK"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P = [p_{ij}]$ and $Q = [q_{ij}]$ be two square matrices of order 3 such that $q_{ij} = 2^{(i+j-1)}p_{ij}$ and $\\det(Q) = 2^{10}$. Then the value of $\\det(\\mathrm{adj}(\\mathrm{adj}\\,P))$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$P = \\begin{bmatrix} p_{11} & p_{12} & p_{13} \\\\ p_{21} & p_{22} & p_{23} \\\\ p_{31} & p_{32} & p_{33} \\end{bmatrix}$$\n$$Q = \\begin{bmatrix} 2p_{11} & 2^{2}p_{12} & 2^{3}p_{13} \\\\ 2^{2}p_{21} & 2^{3}p_{22} & 2^{4}p_{23} \\\\ 2^{3}p_{31} & 2^{4}p_{32} & 2^{5}p_{32} \\end{bmatrix}$$\n$|Q| = 2^{9}|P|$\n$2^{10} = 2^{9}|8|$\n$|P| = 2$\n$|\\mathrm{adj}\\,(\\mathrm{adj}\\,P)| = |P|^{4} = 2^{4} = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$124$"
+    },
+    {
+     "key": "C",
+     "text": "$81$"
+    },
+    {
+     "key": "D",
+     "text": "$32$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\int \\frac{7x^{10} + 9x^{8}}{\\left(1 + x^{2} + 2x^{9}\\right)^{2}}dx, x > 0, \\lim_{x \\to 0} f(x) = 0$ and $f(1) = \\frac{1}{4}$. If $A = \\begin{bmatrix} 0 & 0 & 1 \\\\ \\frac{1}{4} & f'(1) & 1 \\\\ \\alpha^{2} & 4 & 1 \\end{bmatrix}$ and $B = \\mathrm{adj}(\\mathrm{adj}\\,A)$ be such that $|B| = 81$, then $\\alpha^{2}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$f(x) = \\int \\frac{7x^{10} + 9x^{8}}{\\left(1 + x^{2} + 2x^{9}\\right)^{2}}dx$$\n$$f(x) = \\int \\frac{7x^{-8} + 9x^{-10}}{\\left(\\frac{1}{x^{9}} + \\frac{1}{x^{7}} + 2\\right)^{2}}dx$$\n$\\frac{1}{x^{9}} + \\frac{1}{x^{7}} + 2 = t$\n$-\\left(9x^{-10} + 7x^{-8}\\right)dx = dt$\n$\\int \\frac{-dt}{t^{2}} = \\frac{1}{t} + c$\n$f(x) = \\frac{x^{9}}{1 + x^{2} + 2x^{9}} + C$\n$\\lim_{x \\to 0} f(x) = 0 \\quad c = 0$\n$f(x) = \\frac{x^{9}}{1 + x^{2} + 2x^{9}}$\n$f'(1) = 1$\n$B = \\mathrm{adj}\\,(\\mathrm{adj}A)$\n$|B| = |A|^{4}$\n$81 = |A|^{4}$\n$|A| = \\pm 3$\n$1 - \\alpha^{2} f'(1) = \\pm 3$\n$1 - \\alpha^{2} = \\pm 3$\n$\\alpha^{2} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\left(\\frac{1}{3} + \\frac{4}{7}\\right) + \\left(\\frac{1}{3^{2}} + \\frac{1}{3} \\times \\frac{4}{7} + \\frac{4^{2}}{7^{2}}\\right) + \\left(\\frac{1}{3^{3}} + \\frac{1}{3^{2}} \\times \\frac{4}{7} + \\frac{1}{3} \\times \\frac{4^{2}}{7^{2}} + \\frac{4^{3}}{7^{3}}\\right) + \\ldots$ upto infinite terms, is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\left(\\frac{1}{3} + \\frac{4}{7}\\right) + \\left(\\frac{1}{3^{2}} + \\frac{1}{3} \\cdot \\frac{4}{7} + \\frac{4^{2}}{7^{2}}\\right) + \\ldots\\ldots \\infty$$\n$$(a + b) + \\left(a^{2} + ab + b^{2}\\right) + \\left(a^{3} + a^{2}b + ab^{2} + b^{3}\\right) + \\ldots \\infty$$\n$$\\frac{\\left(a^{2} - b^{2}\\right) + \\left(a^{3} - b^{3}\\right) + \\left(a^{4} - b^{4}\\right) + \\ldots + \\infty}{a - b}$$\n$$\\frac{\\left(\\frac{a^{2}}{1 - a}\\right) - \\left(\\frac{b^{2}}{1 - b}\\right)}{a - b}$$\n$$\\frac{a^{2}(1 - b) - b^{2}(1 - a)}{(a - b)(1 - a)(1 - b)}$$\n$$\\frac{a + b - ab}{1 - a - b + ab}$$\n$$\\frac{\\frac{1}{3} + \\frac{4}{7} - \\frac{4}{21}}{1 - \\frac{1}{3} - \\frac{4}{7} + \\frac{4}{21}} = \\frac{5}{2}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{7}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{6}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $a_{1}, a_{2}, a_{3}, a_{4}$ be an A.P. of four terms such that each term of the A.P. and its common difference $l$ are integers. If $a_{1} + a_{2} + a_{3} + a_{4} = 48$ and $a_{1}a_{2}a_{3}a_{4} + l^{4} = 361$, then the largest term of the A.P. is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a - 3d + a - d + a + d + a + 3d = 48$\n$4a = 48$\n$a = 12$\n$l = 2d$\n$(144 - 9d^{2})(144 - d^{2}) + 16d^{4} = 361$\n$(144)^{2} - 1440d^{2} + 25d^{4} = 361$\n$d^{2} = 25 \\Rightarrow d = \\pm 5$\nLargest term $= 27$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$21$"
+    },
+    {
+     "key": "B",
+     "text": "$23$"
+    },
+    {
+     "key": "C",
+     "text": "$24$"
+    },
+    {
+     "key": "D",
+     "text": "$27$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the angles made with the positive x-axis by two straight lines drawn from the point $P(2, 3)$ and meeting the line $x + y = 6$ at a distance $\\sqrt{\\frac{2}{3}}$ from the point P be $\\theta_{1}$ and $\\theta_{2}$. Then the value of $(\\theta_{1} + \\theta_{2})$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Figure: line $x + y = 6$ and a line from $P(2, 3)$ meeting it at A, with $PA = \\sqrt{\\frac{2}{3}}$.)\n$$A\\left(2 \\pm \\sqrt{\\frac{2}{3}}\\cos\\theta, 3 \\pm \\sqrt{\\frac{2}{3}}\\sin\\theta\\right)$$\n$x + y = 6$\n$$5 \\pm \\sqrt{\\frac{2}{3}}(\\cos\\theta + \\sin\\theta) = 6$$\n$$\\sin\\theta + \\cos\\theta = \\pm\\sqrt{\\frac{3}{2}}$$\n$$1 + \\sin 2\\theta = \\frac{3}{2}$$\n$$\\frac{2\\tan\\theta}{1 + \\tan^{2}\\theta} = \\frac{1}{2}$$\n$\\tan^{2}\\theta - 4\\tan\\theta + 1 = 0$ (roots $\\tan\\theta_{1}$, $\\tan\\theta_{2}$)\n$$\\tan\\left(\\theta_{1} + \\theta_{2}\\right) = \\frac{\\tan\\theta_{1} + \\tan\\theta_{2}}{1 - \\tan\\theta_{1} \\cdot \\tan\\theta_{2}}$$\n$$\\theta_{1} + \\theta_{2} = \\tan^{-1}(\\infty) = \\frac{\\pi}{2}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{12}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s2-math-q05-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the following three statements for the function $f : (0, \\infty) \\to \\mathbb{R}$ defined by $f(x) = |\\log_{e} x| - |x - 1|$\n(I) $f$ is differentiable at all $x > 0$.\n(II) $f$ is increasing in $(0, 1)$.\n(III) $f$ is decreasing in $(1, \\infty)$ then :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f : (0, \\infty) \\to \\mathbb{R}$\n$f(x) = |\\ln x| - |x - 1|$\n$$f(x) = \\begin{cases} -\\ln x + x - 1 & 0 < x < 1 \\\\ \\ln x - x + 1 & x \\ge 1 \\end{cases}$$\n$$f'(x) = \\begin{cases} 1 - \\frac{1}{x} & 0 < x < 1 \\\\ \\frac{1}{x} - 1 & x \\ge 1 \\end{cases}$$\n$f'\\left(1^{+}\\right) = f'\\left(1^{-}\\right) = 0$ Diff at all $x > 0$\nin $x \\in (0, 1) \\Rightarrow f'(x) = 1 - \\frac{1}{x}$\n$f'(x) < 0 \\Rightarrow f(x)$ is decreasing\nin $x \\in (1, \\infty) \\Rightarrow f'(x) = \\frac{1}{x} - 1$\n$f'(x) < 0 \\Rightarrow f(x)$ is decreasing",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "All (I), (II) and (III) are TRUE"
+    },
+    {
+     "key": "B",
+     "text": "Only (I) is TRUE"
+    },
+    {
+     "key": "C",
+     "text": "Only (II) and (III) are TRUE"
+    },
+    {
+     "key": "D",
+     "text": "Only (I) and (III) are TRUE"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the domain of the function $f(x) = \\sin^{-1}\\left(\\frac{1}{x^{2} - 2x - 2}\\right)$, is $(-\\infty, \\alpha] \\cup [\\beta, \\gamma] \\cup [\\delta, \\infty)$ is equal to $\\alpha + \\beta + \\gamma + \\delta$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$f(x) = \\sin^{-1}\\left(\\frac{1}{x^{2} - 2x - 2}\\right)$$\n$$-1 \\le \\frac{1}{x^{2} - 2x - 2} \\le 1$$\n$$\\frac{x^{2} - 2x - 1}{x^{2} - 2x - 2} \\ge 0$$\n$$\\frac{\\left(x - 1 + \\sqrt{2}\\right)\\left(x - 1 - \\sqrt{2}\\right)}{\\left(x - 1 + \\sqrt{3}\\right)\\left(x - 1 - \\sqrt{3}\\right)} \\ge 0$$\n$$x \\in \\left(-\\infty, 1 - \\sqrt{3}\\right) \\cup \\left[1 - \\sqrt{2}, 1 + \\sqrt{2}\\right] \\cup \\left(1 + \\sqrt{3}, \\infty\\right) \\quad \\ldots\\ldots(1)$$\n$$\\frac{x^{2} - 2x - 3}{x^{2} - 2x - 2} \\ge 0$$\n$$\\frac{(x - 3)(x + 1)}{\\left(x - 1 + \\sqrt{3}\\right)\\left(x - 1 - \\sqrt{3}\\right)} \\ge 0$$\n$$x \\in (-\\infty, -1] \\cup \\left(1 - \\sqrt{3}, 1 + \\sqrt{3}\\right) \\cup [3, \\infty) \\quad \\ldots\\ldots(2)$$\n$(1) \\cap (2)$\n$$x \\in (-\\infty, -1] \\cup \\left[1 - \\sqrt{2}, 1 + \\sqrt{2}\\right] \\cup [3, \\infty)$$\n$\\alpha = -1, \\beta = 1 - \\sqrt{2}, \\gamma = 1 + \\sqrt{2}, \\delta = 3$\n$\\alpha + \\beta + \\gamma + \\delta = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The letters of the word \"UDAYPUR\" are written in all possible ways with or without meaning and these words are arranged as in a dictionary. The rank of the word \"UDAYPUR\" is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "ADPRUUY\nA ........ $= \\frac{6!}{2!}$\nD ........ $= \\frac{6!}{2!}$\nP ........ $= \\frac{6!}{2!}$\nR ........ $= \\frac{6!}{2!}$\nUA ........ $= 5!$\nUDAP ........ $= 3!$\nUDAR ........ $= 3!$\nUDAU ........ $= 3!$\nUDAYPR ........ $= 1!$\nUDAYPUR ........ $= 1!$\n$1580$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1581$"
+    },
+    {
+     "key": "B",
+     "text": "$1580$"
+    },
+    {
+     "key": "C",
+     "text": "$1578$"
+    },
+    {
+     "key": "D",
+     "text": "$1579$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the image of parabola $x^{2} = 4y$, in the line $x - y = 1$ be $(y + a)^{2} = b(x - c)$, $a, b, c \\in \\mathbb{N}$. Then $a + b + c$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2} = 4y$\n$P(2t, t^{2})$\n$x - y = 1$\n$$\\text{image} \\Rightarrow \\frac{x - 2t}{1} = \\frac{y - t^{2}}{-1} = \\frac{-2\\left(2t - t^{2} - 1\\right)}{2}$$\n$x = t^{2} + 1, y = 2t - 1$\n$$t = \\frac{y + 1}{2}$$\n$$x - 1 = \\left(\\frac{y + 1}{2}\\right)^{2}$$\n$(y + 1)^{2} = 4(x - 1)$\n$a = 1, b = 4, c = 1$\n$a + b + c = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$12$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The largest value of $n$, for which $40^{n}$ divides $60!$, is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{60!}{(40)^{n}} = \\frac{60!}{2^{3n} \\cdot 5^{n}}$$\n$$E_{5}(60!) = \\left[\\frac{60}{5}\\right] + \\left[\\frac{60}{25}\\right] + 0 = 14$$\n$$E_{2}(60!) = \\left[\\frac{60}{2}\\right] + \\left[\\frac{60}{4}\\right] + \\left[\\frac{60}{8}\\right] + \\left[\\frac{60}{16}\\right] + \\left[\\frac{60}{32}\\right] + 0 = 56$$\n$$\\frac{60!}{2^{56} \\cdot 5^{14}} \\Rightarrow n = 14$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$13$"
+    },
+    {
+     "key": "B",
+     "text": "$11$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$14$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $X = \\{x \\in \\mathbb{N} : 1 \\le x \\le 19\\}$ and for some $a, b \\in \\mathbb{R}$, $Y = \\{ax + b : x \\in X\\}$. If the mean and variance of the elements of Y are 30 and 750, respectively, then the sum of all possible values of b is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$X\\ \\{1, 2, 3, \\ldots\\ldots 19\\}$\n$$\\bar{x} = \\frac{1 + 2 + \\ldots\\ldots + 19}{19} = 10$$\n$$\\sigma_{x} = \\frac{1^{2} + 2^{2} + \\ldots + 19^{2}}{19} - (10)^{2} = 30$$\n$\\bar{y} = a\\bar{x} + b$\n$30 = 10a + b \\quad \\ldots\\ldots(1)$\n$\\sigma_{y} = a^{2}\\sigma_{x}$\n$750 = a^{2}(30)$\n$a^{2} = 25$\n$a = \\pm 5$\n$b = 30 - 10a$\n$a = 5 \\Rightarrow b = -20$, $a = -5 \\Rightarrow b = 80$; sum $= 60$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$60$"
+    },
+    {
+     "key": "C",
+     "text": "$100$"
+    },
+    {
+     "key": "D",
+     "text": "$80$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $[t]$ denote the greatest integer less than or equal to $t$. If the function\n$$f(x) = \\begin{cases} b^{2}\\sin\\left(\\frac{\\pi}{2}\\left[\\frac{\\pi}{2}(\\cos x + \\sin x)\\cos x\\right]\\right), & x < 0 \\\\ \\frac{\\sin x - \\frac{1}{2}\\sin 2x}{x^{3}}, & x > 0 \\\\ a, & x = 0 \\end{cases}$$\nis continuous at $x = 0$, then $a^{2} + b^{2}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "for cont. at $x = 0$\n$f(0) = f(0^{+}) = f(0^{-})$\n$$a = \\lim_{x \\to 0^{+}} \\frac{2\\sin x - \\sin 2x}{2x^{3}} = \\lim_{x \\to 0^{-}} b^{2}\\sin\\left(\\frac{\\pi}{2}\\left[\\frac{\\pi}{2}(\\sin x + \\cos x)\\cos x\\right]\\right)$$\n$$a = \\lim_{x \\to 0^{+}} \\frac{2\\left(x - \\frac{x^{3}}{3!}\\right) - \\left(2x - \\frac{8x^{3}}{3!}\\right)}{2x^{3}} = \\lim_{x \\to 0^{-}} b^{2}\\sin\\left(\\frac{\\pi}{2}\\right)$$\n$$a = \\frac{1}{2} = b^{2}$$\n$$a^{2} + b^{2} = \\frac{1}{4} + \\frac{1}{2} = \\frac{3}{4}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{9}{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The smallest positive integral value of $a$, for which all the roots of $x^{4} - ax^{2} + 9 = 0$ are real and distinct, is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{4} - ax^{2} + 9 = 0$\n$x^{2} = t \\in [0, \\infty)$\n$t^{2} - at + 9 = 0$\n(Figure: upward parabola cutting the positive t-axis at two points.)\n$D > 0$\n$a^{2} - 36 > 0$\n$a \\in (-\\infty, -6) \\cup (6, \\infty) \\quad \\ldots\\ldots(1)$\n$$\\frac{-b}{2a} > 0$$\n$$\\frac{a}{2} > 0 \\Rightarrow a > 0 \\quad \\ldots\\ldots(2)$$\n$f(0) > 0$\n$a \\in \\mathbb{R} \\quad \\ldots\\ldots(3)$\n$(1) \\cap (2) \\cap (3)$\n$a \\in (6, \\infty)$\n$\\min = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s2-math-q13-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the length of the latus rectum of an ellipse $\\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1, (a > b)$, be 30. If its eccentricity is the maximum value of the function $f(t) = -\\frac{3}{4} + 2t - t^{2}$, then $(a^{2} + b^{2})$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{2b^{2}}{a} = 30$$\n$b^{2} = 15a$\n$$f(t) = \\frac{-3}{4} + 2t - t^{2}$$\n$$f(t) = \\frac{1}{4} - (t - 1)^{2}$$\n$$f(t)_{\\max} = \\frac{1}{4} = e$$\n$b^{2} = a^{2}(1 - e^{2})$\n$$b^{2} = a^{2}\\left(1 - \\frac{1}{16}\\right)$$\n$$15a = \\frac{15}{16}a^{2}$$\n$a = 16$\n$b^{2} = 240$\n$a^{2} + b^{2} = 496$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$496$"
+    },
+    {
+     "key": "B",
+     "text": "$256$"
+    },
+    {
+     "key": "C",
+     "text": "$276$"
+    },
+    {
+     "key": "D",
+     "text": "$516$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of all values of $\\alpha$, for which the shortest distance between the lines $\\frac{x + 1}{\\alpha} = \\frac{y - 2}{-1} = \\frac{z - 4}{-\\alpha}$ and $\\frac{x}{\\alpha} = \\frac{y - 1}{2} = \\frac{z - 1}{2\\alpha}$ is $\\sqrt{2}$, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{r} = (-1, 2, 4) + \\lambda(\\alpha, -1, -\\alpha)$\n$\\vec{r} = (0, 1, 1) + \\mu(\\alpha, 2, 2\\alpha)$\n$\\overrightarrow{AB} = \\hat{i} - \\hat{j} - 3\\hat{k}$\n$$\\vec{P} \\times \\vec{q} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\alpha & -1 & -\\alpha \\\\ \\alpha & 2 & 2\\alpha \\end{vmatrix} = -3\\alpha^{2}\\hat{j} + 3\\alpha\\hat{k}$$\n$$S \\cdot D = \\left|\\frac{(\\hat{i} - \\hat{j} - 3\\hat{k}) \\cdot \\left(-3\\alpha^{2}\\hat{j} + 3\\alpha\\hat{k}\\right)}{\\left|-3\\alpha^{2}\\hat{j} + 3\\alpha\\hat{k}\\right|}\\right| = \\sqrt{2}$$\n$$\\frac{3\\alpha^{2} - 9\\alpha}{3\\sqrt{\\alpha^{4} + \\alpha^{2}}} = \\sqrt{2}$$\n$\\left(\\alpha^{2} - 3\\alpha\\right)^{2} = 2\\left(\\alpha^{4} + \\alpha^{2}\\right)$\n$\\alpha^{4} - 6\\alpha^{3} + 9\\alpha^{2} = 2\\alpha^{4} + 2\\alpha^{2}$\n$\\alpha^{4} + 6\\alpha^{3} - 7\\alpha^{2} = 0$\n$\\alpha^{2}\\left(\\alpha^{2} + 6\\alpha - 7\\right) = 0$\n$\\alpha^{2}(\\alpha + 7)(\\alpha - 1) = 0$\n$\\alpha = -7, 1 \\Rightarrow$ Sum $= -6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-6$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$-8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f$ be a function such that $3f(x) + 2f\\left(\\frac{m}{19x}\\right) = 5x, x \\ne 0$, where $m = \\sum_{i=1}^{9} (i)^{2}$. Then $f(5) - f(2)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$3f(x) + 2f\\left(\\frac{m}{19x}\\right) = 5x$$\n$$m = 1^{2} + 2^{2} + \\cdots + 9^{2} = \\frac{9 \\times 10 \\times 19}{6} = 15 \\times 19$$\n$$\\frac{m}{19} = 15$$\n$$3f(x) + 2f\\left(\\frac{15}{x}\\right) = 5x$$\n$3f(3) + 2f(5) = 15$, $3f(5) + 2f(3) = 25$ $\\Rightarrow f(5) = 9$\n$$3f(2) + 2f\\left(\\frac{15}{2}\\right) = 10,\\quad 3f\\left(\\frac{15}{2}\\right) + 2f(2) = \\frac{75}{2} \\Rightarrow f(2) = -9$$\n$f(5) - f(2) = 18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-9$"
+    },
+    {
+     "key": "B",
+     "text": "$36$"
+    },
+    {
+     "key": "C",
+     "text": "$18$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be a differentiable function in the interval $(0, \\infty)$ such that $y(1) = 2$, and $\\lim_{t \\to x}\\left(\\frac{t^{2}y(x) - x^{2}y(t)}{x - t}\\right) = 3$ for each $x > 0$. Then $2y(2)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\lim_{t \\to x} \\frac{t^{2}y(x) - x^{2}y(t)}{x - t} = 3$$\n$$\\lim_{t \\to x} \\frac{2ty(x) - x^{2}y'(t)}{-1} = 3$$\n$x^{2}y'(x) - 2xy(x) = 3$\n$$\\frac{dy}{dx} - \\frac{2y}{x} = \\frac{3}{x^{2}}$$\n$$I \\cdot F \\cdot = e^{2\\int -\\frac{1}{x}dx} = \\frac{1}{x^{2}}$$\n$$y \\cdot \\frac{1}{x^{2}} = \\int \\frac{3}{x^{4}}dx$$\n$$\\frac{y}{x^{2}} = \\frac{-1}{x^{3}} + c$$\n$y(1) = 2$\n$c = 3$\n$$y = -\\frac{1}{x} + 3x^{2}$$\n$$2y(2) = 2\\left(-\\frac{1}{2} + 12\\right) = 23$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12$"
+    },
+    {
+     "key": "B",
+     "text": "$23$"
+    },
+    {
+     "key": "C",
+     "text": "$27$"
+    },
+    {
+     "key": "D",
+     "text": "$18$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 2\\hat{i} - 5\\hat{j} + 5\\hat{k}$ and $\\vec{b} = \\hat{i} - \\hat{j} + 3\\hat{k}$. If $\\vec{c}$ is a vector such that $2(\\vec{a} \\times \\vec{c}) + 3(\\vec{b} \\times \\vec{c}) = \\vec{0}$ and $(\\vec{a} - \\vec{b}) \\cdot \\vec{c} = -97$, then $|\\vec{c} \\times \\hat{k}|^{2}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2(\\vec{a} \\times \\vec{c}) + 3(\\vec{b} \\times \\vec{c}) = \\vec{0}$\n$(2\\vec{a} + 3\\vec{b}) \\times \\vec{c} = \\vec{0}$\n$\\vec{c} = \\lambda(2\\vec{a} + 3\\vec{b})$\n$(\\vec{a} - \\vec{b}) \\cdot \\vec{c} = -97$\n$\\lambda(\\vec{a} - \\vec{b}) \\cdot (2\\vec{a} + 3\\vec{b}) = -97$\n$\\lambda\\left\\{2|\\vec{a}|^{2} + \\vec{a} \\cdot \\vec{b} - 3|\\vec{b}|^{2}\\right\\} = -97$\n$\\lambda(108 + 22 - 33) = -97$\n$\\lambda = -1$\n$\\vec{c} = -2\\vec{a} - 3\\vec{b}$\n$\\vec{c} = -7\\hat{i} + 13\\hat{j} - 19\\hat{k}$\n$$\\vec{c} \\times \\hat{k} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ -7 & 13 & -19 \\\\ 0 & 0 & 1 \\end{vmatrix} = 13\\hat{i} + 7\\hat{j}$$\n$|\\hat{c} \\times \\hat{k}|^{2} = 169 + 49 = 218$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$233$"
+    },
+    {
+     "key": "B",
+     "text": "$205$"
+    },
+    {
+     "key": "C",
+     "text": "$218$"
+    },
+    {
+     "key": "D",
+     "text": "$193$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(\\alpha)$ denote the area of the region in the first quadrant bounded by $x = 0$, $x = 1$, $y^{2} = x$ and $y = |\\alpha x - 5| - |1 - \\alpha x| + \\alpha x^{2}$. Then $(f(0) + f(1))$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x = 0, x = 1, y^{2} = x$\n$f(0) \\Rightarrow \\alpha = 0$\n$y = 4$\n$$f(0) = 4 - \\int_{0}^{1}\\sqrt{x}\\,dx = 4 - \\frac{2}{3}\\left(x^{3/2}\\right)_{0}^{1} = \\frac{10}{3}$$\n$f(1) \\Rightarrow \\alpha = 1$\n(Figure: shaded region between $y^{2} = x$ and $y = 4$ for $0 \\le x \\le 1$.)\n$y = 4 + x^{2}$\n(Figure: shaded region between $y^{2} = x$ and $y = 4 + x^{2}$ for $0 \\le x \\le 1$.)\n$$f(1) = \\int_{0}^{1}\\left(4 + x^{2} - \\sqrt{x}\\right)dx$$\n$$f(1) = \\left(4x + \\frac{x^{3}}{3} - \\frac{2}{3}x^{3/2}\\right)_{0}^{1}$$\n$$f(1) = 4 + \\frac{1}{3} - \\frac{2}{3} = \\frac{11}{3}$$\n$$f(0) + f(1) = \\frac{21}{3} = 7$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$14$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-24jan-s2-math-q20-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $(h, k)$ lie on the circle $C : x^{2} + y^{2} = 4$ and the point $(2h + 1, 3k + 2)$ lie on an ellipse with eccentricity $e$. Then the value of $\\frac{5}{e^{2}}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "$x^{2} + y^{2} = 4$\n$h^{2} + k^{2} = 4 \\quad \\ldots\\ldots(1)$\n$$x = 2h + 1 \\Rightarrow h = \\frac{x - 1}{2}$$\n$$y = 3k + 2 \\Rightarrow k = \\frac{y - 2}{3}$$\nfrom eq. (1)\n$$\\frac{(x - 1)^{2}}{4} + \\frac{(y - 2)^{2}}{9} = 4$$\n$$\\frac{(x - 1)^{2}}{16} + \\frac{(y - 2)^{2}}{36} = 1$$\n$a^{2} = b^{2}(1 - e^{2})$\n$16 = 36(1 - e^{2})$\n$$1 - e^{2} = \\frac{4}{9}$$\n$$e^{2} = \\frac{5}{9}$$\n$$\\frac{5}{e^{2}} = 9$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of elements in the set $\\{x \\in [0, 180^\\circ] : \\tan(x + 100^\\circ) = \\tan(x + 50^\\circ)\\tan x \\tan(x - 50^\\circ)\\}$ is ______.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$\\tan(x + 100) = \\tan(x + 50)\\tan x \\tan(x - 50)$\n$$\\frac{\\sin\\left(x + 100^\\circ\\right)\\cos\\left(x - 50^\\circ\\right)}{\\cos\\left(x + 100^\\circ\\right)\\sin\\left(x - 50^\\circ\\right)} = \\frac{\\sin\\left(x + 50^\\circ\\right)\\sin x}{\\cos\\left(x + 50^\\circ\\right)\\cos x}$$\nApply C & D\n$$\\frac{\\sin\\left(2x + 50^\\circ\\right)}{\\sin\\left(150^\\circ\\right)} = \\frac{\\cos\\left(50^\\circ\\right)}{-\\cos\\left(2x + 50^\\circ\\right)}$$\n$\\sin\\left(4x + 100^\\circ\\right) = -\\cos\\left(50^\\circ\\right)$\n$\\sin\\left(4x + 100^\\circ\\right) = \\sin\\left(-40^\\circ\\right)$\n$4x + 100 = n\\pi - (-1)^{n}\\left(40^\\circ\\right)$\n$x = 30^\\circ, 55^\\circ, 120^\\circ, 145^\\circ$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $z = (1 + i)(1 + 2i)(1 + 3i) \\ldots\\ldots (1 + ni)$, where $i = \\sqrt{-1}$. If $|z|^{2} = 44200$, then $n$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$z = (1 + i)(1 + 2i)(1 + 3i) \\ldots\\ldots (1 + ni)$\n$|z|^{2} = (1 + 1)(1 + 4)(1 + 9)(1 + 16) \\ldots\\ldots (1 + n^{2})$\n$44200 = (2)(5)(10)(17)(26)$\n$n = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Probability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let S be a set of 5 elements and $P(S)$ denote the power set of S. Let E be an event of choosing an ordered pair $(A, B)$ from the set $P(S) \\times P(S)$ such that $A \\cap B = \\varnothing$. If the probability of the event E is $\\frac{3^{p}}{2^{q}}$, where $p, q \\in \\mathbb{N}$, then $p + q$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 15,
+   "correct_keys": null,
+   "solution": "$n(S) = 5$\n$n(P(S)) = 32$\ntotal cases $= 32 \\times 32$\n$$\\text{fav. cases} = \\sum_{r=0}^{5} {}^{5}C_{r} \\cdot 2^{5-r} = 3^{5}$$\n$$\\text{Prob.} = \\frac{3^{5}}{2^{10}}$$\n$p = 5, q = 10$\n$p + q = 15$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $f(x)$ satisfies the relation $f(x) = e^{x} + \\int_{0}^{1}\\left(y + xe^{x}\\right)f(y)\\,dy$, then $e + f(0)$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$$f(x) = e^{x} + \\int_{0}^{1}\\left(y + xe^{x}\\right)f(y)\\,dy$$\n$$f(x) = e^{x} + xe^{x}\\int_{0}^{1}f(y)\\,dy + \\int_{0}^{1}yf(y)\\,dy$$\n$f(x) = e^{x} + \\lambda xe^{x} + \\mu$\n$$\\lambda = \\int_{0}^{1}f(y)\\,dy$$\n$$\\lambda = \\int_{0}^{1}\\left(e^{y} + \\lambda ye^{y} + \\mu\\right)dy$$\n$$\\lambda = \\left(e^{y} + \\lambda\\left(ye^{y} - e^{y}\\right) + \\mu y\\right)_{0}^{1}$$\n$\\lambda = (e + \\mu) - (1 - \\lambda)$\n$\\mu = 1 - e$\n$f(0) = e^{0} + 0 + 1 - e$\n$f(0) = 2 - e$\n$f(0) + e = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

@@ -1,0 +1,823 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "8 Apr · Shift 2",
+  "title": "JEE Main 2026 · Physics · 8 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1gGbV9FIo5PSG_sFubXdCuzGhQUzs5jsl"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A new unit ($\\alpha$) of length is chosen such that it is equal to the speed of light in vacuum. What is the distance between Venus and Earth in terms of $\\alpha$ units if light takes 6 min. 40 s to cover this distance?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Time taken = 6 min 40 s\n= 400 s\nDistance = speed $\\times$ time\n= (c) $\\times$ (400)\n= $400\\ \\alpha$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$200\\ \\alpha$"
+    },
+    {
+     "key": "B",
+     "text": "$400\\ \\alpha$"
+    },
+    {
+     "key": "C",
+     "text": "$300\\ \\alpha$"
+    },
+    {
+     "key": "D",
+     "text": "$500\\ \\alpha$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the equation $H = \\frac{x^{p}\\epsilon^{q}E^{r}}{t^{s}}$, Where H = magnetic field; E= electric field, $\\epsilon$ = permittivity, x= distance, t = time. The values of p, q, r and s respectively are :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Formula used :\n$B = \\mu_{0}H = \\mu_{0}ni$\n$E = F/q$\n$F = \\frac{1}{4\\pi\\varepsilon_{0}}\\frac{q^{2}}{r^{2}}$\n$[x] = [L], [t] = [T]$\n$[H] = [L^{-1}A], [E] = [MLT^{-3}A^{-1}]$\n$[\\varepsilon] = [M^{-1}L^{-3}T^{4}A^{2}]$\n$$[L^{-1}A] = \\frac{[L^{P}].[M^{-1}L^{-3}T^{4}A^{2}]^{q}.[MLT^{-3}A^{-1}]^{r}}{[T^{s}]}$$\n$\\Rightarrow [L^{-1}A] = [M^{-q+r}].[L^{P-3q+r}].[T^{4q-3r-s}].[A^{2q-r}]$\nCompare and solve : P = 1, q = 1, r = 1, s = 1",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1,1,1,1"
+    },
+    {
+     "key": "B",
+     "text": "$-1, 1, 2, 1$"
+    },
+    {
+     "key": "C",
+     "text": "$1, -1, -2, 1$"
+    },
+    {
+     "key": "D",
+     "text": "$-1, -2, -2, 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A car moving with a speed of 54 km/h takes a turn of radius 20 m . A simple pendulum is suspended from the ceiling of the car. Determine the angle made by the string of the pendulum with the vertical during the turning. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Free body diagram of the pendulum :\nSpeed of the car $\\Rightarrow v = 54$ km/h = 15 m/s\n$T\\sin\\theta = \\frac{mv^{2}}{r}$\n$T\\cos\\theta = mg$\n$\\Rightarrow \\tan\\theta = \\frac{v^{2}}{gr}$\n$\\Rightarrow \\tan\\theta = \\frac{225}{200} = 1.125$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan^{-1}(0.5)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan^{-1}(0.75)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan^{-1}(1,125)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\tan^{-1}(0,25)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q28-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A gas balloon is going up with a constant velocity of 10 m/s. When this balloon reached a height of 75 m , a stone is dropped from it and balloon keeps moving up with the same velocity. The height of the balloon when the stone hits the ground is ________ m. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "At t = 0,\n$\\rightarrow$ u = 10 m/s (upwards)\n$\\rightarrow$ h = 75 m\n$\\rightarrow g = 10\\ \\mathrm{m/s^{2}}$ (downwards)\nTime taken to hit the ground :\n$\\Rightarrow 75 = -10t + \\frac{1}{2}(10)t^{2}$\n$\\Rightarrow t^{2} - 2t - 15 = 0$\n$\\Rightarrow t = 5s, t = -3s$\nHeight of the ballon at t = 5s\n$\\rightarrow 75 + (10 \\times 5) = 125$ m",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "85"
+    },
+    {
+     "key": "B",
+     "text": "150"
+    },
+    {
+     "key": "C",
+     "text": "129"
+    },
+    {
+     "key": "D",
+     "text": "125"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q29-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A thin biconvex lens is prepared from the glass ($\\mu$=1.5) both curved surfaces of which have equal radii of 20 cm each. Left side surface of the lens is silvered from outside to make it reflecting. To have the position of image and object at the same place, the object should be placed, from the lens at a distance of ________ cm.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Focal length of the lens $\\Rightarrow \\frac{1}{f_{l}} = (1.5-1)\\left(\\frac{1}{R}+\\frac{1}{R}\\right) = \\frac{1}{R} = \\frac{1}{20}$\nFocal length of mirrored surface $\\Rightarrow f_{m} = -\\frac{R}{2} = -10$\nThe equivalent system will behave like a mirror :\n$\\frac{1}{f_{eq}} = \\frac{1}{f_{m}} - \\frac{2}{f_{\\ell}} = \\frac{1}{-10} - \\frac{2}{20} = -\\frac{1}{5}$\n$\\Rightarrow$ Equivalent focal length $\\Rightarrow$ 5 cm, concave mirror\nIf we keep be at the centre of curvature and the image will be formed on the object itself.\n$\\Rightarrow x = 2(5) = 10$ cm\nAlternate solution :\n$\\frac{3/2}{V} - \\frac{1}{u} = \\frac{3/2-1}{R}$\n$\\Rightarrow \\frac{3/2}{-20} - \\frac{1}{-x} = \\frac{1/2}{20}$\n$\\Rightarrow \\frac{1}{x} = \\frac{1}{10} \\Rightarrow x = 10$cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "10"
+    },
+    {
+     "key": "B",
+     "text": "12.5"
+    },
+    {
+     "key": "C",
+     "text": "13"
+    },
+    {
+     "key": "D",
+     "text": "13.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q30-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two identical bodies, projected with the same speed at two different angles cover the same horizontal range R. If the time of flight of these bodies are 5 s and 10 s , respectively, then the value of R is ______ m. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For complimentary angles of projection, the range is same.\n$T_{1} = \\frac{2u\\sin\\theta}{g} = 5 \\Rightarrow u\\sin\\theta = 25\\ \\mathrm{m/s}$\n$T_{2} = \\frac{2u\\cos\\theta}{g} = 10 \\Rightarrow u\\cos\\theta = 50\\ \\mathrm{m/s}$\n$\\Rightarrow \\tan\\theta = \\frac{1}{2} \\Rightarrow \\sin\\theta = \\frac{1}{\\sqrt{5}}, \\cos\\theta = \\frac{2}{\\sqrt{5}}$\n$\\Rightarrow R = \\frac{u^{2}\\sin 2\\theta}{g} = \\frac{2(u\\sin\\theta)(u\\cos\\theta)}{g} = \\frac{2 \\times 25 \\times 50}{10} = 250\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "250"
+    },
+    {
+     "key": "B",
+     "text": "25"
+    },
+    {
+     "key": "C",
+     "text": "500"
+    },
+    {
+     "key": "D",
+     "text": "125"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A solid cylinder having radius R and length L is slipping on a rough horizontal plane. At time t = 0 the cylinder has a translational velocity $v_{0} = 49$ m/s, perpendicular to its axis and a rotational velocity $v_{0}/4R$ about the centre. The time taken by the cylinder to start rolling is _______ seconds. (coefficient of kinetic friction $\\mu_{K} = 0.25$ and $g = 9.8\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\rightarrow fr_{k} = -ma \\Rightarrow \\mu mg = -ma \\Rightarrow a = -\\mu g$\n$\\rightarrow \\tau = fr_{k}R$\n$\\Rightarrow I\\alpha = \\mu mgR$\n$\\Rightarrow \\frac{mR^{2}}{2}\\alpha = \\mu mgR$\n$\\Rightarrow \\alpha = \\frac{2\\mu g}{R}$\n$\\rightarrow v_{1} = v_{0} - at$\n$\\rightarrow \\omega_{1} = \\omega_{0} + \\alpha t$\n$= \\frac{v_{0}}{4R} + \\frac{2\\mu gt}{R}$\n$\\rightarrow v_{1} = \\omega_{1}R$ at the time of slipping\n$\\Rightarrow v_{0} - \\mu gt = \\frac{v_{0}}{4} + 2\\mu gt$\n$\\Rightarrow 3\\mu gt = \\frac{3v_{0}}{4}$\n$\\Rightarrow t = \\frac{v_{0}}{4\\mu g} = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "15"
+    },
+    {
+     "key": "B",
+     "text": "5"
+    },
+    {
+     "key": "C",
+     "text": "10"
+    },
+    {
+     "key": "D",
+     "text": "7.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q32-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A liquid of density $600\\ \\mathrm{kg/m^{3}}$ flowing steadily in a tube of varying cross-section. The cross-section at a point A is $1.0\\ \\mathrm{cm^{2}}$ and that at B is $20\\ \\mathrm{mm^{2}}$. Both the points A and B are in same horizontal plane, the speed of the liquid at A is 10 cm/s. The difference in pressures at A and B points is ________ Pa.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equation of continuity $\\Rightarrow Av_{1} = av_{2}$\n$\\Rightarrow (100\\ \\mathrm{mm^{2}})\\,v_{1} = (20\\ \\mathrm{mm^{2}})\\,v_{2}$\n$\\Rightarrow v_{2} = 5v_{1}$\n$\\Rightarrow v_{2} = 50$ cm/s\nBernoulli's theorem :\n$\\rightarrow P_{1} + \\frac{1}{2}\\rho v_{1}^{2} = P_{2} + \\frac{1}{2}\\rho v_{2}^{2}$\n$\\Rightarrow P_{1} - P_{2} = \\frac{1}{2}\\rho(50^{2} - 10^{2}) \\times 10^{-4}$\n$\\Rightarrow \\Delta P = \\frac{1}{2} \\times 600 \\times 2400 \\times 10^{-4}$\n= 72 Pa",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "18"
+    },
+    {
+     "key": "B",
+     "text": "144"
+    },
+    {
+     "key": "C",
+     "text": "36"
+    },
+    {
+     "key": "D",
+     "text": "72"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A spherical liquid drop of radius R acquires the terminal velocity $v_{1}$ when falls through a gas of viscosity $\\eta$. Now the drop is broken into 64 identical droplets and each droplet acquires terminal velocity $v_{2}$ falling through the same gas. The ratio of terminal velocities $v_{1}/v_{2}$ is ________ .",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "One big drop = 64 small drops\n$\\Rightarrow \\frac{4}{3}\\pi R^{3} = 64\\left(\\frac{4}{3}\\pi r^{3}\\right)$\n$\\Rightarrow R = 4r$\nTerminal velocity $\\Rightarrow v_{t} = \\frac{2}{9}\\frac{(\\sigma - \\rho)r^{2}g}{\\eta}$\n$\\Rightarrow v_{t} \\propto r^{2}$\n$\\Rightarrow \\frac{v_{1}}{v_{2}} = \\frac{R^{2}}{r^{2}} \\Rightarrow \\frac{v_{1}}{v_{2}} = (4)^{2} = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4"
+    },
+    {
+     "key": "B",
+     "text": "0.25"
+    },
+    {
+     "key": "C",
+     "text": "32"
+    },
+    {
+     "key": "D",
+     "text": "16"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Initial pressure and volume of a monoatomic ideal gas are P and V. The change in internal energy of this gas in adiabatic expansion to volume $V_{final} = 27V$ is _______ J.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\gamma = 1 + \\frac{2}{3} = \\frac{5}{3}$\n$P_{1}V_{1}^{\\gamma} = P_{2}V_{2}^{\\gamma}$\n$\\Rightarrow PV^{\\gamma} = P_{2}(27V)^{\\gamma}$\n$\\Rightarrow P_{2} = \\frac{P}{(27)^{\\frac{5}{3}}} = \\frac{P}{243}$\n$\\Delta U = nC_{V}\\Delta T$\n$= n\\frac{3R}{2}\\Delta T$\n$= \\frac{3}{2}(nRT_{2} - nRT_{1})$\n$= \\frac{3}{2}(P_{2}V_{2} - P_{1}V_{1})$\n$= \\frac{3}{2}\\left(\\frac{P.27V}{243} - PV\\right)$\n$= \\frac{3}{2}PV\\left(-\\frac{8}{9}\\right)$\n$= -\\frac{4PV}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2PV(3\\sqrt{3} - 1)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4}{3}PV$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{4}{3}PV$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{4}PV$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The frequency of oscillation of a mass m suspended by a spring is $\\nu_{1}$. If the length of the spring is cut to half, the same mass oscillates with frequency $\\nu_{2}$. The value of $\\nu_{2}/\\nu_{1}$ is ______.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For spring, $k \\propto \\frac{1}{\\ell}$\n$\\Rightarrow 2k \\propto \\frac{1}{\\left(\\frac{\\ell}{2}\\right)}$\n$\\nu_{1} = \\frac{1}{2\\pi}\\sqrt{\\frac{k}{m}}$\n$\\nu_{2} = \\frac{1}{2\\pi}\\sqrt{\\frac{2k}{m}}$\n$\\frac{\\nu_{2}}{\\nu_{1}} = \\sqrt{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A monochromatic source of light operating at 15 kW emits $2.5 \\times 10^{22}$ photons/s. The region of an electromagnetic spectrum to which the emitted electromagnetic radiation belongs to ______ .\n(Take $h = 6.6 \\times 10^{-34}$ J.s and $c = 3 \\times 10^{8}\\ \\mathrm{m/s}$).",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Power = $\\frac{\\text{Energy}}{\\text{time}}$\n$\\Rightarrow P = \\frac{N\\left(\\frac{hc}{\\lambda}\\right)}{\\Delta t}$\n$\\Rightarrow \\lambda = \\left(\\frac{N}{\\Delta t}\\right).\\frac{hc}{P}$\n$\\frac{N}{\\Delta t} = 2.5 \\times 10^{22}$\n$\\lambda = \\frac{(2.5 \\times 10^{22}).(6.6 \\times 10^{-34}) \\times (3 \\times 10^{8})}{15 \\times 10^{3}}$\n$\\Rightarrow \\lambda = 330$ nm $\\Rightarrow$ ultravoilet",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Microwave"
+    },
+    {
+     "key": "B",
+     "text": "Infrared"
+    },
+    {
+     "key": "C",
+     "text": "Visible"
+    },
+    {
+     "key": "D",
+     "text": "Ultraviolet"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A current carrying circular loop of radius 2 cm with unit normal $\\hat{n} = \\frac{\\hat{k} + \\hat{i}}{\\sqrt{2}}$ is placed in a magnetic field, $\\vec{B} = B_{o}(3\\hat{i} + 2\\hat{k})$. If $B_{o} = 4 \\times 10^{-3}$ T and current $I = 100\\sqrt{2}$ A, the torque experienced by the loop is _______ Wb.A. ($\\pi = 3.14$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{\\tau} = \\vec{M} \\times \\vec{B}$\n$\\vec{M} = Ni\\vec{A} = (1)(100\\sqrt{2})\\left(\\frac{\\hat{i} + \\hat{k}}{\\sqrt{2}}\\right).\\pi(2 \\times 10^{-2})^{2}$\n$\\vec{B} = B_{0}(3\\hat{i} + 2\\hat{k})$\n$\\vec{\\tau} = 5024 \\times 10^{-7}\\hat{j}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16 \\times 10^{-5}\\hat{k}$"
+    },
+    {
+     "key": "B",
+     "text": "$5024 \\times 10^{-7}\\hat{k}$"
+    },
+    {
+     "key": "C",
+     "text": "$5024 \\times 10^{-7}\\hat{i}$"
+    },
+    {
+     "key": "D",
+     "text": "$5024 \\times 10^{-7}\\hat{j}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A 30 cm long solenoid has 10 turns per cm and area of $5\\ \\mathrm{cm^{2}}$. The current through the solenoid coil varies from 2 A to 4 A in 3.14 s . The e.m.f. induced in the coil is $\\alpha \\times 10^{-5}$ V . The value $\\alpha$ is _______ .",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Self inductance = $\\mu_{0}n^{2}(Al)$\nn = 1000 turns/m\n$A = 5 \\times 10^{-4}\\ \\mathrm{m^{2}}$, $l = 0.3$ m\n$\\rightarrow L = (4\\pi \\times 10^{-7}) \\cdot (1000)^{2} \\cdot (5 \\times 10^{-4}) \\cdot (0.3)$\n$= 6\\pi \\times 10^{-5}$ H\n$\\rightarrow EMF = L\\frac{\\Delta i}{\\Delta t} = (6\\pi \\times 10^{-5}) \\cdot \\frac{(4-2)}{\\pi}$\n$= 12 \\times 10^{-5}$ V",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "60"
+    },
+    {
+     "key": "B",
+     "text": "12"
+    },
+    {
+     "key": "C",
+     "text": "120"
+    },
+    {
+     "key": "D",
+     "text": "34"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two point charges $q_{1} = 3\\mu C$ and $q_{2} = -4\\mu C$ are placed at points $(2\\hat{i} + 3\\hat{j} + 3\\hat{k})$ and $(\\hat{i} + \\hat{j} + \\hat{k})$ respectively. Force on charge $q_{2}$ is ______ N.\n$\\left(\\text{Take SI } \\frac{1}{4\\pi\\varepsilon_{0}} = 9 \\times 10^{9} \\text{ SI Units}\\right)$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{r} = (2-1)\\hat{i} + (3-1)\\hat{j} + (3-1)\\hat{k}$\n$= \\hat{i} + 2\\hat{j} + 2\\hat{k}$\n$\\vec{F} = \\left(\\frac{k|q_{1}q_{2}|}{r^{3}}\\right)\\vec{r} = \\frac{(9 \\times 10^{9}).|3 \\times 10^{-6} \\times -4 \\times 10^{-6}|}{(\\sqrt{1+4+4})^{3}}.(\\hat{i} + 2\\hat{j} + 2\\hat{k})$\n$= (4\\hat{i} + 8\\hat{j} + 8\\hat{k}) \\times 10^{-3}$ N",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(12\\hat{i} + 24\\hat{j} + 24\\hat{k}) \\times 10^{-3}$"
+    },
+    {
+     "key": "B",
+     "text": "$(4\\hat{i} + 8\\hat{j} + 8\\hat{k}) \\times 10^{-3}$"
+    },
+    {
+     "key": "C",
+     "text": "$(3\\hat{i} + 6\\hat{j} + 6\\hat{k}) \\times 10^{-3}$"
+    },
+    {
+     "key": "D",
+     "text": "$(-4\\hat{i} - 8\\hat{j} - 8\\hat{k}) \\times 10^{-3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q41-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Light ray incident along a vector $\\overrightarrow{AO}\\ (\\overrightarrow{AO} = 2\\hat{i} - 3\\hat{j})$ emerges out along vector $\\overrightarrow{OB}\\ (\\overrightarrow{OB} = C\\hat{i} - 4\\hat{j})$ as shown in the figure below. The value of C is ________ .",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{A} = 2\\hat{i} - 3\\hat{j}$\n$\\vec{B} = c\\hat{i} - 4\\hat{j}$\n$\\cos\\alpha = \\frac{\\vec{A}.-\\hat{j}}{|\\vec{A}|}$\n$= \\frac{3}{\\sqrt{13}}$\nSimilarly,\n$\\cos\\beta = \\frac{4}{\\sqrt{c^{2}+16}}$\n$\\Rightarrow \\sin\\alpha = \\frac{2}{\\sqrt{13}}, \\quad \\sin\\beta = \\frac{c}{\\sqrt{c^{2}+16}}$\n$\\Rightarrow$ Snell's law $\\Rightarrow 1\\sin\\alpha = 1.5\\sin\\beta$\n$\\Rightarrow \\frac{2}{\\sqrt{13}} = \\frac{3}{2}\\frac{c}{\\sqrt{c^{2}+16}}$\n$\\Rightarrow c = 1.6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.6"
+    },
+    {
+     "key": "B",
+     "text": "0.16"
+    },
+    {
+     "key": "C",
+     "text": "11.6"
+    },
+    {
+     "key": "D",
+     "text": "16"
+    }
+   ],
+   "stem_figure": "j26-08apr-s2-phy-q42.png",
+   "solution_figure": "j26-08apr-s2-phy-q42-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$K_{1}$ and $K_{2}$ be the maximum kinetic energies of photoelectrons emitted from a surface of a given material for the light of wavelength $\\lambda_{1}$ and $\\lambda_{2}$, respectively. If $\\lambda_{1} = 2\\lambda_{2}$ then the work function of material is given by :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{hc}{\\lambda_{1}} - \\phi = K_{1} \\Rightarrow \\lambda_{1} = \\frac{hc}{K_{1} + \\phi}$\n$\\frac{hc}{\\lambda_{2}} - \\phi = K_{2} \\Rightarrow \\lambda_{2} = \\frac{hc}{K_{2} + \\phi}$\n$\\rightarrow \\frac{hc}{K_{1} + \\phi} = 2\\left(\\frac{hc}{K_{2} + \\phi}\\right)$\n$\\Rightarrow K_{2} + \\phi = 2K_{1} + 2\\phi$\n$\\Rightarrow \\phi = K_{2} - 2K_{1}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$K_{2} + 2K_{1}$"
+    },
+    {
+     "key": "B",
+     "text": "$2K_{2} - 2K_{1}$"
+    },
+    {
+     "key": "C",
+     "text": "$K_{1} - 2K_{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$K_{2} - 2K_{1}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two radioactive substances A and B of mass numbers 200 and 212 respectively, shows spontaneous $\\alpha$-decay with same Q value of 1 MeV . The ratio of energies of $\\alpha$-rays produced by A and B is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\underset{\\text{rest}}{\\overset{A}{X}} \\rightarrow \\underset{m=(A-4)m_{P}}{\\overset{A-4}{Y}} + \\underset{m=4m_{P}}{\\alpha\\text{-particle}}$\n$\\rightarrow$ Momentum conservation\n$\\Rightarrow (A-4)V_{1} = (4)V_{2}$\n$\\Rightarrow \\frac{V_{1}}{V_{2}} = \\frac{4}{A-4}$\n$\\rightarrow K_{\\alpha} + K_{\\gamma} = Q$\n$\\Rightarrow K_{\\alpha} = Q\\left(\\frac{A-4}{A}\\right)$\n$\\rightarrow Q = 1$ MeV for both\n$\\rightarrow \\frac{K_{\\alpha_{1}}}{K_{\\alpha_{2}}} = \\frac{1.\\left(\\frac{200-4}{200}\\right)}{1.\\left(\\frac{212-4}{212}\\right)} = \\frac{2597}{2600}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2548}{2650}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2706}{2646}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2597}{2600}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2862}{2499}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The output Y for the given inputs A and B to the circuit is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$Y = (A \\cdot B) + (\\overline{A} \\cdot B)$\n$= (A + \\overline{A}) \\cdot B$\n$= 1 \\cdot B = B$\noutput has same wave form $\\Rightarrow$ B.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "j26-08apr-s2-phy-q45-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "j26-08apr-s2-phy-q45-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "j26-08apr-s2-phy-q45-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "j26-08apr-s2-phy-q45-optD.png"
+    }
+   ],
+   "stem_figure": "j26-08apr-s2-phy-q45.png",
+   "solution_figure": "j26-08apr-s2-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A parallel plate capacitor is having separation between plates 0.885 mm . It has a capacitance of $1\\mu F$ when the space between the plates is filled with an insulating material of resistivity $1 \\times 10^{13}\\ \\Omega\\mathrm{m}$ and resistance $17.7 \\times 10^{14}\\ \\Omega$. Relative permittivity of the insulating material is $\\alpha \\times 10^{7}$. The value of $\\alpha$ is ________ .\n(Take permittivity of free space = $8.85 \\times 10^{-12}$ F/m )",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$R = \\rho\\frac{d}{A}$\n$\\Rightarrow 17.7 \\times 10^{14} = 10^{13}.\\frac{d}{A}$\n$\\Rightarrow \\frac{d}{A} = 177$\n$C = \\frac{k\\varepsilon_{0}A}{d}$\n$\\Rightarrow 10^{-6} = k.8.85 \\times 10^{-12}.\\frac{1}{177}$\n$\\Rightarrow k = 2 \\times 10^{7}$\n$\\alpha = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q46-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Some distant star is to be observed by some telescope of diameter of objective lens a, at an angular resolution of $3.0 \\times 10^{-7}$ radian. If the wavelength of light from the star reaching the telescope is 500 nm , the minimum diameter of the objective lens of the telescope is ______ cm. (nearest interger)",
+   "correct_key": null,
+   "correct_value": 203,
+   "correct_keys": null,
+   "solution": "Angular resolution $\\Rightarrow \\theta = \\frac{1.22\\lambda}{a}$\n$\\theta = 3 \\times 10^{-7}$ rad\n$\\lambda = 5 \\times 10^{-7}$ m\n$a = \\frac{1.22\\lambda}{\\theta} = \\frac{1.22 \\times 5 \\times 10^{-7}}{3 \\times 10^{-7}} = 2.033\\ \\mathrm{m}$\n= 203.3 cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A 5 mg particle carrying a charge of $5\\pi \\times 10^{-6}$ C is moving with velocity of $(3\\hat{i} + 2\\hat{k}) \\times 10^{-2}\\ \\mathrm{m/s}$ in a region having magnetic field $\\vec{B} = 0.1\\hat{k}\\ \\mathrm{Wb/m^{2}}$. It moves a distance of $\\alpha$ meter along $\\hat{k}$ when it completes 5 revolutions. The value of $\\alpha$ is __________ .",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$v_{2} = 3$ cm/s, $v_{1} = 2$ cm/s, $B = 0.1$ T\n$T = \\frac{2\\pi m}{qB} = 20\\,s$\n$\\Delta l = \\alpha = v_{1}(5T)$\n= (2) (100) cm\n= 2 m",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j26-08apr-s2-phy-q48-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The stored charge in the capacitor in steady state of the following circuit is _______ $\\mu C$ .",
+   "correct_key": null,
+   "correct_value": 200,
+   "correct_keys": null,
+   "solution": "In steady state, the capacitor behaves like a broken circuit.\n$\\Delta V = 4 \\times 0.5 = 2V$\n$\\Delta Q = c\\Delta v = (100 \\times 10^{-6}).(2) = 200\\mu C$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-08apr-s2-phy-q49.png",
+   "solution_figure": "j26-08apr-s2-phy-q49-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Motion in a Straight Line",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two masses of 3.4 kg and 2.5 kg are accelerated from an initial speed of 5 m/s and 12 m/s, respectively. The distances traversed by the masses in the $5^{th}$ second are 104 m and 129 m , respectively. The ratio of their momenta after 10 s is $\\frac{x}{8}$. The value of x is ________?",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "$S_{n} = u + \\frac{a}{2}(2n-1)$\n$104 = 5 + \\frac{a_{1}}{2}(10-1) \\Rightarrow \\frac{a_{1}}{2} = 11 \\Rightarrow a_{1} = 22\\ \\mathrm{m/s^{2}}$\n$129 = 12 + \\frac{a_{2}}{2}(10-1) \\Rightarrow \\frac{a_{2}}{2} = 13 \\Rightarrow a_{2} = 26\\ \\mathrm{m/s^{2}}$\n$\\rightarrow$ ratio $= \\frac{m_{1}v_{1}}{m_{2}v_{2}} = \\left(\\frac{3.4}{2.5}\\right)\\left(\\frac{5 + 22(10)}{12 + 26(10)}\\right) = \\left(\\frac{34}{25}\\right).\\frac{225}{272} = \\frac{x}{8}$\n$\\Rightarrow x = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

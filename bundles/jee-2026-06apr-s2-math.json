@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "6 Apr · Shift 2",
+  "title": "JEE Main 2026 · Mathematics · 6 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1NSj0_2kCXTb1wwcfCnCwg3R25crqwWk_"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be defined as $f(x) = \\frac{2x^{2} - 3x + 2}{3x^{2} + x + 3}$. Then $f$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "To check if the function is onto, we find its range. Let:\n$y = \\frac{2x^{2} - 3x + 2}{3x^{2} + x + 3}$\nCross-multiplying, we get:\n$3yx^{2} + yx + 3y = 2x^{2} - 3x + 2$\n$(3y - 2)x^{2} + (y + 3)x + (3y - 2) = 0$\nSince $x \\in \\mathbb{R}$, the discriminant $D \\ge 0$:\n$(y + 3)^{2} - 4(3y - 2)(3y - 2) \\ge 0$\n$(y + 3)^{2} - [2(3y - 2)]^{2} \\ge 0$\nUsing $a^{2} - b^{2} = (a - b)(a + b)$:\n$(y + 3 - 6y + 4)(y + 3 + 6y - 4) \\ge 0$\n$(-5y + 7)(7y - 1) \\ge 0$\n$(5y - 7)(7y - 1) \\le 0$\nThe range of the function is $\\left[\\frac{1}{7}, \\frac{7}{5}\\right]$. Since the codomain is $\\mathbb{R}$, and the Range $\\ne$ Codomain, the function is not onto\nTo check if it is one-one, we observe that for any $y$ in the interior of the range $(1/7, 7/5)$, the quadratic in $x$ will yield two distinct real roots. For example, if $x_{1}$ and $x_{2}$ are roots, $f(x_{1}) = f(x_{2})$, making the function not one-one",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "both one-one and onto"
+    },
+    {
+     "key": "B",
+     "text": "one-one but not onto"
+    },
+    {
+     "key": "C",
+     "text": "onto but not one-one"
+    },
+    {
+     "key": "D",
+     "text": "neither one-one nor onto"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the quadratic equation $(n^{2} - 2n + 2)x^{2} - 3x + (n^{2} - 2n + 2)^{2} = 0$, $n \\in \\mathbb{R}$. Let $\\alpha$ be the minimum value of the product of its roots and $\\beta$ be the maximum value of the sum of its roots. Then the sum of the first six terms of the G.P., whose first term is $\\alpha$ and the common ratio is $\\frac{\\alpha}{\\beta}$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $k = n^{2} - 2n + 2 = (n - 1)^{2} + 1$. Since $n \\in \\mathbb{R}$, the minimum value of $k$ is $1$ (at $n = 1$). The equation is $kx^{2} - 3x + k^{2} = 0$\n1. Sum of roots $= \\frac{3}{k}$. Its maximum value $\\beta = \\frac{3}{k_{\\min}} = \\frac{3}{1} = 3$\n2. Product of roots $= \\frac{k^{2}}{k} = k$. Its minimum value $\\alpha = k_{\\min} = 1$\nFor the G.P.: First term $a = \\alpha = 1$. Common ratio $r = \\frac{\\alpha}{\\beta} = \\frac{1}{3}$. Sum of first 6 terms $(S_{6})$:\n$S_{6} = \\frac{a(1 - r^{6})}{1 - r} = \\frac{1(1 - (1/3)^{6})}{1 - 1/3}$\n$S_{6} = \\frac{1 - 1/729}{2/3} = \\frac{728/729}{2/3} = \\frac{728}{729} \\times \\frac{3}{2}$\n$S_{6} = \\frac{364}{243}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{61}{37}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{121}{81}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{364}{243}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1093}{729}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\left\\{z \\in \\mathbb{C} : z^{2} + \\sqrt{6}iz - 3 = 0\\right\\}$. Then $\\sum_{z \\in S} z^{8}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given equation is $z^{2} + \\sqrt{6}iz - 3 = 0$. Using the quadratic formula:\n$z = \\frac{-\\sqrt{6}i \\pm \\sqrt{(\\sqrt{6}i)^{2} - 4(1)(-3)}}{2}$\n$z = \\frac{-\\sqrt{6}i \\pm \\sqrt{-6 + 12}}{2} = \\frac{-\\sqrt{6}i \\pm \\sqrt{6}}{2}$\nThe roots are $z_{1} = \\frac{\\sqrt{6} - \\sqrt{6}i}{2}$ and $z_{2} = \\frac{-\\sqrt{6} - \\sqrt{6}i}{2}$\nSquaring the roots:\n$z_{1}^{2} = \\left(\\sqrt{\\frac{6}{4}}(1 - i)\\right)^{2} = \\frac{3}{2}(1 + i^{2} - 2i) = \\frac{3}{2}(-2i) = -3i$\n$z_{2}^{2} = \\left(-\\sqrt{\\frac{6}{4}}(1 + i)\\right)^{2} = \\frac{3}{2}(1 + i^{2} + 2i) = \\frac{3}{2}(2i) = 3i$\nNow find $z^{8}$:\n$z_{1}^{8} = (z_{1}^{2})^{4} = (-3i)^{4} = 81i^{4} = 81$\n$z_{2}^{8} = (z_{2}^{2})^{4} = (3i)^{4} = 81i^{4} = 81$\nSum $= z_{1}^{8} + z_{2}^{8} = 81 + 81 = 162$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$162$"
+    },
+    {
+     "key": "B",
+     "text": "$184$"
+    },
+    {
+     "key": "C",
+     "text": "$262$"
+    },
+    {
+     "key": "D",
+     "text": "$324$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of all possible values of $\\theta \\in [0, 2\\pi]$, for which the system of equations :\n$x\\cos 3\\theta - 8y - 12z = 0$\n$x\\cos 2\\theta + 3y + 3z = 0$\n$x + y + 3z = 0$\nhas a non-trivial solution, is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For a non-trivial solution, the determinant of the coefficient matrix must be zero:\n$\\begin{vmatrix} \\cos 3\\theta & -8 & -12 \\\\ \\cos 2\\theta & 3 & 3 \\\\ 1 & 1 & 3 \\end{vmatrix} = 0$\nExpanding along the first column:\n$\\cos 3\\theta(9 - 3) - \\cos 2\\theta(-24 + 12) + 1(-24 + 36) = 0$\n$6\\cos 3\\theta + 12\\cos 2\\theta + 12 = 0$\n$\\cos 3\\theta + 2\\cos 2\\theta + 2 = 0$\nUsing identities $\\cos 3\\theta = 4\\cos^{3}\\theta - 3\\cos\\theta$ and $\\cos 2\\theta = 2\\cos^{2}\\theta - 1$:\n$(4\\cos^{3}\\theta - 3\\cos\\theta) + 2(2\\cos^{2}\\theta - 1) + 2 = 0$\n$4\\cos^{3}\\theta + 4\\cos^{2}\\theta - 3\\cos\\theta = 0$\n$\\cos\\theta(4\\cos^{2}\\theta + 4\\cos\\theta - 3) = 0$\nFactoring the quadratic:\n$\\cos\\theta\\,(2\\cos\\theta - 1)(2\\cos\\theta + 3) = 0$\nPossible values:\n1. $\\cos\\theta = 0 \\rightarrow \\theta = \\frac{\\pi}{2}, \\frac{3\\pi}{2}$\n2. $\\cos\\theta = \\frac{1}{2} \\Rightarrow \\theta = \\frac{\\pi}{3}, \\frac{5\\pi}{3}$\n3. $\\cos\\theta = -\\frac{3}{2}$ (No real solution)\nSum $= \\frac{\\pi}{2} + \\frac{3\\pi}{2} + \\frac{\\pi}{3} + \\frac{5\\pi}{3} = 2\\pi + 2\\pi = 4\\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$3\\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\begin{bmatrix} 1 & 0 & 0 \\\\ 3 & 1 & 0 \\\\ 9 & 3 & 1 \\end{bmatrix}$ and $B = [b_{ij}], 1 \\le i, j \\le 3$. If $B = A^{99} - I$, then the value of $\\frac{b_{31} - b_{21}}{b_{32}}$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $A = I + N$, where $N = \\begin{bmatrix} 0 & 0 & 0 \\\\ 3 & 0 & 0 \\\\ 9 & 3 & 0 \\end{bmatrix}$\n$N^{2} = \\begin{bmatrix} 0 & 0 & 0 \\\\ 3 & 0 & 0 \\\\ 9 & 3 & 0 \\end{bmatrix}\\begin{bmatrix} 0 & 0 & 0 \\\\ 3 & 0 & 0 \\\\ 9 & 3 & 0 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 9 & 0 & 0 \\end{bmatrix}$\n$N^{3} = O$ (Zero matrix).\nUsing Binomial Expansion for $A^{99} = (I + N)^{99}$:\n$A^{99} = I + 99N + \\frac{99 \\times 98}{2}N^{2} + 0 + \\ldots$\n$B = A^{99} - I = 99N + 4851N^{2}$\nSubstituting $N$ and $N^{2}$:\n$B = 99\\begin{bmatrix} 0 & 0 & 0 \\\\ 3 & 0 & 0 \\\\ 9 & 3 & 0 \\end{bmatrix} + 4851\\begin{bmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 9 & 0 & 0 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 0 \\\\ 297 & 0 & 0 \\\\ 891 + 43659 & 297 & 0 \\end{bmatrix}$\nIdentify elements:\n$b_{21} = 297$\n$b_{32} = 297$\n$b_{31} = 99(9) + 4851(9) = 9(99 + 4851) = 9(4950) = 44550$\nNow calculate $\\frac{b_{31} - b_{21}}{b_{32}}$:\n$\\frac{44550 - 297}{297} = \\frac{44550}{297} - 1 = 150 - 1 = 149$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$99$"
+    },
+    {
+     "key": "B",
+     "text": "$199$"
+    },
+    {
+     "key": "C",
+     "text": "$149$"
+    },
+    {
+     "key": "D",
+     "text": "$159$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum $1 + \\frac{1}{2}(1^{2} + 2^{2}) + \\frac{1}{3}(1^{2} + 2^{2} + 3^{2}) + \\ldots$ upto 10 terms is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The general term $T_{n}$ of the series is given by:\n$T_{n} = \\frac{1}{n}\\sum_{k=1}^{n} k^{2}$\nUsing the formula for the sum of squares of the first $n$ natural numbers, $\\sum_{k=1}^{n} k^{2} = \\frac{n(n + 1)(2n + 1)}{6}$:\n$T_{n} = \\frac{1}{n} \\cdot \\frac{n(n + 1)(2n + 1)}{6} = \\frac{2n^{2} + 3n + 1}{6}$\nWe need to find the sum of the first 10 terms $(S_{10})$:\n$S_{10} = \\sum_{n=1}^{10} T_{n} = \\frac{1}{6}\\left[2\\sum_{n=1}^{10} n^{2} + 3\\sum_{n=1}^{10} n + \\sum_{n=1}^{10} 1\\right]$\nSubstitute the summation values for $n = 10$:\n$\\sum n^{2} = \\frac{10 \\times 11 \\times 21}{6} = 385$\n$\\sum n = \\frac{10 \\times 11}{2} = 55$\n$\\sum 1 = 10$\n$S_{10} = \\frac{1}{6}[2(385) + 3(55) + 10]$\n$S_{10} = \\frac{1}{6}[770 + 165 + 10] = \\frac{945}{6}$\nDividing by 3:\n$S_{10} = \\frac{315}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$130$"
+    },
+    {
+     "key": "B",
+     "text": "$155$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{315}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{325}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A building has ground floor and 10 more floors. Nine persons enter in a lift at the ground floor. The lift goes up to the $10^{\\text{th}}$ floor. The number of ways, in which any 4 persons exit at a floor and the remaining 5 persons exit at a different floor, if the lift does not stop at the first and the second floors, is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Identify available floors: The lift can stop at floors 3 through 10. Total available floors $= 10 - 2 = 8$\n2. Select floors for exit: We need to choose 2 distinct floors from the 8 available floors where people will get off\nNumber of ways to choose 2 floors $= \\binom{8}{2} = 28$\n3. Group the persons: The 9 persons are divided into two groups: one of 4 people and one of 5 people\nNumber of ways to choose 4 people for the first group $= \\binom{9}{4} = \\frac{9 \\times 8 \\times 7 \\times 6}{4 \\times 3 \\times 2 \\times 1} = 126$\n(The remaining 5 automatically form the second group)\n4. Assign groups to floors: The two groups (group of 4 and group of 5) can be assigned to the 2 chosen floors in $2!$ ways\nTotal ways $= 28 \\times 126 \\times 2 = 7056$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2184$"
+    },
+    {
+     "key": "B",
+     "text": "$3064$"
+    },
+    {
+     "key": "C",
+     "text": "$7056$"
+    },
+    {
+     "key": "D",
+     "text": "$11340$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the mean and the variance of seven observations $2, 4, \\alpha, 8, \\beta, 12, 14$, $\\alpha < \\beta$, be $8$ and $16$ respectively. Then the quadratic equation whose roots are $3\\alpha + 2$ and $2\\beta + 1$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Use Mean to find $\\alpha + \\beta$\nMean $= \\frac{2 + 4 + \\alpha + 8 + \\beta + 12 + 14}{7} = 8$\n$40 + \\alpha + \\beta = 56 \\Rightarrow \\alpha + \\beta = 16$\nStep 2: Use Variance to find $\\alpha^{2} + \\beta^{2}$\nVariance $= \\frac{\\sum x_{i}^{2}}{n} - (\\bar{x})^{2} = 16$\n$\\frac{2^{2} + 4^{2} + \\alpha^{2} + 8^{2} + \\beta^{2} + 12^{2} + 14^{2}}{7} - 8^{2} = 16$\n$\\frac{4 + 16 + \\alpha^{2} + 64 + \\beta^{2} + 144 + 196}{7} - 64 = 16$\n$\\frac{424 + \\alpha^{2} + \\beta^{2}}{7} = 80 \\Rightarrow \\alpha^{2} + \\beta^{2} = 560 - 424 = 136$\nStep 3: Solve for $\\alpha$ and $\\beta$\n$(\\alpha + \\beta)^{2} = \\alpha^{2} + \\beta^{2} + 2\\alpha\\beta \\Rightarrow 16^{2} = 136 + 2\\alpha\\beta$\n$256 = 136 + 2\\alpha\\beta \\Rightarrow 2\\alpha\\beta = 120 \\Rightarrow \\alpha\\beta = 60$\nRoots of $t^{2} - 16t + 60 = 0$ are $6$ and $10$. Since $\\alpha < \\beta$, $\\alpha = 6$ and $\\beta = 10$\nStep 4: Form the new quadratic equation New roots: $R_{1} = 3(6) + 2 = 20$ and $R_{2} = 2(10) + 1 = 21$\nSum of roots $= 20 + 21 = 41$; Product of roots $= 20 \\times 21 = 420$\nEquation: $x^{2} - 41x + 420 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2} - 35x + 306 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} - 41x + 420 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$x^{2} - 45x + 506 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} - 37x + 342 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A bag contains 6 blue and 6 green balls. Pairs of balls are drawn without replacement until the bag is empty. The probability that each drawn pair consists of one blue and one green ball is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total balls $= 12$. We are drawing 6 pairs in succession. Total ways to form 6 pairs from 12 balls:\n$N(S) = \\frac{\\binom{12}{2} \\times \\binom{10}{2} \\times \\binom{8}{2} \\times \\binom{6}{2} \\times \\binom{4}{2} \\times \\binom{2}{2}}{6!}$\n$N(S) = \\frac{12!}{(2!)^{6} \\cdot 6!}$\nFavorable ways: Each pair has 1 Blue (B) and 1 Green (G). Think of this as arranging 6 B's and matching each with one of the 6 G's. The number of ways to match 6 distinct blue balls with 6 distinct green balls is $6!$. However, since we are drawing pairs of balls where the order within the pair doesn't matter, we can simply say:\nFor the 1st pair: Choose 1B out of 6 and 1G out of 6: $\\binom{6}{1}\\binom{6}{1}$ For the 2nd pair: Choose 1B out of 5 and 1G out of 5: $\\binom{5}{1}\\binom{5}{1}$ And so on.\n$N(E) = \\frac{(6 \\times 6) \\times (5 \\times 5) \\times (4 \\times 4) \\times (3 \\times 3) \\times (2 \\times 2) \\times (1 \\times 1)}{6!} = \\frac{(6!)^{2}}{6!} = 6!$\nProbability $P(E) = \\frac{N(E)}{N(S)} = \\frac{6!}{\\frac{12!}{2^{6} \\cdot 6!}} = \\frac{(6!)^{2} \\cdot 2^{6}}{12!}$\n$P(E) = \\frac{2^{6}}{\\binom{12}{6}} = \\frac{64}{924}$\nSimplifying by dividing by 4:\n$P(E) = \\frac{16}{231}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{63}{925}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{17}{231}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{16}{231}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{64}{925}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $C$ be a circle having centre in the first quadrant and touching the x-axis at a distance of 3 units from the origin. If the circle $C$ has an intercept of length $6\\sqrt{3}$ on y-axis, then the length of the chord of the circle $C$ on the line $x - y = 3$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find the circle equation: Since it touches the x-axis at $(3, 0)$, the center is $(3, r)$ and the radius is $r$\nEquation: $(x - 3)^{2} + (y - r)^{2} = r^{2}$.\n2. Use the y-intercept: Intercept length on y-axis $= 2\\sqrt{r^{2} - h^{2}}$, where $h = 3$\n$2\\sqrt{r^{2} - 3^{2}} = 6\\sqrt{3} \\Rightarrow \\sqrt{r^{2} - 9} = 3\\sqrt{3}$\n$r^{2} - 9 = 27 \\Rightarrow r^{2} = 36 \\Rightarrow r = 6$\nCircle: $(x - 3)^{2} + (y - 6)^{2} = 36$. Center $O(3, 6)$, Radius $R = 6$\n3. Find the chord length on $x - y - 3 = 0$:\nPerpendicular distance $(d)$ from $(3, 6)$ to $x - y - 3 = 0$:\n$d = \\frac{|3 - 6 - 3|}{\\sqrt{1^{2} + (-1)^{2}}} = \\frac{6}{\\sqrt{2}} = 3\\sqrt{2}$\nLength of chord $= 2\\sqrt{R^{2} - d^{2}} = 2\\sqrt{36 - (3\\sqrt{2})^{2}} = 2\\sqrt{36 - 18} = 2\\sqrt{18}$\n$= 2 \\times 3\\sqrt{2} = 6\\sqrt{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$6\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$8\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The eccentricity of an ellipse $E$ with centre at the origin $O$ is $\\frac{\\sqrt{3}}{2}$ and its directrices are $x = \\pm\\frac{4\\sqrt{6}}{3}$. Let $H : \\frac{x^{2}}{a^{2}} - \\frac{y^{2}}{b^{2}} = 1$ be a hyperbola whose eccentricity is equal to the length of semi-major axis of $E$, and whose length of latus rectum is equal to the length of minor axis of $E$. Then the distance between the foci of $H$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Determine the parameters of Ellipse $E$\nThe eccentricity $e_{E} = \\frac{\\sqrt{3}}{2}$\nThe directrices are $x = \\pm\\frac{a_{E}}{e_{E}} = \\pm\\frac{4\\sqrt{6}}{3}$\n$\\frac{a_{E}}{\\sqrt{3}/2} = \\frac{4\\sqrt{6}}{3} \\Rightarrow a_{E} = \\frac{4\\sqrt{6}}{3} \\times \\frac{\\sqrt{3}}{2} = \\frac{4\\sqrt{18}}{6} = \\frac{4 \\times 3\\sqrt{2}}{6} = 2\\sqrt{2}$\nThe semi-major axis length is $a_{E} = 2\\sqrt{2}$\nThe length of the semi-minor axis $b_{E}$ is given by $b_{E}^{2} = a_{E}^{2}(1 - e_{E}^{2})$:\n$b_{E}^{2} = (2\\sqrt{2})^{2}\\left(1 - \\frac{3}{4}\\right) = 8 \\times \\frac{1}{4} = 2 \\Rightarrow b_{E} = \\sqrt{2}$\nThe length of the minor axis is $2b_{E} = 2\\sqrt{2}$\nStep 2: Determine the parameters of Hyperbola $H$. Eccentricity of $H$ $(e_{H})$ is the semi-major axis of $E$ :\n$e_{H} = a_{E} = 2\\sqrt{2}$\nLength of latus rectum of $H$ is the minor axis of $E$ : $\\frac{2b_{H}^{2}}{a_{H}} = 2b_{E} = 2\\sqrt{2}$. Thus, $b_{H}^{2} = \\sqrt{2}a_{H}$. We use the relation $b_{H}^{2} = a_{H}^{2}(e_{H}^{2} - 1)$:\n$\\sqrt{2}a_{H} = a_{H}^{2}((2\\sqrt{2})^{2} - 1) \\Rightarrow \\sqrt{2}a_{H} = a_{H}^{2}(8 - 1) = 7a_{H}^{2}$\nSince $a_{H} \\ne 0$, $a_{H} = \\frac{\\sqrt{2}}{7}$\nStep 3: Calculate the distance between the foci of $H$\nThe distance between foci $= 2a_{H}e_{H}$:\n$2 \\times \\left(\\frac{\\sqrt{2}}{7}\\right) \\times (2\\sqrt{2}) = \\frac{4 \\times 2}{7} = \\frac{8}{7}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4\\sqrt{2}}{\\sqrt{7}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4\\sqrt{2}}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{\\sqrt{7}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{8}{7}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $x = 9$ be a directrix of an ellipse $E$, whose centre is at the origin and eccentricity is $\\frac{1}{3}$. Let $P(\\alpha, 0)$, $\\alpha > 0$, be a focus of $E$ and $AB$ be a chord passing through $P$. Then the locus of the mid point of $AB$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Find the equation of the ellipse. Given directrix $x = \\frac{a}{e} = 9$ and $e = \\frac{1}{3}$\n$a = 9e = 9 \\times \\frac{1}{3} = 3$\n$b^{2} = a^{2}(1 - e^{2}) = 3^{2}(1 - 1/9) = 9 \\times \\frac{8}{9} = 8$\nEllipse $E : \\frac{x^{2}}{9} + \\frac{y^{2}}{8} = 1$\nStep 2: Identify the focus $P$. Focus $P = (ae, 0) = \\left(3 \\times \\frac{1}{3}, 0\\right) = (1, 0)$\nStep 3: Find the locus of the midpoint $(h, k)$ of chord $AB$\nThe equation of a chord of an ellipse with midpoint $(h, k)$ is $T = S_{1}$:\n$\\frac{xh}{a^{2}} + \\frac{yk}{b^{2}} = \\frac{h^{2}}{a^{2}} + \\frac{k^{2}}{b^{2}} \\Rightarrow \\frac{xh}{9} + \\frac{yk}{8} = \\frac{h^{2}}{9} + \\frac{k^{2}}{8}$\nSince the chord passes through $P(1, 0)$\n$\\frac{(1)h}{9} + \\frac{(0)k}{8} = \\frac{h^{2}}{9} + \\frac{k^{2}}{8} \\Rightarrow \\frac{h}{9} = \\frac{h^{2}}{9} + \\frac{k^{2}}{8}$\nMultiplying by 72:\n$8h = 8h^{2} + 9k^{2} \\Rightarrow 9k^{2} = 8h - 8h^{2} = 8h(1 - h)$\nReplacing $(h, k)$ with $(x, y)$, the locus is $9y^{2} = 8x(1 - x)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9y^{2} = 8x(1 - x)$"
+    },
+    {
+     "key": "B",
+     "text": "$3y^{2} = 4x(1 - x)$"
+    },
+    {
+     "key": "C",
+     "text": "$9y^{2} = 8x(x - 1)$"
+    },
+    {
+     "key": "D",
+     "text": "$3y^{2} = 4x(x - 1)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\sin\\left(\\tan^{-1}\\left(x\\sqrt{2}\\right)\\right) = \\cot\\left(\\sin^{-1}\\sqrt{1 - x^{2}}\\right)$, $x \\in (0, 1)$, then the value of $x$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\theta = \\tan^{-1}(x\\sqrt{2}) \\Rightarrow \\tan\\theta = \\frac{x\\sqrt{2}}{1}$\nThen $\\sin\\theta = \\frac{x\\sqrt{2}}{\\sqrt{(x\\sqrt{2})^{2} + 1^{2}}} = \\frac{x\\sqrt{2}}{\\sqrt{2x^{2} + 1}}$\nLet $\\phi = \\sin^{-1}\\sqrt{1 - x^{2}} \\Rightarrow \\sin\\phi = \\frac{\\sqrt{1 - x^{2}}}{1}$\nThen $\\cos\\phi = \\sqrt{1 - (\\sqrt{1 - x^{2}})^{2}} = \\sqrt{1 - 1 + x^{2}} = x$ (since $x \\in (0, 1)$)\n$\\cot\\phi = \\frac{\\cos\\phi}{\\sin\\phi} = \\frac{x}{\\sqrt{1 - x^{2}}}$\nThe given equation becomes:\n$\\frac{x\\sqrt{2}}{\\sqrt{2x^{2} + 1}} = \\frac{x}{\\sqrt{1 - x^{2}}}$\nSince $x \\in (0, 1)$, $x \\ne 0$\n$\\frac{\\sqrt{2}}{\\sqrt{2x^{2} + 1}} = \\frac{1}{\\sqrt{1 - x^{2}}}$\nSquaring both sides:\n$\\frac{2}{2x^{2} + 1} = \\frac{1}{1 - x^{2}} \\Rightarrow 2 - 2x^{2} = 2x^{2} + 1$\n$4x^{2} = 1 \\Rightarrow x^{2} = \\frac{1}{4} \\Rightarrow x = \\frac{1}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{8}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The shortest distance between the lines $\\frac{x - 4}{1} = \\frac{y - 3}{2} = \\frac{z - 2}{-3}$ and $\\frac{x + 2}{2} = \\frac{y - 6}{4} = \\frac{z - 5}{-5}$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Line 1 passes through $A(4, 3, 2)$ with direction $\\vec{d_{1}} = \\hat{i} + 2\\hat{j} - 3\\hat{k}$\nLine 2 passes through $B(-2, 6, 5)$ with direction $\\vec{d_{2}} = 2\\hat{i} + 4\\hat{j} - 5\\hat{k}$. The shortest distance $S.D. = \\frac{|(\\overrightarrow{AB}) \\cdot (\\vec{d_{1}} \\times \\vec{d_{2}})|}{|\\vec{d_{1}} \\times \\vec{d_{2}}|}$\nStep 1: Calculate $\\overrightarrow{AB}$\n$\\overrightarrow{AB} = (-2 - 4)\\hat{i} + (6 - 3)\\hat{j} + (5 - 2)\\hat{k} = -6\\hat{i} + 3\\hat{j} + 3\\hat{k}$\nStep 2: Calculate $\\vec{d_{1}} \\times \\vec{d_{2}}$\n$\\vec{d_{1}} \\times \\vec{d_{2}} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & 2 & -3 \\\\ 2 & 4 & -5 \\end{vmatrix} = \\hat{i}(-10 + 12) - \\hat{j}(-5 + 6) + \\hat{k}(4 - 4) = 2\\hat{i} - \\hat{j} + 0\\hat{k}$\nMagnitude $|\\vec{d_{1}} \\times \\vec{d_{2}}| = \\sqrt{2^{2} + (-1)^{2} + 0^{2}} = \\sqrt{5}$\nStep 3: Calculate the Shortest Distance\n$S.D. = \\frac{|(-6)(2) + (3)(-1) + (3)(0)|}{\\sqrt{5}} = \\frac{|-12 - 3|}{\\sqrt{5}} = \\frac{15}{\\sqrt{5}} = 3\\sqrt{5}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5\\sqrt{6}}{6}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$3\\sqrt{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\sqrt{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 2\\hat{i} + 3\\hat{j} + 3\\hat{k}$ and $\\vec{b} = 6\\hat{i} + 3\\hat{j} + 3\\hat{k}$. Then the square of the area of the triangle with adjacent sides determined by the vectors $(2\\vec{a} + 3\\vec{b})$ and $(\\vec{a} - \\vec{b})$ :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The area of a triangle with adjacent sides $\\vec{u}$ and $\\vec{v}$ is given by $\\frac{1}{2}|\\vec{u} \\times \\vec{v}|$\nHere, $\\vec{u} = 2\\vec{a} + 3\\vec{b}$ and $\\vec{v} = \\vec{a} - \\vec{b}$\n$\\vec{u} \\times \\vec{v} = (2\\vec{a} + 3\\vec{b}) \\times (\\vec{a} - \\vec{b})$\nUsing the distributive property and the fact that $\\vec{x} \\times \\vec{x} = 0$:\n$\\vec{u} \\times \\vec{v} = 2(\\vec{a} \\times \\vec{a}) - 2(\\vec{a} \\times \\vec{b}) + 3(\\vec{b} \\times \\vec{a}) - 3(\\vec{b} \\times \\vec{b})$\n$\\vec{u} \\times \\vec{v} = 0 - 2(\\vec{a} \\times \\vec{b}) - 3(\\vec{a} \\times \\vec{b}) - 0 = -5(\\vec{a} \\times \\vec{b})$\nStep 1: Calculate $\\vec{a} \\times \\vec{b}$\n$\\vec{a} \\times \\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 3 & 3 \\\\ 6 & 3 & 3 \\end{vmatrix} = \\hat{i}(9 - 9) - \\hat{j}(6 - 18) + \\hat{k}(6 - 18) = 12\\hat{j} - 12\\hat{k}$\nStep 2: Calculate Area squared\n$|\\vec{u} \\times \\vec{v}| = |-5(12\\hat{j} - 12\\hat{k})| = |60\\hat{k} - 60\\hat{j}| = \\sqrt{60^{2} + (-60)^{2}} = 60\\sqrt{2}$\nArea $= \\frac{1}{2} \\times 60\\sqrt{2} = 30\\sqrt{2}$\nArea$^{2} = (30\\sqrt{2})^{2} = 900 \\times 2 = 1800$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$450$"
+    },
+    {
+     "key": "B",
+     "text": "$900$"
+    },
+    {
+     "key": "C",
+     "text": "$1800$"
+    },
+    {
+     "key": "D",
+     "text": "$2400$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\lim_{x \\to 2} \\frac{(\\tan(x - 2))(rx^{2} + (p - 2)x - 2p)}{(x - 2)^{2}} = 5$ for some $r, p \\in \\mathbb{R}$. If the set of all possible values of $q$, such that the roots of the equation $rx^{2} - px + q = 0$ lie in $(0, 2)$, be the interval $(\\alpha, \\beta]$, then $4(\\alpha + \\beta)$ equals :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We start by simplifying the limit. Given:\n$\\lim_{x \\to 2}\\left[\\frac{\\tan(x - 2)}{x - 2} \\cdot \\frac{rx^{2} + (p - 2)x - 2p}{x - 2}\\right] = 5$\nSince $\\lim_{x \\to 2} \\frac{\\tan(x - 2)}{x - 2} = 1$, the expression reduces to:\n$\\lim_{x \\to 2} \\frac{rx^{2} + (p - 2)x - 2p}{x - 2} = 5$\nFor the limit to exist, the numerator must be zero at $x = 2$:\n$r(2)^{2} + (p - 2)(2) - 2p = 0 \\Rightarrow 4r + 2p - 4 - 2p = 0 \\Rightarrow 4r = 4 \\Rightarrow r = 1$\nSubstituting $r = 1$ back into the limit:\n$\\lim_{x \\to 2} \\frac{x^{2} + (p - 2)x - 2p}{x - 2} = \\lim_{x \\to 2} \\frac{(x - 2)(x + p)}{x - 2} = \\lim_{x \\to 2}(x + p) = 2 + p$\nSet $2 + p = 5 \\Rightarrow p = 3$\nThe quadratic equation is $rx^{2} - px + q = 0 \\Rightarrow x^{2} - 3x + q = 0$. For its roots to lie in $(0, 2)$\n1. Discriminant: $D \\ge 0 \\Rightarrow 9 - 4q \\ge 0 \\Rightarrow q \\le 2.25$\n2. Interval bounds: Let $f(x) = x^{2} - 3x + q$\n$f(0) > 0 \\Rightarrow q > 0$\n$f(2) > 0 \\Rightarrow 4 - 6 + q > 0 \\Rightarrow q > 2$\nVertex: $0 < \\frac{-b}{2a} < 2 \\Rightarrow 0 < 1.5 < 2$ (True)\nThus, $q \\in (2, 2.25]$, where $\\alpha = 2$ and $\\beta = 2.25$\n$4(\\alpha + \\beta) = 4(2 + 2.25) = 4(4.25) = 17$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$11$"
+    },
+    {
+     "key": "B",
+     "text": "$13$"
+    },
+    {
+     "key": "C",
+     "text": "$17$"
+    },
+    {
+     "key": "D",
+     "text": "$21$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\begin{bmatrix} 1 & 3 & -1 \\\\ 2 & 1 & \\alpha \\\\ 0 & 1 & -1 \\end{bmatrix}$ be a singular matrix. Let $f(x) = \\int_{0}^{x} (t^{2} + 2t + 3)\\,dt$, $x \\in [1, \\alpha]$. If $M$ and $m$ are respectively the maximum and the minimum values of $f$ in $[1, \\alpha]$, then $3(M - m)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Since $A$ is a singular matrix, its determinant is zero $(|A| = 0)$:\n$\\begin{vmatrix} 1 & 3 & -1 \\\\ 2 & 1 & \\alpha \\\\ 0 & 1 & -1 \\end{vmatrix} = 1(-1 - \\alpha) - 3(-2) - 1(2) = 0 \\Rightarrow -1 - \\alpha + 6 - 2 = 0 \\Rightarrow \\alpha = 3$\nThe function $f(x)$ is defined on $x \\in [1, 3]$\n$f(x) = \\int_{0}^{x} (t^{2} + 2t + 3)\\,dt = \\left[\\frac{t^{3}}{3} + t^{2} + 3t\\right]_{0}^{x} = \\frac{x^{3}}{3} + x^{2} + 3x$\nDifferentiating to check for extrema: $f'(x) = x^{2} + 2x + 3$. Since the discriminant of $f'(x)$ is negative $(2^{2} - 4(3) = -8)$, $f'(x)$ is always positive. Thus, $f(x)$ is strictly increasing on $[1, 3]$\nMinimum $(m)$ at $x = 1$ : $m = f(1) = \\frac{1}{3} + 1 + 3 = \\frac{13}{3}$\nMaximum $(M)$ at $x = 3$ : $M = f(3) = \\frac{27}{3} + 9 + 9 = 27$\n$3(M - m) = 3\\left(27 - \\frac{13}{3}\\right) = 81 - 13 = 68$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$64$"
+    },
+    {
+     "key": "B",
+     "text": "$68$"
+    },
+    {
+     "key": "C",
+     "text": "$72$"
+    },
+    {
+     "key": "D",
+     "text": "$76$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be such that $f(xy) = f(x)\\,f(y)$, for all $x, y \\in \\mathbb{R}$ and $f(0) \\ne 0$. Let $g : [1, \\infty) \\to \\mathbb{R}$ be a differentiable function such that $x^{2}g(x) = \\int_{1}^{x} (t^{2}f(t) - tg(t))\\,dt$. Then $g(2)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "First, we find $f(x)$. From $f(xy) = f(x)f(y)$, setting $x = 0$ gives $f(0) = f(0)f(y)$. Since $f(0) \\ne 0$, we have $f(y) = 1$ for all $y \\in \\mathbb{R}$. Now, the integral equation becomes:\n$x^{2}g(x) = \\int_{1}^{x} (t^{2}(1) - tg(t))\\,dt$\nDifferentiating both sides with respect to $x$\n$2xg(x) + x^{2}g'(x) = x^{2} - xg(x) \\Rightarrow x^{2}g'(x) + 3xg(x) = x^{2}$\nDividing by $x$ (for $x \\ge 1$): $x\\,g'(x) + 3\\,g(x) = x \\Rightarrow g'(x) + \\frac{3}{x}g(x) = 1$\nThis is a linear differential equation with I.F. $= e^{\\int \\frac{3}{x}dx} = x^{3}$\n$g(x) \\cdot x^{3} = \\int (x^{3} \\cdot 1)\\,dx = \\frac{x^{4}}{4} + C$\nAt $x = 1$, $1^{2}g(1) = \\int_{1}^{1} \\ldots = 0 \\Rightarrow g(1) = 0$\n$0 = \\frac{1}{4} + C \\Rightarrow C = -1/4$\n$g(x) = \\frac{x}{4} - \\frac{1}{4x^{3}} \\Rightarrow g(2) = \\frac{2}{4} - \\frac{1}{4(2^{3})} = \\frac{1}{2} - \\frac{1}{32} = \\frac{15}{32}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{13}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{11}{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{15}{32}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{17}{64}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region $\\{(x, y) : x^{2} - 8x \\le y \\le -x\\}$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The region is bounded by the parabola $y = x^{2} - 8x$ and the line $y = -x$. Find the points of intersection:\n$x^{2} - 8x = -x \\Rightarrow x^{2} - 7x = 0 \\Rightarrow x(x - 7) = 0 \\Rightarrow x = 0, 7$\nThe area $A$ is given by:\n$A = \\int_{0}^{7} [(-x) - (x^{2} - 8x)]\\,dx = \\int_{0}^{7} (7x - x^{2})\\,dx$\n$A = \\left[\\frac{7x^{2}}{2} - \\frac{x^{3}}{3}\\right]_{0}^{7} = \\frac{7(49)}{2} - \\frac{343}{3} = \\frac{343}{2} - \\frac{343}{3}$\n$A = 343\\left(\\frac{1}{2} - \\frac{1}{3}\\right) = \\frac{343}{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{343}{6}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{637}{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{437}{6}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{523}{6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of the integral $\\int_{-1}^{1} \\left(\\frac{x^{3} + |x| + 1}{x^{2} + 2|x| + 1}\\right)dx$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int_{-1}^{1} \\frac{x^{3} + |x| + 1}{(|x| + 1)^{2}}dx$\nWe can split the numerator:\n$I = \\int_{-1}^{1} \\frac{x^{3}}{(|x| + 1)^{2}}dx + \\int_{-1}^{1} \\frac{|x| + 1}{(|x| + 1)^{2}}dx$\nFor the first part, let $h(x) = \\frac{x^{3}}{(|x| + 1)^{2}}$. Since $h(-x) = -h(x)$, it is an odd function and its integral from $-1$ to $1$ is $0$\nFor the second part, $g(x) = \\frac{1}{|x| + 1}$ is an even function:\n$I = 0 + 2\\int_{0}^{1} \\frac{1}{x + 1}dx = 2[\\ln(x + 1)]_{0}^{1} = 2(\\ln 2 - \\ln 1) = 2\\ln 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3\\log_{e}2$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\log_{e}2$"
+    },
+    {
+     "key": "C",
+     "text": "$5\\log_{e}3$"
+    },
+    {
+     "key": "D",
+     "text": "$3\\log_{e}3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $R = \\{(x, y) \\in \\mathbb{N} \\times \\mathbb{N} : \\log_{e}(x + y) \\le 2\\}$. Then the minimum number of elements, required to be added in $R$ to make it a transitive relation, is ________.",
+   "correct_key": null,
+   "correct_value": 15,
+   "correct_keys": null,
+   "solution": "The condition $\\log_{e}(x + y) \\le 2 \\Rightarrow x + y \\le e^{2}$. Given $e \\approx 2.718$, $e^{2} \\approx 7.389$. Since $x, y \\in \\mathbb{N}$, the condition simplifies to:\n$x + y \\le 7$\nThe possible values for $x$ and $y$ are from the set $A = \\{1, 2, 3, 4, 5, 6\\}$. The relation $R$ consists of the following 21 elements:\nFor $x = 1$: $(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6)$\nFor $x = 2$: $(2, 1), (2, 2), (2, 3), (2, 4), (2, 5)$\nFor $x = 3$: $(3, 1), (3, 2), (3, 3), (3, 4)$\nFor $x = 4$: $(4, 1), (4, 2), (4, 3)$\nFor $x = 5$: $(5, 1), (5, 2)$\nFor $x = 6$: $(6, 1)$\nFor transitivity, if $(x, y) \\in R$ and $(y, z) \\in R$, then $(x, z)$ must be in $R$\nSince $(x, 1) \\in R$ for all $x \\in A$ and $(1, z) \\in R$ for all $z \\in A$, transitivity requires $(x, z) \\in R$ for all $x, z \\in A$\nThus, the transitive closure must be the set $A \\times A$\nNumber of elements in $A \\times A = 6 \\times 6 = 36$\nNumber of elements to be added $= 36 - 21 = 15$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $(1 - x^{3})^{10} = \\sum_{r=0}^{10} a_{r}x^{r}(1 - x)^{30 - 2r}$, then $\\frac{9a_{9}}{a_{10}}$ is equal to: ________.",
+   "correct_key": null,
+   "correct_value": 30,
+   "correct_keys": null,
+   "solution": "The given identity is:\n$(1 - x^{3})^{10} = \\sum_{r=0}^{10} a_{r}x^{r}(1 - x)^{30 - 2r}$\nDivide both sides by $(1 - x)^{30}$:\n$\\frac{((1 - x)(1 + x + x^{2}))^{10}}{(1 - x)^{30}} = \\sum_{r=0}^{10} a_{r}\\frac{x^{r}}{(1 - x)^{2r}}$\n$\\left(\\frac{1 + x + x^{2}}{(1 - x)^{2}}\\right)^{10} = \\sum_{r=0}^{10} a_{r}\\left(\\frac{x}{(1 - x)^{2}}\\right)^{r}$\nLet $y = \\frac{x}{(1 - x)^{2}}$. Note that $\\frac{1 + x + x^{2}}{(1 - x)^{2}} = \\frac{(x^{2} - 2x + 1) + 3x}{(1 - x)^{2}} = \\frac{(1 - x)^{2} + 3x}{(1 - x)^{2}} = 1 + 3y$\nThe equation becomes:\n$(1 + 3y)^{10} = \\sum_{r=0}^{10} a_{r}y^{r}$\nComparing this to the binomial expansion $(1 + 3y)^{10} = \\sum_{r=0}^{10} \\binom{10}{r}(3y)^{r}$:\n$a_{r} = \\binom{10}{r}3^{r}$\nCalculate the required ratio:\n$a_{9} = \\binom{10}{9}3^{9} = 10 \\cdot 3^{9}$\n$a_{10} = \\binom{10}{10}3^{10} = 3^{10}$\n$\\frac{9a_{9}}{a_{10}} = \\frac{9 \\cdot 10 \\cdot 3^{9}}{3^{10}} = \\frac{10 \\cdot 3^{11}}{3^{10}}$\n$\\frac{9a_{9}}{a_{10}} = \\frac{3^{2} \\cdot 10 \\cdot 3^{9}}{3^{10}} = \\frac{10 \\cdot 3^{11}}{3^{10}} = 10 \\times 3 = 30$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Circles",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the line $x - y = 4$ intersect the circle $C : (x - 4)^{2} + (y + 3)^{2} = 9$ at the points $Q$ and $R$. If $P(\\alpha, \\beta)$ is a point on $C$ such that $PQ = PR$, then $(6\\alpha + 8\\beta)^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 18,
+   "correct_keys": null,
+   "solution": "The circle $C$ has center $O(4, -3)$ and radius $r = 3$. Since $P$ is on the circle and equidistant from $Q$ and $R$ $(PQ = PR)$, $P$ must lie on the perpendicular bisector of the chord $QR$. The perpendicular bisector of any chord passes through the center of the circle.\n1. Find the perpendicular bisector: The slope of the line $x - y = 4$ is $m = 1$. The slope of the perpendicular bisector is $m' = -1$\nEquation through $(4, -3)$: $y - (-3) = -1(x - 4) \\Rightarrow x + y = 1$\n2. Find coordinates of $P(\\alpha, \\beta)$: $P$ is the intersection of $x + y = 1$ and the circle\nSubstitute $y = 1 - x$ into $(x - 4)^{2} + (y + 3)^{2} = 9$:\n$(x - 4)^{2} + (1 - x + 3)^{2} = 9 \\Rightarrow (x - 4)^{2} + (4 - x)^{2} = 9 \\Rightarrow 2(x - 4)^{2} = 9$\n$(x - 4)^{2} = 4.5 \\Rightarrow x - 4 = \\pm\\sqrt{4.5} = \\pm\\frac{3}{\\sqrt{2}}$\n$\\alpha = 4 \\pm \\frac{3}{\\sqrt{2}}$ and $\\beta = 1 - \\alpha = -3 \\mp \\frac{3}{\\sqrt{2}}$\n3. Calculate $(6\\alpha + 8\\beta)^{2}$:\n$6\\alpha + 8\\beta = 6\\alpha + 8(1 - \\alpha) = 8 - 2\\alpha$\nSubstituting $\\alpha = 4 \\pm \\frac{3}{\\sqrt{2}}$\n$8 - 2\\left(4 \\pm \\frac{3}{\\sqrt{2}}\\right) = 8 - 8 \\mp \\frac{6}{\\sqrt{2}} = \\mp 3\\sqrt{2}$\n$(6\\alpha + 8\\beta)^{2} = (\\mp 3\\sqrt{2})^{2} = 9 \\times 2 = 18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the image of the point $P(0, -5, 0)$ in the line $\\frac{x - 1}{2} = \\frac{y}{1} = \\frac{z + 1}{-2}$ be the point $R$ and the image of the point $Q\\left(0, \\frac{-1}{2}, 0\\right)$ in the line $\\frac{x - 1}{-1} = \\frac{y + 9}{4} = \\frac{z + 1}{1}$ be the point $S$. Then the square of the area of the parallelogram $PQRS$ is ________.",
+   "correct_key": null,
+   "correct_value": 162,
+   "correct_keys": null,
+   "solution": "1. Find Image $R$: Foot of perpendicular $M$ of $P(0, -5, 0)$ on $L_{1}(1 + 2\\lambda, \\lambda, -1 - 2\\lambda)$:\nVector $\\overrightarrow{PM} = (1 + 2\\lambda, \\lambda + 5, -1 - 2\\lambda)$. Dot with direction $(2, 1, -2)$:\n$2(1 + 2\\lambda) + 1(\\lambda + 5) - 2(-1 - 2\\lambda) = 0 \\Rightarrow 9\\lambda + 9 = 0 \\Rightarrow \\lambda = -1$\n$M = (-1, -1, 1)$. Image $R = 2M - P = (-2, -2, 2) - (0, -5, 0) = (-2, 3, 2)$\n2. Find Image $S$: Foot of perpendicular $N$ of $Q(0, -0.5, 0)$ on $L_{2}(1 - \\mu, -9 + 4\\mu, -1 + \\mu)$:\nVector $\\overrightarrow{QN} = (1 - \\mu, -8.5 + 4\\mu, -1 + \\mu)$. Dot with direction $(-1, 4, 1)$:\n$-1(1 - \\mu) + 4(-8.5 + 4\\mu) + 1(-1 + \\mu) = 0 \\Rightarrow 18\\mu - 36 = 0 \\Rightarrow \\mu = 2$\n$N = (-1, -1, 1)$. Image $S = 2N - Q = (-2, -2, 2) - (0, -0.5, 0) = (-2, -1.5, 2)$\n3. Calculate Area: Points are $P(0, -5, 0)$, $Q(0, -0.5, 0)$, $R(-2, 3, 2)$, $S(-2, -1.5, 2)$\n$\\overrightarrow{PQ} = (0, 4.5, 0)$ and $\\overrightarrow{PS} = (-2, 3.5, 2)$\nArea Vector $\\vec{A} = \\overrightarrow{PQ} \\times \\overrightarrow{PS} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 0 & 4.5 & 0 \\\\ -2 & 3.5 & 2 \\end{vmatrix} = 9\\hat{i} + 9\\hat{k}$\nArea$^{2} = |\\vec{A}|^{2} = 9^{2} + 9^{2} = 162$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Continuity and Differentiability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f(x) = \\begin{cases} x^{3} + 8; & x < 0, \\\\ x^{2} - 4; & x \\ge 0, \\end{cases}$ and $g(x) = \\begin{cases} (x - 8)^{\\frac{1}{3}}; & x < 0, \\\\ (x + 4)^{\\frac{1}{2}}; & x \\ge 0. \\end{cases}$ Then the number of points, where the function $gof$ is discontinuous, is ________.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "We check the continuity of $h(x) = g(f(x))$\n1. At $x = 0$: $f(x)$ is discontinuous $(f(0^{-}) = 8, f(0^{+}) = -4)$\n$h(0^{+}) = g(-4) = (-12)^{1/3}$\n$h(0^{-}) = g(8^{-}) = \\sqrt{12}$\nSince $h(0^{+}) \\ne h(0^{-})$, $h(x)$ is discontinuous at $x = 0$\n2. Where $f(x)$ passes through $0$ (discontinuity of $g$):\nFor $x < 0$, $f(x) = x^{3} + 8 = 0 \\Rightarrow x = -2$\n$h(-2^{+}) = g(0^{+}) = 2$\n$h(-2^{-}) = g(0^{-}) = -2$\nDiscontinuous at $x = -2$\nFor $x \\ge 0$, $f(x) = x^{2} - 4 = 0 \\Rightarrow x = 2$\n$h(2^{+}) = g(0^{+}) = 2$\n$h(2^{-}) = g(0^{-}) = -2$\nDiscontinuous at $x = 2$\nTotal points of discontinuity $= 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

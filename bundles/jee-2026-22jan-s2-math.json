@@ -1,0 +1,799 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "22 Jan · Shift 2",
+  "title": "JEE Main 2026 · Mathematics · 22 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1xdvYCMCUZJoPoIqIs609xw0hp9ln6_lB"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the locus of the mid-point of the chord through the origin O of the parabola $y^{2} = 4x$ be the curve S. Let P be any point on S. Then the locus of the point, which internally divides OP in the ratio 3 : 1, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y^{2} = 4x$\nLocus of mid point of OP\n$M(h, k) \\Rightarrow h = \\frac{t^{2}}{2}, k = t$\n$\\Rightarrow k^{2} = 2h \\Rightarrow y^{2} = 2x$\n$S : y^{2} = 2x$\n$R(h, k)$\n$$\\Rightarrow h = \\frac{\\frac{3t^{2}}{2}}{4}, k = \\frac{3t}{4}$$\n$t^{2} = \\frac{8h}{3}, t = \\frac{4k}{3}$\n$\\Rightarrow \\frac{16k^{2}}{9} = \\frac{8h}{3} \\Rightarrow 2k^{2} = 3h$\nLocus of R : $2y^{2} = 3x$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2y^{2} = 3x$"
+    },
+    {
+     "key": "B",
+     "text": "$2x^{2} = 3y$"
+    },
+    {
+     "key": "C",
+     "text": "$3y^{2} = 2x$"
+    },
+    {
+     "key": "D",
+     "text": "$3x^{2} = 2y$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-22jan-s2-math-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Among the statements\n(S1) : If $A(5, -1)$ and $B(-2, 3)$ are two vertices of a triangle, whose orthocentre is $(0, 0)$, then its third vertex is $(-4, -7)$\nand\n(S2) : If positive numbers $2a, b, c$ are three consecutive terms of an A.P., then the lines $ax + by + c = 0$ are concurrent at $(2, -2)$, :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Solution of statement-1\n$m_{AO} \\cdot m_{BC} = -1$\n$\\Rightarrow 5h - k + 13 = 0$ ....(1)\n& $m_{AB} \\cdot m_{OC} = -1$\n$4k = 7h$ ....(2)\nthird vertex is $(-4, -7)$\n$\\therefore$ Statement 1 is correct.\nSolution of statement-2\n$2a, b, c \\rightarrow$ A.P.\n$b = \\frac{2a + c}{2}$\n$2a - 2b + c = 0$\n$\\therefore$ lines $ax + by + c = 0$ are concurrent then\n$\\frac{x}{2} = \\frac{y}{-2} = \\frac{1}{1}$\n$x = 2$ and $y = -2$\n$\\therefore$ Point of concurrency is $(2, -2)$\n$\\therefore$ Statement 2 is correct.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "both are correct"
+    },
+    {
+     "key": "B",
+     "text": "only (S1) is correct"
+    },
+    {
+     "key": "C",
+     "text": "both are incorrect"
+    },
+    {
+     "key": "D",
+     "text": "only (S2) is correct"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-22jan-s2-math-q02-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $[\\bullet]$ denote the greatest integer function, and let $f(x) = \\min\\left\\{\\sqrt{2}x, x^{2}\\right\\}$. Let $S = \\{x \\in (-2, 2) :$ the function $g(x) = |x|[x^{2}]$ is discontinuous at $x\\}$. Then $\\sum_{x \\in S} f(x)$ equals :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$g(x) = |x|[x^{2}]$\npoints of discontinuity of $g(x)$ in $(-2, 2)$ are\n$\\left(\\pm 1, \\pm\\sqrt{2}, \\pm\\sqrt{3}\\right)$\n$\\therefore S = \\left\\{-1, 1, -\\sqrt{2}, \\sqrt{2}, -\\sqrt{3}, \\sqrt{3}\\right\\}$\n$\\because f(x) = \\min\\left\\{\\sqrt{2}x, x^{2}\\right\\}$\n$\\therefore \\sum_{x \\in S} f(x) = -\\sqrt{2} + 1 - 2 + 2 - \\sqrt{6} + \\sqrt{6}$\n$= 1 - \\sqrt{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 - \\sqrt{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2 - \\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{6} - 3\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{6} - 2\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P\\left(10, 2\\sqrt{15}\\right)$ be a point on the hyperbola $\\frac{x^{2}}{a^{2}} - \\frac{y^{2}}{b^{2}} = 1$, whose foci are S and S'. If the length of its latus rectum is 8, then the square of the area of $\\Delta PSS'$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P(10, 2\\sqrt{15})$ lies on $\\frac{x^{2}}{a^{2}} - \\frac{y^{2}}{b^{2}} = 1$\n$\\therefore \\frac{100}{a^{2}} - \\frac{60}{b^{2}} = 1$ ........(1)\n$\\therefore$ length of latus rectum $= 8$\n$\\frac{2 \\cdot b^{2}}{a} = 8 \\Rightarrow \\frac{b^{2}}{a} = 4$ ........(2)\nFrom (1) & (2)\n$\\frac{100}{a^{2}} - \\frac{60}{4a} = 1$\n$400 - 60a = 4a^{2}$\n$4a^{2} + 60a - 400 = 0$\n$a^{2} + 15a - 100 = 0$\n$a = 5$ & $-20$ (rejected)\n$\\Rightarrow b = \\sqrt{20}$\n$\\therefore$ Hyperbola is $\\frac{x^{2}}{25} - \\frac{y^{2}}{20} = 1$\n$\\therefore$ Focal length $S_{1}S_{2} = 2ae = 2 \\cdot 5 \\cdot \\left(\\sqrt{1 + \\frac{4}{5}}\\right) = 6\\sqrt{5}$\n$\\therefore$ Area of $PS_{1}S_{2} = \\frac{1}{2} \\cdot 6\\sqrt{5} \\cdot 2\\sqrt{15} = 30\\sqrt{3} = A$\n$\\therefore A^{2} = 2700$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4200$"
+    },
+    {
+     "key": "B",
+     "text": "$2700$"
+    },
+    {
+     "key": "C",
+     "text": "$1462$"
+    },
+    {
+     "key": "D",
+     "text": "$900$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta$ be the roots of the quadratic equation $12x^{2} - 20x + 3\\lambda = 0$, $\\lambda \\in Z$. If $\\frac{1}{2} \\le |\\beta - \\alpha| \\le \\frac{3}{2}$, then the sum of all possible values of $\\lambda$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{2} \\le |\\alpha - \\beta| \\le \\frac{3}{2}$\n$\\frac{1}{4} \\le |\\alpha - \\beta|^{2} \\le \\frac{9}{4}$\n$\\frac{1}{4} \\le (\\alpha + \\beta)^{2} - 4\\alpha\\beta \\le \\frac{9}{4}$\n$\\frac{1}{4} \\le \\frac{25}{9} - 4 \\times \\frac{\\lambda}{4} \\le \\frac{9}{4}$\n$-\\frac{91}{36} \\le -\\lambda \\le \\frac{-19}{36}$\n$\\frac{19}{36} \\le \\lambda \\le \\frac{91}{36}$\n$\\lambda = 1, 2$\nSum $= 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}$ is a solution of the system of equations $AX = B$, where $\\operatorname{adj} A = \\begin{bmatrix} 4 & 2 & 2 \\\\ -5 & 0 & 5 \\\\ 1 & -2 & 3 \\end{bmatrix}$ and $B = \\begin{bmatrix} 4 \\\\ 0 \\\\ 2 \\end{bmatrix}$, then $|x + y + z|$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$X = A^{-1}B = \\left(\\frac{\\operatorname{adj} A}{|A|}\\right)B$$\n$$= \\pm\\frac{1}{10}\\begin{pmatrix} 4 & 2 & 2 \\\\ -5 & 0 & 5 \\\\ 1 & -2 & 3 \\end{pmatrix}\\begin{pmatrix} 4 \\\\ 0 \\\\ 2 \\end{pmatrix}$$\n$$= \\pm\\frac{1}{10}\\begin{pmatrix} 20 \\\\ -10 \\\\ 10 \\end{pmatrix} = \\pm\\begin{pmatrix} 2 \\\\ -1 \\\\ 1 \\end{pmatrix}$$\n$\\therefore |x + y + z| = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let n be the number obtained on rolling a fair die. If the probability that the system\n$x - ny + z = 6$\n$x + (n - 2)y + (n + 1)z = 8$\n$(n - 1)y + z = 1$\nhas a unique solution is $\\frac{k}{6}$, then the sum of k and all possible values of n is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x - ny + z = 6$\n$x + (n - 2)y + (n + 1)z = 8$\n$(n - 1)y + z = 1$\n$$\\begin{vmatrix} 1 & -n & 1 \\\\ 1 & (n - 2) & n + 1 \\\\ 0 & n - 1 & 1 \\end{vmatrix} \\neq 0$$\n$n^{2} - 3n + 2 \\neq 0$\n$n \\neq 1, 2$\nfor unique solution $n = 3, 4, 5, 6$\nNow\nP (probability when system of equations has unique solution) $= \\frac{4}{6}$\nSo $k = 4$\nNow required sum $= 4 + (3 + 4 + 5 + 6) = 22$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$21$"
+    },
+    {
+     "key": "B",
+     "text": "$20$"
+    },
+    {
+     "key": "C",
+     "text": "$22$"
+    },
+    {
+     "key": "D",
+     "text": "$24$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $C_{r}$ denote the coefficient of $x^{r}$ in the binomial expansion of $(1 + x)^{n}$, $n \\in N$, $0 \\le r \\le n$. If $P_{n} = C_{0} - C_{1} + \\frac{2^{2}}{3}C_{2} - \\frac{2^{3}}{4}C_{3} + \\ldots + \\frac{(-2)^{n}}{n + 1}C_{n}$, then the value of $\\sum_{n=1}^{25}\\frac{1}{P_{2n}}$ equals :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$P_{n} = \\sum_{r=0}^{n}\\frac{{}^{n}C_{r}(-2)^{r}}{r + 1} = \\sum_{r=0}^{n}\\frac{1}{(n + 1)}\\,{}^{n+1}C_{r+1}(-2)^{r}$$\n$$= \\frac{-1}{2(n + 1)}\\sum_{r=0}^{n}{}^{n+1}C_{r+1}(-2)^{r+1}$$\n$$= \\frac{-1}{2(n + 1)}\\left[(1 - 2)^{n+1} - 1\\right]$$\n$$P_{n} = \\frac{1}{2(n + 1)}\\left[1 - (-1)^{n+1}\\right]$$\n$$P_{2n} = \\frac{1}{2(2n + 1)}\\left[1 - (-1)^{2n+1}\\right]$$\n$$P_{2n} = \\frac{1}{2n + 1}$$\n$$\\sum_{n=1}^{25}\\frac{1}{P_{2n}} = \\sum_{n=1}^{25}(2n + 1)$$\n$= 3 + 5 + \\ldots + 51$\n$= \\frac{25}{2}[51 + 3]$\n$25 \\times 27 = 675$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$675$"
+    },
+    {
+     "key": "B",
+     "text": "$650$"
+    },
+    {
+     "key": "C",
+     "text": "$580$"
+    },
+    {
+     "key": "D",
+     "text": "$525$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let S and S' be the foci of the ellipse $\\frac{x^{2}}{25} + \\frac{y^{2}}{9} = 1$ and $P(\\alpha, \\beta)$ be a point on the ellipse in the first quadrant. If $(SP)^{2} + (S'P)^{2} - SP \\cdot S'P = 37$, then $\\alpha^{2} + \\beta^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{\\alpha^{2}}{25} + \\frac{\\beta^{2}}{9} = 1$\n$SP = e\\left(\\frac{a}{e} - \\alpha\\right) = a - e\\alpha$\n$S'P = a + e\\alpha$\n$2a^{2} + 2e^{2}\\alpha^{2} - \\left(a^{2} - e^{2}\\alpha^{2}\\right) = 37$\n$a^{2} + 3e^{2}\\alpha^{2} = 37$\n$25 + \\frac{418}{25}\\alpha^{2} = 37$\n$625 + 48\\alpha^{2} = 37 \\times 25$\n$48\\alpha^{2} = 25 \\cdot 12$\n$\\alpha^{2} = 25/4$\n$\\frac{\\beta^{2}}{9} = \\frac{3}{4}$\n$\\beta^{2} = \\frac{27}{4}$\n$\\alpha^{2} + \\beta^{2} = \\frac{52}{4} = 13$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$11$"
+    },
+    {
+     "key": "B",
+     "text": "$13$"
+    },
+    {
+     "key": "C",
+     "text": "$15$"
+    },
+    {
+     "key": "D",
+     "text": "$17$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-22jan-s2-math-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the domain of the function $f(x) = \\log_{3}\\log_{5}\\left(7 - \\log_{2}\\left(x^{2} - 10x + 85\\right)\\right) + \\sin^{-1}\\left(\\left|\\frac{3x - 7}{17 - x}\\right|\\right)$ be $(\\alpha, \\beta]$. Then $\\alpha + \\beta$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\log_{5}\\left(7 - \\ln\\left(x^{2} - 10x + 85\\right)\\right) > 0$\n$7 - \\ln\\left(x^{2} - 10x + 85\\right) > 1$\n$\\ln\\left(x^{2} - 10x + 85\\right) < 6$\n$0 < x^{2} - 10x + 85 < 64$\n$x^{2} - 10x + 21 < 0$\n$x \\in (3, 7)$\n$-1 \\le \\frac{3x - 7}{17 - x}$ & $\\frac{3x - 7}{17 - x} \\le 1$\n$\\frac{2(x + 5)}{17 - x} \\ge 0$ & $\\frac{4x - 24}{17 - x} \\le 0$\n$\\frac{x + 5}{x - 17} \\le 0$ & $\\frac{x - 6}{x - 17} \\ge 0$\n$x \\in [-5, 17) \\cap x \\in (-\\infty, 6) \\cup (17, \\infty)$\n$x \\in [-\\infty, 6]$\n$x \\in (3, 6]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$12$"
+    },
+    {
+     "key": "C",
+     "text": "$9$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = [x]^{2} - [x + 3] - 3$, $x \\in R$, where $[\\cdot]$ is the greatest integer function. Then :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = [x]^{2} - [x] - 6$\n$f(x) = ([x] - 3)([x] + 2)$\n(1) $f(x) = 0$ has infinite solution (Wrong)\n(2) $(x) < -2$ or $[x] > 3$\n$x \\in (-\\infty, -2) \\cup [4, \\infty)$ Wrong\n(3) $[x] \\in (-2, 3)$\n$x \\in [-1, 3)$ Right\n(4) $\\int_{0}^{1} -6\\,dx + \\int_{1}^{2} (-6)\\,dx = (-12)$ (Wrong)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f(x) = 0$ for finitely many values of $x$"
+    },
+    {
+     "key": "B",
+     "text": "$f(x) > 0$ only for $x \\in [4, \\infty)$"
+    },
+    {
+     "key": "C",
+     "text": "$f(x) < 0$ only for $x \\in [-1, 3)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\int_{0}^{2} f(x)\\,dx = -6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let f and g be functions satisfying $f(x + y) = f(x)g(y)$, $f(1) = 7$ and $g(x + y) = g(xy)$, $g(1) = 1$, for all $x, y \\in N$. If $\\sum_{x=1}^{n}\\left(\\frac{f(x)}{g(x)}\\right) = 19607$, then n is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = 7^{x}$\n$x = y = 1$\n$g(x + y) = g(xy)$\nPut $y = 1 \\Rightarrow g(x + 1) = g(x)$\n$\\Rightarrow g(1) = g(2) = g(3) = \\ldots$\n$g(x) = 1$\n$$\\sum_{x=1}^{n}\\left[\\frac{f(x)}{g(x)}\\right] = \\sum_{x=1}^{n}7^{x} = 19607$$\n$\\frac{7\\left(7^{x} - 1\\right)}{6} = 19607$\n$7^{x} - 1 = 16806$\n$7^{x} = 16807$\n$x = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Limits and Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\lim_{x \\to 0}\\frac{e^{(a-1)x} + 2\\cos bx + (c - 2)e^{-x}}{x\\cos x - \\log_{e}(1 + x)} = 2$, then $a^{2} + b^{2} + c^{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\lim_{x \\to 0}\\frac{\\left(1 + (a - 1)x + \\frac{(a - 1)^{2}}{2}x^{2}\\right) + 2\\left(1 - \\frac{b^{2}x^{2}}{2!}\\right) + (c - 2)\\left(1 - x + \\frac{x^{2}}{2!}\\right)}{x\\left(1 - \\frac{x^{2}}{2!} + \\frac{x^{4}}{4!}\\cdots\\right) - \\left(x - \\frac{x^{2}}{2} + \\frac{x^{3}}{3} + \\cdots\\right)} = 2$$\n$1 + 2 + c - 2 = 0 \\Rightarrow c = -1$\n$a - 1 - (-2) = 0 \\Rightarrow a = c - 1 = -2$\n$$\\frac{\\frac{(a - 1)^{2}}{2} - b^{2} + \\frac{(c - 2)}{2!}}{1/2} = 2$$\n$(a - 1)^{2} - 2b^{2} + (c - 2) = 2$\n$b^{2} = 2$\n$a^{2} + b^{2} + c^{2} = 4 + 2 + 1 = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$7$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of elements in the relation $R = \\left\\{(x, y) : 4x^{2} + y^{2} < 52, x, y \\in \\mathbf{Z}\\right\\}$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{x^{2}}{13} + \\frac{y^{2}}{52} < 1$\n$x = 0)$ $y^{2} < 52 \\Rightarrow y \\in \\{-7, -6, -0, -7\\}$\n$x = -1)$ or $x = 1)$ $y^{2} < 48 \\Rightarrow y \\in \\{-6, -5, -0 \\ldots\\ldots 6\\}$\n$x = -2)$ or $x = 2)$ $y^{2} < 36 \\Rightarrow y \\in \\{-5, -4 \\ldots\\ldots 5\\}$\n$x = -3)$ or $x = 3)$ $y^{2} < 16$, $y \\Rightarrow \\{-3, -2, -2, 3\\}$\nTotal $= 14 + 22 + 26 + 15 = 77$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$77$"
+    },
+    {
+     "key": "B",
+     "text": "$89$"
+    },
+    {
+     "key": "C",
+     "text": "$86$"
+    },
+    {
+     "key": "D",
+     "text": "$67$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-22jan-s2-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\left\\{z \\in \\mathbb{C} : 4z^{2} + \\bar{z} = 0\\right\\}$. Then $\\sum_{z \\in S}|z|^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$4z^{2} = -\\bar{z}$\n$|z|^{2} = \\frac{3}{16}$\n$|z| = 0 \\quad |z| = 1/4$\n$z = 0 \\quad |z|^{2} = \\frac{1}{16}$\n$z\\bar{z} = \\frac{1}{16}$\n$4z^{2} = \\frac{1}{16z}$\n$z^{3} = \\frac{1}{64} \\Rightarrow$ Total 3 solution\n$\\sum_{z \\in S}|z|^{2} = \\frac{3}{16}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{64}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{7}{64}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{16}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 2\\hat{i} - \\hat{j} + \\hat{k}$ and $\\vec{b} = \\lambda\\hat{j} + 2\\hat{k}$, $\\lambda \\in Z$ be two vectors. Let $\\vec{c} = \\vec{a} \\times \\vec{b}$ and $\\vec{d}$ be a vector of magnitude 2 in yz-plane. If $|\\vec{c}| = \\sqrt{53}$, then the maximum possible value of $\\left(\\vec{c} \\cdot \\vec{d}\\right)^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\vec{d} = xj + yk$\n$\\left|\\vec{d}\\right|^{2} = x^{2} + y^{2} = 4$\n$x = 2\\cos\\theta$\n$y = 2\\sin\\theta$\n$$\\vec{c} = \\vec{a} \\times \\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & -1 & 1 \\\\ 0 & \\lambda & 2 \\end{vmatrix} = -(2 + \\lambda)\\hat{i} + -4j + 2\\lambda\\hat{k}$$\n$\\vec{c} = 4 + 4\\lambda + \\lambda^{2} + 16 + 4\\lambda^{2} = 53$\n$5\\lambda^{2} + 4\\lambda - 33 = 0$\n$(\\lambda + 3)(5\\lambda - 11) = 0$\n$\\lambda = -3$\n$\\vec{c} = i - 4j - 6k$\n$\\vec{d} = xj + yk$\n$(\\vec{\\tau} \\cdot \\vec{d})^{2} = (-4x - 6y)^{2}$\n$= 4(2x - 3y)^{2}$\n$= 16(2\\cos\\theta - 3\\sin\\theta)^{2}$\n$\\left(\\vec{\\tau} \\cdot \\vec{d}\\right)^{2}_{\\max} = 16.13 = 208$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$104$"
+    },
+    {
+     "key": "B",
+     "text": "$208$"
+    },
+    {
+     "key": "C",
+     "text": "$26$"
+    },
+    {
+     "key": "D",
+     "text": "$52$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let L be the line $\\frac{x + 1}{2} = \\frac{y + 1}{3} = \\frac{z + 3}{6}$ and let S be the set of all points $(a, b, c)$ on L, whose distance from the line $\\frac{x + 1}{2} = \\frac{y + 1}{3} = \\frac{z - 9}{0}$ along the line L is 7. Then $\\sum_{(a, b, c) \\in S}(a + b + c)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$6\\lambda - 3 = 9 \\Rightarrow \\lambda = 2$\n$\\Rightarrow Q = (3, 5, 9)$\n$\\mu = 2$\nFor S : $\\frac{x - 3}{2} = \\frac{y - 5}{3} = \\frac{z - 9}{6} = \\pm 7$\n$(x, y, z) = (17, 26, 51)$ or $(-11, -16, -33)$\n$\\sum(a + b + c) = 34$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$34$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$28$"
+    },
+    {
+     "key": "D",
+     "text": "$40$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-22jan-s2-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the mean deviation about the median of the numbers $k, 2k, 3k, \\ldots, 1000k$ is 500, then $k^{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$k, 2k, 3k, \\ldots, 1000k$\n$\\Rightarrow$ Median $= 500.5K$\n$$\\Rightarrow \\frac{2(0.5 + 1.5 + 2.5 + \\cdots + 499.5)k}{1000} = 500$$\n$$\\frac{2 \\times \\frac{500}{2} \\times 500k}{1000} = 500$$\n$|k| = 2 \\Rightarrow k^{2} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$9$"
+    },
+    {
+     "key": "D",
+     "text": "$16$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region $A = \\{(x, y) : 4x^{2} + y^{2} \\le 8$ and $y^{2} \\le 4x\\}$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$4x^{2} + 4x = 8$\n$x^{2} + x - 2 = 0$\n$(x + 2)(x - 1) = 0$\n$$A = 2\\left(\\int_{0}^{1} 2\\sqrt{x}\\,dx + \\int_{1}^{\\sqrt{2}} \\sqrt{8 - 4x^{2}}\\,dx\\right)$$\n$$A = 4 \\cdot \\frac{2}{3} + 4 \\cdot \\left[\\frac{x}{2}\\sqrt{2 - x^{2}} + \\frac{2}{2}\\sin^{-1}\\left(\\frac{x}{\\sqrt{2}}\\right)\\right]_{1}^{\\sqrt{2}}$$\n$$A = \\frac{8}{3} + 4\\left[\\frac{\\pi}{2} - \\frac{1}{2} - \\frac{\\pi}{4}\\right]$$\n$A = \\frac{8}{3} + \\pi - 2$\n$A = \\pi + \\frac{2}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2} + \\frac{1}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{2} + 2$"
+    },
+    {
+     "key": "C",
+     "text": "$\\pi + 4$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pi + \\frac{2}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-22jan-s2-math-q20-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let S be the set of the first 11 natural numbers. Then the number of elements in $A = \\{B \\subseteq S : n(B) \\ge 2$ and the product of all elements of B is even$\\}$ is ______.",
+   "correct_key": null,
+   "correct_value": 1979,
+   "correct_keys": null,
+   "solution": "$S = \\{1, 2, 3, \\ldots, 11\\}$\n$= \\left({}^{11}C_{2} - {}^{6}C_{2}\\right) + \\left({}^{11}C_{3} - {}^{6}C_{3}\\right) + \\cdots + {}^{11}C_{11}$\n$= \\left({}^{11}C_{2} + {}^{11}C_{3} + \\ldots\\ldots {}^{11}C_{11}\\right) - \\left({}^{6}C_{2} + {}^{6}C_{3} + \\ldots\\ldots + {}^{6}C_{6}\\right)$\n$= \\left(2^{11} - (1 + 11)\\right) - \\left(2^{6} - (1 + 6)\\right)$\n$= 2048 - 12 - 64 + 7 = 1979$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Suppose $a, b, c$ are in A.P. and $a^{2}, 2b^{2}, c^{2}$ are in G.P. If $a < b < c$ and $a + b + c = 1$, then $9(a^{2} + b^{2} + c^{2})$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "$a = \\frac{1}{3} - d$\n$b = \\frac{1}{3} \\quad = \\frac{1}{3} + d$\n$4b^{4} = a^{2}c^{2}$\n$\\frac{4}{3^{4}} = \\left(\\frac{1}{9} - d^{2}\\right)^{2}$\n$\\Rightarrow 4 = \\left(1 - 9d^{2}\\right)^{2}$\n$1 - 9d^{2} = 2$ or $-2$\n$9d^{2} = -1$ or $3$\n$d^{2} = 1/9 \\quad \\Rightarrow d = 1/\\sqrt{3}$\n$a = \\frac{1}{3} - \\frac{1}{\\sqrt{3}}$\n$b = 1/3$\n$c = \\frac{1}{3} + \\frac{1}{\\sqrt{3}}$\n$9\\left(a^{2} + b^{2} + c^{2}\\right) = 9(1) = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $[.]$ be the greatest integer function. If $\\alpha = \\int_{0}^{64}\\left(x^{1/3} - \\left[x^{1/3}\\right]\\right)dx$, then $\\frac{1}{\\pi}\\int_{0}^{\\alpha\\pi}\\left(\\frac{\\sin^{2}\\theta}{\\sin^{6}\\theta + \\cos^{6}\\theta}\\right)d\\theta$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 36,
+   "correct_keys": null,
+   "solution": "$$\\alpha = \\frac{3}{4} \\times (64)^{4/3} - \\left[\\int_{0}^{1} 0\\,dx + \\int_{1}^{8} dx + \\int_{8}^{27} 2\\,dx + \\int_{27}^{64} 3\\,dx\\right]$$\n$\\alpha = 3 \\cdot 64 - [7 + 38 + 37 \\times 3]$\n$\\alpha = 192 - 156 = 36$\n$$I = \\frac{36}{\\pi} \\times 2\\int_{0}^{\\pi/2}\\frac{s^{2}}{s^{6} + c^{6}}\\,d\\theta = \\frac{72}{\\pi}\\int_{0}^{\\pi/2}\\frac{s^{2}}{1 - 3s^{2}c^{2}}\\,d\\theta$$\nKing property $$I = \\frac{72}{\\pi}\\int_{0}^{\\pi/2}\\frac{c^{2}}{1 - 3s^{2}c^{2}}\\,d\\theta$$\n$$2I = \\frac{72}{\\pi}\\int_{0}^{\\pi/2}\\frac{1}{1 - 3s^{2}c^{2}}\\,d\\theta = \\frac{72}{\\pi}\\int_{0}^{\\pi/2}\\frac{\\left(1 + \\tan^{2}\\theta\\right)\\sec^{2}\\theta}{\\left(1 + \\tan^{2}\\theta\\right)^{2} - 3\\tan^{2}\\theta}$$\n$$I = \\frac{36}{\\pi}\\int_{0}^{\\infty}\\frac{\\left(1 + t^{2}\\right)dt}{t^{4} - t^{2} + 1} = \\frac{36}{\\pi}\\int_{0}^{\\infty}\\frac{\\left(1 + \\frac{1}{t^{2}}\\right)dt}{\\left(t - \\frac{1}{t}\\right)^{2} + 1} = \\frac{36}{\\pi} \\cdot \\left(\\tan^{-1}\\left(t - \\frac{1}{t}\\right)\\right)_{0}^{\\infty}$$\n$$I = \\frac{36}{\\pi} \\cdot \\left[\\frac{\\pi}{2} + \\frac{\\pi}{2}\\right]$$\n$I = 36$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\cos(\\alpha + \\beta) = -\\frac{1}{10}$ and $\\sin(\\alpha - \\beta) = \\frac{3}{8}$, where $0 < \\alpha < \\frac{\\pi}{3}$ and $0 < \\beta < \\frac{\\pi}{4}$. If $\\tan 2\\alpha = \\frac{3\\left(1 - r\\sqrt{5}\\right)}{\\sqrt{11}\\left(s + \\sqrt{5}\\right)}$, $r, s \\in N$, then $r + s$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 20,
+   "correct_keys": null,
+   "solution": "$\\alpha + \\beta \\in \\left(0, \\frac{7\\pi}{12}\\right)$\n$\\cos(\\alpha + \\beta) = -\\frac{1}{10}$\n$\\tan(\\alpha + \\beta) = \\frac{-\\sqrt{94}}{1} = -3\\sqrt{11}$\n$\\alpha - \\beta \\in (-\\pi/4, \\pi/3)$\n$\\sin(\\alpha - \\beta) = 3/8$\n$\\tan(\\alpha - \\beta) = \\frac{3}{\\sqrt{55}}$\n$$\\tan 2\\alpha = \\frac{\\tan(\\alpha + \\beta) + \\tan(\\alpha - \\beta)}{1 - \\tan(\\alpha + \\beta) + \\tan(\\alpha - \\beta)}$$\n$$= \\frac{-3\\sqrt{11} + \\frac{3}{\\sqrt{55}}}{1 + \\frac{9}{\\sqrt{55}} \\cdot \\sqrt{11}}$$\n$$= \\frac{-33\\sqrt{5} + 3}{\\sqrt{11}(\\sqrt{5} + 9)} = \\frac{3(1 - 11\\sqrt{5})}{\\sqrt{11}(9 + \\sqrt{5})}$$\n$r = 11$\n$s = 9$\n$r + s = 20$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

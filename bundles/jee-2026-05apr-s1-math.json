@@ -1,0 +1,819 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "5 Apr · Shift 1",
+  "title": "JEE Main 2026 · Mathematics · 5 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1HTUR0_7IysTS2nPALuf6JJlEqNct9LFe"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $a, b \\in \\mathbb{C}$. Let $\\alpha, \\beta$ be the roots of the equation $x^{2} + ax + b = 0$. If $\\beta - \\alpha = \\sqrt{11}$ and $\\beta^{2} - \\alpha^{2} = 3i\\sqrt{11}$, then $(\\beta^{3} - \\alpha^{3})^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. From the given equations, we have:\n$\\beta - \\alpha = \\sqrt{11}$ ............(1)\n$\\beta^{2} - \\alpha^{2} = (\\beta - \\alpha)(\\beta + \\alpha) = 3i\\sqrt{11}$ ............(2)\n2. Substitute (1) into (2):\n$\\sqrt{11}(\\beta + \\alpha) = 3i\\sqrt{11} \\Rightarrow \\alpha + \\beta = 3i$\n3. We know that $(\\beta - \\alpha)^{2} = (\\alpha + \\beta)^{2} - 4\\alpha\\beta$. Substituting the known values:\n$(\\sqrt{11})^{2} = (3i)^{2} - 4\\alpha\\beta a$\n$11 = -9 - 4\\alpha\\beta \\Rightarrow 4\\alpha\\beta = -20 \\Rightarrow \\alpha\\beta = -5$\n4. Now, we calculate $\\beta^{3} - \\alpha^{3}$:\n$\\beta^{3} - \\alpha^{3} = (\\beta - \\alpha)(\\beta^{2} + \\alpha\\beta + \\alpha^{2})$\n$\\beta^{3} - \\alpha^{3} = (\\beta - \\alpha)[(\\alpha + \\beta)^{2} - \\alpha\\beta]$\n$\\beta^{3} - \\alpha^{3} = \\sqrt{11}[(3i)^{2} - (-5)] = \\sqrt{11}[-9 + 5] = -4\\sqrt{11}$\n5. Finally, find $(\\beta^{3} - \\alpha^{3})^{2}$:\n$(\\beta^{3} - \\alpha^{3})^{2} = (-4\\sqrt{11})^{2} = 16 \\times 11 = 176$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$160$"
+    },
+    {
+     "key": "B",
+     "text": "$176$"
+    },
+    {
+     "key": "C",
+     "text": "$194$"
+    },
+    {
+     "key": "D",
+     "text": "$187$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the sum of the first $n$ terms of an A.P. be $3n^{2} + 5n$. Then the sum of squares of the first 10 terms of the A.P. is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Given $S_n = 3n^{2} + 5n$. The $n^{th}$ term $T_n$ is given by $S_n - S_{n-1}$:\n$T_n = (3n^{2} + 5n) - [3(n - 1)^{2} + 5(n - 1)]$\n$T_n = 3n^{2} + 5n - [3(n^{2} - 2n + 1) + 5n - 5]$\n$T_n = 3n^{2} + 5n - 3n^{2} + 6n - 3 - 5n + 5 = 6n + 2$\n2. We need to find the sum of squares of the first 10 terms, i.e., $\\sum_{n=1}^{10} (T_n)^{2}$:\n$\\sum_{n=1}^{10} (6n + 2)^{2} = \\sum_{n=1}^{10} (36n^{2} + 24n + 4)$\n3. Apply the summation formulas $\\sum n^{2} = \\frac{n(n + 1)(2n + 1)}{6}$ and $\\sum n = \\frac{n(n + 1)}{2}$:\n$= 36\\left[\\frac{10(11)(21)}{6}\\right] + 24\\left[\\frac{10(11)}{2}\\right] + 4(10)$\n$= 36(385) + 24(55) + 40$\n$= 13860 + 1320 + 40 = 15220$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10220$"
+    },
+    {
+     "key": "B",
+     "text": "$12860$"
+    },
+    {
+     "key": "C",
+     "text": "$15220$"
+    },
+    {
+     "key": "D",
+     "text": "$19780$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A$ be a $3 \\times 3$ matrix such that $A^{T}\\begin{bmatrix} 1 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 5 \\\\ 2 \\\\ 2 \\end{bmatrix}$, $A^{T}\\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 3 \\\\ 1 \\\\ 1 \\end{bmatrix}$, $A\\begin{bmatrix} 1 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 3 \\\\ 4 \\\\ 4 \\end{bmatrix}$ and $A\\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\\\ 1 \\end{bmatrix}$. If $\\det(A) = 1$, then $\\det(\\mathrm{adj}(A^{2} + A))$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A = \\begin{bmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{bmatrix}$\n$A^{T}\\begin{bmatrix} 1 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 5 \\\\ 2 \\\\ 2 \\end{bmatrix} \\Rightarrow \\begin{bmatrix} a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{bmatrix}\\begin{bmatrix} 1 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 5 \\\\ 2 \\\\ 2 \\end{bmatrix}$\n$a_1 + a_3 = 5$, $b_1 + b_3 = 2$, $c_1 + c_3 = 2$\n$\\begin{bmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{bmatrix}\\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\\\ 1 \\end{bmatrix}$ we get $c_1 = 1$, $c_2 = 3$, $c_3 = 1$\n$\\begin{bmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{bmatrix}\\begin{bmatrix} 1 \\\\ 0 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 3 \\\\ 4 \\\\ 4 \\end{bmatrix}$ we get $a_1 + c_1 = 3$, $a_2 + c_2 = 4$, $a_3 + c_3 = 4$\n$A = \\begin{bmatrix} 2 & 1 & 1 \\\\ 1 & b_2 & 3 \\\\ 3 & 1 & 1 \\end{bmatrix}$\n$|A| = 1$\nwe get $b_2 = 2$\n$|\\mathrm{adj}(A(A + I))| = |A(A + I)|^{2}$\n$= |A|^{2}\\,|A + I|^{2} = |A + I|^{2} = 64$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$25$"
+    },
+    {
+     "key": "C",
+     "text": "$49$"
+    },
+    {
+     "key": "D",
+     "text": "$64$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the system of linear equations in $x, y, z$ : $x + 2y + tz = 0$, $6x + y + 5tz = 0$, $3x + t^{2}y + f(t)z = 0$, where $f : \\mathbb{R} \\to \\mathbb{R}$ is a differentiable function. If this system has infinitely many solutions for all $t \\in \\mathbb{R}$, then $f$ :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. For infinitely many solutions in a homogeneous system, the determinant of the coefficient matrix must be zero:\n$\\Delta = \\begin{vmatrix} 1 & 2 & t \\\\ 6 & 1 & 5t \\\\ 3 & t^{2} & f(t) \\end{vmatrix} = 0$\n2. Expand the determinant:\n$1(f(t) - 5t^{3}) - 2(6f(t) - 15t) + t(6t^{2} - 3) = 0$\n$f(t) - 5t^{3} - 12f(t) + 30t + 6t^{3} - 3t = 0$\n3. Simplify the expression:\n$-11f(t) + t^{3} + 27t = 0 \\Rightarrow 11f(t) = t^{3} + 27t$\n$f(t) = \\frac{1}{11}(t^{3} + 27t)$\n4. Differentiate to check the nature of the function:\n$f'(t) = \\frac{1}{11}(3t^{2} + 27) = \\frac{3}{11}(t^{2} + 9)$\n5. Since $t^{2} + 9 > 0$ for all $t \\in \\mathbb{R}$, $f'(t) > 0$ always. Thus, $f(t)$ is strictly increasing.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "is a constant function"
+    },
+    {
+     "key": "B",
+     "text": "is strictly increasing on $\\mathbb{R}$"
+    },
+    {
+     "key": "C",
+     "text": "is strictly decreasing on $\\mathbb{R}$"
+    },
+    {
+     "key": "D",
+     "text": "has two critical points"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\sum_{n=1}^{10} \\left(\\frac{528}{n(n + 1)(n + 2)}\\right)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Use the method of differences (Partial Fractions) for the general term $T_n$:\n$\\frac{1}{n(n + 1)(n + 2)} = \\frac{1}{2}\\left[\\frac{(n + 2) - n}{n(n + 1)(n + 2)}\\right] = \\frac{1}{2}\\left[\\frac{1}{n(n + 1)} - \\frac{1}{(n + 1)(n + 2)}\\right]$\n2. The sum becomes:\n$S = 528 \\times \\frac{1}{2}\\sum_{n=1}^{10}\\left[\\frac{1}{n(n + 1)} - \\frac{1}{(n + 1)(n + 2)}\\right]$\n$S = 264\\sum_{n=1}^{10}\\left[V(n) - V(n + 1)\\right]$ where $V(n) = \\frac{1}{n(n + 1)}$\n3. This is a telescoping sum:\n$S = 264[V(1) - V(11)] = 264\\left[\\frac{1}{1(2)} - \\frac{1}{11(12)}\\right]$\n$S = 264\\left[\\frac{1}{2} - \\frac{1}{132}\\right] = 264\\left[\\frac{66 - 1}{132}\\right]$\n$= 264 \\times \\frac{65}{132} = 2 \\times 65 = 130$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$65$"
+    },
+    {
+     "key": "B",
+     "text": "$130$"
+    },
+    {
+     "key": "C",
+     "text": "$220$"
+    },
+    {
+     "key": "D",
+     "text": "$440$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\tan A$, $\\tan B$, where $A, B \\in \\left(-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right)$ be the roots of the quadratic equation $x^{2} - 2x - 5 = 0$. Then $20\\sin^{2}\\left(\\frac{A + B}{2}\\right)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. From the quadratic equation $x^{2} - 2x - 5 = 0$, the sum and product of roots ($\\tan A$ and $\\tan B$) are:\n$\\tan A + \\tan B = 2$\n$\\tan A \\tan B = -5$\n2. Calculate $\\tan(A + B)$:\n$\\tan(A + B) = \\frac{\\tan A + \\tan B}{1 - \\tan A \\tan B} = \\frac{2}{1 - (-5)} = \\frac{2}{6} = \\frac{1}{3}$\n3. Let $\\theta = A + B$. We need to find $20\\sin^{2}\\left(\\frac{\\theta}{2}\\right)$. Using the identity $2\\sin^{2}\\left(\\frac{\\theta}{2}\\right) = 1 - \\cos\\theta$:\n$20\\sin^{2}\\left(\\frac{\\theta}{2}\\right) = 10(1 - \\cos\\theta)$\n4. Since $\\theta = 1/3$ and $A, B \\in (-\\pi/2, \\pi/2)$, $\\theta \\in (-\\pi, \\pi)$. Given $\\tan\\theta > 0$, $\\theta$ must be in the 1st or 3rd quadrant. For the options provided:\n$\\cos\\theta = \\frac{1}{\\sqrt{1 + \\tan^{2}\\theta}} = \\frac{1}{\\sqrt{1 + (1/3)^{2}}} = \\frac{1}{\\sqrt{10/9}} = \\frac{3}{\\sqrt{10}}$\n5. Substitute $\\cos\\theta$ back into the expression:\n$10\\left(1 - \\frac{3}{\\sqrt{10}}\\right) = 10 - \\frac{30}{\\sqrt{10}} = 10 - 3\\sqrt{10}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10 + \\sqrt{10}$"
+    },
+    {
+     "key": "B",
+     "text": "$10 - 2\\sqrt{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$10 - 3\\sqrt{10}$"
+    },
+    {
+     "key": "D",
+     "text": "$10 - \\sqrt{10}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A letter is known to have arrived by post either from KANPUR or from ANANTPUR. On the envelope just two consecutive letters AN are visible. The probability, that the letter came from ANANTPUR, is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Let $E_1$ be the event the letter is from KANPUR and $E_2$ be the event it is from ANANTPUR. $P(E_1) = P(E_2) = 1/2$\n2. Let $A$ be the event that two consecutive letters \"AN\" are visible.\n3. In KANPUR (K, A, N, P, U, R), there are 5 pairs of consecutive letters: $\\{$KA, AN, NP, PU, UR$\\}$. The pair AN occurs once.\n$P(A | E_1) = \\frac{1}{5}$\n4. In ANANTPUR (A, N, A, N, T, P, U, R), there are 7 pairs: $\\{$AN, NA, AN, NT, TP, PU, UR$\\}$. The pair AN occurs twice.\n$P(A | E_2) = \\frac{2}{7}$\n5. By Bayes' Theorem:\n$P(E_2 | A) = \\frac{P(E_2)P(A | E_2)}{P(E_1)P(A | E_1) + P(E_2)P(A | E_2)} = \\frac{\\frac{1}{2} \\cdot \\frac{2}{7}}{\\frac{1}{2} \\cdot \\frac{1}{5} + \\frac{1}{2} \\cdot \\frac{2}{7}}$\n$P(E_2 | A) = \\frac{2/7}{1/5 + 2/7} = \\frac{2/7}{17/35} = \\frac{2}{7} \\cdot \\frac{35}{17} = \\frac{10}{17}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{7}{10}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{10}{17}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{12}{19}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{19}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The mean deviation about the mean for the data in the following table :\n$x_i$ | $5$ | $7$ | $9$ | $10$ | $12$ | $15$\n$f_i$ | $8$ | $6$ | $2$ | $2$ | $2$ | $6$\nis equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{M.D.} = \\frac{\\sum f_i |x_i = \\bar{x}|}{\\sum f_i}$\n$\\bar{x} = \\frac{\\sum f_i x_i}{\\sum f_i} = \\frac{40 + 42 + 20 + 24 + 90 + 18}{26}$\n$= 9$\n$\\mathrm{M.D.} = \\frac{8(4) + 6(2) + 2 \\times 1 + 2 \\times 3 + 6 \\times 6}{26}$\n$= \\frac{44}{13}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$40/13$"
+    },
+    {
+     "key": "B",
+     "text": "$42/13$"
+    },
+    {
+     "key": "C",
+     "text": "$44/13$"
+    },
+    {
+     "key": "D",
+     "text": "$46/13$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a focus of the ellipse $E : \\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$ be $S(4, 0)$ and its eccentricity be $\\frac{4}{5}$. If the point $P(3, \\alpha)$ lies on $E$ and $O$ is the origin, then the area of $\\Delta POS$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Given focus $ae = 4$ and eccentricity $e = 4/5$\n$a(4/5) = 4 \\Rightarrow a = 5$\n2. Find $b^{2}$ using $b^{2} = a^{2}(1 - e^{2})$:\n$b^{2} = 25(1 - 16/25) = 25(9/25) = 9$\n3. Equation of ellipse: $\\frac{x^{2}}{25} + \\frac{y^{2}}{9} = 1$\n4. Point $P(3, \\alpha)$ lies on $E$:\n$\\frac{3^{2}}{25} + \\frac{\\alpha^{2}}{9} = 1 \\Rightarrow \\frac{\\alpha^{2}}{9} = 1 - \\frac{9}{25} = \\frac{16}{25}$\n$\\alpha^{2} = \\frac{144}{25} \\Rightarrow \\alpha = \\pm\\frac{12}{5}$\n5. Coordinates: $O(0, 0)$, $S(4, 0)$, $P(3, 12/5)$\n6. Area of $\\Delta POS = \\frac{1}{2} \\times \\text{base} \\times \\text{height}$:\n$\\text{Area} = \\frac{1}{2} \\times OS \\times y_P = \\frac{1}{2} \\times 4 \\times \\frac{12}{5} = \\frac{24}{5}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12/5$"
+    },
+    {
+     "key": "B",
+     "text": "$14/5$"
+    },
+    {
+     "key": "C",
+     "text": "$24/5$"
+    },
+    {
+     "key": "D",
+     "text": "$48/5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P$ be a moving point on the circle $x^{2} + y^{2} - 6x - 8y + 21 = 0$. Then, the maximum distance of $P$ from the vertex of the parabola $x^{2} + 6x + y + 13 = 0$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Circle: $x^{2} + y^{2} - 6x - 8y + 21 = 0$. Center $C = (3, 4)$, Radius $R = \\sqrt{3^{2} + 4^{2} - 21} = \\sqrt{25 - 21} = 2$\n2. Parabola: $x^{2} + 6x + y + 13 = 0$. Rewrite as: $(x + 3)^{2} - 9 + y + 13 = 0 \\Rightarrow (x + 3)^{2} = -(y + 4)$. Vertex $V = (-3, -4)$\n3. The maximum distance from a point $P$ on the circle to a fixed point $V$ is given by $CV + R$\n4. Calculate distance $CV$:\n$CV = \\sqrt{(3 - (-3))^{2} + (4 - (-4))^{2}} = \\sqrt{6^{2} + 8^{2}} = \\sqrt{36 + 64} = 10$\n5. Maximum distance $= 10 + 2 = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In an equilateral triangle $PQR$, let the vertex $P$ be at $(3, 5)$ and the side $QR$ be along the line $x + y = 4$ If the orthocentre of the triangle $PQR$ is $(\\alpha, \\beta)$, then $9(\\alpha + \\beta)$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. In an equilateral triangle, the orthocentre $(\\alpha, \\beta)$ coincides with the centroid\n2. Let $D$ be the foot of the perpendicular from vertex $P(3, 5)$ to the side $QR : x + y - 4 = 0$\n3. The altitude $PD$ lies on a line perpendicular to $x + y = 4$ passing through $(3, 5)$. The slope of $QR$ is $-1$, so the slope of $PD$ is $1$. Equation of $PD : y - 5 = 1(x - 3) \\Rightarrow y = x + 2$\n4. Find coordinates of $D$ by intersecting $y = x + 2$ and $x + y = 4$:\n$x + (x + 2) = 4 \\Rightarrow 2x = 2 \\Rightarrow x = 1, y = 3$. So, $D = (1, 3)$\n5. The centroid/orthocentre $H(\\alpha, \\beta)$ divides the altitude $PD$ in the ratio $2 : 1$\n$\\alpha = \\frac{2(1) + 1(3)}{2 + 1} = \\frac{5}{3}$\n$\\beta = \\frac{2(3) + 1(5)}{2 + 1} = \\frac{11}{3}$\n6. Calculate $9(\\alpha + \\beta)$:\n$9\\left(\\frac{5}{3} + \\frac{11}{3}\\right) = 9\\left(\\frac{16}{3}\\right) = 3 \\times 16 = 48$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$27$"
+    },
+    {
+     "key": "C",
+     "text": "$36$"
+    },
+    {
+     "key": "D",
+     "text": "$48$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of all the integral values of $p$ such that the equation $3\\sin^{2} x + 12\\cos x - 3 = p$, $x \\in \\mathbb{R}$ has at least one solution, is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Rewrite the equation in terms of $\\cos x$:\n$p = 3(1 - \\cos^{2}x) + 12\\cos x - 3 = 3 - 3\\cos^{2}x + 12\\cos x - 3 = -3\\cos^{2}x + 12\\cos x$\n2. Let $t = \\cos x$. For $x \\in \\mathbb{R}$, $t \\in [-1, 1]$. Define $f(t) = -3t^{2} + 12t$ on the interval $[-1, 1]$\n3. Find the range of $f(t)$:\n$f'(t) = -6t + 12$. Setting $f'(t) = 0$ gives $t = 2$, which is outside the interval $[-1, 1]$\nTherefore, the maximum and minimum values occur at the endpoints:\n$f(-1) = -3(-1)^{2} + 12(-1) = -3 - 12 = -15$\n$f(1) = -3(1)^{2} + 12(1) = -3 + 12 = 9$\n4. The range of $p$ is $[-15, 9]$\n5. The integral values of $p$ are $\\{-15, -14, \\ldots, 8, 9\\}$. Number of terms $n = 9 - (-15) + 1 = 25$\nSum $S = \\frac{n}{2}(\\text{first term} + \\text{last term}) = \\frac{25}{2}(-15 + 9) = \\frac{25}{2}(-6) = -75$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-54$"
+    },
+    {
+     "key": "B",
+     "text": "$-60$"
+    },
+    {
+     "key": "C",
+     "text": "$-75$"
+    },
+    {
+     "key": "D",
+     "text": "$-84$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The square of the distance of the point $P(5, 6, 7)$ from the line $\\frac{x - 2}{2} = \\frac{y - 5}{3} = \\frac{z - 2}{4}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Let the line be $L$. It passes through point $A(2, 5, 2)$ with direction vector $\\vec{b} = 2\\hat{i} + 3\\hat{j} + 4\\hat{k}$\n2. The vector $\\overrightarrow{AP} = (5 - 2)\\hat{i} + (6 - 5)\\hat{j} + (7 - 2)\\hat{k} = 3\\hat{i} + \\hat{j} + 5\\hat{k}$\n3. The square of the distance $d^{2}$ is given by $|\\overrightarrow{AP}|^{2} - (\\text{projection of } \\overrightarrow{AP} \\text{ on } \\vec{b})^{2}$\n4. $|\\overrightarrow{AP}|^{2} = 3^{2} + 1^{2} + 5^{2} = 9 + 1 + 25 = 35$\n5. Projection length $p = \\frac{\\overrightarrow{AP} \\cdot \\vec{b}}{|\\vec{b}|} = \\frac{(3)(2) + (1)(3) + (5)(4)}{\\sqrt{2^{2} + 3^{2} + 4^{2}}} = \\frac{6 + 3 + 20}{\\sqrt{29}} = \\frac{29}{\\sqrt{29}} = \\sqrt{29}$\n6. $d^{2} = 35 - (\\sqrt{29})^{2} = 35 - 29 = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The square of the distance of the point of intersection of the lines $\\vec{r} = (\\hat{i} + \\hat{j} - \\hat{k}) + \\lambda(a\\hat{i} - \\hat{j})$, $a \\neq 0$ and $\\vec{r} = (4\\hat{i} - \\hat{k}) + \\mu(2\\hat{i} + a\\hat{k})$ from the origin is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Equate the coordinates of the two lines: Line 1 : $x = 1 + a\\lambda$, $y = 1 - \\lambda$, $z = -1$\nLine 2 : $x = 4 + 2\\mu$, $y = 0$, $z = -1 + a\\mu$\n2. From y-coordinates: $1 - \\lambda = 0 \\Rightarrow \\lambda = 1$\n3. From z-coordinates: $-1 = -1 + a\\mu \\Rightarrow a\\mu = 0$\nSince $a \\in 0$, we must have $\\mu = 0$\n4. Substitute $\\lambda = 1$ and $\\mu = 0$ into x-coordinates:\n$1 + a(1) = 4 + 2(0) \\Rightarrow 1 + a = 4 \\Rightarrow a = 3$\n5. The point of intersection (using $\\mu = 0$ in Line 2) is : $x = 4 + 2(0) = 4$, $y = 0$, $z = -1 + 3(0) = -1$\nPoint $I = (4, 0, -1)$\n6. The square of the distance from the origin $(0, 0, 0)$ is:\n$d^{2} = 4^{2} + 0^{2} + (-1)^{2} = 16 + 1 = 17$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$17$"
+    },
+    {
+     "key": "D",
+     "text": "$26$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region $R = \\{(x, y) ; xy \\le 27, 1 \\le y \\le x^{2}\\}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Identify the boundary curves of the region $R$:\n$y = x^{2}$ (Parabola)\n$y = \\frac{27}{x}$ (Rectangular Hyperbola)\n$y = 1$ (Horizontal Line)\n2. Find the intersection points:\nIntersection of $y = 1$ and $y = x^{2}$ : $x^{2} = 1 \\Rightarrow x = 1$ (since $x \\ge 1$ for the region)\nIntersection of $y = x^{2}$ and $y = \\frac{27}{x}$ : $x^{3} = 27 \\Rightarrow x = 3, y = 9$\nIntersection of $y = 1$ and $y = \\frac{27}{x}$ : $x = 27$\n3. The area is calculated in two parts along the x-axis:\n$A = \\int_{1}^{3} (x^{2} - 1)\\,dx + \\int_{3}^{27} \\left(\\frac{27}{x} - 1\\right)dx$\n4. Evaluate the integrals:\n$\\int_{1}^{3} (x^{2} - 1)\\,dx = \\left[\\frac{x^{3}}{3} - x\\right]_{1}^{3} = (9 - 3) - \\left(\\frac{1}{3} - 1\\right) = 6 + \\frac{2}{3} = \\frac{20}{3}$\n$\\int_{3}^{27} \\left(\\frac{27}{x} - 1\\right)dx = [27\\log_e x - x]_{3}^{27} = (27\\log_e 27 - 27) - (27\\log_e 3 - 3)$\n$= 27(3\\log_e 3) - 27 - 27\\log_e 3 + 3 = 81\\log_e 3 - 27\\log_e 3 - 24 = 54\\log_e 3 - 24$\n5. Total Area:\n$A = \\frac{20}{3} + 54\\log_e 3 - 24 = 54\\log_e 3 + \\frac{20 - 72}{3} = 54\\log_e 3 - \\frac{52}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$78\\log_e 3 - \\frac{52}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$54\\log_e 3 - \\frac{52}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$54\\log_e 3 - \\frac{26}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$54\\log_e 3 + \\frac{26}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Limits and Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The product of all possible values of $a$, for which $\\lim_{x \\to 0}\\left(\\frac{1 - \\cos(ax)\\cos((a + 1)x)\\cos((a + 2)x)}{\\sin^{2}((a + 1)x)}\\right) = 2$, is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. This is a limit of the form $\\frac{0}{0}$. Using the expansion $\\cos\\theta \\approx 1 - \\frac{\\theta^{2}}{2}$ as $\\theta \\to 0$:\n$1 - \\cos(ax)\\cos((a + 1)x)\\cos((a + 2)x) \\approx 1 - \\left(1 - \\frac{a^{2}x^{2}}{2}\\right)\\left(1 - \\frac{(a + 1)^{2}x^{2}}{2}\\right)\\left(1 - \\frac{(a + 2)^{2}x^{2}}{2}\\right)$\n$\\approx 1 - \\left(1 - \\frac{a^{2} + (a + 1)^{2} + (a + 2)^{2}}{2}x^{2}\\right) = \\frac{a^{2} + (a + 1)^{2} + (a + 2)^{2}}{2}x^{2}$\n2. The denominator $\\sin^{2}((a + 1)x) \\approx (a + 1)^{2}x^{2}$ as $x \\to 0$\n3. Set the limit equal to 2:\n$\\frac{a^{2} + (a + 1)^{2} + (a + 2)^{2}}{2(a + 1)^{2}} = 2 \\Rightarrow a^{2} + (a + 1)^{2} + (a + 2)^{2} = 4(a + 1)^{2}$\n4. Expand and solve for $a$:\n$a^{2} + (a^{2} + 2a + 1) + (a^{2} + 4a + 4) = 4(a^{2} + 2a + 1)$\n$3a^{2} + 6a + 5 = 4a^{2} + 8a + 4 \\Rightarrow a^{2} + 2a - 1 = 0$\n5. The product of all possible values of $a$ (roots of the quadratic) is $\\frac{c}{a} = \\frac{-1}{1} = -1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$-1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of the integral $\\int_{0}^{\\infty} \\frac{\\log_e(x)}{x^{2} + 4}\\,dx$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Standard interpretation of such JEE integrals involves $\\int_{0}^{\\infty} \\frac{\\log_e x}{x^{2} + a^{2}}\\,dx$. Let $I = \\int_{0}^{\\infty} \\frac{\\log_e x}{x^{2} + 4}\\,dx$\n2. Substitute $x = \\frac{4}{t} \\Rightarrow dx = -\\frac{4}{t^{2}}\\,dt$:\n$I = \\int_{\\infty}^{0} \\frac{\\log_e(4/t)}{\\frac{16}{t^{2}} + 4}\\left(-\\frac{4}{t^{2}}\\right)dt = \\int_{0}^{\\infty} \\frac{\\log_e 4 - \\log_e t}{16 + 4t^{2}} \\cdot 4\\,dt = \\int_{0}^{\\infty} \\frac{\\log_e 4 - \\log_e t}{4 + t^{2}}\\,dt$\n3. Separate the integral:\n$I = \\log_e 4\\int_{0}^{\\infty} \\frac{1}{t^{2} + 4}\\,dt - \\int_{0}^{\\infty} \\frac{\\log_e t}{t^{2} + 4}\\,dt$\n$I = (2\\log_e 2)\\left[\\frac{1}{2}\\tan^{-1}\\left(\\frac{t}{2}\\right)\\right]_{0}^{\\infty} - I \\Rightarrow 2I = \\log_e 2\\left(\\frac{\\pi}{2}\\right)$\n4. Solve for $I$:\n$2I = \\frac{\\pi\\log_e 2}{2} \\Rightarrow I = \\frac{\\pi\\log_e 2}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi\\log_e(2)}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi\\log_e(2)}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$1 + \\pi\\log_e(2)$"
+    },
+    {
+     "key": "D",
+     "text": "$2 + \\pi\\log_e(2)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be a differentiable function such that $f\\left(\\frac{x + y}{3}\\right) = \\frac{f(x) + f(y)}{3}$ for all $x, y \\in \\mathbb{R}$ and $f'(0) = 3$ Then the minimum value of the function $g(x) = 3 + e^{x}f(x)$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Given $f\\left(\\frac{x + y}{3}\\right) = \\frac{f(x) + f(y)}{3}$. Setting $x = 0, y = 0$ gives $f(0) = \\frac{2f(0)}{3} \\Rightarrow f(0) = 0$\n2. Setting $y = 0$ gives $f\\left(\\frac{x}{3}\\right) = \\frac{f(x)}{3}$. This functional equation implies $f(x)$ is linear, $f(x) = mx$\n3. Since $f'(x) = m$ and $f'(0) = 3$, we have $m = 3$. Thus, $f(x) = 3x$\n4. Define $g(x) = 3 + 3xe^{x}$. To find the minimum, differentiate $g(x)$:\n$g'(x) = 3(e^{x} + xe^{x}) = 3e^{x}(1 + x)$\n5. Setting $g'(x) = 0$ gives $x = -1$. The second derivative $g''(x) = 3e^{x}(2 + x)$ is positive at $x = -1$, confirming a minimum\n6. Minimum value $g(-1) = 3 + 3(-1)e^{-1} = 3 - \\frac{3}{e} = 3\\left(\\frac{e - 1}{e}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3\\left(\\frac{e + 1}{e}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\left(\\frac{e - 1}{e}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3 - e}{e}$"
+    },
+    {
+     "key": "D",
+     "text": "$3e$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of the integral $\\int_{\\frac{\\pi}{6}}^{\\frac{\\pi}{3}} \\left(\\frac{4 - \\mathrm{cosec}^{2}x}{\\cos^{4}x}\\right)dx$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Rewrite the integral $I$:\n$I = \\int \\frac{4 - \\csc^{2}x}{\\cos^{4}x}\\,dx = \\int (4\\sec^{4}x - \\sec^{4}x\\csc^{2}x)\\,dx$\n$I = \\left[\\int 4\\sec^{2}x\\left(1 + \\tan^{2}x\\right) - sex^{2}x\\left(1 + \\tan^{2}x\\right)\\left(1 + \\cot^{2}x\\right)\\right]dx$\n2. Simplify the integrand:\n$I = \\left[\\int 4\\left(1 + \\tan^{2}x\\right) - \\left(1 + \\tan^{2}x + \\cot^{2}x + 1\\right)\\right]\\sec^{2}x\\,dx$\nCorrection: Use $4\\sec^{4}x - \\sec^{4}x\\csc^{2}x = 3\\sec^{4}x - \\sec^{2}x\\csc^{2}x - \\sec^{2}x\\cot^{2}x\\csc^{2}x$ is complex. Instead, integrate by parts or use substitution. The anti-derivative is $f(x) = \\tan^{3}x + 2\\tan x + \\cot x$\n3. Verify: $\\frac{d}{dx}(\\tan^{3}x + 2\\tan x + \\cot x) = 3\\tan^{2}x\\sec^{2}x + 2\\sec^{2}x - \\csc^{2}x$\n$= \\sec^{2}x(3\\tan^{2}x + 2) - \\csc^{2}x = \\sec^{2}x(3\\sec^{2}x - 1) - \\csc^{2}x = 3\\sec^{4}x - \\sec^{2}x - \\csc^{2}x$\nNote: $\\frac{4 - \\csc^{2}x}{\\cos^{4}x} = 4\\sec^{4}x - \\csc^{2}x\\sec^{4}x = 4\\sec^{4}x - \\frac{\\sec^{4}x}{\\sin^{2}x} = \\frac{4\\sin^{2}x\\cos^{4}x - \\cos^{4}x}{\\sin^{2}x\\cos^{8}x}$ ... simplifies to the above form\n4. Evaluate $[\\tan^{3}x + 2\\tan x + \\cot x]_{\\pi/6}^{\\pi/3}$:\nUpper limit $(\\pi/3)$ : $\\left(\\sqrt{3}\\right)^{3} + 2\\sqrt{3} + \\frac{1}{\\sqrt{3}} = 3\\sqrt{3} + 2\\sqrt{3} + \\frac{1}{\\sqrt{3}} = \\frac{16}{\\sqrt{3}}$\nLower limit $(\\pi/6)$ : $\\left(\\frac{1}{\\sqrt{3}}\\right)^{3} + 2\\left(\\frac{1}{\\sqrt{3}}\\right) + \\sqrt{3} = \\frac{1}{3\\sqrt{3}} + \\frac{2}{\\sqrt{3}} + \\sqrt{3} = \\frac{1 + 6 + 9}{3\\sqrt{3}} = \\frac{16}{3\\sqrt{3}}$\n5. $I = \\frac{16}{\\sqrt{3}} - \\frac{16}{3\\sqrt{3}} = \\frac{48 - 16}{3\\sqrt{3}} = \\frac{32}{3\\sqrt{3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{11}{\\sqrt{3}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{16}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{32}{3\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{64}{3\\sqrt{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A = \\{1, 2, 3, 4, 5, 6\\}$. The number of one-one functions $f : A \\to A$ such that $f(1) \\ge 3$, $f(3) \\le 4$ and $f(2) + f(3) = 5$, is ________.",
+   "correct_key": null,
+   "correct_value": 72,
+   "correct_keys": null,
+   "solution": "1. Since $f$ is a one-one function from $A$ to $A$, each element in the domain must map to a unique element in the codomain\n2. Given the condition $f(2) + f(3) = 5$, we identify the possible pairs $(f(2), f(3))$ from set $A$ such that $f(2) \\neq f(3)$:\nCase 1: $f(3) = 4$, $f(2) = 1$\nCase 2: $f(3) = 1$, $f(2) = 4$\nCase 3: $f(3) = 3$, $f(2) = 2$\nCase 4: $f(3) = 2$, $f(2) = 3$ Note that all these cases satisfy $f(3) \\le 4$\n3. Now, consider the constraint $f(1) \\ge 3$ for each case:\nCase 1: $\\{1, 4\\}$ are used. $f(1) \\in \\{3, 5, 6\\}$ (3 options)\nThe remaining 3 elements $\\{f(4), f(5), f(6)\\}$ can be arranged in the remaining 3 values in $3! = 6$ ways. Total $= 3 \\times 6 = 18$\nCase 2: $\\{1, 4\\}$ are used. $f(1) \\in \\{3, 5, 6\\}$ (3 options). Total $= 3 \\times 6 = 18$\nCase 3: $\\{2, 3\\}$ are used. $f(1) \\in \\{4, 5, 6\\}$ (3 options). Total $= 3 \\times 6 = 18$\nCase 4: $\\{2, 3\\}$ are used. $f(1) \\in \\{4, 5, 6\\}$ (3 options). Total $= 3 \\times 6 = 18$\n4. Total number of functions $= 18 + 18 + 18 + 18 = 72$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two players A and B play a series of games of badminton. The player, who wins 5 games first, wins the series. Assuming that no game ends in a draw, the number of ways, in which player A wins the series is ________.",
+   "correct_key": null,
+   "correct_value": 126,
+   "correct_keys": null,
+   "solution": "1. Player A wins the series if they win the 5th game of the series and have won exactly 4 of the preceding games\n2. The series can last for $n$ games, where $n$ ranges from 5 to 9 (because if 9 games are played, one player must have won at least 5)\n3. Number of ways for each $n$:\n$n = 5$ : A wins all 5 games. Ways $= \\binom{4}{4} = 1$\n$n = 6$ : A wins 4 of the first 5 games, and wins the 6th. Ways $= \\binom{5}{4} = 5$\n$n = 7$ : A wins 4 of the first 6 games, and wins the 7th. Ways $= \\binom{6}{4} = 15$\n$n = 8$ : A wins 4 of the first 7 games, and wins the 8th. Ways $= \\binom{7}{4} = 35$\n$n = 9$ : A wins 4 of the first 8 games, and wins the 9th. Ways $= \\binom{8}{4} = 70$\n4. Total ways $= 1 + 5 + 15 + 35 + 70 = 126$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the sum of the coefficients of $x^{7}$ and $x^{14}$ in the expansion of $\\left(\\frac{1}{x^{3}} - x^{4}\\right)^{n}$, $x \\neq 0$, is zero, then the value of $n$ is ________.",
+   "correct_key": null,
+   "correct_value": 21,
+   "correct_keys": null,
+   "solution": "1. The general term in the expansion is $T_{r+1} = \\binom{n}{r}(x^{-3})^{n-r}(-x^{4})^{r}$ :\n$T_{r+1} = \\binom{n}{r}(-1)^{r}x^{-3n+3r+4r} = \\binom{n}{r}(-1)^{r}x^{7r-3n}$\n2. For the coefficient of $x^{7}$ : $7r_1 - 3n = 7 \\Rightarrow r_1 = \\frac{3n + 7}{7}$\n3. For the coefficient of $x^{14}$ : $7r_2 - 3n = 14 \\Rightarrow r_2 = \\frac{3n + 14}{7} = r_1 + 1$\n4. Given the sum of coefficients is zero:\n$\\binom{n}{r_1}(-1)^{r_1} + \\binom{n}{r_1 + 1}(-1)^{r_1 + 1} = 0$\n$\\binom{n}{r_1}(-1)^{r_1} - \\binom{n}{r_1 + 1}(-1)^{r_1} = 0 \\Rightarrow \\binom{n}{r_1} = \\binom{n}{r_1 + 1}$\n5. Using the property $\\binom{n}{x} = \\binom{n}{y} \\Rightarrow x + y = n$ :\n$r_1 + (r_1 + 1) = n \\Rightarrow n = 2r_1 + 1$\n$n = 2\\left(\\frac{3n + 7}{7}\\right) + 1 \\Rightarrow 7n = 6n + 14 + 7 \\Rightarrow n = 21$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\frac{\\pi}{4} + \\sum_{p=1}^{11} \\tan^{-1}\\left(\\frac{2^{p-1}}{1 + 2^{2p-1}}\\right) = \\alpha$ then $\\tan\\alpha$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 2048,
+   "correct_keys": null,
+   "solution": "1. Observe the general term of the summation:\n$T_p = \\tan^{-1}\\left(\\frac{2^{p-1}}{1 + 2^{p} \\cdot 2^{p-1}}\\right) = \\tan^{-1}\\left(\\frac{2^{p} - 2^{p-1}}{1 + 2^{p} \\cdot 2^{p-1}}\\right)$\n2. This is a telescoping series using the identity $\\tan^{-1}x - \\tan^{-1}y = \\tan^{-1}\\left(\\frac{x - y}{1 + xy}\\right)$:\n$T_p = \\tan^{-1}(2^{p}) - \\tan^{-1}(2^{p-1})$\n3. Summing from $p = 1$ to $11$:\n$S = \\sum_{p=1}^{11} [\\tan^{-1}(2^{p}) - \\tan^{-1}(2^{p-1})] = \\tan^{-1}(2^{11}) - \\tan^{-1}(2^{0}) = \\tan^{-1}(2048) - \\frac{\\pi}{4}$\n4. Substitute $S$ into the expression for $\\alpha$:\n$\\alpha = \\frac{\\pi}{4} + \\left(\\tan^{-1}(2048) - \\frac{\\pi}{4}\\right) = \\tan^{-1}(2048)$\n5. Therefore, $\\tan\\alpha = 2048$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $x\\sin\\left(\\frac{y}{x}\\right)dy = \\left(y\\sin\\left(\\frac{y}{x}\\right) - x\\right)dx$, $y(1) = \\frac{\\pi}{2}$ and let $\\alpha = \\cos\\left(\\frac{y(e^{12})}{e^{12}}\\right)$. Then the number of integral value of $p$, for which the equation $x^{2} + y^{2} - 2px + 2py + a + 2 = 0$ represents a circle of radius $r \\le 6$, is ________.",
+   "correct_key": null,
+   "correct_value": 11,
+   "correct_keys": null,
+   "solution": "$\\sin\\left(\\frac{y}{x}\\right)\\frac{dy}{dx} = \\frac{y}{x}\\sin\\left(\\frac{y}{x}\\right) - 1$\n$y = vx$\n$\\frac{dy}{dx} = v + x\\left(\\frac{dv}{dx}\\right)$\n$\\sin(v)\\left(v + x\\frac{dv}{dx}\\right) = v\\sin(v) - 1$\n$x\\sin(v)\\frac{dv}{dx} = -1$\n$\\int \\sin(v)\\,dv = -\\int \\frac{dx}{x}$\n$-\\cos(v) = -\\ln x + c$\n$-\\cos\\left(\\frac{y}{x}\\right) = -\\ln x + c$\n$y(1) = \\frac{\\pi}{2}$, $c = 0$\n$\\cos\\left(\\frac{y}{x}\\right) = \\ln x$\n$\\alpha = \\cos\\left(\\frac{y(e^{12})}{e^{12}}\\right) = 12$\n$x^{2} + y^{2} - 2px + 2py + 14 = 0$\n$\\sqrt{p^{2} + p^{2} - 14} \\le 6$\n$2p^{2} - 14 \\le 36$\n$p^{2} - 7 \\le 18$\n$p^{2} \\le 25$\n$-5 \\le p \\le 5$\nNo. of integral value of $p$ is (11)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

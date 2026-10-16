@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2026,
+  "set_label": "6 Apr · Shift 1",
+  "title": "JEE Main 2026 · Mathematics · 6 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "source_file_id": "1QflxBhMaka38t5VzA9_NHTbuQ97blmMe"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $[.]$ denote the greatest integer function. If the domain of the function $f(x) = \\sin^{-1}\\left(\\frac{x + [x]}{3}\\right)$ is $[\\alpha, \\beta)$, then $\\alpha^{2} + \\beta^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For the function $f(x) = \\sin^{-1}\\left(\\frac{x + [x]}{3}\\right)$ to be defined, the argument of the $\\sin^{-1}$ function must lie in the interval $[-1, 1]$.\n$$-1 \\le \\frac{x + [x]}{3} \\le 1$$\nMultiplying by 3:\n$$-3 \\le x + [x] \\le 3$$\nLet $g(x) = x + [x]$. We need to find the values of x such that $-3 \\le g(x) \\le 3$. Since $g(x)$ is a non-decreasing function, we can check the boundaries :\n1. Lower Bound ($g(x) \\ge -3$) :\nIf $x = -1$, $g(-1) = -1 + [-1] = -1 - 1 = -2 \\ge -3$ (True).\nIf $x = -1.5$, $g(-1.5) = -1.5 + [-1.5] = -1.5 - 2 = -3.5 < -3$ (False).\nAt the jump point $x = -1$, the function value jumps from below $-3$ to $-2$. Thus, the minimum value is $\\alpha = -1$.\n2. Upper Bound ($g(x) \\le 3$):\nIf $x = 2$, $g(2) = 2 + [2] = 2 + 2 = 4 > 3$ (False).\nIf x is slightly less than 2 (e.g., $x = 1.99$), $g(1.99) = 1.99 + [1.99] = 1.99 + 1 = 2.99 \\le 3$ (True).\nAs $x \\to 2^{-}$, $g(x) \\to 3$. Thus, the maximum value is $\\beta = 2$ (exclusive).\nThe domain is $[-1, 2)$, meaning $\\alpha = -1$ and $\\beta = 2$.\nCalculations:\n$$\\alpha^{2} + \\beta^{2} = (-1)^{2} + 2^{2} = 1 + 4 = 5$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$10$"
+    },
+    {
+     "key": "D",
+     "text": "$13$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let one root of the quadratic equation in x : $(k^{2} - 15k + 27)x^{2} + 9(k - 1)x + 18 = 0$ be twice the other. Then the length of the latus rectum of the parabola $y^{2} = 6kx$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let the roots of the quadratic equation be m and 2m.\nFrom the properties of quadratic equations:\n1. Sum of roots :\n$$m + 2m = 3m = \\frac{-9(k - 1)}{k^{2} - 15k + 27} \\Rightarrow m = \\frac{-3(k - 1)}{k^{2} - 15k + 27}$$\n2. Product of roots :\n$$m \\cdot 2m = 2m^{2} = \\frac{18}{k^{2} - 15k + 27} \\Rightarrow m^{2} = \\frac{9}{k^{2} - 15k + 27}$$\nSubstituting the value of m from the first equation into the second :\n$$\\left(\\frac{-3(k - 1)}{k^{2} - 15k + 27}\\right)^{2} = \\frac{9}{k^{2} - 15k + 27}$$\n$$\\frac{9(k - 1)^{2}}{(k^{2} - 15k + 27)^{2}} = \\frac{9}{k^{2} - 15k + 27}$$\nAssuming $k^{2} - 15k + 27 \\ne 0$ :\n$$(k - 1)^{2} = k^{2} - 15k + 27$$\n$$k^{2} - 2k + 1 = k^{2} - 15k + 27$$\n$$13k = 26 \\Rightarrow k = 2$$\nThe parabola is $y^{2} = 6(2)x \\Rightarrow y^{2} = 12x$.\nThe length of the latus rectum for a parabola $y^{2} = 4ax$ is $4a$. Here, $4a = 12$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $e_{1}$ and $e_{2}$ be two distinct roots of the equation $x^{2} - ax + 2 = 0$. Let the sets $\\{a \\in R : e_{1}$ and $e_{2}$ are the eccentricities of hyperbolas$\\} = (\\alpha, \\beta)$, and $\\{a \\in R : e_{1}$ and $e_{2}$ are the eccentricities of an ellipse and a hyperbola, respectively$\\} = (\\gamma, \\infty)$. Then $\\alpha^{2} + \\beta^{2} + \\gamma^{2}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given equation: $x^{2} - ax + 2 = 0$. Roots are $e_{1}, e_{2}$.\nSum of roots $e_{1} + e_{2} = a$; Product of roots $e_{1}e_{2} = 2$.\nSince roots must be distinct and real, $D > 0$\n$$\\Rightarrow a^{2} - 8 > 0 \\Rightarrow a > 2\\sqrt{2}\\ (\\text{as } e > 0).$$\nCase 1: Both are hyperbolas ($e_{1} > 1, e_{2} > 1$)\n$$e_{1} + e_{2} = a > 2$$\n$$(e_{1} - 1)(e_{2} - 1) > 0 \\Rightarrow e_{1}e_{2} - (e_{1} + e_{2}) + 1 > 0$$\n$$\\Rightarrow 2 - a + 1 > 0 \\Rightarrow a < 3.$$\nCombining with $D > 0$, we get $a \\in \\left(2\\sqrt{2}, 3\\right)$.\nThus, $\\alpha = 2\\sqrt{2}$ and $\\beta = 3$.\nCase 2: One ellipse ($0 < e_{1} < 1$) and one hyperbola ($e_{2} > 1$)\nSince $e_{1}e_{2} = 2$ and $e_{1} < 1$, it follows that $e_{2} = 2/e_{1} > 2$.\nThe condition for one root to be in $(0, 1)$ and the other to be in $(2, \\infty)$ for $f(x) = x^{2} - ax + 2$ is $f(1) < 0$.\n$$1 - a + 2 < 0 \\Rightarrow a > 3.$$\nThus, $\\gamma = 3$.\nCalculation :\n$$\\alpha^{2} + \\beta^{2} + \\gamma^{2} = \\left(2\\sqrt{2}\\right)^{2} + 3^{2} + 3^{2} = 8 + 9 + 9 = 26$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$18$"
+    },
+    {
+     "key": "B",
+     "text": "$22$"
+    },
+    {
+     "key": "C",
+     "text": "$26$"
+    },
+    {
+     "key": "D",
+     "text": "$34$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the set of all values of $k \\in R$ such that the equation $z(\\bar{z} + 2 + i) + k(2 + 3i) = 0$, $z \\in C$, has at least one solution, be the interval $[\\alpha, \\beta]$. Then $9(\\alpha + \\beta)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $z = x + iy$. Then $\\bar{z} = x - iy$.\nThe equation is : $z\\bar{z} + z(2 + i) + k(2 + 3i) = 0$\n$$(x^{2} + y^{2}) + (x + iy)(2 + i) + 2k + 3ki = 0$$\n$$(x^{2} + y^{2} + 2x - y + 2k) + i(x + 2y + 3k) = 0$$\nEquating real and imaginary parts to zero :\n1. $x + 2y + 3k = 0 \\Rightarrow x = -2y - 3k$\n2. $x^{2} + y^{2} + 2x - y + 2k = 0$\nSubstitute x into the second equation :\n$$(-2y - 3k)^{2} + y^{2} + 2(-2y - 3k) - y + 2k = 0$$\n$$(4y^{2} + 9k^{2} + 12ky) + y^{2} - 4y - 6k - y + 2k = 0$$\n$$5y^{2} + y(12k - 5) + (9k^{2} - 4k) = 0$$\nFor at least one real solution for y, the discriminant $D \\ge 0$ :\n$$(12k - 5)^{2} - 4(5)(9k^{2} - 4k) \\ge 0$$\n$$144k^{2} + 25 - 120k - 180k^{2} + 80k \\ge 0$$\n$$-36k^{2} - 40k + 25 \\ge 0 \\Rightarrow 36k^{2} + 40k - 25 \\le 0$$\nThe roots of $36k^{2} + 40k - 25 = 0$ are :\n$$k = \\frac{-40 \\pm \\sqrt{1600 - 4(36)(-25)}}{72} = \\frac{-40 \\pm \\sqrt{1600 + 3600}}{72}$$\n$$= \\frac{-40 \\pm 20\\sqrt{13}}{72} = \\frac{-10 \\pm 5\\sqrt{13}}{18}$$\nThe interval is $[\\alpha, \\beta]$ where $a = \\frac{-10 - 5\\sqrt{13}}{18}$ and $\\beta = \\frac{-10 + 5\\sqrt{13}}{18}$.\n$$a + \\beta = \\frac{-20}{18} = -\\frac{10}{9}$$\n$$9(a + \\beta) = 9\\left(-\\frac{10}{9}\\right) = -10$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-10$"
+    },
+    {
+     "key": "B",
+     "text": "$-8$"
+    },
+    {
+     "key": "C",
+     "text": "$10\\sqrt{13}$"
+    },
+    {
+     "key": "D",
+     "text": "$8\\sqrt{13}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $1^{3} - 2^{3} + 3^{3} - \\ldots\\ldots\\ldots + 15^{3}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We need to find the sum $S = 1^{3} - 2^{3} + 3^{3} - 4^{3} + \\ldots\\ldots + 15^{3}$.\nThis can be written as :\n$$S = (1^{3} + 2^{3} + 3^{3} + \\ldots\\ldots + 15^{3}) - 2(2^{3} + 4^{3} + 6^{3} + \\ldots\\ldots + 14^{3})$$\n$$S = \\sum_{r=1}^{15} r^{3} - 2 \\cdot 2^{3}\\sum_{r=1}^{7} r^{3}$$\n$$S = \\sum_{r=1}^{15} r^{3} - 16\\sum_{r=1}^{7} r^{3}$$\nUsing the formula $\\sum n^{3} = \\left(\\frac{n(n + 1)}{2}\\right)^{2}$ :\n$$\\sum_{r=1}^{15} r^{3} = \\left(\\frac{15 \\times 16}{2}\\right)^{2} = (120)^{2} = 14400$$\n$$\\sum_{r=1}^{7} r^{3} = \\left(\\frac{7 \\times 8}{2}\\right)^{2} = (28)^{2} = 784$$\nNow, calculate S :\n$$S = 14400 - 16(784)$$\n$$S = 14400 - 12544 = 1856$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1706$"
+    },
+    {
+     "key": "B",
+     "text": "$1856$"
+    },
+    {
+     "key": "C",
+     "text": "$1982$"
+    },
+    {
+     "key": "D",
+     "text": "$2403$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of the first ten terms of an A.P. is 160 and the sum of the first two terms of a G.P. is 8. If the first term of the A.P. is equal to the common ratio of the G.P. and the first term of the G.P. is equal to common difference of the A.P., then the sum of all possible values of the first term of the G.P. is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let the A.P. have first term a and common difference d. Let the G.P. have first term A and common ratio r. From the problem :\n1. Sum of first 10 terms of A.P. : $S_{10} = \\frac{10}{2}[2a + 9d] = 160 \\Rightarrow 2a + 9d = 32$.\n2. Sum of first 2 terms of G.P.: $A + Ar = 8 \\Rightarrow A(1 + r) = 8$.\n3. Conditions : $a = r$ and $A = d$.\nSubstitute $a = r$ and $A = d$ into the equations :\n1. $2r + 9d = 32 \\Rightarrow 2r = 32 - 9d \\Rightarrow r = \\frac{32 - 9d}{2}$.\n2. $d(1 + r) = 8$.\nSubstitute r into the second equation:\n$$d\\left(1 + \\frac{32 - 9d}{2}\\right) = 8$$\n$$d\\left(\\frac{2 + 32 - 9d}{2}\\right) = 8$$\n$$d(34 - 9d) = 16 \\Rightarrow 34d - 9d^{2} = 16$$\n$$9d^{2} - 34d + 16 = 0$$\nThe first term of the G.P. is $A = d$. The possible values of d are the roots of the quadratic equation $9d^{2} - 34d + 16 = 0$.\nThe sum of all possible values of d (sum of roots) is :\n$$\\text{Sum} = -\\frac{-34}{9} = \\frac{34}{9}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{34}{9}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{34}{13}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{32}{9}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{32}{13}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of 4-letter words, with or without meaning, each consisting of two vowels and two consonants that can be formed from the letters of the word INCONSEQUENTIAL, without repeating any letter, is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "First, identify the unique vowels and consonants in \"INCONSEQUENTIAL\".\nVowels: I, O, E, U, A. (5 unique types).\nConsonants: N, C, S, Q, T, L. (6 unique types).\nSince we must form a word \"without repeating any letter\", we choose from the distinct types available.\n1. Select 2 vowels from 5 : $\\binom{5}{2} = \\frac{5 \\times 4}{2} = 10$.\n2. Select 2 consonants from 6 : $\\binom{6}{2} = \\frac{6 \\times 5}{2} = 15$.\n3. Arrange the 4 chosen letters: $4! = 24$.\nTotal number of words :\n$$\\text{Total} = 10 \\times 15 \\times 24 = 150 \\times 24 = 3600$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2670$"
+    },
+    {
+     "key": "B",
+     "text": "$2840$"
+    },
+    {
+     "key": "C",
+     "text": "$2920$"
+    },
+    {
+     "key": "D",
+     "text": "$3600$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the coefficients of the middle terms in the binomial expansions of $(1 + \\alpha x)^{26}$ and $(1 - \\alpha x)^{28}$, $\\alpha \\ne 0$, are equal, then the value of $\\alpha$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For $(1 + ax)^{26}$, $n = 26$ (even). The middle term is $T_{\\frac{26}{2}+1} = T_{14}$.\n$$\\text{Coefficient of } T_{14} = \\binom{26}{13}a^{13}.$$\nFor $(1 - ax)^{28}$, $n = 28$ (even). The middle term is $T_{\\frac{28}{2}+1} = T_{15}$.\n$$\\text{Coefficient of } T_{15} = \\binom{28}{14}(-a)^{14} = \\binom{28}{14}a^{14}.$$\nAccording to the question :\n$$\\binom{26}{13}a^{13} = \\binom{28}{14}a^{14}$$\n$$a = \\frac{\\binom{26}{13}}{\\binom{28}{14}}$$\n$$a = \\frac{26!}{13! \\cdot 13!} \\times \\frac{14! \\cdot 14!}{28!}$$\n$$a = \\frac{26!}{28!} \\times \\frac{14 \\cdot 13!}{13!} \\times \\frac{14 \\cdot 13!}{13!}$$\n$$a = \\frac{1}{28 \\times 27} \\times 14 \\times 14 = \\frac{196}{756}$$\n$$a = \\frac{14 \\times 14}{2 \\times 14 \\times 27} = \\frac{14}{2 \\times 27} = \\frac{7}{27}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{14}{13}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{27}{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{27}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A data consists of 20 observations $x_{1}, x_{2}, \\ldots\\ldots, x_{20}$. If $\\sum_{i=1}^{20}(x_{i} + 5)^{2} = 2500$ and $\\sum_{i=1}^{20}(x_{i} - 5)^{2} = 100$, then the ratio of mean to standard deviation of this data is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Expand the given equations:\n1. $\\sum(x_{i}^{2} + 10x_{i} + 25) = 2500 \\Rightarrow \\sum x_{i}^{2} + 10\\sum x_{i} + 500 = 2500$\n$$\\Rightarrow \\sum x_{i}^{2} + 10\\sum x_{i} = 2000.$$\n2. $\\sum(x_{i}^{2} - 10x_{i} + 25) = 100 \\Rightarrow \\sum x_{i}^{2} - 10\\sum x_{i} + 500 = 100$\n$$\\Rightarrow \\sum x_{i}^{2} - 10\\sum x_{i} = -400.$$\nSubtract (2) from (1) :\n$$20\\sum x_{i} = 2400 \\Rightarrow \\sum x_{i} = 120$$\n$$\\text{Mean } (\\bar{x}) = \\frac{\\sum x_{i}}{20} = \\frac{120}{20} = 6.$$\nAdd (1) and (2) :\n$$2\\sum x_{i}^{2} = 1600 \\Rightarrow \\sum x_{i}^{2} = 800$$\n$$\\text{Variance } (\\sigma^{2}) = \\frac{\\sum x_{i}^{2}}{n} - (\\bar{x})^{2} = \\frac{800}{20} - (6)^{2} = 40 - 36 = 4.$$\n$$\\text{Standard Deviation } (\\sigma) = \\sqrt{4} = 2.$$\nRatio of mean to standard deviation :\n$$\\frac{\\bar{x}}{\\sigma} = \\frac{6}{2} = \\frac{3}{1}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$3 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$3 : 2$"
+    },
+    {
+     "key": "D",
+     "text": "$4 : 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A bag contains $(N + 1)$ coins–N fair coins, and one coin with 'Head' on both sides. A coin is selected at random and tossed. If the probability of getting 'Head' is $\\frac{9}{16}$, then N is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total coins $= N + 1$. Let $E_{1}$ be the event of selecting a fair coin, and $E_{2}$ be the event of selecting the two-headed coin. $P(E_{1}) = \\frac{N}{N + 1}$ and $P(E_{2}) = \\frac{1}{N + 1}$.\nLet H be the event of getting a 'Head'. $P(H \\mid E_{1}) = \\frac{1}{2}$ (fair coin). $P(H \\mid E_{2}) = 1$ (two-headed coin).\nUsing the Law of Total Probability :\n$$P(H) = P(E_{1})P(H \\mid E_{1}) + P(E_{2})P(H \\mid E_{2})$$\n$$\\frac{9}{16} = \\left(\\frac{N}{N + 1}\\right)\\left(\\frac{1}{2}\\right) + \\left(\\frac{1}{N + 1}\\right)(1)$$\n$$\\frac{9}{16} = \\frac{N}{2(N + 1)} + \\frac{2}{2(N + 1)} = \\frac{N + 2}{2(N + 1)}$$\n$$18(N + 1) = 16(N + 2)$$\n$$18N + 18 = 16N + 32$$\n$$2N = 14 \\Rightarrow N = 7$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the eccentricity e of the hyperbola $\\frac{x^{2}}{a^{2}} - \\frac{y^{2}}{b^{2}} = 1$ passing through $(6, 4\\sqrt{3})$ satisfies $15(e^{2} + 1) = 34e$, then the length of the latus rectum of the hyperbola $\\frac{x^{2}}{b^{2}} - \\frac{y^{2}}{2(a^{2} + 1)} = 1$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "First, we find the eccentricity e from the given equation $15e^{2} - 34e + 15 = 0$ :\n$$e = \\frac{34 \\pm \\sqrt{34^{2} - 4(15)(15)}}{30} = \\frac{34 \\pm \\sqrt{1156 - 900}}{30} = \\frac{34 \\pm 16}{30}$$\nThe values are $e = \\frac{50}{30} = \\frac{5}{3}$ or $e = \\frac{18}{30} = \\frac{3}{5}$. Since it is a hyperbola, $e > 1$, so $e = \\frac{5}{3}$.\nThe relation between a, b, and e is $b^{2} = a^{2}(e^{2} - 1)$ :\n$$b^{2} = a^{2}\\left(\\frac{25}{9} - 1\\right) = \\frac{16a^{2}}{9} \\Rightarrow \\frac{1}{b^{2}} = \\frac{9}{16a^{2}}$$\nThe hyperbola passes through $\\left(6, 4\\sqrt{3}\\right)$ :\n$$\\frac{36}{a^{2}} - \\frac{48}{b^{2}} = 1 \\Rightarrow \\frac{36}{a^{2}} - 48\\left(\\frac{9}{16a^{2}}\\right) = 1 \\Rightarrow \\frac{36 - 27}{a^{2}} = 1 \\Rightarrow a^{2} = 9$$\nThus, $b^{2} = \\frac{16}{9}(9) = 16$.\nThe second hyperbola equation is $\\frac{x^{2}}{b^{2}} - \\frac{y^{2}}{2(a^{2} + 1)} = 1$:\n$$\\frac{x^{2}}{16} - \\frac{y^{2}}{2(9 + 1)} = 1 \\Rightarrow \\frac{x^{2}}{16} - \\frac{y^{2}}{20} = 1$$\n$$\\text{Length of the latus rectum } LR = \\frac{2 \\cdot (\\text{conjugate axis})^{2}}{\\text{transverse axis}} = \\frac{2 \\cdot 20}{\\sqrt{16}} = \\frac{40}{4} = 10.$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$20$"
+    },
+    {
+     "key": "C",
+     "text": "$25$"
+    },
+    {
+     "key": "D",
+     "text": "$30$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let chord PQ of length $3\\sqrt{13}$ of the parabola $y^{2} = 12x$ be such that the ordinates of points P and Q are in the ratio $1 : 2$. If the chord PQ subtends an angle $\\alpha$ at the focus of the parabola, then $\\sin\\alpha$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For $y^{2} = 12x$, $a = 3$. Let $P(at_{1}^{2}, 2at_{1})$ and $Q(at_{2}^{2}, 2at_{2})$.\nGiven $y_{Q} = 2y_{P} \\Rightarrow 6t_{2} = 2(6t_{1}) \\Rightarrow t_{2} = 2t_{1}$.\nThe length $PQ = \\sqrt{(3t_{2}^{2} - 3t_{1}^{2})^{2} + (6t_{2} - 6t_{1})^{2}} = 3\\sqrt{13}$ :\n$$[3(4t_{1}^{2} - t_{1}^{2})]^{2} + [6(2t_{1} - t_{1})]^{2} = \\left(3\\sqrt{13}\\right)^{2} \\Rightarrow (9t_{1}^{2})^{2} + (6t_{1})^{2} = 117$$\n$$81t_{1}^{4} + 36t_{1}^{2} - 117 = 0 \\Rightarrow 9t_{1}^{4} + 4t_{1}^{2} - 13 = 0$$\n$$\\Rightarrow (9t_{1}^{2} + 13)(t_{1}^{2} - 1) = 0$$\nSince $t_{1}^{2} \\ge 0$, $t_{1}^{2} = 1 \\Rightarrow t_{1} = 1$ and $t_{2} = 2$.\nPoints are $P(3, 6)$ and $Q(12, 12)$. Focus S is $(3, 0)$.\nVectors : $SP = (0, 6)$ and $SQ = (9, 12)$.\n$$\\cos\\alpha = \\frac{\\overrightarrow{SP} \\cdot \\overrightarrow{SQ}}{|\\overrightarrow{SP}||\\overrightarrow{SQ}|} = \\frac{0(9) + 6(12)}{6 \\cdot \\sqrt{9^{2} + 12^{2}}} = \\frac{72}{6 \\cdot 15} = \\frac{4}{5}$$\n$$\\sin\\alpha = \\sqrt{1 - \\left(\\frac{4}{5}\\right)^{2}} = \\frac{3}{5}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{13}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{12}{13}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $0 < \\alpha < 1, \\beta = \\frac{1}{3\\alpha}$ and $\\tan^{-1}(1 - \\alpha) + \\tan^{-1}(1 - \\beta) = \\frac{\\pi}{4}$. Then $6(\\alpha + \\beta)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Using the identity $\\tan^{-1}x + \\tan^{-1}y = \\tan^{-1}\\frac{x + y}{1 - xy}$ :\n$$\\frac{(1 - \\alpha) + (1 - \\beta)}{1 - (1 - \\alpha)(1 - \\beta)} = \\tan\\left(\\frac{\\pi}{4}\\right) = 1$$\n$$\\frac{2 - (\\alpha + \\beta)}{1 - (1 - \\alpha - \\beta + \\alpha\\beta)} = 1 \\Rightarrow \\frac{2 - (\\alpha + \\beta)}{\\alpha + \\beta - \\alpha\\beta} = 1$$\n$$2 - \\alpha - \\beta = \\alpha + \\beta - \\alpha\\beta \\Rightarrow 2(\\alpha + \\beta) - \\alpha\\beta = 2$$\nSubstitute $\\beta = \\frac{1}{3\\alpha}$:\n$$2\\left(\\alpha + \\frac{1}{3\\alpha}\\right) - \\frac{1}{3} = 2 \\Rightarrow 2\\alpha + \\frac{2}{3\\alpha} = \\frac{7}{3}$$\nMultiplying by $3\\alpha$ :\n$$6\\alpha^{2} + 2 = 7\\alpha \\Rightarrow 6\\alpha^{2} - 7\\alpha + 2 = 0$$\n$$\\Rightarrow (2\\alpha - 1)(3\\alpha - 2) = 0$$\nThe roots are $\\alpha = \\frac{1}{2}$ or $\\alpha = \\frac{2}{3}$.\nIf $\\alpha = \\frac{1}{2}, \\beta = \\frac{2}{3}$. If $\\alpha = \\frac{2}{3}, \\beta = \\frac{1}{2}$.\nIn both cases, $\\alpha + \\beta = \\frac{1}{2} + \\frac{2}{3} = \\frac{7}{6}$.\n$$6(\\alpha + \\beta) = 6 \\cdot \\frac{7}{6} = 7$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\{\\theta \\in (-2\\pi, 2\\pi) : \\cos\\theta + 1 = \\sqrt{3}\\sin\\theta\\}$. Then $\\sum_{\\theta \\in S}\\theta$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The equation is $\\sqrt{3}\\sin\\theta - \\cos\\theta = 1$. Dividing by 2 :\n$$\\frac{\\sqrt{3}}{2}\\sin\\theta - \\frac{1}{2}\\cos\\theta = \\frac{1}{2} \\Rightarrow \\sin\\left(\\theta - \\frac{\\pi}{6}\\right) = \\frac{1}{2}$$\nFor $\\theta \\in (-2\\pi, 2\\pi), \\theta - \\frac{\\pi}{6} \\in \\left(-\\frac{13\\pi}{6}, \\frac{11\\pi}{6}\\right)$:\n1. $\\theta - \\frac{\\pi}{6} = \\frac{\\pi}{6} \\Rightarrow \\theta = \\frac{\\pi}{3}$\n2. $\\theta - \\frac{\\pi}{6} = \\frac{5\\pi}{6} \\Rightarrow \\theta = \\pi$\n3. $\\theta - \\frac{\\pi}{6} = -\\frac{7\\pi}{6} \\Rightarrow \\theta = -\\pi$\n4. $\\theta - \\frac{\\pi}{6} = -\\frac{11\\pi}{6} \\Rightarrow \\theta = -\\frac{10\\pi}{6} = -\\frac{5\\pi}{3}$\nSum of solutions : $\\frac{\\pi}{3} + \\pi - \\pi - \\frac{5\\pi}{3} = -\\frac{4\\pi}{3}$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{2\\pi}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{4\\pi}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2\\pi}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4\\pi}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the image of the point $P(1, 6, a)$ in the line $L : \\frac{x}{1} = \\frac{y - 1}{2} = \\frac{z - a + 1}{b}$, $b > 0$ be $Q\\left(\\frac{a}{3}, 0, a + c\\right)$. If $S(\\alpha, \\beta, \\gamma)$, $\\alpha > 0$ is the point on L such that the distance of S from the foot of perpendicular from the point P on L is $2\\sqrt{14}$, then $\\alpha + \\beta + \\gamma$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The midpoint M of PQ lies on L. $M = \\left(\\frac{1 + a/3}{2}, \\frac{6 + 0}{2}, \\frac{2a + c}{2}\\right) = \\left(\\frac{3 + a}{6}, 3, a + \\frac{c}{2}\\right)$.\nSince M is on L, $\\frac{3 + a}{6} = \\frac{3 - 1}{2} = 1 \\Rightarrow a = 3$.\nM is $(1, 3, 3 + c/2)$. L is $\\frac{x}{1} = \\frac{y - 1}{2} = \\frac{z - 2}{b}$.\nSubstituting M coordinates into L : $\\frac{1}{1} = \\frac{3 - 1}{2} = \\frac{3 + c/2 - 2}{b} \\Rightarrow 1 = \\frac{1 + c/2}{b} \\Rightarrow b = 1 + \\frac{c}{2}$.\n$PQ \\perp L$ : direction vector of PQ is $(1 - 1, -6, c) = (0, -6, c)$. Direction of L is $(1, 2, b)$.\n$$0(1) - 6(2) + bc = 0 \\Rightarrow bc = 12.$$\n$$(1 + c/2)c = 12 \\Rightarrow c^{2} + 2c - 24 = 0 \\Rightarrow c = 4 (b = 3).$$\nThe foot of the perpendicular F is $M(1, 3, 5)$.\nS on L is $(\\lambda, 2\\lambda + 1, 3\\lambda + 2)$. Distance $SF = 2\\sqrt{14}$ :\n$$(\\lambda - 1)^{2} + (2\\lambda - 2)^{2} + (3\\lambda - 3)^{2} = \\left(2\\sqrt{14}\\right)^{2} \\Rightarrow 14(\\lambda - 1)^{2} = 56.$$\n$$(\\lambda - 1)^{2} = 4 \\Rightarrow \\lambda = 3 \\text{ or } -1.$$\nIf $\\lambda = 3$, $\\alpha = 3\\ (> 0)$, so S is $(3, 7, 11)$.\n$$\\alpha + \\beta + \\gamma = 3 + 7 + 11 = 21.$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$19$"
+    },
+    {
+     "key": "B",
+     "text": "$20$"
+    },
+    {
+     "key": "C",
+     "text": "$21$"
+    },
+    {
+     "key": "D",
+     "text": "$22$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a line L be perpendicular to both the lines $L_{1} : \\frac{x + 1}{3} = \\frac{y + 3}{5} = \\frac{z + 5}{7}$ and $L_{2} : \\frac{x - 2}{1} = \\frac{y - 4}{4} = \\frac{z - 6}{7}$. If $\\theta$ is the acute angle between the lines L and $L_{3} : \\frac{x - \\frac{8}{7}}{2} = \\frac{y - \\frac{4}{7}}{1} = \\frac{z}{2}$ then $\\tan\\theta$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The direction ratios of $L_{1}$ and $L_{2}$ are $v_{1} = (3, 5, 7)$ and $v_{2} = (1, 4, 7)$. Since L is perpendicular to both, its direction vector v is given by their cross product :\n$$\\vec{v} = \\vec{v}_{1} \\times \\vec{v}_{2} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 3 & 5 & 7 \\\\ 1 & 4 & 7 \\end{vmatrix}$$\n$$\\vec{v} = \\hat{i}(35 - 28) - \\hat{j}(21 - 7) + \\hat{k}(12 - 5) = 7\\hat{i} - 14\\hat{j} + 7\\hat{k}$$\nSimplifying the direction ratios of L: $(1, -2, 1)$.\nThe direction ratios of $L_{3}$ are $v_{3} = (2, 1, 2)$. The angle $\\theta$ between L and $L_{3}$ is given by:\n$$\\cos\\theta = \\frac{|\\vec{v} \\cdot \\vec{v}_{3}|}{|\\vec{v}||\\vec{v}_{3}|} = \\frac{|(1)(2) + (-2)(1) + (1)(2)|}{\\sqrt{1^{2} + (-2)^{2} + 1^{2}}\\sqrt{2^{2} + 1^{2} + 2^{2}}}$$\n$$\\cos\\theta = \\frac{|2 - 2 + 2|}{\\sqrt{6} \\cdot 3} = \\frac{2}{3\\sqrt{6}}$$\nTo find $\\tan\\theta$, we use the identity $\\tan^{2}\\theta = \\sec^{2}\\theta - 1$ :\n$$\\sec\\theta = \\frac{3\\sqrt{6}}{2} \\Rightarrow \\sec^{2}\\theta = \\frac{9 \\cdot 6}{4} = \\frac{54}{4} = \\frac{27}{2}$$\n$$\\tan^{2}\\theta = \\frac{27}{2} - 1 = \\frac{25}{2}$$\n$$\\tan\\theta = \\frac{5}{\\sqrt{2}} = \\frac{5\\sqrt{2}}{2} = \\frac{5}{2}\\sqrt{2}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}\\sqrt{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5}{2}\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{3}\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{3}\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $\\lim_{x \\to 0}\\left(\\frac{x^{2}\\sin^{2}x}{x^{2} - \\sin^{2}x}\\right)$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We use the Taylor series expansion for $\\sin x$ near $x = 0$ :\n$$\\sin x = x - \\frac{x^{3}}{6} + O(x^{5})$$\nThen, $\\sin^{2}x = \\left(x - \\frac{x^{3}}{6}\\right)^{2} \\approx x^{2} - \\frac{x^{4}}{3}$.\nSubstitute this into the limit expression :\n$$\\lim_{x \\to 0}\\frac{x^{2}\\left(x^{2} - \\frac{x^{4}}{3}\\right)}{x^{2} - \\left(x^{2} - \\frac{x^{4}}{3}\\right)} = \\lim_{x \\to 0}\\frac{x^{4} - \\frac{x^{6}}{3}}{\\frac{x^{4}}{3}}$$\nDivide numerator and denominator by $x^{4}$ :\n$$\\lim_{x \\to 0}\\frac{1 - \\frac{x^{2}}{3}}{\\frac{1}{3}} = \\frac{1}{1/3} = 3$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of the integral $\\int_{-\\frac{\\pi}{4}}^{\\frac{\\pi}{4}}\\left(\\frac{32\\cos^{4}x}{1 + e^{\\sin x}}\\right)dx$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int_{-\\pi/4}^{\\pi/4}\\frac{32\\cos^{4}x}{1 + e^{\\sin x}}dx$. Using the property $\\int_{-a}^{a}f(x)dx = \\int_{0}^{a}[f(x) + f(-x)]dx$ :\n$$I = \\int_{0}^{\\pi/4}\\left(\\frac{32\\cos^{4}x}{1 + e^{\\sin x}} + \\frac{32\\cos^{4}(-x)}{1 + e^{\\sin(-x)}}\\right)dx$$\n$$I = \\int_{0}^{\\pi/4}32\\cos^{4}x\\left(\\frac{1}{1 + e^{\\sin x}} + \\frac{1}{1 + e^{-\\sin x}}\\right)dx$$\nSince $\\frac{1}{1 + e^{k}} + \\frac{1}{1 + e^{-k}} = 1$:\n$$I = \\int_{0}^{\\pi/4}32\\cos^{4}x\\,dx = 32\\int_{0}^{\\pi/4}\\left(\\frac{1 + \\cos 2x}{2}\\right)^{2}dx$$\n$$I = 8\\int_{0}^{\\pi/4}(1 + 2\\cos 2x + \\cos^{2}2x)dx = 8\\int_{0}^{\\pi/4}\\left(1 + 2\\cos 2x + \\frac{1 + \\cos 4x}{2}\\right)dx$$\n$$I = 4\\int_{0}^{\\pi/4}(3 + 4\\cos 2x + \\cos 4x)dx$$\n$$I = 4\\left[3x + 2\\sin 2x + \\frac{\\sin 4x}{4}\\right]_{0}^{\\pi/4} = 4\\left[\\frac{3\\pi}{4} + 2\\sin(\\pi/2) + \\frac{\\sin\\pi}{4}\\right]$$\n$$I = 4\\left[\\frac{3\\pi}{4} + 2\\right] = 3\\pi + 8$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\pi + 2$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\pi + 8$"
+    },
+    {
+     "key": "C",
+     "text": "$3\\pi + 4$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\pi + 3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region $\\{(x, y) : 0 \\le y \\le 6 - x, y^{2} \\ge 4x - 3, x \\ge 0\\}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The region is bounded by $x = 0$, $y = 0$, the line $x = 6 - y$, and the parabola $x = \\frac{y^{2} + 3}{4}$.\nThe inequality $y^{2} \\ge 4x - 3$ implies $x \\le \\frac{y^{2} + 3}{4}$.\nFind the intersection of $x = 6 - y$ and $x = \\frac{y^{2} + 3}{4}$ :\n$$6 - y = \\frac{y^{2} + 3}{4} \\Rightarrow 24 - 4y = y^{2} + 3$$\n$$\\Rightarrow y^{2} + 4y - 21 = 0 \\Rightarrow (y + 7)(y - 3) = 0$$\nFor $y \\ge 0$, the intersection is at $y = 3$.\nWe integrate with respect to y :\n$$\\text{Area} = \\int_{0}^{3}\\left(\\frac{y^{2} + 3}{4}\\right)dy + \\int_{3}^{6}(6 - y)dy$$\n$$\\text{Area} = \\frac{1}{4}\\left[\\frac{y^{3}}{3} + 3y\\right]_{0}^{3} + \\left[6y - \\frac{y^{2}}{2}\\right]_{3}^{6}$$\n$$\\text{Area} = \\frac{1}{4}[9 + 9] + [(36 - 18) - (18 - 4.5)]$$\n$$= \\frac{18}{4} + [18 - 13.5] = 4.5 + 4.5 = 9$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$15$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let e be the base of natural logarithm and let $f : \\{1, 2, 3, 4\\} \\to \\{1, e, e^{2}, e^{3}\\}$ and $g : \\{1, e, e^{2}, e^{3}\\} \\to \\left\\{1, \\frac{1}{2}, \\frac{1}{3}, \\frac{1}{4}\\right\\}$ be two bijective functions such that f is strictly decreasing and g is strictly increasing. If $\\phi(x) = \\left[f^{-1}\\left\\{g^{-1}\\left(\\frac{1}{2}\\right)\\right\\}\\right]^{x}$, then the area of the region $R = \\{(x, y) : x^{2} \\le y \\le \\phi(x), 0 \\le x \\le 1\\}$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1. Find $f^{-1}$ and $g^{-1}$ :\nf is strictly decreasing: $f(1) = e^{3}, f(2) = e^{2}, f(3) = e, f(4) = 1$.\ng is strictly increasing: $g(1) = 1/4, g(e) = 1/3, g(e^{2}) = 1/2, g(e^{3}) = 1$.\n2. Find $\\phi(x)$ :\n$g^{-1}(1/2) = e^{2}$.\n$f^{-1}(e^{2}) = 2$.\n$\\phi(x) = 2^{x}$.\n3. Calculate the area :\n$$\\text{Area} = \\int_{0}^{1}(2^{x} - x^{2})dx = \\left[\\frac{2^{x}}{\\log_{e}2} - \\frac{x^{3}}{3}\\right]_{0}^{1}$$\n$$\\text{Area} = \\left(\\frac{2}{\\log_{e}2} - \\frac{1}{3}\\right) - \\left(\\frac{1}{\\log_{e}2} - 0\\right) = \\frac{1}{\\log_{e}2} - \\frac{1}{3} = \\frac{3 - \\log_{e}2}{3\\log_{e}2}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3 - \\log_{e}(2)}{3\\log_{e}(2)}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3\\log_{e}(2)}$"
+    },
+    {
+     "key": "C",
+     "text": "$3 + \\log_{e}(2)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3 + \\log_{e}(2)}{2 + \\log_{e}(3)}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Matrices and Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A = \\begin{bmatrix} -1 & 1 & -1 \\\\ 1 & 0 & 1 \\\\ 0 & 0 & 1 \\end{bmatrix}$, satisfy $A^{2} + \\alpha(\\mathrm{adj}(\\mathrm{adj}(A))) + \\beta(\\mathrm{adj}(A)(\\mathrm{adj}(\\mathrm{adj}(A)))) = \\begin{bmatrix} 2 & -2 & 2 \\\\ -2 & 0 & -1 \\\\ 0 & 0 & -1 \\end{bmatrix}$ for some $\\alpha, \\beta \\in \\mathbb{R}$. Then $(\\alpha - \\beta)^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "First, calculate the determinant of A :\n$$|A| = -1(0 - 0) - 1(1 - 0) - 1(0 - 0) = -1$$\nUsing matrix properties for an $n \\times n$ matrix :\n1. $\\mathrm{adj}(\\mathrm{adj}(A)) = |A|^{n-2}A = |A|^{3-2}A = |A|A = -A$.\n2. $\\mathrm{adj}(A)\\mathrm{adj}(\\mathrm{adj}(A)) = \\mathrm{adj}(A.\\mathrm{adj}(A)) = \\mathrm{adj}(|A|I) = |A|^{n-1}I = (-1)^{2}I = I$.\nNow, calculate $A^{2}$ :\n$$A^{2} = \\begin{bmatrix} -1 & 1 & -1 \\\\ 1 & 0 & 1 \\\\ 0 & 0 & 1 \\end{bmatrix}\\begin{bmatrix} -1 & 1 & -1 \\\\ 1 & 0 & 1 \\\\ 0 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 2 & -1 & 1 \\\\ -1 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$$\nSubstitute these into the given equation :\n$$\\begin{bmatrix} 2 & -1 & 1 \\\\ -1 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} + \\alpha(A) + \\beta(I) = \\begin{bmatrix} 2 & -2 & 2 \\\\ -2 & 0 & -1 \\\\ 0 & 0 & -1 \\end{bmatrix}$$\nComparing corresponding elements:\nElement (1, 1) : $2 + \\alpha + \\beta = 2 \\Rightarrow \\alpha + \\beta = 0$.\nElement (1, 2): $-1 - \\alpha = -2 \\Rightarrow \\alpha = 1$.\nThus, $\\beta = -1$.\n$$(\\alpha - \\beta)^{2} = (1 - (-1))^{2} = 2^{2} = 4$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Circles",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the centre of the circle $x^{2} + y^{2} + 2gx + 2fy + 25 = 0$ be in the first quadrant and lie on the line $2x - y = 4$. Let the area of an equilateral triangle inscribed in the circle be $27\\sqrt{3}$. Then the square of the length of the chord of the circle on the line $x = 1$ is ________.",
+   "correct_key": null,
+   "correct_value": 80,
+   "correct_keys": null,
+   "solution": "For a circle with radius R, the area of an inscribed equilateral triangle is $A = \\frac{3\\sqrt{3}}{4}R^{2}$.\n$$27\\sqrt{3} = \\frac{3\\sqrt{3}}{4}R^{2} \\Rightarrow R^{2} = 36 \\Rightarrow R = 6$$\nThe radius formula is $R^{2} = g^{2} + f^{2} - c = g^{2} + f^{2} - 25 = 36 \\Rightarrow g^{2} + f^{2} = 61$.\nThe center $(-g, -f)$ is in the 1st quadrant, so $g < 0$ and $f < 0$.\nThe center lies on $2x - y = 4 \\Rightarrow 2(-g) - (-f) = 4$\n$\\Rightarrow f = 2g + 4$.\nSubstitute f into $g^{2} + f^{2} = 61$ :\n$$g^{2} + (2g + 4)^{2} = 61 \\Rightarrow 5g^{2} + 16g - 45 = 0 \\Rightarrow (5g - 9)(g + 5) = 0$$\nSince $g < 0$, we have $g = -5$ and $f = 2(-5) + 4 = -6$.\nThe center is $(5, 6)$ and $R^{2} = 36$.\nThe distance d from the center $(5, 6)$ to the line $x = 1$ is $d = |5 - 1| = 4$.\nLength of the chord $L = 2\\sqrt{R^{2} - d^{2}} = 2\\sqrt{36 - 16} = 2\\sqrt{20}$.\nSquare of the length: $L^{2} = \\left(2\\sqrt{20}\\right)^{2} = 80$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Vector Algebra",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\vec{a} = \\hat{i} + \\hat{j} + \\hat{k}, \\vec{b} = \\hat{j} - \\hat{k}$ and $\\vec{c}$ be three vectors such that $\\vec{a} \\times \\vec{c} = \\vec{b}$ and $\\vec{a} \\cdot \\vec{c} = 3$ then $\\vec{c} \\cdot (\\vec{a} - 2\\vec{b})$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "We need to calculate $c.(a - 2b) = c.a - 2(c.b)$.\n1. We are given $a.c = 3$.\n2. From the vector cross product $a \\times c = b$, we know that the resulting vector b is perpendicular to both a and c.\nTherefore, $c.b = 0$.\nSubstituting these values :\n$$c.(a - 2b) = 3 - 2(0) = 3$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "For the functions $f(\\theta) = \\alpha\\tan^{2}\\theta + \\beta\\cot^{2}\\theta$ and $g(\\theta) = \\alpha\\sin^{2}\\theta + \\beta\\cos^{2}\\theta, \\alpha > \\beta > 0$, let $\\min_{0 < \\theta < \\frac{\\pi}{2}} f(\\theta) = \\max_{0 < \\theta < \\pi} g(\\theta)$. If the first term of a G.P. is $\\left(\\frac{\\alpha}{2\\beta}\\right)$, its common ratio is $\\left(\\frac{2\\beta}{\\alpha}\\right)$ and the sum of its first 10 terms is $\\frac{m}{n}, \\gcd(m, n) = 1$, then $m + n$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 1279,
+   "correct_keys": null,
+   "solution": "For $f(\\theta)$, using AM–GM: $\\frac{\\alpha\\tan^{2}\\theta + \\beta\\cot^{2}\\theta}{2} \\ge \\sqrt{\\alpha\\beta\\tan^{2}\\theta\\cot^{2}\\theta} \\Rightarrow f(\\theta) \\ge 2\\sqrt{\\alpha\\beta}$.\nFor $g(\\theta) = \\alpha\\sin^{2}\\theta + \\beta\\cos^{2}\\theta$, since $\\alpha > \\beta$, the maximum occurs when $\\sin^{2}\\theta = 1$, so $\\max g(\\theta) = \\alpha$.\nGiven $\\min f(\\theta) = \\max g(\\theta) \\Rightarrow 2\\sqrt{\\alpha\\beta} = \\alpha \\Rightarrow 4\\alpha\\beta = \\alpha^{2} \\Rightarrow \\alpha = 4\\beta$.\nFor the G.P. :\n$$\\text{First term } a = \\frac{\\alpha}{2\\beta} = \\frac{4\\beta}{2\\beta} = 2.$$\n$$\\text{Common ratio } r = \\frac{2\\beta}{\\alpha} = \\frac{2\\beta}{4\\beta} = \\frac{1}{2}.$$\nSum of first 10 terms:\n$$S_{10} = \\frac{a(1 - r^{10})}{1 - r} = \\frac{2(1 - (1/2)^{10})}{1 - 1/2} = 4\\left(1 - \\frac{1}{1024}\\right) = 4\\left(\\frac{1023}{1024}\\right) = \\frac{1023}{256}$$\nHere $m = 1023$, $n = 256$, and $\\gcd(1023, 256) = 1$.\n$$m + n = 1023 + 256 = 1279$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $(x^{2} - x\\sqrt{x^{2} - 1})dy + (y(x - \\sqrt{x^{2} - 1}) - x)dx = 0, x \\ge 1$. If $y(1) = 1$ then the greatest integer less than $y\\left(\\sqrt{5}\\right)$ is ________.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "Rearranging the differential equation :\n$$\\frac{dy}{dx} = \\frac{x - y(x - \\sqrt{x^{2} - 1})}{x(x - \\sqrt{x^{2} - 1})} = \\frac{1}{x - \\sqrt{x^{2} - 1}} - \\frac{y}{x}$$\nUsing rationalization, $\\frac{1}{x - \\sqrt{x^{2} - 1}} = x + \\sqrt{x^{2} - 1}$.\n$$\\frac{dy}{dx} + \\frac{y}{x} = x + \\sqrt{x^{2} - 1}$$\nThis is a linear differential equation with Integrating Factor $IF = e^{\\int(1/x)dx} = x$.\n$$y \\cdot x = \\int x(x + \\sqrt{x^{2} - 1})dx = \\int(x^{2} + x\\sqrt{x^{2} - 1})dx$$\n$$= \\frac{x^{3}}{3} + \\frac{1}{3}(x^{2} - 1)^{3/2} + C$$\nUsing $y(1) = 1 \\Rightarrow 1 = \\frac{1}{3} + 0 + C \\Rightarrow C = \\frac{2}{3}$.\n$$yx = \\frac{x^{3} + (x^{2} - 1)^{3/2} + 2}{3}$$\nAt $x = \\sqrt{5}$ :\n$$y\\sqrt{5} = \\frac{\\left(\\sqrt{5}\\right)^{3} + (5 - 1)^{3/2} + 2}{3} = \\frac{5\\sqrt{5} + 8 + 2}{3} = \\frac{5\\sqrt{5} + 10}{3}$$\n$$y\\left(\\sqrt{5}\\right) = \\frac{5 + 2\\sqrt{5}}{3} \\approx \\frac{5 + 4.472}{3} \\approx 3.157$$\nThe greatest integer less than 3.157 is 3.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

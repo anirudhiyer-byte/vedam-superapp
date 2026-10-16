@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "5 Apr · Shift 2",
+  "title": "JEE Main 2026 · Physics · 5 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1vKfujUDbc7bBqPbaHTEBs3P9K7tbTspH"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List - I with List - II.\nList - I | List - II\nA. Meter (L) | I. $\\sqrt{\\frac{hc}{G}}$\nB. Second (S) | II. $\\sqrt{\\frac{Gh}{c^{5}}}$\nC. Kilogram (M) | III. $\\sqrt{\\frac{K^{2}L^{2}c^{3}}{Gh}}$\nD. Kelvin (K) | IV. $\\sqrt{\\frac{Gh}{c^{3}}}$\nwhere h (Planck's constant), G (gravitational constant) and c (speed of light in vacuum) as fundamental units.\nChoose the correct answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$[h] = \\frac{[E]}{[\\nu]} = ML^{2}T^{-1}$\n$[C] = LT^{-1}$\n$[G] = M^{-1}L^{3}T^{-2}$\nCheck list II $\\Rightarrow \\sqrt{\\frac{hc}{G}} = \\sqrt{\\frac{(ML^{2}T^{-1})(LT^{-1})}{M^{-1}L^{3}T^{-2}}} = M$\n$\\sqrt{\\frac{Gh}{c^{5}}} = \\sqrt{\\frac{(M^{-1}L^{3}T^{-2})(ML^{2}T^{-1})}{(LT^{-1})^{5}}} = [T]$\n$\\sqrt{\\frac{K^{2}L^{2}C^{3}}{Gh}} = \\sqrt{\\frac{K^{2}L^{2}L^{3}T^{-3}}{M^{-1}L^{3}T^{-2}LT^{-1}}} = [K]$\n$\\sqrt{\\frac{Gh}{C^{3}}} = \\sqrt{\\frac{M^{-1}L^{3}T^{-2}ML^{2}T^{-1}}{(LT^{-1})^{3}}} = L$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-II, B-IV, C-I, D-III"
+    },
+    {
+     "key": "B",
+     "text": "A-IV, B-II, C-I, D-III"
+    },
+    {
+     "key": "C",
+     "text": "A-IV, B-I, C-II, D-III"
+    },
+    {
+     "key": "D",
+     "text": "A-III, B-I, C-II, D-IV"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In an experiment to determine the resistance of a given wire using Ohm's law, the voltmeter and ammeter readings are noted as 10 V and 5 A , respectively. The least counts of voltmeter and ammeter are 500 mV and 200 mA , respectively. The estimated error in the resistance measurement is __________ $\\Omega$.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V = IR \\Rightarrow \\frac{\\Delta R}{R} = \\frac{\\Delta V}{V} - \\frac{\\Delta I}{I}$ $\\quad R = \\frac{10}{5} = 2\\ \\Omega$\nerror $\\Rightarrow \\frac{\\Delta R}{R} = \\frac{\\Delta V}{V} + \\frac{\\Delta I}{I}$\n$\\Delta R = 2\\left[\\frac{0.5}{10} + \\frac{0.2}{5}\\right] = \\frac{2 \\times 9}{100} = 0.18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.25"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "2.5"
+    },
+    {
+     "key": "D",
+     "text": "0.18"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A mass of 1 kg is kept on a inclined plane with $30^\\circ$ inclination with respect to horizontal plane and it is at rest initially. Then the whole assembly is moved up with constant velocity of 4 m/s. The work done by the frictional force in time 2 s is _______ J. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Upward distance in $2\\ \\mathrm{sec} = 4 \\times 2 = 8\\ \\mathrm{m}$\nfriction $= mg\\sin 30 \\Rightarrow 1 \\times 10 \\times \\frac{1}{2} = 5\\ \\mathrm{N}$\nangle between friction & vertical displacement = 60\n$W_{f} = (8)(5)\\cos 60 = 20\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "20"
+    },
+    {
+     "key": "B",
+     "text": "25"
+    },
+    {
+     "key": "C",
+     "text": "30"
+    },
+    {
+     "key": "D",
+     "text": "10"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The velocity (v) versus time (t) plot of a particle is shown in the figure, for a time interval of 40 s . The total distance travelled by the particle and the average velocity during this period are, respectively __________.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "area of graph is displacement.\narea (t = 0 to t = 20) $= A_{1} = \\frac{1}{2} \\times 20 \\times 5 = 50$\narea (t = 20 to t = 40) $= A_{2} = -\\frac{1}{2} \\times 20 \\times 5 = -50$\ntotal displacement $= A_{1} + A_{2} = 0$\ntotal distance $= |A_{1}| + |A_{2}| = 100\\ \\mathrm{m}$\n$V_{av} = \\frac{\\text{displacement}}{\\text{time}} = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "25 m and zero"
+    },
+    {
+     "key": "B",
+     "text": "50 m and zero"
+    },
+    {
+     "key": "C",
+     "text": "100 m and zero"
+    },
+    {
+     "key": "D",
+     "text": "100 m and 2.5 m/s"
+    }
+   ],
+   "stem_figure": "j26-05apr-s2-phy-q29.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A wheel initially at rest is subjected to a uniform angular acceleration about its axis. In the first 2 s it rotates through an angle $\\theta_{1}$ and in the next 2 s it rotates through an angle $\\theta_{2}$. The ratio $\\frac{\\theta_{2}}{\\theta_{1}}$ is _______.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\omega_{i} = 0 \\quad \\alpha = \\text{const.}$\n$\\theta(\\text{ in 2sec}) = 0 + \\frac{1}{2}\\alpha(2)^{2} = 2\\alpha = \\theta_{1}$\nangle in next $2\\ \\mathrm{sec} = \\theta_{2} = \\theta(t = 4) - \\theta(t = 2)$\n$= \\frac{1}{2}\\alpha(4)^{2} - \\frac{1}{2}\\alpha(2)^{2} = 6\\alpha$\n$\\frac{\\theta_{2}}{\\theta_{1}} = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6"
+    },
+    {
+     "key": "B",
+     "text": "3"
+    },
+    {
+     "key": "C",
+     "text": "4"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An object of uniform density rolls up the curved path with the initial velocity $v_{o}$ as shown in the figure. If the maximum height attained by an object is $\\frac{7v_{o}^{2}}{10g}$ (g = acceleration due to gravity), the object is a___.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "at maximum velocity and angular velocity becomes zero.\n$\\omega_{1} = \\frac{v_{0}}{R}$\napply WET $\\Rightarrow mgh = \\frac{1}{2}mv_{0}^{2} + \\frac{1}{2}I\\left(\\frac{v_{0}}{R}\\right)^{2}$ (1)\n$h = \\frac{7v_{0}^{2}}{10g}$ (2)\nfrom (1) & (2) $I = \\frac{2}{5}MR^{2}$\nSo body will be solid sphere",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Solid cylinder"
+    },
+    {
+     "key": "B",
+     "text": "Ring"
+    },
+    {
+     "key": "C",
+     "text": "Disc"
+    },
+    {
+     "key": "D",
+     "text": "Solid sphere"
+    }
+   ],
+   "stem_figure": "j26-05apr-s2-phy-q31.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of mass m is taken from the surface of earth to a height equal to twice the radius of earth ($R_{e}$). The increase in potential energy will be _________ .\n(g is acceleration due to gravity at the surface of earth)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$U_{i} = \\frac{-GMm}{R_{e}}$\n$U_{f} = \\frac{-GMm}{3R_{e}}$\n$\\Delta U = U_{f} - U_{i} = \\frac{2GMm}{3R_{e}} = \\frac{2mgR_{e}}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}mgR_{e}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{4}mgR_{e}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4}mgR_{e}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{3}mgR_{e}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Eight mercury drops, each of radius r, coalesce to form a bigger drop. The surface energy released in this process is _________. (S is the surface tension of mercury).",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Radius of bigger drop is R then\n$V_{i} = V_{f} \\Rightarrow (8)\\frac{4}{3}\\pi r^{3} = \\frac{4}{3}\\pi R^{3} \\Rightarrow R = 2r$\n$U_{i} = 8(S)4\\pi r^{2} = 32S\\pi r^{2}$\n$U_{f} = S4\\pi R^{2} = 16S\\pi r^{2}$\n$\\Delta U = U_{i} - U_{f} = 16S\\pi r^{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8\\pi r^{2}S$"
+    },
+    {
+     "key": "B",
+     "text": "$16\\pi r^{2}S$"
+    },
+    {
+     "key": "C",
+     "text": "$64\\pi r^{2}S$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\pi r^{2}S$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An ideal gas at pressure P and temperature T is expanding such that $PT^{3}$ = constant. The coefficient of volume expansion of the gas is _________.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Coefficient of volume expansion $= \\gamma = -\\frac{dV}{VdT}$\n$PT^{3} = \\text{constant}$\n$\\left(\\frac{nRT}{V}\\right)T^{3} = \\text{constant} \\Rightarrow V^{-1}T^{4} = K$\ndiff. wr to T.\n$\\left(-\\frac{1}{V^{2}}\\frac{dV}{dT}\\right)T^{4} + \\left(\\frac{1}{V}\\right)4T^{3} = 0$\n$\\frac{dV}{VdT} = \\frac{4}{T}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{T}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{T}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{T}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{T}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List - I with List - II.\nList - I | List - II\nA. $\\sin^{2}\\omega t$ | I. Periodic with time period $T = \\frac{\\pi}{\\omega}$ but not simple harmonic motion (SHM)\nB. $\\sin^{3}(2\\omega t)$ | II. Periodic with time period $T = \\frac{2\\pi}{\\omega}$ but Not SHM\nC. $\\sin(\\omega t) + \\cos(\\pi\\omega t)$ | III. Periodic with time period $T = \\frac{\\pi}{\\omega}$ and SHM\nD. $\\cos\\omega t + \\cos 2\\omega t$ | IV. Non-periodic\nChoose the correct answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) Option A $\\Rightarrow \\sin^{2}\\omega t \\Rightarrow \\frac{1}{2}[1 - \\cos 2\\omega t]$\nSHM $T = \\frac{2\\pi}{2\\omega} = \\frac{\\pi}{\\omega}$\n(B) $\\sin^{3}2\\omega t = \\frac{3\\sin 2\\omega t}{4} - \\frac{\\sin 6\\omega t}{4}$\nNot SHM $T_{1} = \\frac{2\\pi}{2\\omega} = \\frac{\\pi}{\\omega} \\quad T_{2} = \\frac{2\\pi}{6\\omega} = \\frac{\\pi}{3\\omega}$\n$T_{1} = 3T_{2}$ so function repeat itself every $T_{1}$\nSo common time period $= \\frac{\\pi}{\\omega}$\n(C) $\\sin(\\omega t) + \\cos(\\pi\\omega t)$\n$T_{1} = \\frac{2\\pi}{\\omega} \\quad T_{2} = \\frac{2\\pi}{\\pi\\omega} = 2$\nno common time period so non periodic\n(D) $\\cos\\omega t + \\cos 2\\omega t$\n$T_{1} = \\frac{2\\pi}{\\omega} \\quad T_{2} = \\frac{2\\pi}{\\pi\\omega}$\n$T_{1} = 2T_{2}$ $\\quad$ So common time period is $T_{1}$ any, freq. are different so not SHM.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-III, B-I, C-IV, D-II"
+    },
+    {
+     "key": "B",
+     "text": "A-II, B-I, C-III, D-IV"
+    },
+    {
+     "key": "C",
+     "text": "A-III, B-II, C-IV, D-I"
+    },
+    {
+     "key": "D",
+     "text": "A-II, B-I, C-IV, D-III"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A metal rod of length L rotates about one end at origin with a uniform angular velocity $\\omega$. The magnetic field radially falls off as $B(r) = B_{o}e^{-\\lambda r}$; $\\lambda$ being a positive constant. The emf induced (neglecting the centripetal force on electrons in the rod) is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$dE = (B_{0}e^{-\\lambda r})\\omega r\\,dr$\nemf $= \\int dE = B_{0}\\omega re^{-\\lambda r}dr$\n$= B_{0}\\omega\\left[\\frac{re^{-\\lambda r}}{-\\lambda} - \\frac{e^{-\\lambda r}}{\\lambda^{2}}\\right]_{0}^{L}$\n$= B_{0}\\omega\\left[\\frac{1}{\\lambda^{2}} - e^{-\\lambda L}\\left(\\frac{1}{\\lambda^{2}} + \\frac{1}{\\lambda}\\right)\\right]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$B_{o}\\omega\\left[\\frac{1}{\\lambda^{2}} - e^{-\\lambda L}\\left(\\frac{1}{\\lambda^{2}} + \\frac{L}{\\lambda}\\right)\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$B_{o}\\omega\\left[\\frac{1}{\\lambda^{2}} + e^{-\\lambda L}\\left(\\frac{1}{\\lambda^{2}} + \\frac{L}{\\lambda}\\right)\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$B_{o}\\omega\\left[\\frac{4}{\\lambda^{2}} - e^{-2\\lambda L}\\left(\\frac{1}{\\lambda^{2}} + \\frac{2L}{\\lambda}\\right)\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$B_{o}\\omega\\left[\\frac{3}{\\lambda^{2}} - e^{-3\\lambda L}\\left(\\frac{3}{\\lambda^{2}} + \\frac{L}{\\lambda}\\right)\\right]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-05apr-s2-phy-q36-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Under steady state condition the potential difference across the capacitor in the circuit is _________ V.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Under steady state current in capacitor is zero.\n$I = \\frac{2}{2 + 6} = \\frac{1}{4}$\n$\\Delta V$ across capacitor $= V_{p} - V_{Q} = I(2)$\n$= \\left(\\frac{1}{4}\\right)2 = \\frac{1}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.5"
+    },
+    {
+     "key": "B",
+     "text": "1.5"
+    },
+    {
+     "key": "C",
+     "text": "0"
+    },
+    {
+     "key": "D",
+     "text": "2"
+    }
+   ],
+   "stem_figure": "j26-05apr-s2-phy-q37.png",
+   "solution_figure": "j26-05apr-s2-phy-q37-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle of charge q and mass m is projected from origin with an initial velocity $\\vec{v} = \\left(\\frac{v_{0}}{\\sqrt{2}}\\hat{x} + \\frac{v_{0}}{\\sqrt{2}}\\hat{y}\\right)$. There exists a uniform magnetic field $\\vec{B} = B_{0}\\hat{z}$ and a space varying electric field $\\vec{E} = E_{o}e^{-\\lambda x}\\hat{x}$ within the region $0 \\leqslant x \\leqslant L$. After travelling a distance such that x-coordinate has changed from x = 0 to x = L, the change in the kinetic energy is __________.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Apply WET $\\Rightarrow W_{e} + W_{m} = \\Delta KE$\n$\\int_{0}^{L} qE_{0}e^{-\\lambda x}dx + 0 = \\Delta KE$\n$\\frac{qE_{0}}{\\lambda}\\left(1 - e^{-\\lambda L}\\right) = \\Delta KE$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{qE_{0}}{\\lambda}\\left[1 - e^{-\\lambda L}\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{v_{0}qB_{0}}{2\\lambda}\\right)\\left[2 - e^{-2\\lambda L}\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{qE_{0}}{\\lambda}\\left[1 + e^{-\\lambda L}\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$q\\left(\\frac{E_{0} + v_{0}B_{0}}{\\lambda}\\right)\\left[1 - e^{-\\lambda L/2}\\right]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): The electromagnetic wave exerts pressure on the surface on which they are allowed to fall.\nReason (R): There is no mass associated with the electromagnetic waves.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "for assertion $\\Rightarrow$ wave exerts pressure due to change in momentum of photon.\nFor Reason $\\Rightarrow$ no mass associated with EM wave.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
+    },
+    {
+     "key": "B",
+     "text": "Both (A) and (R) are true but (R) is not the correct explanation of (A)"
+    },
+    {
+     "key": "C",
+     "text": "(A) is true but (R) is false"
+    },
+    {
+     "key": "D",
+     "text": "(A) is false but (R) is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A thin convex lens and a thin concave lens are kept in contact and are co-axial. Which of the following statements is correct for this combination of two lenses?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "From combination of lens $\\frac{1}{f_{eq}} = \\frac{1}{f_{convex}} + \\frac{1}{f_{concave}}$\nin general $f_{convex} = +ve$ & $f_{concave} = -ve$\n$|f_{convex}| > |f_{concave}| \\Rightarrow f_{eq} = -ve$ concave lens\n$|f_{convex}| < |f_{concave}| \\Rightarrow f_{eq} = +ve$ convex lens",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "behaves as concave lens if $|f_{convex}| > |f_{concave}|$"
+    },
+    {
+     "key": "B",
+     "text": "behaves as concave lens if $|f_{convex}| < |f_{concave}|$"
+    },
+    {
+     "key": "C",
+     "text": "behaves as concave lens if $|f_{convex}| > |f_{concave}|$"
+    },
+    {
+     "key": "D",
+     "text": "Focal length of the lens system will change if the positions of two lenses are interchanged"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An object AB is placed 15 cm on the left of a convex lens P of focal length 10 cm . Another convex lens Q is now placed 15 cm right of lens P. If the focal length of lens Q is 15 cm , the final image is _________ .",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "from p $\\Rightarrow \\frac{1}{v_{1}} - \\frac{1}{-15} = \\frac{1}{10} \\Rightarrow v_{1} = 30$\nfrom Q $\\Rightarrow \\frac{1}{v_{2}} - \\frac{1}{15} = \\frac{1}{15} \\Rightarrow v_{2} = 7.5$ (real)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "virtual, formed at 7.5 cm right of lens Q, with a size bigger than that of AB"
+    },
+    {
+     "key": "B",
+     "text": "real, formed at 7.5 cm right of lens Q, with a size same as that of AB"
+    },
+    {
+     "key": "C",
+     "text": "formed at infinity."
+    },
+    {
+     "key": "D",
+     "text": "real, formed at 7 cm right of lens Q, with a size smaller than that of AB"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-05apr-s2-phy-q41-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The maximum intensity in a Young's double slit experiment is $I_{0}$. Distance between the slits (d) is $5\\lambda$, where $\\lambda$ is the wavelength of light used. The intensity of the fringe, exactly opposite to one of the slits on the screen, placed at D = 10d is ________.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta x_{p} = \\sqrt{D^{2} + d^{2}} - D$\n$= D\\left(1 + \\frac{d^{2}}{D^{2}}\\right)^{1/2} - D$\n$= D\\left[1 + \\frac{d^{2}}{2D^{2}}\\right] - D = \\frac{d^{2}}{2D}$\n$\\Delta x_{p} = \\frac{d^{2}}{2 \\times 10d} = \\frac{d}{20} = \\frac{5\\lambda}{20} = \\frac{\\lambda}{4}$\n$\\Delta\\phi_{p} = \\frac{2\\pi}{\\lambda}(\\Delta x) = \\frac{2\\pi}{\\lambda}\\left(\\frac{\\lambda}{4}\\right) = \\frac{\\pi}{2}$\nassume $I_{1} = I_{2} = I$\n$4I = I_{0} \\Rightarrow I = \\frac{I_{0}}{4}$\n$(I_{net})_{p} = I + I + 2\\sqrt{I}\\sqrt{I}\\cos\\frac{\\pi}{2} = 2I$\n$= 2\\left(\\frac{I_{0}}{4}\\right) = \\frac{I_{0}}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{I_{0}}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{I_{0}}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$I_{0}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3I_{0}}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j26-05apr-s2-phy-q42-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron is travelling with a velocity $v$ in free space and when it enters a medium, its velocity is reduced by 20%. The de Broglie wavelength of electron in the medium is $\\alpha\\lambda_{0}$, where $\\lambda_{0}$ is its de Broglie wavelength in free space. The value of $\\alpha$ is _________.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_{freespace} = V \\quad \\lambda_{\\text{free space}} = \\lambda_{0} = \\frac{h}{mV}$ ....(1)\n$V_{medium} = 0.8V \\quad \\lambda_{mediam} = \\frac{h}{m(0.8V)} = \\lambda_{m}$ ....(2)\n$\\frac{(2)}{(1)} \\Rightarrow \\frac{\\lambda m}{\\lambda_{0}} = \\frac{1}{0.8} \\Rightarrow \\lambda_{m} = \\frac{5}{4}\\lambda_{0}$\n$\\alpha = 1.25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.20"
+    },
+    {
+     "key": "B",
+     "text": "1.0"
+    },
+    {
+     "key": "C",
+     "text": "1.25"
+    },
+    {
+     "key": "D",
+     "text": "0.75"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assuming the experimental mass of $\\mathrm{{}^{12}_{6}C}$ as 12u , the mass defect of $\\mathrm{{}^{12}_{6}C}$ atom is __________ $\\mathrm{MeV/c^{2}}$.\n(Mass of proton = 1.00727 u. mass of neutron = 1.00866 u, 1 u = 931.5 $\\mathrm{MeV/c^{2}}$ and c is the speed of the light in vacuum).",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "no. of proton = no. of neutron = 6\n$\\Delta m = [6m_{p} + 6m_{n} - 12u]c^{2}$\n$= [6(1.00727) + 6(1.00866) - 12]9.315$\n$= 89.03\\ \\mathrm{Mev/c^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "127.5"
+    },
+    {
+     "key": "B",
+     "text": "89.03"
+    },
+    {
+     "key": "C",
+     "text": "272.0"
+    },
+    {
+     "key": "D",
+     "text": "92.0"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a semiconductor p-n diode, the doping concentrations on p-side and n-side are $10^{15}$ atoms/ $\\mathrm{cm^{3}}$ and $10^{18}$ atoms/$\\mathrm{cm^{3}}$, respectively. Which one of the following statements is true?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$N_{P}X_{P} = N_{n}X_{n}$\n$N_{P} < N_{n} \\Rightarrow X_{P} > X_{n}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Widths of depletion region on either side of the interface are equal"
+    },
+    {
+     "key": "B",
+     "text": "The depletion region width is more on p-side compared to that in n -side"
+    },
+    {
+     "key": "C",
+     "text": "The depletion region width is more on n -side compared to that in p -side"
+    },
+    {
+     "key": "D",
+     "text": "No depletion region forms because of unequal doping concentrations on p and n-side"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A copper wire of length 3 m is stretched by 3 mm by applying an external force. The volume of the wire is $600 \\times 10^{-6}\\ \\mathrm{m^{3}}$. The elastic potential energy stored in the wire in stretched condition would be_____ J.\n(Given Young modulus of copper $= 1.1 \\times 10^{11}\\ \\mathrm{N/m^{2}}$)",
+   "correct_key": null,
+   "correct_value": 33,
+   "correct_keys": null,
+   "solution": "energy density $= \\frac{Y}{2}(\\text{strain})^{2}$\nenergy stored $= \\frac{Y}{2}(\\text{strain})^{2}(\\text{vol})$\n$= \\frac{1.1 \\times 10^{11}}{2}\\left(\\frac{3 \\times 10^{-3}}{3}\\right)^{2}(600 \\times 10^{-6})$\n$= 33\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The heat extracted out of x gram of water initially at 50 $^\\circ$C to cool it down to 0 $^\\circ$C is sufficient to evaporate (1000 – x) gram of water also initially at 50 $^\\circ$C. The value of x (closest integer) is _______ .\n(Take latent heat of water 2256 kJ/kg. K, specific heat capacity of water 4200 J/kg. K)",
+   "correct_key": null,
+   "correct_value": 922,
+   "correct_keys": null,
+   "solution": "$X(4200)50 = (1000 - X)4200(50) + (1000 - X)2256 \\times 10^{3}$\n$X = 921.52$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Alternating Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A series LCR circuit with R = 20 $\\Omega$, L = 1.6 H and C = 40 $\\mu$F is connected to a variable frequency a.c. source. The inductive reactance at resonant frequency is ________ $\\Omega$.",
+   "correct_key": null,
+   "correct_value": 200,
+   "correct_keys": null,
+   "solution": "at resonace resonance $\\Rightarrow w_{r} = \\frac{1}{\\sqrt{LC}}$\n$X_{L} = \\omega_{r}L = \\left(\\frac{1}{\\sqrt{LC}}\\right)L = \\sqrt{\\frac{L}{C}}$\n$X_{L} = \\sqrt{\\frac{1.6}{40 \\times 10^{-6}}} = 200\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "When an external resistance of 5 $\\Omega$ is connected across terminals of a cell, a current of 0.25 A flows through it. When the 5 $\\Omega$ resistor is replaced by a 2 $\\Omega$ resistor, a current of 0.5 A flows through it. The internal resistance of the cell is ______ $\\Omega$.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$I_{i} = \\frac{1}{4} = \\frac{E}{r + 5}$ (1)\n$I_{f} = \\frac{1}{2} = \\frac{E_{1}}{r + 2}$ (2)\nFrom (1) and (2) $r = 1\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Electromagnetic Induction",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A circular loop of radius 20 cm and resistance 2 $\\Omega$ is placed in a time varying magnetic field $\\vec{B} = (2t^{2} + 2t + 3)\\ \\mathrm{T}$. At t = 0, for the plane of the loop being perpendicular to the magnetic field and, the induced current in the loop at t = 3 s is $\\frac{\\alpha}{50}$ A. The value of $\\alpha$ is _______ .\n(Take $\\pi = 22/7$)",
+   "correct_key": null,
+   "correct_value": 44,
+   "correct_keys": null,
+   "solution": "$\\phi = \\vec{B} \\cdot \\vec{S} = (2t^{2} + 2t + 3)(0.04\\pi)$\n$\\varepsilon = \\left|\\frac{d\\phi}{dt}\\right| = (4t + 2)(0.04\\pi)$\n$I = \\frac{\\varepsilon}{R} = \\frac{(4t + 2)(0.04\\pi)}{2}$\n$I(t = 3) = \\frac{(14)(0.04)}{2} \\times \\frac{22}{7} = \\frac{44}{50}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

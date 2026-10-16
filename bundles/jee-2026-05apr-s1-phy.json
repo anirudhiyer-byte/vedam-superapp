@@ -1,0 +1,856 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "5 Apr · Shift 1",
+  "title": "JEE Main 2026 · Physics · 5 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "source_file_id": "1RPAKAhZs3ZQBbL-6dNze1qgAbRJaJeqr"
+ },
+ "questions": [
+  {
+   "q_no": 26,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a Vernier calipers, when both jaws touch each other, zero of the Vernier scale is shifted to the right of zero of the main scale and $7^{\\text{th}}$ Vernier division coincides with a main scale reading. If the value of 1 main scale division is 1 mm and there are 10 Vernier scale divisions, then the Vernier caliper has :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L \\cdot C \\cdot = \\frac{1 M \\cdot S \\cdot D}{n} = 0.1\\ \\mathrm{mm}$\nZero error is positive as vernier zero lies to right of zero of main scale.\n+ve zero error $= V \\cdot C \\cdot \\times L \\cdot C \\cdot$\n$= 7 \\times 0.1\\ \\mathrm{mm}$\n$= 0.7\\ \\mathrm{mm}$\n$= 0.07\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.07 cm negative zero error"
+    },
+    {
+     "key": "B",
+     "text": "0.7 cm negative zero error"
+    },
+    {
+     "key": "C",
+     "text": "0.07 cm positive zero error"
+    },
+    {
+     "key": "D",
+     "text": "0.7 cm positive zero error"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "L, C and R represents physical quantities inductance, capacitance and resistance respectively. The dimensional formula $ML^{2}T^{-4}A^{-2}$ corresponds to _______.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Lets explore options in a smart way\nQuality factor $= \\frac{1}{R}\\sqrt{\\frac{L}{C}}$ = dimensionless\nHence Option D is wrong\nSince we know\n$\\frac{1}{\\sqrt{LC}} = \\omega = T^{-1}$\nNow lets explore option A\n$R = \\frac{V}{I} = \\frac{ML^{2}T^{-2}}{I^{2}T} = ML^{2}T^{-3}A^{-2}$\nOption A $\\frac{R}{\\sqrt{LC}} \\Rightarrow ML^{2}T^{-3}A^{-2}T^{-1}$\n$ML^{2}T^{-4}A^{-2}$ Option A is correct.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{R}{\\sqrt{LC}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{R}{LC}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{C}{\\sqrt{LR}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{R}\\sqrt{\\frac{L}{C}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When one moves from a point 16 km below the earth's surface to a point 16 km above the earth's surface. The change in g is approximately $\\alpha$ %. The value of $\\alpha$ is ______.\n(Take radius of the earth = 6400 km.)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For outside point $g' = \\frac{GM}{r^{2}}$\n$\\frac{\\Delta g}{g}\\% = -2\\frac{\\Delta r\\%}{r}$\n$= -2 \\times \\frac{16}{6400} \\times 100$\n$= -0.5\\%$\nFor inside point\n$g' = \\frac{GMr}{R^{3}}$\n$\\frac{\\Delta g}{g}\\% = \\frac{\\Delta r}{r}\\% = -\\frac{16}{6400} \\times 100 = -0.25\\%$\nSo difference in g between outside point & inside point will be 0.25%.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.12"
+    },
+    {
+     "key": "B",
+     "text": "0.25"
+    },
+    {
+     "key": "C",
+     "text": "0.50"
+    },
+    {
+     "key": "D",
+     "text": "0.75"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Three masses $m_{1} = 4$ kg, $m_{2} = 4$ kg and $m_{3} = 6$ kg are suspended from a fixed smooth frictionless pully as shown in the figure below. The value of $T_{1}/T_{2}$ is ______. (take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a = \\left(\\frac{m_{3} + m_{2} - m_{1}}{m_{1} + m_{1} + m_{3}}\\right) \\times g = \\left(\\frac{6 + 4 - 4}{6 + 4 + 4}\\right) \\times g = \\frac{3g}{7}$\n[FBD of $m_{3}$: $T_{2}$ upward, $m_{3}g$ downward]\n$m_{3}g - T_{2} = m_{3}a$\n$T_{2} = m_{3}g - m_{3}\\frac{3g}{7}$\n$T_{2} = 6 \\times \\frac{4g}{7} = \\frac{24g}{7}$\n[FBD of $m_{1}$: $T_{1}$ upward, $m_{1}g$ downward]\n$T_{1} - m_{1}g = m_{1}a$, $\\quad T_{1} = m_{1}g + m_{1}\\frac{3g}{7}$,\n$T_{1} = \\frac{10}{7}m_{1}g$, $\\quad T_{1} = \\frac{40}{7}g$\n$\\frac{T_{1}}{T_{2}} = \\frac{40}{24} = \\frac{5}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5/3"
+    },
+    {
+     "key": "B",
+     "text": "2/3"
+    },
+    {
+     "key": "C",
+     "text": "3/5"
+    },
+    {
+     "key": "D",
+     "text": "2/5"
+    }
+   ],
+   "stem_figure": "j26-05apr-s1-phy-q29.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A wedge Y with mass of 10 kg and all frictionless surfaces and the inclined surface making $37^\\circ$ with horizontal. A block X with mass 2 kg is placed at the highest point of the wedge as shown in figure is at rest. At $t = 0$ wedge (Y) is pulled toward right with constant force (f) of 24 N. Taking the block X at rest at $t = 0$, the time taken by it to slide down 8.8 m on the slope, while Y is on the move, is ____ s.\n(take $\\tan 37^\\circ = 3/4$ and $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a_{r}$ = acceleration of 2 kg relative to wedge\nFBD of block in wedge frame\n[FBD: pseudo force $ma$ horizontally to the left, $mg\\sin 37^\\circ$ down the incline]\n$mg\\sin 37 - ma\\cos 37^\\circ = ma_{r}$\n$\\frac{5}{4}\\left(g\\sin 37 - a_{r}\\right) = a$ ....(i)\nIn horizontal direction (on system)\n$F_{n} = m_{system}a_{H}$\n$24 = 10a + 2a + 2a_{r}\\cos 37^\\circ$\n$24 = 12a + 2a_{r}\\cos 37$ .....(ii)\nPut a in eq. (ii)\n$24 = (12)\\left[\\left(\\frac{5}{4}\\left(g \\times \\frac{3}{5} - a_{r}\\right)\\right)\\right] + 2a_{r}\\frac{4}{5}$\n$24 = 15 \\times \\frac{3g}{5} - 15a_{r} + \\frac{8a_{r}}{5}$\n$\\frac{67a_{r}}{5} = 90 - 24$\n$a_{r} = \\frac{66 \\times 5}{67}$\n$S = \\frac{1}{2}a_{r}t^{2}$\n$8.8 = \\frac{1}{2} \\times \\frac{66 \\times 5}{67}t^{2}$\n$0.8 = \\frac{30}{2 \\times 67}t^{2}$\n$t^{2} = \\frac{8 \\times 2 \\times 67}{300} = 3.57 \\Rightarrow t \\approx 2\\ \\mathrm{sec}$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": "j26-05apr-s1-phy-q30.png",
+   "solution_figure": "j26-05apr-s1-phy-q30-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The Young's modulus of steel wire of radius r and length L is Y. If the radius r and length L of the wire are doubled then the value of Y :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Young modulus is material dependent & independent of radius & length.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "increases by two times"
+    },
+    {
+     "key": "B",
+     "text": "reduces by half"
+    },
+    {
+     "key": "C",
+     "text": "remains unchanged"
+    },
+    {
+     "key": "D",
+     "text": "becomes one fourth"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Kinetic Theory",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements : one is labelled as Assertion A and the other is labelled as Reason R:\nStatement I : Change in internal energy of a system containing n mole of ideal gas can be written as $\\Delta U = nC_{v}\\left(T_{f} - T_{i}\\right) = \\frac{nR}{\\gamma - 1}\\left(T_{f} - T_{i}\\right)$, where $\\gamma = \\frac{C_{p}}{C_{v}}$, $T_{i}$ = initial temperature, $T_{f}$ = final temperature.\nStatement II : Relation between degree of freedom f and $\\gamma$ (= $C_{p}/C_{v}$) is $\\left(\\gamma = 1 + \\frac{2}{f}\\right)$\nChoose the correct answer from the options given below",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Theory based",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both A and R are true and R is the correct explantion of A"
+    },
+    {
+     "key": "B",
+     "text": "Both A and R are true but R is NOT the correct explanation of A"
+    },
+    {
+     "key": "C",
+     "text": "A is true but R is false"
+    },
+    {
+     "key": "D",
+     "text": "A is false but R is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the following statements :\nA. Zeroth law of thermodynamics gives concept of temperature\nB. First law of thermodynamics gives concept of internal energy\nC. In isothermal expansion of ideal gas, $\\Delta Q \\neq \\Delta W$\nD. Product of intensive and extensive variables is extensive\nE. The ratio of any extensive variable to mass will be an extensive variable\nChoose the correct combination of statements from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Intensive variable : If you divide a system $\\rightarrow$ these variable remains same.\nEx. Refractive index of full slab of glass is same as that of half slab.\nExtensive variable : If you divide system $\\rightarrow$ These variable gets divided.\nEx. Mass\nOption A $\\rightarrow$ true\nOption B $\\rightarrow$ true\nOption C $\\rightarrow$ false, $\\Delta Q = W$ as $\\Delta U = 0$ for isothermal process.\nOption D $\\rightarrow$ true\nOption E $\\rightarrow$ false, for example $1/\\rho = V/m$, V is extensive variable but $\\rho$ is intensive variable.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "C, D and E only"
+    },
+    {
+     "key": "B",
+     "text": "A, B and C only"
+    },
+    {
+     "key": "C",
+     "text": "A, B and D only"
+    },
+    {
+     "key": "D",
+     "text": "B, C and D only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Refer to the figure given below. The values of $I_{1}$, $I_{2}$ and $I_{3}$ are ______.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "KCL at A.\n$\\frac{5 - V_{A}}{2} + \\frac{O - V_{A}}{2} + \\frac{V_{B} - 10 - V_{A}}{1} = 0$\n$5 - V_{A} - V_{A} + 2V_{B} - 2V_{A} - 20 = 0$\n$2V_{B} - 4V_{A} = 15$ ......(i)\nKCL at B.\n$\\frac{5 - V_{B}}{4} + \\frac{V_{A} - \\left(V_{B} - 10\\right)}{1} + \\frac{0 - V_{B}}{4} = 0$\n$5 - V_{B} + 4V_{A} - 4V_{B} + 40 - V_{B} = 0$\n$45 = 6V_{B} - 4V_{A}$ ....(ii)\nSolve (i) & (ii)\n$V_{B} = 15/2$\n$V_{A} = 0$\n$I_{1} = 2.5$\n$I_{2} = 1.875$\n$I_{3} = 1.875$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$I_{1} = 2.5$ A, $I_{2} = 1.875$ A, $I_{3} = 1.875$ A"
+    },
+    {
+     "key": "B",
+     "text": "$I_{1} = 1.875$ A, $I_{2} = 2.5$ A, $I_{3} = 1.875$ A"
+    },
+    {
+     "key": "C",
+     "text": "$I_{1} = 1.875$ A, $I_{2} = 1.875$ A, $I_{3} = 2.5$ A"
+    },
+    {
+     "key": "D",
+     "text": "$I_{1} = 2.5$ A, $I_{2} = 2.5$ A, $I_{3} = 1.875$ A"
+    }
+   ],
+   "stem_figure": "j26-05apr-s1-phy-q34.png",
+   "solution_figure": "j26-05apr-s1-phy-q34-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron of mass m is moving in an electric field $\\vec{E} = -2E_{0}\\hat{i}$ ($E_{0}$ = constant > 0), with an initial velocity $\\vec{V} = v_{0}\\hat{i}$ ($v_{0}$ = constant > 0). If $\\lambda_{0} = \\frac{h}{4mv_{0}}$, its de Broglie wavelength at time t is _______.\n(e = charge of electron)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$v = u + at$\n$v = v_{0} - \\frac{e\\left(-2E_{0}\\right)t}{m}$\n$v = v_{0} + \\frac{2eE_{0}t}{m}$\n$\\lambda = \\frac{h}{m\\left(v_{0} + \\frac{2eE_{0}t}{m}\\right)}$\n$\\lambda = \\frac{h}{mv_{0}\\left(1 + \\frac{2eE_{0}t}{mv_{0}}\\right)}$, $\\quad \\lambda = \\frac{4\\lambda_{0}}{\\left(1 + \\frac{2eE_{0}t}{mv_{0}}\\right)}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4\\lambda_{0}}{\\left[1 - \\frac{E_{0}e}{2m}\\frac{t}{v_{0}}\\right]}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4\\lambda_{0}}{\\left[1 + \\frac{E_{0}e}{2m}\\frac{t}{v_{0}}\\right]}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4\\lambda_{0}}{\\left[1 + \\frac{2E_{0}e}{m}\\frac{t}{v_{0}}\\right]}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4\\lambda_{0}}{\\left[1 - \\frac{2E_{0}e}{m}\\frac{t}{v_{0}}\\right]}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In the hydrogen atom, the electron makes a transition from the higher orbit (i) to a lower orbit (f). The ratio of the radius of the orbits in given by $r_{i} : r_{f} = 16 : 4$. The wavelength of photon emitted due to this transition is _______ nm. (Given Rydberg constant = $1.0973 \\times 10^{7}$/m)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$r \\propto n^{2}$ since ratio is given as 16:4 we are assuming\n$n_{i} = 4$\n$n_{f} = 2$\n$\\frac{1}{\\lambda} = Rz^{2}\\left(\\frac{1}{n_{1}^{2}} - \\frac{1}{n_{2}^{2}}\\right)$\n$\\frac{1}{\\lambda} = 1.0973 \\times 10^{7}\\left(\\frac{1}{4} - \\frac{1}{16}\\right)$\n$\\frac{1}{\\lambda} = 1.0973 \\times 10^{7}\\frac{3}{16}$\n$\\lambda = \\frac{16}{3} \\times \\frac{10^{-7}}{1.0973}$\n$\\lambda = 486\\ \\mathrm{nm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "121"
+    },
+    {
+     "key": "B",
+     "text": "242"
+    },
+    {
+     "key": "C",
+     "text": "486"
+    },
+    {
+     "key": "D",
+     "text": "974"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A displacement current of 4.0 A can be set up in the space between two parallel plates of $6\\ \\mu\\mathrm{F}$ capacitor. The rate of change of potential difference across the plates of the capacitor is nearly $\\alpha \\times 10^{6}$ V/s. The value of $\\alpha$ is _________.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$i_{d} = \\varepsilon_{0}\\frac{d\\phi_{E}}{dt}$\n$i_{d} = \\varepsilon_{0}\\frac{d}{dt}EA$\n$= \\varepsilon_{0}A\\frac{d}{dt}\\left(\\frac{V}{d}\\right)$\n$= \\frac{\\varepsilon_{0}A}{d}\\left(\\frac{d}{dt}V\\right)$\n$4 = 6\\mu f \\times \\frac{dv}{dt}$\n$\\frac{dv}{dt} = \\frac{2}{3} \\times 10^{6}$, $\\quad \\alpha = \\frac{2}{3} = 0.67$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.58"
+    },
+    {
+     "key": "B",
+     "text": "0.67"
+    },
+    {
+     "key": "C",
+     "text": "0.82"
+    },
+    {
+     "key": "D",
+     "text": "0.75"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Refer to the figure given below, current between terminals A and B is ________A.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Emf of each branch $= 5 \\times 3$\n$= 15\\ \\mathrm{V}$\nresistance of each $= 3 \\times 3 = 9\\ \\Omega$\n$r_{equivalent} = \\frac{9}{3} = 3\\ \\Omega$\n$\\varepsilon_{equivalent} = \\left(\\frac{15}{9} + \\frac{15}{9} + \\frac{15}{9}\\right) \\times 3 = 15$\n[Equivalent circuit: $E_{eq}$ in series with $r_{eq}$, connected across the $9\\ \\Omega$ branch between A and B]\n$i = \\frac{15}{9 + 3} = \\frac{5}{4}$ A",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "12.5"
+    },
+    {
+     "key": "B",
+     "text": "1.25"
+    },
+    {
+     "key": "C",
+     "text": "7.5"
+    },
+    {
+     "key": "D",
+     "text": "5"
+    }
+   ],
+   "stem_figure": "j26-05apr-s1-phy-q38.png",
+   "solution_figure": "j26-05apr-s1-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In Young's double slit experiment, the fringe width of the interference pattern produced on the screen is $2.4\\ \\mu\\mathrm{m}$. If the experiment is carried out in another medium having refractive index 1.2, the fringe width will be _______ $\\mu\\mathrm{m}$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda_{medium} = \\frac{\\lambda_{air}}{\\mu_{medium}}$\n$\\beta = \\frac{\\lambda D}{d}$\n$\\beta' = \\frac{\\lambda D}{d\\mu} = \\frac{\\beta}{\\mu}$\n$\\beta' = \\frac{2.4\\ \\mu m}{1.2} = 2\\ \\mu m$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.2"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "2.4"
+    },
+    {
+     "key": "D",
+     "text": "2.88"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A ray of light passing through an equilateral prism is having velocity $2.12 \\times 10^{8}$ m/s in the prism material, then the minimum angle of deviation is _______ degrees.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mu = \\frac{C}{V} = \\frac{3 \\times 10^{8}}{2.12 \\times 10^{8}} = \\frac{3}{2.12}$\n$\\mu = \\frac{\\sin\\left(\\frac{A + \\delta_{min}}{2}\\right)}{\\sin\\frac{A}{2}}$\n$\\frac{3}{2.12} = \\frac{\\sin\\left(\\frac{60 + \\delta_{min}}{2}\\right)}{\\sin 30}$\n$\\frac{3}{4.24} = \\sin\\left(\\frac{60 + \\delta_{min}}{2}\\right)$\n$\\frac{1}{\\sqrt{2}} = \\sin\\left(\\frac{60 + \\delta_{min}}{2}\\right)$\n$45 \\times 2 = 60 + \\delta_{min}$\n$\\delta_{min} = 30$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "45"
+    },
+    {
+     "key": "B",
+     "text": "30"
+    },
+    {
+     "key": "C",
+     "text": "28"
+    },
+    {
+     "key": "D",
+     "text": "58"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Light source having wavelength 331 nm is used to generate photo-electrons whose stopping potential is 0.2 V. The work function of the used metal in the experiment is $\\alpha \\times 10^{-19}$ J. The value of $\\alpha$ is ______.\n($h = 6.62 \\times 10^{-34}$ J s, $e = 1.6 \\times 10^{-19}$ C and $c = 3 \\times 10^{8}$ m/s)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{hc}{\\lambda} = \\phi + KE_{max}$\n$\\frac{6.62 \\times 10^{-34} \\times 3 \\times 10^{8}}{331 \\times 10^{-9}} = \\phi + 0.2 \\times 1.6 \\times 10^{-19}\\ \\mathrm{J}$\n$6 \\times 10^{-19} = \\phi + 0.32 \\times 10^{-19}$\n$\\phi = 5.68 \\times 10^{-19}\\ \\mathrm{J}$\n$\\alpha = 5.68$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3.68"
+    },
+    {
+     "key": "B",
+     "text": "4.68"
+    },
+    {
+     "key": "C",
+     "text": "5.68"
+    },
+    {
+     "key": "D",
+     "text": "2.68"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A compound microscope is designed with two symmetric biconvex lenses. The objective lens is cut vertically, creating two identical plano-convex lenses. One of them is used in place of original objective lens. To retain same magnification keeping the object distance unchanged, the tube length has to be :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$MP = \\frac{LD}{f_{0}f_{e}}$\nAs $f_{0}$ becomes twice, length of tube should be doubled to keep M.P. same.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "increased two times"
+    },
+    {
+     "key": "B",
+     "text": "increased 3/2 times"
+    },
+    {
+     "key": "C",
+     "text": "decreased two times"
+    },
+    {
+     "key": "D",
+     "text": "decreased 3/2 times"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two wires as shown in the figure below, made of steel and have breaking stress of $12 \\times 10^{8}\\ \\mathrm{N/m^{2}}$. Area of cross-section of upper wire is $0.008\\ \\mathrm{cm^{2}}$ and of lower wire is $0.004\\ \\mathrm{cm^{2}}$. The maximum mass that can be added to pan without breaking any wire is _______ kg. (take $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Lower wire\n$T_{max}$ = Stress $\\times$ Area\n$T_{max} = 12 \\times 10^{8} \\times 4 \\times 10^{-7}$\n$T_{max} = 480$ N\nUpper wire\n$T_{max} = 12 \\times 10^{8} \\times 8 \\times 10^{-7}$\n$T_{max} = 960$ N\nFor lower wire to break\n$480 = mg + 10g$\n$m = 38$ kg\nFor upper wire to break\n$960 = mg + (10 + 30)g$\n$m = 56g$\nmax mass should be less than 38 kg for both wire to not break.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "56"
+    },
+    {
+     "key": "B",
+     "text": "38"
+    },
+    {
+     "key": "C",
+     "text": "96"
+    },
+    {
+     "key": "D",
+     "text": "5.6"
+    }
+   ],
+   "stem_figure": "j26-05apr-s1-phy-q43.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An a.c. source of angular frequency $\\omega$ is connected across a resistor R and a capacitor C in series. The current is observed as I. Now the frequency of the source is changed to $\\omega/4$, (keeping the voltage unchanged) the current is found to be I/3. The ratio of resistance to reactance at frequency $\\omega$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\frac{V}{\\sqrt{R^{2} + \\frac{1}{w^{2}c^{2}}}}$ ..........(i)\n$\\frac{I}{3} = \\frac{V}{\\sqrt{R^{2} + \\frac{16}{w^{2}c^{2}}}}$ ..........(ii)\nDivide (i) / (ii)\n$3 = \\sqrt{\\frac{R^{2} + 16X_{c}^{2}}{R^{2} + X_{c}^{2}}}$, $\\quad \\left(X_{c} = \\frac{1}{\\omega c}\\right)$\n$9R^{2} + 9X_{c}^{2} = R^{2} + 16X_{c}^{2}$\n$8R^{2} = 7X_{c}^{2}$\n$\\frac{R}{X_{c}} = \\sqrt{\\frac{7}{8}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{\\frac{6}{7}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{\\frac{3}{5}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{7}{8}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{3}{4}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the given logic circuit, which of the following inputs combination will make both LED-1 and LED-2 to glow ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Option A $\\Rightarrow$ LED-1 will glow but not LED-2\nOption B $\\Rightarrow$ LED-1 will glow but not LED-2\nOption C $\\Rightarrow$ Both LED will glow\nOption D $\\Rightarrow$ LED-1 will glow but not LED-2",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A = 0, B = 1, C = 1"
+    },
+    {
+     "key": "B",
+     "text": "A = 1, B = 0, C = 0"
+    },
+    {
+     "key": "C",
+     "text": "A = 1, B = 0, C = 1"
+    },
+    {
+     "key": "D",
+     "text": "A = 1, B = 1, C = 0"
+    }
+   ],
+   "stem_figure": "j26-05apr-s1-phy-q45.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A cube has side length 5 cm and modulus of rigidity $10^{5}\\ \\mathrm{N/m^{2}}$. The displacement produced by a force of 10 N in the upper face of cube is ________mm.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$\\eta = \\frac{F}{A}\\frac{\\ell}{\\Delta x}$\n$10^{5} = \\frac{10}{25 \\times 10^{-4}}\\frac{5 \\times 10^{-2}}{\\Delta x}$\n$\\Delta x = 2 \\times 10^{-3}\\ \\mathrm{m}$\n$\\Delta x = 2\\ \\mathrm{mm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Motion in a Straight Line",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "From 18 m height above the ground a ball is dropped from rest. The height above the ground at which the magnitude of velocity equal to the magnitude of acceleration (in the same set of units) due to gravity is ______ m. (Take $g = 10\\ \\mathrm{m/s^{2}}$ and neglect the air resistance)",
+   "correct_key": null,
+   "correct_value": 13,
+   "correct_keys": null,
+   "solution": "$V^{2} = u^{2} + 2as$\n$10^{2} = 0^{2} + (2)(10)(s)$\n$s = 5\\ \\mathrm{m}$\nHeight $= 18 - 5$\n$= 13$ m",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Waves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A transverse wave on a string is described by $y = 3\\sin(36t + 0.018x + \\pi/4)$. where x, y are in cm and t in seconds. The least distance between the two successive crests in the wave is _____ cm. (Nearest integer) ($\\pi = 3.14$)",
+   "correct_key": null,
+   "correct_value": 349,
+   "correct_keys": null,
+   "solution": "Distance b/w two crests in $\\lambda$\n$K = \\frac{2\\pi}{\\lambda} = \\frac{18}{1000}\\ \\mathrm{cm^{-1}}$\n$\\lambda = \\frac{1000\\pi}{9}\\ \\mathrm{cm}$\n$= \\frac{3140}{9}\\ \\mathrm{cm}$\n$\\lambda = 348.8\\ \\mathrm{cm} \\approx 349\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The charged particle moving in a uniform magnetic field of $(3\\hat{i} + 2\\hat{j})$T has an acceleration $\\left(4\\hat{i} - \\frac{x}{2}\\hat{j}\\right)\\mathrm{m/s^{2}}$. The value of x is :",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "$\\vec{F}$ & $\\vec{a} \\perp \\vec{B}$\n$\\left(4\\hat{i} - \\frac{x}{2}\\hat{j}\\right) \\cdot \\left(3\\hat{i} + 2\\hat{j}\\right) = 0$\n$12 - x = 0$\n$x = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Electromagnetic Induction",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In the given circuit below inductance values of $L_{1}$, $L_{2}$ and $L_{3}$ are same. The magnetic energy stored in the entire circuit is ($U_{t}$) and that stored in the $L_{2}$ inductor is ($U_{l}$). $U_{t}/U_{l}$ is ______. (Ignore the mutual inductance if any)",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "Current in $L_{2}$ and $L_{3}$ should be same by symmetry\n$U_{L} = \\frac{1}{2}Li^{2}$\n$U_{t} = \\frac{1}{2}Li^{2} + \\frac{1}{2}Li^{2} + \\frac{1}{2}L(2i)^{2}$\n$= 3Li^{2}$\n$\\frac{U_{t}}{U_{L}} = \\frac{3Li^{2}}{\\frac{1}{2}Li^{2}} = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j26-05apr-s1-phy-q50.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
