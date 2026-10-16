@@ -1,0 +1,1830 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Physics",
+  "year": 2026,
+  "set_label": "13 April · Shift 2",
+  "title": "MHT-CET 2026 · Physics · 13 April Shift 2",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "+1 correct · no negative marking",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": "1VS7SWg9p77w1Hc_Dvd_bH8-VpzYyFTmd"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The length of a cylinder is measured with a meter rod having least count $0.1$ cm. Its diameter is measured with vernier calipers having least count $0.01$ cm. Length of cylinder is $8.0$ cm and radius is $4.0$ cm. Find the percentage error in the calculated value of the volume.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Question:\nThe volume of a cylinder is $V = \\pi r^{2} l$. The maximum fractional error adds up the fractional errors, with the power multiplying the radius error.\nStep 2: Key Formula:\n$$\\frac{\\Delta V}{V} = 2\\frac{\\Delta r}{r} + \\frac{\\Delta l}{l}$$\nStep 3: Errors in l and r:\nLength: $\\frac{\\Delta l}{l} = \\frac{0.1}{8.0} = 0.0125 = 1.25\\%$.\nDiameter: the least count is $0.01$ cm, so $\\Delta d = 0.01$. The radius is half the diameter, so $\\Delta r = 0.005$ cm, and $\\frac{\\Delta r}{r} = \\frac{0.005}{4.0} = 0.125\\%$.\nStep 4: Combine:\n$\\frac{\\Delta V}{V} \\times 100 = 2(0.125) + 1.25 = 0.25 + 1.25 = 1.5\\%$.\nFinal Answer:\nThe percentage error in the volume is $1.5\\%$, option (C).\nQuick Tip: For $V = \\pi r^{2} l$, $\\frac{\\Delta V}{V} = 2\\frac{\\Delta r}{r} + \\frac{\\Delta l}{l}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.25\\%$"
+    },
+    {
+     "key": "B",
+     "text": "$1.75\\%$"
+    },
+    {
+     "key": "C",
+     "text": "$1.5\\%$"
+    },
+    {
+     "key": "D",
+     "text": "$2.75\\%$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the values of $a$ and $b$ if vectors $a\\hat{i} + b\\hat{j} = \\hat{n}$ and $(\\hat{i} + \\hat{j})$ are perpendicular to each other",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Question:\n$\\hat{n} = a\\hat{i} + b\\hat{j}$ is a unit vector (the hat shows it) perpendicular to $\\hat{i} + \\hat{j}$.\nStep 2: Two conditions:\nPerpendicular: $(a\\hat{i} + b\\hat{j}) \\cdot (\\hat{i} + \\hat{j}) = a + b = 0$, so $b = -a$.\nUnit magnitude: $a^{2} + b^{2} = 1$, so $2a^{2} = 1$ and $a = \\pm\\frac{1}{\\sqrt{2}}$.\nStep 3: Pick the option:\n$a = \\frac{1}{\\sqrt{2}}$, $b = -\\frac{1}{\\sqrt{2}}$, which is option D.\nOption A: $a + b = 1 \\neq 0$. Option B: the zero vector is not a unit vector.\nOption C: $a + b \\neq 0$, since $\\sqrt{2} - \\frac{1}{\\sqrt{2}} \\neq 0$.\nFinal Answer:\nThe values are $a = \\frac{1}{\\sqrt{2}}$ and $b = -\\frac{1}{\\sqrt{2}}$, option (D).\nQuick Tip: Perpendicular means zero dot product; unit vector means unit magnitude.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}, \\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$0, 0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{2}, -\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{1}{\\sqrt{2}}\\right), \\left(-\\frac{1}{\\sqrt{2}}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Kinematics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The velocity time graph of a body moving in a straight line is shown in a figure. The ratio of displacement to distance travelled by the body in time $0$ to $10$ s is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Read the graph\nThe v-t graph is made of rectangles. From $0$ to $2$ s, $v = +8$ m/s. From $2$ to $4$ s, $v = -4$ m/s. From $4$ to $8$ s, $v = +4$ m/s. From $8$ to $10$ s, $v = -4$ m/s.\nStep 2: Rule\nThe signed area under a v-t graph gives displacement. The sum of the absolute areas gives distance travelled.\nStep 3: Areas\n$A_1 = 8 \\times 2 = 16$ m. $A_2 = -4 \\times 2 = -8$ m. $A_3 = 4 \\times 4 = 16$ m. $A_4 = -4 \\times 2 = -8$ m.\nStep 4: Displacement and distance\nDisplacement $= 16 - 8 + 16 - 8 = 16$ m. Distance $= 16 + 8 + 16 + 8 = 48$ m.\nStep 5: Ratio\n$$\\frac{\\text{displacement}}{\\text{distance}} = \\frac{16}{48} = \\frac{1}{3}$$\nSo the ratio is 1:3. A ratio of 1:1 would mean no reversal of direction, which is not the case, and 1:2 or 1:4 do not match the areas.\nFinal Answer:\nThe ratio is 1:3, option (D).\nQuick Tip: Displacement is the signed area under the v-t graph and distance is the sum of absolute areas.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$1 : 4$"
+    },
+    {
+     "key": "C",
+     "text": "$1 : 2$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 3$"
+    }
+   ],
+   "stem_figure": "m26-13apr-s2-q003.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Kinematics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Spherical insulating ball and a spherical metallic ball of same size and mass are dropped from the same height. Choose the correct statement out of the following {Assume negligible air friction}",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nWith negligible air friction, the only force on each ball is gravity. A falling body then moves under free fall, and free fall does not depend on what the body is made of.\nStep 2: Key Formula or Approach:\nNewton's second law gives $ma = mg$, so the acceleration is $a = g$. The mass cancels. For a drop from rest through height $h$:\n$$h = \\frac{1}{2}gt^{2} \\quad \\Rightarrow \\quad t = \\sqrt{\\frac{2h}{g}}$$\nStep 3: Detailed Explanation:\nBoth balls have the same size and the same mass, and both are dropped from the same height $h$ with zero initial speed.\nThe time $t = \\sqrt{2h/g}$ contains only $h$ and $g$. It has no term for the material, conductivity or charge of the ball.\nSo the metallic ball and the insulating ball take exactly the same time to reach the ground.\nOption (B) says the insulating ball lands first and option (D) says the metal ball lands first. Both are wrong, because the equation gives one common time for the two balls.\nFinal Answer:\nBoth balls reach the ground at the same instant, so the correct option is (C).\nQuick Tip: Without air friction both balls fall with the same acceleration $g$, so the fall time $\\sqrt{2h/g}$ is identical for both.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Time taken by them to reach the earth's surface will be independent of the properties of their materials."
+    },
+    {
+     "key": "B",
+     "text": "Insulating ball will reach the earth's surface earlier than the metal ball."
+    },
+    {
+     "key": "C",
+     "text": "Both will reach the earth's surface simultaneously."
+    },
+    {
+     "key": "D",
+     "text": "Metal ball will reach the earth's surface earlier than the insulating ball."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$100$ balls each of mass $m$ moving with speed $v$ simultaneously strike a wall normally and reflected back with same speed, in time $t$ s. The total magnitude of force exerted by the balls on the wall is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nForce equals the rate of change of momentum, $F = \\frac{\\Delta p}{t}$.\nStep 2: Momentum change of one ball:\nThe ball hits normally with velocity $+v$ and comes back with $-v$. $\\Delta p = mv - (-mv) = 2mv$.\nStep 3: All 100 balls:\nThey strike together, so the total change is $100 \\times 2mv = 200mv$.\n$$F = \\frac{200mv}{t}$$\nStep 4: Other options:\n$100mv/t$ would mean the balls stop, not reflect. $200mvt$ has the wrong dependence on time. $mv/100t$ is far too small.\nFinal Answer:\nThe total force on the wall is $\\frac{200mv}{t}$, option (B).\nQuick Tip: Each ball changes momentum by $2mv$; force is total change in momentum over time.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100mv/t$"
+    },
+    {
+     "key": "B",
+     "text": "$200mv/t$"
+    },
+    {
+     "key": "C",
+     "text": "$200mvt$"
+    },
+    {
+     "key": "D",
+     "text": "$mv/100t$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A solid sphere of mass $1$ kg rolls without slipping on a plane surface. Its kinetic energy is $7 \\times 10^{-3}$ J. The speed of the center of mass of the sphere in $\\mathrm{cm\\,s^{-1}}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA rolling sphere has translational and rotational kinetic energy. For rolling without slipping, $v = \\omega R$, and for a solid sphere $I = \\frac{2}{5}mR^{2}$.\nStep 2: Total energy:\n$$K = \\frac{1}{2}mv^{2} + \\frac{1}{2}I\\omega^{2} = \\frac{1}{2}mv^{2} + \\frac{1}{2}\\cdot\\frac{2}{5}mR^{2}\\cdot\\frac{v^{2}}{R^{2}} = \\frac{1}{2}mv^{2} + \\frac{1}{5}mv^{2} = \\frac{7}{10}mv^{2}$$\nStep 3: Solve:\n$\\frac{7}{10}(1)v^{2} = 7 \\times 10^{-3}$, so $v^{2} = 10^{-2}$, and $v = 0.1$ m/s $= 10$ cm/s.\nFinal Answer:\nThe speed is $10$ cm/s, option (B).\nQuick Tip: Total kinetic energy of a rolling sphere is $\\frac{7}{10}mv^{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$100$"
+    },
+    {
+     "key": "D",
+     "text": "$1000$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Moment of inertia of a disc of mass $M$ and radius 'R' about any of its diameter is $MR^{2}/4$. The moment of inertia of this disc about an axis normal to the disc and passing through a point on its edge will be, $(x/2)MR^{2}$. The value of $x$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe perpendicular axis theorem gives the moment of inertia about the normal axis through the centre. The parallel axis theorem then shifts it to the edge.\nStep 2: Step by step:\nAbout a diameter: $I_d = \\frac{MR^{2}}{4}$. By the perpendicular axis theorem, $I_z = I_d + I_d = \\frac{MR^{2}}{2}$.\nParallel axis theorem to a point on the edge (distance $R$): $I = I_z + MR^{2} = \\frac{MR^{2}}{2} + MR^{2} = \\frac{3}{2}MR^{2}$.\nStep 3: Find x:\nComparing with $\\frac{x}{2}MR^{2}$: $x = 3$.\nFinal Answer:\nThe value of $x$ is $3$, option (B).\nQuick Tip: Use the perpendicular axis theorem, then the parallel axis theorem.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A thin uniform rod of length $2$ m cross-sectional area 'A' and density 'd' is rotated about an axis passing through the centre and perpendicular to its length with angular velocity $\\omega$. If the value of $\\omega$ in terms of its rotational kinetic energy $E$ is $(\\alpha E/Ad)^{1/2}$, then the value of $\\alpha$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nRotational kinetic energy is $E = \\frac{1}{2}I\\omega^{2}$. For a thin uniform rod of mass $M$ and length $L$ about its centre, $I = \\frac{ML^{2}}{12}$.\nStep 2: Find the mass and I:\n$L = 2$ m, so $M = \\text{volume} \\times \\text{density} = A \\cdot 2 \\cdot d = 2Ad$.\n$$I = \\frac{2Ad \\times 4}{12} = \\frac{2Ad}{3}$$\nStep 3: Solve for omega:\n$E = \\frac{1}{2}\\cdot\\frac{2Ad}{3}\\omega^{2} = \\frac{Ad\\,\\omega^{2}}{3}$, so $\\omega^{2} = \\frac{3E}{Ad}$, and $\\omega = \\left(\\frac{3E}{Ad}\\right)^{1/2}$.\nComparing with $\\left(\\frac{\\alpha E}{Ad}\\right)^{1/2}$: $\\alpha = 3$.\nFinal Answer:\nThe value of $\\alpha$ is $3$, option (B).\nQuick Tip: Moment of inertia of a rod about its centre is $\\frac{ML^{2}}{12}$, with $M = AdL$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If earth has a mass nine times and radius twice to the planet P. Then $\\frac{v_e}{3}\\sqrt{x}\\ \\mathrm{ms^{-1}}$ will be the minimum velocity required by a rocket to pull out of gravitational force of P, where $v_e$ is escape velocity on earth. The value of $x$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nEscape speed is $v = \\sqrt{\\frac{2GM}{R}}$, so $v \\propto \\sqrt{\\frac{M}{R}}$.\nStep 2: Compare:\nEarth has $M_e = 9M_P$ and $R_e = 2R_P$, so $M_P = \\frac{M_e}{9}$ and $R_P = \\frac{R_e}{2}$.\n$$\\frac{v_P}{v_e} = \\sqrt{\\frac{M_P/R_P}{M_e/R_e}} = \\sqrt{\\frac{1/9}{1/2}} = \\sqrt{\\frac{2}{9}} = \\frac{\\sqrt{2}}{3}$$\nStep 3: Find x:\nSo $v_P = \\frac{v_e}{3}\\sqrt{2}$, and comparing with $\\frac{v_e}{3}\\sqrt{x}$ gives $x = 2$.\nFinal Answer:\nThe value of $x$ is $2$, option (A).\nQuick Tip: $v_{esc} = \\sqrt{2GM/R}$, so it scales as $\\sqrt{M/R}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$18$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Surface Tension",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Determine the ratio of surface energy of $1$ large drop to $1$ small drop, if $1000$ small drops combined to form $1$ large drop.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nSurface energy is surface tension times area, so it is proportional to $r^{2}$. The volume stays the same when drops merge.\nStep 2: Find the large drop radius:\n$1000 \\times \\frac{4}{3}\\pi r^{3} = \\frac{4}{3}\\pi R^{3}$, so $R^{3} = 1000r^{3}$ and $R = 10r$.\nStep 3: Ratio:\n$$\\frac{E_{\\text{large}}}{E_{\\text{small}}} = \\frac{4\\pi R^{2}T}{4\\pi r^{2}T} = \\frac{R^{2}}{r^{2}} = 100$$\nSo the ratio is $100 : 1$. Note this compares one drop with one drop. The total surface energy of the $1000$ small drops is $1000$ times that of one drop, which is $10$ times that of the large drop, but that is a different ratio.\nFinal Answer:\nThe ratio is $100 : 1$, option (A).\nQuick Tip: Volume conservation gives $R = 10r$; surface energy goes as radius squared.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$10 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$1000 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Surface Tension",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A spherical drop of liquid splits into $1000$ identical spherical drops. If $u_i$ is the surface energy of the original drop and $u_f$ is the total surface energy of the resulting drops, the (ignoring evaporation). $u_f/u_i = (10/x)$. Then value of $x$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nSplitting conserves volume. If the original radius is $R$ and each small drop has radius $r$, then $1000r^{3} = R^{3}$, so $r = \\frac{R}{10}$.\nStep 2: Surface energies:\n$u_i = 4\\pi R^{2}T$.\n$u_f = 1000 \\times 4\\pi r^{2}T = 1000 \\times 4\\pi \\frac{R^{2}}{100}T = 10 \\times 4\\pi R^{2}T$.\nStep 3: Ratio:\n$\\frac{u_f}{u_i} = 10 = \\frac{10}{x}$, so $x = 1$.\nFinal Answer:\nThe value of $x$ is $1$, option (A).\nQuick Tip: Radius of each small drop is $R/10$; total area grows by a factor $10$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Fluid Dynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The surface of water in a water tank of cross-section area $750\\ \\mathrm{cm^{2}}$ on the top of a house is $h$ m above the tap level. The speed of water coming out through the tap of cross-section area $500\\ \\mathrm{mm^{2}}$ is $30$ cm/s. At that instant, $dh/dt$ is $y \\times 10^{-3}$ m/s. The value of $y$ will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe volume leaving through the tap per second equals the volume lost from the tank per second: $A_1 \\left|\\frac{dh}{dt}\\right| = A_2 v$.\nStep 2: Convert units:\nTank area $A_1 = 750\\ \\mathrm{cm^{2}}$. Tap area $A_2 = 500\\ \\mathrm{mm^{2}} = 5\\ \\mathrm{cm^{2}}$. Speed $v = 30$ cm/s.\nStep 3: Calculate:\n$$\\left|\\frac{dh}{dt}\\right| = \\frac{5 \\times 30}{750} = 0.2\\ \\text{cm/s} = 2 \\times 10^{-3}\\ \\text{m/s}$$\nSo $y = 2$.\nFinal Answer:\nThe value of $y$ is $2$, option (A).\nQuick Tip: Use the equation of continuity: $A_1\\, dh/dt = A_2 v$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What will be the ratio of rate of radiation of metal sphere at two different temperatures $T_1 = 527^\\circ\\mathrm{C}$ and $T_2 = 127^\\circ\\mathrm{C}$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Key Formula:\nBy the Stefan-Boltzmann law, the radiated power is $P = \\sigma A T^{4}$. For the same sphere, $P \\propto T^{4}$.\nStep 2: Convert to Kelvin:\n$T_1 = 527 + 273 = 800$ K and $T_2 = 127 + 273 = 400$ K.\nStep 3: Ratio:\n$$\\frac{P_1}{P_2} = \\left(\\frac{800}{400}\\right)^{4} = 2^{4} = 16$$\nThe ratio is $16 : 1$. A ratio of $4 : 1$ would come from using $T^{2}$, and $8 : 1$ from using $T^{3}$.\nFinal Answer:\nThe ratio of radiation rates is $16 : 1$, option (B).\nQuick Tip: Rate of radiation is proportional to $T^{4}$ (Kelvin).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$16 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$8 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$64 : 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The coefficient of thermal conductivity of a metal rod depends on its",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe coefficient of thermal conductivity $K$ is defined by $Q = \\frac{KA\\Delta T\\,t}{l}$. It is the heat flow per unit area per unit temperature gradient.\nStep 2: Reason:\nThe area $A$ and length $l$ already appear separately in the formula, so $K$ does not depend on them. Mass also does not enter. $K$ depends only on the material of the rod, for example copper has a high $K$ and wood a low one.\nFinal Answer:\nThermal conductivity depends on the material of the rod, option (C).\nQuick Tip: Thermal conductivity is a property of the material only.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "area of cross section"
+    },
+    {
+     "key": "B",
+     "text": "mass"
+    },
+    {
+     "key": "C",
+     "text": "material of the rod"
+    },
+    {
+     "key": "D",
+     "text": "length used"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Energy of a gas/litre is $600$ joule, then what will be its pressure?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nFor an ideal gas, the total translational kinetic energy is $E = \\frac{3}{2}PV$. So the energy per unit volume is $\\frac{E}{V} = \\frac{3}{2}P$.\nStep 2: Calculate:\nEnergy per litre: $600$ J in $1\\ \\mathrm{L} = 10^{-3}\\ \\mathrm{m^{3}}$, so $\\frac{E}{V} = 6 \\times 10^{5}\\ \\mathrm{J/m^{3}}$.\n$$P = \\frac{2}{3} \\times \\frac{E}{V} = \\frac{2}{3} \\times 6 \\times 10^{5} = 4 \\times 10^{5}\\ \\mathrm{N/m^{2}}$$\nStep 3: Other options:\n$6 \\times 10^{5}$ is the energy density, not the pressure. $3 \\times 10^{5}$ would come from using $P = \\frac{E}{2V}$.\nFinal Answer:\nThe pressure is $4 \\times 10^{5}\\ \\mathrm{N/m^{2}}$, option (A).\nQuick Tip: Translational kinetic energy per unit volume equals $\\frac{3}{2}P$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4 \\times 10^{5}\\ \\mathrm{N/m^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$10^{5}\\ \\mathrm{N/m^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$6 \\times 10^{5}\\ \\mathrm{N/m^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$3 \\times 10^{5}\\ \\mathrm{N/m^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "According to law of equipartition of energy the molar specific heat of a non rigid diatomic gas at constant volume is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nBy the law of equipartition, each quadratic energy term contributes $\\frac{1}{2}RT$ per mole.\nStep 2: Count the terms:\nA non-rigid diatomic gas has $3$ translational and $2$ rotational degrees of freedom. It also vibrates, which adds $2$ more terms (kinetic and potential), so the energy has $3 + 2 + 2 = 7$ terms.\n$$U = \\frac{7}{2}RT, \\quad C_V = \\frac{dU}{dT} = \\frac{7}{2}R$$\nStep 3: Other options:\n$\\frac{5}{2}R$ is for a rigid diatomic molecule. $\\frac{3}{2}R$ is for a monatomic gas.\nFinal Answer:\n$C_V = \\frac{7}{2}R$, option (D).\nQuick Tip: A non-rigid diatomic molecule has $7$ degrees of freedom, so $C_V = \\frac{7}{2}R$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(9/2)R$"
+    },
+    {
+     "key": "B",
+     "text": "$(5/2)R$"
+    },
+    {
+     "key": "C",
+     "text": "$(3/2)R$"
+    },
+    {
+     "key": "D",
+     "text": "$(7/2)R$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $\\gamma_1$ be the ratio of molar specific heat at constant pressure and molar specific heat at constant volume of a mono-atomic gas and $\\gamma_2$ be the similar ratio of diatomic gas. Considering the diatomic gas molecule as a rigid rotator, the ratio, $\\gamma_1/\\gamma_2$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Key Formula:\n$\\gamma = \\frac{C_p}{C_V} = 1 + \\frac{2}{f}$, where $f$ is the number of degrees of freedom.\nStep 2: Values:\nMonatomic gas: $f = 3$, so $\\gamma_1 = \\frac{5}{3}$.\nRigid diatomic gas: $f = 5$, so $\\gamma_2 = 1 + \\frac{2}{5} = \\frac{7}{5}$.\nStep 3: Ratio:\n$$\\frac{\\gamma_1}{\\gamma_2} = \\frac{5/3}{7/5} = \\frac{25}{21}$$\nFinal Answer:\nThe ratio is $\\frac{25}{21}$, option (C).\nQuick Tip: $\\gamma = 1 + \\frac{2}{f}$; monatomic $f = 3$, rigid diatomic $f = 5$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$27/35$"
+    },
+    {
+     "key": "B",
+     "text": "$35/27$"
+    },
+    {
+     "key": "C",
+     "text": "$25/21$"
+    },
+    {
+     "key": "D",
+     "text": "$21/25$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A block is fastened to a horizontal spring. The block is pulled to a distance $x = 10$ cm from its equilibrium position (at $x = 0$) on a frictionless surface from rest. The kinetic energy of the block at $x = 5$ cm is $0.25$ J. The spring constant of the spring is nearly (in $\\mathrm{N\\,m^{-1}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe block is released from rest at $x = 10$ cm, so the amplitude is $A = 10$ cm. At displacement $x$, the total energy is $\\frac{1}{2}kA^{2}$, and the potential energy is $\\frac{1}{2}kx^{2}$. So the kinetic energy is $\\frac{1}{2}k(A^{2} - x^{2})$.\nStep 2: Calculate:\n$A = 0.10$ m and $x = 0.05$ m. $A^{2} - x^{2} = 0.01 - 0.0025 = 0.0075\\ \\mathrm{m^{2}}$.\n$$0.25 = \\frac{1}{2}k(0.0075) \\Rightarrow k = \\frac{0.5}{0.0075} = 66.7\\ \\mathrm{N/m} \\approx 67\\ \\mathrm{N/m}$$\nFinal Answer:\nThe spring constant is about $67$ N/m, option (C).\nQuick Tip: In SHM, $KE = \\frac{1}{2}k(A^{2} - x^{2})$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$63$"
+    },
+    {
+     "key": "B",
+     "text": "$65$"
+    },
+    {
+     "key": "C",
+     "text": "$67$"
+    },
+    {
+     "key": "D",
+     "text": "$50$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The amplitude of a particle executing SHM is $3$ cm. The displacement at which its kinetic energy will be $25\\%$ more than the potential energy is (in cm)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn SHM with amplitude $A$, at displacement $x$: $PE = \\frac{1}{2}kx^{2}$ and $KE = \\frac{1}{2}k(A^{2} - x^{2})$.\nStep 2: Set up:\nKE is $25\\%$ more than PE, so $KE = 1.25\\,PE = \\frac{5}{4}PE$.\n$$A^{2} - x^{2} = \\frac{5}{4}x^{2} \\Rightarrow A^{2} = \\frac{9}{4}x^{2}$$\nStep 3: Solve:\n$x^{2} = \\frac{4}{9}A^{2}$, so $x = \\frac{2}{3}A = \\frac{2}{3} \\times 3 = 2$ cm.\nCheck: PE $\\propto 4$, KE $\\propto 9 - 4 = 5$, and $5 = 1.25 \\times 4$.\nFinal Answer:\nThe displacement is $2$ cm, option (B).\nQuick Tip: Use $KE = \\frac{1}{2}k(A^{2} - x^{2})$ and $PE = \\frac{1}{2}kx^{2}$, with $KE = 1.25\\,PE$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The velocity of a particle executing SHM varies with displacement $(x)$ as $4v^{2} = 50 - x^{2}$.\nThe time period of oscillations is $x/7$ s.\nThe value of $x$ is (Take $\\pi = 22/7$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn SHM, $v^{2} = \\omega^{2}(A^{2} - x^{2})$.\nStep 2: Compare:\nThe given relation is $v^{2} = \\frac{1}{4}(50 - x^{2})$. So $\\omega^{2} = \\frac{1}{4}$, giving $\\omega = \\frac{1}{2}$ rad/s, and $A^{2} = 50$.\nStep 3: Time period:\n$$T = \\frac{2\\pi}{\\omega} = 4\\pi = 4 \\times \\frac{22}{7} = \\frac{88}{7}\\ \\text{s}$$\nThe problem says $T = \\frac{x}{7}$, so $x = 88$.\nFinal Answer:\nThe value of $x$ is $88$, option (C).\nQuick Tip: Compare with $v^{2} = \\omega^{2}(A^{2} - x^{2})$ to find $\\omega$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$82$"
+    },
+    {
+     "key": "B",
+     "text": "$84$"
+    },
+    {
+     "key": "C",
+     "text": "$88$"
+    },
+    {
+     "key": "D",
+     "text": "$90$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two waves are represented by the equations, $y_1 = a\\sin(\\omega t + kx + 0.57)$ m and $y_2 = a\\cos(\\omega t + kx)$ m, where $x$ is in metre and $t$ is in second. What is the phase difference between them? ($\\pi = 3.14$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe phase difference is found when both waves are written in the same form, such as $\\sin(\\omega t + kx + \\phi)$.\nStep 2: Convert:\n$y_2 = a\\cos(\\omega t + kx) = a\\sin\\left(\\omega t + kx + \\frac{\\pi}{2}\\right)$.\nThe phase of $y_1$ is $0.57$, and the phase of $y_2$ is $\\frac{\\pi}{2} = 1.57$ (with $\\pi = 3.14$).\nStep 3: Difference:\n$$\\Delta\\phi = 1.57 - 0.57 = 1.0\\ \\text{rad}$$\nOption A forgets the shift between sine and cosine. Option B uses $\\frac{\\pi}{2}$ alone.\nFinal Answer:\nThe phase difference is $1.0$ radian, option (D).\nQuick Tip: Convert the cosine to a sine with an extra $\\pi/2$ phase.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.57$ radian"
+    },
+    {
+     "key": "B",
+     "text": "$1.57$ radian"
+    },
+    {
+     "key": "C",
+     "text": "$1.25$ radian"
+    },
+    {
+     "key": "D",
+     "text": "$1.0$ radian"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Sound waves travel at $350$ m/s through a warm air and at $3500$ m/s through brass. Which of the following is correct about the wavelength of a $700$ Hz accoustic wave as it enters brass from warm air?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nWhen a wave goes from one medium to another, its frequency stays the same. The speed and the wavelength change, with $\\lambda = \\frac{v}{f}$.\nStep 2: Calculate:\nIn air: $\\lambda_1 = \\frac{350}{700} = 0.5$ m. In brass: $\\lambda_2 = \\frac{3500}{700} = 5$ m.\n$\\frac{\\lambda_2}{\\lambda_1} = 10$, so the wavelength increases by a factor of $10$.\nFinal Answer:\nThe wavelength increases by a factor of $10$, option (C).\nQuick Tip: Frequency stays fixed while the speed changes, so $\\lambda = v/f$ scales with speed.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It increase by a factor $20$"
+    },
+    {
+     "key": "B",
+     "text": "It decrease by a factor $10$"
+    },
+    {
+     "key": "C",
+     "text": "It increase by a factor $10$"
+    },
+    {
+     "key": "D",
+     "text": "It decrease by a factor $20$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The distance between two consecutive points with phase difference of $60^\\circ$ in a wave of frequency $n$ is $x$ meter. The velocity with which wave is traveling is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA path difference of one wavelength $\\lambda$ corresponds to a phase difference of $360^\\circ$.\nStep 2: Calculate:\nA phase difference of $60^\\circ$ means a distance of $\\frac{60}{360}\\lambda = \\frac{\\lambda}{6}$. So $x = \\frac{\\lambda}{6}$ and $\\lambda = 6x$.\n$$v = n\\lambda = 6nx$$\nFinal Answer:\nThe speed of the wave is $6nx$, option (D).\nQuick Tip: A phase difference of $60^\\circ$ corresponds to a path difference of $\\lambda/6$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$nx$"
+    },
+    {
+     "key": "B",
+     "text": "$2nx$"
+    },
+    {
+     "key": "C",
+     "text": "$3nx$"
+    },
+    {
+     "key": "D",
+     "text": "$6nx$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A traveling wave is described by the equation $y(x, t) = [0.05\\sin(8x - 4t)]$ m\nThe velocity of the wave is [All the quantities are in SI unit]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA travelling wave is $y = A\\sin(kx - \\omega t)$, and its speed is $v = \\frac{\\omega}{k}$.\nStep 2: Compare:\nHere $k = 8$ rad/m and $\\omega = 4$ rad/s.\n$$v = \\frac{4}{8} = 0.5\\ \\text{m/s}$$\nStep 3: Other options:\n$4$ m/s is just $\\omega$, $8$ m/s is just $k$, and $2$ m/s would come from $k/\\omega$ inverted incorrectly.\nFinal Answer:\nThe wave speed is $0.5$ m/s, option (C).\nQuick Tip: Compare with $\\sin(kx - \\omega t)$; speed is $\\omega/k$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\ \\mathrm{m\\,s^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\ \\mathrm{m\\,s^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.5\\ \\mathrm{m\\,s^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$8\\ \\mathrm{m\\,s^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The electric potential at the center of two concentric half rings of radii $R_{1}$ and $R_{2}$, having same linear charge density $\\lambda$ is ($\\varepsilon_{0}$ = permittivity of free space)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understand the figure\nTwo concentric half rings with centre O have radii $R_{1}$ and $R_{2}$. Both carry the same positive linear charge density $\\lambda$.\nStep 2: Potential of a half ring at its centre\nEvery bit of charge on a half ring is at the same distance $R$ from the centre. So $V = \\frac{1}{4\\pi\\epsilon_{0}}\\frac{Q}{R}$. The length is $\\pi R$, so $Q = \\lambda\\pi R$.\nStep 3: Calculate\n$$V = \\frac{1}{4\\pi\\epsilon_{0}}\\frac{\\lambda\\pi R}{R} = \\frac{\\lambda}{4\\epsilon_{0}}$$\nThe radius cancels, so each half ring gives the same value.\nStep 4: Add the two\nPotential is a scalar, so we add directly:\n$$V_{net} = \\frac{\\lambda}{4\\epsilon_{0}} + \\frac{\\lambda}{4\\epsilon_{0}} = \\frac{\\lambda}{2\\epsilon_{0}}$$\nStep 5: Other options\n$\\frac{2\\lambda}{\\epsilon_{0}}$ and $\\frac{\\lambda}{\\epsilon_{0}}$ are too large, and $\\frac{\\lambda}{4\\epsilon_{0}}$ counts only one ring.\nFinal Answer:\nNet potential is $\\frac{\\lambda}{2\\epsilon_{0}}$, option (B).\nQuick Tip: Each half ring is at the same distance from the centre, so its potential is kQ/R with Q = lambda times pi R. Add the two.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\lambda/\\varepsilon_{0}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\lambda/2\\varepsilon_{0}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\lambda/4\\varepsilon_{0}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\lambda/\\varepsilon_{0}$"
+    }
+   ],
+   "stem_figure": "m26-13apr-s2-q026.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If two charges $q_{1}$ and $q_{2}$ are separated with distance 'd' and placed in a medium of dielectric constant $K$. What will be the equivalent distance between charges in air for the same electrostatic force?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA dielectric of constant $K$ reduces the force between two charges by a factor of $K$.\nStep 2: Equate:\nIn the medium: $F = \\frac{1}{4\\pi\\epsilon_{0}}\\frac{q_{1}q_{2}}{Kd^{2}}$. In air at distance $d'$: $F = \\frac{1}{4\\pi\\epsilon_{0}}\\frac{q_{1}q_{2}}{d'^{2}}$. Equal forces mean $d'^{2} = Kd^{2}$, so $d' = d\\sqrt{K} = d[K]^{1/2}$.\nFinal Answer:\nThe equivalent distance is $d\\sqrt{K}$, option (A).\nQuick Tip: Force in a medium is $F = \\frac{q_{1}q_{2}}{4\\pi\\epsilon_{0}Kd^{2}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$d[k]^{1/2}$"
+    },
+    {
+     "key": "B",
+     "text": "$k[d]^{1/2}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.5d[k]^{1/2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2d[k]^{1/2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two isolated metallic spheres of radii $R$ and $2R$ are charged such that both have the same charge density $\\sigma$. The spheres are then connected by a thin conducting wire. If the new charge density of the larger sphere is $\\sigma_{1}$. The ratio $\\sigma_{1}$ to $\\sigma$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Question:\nThe spheres have radii $R$ and $2R$ and the same surface charge density $\\sigma$. Charges: $q_{1} = 4\\pi R^{2}\\sigma$ and $q_{2} = 4\\pi(2R)^{2}\\sigma = 16\\pi R^{2}\\sigma$. Total charge $= 20\\pi R^{2}\\sigma$.\nStep 2: After connection:\nConnected spheres reach the same potential, $\\frac{kq_{1}'}{R} = \\frac{kq_{2}'}{2R}$, so $q_{2}' = 2q_{1}'$. Total is conserved: $3q_{1}' = 20\\pi R^{2}\\sigma$, so $q_{2}' = \\frac{2}{3} \\times 20\\pi R^{2}\\sigma = \\frac{40\\pi R^{2}\\sigma}{3}$.\nStep 3: New density:\n$$\\sigma_{1} = \\frac{q_{2}'}{4\\pi(2R)^{2}} = \\frac{40\\pi R^{2}\\sigma/3}{16\\pi R^{2}} = \\frac{5\\sigma}{6}$$\nSo $\\sigma_{1} : \\sigma = 5 : 6$.\nFinal Answer:\nThe ratio $\\sigma_{1} : \\sigma$ is $5 : 6$, option (D).\nQuick Tip: After connection, potentials are equal, so charges share in proportion to radii.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9:4$"
+    },
+    {
+     "key": "B",
+     "text": "$4:3$"
+    },
+    {
+     "key": "C",
+     "text": "$5:3$"
+    },
+    {
+     "key": "D",
+     "text": "$5:6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Capacitance",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A parallel plate capacitor with air between the plate has a capacitance of $15\\ \\mathrm{pF}$. The separation between the plates becomes twice and the space between them is filled with a medium of dielectric constant $3.5$. Then the capacitance becomes $x/4\\ \\mathrm{pF}$.\nThe value of $x$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe capacitance of a parallel plate capacitor is $C = \\frac{K\\epsilon_{0}A}{d}$. Initially (air, $K = 1$): $C_{0} = \\frac{\\epsilon_{0}A}{d} = 15\\ \\mathrm{pF}$.\nStep 2: New capacitance:\nNew separation is $2d$ and $K = 3.5$.\n$$C = \\frac{3.5\\,\\epsilon_{0}A}{2d} = \\frac{3.5}{2}C_{0} = 1.75 \\times 15 = 26.25\\ \\mathrm{pF}$$\nStep 3: Find x:\n$26.25 = \\frac{x}{4}$, so $x = 105$.\nFinal Answer:\nThe value of $x$ is $105$, option (A).\nQuick Tip: $C = \\frac{K\\epsilon_{0}A}{d}$, so doubling $d$ halves it and $K$ multiplies it by $3.5$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$105$"
+    },
+    {
+     "key": "B",
+     "text": "$109$"
+    },
+    {
+     "key": "C",
+     "text": "$111$"
+    },
+    {
+     "key": "D",
+     "text": "$115$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Resistances are joint as shown in the figure. In the balanced condition, the current $I$ drawn from the battery is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understand the figure\nA Wheatstone bridge ABCD with a galvanometer between B and D. Arms: AB = $10\\ \\Omega$, BC = $10\\ \\Omega$, AD = $30\\ \\Omega$, DC = $30\\ \\Omega$. The battery is $3\\ \\mathrm{V}$.\nStep 2: Check the balance\n$\\frac{R_{AB}}{R_{BC}} = \\frac{10}{10} = 1$ and $\\frac{R_{AD}}{R_{DC}} = \\frac{30}{30} = 1$. The ratios are equal, so the bridge is balanced and no current flows in the galvanometer branch BD.\nStep 3: Equivalent resistance\nUpper path ABC: $10 + 10 = 20\\ \\Omega$. Lower path ADC: $30 + 30 = 60\\ \\Omega$. They are in parallel:\n$$\\frac{1}{R_{eq}} = \\frac{1}{20} + \\frac{1}{60} = \\frac{4}{60} \\Rightarrow R_{eq} = 15\\ \\Omega$$\nStep 4: Current\n$$I = \\frac{V}{R_{eq}} = \\frac{3}{15} = 0.2\\ \\mathrm{A}$$\nStep 5: Other options\n0.1 A would need 30 ohm, 0.15 A would need 20 ohm (only the upper branch, 3/20), and 0.25 A would need 12 ohm. None matches 15 ohm.\nFinal Answer:\nThe battery current is $0.2\\ \\mathrm{A}$, option (C).\nQuick Tip: The bridge is balanced, so ignore the middle arm. Combine 20 ohm and 60 ohm in parallel and use Ohm's law.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.1\\ \\mathrm{A}$"
+    },
+    {
+     "key": "B",
+     "text": "$0.15\\ \\mathrm{A}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.2\\ \\mathrm{A}$"
+    },
+    {
+     "key": "D",
+     "text": "$0.25\\ \\mathrm{A}$"
+    }
+   ],
+   "stem_figure": "m26-13apr-s2-q030.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In an experiment to find emf of a cell using potentiometer, the length of null point for a cell of emf $1.5\\ \\mathrm{V}$ is found to be $60\\ \\mathrm{cm}$. If this cell is replaced by another cell of emf $E$, the length of null point increases by $40\\ \\mathrm{cm}$. The value of $E$ is $x/10\\ \\mathrm{V}$.\nThe value of $x$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn a potentiometer, the emf is proportional to the balancing length, since the wire has a uniform potential gradient.\nStep 2: New length:\nFirst null point: $60\\ \\mathrm{cm}$ for $1.5\\ \\mathrm{V}$. The null point increases by $40\\ \\mathrm{cm}$, so the second length is $100\\ \\mathrm{cm}$.\nStep 3: Calculate:\n$$\\frac{E}{1.5} = \\frac{100}{60} \\Rightarrow E = 2.5\\ \\mathrm{V}$$\nThe problem writes $E = \\frac{x}{10}\\ \\mathrm{V}$, so $x = 25$.\nFinal Answer:\nThe value of $x$ is $25$, option (B).\nQuick Tip: Balancing length is proportional to emf: $E_{1}/l_{1} = E_{2}/l_{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$25$"
+    },
+    {
+     "key": "C",
+     "text": "$28$"
+    },
+    {
+     "key": "D",
+     "text": "$30$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A charged particle $q$ is accelerated by a potential difference of $V$ enters a region of uniform magnetic field of induction $B$ at right angles to the direction of the field. The charged particle completes semi circle of the radius $r$ inside the magnetic field. The mass of the charged particle is (all quantities are in SI units)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe particle gains kinetic energy from the potential difference: $qV = \\frac{1}{2}mv^{2}$. In the magnetic field it moves in a circle, with $\\frac{mv^{2}}{r} = qvB$.\nStep 2: Eliminate v:\nFrom the circular motion, $v = \\frac{qBr}{m}$.\nSubstitute: $qV = \\frac{1}{2}m \\cdot \\frac{q^{2}B^{2}r^{2}}{m^{2}} = \\frac{q^{2}B^{2}r^{2}}{2m}$.\nStep 3: Solve for m:\n$$m = \\frac{q^{2}B^{2}r^{2}}{2qV} = \\frac{qB^{2}r^{2}}{2V}$$\nThe other options have wrong powers of $q$ or $B$. For example, option A has $q^{2}$, and option D has $B$ to the first power, which would not fit the dimension of mass.\nFinal Answer:\nThe mass is $\\frac{qr^{2}B^{2}}{2V}$, option (B).\nQuick Tip: Combine $qV = \\frac{1}{2}mv^{2}$ with $r = \\frac{mv}{qB}$ and eliminate $v$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$q^{2}r^{2}B^{2}/2V$"
+    },
+    {
+     "key": "B",
+     "text": "$qr^{2}B^{2}/2V$"
+    },
+    {
+     "key": "C",
+     "text": "$qBr/V$"
+    },
+    {
+     "key": "D",
+     "text": "$q^{2}r^{2}B/2V$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Magnetic Effects of Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two long straight wires are arranged parallel to each other and are kept $20\\ \\mathrm{cm}$ apart in vacuum. They carry currents of $2\\ \\mathrm{A}$ and $4\\ \\mathrm{A}$ respectively in the same direction. What will be the magnetic force on a length of $10\\ \\mathrm{cm}$ of either wire?\n($\\mu_{0} = 4\\pi \\times 10^{-7}$ SI units)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Key Formula:\nForce between two long parallel wires: $F = \\frac{\\mu_{0}}{2\\pi}\\frac{I_{1}I_{2}}{d}l$. It is attractive for currents in the same direction.\nStep 2: Calculate:\n$\\frac{\\mu_{0}}{2\\pi} = 2 \\times 10^{-7}$ SI units. $I_{1} = 2\\ \\mathrm{A}$, $I_{2} = 4\\ \\mathrm{A}$, $d = 0.2\\ \\mathrm{m}$, $l = 0.1\\ \\mathrm{m}$.\n$$F = 2 \\times 10^{-7} \\times \\frac{2 \\times 4}{0.2} \\times 0.1 = 2 \\times 10^{-7} \\times 4 = 8 \\times 10^{-7}\\ \\mathrm{N}$$\nFinal Answer:\nThe force is $8 \\times 10^{-7}\\ \\mathrm{N}$, option (D).\nQuick Tip: Force on length $l$ is $F = \\frac{\\mu_{0}I_{1}I_{2}l}{2\\pi d}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10^{-7}\\ \\mathrm{N}$"
+    },
+    {
+     "key": "B",
+     "text": "$2 \\times 10^{-7}\\ \\mathrm{N}$"
+    },
+    {
+     "key": "C",
+     "text": "$4 \\times 10^{-7}\\ \\mathrm{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$8 \\times 10^{-7}\\ \\mathrm{N}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Magnetic Effects of Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A rod with a circular cross-section area $2\\ \\mathrm{cm^{2}}$ and length $40\\ \\mathrm{cm}$ is wound uniformly with $400$ turns of an insulated wire. If a current $0.4\\ \\mathrm{A}$ flows in the wire winding, the total magnetic flux produced inside the winding is $4\\pi \\times 10^{-6}\\ \\mathrm{Wb}$. The relative permeability of the rod is\n(Given permeability of vacuum $\\mu_{0} = 4\\pi \\times 10^{-7}\\ \\mathrm{N\\,m\\,A^{-2}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nInside a solenoid with a core, $B = \\mu_{0}\\mu_{r}nI$, where $n$ is turns per metre. Flux $\\Phi = BA$.\nStep 2: Find B and n:\n$A = 2\\ \\mathrm{cm^{2}} = 2 \\times 10^{-4}\\ \\mathrm{m^{2}}$. $B = \\frac{\\Phi}{A} = \\frac{4\\pi \\times 10^{-6}}{2 \\times 10^{-4}} = 2\\pi \\times 10^{-2}\\ \\mathrm{T}$.\n$n = \\frac{400}{0.4} = 1000$ turns/m.\nStep 3: Solve:\n$\\mu_{0}nI = 4\\pi \\times 10^{-7} \\times 1000 \\times 0.4 = 1.6\\pi \\times 10^{-4}\\ \\mathrm{T}$.\n$$\\mu_{r} = \\frac{2\\pi \\times 10^{-2}}{1.6\\pi \\times 10^{-4}} = 125$$\nFinal Answer:\nThe relative permeability of the rod is $125$, option (C).\nQuick Tip: $B = \\mu_{0}\\mu_{r}nI$ and $B = \\Phi/A$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12.5$"
+    },
+    {
+     "key": "B",
+     "text": "$32/5$"
+    },
+    {
+     "key": "C",
+     "text": "$125$"
+    },
+    {
+     "key": "D",
+     "text": "$5/16$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Magnetism",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The magnetic moments associated with two closely wound circular coils a and b of radius $r$ and $2r$ respectively are equal if (where $N_{a}$, $I_{a}$ and $N_{b}$, $I_{b}$ are number of turns and current in A and B respectively)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Key Formula:\nThe magnetic moment of a coil of $N$ turns carrying current $I$ with area $A$ is $m = NIA$.\nStep 2: Apply:\nCoil a: $m_{a} = N_{a}I_{a}\\pi r^{2}$. Coil b: $m_{b} = N_{b}I_{b}\\pi(2r)^{2} = 4N_{b}I_{b}\\pi r^{2}$.\nEqual moments: $N_{a}I_{a} = 4N_{b}I_{b}$.\nFinal Answer:\nThe condition is $N_{a}I_{a} = 4N_{b}I_{b}$, option (C).\nQuick Tip: Magnetic moment is $NIA$ with $A = \\pi r^{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2N_{a}I_{a} = N_{b}I_{b}$"
+    },
+    {
+     "key": "B",
+     "text": "$N_{a} = 2N_{b}$"
+    },
+    {
+     "key": "C",
+     "text": "$N_{a}I_{a} = 4N_{b}I_{b}$"
+    },
+    {
+     "key": "D",
+     "text": "$4N_{a}I_{a} = N_{b}I_{b}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A conducting loop of radius $10/[\\pi]^{1/2}\\ \\mathrm{cm}$ is placed perpendicular to a uniform magnetic field $0.5\\ \\mathrm{T}$. The magnetic field is decreased to zero in $0.5\\ \\mathrm{s}$ at a steady rate. The induced emf in the circular loop at $0.25\\ \\mathrm{s}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nBy Faraday's law, $|\\varepsilon| = \\frac{d\\Phi}{dt}$. The field falls at a steady rate, so the emf is the same at every instant, including $0.25\\ \\mathrm{s}$.\nStep 2: Area:\nRadius $= \\frac{10}{\\sqrt{\\pi}}\\ \\mathrm{cm} = \\frac{0.1}{\\sqrt{\\pi}}\\ \\mathrm{m}$. Area $= \\pi r^{2} = \\pi \\times \\frac{0.01}{\\pi} = 0.01\\ \\mathrm{m^{2}}$.\nStep 3: Emf:\n$$\\varepsilon = A\\frac{\\Delta B}{\\Delta t} = 0.01 \\times \\frac{0.5}{0.5} = 0.01\\ \\mathrm{V} = 10\\ \\mathrm{mV}$$\nFinal Answer:\nThe induced emf is $10\\ \\mathrm{mV}$, option (B).\nQuick Tip: The emf is $A\\frac{\\Delta B}{\\Delta t}$ and is constant for a steady rate.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1\\ \\mathrm{mV}$"
+    },
+    {
+     "key": "B",
+     "text": "$10\\ \\mathrm{mV}$"
+    },
+    {
+     "key": "C",
+     "text": "$100\\ \\mathrm{mV}$"
+    },
+    {
+     "key": "D",
+     "text": "$5\\ \\mathrm{mV}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In the circuit shown, the ratio of the quality factor and the band width is\n(Given: band width = R/L)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Read the circuit:\nThe figure shows a source E, a resistor R, an inductor L and a capacitor C all joined in one loop. So this is a series LCR circuit driven by an AC source.\nStep 2: Recall the formulas:\nAt resonance the angular frequency is $\\omega_{0} = \\sqrt{\\frac{1}{LC}}$. The quality factor of a series LCR circuit is $Q = \\frac{\\omega_{0}L}{R}$. The question tells us to take the band width as $\\Delta\\omega = \\frac{R}{L}$.\nStep 3: Form the ratio:\nWe need $Q$ divided by the band width.\n$$\\frac{Q}{\\Delta\\omega} = \\frac{\\omega_{0}L/R}{R/L} = \\omega_{0} \\cdot \\frac{L}{R} \\cdot \\frac{L}{R} = \\omega_{0}\\frac{L^{2}}{R^{2}}$$\nPut $\\omega_{0} = \\sqrt{1/(LC)}$:\n$$\\frac{Q}{\\Delta\\omega} = \\sqrt{\\frac{1}{LC}}\\,\\frac{L^{2}}{R^{2}}$$\nStep 4: Check the other options:\nOption (B) is just $\\omega_{0}$, which has lost the $L^{2}/R^{2}$ factor. Option (C) has only $L/R$, which is $Q/\\omega_{0}$, not $Q/\\Delta\\omega$. Option (D) has $R/L$, which is the band width itself. None of these matches the division we did.\nFinal Answer:\nThe ratio of quality factor to band width is $\\omega_{0}L^{2}/R^{2}$, which is option (A).\nQuick Tip: Use $Q = \\omega_{0}L/R$ with $\\omega_{0} = 1/\\sqrt{LC}$, then divide by the given band width $R/L$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{\\frac{1}{LC}}\\,\\frac{L^{2}}{R^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{\\frac{1}{LC}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{1}{LC}}\\,\\frac{L}{R}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{1}{LC}}\\,\\frac{R}{L}$"
+    }
+   ],
+   "stem_figure": "m26-13apr-s2-q037.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An inductor of $0.5\\ \\mathrm{mH}$, a capacitor of $20\\ \\mu\\mathrm{F}$ and resistance $20\\ \\Omega$ are connected in series with a $220\\ \\mathrm{V}$ ac source. If the current is in phase with the emf, the amplitude of current of the circuit is $[x]^{1/2}\\ \\mathrm{A}$. The value of $x$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nCurrent in phase with emf means $X_{L} = X_{C}$, which is resonance. The impedance is $Z = R = 20\\ \\Omega$.\nStep 2: Peak voltage:\nThe $220\\ \\mathrm{V}$ source is a rms value, so the peak voltage is $V_{0} = 220\\sqrt{2}\\ \\mathrm{V}$.\nStep 3: Current amplitude:\n$$I_{0} = \\frac{V_{0}}{R} = \\frac{220\\sqrt{2}}{20} = 11\\sqrt{2}\\ \\mathrm{A} = \\sqrt{242}\\ \\mathrm{A}$$\nSo $x = 242$.\nFinal Answer:\nThe value of $x$ is $242$, option (C).\nQuick Tip: In phase with the emf means resonance, so impedance equals $R$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$61$"
+    },
+    {
+     "key": "B",
+     "text": "$121$"
+    },
+    {
+     "key": "C",
+     "text": "$242$"
+    },
+    {
+     "key": "D",
+     "text": "$442$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a series LR circuit with $X_{L} = R$. Power factor is $P_{1}$. If a capacitor of capacitance $C$ with $X_{c} = X_{L}$ is added to the circuit the power factor becomes $P_{2}$. The ratio of $P_{1}$ to $P_{2}$ will be :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe power factor is $\\cos\\phi = \\frac{R}{Z}$.\nStep 2: Series LR circuit:\n$X_{L} = R$, so $Z = \\sqrt{R^{2} + X_{L}^{2}} = \\sqrt{2}R$. $P_{1} = \\frac{R}{\\sqrt{2}R} = \\frac{1}{\\sqrt{2}}$.\nStep 3: After adding C:\n$X_{C} = X_{L}$, so the net reactance is zero and $Z = R$. $P_{2} = 1$.\nStep 4: Ratio:\n$\\frac{P_{1}}{P_{2}} = \\frac{1/\\sqrt{2}}{1} = 1 : \\sqrt{2}$.\nFinal Answer:\nThe ratio $P_{1} : P_{2}$ is $1 : \\sqrt{2}$, option (B).\nQuick Tip: With $X_{c} = X_{L}$ the circuit is at resonance and its power factor is 1.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1:3$"
+    },
+    {
+     "key": "B",
+     "text": "$1:\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$1:1$"
+    },
+    {
+     "key": "D",
+     "text": "$1:2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When a beam of white light is allowed to pass through convex lens parallel to principle axis, the different colors of light converge at different point on the principle axis after refraction. This is called",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe refractive index of glass is different for each colour (higher for violet, lower for red). So a lens bends colours by different amounts and they come to focus at different points on the axis.\nStep 2: Name of the effect:\nThis is chromatic aberration.\nScattering is the spreading of light by small particles. Spherical aberration is caused by the shape of the lens surface, where rays far from the axis focus at a different point, even for a single colour. Polarisation restricts the vibration of light to one plane.\nFinal Answer:\nThis defect is chromatic aberration, option (B).\nQuick Tip: Different colours have different refractive indices, so they focus at different points.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "scattering"
+    },
+    {
+     "key": "B",
+     "text": "chromatic aberration"
+    },
+    {
+     "key": "C",
+     "text": "spherical aberration"
+    },
+    {
+     "key": "D",
+     "text": "polarisation"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In Young's double slit experiment, following figure shows that $Q$ is the position of second bright fringe on the right side of point $O$. $P$ is the eleventh bright fringe on the other side measured from point $Q$. If the wavelength of light used is $6000\\ \\mathrm{\\AA}$, then what will be the value of $S_{1}B$?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understand the figure:\nThe figure shows the two slits $S_{1}$ and $S_{2}$, a screen, and a point $P$ on the screen. $S_{2}B$ is drawn perpendicular to the line $S_{1}P$, so $S_{1}B$ is the path difference at $P$ (the screen is far away, so $S_{2}P$ is almost equal to $BP$).\nStep 2: Fix the order of the fringes:\nTake the central bright fringe $O$ as order 0. $Q$ is the second bright fringe on the right, so it has order $+2$. $P$ is the eleventh bright fringe counted from $Q$, on the other side of $O$. Moving 11 fringes to the left from $Q$ lands at order $2 - 11 = -9$. So $P$ is the 9th bright fringe on the left of $O$.\nStep 3: Path difference at P:\nFor a bright fringe the path difference is a whole number of wavelengths. At order 9:\n$$S_{1}B = 9\\lambda$$\nStep 4: Put in the numbers:\n$\\lambda = 6000\\ \\mathrm{\\AA} = 6 \\times 10^{-7}\\ \\mathrm{m}$.\n$$S_{1}B = 9 \\times 6 \\times 10^{-7} = 54 \\times 10^{-7} = 5.4 \\times 10^{-6}\\ \\mathrm{m}$$\nStep 5: Why the other options are wrong:\nThe values $3.142 \\times 10^{-7}$ and $3.138 \\times 10^{-7}\\ \\mathrm{m}$ are about half a wavelength, nowhere near 9 wavelengths. $6.6 \\times 10^{-6}\\ \\mathrm{m}$ equals $11\\lambda$, which comes from counting 11 fringes from $O$ and forgetting that the count starts at $Q$.\nFinal Answer:\nThe path difference at $P$ is $9\\lambda = 5.4 \\times 10^{-6}\\ \\mathrm{m}$, option (D).\nQuick Tip: Find the order of fringe $P$: it is 11 fringes from $Q$ (order 2) on the other side, so order 9. Path difference is order times wavelength.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3.142 \\times 10^{-7}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "B",
+     "text": "$3.138 \\times 10^{-7}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "C",
+     "text": "$6.6 \\times 10^{-6}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "D",
+     "text": "$5.4 \\times 10^{-6}\\ \\mathrm{m}$"
+    }
+   ],
+   "stem_figure": "m26-13apr-s2-q041.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "'n' polarizing sheets are arranged such that each makes an angle $45^\\circ$ with the preceding sheet. An unpolarized light of intensity $I$ is incident into this arrangement. The output intensity is found to be $I/64$. The value of $n$ will be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nUnpolarised light passing through the first sheet loses half its intensity: $I_{1} = \\frac{I}{2}$. For every later sheet, Malus's law gives $I' = I\\cos^{2}\\theta$.\nStep 2: Each later sheet:\nWith $\\theta = 45^\\circ$, $\\cos^{2}\\theta = \\frac{1}{2}$. So each of the other $(n-1)$ sheets halves the intensity.\nStep 3: Solve:\n$$I_{\\mathrm{out}} = \\frac{I}{2}\\left(\\frac{1}{2}\\right)^{n-1} = \\frac{I}{2^{n}}$$\n$\\frac{I}{2^{n}} = \\frac{I}{64}$, so $2^{n} = 64$ and $n = 6$.\nFinal Answer:\nThe number of sheets is $6$, option (B).\nQuick Tip: The first sheet halves the intensity; each next sheet multiplies by $\\cos^{2}45^\\circ = \\frac{1}{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In Young's double slit experiment, two slits $S_{1}$ and $S_{2}$ are 'd' distance apart and the separation from slits to screen is $D$. Now if two transparent slabs of equal thickness $0.1\\ \\mathrm{mm}$ but refractive index $1.51$ and $1.55$ are introduced in the path of beam ($\\lambda = 4000\\ \\mathrm{\\AA}$) from $S_{1}$ and $S_{2}$ respectively. The central bright fringe spot will shift by ____ number of fringes.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA slab of thickness $t$ and index $\\mu$ adds an extra optical path $(\\mu - 1)t$. With slabs on both slits, the net extra path difference is $(\\mu_{2} - \\mu_{1})t$.\nStep 2: Path difference:\n$\\Delta x = (1.55 - 1.51) \\times 0.1\\ \\mathrm{mm} = 0.04 \\times 10^{-4}\\ \\mathrm{m} = 4 \\times 10^{-6}\\ \\mathrm{m}$.\nStep 3: Number of fringes:\n$\\lambda = 4000\\ \\mathrm{\\AA} = 4 \\times 10^{-7}\\ \\mathrm{m}$.\n$$n = \\frac{\\Delta x}{\\lambda} = \\frac{4 \\times 10^{-6}}{4 \\times 10^{-7}} = 10$$\nFinal Answer:\nThe central fringe shifts by $10$ fringes, option (B).\nQuick Tip: Shift in fringes $= \\frac{(\\mu_{2} - \\mu_{1})t}{\\lambda}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$15$"
+    },
+    {
+     "key": "D",
+     "text": "$20$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The threshold frequency of metal is $f_{0}$. When the light of frequency $2f_{0}$ is incident on the metal plate, the maximum velocity of photoelectron is $v_{1}$. When the frequency of incident radiation is increased to $5f_{0}$ the maximum velocity of photoelectrons emitted is $v_{2}$. The ratio $v_{1}$ to $v_{2}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nEinstein's equation: $\\frac{1}{2}mv_{\\max}^{2} = h(f - f_{0})$.\nStep 2: Two cases:\nAt $f = 2f_{0}$: $\\frac{1}{2}mv_{1}^{2} = h(2f_{0} - f_{0}) = hf_{0}$.\nAt $f = 5f_{0}$: $\\frac{1}{2}mv_{2}^{2} = h(5f_{0} - f_{0}) = 4hf_{0}$.\nStep 3: Ratio:\n$$\\frac{v_{1}^{2}}{v_{2}^{2}} = \\frac{1}{4} \\Rightarrow \\frac{v_{1}}{v_{2}} = \\frac{1}{2}$$\nSo $v_{1} : v_{2} = 1 : 2$. A ratio of $1 : 4$ would result from forgetting the square root.\nFinal Answer:\nThe ratio $v_{1} : v_{2}$ is $1 : 2$, option (A).\nQuick Tip: $\\frac{1}{2}mv^{2} = h(f - f_{0})$, so $v \\propto \\sqrt{f - f_{0}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1:2$"
+    },
+    {
+     "key": "B",
+     "text": "$1:8$"
+    },
+    {
+     "key": "C",
+     "text": "$1:16$"
+    },
+    {
+     "key": "D",
+     "text": "$1:4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An electron accelerated through a potential difference $V_{1}$ has a de-Broglie wavelength of $\\lambda$. When the potential is changed to $V_{2}$, its de-Broglie wavelength increases to $2\\lambda$. The value of $(V_{1}/V_{2})$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nAn electron accelerated through $V$ has $\\lambda = \\frac{h}{\\sqrt{2meV}}$, so $\\lambda \\propto V^{-1/2}$.\nStep 2: Compare:\n$\\frac{\\lambda_{2}}{\\lambda_{1}} = \\sqrt{\\frac{V_{1}}{V_{2}}} = 2$, so $\\frac{V_{1}}{V_{2}} = 4$.\nStep 3: Check:\nDoubling the wavelength means quartering the voltage, which fits $V_{1} : V_{2} = 4 : 1$.\nFinal Answer:\nThe ratio $V_{1} : V_{2}$ is $4 : 1$, option (D).\nQuick Tip: For an electron, $\\lambda \\propto \\frac{1}{\\sqrt{V}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3:1$"
+    },
+    {
+     "key": "B",
+     "text": "$9:4$"
+    },
+    {
+     "key": "C",
+     "text": "$3:2$"
+    },
+    {
+     "key": "D",
+     "text": "$4:1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Atoms and Nuclei",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The wavelength of the radiation emitted is $\\lambda_{0}$ when an electron jumps from the second excited state to the first excited state of hydrogen atom. If the electron jumps from the third excited state to the second orbit of the hydrogen atom, the wavelength of the radiation emitted will be $(20\\lambda_{0}/x)$. The value of $x$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe ground state is $n = 1$, the first excited is $n = 2$, the second excited is $n = 3$ and the third excited is $n = 4$.\nStep 2: First transition:\n$n = 3 \\rightarrow n = 2$: $\\frac{1}{\\lambda_{0}} = R\\left(\\frac{1}{4} - \\frac{1}{9}\\right) = \\frac{5R}{36}$.\nStep 3: Second transition:\n$n = 4 \\rightarrow n = 2$: $\\frac{1}{\\lambda} = R\\left(\\frac{1}{4} - \\frac{1}{16}\\right) = \\frac{3R}{16}$.\nStep 4: Ratio:\n$$\\lambda = \\frac{16}{3R},\\quad \\lambda_{0} = \\frac{36}{5R},\\quad \\frac{\\lambda}{\\lambda_{0}} = \\frac{16}{3} \\times \\frac{5}{36} = \\frac{20}{27}$$\nSo $\\lambda = \\frac{20\\lambda_{0}}{27}$, and $x = 27$.\nFinal Answer:\nThe value of $x$ is $27$, option (C).\nQuick Tip: Use $\\frac{1}{\\lambda} = R\\left(\\frac{1}{n_{1}^{2}} - \\frac{1}{n_{2}^{2}}\\right)$; second excited state is $n = 3$ and third excited is $n = 4$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$17$"
+    },
+    {
+     "key": "B",
+     "text": "$21$"
+    },
+    {
+     "key": "C",
+     "text": "$27$"
+    },
+    {
+     "key": "D",
+     "text": "$29$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Atoms and Nuclei",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For hydrogen atom, $\\lambda_{1}$ and $\\lambda_{2}$ are the wavelengths corresponding to the transitions $1$ and $2$ respectively as shown in figure. The ratio of $\\lambda_{1}$ and $\\lambda_{2}$ is $x/32$. The value of $x$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Read the figure:\nThe figure is an energy level diagram of hydrogen. Arrow 1 goes from $n = 3$ down to $n = 1$. Arrow 2 goes from $n = 2$ down to $n = 1$.\nStep 2: Use the Rydberg formula:\nFor a transition from $n_{i}$ to $n_{f}$, $\\frac{1}{\\lambda} = R\\left(\\frac{1}{n_{f}^{2}} - \\frac{1}{n_{i}^{2}}\\right)$.\nStep 3: Transition 1 (3 to 1):\n$$\\frac{1}{\\lambda_{1}} = R\\left(1 - \\frac{1}{9}\\right) = \\frac{8R}{9} \\Rightarrow \\lambda_{1} = \\frac{9}{8R}$$\nStep 4: Transition 2 (2 to 1):\n$$\\frac{1}{\\lambda_{2}} = R\\left(1 - \\frac{1}{4}\\right) = \\frac{3R}{4} \\Rightarrow \\lambda_{2} = \\frac{4}{3R}$$\nStep 5: Take the ratio:\n$$\\frac{\\lambda_{1}}{\\lambda_{2}} = \\frac{9}{8R} \\times \\frac{3R}{4} = \\frac{27}{32}$$\nComparing with $x/32$ gives $x = 27$.\nStep 6: Why the others are wrong:\nIf someone took the ratio the wrong way round, they would get $32/27$, which does not fit the form $x/32$. Values 13, 29 and 35 do not come from any combination of $8/9$ and $3/4$.\nFinal Answer:\nThe ratio is $27/32$, so $x = 27$, option (B).\nQuick Tip: Use the Rydberg formula for 3 to 1 and 2 to 1 transitions and divide the two wavelengths.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$13$"
+    },
+    {
+     "key": "B",
+     "text": "$27$"
+    },
+    {
+     "key": "C",
+     "text": "$29$"
+    },
+    {
+     "key": "D",
+     "text": "$35$"
+    }
+   ],
+   "stem_figure": "m26-13apr-s2-q047.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Semiconductors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A pure silicon crystal at temperature $300\\ \\mathrm{K}$ has electron and hole concentration ($n_{i}$) $10^{16}$ per $\\mathrm{m^{3}}$ each and $10^{21}$ phosphorus atoms ($n_{e}$) are added per cubic metre. The new hole concentration in silicon crystal is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nIn a doped semiconductor at a fixed temperature, $n_{e}n_{h} = n_{i}^{2}$.\nStep 2: Calculate:\nPhosphorus is a donor, so the electron concentration is about the donor density: $n_{e} \\approx 10^{21}\\ \\mathrm{m^{-3}}$. Thermally generated electrons $10^{16}$ are negligible in comparison.\n$$n_{h} = \\frac{n_{i}^{2}}{n_{e}} = \\frac{(10^{16})^{2}}{10^{21}} = 10^{11}\\ \\mathrm{m^{-3}}$$\nFinal Answer:\nThe new hole concentration is $10^{11}$ per $\\mathrm{m^{3}}$, option (D).\nQuick Tip: Use the mass action law $n_{e}n_{h} = n_{i}^{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10^{19}$ per $\\mathrm{m^{3}}$"
+    },
+    {
+     "key": "B",
+     "text": "$10^{21}$ per $\\mathrm{m^{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$10^{5}$ per $\\mathrm{m^{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$10^{11}$ per $\\mathrm{m^{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Semiconductors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If transistor having $\\alpha = 0.9$, is used in CE configuration, then for a change of $0.4\\ \\mathrm{mA}$ in base current, what will be the change in collector current?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nThe current gain in CE configuration is $\\beta = \\frac{\\Delta I_{C}}{\\Delta I_{B}}$, and it is linked to $\\alpha$ by $\\beta = \\frac{\\alpha}{1 - \\alpha}$.\nStep 2: Calculate:\n$\\beta = \\frac{0.9}{0.1} = 9$.\n$$\\Delta I_{C} = \\beta\\,\\Delta I_{B} = 9 \\times 0.4 = 3.6\\ \\mathrm{mA}$$\nFinal Answer:\nThe change in collector current is $3.6\\ \\mathrm{mA}$, option (A).\nQuick Tip: $\\beta = \\frac{\\alpha}{1 - \\alpha}$ and $\\Delta I_{C} = \\beta\\Delta I_{B}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3.6\\ \\mathrm{mA}$"
+    },
+    {
+     "key": "B",
+     "text": "$4\\ \\mathrm{mA}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.9\\ \\mathrm{mA}$"
+    },
+    {
+     "key": "D",
+     "text": "$36\\ \\mathrm{mA}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Semiconductors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Choose the correct statement about Zener diode:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the Concept:\nA Zener diode is a heavily doped p-n junction designed to work in reverse breakdown, where the voltage across it stays nearly constant over a wide range of current.\nStep 2: Check each:\nIn reverse bias it acts as a voltage regulator. In forward bias it conducts like a normal p-n diode.\nB and C say it regulates in forward bias, which is wrong, since a forward diode has a drop of only about $0.7\\ \\mathrm{V}$ and no sharp breakdown. D reverses the roles, so it is wrong too.\nFinal Answer:\nA Zener diode regulates in reverse bias and acts as a normal diode in forward bias, option (A).\nQuick Tip: A Zener diode regulates voltage in reverse breakdown and acts like an ordinary diode in forward bias.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It works as a voltage regulator in reverse bias and behaves like simple pn junction diode in forward bias."
+    },
+    {
+     "key": "B",
+     "text": "It works as a voltage regulator in both forward and reverse bias."
+    },
+    {
+     "key": "C",
+     "text": "It works a voltage regulator only in forward bias."
+    },
+    {
+     "key": "D",
+     "text": "It works as a voltage regulator in forward bias and behaves like simple pn junction diode in reverse bias."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
