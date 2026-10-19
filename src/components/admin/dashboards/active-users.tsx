@@ -19,7 +19,7 @@ function Delta({ cur, prev }: { cur: number; prev: number }) {
   return <span className={up ? "text-[#22e06a]" : "text-[#ff6b6b]"}>{up ? "▲" : "▼"} {Math.abs(pct).toFixed(0)}%</span>;
 }
 
-export function ActiveUsers({ product, title }: { product: "codesprint" | "bootcamp"; title: string }) {
+export function ActiveUsers({ product, title }: { product: "codesprint" | "bootcamp" | "site"; title: string }) {
   const [supabase] = useState(() => createClient());
   const [a, setA] = useState<Active>(ZERO);
   const [targets, setTargets] = useState<Record<string, number>>({});

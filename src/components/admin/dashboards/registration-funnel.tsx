@@ -23,13 +23,22 @@ type Funnel = {
 };
 const ZERO: Funnel = { new_visitors: 0, attempted: 0, registered: 0, registered_partial: 0, registered_full: 0, drop_off: 0, mql: 0 };
 
-const ROWS: { key: keyof Funnel; label: string }[] = [
-  { key: "new_visitors", label: "New Visitors" },
-  { key: "attempted", label: "Attempted Registration" },
-  { key: "registered", label: "Registered (partial + full)" },
-  { key: "drop_off", label: "Drop off" },
-  { key: "mql", label: "MQL" },
+type RowDef = {
+  key: string; label: string; note?: string; pct?: boolean;
+  num: (d: Funnel) => number;              // live numerator
+  den?: (d: Funnel) => number;             // live denominator (pct rows)
+  manualKey?: string;                      // 2026/2025 editable metric key (absolute rows)
+  numManual?: string; denManual?: string;  // manual keys to derive the % for 2026/2025
+};
+const ROWS: RowDef[] = [
+  { key: "new_visitors", label: "New Visitors", num: (d) => d.new_visitors, manualKey: "new_visitors" },
+  { key: "attempted", label: "Attempted Registration", num: (d) => d.attempted, manualKey: "attempted" },
+  { key: "registered", label: "Registered (partial + full)", num: (d) => d.registered, manualKey: "registered" },
+  { key: "reg_pct", label: "Registration %", note: "% of Attempted Registration", pct: true, num: (d) => d.registered, den: (d) => d.attempted, numManual: "registered", denManual: "attempted" },
+  { key: "mql", label: "MQL", num: (d) => d.mql, manualKey: "mql" },
+  { key: "mql_pct", label: "MQL %", note: "% of Registered (full)", pct: true, num: (d) => d.mql, den: (d) => d.registered_full, numManual: "mql", denManual: "registered_full" },
 ];
+const pctStr = (num: number, den: number) => (den > 0 ? `${((num / den) * 100).toFixed(1)}%` : "—");
 
 const fmt = (n: number | null | undefined) => (n == null ? "—" : Number(n).toLocaleString("en-IN"));
 const shortDate = (d: Date) => d.toLocaleDateString("en-IN", { timeZone: "UTC", day: "numeric", month: "short" });
@@ -204,9 +213,10 @@ export function RegistrationFunnel() {
             </thead>
             <tbody>
               {ROWS.map((r) => (
-                <tr key={r.key} className="border-b border-white/[0.06] hover:bg-white/[0.02]">
+                <tr key={r.key} className={["border-b border-white/[0.06] hover:bg-white/[0.02]", r.pct ? "bg-white/[0.015]" : ""].join(" ")}>
                   <td className="px-3 py-3 text-left font-[family-name:var(--font-inter)] text-[15px] font-medium text-white">
-                    {r.label}
+                    <span className={r.pct ? "text-white/70" : ""}>{r.label}</span>
+                    {r.note && <span className="ml-2 font-[family-name:var(--font-inter)] text-[12px] text-white/40">{r.note}</span>}
                     {r.key === "registered" && (
                       <span className="ml-2 font-[family-name:var(--font-inter)] text-[12px] text-white/40">
                         ({fmt(base.mtd.registered_partial)} partial · {fmt(base.mtd.registered_full)} full, MTD)
@@ -215,11 +225,16 @@ export function RegistrationFunnel() {
                   </td>
                   {columns.map((c) => {
                     if (c.type === "manual") {
+                      if (r.pct) {
+                        const num = manual[`${r.numManual}:${c.year}`];
+                        const den = manual[`${r.denManual}:${c.year}`];
+                        return <td key={c.id} className={cellBase + " text-white/70"}>{num != null && den != null ? pctStr(num, den) : "—"}</td>;
+                      }
                       return (
                         <td key={c.id} className={cellBase}>
                           <input
-                            defaultValue={manual[`${r.key}:${c.year}`] ?? ""}
-                            onBlur={(e) => saveManual(r.key, c.year, e.target.value)}
+                            defaultValue={manual[`${r.manualKey}:${c.year}`] ?? ""}
+                            onBlur={(e) => saveManual(r.manualKey!, c.year, e.target.value)}
                             inputMode="numeric"
                             className="w-20 rounded-md border border-white/15 bg-white/[0.05] px-2 py-1 text-center font-[family-name:var(--font-inter)] text-[15px] text-white outline-none focus:border-[#8A18FF]"
                             placeholder="—"
@@ -227,12 +242,15 @@ export function RegistrationFunnel() {
                         </td>
                       );
                     }
-                    const v = c.data[r.key] as number;
+                    if (r.pct) {
+                      return <td key={c.id} className={cellBase + " font-semibold text-[#8fe9f5]"}>{pctStr(r.num(c.data), r.den!(c.data))}</td>;
+                    }
+                    const v = r.num(c.data);
                     return (
                       <td key={c.id} className={cellBase + " text-white"}>
                         {fmt(v)}
                         {c.prevData && (
-                          <div className="text-[11px]"><Delta cur={v} prev={c.prevData[r.key] as number} /> <span className="text-white/30">{c.prevTag}</span></div>
+                          <div className="text-[11px]"><Delta cur={v} prev={r.num(c.prevData)} /> <span className="text-white/30">{c.prevTag}</span></div>
                         )}
                       </td>
                     );
@@ -245,7 +263,7 @@ export function RegistrationFunnel() {
             FTD = today · WTD = week-to-date (Mon) · MTD = month-to-date (IST) · YTD = all data on record.
             True funnel, all scoped to the visitor population: New Visitors = tracked front-end sessions (beacon live since 30 Sep 2026);
             Attempted = those who opened /register; Registered = those visitor sessions that actually completed a signup (so Registered ⊆ Visitors);
-            Drop off = Attempted − Registered; MQL = registered with PCM/PCMB &amp; class-12 year 2026/2027.
+            Registration % = Registered ÷ Attempted; MQL = registered with PCM/PCMB &amp; class-12 year 2026/2027; MQL % = MQL ÷ Registered (full).
             ▲▼ = WTD vs last week / MTD vs last month (same days-to-date). Click <b>WTD</b> to unfurl previous weeks, <b>MTD</b> for previous months (each vs the one before it). 2026/2025 are editable hard-data for pre-tracking history.
           </p>
         </div>
