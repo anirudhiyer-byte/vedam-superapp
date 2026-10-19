@@ -13,21 +13,23 @@ function productFor(path: string | null): Product | null {
 }
 
 /**
- * Lightweight active-time heartbeat. While the tab is visible on a product surface
- * (CodeSprint / Bootcamp), it accumulates seconds client-side and flushes the delta to
- * track_active_ping every 60s and on hide / navigation. One write/user/~minute keeps it
- * scalable; the server rolls it into product_active_daily for DAU/WAU/MAU (≥5 min/day).
+ * Lightweight active-time heartbeat. While the tab is visible it accumulates seconds and
+ * flushes the delta every 60s (and on hide / navigation). Every visible second counts
+ * toward the whole-site bucket ("site"); seconds spent on a product surface
+ * (CodeSprint / Bootcamp) additionally count toward that product. One write/user/~minute
+ * per bucket keeps it scalable; the server rolls it into product_active_daily for
+ * DAU/WAU/MAU (≥5 min/day).
  */
 export function ActiveHeartbeat() {
   const path = usePathname();
   const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null);
   if (!supabaseRef.current) supabaseRef.current = createClient();
   const productRef = useRef<Product | null>(null);
-  const pendingRef = useRef(0);          // unflushed active seconds
-  const pendingProductRef = useRef<Product | null>(null);
+  const siteSecs = useRef(0);               // unflushed whole-site seconds
+  const prodSecs = useRef(0);               // unflushed product seconds
+  const prodBucket = useRef<Product | null>(null);
   const loggedInRef = useRef(false);
 
-  // track auth presence (don't ping for anonymous visitors)
   useEffect(() => {
     const sb = supabaseRef.current!;
     sb.auth.getSession().then(({ data }) => { loggedInRef.current = !!data.session?.user; });
@@ -35,28 +37,32 @@ export function ActiveHeartbeat() {
     return () => sub.subscription.unsubscribe();
   }, []);
 
+  const ping = async (product: string, secs: number) => {
+    if (!secs || !loggedInRef.current) return;
+    try { await supabaseRef.current!.rpc("track_active_ping", { p_product: product, p_seconds: secs }); } catch { /* best effort */ }
+  };
+
   const flush = useRef(async () => {
-    const secs = Math.floor(pendingRef.current);
-    const prod = pendingProductRef.current;
-    pendingRef.current = 0;
-    if (!secs || !prod || !loggedInRef.current) return;
-    try { await supabaseRef.current!.rpc("track_active_ping", { p_product: prod, p_seconds: secs }); } catch { /* best effort */ }
+    const site = Math.floor(siteSecs.current); siteSecs.current = 0;
+    const prod = Math.floor(prodSecs.current); const bucket = prodBucket.current; prodSecs.current = 0;
+    if (site > 0) await ping("site", site);
+    if (prod > 0 && bucket) await ping(bucket, prod);
   });
 
-  // keep the active product in sync with the route; flush pending before switching
+  // keep the active product in sync with the route; flush the product bucket before switching
   useEffect(() => {
     const next = productFor(path);
-    if (pendingProductRef.current && pendingProductRef.current !== next && pendingRef.current > 0) void flush.current();
+    if (prodBucket.current && prodBucket.current !== next && prodSecs.current > 0) void flush.current();
     productRef.current = next;
-    if (next) pendingProductRef.current = next;
+    if (next) prodBucket.current = next;
   }, [path]);
 
   useEffect(() => {
-    // accumulate 1s per visible second spent on a product surface
+    // 1s per visible second: always toward "site"; also toward the product when on one
     const tick = setInterval(() => {
-      if (productRef.current && document.visibilityState === "visible") {
-        pendingRef.current += 1;
-        pendingProductRef.current = productRef.current;
+      if (document.visibilityState === "visible") {
+        siteSecs.current += 1;
+        if (productRef.current) { prodSecs.current += 1; prodBucket.current = productRef.current; }
       }
     }, 1000);
     const flushTimer = setInterval(() => { void flush.current(); }, 60000);

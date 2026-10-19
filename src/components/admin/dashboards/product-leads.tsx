@@ -22,10 +22,11 @@ const asRpc = (r: Range) => ({ p_from: toUtc(r.from), p_to: toUtc(r.to) });
 const fmt = (n: number | null | undefined) => (n == null ? "—" : Number(n).toLocaleString("en-IN"));
 const cpl = (d: Lead) => (d.leads > 0 ? `₹${(d.spend / d.leads).toLocaleString("en-IN", { maximumFractionDigits: 0 })}` : "—");
 
+// label for "leads" is product-specific ("{title} Registrations"); filled in the component.
 const ROWS: { key: "total_leads" | "leads" | "mql"; label: string }[] = [
-  { key: "total_leads", label: "Total Leads" },
-  { key: "leads", label: "Leads" },
-  { key: "mql", label: "MQL" },
+  { key: "total_leads", label: "Product Registration" },
+  { key: "leads", label: "Registrations" },
+  { key: "mql", label: "MQR" },
 ];
 
 function Delta({ cur, prev }: { cur: number; prev: number }) {
@@ -130,8 +131,8 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
   return (
     <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="font-[family-name:var(--font-inter)] text-lg font-bold text-white">{title} — Leads</h2>
-        <span className="font-[family-name:var(--font-inter)] text-[12px] text-white/40">CPL only under YTD · 2026/2025 editable</span>
+        <h2 className="font-[family-name:var(--font-inter)] text-lg font-bold text-white">{title} — Registrations</h2>
+        <span className="font-[family-name:var(--font-inter)] text-[12px] text-white/40">CPR only under YTD · 2026/2025 editable</span>
       </div>
       {loading ? (
         <div className="h-56 animate-pulse rounded-xl border border-white/10 bg-white/[0.04]" />
@@ -152,7 +153,7 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
             <tbody>
               {ROWS.map((r) => (
                 <tr key={r.key} className="border-b border-white/[0.06] hover:bg-white/[0.02]">
-                  <td className="px-3 py-3 text-left font-[family-name:var(--font-inter)] text-[15px] font-medium text-white">{r.label}</td>
+                  <td className="px-3 py-3 text-left font-[family-name:var(--font-inter)] text-[15px] font-medium text-white">{r.key === "leads" ? `${title} Registrations` : r.label}</td>
                   {columns.map((c) => {
                     if (c.type === "manual") return (
                       <td key={c.id} className={cell}>
@@ -172,7 +173,7 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
               ))}
               {/* CPL row — only meaningful under YTD (all-time) */}
               <tr className="border-b border-white/[0.06] hover:bg-white/[0.02]">
-                <td className="px-3 py-3 text-left font-[family-name:var(--font-inter)] text-[15px] font-medium text-white">CPL<span className="ml-2 font-[family-name:var(--font-inter)] text-[12px] text-white/40">spend / leads</span></td>
+                <td className="px-3 py-3 text-left font-[family-name:var(--font-inter)] text-[15px] font-medium text-white">CPR<span className="ml-2 font-[family-name:var(--font-inter)] text-[12px] text-white/40">spend / registrations</span></td>
                 {columns.map((c) => (
                   <td key={c.id} className={cell + " text-white"}>
                     {c.type === "period" && c.isYtd ? <span className="font-semibold text-[#F97D03]">{cpl(c.data)}</span> : <span className="text-white/25">—</span>}
@@ -182,7 +183,7 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
             </tbody>
           </table>
           <p className="mt-3 font-[family-name:var(--font-inter)] text-[12px] leading-relaxed text-white/45">
-            Total Leads = all platform signups in the period. Leads = signed up via {title}&apos;s Growth-panel UTM <b>or</b> registered/enrolled {title} (cross-counted by action, auto-extends with new UTMs). MQL = PCM/PCMB &amp; class-12 year 2026/2027. CPL = all-time {title} spend ÷ all-time Leads (shown only under YTD). Click WTD/MTD to unfurl previous weeks/months.
+            Product Registration = all platform signups in the period. {title} Registrations = signed up via {title}&apos;s Growth-panel UTM <b>or</b> registered/enrolled {title} (cross-counted by action, auto-extends with new UTMs). MQR = PCM/PCMB &amp; class-12 year 2026/2027. CPR = all-time {title} spend ÷ all-time {title} Registrations (shown only under YTD). Click WTD/MTD to unfurl previous weeks/months.
           </p>
         </div>
       )}
