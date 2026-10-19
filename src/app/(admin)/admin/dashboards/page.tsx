@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { RegistrationFunnel } from "@/components/admin/dashboards/registration-funnel";
 import { ProductLeads } from "@/components/admin/dashboards/product-leads";
 import { ActiveUsers } from "@/components/admin/dashboards/active-users";
+import { VsatEarly } from "@/components/admin/dashboards/vsat-early";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Dashboards", robots: { index: false, follow: false } };
@@ -28,6 +29,14 @@ export default function Page() {
             <ActiveUsers product="bootcamp" title="Bootcamp" />
             <ActiveUsers product="codesprint" title="CodeSprint" />
           </div>
+          <div className="mt-6">
+            <ActiveUsers product="site" title="Entire Vedam One" />
+          </div>
+        </div>
+
+        <div>
+          <h2 className="mb-3 font-[family-name:var(--font-inter)] text-base font-bold uppercase tracking-wide text-white/60">VSAT Early Registrations</h2>
+          <VsatEarly />
         </div>
       </div>
     </div>
