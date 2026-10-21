@@ -1,0 +1,1104 @@
+{
+ "paper": {
+  "exam": "CBSE Class 12",
+  "subject": "Mathematics",
+  "year": 2023,
+  "set_label": "Set 65/2/1",
+  "title": "CBSE Class 12 2023 · Mathematics · Set 65/2/1",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "Section A: +1 correct · no negative marking",
+  "sort_order": 30,
+  "duration_mins": 180,
+  "instructions": "(i) This Question Paper contains 38 questions. All questions are compulsory.\n(ii) Question paper is divided into FIVE Sections - Section A, B, C, D and E.\n(iii) In Section A - Question Nos. 1 to 18 are Multiple Choice Questions (MCQs) and Question Nos. 19 & 20 are Assertion-Reason based questions of 1 mark each.\n(iv) In Section B - Question Nos. 21 to 25 are Very Short Answer (VSA) type questions of 2 marks each.\n(v) In Section C - Question Nos. 26 to 31 are Short Answer (SA) type questions, carrying 3 marks each.\n(vi) In Section D - Question Nos. 32 to 35 are Long Answer (LA) type questions carrying 5 marks each.\n(vii) In Section E - Question Nos. 36 to 38 are source based/case based/passage based/integrated units of assessment questions carrying 4 marks each.\n(viii) There is no overall choice. However, an internal choice has been provided in 2 questions in Section B, 3 questions in Section C, 2 questions in Section D and 2 questions in Section E.\n(ix) Use of calculators is NOT allowed.",
+  "sections": [
+   {
+    "name": "Section A",
+    "note": "Questions 1 to 18 are Multiple Choice Questions (MCQs) and Questions 19 and 20 are Assertion-Reason based questions, carrying 1 mark each."
+   },
+   {
+    "name": "Section B",
+    "note": "Questions 21 to 25 are Very Short Answer (VSA) type questions of 2 marks each."
+   },
+   {
+    "name": "Section C",
+    "note": "Questions 26 to 31 are Short Answer (SA) type questions of 3 marks each."
+   },
+   {
+    "name": "Section D",
+    "note": "Questions 32 to 35 are Long Answer (LA) type questions of 5 marks each."
+   },
+   {
+    "name": "Section E",
+    "note": "Questions 36 to 38 are source based/case-based/passage based/integrated units of assessment questions of 4 marks each."
+   }
+  ],
+  "max_marks": 80,
+  "source_file_id": "1BGNAaiqtLPOFwMZyznyJplIsZG4FQhsY"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $A = \\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}$, then $A^{2023}$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A^{2} = A \\times A = \\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}\\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}=\\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix}$\n$A^{2023} = A^{2} \\times A^{2021} = \\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix}\\cdot A^{2021} = \\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\begin{bmatrix} 0 & 2023 \\\\ 0 & 0 \\end{bmatrix}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\begin{bmatrix} 2023 & 0 \\\\ 0 & 2023 \\end{bmatrix}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\begin{bmatrix} 2 & 0 \\\\ 5 & 4 \\end{bmatrix} = P + Q$, where $P$ is a symmetric and $Q$ is a skew symmetric matrix, then $Q$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $A = \\begin{bmatrix} 2 & 0 \\\\ 5 & 4 \\end{bmatrix}$\n$A = P + Q$\n$A = \\frac{1}{2}(A + A') + \\frac{1}{2}(A - A')$\n$\\therefore Q = \\frac{1}{2}(A - A') = \\frac{1}{2}\\left\\{\\begin{bmatrix} 2 & 0 \\\\ 5 & 4 \\end{bmatrix}-\\begin{bmatrix} 2 & 5 \\\\ 0 & 4 \\end{bmatrix}\\right\\}$\n$= \\frac{1}{2}\\begin{bmatrix} 0 & -5 \\\\ 5 & 0 \\end{bmatrix}=\\begin{bmatrix} 0 & -5/2 \\\\ 5/2 & 0 \\end{bmatrix}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\begin{bmatrix} 2 & 5/2 \\\\ 5/2 & 4 \\end{bmatrix}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\begin{bmatrix} 0 & -5/2 \\\\ 5/2 & 0 \\end{bmatrix}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{bmatrix} 0 & 5/2 \\\\ -5/2 & 0 \\end{bmatrix}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\begin{bmatrix} 2 & -5/2 \\\\ 5/2 & 4 \\end{bmatrix}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\begin{bmatrix} 1 & 2 & 1 \\\\ 2 & 3 & 1 \\\\ 3 & a & 1 \\end{bmatrix}$ is non-singular matrix and $a \\in A$, then the set $A$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For non-singular matrix $|A| \\neq 0$\n$\\begin{vmatrix} 1 & 2 & 1 \\\\ 2 & 3 & 1 \\\\ 3 & a & 1 \\end{vmatrix} \\neq 0 \\Rightarrow a - 4 \\neq 0 \\Rightarrow a \\neq 4 \\Rightarrow \\mathbb{R} - \\{4\\}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathbb{R}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\{0\\}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\{4\\}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathbb{R} - \\{4\\}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $|A| = |kA|$, where $A$ is a square matrix of order $2$, then sum of all possible values of $k$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|A| = |kA|$\n$|A| = k^{2}|A|$\n$k^{2} = 1 \\Rightarrow k = \\pm 1$\nSum of all possible values of $k$ is $1 - 1 = 0$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$-1$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\frac{d}{dx}[f(x)] = ax + b$ and $f(0) = 0$, then $f(x)$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{d}{dx}[f(x)] = ax + b$\nIntegrate both the sides\n$f(x) = \\frac{ax^{2}}{2} + bx + c$\n$f(0) = c = 0$\n$\\therefore f(x) = \\frac{ax^{2}}{2} + bx$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a + b$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{ax^{2}}{2} + bx$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{ax^{2}}{2} + bx + c$"
+    },
+    {
+     "key": "D",
+     "text": "$b$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Degree of the differential equation $\\sin x + \\cos\\left(\\frac{dy}{dx}\\right) = y^{2}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sin x + \\cos\\left(\\frac{dy}{dx}\\right) = y^{2}$\n$\\cos\\left(\\frac{dy}{dx}\\right) = y^{2} - \\sin x$\n$\\frac{dy}{dx} = \\cos^{-1}\\left(y^{2} - \\sin x\\right)$\n$\\therefore$ Degree $= 1$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "not defined"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The integrating factor of the differential equation $(1 - y^{2})\\frac{dx}{dy} + yx = ay$, $(-1 < y < 1)$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(1 - y^{2})\\frac{dx}{dy} + yx = ay$, $-1 < y < 1$\n$\\frac{dx}{dy} + x \\cdot \\frac{y}{1 - y^{2}} = \\frac{ay}{1 - y^{2}}$. This is linear differential equation of the form $\\frac{dx}{dy} + Px = Q$, where $P = \\frac{y}{1 - y^{2}}$ and $Q = \\frac{ay}{1 - y^{2}}$\nI.F. $= e^{\\int P\\,dy} = e^{\\int \\frac{y}{1 - y^{2}}\\,dy}$. Put $1 - y^{2} = t \\Rightarrow -2y\\,dy = dt \\Rightarrow y\\,dy = -\\frac{1}{2}dt$\nI.F. $= e^{-\\frac{1}{2}\\int \\frac{dt}{t}} = e^{-\\frac{1}{2}\\log t} = e^{\\log (t)^{-1/2}}$\n$\\Rightarrow \\frac{1}{\\sqrt{t}} = \\frac{1}{\\sqrt{1 - y^{2}}}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{y^{2} - 1}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\sqrt{y^{2} - 1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{1 - y^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{\\sqrt{1 - y^{2}}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Unit vector along $\\overrightarrow{PQ}$, where coordinates of $P$ and $Q$ respectively are $(2, 1, -1)$ and $(4, 4, -7)$, is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\overrightarrow{PQ} = \\overrightarrow{OQ} - \\overrightarrow{OP}$\n$\\Rightarrow \\overrightarrow{PQ} = (4\\hat{i} + 4\\hat{j} - 7\\hat{k}) - (2\\hat{i} + \\hat{j} - \\hat{k})$\n$\\Rightarrow \\overrightarrow{PQ} = 2\\hat{i} + 3\\hat{j} - 6\\hat{k}$\nUnit vector along $\\overrightarrow{PQ} = \\frac{\\overrightarrow{PQ}}{|\\overrightarrow{PQ}|} = \\frac{2\\hat{i} + 3\\hat{j} - 6\\hat{k}}{\\sqrt{49}} = \\frac{2\\hat{i}}{7} + \\frac{3\\hat{j}}{7} - \\frac{6\\hat{k}}{7}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\hat{i} + 3\\hat{j} - 6\\hat{k}$"
+    },
+    {
+     "key": "B",
+     "text": "$-2\\hat{i} - 3\\hat{j} + 6\\hat{k}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{-2\\hat{i}}{7} - \\frac{3\\hat{j}}{7} + \\frac{6\\hat{k}}{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2\\hat{i}}{7} + \\frac{3\\hat{j}}{7} - \\frac{6\\hat{k}}{7}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Position vector of the mid-point of line segment $AB$ is $3\\hat{i} + 2\\hat{j} - 3\\hat{k}$. If position vector of the point $A$ is $2\\hat{i} + 3\\hat{j} - 4\\hat{k}$, then position vector of the point $B$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\overrightarrow{OC} = \\frac{\\overrightarrow{OA} + \\overrightarrow{OB}}{2} \\Rightarrow 2\\overrightarrow{OC} = \\overrightarrow{OA} + \\overrightarrow{OB}$\n$\\Rightarrow 2\\left(3\\hat{i} + 2\\hat{j} - 3\\hat{k}\\right) = \\left(2\\hat{i} + 3\\hat{j} - 4\\hat{k}\\right) + \\left(x\\hat{i} + y\\hat{j} + z\\hat{k}\\right)$\n$\\Rightarrow x\\hat{i} + y\\hat{j} + z\\hat{k} = 4\\hat{i} + \\hat{j} - 2\\hat{k}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5\\hat{i}}{2} + \\frac{5\\hat{j}}{2} - \\frac{7\\hat{k}}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$4\\hat{i} + \\hat{j} - 2\\hat{k}$"
+    },
+    {
+     "key": "C",
+     "text": "$5\\hat{i} + 5\\hat{j} - 7\\hat{k}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\hat{i}}{2} - \\frac{\\hat{j}}{2} + \\frac{\\hat{k}}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "c23-math-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Projection of vector $2\\hat{i} + 3\\hat{j}$ on the vector $3\\hat{i} - 2\\hat{j}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\vec{a} = 2\\hat{i} + 3\\hat{j}$ and $\\vec{b} = 3\\hat{i} - 2\\hat{j}$\nProjection of $\\vec{a}$ on $\\vec{b} = \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|} = \\frac{6 - 6}{\\sqrt{9 + 4}} = \\frac{0}{\\sqrt{13}} = 0$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$12$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{12}{\\sqrt{13}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{-12}{\\sqrt{13}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Equation of a line passing through point $(1, 1, 1)$ and parallel to $z$-axis is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equation of line $\\frac{x - x_{1}}{a} = \\frac{y - y_{1}}{b} = \\frac{z - z_{1}}{c} \\Rightarrow \\frac{x - 1}{0} = \\frac{y - 1}{0} = \\frac{z - 1}{1}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{x}{1} = \\frac{y}{1} = \\frac{z}{1}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{x - 1}{1} = \\frac{y - 1}{1} = \\frac{z - 1}{1}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{x}{0} = \\frac{y}{0} = \\frac{z - 1}{1}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{x - 1}{0} = \\frac{y - 1}{0} = \\frac{z - 1}{1}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the sum of numbers obtained on throwing a pair of dice is $9$, then the probability that number obtained on one of the dice is $4$, is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $E$ = Number obtained on one of the dice is $4$.\n$E = \\{(1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (4, 1), (4, 2), (4, 3), (4, 5), (4, 6)\\}$\n$F$ = Sum of numbers a pair of dice $= 9$\n$F = \\{(6, 3), (3, 6), (5, 4), (4, 5)\\}$\n$E \\cap F = \\{(5, 4), (4, 5)\\}$\n$P(E/F) = \\frac{P(E \\cap F)}{P(F)} = \\frac{\\frac{2}{36}}{\\frac{4}{36}} = \\frac{1}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{9}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4}{9}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{18}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Anti-derivative of $\\frac{\\tan x - 1}{\\tan x + 1}$ with respect to $x$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int \\frac{\\tan x - 1}{\\tan x + 1}\\,dx = -\\int \\frac{1 - \\tan x}{1 + \\tan x}\\,dx = -\\int \\tan\\left(\\frac{\\pi}{4} - x\\right)dx$\n$= \\frac{-\\log\\left|\\sec\\left(\\frac{\\pi}{4} - x\\right)\\right|}{-1} + C = \\log\\left|\\sec\\left(\\frac{\\pi}{4} - x\\right)\\right| + C$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sec^{2}\\left(\\frac{\\pi}{4} - x\\right) + c$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\sec^{2}\\left(\\frac{\\pi}{4} - x\\right) + c$"
+    },
+    {
+     "key": "C",
+     "text": "$\\log\\left|\\sec\\left(\\frac{\\pi}{4} - x\\right)\\right| + c$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\log\\left|\\sec\\left(\\frac{\\pi}{4} - x\\right)\\right| + c$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $(a, b)$, $(c, d)$ and $(e, f)$ are the vertices of $\\triangle ABC$ and $\\Delta$ denotes the area of $\\triangle ABC$, then $\\begin{vmatrix} a & c & e \\\\ b & d & f \\\\ 1 & 1 & 1 \\end{vmatrix}^{2}$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta = \\frac{1}{2}\\begin{vmatrix} a & b & 1 \\\\ c & d & 1 \\\\ e & f & 1 \\end{vmatrix}$\n$\\Rightarrow \\begin{vmatrix} a & b & 1 \\\\ c & d & 1 \\\\ e & f & 1 \\end{vmatrix} = 2\\Delta \\Rightarrow \\begin{vmatrix} a & c & e \\\\ b & d & f \\\\ 1 & 1 & 1 \\end{vmatrix} = 2\\Delta$ $[\\because |A'| = |A|]$\n$\\Rightarrow \\begin{vmatrix} a & c & e \\\\ b & d & f \\\\ 1 & 1 & 1 \\end{vmatrix}^{2} = 4\\Delta^{2}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\Delta^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$4\\Delta^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\Delta$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\Delta$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The function $f(x) = x|x|$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = x|x| = \\begin{cases} x^{2}\\ ; x \\geq 0 \\\\ -x^{2}\\ ; x < 0 \\end{cases}$\n$f(x)$ is continuous and differentiable at $x = 0$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Continuous and differentiable at $x = 0$."
+    },
+    {
+     "key": "B",
+     "text": "Continuous but not differentiable at $x = 0$."
+    },
+    {
+     "key": "C",
+     "text": "differentiable but not continuous at $x = 0$."
+    },
+    {
+     "key": "D",
+     "text": "neither differentiable nor continuous at $x = 0$."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "c23-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\tan\\left(\\frac{x + y}{x - y}\\right) = k$, then $\\frac{dy}{dx}$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\tan\\left(\\frac{x + y}{x - y}\\right) = k \\Rightarrow \\frac{x + y}{x - y} = \\tan^{-1}k$\nDifferentiate w.r.t. $x$\n$(x - y)\\left[1 + \\frac{dy}{dx}\\right] - (x + y)\\left[1 - \\frac{dy}{dx}\\right] = 0$\n$\\frac{dy}{dx}\\left[(x - y) + (x + y)\\right] = (x + y) - (x - y) \\Rightarrow \\frac{dy}{dx} = \\frac{2y}{2x} = \\frac{y}{x}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{-y}{x}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{y}{x}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sec^{2}\\left(\\frac{y}{x}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\sec^{2}\\left(\\frac{y}{x}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Linear Programming",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The objective function $Z = ax + by$ of an LPP has maximum value $42$ at $(4, 6)$ and minimum value $19$ at $(3, 2)$. Which of the following is true ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$Z = ax + by$\n$4a + 6b = 42$ ..... (i)\n$3a + 2b = 19$ ..... (ii)\nfrom Equation (i) & (ii)\n$\\therefore a = 3, b = 5$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a = 9, b = 1$"
+    },
+    {
+     "key": "B",
+     "text": "$a = 5, b = 2$"
+    },
+    {
+     "key": "C",
+     "text": "$a = 3, b = 5$"
+    },
+    {
+     "key": "D",
+     "text": "$a = 5, b = 3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : Maximum value of $(\\cos^{-1}x)^{2}$ is $\\pi^{2}$.\nReason (R) : Range of the principal value branch of $\\cos^{-1}x$ is $\\left[\\frac{-\\pi}{2}, \\frac{\\pi}{2}\\right]$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Assertion : $\\cos^{-1}x \\in [0, \\pi], \\forall\\ x \\in [-1, 1]$\nmax. of $\\cos^{-1}x$ is $\\pi$\n$\\therefore$ max. of $(\\cos^{-1}x)^{2} = \\pi^{2}$\nHence, Assertion is true.\nReason : Range of the principal value branch of $\\cos^{-1}x$ is $[0, \\pi]$.\nReason is false.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."
+    },
+    {
+     "key": "C",
+     "text": "(A) is true but (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "(A) is false but (R) is true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : If a line makes angle $\\alpha, \\beta, \\gamma$ with positive direction of the coordinate axes, then $\\sin^{2}\\alpha + \\sin^{2}\\beta + \\sin^{2}\\gamma = 2$\nReason (R) : The sum of squares of the direction cosines of a line is $1$.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Assertion: $l = \\cos\\alpha$, $m = \\cos\\beta$, $n = \\cos\\gamma$\n$\\because l^{2} + m^{2} + n^{2} = 1$\n$\\therefore \\cos^{2}\\alpha + \\cos^{2}\\beta + \\cos^{2}\\gamma = 1$\n$\\Rightarrow (1 - \\sin^{2}\\alpha) + (1 - \\sin^{2}\\beta) + (1 - \\sin^{2}\\gamma) = 1$\n$\\Rightarrow \\sin^{2}\\alpha + \\sin^{2}\\beta + \\sin^{2}\\gamma = 2$\nAssertion is true.\nReason : Reason is also true as $l^{2} + m^{2} + n^{2} = 1$.\nBoth (A) and (R) and true and R is the correct explanation of A.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."
+    },
+    {
+     "key": "C",
+     "text": "(A) is true but (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "(A) is false but (R) is true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "$\\sin^{-1}\\left(\\sin\\frac{3\\pi}{4}\\right) + \\cos^{-1}(\\cos\\pi) + \\tan^{-1}(1)$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sin^{-1}\\left(\\sin\\frac{3\\pi}{4}\\right) + \\cos^{-1}(\\cos\\pi) + \\tan^{-1}(1)$\n$= \\sin\\left(\\sin\\left(\\pi - \\frac{\\pi}{4}\\right)\\right) + \\cos^{-1}(\\cos\\pi) + \\tan^{-1}(1)$ $\\left[\\because \\frac{3\\pi}{4} \\notin \\left[\\frac{-\\pi}{2}, \\frac{\\pi}{2}\\right]\\right]$\n$= \\sin\\left(\\sin\\frac{\\pi}{4}\\right) + \\cos^{-1}(\\cos\\pi) + \\tan^{-1}(1)$\n$= \\frac{\\pi}{4} + \\pi + \\frac{\\pi}{4} = \\frac{3\\pi}{2}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": "Draw the graph of $\\cos^{-1}x$, where $x \\in [-1, 0]$. Also, write its range.",
+   "or_solution": "Let $f(x) = \\cos^{-1}x$, where $x \\in [-1, 0]$\n\nRange of $f(x)$ is $\\left[\\frac{\\pi}{2}, \\pi\\right]$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": "c23-math-q21-orsol.png"
+  },
+  {
+   "q_no": 22,
+   "topic": "Applications of Derivatives",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "A particle moves along the curve $3y = ax^{3} + 1$ such that at a point with $x$-coordinate 1, $y$-coordinate is changing twice as fast as $x$-coordinate. Find the value of $a$.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given that, $3y = ax^{3} + 1$, $x = 1$ and $\\frac{dy}{dt} = 2\\frac{dx}{dt} \\Rightarrow \\frac{dy}{dx} = 2$\nNow, differentiating $3y = ax^{3} + 1$ w.r.t. $x$\n$\\frac{3\\,dy}{dx} = 3ax^{2}$\n$\\Rightarrow 3 \\times 2 = 3a(1)^{2}$ $[\\because x = 1]$\n$\\Rightarrow 6 = 3a \\Rightarrow a = 2$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Vector Algebra",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "If $\\vec{a}, \\vec{b}, \\vec{c}$ are three non-zero unequal vectors such that $\\vec{a} \\cdot \\vec{b} = \\vec{a} \\cdot \\vec{c}$, then find the angle between $\\vec{a}$ and $\\vec{b} - \\vec{c}$.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given that, $\\vec{a} \\cdot \\vec{b} = \\vec{a} \\cdot \\vec{c}$ .....(i)\nLet angle between $\\vec{a}$ and $\\vec{b} - \\vec{c}$ be $\\theta$ then, $\\cos\\theta = \\frac{\\vec{a} \\cdot (\\vec{b} - \\vec{c})}{|\\vec{a}|\\,|\\vec{b} - \\vec{c}|}$\n$\\Rightarrow \\cos\\theta = \\frac{\\vec{a} \\cdot \\vec{b} - \\vec{a} \\cdot \\vec{c}}{|\\vec{a}|\\,|\\vec{b} - \\vec{c}|}$\n$\\Rightarrow \\cos\\theta = 0 = \\cos\\frac{\\pi}{2}$ (from equation (i))\n$\\Rightarrow \\theta = \\frac{\\pi}{2}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "Find the coordinates of points on line $\\frac{x}{1} = \\frac{y-1}{2} = \\frac{z+1}{2}$ which are at a distance of $\\sqrt{11}$ units from origin.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given line is $\\frac{x}{1} = \\frac{y-1}{2} = \\frac{z+1}{2} = \\lambda$ (let)\nLet arbitrary point on line is $P(\\lambda, 2\\lambda + 1, 2\\lambda - 1)$\nAccording to question $OP = \\sqrt{11}$\n$\\Rightarrow \\sqrt{(\\lambda - 0)^{2} + (2\\lambda + 1 - 0)^{2} + (2\\lambda - 1 - 0)^{2}} = \\sqrt{11}$\n$\\Rightarrow \\lambda^{2} + 4\\lambda^{2} + 4\\lambda + 1 + 4\\lambda^{2} - 4\\lambda + 1 = 11$\n$\\Rightarrow 9\\lambda^{2} = 9$\n$\\Rightarrow \\lambda = \\pm 1$\nHence required points are $(1, 3, 1)$ and $(-1, -1, -3)$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Continuity and Differentiability",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "If $y = \\sqrt{ax + b}$, prove that $y\\left(\\frac{d^{2}y}{dx^{2}}\\right) + \\left(\\frac{dy}{dx}\\right)^{2} = 0$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given that, $y = \\sqrt{ax + b}$ .....(i)\nDifferentiating w.r.t. $x$\n$\\frac{dy}{dx} = \\frac{1}{2\\sqrt{ax + b}} \\times a$ .....(ii)\n$\\Rightarrow \\sqrt{ax + b}\\,\\frac{dy}{dx} = \\frac{a}{2} \\Rightarrow y \\cdot \\frac{dy}{dx} = \\frac{a}{2}$ [from (i)]\nAgain differentiating w.r.t. $x$\n$\\Rightarrow y\\frac{d^{2}y}{dx^{2}} + \\left(\\frac{dy}{dx}\\right)^{2} = 0$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": "If $f(x) = \\begin{cases} ax + b & ;\\ 0 < x \\le 1 \\\\ 2x^{2} - x & ;\\ 1 < x < 2 \\end{cases}$ is a differentiable function in $(0, 2)$, then find the value of $a$ and $b$.",
+   "or_solution": "Given that, $f(x) = \\begin{cases} ax + b & ;\\ 0 < x \\le 1 \\\\ 2x^{2} - x & ;\\ 1 < x < 2 \\end{cases}$\nEvery differentiable function is always continuous.\nIf $f(x)$ is continuous at $x = 1$\nR.H.L. $\\Rightarrow \\lim_{x \\to 1^{+}} 2x^{2} - x = 1$\n$f(1) = a + b$\n$\\therefore a + b = 1$ .....(i)\nif $f(x)$ is differentiable at $x = 1$\n$Rf'(x) = 4x - 1$\n$Rf'(1) = 4 - 1 = 3$\n$Lf'(x) = a$\n$Lf'(1) = a$\n$Rf'(1) = Lf'(1)$\n$a = 3$\n$b = -2$ [from equation (i)]",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Integrals",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "$\\int_{0}^{\\pi/4} \\log(1 + \\tan x)\\,dx$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int_{0}^{\\pi/4} \\log(1 + \\tan x)\\,dx$ ...(1)\n$\\therefore I = \\int_{0}^{\\pi/4} \\log\\left[1 + \\tan\\left(\\frac{\\pi}{4} - x\\right)\\right]dx$ $\\left(\\int_{0}^{a} f(x)\\,dx = \\int_{0}^{a} f(a - x)\\,dx\\right)$\n$\\Rightarrow I = \\int_{0}^{\\pi/4} \\log\\left\\{1 + \\frac{\\tan\\frac{\\pi}{4} - \\tan x}{1 + \\tan\\frac{\\pi}{4}\\tan x}\\right\\}dx \\Rightarrow I = \\int_{0}^{\\pi/4} \\log\\left\\{1 + \\frac{1 - \\tan x}{1 + \\tan x}\\right\\}dx$\n$\\Rightarrow I = \\int_{0}^{\\pi/4} \\left\\{\\log\\frac{2}{(1 + \\tan x)}\\right\\}dx \\Rightarrow I = \\int_{0}^{\\pi/4} \\log 2\\,dx - \\int_{0}^{\\pi/4} \\log(1 + \\tan x)\\,dx$\n$\\Rightarrow I = \\int_{0}^{\\pi/4} \\log 2\\,dx - I$ [From (1)]\n$\\Rightarrow 2I = \\left[x \\log 2\\right]_{0}^{\\pi/4} \\Rightarrow 2I = \\frac{\\pi}{4}\\log 2 \\Rightarrow I = \\frac{\\pi}{8}\\log 2$",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": "Find $\\int \\frac{dx}{\\sqrt{\\sin^{3}x\\,\\cos(x - \\alpha)}}$",
+   "or_solution": "Let $I = \\int \\frac{dx}{\\sqrt{\\sin^{3}x\\,\\cos(x - \\alpha)}} \\Rightarrow I = \\int \\frac{dx}{\\sqrt{\\sin^{3}x(\\cos x \\cdot \\cos\\alpha + \\sin x \\cdot \\sin\\alpha)}}$\n$\\Rightarrow I = \\int \\frac{dx}{\\sqrt{\\sin^{4}x(\\cot x \\cdot \\cos\\alpha + \\sin\\alpha)}} \\Rightarrow I = \\int \\frac{\\operatorname{cosec}^{2}x\\,dx}{\\sqrt{\\cot x \\cdot \\cos\\alpha + \\sin\\alpha}}$\nPut $\\cot x \\cdot \\cos\\alpha + \\sin\\alpha = t^{2} \\Rightarrow -\\operatorname{cosec}^{2}x \\cdot \\cos\\alpha\\,dx = 2t\\,dt \\Rightarrow \\operatorname{cosec}^{2}x\\,dx = \\frac{-2t\\,dt}{\\cos\\alpha}$\n$\\therefore I = -\\frac{1}{\\cos\\alpha}\\int \\frac{2t\\,dt}{\\sqrt{t^{2}} } \\Rightarrow I = -\\frac{2}{\\cos\\alpha}\\int dt \\Rightarrow I = -\\frac{2t}{\\cos\\alpha} + c$\n$I = -\\frac{2}{\\cos\\alpha}\\sqrt{\\cot x\\cos\\alpha + \\sin\\alpha} + c \\Rightarrow I = -\\frac{2}{\\cos\\alpha}\\sqrt{\\frac{\\cos x\\cos\\alpha + \\sin x\\sin\\alpha}{\\sin x}} + c$\n$I = -\\frac{2}{\\cos\\alpha}\\sqrt{\\frac{\\cos(x - \\alpha)}{\\sin x}} + c$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Integrals",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Find $\\int e^{\\cot^{-1}x}\\left(\\frac{1 - x + x^{2}}{1 + x^{2}}\\right)dx$.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int e^{\\cot^{-1}x}\\left(\\frac{1 - x + x^{2}}{1 + x^{2}}\\right)dx$\nPut $\\cot^{-1}x = t \\Rightarrow \\frac{-1}{1 + x^{2}}dx = dt$\nThen, $x = \\cot t$\n$I = -\\int e^{t}(\\operatorname{cosec}^{2}t - \\cot t)\\,dt$\n$I = \\int e^{t}(\\cot t - \\operatorname{cosec}^{2}t)\\,dt$\n$I = e^{t} \\cdot \\cot t + c$ $\\left(\\because \\int e^{x}(f(x) + f'(x))\\,dx = e^{x} \\cdot f(x) + c\\right)$\n$I = x e^{\\cot^{-1}x} + c$",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Definite Integrals",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Evaluate $\\int_{\\log\\sqrt{2}}^{\\log\\sqrt{3}} \\frac{1}{(e^{x} + e^{-x})(e^{x} - e^{-x})}\\,dx$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int_{\\log\\sqrt{2}}^{\\log\\sqrt{3}} \\frac{1}{(e^{x} + e^{-x})(e^{x} - e^{-x})}\\,dx$\n$\\Rightarrow I = \\int_{\\log\\sqrt{2}}^{\\log\\sqrt{3}} \\frac{e^{2x}}{(e^{2x} + 1)(e^{2x} - 1)}\\,dx \\Rightarrow I = \\int_{\\log\\sqrt{2}}^{\\log\\sqrt{3}} \\frac{e^{2x}}{(e^{2x})^{2} - 1}\\,dx$\nPut $e^{2x} = t \\Rightarrow e^{2x}\\,dx = \\frac{1}{2}dt$; when $x = \\log\\sqrt{3}$ then $t = 3$; when $x = \\log\\sqrt{2}$ then $t = 2$\nNow, $I = \\frac{1}{2}\\int_{2}^{3} \\frac{dt}{t^{2} - 1}$\n$I = \\frac{1}{2} \\times \\frac{1}{2}\\left[\\log\\left|\\frac{t - 1}{t + 1}\\right|\\right]_{2}^{3} = \\frac{1}{4}\\left(\\log\\frac{1}{2} - \\log\\frac{1}{3}\\right) = \\frac{1}{4}\\log\\frac{3}{2}$",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Differential Equations",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Find the general solution of the differential equation :\n$(xy - x^{2})\\,dy = y^{2}\\,dx$.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given differential equation is $(xy - x^{2})\\,dy = y^{2}\\,dx$.\n$\\Rightarrow \\frac{dy}{dx} = \\frac{y^{2}}{xy - x^{2}}$ Put $y = vx$ and $\\frac{dy}{dx} = v + x\\frac{dv}{dx}$\n$\\Rightarrow v + x\\frac{dv}{dx} = \\frac{v^{2}x^{2}}{vx^{2} - x^{2}} \\Rightarrow v + x\\frac{dv}{dx} = \\frac{v^{2}}{v - 1} \\Rightarrow x\\frac{dv}{dx} = \\frac{v^{2}}{v - 1} - v$\n$\\Rightarrow x\\frac{dv}{dx} = \\frac{v^{2} - v^{2} + v}{v - 1} \\Rightarrow x\\frac{dv}{dx} = \\frac{v}{v - 1} \\Rightarrow \\frac{v - 1}{v}dv = \\frac{dx}{x}$\nOn integrating both sides\n$\\Rightarrow \\int \\frac{v - 1}{v}dv = \\int \\frac{dx}{x}$\n$\\Rightarrow \\int \\left(1 - \\frac{1}{v}\\right)dv = \\int \\frac{dx}{x}$\n$\\Rightarrow v - \\log v = \\log x + \\log C$\n$\\Rightarrow \\frac{y}{x} - \\log\\frac{y}{x} = \\log x + \\log C$ ($\\because y = vx$)\n$\\Rightarrow \\frac{y}{x} = \\log\\frac{y}{x} + \\log x + \\log C \\Rightarrow \\frac{y}{x} = \\log Cy$\n$\\Rightarrow Cy = e^{y/x} \\Rightarrow y = C'e^{y/x}$ $\\left(\\because \\frac{1}{C} = C'\\right)$",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": "Find the general solution of the differential equation :\n$\\left(x^{2} + 1\\right)\\frac{dy}{dx} + 2xy = \\sqrt{x^{2} + 4}$",
+   "or_solution": "Given differential equation is $\\left(x^{2} + 1\\right)\\frac{dy}{dx} + 2xy = \\sqrt{x^{2} + 4}$\n$\\Rightarrow \\frac{dy}{dx} + \\frac{2xy}{1 + x^{2}} = \\frac{\\sqrt{x^{2} + 4}}{1 + x^{2}}$\nThis is linear differential equation of the form $\\frac{dy}{dx} + Py = Q$,\nwhere $P = \\frac{2x}{1 + x^{2}}$ and $Q = \\frac{\\sqrt{x^{2} + 4}}{1 + x^{2}}$\nNow, I.F. $= e^{\\int P\\,dx} = e^{\\int \\frac{2x}{1 + x^{2}}dx} = e^{\\log(1 + x^{2})}$\nI.F. $= 1 + x^{2}$\nSolution of given differential equation is given by\n$y\\,(\\text{I.F.}) = \\int Q \\cdot (\\text{I.F.})\\,dy$\n$\\Rightarrow y(1 + x^{2}) = \\int \\frac{\\sqrt{x^{2} + 4}}{1 + x^{2}}(1 + x^{2})\\,dy$\n$\\Rightarrow y(1 + x^{2}) = \\int \\sqrt{x^{2} + 4}\\,dy$\n$\\Rightarrow y(1 + x^{2}) = \\frac{x}{2}\\int \\sqrt{x^{2} + 4} + 2\\log\\left|x + \\sqrt{x^{2} + 4}\\right| + C$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Probability",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Two balls are drawn at random one by one with replacement from an urn containing equal number of red balls and green balls. Find the probability distribution of number of red balls. Also, find the mean of the random variable.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $X$ = No. of red balls\n$X = 0, 1, 2$\n\n$X$ | $P(X)$ | $X \\cdot P(X)$\n$0$ | $\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$ | $0$\n$1$ | $\\frac{1}{4} + \\frac{1}{4} = \\frac{2}{4} = \\frac{1}{2}$ | $\\frac{1}{2}$\n$2$ | $\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$ | $\\frac{1}{2}$\n\nMean $= E(X) = \\Sigma(X) \\cdot P(X) = \\frac{1}{2} + \\frac{1}{2} = 1$",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": "A and B throw a die alternately till one of them gets a '6' and wins the game. Find their respective probabilities of wining, if A starts the game first.",
+   "or_solution": "Let $S$ denote the success (getting a '6') and $F$ denote the failure (not getting a '6')\n$\\therefore P(S) = \\frac{1}{6},\\ P(F) = \\frac{5}{6}$\n$P(\\text{A wins in the first throw}) = P(S) = \\frac{1}{6}$\nA gets the third throw, when the first throw by A and second thrown by B result into failures.\ni.e. $P(\\text{A wins in the third throw}) = P(FFS) = P(F) \\cdot P(F) \\cdot P(S) = \\frac{5}{6} \\times \\frac{5}{6} \\times \\frac{1}{6} = \\left(\\frac{5}{6}\\right)^{2} \\times \\frac{1}{6}$\n$P(\\text{A wins in the fifth throw}) = P(FFFFS) = P(F) \\cdot P(F) \\cdot P(F) \\cdot P(F) \\cdot P(S) = \\left(\\frac{5}{6}\\right)^{4}\\left(\\frac{1}{6}\\right)$ and so on\n$P(\\text{A wins}) = \\frac{1}{6} + \\left(\\frac{5}{6}\\right)^{2}\\left(\\frac{1}{6}\\right) + \\left(\\frac{5}{6}\\right)^{4}\\left(\\frac{1}{6}\\right) + \\ldots\\ldots$\n$= \\frac{\\frac{1}{6}}{1 - \\left(\\frac{5}{6}\\right)^{2}} = \\frac{\\frac{1}{6}}{1 - \\frac{25}{36}} = \\frac{\\frac{1}{6}}{\\frac{11}{36}} = \\frac{6}{11}$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Linear Programming",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Solve the following linear programming problem graphically :\nMinimize : $Z = 5x + 10y$\nSubject to constraints : $x + 2y \\le 120$, $x + y \\ge 60$, $x - 2y \\ge 0$,\n$x \\ge 0$, $y \\ge 0$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Minimize and maximize $Z = 5x + 10y$\nSubject to constraints $x + 2y \\le 120$, $x + y \\ge 60$, $x \\ge 0$, $x - 2y \\ge 0$\nSo, the feasible region lies in the first quadrant.\n$\\therefore$ Feasible region is $ABCDA$.\nOn solving equations $x - 2y = 0$ and $x + y = 60$, we get $D(40, 20)$\nAnd on solving equations $x - 2y = 0$ and $x + 2y = 120$, we get $C(60, 30)$\nThe corner points of the feasible region are, $A(60, 0)$, $B(120, 0)$, $C(60, 30)$ and $D(40, 20)$.\nThe values of $Z$ at these points are as follows:\n\nCorner Points | $Z = 5x + 10y$\n$A(60, 0)$ | $300 \\to$ Minimum\n$B(120, 0)$ | $600 \\to$ Maximum\n$C(60, 30)$ | $600 \\to$ Maximum\n$D(40, 20)$ | $400$\n\nThe minimum value of $Z$ is 300 at $A(60, 0)$ and the maximum value of $Z$ is 600 at all the points on the line segment joining the points $B(120, 0)$ and $C(60, 30)$.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c23-math-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Matrices",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "(a) If $A = \\begin{bmatrix} -3 & -2 & -4 \\\\ 2 & 1 & 2 \\\\ 2 & 1 & 3 \\end{bmatrix}$, $B = \\begin{bmatrix} 1 & 2 & 0 \\\\ -2 & -1 & -2 \\\\ 0 & -1 & 1 \\end{bmatrix}$, then find $AB$ and use it to solve the following system of equations :\n$x - 2y = 3$\n$2x - y - z = 2$\n$-2y + z = 3$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) Given, $A = \\begin{bmatrix} -3 & -2 & -4 \\\\ 2 & 1 & 2 \\\\ 2 & 1 & 3 \\end{bmatrix}$, $B = \\begin{bmatrix} 1 & 2 & 0 \\\\ -2 & -1 & -2 \\\\ 0 & -1 & 1 \\end{bmatrix}$\n$AB = \\begin{bmatrix} -3 & -2 & -4 \\\\ 2 & 1 & 2 \\\\ 2 & 1 & 3 \\end{bmatrix}\\begin{bmatrix} 1 & 2 & 0 \\\\ -2 & -1 & -2 \\\\ 0 & -1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$\n$\\Rightarrow AB = I$ i.e. $A = B^{-1}$ ..... (i)\nNow, given system of equations is\n$x - 2y = 3$\n$2x - y - z = 2$\n$-2y + z = 3$\nThis system can be written in matrix equation form as\n$\\begin{bmatrix} 1 & -2 & 0 \\\\ 2 & -1 & -1 \\\\ 0 & -2 & 1 \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} 3 \\\\ 2 \\\\ 3 \\end{bmatrix}$\n$B^{T}X = C$\n$\\Rightarrow X = (B^{T})^{-1}C = (B^{-1})^{T}C$ $[\\because (A^{T})^{-1} = (A^{-1})^{T}]$\n$\\Rightarrow X = A^{T}C$ [Using equation (i)]\n$\\Rightarrow \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} -3 & 2 & 2 \\\\ -2 & 1 & 1 \\\\ -4 & 2 & 3 \\end{bmatrix}\\begin{bmatrix} 3 \\\\ 2 \\\\ 3 \\end{bmatrix} \\Rightarrow \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ -1 \\\\ 1 \\end{bmatrix}$\n$\\therefore x = 1,\\ y = -1,\\ z = 1$",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": "(b) If $f(\\alpha) = \\begin{bmatrix} \\cos\\alpha & -\\sin\\alpha & 0 \\\\ \\sin\\alpha & \\cos\\alpha & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$, prove that $f(\\alpha) \\cdot f(-\\beta) = f(\\alpha - \\beta)$",
+   "or_solution": "(b) Given, $f(\\alpha) = \\begin{bmatrix} \\cos\\alpha & -\\sin\\alpha & 0 \\\\ \\sin\\alpha & \\cos\\alpha & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$\n$f(-\\beta) = \\begin{bmatrix} \\cos(-\\beta) & -\\sin(-\\beta) & 0 \\\\ \\sin(-\\beta) & \\cos(-\\beta) & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} \\cos\\beta & \\sin\\beta & 0 \\\\ -\\sin\\beta & \\cos\\beta & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$\n$\\therefore f(\\alpha)\\cdot f(-\\beta) = \\begin{bmatrix} \\cos\\alpha & -\\sin\\alpha & 0 \\\\ \\sin\\alpha & \\cos\\alpha & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}\\begin{bmatrix} \\cos\\beta & \\sin\\beta & 0 \\\\ -\\sin\\beta & \\cos\\beta & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$\n$\\Rightarrow f(\\alpha)\\cdot f(-\\beta) = \\begin{bmatrix} \\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta & \\cos\\alpha\\sin\\beta - \\sin\\alpha\\cos\\beta & 0 \\\\ \\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta & \\sin\\alpha\\sin\\beta + \\cos\\alpha\\cos\\beta & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$\n$\\Rightarrow f(\\alpha)\\cdot f(-\\beta) = \\begin{bmatrix} \\cos(\\alpha-\\beta) & -\\sin(\\alpha-\\beta) & 0 \\\\ \\sin(\\alpha-\\beta) & \\cos(\\alpha-\\beta) & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$\n$\\therefore f(\\alpha)\\cdot f(-\\beta) = f(\\alpha - \\beta)$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "(a) Find the equations of the diagonals of the parallelogram $PQRS$ whose vertices are $P(4, 2, -6)$, $Q(5, -3, 1)$, $R(12, 4, 5)$ and $S(11, 9, -2)$. Use these equations to find the point of intersection of diagonals.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) Given, the vertices of parallelogram $PQRS$ are $P(4, 2, -6)$, $Q(5, -3, 1)$, $R(12, 4, 5)$ and $S(11, 9, -2)$.\nEquation of diagonal $PR$ is\n$\\frac{x-4}{12-4} = \\frac{y-2}{4-2} = \\frac{z+6}{5+6}$ i.e. $\\frac{x-4}{8} = \\frac{y-2}{2} = \\frac{z+6}{11}$\nEquation of diagonal $QS$ is\n$\\frac{x-5}{11-5} = \\frac{y+3}{9+3} = \\frac{z-1}{-2-1}$ i.e. $\\frac{x-5}{6} = \\frac{y+3}{12} = \\frac{z-1}{-3}$\nNow, the coordinates of any point on diagonal $PR$ is $T(8\\lambda + 4,\\ 2\\lambda + 2,\\ 11\\lambda - 6)$\nif point $T$ also lies on the diagonal $QS$, then\n$\\frac{(8\\lambda+4)-5}{6} = \\frac{(2\\lambda+2)+3}{12} = \\frac{(11\\lambda-6)-1}{-3} \\Rightarrow \\frac{8\\lambda-1}{6} = \\frac{2\\lambda+5}{12} = \\frac{11\\lambda-7}{-3}$\nOn solving, we get $\\lambda = \\frac{1}{2}$\nHence, the point of intersection of diagonals $PR$ and $QS$ is\n$T\\left(8 \\times \\frac{1}{2} + 4,\\ 2 \\times \\frac{1}{2} + 2,\\ 11 \\times \\frac{1}{2} - 6\\right)$ i.e. $T\\left(8,\\ 3,\\ \\frac{-1}{2}\\right)$",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": "(b) A line $l$ passes through point $(-1, 3, -2)$ and is perpendicular to both the lines $\\frac{x}{1} = \\frac{y}{2} = \\frac{z}{3}$ and $\\frac{x+2}{-3} = \\frac{y-1}{2} = \\frac{z+1}{5}$. Find the vector equation of the line $l$. Hence obtain its distance from origin.",
+   "or_solution": "(b) Equation of a line $l$ passes through point $(-1, 3, -2)$ is\n$\\frac{x+1}{a} = \\frac{y-3}{b} = \\frac{z+2}{c}$ ..... (i)\nIf line $l$ is perpendicular to lines $\\frac{x}{1} = \\frac{y}{2} = \\frac{z}{3}$ and $\\frac{x+2}{-3} = \\frac{y-1}{2} = \\frac{z+1}{5}$ both, then\n$a + 2b + 3c = 0$ ..... (ii)\nand $-3a + 2b + 5c = 0$ ..... (iii)\nfrom equation (ii) and (iii)\n$\\frac{a}{10-6} = \\frac{b}{-9-5} = \\frac{c}{2+6}$ i.e. $\\frac{a}{4} = \\frac{b}{-14} = \\frac{c}{8}$\nSo, dr's of line $l$ are $4, -14, 8$ i.e. $2, -7, 4$\neq. of line $l$ in cartesian form is $\\frac{x+1}{2} = \\frac{y-3}{-7} = \\frac{z+2}{4}$\nEquation of line $l$ in vector form is $\\vec{r} = (-\\hat{i} + 3\\hat{j} - 2\\hat{k}) + \\lambda(2\\hat{i} - 7\\hat{j} + 4\\hat{k})$\nThe coordinates of any point on the line $l$ are\n$P(2\\lambda - 1,\\ -7\\lambda + 3,\\ 4\\lambda - 2)$\ndr's of line $OP$ are $2\\lambda - 1,\\ -7\\lambda + 3,\\ 4\\lambda - 2$\nSince, $OP \\perp l$\n$2(2\\lambda - 1) - 7(-7\\lambda + 3) + 4(4\\lambda - 2) = 0$\n$\\Rightarrow 69\\lambda = 31 \\Rightarrow \\lambda = \\frac{31}{69}$\nSo, the coordinates of point $P$ are $P\\left(\\frac{-7}{69},\\ 0,\\ \\frac{-14}{69}\\right)$\nNow, distance of line $l$ from origin, is\n$OP = \\sqrt{\\left(\\frac{-7}{69}\\right)^{2} + (0)^{2} + \\left(\\frac{-14}{69}\\right)^{2}} = \\sqrt{\\frac{49 + 196}{(69)^{2}}} = \\sqrt{\\frac{245}{(69)^{2}}} = \\frac{7\\sqrt{5}}{69}$ units",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Application of Integrals",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "Using integration, find the area of region bounded by line $y = \\sqrt{3}x$, the curve $y = \\sqrt{4 - x^{2}}$ and $y$-axis in first quadrant.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given, line $y = \\sqrt{3}x$ ..... (i)\ncurve $y = \\sqrt{4 - x^{2}}$ ...... (ii)\nfrom equation (i) and (ii)\n$\\sqrt{4 - x^{2}} = \\sqrt{3}x$\n$\\Rightarrow 4 - x^{2} = 3x^{2}$\n$\\Rightarrow x^{2} = 1$\n$\\Rightarrow x = 1$\nfrom equation (i) when $x = 1 \\Rightarrow y = \\sqrt{3}$\nPoint of intersection line (i) and curve (ii) is $B(1, \\sqrt{3})$\nRequired Area = Area of the region $APBOA$\n= Area of the region $CBOC$ + area of the region $APBCA$\n$= \\int_{0}^{\\sqrt{3}} \\frac{y}{\\sqrt{3}}\\,dy + \\int_{\\sqrt{3}}^{2} \\sqrt{4 - y^{2}}\\,dy = \\left[\\frac{y^{2}}{2\\sqrt{3}}\\right]_{0}^{\\sqrt{3}} + \\left[\\frac{y}{2}\\sqrt{4 - y^{2}} + \\frac{4}{2}\\sin^{-1}\\frac{y}{2}\\right]_{\\sqrt{3}}^{2}$\n$= \\left(\\frac{\\sqrt{3}}{2} - 0\\right) + \\left[2 \\cdot \\frac{\\pi}{2} - \\left\\{\\frac{\\sqrt{3}}{2} + 2 \\cdot \\frac{\\pi}{3}\\right\\}\\right] = \\frac{\\sqrt{3}}{2} + \\left[\\pi - \\frac{\\sqrt{3}}{2} - \\frac{2\\pi}{3}\\right] = \\frac{\\pi}{3}$ sq. units",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c23-math-q34-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Relations and Functions",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "A function $f : [-4, 4] \\rightarrow [0, 4]$ is given by $f(x) = \\sqrt{16 - x^{2}}$. Show that $f$ is an onto function but not a one-one function. Further, find all possible values of 'a' for which $f(a) = \\sqrt{7}$.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given, function $f : [-4, 4] \\rightarrow [0, 4]$ is given by $f(x) = \\sqrt{16 - x^{2}}$\nOne-one : $\\because f(-4) = \\sqrt{16 - (-4)^{2}} = 0$\n$f(4) = \\sqrt{16 - (4)^{2}} = 0$\n$\\Rightarrow f(-4) = f(4)$ but $-4 \\neq 4$\nSince different elements of domain has same image in codomain.\nSo function $f$ is not one-one function.\nOnto : Let $f(x) = y = \\sqrt{16 - x^{2}}$ ; $y \\geq 0$\n$\\Rightarrow x = \\pm\\sqrt{16 - y^{2}}$\nHere, $16 - y^{2} \\geq 0$\n$\\Rightarrow (4 - y)(4 + y) \\geq 0$\n$\\Rightarrow (y - 4)(y + 4) \\leq 0$\n$\\Rightarrow -4 \\leq y \\leq 4$ and $y \\geq 0$\nSo, $y \\in [0, 4]$\nTherefore range of $f = [0, 4] =$ codomain of $f$.\nSo, function $f$ is onto function.\nif $f(x) = \\sqrt{7}$\n$\\Rightarrow \\sqrt{16 - a^{2}} = \\sqrt{7} \\Rightarrow 16 - a^{2} = 7 \\Rightarrow a^{2} = 9 \\Rightarrow a = \\pm 3$",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Application of Derivatives",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "Engine displacement is the measure of the cylinder volume swept by all the pistons of a piston engine. The piston moves inside the cylinder bore.\n\nThe cylinder bore in the form of circular cylinder open at the top is to be made from a metal sheet of area $75\\pi\\ \\mathrm{cm^{2}}$.\nBased on the above information, answer the following questions :\n(i) If the radius of cylinder is $r$ cm and height is $h$ cm, then write the volume $V$ of cylinder in terms of radius $r$. (1)\n(ii) Find $\\frac{dV}{dr}$. (1)\n(iii) (a) Find the radius of cylinder when its volume is maximum. (2)\nOR\n(iii) (b) For maximum volume, $h > r$. State true or false and justify. (2)",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$r$ and $h$ be the radius and height of cylinder bore open at top.\nThen, $\\pi r^{2} + 2\\pi rh = 75\\pi\\ \\mathrm{cm^{2}}$ (given)\n$\\Rightarrow r^{2} + 2rh = 75$\n$\\Rightarrow h = \\frac{75 - r^{2}}{2r}$ ..... (i)\n(i) $\\because V = \\pi r^{2}h$\n$\\therefore V = \\pi r^{2}\\left(\\frac{75 - r^{2}}{2r}\\right) = \\frac{\\pi}{2}\\left[75r - r^{3}\\right]$ [from equation (i)] ..... (ii)\n(ii) Differentiating equation (ii) w.r.t. $r$\n$\\frac{dV}{dr} = \\frac{\\pi}{2}\\left[75 - 3r^{2}\\right]$\n(iii) (a) For maximum volume $\\frac{dV}{dr} = 0$\n$\\Rightarrow \\frac{\\pi}{2}\\left[75 - 3r^{2}\\right] = 0 \\Rightarrow r^{2} = 25 \\Rightarrow r = 5$\nNow, $\\frac{d^{2}V}{dr^{2}} = \\frac{\\pi}{2}\\left[-6r\\right]$\n$\\left.\\frac{d^{2}V}{dr^{2}}\\right)_{r=5} = -\\frac{\\pi}{2} \\times 30 < 0$\nHence, volume is maximum at $r = 5$\n(iii) (b) For maximum volume $\\frac{dV}{dr} = 0$\n$\\Rightarrow \\frac{\\pi}{2}\\left[75 - 3r^{2}\\right] = 0 \\Rightarrow r^{2} = 25 \\Rightarrow r = 5$\nNow, $\\frac{d^{2}V}{dr^{2}} = \\frac{\\pi}{2}\\left[-6r\\right]$\n$\\left.\\frac{d^{2}V}{dr^{2}}\\right)_{r=5} = -\\frac{\\pi}{2} \\times 30 < 0$\nHence, volume is maximum at $r = 5$\n$\\therefore$ from equation (i)\n$h = \\frac{75 - r^{2}}{2r}$\n$h = \\frac{75 - 25}{10} = 5$ ($\\because r = 5$)\nHere, $h = r$ i.e. $h > r$ is false.",
+   "marks_correct": 4,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Probability",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "Recent studies suggest that roughly 12% of the world population is left handed.\n\nDepending upon the parents, the chances of having a left handed child are as follows :\nA : When both father and mother are left handed : Chances of left handed child is 24%.\nB : When father is right handed and mother is left handed : Chances of left handed child is 22%.\nC : When father is left handed and mother is right handed : Chances of left handed child is 17%.\nD : When both father and mother are right handed : chances of left handed child is 9%.\nAssuming that $P(A) = P(B) = P(C) = P(D) = \\frac{1}{4}$ and $L$ denotes the event that child is left handed.\nBased on the above information, answer the following questions :\n(i) Find $P(L/C)$ (1)\n(ii) Find $P(\\overline{L}/A)$ (1)\n(iii) (a) Find $P(A/L)$ (2)\nOR\n(iii) (b) Find the probability that a randomly selected child is left handed given that exactly one of the parents is left handed. (2)",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given events are\nA : When both father and mother are left handed : Chances of left handed child is 24%.\nB : When father is right handed and mother is left handed : Chances of left handed child is 22%.\nC : When father is left handed and mother is right handed : Chances of left handed child is 17%.\nD : When both father and mother are right handed : chances of left handed child is 9%.\nand $P(A) = P(B) = P(C) = P(D) = \\frac{1}{4}$\n$L$ : Child is left handed.\nNow, $P(L/A) = \\frac{24}{100}$, $P(L/B) = \\frac{22}{100}$, $P(L/C) = \\frac{17}{100}$, $P(L/D) = \\frac{9}{100}$\n(i) $P(L/C) = 17\\% = \\frac{17}{100}$\n(ii) $P(\\overline{L}/A) = 1 - P(L/A) = 1 - \\frac{24}{100} = \\frac{76}{100}$\n(iii) (a) $P(A/L) = \\frac{P(A)\\cdot P(L/A)}{P(A)\\cdot P(L/A) + P(B)\\cdot P(L/B) + P(C)\\cdot P(L/C) + P(D)\\cdot P(L/D)}$\n$P(A/L) = \\frac{\\frac{1}{4} \\times \\frac{24}{100}}{\\frac{1}{4} \\times \\frac{24}{100} + \\frac{1}{4} \\times \\frac{22}{100} + \\frac{1}{4} \\times \\frac{17}{100} + \\frac{1}{4} \\times \\frac{9}{100}} = \\frac{24}{24 + 22 + 17 + 9} = \\frac{24}{72} = \\frac{1}{3}$\n(iii) (b) Required probability $= P(L/B \\cup C)$\n$= \\frac{P(L \\cap (B \\cup C))}{P(B \\cup C)} = \\frac{P(L \\cap B) \\cup P(L \\cap C)}{P(B \\cup C)}$\n$= \\frac{P(B)\\cdot P(L/B) + P(C)\\cdot P(L/C)}{P(B) + P(C)}$\n$= \\frac{\\frac{1}{4} \\times \\frac{22}{100} + \\frac{1}{4} \\times \\frac{17}{100}}{\\frac{1}{4} + \\frac{1}{4}} = \\frac{\\frac{39}{400}}{\\frac{1}{2}} = \\frac{39}{200}$",
+   "marks_correct": 4,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Application of Derivatives",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "The use of electric vehicles will curb air pollution in the long run.\n\nThe use of electric vehicles is increasing every year and estimated electric vehicles in use at any time $t$ is given by the function $V$ :\n$V(t) = \\frac{1}{5}t^{3} - \\frac{5}{2}t^{2} + 25t - 2$\nwhere $t$ represents the time and $t = 1, 2, 3, \\ldots$ corresponds to year 2001, 2002, 2003, $\\ldots$ respectively.\nBased on the above information, answer the following questions :\n(i) Can the above function be used to estimate number of vehicles in the year 2000 ? Justify. (2)\n(ii) Prove that the function $V(t)$ is an increasing function. (2)",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given that, $V(t) = \\frac{1}{5}t^{3} - \\frac{5}{2}t^{2} + 25t - 2$ ..... (i)\nwhere $t$ represented the time and $t = 1, 2, 3, \\ldots$ corresponds to year 2001, 2002, 2003, $\\ldots$ respectively.\n(i) When $t = 0$, then\n$V(0) = -2$\nthat means there is no vehicles are used in the year 2000.\n(ii) Differentiating (1) w.r.t. $t$\n$V'(t) = \\frac{3}{5}t^{2} - 5t + 25$\n$V'(t) = \\frac{3}{5}\\left(t^{2} - \\frac{25}{3}t + \\frac{125}{3}\\right)$\n$V'(t) = \\frac{3}{5}\\left(t^{2} - \\frac{25}{3}t + \\left(\\frac{25}{6}\\right)^{2} - \\left(\\frac{25}{6}\\right)^{2} + \\frac{125}{3}\\right) = \\frac{3}{5}\\left[\\left(t - \\frac{25}{6}\\right)^{2} + \\frac{875}{36}\\right]$\n$V'(t) > 0\\ \\forall\\ t \\in 1, 2, 3, \\ldots$\nHence, $V(t)$ is increasing function.",
+   "marks_correct": 4,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
