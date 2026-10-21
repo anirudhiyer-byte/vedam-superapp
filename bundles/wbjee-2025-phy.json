@@ -1,0 +1,1533 @@
+{
+ "paper": {
+  "exam": "WBJEE",
+  "subject": "Physics",
+  "year": 2025,
+  "set_label": "27 Apr 2025",
+  "title": "WBJEE 2025 · Physics",
+  "marks_correct": 1,
+  "marks_wrong": -0.25,
+  "marking_note": "Category 1: +1 / −¼ · Category 2: +2 / −½ · Category 3: +2, one or more correct, no negative",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": "1bkMnLaNBaETbLwy1MHqJ-aH9VOHn6VLj"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A quantity X is given by $\\varepsilon_0 L \\frac{\\Delta V}{\\Delta t}$, where $\\varepsilon_0$ is the permittivity of free space, L is the length, $\\Delta V$ is a potential difference and $\\Delta t$ is a time interval. The dimension of X is same as that of",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$X = \\varepsilon_0 \\cdot \\frac{\\mathrm{Volt} \\times \\mathrm{m}}{\\mathrm{sec}} = \\varepsilon_0 \\frac{d\\phi}{dt} = i_d$ = current",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Resistance"
+    },
+    {
+     "key": "B",
+     "text": "Charge"
+    },
+    {
+     "key": "C",
+     "text": "Voltage"
+    },
+    {
+     "key": "D",
+     "text": "Current"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Six vectors $\\vec{a}, \\vec{b}, \\vec{c}, \\vec{d}, \\vec{e}$ and $\\vec{f}$ have the magnitudes and directions indicated in the figure. Which of the following statements is true ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\vec{b} + \\vec{e} = \\vec{f}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\vec{b} + \\vec{c} = \\vec{f}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\vec{d} + \\vec{c} = \\vec{f}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\vec{d} + \\vec{e} = \\vec{f}$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q02.png",
+   "solution_figure": "wb25-phy-q02-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The minimum force required to start pushing a body up a rough (having co-efficient of friction $\\mu$) inclined plane is $\\vec{F_1}$ while the minimum force needed to prevent it from sliding is $\\vec{F_2}$. If the inclined plane makes an angle $\\theta$ with the horizontal such that $\\tan\\theta = 2\\mu$, then the ratio $F_1/F_2$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "When body is being prevented from sliding down\n$F_{min} = F_2 = mg\\sin\\theta - \\mu mg\\cos\\theta$\n$F_2 = mg\\sin\\theta - \\mu mg\\cos\\theta$\nWhen body is pushed up friction acts downward\n$F_1 = mg\\sin\\theta + \\mu mg\\cos\\theta$\n$F_1 - F_2 = 2\\mu mg\\cos\\theta$\n$F_1 + F_2 = 2mg\\sin\\theta$\n$\\frac{F_1 + F_2}{F_1 - F_2} = \\frac{\\tan\\theta}{\\mu} = 2:1 \\Rightarrow \\frac{2F_1}{2F_2} = \\frac{2+1}{2-1}$ or, $\\frac{F_1}{F_2} = 3:1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4"
+    },
+    {
+     "key": "B",
+     "text": "1"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "3"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Acceleration - time (a–t) graph of a body is shown in the figure, Corresponding velocity-time (v–t) graph is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a = \\tan\\theta$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb25-phy-q04-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb25-phy-q04-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb25-phy-q04-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb25-phy-q04-optD.png"
+    }
+   ],
+   "stem_figure": "wb25-phy-q04.png",
+   "solution_figure": "wb25-phy-q04-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A ball falls from a height h upon a fixed horizontal floor. The co-efficient of restitution for the collision between the ball and the floor is ‘e’. The total distance covered by the ball before coming to rest is [neglect the air resistance]",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Dist $= h + 2e^{2}h + 2e^{4}h + \\cdots$\n$d = \\left[\\frac{1 + e^{2}}{1 - e^{2}}\\right]h$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1 - e^{2}}{1 + e^{2}}h$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1 + e^{2}}{1 - e^{2}}h$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1 - 2e^{2}}{1 + e^{2}}h$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1 + 2e^{2}}{1 - e^{2}}h$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "What are the charges stored in the $1\\ \\mu\\mathrm{F}$ and $2\\ \\mu\\mathrm{F}$ capacitors in the circuit as shown in figure once the current (I) become steady ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\frac{6}{(1 + 2) \\times 10^{3}} = 2 \\times 10^{-3}$\n$V = IR = 2 \\times 10^{-3} \\times 2 \\times 10^{3} = 4\\ \\mathrm{V}$\n$q_1 = 1 \\times 4 = 4\\ \\mu\\mathrm{C}$, $q_2 = 2 \\times 4 = 8\\ \\mu\\mathrm{C}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8\\ \\mu\\mathrm{C}$ and $4\\ \\mu\\mathrm{C}$"
+    },
+    {
+     "key": "B",
+     "text": "$4\\ \\mu\\mathrm{C}$ and $8\\ \\mu\\mathrm{C}$"
+    },
+    {
+     "key": "C",
+     "text": "$3\\ \\mu\\mathrm{C}$ and $6\\ \\mu\\mathrm{C}$"
+    },
+    {
+     "key": "D",
+     "text": "$6\\ \\mu\\mathrm{C}$ and $3\\ \\mu\\mathrm{C}$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q06.png",
+   "solution_figure": "wb25-phy-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A diode is connected in parallel with a resistance as shown in figure. The most probable current (I) –voltage (V) characteristic is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In reverse bias only resistance R is considered, so Ohm’s law is valid $V \\propto I$\nIn forward bias initially current flows through resistance, then after knee voltage, it flows through p–n diode",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb25-phy-q07-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb25-phy-q07-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb25-phy-q07-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb25-phy-q07-optD.png"
+    }
+   ],
+   "stem_figure": "wb25-phy-q07.png",
+   "solution_figure": "wb25-phy-q07-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Ruma reached the metro station and found that the escalator was not working. She walked up the stationary escalator with velocity $v_1$ in time $t_1$. On other day if she remains stationary on the escalator moving with velocity $v_2$, then escalator takes her up in time $t_2$. The time taken by her to walk up with velocity $v_1$ on the moving escalator will be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "D = Distance to be covered\nfor stationary escalator, $V_1 t_1 = D$ ------ (1)\nfor moving escalator, $V_2 t_2 = D$ ----- (2)\nfor ruma moving on moving escalator, $(V_1 + V_2)t_{req} = D$ ----- (3)\nfrom (1), (2) & (3), we get\n$\\frac{D}{t_1} + \\frac{D}{t_2} = \\frac{D}{t_{req}} \\Rightarrow t_{req} = \\frac{t_1 t_2}{t_1 + t_2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{t_1 t_2}{t_2 - t_1}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{t_1 t_2}{t_2 + t_1}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{t_1 - t_2}{t_1 + t_2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{t_1 + t_2}{2(t_1 - t_2)}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The variation of displacement with time of a simple harmonic motion (SHM) for a particle of mass m is represented by $y = 2\\sin\\left(\\frac{\\pi t}{2} + \\phi\\right)$ cm. The maximum acceleration of the particle is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given $y = 2\\sin\\left(\\frac{\\pi t}{2} + \\phi\\right)$ cm\n$a_{max} = \\omega^{2}A$\n$= \\left(\\frac{\\pi}{2}\\right)^{2} \\cdot 2 = \\frac{\\pi^{2}}{2}\\ \\mathrm{cm/sec^{2}}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2}\\ \\mathrm{cm/sec^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{2m}\\ \\mathrm{cm/sec^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi^{2}}{2m}\\ \\mathrm{cm/sec^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi^{2}}{2}\\ \\mathrm{cm/sec^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A particle of charge ‘q’ and mass ‘m’ moves in a circular orbit of radius ‘r’ with angular speed ‘$\\omega$’. The ratio of the magnitude of its magnetic moment to that of its angular momentum depends on",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Gyromagnetic ratio, $\\frac{M}{L} = \\frac{q}{2m}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\omega$ and q"
+    },
+    {
+     "key": "B",
+     "text": "$\\omega$, q and m"
+    },
+    {
+     "key": "C",
+     "text": "q and m"
+    },
+    {
+     "key": "D",
+     "text": "$\\omega$ and m"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The de-Broglie wavelength of a moving bus with speed is v is $\\lambda$. Some passengers left the bus at a stoppage. Now when the bus moves with twice of its initial speed. Its kinetic energy is found to be twice of its value. What is the de-Broglie wavelength of the bus now?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Initially $\\lambda = \\frac{h}{\\sqrt{2mE}}$\nNow acc. to question, $V' = 2V$, $E' = 2E$\n$\\Rightarrow \\frac{1}{2}m'(2V)^{2} = 2 \\cdot \\frac{1}{2}mv^{2} \\Rightarrow m' = \\frac{m}{2}$\n$\\therefore \\lambda' = \\frac{h}{\\sqrt{2\\frac{m}{2} \\cdot 2E}} = \\lambda$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\lambda$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\lambda$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\lambda}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\lambda}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "For an ideal gas, a cyclic process ABCA as shown in P–T diagram, when presented in P–V plot, it would be",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "AB $\\rightarrow$ Isobaric compression\nBC $\\rightarrow$ Isothermal expansion\nCA $\\rightarrow$ Isochoric process\n$\\therefore$ Correct P-V diagram is",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb25-phy-q12-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb25-phy-q12-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb25-phy-q12-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb25-phy-q12-optD.png"
+    }
+   ],
+   "stem_figure": "wb25-phy-q12.png",
+   "solution_figure": "wb25-phy-q12-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "An electron in Hydrogen atom jumps from the second Bohr orbit to the ground state and the difference between the energies of the two states is radiated in the form of a photon. This photon strikes a material. If the work function of the material is 4.2 eV, then the stopping potential is (Energy of electron in n-th orbit $= -\\frac{13.6}{n^{2}}$ eV)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Energy of photon emitted from hydrogen atom\n$= -13.6\\left[\\frac{1}{2^{2}} - \\frac{1}{1^{2}}\\right] = 10.2$ eV\nNow using Einstein’s photoelectric equation.\n$10.2\\ \\mathrm{eV} = 4.2\\ \\mathrm{eV} + eV_s$\n$\\therefore V_s = 6$ Volt.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2 V"
+    },
+    {
+     "key": "B",
+     "text": "4 V"
+    },
+    {
+     "key": "C",
+     "text": "6 V"
+    },
+    {
+     "key": "D",
+     "text": "8 V"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The resistance $R = \\frac{V}{I}$ where $V = (25 \\pm 0.4)$ Volt and $I = (200 \\pm 3)$ Ampere. The percentage error in ‘R’ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$R = \\frac{V}{I} \\Rightarrow \\left(\\frac{\\Delta R}{R}\\right)_{max} \\times 100\\% = \\left(\\frac{\\Delta V}{V} + \\frac{\\Delta I}{I}\\right) \\times 100\\%$\n$= \\left(\\frac{0.4}{25} + \\frac{3}{200}\\right) \\times 100\\% = 3.1\\%$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.5%"
+    },
+    {
+     "key": "B",
+     "text": "1.6%"
+    },
+    {
+     "key": "C",
+     "text": "3.1%"
+    },
+    {
+     "key": "D",
+     "text": "0.1%"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The minimum wavelength of Lyman series lines is P, then the maximum wavelength of these lines is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda_{min} = P$\n$\\frac{hc}{\\lambda_{min}} = c_1\\left(\\frac{1}{1} - \\frac{1}{\\infty}\\right)$\n$\\lambda_{min} = \\frac{hc}{c_1}$\n$\\frac{hc}{\\lambda_{max}} = c_1\\left(1 - \\frac{1}{4}\\right) = c_1\\frac{3}{4}$\n$\\lambda_{max} = \\frac{4hc}{3c_1} = \\frac{4}{3}P$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4P}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "2 P"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2P}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\infty$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Which logic gate is represented by the following combinations of logic gates ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\overline{\\overline{A} + \\overline{B}} = A \\cdot B \\rightarrow$ AND gate",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "NAND"
+    },
+    {
+     "key": "B",
+     "text": "AND"
+    },
+    {
+     "key": "C",
+     "text": "NOR"
+    },
+    {
+     "key": "D",
+     "text": "OR"
+    }
+   ],
+   "stem_figure": "wb25-phy-q16.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A force $\\vec{F} = a\\hat{i} + b\\hat{j} + c\\hat{k}$ is acting on a body of mass m. The body was initially at rest at the origin. The co-ordinates of the body after time ‘t’ will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{F} = a\\hat{i} + b\\hat{j} + c\\hat{k}$\n$x = \\frac{1}{2}\\left(\\frac{a}{m}\\right)t^{2}, y = \\frac{1}{2}\\left(\\frac{b}{m}\\right)t^{2}, z = \\frac{1}{2}\\left(\\frac{c}{m}\\right)t^{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{at^{2}}{2m}, \\frac{bt^{2}}{2m}, \\frac{ct^{2}}{2m}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{at^{2}}{2m}, \\frac{bt^{2}}{m}, \\frac{ct^{2}}{2m}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{at^{2}}{m}, \\frac{bt^{2}}{2m}, \\frac{ct^{2}}{2m}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{at^{2}}{2m}, \\frac{bt^{2}}{2m}, \\frac{ct^{2}}{m}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Figure shows the graph of angle of deviation $\\delta$ versus angle of incidence i for a light ray striking a prism. The prism angle is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$= i + e - A$\n$A = i + e - \\delta$\n$= 60 + 15 - 30$\n$= 75 - 30 = 45^\\circ$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$30^\\circ$"
+    },
+    {
+     "key": "B",
+     "text": "$45^\\circ$"
+    },
+    {
+     "key": "C",
+     "text": "$60^\\circ$"
+    },
+    {
+     "key": "D",
+     "text": "$75^\\circ$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q18.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "One end of a steel wire is fixed to the ceiling of an elevator moving up with an acceleration $2\\ \\mathrm{m/s^{2}}$ and a load of 10 kg hangs from the other end. If the cross section of the wire is $2\\ \\mathrm{cm^{2}}$ then the longitudinal strain in the wire will be ($g = 10\\ \\mathrm{m/s^{2}}$ and $Y = 2.0 \\times 10^{11}\\ \\mathrm{N/m^{2}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T - mg = ma$\n$T = m(g + a)$\n$= 10(10 + 2) = 120$ N\n$y = \\frac{TL}{A\\Delta\\ell}$\n$\\frac{\\Delta\\ell}{L} = \\frac{T}{YA} = \\frac{120}{2 \\times 10^{11} \\times 2 \\times 10^{-4}}$\n$= 30 \\times 10^{-7} = 3 \\times 10^{-6}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4 \\times 10^{11}$"
+    },
+    {
+     "key": "B",
+     "text": "$3 \\times 10^{-6}$"
+    },
+    {
+     "key": "C",
+     "text": "$8 \\times 10^{-6}$"
+    },
+    {
+     "key": "D",
+     "text": "$2 \\times 10^{-6}$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q19.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The number of undecayed nuclei N in a sample of radioactive material as a function of time (t) is shown in the figure. Which of the following graphs correctly show the relationship between N and the activity ‘A’ ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$N = N_0 e^{-\\lambda t}$\n$-\\frac{dN}{dt} = -N_0(-\\lambda)e^{-\\lambda t}$\n$A = +N\\lambda$\nStraight line passing through origin.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb25-phy-q20-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb25-phy-q20-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb25-phy-q20-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb25-phy-q20-optD.png"
+    }
+   ],
+   "stem_figure": "wb25-phy-q20.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Manufacturers supply a zener diode with zener voltage $V_z = 5.6\\ \\mathrm{V}$ and maximum power dissipation $P_{z\\,max} = \\frac{1}{4}\\ \\mathrm{W}$. This zener diode is used in the following circuit. Calculate the minimum value of the resistance $R_s$ in the circuit so that the zener diode will not burn when the input voltage is $V_{in} = 10$ V.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_z = 5.6\\ \\mathrm{V}$, $P_{z\\,max} = \\frac{1}{4}\\ \\mathrm{W}$\n$V_{in} = 10\\ \\mathrm{V}$.\n$P = V_z I_z \\Rightarrow \\frac{1}{4} = 5.6 \\times I_z$, $I_Z = \\frac{1}{4 \\times 5.6} = I_s$\nNow, $4.4 = I_s R_s \\Rightarrow R_s = 4.4 \\times 4 \\times 5.6 = 98.56\\ \\Omega$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$98.56\\ \\Omega$"
+    },
+    {
+     "key": "B",
+     "text": "$170.52\\ \\Omega$"
+    },
+    {
+     "key": "C",
+     "text": "$306.21\\ \\Omega$"
+    },
+    {
+     "key": "D",
+     "text": "$412.37\\ \\Omega$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q21.png",
+   "solution_figure": "wb25-phy-q21-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The velocity-time graph for a body of mass 10 kg is shown in the figure. Work done on the body in the first two seconds of motion is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V = -\\frac{50}{10}t + 50$\n$V = 50 - 5t$\nat t = 2s\n$V = 50 - 10 = 40$ m/s\n$W = k_f - k_i$\n$\\frac{1}{2} \\times 10\\left(40^{2} - 50^{2}\\right) = -\\frac{1}{2} \\times 10[90 \\times 10]$\n$= -4500$ J",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-9300$ J"
+    },
+    {
+     "key": "B",
+     "text": "$12000$ J"
+    },
+    {
+     "key": "C",
+     "text": "$-4500$ J"
+    },
+    {
+     "key": "D",
+     "text": "$-1200$ J"
+    }
+   ],
+   "stem_figure": "wb25-phy-q22.png",
+   "solution_figure": "wb25-phy-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A simple pendulum is taken at a place where its distance from the earth’s surface is equal to the radius of the earth. Calculate the time period of small oscillations if the length of the string is 4.0 m. (Take $g = \\pi^{2}\\ \\mathrm{ms^{-1}}$ at the surface of the earth.)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = 2\\pi\\sqrt{\\ell/g}$, $g_{h=R} = \\frac{gR^{2}}{r^{2}} = g/4$, $T = 2\\pi\\sqrt{\\frac{4}{\\pi^{2}/4}} = \\frac{2\\pi \\times 4}{\\pi} = 8\\ \\mathrm{m/s^{2}}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4 s"
+    },
+    {
+     "key": "B",
+     "text": "6 s"
+    },
+    {
+     "key": "C",
+     "text": "8 s"
+    },
+    {
+     "key": "D",
+     "text": "2 s"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "For a domestic AC supply of 220 V at 50 cycles per sec, the potential difference between the terminals of a two-pin electric outlet in a room is given by",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_{rms} = 220 \\therefore V_0 = 220\\sqrt{2}$\n$\\therefore V = 220\\sqrt{2}\\cos 100\\pi t$, $\\omega = 2\\pi f = 2\\pi \\times 50 = 100\\pi$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$V(t) = 220\\sqrt{2}\\ \\mathrm{Cos}(100\\pi t)$"
+    },
+    {
+     "key": "B",
+     "text": "$V(t) = 220\\ \\mathrm{Sin}(50t)$"
+    },
+    {
+     "key": "C",
+     "text": "$V(t) = 220\\ \\mathrm{Cos}(100\\pi t)$"
+    },
+    {
+     "key": "D",
+     "text": "$V(t) = 220\\sqrt{2}\\ \\mathrm{Cos}(50t)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A single slit diffraction pattern is obtained using a beam of red light. If red light is replaced by blue light then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Fringe width $\\propto \\lambda$ $\\therefore$ Fringes will be narrower and crowed.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "the diffraction pattern will disappear"
+    },
+    {
+     "key": "B",
+     "text": "fringes will become narrower and crowded together"
+    },
+    {
+     "key": "C",
+     "text": "fringes will become broader and will be further apart"
+    },
+    {
+     "key": "D",
+     "text": "there is no change in the diffraction pattern"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Two charges +q and –q are placed at points A and B respectively which are at a disetance 2L apart. C is the mid point of A and B. The workdone in moving a charge + Q along the semicircle CSD($W_1$) and along the line CBD ($W_2$) are",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$W_{CSD} = Q(V_{DA} - V_{CA}) = \\frac{Qq}{4\\pi\\epsilon_0 L}\\left[\\frac{1}{3} - 1\\right] = \\frac{-2Qq}{12\\pi\\epsilon_0 L} = \\frac{-Qq}{6\\pi\\epsilon_0 L} = W_{CBD}$\n$W_{CBD} = W_{CSD}$ path independent",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{-Qq}{6\\pi\\epsilon_0 L}, \\frac{-Qq}{6\\pi\\epsilon_0 L}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{qQ}{4\\pi\\epsilon_0 L}, \\frac{qQ}{4\\pi\\epsilon_0 L}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{-Qq}{6\\pi\\epsilon_0 L}, \\frac{-Qq}{12\\pi\\epsilon_0 L}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{qQ}{4\\pi\\epsilon_0 L}, 0$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q26.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Three different liquids are filled in a U-tube as shown in figure. Their densities are $\\rho_1$, $\\rho_2$ and $\\rho_3$ respectively. From the figure we may conclude that",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$h\\rho_1 + \\frac{h}{2}\\rho_3 = h\\rho_2$, $\\rho_1 + \\frac{\\rho_3}{2} = \\rho_2$, $\\rho_3 = 2(\\rho_2 - \\rho_1)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\rho_3 = 4(\\rho_2 - \\rho_1)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\rho_3 = 4(\\rho_1 - \\rho_2)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\rho_3 = 2(\\rho_2 - \\rho_1)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\rho_3 = \\frac{\\rho_1 + \\rho_2}{2}$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q27.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The variation of density of a solid cylindrical rod of cross sectional area $\\alpha$ and length L is $\\rho = \\rho_0 \\frac{x^{2}}{L^{2}}$, where x is the distance from one end of the rod. The position of its centre of mass from one end (x = 0) is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\rho = \\rho_0 \\frac{x^{2}}{L^{2}}$,\n$X = \\frac{\\int x\\,dm}{\\int dm}$, $dm = \\alpha\\,dx\\,\\rho = \\frac{\\alpha\\rho_0 x^{2}}{L^{2}}dx$\n$= \\frac{\\rho_0 \\int_{0}^{L} x^{3}dx}{\\frac{\\rho_0}{L^{2}} \\int_{0}^{L} x^{2}dx} = \\frac{\\left[x^{4}/4\\right]_{0}^{L}}{\\left[x^{3}/3\\right]_{0}^{L}} = \\frac{3}{4}L$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2L}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{L}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{L}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3L}{4}$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q28.png",
+   "solution_figure": "wb25-phy-q28-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Consider a particle of mass 1 gm and charge 1.0 Coulomb is at rest. Now the particle is subjected to an electric field $E(t) = E_0 \\sin\\omega t$ in the x-direction, where $E_0 = 2$ Newton/Coulomb and $\\omega = 1000$ rad/sec. The maximum speed attained by the particle is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_{max} = \\frac{1}{m}\\int_{0}^{T/2} F\\,dt$, $= \\frac{1}{m}\\int_{0}^{T/2} qE_0 \\sin(\\omega t)\\,dt$\n$= \\frac{2qE_0}{m\\omega} = 4\\ \\mathrm{m/s}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2 m/sec"
+    },
+    {
+     "key": "B",
+     "text": "4 m/sec"
+    },
+    {
+     "key": "C",
+     "text": "6 m/sec"
+    },
+    {
+     "key": "D",
+     "text": "8 m/sec"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A radioactive nucleus decays as follows :\n$$X \\xrightarrow{\\alpha} X_1 \\xrightarrow{\\beta} X_2 \\xrightarrow{a} X_3 \\xrightarrow{\\gamma} X_4$$\nIf the mass number and atomic number of ‘$X_4$’ are 172 and 69 respectively, then the atomic number and mass number of ‘X’ are",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$_{Z}X^{A}$\n$Z - 2 + 1 - 2 = 69$, $A - 4 - 4 = 172$\n$Z = 72$, $A = 180$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "72, 180"
+    },
+    {
+     "key": "B",
+     "text": "69, 170"
+    },
+    {
+     "key": "C",
+     "text": "68, 172"
+    },
+    {
+     "key": "D",
+     "text": "70, 172"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Temperature of a body $\\theta$ is slightly more than the temperature of the surrounding $\\theta_0$. Its rate of cooling (R) versus temperature of the body ($\\theta$) is plotted. Its shape would be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$-\\frac{d\\theta}{dt} = k(\\theta - \\theta_0)$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb25-phy-q31-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb25-phy-q31-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb25-phy-q31-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb25-phy-q31-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The equation of stationary wave along a stretched string is given by $y = 5\\sin\\frac{\\pi x}{3}\\cos 40\\pi t$. Here x and y are in cm and t in second. The separation between two adjacent nodes is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y = 5\\sin\\left(\\frac{\\pi}{3}x\\right)\\cos(40\\pi t)$, $\\omega = 40\\pi$ $k = 3\\mathrm{cm}$, $\\lambda = \\frac{2\\pi}{k} = 6\\mathrm{cm}$\nSeparation between nodes $= \\frac{\\lambda}{2} = 3\\mathrm{cm}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.5 cm"
+    },
+    {
+     "key": "B",
+     "text": "3 cm"
+    },
+    {
+     "key": "C",
+     "text": "6 cm"
+    },
+    {
+     "key": "D",
+     "text": "14 cm"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "A piece of granite floats at the interface of mercury and water contained in a beaker as in figure. If the densities of granite, water and mercury are $\\rho$, $\\rho_1$ and $\\rho_2$ respectively, the ratio of the volume of granite in water to the volume of granite in mercury is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_1\\rho_1 g + V_2\\rho_2 g = V\\rho g$\n$\\Rightarrow V_1\\rho_1 g + V_2\\rho_2 g = (V_1 + V_2)\\rho g$\n$\\Rightarrow V_1\\rho_1 g - V_1\\rho g = V_2\\rho g - V_2\\rho_2 g$, $\\Rightarrow V_1(\\rho - \\rho_1) = V_2(\\rho_2 - \\rho)$\n$\\Rightarrow \\frac{V_1}{V_2} = \\frac{\\rho_2 - \\rho}{\\rho - \\rho_1}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\rho_2 - \\rho}{\\rho - \\rho_1}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\rho_2 + \\rho}{\\rho_1 + \\rho}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\rho_1 \\rho_2}{\\rho}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\rho_1}{\\rho_2}$"
+    }
+   ],
+   "stem_figure": "wb25-phy-q33.png",
+   "solution_figure": "wb25-phy-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "$10^{20}$ photons of wavelength 660 nm are emitted per second from a lamp. The wattage of the lamp is (Planck’s constant $= 6.6 \\times 10^{-34}$ Js)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P = N\\left(\\frac{hc}{\\lambda}\\right)$\n$P = 10^{20} \\times \\frac{6.6 \\times 10^{-34} \\times 3 \\times 10^{8}}{660 \\times 10^{-9}} = 30\\ \\mathrm{W}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "30 W"
+    },
+    {
+     "key": "B",
+     "text": "60 W"
+    },
+    {
+     "key": "C",
+     "text": "100 W"
+    },
+    {
+     "key": "D",
+     "text": "500 W"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The apparent coefficient of expansion of a liquid, when heated in a copper vessel is C and when heated in silver vessel is S. If A is linear coefficient of expansion of copper, then linear coefficient of expansion of silver is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C = \\gamma_L - \\gamma_C \\Rightarrow C = \\gamma_L - 3A \\Rightarrow \\gamma_L = C + 3A$\n$S = \\gamma_L - \\gamma_S \\Rightarrow \\gamma_S = C + 3A - S$\n$\\Rightarrow \\alpha_S = \\frac{C + 3A - S}{3}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{C - S - 3A}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{C + 3A - S}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{S + 3A - C}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{C + S + 3A}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Nuclei",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Let the binding energy per nucleon of nucleus is denoted by ‘$E_{bn}$’ and radius of the nucleus is denoted by ‘r’. If mass number of nuclei A and B are 64 and 125 respectively, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "C"
+   ],
+   "solution": "$r \\propto A^{\\frac{1}{3}}$\n$r_A < r_B$\n$E_{bnA} > E_{bnB} \\rightarrow \\left(\\frac{\\mathrm{B.E}}{\\mathrm{Nucleon}}\\right)$ for Fe is maximum and mass number of Nucleus A is closer to the mass number of Fe",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$r_A < r_B$"
+    },
+    {
+     "key": "B",
+     "text": "$r_A > r_B$"
+    },
+    {
+     "key": "C",
+     "text": "$E_{bnA} > E_{bnB}$"
+    },
+    {
+     "key": "D",
+     "text": "$E_{bnA} < E_{bnB}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Kinetic Theory",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Let $\\overline{V}, V_{rms}, V_P$ denotes the mean speed, root mean square speed and most probable speed of the molecules each of mass m in an ideal monoatomic gas at absolute temperature T Kelvin. Which statement(s) is/are correct?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": [
+    "C",
+    "D"
+   ],
+   "solution": "$V_{rms} = \\sqrt{\\frac{3RT}{M}}$\n$V_{avg} = \\sqrt{\\frac{8RT}{\\pi M}}$\n$V_{mp} = \\sqrt{\\frac{2RT}{M}}$, $V_p < \\overline{V} < V_{rms}$\n$\\mathrm{K.E} = \\frac{1}{2}mV_{rms}^{2} = \\frac{1}{2}m\\frac{3RT}{M} = \\frac{3}{4}mV_p^{2}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "No molecules can have speed greater than $\\sqrt{2}V_{rms}$"
+    },
+    {
+     "key": "B",
+     "text": "No molecules can have speed less than $V_p/\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$V_p < \\overline{V} < V_{rms}$"
+    },
+    {
+     "key": "D",
+     "text": "Average kinetic energy of a molecule is $\\frac{3}{4}mV_p^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Waves",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "A wave disturbance in a medium is described by $y(x, t) = 0.02\\cos\\left(50\\pi t + \\frac{\\pi}{2}\\right)\\cos(10\\pi x)$ where x, y are in meters and t is in second. Which statement(s) is/are correct?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B",
+    "D"
+   ],
+   "solution": "$\\cos 10\\pi x = 0 \\rightarrow$ Node\n$10\\pi x = n\\pi + \\frac{\\pi}{2}$\n$10\\pi x = n\\pi + \\frac{1}{2}$\n$x = 0, \\frac{1}{20}\\mathrm{m}, \\frac{3}{20}\\mathrm{m}$\n$\\cos \\pi x = \\pm 1 \\rightarrow$ Antinode\n$10\\pi x = n\\pi$, $x = 0, \\frac{1}{10}\\mathrm{m}, \\frac{2}{10}\\mathrm{m}, \\frac{3}{10}\\mathrm{m}$\nwave speed (v) $= \\frac{\\omega}{k} = \\frac{50\\pi}{10\\pi} = 5$ m/s, $k = 10\\pi$, $\\frac{2\\pi}{\\lambda} = 10\\pi$, $\\lambda = \\frac{2}{10} = 0.2$ m",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A node occurs at x = 0.15 m"
+    },
+    {
+     "key": "B",
+     "text": "An antinode occurs at x = 0.3 m"
+    },
+    {
+     "key": "C",
+     "text": "The speed of the wave is 4 m/sec"
+    },
+    {
+     "key": "D",
+     "text": "The wavelength of the wave is 0.2 m"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Units and Measurements",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If the dimensions of length are expressed as $G^{x}C^{y}h^{z}$, where G, C and h are the universal gravitational constant, speed of light and Planck’s constant respectively, then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B",
+    "D"
+   ],
+   "solution": "$L = [M^{-1}L^{3}T^{-2}]^{x}[LT^{-1}]^{y}[ML^{2}T^{-1}]^{z}$\n$M^{0}LT^{0} = M^{-x+z}L^{3x+y+2z}T^{-2x-y-z}$\n$-x + z = 0$; $3x + y + 2z = 1$; $2x + y + z = 0$\n$x = z$; $2z = 1$; $3x + y = 0$\n$z = \\frac{1}{2}$, $x = \\frac{1}{2}$ and $y = -\\frac{3}{2}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x = \\frac{1}{2}, y = \\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$x = \\frac{1}{2}, z = \\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$y = \\frac{1}{2}, z = \\frac{3}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$y = -\\frac{3}{2}, z = \\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Work, Energy and Power",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Two spheres $S_1$ and $S_2$ of masses $m_1$ and $m_2$ respectively collide with each other. Initially $S_1$ is at rest and $S_2$ is moving with velocity v along x-axis. After collision $S_2$ has a velocity $\\frac{v}{2}$ in a direction perpendicular to the original direction. The sphere $S_1$ moves after collision",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "C"
+   ],
+   "solution": "before collision\nAfter collision\n$\\rightarrow v_x = \\frac{m_2 v}{m_1}$, $v_y = \\frac{m_2 v}{2m_1}$\n$v = \\frac{\\sqrt{5}}{2}v\\left(\\frac{m_2}{m_1}\\right)$\n$\\rightarrow \\tan\\theta = \\frac{v_y}{v_x}\\left(\\frac{1}{2}\\ \\mathrm{or}\\ -\\frac{1}{2}\\right)$ (As per choice of original direction)\n$\\theta = \\tan^{-1}\\left(\\frac{1}{2}\\right)$ or $\\tan^{-1}\\left(-\\frac{1}{2}\\right)$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "with a velocity of magnitude $\\frac{m_2}{m_1}v\\frac{\\sqrt{5}}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "with a velocity in the direction $\\theta = \\tan^{-1}\\left(-\\frac{1}{3}\\right)$ to the x-axis"
+    },
+    {
+     "key": "C",
+     "text": "with a velocity whose direction makes an angle $\\theta$ with x-axis such that $\\theta = \\tan^{-1}\\left(\\frac{1}{2}\\right)$ or $\\theta = \\tan^{-1}\\left(-\\frac{1}{2}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "with a velocity of magnitude $\\frac{m_1}{2m_2}v\\sqrt{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb25-phy-q40-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

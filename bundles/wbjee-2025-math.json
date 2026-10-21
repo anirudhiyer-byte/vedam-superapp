@@ -1,0 +1,2741 @@
+{
+ "paper": {
+  "exam": "WBJEE",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "27 Apr 2025",
+  "title": "WBJEE 2025 · Mathematics",
+  "marks_correct": 1,
+  "marks_wrong": -0.25,
+  "marking_note": "Category 1: +1 / −¼ · Category 2: +2 / −½ · Category 3: +2, one or more correct, no negative",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1bkMnLaNBaETbLwy1MHqJ-aH9VOHn6VLj"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f(x)$ be continuous on $[0, 5]$ and differentiable in $(0, 5)$. If $f(0) = 0$ and $|f'(x)| \\le \\frac{1}{5}$ for all x in $(0, 5)$, then $\\forall x$ in $[0, 5]$.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|f'(x)| \\le \\frac{1}{5}$, $\\Rightarrow \\left|\\frac{f(x) - f(0)}{x - 0}\\right| \\le \\frac{1}{5}$\n$\\Rightarrow \\left|\\frac{f(x)}{x}\\right| \\le \\frac{1}{5}$, $|f(x)| \\le \\frac{|x|}{5} \\Rightarrow |f(x)| \\le 1$ $\\left(0 \\le x \\le 5 \\Rightarrow 0 \\le \\frac{x}{5} \\le 1\\right)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$|f(x)| \\le 1$"
+    },
+    {
+     "key": "B",
+     "text": "$|f(x)| \\le \\frac{1}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$f(x) = \\frac{x}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$|f(x)| \\ge 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $g(f(x)) = |\\sin x|$ and $f(g(x)) = \\left(\\sin\\sqrt{x}\\right)^{2}$, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$g(x) = \\sqrt{x}$, $f(x) = \\sin^{2} x$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f(x) = \\sin^{2}x$, $g(x) = \\sqrt{x}$"
+    },
+    {
+     "key": "B",
+     "text": "$f(x) = \\sin x$, $g(x) = |x|$"
+    },
+    {
+     "key": "C",
+     "text": "$f(x) = x^{2}$, $g(x) = \\sin\\sqrt{x}$"
+    },
+    {
+     "key": "D",
+     "text": "$f(x) = |x|$, $g(x) = \\sin x$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f_n(x) = \\tan\\frac{x}{2}(1 + \\sec x)(1 + \\sec 2x)\\ldots(1 + \\sec 2^{n}x)$, then",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f_n(x) = \\tan 2^{n} x$, $f_5\\left(\\frac{\\pi}{16}\\right) = \\tan\\left(32.\\frac{\\pi}{16}\\right) = 0$\n$f_4\\left(\\frac{\\pi}{16}\\right) = \\tan\\left(16.\\frac{\\pi}{16}\\right) = 0$\n$f_3\\left(\\frac{\\pi}{16}\\right) = \\tan\\left(8.\\frac{\\pi}{16}\\right) =$ undefined\n$f_2\\left(\\frac{\\pi}{16}\\right) = \\tan\\left(4.\\frac{\\pi}{16}\\right) = 1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f_5\\left(\\frac{\\pi}{16}\\right) = 1$"
+    },
+    {
+     "key": "B",
+     "text": "$f_4\\left(\\frac{\\pi}{16}\\right) = 1$"
+    },
+    {
+     "key": "C",
+     "text": "$f_3\\left(\\frac{\\pi}{16}\\right) = 1$"
+    },
+    {
+     "key": "D",
+     "text": "$f_2\\left(\\frac{\\pi}{16}\\right) = 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If for a matrix A, $|A| = 6$ and $\\mathrm{adj}\\ A = \\begin{bmatrix} 1 & -2 & 4 \\\\ 4 & 1 & 1 \\\\ -1 & k & 0 \\end{bmatrix}$, then k is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A.(\\mathrm{adj}\\ A) = |A|\\,I$\n$\\Rightarrow |A|\\,|\\mathrm{adj}\\ A| = |A|^{3} \\Rightarrow |\\mathrm{adj}\\ A| = |A|^{2}$\n$-1((-2 - 4) - K(1 - 16) = 36 \\Rightarrow 6 - K + 16K = 36$\n$\\Rightarrow 15K = 30 \\Rightarrow K = 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-1$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $x = -1$ and $x = 2$ are extreme points of $f(x) = \\alpha\\log|x| + \\beta x^{2} + x$, $(x \\ne 0)$, then",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f'(x) = \\frac{\\alpha}{|x|}.\\frac{|x|}{x} + 2\\beta x + 1$, $f(-1) = f(2) = 0$\nSo, $-\\alpha - 2\\beta + 1 = 0 \\Rightarrow \\alpha + 2\\beta - 1 = 0$ .........(i)\n& $\\frac{\\alpha}{2} + 4\\beta + 1 = 0 \\Rightarrow \\alpha + 8\\beta + 2 = 0$ ........... (ii)\n(ii) – (i) $\\Rightarrow 6\\beta + 3 = 0 \\Rightarrow \\beta = -\\frac{1}{2}$\n(i) $\\Rightarrow \\alpha - 1 - 1 = 0 \\Rightarrow \\alpha = 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\alpha = -6, \\beta = \\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\alpha = -6, \\beta = -\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\alpha = 2, \\beta = -\\frac{1}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\alpha = 2, \\beta = \\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $\\vec{a}, \\vec{b}$ and $\\vec{c}$ be vectors of equal magnitude such that the angle between $\\vec{a}$ and $\\vec{b}$ is $\\alpha$, $\\vec{b}$ and $\\vec{c}$ is $\\beta$ and $\\vec{c}$ and $\\vec{a}$ is $\\gamma$. Then the minimum value of $\\cos\\alpha + \\cos\\beta + \\cos\\gamma$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $|\\bar{a}| = |\\bar{b}| = |\\bar{c}| = \\lambda$\nWe have, $\\bar{a}.\\bar{b} = \\lambda^{2}\\cos\\alpha$, $\\bar{b}.\\bar{c} = \\lambda^{2}\\cos\\beta$, $\\bar{c}.\\bar{a} = \\lambda^{2}\\cos\\gamma$\nNow, $|\\bar{a} + \\bar{b} + \\bar{c}| \\ge 0$\n$\\Rightarrow 3\\lambda^{2} + 2\\lambda^{2}(\\cos\\alpha + \\cos\\beta + \\cos\\gamma) \\ge 0$\n$\\Rightarrow \\cos\\alpha + \\cos\\beta + \\cos\\gamma \\ge -\\frac{3}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\frac{3}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $p(x)$ be a real polynomial of least degree which has a local maximum at $x = 1$ and a local minimum at $x = 3$. If $p(1) = 6$ and $p(3) = 2$, then $p'(0)$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Degree 3\n$P'(x) = a(x - 1)(x - 3)$\n$\\Rightarrow P'(x) = a(x^{2} - 4x + 3) \\Rightarrow P(x) = a\\left(\\frac{x^{3}}{3} - \\frac{4x^{2}}{2} + 3x\\right) + b$\n$P(1) = 6 \\Rightarrow a\\left(\\frac{1}{3} - 2 + 3\\right) + b = 6 \\Rightarrow \\frac{4a}{3} + b = 6$\n$\\Rightarrow 4a + 3b = 18$ .........(i)\n$\\Rightarrow P(3) = 2 \\Rightarrow a(9 - 18 + 9) + b = 2$\n$\\Rightarrow b = 2$ .....................(ii)\nPut in (i) $\\Rightarrow 4a + 6 = 18 \\Rightarrow a = 3$\nSo, $p'(x) = 3(x - 1)(x - 3) \\Rightarrow P'(0) = 9$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The expression $2^{4n} - 15n - 1$, where $n \\in \\mathbb{N}$ (the set of natural numbers) is divisible by",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2^{4n} - 15n - 1 = (1 + 15)^{n} - 15n - 1 = \\left({}^{n}C_0 + {}^{n}C_1.15 + {}^{n}C_2 15^{2} + \\ldots\\ldots + {}^{n}C_n.15^{n}\\right) - 15n - 1$\n$= 15^{2}\\left({}^{n}C_2 + {}^{n}C_3.15 \\ldots\\ldots + {}^{n}C_n.15^{n-2}\\right)$\n$= 225K$, $K \\in \\mathbb{N}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$125$"
+    },
+    {
+     "key": "B",
+     "text": "$225$"
+    },
+    {
+     "key": "C",
+     "text": "$325$"
+    },
+    {
+     "key": "D",
+     "text": "$425$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $\\phi(x) = f(x) + f(2a - x)$, $x \\in [0, 2a]$ and $f''(x) > 0$ for all $x \\in [0, a]$. Then $\\phi(x)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\phi'(x) = f'(x) - f'(2a - x)$ $\\because f''(x) > 0$\n$\\therefore f'(x)$ is increasing\nSo, $\\phi(x)$ is decreasing in $(0, a)$ as $f'(x) < f'(2a - x)$ in $(0, a)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "increasing on $[0, a]$"
+    },
+    {
+     "key": "B",
+     "text": "decreasing on $[0, a]$"
+    },
+    {
+     "key": "C",
+     "text": "increasing on $[0, 2a]$"
+    },
+    {
+     "key": "D",
+     "text": "decreasing on $[0, 2a]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If E and F are two independent events with $P(E) = 0.3$ and $P(E \\cup F) = 0.5$, then $P(E/F) - P(F/E)$ equals",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P(E \\cup F) = P(E) + P(F) - P(E \\cap F)$\n$\\Rightarrow 0.5 = 0.3 + P(F) - P(E).P(F)$\n$\\Rightarrow 0.2 = P(F) - 0.3\\,P(F)$\n$\\Rightarrow P(F) = \\frac{2}{7}$\nSo, $P(E/F) - P(F/E) = P(E) - P(F) = \\frac{3}{10} - \\frac{2}{7} = \\frac{21 - 20}{70} = \\frac{1}{70}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{7}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{35}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{70}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{7}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The value of the expression ${}^{47}C_4 + \\sum_{j=1}^{5} {}^{52-j}C_3$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "${}^{47}C_4 + {}^{51}C_3 + {}^{50}C_3 + {}^{49}C_3 + {}^{48}C_3 + {}^{47}C_3$\n$= {}^{48}C_4 + {}^{48}C_3 + {}^{49}C_3 + {}^{50}C_3 + {}^{51}C_3$ $\\left(\\because {}^{n}C_r + {}^{n}C_{r-1} = {}^{n+1}C_r\\right)$\n$= {}^{52}C_4$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "${}^{52}C_3$"
+    },
+    {
+     "key": "B",
+     "text": "${}^{51}C_4$"
+    },
+    {
+     "key": "C",
+     "text": "${}^{52}C_4$"
+    },
+    {
+     "key": "D",
+     "text": "${}^{51}C_3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A function $f : \\mathbb{R} \\to \\mathbb{R}$, satisfies $f\\left(\\frac{x + y}{3}\\right) = \\frac{f(x) + f(y) + f(0)}{3}$ for all, $x, y \\in \\mathbb{R}$. If the function ‘f’ is differentiable at $x = 0$, then f is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Put $x = 0$, $y = 0 \\Rightarrow f(0) = 0$, $\\Rightarrow f(x) = ax$ (linear)",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "linear"
+    },
+    {
+     "key": "B",
+     "text": "quadratic"
+    },
+    {
+     "key": "C",
+     "text": "cubic"
+    },
+    {
+     "key": "D",
+     "text": "biquadratic"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "An $n \\times n$ matrix is formed using 0, 1 and $-1$ as its elements. The number of such matrices which are skew symmetric is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$3^{\\frac{n(n-1)}{2}}$\nEach diagonal entry must be ‘0’ and sum of conjugate elements will be ‘0’. So, we need to select elements of one side of the diagonal, where each entry has three options.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{n(n - 1)}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$(n - 1)^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2^{n(n-1)/2}$"
+    },
+    {
+     "key": "D",
+     "text": "$3^{n(n-1)/2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $x = \\int_{0}^{y} \\frac{1}{\\sqrt{1 + 9t^{2}}}\\,dt$ and $\\frac{d^{2}y}{dx^{2}} = ay$, then a is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Rightarrow \\frac{dy}{dx} = \\sqrt{1 + 9y^{2}} \\Rightarrow \\frac{d^{2}y}{dx^{2}} = 9y$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$9$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If the sum of ‘n’ terms of an A.P. is $3n^{2} + 5n$ and its mth term is 164, then the value of m is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$t_1 = S_1 = 8$\n$t_1 + t_2 = S_2 = 22$ So, $t_2 = 14 \\Rightarrow d = 6$\nGiven, $a + (m - 1)d = 164 \\Rightarrow 8 + (m - 1)6 = 164 \\Rightarrow m = 27$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$26$"
+    },
+    {
+     "key": "B",
+     "text": "$27$"
+    },
+    {
+     "key": "C",
+     "text": "$28$"
+    },
+    {
+     "key": "D",
+     "text": "$29$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If ${}^{9}P_5 + 5.{}^{9}P_4 = {}^{10}P_r$, then the value ‘r’ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "${}^{9}P_5 + 5.{}^{9}P_4 = \\frac{9!}{4!} + 5.\\frac{9!}{5!}$\n$= \\frac{9!}{4!} + \\frac{9!}{4!} = 2.\\frac{9!}{4!}$\n$= 2.\\frac{10.9!}{10.4!} = \\frac{10!}{5!} = {}^{10}P_r$\n$\\Rightarrow r = 5$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Consider three points $P(\\cos\\alpha, \\sin\\beta)$, $Q(\\sin\\alpha, \\cos\\beta)$, $R(0, 0)$, where $0 < \\alpha, \\beta < \\frac{\\pi}{4}$. Then",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "P lies on the line segment RQ"
+    },
+    {
+     "key": "B",
+     "text": "Q lies on the line segment PR"
+    },
+    {
+     "key": "C",
+     "text": "R lies on the line segment PQ"
+    },
+    {
+     "key": "D",
+     "text": "P, Q, R are non-collinear"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $\\vec{a}, \\vec{b}, \\vec{c}$ be unit vectors. Suppose $\\vec{a}.\\vec{b} = \\vec{a}.\\vec{c} = 0$ and the angle between $\\vec{b}$ and $\\vec{c}$ is $\\frac{\\pi}{6}$. Then $\\vec{a}$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\bar{a} \\perp \\bar{b}$ & $\\bar{a} \\perp \\bar{c}$\nLet $\\bar{a} = \\pm\\lambda(\\bar{b} \\times \\bar{c})$\n$\\Rightarrow |\\bar{a}| = \\pm\\lambda\\,|\\bar{b}|\\,|\\bar{c}|\\sin\\frac{\\pi}{6}$\n$\\Rightarrow \\lambda = \\pm 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\vec{b} \\times \\vec{c}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\vec{c} \\times \\vec{b}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\vec{b} + \\vec{c}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pm 2\\left(\\vec{b} \\times \\vec{c}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The number of reflexive relations on a set A of n elements is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total number of ordered pair $= n^{2}$\nNumber of pair that can be included or excluded $= n^{2} - n$\nEach of the remaining $n^{2} - n$ pairs we have two choices\nInclude it in the relation or not include it\nSo total no. of reflexive relation is $2^{n(n-1)}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2^{n^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$n^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2^{n(n-1)}$"
+    },
+    {
+     "key": "D",
+     "text": "$n^{2} - n$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If the matrix $\\begin{pmatrix} 0 & a & a \\\\ 2b & b & -b \\\\ c & -c & c \\end{pmatrix}$ is orthogonal, then the values of a, b, c are",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{r}_1 = 0\\hat{i} + a\\hat{j} + a\\hat{k}$ $\\quad \\vec{r}_1.\\vec{r}_1 = 1 \\Rightarrow 2a^{2} = 1$\n$\\vec{r}_2 = 2b\\hat{i} + b\\hat{j} - b\\hat{k}$ $\\quad \\vec{r}_2.\\vec{r}_2 = 1 \\Rightarrow 6b^{2} = 1$\n$\\vec{r}_3 = c\\hat{i} - c\\hat{j} + c\\hat{k}$ $\\quad \\vec{r}_3.\\vec{r}_3 = 1 \\Rightarrow 3c^{2} = 1$\n$a = \\pm\\frac{1}{\\sqrt{2}}$, $b = \\pm\\frac{1}{\\sqrt{6}}$, $c = \\pm\\frac{1}{\\sqrt{3}}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a = \\pm\\frac{1}{\\sqrt{3}}$, $b = \\pm\\frac{1}{\\sqrt{6}}$, $c = \\pm\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$a = \\pm\\frac{1}{\\sqrt{2}}$, $b = \\pm\\frac{1}{\\sqrt{6}}$, $c = \\pm\\frac{1}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$a = -\\frac{1}{\\sqrt{2}}$, $b = -\\frac{1}{\\sqrt{6}}$, $c = -\\frac{1}{\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$a = \\frac{1}{\\sqrt{3}}$, $b = \\frac{1}{\\sqrt{6}}$, $c = \\frac{1}{\\sqrt{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "For what value of ‘a’, the sum of the squares of the roots of the equation $x^{2} - (a - 2)x - a + 1 = 0$ will have the least value?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha^{2} + \\beta^{2} = (\\alpha + \\beta)^{2} - 2\\alpha\\beta$\n$= (a - 2)^{2} - 2(1 - a)$\n$= a^{2} - 4a + 4 - 2 + 2a$\n$= a^{2} - 2a + 2$\n$= (a - 1)^{2} + 1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The value of the integral $\\int_{0}^{\\pi/2} \\log\\left(\\frac{4 + 3\\sin x}{4 + 3\\cos x}\\right)dx$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{0}^{\\pi/2} \\log\\left(\\frac{4 + 3\\sin x}{4 + 3\\cos x}\\right)dx$\nApplying King’s property\n$I = \\int_{0}^{\\pi/2} \\log\\left(\\frac{4 + 3\\cos x}{4 + 3\\sin x}\\right)dx$\n$2I = \\int_{0}^{\\pi/2} \\log\\left(\\left(\\frac{4 + 3\\sin x}{4 + 3\\cos x}\\right)\\left(\\frac{4 + 3\\cos x}{4 + 3\\sin x}\\right)\\right)dx = 0$\n$I = 0$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$-2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $A = \\begin{bmatrix} 5 & 5\\alpha & \\alpha \\\\ 0 & \\alpha & 5\\alpha \\\\ 0 & 0 & 5 \\end{bmatrix}$. If $|A|^{2} = 25$, then $|\\alpha|$ equals to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A = \\begin{bmatrix} 5 & 5\\alpha & \\alpha \\\\ 0 & \\alpha & 5\\alpha \\\\ 0 & 0 & 5 \\end{bmatrix}$\n$|A| = 5(5\\alpha) - 5\\alpha(0) + \\alpha(0)$\n$|A| = 25\\alpha \\Rightarrow |A|^{2} = 625\\alpha^{2} = 25 \\Rightarrow \\alpha^{2} = \\frac{1}{25} \\Rightarrow |\\alpha| = \\frac{1}{5}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The sum of the first four terms of an arithmetic progression is 56. The sum of the last four terms is 112. If its first term is 11, then the number of terms is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a + a + d + a + 2d + a + 3d = 56$\n$4a + 6d = 56$\n$6d = 56 - 44 = 12$\n$\\Rightarrow d = 2$\n$t_1 + t_2 + t_3 + t_4 = 56$\n$t_{n-3} + t_{n-2} + t_{n-1} + t_n = 112$\n$t_1 = 11$\n$t_1 + t_n = t_2 + t_{n-1} = t_3 + t_{n-2} = t_4 + t_{n-3} = k$\n$t_1 + t_2 + t_3 + t_4 + t_n + t_{n-1} + t_{n-2} + t_{n-3} = 4k$\n$\\Rightarrow k = 42$\n$t_1 + t_n = 42$\n$\\Rightarrow t_n = 42 - 11 = 31$\n$t_n = t_1 + (n - 1)d$\n$\\Rightarrow 31 - 11 = (n - 1)d \\Rightarrow (n - 1)d = 20$\n$\\Rightarrow n = 11$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$11$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$13$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If ‘f’ is the inverse function of ‘g’ and $g'(x) = \\frac{1}{1 + x^{n}}$, then the value of $f'(x)$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$g^{-1}(x) = f(x)$\n$g'(x) = \\frac{1}{1 + x^{n}}$ $\\quad \\Rightarrow g'\\left(g^{-1}(x)\\right) = \\frac{1}{1 + \\left(g^{-1}(x)\\right)^{n}} = \\frac{1}{1 + \\left(f(x)\\right)^{n}}$\n$g(g^{-1}(x)) = x$\n$g'(g^{-1}(x).(g^{-1}(x))' = 1$\n$(g^{-1}(x))' = \\frac{1}{g'\\left(g^{-1}(x)\\right)} = 1 + \\left(f(x)\\right)^{n}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 + \\{f(x)\\}^{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$1 - \\{f(x)\\}^{n}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\{1 + f(x)\\}^{n}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\{f(x)\\}^{n}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "$\\int_{-1}^{1} \\frac{x^{3} + |x| + 1}{x^{2} + 2|x| + 1}\\,dx$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{-1}^{1} \\frac{x^{3} + |x| + 1}{x^{2} + 2|x| + 1}\\,dx$\nApplying King’s property\n$I = \\int_{-1}^{1} \\frac{-x^{3} + |x| + 1}{x^{2} + 2|x| + 1}\\,dx$\nApplying $I = \\int_{-1}^{1} \\frac{|x| + 1}{x^{2} + 2|x| + 1}\\,dx$ being even function\n$I = 2\\int_{0}^{1} \\frac{x + 1}{(x + 1)^{2}}\\,dx = 2\\left[\\ln(x + 1)\\right]_{0}^{1} = 2\\ln 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\log 2$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\log 2$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2}\\log 2$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\log 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A function f is defined by $f(x) = 2 + (x - 1)^{2/3}$ on $[0, 2]$. Which of the following statements is incorrect?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = 2 + (x - 1)^{2/3}$\n$f(x)$ is not differentiable at $x = 1$\nHence Rolle’s theorem is not applicable on $[0, 2]$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "f is not derivable in $(0, 2)$"
+    },
+    {
+     "key": "B",
+     "text": "f is continuous in $[0, 2]$"
+    },
+    {
+     "key": "C",
+     "text": "$f(0) = f(2)$"
+    },
+    {
+     "key": "D",
+     "text": "Rolle’s theorem is applicable on $[0, 2]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "$\\int_{0}^{1.5} \\left[x^{2}\\right]dx$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\int_{0}^{1.5} \\left[x^{2}\\right]dx$\n$= \\int_{0}^{1} \\left[x^{2}\\right]dx + \\int_{1}^{\\sqrt{2}} \\left[x^{2}\\right]dx + \\int_{\\sqrt{2}}^{3/2} \\left[x^{2}\\right]dx$\n$= 0 + 1\\left(\\sqrt{2} - 1\\right) + 2\\left(1.5 - \\sqrt{2}\\right)$\n$= 2 - \\sqrt{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$2 - \\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2 + \\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The value of the integral $\\int_{3}^{6} \\frac{\\sqrt{x}}{\\sqrt{9 - x} + \\sqrt{x}}\\,dx$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{3}^{6} \\frac{\\sqrt{x}}{\\sqrt{9 - x} + \\sqrt{x}}\\,dx$\nApplying King’s property\n$I = \\int_{3}^{6} \\frac{\\sqrt{9 - x}}{\\sqrt{x} + \\sqrt{9 - x}}\\,dx$\nAdding $2I = \\int_{3}^{6} dx = 3 \\Rightarrow I = \\frac{3}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If a, b, c are positive real numbers each distinct from unity, then the value of the determinant\n$\\begin{vmatrix} 1 & \\log_a b & \\log_a c \\\\ \\log_b a & 1 & \\log_b c \\\\ \\log_c a & \\log_c b & 1 \\end{vmatrix}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Expanding through first row, $\\log_b a = \\frac{1}{\\log_a b}$ (by property)",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\log_e(abc)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\log_e a \\log_e b \\log_e c$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The function $f(x) = 2x^{3} - 3x^{2} - 12x + 4$, $x \\in \\mathbb{R}$ has",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f'(x) = 0 \\Rightarrow x = -1, 2$\n$x = -1$ is local maxima\n$x = 2$ is local minima",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "two points of local maximum"
+    },
+    {
+     "key": "B",
+     "text": "two points of local minimum"
+    },
+    {
+     "key": "C",
+     "text": "one local maximum and one local minimum"
+    },
+    {
+     "key": "D",
+     "text": "neither maximum nor minimum"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $(1 + x - 2x^{2})^{6} = 1 + a_1x + a_2x^{2} + \\ldots + a_{12}x^{12}$, then the value of $a_2 + a_4 + a_6 + \\ldots + a_{12}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(1 + x - 2x^{2})^{6} = 1 + a_1x + a_2x^{2} + \\ldots + a_{12}x^{12}$\n$x = 1 \\Rightarrow 0 = 1 + a_1 + a_2 + \\ldots + a_{12}$\n$x = -1 \\Rightarrow 64 = 1 - a_1 + a_2 + \\ldots + a_{12}$\nAdding $64 = 2(1 + a_2 + a_4 + \\ldots + a_{12})$\n$a_2 + a_4 + \\ldots + a_{12} = 31$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$21$"
+    },
+    {
+     "key": "B",
+     "text": "$31$"
+    },
+    {
+     "key": "C",
+     "text": "$32$"
+    },
+    {
+     "key": "D",
+     "text": "$64$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let f be a function which is differentiable for all real x. If $f(2) = -4$ and $f'(x) \\ge 6$ for all $x \\in [2, 4]$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "By LMVT\n$f'(x) = \\frac{f(4) - f(2)}{4 - 2}$\nas $f'(x) \\ge 6 \\Rightarrow f(4) \\ge 8$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f(4) < 8$"
+    },
+    {
+     "key": "B",
+     "text": "$f(4) \\ge 12$"
+    },
+    {
+     "key": "C",
+     "text": "$f(4) \\ge 8$"
+    },
+    {
+     "key": "D",
+     "text": "$f(4) < 12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $z_1, z_2$ are complex numbers such that $\\frac{2z_1}{3z_2}$ is a purely imaginary number, then the value of $\\left|\\frac{z_1 - z_2}{z_1 + z_2}\\right|$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\frac{2z_1}{3z_2} = \\lambda i$ $\\left(\\lambda \\in R - \\{0\\}\\right)$ $\\Rightarrow \\frac{z_1}{z_2} = \\frac{3\\lambda i}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The set of points of discontinuity of the function $f(x) = x - [x]$, $x \\in \\mathbb{R}$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Discontinuous at integral point.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$Q$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathbb{R}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathbb{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathbb{Z}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\cos^{-1}\\alpha + \\cos^{-1}\\beta + \\cos^{-1}\\gamma = 3\\pi$, then $\\alpha(\\beta + \\gamma) + \\beta(\\gamma + \\alpha) + \\gamma(\\alpha + \\beta)$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha = \\beta = \\gamma = -1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\vec{\\alpha} = 3\\hat{i} - \\hat{k}$, $|\\vec{\\beta}| = \\sqrt{5}$ and $\\vec{\\alpha} \\cdot \\vec{\\beta} = 3$, then the area of the parallelogram for which $\\vec{\\alpha}$ and $\\vec{\\beta}$ are adjacent sides is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|\\vec{\\alpha} \\times \\vec{\\beta}| = |\\vec{\\alpha}||\\vec{\\beta}|\\sin\\theta$, $\\cos\\theta = \\frac{3}{\\sqrt{50}}$\n$= \\sqrt{50} \\times \\frac{\\sqrt{41}}{\\sqrt{50}} = \\sqrt{41}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{17}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{14}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{41}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If '$\\theta$' is the angle between two vectors $\\vec{a}$ and $\\vec{b}$ such that $|\\vec{a}| = 7$, $|\\vec{b}| = 1$ and $|\\vec{a} \\times \\vec{b}|^{2} = k^{2} - (\\vec{a} \\cdot \\vec{b})^{2}$, then the values of k and $\\theta$ are",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$k^{2} = |\\vec{a} \\times \\vec{b}|^{2} + (\\vec{\\alpha} \\cdot \\vec{\\beta})^{2}$\n$= |\\vec{a}|^{2}|\\vec{b}|^{2}(\\cos^{2}\\theta + \\sin^{2}\\theta)$\n$= 49$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$k = 1$, $\\theta = 45^\\circ$"
+    },
+    {
+     "key": "B",
+     "text": "$k = 7$, $\\theta = 60^\\circ$"
+    },
+    {
+     "key": "C",
+     "text": "$k = 49$, $\\theta = 90^\\circ$"
+    },
+    {
+     "key": "D",
+     "text": "$k = 7$ and $\\theta$ is arbitrary"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "$\\lim_{x \\to 0} \\frac{\\tan([-\\pi^{2}]x^{2}) - x^{2}\\tan([-\\pi^{2}])}{\\sin^{2}x}$ equals",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to 0} \\frac{-\\tan 10x^{2} + x^{2}\\tan 10}{\\sin^{2}x}$ (Applying series)\n$\\lim_{x \\to 0} \\frac{-\\left(10x^{2} + \\frac{10^{3}x^{6}}{3}\\right) + x^{2}\\tan 10}{x^{2}\\left(1 - \\frac{x^{2}}{6}\\right)^{2}} = \\tan 10 - 10$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan 10 - 10$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan 9 - 9$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f(x) = |1 - 2x|$, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f(x)$ is continuous but not differentiable at $x = \\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$f(x)$ is differentiable but not continuous at $x = \\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$f(x)$ is both continuous and differentiable at $x = \\frac{1}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$f(x)$ is neither differentiable nor continuous at $x = \\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $f(x) = \\begin{cases} x^{2} + 3x + a, & x \\le 1 \\\\ bx + 2, & x > 1 \\end{cases}$, $x \\in \\mathbb{R}$, is everywhere differentiable, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "LHL = RHL $\\Rightarrow 4 + a = b + 2$\nLHD = RHD $\\Rightarrow b = 5 \\Rightarrow a = 3$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a = 3$, $b = 5$"
+    },
+    {
+     "key": "B",
+     "text": "$a = 0$, $b = 5$"
+    },
+    {
+     "key": "C",
+     "text": "$a = 0$, $b = 3$"
+    },
+    {
+     "key": "D",
+     "text": "$a = b = 3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f(x)$ be a second degree polynomial. If $f(1) = f(-1)$ and p, q, r are in A.P., then $f'(p), f'(q), f'(r)$ are",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(-1) = f(1) \\Rightarrow b = 0$\n$f(x) = ax^{2} + c \\Rightarrow f'(x) = 2ax$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "in A.P."
+    },
+    {
+     "key": "B",
+     "text": "in G.P."
+    },
+    {
+     "key": "C",
+     "text": "in H.P."
+    },
+    {
+     "key": "D",
+     "text": "neither in A.P. or G.P. or H.P."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\mathrm{adj}\\,B = A$, $|P| = |Q| = 1$, then $\\mathrm{adj}(Q^{-1}BP^{-1}) =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{adj}(Q^{-1}BP^{-1})$\n$= |Q^{-1}BP^{-1}|(Q^{-1}BP^{-1})^{-1}$\n$= |Q^{-1}||B||P^{-1}|PB^{-1}Q$\n$= |B|\\,P\\frac{(\\mathrm{adj}\\,B)}{|B|}Q$\n$= PAQ$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$PQ$"
+    },
+    {
+     "key": "B",
+     "text": "$QAP$"
+    },
+    {
+     "key": "C",
+     "text": "$PAQ$"
+    },
+    {
+     "key": "D",
+     "text": "$PA^{-1}Q$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The line $y - \\sqrt{3}x + 3 = 0$ cuts the parabola $y^{2} = x + 2$ at the points P and Q. If the co-ordinates of the point X are $(\\sqrt{3}, 0)$, then the value of $XP \\cdot XQ$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Arbitrary point on the line $\\left(\\sqrt{3} + \\frac{r}{2}, \\frac{r\\sqrt{3}}{2}\\right)$ satisfying in the parabola $\\Rightarrow 3r^{2} - 2r - (4\\sqrt{3} + 8) = 0$\n$\\because$ roots $r_1$ & $r_2$\n$\\therefore$ product $r_1 r_2 = -\\frac{4\\sqrt{3} + 8}{3}$\n$\\therefore XP \\cdot XQ = |r_1 r_2| = \\frac{4}{3}(\\sqrt{3} + 2)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4(2 + \\sqrt{3})}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4(2 - \\sqrt{3})}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5(2 + \\sqrt{3})}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5(2 - \\sqrt{3})}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $\\omega (\\ne 1)$ be a cubic root of unity. Then the minimum value of the set $\\{|a + b\\omega + c\\omega^{2}|^{2}$ ; a, b, c are distinct non-zero integers$\\}$ equals",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|a + b\\omega + c\\omega^{2}|^{2} = a^{2} + b^{2} + c^{2} - ab - bc - ca$\n$= \\frac{1}{2}\\left[(a - b)^{2} + (b - c)^{2} + (c - a)^{2}\\right]$\n$\\therefore$ Min $= \\frac{1 + 1 + 4}{2} = 3$ $(a, b, c \\in \\{1, 2, 3\\})$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$15$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The straight line $\\frac{x - 3}{3} = \\frac{y - 2}{1} = \\frac{z - 1}{0}$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "parallel to the x-axis"
+    },
+    {
+     "key": "B",
+     "text": "parallel to the y-axis"
+    },
+    {
+     "key": "C",
+     "text": "parallel to the z-axis"
+    },
+    {
+     "key": "D",
+     "text": "perpendicular to the z-axis"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If the sum of the squares of the roots of the equation $x^{2} - (a - 2)x - (a + 1) = 0$ is least for an appropriate value of the variable parameter a, then the value of 'a' will be",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha^{2} + \\beta^{2} = (\\alpha + \\beta)^{2} - 2\\alpha\\beta$\n$= (a - 2)^{2} + 2(a + 1)$\n$= a^{2} - 2a + 6 = (a - 1)^{2} + 5$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "$\\vec{a}, \\vec{b}, \\vec{c}$ are non-coplanar vectors and $\\lambda$ is a real number then the vectors $\\vec{a} + 2\\vec{b} + 3\\vec{c}$, $\\lambda\\vec{b} + 4\\vec{c}$ and $(2\\lambda - 1)\\vec{c}$ are non-coplanar for",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "for co-planar : $\\begin{vmatrix} 1 & 2 & 3 \\\\ 0 & \\lambda & 4 \\\\ 0 & 0 & 2\\lambda - 1 \\end{vmatrix} = 0 \\Rightarrow \\lambda = 0, \\frac{1}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "no value of $\\lambda$"
+    },
+    {
+     "key": "B",
+     "text": "all except one value of $\\lambda$"
+    },
+    {
+     "key": "C",
+     "text": "all except two values of $\\lambda$"
+    },
+    {
+     "key": "D",
+     "text": "all values of $\\lambda$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 51,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If $|Z_1| = |Z_2| = |Z_3| = 1$ and $Z_1 + Z_2 + Z_3 = 0$, then the area of the triangle whose vertices are $Z_1, Z_2, Z_3$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Considering cube root of unity, implies equilateral triangle.",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3\\sqrt{3}}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{3}}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 52,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $f(x) = |x - \\alpha| + |x - \\beta|$, where $\\alpha, \\beta$ are the roots of the equation $x^{2} - 3x + 2 = 0$. Then the number of points in $[\\alpha, \\beta]$ at which f is not differentiable is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because$ Two distinct real roots 1, 2\n$f(x) = |x - 1| + |x - 2|$\n$\\therefore$ Differentiable in $[1, 2]$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "infinite"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 53,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If $f(x) = \\frac{3x - 4}{2x - 3}$, then $f(f(f(x)))$ will be",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\frac{3x - 4}{2x - 3}$\n$f(f(f(x))) = f\\left(f\\left(\\frac{3x - 4}{2x - 3}\\right)\\right)$\n$= f\\left(\\frac{3\\left(\\frac{3x - 4}{2x - 3}\\right) - 4}{2\\left(\\frac{3x - 4}{2x - 3}\\right) - 3}\\right) = f(x)$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x$"
+    },
+    {
+     "key": "B",
+     "text": "$2x$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2x - 3}{3x - 4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3x - 4}{2x - 3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 54,
+   "topic": "Polynomials",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If $f(x)$ and $g(x)$ are two polynomials such that $\\phi(x) = f(x^{3}) + xg(x^{3})$ is divisible by $x^{2} + x + 1$, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because$ By remainder theorom\n$\\phi(\\omega) = 0$ & $\\phi(\\omega^{2}) = 0$ ($\\omega, \\omega^{2}$ are complex cube root of unity)\n$\\Rightarrow f(1) + \\omega g(1) = 0$ & $f(1) + \\omega^{2}g(1) = 0$\n$\\Rightarrow f(1) = g(1) = 0$\n$\\therefore \\phi(1) = f(1) + g(1) = 0$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\phi(x)$ is divisible by $(x - 1)$"
+    },
+    {
+     "key": "B",
+     "text": "none of $f(x)$ and $g(x)$ is divisible by $(x - 1)$"
+    },
+    {
+     "key": "C",
+     "text": "$g(x)$ is divisible by $(x - 1)$ but $f(x)$ is not divisible by $(x - 1)$"
+    },
+    {
+     "key": "D",
+     "text": "$f(x)$ is divisible by $(x - 1)$ but $g(x)$ is not divisible by $(x - 1)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 55,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $a_n$ denote the term independent of x in the expansion of $\\left[x + \\frac{\\sin(1/n)}{x^{2}}\\right]^{3n}$, then $\\lim_{n \\to \\infty} \\frac{(a_n)n!}{{}^{3n}P_n}$ equals",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left[x + \\frac{\\sin(1/n)}{x^{2}}\\right]^{3n}$\n$T_{r+1} = {}^{3n}C_r (x)^{3n - r}\\left(\\frac{\\sin(1/n)}{x^{2}}\\right)^{r}$\n$= {}^{3n}C_r (x)^{3n - 3r}\\left(\\sin(1/n)\\right)^{r}$\n$r = n$\n$a_n = {}^{3n}C_n\\left(\\sin(1/n)\\right)^{n}$\n$\\lim_{n \\to \\infty} \\frac{{}^{3n}C_n\\left(\\sin(1/n)\\right)^{n} \\cdot n!}{{}^{3n}P_n} = 0$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$e$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{e}{\\sqrt{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 56,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The maximum number of common normals of $y^{2} = 4ax$ and $x^{2} = 4by$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y^{2} = 4ax$ and $x^{2} = 4by$\nEq. of normal to $y^{2} = 4ax$ and $x^{2} = 4by$\nare $y = mx - 2am - am^{3}$ and $y = mx + 2b + \\frac{b}{m^{2}}$\nFor common normal; $2b + \\frac{b}{m^{2}} + 2am + am^{3} = 0$\n$\\Rightarrow am^{5} + 2am^{3} + 2bm^{2} + b = 0$\nMax. 5 common normal",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 57,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The number of common tangents to the circles $x^{2} + y^{2} - 4x - 6y - 12 = 0$, $x^{2} + y^{2} + 6x + 18y + 26 = 0$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(x - 2)^{2} + (y - 3)^{2} - 12 - 13 = 0$\n$(x - 2)^{2} + (y - 3)^{2} = 5^{2}$\n$(x + 3)^{2} + (y + 9)^{2} = -26 + 9 + 81 = 64$\n$C_1(2, 3)$ $r_1 = 5$\n$C_2(-3, -9)$ $r_2 = 8$\n$C_1C_2 = \\sqrt{25 + 144} = 13$\n$C_1C_2 = r_1 + r_2$\n$\\Rightarrow$ 3 common tangents.",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 58,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The probability that a non-leap year selected at random will have 53 Sundays or 53 Saturdays is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "No. days = 365 = 52 weeks + 1 extra day\n{S, M, T, W, Th, F, Sat}\n$P((53\\ \\mathrm{S}) \\cup (53\\ \\mathrm{Sat})) = P(\\mathrm{Sat}) + P(\\mathrm{S})$\n$= \\frac{1}{7} + \\frac{1}{7} = \\frac{2}{7}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{7}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{365}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 59,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $u + v + w = 3$, $u, v, w \\in \\mathbb{R}$ and $f(x) = ux^{2} + vx + w$ be such that $f(x + y) = f(x) + f(y) + xy$, $\\forall\\, x, y \\in \\mathbb{R}$. Then $f(1)$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$u + v + w = 3$\n$f(x) = ux^{2} + vx + w$\n$f(x + y) = f(x) + f(y) + xy$\n$f(1) = 3$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 60,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The number of solutions of $\\sin^{-1}x + \\sin^{-1}(1 - x) = \\cos^{-1}x$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sin^{-1}x + \\sin^{-1}(1 - x) = \\cos^{-1}x$\n$\\Rightarrow 1 - x = \\sqrt{1 - x}\\sqrt{1 - x} - x.x$\n$\\Rightarrow x = 0$ or $\\frac{1}{2}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 61,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $f(x) = \\max\\{x + |x|, x - [x]\\}$, where $[x]$ stands for the greatest integer not greater than x. Then $\\int_{-3}^{3} f(x)\\,dx$ has the value",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\max\\{x + |x|, x - [x]\\} = \\max\\{x + |x|, \\{x\\}\\}$\n$\\int_{-3}^{3} f(x)\\,dx$\n$= \\int_{-3}^{0} \\{x\\}\\,dx + \\int_{0}^{3} 2x\\,dx$\n$= \\frac{3}{2} + 9 = \\frac{21}{2}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{51}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{21}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 62,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $f(\\theta) = \\begin{vmatrix} 1 & \\cos\\theta & -1 \\\\ -\\sin\\theta & 1 & -\\cos\\theta \\\\ -1 & \\sin\\theta & 1 \\end{vmatrix}$. Suppose A and B are respectively maximum and minimum values of $f(\\theta)$. Then (A, B) is eaual to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(\\theta) = \\begin{vmatrix} 1 & \\cos\\theta & -1 \\\\ -\\sin\\theta & 1 & -\\cos\\theta \\\\ -1 & \\sin\\theta & 1 \\end{vmatrix}$ (after expansion)\n$f(\\theta) = 1 + \\sin 2\\theta$\n$A = 2$, $B = 0$ $(A, B) = (2, 0)$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(2, 1)$"
+    },
+    {
+     "key": "B",
+     "text": "$(2, 0)$"
+    },
+    {
+     "key": "C",
+     "text": "$(\\sqrt{2}, 1)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(2, \\frac{1}{\\sqrt{2}}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 63,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If $\\cos(\\theta + \\phi) = \\frac{3}{5}$ and $\\sin(\\theta - \\phi) = \\frac{5}{13}$, $0 < \\theta, \\phi < \\frac{\\pi}{4}$, then $\\cot(2\\theta)$ has the value",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\tan 2\\theta = \\tan((\\theta + \\phi) + (\\theta - \\phi))$ $\\left[\\because \\tan(\\theta + \\phi) = \\frac{4}{3},\\ \\tan(\\theta - \\phi) = \\frac{5}{12}\\right]$\n$= \\frac{\\tan(\\theta + \\phi) + \\tan(\\theta - \\phi)}{1 - \\tan(\\theta + \\phi)\\tan(\\theta - \\phi)}$\n$= \\frac{\\frac{4}{3} + \\frac{5}{12}}{1 - \\frac{4}{3} \\times \\frac{5}{12}} = \\frac{16 + 5}{36 - 20} = \\frac{21 \\times 3}{16} = \\frac{63}{16}$\n$\\cot(2\\theta) = \\frac{16}{63}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{16}{63}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{63}{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{13}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{13}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 64,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If a, b, c are in A.P. and if the equations $(b - c)x^{2} + (c - a)x + (a - b) = 0$ and $2(c + a)x^{2} + (b + c)x = 0$ have a common root, then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "as $x = 1$ is common root",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a^{2}, b^{2}, c^{2}$ are in A.P."
+    },
+    {
+     "key": "B",
+     "text": "$a^{2}, c^{2}, b^{2}$ are in A.P."
+    },
+    {
+     "key": "C",
+     "text": "$c^{2}, a^{2}, b^{2}$ are in A.P."
+    },
+    {
+     "key": "D",
+     "text": "$a^{2}, b^{2}, c^{2}$ are in G.P."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 65,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $x - y = 0$ and $x + y = 1$ be two perpendicular diameters of a circle of radius R. The circle will pass through the origin if R is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left(x - \\frac{1}{2}\\right)^{2} + \\left(y - \\frac{1}{2}\\right)^{2} = R^{2}$\n$\\Rightarrow R^{2} = \\frac{1}{2}$; $R = \\frac{1}{\\sqrt{2}}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb25-math-q65-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 66,
+   "topic": "Matrices and Determinants",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If P is a non-singular matrix of order $5 \\times 5$ and the sum of the elements of each row is 1, then the sum of the elements of each row in $P^{-1}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B"
+   ],
+   "solution": "Given, $P\\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} \\Rightarrow P^{-1}P\\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} = P^{-1}\\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} \\Rightarrow I_5\\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix} = P^{-1}\\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\\\ 1 \\\\ 1 \\end{bmatrix}$ ($I_5$ is identify Matrix)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 67,
+   "topic": "Probability",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Three numbers are chosen at random without replacement from $\\{1, 2, ..... 10\\}$. The probability that the minimum of the chosen numbers is 3 or their maximum is 7, is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": [
+    "C"
+   ],
+   "solution": "$\\frac{{}^{7}C_2 + {}^{6}C_2 - {}^{3}C_1}{{}^{10}C_3} = \\frac{33}{120} = \\frac{11}{40}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{40}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{40}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{11}{40}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{9}{40}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 68,
+   "topic": "Differential Equations",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The population p(t) at time t of a certain mouse species follows the differential equation $\\frac{dp(t)}{dt} = 0.5p(t) - 450$. If $p(0) = 850$, then the time at which the population becomes zero is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": [
+    "D"
+   ],
+   "solution": "$\\frac{dp}{dt} = 0.5P - 450$\nor, $\\int_{850}^{0} \\frac{dp}{P - 900} = \\int_{0}^{t} \\frac{dt}{2}$\nor, $\\left[\\ln|P - 900|\\right]_{850}^{0} = \\frac{t}{2}$\nor, $\\frac{t}{2} = \\ln\\left|\\frac{900}{50}\\right| = \\ln|18|$\nor, $t = 2\\ln|18|$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\log 9$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}\\log 18$"
+    },
+    {
+     "key": "C",
+     "text": "$\\log 18$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\log 18$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 69,
+   "topic": "Definite Integrals",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The value of $\\int_{-100}^{100} \\frac{(x + x^{3} + x^{5})}{(1 + x^{2} + x^{4} + x^{6})}\\,dx$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": [
+    "C"
+   ],
+   "solution": "$\\int_{-100}^{100} \\frac{\\text{odd function}}{\\text{Even function}} = \\int_{-100}^{100} \\text{odd function} = 0$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100$"
+    },
+    {
+     "key": "B",
+     "text": "$1000$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 70,
+   "topic": "Continuity and Differentiability",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Let $f : [0, 1] \\to \\mathbb{R}$ and $g : [0, 1] \\to \\mathbb{R}$ be defined as follows :\n$f(x) = \\begin{cases} 1 & \\text{if } x \\text{ is rational} \\\\ 0 & \\text{if } x \\text{ is irrational} \\end{cases}$ and\n$g(x) = \\begin{cases} 0 & \\text{if } x \\text{ is rational} \\\\ 1 & \\text{if } x \\text{ is irrational} \\end{cases}$ then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B"
+   ],
+   "solution": "Graphically",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "f and g are continuous at the point $x = \\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "f+g is continuous at the point $x = \\frac{2}{3}$ but f and g are discontinuous at $x = \\frac{2}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$f(x).g(x) > 0$ for some points $x \\in (0, 1)$"
+    },
+    {
+     "key": "D",
+     "text": "f+g is not differentiable at the point $x = \\frac{3}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 71,
+   "topic": "Definite Integrals",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If $f(x) = \\int_{0}^{\\sin^{2}x} \\sin^{-1}\\sqrt{t}\\,dt$ and $g(x) = \\int_{0}^{\\cos^{2}x} \\cos^{-1}\\sqrt{t}\\,dt$, then the value of $f(x) + g(x)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B"
+   ],
+   "solution": "$f'(x) + g'(x) = 0$\n$\\Rightarrow f(x) + g(x) =$ constant (say c)\nputting $x = \\frac{\\pi}{4}$\n$\\therefore c = \\int_{0}^{1/2} \\left(\\sin^{-1}\\sqrt{t} + \\cos^{-1}\\sqrt{t}\\right)dt = \\frac{\\pi}{4}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sin^{2}x + \\sin x + x$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 72,
+   "topic": "Application of Derivatives",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Let $f(x) = x^{3}$, $x \\in [-1, 1]$. Then which of the following are correct ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B",
+    "C",
+    "D"
+   ],
+   "solution": null,
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "'f' has a minimum at $x = 0$"
+    },
+    {
+     "key": "B",
+     "text": "'f' has a maximum at $x = 1$"
+    },
+    {
+     "key": "C",
+     "text": "'f' is continuous on $[-1, 1]$"
+    },
+    {
+     "key": "D",
+     "text": "'f' is bounded on $[-1, 1]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb25-math-q72-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 73,
+   "topic": "Trigonometric Equations",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If $0 \\le a, b \\le 3$ and the equation $x^{2} + 4 + 3\\cos(ax + b) = 2x$ has real solution, then the value of $(a + b)$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": [
+    "C"
+   ],
+   "solution": "$(x^{2} - 2x + 1) + 3(\\cos(ax + b) + 1) = 0$\nor, $(x - 1)^{2} + 3(\\cos(ax + b) + 1) = 0$\n$a + b = \\pi$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 74,
+   "topic": "Trigonometric Equations",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The solution set of the equation $\\left(x \\in \\left(0, \\frac{\\pi}{2}\\right)\\right)$ $\\tan(\\pi\\tan x) = \\cot(\\pi\\cot x)$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": [
+    "C"
+   ],
+   "solution": "$\\tan(\\pi\\tan x) = \\cot(\\pi\\cot x)$\nor, $\\tan(\\pi\\tan x) = \\tan\\left(\\frac{\\pi}{2} - \\pi\\cot x\\right)$\nor, $\\pi\\tan x = \\frac{\\pi}{2} - \\pi\\cot x$\nor, $\\tan x = \\frac{1}{2} - \\cot x$\nor, $\\tan x + \\cot x = \\frac{1}{2}$\nor, $\\frac{\\sin^{2}x + \\cos^{2}x}{\\sin x\\cos x} = \\frac{1}{2}$\nor, $\\frac{1}{\\sin 2x} = \\frac{1}{4}$\nor, $\\sin 2x = 4$ $x \\in \\phi$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\{0\\}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left\\{\\frac{\\pi}{4}\\right\\}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\phi$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left\\{\\frac{\\pi}{6}\\right\\}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 75,
+   "topic": "Trigonometric Equations",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If the equation $\\sin^{4}x - (p + 2)\\sin^{2}x - (p + 3) = 0$ has a solution, the p must lie in the interval",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B"
+   ],
+   "solution": "$\\sin^{2}x = \\frac{(P + 2) \\pm \\sqrt{(P + 2)^{2} + 4.1(P + 3)}}{2.1}$\n$= \\frac{(P + 2) \\pm \\sqrt{P^{2} + 4p + 4 + 4p + 12}}{2}$\n$= \\frac{(P + 2) \\pm \\sqrt{(P + 4)^{2}}}{2}$\n$= \\frac{2p + 6}{2} = P + 3$\n$= \\sin^{2}x \\in [0, 1]$\n$0 \\le P + 3 \\le 1$\n$-3 \\le P \\le -2$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[-3, -2]$"
+    },
+    {
+     "key": "B",
+     "text": "$(-3, -2)$"
+    },
+    {
+     "key": "C",
+     "text": "$(2, 3)$"
+    },
+    {
+     "key": "D",
+     "text": "$[-5, -3]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

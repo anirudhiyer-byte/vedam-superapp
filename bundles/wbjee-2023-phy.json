@@ -1,0 +1,1421 @@
+{
+ "paper": {
+  "exam": "WBJEE",
+  "subject": "Physics",
+  "year": 2023,
+  "set_label": "30 Apr 2023",
+  "title": "WBJEE 2023 · Physics",
+  "marks_correct": 1,
+  "marks_wrong": -0.25,
+  "marking_note": "Category 1: +1 / −¼ · Category 2: +2 / −½ · Category 3: +2, one or more correct, no negative",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": "1gyLrRZ7sEI30XNerhk4af6xupL499z_n"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In a simple harmonic motion, let f be the acceleration and T be the time period. If x denotes the displacement, then $|fT|$ vs. x graph will look like,",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F.T = \\omega^{2}x \\cdot \\frac{2\\pi}{\\omega} = 2\\pi\\omega x$\n$\\because F.T = 2\\pi\\omega x$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb23-phy-q01-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb23-phy-q01-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb23-phy-q01-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb23-phy-q01-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The displacement of a plane progressive wave in a medium, travelling towards positive x-axis with velocity 4m/s at t = 0 is given by $y = 3\\sin 2\\pi\\left(-\\frac{x}{3}\\right)$. Then the expression for the displacement at a later time t = 4 sec will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $y = 3\\sin[\\omega t - kx]$\nat $t = 0$, $y = 3\\sin(-kx)$\n$k = \\frac{2\\pi}{3}$\n$v = \\frac{\\omega}{k}$\n$4 = \\frac{\\omega}{2\\pi/3} \\Rightarrow \\omega = \\frac{8\\pi}{3}$\n$\\therefore y = 3\\sin\\left[\\frac{8\\pi}{3}t - \\frac{2\\pi}{3}x\\right]$\n$\\therefore t = 4$\n$y = 3\\sin\\left[\\frac{8\\pi}{3} \\times 4 - \\frac{2\\pi}{3}x\\right]$\n$= 3\\sin 2\\pi\\left[\\frac{-x + 16}{3}\\right]$\n$y = 3\\sin\\left[2\\pi\\left(-\\frac{x - 16}{3}\\right)\\right]$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$y = 3\\sin 2\\pi\\left(-\\frac{x - 16}{3}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$y = 3\\sin 2\\pi\\left(\\frac{-x - 16}{3}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$y = 3\\sin 2\\pi\\left(\\frac{-x - 1}{3}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$y = 3\\sin 2\\pi\\left(\\frac{-x - 1}{3}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A shown in the figure, a liquid is at same levels in two arms of a U-tube of uniform cross-section when at rest. If the U-tube moves with an acceleration ‘f’ towards right, the difference between liwuid height between two arms of the U-tube will be, (acceleration due to gravity = g)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\tan\\theta = \\frac{\\text{acceleration}}{g}$\n$\\frac{h}{a} = \\frac{\\text{acceleration}}{g}$\n$\\frac{h}{a} = \\frac{f}{g}$\n$h = \\frac{fa}{g}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{f}{g}a$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{g}{f}a$"
+    },
+    {
+     "key": "C",
+     "text": "$a$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": "wb23-phy-q03.png",
+   "solution_figure": "wb23-phy-q03-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Kinetic Theory",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Six molecules of an ideal gas have velocities 1, 3, 5, 5, 6 and 5 m/s respectively. At any given temperature, if $\\overline{V}$ and $V_{rms}$ represent average and rms speed of the molecules, then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\overline{V} = \\frac{1 + 3 + 5 + 5 + 6 + 5}{6} = \\frac{25}{6} = 4.16$\n$\\overline{V}_{rms} = \\sqrt{\\frac{1 + 9 + 25 \\times 3 + 36}{6}} = \\sqrt{\\frac{121}{6}} = \\frac{11}{\\sqrt{6}} = 4.48$\n$V_{rms} > \\overline{V}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\overline{V} = 5$ m/s"
+    },
+    {
+     "key": "B",
+     "text": "$V_{rms} > \\overline{V}$"
+    },
+    {
+     "key": "C",
+     "text": "$V_{rms}^{2} < \\overline{V}^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$V_{rms} = \\overline{V}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "As shown in the figure, a pump is designed as horizontal cylinder with a piston having area A and an outlet orifice having an area ‘a’. The piston moves with a constant velocity under the action of force F. If the density of the liquid is $\\rho$, then the speed of the liquid emerging from the orifice is, (assume $A >> a$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "by principle of continuity\n$AV = av$\nby Bernoulis principle\n$P + \\frac{1}{2}\\rho V^{2} = P_0 + \\frac{1}{2}\\rho v^{2}$\n$\\left[\\frac{F}{A} + P_0\\right] + \\frac{1}{2}\\rho V^{2} = P_0 + \\frac{1}{2}\\rho v^{2}$\n$\\frac{F}{A} + \\frac{1}{2}\\rho\\left[\\frac{av}{A}\\right]^{2} = \\frac{1}{2}\\rho v^{2}$\n$\\frac{F}{A} = \\frac{1}{2}\\rho v^{2}\\left[1 - \\frac{a^{2}}{A^{2}}\\right]$\n$v = \\sqrt{\\frac{2F}{\\rho A\\left[1 - \\frac{a^{2}}{A^{2}}\\right]}}$\n$a^{2} << A^{2}$\n$v = \\sqrt{\\frac{2F}{\\rho A}}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{\\frac{F}{\\rho A}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{a}{A}\\sqrt{\\frac{F}{\\rho A}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{2F}{\\rho A}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{A}{a}\\sqrt{\\frac{2F}{\\rho A}}$"
+    }
+   ],
+   "stem_figure": "wb23-phy-q05.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Two substance A and B of same mass are heated at constant rate. The variation of temperature $\\theta$ of the substance with time t is shown in the figure. Choose the correct staement",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta H = mC\\Delta\\theta$\n$\\frac{dH}{dt} = mC\\frac{d\\theta}{dt}$, $\\frac{dH}{dt}$ = a constant\n$\\therefore \\frac{d\\theta}{dt} \\propto \\frac{1}{C}$\ni.e. slope $\\propto \\frac{1}{C}$, $\\therefore C_B < C_A$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Specific heat of A is greater than that of B"
+    },
+    {
+     "key": "B",
+     "text": "Specific heat of B is greater than that of A"
+    },
+    {
+     "key": "C",
+     "text": "Both have same specific heat"
+    },
+    {
+     "key": "D",
+     "text": "None of the above is true"
+    }
+   ],
+   "stem_figure": "wb23-phy-q06.png",
+   "solution_figure": "wb23-phy-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Consider a positively charged infinite cylinder with uniform volume charge density $r > 0$. An electric dipole consisting of $+Q$ and $-Q$ charges attached to opposite ends of a massless rod is oriented as shown in the figure. At the instant as shown in the figure, the dipole will experience,",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E \\propto \\frac{1}{r}$\n$F_1 > F_2$\n$\\therefore$ $F_{net}$ towards right $\\tau_{net}$ clockwise.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "a force to the left and no torque"
+    },
+    {
+     "key": "B",
+     "text": "a force to the right and a clockwise torque"
+    },
+    {
+     "key": "C",
+     "text": "a force to the right and a counter clockwise torque"
+    },
+    {
+     "key": "D",
+     "text": "non froce but only a clockwise torque"
+    }
+   ],
+   "stem_figure": "wb23-phy-q09.png",
+   "solution_figure": "wb23-phy-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "12 mC and 6 mC charges are given to the two conducting plates having same cross-sectional area and placed face to face close to each other as shown in the figure. The resulting charge distribution in mC on surface A, B, C and D are respectively,",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9, 3, -3, 9$"
+    },
+    {
+     "key": "B",
+     "text": "$3, 9, -9, 3$"
+    },
+    {
+     "key": "C",
+     "text": "$6, 6, -6, 12$"
+    },
+    {
+     "key": "D",
+     "text": "$6, 6, 3, 3$"
+    }
+   ],
+   "stem_figure": "wb23-phy-q10.png",
+   "solution_figure": "wb23-phy-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A wire carrying a steady current I is kept in the x-y plane along the curve $y = A\\sin\\left(\\frac{2\\pi}{\\lambda}x\\right)$. A magnetic field B exists in the z-direction. The magnitude of the magnetic force in the portion of the wire between x = 0 and x = $\\lambda$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Magnetic force = $I\\lambda B$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$2I\\lambda B$"
+    },
+    {
+     "key": "C",
+     "text": "$I\\lambda B$"
+    },
+    {
+     "key": "D",
+     "text": "$I\\lambda B/2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q11-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The figure represents two equipotential lines in x-y plane for an electric field. The x-component $E_x$ of the electric field in space between these equipotential lines is,",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E_x = -\\frac{dv}{dx} = -\\left(\\frac{4 - 2}{2}\\right) = -1\\ \\mathrm{V/cm} = -100\\ \\mathrm{V/m}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "100 V/m"
+    },
+    {
+     "key": "B",
+     "text": "–100 V/m"
+    },
+    {
+     "key": "C",
+     "text": "200 V/m"
+    },
+    {
+     "key": "D",
+     "text": "–200 V/m"
+    }
+   ],
+   "stem_figure": "wb23-phy-q12.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "An electric dipole of dipole moment $\\vec{p}$ is placed at the origin of the co-ordinate system along the z-axis. The amount of work required to move a charge ‘q’ from the point (a, 0, 0) to the point (0, 0, a) is,",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$W = q(V_B - V_A)$\n$= q\\left(\\frac{p}{4\\pi\\epsilon_0}\\cdot\\frac{\\cos 0}{a^{2}} - \\frac{p\\cos 90^\\circ}{4\\pi\\epsilon_0 a^{2}}\\right)$\n$= \\frac{pq}{4\\pi\\varepsilon_0 a^{2}}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{pq}{4\\pi\\varepsilon_0 a}$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{-pq}{4\\pi\\varepsilon_0 a^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{pq}{4\\pi\\varepsilon_0 a^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q13-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The electric field of a plane electromagnetic wave of wave number k and angular frequency $\\omega$ is given by $\\vec{E} = E_0\\left(\\hat{i} + \\hat{j}\\right)\\sin(kz - \\omega t)$. Which of the following gives the direction of the associated magnetic field $\\vec{B}$ ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{E}\\cdot\\vec{B} = 0$ and in the plane of XY.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\hat{k}$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\hat{i} + \\hat{j}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\hat{i} - \\hat{j}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\hat{i} - \\hat{k}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A charged particle in a uniform magnetic field $\\vec{B} = B_0\\hat{k}$ starts moving from the origin with velocity $\\nu = 3\\hat{i} + 4\\hat{k}$ m/s. The trajectory of the particle and the time t at which it reaches 2 m above x-y plane are,",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Velocity along z-direction will be const.\n$t = \\frac{s}{V_z} = \\frac{2}{4} = \\frac{1}{2}$sec\nPath will be helical.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Circular path, $\\frac{1}{2}$ sec."
+    },
+    {
+     "key": "B",
+     "text": "Helical path, $\\frac{1}{2}$ sec."
+    },
+    {
+     "key": "C",
+     "text": "Circular path, $\\frac{2}{3}$ sec."
+    },
+    {
+     "key": "D",
+     "text": "Helical path, $\\frac{2}{3}$ sec."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In an experiment on a circuit as shown in the figure, the voltmeter shows 8V reading. The resistance of the voltmeter is,",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Voltage across $20\\Omega$ = 2V\nMain current = $\\frac{2}{20}$ = 0.1A\nCurrent through $160\\Omega$ = $\\frac{8}{160} = \\frac{1}{20}$ = 0.05A\nAlso, 8V = $0.05 \\times R$\nR = $\\frac{8}{0.05}$ = $160\\Omega$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20\\ \\Omega$"
+    },
+    {
+     "key": "B",
+     "text": "$320\\ \\Omega$"
+    },
+    {
+     "key": "C",
+     "text": "$160\\ \\Omega$"
+    },
+    {
+     "key": "D",
+     "text": "$1.44\\ \\mathrm{k\\Omega}$"
+    }
+   ],
+   "stem_figure": "wb23-phy-q16.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "An interference pattern is obtained with two coherent sources of intensity ratio n : 1. The ratio $\\frac{I_{Max} - I_{Min}}{I_{Max} + I_{Min}}$ will be maximum if",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{I_1}{I_2} = n$\n$I_1 = nI_2$\n$I_{max} = \\left(\\sqrt{I_1} + \\sqrt{I_2}\\right)^{2} = \\left(\\sqrt{nI_2} + \\sqrt{I_2}\\right)^{2} = \\left(\\sqrt{n} + 1\\right)^{2}\\left(\\sqrt{I_2}\\right)^{2}$\n$I_{min} = \\left(\\sqrt{I_1} - \\sqrt{I_2}\\right)^{2} = \\left(\\sqrt{nI_2} - \\sqrt{I_2}\\right)^{2} = \\left(\\sqrt{n} - 1\\right)^{2}\\left(\\sqrt{I_2}\\right)^{2}$\n$\\frac{I_{max} - I_{min}}{I_{max} + I_{min}} = \\frac{\\left(\\sqrt{n} + 1\\right)^{2}(I_2) - \\left(\\sqrt{n} - 1\\right)^{2}I_2}{\\left(\\sqrt{n} + 1\\right)^{2}I_2 + \\left(\\sqrt{n} - 1\\right)^{2}I_2} = \\frac{\\left(\\sqrt{n} + 1\\right)^{2} - \\left(\\sqrt{n} - 1\\right)^{2}}{\\left(\\sqrt{n} + 1\\right)^{2} + \\left(\\sqrt{n} - 1\\right)^{2}}$\n$= \\frac{\\left(n + 1 + 2\\sqrt{n}\\right) - \\left(n + 1 - 2\\sqrt{n}\\right)}{n + 1 + 2\\sqrt{n} + n + 1 - 2\\sqrt{n}} = \\frac{4\\sqrt{n}}{2(n + 1)} = \\frac{2\\sqrt{n}}{n + 1}$\n$\\therefore$ decreases with increasing n.\n$\\therefore$ It will be maximum if n = 1",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$n = 1$"
+    },
+    {
+     "key": "B",
+     "text": "$n = 2$"
+    },
+    {
+     "key": "C",
+     "text": "$n = 3$"
+    },
+    {
+     "key": "D",
+     "text": "$n = 4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Three identical convex lenses each of focal length f are placed in a straight line separated by a distance f from each other. An object is located at $f/2$ in front of the leftmost lens. Then,",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For first lens\n$u = -\\frac{f}{2}$\n$\\frac{1}{f} = \\frac{1}{v} - \\frac{1}{u} \\Rightarrow \\frac{1}{f} = \\frac{1}{v} - \\frac{1}{\\frac{-f}{2}} \\Rightarrow \\frac{1}{v} = \\frac{1}{f} - \\frac{2}{f} \\Rightarrow \\frac{1}{v} = \\frac{-1}{f}$\n$v = -f$\n$m_1 = \\frac{v}{u} = \\frac{-f}{\\frac{-f}{2}} = 2$\nFor second lens\n$u = -(f + f) = -2f$\n$\\frac{1}{v} - \\frac{1}{u} = \\frac{1}{f} \\Rightarrow \\frac{1}{v} - \\frac{1}{-2f} = \\frac{1}{f} \\Rightarrow \\frac{1}{v} = \\frac{1}{f} - \\frac{1}{2f} \\Rightarrow \\frac{1}{v} = \\frac{1}{2f}$\n$v = 2f$\n$m_1 = \\frac{v}{u} = \\frac{2f}{-2f} = -1$\nFor third lens\n$u = f$\n$f = f$\n$\\frac{1}{v} - \\frac{1}{u} = \\frac{1}{f} \\Rightarrow \\frac{1}{v} = \\frac{1}{f} + \\frac{1}{u} \\Rightarrow \\frac{1}{v} = \\frac{1}{f} + \\frac{1}{f} \\Rightarrow \\frac{1}{v} = \\frac{2}{f} \\Rightarrow v = \\frac{f}{2}$\n$m_3 = \\frac{v}{u} = \\frac{\\frac{f}{2}}{f} = \\frac{1}{2}$\nTotal magnification = $m_1 m_2 m_3 = 2 \\times (-1) \\times \\frac{1}{2} = -1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Final image will be at $f/2$ behind the rightmost lens and its magnification will be $-1$."
+    },
+    {
+     "key": "B",
+     "text": "Final image will be at $f/2$ behind the rightmost lens and its magnification will be $+1$."
+    },
+    {
+     "key": "C",
+     "text": "Final image will be at f behind the rightmost lens and its magnification will be $-1$."
+    },
+    {
+     "key": "D",
+     "text": "Final image will be at f behind the rightmost lens and its magnification will be $+1$."
+    }
+   ],
+   "stem_figure": "wb23-phy-q19.png",
+   "solution_figure": "wb23-phy-q19-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A ray of monochromatic light is incident on the plane surface of separation between two media X and Y with angle of incidence ‘i’ in medium X and angle of refraction ‘r’ in medium Y. The given graph shows the relation between sin i and sin r. If $V_X$ and $V_Y$ are the velocities of the ray in media X and Y respectively, then which of the following is true?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mu_1\\sin i = \\mu_2\\sin r$\n$\\frac{C}{V_X}\\sin i = \\frac{C}{V_Y}\\sin r$\n$\\frac{\\sin i}{\\sin r} = \\frac{V_X}{V_Y} = \\sqrt{3}$\n$V_Y = \\frac{V_X}{\\sqrt{3}}$\n$V_X = \\sqrt{3}\\ V_Y$\n$y = mx$\n$\\sin r = (\\tan 30^\\circ)\\sin i$\n$\\frac{\\sin i}{\\sin r} = \\frac{1}{\\tan 30^\\circ} = \\frac{\\sqrt{3}}{1}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$V_X = \\frac{1}{\\sqrt{3}}V_Y$"
+    },
+    {
+     "key": "B",
+     "text": "$V_X = \\sqrt{3}\\,V_Y$"
+    },
+    {
+     "key": "C",
+     "text": "Total internal reflection can happen when the light is incident in medium X."
+    },
+    {
+     "key": "D",
+     "text": "$\\nu_X = \\sqrt{3}\\,\\nu_Y$, where $\\nu_X$ and $\\nu_Y$ are frequencies of the light in medium X and Y respectively."
+    }
+   ],
+   "stem_figure": "wb23-phy-q20.png",
+   "solution_figure": "wb23-phy-q20-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If the potential energy of a hydrogen atom in the first excited state is assumed to be zero, then the total energy of $n = \\infty$ state is,",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Potential energy in 1st emited stage ($U_2$) = $-6.8$eV. When $U_2$ is assumed to be zero then potential energy in ($n = \\infty$) will be 6.8 eV\nso, total energy for ($n = \\infty$) = 6.8eV",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3.4 eV"
+    },
+    {
+     "key": "B",
+     "text": "6.8 eV"
+    },
+    {
+     "key": "C",
+     "text": "0"
+    },
+    {
+     "key": "D",
+     "text": "$\\infty$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In the given circuit, find the voltage drop $V_L$ in the load resistance $R_L$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$i = \\frac{9}{300}$ A\nSo, $V_a - V_a = \\frac{9}{300} \\times 100 = 3$V\nSo, diode is not activated,\nSo, voltage across load is 3V.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5 V"
+    },
+    {
+     "key": "B",
+     "text": "3 V"
+    },
+    {
+     "key": "C",
+     "text": "9V"
+    },
+    {
+     "key": "D",
+     "text": "6V"
+    }
+   ],
+   "stem_figure": "wb23-phy-q22.png",
+   "solution_figure": "wb23-phy-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Consider the logic circuit with inputs A, B, C and output Y. How many combinations of A, B and C gives the output Y = 0 ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\overline{(A + \\overline{B}) + \\overline{C}} = \\overline{A + \\overline{B}} \\cdot C = (\\overline{A} \\cdot B \\cdot C)$\n$\\therefore y = 1$\nif A = 0, B = 1, C = 1\nFor rest of all cases Y = O\nTotal cases = 8\n$\\therefore$ Ans (8 – 1) = 7",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "8"
+    },
+    {
+     "key": "B",
+     "text": "5"
+    },
+    {
+     "key": "C",
+     "text": "7"
+    },
+    {
+     "key": "D",
+     "text": "1"
+    }
+   ],
+   "stem_figure": "wb23-phy-q23.png",
+   "solution_figure": "wb23-phy-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "X-rays of wavelength $\\lambda$ gets reflected from parallel planes of atoms in a crystal with spacing d between two planes as shown in the figure. If the two reflected beams interfere constructively, then the condition for maxima will be, (n is the order of interference fringe)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2d\\sin\\theta = n\\lambda$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$d\\tan\\theta = n\\lambda$"
+    },
+    {
+     "key": "B",
+     "text": "$d\\sin\\theta = n\\lambda$"
+    },
+    {
+     "key": "C",
+     "text": "$2d\\cos\\theta = n\\lambda$"
+    },
+    {
+     "key": "D",
+     "text": "$2d\\sin\\theta = n\\lambda$"
+    }
+   ],
+   "stem_figure": "wb23-phy-q24.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A particle of mass m is projected at a velocity u, making an angle $\\theta$ with the horizontal (x – axis). If the angle of projection $\\theta$ is varied keeping all other parameters same, then magnitude of angular momentum (L) at its maximum height about the point of projection varies with $\\theta$ as,",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L_0 = mu\\cos\\theta\\,H$\n$= mu\\cos\\theta\\frac{u^{2}\\sin^{2}\\theta}{2g}$\n$= \\frac{mu^{3}\\sin^{2}\\theta\\cos\\theta}{2g}$\nL is zero for $\\theta = 0^\\circ$ and $\\theta = \\frac{\\pi}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb23-phy-q25-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb23-phy-q25-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb23-phy-q25-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb23-phy-q25-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q25-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A body of mass 2 kg moves in a horizontal circular path of radius 5 m. At an instant, its speed is $2\\sqrt{5}$ m/s and is increasing at the rate of 3 $\\mathrm{m/s^{2}}$. The magnitude of force acting on the body at the instant is,",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "F = ma\n$= m\\sqrt{a_c^{2} + a_T^{2}}$\n$= m\\sqrt{\\left(\\frac{20}{5}\\right)^{2} + 9}$\n$= 2\\sqrt{16 + 9} = 2 \\times 5 = 10$N",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6 N"
+    },
+    {
+     "key": "B",
+     "text": "8 N"
+    },
+    {
+     "key": "C",
+     "text": "14 N"
+    },
+    {
+     "key": "D",
+     "text": "10 N"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In an experiment, the length of an object is measured to be 6.50 cm. This measured value can be written as 0.0650 m. The number of significant figures on 0.0650 m is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A mouse of mass m jumps on the outside edge of a rotating ceiling fan of moment of inertia I and radius R. The fractional loss of angular velocity of the fan as a result is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I\\omega_0 = \\left(I + mR^{2}\\right)\\omega$, $\\omega_0 \\to$ Initial angular velocity\n$\\omega = \\frac{I\\omega_0}{I + mR^{2}}$, $\\omega \\to$ Final angular velocity\nSo, $\\frac{\\omega_0 - \\omega}{\\omega_0} = I - \\frac{I}{I + mR^{2}} = \\frac{mR^{2}}{I + mR^{2}}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{mR^{2}}{I + mR^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{I}{I + mR^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{I - mR^{2}}{I}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{I - mR^{2}}{I + mR^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Acceleration due to gravity at a height H from the surface of a planet is the same as that at a depth of H below of surface. If R be the radius of the planet, then H vs. R graph for different planets will be",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{GM}{(R + H)^{2}} = \\frac{GM(R - H)}{R^{3}}$\n$(R + H)^{2}(R - H) = R^{3}$\n$\\cancel{R^{3}} - RH^{2} + HR^{2} - H^{3} = \\cancel{R^{3}}$\n$H^{2} - R^{2} + RH = 0$\n$H = \\frac{\\left(\\sqrt{5} - 1\\right)}{2}R$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb23-phy-q29-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb23-phy-q29-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb23-phy-q29-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb23-phy-q29-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q29-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A uniform rope of length 4 m and mass 0.4 kg is held on a frictionless table in such a way that 0.6 m of the rope is hanging over the edge. The work done to pull the hanging part of the rope on the to the table is, (Assume g = 10 $\\mathrm{m/s^{2}}$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$W = \\frac{mgL}{2} = \\frac{0.4}{4} \\times 0.6 \\times 10 \\times \\frac{0.6}{2}$\n$= 0.1 \\times 0.6 \\times 10 \\times 0.3$\n$= 0.18$J",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.36 J"
+    },
+    {
+     "key": "B",
+     "text": "0.24 J"
+    },
+    {
+     "key": "C",
+     "text": "0.12 J"
+    },
+    {
+     "key": "D",
+     "text": "0.18 J"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "There are n elastic balls placed on a smooth horizontal plane. The masses of the balls are $m, \\frac{m}{2}, \\frac{m}{2^{2}}, \\ldots \\frac{m}{2^{n-1}}$ respectively. If the first ball hits the second ball with velocity $v_0$, then the velocity of the $n^{th}$ ball will be,",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "1st Collision\n$V_1 = \\frac{2 \\times m}{\\frac{m}{2} + m}V_0 = \\frac{4}{3}V_0$\n2nd Collision\n$V_2 = \\frac{2 \\times \\frac{m}{2}}{\\frac{m}{2} + \\frac{m}{2^{2}}} \\times V_0 = \\left(\\frac{4}{3}\\right)^{2}V_0$\n3rd Collision\n$\\left(\\frac{4}{3}\\right)^{3}V_0$\n. . . . .(n – 1) collision, $\\therefore V_{n-1} = \\left(\\frac{4}{3}\\right)^{n-1}V_0$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{3}v_0$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{4}{3}\\right)^{n}v_0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{4}{3}\\right)^{n-1}v_0$"
+    },
+    {
+     "key": "D",
+     "text": "$v_0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "An earth’s satellite near the surface of the earth takes about 90 min per revolution. A satellite orbiting the moon also takes about 90 min per revolution. Then which of the following is true?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$m(E_g) = m\\omega^{2}R$\n$m \\cdot 4\\pi\\frac{G\\rho R}{3} = m\\omega^{2}R$\n$\\Rightarrow \\omega^{2} \\propto \\rho$\n$\\Rightarrow T \\propto \\frac{1}{\\sqrt{\\rho}}$\nIf T are equal, so will be $\\rho$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\rho_m < \\rho_e$"
+    },
+    {
+     "key": "B",
+     "text": "$\\rho_m > \\rho_e$"
+    },
+    {
+     "key": "C",
+     "text": "$\\rho_m = \\rho_e$"
+    },
+    {
+     "key": "D",
+     "text": "No conclusion can be made about the densities"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q32-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "A bar magnet falls from rest under gravity through the centre of a horizontal ring of conducting wire as shown in figure. Which of the following graph best represents the speed (v) vs. time (t) graph of the bar magnet?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb23-phy-q33-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb23-phy-q33-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb23-phy-q33-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb23-phy-q33-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "An amount of charge Q passes through a coil of resistance R. If the current in the coil decreases to zero at a uniform rate during time T, then the amount of heat generated in the coil will be,",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given, $\\frac{1}{2}I_0T = Q \\Rightarrow I_0 = \\frac{2Q}{T}$\nEquation of $I(t) \\Rightarrow \\frac{I}{I_0} + \\frac{t}{T} = 1$\n$I = I_0\\left(1 - \\frac{t}{T}\\right) = \\frac{2Q}{T}\\left(1 - \\frac{t}{T}\\right)$\nHeat = $\\int_{0}^{T} I^{2}R\\,df$\n$= R\\int_{0}^{T}\\frac{4Q^{2}}{T^{2}}\\left(1 - \\frac{t}{T}\\right)^{2}$\n$= \\frac{4Q^{2}R}{T^{2}}\\left[\\int_{0}^{T}dt + \\frac{1}{T^{2}}\\int_{0}^{T}t^{2}dt - \\frac{2}{T}\\int_{0}^{T}t\\,dt\\right] = \\frac{4Q^{2}R}{T^{2}}\\left[\\cancel{T} + \\frac{T}{3} - \\cancel{T}\\right] = \\frac{4Q^{2}R}{3T}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4Q^{2}R}{3T}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2Q^{2}R}{3T}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{Q^{2}R}{4R}$"
+    },
+    {
+     "key": "D",
+     "text": "$Q^{2}RT$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q34-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "A modified gravitational potential is given by $V = -\\frac{GM}{r} + \\frac{A}{r^{2}}$. If the constant A is expressed in terms of gravitational constant (G), mass (M) and velocity of light (c), then from dimensional analysis, A is,",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V = -\\frac{GM}{r} + \\frac{A}{r^{2}}$\n$[A] = \\frac{[GM]}{[r]}[r^{2}] = [GM][r]$\nnow, we know, $\\frac{GM}{r}$ gives dimension of $c^{2}$\n$\\frac{[GM]}{[r]} = [c^{2}] \\Rightarrow [r] = \\frac{[GM]}{[c^{2}]}$\n$\\Rightarrow [A] = \\frac{[GM][GM]}{[c^{2}]}$\n$[A] = \\frac{G^{2}M^{2}}{c^{2}}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{G^{2}M^{2}}{c^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{GM}{c^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{c^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "Dimensionless"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Thermodynamics",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "A cyclic process is shown in p – v diagram and T – S diagram. Which of the following statement(s) is/are true?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B",
+    "C",
+    "D"
+   ],
+   "solution": null,
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 \\rightarrow 2$ : Isobaric, $2 \\rightarrow 3$ : Isothermal"
+    },
+    {
+     "key": "B",
+     "text": "$3 \\rightarrow 1$ : Isochoric, $2 \\rightarrow 3$ : adiabatic"
+    },
+    {
+     "key": "C",
+     "text": "Work done by the system in the complete cyclic process in non-zero"
+    },
+    {
+     "key": "D",
+     "text": "The heat absorbed by the system in the complete cyclic process in non-zero"
+    }
+   ],
+   "stem_figure": "wb23-phy-q36.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The figure shows two identical parallel plate capacitors A and B of capacitances C connected to a battery. The key K is initially closed. The switch is now opened and the free spaces between the plates of the capacitors are filled with a dielectric constant 3. Then which of the following statement (s) is/are true?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "D"
+   ],
+   "solution": "$U = \\frac{1}{2} \\times 2CV^{2}$\n$= CV^{2}$\n$U_A = \\frac{1}{2}(KC)V^{2} = \\frac{3}{2}CV^{2}$\n$U_B = \\frac{q^{2}}{2KC} = \\frac{[CV]^{2}}{2KC} = \\frac{CV^{2}}{2K} = \\frac{1}{6}CV^{2}$\nTotal energy when switch is open\n$U = \\frac{1}{2}KCV^{2} + \\frac{1}{6}CV^{2}$\n$= \\frac{3}{2}CV^{2} + \\frac{1}{6}CV^{2}$\n$= \\frac{10}{6}CV^{2} = \\frac{5}{3}CV^{2}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Which the switch is closed, total energy stored in the two capacitors is $CV^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "When the switch is opened, no charge is stored in the capacitor B"
+    },
+    {
+     "key": "C",
+     "text": "When the switch is opened, energy stored in the capacitor B is $\\frac{3}{2}CV^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "When the switch is opened, total energy stored in two capacitors is $\\frac{5}{2}CV^{2}$"
+    }
+   ],
+   "stem_figure": "wb23-phy-q37.png",
+   "solution_figure": "wb23-phy-q37-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Electromagnetic Induction",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "A charged particle of charge q and mass m is placed at a distance 2R from the centre of a vertical cylindrical region of radius R where magnetic field varies as $\\vec{B} = \\left(4t^{2} - 2t + 6\\right)\\hat{k}$ where t is time. Then which of the following statement(s) is/are true?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B"
+   ],
+   "solution": "$r < R$\n$E \\times 2\\pi r = \\frac{d\\phi}{dt} = \\frac{d}{dt}\\left(4t^{2} - 2t + 6\\right) \\times \\pi r^{2}$\n$E \\times 2\\pi r = (8t - 2)\\pi r^{2}$\n$E = \\frac{(8t - 2)r}{2}$\n$E = (4t - 1)r$\n$E \\propto r$\nFor $r > R$\n$E \\times 2\\pi.(2R) = \\frac{d}{dt}[4t^{2} - 2t + 6] \\times \\pi[R]^{2}$\n$E.4\\pi R = [8t - 2]\\pi R^{2}$\n$E = \\frac{[8t - 2]R}{4}$ at t = 2, $E = \\frac{14}{4}R = \\frac{7R}{2}$\nacceleration = $\\frac{Eq}{m} = \\frac{7Rq}{2m} = \\frac{7qR}{2m}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Induced electric field lines form closed loops"
+    },
+    {
+     "key": "B",
+     "text": "Electric field varies linearly with r if $r < R$, where r is the radial distance from the centerline of the cylinder"
+    },
+    {
+     "key": "C",
+     "text": "The charged particle will move in clockwise direction when viewed from top"
+    },
+    {
+     "key": "D",
+     "text": "Acceleration of the charged particle is $\\frac{7q}{2m}$ when t = 2 sec"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "A uniform magnetic field B exists in a region. An electron of charge q and mass m moving with velocity v enters the region in a direction perpendicular to the magnetic field. Considering Bohr angular momentum quantization, which of the following statement(s) is/are true?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "solution": "$r = \\frac{mv}{qB}$\n$mvr = \\frac{nh}{2\\pi}$\n$mv = \\frac{nh}{2\\pi r}$\n$r = \\frac{nh}{2\\pi rqB}$\n$r^{2} = \\frac{nh}{2\\pi qB} \\Rightarrow r = \\sqrt{\\frac{nh}{2\\pi qB}}$\n$r \\propto \\sqrt{n}$\n$v = \\frac{qBr}{m} = \\frac{qB}{m}\\sqrt{\\frac{nh}{2\\pi qB}}$\n$v_{min} = \\sqrt{\\frac{q^{2}B^{2}}{m^{2}} \\times \\frac{nh}{2\\pi qB}} = \\sqrt{\\frac{nqBh}{2\\pi m^{2}}} = \\frac{1}{m}\\sqrt{qB\\hbar}$\n$E = \\frac{1}{2}mv^{2}$\n$= \\frac{1}{2}m\\left[\\frac{nqBh}{2\\pi m^{2}}\\right]$\n$E \\propto n$\n$E_2 - E_1 = (n_2 - n_1)\\frac{qBh}{4\\pi m}$\n$hf = (n_2 - n_1)\\frac{qBh}{4\\pi m}$\n$n_2 - n_1 = 1$ for successive levels",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "The radius of $n^{th}$ orbit $r_n \\propto \\sqrt{n}$"
+    },
+    {
+     "key": "B",
+     "text": "The maximum velocity of the electron is $\\frac{\\sqrt{qB\\hbar}}{m}$"
+    },
+    {
+     "key": "C",
+     "text": "Energy of the $n^{th}$ level $E_n \\propto n$"
+    },
+    {
+     "key": "D",
+     "text": "Transition frequency $\\omega$ between two successive levels is independent of n"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb23-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Work, Energy and Power",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "A train is moving along the tracks at a constant speed u. A girl on the train throws a ball of mass m straight ahead along the direction of motion of the train with speed v with respect to herself. Then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B",
+    "C"
+   ],
+   "solution": "w.r.t. the girl $E_k = \\frac{1}{2}mv^{2}$\n$\\therefore W = \\Delta E_k = \\frac{1}{2}mv^{2}$\nWork by the train = $\\left\\{\\frac{1}{2}(v + u)^{2} - \\frac{1}{2}mu^{2}\\right\\} - \\frac{1}{2}mv^{2}$\n$= \\frac{1}{2}m\\left(v^{2} + u^{2} + 2vu\\right) - \\frac{1}{2}m\\left(v^{2} + u^{2}\\right)$\n$= mvu$\nGain in $E_k$ = $\\frac{1}{2}m(v + u)^{2} - \\frac{1}{2}mu^{2} = \\frac{1}{2}mv^{2} + mvu$\nmeasured from rail track",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Kinetic energy of the ball as measured by the girl on the train is $mv^{2}/2$"
+    },
+    {
+     "key": "B",
+     "text": "Work done by the girl in throwing the ball is $mv^{2}/2$"
+    },
+    {
+     "key": "C",
+     "text": "Work done by the train is $mvu$"
+    },
+    {
+     "key": "D",
+     "text": "The gain in kinetic energy of the ball as measured by a person standing by the rail track is $mv^{2}/2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

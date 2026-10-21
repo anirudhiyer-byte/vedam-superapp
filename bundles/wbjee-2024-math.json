@@ -1,0 +1,2822 @@
+{
+ "paper": {
+  "exam": "WBJEE",
+  "subject": "Mathematics",
+  "year": 2024,
+  "set_label": "28 Apr 2024",
+  "title": "WBJEE 2024 · Mathematics",
+  "marks_correct": 1,
+  "marks_wrong": -0.25,
+  "marking_note": "Category 1: +1 / −¼ · Category 2: +2 / −½ · Category 3: +2, one or more correct, no negative",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1a86IN3XGC-JOugDC89h8DtaWCwU7T7bb"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "$\\Delta OAB$ is an equilateral triangle inscribed in the parabola $y^{2} = 4ax,\\ a > 0$ with O as the vertex, then the length of the side of $\\Delta OAB$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : Slope of OA : $M_{OA} = \\tan 30^\\circ = \\frac{1}{\\sqrt{3}}$\nEquation of OA : $y = \\frac{1}{\\sqrt{3}}x$ from parabola\nand line OA , $\\frac{x^{2}}{3} = 4ax$\n$\\Rightarrow x = 12a \\Rightarrow y = 4\\sqrt{3}a\\ \\therefore AB = 2 \\times 4\\sqrt{3}a = 8a\\sqrt{3}$ unit",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8a\\sqrt{3}$ unit"
+    },
+    {
+     "key": "B",
+     "text": "$8a$ unit"
+    },
+    {
+     "key": "C",
+     "text": "$4a\\sqrt{3}$ unit"
+    },
+    {
+     "key": "D",
+     "text": "$4a$ unit"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The plane $2x - y + 3z + 5 = 0$ is rotated through $90^\\circ$ about its line of intersection with the plane $x + y + z = 1$. The equation of the plane in new position is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : Equation of a plane passing through the line of intersection of the given planes is\n$2x - y + 3z + 5 + \\lambda(x + y + z - 1) = 0$\n$\\Rightarrow (2 + \\lambda)x - (1 - \\lambda)y + (3 + \\lambda)z + 5 - \\lambda = 0$ this will be perpendicular to the plane $2x - y + 3z + 5 = 0$\n$\\Rightarrow (2 + \\lambda)2 + (1 - \\lambda) \\times 1 + 3(3 + \\lambda) = 0 \\Rightarrow \\lambda = \\frac{-7}{2}$\n$\\therefore$ Equation of plane $3x + 9y + z = 17$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3x + 9y + z + 17 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$3x + 9y + z = 17$"
+    },
+    {
+     "key": "C",
+     "text": "$3x - 9y - z = 17$"
+    },
+    {
+     "key": "D",
+     "text": "$3x + 9y - z = 17$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If the relation between the direction ratios of two lines in $\\mathbb{R}^{3}$ are given by $l + m + n = 0,\\ 2lm + 2mn - ln = 0$ then the angle between the lines is ($l, m, n$ have their usual meaning)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : Quadratic in $\\frac{m}{n}$ : $2\\left(\\frac{m}{n}\\right)^{2} - \\frac{m}{n} - 1 = 0 \\Rightarrow \\frac{m}{n} = 1, -\\frac{1}{2}$\n$\\Rightarrow n = m$ or $n = -2m$ & $l = -m - n$, $\\Rightarrow l : m : n \\Rightarrow -2 : 1 : 1$ or $1 : 1 : -2$\n$\\therefore$ Angle $= \\cos^{-1}\\left(\\frac{-2}{\\sqrt{6}}\\frac{1}{\\sqrt{6}} + \\frac{1}{\\sqrt{6}}\\cdot\\frac{1}{\\sqrt{6}} + \\frac{1}{\\sqrt{6}}\\left(\\frac{-1}{\\sqrt{6}}\\right)\\right) = \\cos\\left(-\\frac{1}{2}\\right) = \\frac{2\\pi}{3}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{6}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2\\pi}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $U_{n}$ $(n = 1, 2)$ denote the $n^{th}$ derivative $(n = 1, 2)$ of $U(x) = \\frac{Lx + M}{x^{2} - 2Bx + C}$ ($L, M, B, C$ are constants), then $PU_{2} + QU_{1} + RU = 0$, holds for",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $U(x) = \\frac{Lx + m}{x^{2} - 2Bx + c}$, $U(x)(x^{2} - 2Bx + c) = Lx + m$\n$U(x)(2x - 2B) + (x^{2} - 2Bx + c)U_{1}(x) = L$\n$U(x) \\times 2 (2x - 2B)xU_{1}(x) + (2x - 2B)U_{1}(x) + (x^{2} - 2Bx + c)U_{2}(x) = 0$\n$\\Rightarrow U_{2}(x^{2} - 2B + c) + U_{1}(4x - 4B) + 2U = 0$\n$\\therefore P = x^{2} - 2Bx + c$, $\\theta = 4(x - B)$, $R = 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$P = x^{2} - 2B,\\ Q = 2x,\\ R = 3x$"
+    },
+    {
+     "key": "B",
+     "text": "$P = x^{2} - 2Bx + C,\\ Q = 4(x - B),\\ R = 2$"
+    },
+    {
+     "key": "C",
+     "text": "$P = 2x,\\ Q = 2B,\\ R = 2$"
+    },
+    {
+     "key": "D",
+     "text": "$P = x^{2},\\ Q = x,\\ R = 3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "For every real number $x \\neq -1$, let $f(x) = \\frac{x}{x + 1}$. Write $f_{1}(x) = f(x)$ & for $n \\geq 2$, $f_{n}(x) = f(f_{n-1}(x))$. Then $f_{1}(-2)\\cdot f_{2}(-2)\\ \\ldots\\ldots$ must be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $f(x) = \\frac{x}{x + 1}$, $f_{2}(x) = \\frac{\\frac{x}{x + 1}}{\\frac{x}{x + 1} + 1} = \\frac{x}{2x + 1}$\n$f_{3}(x) = \\frac{x}{3x + 1}$, $\\Rightarrow f_{1}(-2).f_{2}(-2)\\ \\ldots\\ldots\\ f_{n}(-2)$\n$= \\frac{-2}{-1} \\times \\frac{-2}{-3} \\times \\frac{-2}{-5} \\times \\ldots\\ldots \\times \\frac{-2}{(2n - 1)} = \\frac{2^{n}}{1.3.5\\ldots(2n - 1)}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2^{n}}{1.3.5\\ldots(2n - 1)}$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2}\\binom{2n}{n}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\binom{2n}{n}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Limits and Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\alpha, \\beta$ are the roots of the equation $ax^{2} + bx + c = 0$ then $\\lim_{x \\to \\beta} \\frac{1 - \\cos(ax^{2} + bx + c)}{(x - \\beta)^{2}}$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $ax^{2} + bx + c = a(x - \\alpha)(x - \\beta)$\n$$\\lim_{x \\to \\beta} \\frac{1 - \\cos(ax^{2} + bx + c)}{(x - \\beta)^{2}}$$\n$$= \\lim_{x \\to \\beta} \\frac{1 - \\cos(a(x - \\alpha)(x - \\beta))}{(x - \\beta)^{2}}$$\n$$= \\lim_{x \\to \\beta} \\frac{2\\sin^{2}\\left(\\frac{a(x - \\alpha)(x - \\beta)}{2}\\right)}{(x - \\beta)^{2}} = \\lim_{x \\to \\beta} \\frac{2\\sin^{2}\\left(\\frac{a(x - \\alpha)(x - \\beta)}{2}\\right)}{\\frac{a^{2}(x - \\alpha)^{2}(x - \\beta)^{2}}{4}} \\times \\frac{a^{2}(x - \\alpha)^{2}}{4}$$\n$$= 2 \\times 1 \\times \\frac{a^{2}(\\beta - \\alpha)^{2}}{4} = \\frac{a^{2}(\\alpha - \\beta)^{2}}{2}$$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(\\alpha - \\beta)^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}(\\alpha - \\beta)^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{a^{2}}{4}(\\alpha - \\beta)^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{a^{2}}{2}(\\alpha - \\beta)^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The equation $2^{x} + 5^{x} = 3^{x} + 4^{x}$ has",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : (i) $y = 2^{x} + 5^{x}$\n(ii) $y = 3^{x} + 4^{x}$\noption (B)*\n* $x = 0$ and $1$ are the roots\n$\\Rightarrow$ one non zero real solution",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "no real solution"
+    },
+    {
+     "key": "B",
+     "text": "only one non-zero real solution"
+    },
+    {
+     "key": "C",
+     "text": "infinitely many solutions"
+    },
+    {
+     "key": "D",
+     "text": "only three non-negative real solutions"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q07-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Consider the function $f(x) = (x - 2)\\log_{e}x$. Then the equation $x\\log_{e}x = 2 - x$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : Let $g(x) = x\\log_{e}x - 2 + x$\n$g'(x) = 1 + \\log_{e}x + 1 = 2 + \\log_{e}x$\n$g(1).g(2) = -1 \\times (2\\log_{e}2) = -ve$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "has at least one root in $(1, 2)$"
+    },
+    {
+     "key": "B",
+     "text": "has no root in $(1, 2)$"
+    },
+    {
+     "key": "C",
+     "text": "is not at all solvable"
+    },
+    {
+     "key": "D",
+     "text": "has infinitely many roots in $(-2, 1)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\int \\frac{\\log_{e}(x + \\sqrt{1 + x^{2}})}{\\sqrt{1 + x^{2}}}dx = f(g(x)) + c$ then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : Let $\\log(x + \\sqrt{1 + x^{2}}) = t \\Rightarrow \\frac{\\frac{\\sqrt{1 + x^{2}} + x}{\\sqrt{1 + x^{2}}}}{x + \\sqrt{1 + x^{2}}}dx = dt$\n$\\Rightarrow \\frac{dx}{\\sqrt{1 + x^{2}}} = dt\\ \\therefore I = \\int \\frac{\\log(x + \\sqrt{1 + x^{2}})}{\\sqrt{1 + x^{2}}}dx = \\int t\\,dt$\n$$I = \\frac{t^{2}}{2} + c = \\frac{\\left[\\log(x + \\sqrt{x^{2} + 1})\\right]^{2}}{2} + c$$\n$\\therefore f(x) = \\frac{x^{2}}{2},\\ g(x) = \\log_{e}(x + \\sqrt{1 + x^{2}})$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f(x) = \\frac{x^{2}}{2},\\ g(x) = \\log_{e}(x + \\sqrt{1 + x^{2}})$"
+    },
+    {
+     "key": "B",
+     "text": "$f(x) = \\log_{e}(x + \\sqrt{1 + x^{2}}),\\ g(x) = \\frac{x^{2}}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$f(x) = x^{2},\\ g(x) = \\log_{e}(x + \\sqrt{1 + x^{2}})$"
+    },
+    {
+     "key": "D",
+     "text": "$f(x) = \\log_{e}(x - \\sqrt{1 + x^{2}}),\\ g(x) = x^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $f(x) = \\frac{e^{x}}{1 + e^{x}},\\ I_{1} = \\int_{f(-a)}^{f(a)} x\\,g(x(1 - x))\\,dx$ and $I_{2} = \\int_{f(-a)}^{f(a)} g(x(1 - x))\\,dx$, then the value of $\\frac{I_{2}}{I_{1}}$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $f(a) + f(-a) = \\frac{e^{a}}{1 + e^{a}} + \\frac{e^{-a}}{1 + e^{-a}} = 1$\nLet $f(-a) = t\\ \\therefore f(a) = 1 - t$\nNow, $I_{1} = \\int_{t}^{1-t} xg(x(1 - x))dx = \\int_{t}^{1-t} (1 - x)g((1 - x)(1 - (1 - x)))dx$\n$= \\int_{t}^{1-t} (1 - x)g(x(1 - x))dx$\n$\\therefore 2I_{1} = \\int_{t}^{1-t} g(x(1 - x))dx = I_{2} \\Rightarrow \\frac{I_{2}}{I_{1}} = 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-1$"
+    },
+    {
+     "key": "B",
+     "text": "$-3$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be a differentiable function and $f(1) = 4$. Then the value of $\\lim_{x \\to 1} \\int_{4}^{f(x)} \\frac{2t}{x - 1}dt$, if $f'(1) = 2$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\lim_{x \\to 1} \\int_{4}^{f(x)} \\frac{2t}{x - 1}dt$, $= \\lim_{x \\to 1}\\left[\\frac{t^{2}}{x - 1}\\right]_{4}^{f(x)}$\n$= \\lim_{x \\to 1} \\frac{[f(x)]^{2} - 4^{2}}{x - 1}$ $\\left(\\frac{0}{0}\\text{ form}\\right)$ $[\\because f(1) = 4]$\n$= \\lim_{x \\to 1} \\frac{2f(x)f'(x)}{1} = 2f(1)f'(1) = 2(4)(2) = 16$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $xy' + y - e^{x} = 0,\\ y(a) = b$, then $\\lim_{x \\to 1} y(x)$ is $\\left(y' = \\frac{dy}{dx}\\right)$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $xy' + y - e^{x} = 0$\n$\\Rightarrow x\\frac{dy}{dx} + y = e^{x}$\n$\\Rightarrow x\\,dy + y\\,dx = e^{x}dx$\n$\\Rightarrow \\int d(xy) = \\int e^{x}dx$\n$\\Rightarrow xy = e^{x} + c$\n$y(a) = b \\Rightarrow c = ab - e^{a}$\n$\\therefore y(x) = \\frac{e^{x} + ab - e^{a}}{x}$\n$\\therefore \\lim_{x \\to 1} y(x) = e + ab - e^{a}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$e + 2ab - e^{a}$"
+    },
+    {
+     "key": "B",
+     "text": "$e^{2} + ab - e^{-a}$"
+    },
+    {
+     "key": "C",
+     "text": "$e - ab + e^{a}$"
+    },
+    {
+     "key": "D",
+     "text": "$e + ab - e^{a}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "All values of $a$ for which the inequality $\\frac{1}{\\sqrt{a}}\\int_{1}^{a}\\left(\\frac{3}{2}\\sqrt{x} + 1 - \\frac{1}{\\sqrt{x}}\\right)dx < 4$ is satisfied, lie in the interval",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\frac{1}{\\sqrt{a}}\\int_{1}^{a}\\left(\\frac{3}{2}\\sqrt{x} + 1 - \\frac{1}{\\sqrt{x}}\\right)dx < 4$\n$\\Rightarrow \\frac{1}{\\sqrt{a}}\\cdot\\left[\\frac{3}{2}\\cdot\\frac{x^{3/2}}{\\frac{3}{2}} + x - \\frac{x^{1/2}}{1/2}\\right]_{1}^{a} < 4 \\Rightarrow \\frac{1}{\\sqrt{a}}\\left(a^{3/2} + a - 2a^{1/2} - 1 - 1 + 2\\right) > 4$\n$\\Rightarrow \\frac{1}{a^{1/2}}\\cdot\\left(a^{3/2} + a - 2a^{1/2}\\right) < 4 \\Rightarrow a + a^{1/2} - 2 < 4$\n$\\Rightarrow \\left(a^{1/2}\\right)^{2} + a^{1/2} - 6 < 0 \\Rightarrow \\left(a^{1/2} + 3\\right)\\left(a^{1/2} - 2\\right) < 0$\nbut, $a^{1/2} + 3 \\not< 0\\ \\therefore a^{1/2} - 2 < 0 \\Rightarrow a < 4$ and $a > 0\\ \\therefore a \\in (0, 4)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(1, 2)$"
+    },
+    {
+     "key": "B",
+     "text": "$(0, 3)$"
+    },
+    {
+     "key": "C",
+     "text": "$(0, 4)$"
+    },
+    {
+     "key": "D",
+     "text": "$(1, 4)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "For any integer $n$, $\\int_{0}^{\\pi} e^{\\cos^{2}x}\\cdot\\cos^{3}(2n + 1)x\\,dx$ has the value",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $I = \\int_{0}^{\\pi} e^{\\cos^{2}x}.\\cos^{3}(2n + 1)x\\,dx \\Rightarrow \\int_{0}^{\\pi} e^{\\cos^{2}(\\pi - x)}.\\left(\\cos(2n + 1)(\\pi - x)\\right)^{3}dx$\n$\\Rightarrow \\int_{0}^{\\pi} e^{\\cos^{2}x}.\\left\\{\\cos\\left((2n + 1)\\pi - (2n + 1)x\\right)\\right\\}^{3}dx \\Rightarrow -\\int_{0}^{\\pi} e^{\\cos^{2}x}.\\cos^{3}(2n + 1)x\\,dx$\n$= -I \\Rightarrow 2I = 0 \\Rightarrow I = 0$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3\\pi}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f$ be a differential function with $\\lim_{x \\to \\infty} f(x) = 0$. If $y' + yf'(x) - f(x)f'(x) = 0$, $\\lim_{x \\to \\infty} y(x) = 0$ then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $y' + yf'(x) - f(x)f'(x) = 0 \\Rightarrow \\frac{dy}{dx} + yf'(x) = f(x)f'(x) \\to$ Linear DE $\\frac{dy}{dx} + py = Q$ form\n$\\therefore$ If $= e^{\\int f'(x)dx} = e^{f(x)}\\ \\therefore ye^{f(x)} = \\int e^{f(x)}.f(x).f'(x)dx = \\int e^{f(x)}.f(x).d(f(x))$\n$= f(x).e^{f(x)} - e^{f(x)} + c \\Rightarrow y = f(x) - 1 + ce^{-f(x)} \\Rightarrow y + 1 = f(x) + c.e^{-f(x)}$\n$= \\lim_{x \\to \\infty} y(x) = \\lim_{x \\to \\infty}\\left(f(x) - 1 + c.e^{-f(x)}\\right) = 0 \\Rightarrow 0 - 1 + c.e^{0} = 0 \\Rightarrow c = 1$\nfrom (1), $y + 1 = f(x) + e^{-f(x)}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$y + 1 = e^{f(x)} + f(x)$"
+    },
+    {
+     "key": "B",
+     "text": "$y + 1 = e^{-f(x)} + f(x)$"
+    },
+    {
+     "key": "C",
+     "text": "$y + 2 = e^{-f(x)} + f(x)$"
+    },
+    {
+     "key": "D",
+     "text": "$y - 1 = e^{-f(x)} + f(x)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $y = f(x)$ be any curve on the X–Y plane & P be a point on the curve. Let C be a fixed point not on the curve. The length PC is either a maximum or a minimum, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "PC is perpendicular to the tangent at P"
+    },
+    {
+     "key": "B",
+     "text": "PC is parallel to the tangent at P"
+    },
+    {
+     "key": "C",
+     "text": "PC meets the tangent at an angle of $45^\\circ$"
+    },
+    {
+     "key": "D",
+     "text": "PC meets the tangent at an angle of $60^\\circ$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The area bounded by the curves $x = 4 - y^{2}$ and the Y-axis is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $x = 4 - y^{2} \\Rightarrow y^{2} = -x + 4$\n$x = 0 \\Rightarrow y^{2} = 4 \\Rightarrow y = \\pm 2$\nArea bounded by the curve $x = 4 - y^{2}$ and $y$ – axis is,\n$$= 2\\int_{0}^{2} x\\,dy = 2\\int_{0}^{2}\\left(4 - y^{2}\\right)dy = 2\\left[4y - \\frac{y^{3}}{3}\\right]_{0}^{2} = 2\\left(8 - \\frac{8}{3}\\right) = \\frac{32}{3}\\ \\text{sq. unit}$$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$ sq. unit"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{32}{3}$ sq. unit"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{16}{3}$ sq. unit"
+    },
+    {
+     "key": "D",
+     "text": "$32$ sq. unit"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q17-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "$F(x) = \\cos x - 1 + \\frac{x^{2}}{2!},\\ x \\in \\mathbb{R}$. Then $f(x)$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $f(x) = \\cos x - 1 + \\frac{x^{2}}{2!}, x \\in R \\Rightarrow f'(x) = -\\sin x - 0 + \\frac{2x}{2!} = x - \\sin x$\n$f'(x) > 0\\ \\forall\\ x > 0\\ \\because x > \\sin x$\n$f'(x) < 0\\ \\forall\\ x < 0\\ \\because x < \\sin x$\n$\\therefore f(x)$ is neither increasing nor decreasing .",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "decreasing function"
+    },
+    {
+     "key": "B",
+     "text": "increasing function"
+    },
+    {
+     "key": "C",
+     "text": "neither increasing nor decreasing"
+    },
+    {
+     "key": "D",
+     "text": "constant $\\forall\\ x > 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be given by $f(x) = |x^{2} - 1|$, then",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $f(x) = |x^{2} - 1|$\nBy figure,\n$f$ has a local minima at $x = \\pm 1$ and a local maxima at $x = 0$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f$ has a local minima at $x = \\pm 1$ but no local maxima"
+    },
+    {
+     "key": "B",
+     "text": "$f$ has a local maxima at $x = 0$, but no local minima"
+    },
+    {
+     "key": "C",
+     "text": "$f$ has a local minima at $x = \\pm 1$ and a local maxima at $x = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$f$ has neither any local maxima nor any local minima"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q19-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If a particle moves in a straight line according to the law $x = a\\sin\\left(\\sqrt{\\lambda}t + b\\right)$, then the particle will come to rest at two points whose distance is [symbols have their usual meaning]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\frac{dx}{dt} = a\\cos\\left(\\sqrt{\\lambda}t + b\\right).\\sqrt{\\lambda} = 0$ $\\left[\\text{at rest, } \\frac{dx}{dt} = 0\\right]$ $\\Rightarrow \\cos\\left(\\sqrt{\\lambda}t + b\\right) = 0$\n$\\Rightarrow \\sqrt{\\lambda}t + b = \\frac{\\pi}{2}, \\frac{-\\pi}{2}$\n$\\therefore x_{1} = a\\sin\\frac{\\pi}{2}$ and $x_{2} = a\\sin\\left(\\frac{-\\pi}{2}\\right)$\n$= a$ and $= -a$\n$\\therefore$ Distance between the points $= |x_{2} - x_{1}| = 2a$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{a}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2a$"
+    },
+    {
+     "key": "D",
+     "text": "$4a$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A unit vector in XY-plane making an angle $45^\\circ$ with $\\hat{i} + \\hat{j}$ and an angle $60^\\circ$ with $3\\hat{i} - 4\\hat{j}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : Let the vector be $x\\hat{i} + y\\hat{j} = \\vec{r}$, $\\vec{a} = \\hat{i} + \\hat{j}$ and $\\vec{b} = 3\\hat{i} - 4\\hat{j}$\n$\\vec{r}.\\vec{a} = |\\vec{r}||\\vec{a}|\\cos 45^\\circ = 1.\\sqrt{2}.\\frac{1}{\\sqrt{2}} = 1 \\Rightarrow x + y = 1$ ------ (1)\n$\\vec{r}.\\vec{b} = |\\vec{r}||\\vec{b}|\\cos 60^\\circ \\Rightarrow 3x - 4y = 1.5.\\frac{1}{2} \\Rightarrow \\frac{2}{5}(3x - 4y) = 1 \\Rightarrow 6x - 8y = 5$ ----(2)\nSolving (1) and (2), $14x = 13 \\Rightarrow x = \\frac{13}{14}\\ \\therefore y = \\frac{1}{14}$\n$\\therefore$ Unit vector $= \\frac{13}{14}\\hat{i} + \\frac{1}{14}\\hat{j}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{13}{14}\\hat{i} + \\frac{1}{14}\\hat{j}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{14}\\hat{i} + \\frac{13}{14}\\hat{j}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{13}{14}\\hat{i} - \\frac{1}{14}\\hat{j}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{14}\\hat{i} - \\frac{13}{14}\\hat{j}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If for the series $a_{1}, a_{2}, a_{3}, \\ldots$ etc, $a_{r} - a_{r+1}$ bears a constant ratio with $a_{r}.a_{r+1}$; then $a_{1}, a_{2}, a_{3} \\ldots$ are in",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\frac{a_{r} - a_{r+1}}{a_{r}a_{r+1}} = K(\\text{constant}) \\Rightarrow \\frac{1}{a_{r+1}} - \\frac{1}{a_{r}} = K\\ \\therefore \\frac{1}{a_{1}}, \\frac{1}{a_{2}}, \\frac{1}{a_{3}}, \\ldots$ is an A.P\n$\\Rightarrow a_{1}, a_{2}, a_{3}, \\ldots$ is a H.P",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A.P."
+    },
+    {
+     "key": "B",
+     "text": "G.P."
+    },
+    {
+     "key": "C",
+     "text": "H.P."
+    },
+    {
+     "key": "D",
+     "text": "Any other series"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Given an A.P. and a G.P. with positive terms, with the first and second terms of the progressions being equal. If $a_{n}$ and $b_{n}$ be the $n^{th}$ term of A.P. and G.P. respectively then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $a_{1}, a_{2}, a_{3}, \\ldots, a_{n} \\to AP$\n$a_{1}, a_{2}, b_{3}, \\ldots, b_{n} \\to GP$\n$a_{n} = a_{1} + (n - 1)(a_{2} - a_{1})$\n$b_{n} = a_{1}\\left(\\frac{a_{2}}{a_{1}}\\right)^{n-1} = a_{2}^{n-1}.a_{1}^{1-n+1} = a_{2}^{n-1}.a_{1}^{2-n}$\nfor $n = 3$, $a_{3} = a_{1} + 2(a_{2} - a_{1}) \\Rightarrow a_{3} = 2a_{2} - a_{1}$\n$b_{3} = a_{2}^{2}.a_{1}^{-1} = \\frac{a_{2}^{2}}{a_{1}}$\n$a_{3} - b_{3} = 2a_{2} - a_{1} - \\frac{a_{2}^{2}}{a_{1}} = \\frac{2a_{2}a_{1} - a_{1}^{2} - a_{2}^{2}}{a_{1}} = \\frac{2a_{1}a_{2} - \\left(a_{1}^{2} + a_{2}^{2}\\right)}{a_{1}} < 0$ $\\left[\\because a_{1}^{2} + a_{2}^{2} > 2a_{1}a_{2}\\right]$\n$\\therefore a_{3} < b_{3}\\ \\therefore a_{n} < b_{n}$ for all $n > 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a_{n} > b_{n}$ for all $n > 2$"
+    },
+    {
+     "key": "B",
+     "text": "$a_{n} < b_{n}$ for all $n > 2$"
+    },
+    {
+     "key": "C",
+     "text": "$a_{n} = b_{n}$ for some $n > 2$"
+    },
+    {
+     "key": "D",
+     "text": "$a_{n} = b_{n}$ for some odd $n$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $(x^{2}\\log_{x}27).\\log_{9}x = x + 4$ then the value of $x$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $(x^{2}\\log_{x}27).\\log_{9}x = x + 4$\n$\\Rightarrow x^{2}.\\log_{9}27 = x + 4 \\Rightarrow x^{2}.\\log_{3^{2}}3^{3} = x + 4 \\Rightarrow \\frac{3}{2}x^{2} = x + 4$\n$\\Rightarrow 3x^{2} - 2x - 8 = 0 \\Rightarrow 3x^{2} - 6x + 4x - 8 = 0 \\Rightarrow (3x + 4)(x - 2) = 0$\n$x \\neq -\\frac{4}{3}\\ \\therefore x = 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{4}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$-2$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $z_{1}$ and $z_{2}$ be two roots of the equation $z^{2} + az + b = 0$, $a^{2} < 4b$, then the origin, $z_{1}$ and $z_{2}$ form an equilateral triangle if",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : Here, $z_{1} + z_{2} = -a$ and $z_{1}z_{2} = b$\n$z_{2} = z_{1}e^{i\\pi/3} = z_{1}\\left(\\cos\\frac{\\pi}{3} + i\\sin\\frac{\\pi}{3}\\right) = z_{1}\\left(\\frac{1}{2} + i.\\frac{\\sqrt{3}}{2}\\right)$\n$\\Rightarrow 2z_{2} - z_{1} = \\sqrt{3}.iz_{1} \\Rightarrow (2z_{2} - z_{1})^{2} = -3z_{1}^{2} \\Rightarrow 4z_{2}^{2} + 4z_{1}^{2} = 4z_{1}z_{2} \\Rightarrow z_{1}^{2} + z_{2}^{2} = z_{1}z_{2}$\n$\\Rightarrow (z_{1} + z_{2})^{2} - 2z_{1}z_{2} = z_{1}z_{2} \\Rightarrow a^{2} - 2b = b \\Rightarrow a^{2} = 3b$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a^{2} = 3b^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$a^{2} = 3b$"
+    },
+    {
+     "key": "C",
+     "text": "$b^{2} = 3a$"
+    },
+    {
+     "key": "D",
+     "text": "$b^{2} = 3a^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q25-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\cos\\theta + i\\sin\\theta,\\ \\theta \\in \\mathbb{R}$, is the root of the equation\n$$a_{0}x^{n} + a_{1}.x^{n-1} + \\ldots + a_{n-1}x + a_{n} = 0,\\ a_{0}, a_{1}, \\ldots a_{n} \\in \\mathbb{R}, a_{0} \\neq 0,$$\nthen the value of $a_{1}\\sin\\theta + a_{2}\\sin 2\\theta + \\ldots + a_{n}\\sin n\\theta$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $a_{0}x^{n} + a_{1}.x^{n-1} + \\ldots + a_{n-1}x + a_{n} = 0$\ndivided by $x^{n}$\n$a_{0} + a_{1}\\frac{1}{x} + \\ldots + a_{n-1}\\frac{1}{x^{n-1}} + a_{n}\\frac{1}{x^{n}} = 0$\nput $x = \\cos\\theta + i\\sin\\theta$ and equating imaginary part\n$a_{1}\\sin\\theta + a_{2}\\sin 2\\theta + \\ldots + a_{n}\\sin 2\\theta = 0$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2n$"
+    },
+    {
+     "key": "B",
+     "text": "$n$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$n+1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $a, b, c$ are distinct odd natural numbers, then the number of rational roots of the equation $ax^{2} + bx + c = 0$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $D = b^{2} - 4ac \\geq 0$\nfor rational roots D is perfect square\n$D = b^{2} - 4ac$\n$\\downarrow$ odd – even = odd\nLet $D = (2k + 1)^{2}$\n$b^{2} - 4ac = (2k + 1)^{2}$\n$4ac = (2n + 1)^{2} - (2k + 1)^{2}$\n$= 4(n - k)(n + k + 1)$\n$ac = (n - k)(n + k + 1)$\n= even integer\nbut given $ac$ = odd integer\n$(a = 2n + 1)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "must be 0"
+    },
+    {
+     "key": "B",
+     "text": "must be 1"
+    },
+    {
+     "key": "C",
+     "text": "must be 2"
+    },
+    {
+     "key": "D",
+     "text": "cannot be determined from the given data"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $P(x) = ax^{2} + bx + c$ and $Q(x) = -ax^{2} + dx + c$ where $ac \\neq 0$, then $P(x).Q(x) = 0$ has ($a, b, c, d$ are real)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $D_{1} = b^{2} - 4ac$\n$D_{2} = d^{2} + 4ac$\n$D_{1} + D_{2} = b^{2} + d^{2} > 0$\n$D_{1} + D_{2} > 0$\nAt least one of $D_{1}$ or $D_{2}$ is +ve so at least two real roots",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2 real roots"
+    },
+    {
+     "key": "B",
+     "text": "at least two real roots"
+    },
+    {
+     "key": "C",
+     "text": "4 real roots"
+    },
+    {
+     "key": "D",
+     "text": "no real root"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let N be the number of quadratic equations with coefficients from $\\{0, 1, 2, \\ldots, 9\\}$ such that 0 is a solution of each equation. Then the value of N is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $ax^{2} + bx + c = 0$\none root is zero $\\Rightarrow c = 0$\n$a \\neq 0$, $a = 1, 2, 3, \\ldots 9$\n$b = 0, \\ldots 9$\nNumber of value of $N = 9 \\times 10 = 90$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2^{9}$"
+    },
+    {
+     "key": "B",
+     "text": "$3^{9}$"
+    },
+    {
+     "key": "C",
+     "text": "$90$"
+    },
+    {
+     "key": "D",
+     "text": "$81$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The coefficient of $a^{10}b^{7}c^{3}$ in the expansion of $(bc + ca + ab)^{10}$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $(bc + ca + ab)^{10} = \\sum \\frac{10!}{n_{1}!\\,n_{2}!\\,n_{3}!}(bc)^{n_{1}}(ca)^{n_{2}}(ab)^{n_{3}} = \\sum \\frac{10!}{n_{1}!\\,n_{2}!\\,n_{3}!}b^{n_{1}+n_{3}}c^{n_{1}+n_{2}}a^{n_{2}+n_{3}}$\n$n_{1} + n_{3} = 7$ | $n_{1} + n_{2} + n_{3} = 10$\n$n_{1} + n_{2} = 3$ | $n_{1} = 0, n_{2} = 3$\n$n_{2} + n_{3} = 10$ | $n_{3} = 7$\nCoefficient of $a^{10}b^{7}c^{3} = \\frac{10!}{3!\\,7!} = \\frac{10 \\times 9 \\times 8}{3 \\times 2} = 10 \\times 3 \\times 4 = 120$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$140$"
+    },
+    {
+     "key": "B",
+     "text": "$150$"
+    },
+    {
+     "key": "C",
+     "text": "$120$"
+    },
+    {
+     "key": "D",
+     "text": "$160$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The numbers $1, 2, 3, \\ldots, m$ are arranged in random order. The number of ways this can be done, so that the numbers $1, 2, \\ldots, r$ $(r < m)$ appears as neighbours is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(m - r)!$"
+    },
+    {
+     "key": "B",
+     "text": "$(m - r + 1)!$"
+    },
+    {
+     "key": "C",
+     "text": "$(m - r)!\\,r!$"
+    },
+    {
+     "key": "D",
+     "text": "$(m - r + 1)!\\,r!$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $A = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}$ and $\\theta = \\frac{2\\pi}{7}$, then $A^{100} = A \\times A \\times \\ldots$(100 times) is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\because A^{100} = \\begin{bmatrix} \\cos 100\\theta & -\\cos 100\\theta \\\\ \\sin 100\\theta & \\cos 100\\theta \\end{bmatrix}$\nAs $\\theta = \\frac{2\\pi}{7}$\n$$A^{100} = \\begin{bmatrix} \\cos\\frac{200\\pi}{7} & -\\sin\\frac{200\\pi}{7} \\\\ \\sin\\frac{200\\pi}{7} & \\cos\\frac{200\\pi}{7} \\end{bmatrix} = A^{2}$$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\begin{pmatrix} \\cos 2\\theta & -\\sin 2\\theta \\\\ \\sin 2\\theta & \\cos 2\\theta \\end{pmatrix}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $(1 + x + x^{2} + x^{3})^{5} = \\sum_{k=0}^{15} a_{k}x^{k}$ then $\\sum_{k=0}^{7} (-1)^{k}.a_{2k}$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\sum_{k=0}^{1} (-1)^{K}a_{2k}$\n$= a_{0} - a_{2} + a_{4} - a_{6} + a_{8} \\ldots a_{14}$\n$(1 + x + x^{2} + x^{3})^{5} = a_{0} + a_{1}x + \\ldots + a_{15}x^{15}$\nput $x = i$\n$(1 + i + i^{2} + i^{3})^{5} = a_{0} + a_{1}i + a_{2}i^{2} + \\ldots + a_{15}i^{15}$\nequating real part\n$a_{0} - a_{2} + a_{4} - a_{6} + a_{8} \\ldots a_{14} = 0$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2^{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$4^{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$4^{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f(x) = \\begin{vmatrix} \\cos x & x & 1 \\\\ 2\\sin x & x^{3} & 2x \\\\ \\tan x & x & 1 \\end{vmatrix}$, then $\\lim_{x \\to 0} \\frac{f(x)}{x^{2}} =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $f(x) = \\left(x^{3} - 2x^{2}\\right)\\cos x + \\tan x\\left(2x^{2} - x^{3}\\right)$\n$\\lim_{x \\to 0} \\frac{f(x)}{x^{2}} = \\lim_{x \\to 0}(x - 2)\\cos x + \\tan x(2 - x)$\n$= -2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$-2$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$-1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\begin{vmatrix} x^{k} & x^{k+2} & x^{k+3} \\\\ y^{k} & y^{k+2} & y^{k+3} \\\\ z^{k} & z^{k+2} & z^{k+3} \\end{vmatrix} = (x - y)(y - z)(z - x)\\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right)$, then",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $(xyz)^{k}\\begin{vmatrix} 1 & x^{2} & x^{3} \\\\ 1 & y^{2} & y^{3} \\\\ 1 & z^{2} & z^{3} \\end{vmatrix}$\n$= (xyz)^{k}(x - y)(z - x) - (y - z)(xy + yz + zx)$\n$= (xyz)^{k+1}(x - y)(z - x) - (y - z)\\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right)$\n$k + 1 = 0$\n$\\boxed{k = -1}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$k = -3$"
+    },
+    {
+     "key": "B",
+     "text": "$k = 3$"
+    },
+    {
+     "key": "C",
+     "text": "$k = 1$"
+    },
+    {
+     "key": "D",
+     "text": "$k = -1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix} \\cdot A \\cdot \\begin{bmatrix} -3 & 2 \\\\ 5 & -3 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$, then $A =$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix}A\\begin{bmatrix} -3 & 2 \\\\ 5 & -3 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$\nPremultiplication by $\\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}$ both sides\n$A\\begin{bmatrix} -3 & 2 \\\\ 5 & -3 \\end{bmatrix} = \\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}$\nPost multiplication by $\\begin{bmatrix} 3 & 2 \\\\ 5 & 3 \\end{bmatrix}$ both sides\n$A = \\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}\\begin{bmatrix} 3 & 2 \\\\ 5 & 3 \\end{bmatrix} = \\begin{bmatrix} 1 & 1 \\\\ 1 & 0 \\end{bmatrix}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\begin{bmatrix} 1 & 1 \\\\ 1 & 0 \\end{bmatrix}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\begin{bmatrix} 1 & 1 \\\\ 0 & 1 \\end{bmatrix}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{bmatrix} 1 & 0 \\\\ 1 & 1 \\end{bmatrix}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\begin{bmatrix} 0 & 1 \\\\ 1 & 1 \\end{bmatrix}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let A be the set of even natural numbers that are $< 8$ &\nB be the set of prime integers that are $< 7$\nThe number of relations from A to B are",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $A = \\{2, 4, 6\\}$\n$B = \\{2, 3, 5\\}$\n$\\therefore$ Number of relations from A to B is $2^{9}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2^{9-1}$"
+    },
+    {
+     "key": "C",
+     "text": "$9^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2^{9}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In $\\mathbb{R}$, a relation $p$ is defined as follows :\n$\\forall\\ a, b \\in \\mathbb{R}$, $a\\,p\\,b$ holds if $a^{2} - 4ab + 3b^{2} = 0$. Then",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Hint : $\\because a\\ \\mathbb{R}\\ b \\Rightarrow a^{2} - 4ab + 3b^{2} = 0$\n$\\therefore a\\ \\mathbb{R}\\ a$ because $a^{2} - 4a.a + 3a^{2} = 0,\\ \\forall a \\in \\mathbb{R}$\n$\\therefore$ it is reflective only.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$p$ is equivalence relation"
+    },
+    {
+     "key": "B",
+     "text": "$p$ is only symmetric"
+    },
+    {
+     "key": "C",
+     "text": "$p$ is only reflexive"
+    },
+    {
+     "key": "D",
+     "text": "$p$ is only transitive"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be a function defined by $f(x) = \\frac{e^{|x|} - e^{-x}}{e^{x} + e^{-x}}$, then",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f : \\mathbb{R} \\to \\mathbb{R}$, $f(x) = \\frac{e^{|x|} - e^{-x}}{e^{x} + e^{-x}}$\nCase I: If $x \\geq 0$\n$f(x) = \\frac{e^{x} - e^{-x}}{e^{x} + e^{-x}} = 1 - \\frac{2e^{-x}}{e^{x} + e^{-x}} = 1 - \\frac{2}{e^{2x} + 1} > -1$\nCase II: $x < 0$\n$f(x) = \\frac{e^{-x} - e^{-x}}{e^{x} + e^{-x}} = 0$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "f is both one-one and onto"
+    },
+    {
+     "key": "B",
+     "text": "f is one-one but not onto"
+    },
+    {
+     "key": "C",
+     "text": "f is onto but not one-one"
+    },
+    {
+     "key": "D",
+     "text": "f is neither one-one nor onto"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The expression $\\cos^{2}\\phi + \\cos^{2}(\\theta + \\phi) - 2\\cos\\theta\\cos\\phi\\cos(\\theta + \\phi)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\cos^{2}\\phi + \\cos^{2}(\\theta + \\phi) - 2\\cos\\theta.\\cos\\phi\\cos(\\theta + \\phi)$\nfor $\\theta = 0$\n$\\cos^{2}\\phi + \\cos^{2}\\phi - 2\\cos^{2}\\phi = 0$\nwhich is independent from $\\phi$.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "independent of $\\theta$"
+    },
+    {
+     "key": "B",
+     "text": "independent of $\\phi$"
+    },
+    {
+     "key": "C",
+     "text": "independent of $\\theta$ and $\\phi$"
+    },
+    {
+     "key": "D",
+     "text": "dependent on $\\theta$ and $\\phi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Two smallest squares are chosen one by one on a chess board. The probability that they have a side in common is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For each corner squarers there will be two options for each border squares there will be 3 options for each other squares there will be 4 options.\n$\\therefore$ favourable cases\n$\\frac{4 \\times 2 + 24 \\times 3 + 36 \\times 4}{2} = 112$\n$\\therefore$ required probability $\\frac{112}{64 \\times 63} = \\frac{1}{18}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{9}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{18}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{18}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q41-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Two integers r and s are drawn one at a time without replacement from the set $\\{1, 2, \\ldots, n\\}$. Then $P(r \\leq k / s \\leq k) =$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$p(r \\leq k / s \\leq k) = \\frac{p(r \\leq k \\cap s \\leq k)}{p(s \\leq k)}$\nNow, $p(s \\leq k) = \\frac{k}{n}$\n$p(r \\leq k \\cap s \\leq k) = \\frac{{}^{k}C_{2}}{{}^{n}C_{2}} = \\frac{k(k - 1)}{n(n - 1)}$\n$\\therefore p(r \\leq k / s \\leq k) = \\frac{\\frac{k(k - 1)}{n(n - 1)}}{\\frac{k}{n}} = \\frac{k - 1}{n - 1}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{k}{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{k}{n - 1}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{k - 1}{n}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{k - 1}{n - 1}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A biased coin with probability p $(0 < p < 1)$ of getting head is tossed until a head appears for the first time. If the probability that the number of tosses required is even is $\\frac{2}{5}$, then p =",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "required probability will be\n$(1 - p)p + (1 - p)^{3}p + \\cdots \\infty = \\frac{2}{5}$\n$\\Rightarrow p\\left[\\frac{1 - p}{1 - (1 - p)^{2}}\\right] = \\frac{2}{5}$\n$\\Rightarrow \\frac{p(1 - p)}{1 - (1 - 2p + p^{2})} = \\frac{2}{5}$\n$\\Rightarrow \\frac{p - p^{2}}{2p - p^{2}} = \\frac{2}{5}$\n$\\Rightarrow p = \\frac{1}{3}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In $\\Delta ABC$, co-ordinates of A are $(1, 2)$ and the equation of the medians through B and C are $x + y = 5$ and $x = 4$ respectively. Then the midpoint of BC is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let D, E, F be midpoint of BC, AC and AB respectively.\nAccording to question equation of BE : $x + y = 5$\nEquation of CF\n$x = 4$\n$\\therefore$ Centroid $(4, 1)$\nLet point D be $(\\alpha, \\beta)$\n$D(\\alpha, \\beta)$ —1— $G(4, 1)$ —2— $A(1, 2)$\nby section formula,\n$(\\alpha, \\beta) = \\left(\\frac{11}{2}, \\frac{1}{2}\\right)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(5, \\frac{1}{2}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{11}{2}, 1\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(11, \\frac{1}{2}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{11}{2}, \\frac{1}{2}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q44-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $0 < \\theta < \\frac{\\pi}{2}$ and $\\tan 3\\theta \\neq 0$, then $\\tan\\theta + \\tan 2\\theta + \\tan 3\\theta = 0$ if $\\tan\\theta.\\tan 2\\theta = k$ where k =",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because 3\\theta = \\theta + 2\\theta$\n$\\Rightarrow \\tan 3\\theta = \\tan(\\theta + 2\\theta) = \\frac{\\tan\\theta + \\tan 2\\theta}{1 - \\tan\\theta.\\tan 2\\theta}$\n$\\Rightarrow \\tan 3\\theta = \\frac{-\\tan 3\\theta}{1 - k}$\n$\\Rightarrow 1 = \\frac{-1}{1 - k}$ $[\\because \\tan 3\\theta \\neq 0]$\n$\\Rightarrow 1 - k = -1 \\Rightarrow k = 2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Coordinate Geometry",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The equation $r\\cos\\theta = 2a\\sin^{2}\\theta$ represents the curve",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$r\\cos\\theta = 2a\\sin^{2}\\theta$\n$\\Rightarrow x(x^{2} + y^{2}) = 2ay^{2}$\n$\\Rightarrow x^{3} = y^{2}(2a - x)$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{3} = y^{2}(2a + x)$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} = y^{2}(2a + x)$"
+    },
+    {
+     "key": "C",
+     "text": "$x^{3} = y^{2}(2a - x)$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{3} = y^{2}(a + x)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $(1, 5)$ be the midpoint of the segment of a line between the line $5x - y - 4 = 0$ and $3x + 4y - 4 = 0$, then the equation of the line will be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$83x + 35y - 92 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$83x - 35y + 92 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$83x - 35y - 92 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$83x + 35y + 92 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Chords AB & CD of a circle intersect at right angle at the point P. If the length of AP, PB, CP, PD and 2, 6, 3, 4 units respectively, then the radius of the circle is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$O(x, y) =$ centre\n$\\Rightarrow OC = OA = OB = OD$\n$\\Rightarrow r = \\frac{\\sqrt{65}}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4 units"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{65}}{2}$ units"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{67}}{2}$ units"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\sqrt{66}}{2}$ units"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q48-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A line of fixed length $a + b$, $a \\neq b$ moves so that its ends are always on two fixed perpendicular straight lines. The locus of a point which divides the line into two parts of legnth a and b is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$m^{2} + n^{2} = (a + b)^{2}$\n$AP = a ; PB = b$\n$\\Rightarrow \\frac{h^{2}}{a^{2}} + \\frac{k^{2}}{b^{2}} = 1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "a parabola"
+    },
+    {
+     "key": "B",
+     "text": "a circle"
+    },
+    {
+     "key": "C",
+     "text": "an ellipse"
+    },
+    {
+     "key": "D",
+     "text": "a hyperbola"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q49-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "With origin as a foucs and $x = 4$ as corresponding directrix, a family of ellipse are drawn. Then the locus of an end of minor axis is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$h = -ae$, $k = b$, $\\frac{a}{e} - ae = 4 \\Rightarrow a(1 - e^{2}) = 4e \\Rightarrow \\frac{b^{2}}{a} = 4e$\n$\\Rightarrow b^{2} = 4ae \\Rightarrow k^{2} = -4h \\Rightarrow y^{2} = -4x$\nWhich is a general conic and satisfying the condition of parabola.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "a circle"
+    },
+    {
+     "key": "B",
+     "text": "a parabola"
+    },
+    {
+     "key": "C",
+     "text": "a straight line"
+    },
+    {
+     "key": "D",
+     "text": "a hyperbola"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q50-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 51,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "$\\lim\\limits_{x \\to \\infty} \\frac{1}{n^{k+1}}\\left[2^{k} + 4^{k} + 6^{k} + \\ldots + (2n)^{k}\\right] =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim\\limits_{n \\to \\infty} \\frac{1}{n}\\sum_{r=1}^{n}\\left(\\frac{2r}{n}\\right)^{k} = \\int_{0}^{1}(2x)^{k}dx = \\frac{2^{k}}{k + 1}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2^{k}}{k}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2^{k+1}}{k + 1}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2^{k}}{k + 1}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2^{k}}{k - 1}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 52,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If $y = \\tan^{-1}\\left[\\frac{\\log_{e}\\left(\\frac{e}{x^{2}}\\right)}{\\log_{e}(ex^{2})}\\right] + \\tan^{-1}\\left[\\frac{3 + 2\\log_{e}x}{1 - 6.\\log_{e}x}\\right]$, then $\\frac{d^{2}y}{dx^{2}} =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y = \\tan^{-1}(1) - \\tan^{-1}(2\\ln x) + \\tan^{-1}(3) + \\tan^{-1}(2\\ln x)$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$-1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 53,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Consider the function $f(x) = x(x - 1)(x - 2) \\ldots (x - 100)$. Which one of the following is correct ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = x(x - 1)(x - 2)(x - 3) \\ldots (x - 100)$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "This function has 100 local maxima"
+    },
+    {
+     "key": "B",
+     "text": "This function has 50 local maxima"
+    },
+    {
+     "key": "C",
+     "text": "This function has 51 local maxima"
+    },
+    {
+     "key": "D",
+     "text": "Local minima do not exist for this function"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q53-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 54,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $I(R) = \\int_{0}^{R} e^{-R\\sin x}\\,dx$, $R > 0$.\nthen,",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Checking the different positive values of R, can't comparable.",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$I(R) > \\frac{\\pi}{2R}\\left(1 - e^{-R}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$I(R) < \\frac{\\pi}{2R}\\left(1 - e^{-R}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$I(R) = \\frac{\\pi}{2R}\\left(1 - e^{-R}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$I(R)$ and $\\frac{\\pi}{2R}\\left(1 - e^{-R}\\right)$ are not comparable"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 55,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "In a plane $\\vec{a}$ and $\\vec{b}$ are the position vectors of two points A and B respectively. A point P with position vector $\\vec{r}$ moves on that plane in such a way that $|\\vec{r} - \\vec{a}| \\sim |\\vec{r} - \\vec{b}| = c$ (real constant). The locus of P is a conic section whose eccentricity is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$e = \\frac{|\\vec{a} - \\vec{b}|}{c}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{|\\vec{a} - \\vec{b}|}{c}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{|\\vec{a} + \\vec{b}|}{c}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{|\\vec{a} - \\vec{b}|}{2c}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{|\\vec{a} + \\vec{b}|}{2c}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 56,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If $\\alpha_{1}, \\alpha_{2}, \\cdots, \\alpha_{n}$ are in A.P. with common difference $\\theta$, then the sum of the series\n$\\sec\\alpha_{1}\\sec\\alpha_{2} + \\sec\\alpha_{2}\\sec\\alpha_{3} + \\cdots + \\sec\\alpha_{n-1}\\sec\\alpha_{n} = k(\\tan\\alpha_{n} - \\tan\\alpha_{1})$\nwhere k =",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha_{2} - \\alpha_{1} = \\alpha_{3} - \\alpha_{2} = \\cdots = \\theta$\n$s = \\frac{1}{\\sin\\theta}\\left[\\frac{\\sin(\\alpha_{2} - \\alpha_{1})}{\\cos\\alpha_{2}\\cos\\alpha_{1}} + \\cdots + \\frac{\\sin(\\alpha_{n} - \\alpha_{n-1})}{\\cos\\alpha_{n}\\cos\\alpha_{n-1}}\\right]$\n$= \\mathrm{cosec}\\,\\theta\\,[\\tan\\alpha_{n} - \\tan\\alpha_{1}]$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sin\\theta$"
+    },
+    {
+     "key": "B",
+     "text": "$\\cos\\theta$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sec\\theta$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{cosec}\\,\\theta$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 57,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Five balls of different colours are to be placed in three boxes of different sizes. The number of ways in which we can place the balls in the boxes so that no box remains empty is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$3^{5} - {}^{3}C_{1}(3 - 1)^{5} + {}^{3}C_{2}\\,1^{5} - 0 = 150$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$160$"
+    },
+    {
+     "key": "B",
+     "text": "$140$"
+    },
+    {
+     "key": "C",
+     "text": "$180$"
+    },
+    {
+     "key": "D",
+     "text": "$150$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 58,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $A = \\begin{pmatrix} 1 & -1 & 0 \\\\ 0 & 1 & -1 \\\\ 1 & 1 & 1 \\end{pmatrix}$, $B = \\begin{pmatrix} 2 \\\\ 1 \\\\ 7 \\end{pmatrix}$\nThen for the validity of the result $AX = B$, X is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "By option elimination.",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\begin{pmatrix} -1 \\\\ 1 \\\\ 7 \\end{pmatrix}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\begin{pmatrix} 1 \\\\ 2 \\\\ 4 \\end{pmatrix}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{pmatrix} 3 \\\\ 1 \\\\ -1 \\end{pmatrix}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\begin{pmatrix} 4 \\\\ 2 \\\\ 1 \\end{pmatrix}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 59,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If $1000! = 3^{n} \\times m$ where m is an integer not divisible by 3. then n =",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E_{3}(1000!) = \\left[\\frac{1000}{3}\\right] + \\left[\\frac{1000}{3^{2}}\\right] + \\left[\\frac{1000}{3^{3}}\\right] + \\left[\\frac{1000}{3^{4}}\\right] + \\left[\\frac{1000}{3^{5}}\\right] + \\left[\\frac{1000}{3^{6}}\\right] = 498$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$498$"
+    },
+    {
+     "key": "B",
+     "text": "$298$"
+    },
+    {
+     "key": "C",
+     "text": "$398$"
+    },
+    {
+     "key": "D",
+     "text": "$98$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 60,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "For the real numbers x & y, we write $x\\,p\\,y$ if $x - y + \\sqrt{2}$ is an irrational number. Then relation p is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x\\,p\\,x = x - x + \\sqrt{2} = \\sqrt{2}$ is an irrational",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "reflexive"
+    },
+    {
+     "key": "B",
+     "text": "symmetric"
+    },
+    {
+     "key": "C",
+     "text": "transitive"
+    },
+    {
+     "key": "D",
+     "text": "equivalence relation"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 61,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Let $A = \\begin{pmatrix} 0 & 0 & -1 \\\\ 0 & -1 & 0 \\\\ -1 & 0 & 0 \\end{pmatrix}$, then",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A^{2} = 1$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A is a null matrix"
+    },
+    {
+     "key": "B",
+     "text": "A is skew symmetric matrix"
+    },
+    {
+     "key": "C",
+     "text": "$A^{-1}$ does not exist"
+    },
+    {
+     "key": "D",
+     "text": "$A^{2} = 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 62,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Angle between two diagonals of a cube will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "d.c. of diagonal OC : $\\frac{1}{\\sqrt{3}}, \\frac{1}{\\sqrt{3}}, \\frac{1}{\\sqrt{3}}$ or, $-\\frac{1}{\\sqrt{3}}, -\\frac{1}{\\sqrt{3}}, -\\frac{1}{\\sqrt{3}}$\nd.c. of diagonal AD : $-\\frac{1}{\\sqrt{3}}, \\frac{1}{\\sqrt{3}}, \\frac{1}{\\sqrt{3}}$ or, $\\frac{1}{\\sqrt{3}}, -\\frac{1}{\\sqrt{3}}, -\\frac{1}{\\sqrt{3}}$\n$\\therefore$ Angle between OC & AD $= \\cos^{-1}\\left(\\frac{1}{3}\\right)$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\cos^{-1}\\left(\\frac{1}{3}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sin^{-1}\\left(\\frac{1}{3}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2} - \\cos^{-1}\\left(\\frac{1}{3}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{2} - \\sin^{-1}\\left(\\frac{1}{3}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q62-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 63,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If A and B are acute angles such that $\\sin A = \\sin^{2}B$ and $2\\cos^{2}A = 3\\cos^{2}B$, then $(A, B) =$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2\\cos^{2}A = 3(1 - \\sin^{2}B)$\n$\\Rightarrow 2 - 2\\sin^{2}A = 3 - 3\\sin A$ $(\\because \\sin^{2}B = \\sin A)$\n$\\Rightarrow \\sin A = 1, \\frac{1}{2}$\n$\\Rightarrow \\sin B = \\pm 1, \\pm\\frac{1}{\\sqrt{2}}$\n$\\therefore (A, B) \\equiv \\left(\\frac{\\pi}{2}, \\pm\\frac{\\pi}{2}\\right)$ or $\\left(\\frac{\\pi}{6}, \\pm\\frac{\\pi}{4}\\right)$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(\\frac{\\pi}{6}, \\frac{\\pi}{4}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{\\pi}{6}, \\frac{\\pi}{6}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{\\pi}{4}, \\frac{\\pi}{6}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{\\pi}{4}, \\frac{\\pi}{4}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 64,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "If two circles which pass through the points $(0, a)$ and $(0, -a)$ and touch the line $y = mx + c$, cut orthogonally then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let the circle be $x^{2} + y^{2} + 2gx + 2fy + k = 0$.\n$\\because$ passes through $(0, a)$ & $(0, -a)$\n$\\Rightarrow k = -a^{2}, f = 0$\n$\\Rightarrow x^{2} + y^{2} + 2gx - a^{2} = 0$ ($\\because$ two circles are orthogonal)\n$\\Rightarrow 2g_{1}g_{2} + 2f_{1}f_{2} = c_{1} + c_{2}$\n$\\Rightarrow g_{1}g_{2} = -a^{2}$ —— (1)\nalso $y = mx + c$ is the tangent to the given circles\n$\\Rightarrow$ radius = distance of centre $(-g, 0)$ from the line\n$\\Rightarrow \\sqrt{g^{2} + a^{2}} = \\frac{|mg - c|}{\\sqrt{1 + m^{2}}}$\n$\\Rightarrow g^{2} - 2mcg + a^{2}(1 + m^{2}) - c^{2} = 0$\n$\\because g_{1}g_{2} = a^{2}(1 + m^{2}) - c^{2}$ —— (2)\nfrom (1) and (2)\n$c^{2} = (m^{2} + 2)a^{2}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$c^{2} = a^{2}(1 + m^{2})$"
+    },
+    {
+     "key": "B",
+     "text": "$c^{2} = a^{2}(2 + m^{2})$"
+    },
+    {
+     "key": "C",
+     "text": "$c^{2} = a^{2}(1 + 2m^{2})$"
+    },
+    {
+     "key": "D",
+     "text": "$2c^{2} = a^{2}(1 + m^{2})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 65,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The locus of the midpoint of the system of parallel chords parallel to the line $y = 2x$ to the hyperbola $9x^{2} - 4y^{2} = 36$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Locus implies diameter of the hyperbola\ni.e. $y = \\frac{b_{2}}{a^{2}m}x$ $(m = 2)$\n$\\Rightarrow y = \\frac{9}{8}x$\n$\\Rightarrow 9x - 8y = 0$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8x - 9y = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$9x - 8y = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$8x + 9y = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$9x - 4y = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 66,
+   "topic": "Relations and Functions",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Choose the correct statement :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B",
+    "D"
+   ],
+   "solution": "$f(x) = x + \\sin 2x$ is not a periodic function of x (since 'x' is increasing function)\nalso $g(x) = \\cos\\left(\\sqrt{x} + 1\\right)$ is not a periodic function of x (since $g(x + T)$ can never be equal to $g(x)$)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x + \\sin 2x$ is a periodic function"
+    },
+    {
+     "key": "B",
+     "text": "$x + \\sin 2x$ is not a periodic function"
+    },
+    {
+     "key": "C",
+     "text": "$\\cos\\left(\\sqrt{x} + 1\\right)$ is a periodic function"
+    },
+    {
+     "key": "D",
+     "text": "$\\cos\\left(\\sqrt{x} + 1\\right)$ is not a periodic function"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 67,
+   "topic": "Application of Derivatives",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The points of extremum of $\\int_{0}^{x^{2}} \\frac{t^{2} - 5t + 4}{2 + e^{t}}\\,dt$ are",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B"
+   ],
+   "solution": "$f(x) = \\int_{0}^{x^{2}} \\frac{t^{2} - 5t + 4}{2 + e^{t}}\\,dt$ ..... (i)\nto find extremum points we solve $f'(x) = 0$\nso differentiating equation (i) using Newton Leibnitz Rule,\n$f'(x) = \\frac{(x^{2} - 1)(x^{2} - 4)}{2 + e^{x^{2}}} \\cdot (2x)$ so, $f'(x) = 0$ at $x = 0, \\pm 1, \\pm 2$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pm 1$"
+    },
+    {
+     "key": "B",
+     "text": "$\\pm 2$"
+    },
+    {
+     "key": "C",
+     "text": "$\\pm 3$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pm\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 68,
+   "topic": "Application of Derivatives",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Let $\\Gamma$ be the curve $y = be^{-x/a}$ & L be the straight line $\\frac{x}{a} + \\frac{y}{b} = 1$ where $a, b \\in \\mathbb{R}$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "D"
+   ],
+   "solution": "$\\Gamma \\equiv y = be^{-x/a} \\xrightarrow[\\text{w.r.t x}]{\\text{on differentiating}} \\frac{dy}{dx} = \\frac{-b}{a}e^{-x/a}$ at $x = 0$, $y = b$, $\\frac{dy}{dx} = \\frac{-b}{a}$\nso, equation of tegent at $(0, b)$ is $y - b = -\\frac{b}{a}(x - 0) \\Rightarrow \\underbrace{\\frac{x}{a} + \\frac{y}{b} = 1}_{L}$\nso, L touches the given curve at $(0, b)$\n$\\because \\frac{dy}{dx}$ can be never be 0, so, the given curve never touches the x – axis.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "L touches the curve $\\Gamma$ at the point where the curve crosses the axis of y."
+    },
+    {
+     "key": "B",
+     "text": "L does not touch the curve at the point where the curve crosses the axis of y."
+    },
+    {
+     "key": "C",
+     "text": "$\\Gamma$ touches the axis of x at the point."
+    },
+    {
+     "key": "D",
+     "text": "$\\Gamma$ never touches the axis of x."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 69,
+   "topic": "Application of Derivatives",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The acceleration f $\\mathrm{ft/sec^{2}}$ of a particle after a time t sec starting from rest is given by $f = 6 - \\sqrt{1.2t}$. Then the maximum velocity v and time T at attend this velocity are",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B",
+    "C"
+   ],
+   "solution": "Given $acc^{n} = f = \\frac{dv}{dt} = 6 - \\sqrt{1.2t}$ (t is in secs)\nat $t = 0$, $v = 0$ and let the maximum velocity is 'v' which is attained at '$t_{0}$'\nat maximum velocity, $\\frac{dv}{dt} = 0 \\Rightarrow f = 0 \\Rightarrow t_{0} = 30s$ so, $\\int_{0}^{v} dv = \\int_{0}^{30}\\left(6 - \\sqrt{1.2t}\\right)dt \\Rightarrow v = 60\\ \\mathrm{ft/s}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$T = 20$ sec"
+    },
+    {
+     "key": "B",
+     "text": "$v = 60$ ft/sec"
+    },
+    {
+     "key": "C",
+     "text": "$T = 30$ sec"
+    },
+    {
+     "key": "D",
+     "text": "$v = 40$ tt/sec"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 70,
+   "topic": "Quadratic Equations",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If the quadratic equation $ax^{2} + bx + c = 0$ $(a > 0)$ has two roots $\\alpha$ and $\\beta$ such that $\\alpha < -2$ and $\\beta > 2$ then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "C"
+   ],
+   "solution": "$f(x) = ax^{2} + bx + c$\nso, $f(-2) < 0$ and $f(2) > 0$\nalso, $f(0) < 0 \\Rightarrow c < 0$\n$f(-1) < 0 \\Rightarrow a - b + c < 0$\n$f(1) < 0 \\Rightarrow a + b + c < 0$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$c < 0$"
+    },
+    {
+     "key": "B",
+     "text": "$a + b + c > 0$"
+    },
+    {
+     "key": "C",
+     "text": "$a - b + c < 0$"
+    },
+    {
+     "key": "D",
+     "text": "$a - b + c > 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q70-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 71,
+   "topic": "Binomial Theorem",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If n is a positive integer, the value of $(2n + 1)\\,{}^{n}C_{0} + (2n - 1)\\,{}^{n}C_{1} + (2n - 3)\\,{}^{n}C_{2} + \\ldots + 1 \\cdot {}^{n}C_{n}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "C"
+   ],
+   "solution": "$\\sum_{r=0}^{n}(2n + 1 - 2r)\\,{}^{n}C_{r}$\n$= (2n + 1)\\sum_{r=0}^{n}{}^{n}C_{r} - 2\\sum_{r=0}^{n} r \\cdot {}^{n}C_{r}$\n$= (2n + 1) \\cdot 2^{n} - 2 \\cdot n \\cdot 2^{n-1} = (n + 1) \\cdot 2^{n}$\nIf $f(x) = x^{n+1} \\Rightarrow f'(2) = (n + 1) \\cdot 2^{n}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(n + 1)2^{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$3^{n}$"
+    },
+    {
+     "key": "C",
+     "text": "$f'(2)$ where $f(x) = x^{n+1}$"
+    },
+    {
+     "key": "D",
+     "text": "$(n + 1)2^{n+1}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 72,
+   "topic": "Relations and Functions",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The function $f : \\mathbb{R} \\to \\mathbb{R}$ defined by $f(x) = e^{x} + e^{-x}$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": [
+    "D"
+   ],
+   "solution": "$\\because f(x)$ is even function $\\therefore$ Not one - one\n$\\because e^{x} + e^{-x}$ can't be negative $\\therefore$ Not onto",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "one-one"
+    },
+    {
+     "key": "B",
+     "text": "onto"
+    },
+    {
+     "key": "C",
+     "text": "bijective"
+    },
+    {
+     "key": "D",
+     "text": "not bijective"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 73,
+   "topic": "Determinants",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If $a_{i}, b_{i}, c_{i} \\in \\mathbb{R}\\ (i = 1, 2, 3)$ and $x \\in \\mathbb{R}$ and $\\begin{vmatrix} a_{1} + b_{1}x & a_{1}x + b_{1} & c_{1} \\\\ a_{2} + b_{2}x & a_{2}x + b_{2} & c_{2} \\\\ a_{3} + b_{3}x & a_{3}x + b_{3} & c_{3} \\end{vmatrix} = 0$, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B",
+    "C"
+   ],
+   "solution": "$(1 - x^{2})\\begin{vmatrix} a_{1} & b_{1} & c_{1} \\\\ a_{2} & b_{2} & c_{2} \\\\ a_{3} & b_{3} & c_{3} \\end{vmatrix} = 0$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x = 1$"
+    },
+    {
+     "key": "B",
+     "text": "$x = -1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{vmatrix} a_{1} & b_{1} & c_{1} \\\\ a_{2} & b_{2} & c_{2} \\\\ a_{3} & b_{3} & c_{3} \\end{vmatrix} = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x = 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 74,
+   "topic": "Straight Lines",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "If ABC is an isosceles triangle and the coordinates of the base points are $B(1, 3)$ and $C(-2, 7)$. The coordinates of A can be",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": [
+    "C",
+    "D"
+   ],
+   "solution": "Let $A(x, y)$ now $(AB)^{2} = (AC)^{2}$\nexcept mid point of BC for $\\Delta ABC$ to be isosceles $\\therefore 8y - 6x = 43$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(1, 6)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(-\\frac{1}{8}, 5\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{5}{6}, 6\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(-7, \\frac{1}{8}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 75,
+   "topic": "Straight Lines",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "A square with each side equal to 'a' above the x-axis and has one vertex at the origin. One of the sides passing through the origin makes an angle $\\alpha\\left(0 < \\alpha < \\frac{\\pi}{4}\\right)$ with the positive direction of the axis. Equation of the diagonals of the square.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "C"
+   ],
+   "solution": "$OB \\rightarrow y = \\tan(45 + \\alpha)x$\n$y(\\cos\\alpha - \\sin\\alpha) = x(\\sin\\alpha + \\cos\\alpha)$\n$\\because AC \\perp OB$, $A(a\\cos\\alpha, a\\sin\\alpha)$ $\\therefore AC \\rightarrow y - a\\sin\\alpha = \\frac{(\\sin\\alpha - \\cos\\alpha)}{(\\sin\\alpha + \\cos\\alpha)}(x - a\\cos\\alpha)$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$y(\\cos\\alpha - \\sin\\alpha) = x(\\sin\\alpha + \\cos\\alpha)$"
+    },
+    {
+     "key": "B",
+     "text": "$y(\\cos\\alpha + \\sin\\alpha) = x(\\cos\\alpha - \\sin\\alpha)$"
+    },
+    {
+     "key": "C",
+     "text": "$y(\\sin\\alpha + \\cos\\alpha) + x(\\cos\\alpha - \\sin\\alpha) = a$"
+    },
+    {
+     "key": "D",
+     "text": "$y(\\cos\\alpha - \\sin\\alpha) + x(\\cos\\alpha + \\sin\\alpha) = a$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-math-q75-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

@@ -1,0 +1,1451 @@
+{
+ "paper": {
+  "exam": "WBJEE",
+  "subject": "Physics",
+  "year": 2024,
+  "set_label": "28 Apr 2024",
+  "title": "WBJEE 2024 · Physics",
+  "marks_correct": 1,
+  "marks_wrong": -0.25,
+  "marking_note": "Category 1: +1 / −¼ · Category 2: +2 / −½ · Category 3: +2, one or more correct, no negative",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": "1a86IN3XGC-JOugDC89h8DtaWCwU7T7bb"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Let $\\theta$ be the angle between two vectors $\\vec{A}$ and $\\vec{B}$. If $\\hat{a}_{\\perp}$ is the unit vector perpendicular to $\\vec{A}$, then the direction of $\\vec{B} - B\\sin\\theta\\,\\hat{a}_{\\perp}$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{B} - B\\sin\\theta\\,\\hat{a}_{\\perp}$ is along $\\vec{A}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "along $\\vec{B}$"
+    },
+    {
+     "key": "B",
+     "text": "perpendicular to $\\vec{B}$"
+    },
+    {
+     "key": "C",
+     "text": "along $\\vec{A}$"
+    },
+    {
+     "key": "D",
+     "text": "perpendicular to $\\vec{A}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-phy-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The Power (P) radiated from an accelerated charged particle is given by $P \\propto \\frac{(qa)^{m}}{c^{n}}$ where q is the charge, a is the acceleration of the particle and c is speed of light in vacuum. From dimensional analysis, the value of m and n respectively, are",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{q^{2}}{4\\pi\\varepsilon_0 rT} = \\frac{1}{\\varepsilon_0}\\frac{q^{m}a^{m}}{c^{n}}$ {taking $\\frac{1}{\\varepsilon_0}$ in multiplication as constant of proportionality}\n$\\frac{q^{2}}{rT} = \\frac{q^{m}a^{m}}{c^{n}}$\n$m = 2$\n$\\frac{a^{m}}{c^{n}} = \\frac{1}{CT^{2}} = \\frac{1}{c}\\frac{a^{2}}{c^{2}}$   $[c = aT]$\n$\\frac{a^{m}}{c^{n}} = \\frac{a^{2}}{c^{3}}$\n$n = 3$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$m = 2,\\ n = 2$"
+    },
+    {
+     "key": "B",
+     "text": "$m = 2,\\ n = 3$"
+    },
+    {
+     "key": "C",
+     "text": "$m = 3,\\ n = 2$"
+    },
+    {
+     "key": "D",
+     "text": "$m = 0,\\ n = 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The convex lens ($L_1$ and $L_2$) of equal focal length f are placed at a distance $\\frac{f}{2}$ apart. An object is placed at a distance 4f in the left of $L_1$ as shown in figure. The final image is at",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{v} - \\frac{1}{u} = \\frac{1}{f}$\n$\\frac{1}{v} - \\frac{1}{-4f} = \\frac{1}{f} \\Rightarrow \\frac{1}{v} = \\frac{1}{f} - \\frac{1}{4f} \\Rightarrow \\frac{1}{v} = \\frac{4-1}{4f} \\Rightarrow v = \\frac{4f}{3}$\n$u_2 = \\frac{4f}{3} - \\frac{f}{2} = \\frac{8f - 3f}{6} \\Rightarrow u_2 = \\frac{5f}{6}$\n$\\frac{1}{v_2} - \\frac{1}{u_2} = \\frac{1}{f} \\Rightarrow \\frac{1}{v_2} - \\frac{6}{5f} = \\frac{1}{f} \\Rightarrow \\frac{1}{v_2} = \\frac{1}{f} + \\frac{6}{5f}$\n$\\frac{1}{v_2} = \\frac{11}{5f} \\Rightarrow v_2 = \\frac{5f}{11}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5f}{11}$ right of $L_2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5f}{11}$ left of $L_2$"
+    },
+    {
+     "key": "C",
+     "text": "$5f$ right of $L_2$"
+    },
+    {
+     "key": "D",
+     "text": "$5f$ left of $L_2$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q03.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Which of the following quantity has the dimension of length?\n(h is Planck’s constant, m is the mass of electron and c is the velocity of light)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$[h] = [ML^{2}T^{-1}]$\n$[c] = [LT^{-1}]$\n$[m] = [M^{1}L^{0}T^{0}]$\nDimension of length\n$[L] = h^{x}c^{y}m^{z}$\n$[L^{1}] = [ML^{2}T^{-1}]^{x}[LT^{-1}]^{y}[M^{1}L^{0}T^{0}]^{z}$\nDimensional analysis on mass\n$0 = x + z \\Rightarrow x = -z \\Rightarrow z = -1$\nDimensional analysis on length\n$1 = 2x + y \\Rightarrow 2x - x = 1 \\Rightarrow x = 1$\nDimensional analysis on time\n$0 = -x - y \\Rightarrow -x = +y \\Rightarrow y = -1$\nTherefore final formula is $\\frac{h}{mc}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{hc}{m}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{h}{mc^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{h^{2}}{mc^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{h}{mc}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The speed distribution for a sample of N gas particles is shown below. $P(v) = 0$ for $v > 2v_0$. How many particles have speeds between $1.2\\,v_0$ and $1.8\\,v_0$?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total area under curve $= \\frac{3}{2}v_0 a = N$\nArea under $1.2v_0$ to $1.8v_0$ is $0.6v_0 = 0.4N$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.2\\,N$"
+    },
+    {
+     "key": "B",
+     "text": "$0.4\\,N$"
+    },
+    {
+     "key": "C",
+     "text": "$0.6\\,N$"
+    },
+    {
+     "key": "D",
+     "text": "$0.8\\,N$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q05.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A particle of mass ‘m’ moves in one dimension under the action of a conservative force whose potential energy has the form of $U(x) = -\\frac{\\alpha x}{x^{2} + \\beta^{2}}$ where $\\alpha$ and $\\beta$ are dimensional parameters. The angular frequency of the oscillation is proportional to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$U = -\\frac{\\alpha x}{x^{2} + \\beta^{2}}$\nhere, $[\\beta] = [L]$\n$[\\alpha] = [ML^{3}T^{-2}]$\nonly option (C) has dimension of $\\frac{1}{T}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{\\frac{\\alpha^{3}}{m\\beta^{4}}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{\\frac{\\alpha}{m\\beta^{4}}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{\\alpha}{m\\beta^{3}}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{\\alpha}{m\\beta^{6}}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Longitudinal waves cannot",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Longitudinal wave can not be polarized.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "have a unique wave length"
+    },
+    {
+     "key": "B",
+     "text": "have a unique wave velocity"
+    },
+    {
+     "key": "C",
+     "text": "transmit energy"
+    },
+    {
+     "key": "D",
+     "text": "be polarized"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A 2 V cell is connected across to points A and B as shown in the figure. Assume that the resistance of each diode is zero in forward bias and infinity in reverse bias. The curring supplied by the cell is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$i = \\frac{2}{10} = 0.2\\ \\mathrm{A}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.5\\ \\mathrm{A}$"
+    },
+    {
+     "key": "B",
+     "text": "$0.2\\ \\mathrm{A}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.1\\ \\mathrm{A}$"
+    },
+    {
+     "key": "D",
+     "text": "$0.25\\ \\mathrm{A}$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q09.png",
+   "solution_figure": "wb24-phy-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A charge Q is placed at the centre of a cube of sides a. The total flux of electric field through the six surfaces of the cube is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Flux passing through all six sides is $\\frac{Q}{\\varepsilon_0}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{6Qa^{2}}{\\epsilon_0}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{Qa^{2}}{6\\epsilon_0}$"
+    },
+    {
+     "key": "C",
+     "text": "$Q/\\epsilon_0$"
+    },
+    {
+     "key": "D",
+     "text": "$Qa^{2}/\\epsilon_0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The elastic potential energy of a strained body is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Elastic PE $= \\frac{1}{2}$ × stress × strain × V",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "stress × strain"
+    },
+    {
+     "key": "B",
+     "text": "stress / strain"
+    },
+    {
+     "key": "C",
+     "text": "stress × strain / volume"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}$ × stress × strain × volume"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Which of the following statement(s) is/are true in respect of nuclear binding energy?\n(i) The mass energy of a nucleus is larger than the total mass energy of its individual protons and neutrons.\n(ii) If a nucleus could be separated into its nucleons, an energy equal to the binding energy would have to be transferred to the particles during the separating process.\n(iii) The binding energy is a measure of how well the nucleons in a nucleus are held together.\n(iv) The nuclear fission is somehow related to acquiring higher binding energy.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[(ii), (iii) and (iv)]",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statements (i), (ii) and (iii) are true"
+    },
+    {
+     "key": "B",
+     "text": "Statements (ii), (iii) and (iv) are true"
+    },
+    {
+     "key": "C",
+     "text": "Statements (ii) and (iii) are true"
+    },
+    {
+     "key": "D",
+     "text": "All the four statements are true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A satellite of mass m rotates round the earth in a circular orbit of radius R. If the angular momentum of the satellite is J, then its kinetic energy (K) and the total energy (E) of the satellite are",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$KE = \\frac{J^{2}}{2I} = \\frac{J^{2}}{2mR^{2}},\\ E = -KE$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$K = \\frac{J^{2}}{mR^{2}},\\ E = -\\frac{J^{2}}{2mR^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$K = \\frac{J^{2}}{2mR^{2}},\\ E = -\\frac{J^{2}}{2mR^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$K = \\frac{J^{2}}{2mR^{2}},\\ E = -\\frac{J^{2}}{mR^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$K = \\frac{J^{2}}{2mR^{2}},\\ E = \\frac{J^{2}}{mR^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Light of wavelength $6000\\ \\mathrm{\\mathring{A}}$ is incident on a thin glass plate of r.i. 1.5 such that the angle of refraction into the plate is $60^\\circ$. Calculate the smallest thickness of the plate which will make dark fringe by reflected beam interference.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2\\mu t\\cos r = n\\lambda$\nput $n = 1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.5 \\times 10^{-7}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "B",
+     "text": "$2 \\times 10^{-7}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "C",
+     "text": "$3.5 \\times 10^{-7}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "D",
+     "text": "$4 \\times 10^{-7}\\ \\mathrm{m}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Consider a circuit where a cell of emf $E_0$ and internal resistance r is connected across the terminal A and B as shown in figure. The value of R for which the power generated in the circuit is maximum, is given by",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$R_{ext} = r$\n$\\frac{R}{3} = r$\n$R = 3r$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$R = r$"
+    },
+    {
+     "key": "B",
+     "text": "$R = 2r$"
+    },
+    {
+     "key": "C",
+     "text": "$R = 3r$"
+    },
+    {
+     "key": "D",
+     "text": "$R = \\frac{r}{3}$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q16.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The equivalent capacitance of a combination of connected capacitors shown in the figure between the points P and N is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{c \\times 2c}{3c} = \\frac{2c}{3}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3C$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2C}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4C}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{2}C$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q17.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In a single-slit diffraction experiment, the slit is illuminated by light of two wavelength $\\lambda_1$ and $\\lambda_2$. It is observed that the 2nd order diffraction minimum for $\\lambda_1$ coincides with the 3rd diffraction minimum for $\\lambda_2$. Then",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$d\\sin\\theta = n\\lambda$\n$n_1\\lambda_1 = n_2\\lambda_2$\n$\\frac{\\lambda_1}{\\lambda_2} = \\frac{n_2}{n_1} = 3/2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\lambda_1}{\\lambda_2} = \\frac{2}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\lambda_1}{\\lambda_2} = \\frac{5}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\lambda_1}{\\lambda_2} = \\frac{3}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\lambda_1}{\\lambda_2} = \\frac{7}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The acceleration-time graph of a particle moving in a straight line is shown in the figure. If the initial velocity of the particle is zero then the velocity-time graph of the particle will be",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because a =$ slope of $v - t$ graph",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb24-phy-q19-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb24-phy-q19-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb24-phy-q19-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb24-phy-q19-optD.png"
+    }
+   ],
+   "stem_figure": "wb24-phy-q19.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The position vector of a particle of mass m moving with a constant velocity $\\vec{\\upsilon}$ is given by $\\vec{r} = x(t)\\,\\hat{i} + b\\,\\hat{j}$, where b is a constant. At an instant, $\\vec{r}$ makes an angle $\\theta$ with the x-axis as shown in the figure. The variation of the angular momentum of the particle about the origin with $\\theta$ will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L = mV_x \\cdot b =$ constant",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb24-phy-q20-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb24-phy-q20-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb24-phy-q20-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb24-phy-q20-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "The position of the centre of mass of the uniform plate as shown in the figure is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Required $\\vec{r} = -\\frac{m_1}{m_2}\\left(\\vec{r}_{1cm}\\right)$\n$m_2 = 3m_1$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(-\\frac{a}{2}, -\\frac{b}{2}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{a}{8}, \\frac{b}{8}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(-\\frac{b}{6}, -\\frac{a}{6}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(-\\frac{a}{6}, -\\frac{b}{6}\\right)$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q21.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "In a series LCR circuit, the rms voltage across the resistor and the capacitor are 30 V and 90 V respectively. If the applied voltage is $50\\sqrt{2}\\sin\\omega t$, then the peak voltage across the inductor is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sqrt{30^{2} + (90 - V_L)^{2}} = 50$\n$\\Rightarrow V_L = 50\\ \\mathrm{V}$\n$= (V_L)_{max} = 50\\sqrt{2}\\ \\mathrm{V}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$70\\ \\mathrm{V}$"
+    },
+    {
+     "key": "B",
+     "text": "$50\\ \\mathrm{V}$"
+    },
+    {
+     "key": "C",
+     "text": "$70\\sqrt{2}\\ \\mathrm{V}$"
+    },
+    {
+     "key": "D",
+     "text": "$50\\sqrt{2}\\ \\mathrm{V}$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q22.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A small ball of mass m is suspended from the ceiling of a floor by a string of length L. The ball moves along a horizontal circle with constant angular velocity $\\omega$, as shown in the figure. The torque about the centre (O) of the horizontal circle is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Angular momentum is conserved about O.",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$mgL\\sin\\theta$"
+    },
+    {
+     "key": "B",
+     "text": "$mgL$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$mgL\\cos\\theta$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q23.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "If $\\hat{n}_1$, $\\hat{n}_2$ and $\\hat{t}$ represent, unit vectors along the incident ray, reflected ray and normal to the surface respectively, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\hat{n}_1 = -\\cos\\theta\\,\\hat{t} + \\sin\\theta\\,\\hat{i}$\n$\\hat{n}_2 = \\cos\\theta\\,\\hat{t} + \\sin\\theta\\,\\hat{i}$\n$\\hat{n}_2 - \\hat{n}_1 = 2\\cos\\theta\\,\\hat{t} = -2(\\hat{n}_1 \\cdot \\hat{t})\\hat{t}$\n$\\hat{n}_1 \\cdot \\hat{t} = -\\cos\\theta$\n$\\hat{n}_2 = \\hat{n}_1 - 2(\\hat{n}_1 \\cdot \\hat{t})\\hat{t}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\hat{n}_2 = \\hat{n}_1 - 2(\\hat{n}_1 \\cdot \\hat{t})\\hat{t}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\hat{n}_2 = \\hat{n}_1 + 2(\\hat{n}_1 \\cdot \\hat{t})\\hat{t}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\hat{n}_2 = -\\hat{n}_1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\hat{n}_2 = 2\\hat{n}_1 - (\\hat{n}_1 \\times \\hat{t}) \\cdot \\hat{n}_1$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q24.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A beam of light of wavelength $\\lambda$ falls on a metal having work function $\\phi$ placed in a magnetic field B. The most energetic electrons, perpendicular to the field are bent in circular arcs of radius R. If the experiment is performed for different values of $\\lambda$, then $B^{2}$ vs. $\\frac{1}{\\lambda}$ graph will look like (keeping all other quantities constant)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{hc}{\\lambda} - \\phi = k,\\ R = \\frac{\\sqrt{2mk}}{qB}$, $B^{2} \\propto K,\\ B^{2} = A_1\\left(\\frac{1}{\\lambda}\\right) - A_2$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "wb24-phy-q25-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "wb24-phy-q25-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "wb24-phy-q25-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "wb24-phy-q25-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A charged particle moving with a volocity $\\vec{v} = v_1\\hat{i} + v_2\\hat{j}$ in a magnetic field $\\vec{B}$ experiences a force $\\vec{F} = F_1\\hat{i} + F_2\\hat{j}$. Here $v_1, v_2, F_1, F_2$ all are constants. Then $\\vec{B}$ can be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{F} \\cdot \\vec{V} = 0 \\Rightarrow \\frac{F_1}{F_2} = -\\frac{V_2}{V_1}$ ........(I)\n$\\vec{F} \\cdot \\vec{B} = 0 \\Rightarrow \\frac{F_1}{F_2} = -\\frac{B_2}{B_1}$ .........(II)\nOr $\\frac{B_1}{B_2} = \\frac{V_1}{V_2}$, $\\vec{B} = B_1\\hat{i} + B_2\\hat{j} + B_3\\hat{k}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\vec{B} = B_1\\hat{i} + B_2\\hat{j}$ with $\\frac{v_1}{v_2} = \\frac{B_1}{B_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\vec{B} = B_1\\hat{i} + B_2\\hat{j} + B_3\\hat{k}$ with $\\frac{v_1}{v_2} = \\frac{B_1}{B_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\vec{B} = B_3\\hat{j}$ with $B_1 = B_2 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\vec{B} = B_1\\hat{j} + B_2\\hat{k}$ with $\\frac{B_1}{B_2} = \\frac{v_1}{v_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Two straignt conducting plates form an angle $\\theta$ where their ends are joined. A conducting bar in contact with the plates and forming an isosceles triangle with them starts at the vertex at time $t = 0$ and moves with constant velocity $\\vec{v}$ to the right as shown in figure. A magnetic field $\\vec{B}$ points out of the page. The magnitude of emf induced at $t = 1$ second will be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\ell = 2vt\\tan\\frac{\\theta}{2}$\n$\\varepsilon = B\\ell v = 2Bv^{2}\\tan\\frac{\\theta}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$Bv\\tan\\frac{\\theta}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$Bv^{2}\\tan\\frac{\\theta}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2Bv^{2}\\tan\\frac{\\theta}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2Bv^{2}\\sin\\frac{\\theta}{2}$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q27.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "Three point charges q, $-2q$ and q are placed along x axis at $x = -a$, 0 and a respectively. As $a \\to 0$ and $q \\to \\infty$ while $qa^{2} = Q$ remains finite, the clectric field at a point P, at a distance $x\\ (x \\gg a)$ from $x = 0$ is $\\vec{E} = \\frac{\\alpha Q}{4\\pi\\epsilon_0 x^{\\beta}}\\hat{i}$. Then",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = \\frac{2kqa}{x^{3}}\\left[\\frac{1}{\\left(1 - \\frac{a}{2x}\\right)^{3}} - \\frac{1}{\\left(1 + \\frac{a}{2x}\\right)^{3}}\\right]$\n$= \\frac{2kqa}{x^{3}}\\left[1 + \\frac{3a}{2x} - 1 + \\frac{3a}{2x}\\right] = \\frac{2kqa}{x^{3}}\\left[\\frac{3a}{x}\\right] = \\frac{6kqa^{2}}{x^{4}} = 6\\frac{1}{4\\pi\\epsilon}\\frac{Q}{x^{4}}$\n$\\beta = 4$, $\\frac{\\alpha}{\\beta} = \\frac{6}{4} = \\frac{3}{2}$\n$\\alpha = 6$, $\\alpha = \\frac{3}{2}\\beta$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\alpha = \\beta$"
+    },
+    {
+     "key": "B",
+     "text": "$\\alpha = 2\\beta$"
+    },
+    {
+     "key": "C",
+     "text": "$\\alpha = \\frac{2}{3}\\beta$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\alpha = 2\\beta$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A body floats with $\\frac{1}{n}$ of its volume keeping outside of water. If the body has been taken to height h inside water and released, it will come to the surface after time t. Then",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F_B = mg$ ; $V\\left(1 - \\frac{1}{n}\\right)\\sigma g = Vdg$, $\\Rightarrow d = \\left(\\frac{n-1}{n}\\right)\\sigma$\n$a = \\frac{F_b - mg}{m} = \\frac{v\\sigma g}{m} - g$, $a = \\frac{v\\sigma g}{v\\left(\\frac{n-1}{n}\\right)\\sigma} - g$, $\\Rightarrow a = \\frac{ng}{n-1} - g$, $\\Rightarrow a = \\frac{g}{n-1}$\nNow for time, $h = \\frac{1}{2}at^{2}$, $h = \\frac{1}{2}\\frac{g}{(n-1)}t^{2}$, $\\Rightarrow t = \\sqrt{\\frac{2h}{g}(n-1)}$ $\\Rightarrow t \\propto \\sqrt{n-1}$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$t \\propto \\sqrt{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$t \\propto n$"
+    },
+    {
+     "key": "C",
+     "text": "$t \\propto \\sqrt{n+1}$"
+    },
+    {
+     "key": "D",
+     "text": "$t \\propto \\sqrt{n-1}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Category 1",
+   "stem": "A small sphere of mass m and radius r slides down the smooth surface of a large hemispherical bowl of radius R. If the sphere starts sliding from rest, the total kinetic energy of the sphere at the lowest point A of the bowl will be [given, moment of inertia of sphere $= \\frac{2}{5}mr^{2}$]",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$mg(R - r) = K_f$",
+   "marks_correct": 1,
+   "marks_wrong": -0.25,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$mg(R - r)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{7}{10}mg(R - r)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{7}mg(R - r)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{10}{7}mg(R - r)$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q30.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "When a convex lens is placed above an empty tank, the image of a mark at the bottom of the tank, which is 45 cm from the lengs is formed 36 cm above the lens. When a liquid is poured in the tank to a depth of 40 cm, the distance of the image of the mark above the lens is 48 cm. The refractive index of the liquid is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Initially without water, $\\frac{1}{36} - \\frac{1}{-45} = \\frac{1}{f} \\Rightarrow f = 20$\nthen, after pouring water upto 40 cm\napparent object distance $= \\frac{40}{\\mu} + 5$, $\\frac{1}{48} + \\frac{1}{\\frac{40}{\\mu} + 5} = \\frac{1}{20} \\Rightarrow \\mu = 1.366$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.358$"
+    },
+    {
+     "key": "B",
+     "text": "$1.544$"
+    },
+    {
+     "key": "C",
+     "text": "$1.472$"
+    },
+    {
+     "key": "D",
+     "text": "$1.366$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "wb24-phy-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "In the given network of AND and OR gates, output Q can be written as (assuming n even)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$[\\{(X_0X_1 + X_2)X_3 + X_4\\}X_5 + X_6]X_7 + \\ldots\\ldots$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$X_0X_1 + X_2X_3 + \\ldots X_{n-1}X_n$"
+    },
+    {
+     "key": "B",
+     "text": "$X_0X_1 \\ldots X_n + X_1X_2 \\ldots X_n + X_2X_3 \\ldots X_n + X_n$"
+    },
+    {
+     "key": "C",
+     "text": "$X_0X_1 \\ldots X_{n-1} + X_{n-2} + X_{n-2}X_{n-1} + X_n$"
+    },
+    {
+     "key": "D",
+     "text": "$X_0X_1 \\ldots X_{n-1} + X_2X_3X_5 \\ldots X_{n-1} + X_{n-2}X_{n-1} + X_n$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q32.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "Water in filled in a cylindrical vessel of height H. A hole is made at height z from the bottom, as shown in the figure. The value of of z for which the range (R) of the emerging water through the hole will be maximum for",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Theory",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$z = \\frac{H}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$z = \\frac{H}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$z = \\frac{H}{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$z = \\frac{H}{3}$"
+    }
+   ],
+   "stem_figure": "wb24-phy-q33.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "A metal plate of area $10^{-2}\\ \\mathrm{m^{2}}$ rests on a lauer of castor oil, $2 \\times 10^{-3}\\ \\mathrm{m}$ thick whose coefficient of viscosity is $1.55\\ \\mathrm{N\\,s\\,m^{-2}}$. The approximate horizontal force required to move the plate with a uniform speed of $3 \\times 10^{-2}\\ \\mathrm{m\\,s^{-1}}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F = \\eta A\\frac{v}{h} = 1.55 \\times 10^{-2} \\times \\frac{3 \\times 10^{-2}}{2 \\times 10^{-3}}$",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.6718\\ \\mathrm{N}$"
+    },
+    {
+     "key": "B",
+     "text": "$0.2325\\ \\mathrm{N}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.2022\\ \\mathrm{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$0.6615\\ \\mathrm{N}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Category 2",
+   "stem": "The following figure shows the variation of potential energy V(x) of a particle with distance x. The particle has",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Theory",
+   "marks_correct": 2,
+   "marks_wrong": -0.5,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Two equilibrium points, one stable another unstable"
+    },
+    {
+     "key": "B",
+     "text": "Two equilibrium points, both stable"
+    },
+    {
+     "key": "C",
+     "text": "Three equilibrium points, one stable two unstable"
+    },
+    {
+     "key": "D",
+     "text": "Three equilibrium points, two stable one unstable"
+    }
+   ],
+   "stem_figure": "wb24-phy-q35.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Monochromatic light of wavelength $\\lambda = 4770\\ \\mathrm{\\mathring{A}}$ is incident separately on the surface of four different metals A, B, C and D. The work functions of A, B, C and D are 4.2 eV, 3.7 eV, 3.2 eV and 2.3 eV, respectively. The metal / metals from which electrons will be emitted is /are",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": [
+    "D"
+   ],
+   "solution": "$E_{photon} = \\frac{hc}{\\lambda} = 2.6\\ \\mathrm{eV} >$ work function for photoelectons emission",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A, B, C and D"
+    },
+    {
+     "key": "B",
+     "text": "B, C and D"
+    },
+    {
+     "key": "C",
+     "text": "C and D"
+    },
+    {
+     "key": "D",
+     "text": "D only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Electric Charges and Fields",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "Consider the integral form of the Gauss’ law in electrostatics.\n$$\\oint \\vec{E} \\cdot \\vec{ds} = \\frac{Q}{\\epsilon_0}$$\nWhich of the following statements are correct?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B",
+    "C"
+   ],
+   "solution": "Theory",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It contains law of Coulomb."
+    },
+    {
+     "key": "B",
+     "text": "It contains superposition principle."
+    },
+    {
+     "key": "C",
+     "text": "An elementary patch on the enclosing surface is a polar vector."
+    },
+    {
+     "key": "D",
+     "text": "An elementary patch on the enclosing surface is a pseudo-vector."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "A uniform rod AB of length 1m and mass 4kg is sliding along two mutually perpendicular frictionless walls OX and OY. The velocity of the two ends of the rod A and B are 3 m/s and 4 m/s respectively, as shown in the figure. Then which of the following statement(s) is/are correct?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": [
+    "A",
+    "B",
+    "D"
+   ],
+   "solution": "Get $\\theta$\n$3\\cos\\theta = 4\\sin\\theta$\n$\\omega = \\frac{3\\sin\\theta + 4\\sin\\theta}{\\ell}$\n$(KE)_{rotation} = \\frac{1}{2}\\,\\frac{1}{12}ml^{2}\\,\\omega^{2} = \\frac{25}{6}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "The velocity of the centre of mass of the rod is 2.5 m/s."
+    },
+    {
+     "key": "B",
+     "text": "Rotational kinetic energy of the rod is $\\frac{25}{6}$ joule."
+    },
+    {
+     "key": "C",
+     "text": "The angular velocity of the rod is 5 rad/s clockwise."
+    },
+    {
+     "key": "D",
+     "text": "The angular velocity of the rod is 5 rad/s anticlockwise."
+    }
+   ],
+   "stem_figure": "wb24-phy-q38.png",
+   "solution_figure": "wb24-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Alternating Current",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The variation of impedance Z of a series LCR circuit with frequency of the source is shown in the figure. Which of the following statement(s) is/are true?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": [
+    "C",
+    "D"
+   ],
+   "solution": "AC : $X_L < X_C \\Rightarrow$ capacitive nature\nBC : $X_L > X_C \\Rightarrow$ Inductive nature",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "The impedance Z is inductive in the portion AC"
+    },
+    {
+     "key": "B",
+     "text": "The impedance Z is capacitive in the portion BC"
+    },
+    {
+     "key": "C",
+     "text": "The impedance Z is inductive in the portion BC"
+    },
+    {
+     "key": "D",
+     "text": "The impedance Z is capacitive in the portion AC"
+    }
+   ],
+   "stem_figure": "wb24-phy-q39.png",
+   "solution_figure": "wb24-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Electromagnetic Waves",
+   "qtype": "multi",
+   "section": "Category 3",
+   "stem": "The electric field of a plane electromagnetic wave in a medium is given by $\\vec{E}(x, y, z, t) = E_0\\hat{n}e^{ik_0[(x+y+z)-ct]}$ where c is the speed of light in free space. $\\vec{E}$ field is polarized in the x – z plane. The speed of wave is $\\nu$ in the medium. Then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": [
+    "B",
+    "C"
+   ],
+   "solution": "$\\vec{E} = E_0\\hat{n}\\,e^{ik_0(\\hat{k} \\cdot \\vec{r} - wt)}$\n$\\Rightarrow \\vec{k} = \\hat{i} + \\hat{j} + \\hat{k}$\n$\\Rightarrow v = \\frac{c}{|\\hat{i} + \\hat{j} + \\hat{k}|} = \\frac{c}{\\sqrt{3}}$\n$\\Rightarrow$ refractive index $= \\sqrt{3}$\n$\\vec{E}$ is in z – x plane and $\\vec{E} \\cdot \\vec{V} = 0$\n$\\Rightarrow \\hat{n} = \\frac{\\hat{i} - \\hat{k}}{\\sqrt{2}}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\hat{n} = \\hat{i} - \\hat{k}$ ; $\\nu = c$."
+    },
+    {
+     "key": "B",
+     "text": "$\\hat{n} = \\frac{\\hat{i} - \\hat{k}}{\\sqrt{2}}$ ; $\\nu = \\frac{c}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "refractive index of the medium is $\\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\hat{n} = \\frac{\\hat{i} + \\hat{k}}{\\sqrt{2}}$ ; $\\nu = \\frac{c}{\\sqrt{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
