@@ -508,7 +508,9 @@ function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null;
   const subjects = useMemo(() => Array.from(new Set(ofExam.map((p) => p.subject))), [ofExam]);
   const years = useMemo(() => Array.from(new Set(ofExam.map((p) => p.year))).sort((a, b) => b - a), [ofExam]);
   const sets = useMemo(() => Array.from(new Set(ofExam.map((p) => p.set_label).filter(Boolean) as string[])), [ofExam]);
-  const list = ofExam.filter((p) => (!subject || p.subject === subject) && (!year || String(p.year) === year) && (!setLabel || p.set_label === setLabel));
+  const list = ofExam.filter((p) => (!subject || p.subject === subject) && (!year || String(p.year) === year) && (!setLabel || p.set_label === setLabel))
+    // Latest year first; the sort is stable, so papers within a year keep the server's order.
+    .sort((a, b) => b.year - a.year);
 
   function pickExam(e: string) {
     setExam(e); setSubject(""); setYear(""); setSetLabel("");
@@ -520,6 +522,7 @@ function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null;
 
   return (
     <section className="screen">
+      <button className="btn sm ghost backbtn" style={{ marginBottom: 14 }} onClick={() => go("/pyq")}>← Back</button>
       <div className="eyebrow">Choose a paper</div>
       <h2 style={{ fontSize: 26, marginTop: 6 }}>Previous Year Papers</h2>
       <div className="tabs">
