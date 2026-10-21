@@ -265,3 +265,16 @@
 @keyframes heroShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}60%{transform:translateX(4px)}}
 @keyframes heroPop{0%{transform:scale(.98)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.pyq .mini .mo.bad,.pyq .mini .mo.ok{animation:none}}
+
+/* Hero demo — select / Show result / solution box (mirrors the real attempt screen) */
+.pyq .mini .mo.sel{border-color:var(--mark);background:rgba(183,139,255,.14)}
+.pyq .mini .mo.sel i{background:var(--mark);border-color:var(--mark);color:#1a0b33}
+.pyq .mini .mshowrow{margin-top:10px}
+.pyq .mini .mshow{display:inline-block;font-size:11.5px;font-weight:800;padding:6px 12px;border-radius:9px;border:1px solid var(--line2);color:var(--faint);opacity:.55;transition:.2s}
+.pyq .mini .mshow.on{opacity:1;color:#fff;background:var(--grad);border-color:transparent}
+.pyq .mini .mshow.hov{filter:brightness(1.25)}
+.pyq .mini .mres{margin-top:10px;min-height:84px;border:1px solid rgba(40,199,111,.35);border-radius:11px;padding:9px 11px;background:rgba(40,199,111,.07);opacity:0;transform:translateY(6px);transition:opacity .45s,transform .45s}
+.pyq .mini .mres.on{opacity:1;transform:none}
+.pyq .mini .mres .hd{font-weight:800;color:var(--ok);font-size:11.5px;line-height:1.35}
+.pyq .mini .mres .sol{color:var(--muted);font-size:11.5px;font-weight:500;margin-top:4px;line-height:1.45}
+.pyq .heroart{aspect-ratio:auto;min-height:440px}

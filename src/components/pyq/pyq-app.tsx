@@ -242,23 +242,29 @@ function Loading({ label = "Loading…" }: { label?: string }) {
   return <section className="screen"><div className="loading">{label}</div></section>;
 }
 
-/* Hero demo — a looping, purely decorative "cursor attempts a question" animation:
-   cursor glides in → picks a wrong option (red) → then the correct one (green) → next question.
-   Respects prefers-reduced-motion (static card) and pauses while off-screen. */
+/* Hero demo — a looping, purely decorative "cursor attempts a question" animation that
+   mirrors the real attempt screen: cursor glides in → picks an option (randomly right or
+   wrong) → clicks "Show result" → correct option turns green, a wrong pick turns red, and the
+   solution box opens → next question. Respects prefers-reduced-motion (static card) and
+   pauses while off-screen. */
 const HERO_DEMO = [
-  { topic: "Electromagnetic Induction", q: "Self-inductance of a coil depends on:", o: ["Only on geometry", "Only on medium property", "Geometry and medium property", "Value of current through the inductor"], c: 2, w: 1 },
-  { topic: "Chemical Bonding", q: "The shape of an NH₃ molecule is:", o: ["Trigonal pyramidal", "Trigonal planar", "Linear", "Tetrahedral"], c: 0, w: 3 },
-  { topic: "Differentiation", q: "If f(x) = x², then f′(3) equals:", o: ["2", "6", "9", "3"], c: 1, w: 2 },
+  { topic: "Electromagnetic Induction", q: "Self-inductance of a coil depends on:", o: ["Only on geometry", "Only on medium property", "Geometry and medium property", "Value of current through the inductor"], c: 2,
+    sol: "L = μ₀μᵣN²A/ℓ — it depends on the coil's geometry and the medium, not on the current." },
+  { topic: "Chemical Bonding", q: "The shape of an NH₃ molecule is:", o: ["Trigonal pyramidal", "Trigonal planar", "Linear", "Tetrahedral"], c: 0,
+    sol: "N has 3 bond pairs and 1 lone pair (sp³), so the shape is trigonal pyramidal." },
+  { topic: "Differentiation", q: "If f(x) = x², then f′(3) equals:", o: ["2", "6", "9", "3"], c: 1,
+    sol: "f′(x) = 2x, so f′(3) = 2 × 3 = 6." },
 ];
 
 function HeroDemo() {
   const [qi, setQi] = useState(0);
-  const [st, setSt] = useState({ hov: -1, bad: false, ok: false, fade: false });
+  const [st, setSt] = useState({ hov: -1, sel: -1, rev: false, fade: false, btnHov: false });
   const [cur, setCur] = useState({ x: 0, y: 0, show: false, press: false });
   const [vis, setVis] = useState(true);
   const [still, setStill] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const opts = useRef<(HTMLDivElement | null)[]>([]);
+  const btn = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) setStill(true);
@@ -272,46 +278,60 @@ function HeroDemo() {
   useEffect(() => {
     if (still || !vis) return;
     const d = HERO_DEMO[qi];
+    // Random outcome each round: ~50% the correct option, otherwise a random wrong one.
+    const wrong = [0, 1, 2, 3].filter((i) => i !== d.c);
+    const pick = Math.random() < 0.5 ? d.c : wrong[Math.floor(Math.random() * wrong.length)];
     const timers: ReturnType<typeof setTimeout>[] = [];
     const at = (ms: number, fn: () => void) => { timers.push(setTimeout(fn, ms)); };
-    const aim = (i: number) => {
-      const el = opts.current[i];
+    const aimEl = (el: HTMLElement | null) => {
       if (el) setCur((c) => ({ ...c, show: true, press: false, x: el.offsetLeft + el.offsetWidth * 0.8, y: el.offsetTop + el.offsetHeight * 0.5 }));
     };
     const r = root.current;
-    setSt({ hov: -1, bad: false, ok: false, fade: false });
+    setSt({ hov: -1, sel: -1, rev: false, fade: false, btnHov: false });
     setCur({ x: r ? r.offsetWidth - 34 : 0, y: r ? r.offsetHeight + 6 : 0, show: false, press: false });
-    at(500, () => aim(d.w));
-    at(1500, () => setSt((s) => ({ ...s, hov: d.w })));
+    at(500, () => aimEl(opts.current[pick]));
+    at(1500, () => setSt((s) => ({ ...s, hov: pick })));
     at(1900, () => setCur((c) => ({ ...c, press: true })));
-    at(2050, () => { setCur((c) => ({ ...c, press: false })); setSt((s) => ({ ...s, hov: -1, bad: true })); });
-    at(3000, () => aim(d.c));
-    at(3900, () => setSt((s) => ({ ...s, hov: d.c })));
-    at(4200, () => setCur((c) => ({ ...c, press: true })));
-    at(4350, () => { setCur((c) => ({ ...c, press: false })); setSt((s) => ({ ...s, hov: -1, ok: true })); });
-    at(6200, () => { setSt((s) => ({ ...s, fade: true })); setCur((c) => ({ ...c, show: false })); });
-    at(6700, () => setQi((n) => (n + 1) % HERO_DEMO.length));
+    at(2050, () => { setCur((c) => ({ ...c, press: false })); setSt((s) => ({ ...s, hov: -1, sel: pick })); });
+    at(2900, () => aimEl(btn.current));
+    at(3700, () => setSt((s) => ({ ...s, btnHov: true })));
+    at(4000, () => setCur((c) => ({ ...c, press: true })));
+    at(4150, () => { setCur((c) => ({ ...c, press: false, show: false })); setSt((s) => ({ ...s, btnHov: false, rev: true })); });
+    at(8800, () => setSt((s) => ({ ...s, fade: true })));
+    at(9300, () => setQi((n) => (n + 1) % HERO_DEMO.length));
     return () => timers.forEach(clearTimeout);
   }, [qi, vis, still]);
 
   const d = HERO_DEMO[still ? 0 : qi];
-  const ok = still || st.ok;
+  const sel = still ? d.c : st.sel;
+  const rev = still || st.rev;
   return (
     <div className="mini" ref={root}>
       <div className={"mbody" + (st.fade ? " fade" : "")}>
         <div className="mtop"><span className="topicpill">{d.topic}</span><span className="marks">+4 / −1</span></div>
         <div className="mq">{d.q}</div>
-        {d.o.map((t, i) => (
-          <div
-            key={i}
-            ref={(el) => { opts.current[i] = el; }}
-            className={"mo" + (st.hov === i ? " hov" : "") + (st.bad && i === d.w ? " bad" : "") + (ok && i === d.c ? " ok" : "")}
-          >
-            <i>{"ABCD"[i]}</i>{t}
-            {ok && i === d.c && <span className="t">✓ correct</span>}
-            {st.bad && i === d.w && !still && <span className="t bad">✗ wrong</span>}
-          </div>
-        ))}
+        {d.o.map((t, i) => {
+          const isKey = rev && i === d.c;
+          const isBad = rev && sel === i && i !== d.c;
+          return (
+            <div
+              key={i}
+              ref={(el) => { opts.current[i] = el; }}
+              className={"mo" + (st.hov === i ? " hov" : "") + (sel === i && !rev ? " sel" : "") + (isBad ? " bad" : "") + (isKey ? " ok" : "")}
+            >
+              <i>{"ABCD"[i]}</i>{t}
+              {isKey && <span className="t">✓ correct</span>}
+              {isBad && <span className="t bad">✗ your answer</span>}
+            </div>
+          );
+        })}
+        <div className="mshowrow">
+          <div ref={btn} className={"mshow" + (sel >= 0 && !rev ? " on" : "") + (st.btnHov ? " hov" : "")}>Show result</div>
+        </div>
+        <div className={"mres" + (rev ? " on" : "")}>
+          <div className="hd">✓ Correct answer: {"ABCD"[d.c]}. {d.o[d.c]}</div>
+          <div className="sol">{d.sol}</div>
+        </div>
       </div>
       {!still && (
         <div className={"cur" + (cur.show ? " on" : "") + (cur.press ? " press" : "")} style={{ transform: `translate(${cur.x}px,${cur.y}px)` }}>
