@@ -1,0 +1,973 @@
+{
+ "paper": {
+  "exam": "CBSE Class 12",
+  "subject": "Physics",
+  "year": 2024,
+  "set_label": "Set 55/2/2",
+  "title": "CBSE Class 12 2024 · Physics · Set 55/2/2",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "Section A: +1 correct · no negative marking",
+  "sort_order": 11,
+  "duration_mins": 180,
+  "instructions": "(i) This question paper contains 33 questions. All questions are compulsory.\n(ii) Question paper is divided into FIVE sections - Section A, B, C, D and E.\n(iii) In SECTION A - Question number 1 to 16 are Multiple Choice type Questions (MCQ) questions. Each question carries 1 mark.\n(iv) In SECTION B - Question number 17 to 21 are Very Short Answer type questions. Each question carries 2 marks.\n(v) In SECTION C - Question number 22 to 28 are Short Answer type questions. Each question carries 3 marks.\n(vi) In SECTION D - Question number 29 and 30 are Case study Based questions. Each question carries 4 marks.\n(vii) In SECTION E - Question number 31 to 33 are Long Answer Type questions. Each question carries 5 marks.\n(viii) There is no overall choice given in the question paper. However, an internal choice has been provided in few questions in all the Sections except Section-A.\n(ix) Kindly note that there is a separate question paper for Visually Impaired candidates.\n(x) Use of calculators NOT allowed.\nYou may use the following values of physical constants wherever necessary :\n$c = 3 \\times 10^{8}\\ \\mathrm{m/s}$\n$h = 6.63 \\times 10^{-34}\\ \\mathrm{Js}$\n$e = 1.6 \\times 10^{-19}\\ \\mathrm{C}$\n$\\mu_0 = 4\\pi \\times 10^{-7}\\ \\mathrm{T\\,m\\,A^{-1}}$\n$\\varepsilon_0 = 8.854 \\times 10^{-12}\\ \\mathrm{C^{2}\\,N^{-1}\\,m^{-2}}$\n$\\frac{1}{4\\pi\\varepsilon_0} = 9 \\times 10^{9}\\ \\mathrm{N\\,m^{2}\\,C^{-2}}$\nMass of electron $(m_e) = 9.1 \\times 10^{-31}\\ \\mathrm{kg}$\nMass of neutron $= 1.675 \\times 10^{-27}\\ \\mathrm{kg}$\nMass of proton $= 1.673 \\times 10^{-27}\\ \\mathrm{kg}$\nAvogadro's number $= 6.023 \\times 10^{23}$ per gram mole\nBoltzmann constant $= 1.38 \\times 10^{-23}\\ \\mathrm{J\\,K^{-1}}$",
+  "sections": [
+   {
+    "name": "Section A",
+    "note": "Questions 1 to 16 are Multiple Choice type Questions (MCQ), each carrying 1 mark."
+   },
+   {
+    "name": "Section B",
+    "note": "Questions 17 to 21 are Very Short Answer type questions, each carrying 2 marks."
+   },
+   {
+    "name": "Section C",
+    "note": "Questions 22 to 28 are Short Answer type questions, each carrying 3 marks."
+   },
+   {
+    "name": "Section D",
+    "note": "Questions 29 and 30 are Case study Based questions, each carrying 4 marks."
+   },
+   {
+    "name": "Section E",
+    "note": "Questions 31 to 33 are Long Answer Type questions, each carrying 5 marks."
+   }
+  ],
+  "max_marks": 70,
+  "source_file_id": "1NbnbQWBFX-ukyn5_97edxQyysta2c7zr"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The capacitance of a parallel plate capacitor having a medium of dielectric constant $K = 4$ in between the plates is $C$. If this medium is removed, then the capacitance of the capacitor becomes :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C = \\frac{4\\varepsilon_0 A}{d}$\nWhen medium is removed $C' = \\frac{\\varepsilon_0 A}{d}$\nFrom above equation $C' = \\frac{C}{4}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4C$"
+    },
+    {
+     "key": "B",
+     "text": "$C$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{C}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$2C$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Electrons drift with speed $v_d$ in a conductor with potential difference $V$ across its ends. If $V$ is reduced to $\\left(\\frac{V}{2}\\right)$, their drift speed will become :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Drift speed $v_d = \\frac{e\\tau E}{m} = \\frac{e\\tau V}{m\\ell}$\nWhen $V$ is reduced to $\\frac{V}{2}$ then drift speed $v_d' = \\frac{e\\tau}{m\\ell}\\frac{V}{2} \\Rightarrow v_d' = \\frac{v_d}{2}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{v_d}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$v_d$"
+    },
+    {
+     "key": "C",
+     "text": "$2v_d$"
+    },
+    {
+     "key": "D",
+     "text": "$4v_d$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A conducting loop is placed in a magnetic field, normal to its plane. The magnitude of the magnetic field varies with time as shown in the figure. If $\\varepsilon_1$, $\\varepsilon_2$ and $\\varepsilon_3$ are magnitudes of induced emfs during periods $0 \\le t \\le T$, $T \\le t \\le 2T$ and $2T \\le t \\le 3T$, then :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "During time period $0 \\le t \\le T$ uniformly increasing magnetic flux so $\\varepsilon_{max}$\nDuring time period $T \\le t \\le 2T$ no change in magnetic flux so $\\varepsilon = 0$.\nDuring time period $2T \\le t \\le 3T$ uniformly decreasing magnetic flux but lesser than in the first situation.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\varepsilon_1 > \\varepsilon_2 > \\varepsilon_3$"
+    },
+    {
+     "key": "B",
+     "text": "$\\varepsilon_2 > \\varepsilon_3 > \\varepsilon_1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\varepsilon_3 > \\varepsilon_1 > \\varepsilon_2$"
+    },
+    {
+     "key": "D",
+     "text": "$\\varepsilon_1 > \\varepsilon_3 > \\varepsilon_2$"
+    }
+   ],
+   "stem_figure": "c24-phy-55-2-2-q03.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A circular coil of radius $10\\ \\mathrm{cm}$ is placed in a magnetic field $\\vec{B} = (1.0\\hat{i} + 0.5\\hat{j})\\ \\mathrm{mT}$ such that the outward unit vector normal to the surface of the coils is $(0.6\\hat{i} + 0.8\\hat{j})$. The magnetic flux linked with the coil is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Magnetic flux $\\phi = \\vec{B}\\cdot\\vec{A} = \\vec{B}\\cdot\\pi r^{2}\\hat{n}$\n$\\phi = (1.0\\hat{i} + 0.5\\hat{j}) \\times 10^{-3} \\cdot 3.14 \\times 10^{-2}(0.6\\hat{i} + 0.8\\hat{j})\\ \\mathrm{Wb}$\n$\\phi = 3.14 \\times 10^{-5}\\ \\mathrm{Wb} = 31.4 \\times 10^{-6}\\ \\mathrm{Wb}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.314\\ \\mu\\mathrm{Wb}$"
+    },
+    {
+     "key": "B",
+     "text": "$3.14\\ \\mu\\mathrm{Wb}$"
+    },
+    {
+     "key": "C",
+     "text": "$31.4\\ \\mu\\mathrm{Wb}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.256\\ \\mu\\mathrm{Wb}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following quantity/quantities remains same in primary and secondary coils of an ideal transformer ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For ideal transformer input power is equal to output power.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Current only"
+    },
+    {
+     "key": "B",
+     "text": "Voltage only"
+    },
+    {
+     "key": "C",
+     "text": "Power only"
+    },
+    {
+     "key": "D",
+     "text": "Magnetic flux and Power both"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A series LCR circuit ($L = 2\\ \\mathrm{mH}$, $C = 0.2\\ \\mu\\mathrm{F}$ and $R = 30\\ \\Omega$) is connected to an ac source of variable frequency. The impedance of this circuit will be minimum at a frequency of :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Impedance of the LCR circuit will be minimum at resonance frequency.\n$\\omega_r = \\frac{1}{\\sqrt{LC}} \\Rightarrow \\nu_r = \\frac{1}{2\\pi\\sqrt{LC}}$\n$\\nu_r = \\frac{1}{2\\pi\\sqrt{2\\times10^{-3}\\times0.2\\times10^{-6}}} = \\frac{1}{2\\pi\\sqrt{0.4\\times10^{-9}}}\\ \\mathrm{Hz}$\n$\\nu_r = \\frac{10^{5}}{2\\pi(2)} = \\frac{10^{5}}{4\\pi}\\ \\mathrm{Hz}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{10^{5}}{4\\pi}\\ \\mathrm{Gz}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{10^{5}}{2\\pi}\\ \\mathrm{Hz}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{10^{4}}{4\\pi}\\ \\mathrm{Hz}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{10^{4}}{2\\pi}\\ \\mathrm{Hz}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Welders wear special glass goggles or face masks with glass windows to protect their eyes from radiations produced by welding arcs. These radiations are :-",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "X-rays"
+    },
+    {
+     "key": "B",
+     "text": "Ultraviolet rays"
+    },
+    {
+     "key": "C",
+     "text": "Infrared waves"
+    },
+    {
+     "key": "D",
+     "text": "Gamma rays"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Photoelectric Effect",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A photosensitive surface has a work function of $2.00\\ \\mathrm{eV}$. The maximum kinetic energy of electrons ejected from this surface by radiation of wavelength $300\\ \\mathrm{nm}$ is :-",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$K_{max} = h\\nu - \\phi_0 = \\frac{hc}{\\lambda} - \\phi_0$\n$K_{max} = \\frac{1240\\ \\mathrm{eV\\,nm}}{300\\ \\mathrm{nm}} - 2\\ \\mathrm{eV} = 4.13\\ \\mathrm{eV} - 2\\ \\mathrm{eV} = 2.13\\ \\mathrm{eV}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.54\\ \\mathrm{eV}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.07\\ \\mathrm{eV}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.61\\ \\mathrm{eV}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.14\\ \\mathrm{eV}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Energy levels A, B and C of an atom correspond to increasing values of energy i.e. $E_A < E_B < E_C$. Let $\\lambda_1$, $\\lambda_2$ and $\\lambda_3$ be the wavelengths of radiation corresponding to the transitions C to B, B to A and C to A, respectively. The correct relation between $\\lambda_1$, $\\lambda_2$ and $\\lambda_3$ is :-",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "According to given transitions using Bohr's third postulate:\n$E_C - E_B = \\frac{hc}{\\lambda_1}$ ...(1)\n$E_B - E_A = \\frac{hc}{\\lambda_2}$ ...(2)\n$E_C - E_A = \\frac{hc}{\\lambda_3}$ ...(3)\nFrom (1) and (2): $E_C - E_A = hc\\left[\\frac{1}{\\lambda_1} + \\frac{1}{\\lambda_2}\\right]$ ...(4)\nThen from (3) and (4): $\\frac{1}{\\lambda_3} = \\frac{1}{\\lambda_1} + \\frac{1}{\\lambda_2}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\lambda_1^{2} + \\lambda_2^{2} = \\lambda_3^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\lambda_1} + \\frac{1}{\\lambda_2} = \\frac{1}{\\lambda_3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\lambda_1 + \\lambda_2 + \\lambda_3 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\lambda_1 + \\lambda_2 = \\lambda_3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An alpha particle approaches a gold nucleus in Geiger-Marsden experiment with kinetic energy $K$. It momentarily stops at a distance $d$ from the nucleus and reverses its direction. Then $d$ is proportional to :-",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Distance of closest approach $d = \\frac{ze^{2}}{2\\pi\\varepsilon_0 K}$",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{\\sqrt{K}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{K}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{K}$"
+    },
+    {
+     "key": "D",
+     "text": "$K$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An n-type semiconducting Si is obtained by doping intrinsic Si with :-",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Al"
+    },
+    {
+     "key": "B",
+     "text": "B"
+    },
+    {
+     "key": "C",
+     "text": "P"
+    },
+    {
+     "key": "D",
+     "text": "In"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When a p-n junction diode is subjected to reverse biasing :-",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "the barrier height decreases and the depletion region widens."
+    },
+    {
+     "key": "B",
+     "text": "the barrier height increases and the depletion region widens."
+    },
+    {
+     "key": "C",
+     "text": "the barrier height decreases and the depletion region shrinks."
+    },
+    {
+     "key": "D",
+     "text": "the barrier height increases and the depletion region shrinks."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : The magnifying power of a compound microscope is negative.\nReason (R) : The final image formed is erect with respect to the object.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "C",
+     "text": "Assertion (A) is true and Reason (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "Both Assertion (A) and Reason (R) are false."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : An electron and a proton enter with the same momentum $\\vec{p}$ in a magnetic field $\\vec{B}$ such that $\\vec{p} \\perp \\vec{B}$. Then both describe a circular path of the same radius.\nReason (R) : The radius of the circular path described by the charged particle (charge $q$, mass $m$) moving in the magnetic field $\\vec{B}$ is given by $r = \\frac{mv}{qB}$.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "C",
+     "text": "Assertion (A) is true and Reason (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "Both Assertion (A) and Reason (R) are false."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : Lenz's law is a consequence of the law of conservation of energy.\nReason (R) : There is no power loss in an ideal inductor.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "C",
+     "text": "Assertion (A) is true and Reason (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "Both Assertion (A) and Reason (R) are false."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : Photoelectric current increases with an increase in intensity of incident radiation, for a given frequency of incident radiation and the accelerating potential.\nReason (R) : Increase in the intensity of incident radiation results in an increase in the number of photoelectrons emitted per second and hence an increase in the photocurrent.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation of Assertion (A)."
+    },
+    {
+     "key": "C",
+     "text": "Assertion (A) is true and Reason (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "Both Assertion (A) and Reason (R) are false."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Current Electricity",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "(a) \"The electron drift speed is only a few mm/s for currents in the range of a few amperes for a given conductor\". How then is current established almost the instant a circuit is closed ? Explain.\n(b) '$V = IR$ is a statement of Ohm's Law' is not true. Explain.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) Electric field is established throughout the circuit, almost instantly (with the speed of light) causing at every point a local electron drift. Establishment of a current does not have to wait for electrons from one end of the conductor travelling to the other end. However it does take a little while for the current to reach its steady value.\n(b) $V = IR$ is a statement of Ohm's Law is not true because a resistor obeys Ohm's law while a diode does not. This equation defines resistance and it may be applied to all conducting devices whether they obey Ohm's law or not. Ohm's law asserts that the plot of $I$ versus $V$ is linear i.e. $R$ is independent of $V$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Ray Optics",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "A convex lens ($n = 1.52$) has a focal length of $15.0\\ \\mathrm{cm}$ in air. Find its focal length when it is immersed in liquid of refractive index $1.65$. What will be the nature of the lens ?",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$n_{ga} = 1.52,\\ f_{ga} = 15\\ \\mathrm{cm},\\ n_{w} = 1.65$\n$\\frac{1}{f_{ga}} = (n_{ga} - 1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$ and $\\frac{1}{f_{gw}} = (n_{gw} - 1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$\nfrom above equation\n$$\\frac{f_{gw}}{f_{ga}} = \\frac{(n_{ga} - 1)}{(n_{gw} - 1)} \\Rightarrow f_{gw} = f_{ga}\\,\\frac{(n_{ga} - 1)}{(n_{gw} - 1)}$$\n$$f_{gw} = 15 \\times \\frac{(1.52 - 1)}{\\left(\\frac{1.52}{1.65} - 1\\right)}\\ \\mathrm{cm} \\simeq -99\\ \\mathrm{cm}$$\nHence the nature of the lens will change and it will behave like a diverging lens.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Wave Optics",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "(a) Two waves, each of amplitude 'a' and frequency '$\\omega$' emanating from two coherent sources of light superpose at a point. If the phase difference between the two waves is $\\phi$, obtain an expression for the resultant intensity at that point.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) Let two waves are\n$y_1 = a\\sin\\omega t$\n$y_2 = a\\sin(\\omega t + \\phi)$\nBy principle of superposition\n$y = y_1 + y_2$\n$y = a\\sin\\omega t + a\\{\\sin\\omega t\\cos\\phi + \\cos\\omega t\\sin\\phi\\}$\n$\\Rightarrow y = a\\sin\\omega t\\,(1 + \\cos\\phi) + (\\sin\\phi)\\,a\\cos\\omega t$\nLet $R\\cos\\theta = a(1 + \\cos\\phi)$ ...(i)\n$R\\sin\\theta = a\\sin\\phi$ ...(ii)\nBy squaring and adding equation (i) & (ii), we get\n$R^{2} = a^{2}(1 + 2\\cos\\phi + \\cos^{2}\\phi) + a^{2}\\sin^{2}\\phi$\n$= 2a^{2}(1 + \\cos\\phi) = 4a^{2}\\cos^{2}\\left(\\frac{\\phi}{2}\\right)$\n$I = R^{2} = 4a^{2}\\cos^{2}\\frac{\\phi}{2} = 4I_0\\cos^{2}\\frac{\\phi}{2}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": "(b) What is the effect on the interference pattern in Young's double-slit experiment when (i) the source slit is moved closer to the plane of the slits, and (ii) the separation between the two slits is increased? Justify your answer",
+   "or_solution": "(b) (i) For interference fringes to be seen the condition $\\frac{s}{S} < \\frac{\\lambda}{d}$ should be satisfied where $s$ is the size of source and $S$ distance of the source from the plane of two slits.\nWhen $S$ decreases the interference pattern gets less and less sharp and when the source is brought too close for this condition to be valid the fringes disappear.\n(ii) Fringe width decreases, $\\beta \\propto \\frac{1}{d}$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Nuclei",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "Calculate the energy released/absorbed in the following nuclear reaction :\n$\\mathrm{{}^{12}_{6}C + {}^{12}_{6}C \\rightarrow {}^{20}_{10}Ne + {}^{4}_{2}He}$\nGiven : $m\\left(\\mathrm{{}^{12}_{6}C}\\right) = 12.000000\\ \\mathrm{u}$\n$m\\left(\\mathrm{{}^{20}_{10}Ne}\\right) = 19.992439\\ \\mathrm{u}$\n$m\\left(\\mathrm{{}^{4}_{2}He}\\right) = 4.002603\\ \\mathrm{u}$\n$1\\ \\mathrm{u} = 931\\ \\mathrm{MeV/c^{2}}$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Mass of reactant $M_R = 2m\\left(\\mathrm{{}^{12}_{6}C}\\right) = 24.000000\\ \\mathrm{u}$\nMass of product $M_P = m\\left(\\mathrm{{}^{20}_{10}Ne}\\right) + m\\left(\\mathrm{{}^{4}_{2}He}\\right)$\n$M_P = 19.992439 + 4.002603 = 23.995042\\ \\mathrm{u}$\nHere $M_R > M_P$ so energy is released in given equation\nThen released energy $Q = \\Delta m \\times 931\\ \\mathrm{MeV}$ $\\quad[\\because \\Delta m = M_R - M_P]$\n$Q = 0.004958 \\times 931\\ \\mathrm{MeV}$\n$Q = 4.62 \\times 10^{6}\\ \\mathrm{eV}$",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Semiconductor Electronics",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "How does the energy gap of an intrinsic semiconductor effectively change when doped with a\n(a) trivalent impurity and (b) pentavalent impurity ? Justify your answer in each case.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The energy band diagram of an intrinsic semiconductor will be and shown.\n\nWhen trivalent (donor) and pentavalent (acceptor) impurities are added in the pure semiconductor then p-type and n-type semiconductor are formed. Due to these impurities energy bands are affected which shown below.\n\nBy adding impurities to pure semiconductor the energy gap of valence and conduction bands decreases, thereby increasing the conductivity.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c24-phy-55-2-2-q21-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Electromagnetic Waves",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "(a) On what factors does the speed of an electromagnetic wave in a medium depend ?\n(b) How is an electromagnetic wave produced ?\n(c) Sketch a schematic diagram depicting the electric and magnetic fields for an electromagnetic wave propagating along z-axis.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) The speed of an electromagnetic wave in a medium is given as $v = \\frac{1}{\\sqrt{\\mu\\varepsilon}}$\nThus the velocity of electromagnetic wave depend on electric and magnetic properties of the medium.\n(b) An accelerating charge produces electromagnetic waves.\n(c) See figure.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c24-phy-55-2-2-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Current Electricity",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "The figure shows a circuit with three ideal batteries. Find the magnitude and direction of currents in the branches AG, BF and CD.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Applying KVL in loop ABFGA\n$-2(I - I_1) + 4I_1 - 2(I - I_1) = -6 + 3$\n$-4I + 8I_1 = -3$ ....(1)\nApplying KVL in loop BCDFB\n$-2I - 2I - 4I_1 = -6 + 6$\n$-4I - 4I_1 = 0$\n$\\Rightarrow I = -I_1$ ...(2)\nfrom (1) and (2)\n$-4I_1 + 8I_1 = -3 \\Rightarrow 4I_1 = -3$\n$I_1 = -\\frac{3}{4} = -0.75\\ \\mathrm{A}$ then $I = 0.75\\ \\mathrm{A}$\nCurrent in AG branch $= I - I_1 = 0.75 - (-0.75) = 1.5\\ \\mathrm{A}$ from A to G\nBF branch $= 0.75\\ \\mathrm{A}$ from F to B\nCD branch $I = 0.75\\ \\mathrm{A}$ from D to C",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "c24-phy-55-2-2-q23.png",
+   "solution_figure": "c24-phy-55-2-2-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Electromagnetic Induction",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "A rectangular loop of sides $10\\ \\mathrm{cm} \\times 20\\ \\mathrm{cm}$ is kept outside a region of uniform magnetic field $|\\vec{B}| = 5\\ \\mathrm{mT}$ as shown in the figure. The loop is moved with the velocity of $5\\ \\mathrm{cm/s}$ till it goes completely out of the magnetic field.\n(a) Plot a graph showing variation of the magnetic flux $\\phi$ with $x$ ($0 \\le x \\le 100\\ \\mathrm{cm}$)\n(b) Find the maximum value of magnetic flux linked with the loop.\n(c) Will an external work be required to be done to move the loop through the magnetic field ?",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) See figure.\n(b) The maximum value of magnetic flux linked with the loop is\n$\\phi_0 = BA = 5 \\times 10^{-3} \\times 0.1 \\times 0.2$\n$\\phi_0 = 0.1 \\times 10^{-3} = 0.1\\ \\mathrm{mWb}$\n(c) Yes an external work be required to be done to move the loop through the magnetic field.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "c24-phy-55-2-2-q24.png",
+   "solution_figure": "c24-phy-55-2-2-q24-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "(a) Two long, straight, parallel conductors carry steady currents in opposite directions. Explain the nature of the force of interaction between them. Obtain an expression for the magnitude of the force between the two conductors. Hence define one ampere.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) Magnetic field at point P (on the conductor $X_2Y_2$ due to current $I_1$ flowing through the long conductor $X_1Y_1$) is given by\n$B_1 = \\frac{\\mu_0 I_1}{2\\pi d}$\nAccording to right hand rule, the direction of the magnetic field $B_1$ at a point P is perpendicular to the plane of paper and in inward direction. Now, the conductor $X_2Y_2$ carrying current $I_2$ lies in the magnetic field $B_1$ produced by the conductor $X_1Y_1$.\nSince $F = BIl$, the force experienced by the unit length of the conductor $X_2Y_2$ due to magnetic field $B_1$ is given by\n$F = B_1 \\cdot (I_2 \\cdot \\ell) = \\frac{\\mu_0 I_1 I_2 \\ell}{2\\pi d} \\Rightarrow \\frac{F}{\\ell} = \\frac{\\mu_0 I_1 I_2}{2\\pi d}$ ....(1)\nApplying Fleming's left hand rule, it follows that the force F on the conductor $X_2Y_2$ act in the plane of the paper and towards right. If we proceed in a similar manner then it can be proved that the conductor $X_1Y_1$ experience an equal force in the plane of the paper but towards left.\nTherefore, the two parallel conductor carrying current in the opposite direction repel each other.\nDefinition of Ampere : Let $I_1 = I_2 = 1\\ \\mathrm{A}$ and $d = 1\\ \\mathrm{m}$\nThen from eq (1) we have that\n$\\frac{F}{\\ell} = 2 \\times 10^{-7}\\ \\mathrm{N/m}$\nThis means that one ampere of current is that much current which when flown through two infinitely long parallel conductors, separated by one meter in free space, causes a force of $2 \\times 10^{-7}\\ \\mathrm{N}$ per meter on each conductor.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": "(b) Obtain an expression for the torque $\\vec{\\tau}$ acting on a current carrying loop in a uniform magnetic field $\\vec{B}$. Draw the necessary diagram.",
+   "or_solution": "(b) Let at any instant the angle between the magnetic field and normal to the rectangular coil is $\\theta$.\nThen force acting on the arm PQ of the loop,\n$\\vec{F}_1 = I(\\vec{\\ell} \\times \\vec{B}) \\Rightarrow F_1 = IB\\ell$ (Directed inside the sheet of paper)\nSimilarly, force acting on the arm RS of the loop,\n$\\vec{F}_2 = I(\\vec{\\ell} \\times \\vec{B}) \\Rightarrow F_2 = IB\\ell$ (Directed outside the sheet of paper)\nForce $\\vec{F}_3$ acting on the arm QR and force $\\vec{F}_4$ acting on the arm SP of the loop are equal, opposite and act along the same line, hence they cancel each other. Therefore only two forces $\\vec{F}_1$ and $\\vec{F}_2$ act on the loop. $\\vec{F}_1$ and $\\vec{F}_2$ form a couple and try to rotate the loop clockwise. The magnitude of the torque ($\\tau$) due to forces $\\vec{F}_1$ and $\\vec{F}_2$ is given by\n$\\tau$ = Magnitude of the either force $\\times$ Perpendicular distance between forces\n$\\tau = I\\ell B \\times b\\sin\\theta$ $\\quad\\{\\ell \\times b = A$, area of the loop$\\}$\n$\\tau = IAB\\sin\\theta$\nIn vector form $\\vec{\\tau} = I(\\vec{A} \\times \\vec{B})$\nIf the loop has N turns, then net torque acting on the loop is\n$\\tau = NIAB\\sin\\theta$\n$\\tau = MB\\sin\\theta$ $\\quad[\\because M = NIA]$\n$\\vec{\\tau} = \\vec{M} \\times \\vec{B}$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c24-phy-55-2-2-q25-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": "c24-phy-55-2-2-q25-orsol.png"
+  },
+  {
+   "q_no": 26,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "(a) Briefly explain de Broglie hypothesis for wave nature of matter.\n(b) Find the ratio of de Broglie wavelength associated with a proton and an alpha particle when both are\n(i) accelerated from rest through the same potential difference, and\n(ii) moving with the same kinetic energy.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) de Broglie's hypothesis says that matter consists of both the particle nature as well as wave nature.\nThe de Broglie wavelength associated with matter wave is given as\n$\\lambda = \\frac{h}{p} = \\frac{h}{mv}$\nWhere $p$ represents the particle momentum, $h$ is the Planck's constant, $m$ is the mass of the particle and $v$ is the velocity of the particle\n(b) (i) according to de Broglie wavelength\n$\\lambda = \\frac{h}{p} = \\frac{h}{\\sqrt{2mE_k}} = \\frac{h}{\\sqrt{2mqV}}$\n$\\lambda_P = \\frac{h}{\\sqrt{2m_p q_p V}}$ and $\\lambda_\\alpha = \\frac{h}{\\sqrt{2m_\\alpha q_\\alpha V}}$\n$\\frac{\\lambda_P}{\\lambda_\\alpha} = \\sqrt{\\frac{m_\\alpha q_\\alpha}{m_p q_p}} = \\sqrt{\\frac{4m_p\\, 2q_p}{m_p q_p}}$ $\\quad[\\because m_\\alpha = 4m_p\\ \\&\\ q_\\alpha = 2q_p]$\n$\\frac{\\lambda_P}{\\lambda_\\alpha} = 2\\sqrt{2} \\Rightarrow \\lambda_p : \\lambda_\\alpha = 2\\sqrt{2} : 1$\n(ii) From above equation\n$\\lambda_P = \\frac{h}{\\sqrt{2m_p E_k}}$ and $\\lambda_\\alpha = \\frac{h}{\\sqrt{2m_\\alpha E_k}}$\n$\\frac{\\lambda_P}{\\lambda_\\alpha} = \\sqrt{\\frac{m_\\alpha}{m_p}} = \\sqrt{\\frac{4m_p}{m_p}} = 2$\n$\\Rightarrow \\lambda_p : \\lambda_\\alpha = 2 : 1$",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Nuclei",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "(a) Plot a graph depicting potential energy of a pair of nucleons in a nucleus as a function of their separation.\n(b) Identify the regions where the nuclear force is\n(i) attractive and (ii) repulsive. Justify your answer.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) See figure.\n(b) The potential energy is minimum at a distance $r_0$ of about $0.8\\ \\mathrm{fm}$. This means that the force is attractive for distances larger than $0.8\\ \\mathrm{fm}$ and repulsive if nucleons are separated by distances less than $0.8\\ \\mathrm{fm}$.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c24-phy-55-2-2-q27-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Semiconductor Electronics",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "With the help of a circuit diagram, explain the working of a p-n junction diode as a full wave rectifier. Draw its input and output waveforms.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Full-wave rectifier circuit (see figure)\nWorking : When positive half cycle of input a.c. signal flows through the primary coil, induced emf is set up in the secondary coil due to mutual induction. The direction of induced emf is such that the upper end of the secondary coil becomes positive while the lower end becomes negative. Thus, diode $D_1$ is forward biased and diode $D_2$ is reverse biased, so the current due to diode $D_1$ flows through the circuit. The output voltage which varies in accordance with the input half cycle is obtained across the load resistance ($R_L$).\nDuring negative half cycle of input a.c. signal, diode $D_1$ is reverse biased and diode $D_2$ is forward biased. The current due to diode $D_2$ flows through the circuit. The output voltage is obtained across the load resistance ($R_L$). The input and corresponding output voltage are shown in figure.\nSince both the halves of input a.c. (wave) are rectified, so the junction diode is called a full wave rectifier.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c24-phy-55-2-2-q28-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Ray Optics",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "When a ray of light propagates from a denser medium to a rarer medium, it bends away from the normal. When the incident angle is increased, the refracted ray deviates more from the normal. For a particular angle of incidence in the denser medium, the refracted ray just grazes the interface of the two surfaces. This angle of incidence is called the critical angle for the pair of media involved.\n\n(i) For a ray incident at the critical angle, the angle of reflection is : (1)\n(A) $0^\\circ$  (B) $< 90^\\circ$  (C) $> 90^\\circ$  (D) $90^\\circ$\n(ii) A ray of light of wavelength $600\\ \\mathrm{nm}$ is incident in water $\\left(n = \\frac{4}{3}\\right)$ on the water–air interface at an angle less than the critical angle. The wavelength associated with the refracted ray is : (1)\n(A) $400\\ \\mathrm{nm}$  (B) $450\\ \\mathrm{nm}$  (C) $600\\ \\mathrm{nm}$  (D) $800\\ \\mathrm{nm}$\n(iii) (a) The interface AB between the two media A and B is shown in the figure. In the denser medium A, the incident ray PQ makes an angle of $30^\\circ$ with the horizontal. The refracted ray is parallel to the interface. The refractive index of medium B w.r.t. medium A is : (1)\n(A) $\\frac{\\sqrt{3}}{2}$  (B) $\\frac{\\sqrt{5}}{2}$  (C) $\\frac{4}{\\sqrt{3}}$  (D) $\\frac{2}{\\sqrt{3}}$\nOR\n(b) Two media A and B are separated by a plane boundary. The speed of light in medium A and B is $2 \\times 10^{8}\\ \\mathrm{m\\,s^{-1}}$ and $2.5 \\times 10^{8}\\ \\mathrm{m\\,s^{-1}}$ respectively. The critical angle for a ray of light going from medium A to medium B is :\n(A) $\\sin^{-1}\\frac{1}{2}$  (B) $\\sin^{-1}\\frac{4}{5}$  (C) $\\sin^{-1}\\frac{3}{5}$  (D) $\\sin^{-1}\\frac{2}{5}$\n(iv) The figure shows the path of a light ray through a triangular prism. In this phenomenon, the angle $\\theta$ is given by : (1)\n(A) $\\sin^{-1}\\sqrt{n^{2} - 1}$  (B) $\\sin^{-1}(n^{2} - 1)$  (C) $\\sin^{-1}\\left[\\frac{1}{\\sqrt{n^{2} - 1}}\\right]$  (D) $\\sin^{-1}\\left[\\frac{1}{n^{2} - 1}\\right]$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) (D) $90^\\circ$\n(ii) (D) $800\\ \\mathrm{nm}$\n(iii) (a) (A) $\\frac{\\sqrt{3}}{2}$  OR  (b) (B) $\\sin^{-1}\\frac{4}{5}$\n(iv) (A) $\\sin^{-1}\\sqrt{n^{2} - 1}$",
+   "marks_correct": 4,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "c24-phy-55-2-2-q29.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Current Electricity",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "When the terminals of a cell are connected to a conductor of resistance $R$, an electric current flows through the circuit. The electrolyte of the cell also offers some resistance in the path of the current, like the conductor. This resistance offered by the electrolyte is called internal resistance of the cell ($r$). It depends upon the nature of the electrolyte, the area of the electrodes immersed in the electrolyte and the temperature. Due to internal resistance, a part of the energy supplied by the cell is wasted in the form of heat.\n\nWhen no current is drawn from the cell, the potential difference between the two electrodes is known as emf of the cell ($\\varepsilon$). With a current drawn from the cell, the potential difference between the two electrodes is termed as terminal potential difference ($V$).\n\n(i) Choose the incorrect statement : (1)\n(A) The potential difference ($V$) between the two terminals of a cell in a closed circuit is always less than its emf ($\\varepsilon$), during discharge of the cell.\n(B) The internal resistance of a cell decreases with the decrease in temperature of the electrolyte.\n(C) When current is drawn from the cell then $V = \\varepsilon - Ir$\n(D) The graph between potential difference between the two terminals of the cell ($V$) and the current ($I$) through it is a straight line with a negative slope.\n(ii) Two cells of emfs $2.0\\ \\mathrm{V}$ and $6.0\\ \\mathrm{V}$ and internal resistances $0.1\\ \\Omega$ and $0.4\\ \\Omega$ respectively, are connected in parallel. The equivalent emf of the combination will be : (1)\n(A) $2.0\\ \\mathrm{V}$  (B) $2.8\\ \\mathrm{V}$  (C) $6.0\\ \\mathrm{V}$  (D) $8.0\\ \\mathrm{V}$\n(iii) Dipped in the solution, the electrode exchange charges with the electrolyte. The positive electrode develops a potential $V_{+}$ ($V_{+} > 0$), and the negative electrode develops a potential $-(V_{-})$ ($V_{-} \\geq 0$), relative to the electrolyte adjacent to it. When no current is drawn from the cell then : (1)\n(A) $\\varepsilon = V_{+} + V_{-} > 0$  (B) $\\varepsilon = V_{+} - V_{-} > 0$\n(C) $\\varepsilon = V_{+} + V_{-} < 0$  (D) $\\varepsilon = V_{+} + V_{-} = 0$\n(iv) (a) Five identical cells, each of emf $2\\ \\mathrm{V}$ and internal resistance $0.1\\ \\Omega$ are connected in parallel. This combination in turn is connected to an external resistor of $9.98\\ \\Omega$. The current flowing through the resistor is : (1)\n(A) $0.05\\ \\mathrm{A}$  (B) $0.1\\ \\mathrm{A}$  (C) $0.15\\ \\mathrm{A}$  (D) $0.2\\ \\mathrm{A}$\nOR\n(b) Potential difference across a cell in the open circuit is $6\\ \\mathrm{V}$. It becomes $4\\ \\mathrm{V}$, when a current of $2\\ \\mathrm{A}$ is drawn from it. The internal resistance of the cell is :\n(A) $1.0\\ \\Omega$  (B) $1.5\\ \\Omega$  (C) $2.0\\ \\Omega$  (D) $2.5\\ \\Omega$",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) (B) The internal resistance of a cell decreases with the decrease in temperature of the electrolyte.\n(ii) (B) $2.8\\ \\mathrm{V}$\n(iii) (A) $\\varepsilon = V_{+} + V_{-} > 0$\n(iv) (a) (D) $0.2\\ \\mathrm{A}$  OR  (b) (A) $1.0\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Wave Optics",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "(a) (i) Give any two differences between the interference pattern obtained in Young's double–slit experiment and a diffraction pattern due to a single slit.\n(ii) Draw an intensity distribution graph in case of a double–slit interference pattern.\n(iii) In Young's double–slit experiment using monochromatic light of wavelength $\\lambda$, the intensity of light at a point on the screen, where path difference is $\\lambda$, is $K$ units. Find the intensity of light at a point on the screen where the path difference is $\\frac{\\lambda}{6}$.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) (i) (1) The interference pattern has a number of equally spaced bright and dark bands. The diffraction pattern has a central bright maximum which is twice as wide as the other maxima. The intensity falls as we go to successive maxima away from the centre, on either side.\n(2) We observe the interference pattern by superposing two waves originating from the two narrow slits. The diffraction pattern is a superposition of a continuous family of waves originating from each point on a single slit.\n(ii) Intensity distribution graph: see figure.\n(iii) In YDSE, $I = 4I_0 \\cos^{2}\\left(\\frac{\\phi}{2}\\right)$, where $\\phi = \\frac{2\\pi}{\\lambda}\\Delta x$.\nIn the first situation $\\phi = \\frac{2\\pi}{\\lambda}\\lambda = 2\\pi$, so $I_1 = 4I_0 \\cos^{2}\\left(\\frac{2\\pi}{2}\\right) = 4I_0 = K$ units, i.e. $I_0 = \\frac{K}{4}$.\nIn the second situation $\\phi = \\frac{2\\pi}{\\lambda}\\cdot\\frac{\\lambda}{6} = \\frac{\\pi}{3}$.\n$I_2 = 4I_0 \\cos^{2}\\left(\\frac{\\pi}{3}\\right) = 4I_0\\left(\\frac{1}{4}\\right) = I_0$\nHence $I_2 = \\frac{K}{4}$ units.",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": "(b) (i) Draw a labelled ray diagram of a compound microscope showing image formation at least distance of distinct vision. Derive an expression for its magnifying power.\n(ii) A telescope consists of two lenses of focal length $100\\ \\mathrm{cm}$ and $5\\ \\mathrm{cm}$. Find the magnifying power when the final image is formed at infinity.",
+   "or_solution": "(b) (i) Compound microscope: the figure shows the ray diagram of a compound microscope. It consists of two convex lenses; the one nearer to the object is known as the objective and the other, close to the eye, is the eyepiece lens. The objective lens is of small focal length ($f_0$) and small aperture, whereas the eyepiece is also of small focal length but larger than that of the objective, and of relatively large aperture.\nThe image $A'B'$ formed by the objective lens $L_0$ of object $AB$, and the final image is $A''B''$.\nMagnifying power $M = \\frac{\\text{Angle subtended by final image at eye}}{\\text{Angle subtended by the object when it is placed at the least distance of distinct vision}}$\n$M = \\frac{\\beta}{\\alpha}$; if $\\alpha$ and $\\beta$ are very small, then $\\alpha \\approx \\tan\\alpha$ and $\\beta \\approx \\tan\\beta$.\n$M = \\frac{\\tan\\beta}{\\tan\\alpha} = \\frac{A''B''/D}{AB/D} = \\frac{A''B''}{AB}$\n$M = \\frac{A''B''}{A'B'} \\times \\frac{A'B'}{AB} = m_e \\times m_o$, where $m_o = \\frac{v_o}{u_o}$ and $m_e = \\frac{v_e}{u_e}$\n$M = \\frac{v_o}{u_o} \\times \\frac{v_e}{u_e}$  ...(1)\nApplying the lens formula for the eyepiece, with $v_e = -D$ and $u_e \\Rightarrow -u_e$:\n$\\frac{1}{f_e} = \\frac{1}{v_e} - \\frac{1}{u_e} = -\\frac{1}{D} + \\frac{1}{u_e}$\n$\\frac{D}{f_e} = -1 + \\frac{D}{u_e}$\n$\\frac{D}{u_e} = 1 + \\frac{D}{f_e}$  ...(2)\nWhen the final image is formed at the least distance of distinct vision ($v_e = D$):\n$M = \\frac{v_o}{u_o} \\times \\frac{D}{u_e}$\n$M = \\frac{v_o}{u_o}\\left(1 + \\frac{D}{f_e}\\right)$  ...(3)\n(ii) $f_0 = 100\\ \\mathrm{cm}$, $f_e = 5\\ \\mathrm{cm}$\n$m = -\\frac{f_0}{f_e} = -\\frac{100}{5} = -20$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c24-phy-55-2-2-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": "c24-phy-55-2-2-q31-orsol.png"
+  },
+  {
+   "q_no": 32,
+   "topic": "Electrostatics",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "(a) (i) Obtain an expression for the electric potential due to a small dipole of dipole moment $\\vec{p}$, at a point $\\vec{r}$ from its centre, for much larger distances compared to the size of the dipole.\n(ii) Three point charges $q$, $2q$ and $nq$ are placed at the vertices of an equilateral triangle. If the potential energy of the system is zero, find the value of $n$.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) (i) Electric potential due to an electric dipole at a point P situated at distance $r$ from the mid-point of the dipole.\nPotential due to $+q$ charge at P: $V_1 = \\frac{kq}{r_1}$  ....(i)\nPotential due to $-q$ charge at P: $V_2 = -\\frac{kq}{r_2}$  .....(ii)\nTotal electric potential at P: $V = V_1 + V_2 = kq\\left[\\frac{1}{r_1} - \\frac{1}{r_2}\\right] = kq\\,\\frac{(r_2 - r_1)}{r_1 r_2}$  ......(iii)\nFrom the diagram, $PA \\approx PN = PO + ON$, so $r_2 = r + a\\cos\\theta$.\nSimilarly, $PB \\approx PM = PO - OM$, so $r_1 = r - a\\cos\\theta$.\nPutting these in equation (iii):\n$V = kq\\,\\frac{(r + a\\cos\\theta) - (r - a\\cos\\theta)}{(r + a\\cos\\theta)(r - a\\cos\\theta)} = \\frac{kq(2a\\cos\\theta)}{r^{2} - a^{2}\\cos^{2}\\theta}$\nIf $r \\gg a$ then $r^{2} - a^{2}\\cos^{2}\\theta \\approx r^{2}$ and $p = q(2a)$, so\n$V = \\frac{kp\\cos\\theta}{r^{2}}$\n(ii) Given P.E. of the system $= 0$.\nP.E. of the system $= \\frac{2kq^{2}}{\\ell} + \\frac{2nkq^{2}}{\\ell} + \\frac{nkq^{2}}{\\ell} = \\frac{kq^{2}}{\\ell}[2 + 2n + n] = 0$\nBut $\\frac{kq^{2}}{\\ell} \\neq 0$, so $2 + 2n + n = 0$\n$n = -\\frac{2}{3}$",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": "(b) (i) State Gauss's law in electrostatics. Apply this to obtain the electric field $\\vec{E}$ at a point near a uniformly charged infinite plane sheet.\n(ii) Two long straight wires 1 and 2 are kept as shown in the figure. The linear charge density of the two wires are $\\lambda_1 = 10\\ \\mu\\mathrm{C/m}$ and $\\lambda_2 = -20\\ \\mu\\mathrm{C/m}$. Find the net force $\\vec{F}$ experienced by an electron held at point P.",
+   "or_solution": "(b) (i) Gauss' law: the flux of the electric field through any closed surface S is $\\frac{1}{\\varepsilon_0}$ times the total charge enclosed by S.\n$\\phi = \\oint \\vec{E}\\cdot d\\vec{A} = \\frac{q_{en}}{\\varepsilon_0}$, where $q_{en}$ = net charge enclosed by the closed surface.\nElectric field due to a uniformly charged infinite plane sheet: as shown in the figure, consider a cylindrical Gaussian surface of cross section $A$.\nFlux through the curved surface: $\\phi = \\int \\vec{E}\\cdot d\\vec{s} = \\int E\\,ds\\cos 90^\\circ = 0$. At the points on the curved surface, the field vector $\\vec{E}$ and area vector $d\\vec{s}$ make an angle $90^\\circ$ with each other. Therefore, the curved surface does not contribute to the flux.\nFlux through the end caps: $\\phi = \\oint \\vec{E}\\cdot d\\vec{s} = \\oint E\\,ds\\cos 0^\\circ = EA$\nHence the total flux through the closed surface is the flux through both end caps plus the flux through the curved surface:\n$\\phi = EA + EA + 0 = 2EA$  .....(1)\nAccording to Gauss' law, $\\phi = \\frac{q}{\\varepsilon_0}$  .....(2)\nComparing (1) and (2): $2EA = \\frac{q}{\\varepsilon_0}$, so $E = \\frac{q}{2\\varepsilon_0 A}$\n$E = \\frac{\\sigma A}{2\\varepsilon_0 A}$  [since $q = \\sigma A$]\n$E = \\frac{\\sigma}{2\\varepsilon_0}$. In vector form, $\\vec{E} = \\frac{\\sigma}{2\\varepsilon_0}\\hat{n}$.\nThis is the relation for the electric field due to an infinite plane sheet of charge. The field is uniform and does not depend on the distance from the plane sheet of charge.\n(ii) Net force on the electron:\n$\\vec{F} = q(\\vec{E}_1 + \\vec{E}_2)$\n$\\vec{F} = 1.6 \\times 10^{-19}\\left(\\frac{2K|\\lambda_1|}{0.1} + \\frac{2K|\\lambda_2|}{0.2}\\right)\\hat{j}$\n$\\vec{F} = 1.6 \\times 10^{-19} \\cdot 2K\\left(\\frac{10 \\times 10^{-6}}{0.1} + \\frac{20 \\times 10^{-6}}{0.2}\\right)\\hat{j}$\n$\\vec{F} = 1.6 \\times 10^{-19} \\times 2 \\times 9 \\times 10^{9} \\times 10^{-5}(20)\\,\\hat{j}$\n$\\vec{F} = 576 \\times 10^{-15}\\,\\hat{j} = 5.76 \\times 10^{-13}\\,\\hat{j}\\ \\mathrm{N}$",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "c24-phy-55-2-2-q32-sol.png",
+   "or_stem_figure": "c24-phy-55-2-2-q32-or.png",
+   "or_solution_figure": "c24-phy-55-2-2-q32-orsol.png"
+  },
+  {
+   "q_no": 33,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "(a) (i) A particle of mass $m$ and charge $q$ is moving with a velocity $\\vec{v}$ in a magnetic field $\\vec{B}$ as shown in the figure. Show that it follows a helical path. Hence, obtain its frequency of revolution.\n(ii) In a hydrogen atom, the electron moves in an orbit of radius $2\\ \\mathrm{\\AA}$ making $8 \\times 10^{14}$ revolutions per second. Find the magnetic moment associated with the orbital motion of the electron.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(a) (i) A charge $q$ of mass $m$ moves with velocity $\\vec{v}$ at an angle $\\theta$ with the direction of the magnetic field $\\vec{B}$. Resolving the velocity along and perpendicular to the field, the particle moves with constant velocity $v\\cos\\theta$ along the field (along the x-axis) and at the same time with velocity $v\\sin\\theta$ perpendicular to the field, due to which it describes a circle in a plane perpendicular to the field (y–z plane). In the combined effect of both components of velocity, the charge moves along a 'helical path' and the curve is called a 'helix'.\nRadius of circular path: the centripetal force required to move the charge in a circle is provided by the magnetic force, $F_m = F_{cp}$.\n$q(v\\sin\\theta)B\\sin 90^\\circ = \\frac{m(v\\sin\\theta)^{2}}{r} \\Rightarrow r = \\frac{mv\\sin\\theta}{qB}$\nTime period of circular motion: $T = \\frac{2\\pi r}{v\\sin\\theta}$, where $r = \\frac{mv\\sin\\theta}{qB}$\n$T = \\frac{2\\pi}{v\\sin\\theta}\\cdot\\frac{mv\\sin\\theta}{qB} \\Rightarrow T = \\frac{2\\pi m}{qB}$\nFrequency of revolution: $\\nu = \\frac{1}{T} = \\frac{qB}{2\\pi m}$\n(ii) Given radius $= 2\\ \\mathrm{\\AA}$, $\\nu = 8 \\times 10^{14}$ revolutions per second.\n$I = \\frac{q}{T} = 1.6 \\times 10^{-19} \\times 8 \\times 10^{14} = 12.8 \\times 10^{-5}\\ \\mathrm{A}$\nMagnetic moment $M = IA = 12.8 \\times 10^{-5} \\times 3.14 \\times (2 \\times 10^{-10})^{2} = 160.768 \\times 10^{-25}$\n$M = 1.6 \\times 10^{-23}\\ \\mathrm{A\\,m^{2}}$",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": "(b) (i) What is current sensitivity of a galvanometer ? Show how the current sensitivity of a galvanometer may be increased. \"Increasing the current sensitivity of a galvanometer may not necessarily increase its voltage sensitivity\". Explain.\n(ii) A moving coil galvanometer has a resistance $15\\ \\Omega$ and takes $20\\ \\mathrm{mA}$ to produce full scale deflection. How can this galvanometer be converted into a voltmeter of range $0$ to $100\\ \\mathrm{V}$?",
+   "or_solution": "(b) (i) Current sensitivity is the deflection shown by the galvanometer for unit current flow.\n$I_S = \\frac{\\phi}{I} = \\frac{NAB}{K}$, where $\\phi$ is the deflection of the coil.\nCurrent sensitivity of a galvanometer can be increased by\n(a) increasing the number of turns ($N$)\n(b) increasing the magnetic induction ($B$)\n(c) increasing the area of the coil ($A$)\n(d) decreasing the couple per unit twist of the spiral springs (by using phosphor bronze wire).\nFor increasing current sensitivity, if $N \\to 2N$, then $I_S' = \\frac{2NAB}{K} = 2I_S$, i.e. the current sensitivity becomes 2 times.\nBut the voltage sensitivity $V_S' = \\frac{2NAB}{K}\\cdot\\frac{1}{2R} = V_S$. This means no change in voltage sensitivity.\nSo increasing the current sensitivity of a galvanometer may not necessarily increase its voltage sensitivity.\n(ii) Given $G = 15\\ \\Omega$, $I_g = 20\\ \\mathrm{mA} = 20 \\times 10^{-3}\\ \\mathrm{A}$, voltmeter range $0$ to $100\\ \\mathrm{V}$.\n$V = I_g(G + R)$\n$100 = 20 \\times 10^{-3}(15\\ \\Omega + R)$\n$15\\ \\Omega + R = \\frac{100}{20 \\times 10^{-3}} = 5000\\ \\Omega$\n$\\Rightarrow R = 4985\\ \\Omega$\nBy adding a $4985\\ \\Omega$ resistance in series with the galvanometer, it works as a voltmeter of range $0$ to $100\\ \\mathrm{V}$.",
+   "options": [],
+   "stem_figure": "c24-phy-55-2-2-q33.png",
+   "solution_figure": "c24-phy-55-2-2-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

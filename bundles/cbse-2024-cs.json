@@ -1,0 +1,996 @@
+{
+ "paper": {
+  "exam": "CBSE Class 12",
+  "subject": "Computer Science",
+  "year": 2024,
+  "set_label": "Set 4 · 91",
+  "title": "CBSE Class 12 2024 · Computer Science · Set 4 · 91",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "Section A: +1 correct · no negative marking",
+  "sort_order": 40,
+  "duration_mins": 180,
+  "instructions": "(i) Please check this question paper contains 35 questions.\n(ii) The paper is divided into 5 Sections – A, B, C, D and E.\n(iii) Section A, consists of 18 questions (1 to 18). Each question carries 1 mark.\n(iv) Section B, consists of 7 questions (19 to 25). Each question carries 2 marks.\n(v) Section C, consists of 5 questions (26 to 30). Each question carries 3 marks.\n(vi) Section D, consists of 2 questions (31 to 32). Each question carries 4 marks.\n(vii) Section E, consists of 3 questions (33 to 35). Each question carries 5 marks.\n(viii) All programming questions are to be answered using Python Language only.",
+  "sections": [
+   {
+    "name": "Section A",
+    "note": "Section A, consists of 18 questions (1 to 18). Each question carries 1 mark."
+   },
+   {
+    "name": "Section B",
+    "note": "Section B, consists of 7 questions (19 to 25). Each question carries 2 marks."
+   },
+   {
+    "name": "Section C",
+    "note": "Section C, consists of 5 questions (26 to 30). Each question carries 3 marks."
+   },
+   {
+    "name": "Section D",
+    "note": "Section D, consists of 2 questions (31 to 32). Each question carries 4 marks."
+   },
+   {
+    "name": "Section E",
+    "note": "Section E, consists of 3 questions (33 to 35). Each question carries 5 marks."
+   }
+  ],
+  "max_marks": 70,
+  "source_file_id": "1gpNRbEVsmaMF-Db5abTJwVJvLe44RY8a"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Functions",
+   "qtype": "theory",
+   "section": "Section A",
+   "stem": "State True or False :\nWhile defining a function in Python, the positional parameters in the function header must always be written after the default parameters.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "False (1)",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "SQL Queries",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The SELECT statement when combined with ________ clause, returns records without repetition.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "DISTINCT"
+    },
+    {
+     "key": "B",
+     "text": "DESCRIBE"
+    },
+    {
+     "key": "C",
+     "text": "UNIQUE"
+    },
+    {
+     "key": "D",
+     "text": "NULL"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Python Operators",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "What will be the output of the following statement :\nprint (16*5/4*2/5-8)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "-3.33"
+    },
+    {
+     "key": "B",
+     "text": "6.0"
+    },
+    {
+     "key": "C",
+     "text": "0.0"
+    },
+    {
+     "key": "D",
+     "text": "-13.33"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Random Module",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "What possible output from the given options is expected to be displayed when the following Python code is executed ?\nimport random\nSignal = ['RED', 'YELLOW', 'GREEN']\nfor K in range(2, 0, -1) :\n    R = random.randrange(K)\n    print (Signal[R], end = '#')",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "YELLOW # RED #"
+    },
+    {
+     "key": "B",
+     "text": "RED # GREEN #"
+    },
+    {
+     "key": "C",
+     "text": "GREEN # RED #"
+    },
+    {
+     "key": "D",
+     "text": "YELLOW # GREEN #"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "SQL Aggregate Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In SQL, the aggregate function which will display the cardinality of the table is ________.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "sum()"
+    },
+    {
+     "key": "B",
+     "text": "count(*)"
+    },
+    {
+     "key": "C",
+     "text": "avg()"
+    },
+    {
+     "key": "D",
+     "text": "sum(*)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Computer Networks",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which protocol out of the following is used to send and receive emails over a computer network ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "PPP"
+    },
+    {
+     "key": "B",
+     "text": "HTTP"
+    },
+    {
+     "key": "C",
+     "text": "FTP"
+    },
+    {
+     "key": "D",
+     "text": "SMTP"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Python Dictionaries",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify the invalid Python statement from the following :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "d = dict()"
+    },
+    {
+     "key": "B",
+     "text": "e = {}"
+    },
+    {
+     "key": "C",
+     "text": "f = []"
+    },
+    {
+     "key": "D",
+     "text": "g = dict{}"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Python Strings",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the statements given below and then choose the correct output from the given options :\nmyStr=\"MISSISSIPPI\"\nprint(myStr[:4]+\"#\"+myStr[-5:])",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "MISSI#SIPPI"
+    },
+    {
+     "key": "B",
+     "text": "MISS#SIPPI"
+    },
+    {
+     "key": "C",
+     "text": "MISS#IPPIS"
+    },
+    {
+     "key": "D",
+     "text": "MISSI#IPPIS"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Python Basics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify the statement from the following which will raise an error :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "print(\"A\"*3)"
+    },
+    {
+     "key": "B",
+     "text": "print(5*3)"
+    },
+    {
+     "key": "C",
+     "text": "print(\"15\" + 3)"
+    },
+    {
+     "key": "D",
+     "text": "print(\"15\" + \"13\")"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Python Strings",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Select the correct output of the following code :\nevent=\"G20 Presidency@2023\"\nL=event.split(' ')\nprint(L[::-2])",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "'G20'"
+    },
+    {
+     "key": "B",
+     "text": "['Presidency@2023']"
+    },
+    {
+     "key": "C",
+     "text": "['G20']"
+    },
+    {
+     "key": "D",
+     "text": "'Presidency@2023'"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Computer Networks",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following options is the correct unit of measurement for network bandwidth ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "KB"
+    },
+    {
+     "key": "B",
+     "text": "Bit"
+    },
+    {
+     "key": "C",
+     "text": "Hz"
+    },
+    {
+     "key": "D",
+     "text": "Km"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Scope of Variables",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Observe the given Python code carefully :\na=20\ndef convert(a):\n    b=20\n    a=a+b\n\nconvert(10)\nprint(a)\nSelect the correct output from the given options :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "10"
+    },
+    {
+     "key": "B",
+     "text": "20"
+    },
+    {
+     "key": "C",
+     "text": "30"
+    },
+    {
+     "key": "D",
+     "text": "Error"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Exception Handling",
+   "qtype": "theory",
+   "section": "Section A",
+   "stem": "State whether the following statement is True or False :\nWhile handling exceptions in Python, name of the exception has to be compulsorily added with except clause.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "False (1)",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "SQL Commands",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following is not a DDL command in SQL ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "DROP"
+    },
+    {
+     "key": "B",
+     "text": "CREATE"
+    },
+    {
+     "key": "C",
+     "text": "UPDATE"
+    },
+    {
+     "key": "D",
+     "text": "ALTER"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Computer Networks",
+   "qtype": "theory",
+   "section": "Section A",
+   "stem": "Fill in the blank :\n________ is a set of rules that needs to be followed by the communicating parties in order to have a successful and reliable data communication over a network.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Protocol\nOR\nName of any protocol (1)",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "File Handling",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the following Python statement :\nF=open('CONTENT.TXT')\nWhich of the following is an invalid statement in Python ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "F.seek(1,0)"
+    },
+    {
+     "key": "B",
+     "text": "F.seek(0,1)"
+    },
+    {
+     "key": "C",
+     "text": "F.seek(0,-1)"
+    },
+    {
+     "key": "D",
+     "text": "F.seek(0,2)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "CSV Files",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : CSV file is a human readable text file where each line has a number of fields, separated by comma or some other delimiter.\nReason (R) : writerow() method is used to write a single row in a CSV file.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation for (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both (A) and (R) are true and (R) is not the correct explanation for (A)."
+    },
+    {
+     "key": "C",
+     "text": "(A) is true but (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "(A) is false but (R) is true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Python Strings",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion (A) : The expression \"HELLO\".sort() in Python will give an error.\nReason (R) : sort() does not exist as a method/function for strings in Python.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation for (A)."
+    },
+    {
+     "key": "B",
+     "text": "Both (A) and (R) are true and (R) is not the correct explanation for (A)."
+    },
+    {
+     "key": "C",
+     "text": "(A) is true but (R) is false."
+    },
+    {
+     "key": "D",
+     "text": "(A) is false but (R) is true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Computer Networks",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "(i) Expand the following terms : XML, PPP (1)\n(ii) Give one difference between circuit switching and packet switching. (1)",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) eXtensible Markup Language\nPoint-to-Point Protocol\n(½ mark for correct expansion of XML)\n(½ mark for correct expansion of PPP)\n(ii)\nCircuit Switching | Packet Switching\nA dedicated path is established between the sender and the receiver before starting data transmission. Entire data is transmitted in one go. | Data to be transmitted is divided into small packets which are transmitted via nearest service provider till all packets reach the recipient where the packets are reassembled.\n(½ mark for writing correct technique for Circuit Switching)\n(½ mark for writing correct technique for Packet Switching)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": "(i) Define the term web hosting. (1)\n(ii) Name any two web browsers. (1)",
+   "or_solution": "(i) Web hosting is a service that allows users to put a website or a webpage onto the internet, and make it a part of the World Wide Web. (1)\n(ii) Google Chrome, Microsoft Edge, Safari, Mozilla Firefox, Opera etc. (1 mark for writing names of any two web browsers)",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Functions",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "The code given below accepts five numbers and displays whether they are even or odd :\nObserve the following code carefully and rewrite it after removing all syntax and logical errors :\nUnderline all the corrections made.\ndef EvenOdd()\n    for i in range(5):\n        num=int(input(\"Enter a number\")\n        if num/2==0:\n            print(\"Even\")\n        else:\n        print(\"Odd\")\nEvenOdd()",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "def EvenOdd():                         # Error 1\n    for i in range(5):\n        num=int(input(\"Enter a number\"))  # Error 2\n        if num%2==0:                   # Error 3\n            print(\"Even\")\n        else:\n            print(\"Odd\")               # Error 4\nEvenOdd()\n(½ mark for each correction made)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Functions",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "Write a user defined function in Python named showGrades(S) which takes the dictionary S as an argument. The dictionary, S contains Name:[Eng,Math,Science] as key:value pairs. The function displays the corresponding grade obtained by the students according to the following grading rules :\nAverage of Eng,Math,Science | Grade\n>=90 | A\n<90 but >=60 | B\n<60 | C\nFor example : Consider the following dictionary\nS={\"AMIT\":[92,86,64],\"NAGMA\":[65,42,43],\"DAVID\":[92,90,88]}\nThe output should be :\nAMIT – B\nNAGMA – C\nDAVID – A",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "def showGrades(S):\n    for K, V in S.items():\n        if sum(V)/3>=90:\n            Grade=\"A\"\n        elif sum(V)/3>=60:\n            Grade=\"B\"\n        else:\n            Grade=\"C\"\n        print(K,\"–\",Grade)\nS={\"AMIT\":[92,86,64],\"NAGMA\":[65,42,43],\"DAVID\":[92,90,88]}\nshowGrades(S)\n\nOR\n\ndef showGrades(S):\n    for K in S:\n        Sum=0\n        for i in range(3):\n            Sum+=S[K][i]\n        if Sum/3>=90:\n            Grade=\"A\"\n        elif Sum/3>=60:\n            Grade=\"B\"\n        else:\n            Grade=\"C\"\n        print(K,\"–\",Grade)\nS={\"AMIT\":[92,86,64],\"NAGMA\":[65,42,43],\"DAVID\":[92,90,88]}\nshowGrades(S)\n\nOR\nAny other correct variation of the code\n(½ mark for the loop to process individual students from the dictionary)\n(1 mark for calculating grades)\n(½ mark for displaying grades)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": "Write a user defined function in Python named Puzzle(W,N) which takes the argument W as an English word and N as an integer and returns the string where every Nth alphabet of the word W is replaced with an underscore (\"_\").\nFor example : if W contains the word \"TELEVISION\" and N is 3, then the function should return the string \"TE_EV_SI_N\". Likewise for the word \"TELEVISION\" if N is 4, then the function should return \"TEL_VIS_ON\".",
+   "or_solution": "Word=\"TELEVISION\"\ndef Puzzle(W, N):\n    NW=\"\"\n    Count=1\n    for Ch in W:\n        if Count!=N:\n            NW+=Ch\n            Count+=1\n        else:\n            NW+=\"_\"\n            Count=1\n    return NW\nprint(Puzzle(Word,3))\n\nOR\n\ndef Puzzle(W,N):\n    W1=\"\"\n    for i in range(len(W)):\n        if (i+1)%N==0:\n            W1=W1+\"_\"\n        else:\n            W1=W1+W[i]\n    return W1\nprint(Puzzle(\"TELEVISION\",4))\n\nOR\nAny other correct variation of the code\n(½ mark for the loop to process individual (or Nth) characters)\n(1 mark for changing/replacing the required characters)\n(½ mark for returning the new word)",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Python Dictionaries",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "Write the output displayed on execution of the following Python code :\nLS=[\"HIMALAYA\", \"NILGIRI\", \"ALASKA\", \"ALPS\"]\nD={}\nfor S in LS :\n    if len(S)%4 == 0:\n        D[S] = len(S)\nfor K in D :\n    print(K,D[K], sep = \"#\")",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "HIMALAYA#8\nALPS#4\n(1 mark for each line of output)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Python Built-in Functions",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "Write the Python statement for each of the following tasks using built-in functions/methods only : (1 + 1 = 2)\n(i) To remove the item whose key is \"NISHA\" from a dictionary named Students.\nFor example, if the dictionary Students contains {\"ANITA\":90, \"NISHA\":76, \"ASHA\":92}, then after removal the dictionary should contain {\"ANITA\":90, \"ASHA\":92}\n(ii) To display the number of occurrences of the substring \"is\" in a string named message.\nFor example if the string message contains \"This is his book\", then the output will be 3.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) Students.pop(\"NISHA\")\nOR\ndel(Students[\"NISHA\"])\nOR\ndel Students[\"NISHA\"]\nOR\nAny other correct variation of the code\n(ii) print(message.count(\"is\"))\nOR\nmessage.count(\"is\")\nOR\nAny other correct variation of the code\n(1 mark for each correct command)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": "A tuple named subject stores the names of different subjects. Write the Python commands to convert the given tuple to a list and thereafter delete the last element of the list.",
+   "or_solution": "subject=list(subject)\nsubject.pop()\nOR\nsubject=list(subject)\nsubject.pop(-1)\nOR\nsubject=list(subject)\ndel(subject[-1])\nOR\nsubject=list(subject)\ndel subject[-1]\nOR\nAny other correct variation of the code\n(1 mark for correctly converting to list)\n(1 mark for correctly popping the last element/name)",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "SQL",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "Ms. Veda created a table named Sports in a MySQL database, containing columns Game_id, P_Age and G_name.\nAfter creating the table, she realized that the attribute, Category has to be added. Help her to write a command to add the Category column. Thereafter, write the command to insert the following record in the table :\nGame_id : G42\nP_Age : Above 18\nG_name : Chess\nCategory : Senior",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "ALTER TABLE SPORTS\nADD CATEGORY VARCHAR(10);\nOR\nALTER TABLE SPORTS\nADD COLUMN CATEGORY VARCHAR(10);\nOR\nALTER TABLE SPORTS\nADD CATEGORY CHAR(10);\nOR\nALTER TABLE SPORTS\nADD COLUMN CATEGORY CHAR(10);\n\nINSERT INTO SPORTS\nVALUES(\"G42\",\"Above 18\",\"Chess\",\"Senior\");\nOR\nINSERT INTO SPORTS(Game_id, P_Age, G_name, Category)\nVALUES(\"G42\",\"Above 18\",\"Chess\",\"Senior\");\n(½ mark for ALTER TABLE command)\n(½ mark for ADD CATEGORY part)\n(½ mark for INSERT INTO command)\n(½ mark for VALUES part)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": "Write the SQL commands to perform the following tasks :\n(i) View the list of tables in the database, Exam.\n(ii) View the structure of the table, Term1.",
+   "or_solution": "(i) SHOW TABLES;\n(ii) DESCRIBE Term1\nOR\nDESC Term1\nNote: Ignore USE Exam; if not written\n(1 mark for each correct command)",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Functions",
+   "qtype": "theory",
+   "section": "Section B",
+   "stem": "Predict the output of the following code :\ndef callon(b=20,a=10):\n    b=b+a\n    a=b-a\n    print(b,\"#\",a)\n    return b\nx=100\ny=200\nx=callon(x,y)\nprint(x,\"@\",y)\ny=callon(y)\nprint(x,\"@\",y)",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "300#100\n300@200\n210#200\n300@210\n(½ mark for each line of correct output)\n(Deduct ½ mark only if all the numeric parts of the output are correct but formatting or/and separators are incorrect)",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Python Strings",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Write the output on execution of the following Python code :\nS=\"Racecar Car Radar\"\nL=S.split()\nfor W in L :\n    x=W.upper()\n    if x==x[::-1]:\n        for I in x:\n            print(I,end=\"*\")\n    else:\n        for I in W:\n            print(I,end=\"#\")\n    print()",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "R*A*C*E*C*A*R*\nC#a#r#\nR*A*D*A*R*\n(1 mark for each line of correct output)\nNote: Deduct ½ mark only if all the alphabets are correct but some cases (lower/upper) are incorrectly written. Deduct ½ mark only if all the alphabets are correct but separators (*/#) are incorrectly written OR new line not considered.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "SQL",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Consider the table ORDERS given below and write the output of the SQL queries that follow : (1 x 3 = 3)\nORDNO | ITEM | QTY | RATE | ORDATE\n1001 | RICE | 23 | 120 | 2023-09-10\n1002 | PULSES | 13 | 120 | 2023-10-18\n1003 | RICE | 25 | 110 | 2023-11-17\n1004 | WHEAT | 28 | 65 | 2023-12-25\n1005 | PULSES | 16 | 110 | 2024-01-15\n1006 | WHEAT | 27 | 55 | 2024-04-15\n1007 | WHEAT | 25 | 60 | 2024-04-30\n(i) SELECT ITEM, SUM(QTY) FROM ORDERS GROUP BY ITEM;\n(ii) SELECT ITEM, QTY FROM ORDERS WHERE ORDATE BETWEEN '2023-11-01' AND '2023-12-31';\n(iii) SELECT ORDNO, ORDATE FROM ORDERS WHERE ITEM = 'WHEAT' AND RATE>=60;",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i)\nITEM | SUM(QTY)\nRICE | 48\nPULSES | 29\nWHEAT | 80\n(ii)\nITEM | QTY\nRICE | 25\nWHEAT | 28\n(iii)\nORDNO | ORDATE\n1004 | 2023-12-25\n1007 | 2024-04-30\n(1 mark for writing each correct output)\nNote: Ignore output heading. Ignore order of rows.",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "File Handling",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Write a user defined function in Python named showInLines() which reads contents of a text file named STORY.TXT and displays every sentence in a separate line.\nAssume that a sentence ends with a full stop (.), a question mark (?), or an exclamation mark (!).\nFor example, if the content of file STORY.TXT is as follows :\nOur parents told us that we must eat vegetables to be\nhealthy. And it turns out, our parents were right! So,\nwhat else did our parents tell?\nThen the function should display the file's content as follows :\nOur parents told us that we must eat vegetables to be\nhealthy.\nAnd it turns out, our parents were right!\nSo, what else did our parents tell?",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "def showInLines():\n    with open(\"STORY.TXT\",'r') as F:\n        S=F.read()\n        for W in S:\n            if W==\".\" or W==\"?\" or W==\"!\":\n                print(W)\n            elif W==\"\\n\":\n                print(end=\"\")\n            else:\n                print(W,end=\"\")\n    F.close()\n\nOR\n\ndef showInLines():\n    F = open(\"STORY.TXT\",'r')\n    S=F.read()\n    for W in S:\n        if W.endswith(\".\") or W.endswith(\"?\") or W.endswith(\"!\"):\n            print(W)\n        elif W==\"\\n\":\n            print(end=\"\")\n        else:\n            print(W,end=\"\")\n    F.close()\n\nOR\nAny other correct variation of the code\n(½ mark for correctly opening the file)\n(½ mark for reading the content of file using any correct method/mode)\n(½ mark for the correct loop)\n(½ mark for correctly checking end of sentence terminating characters)\n(½ mark for correctly printing normal text without sentence terminator)\n(½ mark for correctly printing text with sentence terminator)",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": "Write a function, c_words() in Python that separately counts and displays the number of uppercase and lowercase alphabets in a text file, Words.txt.",
+   "or_solution": "def c_words():\n    f=open(\"Words.txt\",\"r\")\n    Txt=f.read()\n    CLower=CUpper=0\n    for i in Txt:\n        if i.islower():\n            CLower+=1\n        elif i.isupper():\n            CUpper+=1\n    print(CLower, CUpper)\n    f.close()\n\nOR\n\ndef c_words():\n    with open(\"Words.txt\",\"r\") as F:\n        Txt=f.read()\n        CL=CU=0\n        for i in Txt:\n            if i.islower(): # if i>=\"a\" and i<=\"z\":\n                CL+=1\n            elif i.isupper(): # if i>=\"A\" and i<=\"Z\":\n                CU+=1\n        print(CL, CU)\n(½ mark for correctly opening the file)\n(½ mark for reading the content of file using any correct method/mode)\n(½ mark for the correct loop)\n(½ mark for correctly checking and incrementing for uppercase alphabets)\n(½ mark for correctly checking and incrementing for lowercase alphabets)\n(½ mark for printing/returning required output)",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "SQL",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Consider the table Projects given below : (1 x 3 = 3)\nTable : Projects\nP_id | Pname | Language | Startdate | Enddate\nP001 | School Management System | Python | 2023-01-12 | 2023-04-03\nP002 | Hotel Management System | C++ | 2022-12-01 | 2023-02-02\nP003 | Blood Bank | Python | 2023-02-11 | 2023-03-02\nP004 | Payroll Management System | Python | 2023-03-12 | 2023-06-02\nBased on the given table, write SQL queries for the following :\n(i) Add the constraint, primary key to column P_id in the existing table Projects.\n(ii) To change the language to Python of the project whose id is P002.\n(iii) To delete the table Projects from MySQL database along with its data.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) ALTER TABLE Projects\nADD PRIMARY KEY (P_id);\n(½ mark for ALTER TABLE part)\n(½ mark for ADD PRIMARY KEY part)\n(ii) UPDATE Projects\nSET LANGUAGE= \"Python\"\nWHERE P_id = \"P002\";\n(½ mark for UPDATE - SET part)\n(½ mark for WHERE part)\n(iii) DROP TABLE Projects;\n(1 mark for correct command)\nOR\n(½ mark for partial answer such as DROP Projects or DROP TABLE)",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Stacks",
+   "qtype": "theory",
+   "section": "Section C",
+   "stem": "Consider a list named Nums which contains random integers.\nWrite the following user defined functions in Python and perform the specified operations on a stack named BigNums.\n(i) PushBig() : It checks every number from the list Nums and pushes all such numbers which have 5 or more digits into the stack, BigNums.\n(ii) PopBig() : It pops the numbers from the stack, BigNums and displays them. The function should also display \"Stack Empty\" when there are no more numbers left in the stack.\nFor example: If the list Nums contains the following data :\nNums = [213,10025,167,254923,14,1297653,31498,386,92765]\nThen on execution of PushBig(), the stack BigNums should store :\n[10025, 254923, 1297653, 31498, 92765]\nAnd on execution of PopBig(), the following output should be displayed :\n92765\n31498\n1297653\n254923\n10025\nStack Empty",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "def PushBig(Nums,BigNums):\n    for N in Nums:\n        if len(str(N)) >= 5:\n            BigNums.append(N)\ndef PopBig(BigNums):\n    while BigNums:\n        print(BigNums.pop())\n    else:\n        print(\"Stack Empty\")\n\nOR\n\ndef PushBig():\n    for N in Nums:\n        if N >= 10000:\n            BigNums.append(N)\ndef PopBig():\n    while BigNums:\n        print(BigNums.pop())\n    print(\"Stack Empty\")\n\nOR\nAny other correct variation of the code\n(½ mark for the correct loop in the function PushBig)\n(½ mark for correctly checking the number of digits in the function PushBig)\n(½ mark for pushing the correct number into BigNums in the function PushBig)\n(½ mark for the correct loop in the function PopBig)\n(½ mark for correctly checking the underflow condition and printing \"Stack Empty\" in the function PopBig)\n(½ mark for popping and printing the correct number in the function PopBig)\nNote: Ignore the declarations of Nums and/or BigNums",
+   "marks_correct": 3,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "SQL",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "Consider the tables Admin and Transport given below :\nTable : Admin\nS_id | S_name | Address | S_type\nS001 | Sandhya | Rohini | Day Boarder\nS002 | Vedanshi | Rohtak | Day Scholar\nS003 | Vibhu | Raj Nagar | NULL\nS004 | Atharva | Rampur | Day Boarder\nTable : Transport\nS_id | Bus_no | Stop_name\nS002 | TSS10 | Sarai Kale Khan\nS004 | TSS12 | Sainik Vihar\nS005 | TSS10 | Kamla Nagar\n\nWrite SQL queries for the following :\n(i) Display the student name and their stop name from the tables Admin and Transport.\n(ii) Display the number of students whose S_type is not known.\n(iii) Display all details of the students whose name starts with 'V'.\n(iv) Display student id and address in alphabetical order of student name, from the table Admin.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i)\nSELECT S_name, Stop_name FROM Admin, Transport\nWHERE Admin.S_id = Transport.S_id;\n(½ Mark for SELECT - FROM part)\n(½ Mark for WHERE part)\n(ii)\nSELECT COUNT(*) FROM Admin\nWHERE S_type IS NULL;\n(½ Mark for SELECT - FROM part)\n(½ Mark for WHERE part)\n(iii)\nSELECT * FROM Admin\nWHERE S_name LIKE 'V%';\nOR\nAny other correct query using/without using join\n(½ Mark for SELECT - FROM part)\n(½ Mark for WHERE part)\n(iv)\nSELECT S_id, Address FROM Admin\nORDER BY S_name;\n(½ Mark for SELECT - FROM part)\n(½ Mark for ORDER BY part)",
+   "marks_correct": 4,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "CSV Files",
+   "qtype": "theory",
+   "section": "Section D",
+   "stem": "Sangeeta is a Python programmer working in a computer hardware company. She has to maintain the records of the peripheral devices. She created a csv file named Peripheral.csv, to store the details. The structure of Peripheral.csv is :\n[P_id,P_name,Price]\nwhere\nP_id is Peripheral device ID (integer)\nP_name is Peripheral device name (String)\nPrice is Peripheral device price (integer)\n\nSangeeta wants to write the following user defined functions :\nAdd_Device() : to accept a record from the user and add it to a csv file, Peripheral.csv.\nCount_Device() : To count and display number of peripheral devices whose price is less than 1000.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "import csv\ndef Add_Device():\n    F=open(\"Peripheral.csv\",\"a\",newline='')\n    W=csv.writer(F)\n    P_id=int(input(\"Enter the Peripheral ID\"))\n    P_name=input(\"Enter Peripheral Name\")\n    Price=int(input(\"Enter Price\"))\n    L=[P_id,P_name,Price]\n    W.writerow(L)\n    F.close()\ndef Count_Device():\n    F=open(\"Peripheral.csv\",\"r\")\n    L=list(csv.reader(F))\n    Count=0\n    for D in L:\n        if int(D[2])<1000:\n            Count+=1\n    print(Count)\n    F.close()\n\nOR\nAny other correct variation of the code\n\n(½ Mark for opening the csv file correctly in the function Add_Device())\n(½ Mark for reading the data from the user in the function Add_Device())\n(½ Mark for writing the data correctly into the csv file in the function Add_Device())\n(½ Mark for opening the csv file correctly in the function Count_Device())\n(½ Mark for reading the data from the file in the function Count_Device())\n(½ Mark for loop in the function Count_Device())\n(½ Mark for checking the condition and counting correctly in the function Count_Device())\n(½ Mark for printing the output correctly in the function Count_Device())\nNote: Full 4 mark should be awarded if the examinee has mentioned that there is no mention of the task in the question",
+   "marks_correct": 4,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Computer Networks",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "Infotainment Ltd. is an event management company with its prime office located in Bengaluru. The company is planning to open its new division at three different locations in Chennai named as - Vajra, Trishula and Sudershana.\n\nYou, as a networking expert need to suggest solutions to the questions in part (i) to (v), keeping in mind the distances and other given parameters.\n\nDistances between various locations :\nVajra to Trishula | 350 m\nTrishula to Sudershana | 415 m\nSudershana to Vajra | 300m\nBengaluru Office to Chennai | 2000 km\n\nNumber of computers installed at various locations :\nVajra | 120\nSudershana | 75\nTrishula | 65\nBengaluru Office | 250\n\n(i) Suggest and draw the cable layout to efficiently connect various locations in Chennai division for connecting the digital devices.\n(ii) Which block in Chennai division should host the server ? Justify your answer.\n(iii) Which fast and effective wired transmission medium should be used to connect the prime office at Bengaluru with the Chennai division ?\n(iv) Which network device will be used to connect the digital devices within each location of Chennai division so that they may communicate with each other ?\n(v) A considerable amount of data loss is noticed between different locations of the Chennai division, which are connected in the network. Suggest a networking device that should be installed to refresh the data and reduce the data loss during transmission to and from different locations of Chennai division.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) (cable layout: see figure)\n(Full 1 Mark for drawing any valid layout with OR without mentioning topology)\nOR\n(Only ½ mark for mentioning only topology without cable layout)\n(ii) Vajra can host the server as it has a maximum number of computers.\nOR\nAny other answer with valid justification\n(½ Mark for the correct answer)\n(½ Mark for the correct justification)\n(iii) Optical Fiber\n(1 Mark for the correct answer)\n(iv) Switch/Hub/Router\n(1 Mark for the correct answer)\n(v) Repeater\nOR\nMentioning any other valid reason or solution for data loss\n(1 Mark for the correct answer)",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "c24-cs-q33.png",
+   "solution_figure": "c24-cs-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "File Handling",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "(i) Differentiate between 'w' and 'a' file modes in Python.\n(ii) Consider a binary file, items.dat, containing records stored in the given format :\n{item_id: [item_name,amount]}\nWrite a function, Copy_new(), that copies all records whose amount is greater than 1000 from items.dat to new_items.dat.",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i)\n'w':\nOpen the file in write mode.\nIf the file doesn't exist, then a new file will be created.\nThe file pointer is in the beginning of the file.\nIf the file exists, the contents of the file, if any, are lost/truncated and the new data is added as fresh data into the file.\n'a':\nOpen the file in append mode.\nIf the file doesn't exist, then a new file will be created.\nThe file pointer is at the end of the file.\nIf the file exists, the new data is added at the end of the file without deleting the previous contents of the file.\n(1 Mark each for any one correct characteristics of 'w' mode)\n(1 Mark each for any one correct characteristics of 'a' mode)\n(ii)\nimport pickle\ndef Copy_new():\n  F2=open(\"new_items.dat\",\"wb\")\n  try:\n    F1=open(\"items.dat\",\"rb\")\n    Data1=pickle.load(F1)\n    Data2={}\n    for K,V in Data1.items():\n      if V[1]>1000:\n        Data2[K]=V\n    pickle.dump(Data2,F2)\n    F2.close()\n  except:\n    print(\"File not found!\")\n  F1.close()\n\nOR\n\ndef Copy_new():\n  try:\n    F1=open(\"items.dat\",\"rb\")\n    F2=open(\"new_items.dat\",\"wb\")\n    D2={}\n    try:\n      while True:\n        D1=pickle.load(F1)\n        for k,v in D1.items():\n          if v[1]>1000:\n            D2[k]=v\n    except:\n      pickle.dump(D2,F2)\n      F1.close()\n      F2.close()\n except:\n   print('File Opening Error')\nOR\n\ndef Copy_new():\n f=open(\"items.dat\",\"rb\")\n f1=open(\"new_items.dat\",\"wb\")\n while True:\n   try:\n     r=pickle.load(f)\n     for k,v in r.items():\n       if v[1]>1000:\n         pickle.dump(r, f1)\n   except:\n     break\n f.close()\n f1.close()\n\nOR\nAny other correct variation of the code\n\n(½ Mark for opening the file items.dat in correct mode)\n(½ Mark for opening the file new_items.dat in correct mode)\n(½ Mark for reading the content of the file items.dat)\n(½ Mark for the correct loop)\n(½ Mark for checking the condition)\n(½ Mark for writing the required contents into the file new_items.dat)\nNote: Ignore f.close() and f1.close()",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": "(i) What is the advantage of using with clause while opening a data file in Python ? Also give syntax of with clause.\n(ii) A binary file, EMP.DAT has the following structure :\n[Emp_Id, Name, Salary]\nwhere\nEmp_Id : Employee id\nName : Employee Name\nSalary : Employee Salary\nWrite a user defined function, disp_Detail(), that would read the contents of the file EMP.DAT and display the details of those employees whose salary is below 25000.",
+   "or_solution": "(i)\nThe advantage of using with clause is that any file that is opened using this clause is closed automatically, once the control comes outside the with clause.\nExample:\nwith open(\"myfile.txt\",\"r+\") as file_object:\n    content = file_object.read()\n\nIn Python, we can open a file using with clause/statement.\nThe syntax of with clause is:\nwith open (file_name, access_mode) as file_object:\n(1 Mark for writing any one advantage of with statement)\n(1 Mark for writing syntax OR any valid example of with statement)\n(ii)\ndef disp_Detail():\n  try:\n    with open(\"EMP.DAT\",\"rb\") as F:\n      Data=pickle.load(F)\n      for D in Data:\n        if D[2]<25000:\n          print(D)\n  except:\n    print(\"File Not Found!!!\")\n\nOR\n\ndef disp_Detail():\n  try:\n    with open(\"EMP.DAT\",\"rb\") as F:\n      try:\n        while True:\n          Data=pickle.load(F)\n          if Data[2]<25000:\n            print(Data)\n      except:\n        print(\"File ended\")\n  except:\n    print(\"File Not Found!!!\")\n\nOR\n\ndef disp_Detail():\n  try:\n    with open(\"EMP.DAT\",\"rb\") as F:\n      try:\n        while True:\n          Data=pickle.load(F)\n          for D in Data:\n            if D[2]<25000:\n              print(D)\n      except:\n        print(\"File ended\")\n  except:\n    print(\"File Not Found!!!\")\nOR\nAny other correct variation of the code\n\n(½ Mark for opening the file items.dat in correct mode)\n(1 Mark for reading the content of the file items.dat)\n(½ Mark for the correct loop)\n(½ Mark for checking the condition)\n(½ Mark for printing the desired output)",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Python-MySQL Connectivity",
+   "qtype": "theory",
+   "section": "Section E",
+   "stem": "(i) Define cartesian product with respect to RDBMS.\n(ii) Sunil wants to write a program in Python to update the quantity to 20 of the records whose item code is 111 in the table named shop in MySQL database named Keeper.\nThe table shop in MySQL contains the following attributes :\n• Item_code: Item code (Integer)\n• Item_name: Name of item (String)\n• Qty: Quantity of item (Integer)\n• Price: Price of item (Integer)\nConsider the following to establish connectivity between Python and MySQL :\n• Username : admin\n• Password : Shopping\n• Host : localhost",
+   "correct_key": null,
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i)\nCartesian Product operation combines rows/tuples from two tables/relations. It results in all the pairs of rows from both the tables. It is denoted by 'X'.\n(1 Mark each for the correct definition)\n(ii)\nimport pymysql as pm\nDB=pm.connect(host=\"localhost\",user=\"admin\",\\\n              passwd=\"Shopping\", database=\"Keeper\")\nMyCursor=DB.cursor()\n SQL=f\"UPDATE SHOP SET QTY=%S WHERE ITEM_CODE=%S\"%(20,111)\n# OR\n SQL=\"UPDATE SHOP SET QTY=20 WHERE ITEM_CODE=111\"\nMyCursor.execute(SQL)\nDB.commit()\n\n(½ mark for importing with any correct module/method)\n(1 mark for correct connect())\n(½ mark for creating the cursor)\n(1 mark for the correct SQL command - ½ Mark for UPDATE SET and ½ Mark for WHERE)\n(1 mark for correctly executing SQL)",
+   "marks_correct": 5,
+   "marks_wrong": 0,
+   "or_stem": "(i) Give any two features of SQL.\n(ii) Sumit wants to write a code in Python to display all the details of the passengers from the table flight in MySQL database, Travel. The table contains the following attributes :\nF_code : Flight code (String)\nF_name : Name of flight (String)\nSource : Departure city of flight (String)\nDestination : Destination city of flight (String)\nConsider the following to establish connectivity between Python and MySQL :\n• Username : root\n• Password : airplane\n• Host : localhost",
+   "or_solution": "(i)\nAny two of the following\n• Full form is Structured Query Language.\n• Is used to retrieve and view specific data from a table in a database.\n• Is case insensitive\n• Each query in SQL ends with a semicolon (;)\n• It contains DDL and DML\n(½ Mark each for the any two correct feature as mentioned above or any other correct feature)\n(ii)\nimport pymysql as pm\nDB=pm.connect(host=\"localhost\",user=\"root\",\\\n              password=\"airplane\",database=\"Travel\")\nMyCursor=DB.cursor()\nMyCursor.execute(\"SELECT * FROM Flight \")\nRec=MyCursor.fetchall()\nfor R in Rec:\n  print (R)\n\nOR\nAny other correct variation of the code\n\n(½ mark for importing any correct module/method pymysql or any other)\n(1 mark for correct connect())\n(1 mark for correctly executing the query)\n(½ mark for correctly fetching the data)\n(1 mark for correctly displaying data)\nNote: Full 4 mark should be awarded if the examinee has mentioned that there is no mention of the task in the question",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
