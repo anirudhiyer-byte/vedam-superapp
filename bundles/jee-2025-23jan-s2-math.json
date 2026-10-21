@@ -1,0 +1,504 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "23 Jan · Shift 2",
+  "title": "JEE Main 2025 · Mathematics · 23 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "17CEh-fkHOoiHLE37nQ39bD5oKS3pFuON"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If a square is divided in $4 \\times 4$ squares.\nIf two squares are chosen randomly then the probability that the squares doesn’t share common side is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Total = ${}^{16}C_{2}$\nRequired ways = Total – (adjacent squares)\n$= {}^{16}C_{2} -$ [3 pairs in vertical and horizontal for each row and column]\n$= {}^{16}C_{2} - [3 \\times 4 + 3 \\times 4]$\nProbability $= \\frac{{}^{16}C_{2} - 24}{{}^{16}C_{2}} = \\frac{120 - 24}{120} = \\frac{96}{120} = \\frac{4}{5}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{20}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{10}$"
+    }
+   ],
+   "stem_figure": "j25-23jan-s2-math-q01.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $I = \\int_{0}^{\\frac{\\pi}{2}} \\frac{\\sin^{\\frac{3}{2}} x}{\\sin^{\\frac{3}{2}} x + \\cos^{\\frac{3}{2}} x}\\,dx$, then the value of definite integration $\\int_{0}^{2I} \\frac{x \\sin x \\cos x}{\\sin^{4} x + \\cos^{4} x}\\,dx$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{0}^{\\frac{\\pi}{2}} \\frac{\\sin^{\\frac{3}{2}} x\\,dx}{\\sin^{\\frac{3}{2}} x + \\cos^{\\frac{3}{2}} x}$\n$\\int_{0}^{\\frac{\\pi}{2}} \\frac{\\cos^{\\frac{3}{2}} x}{\\sin^{\\frac{3}{2}} x + \\cos^{\\frac{3}{2}} x}\\,dx$\n$\\Rightarrow 2I = \\int_{0}^{\\frac{\\pi}{2}} (1)\\,dx = \\frac{\\pi}{2}$\n$\\Rightarrow I = \\frac{\\pi}{4}$\n$\\Rightarrow 2I = \\frac{\\pi}{2}$\n$\\Rightarrow I_{1} = \\int_{0}^{2I} \\frac{x \\sin x \\cos x}{(\\sin^{4} + \\cos^{4} x)}\\,dx = \\int_{0}^{2I} \\frac{x \\sin x \\cos x}{\\sin^{4} + \\cos^{4} x}\\,dx$\n$\\Rightarrow I_{1} = \\int_{0}^{\\frac{\\pi}{2}} \\frac{\\left(\\frac{\\pi}{2} - 2\\right) \\cos \\sin x\\,dx}{\\cos^{4} x + \\sin^{4} x}$\nAdding,\n$2I_{1} = \\int_{0}^{\\frac{\\pi}{2}} \\frac{\\frac{\\pi}{2} \\cos x \\sin x\\,dx}{(\\sin^{4} x + \\cos^{4} x)}$\n$(\\sin^{4} x + \\cos^{4} x) = (\\sin^{2} x + \\cos^{2} x)^{2} - 2\\sin^{2} x \\cos^{2} x$\n$= \\left(1 - \\frac{\\sin^{2} 2x}{2}\\right) = \\frac{2 - \\sin^{2} x}{2}$\n$= \\frac{1 - \\cos^{2} 2x}{2}$\n$2I = \\frac{\\pi}{4} \\int_{0}^{\\frac{\\pi}{2}} \\frac{\\sin 2x}{\\frac{1 + \\cos^{2} 2x}{2}}\\,dx$\n$\\Rightarrow 2I = \\frac{\\pi}{4} \\int_{-1}^{1} \\frac{dt}{(1 + t^{2})},\\ t = \\cos 2x$\n$\\Rightarrow I = \\frac{\\pi}{8} \\cdot \\left(\\frac{\\pi}{4} - \\left(-\\frac{\\pi}{4}\\right)\\right) = \\frac{\\pi^{2}}{16}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{16}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi^{2}}{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi^{2}}{8}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the terms 8, 21, 34, 47, …, 320. The variance of the given data set is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mu$ = Mean = $\\frac{8 + 21 + \\ldots 320}{25} = \\frac{25}{2}\\frac{(8 + 320)}{25} = 164$\nVariance = $\\frac{8^{2} + 21^{2} + \\ldots 320^{2}}{25} - (164)^{2} = 8788$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "8788"
+    },
+    {
+     "key": "B",
+     "text": "8614"
+    },
+    {
+     "key": "C",
+     "text": "720"
+    },
+    {
+     "key": "D",
+     "text": "9402"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $M\\left(\\frac{1}{2}, 1\\right)$ be the mid-point of a chord to the Ellipse $\\frac{x^{2}}{2} + \\frac{y^{2}}{4} = 1$, then the length of chord is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{x^{2}}{2} + \\frac{y^{2}}{4} = 1$\nThe equation of chord bisected at $\\left(\\frac{1}{2}, 1\\right)$ will be $T = S_{1}$.\n$\\Rightarrow \\frac{x}{2}\\left(\\frac{1}{2}\\right) + \\frac{y}{4}(1) - 1 = \\frac{\\left(\\frac{1}{2}\\right)^{2}}{2} + \\frac{1^{2}}{4} - 1$\n$\\Rightarrow \\frac{x}{4} + \\frac{y}{4} = \\frac{1}{8} + \\frac{1}{4}$\n$\\Rightarrow x + y = \\frac{3}{2} \\Rightarrow x_{1} + y_{1} = \\frac{3}{2}$\n$x_{2} + y_{2} = \\frac{3}{2}$\n$\\Rightarrow (x_{1} - x_{2}) + (y_{1} - y_{2}) = 0$\n$\\Rightarrow (x_{1} - x_{2})^{2} = (y_{1} - y_{2})^{2}$\n$2x^{2} + y^{2} = 4$\n$2x^{2} + \\left(\\frac{3}{2} - x\\right)^{2} = 4$\n$3x^{2} - 3x + \\frac{9}{4} - 4 = 0$\n$\\Rightarrow 3x^{2} - 3x - \\frac{7}{4} = 0$\n$x_{1} + x_{2} = 1$\n$x_{1}.x_{2} = \\frac{-7}{12}$\n$(x_{1} - x_{2})^{2} = (x_{1} + x_{2}) - 4x_{1}x_{2}$\n$= 1 + \\frac{28}{72} = \\frac{10}{3}$\n$\\Rightarrow$ Length of chord $= \\sqrt{\\frac{10}{3} + \\frac{10}{3}} = \\sqrt{\\frac{20}{3}} = 2\\sqrt{\\frac{5}{3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3}\\sqrt{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{5}}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{\\frac{5}{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\sqrt{5}}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-23jan-s2-math-q04-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the square of the shortest distance between the lines $\\frac{x - 2}{1} = \\frac{y - 1}{2} = \\frac{z + 3}{-3}$ and $\\frac{x + 1}{2} = \\frac{y + 3}{4} = \\frac{z + 5}{-5}$ is $\\frac{m}{n}$ (where $m$, $n$ are coprime number) then $m + n$ equals to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{x - 2}{1} = \\frac{y - 1}{2} = \\frac{z + 3}{-3}$\n$\\frac{x + 1}{2} = \\frac{y + 3}{4} = \\frac{z + 5}{-5}$\n$a_{1} = (2, 1, -3)$\n$a_{2} = (-1, -3, -5)$\n$\\vec{b}_{1} \\times \\vec{b}_{2} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & 2 & -3 \\\\ 2 & 4 & -5 \\end{vmatrix}$\n$2\\hat{i} - \\hat{j}$\n$(SD)^{2} = \\left|\\frac{(a_{2} - a_{1}) \\cdot (\\vec{b}_{1} \\times \\vec{b}_{2})}{|\\vec{b}_{1} \\times \\vec{b}_{2}|}\\right|^{2}$\n$= \\left|\\frac{(3\\hat{i} + 4\\hat{j} + 2k) \\cdot (2\\hat{i} - \\hat{j})}{\\sqrt{4 + 1}}\\right|^{2}$\n$= \\left(\\frac{2}{\\sqrt{5}}\\right)^{2} = \\frac{4}{5}$\n$m + n = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6"
+    },
+    {
+     "key": "B",
+     "text": "9"
+    },
+    {
+     "key": "C",
+     "text": "21"
+    },
+    {
+     "key": "D",
+     "text": "14"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A rod of length 8 units having two end points always lie on $x - y + 2 = 0$ and $x + y + 2 = 0$. A point $P$ divide this line in ratio 2 : 1. Then locus of $P$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x - y + z = 0$\n$x + y + z = 0$\n$PQ = 8$\n$\\Rightarrow (a - b)^{2} + (a + 2 + b + 2)^{2} = 64$\n$(a - b)^{2} + (a + b + 4) = 64$\n$2a^{2} + 2b^{2} - 2ab + 16 + 2(ab + 4b + 4a) = 64$\n$\\Rightarrow 2a^{2} + 2b^{2} + 8a + 8b = 48$\n$\\Rightarrow a^{2} + b^{2} + 4a + 4b - 24 = 0 = (a + 2)^{2} + (b + 2)^{2} = 32$\n$h = \\frac{2b + 1(a)}{3}, K = \\frac{2(-2 - b) + 1(a + 2)}{3}$\n$3h = 2b + a$, $3K = a - 2 - 2b \\rightarrow$ Solve for $a$ and $b$.\n$a = \\frac{3h + 3K + 2}{2}, b = \\frac{3h - 3K - 2}{4}$\n$(a + 2) = \\left(\\frac{3h + 3K + 6}{2}\\right), b + 2 = \\left(\\frac{3h - 3K + 6}{2}\\right)$\n$\\Rightarrow \\left(\\frac{3h + 3K + 6}{2}\\right)^{2} + \\left(\\frac{3h - 3K + 6}{2}\\right)^{2} = 32$\n$9(x + y + z)^{2} + 9(x - y + z)^{2} = 128$\n$18[x^{2} + y^{2} + 4x + 4] = 128 \\Rightarrow x^{2} + y^{2} + 4x - \\frac{28}{9} = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9x^{2} + 9y^{2} + 36x - 28 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$8x^{2} + 8y^{2} + 36x + 27 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$9x^{2} + 9y^{2} - 36x + 28 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$8x^{2} + 8y^{2} - 36x - 27 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-23jan-s2-math-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Evaluate\n$$\\lim_{x \\to \\infty} \\left(\\frac{2x^{7} + 3x - 5}{3x^{7} + 5x - 2}\\right) \\frac{(3x - 1)^{\\frac{x}{2}}}{\\left(\\sqrt{3x + 2}\\right)^{x}}$$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to \\infty} \\underbrace{\\left[\\frac{2x^{7} + 3x - 5}{3x^{7} + 5x - 2}\\right]}_{M} \\underbrace{\\left(\\frac{(3x - 1)^{\\frac{x}{2}}}{\\left(\\sqrt{3x + 2}\\right)^{x}}\\right)}_{N}$\n$\\lim_{x \\to \\infty} M = \\lim_{x \\to \\infty} \\left[\\frac{2 + \\frac{3}{x^{6}} - \\frac{5}{x^{7}}}{3 + \\frac{5}{x^{6}} - \\frac{2}{x^{7}}}\\right] = \\frac{2}{3}$\n$\\lim_{x \\to \\infty} N = \\lim_{x \\to \\infty} \\left(\\frac{3x - 1}{3x + 2}\\right)^{\\frac{x}{2}} = (1^{\\infty}\\ \\text{form})$\n$= e^{L}$\n$L = \\lim_{x \\to \\infty} \\left(\\frac{3x - 1}{3x + 2} - 1\\right)\\frac{x}{2}$\n$= \\lim_{x \\to \\infty} -\\frac{3x}{2(3x + 2)} = \\lim_{x \\to \\infty} -\\frac{3}{2\\left(3 + \\frac{2}{x}\\right)} = -\\frac{3}{6} = -\\frac{1}{2}$\n$\\therefore \\lim_{x \\to \\infty} N = e^{-\\frac{1}{2}}$\n$\\therefore \\lim_{x \\to \\infty} MN = \\frac{2}{3}e^{-\\frac{1}{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3\\sqrt{e}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{\\sqrt{e}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{5\\sqrt{e}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{\\sqrt{e}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S$ be the region consisting of points $(x, y)$ such that $-1 \\le x \\le 1$ and $0 \\le y \\le a + e^{|x|} - e^{-|x|}$. If area of bounded region is $\\frac{2(e^{2} + 8e + 1)}{e}$ square units, then $a$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$0 \\le y \\le a + e^{|x|} - e^{-|x|}$\nArea $= 2\\int_{0}^{1} \\left(a + e^{|x|} - e^{-|x|}\\right)dx$\n$= 2\\int_{0}^{1} \\left(a + e^{x} - e^{-x}\\right)dx$\n$= 2\\left(ax + e^{x} + e^{-x}\\right|_{0}^{1}$\n$= 2(a + e + e^{-1}) - 2(e^{0} + e^{-0})$\n$= 2\\left(a + e + \\frac{1}{e}\\right) - 2(2)$\n$= 2e + \\frac{2}{e} + 2a - 4 = 2\\left(e + \\frac{1}{e} + (a - 2)\\right)$\n$= \\frac{2(e^{2} + (a - 2)(e + 1)}{e}$\nComparing, $a - 2 = 8 \\Rightarrow a = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "8"
+    },
+    {
+     "key": "B",
+     "text": "10"
+    },
+    {
+     "key": "C",
+     "text": "7"
+    },
+    {
+     "key": "D",
+     "text": "5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-23jan-s2-math-q08-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $z$ is a complex number such that $|z| = 1$ and $\\left|\\frac{z}{\\bar{z}} + \\frac{\\bar{z}}{z}\\right| = 1$, then the number of complex number $z$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left|\\frac{z}{\\bar{z}} + \\frac{\\bar{z}}{z}\\right| = 1$\n$\\Rightarrow \\left|z^{2} + (\\bar{z})\\right| = 1$\n$Z = x + iy$\n$\\Rightarrow \\left|Z^{2} + (\\bar{Z})^{2}\\right| = \\left|2(x^{2} - y^{2})\\right|$\n$\\Rightarrow x^{2} - y^{2} = \\pm\\frac{1}{2}$\nand $x^{2} + y^{2} = 1$\n$x^{2} - y^{2} = \\frac{1}{2}$ and $x^{2} - y^{2} = 1$\n[figure 1]\n4 sol.\n$x^{2} - y^{2} = \\frac{-1}{2}, x^{2} + y^{2} = 1$\n[figure 2]\n4 sol.\n$\\Rightarrow$ Total 8 sol.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "8"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "Zero"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-23jan-s2-math-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $A\\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\end{bmatrix}$, $A\\begin{bmatrix} 4 \\\\ 1 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix}$, $A\\begin{bmatrix} 2 \\\\ 1 \\\\ 2 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\end{bmatrix}$. Then $a_{23}$ equals to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $A = \\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}$\n$\\begin{bmatrix} a & b & c \\\\ d & e & f \\\\ g & h & i \\end{bmatrix}\\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\end{bmatrix}$\n$\\Rightarrow b = 0\\ \\ e = 0\\ \\ h = 1$\n$\\begin{bmatrix} a & 0 & c \\\\ d & 0 & f \\\\ g & 1 & i \\end{bmatrix}\\begin{bmatrix} 4 \\\\ 1 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix}$\n$4a + 3c = 0$\n$4d + 3f = 1$ …(1)\n$4g + p + 3i = 0$\n$\\begin{bmatrix} a & 0 & c \\\\ d & 0 & f \\\\ g & 1 & i \\end{bmatrix}\\begin{bmatrix} 2 \\\\ 1 \\\\ 2 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\end{bmatrix}$\n$2a + 2c = 1$\n$2d + 2f = 0$ …(2)\n$2g + 1 + 2f = 0$\nSolving (1) and (2)\n$d = 1\\ \\ f = -1$\n$\\Rightarrow a_{23} = -1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "$-1$"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "$-2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $(a, 0)$ be a point such that its shortest distance from the parabola $y^{2} = 4x$ is 4. Then the equation of circle passing through $(a, 0)$ and focus of the parabola having centre on the axis of parabola is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The shortest distance lie along the normal.\nSlope of normal at $A$ is $(-t)$\n$\\Rightarrow (-t) = \\frac{2t - 0}{(t^{2} - a)}$\n$\\Rightarrow t = 0, t^{2} - a = -2$\n$t^{2} = (a - 2)$\n$(t^{2} - a)^{2} + (2t)^{2} = 16$\n$\\Rightarrow 4 + 4t^{2} = 16 \\Rightarrow t^{2} = 3, a = 5$\nEquation of circle passing through $(1, 0)$ and $(5, 0)$ and having centre on the axis will be diametric form of circle.\n$(x - 1)(x - 5) + (y - 0)(y - 0) = 0$\n$x^{2} + y^{2} - 6x + 5 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2} + y^{2} - 6x + 8 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} + y^{2} + 6x + 5 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$x^{2} + y^{2} - 6x + 5 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} + y^{2} - 9x + 5 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-23jan-s2-math-q11-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "There are 5 boys and 4 girls. The sum of number of ways in which they can be seated such that all boys sit together and number of ways such that no boys sit together is equal to",
+   "correct_key": null,
+   "correct_value": 17280,
+   "correct_keys": null,
+   "solution": "All boys sit together\n$\\boxed{B_{1}B_{2}B_{3}B_{4}B_{5}}\\ \\ G_{1}G_{2}G_{3}G_{4}$\n$= 5!\\,5!$\nno boys sit together\n$\\uparrow G_{1} \\uparrow G_{2} \\uparrow G_{3} \\uparrow G_{4} \\uparrow$\n$4! \\cdot 5!$\n$\\therefore$ sum $= 5! \\cdot 5! + 5! \\cdot 4!$\n$= 5!(4! + 5!)$\n$= 5! \\cdot 4!(1 + 5) = 6 \\cdot 4!\\,5! = 17280$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f(x) = 6 + 16\\cos\\left(\\frac{\\pi}{3} - x\\right)\\cos\\left(\\frac{\\pi}{3} + x\\right)\\cos x\\ \\sin 3x\\ \\cos 6x$ if range of $f(x)$ is $[\\alpha, \\beta]$ then distance of $(\\alpha, \\beta)$ from $3x + 4y + 12 = 0$",
+   "correct_key": null,
+   "correct_value": 11,
+   "correct_keys": null,
+   "solution": "$f(x) = 6 + 16 \\times \\frac{1}{4}\\cos 3x \\sin 3x \\cos 6x$\n$= 6 + 2\\sin 6x \\cos 6x$\n$= 6 + \\sin 12x$\n$R_{f(x)} \\in [5, 7]$\nNow distance $= \\left|\\frac{15 + 28 + 12}{\\sqrt{3^{2} + 4^{2}}}\\right| = \\frac{55}{5} = 11$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Sets",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "$A = \\{(x, y) \\mid |x + y| \\ge 3\\}$;\n$B = \\{(x, y) \\mid |x| + |y| \\le 3\\}$\nLet $C = A \\cap B$. Find the sum of $(x, y)\\ \\forall\\ x, y \\in C$.",
+   "correct_key": null,
+   "correct_value": 0,
+   "correct_keys": null,
+   "solution": "$|x| + |y| \\le 3$\n[figure 1]\n$|x + y| \\ge 3$\n[figure 2]\n$A \\ge B =$ [figure 3]\n$\\therefore$ Sum = 0",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j25-23jan-s2-math-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If system of linear equations\n$x + y + z = 6$\n$x + 2y + 5z = 9$\n$x + 5y + \\lambda z = \\mu$\nhas no solutions. Then value of $\\lambda$ equals to",
+   "correct_key": null,
+   "correct_value": 17,
+   "correct_keys": null,
+   "solution": "$\\Delta = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & 2 & 5 \\\\ 1 & 5 & \\lambda \\end{vmatrix} = 0$\n$\\lambda - 17 = 0$\n$\\Rightarrow \\lambda = 17$\nFor no solution $\\Delta = 0$ at least one of $\\Delta_{1}, \\Delta_{2}, \\Delta_{3} \\ne 0$\n$\\Delta_{1} = \\begin{vmatrix} 6 & 1 & 1 \\\\ 9 & 2 & 5 \\\\ \\mu & 5 & 17 \\end{vmatrix} \\ne 0$\n$\\Rightarrow 3\\mu - 54 \\ne 0$\n$\\mu \\ne 18$\n$\\Rightarrow$ for $\\mu \\ne 18$ and $\\lambda = 17$ given system of equations have no solution.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

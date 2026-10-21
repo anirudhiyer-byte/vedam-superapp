@@ -1,0 +1,561 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "22 Jan · Shift 2",
+  "title": "JEE Main 2025 · Mathematics · 22 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "10luG5flRaz15jfCzxWtC8WSrHJPEh_MZ"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $2x^{2} + (\\cos\\theta)x - 1 = 0$, $\\theta \\in [0, 2\\pi]$ has roots $\\alpha$ and $\\beta$. Then the sum of maximum and minimum value of $\\alpha^{4} + \\beta^{4}$.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha + \\beta = \\frac{-\\cos\\theta}{2}$\n$\\alpha\\beta = \\frac{-1}{2} \\Rightarrow \\alpha^{2}\\beta^{2} = \\frac{1}{4}$\n$\\Rightarrow \\alpha^{2} + \\beta^{2} = (\\alpha + \\beta)^{2} - 2\\alpha\\beta$\n$= \\frac{\\cos^{2}\\theta + 1}{4}$\n$\\alpha^{4} + \\beta^{4} = (\\alpha^{2} + \\beta^{2})^{2} - 2\\alpha^{2}\\beta^{2}$\n$= \\left(\\frac{\\cos^{2}\\theta + 1}{4}\\right) - \\frac{1}{2}$\nFor minimum, $\\cos\\theta = 0$\nFor maximum, $\\cos\\theta = 1$\n$\\Rightarrow$ Minimum $= 1 - \\frac{1}{2} = \\frac{1}{2}$\nMaximum $= \\frac{25}{16} - \\frac{1}{2} = \\frac{17}{16}$\n$\\Rightarrow$ Sum $= \\frac{1}{2} + \\frac{17}{16} = \\frac{25}{16}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{25}{16}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{9}{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{41}{16}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{8}{17}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\theta \\in [0, 2\\pi]$ satisfying the system of equations $2\\sin^{2}\\theta = \\cos 2\\theta$ and $2\\cos^{2}\\theta = 3\\sin\\theta$. Then the sum of all real values of $\\theta$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2\\sin^{2}\\theta = \\cos 2\\theta$\n$2\\cos^{2}\\theta = 3\\sin\\theta$\n$\\Rightarrow$ Adding,\n$2 = 1 - 2\\sin^{2}\\theta + 3\\sin\\theta$\n$\\Rightarrow 2\\sin^{2}\\theta - 3\\sin\\theta + 1 = 0$\n$2\\sin^{2}\\theta - 2\\sin\\theta - \\sin\\theta + 1 = 0$\n$2\\sin\\theta(\\sin\\theta - 1) - 1(\\sin\\theta - 1) = 0$\n$\\sin\\theta = 1, \\frac{1}{2}$ but $2\\sin^{2}\\theta = \\cos 2\\theta = 2$\nbut not is not possible\n$\\Rightarrow \\theta = \\frac{\\pi}{6}, \\left(\\pi - \\frac{\\pi}{6}\\right)$\n$\\Rightarrow$ Sum of all values $= \\frac{\\pi}{6} + \\pi - \\frac{\\pi}{6} = \\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3\\pi}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5\\pi}{6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\{1, 2, 3, 4\\}$ and $B = \\{1, 4, 9, 16\\}$.\nIf $f : A \\rightarrow B$, number of many-one functions from $A$ to $B$ are",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$n(A) = 4$\n$n(B) = 4$\nNumber of many one functions = Total functions – Number of one-one function\n$= 4^{4} - 4! = 232$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "24"
+    },
+    {
+     "key": "B",
+     "text": "232"
+    },
+    {
+     "key": "C",
+     "text": "256"
+    },
+    {
+     "key": "D",
+     "text": "252"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "4 boys and 3 girls are to be seated in a row such that all girls seat together and two particular boys $B_1$ and $B_2$ are not adjacent to each other. Then the number of ways in which this arrangement can be done.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "4 boys and 3 girls.\nAll girls together $\\Rightarrow \\boxed{G_1\\, G_2\\, G_3}$\n3 girls and 2 boys can be seated in $3! \\cdot 3!$ ways\nNow $B_1$ and $B_2$ go into spaces.\n$\\Rightarrow {}^{4}C_{2} \\times 2! \\times 3! \\times 3! = 432$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "432"
+    },
+    {
+     "key": "B",
+     "text": "430"
+    },
+    {
+     "key": "C",
+     "text": "516"
+    },
+    {
+     "key": "D",
+     "text": "1002"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the sum $\\sum_{r=0}^{30} \\frac{r^{2}\\left({}^{30}C_{r}\\right)^{2}}{{}^{30}C_{r-1}} = \\alpha \\cdot 2^{29}$, then $\\alpha$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{r^{2} \\cdot 30!}{(30-r)!\\,r!} \\cdot \\frac{30!}{(30-r)!\\,r!} \\times \\frac{(r-1)!\\,(31-r)!}{30!}$\n$= \\frac{30!\\,(31-r)}{(r-1)!\\,(30-r)!}$\n$= \\frac{30(31-r)\\,29!}{(r-1)!\\,(30-r)!}$\n$\\Rightarrow \\sum_{r=0}^{30} \\frac{r^{2}({}^{30}C_{r})^{2}}{{}^{30}C_{r-1}} = 30\\sum_{r=0}^{30}(31-r)\\,{}^{29}C_{r-1} = 30\\sum_{r=0}^{30}(31-r)\\,{}^{29}C_{30-r}$\n$= 30\\sum_{r=0}^{30}\\left[(30-r)+1\\right]{}^{29}C_{30-r}$\n$= 30\\sum_{r=0}^{30}\\frac{29}{(30-r)}(30-r) \\cdot {}^{28}C_{29-r} + 30\\sum_{r=0}^{30}{}^{29}C_{30-r}$\n$= 30 \\cdot 29 \\cdot 2^{28} + 30 \\cdot 2^{29}$\n$= 30 \\cdot 2^{28}(29 + 2) = (31 \\times 15) \\cdot 2^{29}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "225"
+    },
+    {
+     "key": "B",
+     "text": "465"
+    },
+    {
+     "key": "C",
+     "text": "345"
+    },
+    {
+     "key": "D",
+     "text": "425"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider a function $f(x) = \\int_{0}^{x^{2}} \\frac{t^{2} - 8t + 15}{e^{t}}\\,dt$. The number of points of extrema are",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because\\ f(x) = \\int_{0}^{x^{2}} \\frac{t^{2} - 8t + 15}{e^{t}}$\n$f'(x) = \\frac{2x(x^{4} - 8x^{2} + 15)}{e^{x^{2}}}$\n$= \\frac{2x(x^{2} - 5)(x^{2} - 3)}{e^{x^{2}}}$\nThe extremum value of $f(x)$ are $x = 0, \\pm\\sqrt{5}, \\pm\\sqrt{3}$\n$\\therefore$ Number of extremum points are 5.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "5"
+    },
+    {
+     "key": "C",
+     "text": "7"
+    },
+    {
+     "key": "D",
+     "text": "9"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A$ and $B$ are two events such that $P(A \\cap B) = \\frac{1}{10}$ and $P(A/B)$ and $P(B/A)$ are the roots of the equation $12x^{2} - 7x + 1 = 0$, then $\\frac{P(\\bar{A} \\cup \\bar{B})}{P(\\bar{A} \\cap \\bar{B})}$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P(A \\cap B) = \\frac{1}{10}$\n$P(A/B) + P(B/A) = \\frac{7}{12}$\nand $P(A/B) \\cdot P(B/A) = \\frac{1}{12}$\n$\\frac{P(A \\cup B)}{P(B)} \\cdot \\frac{P(A \\cap B)}{P(A)} = \\frac{1}{12}$\n$\\Rightarrow P(A) \\cdot P(B) = 12\\left(\\frac{1}{12}\\right)^{2} = \\frac{12}{100}$\n$P(A \\cap B)\\left[\\frac{1}{P(A)} + \\frac{1}{P(B)}\\right] = \\frac{7}{12}$\n$P(A) + P(B) = \\frac{7}{10}$\n$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$\n$= \\frac{7}{10} - \\frac{1}{10} = \\frac{6}{10}$\n$\\frac{P(\\bar{A} \\cup \\bar{B})}{P(\\bar{A} \\cap \\bar{B})} = \\frac{P(\\overline{A \\cap B})}{P(\\overline{A \\cup B})} = \\frac{1 - P(A \\cap B)}{1 - P(A \\cup B)}$\n$\\frac{1 - \\frac{1}{10}}{1 - \\frac{6}{10}} = \\frac{\\frac{9}{10}}{\\frac{4}{10}} = \\frac{9}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{9}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{9}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Number of terms in an arithmetic progression is $2n$. Sum of terms occurring at even places is 40 and sum of terms occurring at odd places is 55. If the first term exceeds the last term by 27, then $n$ equals to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let the $AP$ be\n$a, a + d, a + 2d, \\ldots, a + (2n - 1)d$\nNow given that\n$(a + d) + (a + 3d) + \\ldots + (a + (2n - 1)d) = 40$\n$na + n^{2}d = 40$ …(1)\nAlso $a + (a + 2d) + (a + 4d) + \\ldots + (a + (2n - 2)d) = 55$\n$na + dn(n - 1) = 55$ …(2)\nAlso $a - (a + (2n - 1)d) = 27$\n$-(2n - 1)d = 27$ …(3)\n$d = \\frac{-27}{2n - 1}$\n(2) – (1)\n$dn(n - 1) - n^{2}d = 15$\n$d[n^{2} - n - n^{2}] = 15$\n$\\left(\\frac{-27}{2n - 1}\\right)(-n) = 15$\n$27n = 30n - 15$\n$15 = 3n$\n$n = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "5"
+    },
+    {
+     "key": "C",
+     "text": "7"
+    },
+    {
+     "key": "D",
+     "text": "4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In the expansion of $\\left(x + \\sqrt{x^{3} - 1}\\right)^{5} + \\left(x - \\sqrt{x^{3} - 1}\\right)^{5}$, where $\\alpha$, $\\beta$, $\\gamma$ and $\\delta$ are the coefficient of $x$, $x^{3}$, $x^{5}$ and $x^{7}$ respectively. If $\\alpha u - \\beta v = 18$, $\\gamma u + \\delta v = 20$ then $u + v$ equal to.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left(x + \\sqrt{x^{3} - 1}\\right)^{5} + \\left(x - \\sqrt{x^{3} - 1}\\right)^{5}$\n$\\left[{}^{5}C_{0}(x)^{5} + {}^{5}C_{1}x^{4}\\sqrt{x^{3} - 1} + {}^{5}C_{2}x^{3}\\left(\\sqrt{x^{3} - 1}\\right)^{2} + \\ldots\\right] +$\n$\\left[{}^{5}C_{0}x^{5} - {}^{5}C_{1}x^{4}\\sqrt{x^{3} - 1} + {}^{5}C_{2}x^{3}\\left(\\sqrt{x^{3} - 1}\\right)^{2} + \\ldots\\right]$\n$= 2\\left[x^{5} + {}^{5}C_{2}x^{3}(x^{3} - 1) + {}^{5}C_{4}x(x^{3} - 1)^{2}\\right]$\n$= 2[x^{5} + 10x^{6} - 10x^{3} + 5x(x^{6} + 1 - 2x^{3})]$\n$= 10x^{7} + 20x^{6} + 2x^{5} - 20x^{4} - 20x^{3} + 10x$\nCoefficient of $x = 10 = \\alpha$\nCoefficient of $x^{3} = -20 = \\beta$\nCoefficient of $x^{5} = 2 = \\gamma$\nCoefficient of $x^{7} = 10 = \\delta$\n$10u + 20v = 18$ …(i)\n$2u + 10v = 20$\n$u = \\frac{-11}{3}$\n$v = \\frac{41}{15}$\n$u + v = \\frac{41}{15} - \\frac{11}{3}$\n$= \\frac{-14}{15}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{-14}{15}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{-13}{15}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{-3}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{-2}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A(6, 8)$, $B(10\\cos\\alpha, -10\\sin\\alpha)$ and $C(-10\\sin\\alpha, -10\\cos\\alpha)$ be 3 points and if orthocentre of the triangle ABC is $(0, 9)$ then $100\\sin^{2}\\alpha$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Notice, origin is equidistance form $A$, $B$ and $C$\n$\\Rightarrow (0, 0)$ is circumcentre\n[See figure]\nSince centroid divides orthocentre and circumcentre in 2 : 1 ratio.\n$\\Rightarrow \\frac{6 + 10\\cos\\alpha + (-10\\sin\\alpha)}{3} = \\frac{2(0) + 1(0)}{3} = 0$\n$\\Rightarrow 15\\sin\\alpha - 10\\cos\\alpha = 6$\nAlos $\\frac{8 - 10\\sin\\alpha - 10\\cos\\alpha}{3} = \\frac{2(0) + 1(9)}{3} = 3$\n$\\Rightarrow 8 - 10\\sin\\alpha - 10\\cos\\alpha = 9$\n$10(\\sin\\alpha + \\cos\\alpha) = -1$\n$10(\\sin\\alpha - \\cos\\alpha) = -6$\n$20\\sin\\alpha = 5$\n$10\\sin\\alpha = \\frac{5}{2}$\n$100\\sin^{2}\\alpha = \\frac{25}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{25}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "25"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{15}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-22jan-s2-math-q11-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $z$ be a complex number such that $|z - 3| \\le 1$, then the equation of line with largest slope passing through origin and $z$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[See figure]\n$\\tan\\theta = \\frac{1}{\\sqrt{8}} = \\frac{1}{2\\sqrt{2}}$\nTherefore, equation of line with maximum slope is\n$(y - 0) = \\frac{1}{2\\sqrt{2}}(x - 0)$\n$\\Rightarrow y = \\frac{x}{2\\sqrt{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x - 2\\sqrt{2}y = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x + 2\\sqrt{2}y = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{2}x + y = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{2}x - y = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-22jan-s2-math-q12-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A relation $R$ is defined on set $A$, $A = \\{1, 2, 3\\}$ and $R = \\{(1, 2), (2, 3)\\}$. Elements are added such that $R$ becomes reflexive and transitive but not symmetric. Find the number of such relations.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Transitivity\n$(1, 2) \\in R, (2, 3) \\Rightarrow (1, 3) \\in R$\n$(1, 1), (2, 2), (3, 3) \\in R$\n$(2, 1)$  $(3, 2)$  $(3, 1)$\n$(3, 1)$ cannot be taken.\n1. $(2, 1)$ taken and $(3, 2)$ not taken.\n2. $(3, 2)$ taken and $(2, 1)$ not taken.\n3. Both not taken.\nTherefore 3 relations are possible.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "9"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Vector Algebra",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\vec{a}$ and $\\vec{b}$ be two unit vectors such that angle between $\\vec{a}$ and $\\vec{b}$ is $\\frac{\\pi}{3}$. If $\\lambda\\vec{a} + 3\\vec{b}$ and $2\\vec{a} + \\lambda\\vec{b}$ are perpendicular to each other, then the product of all possible values of $\\lambda$ is ____",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$|\\vec{a}| = 1, |\\vec{b}| = 1$\n$\\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}|\\cos\\frac{\\pi}{3} = \\frac{1}{2}$\n$\\lambda\\vec{a} + 3\\vec{b}$ and $2\\vec{a} + \\lambda\\vec{b}$ are perpendicular\n$\\Rightarrow (\\lambda\\vec{a} + 3\\vec{b}) \\cdot (2\\vec{a} + \\lambda\\vec{b}) = 0$\n$\\Rightarrow 2\\lambda + 3\\lambda + (\\lambda^{2} + 6)\\vec{a} \\cdot \\vec{b} = 0$\n$\\Rightarrow 5\\lambda + (\\lambda^{2} + 6)\\left(\\frac{1}{2}\\right) = 0$\n$\\Rightarrow 10\\lambda + \\lambda^{2} + 6 = 0$\n$\\Rightarrow \\lambda^{2} + 10\\lambda + 6 = 0$\nProduct of possible values of $\\lambda = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Matrices and Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $A$ is the $3 \\times 3$ matrix of order $3 \\times 3$, such that $\\det(A) = \\frac{1}{2}$, $\\mathrm{tr}(A) = 10$ and $B$ be another matrix of order $3 \\times 3$ and defined as $B = \\mathrm{adj}(\\mathrm{adj}(2A))$, then $\\det(B) + \\mathrm{tr}(B)$ is equal to (where $\\mathrm{tr}(A)$ denotes trace of matrix $A$)",
+   "correct_key": null,
+   "correct_value": 336,
+   "correct_keys": null,
+   "solution": "$B = \\mathrm{adj}(\\mathrm{adj}\\,2A)$\n$B = |2A|^{n-2}(2A)$, [Using $\\mathrm{adj}(\\mathrm{adj}\\,P) = |P|^{n-2} \\cdot P$], for $n = 3$\n$= |2A|(2A)$\n$= 2^{3}|A|(2A)$\n$= 8 \\times \\frac{1}{2}(2A)$\n$= 4(2A)$\n$B = 8A$\n$|B| = |8A|$\n$= 8^{3}|A|$\n$|B| = 8^{3} \\times \\frac{1}{2} = 256$\n$B = 8A$\n[each element is multiplied 8 times]\n$\\mathrm{tr}(B) = 8\\,\\mathrm{tr}(A)$\n$= 80$\n$|B| + \\mathrm{tr}(B) = 256 + 80$\n$= 336$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider two curves $E_1 : \\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$ with eccentricity $e_1$ and $E_2 : \\frac{x^{2}}{A^{2}} + \\frac{y^{2}}{B^{2}} = 1$ with eccentricity $e_2$. If $\\frac{e_1}{e_2} = \\frac{1}{3}$ and distance between foci of both curves is $2\\sqrt{3}$ and $a - A = 4$, then the sum of lengths of latus rectum of both curves is",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "Since, distance between foci\nfor $E_1 = 2ae$, for $E_2 = 2Ae_2$\n$\\Rightarrow 2ae_1 = 2\\sqrt{3} = 2Ae_2$\n$\\Rightarrow ae_1 = Ae_2$\n$\\Rightarrow \\frac{e_1}{e_2} = \\frac{A}{a} = \\frac{1}{3} \\Rightarrow a = 3A$\nAlso $a - A = 4 \\Rightarrow A = 2, a = 6$\nNow, $2(6)e_1 = 2\\sqrt{3} \\Rightarrow e_1 = \\frac{\\sqrt{3}}{6}$\n$2(2)e_2 = 2\\sqrt{3} \\Rightarrow e_2 = \\frac{\\sqrt{3}}{2}$\n$e_1^{2} = \\frac{1 - b^{2}}{a^{2}} = \\frac{3}{36} = \\frac{1 - b^{2}}{36} \\Rightarrow \\frac{b^{2}}{36} = \\frac{33}{36}$\n$b^{2} = 33$\n$e_2^{2} = \\frac{1 - B^{2}}{A^{2}} = \\frac{3}{4} = \\frac{1 - B^{2}}{4} \\Rightarrow B^{2} = 1$\nLength of latus rectum of $E_1 = \\frac{2b^{2}}{a}$\nLength of latus rectum of $E_2 = \\frac{2B^{2}}{A}$\n$\\Rightarrow$ Sum of lengths of latus rectum\n$= \\frac{2(33)}{6} + \\frac{2(1)}{2} = 11 + 1 = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of maximum number of common tangents to the curves $y = (x - 2)^{2}$ and $y^{2} = 16 - 8x$ is",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "[See figure]\nClearly, one tangent is possible. Based on the graphs of these parabola.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j25-22jan-s2-math-q24-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $P(10, -2, -1)$ and Q be the point of perpendicular drawn from point $R(1, 7, 6)$ on the line joining the points $(2, -5, 11)$ and $(-6, 7, -5)$. Then the length $PQ$ is",
+   "correct_key": null,
+   "correct_value": 13,
+   "correct_keys": null,
+   "solution": "$L_1 : \\frac{x - 2}{8} = \\frac{y + 5}{-12} = \\frac{z - 11}{16}$\n$L_1 : \\frac{x - 2}{2} = \\frac{y + 5}{-3} = \\frac{z - 11}{4}$\nAvg point of $L_1$ be $A(2\\lambda + 2, -3\\lambda - 5, 4\\lambda + 11)$\n$R(1, 7, 6)$\n$RA \\cdot \\left(2\\hat{i} - 3\\hat{j} + 4\\hat{k}\\right) = 0$\n$\\left((2\\lambda + 1)\\hat{i} + (-3\\lambda - 12)\\hat{j} + (4\\lambda + 5)\\hat{k}\\right) \\cdot (2\\hat{i} - 3\\hat{j} + 4\\hat{k}) = 0$\n$4\\lambda + 2 + 9\\lambda + 36 + 16\\lambda + 20 = 0$\n$29\\lambda = -58$\n$\\lambda = -2$\n$\\therefore$ Foot of perpendicular $= (-2, 1, 3)$ Q\n$PQ = \\sqrt{(10 + 2)^{2} + (1 + 2)^{2} + (3 + 1)^{2}}$\n$= \\sqrt{144 + 9 + 16}$\n$= 13$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

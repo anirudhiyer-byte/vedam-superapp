@@ -1,0 +1,672 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2025,
+  "set_label": "24 Jan · Shift 1",
+  "title": "JEE Main 2025 · Physics · 24 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": "1tYGznhDLD-BHJOspgji0GRBy-xumvfQP"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "It $I = I_A \\sin\\omega t + I_B \\cos\\omega t$, then find rms value of current",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\sqrt{I_A^{2} + I_B^{2}}\\,\\sin(\\omega t + \\theta)$\n$\\tan\\theta = \\left(\\frac{I_B}{I_A}\\right)$\nas $I_{\\mathrm{rms}} = \\frac{I_0}{\\sqrt{2}} \\Rightarrow I_{\\mathrm{rms}} = \\sqrt{\\frac{I_A^{2} + I_B^{2}}{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$I_{\\mathrm{rms}} = I_A + I_B$"
+    },
+    {
+     "key": "B",
+     "text": "$I_{\\mathrm{rms}} = \\sqrt{I_A^{2} + I_B^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$I_{\\mathrm{rms}} = \\sqrt{\\frac{I_A^{2} + I_B^{2}}{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$I_{\\mathrm{rms}} = \\frac{1}{2}\\sqrt{I_A^{2} + I_B^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s1-phy-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "What is relative shift of focal length of a lens when optical power is increased from 0.1 D to 2.5 D",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f = \\frac{1}{p}$\nSo, $f_1 = 10\\ \\mathrm{m} = \\frac{1}{p_1}$\nAnd $f_2 = \\frac{1}{p_2} = \\frac{10}{25}\\ \\mathrm{m}$.\nSo $\\frac{|\\Delta f|}{f_1} = \\frac{24}{25}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{24}{25}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{13}{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{21}{25}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{11}{10}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Satellite A is launched in a circular orbit of radius R. Satellite B is launched in circular orbit of radius 1.03R. Time period of B is greater than A by approximately",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = 2\\pi\\sqrt{\\frac{r^{3}}{Gm}}$\n$\\frac{\\Delta T}{T} = \\frac{3}{2}\\frac{\\Delta R}{R}$\n$\\frac{\\Delta T}{T} \\times 100 = \\frac{3}{2} \\times \\frac{0.03R}{R} \\times 100$\n= 4.5%",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "9%"
+    },
+    {
+     "key": "B",
+     "text": "4.5%"
+    },
+    {
+     "key": "C",
+     "text": "3%"
+    },
+    {
+     "key": "D",
+     "text": "2.5%"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron jumps from principle quantum state A to C by releasing photon of wavelength 2000 Å and from state B to C by releasing of photon of wavelength 6000 Å, then final the wavelength of photon for transition from A to B.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E_{AC} = E_{AB} + E_{BC}$\n$\\frac{\\hbar C}{2000\\ \\text{Å}} = \\frac{\\hbar C}{\\lambda} + \\frac{\\hbar C}{6000\\ \\text{Å}} \\Rightarrow \\frac{3 - 1}{6000} = \\frac{1}{\\lambda}$\n$\\lambda = 3000\\ \\text{Å}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3000 Å"
+    },
+    {
+     "key": "B",
+     "text": "4000 Å"
+    },
+    {
+     "key": "C",
+     "text": "8000 Å"
+    },
+    {
+     "key": "D",
+     "text": "2000 Å"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron of mass m enters in a region of uniform electric field $\\vec{E} = -E_0\\hat{k}$ at $t = 0$ with an initial velocity $\\vec{V} = V_0\\hat{i}$. If the de-Broglie wavelength is $\\lambda_0$ initially, the de-Broglie wavelength at a time t is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda_0 = \\frac{h}{mV_0}$ ...(i)\n$\\vec{V} = V_0\\hat{i} + \\frac{(-e)(-E_0\\hat{k})}{m}t$\n$\\vec{V} = V_0\\hat{i} + \\frac{eE_0t\\hat{k}}{m}$\n$|\\vec{V}| = \\sqrt{V_0^{2} + \\frac{e^{2}E_0^{2}t^{2}}{m^{2}}}$\n$|\\vec{P}_f| = \\frac{h}{\\lambda} = m|\\vec{V}|$\n$\\lambda = \\frac{h}{m|\\vec{V}|}$\n$= \\frac{h}{m\\sqrt{V_0^{2} + \\frac{e^{2}E_0^{2}t^{2}}{m^{2}}}}$\n$= \\frac{h}{mV_0\\sqrt{1 + \\frac{e^{2}E_0^{2}t}{m^{2}V_0^{2}}}}$\n$= \\frac{\\lambda_0}{\\sqrt{1 + \\frac{e^{2}E_0^{2}t^{2}}{m^{2}V_0^{2}}}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\lambda_0\\sqrt{1 + \\frac{m^{2}V_0^{2}}{e^{2}E_0^{2}t^{2}}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\lambda_0\\sqrt{1 + \\frac{e^{2}E_0^{2}t^{2}}{m^{2}V_0^{2}}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\lambda_0}{\\sqrt{1 + \\frac{e^{2}E_0^{2}t^{2}}{m^{2}V_0^{2}}}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\lambda_0}{\\sqrt{1 + \\frac{m^{2}V_0^{2}}{e^{2}E_0^{2}t^{2}}}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For an ideal mono atomic gas undergoing an isobaric process, the ratio of $\\frac{\\Delta Q}{\\Delta U}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In an isobaric process,\n$\\Delta Q = nC_p\\Delta T$\n$\\Delta U = nC_v\\Delta T$\n$\\frac{\\Delta Q}{\\Delta U} = \\frac{C_p}{C_v} = \\gamma = \\frac{5}{3}$ for a monoatomic",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{7}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a process pressure of the gas is directly proportional to temperature then choose correct option.\nA : Process is isochoric.\nB : Work done in process is zero.\nC : Internal energy increase with increase in temperature.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P \\times T$\nV is constant\nWork = 0\n$\\Delta U$ is positive",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A and B are correct"
+    },
+    {
+     "key": "B",
+     "text": "A and C are correct"
+    },
+    {
+     "key": "C",
+     "text": "A, B and C are correct"
+    },
+    {
+     "key": "D",
+     "text": "B and C are correct"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the distance two parallel plate of a capacitor is d, A is the area of each plate, and E is the electric field. Find the energy stored in capacitor",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta u$ = Energy density × volume = $\\frac{1}{2}\\varepsilon_0 E^{2}\\cdot Ad$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}E^{2}A\\varepsilon_0 d$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{4}E^{2}A\\varepsilon_0 d$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{4}E^{2}A\\varepsilon_0 d$"
+    },
+    {
+     "key": "D",
+     "text": "$E^{2}A\\varepsilon_0 d$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In YDSE, lights of wavelength 600 nm and 480 nm are used. What is the minimum order of bright fringe of 480 nm coincides with bright fringe of 600 nm.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For 480 nm $w_1 = \\frac{480D}{d}$\nFor 600 nm = $w_2 = \\frac{600D}{d}$\nSo, $5^{\\mathrm{th}}$ order of 480 nm natcher\nClearly $5\\Delta w_1 = 4\\Delta w_2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "8"
+    },
+    {
+     "key": "B",
+     "text": "7"
+    },
+    {
+     "key": "C",
+     "text": "6"
+    },
+    {
+     "key": "D",
+     "text": "5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of mass m is projected with initial velocity $v_0$ at $45^\\circ$ with horizontal. Find it's angular momentum at highest point about point of projection.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L = \\frac{mv_0}{\\sqrt{2}}H$\n$= \\frac{mv_0}{\\sqrt{2}} \\cdot \\frac{v_0^{2}\\cdot\\frac{1}{2}}{2g}$\n$L = \\frac{mv_0^{3}}{4\\sqrt{2}g}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{mv_0^{3}}{4g}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{mv_0^{3}}{4\\sqrt{2}g}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{mv_0^{2}}{4\\sqrt{2}g}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{mv_0}{2\\sqrt{2}g}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s1-phy-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A Plano convex lens of refractive index 1.5 & radius of curvature of curved surface of 20 cm present in air is having focal length of $f_1$. There is another Plano convex lens of refractive index of 1.5 & ROC of 30 cm placed in liquid of RI of 1.2 having focal length of $f_2$ the $\\frac{f_1}{f_2}$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{f_1} = (1.5 - 1)\\left\\{\\frac{1}{R}\\right\\} = \\frac{0.5}{20}$\n$f_1 = \\frac{20}{0.5} = 40$\n$\\frac{1}{f_2} = \\left(\\frac{1.5}{1.2} - 1\\right)\\left(\\frac{1}{R}\\right) = \\frac{0.3}{1.2} \\times \\frac{1}{30} = \\frac{1}{120}$\n$\\frac{f_1}{f_2} = \\frac{40}{120} = \\frac{1}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Acceleration of solid cylinder purely rolling an inclined plane of inclination of $\\theta$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a = \\frac{g\\sin\\theta}{1 + \\frac{k^{2}}{r^{2}}} = \\frac{g\\sin\\theta}{1 + \\frac{1}{2}} = \\frac{2}{3}g\\sin\\theta$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{5}g\\sin\\theta$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{2}g\\sin\\theta$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}g\\sin\\theta$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3}g\\sin\\theta$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Find the maximum possible speed for the given angle of banking '$\\theta$' on a curved road of radius r having coefficient of friction $\\mu$.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Rightarrow N = \\frac{mv^{2}}{r}\\sin\\theta + mg\\cos\\theta$\nAlso $\\frac{mv^{2}}{r}\\cos\\theta = \\mu N + mg\\sin\\theta$\n$\\Rightarrow \\frac{mv^{2}}{r}\\cos\\theta = \\mu\\frac{mv^{2}}{r}\\sin\\theta + \\mu mg\\cos\\theta + mg\\sin\\theta$\n$\\Rightarrow v^{2}\\left[\\frac{\\cos\\theta}{r} - \\frac{\\mu\\sin\\theta}{r}\\right] = g(r\\cos\\theta + \\sin\\theta)$\n$\\Rightarrow v = \\sqrt{\\frac{gr(\\sin\\theta + \\mu\\cos\\theta)}{(\\cos\\theta - \\mu\\sin\\theta)}}$\n$v = \\sqrt{\\frac{gr(\\tan\\theta + \\mu)}{(1 - \\mu\\tan\\theta)}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$v_{\\max} = \\sqrt{\\frac{gr(\\mu + \\tan\\theta)}{(1 - \\mu\\tan\\theta)}}$"
+    },
+    {
+     "key": "B",
+     "text": "$v_{\\max} = \\sqrt{\\frac{gr(\\mu - \\tan\\theta)}{(1 - \\mu\\tan\\theta)}}$"
+    },
+    {
+     "key": "C",
+     "text": "$v_{\\max} = \\sqrt{\\frac{gr(1 + \\mu\\tan\\theta)}{(1 - \\mu\\tan\\theta)}}$"
+    },
+    {
+     "key": "D",
+     "text": "$v_{\\max} = \\sqrt{\\frac{gr(\\mu - \\tan\\theta)}{(1 + \\mu\\tan\\theta)}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s1-phy-q13-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a parallel plate capacitor length l and width b are 3 cm and 1 cm respectively. Separation between plates d is 3 $\\mu$m. By which of the following values capacitance increases by a factor of 10.\n(A) l = 6 cm, b = 5 cm, d = 3 $\\mu$m\n(B) l = 5 cm, b = 2 cm, d = 1 $\\mu$m\n(C) l = 5 cm, b = 1 cm, d = 30 $\\mu$m\n(D) l = 1 cm, b = 1 cm, d = 30 $\\mu$m",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C = \\frac{A\\varepsilon_0}{d}$\n$C = \\frac{lb\\varepsilon_0}{d}$\n$C_i = \\frac{3 \\times 1}{3}\\varepsilon_0 \\times 10^{2} = 10^{2}\\varepsilon_0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A, B"
+    },
+    {
+     "key": "B",
+     "text": "A, C"
+    },
+    {
+     "key": "C",
+     "text": "B, C"
+    },
+    {
+     "key": "D",
+     "text": "B, C, D"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In SHM given by equation $x = A\\sin\\omega t$ of time period 2 sec and amplitude 1 cm, ratio of $\\frac{\\text{distance}}{\\text{displacement}}$ in first 1.25 sec is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x = A\\sin\\frac{2\\pi}{2} \\times 1.25$\n$X = A\\sin\\frac{5\\pi}{4}$\n$|s| = \\frac{A}{\\sqrt{2}}$\n$d = 2A + \\frac{A}{\\sqrt{2}}$\n$\\frac{d}{|s|} = (2\\sqrt{2} + 1)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\sqrt{2} + 1$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{2} - 1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2\\sqrt{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s1-phy-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Electric Charges and Fields",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The electric flux through the shaded area of square plate of side a due to point charge placed at distance of $\\frac{a}{2}$ from it as shown in figure, is $\\frac{NQ}{48\\varepsilon_0}$. Then N is",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$\\left(\\frac{Q}{6\\varepsilon_0}\\right)\\frac{1}{4} + \\left(\\frac{Q}{6\\varepsilon_0}\\right)\\frac{1}{4} + \\left(\\frac{Q}{6\\varepsilon_0}\\right)\\frac{1}{4} \\times \\frac{1}{2} = \\frac{5Q}{48}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "j25-24jan-s1-phy-q21.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a square loop of side length $\\frac{1}{\\sqrt{2}}$ m, a current of 5 A is flowing. Find magnetic field at its centre in ($\\mu$T).",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": "$B = 4\\left(\\frac{\\mu_0 i}{4\\pi\\frac{1}{2\\sqrt{2}}}\\right)(\\sin 45^\\circ + \\sin 45^\\circ)$\n$= 4\\left(\\frac{4\\pi \\times 10^{-7} \\times 5}{4\\pi}\\cdot 2\\sqrt{2}\\sqrt{2}\\right)$\n$= 8 \\times 10^{-6}$ T",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s1-phy-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A wire of resistance $9\\ \\Omega$ is bent in form of an equilateral triangle. Find equivalent resistance between two vertices of triangle.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$R_{\\mathrm{eq}} = 3 \\parallel 6$\n$R_{\\mathrm{eq}} = \\frac{3 \\times 6}{9} = 2\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s1-phy-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Work done required to break a drop of radius R to 27 drops of equal radius is 10 J. Then work done to break drop of radius R in 64 drops of equal radii is X J, then X is",
+   "correct_key": null,
+   "correct_value": 15,
+   "correct_keys": null,
+   "solution": "For 27 $R \\rightarrow \\frac{R}{3}$; for 64 $R \\rightarrow \\frac{R}{4}$\n$\\frac{S\\left(27\\ 4\\pi\\left(\\frac{R}{3}\\right)^{2} - 4\\pi R^{2}\\right)}{S\\left(64\\ 4\\pi\\left(\\frac{R}{4}\\right)^{2} - 4\\pi R^{2}\\right)} = \\frac{10}{x} = \\frac{2}{3}$\nX = 15 J",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Work, Energy and Power",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A particle moves on a straight line under the influence of a force $F = \\alpha + \\beta x^{2}$ where x is the displacement, and $\\beta = -12$ SI units. If the total work done for a displacement x = 1m is 12 J, then $\\alpha$ is _____ SI units.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "$w = \\int_{0}^{1} F_x\\,dx$\n$= \\int_{0}^{1} (\\alpha + \\beta x^{2})\\,dx$\n$= \\alpha + \\frac{\\beta}{3}$\n$12 = \\alpha - \\frac{12}{3}$\n$\\alpha = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

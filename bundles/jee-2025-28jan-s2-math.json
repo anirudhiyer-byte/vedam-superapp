@@ -1,0 +1,484 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "28 Jan · Shift 2",
+  "title": "JEE Main 2025 · Mathematics · 28 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1CqJGeJ_DXEYyA5qGvsew7vCqLFEYqYTT"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\int \\frac{dx}{x^{1/4}(x^{1/4}+1)}$. If $f(0) = -6$, then $f(2)$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\int \\frac{dx}{x^{1/4}(x^{1/4}+1)}$$\n$x^{1/4} = t \\Rightarrow dx = 4t^{3}dt$\n$$\\int \\frac{4t^{3}dt}{t(t+1)} = 4\\int \\frac{t^{2}dt}{t+1} = 4\\left[\\int\\left(\\frac{t^{2}-1}{t+1} + \\frac{1}{t+1}\\right)dt\\right]$$\n$$= 4\\left[\\int (t-1)\\,dt + \\ln|t+1|\\right] + c$$\n$$f(x) = 4\\left[\\frac{x^{1/2}}{2} - x^{1/4} + \\ln\\left|x^{1/4}+1\\right|\\right] + c$$\n$f(0) = -6$\n$-6 = 4(0) + c$\n$\\Rightarrow c = -6$\n$$\\Rightarrow f(x) = 4\\left[\\frac{\\sqrt{x}}{2} - x^{1/4} + \\ln\\left|1 + x^{1/4}\\right|\\right] - 6$$\n$$f(2) = 4\\left[\\frac{1}{\\sqrt{2}} - (2)^{1/4} + \\ln\\left|1 + 2^{1/4}\\right|\\right] - 6$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\left[\\frac{1}{\\sqrt{2}} - 2^{1/4} + \\ln\\left|1 + 2^{1/4}\\right|\\right] - 6$"
+    },
+    {
+     "key": "B",
+     "text": "$4\\left[\\frac{1}{\\sqrt{2}} - 2^{1/4} + \\ln\\left|1 + 2^{1/4}\\right|\\right] + 6$"
+    },
+    {
+     "key": "C",
+     "text": "$4\\left[\\frac{1}{\\sqrt{2}} + 2^{1/3} + \\ln\\left|2^{1/4}\\right|\\right] - 6$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\left[3 + 2^{1/3} - \\ln 2^{1/4}\\right] + 6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Evaluate $\\displaystyle\\sum_{r=1}^{13} \\frac{1}{\\sin\\left[\\frac{\\pi}{4} + (r-1)\\frac{\\pi}{6}\\right]\\sin\\left[\\frac{\\pi}{4} + \\frac{r\\pi}{6}\\right]}$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\sum_{r=1}^{13} \\frac{1}{\\sin\\left[\\frac{\\pi}{4} + (r-1)\\frac{\\pi}{6}\\right].\\sin\\left[\\frac{\\pi}{4} + r.\\frac{\\pi}{6}\\right]}$$\n$$= \\sum_{r=1}^{13} \\frac{\\sin\\left\\{\\left(\\frac{\\pi}{4} + r.\\frac{\\pi}{6}\\right) - \\left(\\frac{\\pi}{4} + (r-1)\\frac{\\pi}{6}\\right)\\right\\}}{\\sin\\frac{\\pi}{6}.\\sin\\left[\\frac{\\pi}{4} + (r-1)\\frac{\\pi}{6}\\right].\\sin\\left[\\frac{\\pi}{4} + r.\\frac{\\pi}{6}\\right]}$$\n$\\sin(A-B) = \\sin A\\cos B - \\cos A\\sin B$\n$$= 2.\\sum_{r=1}^{13} \\cot\\left(\\frac{\\pi}{4} + (r-1)\\frac{\\pi}{6}\\right) - \\cot\\left(\\frac{\\pi}{4} + r.\\frac{\\pi}{6}\\right)$$\n$$= 2.\\cot\\left(\\frac{\\pi}{4} + 0.\\frac{\\pi}{6}\\right) - \\cot\\left(\\frac{\\pi}{4} + \\frac{13\\pi}{6}\\right)$$\n$$= 2.\\left\\{\\cot\\frac{\\pi}{4} - \\cot\\left(\\frac{\\pi}{4} + \\frac{\\pi}{6}\\right)\\right\\}$$\n$= 2[1 - 2 + \\sqrt{3}]$\n$= 2[\\sqrt{3} - 1]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\sqrt{3} + 2$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{3} - 2$"
+    },
+    {
+     "key": "C",
+     "text": "$3\\sqrt{2} + 2$"
+    },
+    {
+     "key": "D",
+     "text": "$3\\sqrt{2} - 4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Area bounded between the curves $C_1 : x(1+y^{2}) - 1 = 0$ and $C_2 : y^{2} - 2x = 0$ is (in sq. unit)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\int_{-1}^{1} (x_2 - x_1)\\,dy$$\n$$\\Rightarrow \\int_{-1}^{1}\\left(\\frac{1}{1+y^{2}} - \\frac{y^{2}}{2}\\right)dy$$\n$$= \\tan^{-1}y - \\frac{y^{3}}{6}\\Big|_{-1}^{1}$$\n$$= \\left(\\tan^{-1}1 - \\frac{1}{6}\\right) - \\left(\\tan^{-1}(-1) - \\left(\\frac{-1}{6}\\right)\\right)$$\n$$= 2\\tan^{-1}1 - \\frac{1}{3} = \\frac{\\pi}{2} - \\frac{1}{3}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2} - \\frac{1}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{4} - \\frac{1}{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\left(\\frac{\\pi}{2} - \\frac{1}{6}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{6} + \\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-28jan-s2-math-q03-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "There are three bags such that bag 1 has 4 white, 6 blue, bag 2 has 6 white and 4 blue and bag 3 has 5 white and 5 blue balls. A bag is randomly selected and a ball is randomly picked out of it, it comes out to be white then probability that selected bag was bag 2.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$4W + 6B$ (BAG 1) | $6W + 4B$ (BAG 2) | $5W + 5B$ (BAG 3)\n$$P\\left(\\frac{B_2}{W}\\right) = \\frac{P(B_2)\\cdot P\\left(\\frac{W}{B_2}\\right)}{P(W)}$$\n$$P(W) = \\sum_{i=1}^{3} P(B_i)P\\left(\\frac{W}{B_2}\\right)$$\n$P(B_1) = \\frac{1}{3} = P(B_2) = (B_3)$\n$P\\left(\\frac{W}{B_1}\\right) = \\frac{4}{10},\\ P\\left(\\frac{W}{B_2}\\right) = \\frac{6}{10},\\ P\\left(\\frac{W}{B_3}\\right) = \\frac{5}{10}$\n$$\\Rightarrow P\\left(\\frac{B_2}{W}\\right) = \\frac{\\frac{1}{3}\\times\\frac{6}{10}}{\\frac{1}{3}\\times\\frac{4}{10} + \\frac{1}{3}\\times\\frac{6}{10} + \\frac{1}{3}\\times\\frac{5}{10}}$$\n$$= \\frac{\\frac{6}{10}}{\\frac{4}{10} + \\frac{6}{10} + \\frac{5}{10}} = \\left(\\frac{6}{15}\\right) = \\frac{2}{5}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{15}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{15}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{15}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If S is a set of words formed by all the letters of word “GARDEN”, then find the probability that vowels are not in alphabetical order.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "AE   GRDN\nOnly 2 vowels are there.\n$\\therefore$ Only half of the cases will have A before E and vice-versa.\nRequired probability = $\\frac{1}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In isosceles triangle two sides are $x + 2y = 4$, $x + y = 4$ than the sum of all possible value of slope of third side of triangle is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Now third side will be parallel to the bisector line of the two given sides.\n$$\\frac{x + 2y - 4}{\\sqrt{5}} = \\pm\\left(\\frac{x + y - 4}{\\sqrt{2}}\\right)$$\n$L_1 : \\left(\\sqrt{2} - \\sqrt{5}\\right)x + \\left(2\\sqrt{2} - \\sqrt{5}\\right)y - 4\\sqrt{2} + 4\\sqrt{5} = 0$\n$L_2 : \\left(\\sqrt{2} + \\sqrt{5}\\right)x + \\left(2\\sqrt{2} + \\sqrt{5}\\right)y - 4\\sqrt{2} - 4\\sqrt{5} = 0$\n$$M_{L_1} + M_{L_2} = -\\left[\\frac{\\sqrt{2} - \\sqrt{5}}{2\\sqrt{2} - \\sqrt{5}} + \\frac{\\sqrt{2} + \\sqrt{5}}{2\\sqrt{2} + \\sqrt{5}}\\right]$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{-3}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{-2}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-28jan-s2-math-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Complex Numbers and Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha, \\beta, \\gamma, \\delta$ are real numbers such that $\\alpha + i\\beta$ and $\\gamma + i\\delta$ are roots of the equation $x^{2} - (3 - 2i)x - (2i - 2) = 0$. (where $i = \\sqrt{-1}$), then $(\\alpha\\gamma + \\beta\\delta)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2} - (3 - 2i)x - (2i - 2) = 0$\n$\\Rightarrow x^{2} - (3 - 2i)x + (2 - 2i) = 0$\n$\\Rightarrow \\alpha + \\beta = 3 - 2i$\n$\\alpha\\beta = (2 - 2i)$  (i),\nby observation\n$(\\alpha, \\beta) = (1, 2 - 2i)$\n$\\Rightarrow \\alpha + i\\beta = i + 0i$\n$\\gamma + i\\delta = 2 - 2i$\n$\\Rightarrow \\alpha\\gamma + \\beta\\delta = (1)(2) + (0)(-2)$\n$= 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$-6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The domain of the function $f(x) = \\sec^{-1}(2[x] + 1)$ is (where $[\\cdot]$ represents greatest integer function))",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2[x] + 1 \\notin (-1, 1)$\n$2[x] \\notin (-2, 0)$\n$[x] \\notin (-1, 0)$\nBut $[x] \\notin (-1, 0)$ for any $x$.\n$\\Rightarrow x \\in R$ is the domain.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(-\\infty, \\infty)$"
+    },
+    {
+     "key": "B",
+     "text": "$(-\\infty, -1] \\cup [1, \\infty)$"
+    },
+    {
+     "key": "C",
+     "text": "$(-\\infty, \\infty) - \\{0\\}$"
+    },
+    {
+     "key": "D",
+     "text": "$(-\\infty, -1] \\cup [0, \\infty)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $p$ is the number of possible values of $r$ such that $T_r$, $T_{r+1}$, $T_{r+2}$ are three terms of $(a + b)^{12}$ are in geometric progression and if $q$ is the sum of rational terms in the expansion of $(3^{1/4} + 4^{1/3})^{12}$, then $(p + q)$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $T_{r+1} = {}^{12}C_r a^{12-r} b^{r}$\n$T_r$, $T_{r+1}$, $T_{r+2}$ in G.P.\n$$\\Rightarrow \\left({}^{12}C_r \\cdot a^{12-r} \\cdot b^{2}\\right)^{2} = \\left({}^{12}C_{r-1} \\cdot b^{r-1} \\cdot a^{13-r}\\right)\\left({}^{12}C_{r+1} b^{r+1} \\cdot a^{11-r}\\right)$$\n$$\\Rightarrow \\left({}^{12}C_r\\right)^{2} = \\left({}^{12}C_{r-1}\\right)\\cdot\\left({}^{12}C_{r+1}\\right)$$\nbut no three consecutive binomial coefficients are in G.P. or H.P. but A.P. is possible.\n$\\Rightarrow P = 0$\n$T_{k+1} = {}^{12}C_k \\cdot (4^{1/3})^{k} \\cdot 3^{1/4(12-k)}$\n$= {}^{12}C_k \\cdot 4^{k/3} \\cdot 3^{\\left(3 - \\frac{k}{4}\\right)}$\nfor terms to be rational (4, 3) divides $k \\Rightarrow$ 12 divides $k$\n$\\Rightarrow k = 0, 12$\n$\\Rightarrow$ Sum of rational terms\n${}^{12}C_0 4^{0} \\cdot 3^{3} + {}^{12}C_{12} \\cdot 4^{4} \\cdot 3^{0} = {}^{12}C_0(3^{3} + 4^{4})$\n$= 27 + 256 = 283$\n$\\Rightarrow p + q = 283$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$283$"
+    },
+    {
+     "key": "B",
+     "text": "$238$"
+    },
+    {
+     "key": "C",
+     "text": "$240$"
+    },
+    {
+     "key": "D",
+     "text": "$250$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P_i$ be image of parabola $P : y^{2} = 4x$ with respect to line $x + y + 1 = 0$. Let the line $y + 5 = 0$ intersect $P_i$ at $A$ and $B$. If $a$ is the distance between $A$ and $B$ and $d$ be the area of triangle $SAB$, where $S$ is the focus of parabola $P_i$. Then $(a + d)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "To find image of $P(t^{2}, 2t)$\n$$\\frac{x - t^{2}}{1} = \\frac{y - 2t}{1} = \\frac{-2(t^{2} + 2t + 1)}{1^{2} + 1^{2}} = -(t+1)^{2}$$\n$\\Rightarrow x = t^{2} - (t+1)^{2} = -2t - 1$\n$y = 2t - (t+1)^{2} = -t^{2} - 1$\n$t = \\left(\\frac{-1 - x}{2}\\right)$\n$$\\Rightarrow (y + 1) = -\\left(\\frac{-1 - x}{2}\\right)^{2}$$\n$$(y + 1) = -\\frac{(x + 1)^{2}}{4}$$\n$\\Rightarrow (x + 1)^{2} = -4(y + 1)$\n$\\Rightarrow X^{2} = -4y$, the vertex is\n$X = 0, y = 0$\n$\\Rightarrow$ Focus $\\Rightarrow (-1, -2)$\nOther method would have been to find image of $(1, 0)$ about $x + y + 1 = 0$\n$\\Rightarrow y = -5$ intersect\n$(-4)(-4) = (x + 1)^{2}$\n$\\Rightarrow (x + 1) = \\pm 4$\n$\\Rightarrow x = 3, -5$\n$\\Rightarrow a = 8$\n$$d = \\frac{1}{2}\\times a\\times \\text{height} = \\frac{1}{2}\\times 8\\times(-2 - (-5))$$\n$= 4.3 = 12$ Sq. unit\n$\\Rightarrow a + d = 20$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$20$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-28jan-s2-math-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For positive integer $n$, $4a_n = n^{2} + 5n + 6$ and $S_n = \\sum_{K=1}^{n} \\frac{1}{a_K}$. Then the value of $507(S_{2025})$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$S_n = \\sum_{K=1}^{n} \\frac{4}{K^{2} + 5K + 6}$$\n$$= \\sum_{K=1}^{n} \\frac{4}{(K+2)(K+3)} = 4\\sum_{K=1}^{n}\\left(\\frac{1}{K+2} - \\frac{1}{K+3}\\right)$$\n$$= 4\\left[\\frac{1}{3} - \\frac{1}{4}\\right]$$\n$$= 4\\left[\\frac{1}{4} - \\frac{1}{5}\\right]$$\n$$= 4\\left[\\frac{1}{n+2} - \\frac{1}{n+3}\\right]$$\n$$S_n = 4\\left[\\frac{1}{3} - \\frac{1}{n+3}\\right]$$\n$$S_{2025} = 4\\left[\\frac{1}{3} - \\frac{1}{2028}\\right]$$\n$$S_{2025} = 4\\left[\\frac{675}{2028}\\right]$$\n$507\\,S_{2025} = 675$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$675$"
+    },
+    {
+     "key": "B",
+     "text": "$540$"
+    },
+    {
+     "key": "C",
+     "text": "$1350$"
+    },
+    {
+     "key": "D",
+     "text": "$725$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Matrices",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $Q = \\begin{bmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{bmatrix}$, $B = QPQ^{T}$ and matrix $A$ is defined as $A = Q^{T}B^{10}Q$ (where $P = \\begin{bmatrix} \\sqrt{2} & -2 \\\\ 0 & 1 \\end{bmatrix}$), then trace of matrix $A$ is",
+   "correct_key": null,
+   "correct_value": 33,
+   "correct_keys": null,
+   "solution": "$Q = \\begin{bmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{bmatrix}$\n$B = QPQ^{T}$\n$A = Q^{T}B^{10}Q$\n$$Q^{T}Q = \\begin{bmatrix} \\cos\\theta & \\sin\\theta \\\\ -\\sin\\theta & \\cos\\theta \\end{bmatrix}\\begin{bmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{bmatrix}$$\n$$= \\begin{bmatrix} \\cos^{2}\\theta + \\sin^{2}\\theta & 0 \\\\ 0 & \\sin^{2}\\theta + \\cos^{2}\\theta \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I$$\n$\\Rightarrow Q^{T}Q = QQ^{T}$\n$A = Q^{T}(QPQ^{T})B^{9}Q$\n$= IPQ^{T}B^{9}Q = PQ^{T}B^{9}Q$\n$\\Rightarrow A = PQ^{T}(QPQ^{T})B^{8}Q$\n$= P^{2}Q^{T}B^{8}Q = P^{9}Q^{T}B^{1}Q$\n$= P^{9}Q^{T}(QPQ^{T})Q = P^{10}$\nTrace $(P^{10}) = \\left(d_1^{10} + d_2^{10}\\right)$ where $d_1$ and $d_2$ are diagonal elements\n$\\Rightarrow$ Trace $(A) = (\\sqrt{2})^{10} + 1^{10}$\n$= 2^{10/2} + 1 = 2^{5} + 1 = 33$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "$f : [0, 3] \\rightarrow b$, $f(x) = 2x^{3} - 15x^{2} + 36x + 7$ is an onto function $g : [0, \\infty) \\rightarrow d$, $g(x) = \\frac{x^{2025}}{x^{2025} + 1}$ is also an onto function. Find the number of elements in the set $S = \\{x : x \\in Z,\\ x \\in b \\text{ or } x \\in d\\}$",
+   "correct_key": null,
+   "correct_value": 30,
+   "correct_keys": null,
+   "solution": "$f(x) = 2x^{3} - 15x^{2} + 36x + 7$\n$f'(x) = 6x^{2} - 30x + 36 = 0$\n$\\Rightarrow x^{2} - 5x + 6 = 0$\n$\\therefore x = 1, 5$\n$f(0) = 7$, $f(2) = 35$, $f(3) = 34$\n$\\therefore b = [7, 35]$\n$$g(x) = \\frac{x^{2025}}{1 + x^{2025}}$$\n$d = [0, 1)$\n$\\therefore S = [0, 7, 8, 9, \\ldots, 35]$\nNumber of elements = 30",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The maximum interior angle of a polygon is $171^\\circ$ with $n$ sides such that its angles are in Arithmetic progression with common difference of $6^\\circ$. Then $n$ is equal to",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "Sum of interior angle\n$$\\Rightarrow \\frac{n}{2}\\left(2a + (n-1)d\\right) = 180^\\circ(n-2)$$\n$\\Rightarrow 171 = a + (n-1)d$\n$$\\Rightarrow \\frac{n}{2}\\left(171 + a\\right) = 180(n-2)$$\n$a = 171 - 6(n-1) = 177 - 6n$\n$$\\Rightarrow \\frac{n}{2}\\left(171 + 177 - 6n\\right) = 180(n-2)$$\n$\\Rightarrow n(174 - 3n) = 180n - 360$\n$\\Rightarrow 3n^{2} + 6n - 360 = 0$\n$n^{2} + 2n - 120 = 0$\n$(n + 12)(n - 10) = 0$\n$\\Rightarrow n = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

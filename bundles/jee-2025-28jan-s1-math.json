@@ -1,0 +1,629 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "28 Jan · Shift 1",
+  "title": "JEE Main 2025 · Mathematics · 28 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1FvS7VhJtTg5oVHG4Zo-yiqgjDvNCWxq4"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $I = \\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}} \\frac{96x^{2}\\cos^{2}x}{1+e^{x}}\\,dx = \\pi(\\alpha\\pi^{2}+\\beta)$, then $(\\alpha+\\beta)^{2}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}} \\frac{96x^{2}\\cos^{2}x}{1+e^{x}}\\,dx$\n$= \\int_{0}^{\\frac{\\pi}{2}} 96x^{2}\\cos^{2}x\\,dx$\n$= 48\\int_{0}^{\\frac{\\pi}{2}} x^{2}(1+\\cos 2x)\\,dx$\n$= 48\\left(\\frac{x^{3}}{3}\\right)\\Big|_{0}^{\\frac{\\pi}{2}} + 48\\int_{0}^{\\frac{\\pi}{2}} x^{2}\\cos 2x\\,dx$\n$= 16\\left[\\frac{\\pi^{2}}{8}\\right] + 48\\left[\\frac{x^{2}\\sin 2x}{2}\\Big|_{0}^{\\frac{\\pi}{2}} - \\int_{0}^{\\frac{\\pi}{2}}(2x)\\left(\\frac{\\sin 2x}{2}\\right)dx\\right]$\n$= 2\\pi^{2} + 48(0-0) - 48\\int_{0}^{\\frac{\\pi}{2}} x\\sin 2x\\,dx$\n$= 2\\pi^{3} + 48\\left[\\frac{-x\\cos x}{2}\\Big|_{0}^{\\frac{\\pi}{2}} - \\int_{0}^{\\frac{\\pi}{2}}(1)\\left(\\frac{-\\cos 2x}{2}\\right)dx\\right]$\n$= 2\\pi^{3} - 48\\left[\\left(\\frac{\\pi}{2}\\right)\\times\\frac{1}{2}\\right] + 48\\int_{0}^{\\frac{\\pi}{2}}\\frac{\\cos 2x}{2}\\,dx$\n$= 2\\pi^{2} - 12\\pi + 24\\left(\\frac{\\sin 2x}{2}\\right)\\Big|_{0}^{\\frac{\\pi}{2}}$\n$= 2\\pi^{2} - 12\\pi + (0-0) = \\pi\\left[2\\pi^{2} - 12\\right]$\n$= \\pi\\left[\\alpha\\pi^{2} + \\beta\\right]$\n$\\Rightarrow \\alpha = 2, \\beta = -12$\n$\\Rightarrow (\\alpha+\\beta)^{2} = (2-12)^{2} = 100$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100$"
+    },
+    {
+     "key": "B",
+     "text": "$144$"
+    },
+    {
+     "key": "C",
+     "text": "$169$"
+    },
+    {
+     "key": "D",
+     "text": "$196$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Number of ways to form 5 digit numbers greater than 50000 with the use of digits 0, 1, 2, 3, 4, 5, 6, 7 such that sum of first and last digit is not more than 8, is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\underline{a}\\ \\underline{b}\\ \\underline{c}\\ \\underline{d}\\ \\underline{e}$\n$a \\ge 5$\n$a + e \\le 8$\nnot all $b, c, d, e$ are zero if $a = 5$.\n$\\Rightarrow$ (i) $a = 5$\n$5\\ \\_\\ \\_\\ \\_\\ \\underline{e} \\Rightarrow e \\in \\{3, 2, 1, 0\\}$\n$8^{3}\\cdot 4 - 1$ ways\n$\\Rightarrow$ (ii) $a = 6$\n$6\\ \\_\\ \\_\\ \\_\\ \\underline{e} \\Rightarrow e \\in \\{2, 1, 0\\}$\n$8^{3}\\cdot 3$ ways\n$\\Rightarrow$ (iii) $a = 7$\n$7\\ \\_\\ \\_\\ \\_\\ \\underline{e} \\Rightarrow e \\in \\{1, 0\\}$\n$\\Rightarrow 8^{3}\\cdot 2$ ways\n$\\Rightarrow$ Total ways\n$\\Rightarrow 8^{3}(2 + 3 + 4) - 1 = 4608 - 1 = 4607$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5119$"
+    },
+    {
+     "key": "B",
+     "text": "$5120$"
+    },
+    {
+     "key": "C",
+     "text": "$4607$"
+    },
+    {
+     "key": "D",
+     "text": "$4608$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the image of the point $P(4, 4, 3)$ in the line $\\frac{x-1}{2} = \\frac{y-2}{1} = \\frac{z-1}{1}$ is $Q(\\alpha, \\beta, \\gamma)$. Then $(\\alpha + \\beta + \\gamma)$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P(4, 4, 3)$\n$\\frac{x-1}{2} = \\frac{y-2}{1} = \\frac{z-1}{1} = \\lambda$\nAny pint of line $R(2\\lambda + 1, \\lambda + 2, \\lambda + 1)$\n$\\overrightarrow{PR} : (2\\lambda - 3)\\hat{i} + (\\lambda - 2)\\hat{j} + (\\lambda - 2)\\hat{k}$\n$\\overrightarrow{PR} \\cdot \\langle 2, 1, 1 \\rangle = 0$\n$2(2\\lambda - 3) + (\\lambda - 2) + 2(\\lambda - 2) = 0$\n$6\\lambda = 10$\n$\\lambda = \\frac{5}{3}$\n$\\therefore R\\left(\\frac{13}{3}, \\frac{11}{3}, \\frac{8}{3}\\right)$\nNow, $Q(\\alpha, \\beta, \\gamma)$\n$\\frac{\\alpha + 4}{2} = \\frac{13}{3}, \\frac{\\beta + 4}{2} = \\frac{11}{3}, \\frac{\\gamma + 3}{2} = \\frac{8}{3}$\n$\\alpha = \\frac{14}{3}, \\beta = \\frac{10}{3}, \\gamma = \\frac{7}{3}$\n$\\alpha + \\beta + \\gamma = \\frac{14 + 10 + 7}{3} = \\frac{31}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$7$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{31}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{11}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\int_{0}^{x} tf(t)\\,dt = x^{2}f(x)$ and $f(2) = 3$, then $f(6)$ equals to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\int_{0}^{x} tf(t)\\,dt = x^{2}f(x)$\nDifferentiating both sides w.r.t '$x$'\n$xf(x) = x^{2}f'(x) + 2xf(x)$\n$\\frac{x^{2}dy}{dx} + xy = 0$\n$\\frac{dy}{y} = \\frac{-dx}{x}$\n$\\ln y + \\ln x = \\ln c$\n$yx = c$\nAs $f(2) = 3$\n$6 = c$\n$\\therefore yx = 6$\n$\\therefore$ Put $x = 6$\n$y(6) = 6$\n$y = 1$\nOption (1) is correct",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $R$ be a relation such that $R = \\{(x, y) : x, y \\in Z$ and $(x + y)$ is even$\\}$, then the relation $R$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "for reflexive\nIf $(x, x) \\in Z$\n$R : x + x + 2x \\Rightarrow R$ is relexive\nFor symmetric\nIf $(x, y) \\in R \\Rightarrow x + y =$ even\n$\\Rightarrow y + x =$ even $\\therefore (y, x) \\in R$\n$\\Rightarrow R$ is symmetric\nIf $(x, y) \\in R \\Rightarrow x + y =$ even\n$(y, z) \\in R \\Rightarrow y + z =$ even\n$\\Rightarrow x + 2y + Z \\in$ even $\\Rightarrow x + Z =$ even $- 2y$ even\n$\\Rightarrow x + z \\in$ even\n$\\Rightarrow (x, z) \\in R$\n$\\Rightarrow R$ is equivalence relation.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Reflexive and symmetric but not transitive"
+    },
+    {
+     "key": "B",
+     "text": "Reflexive and transitive but not symmetric"
+    },
+    {
+     "key": "C",
+     "text": "Transitive only"
+    },
+    {
+     "key": "D",
+     "text": "Equivalence relation"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Evaluate\n$\\cos\\left(\\sin^{-1}\\left(\\frac{3}{5}\\right) + \\sin^{-1}\\left(\\frac{5}{13}\\right) + \\sin^{-1}\\left(\\frac{33}{65}\\right)\\right)$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\cos\\left(\\sin^{-1}\\frac{3}{5} + \\sin^{-1}\\frac{5}{13} + \\sin^{-1}\\frac{33}{65}\\right)$\n$= \\cos\\left(\\sin^{-1}\\frac{3}{5} + \\sin^{-1}\\left[\\frac{5}{13}\\sqrt{\\frac{1-33^{2}}{65^{2}}} + \\frac{33}{65}\\sqrt{1-\\frac{5^{2}}{13^{2}}}\\right]\\right)$\n$= \\cos\\left(\\sin^{-1}\\frac{3}{5} + \\sin^{-1}\\frac{4}{5}\\right)$\n$= \\cos\\left(\\sin^{-1}\\frac{3}{5} + \\cos^{-1}\\frac{3}{5}\\right)$\n$= \\cos\\left(\\frac{\\pi}{2}\\right) = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\cos\\frac{5}{13}$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of squares of real roots of the equation: $x^{2} + |2x - 3| - 4 = 0$, is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2} + |2x - 3| - 4 = 0$\n(i) $2x - 3 \\ge 0 \\Rightarrow x \\ge \\frac{3}{2}$\n$\\Rightarrow x^{2} + 2x - 3 - 4 = 0$\n$x^{2} + 2x - 7 = 0 \\Rightarrow (x + 1)^{2} = 8$\n$\\Rightarrow x = \\pm 2\\sqrt{2} - 1$\n$\\Rightarrow x = \\left(2\\sqrt{2} - 1\\right)$\nas $-2\\sqrt{2} - 1 < \\frac{3}{2}$\n(ii) $x \\le \\frac{3}{2} \\Rightarrow x^{2} - (2x - 3) - 4 = 0$\n$\\Rightarrow x^{2} - 2x - 1 - 0 = 0 \\Rightarrow (x - 1)^{2} = 2$\n$\\Rightarrow x = \\pm 2\\sqrt{2} + 1 \\Rightarrow x = -2\\sqrt{2} + 1$\nas $\\sqrt{2} + 1 > \\frac{3}{2}$\n$\\Rightarrow$ two roots are $x = -\\sqrt{2} + 1, 2\\sqrt{2} - 1$\n$\\Rightarrow$ Sum of squares $= 12 - 6\\sqrt{2} = 6\\left(2 - \\sqrt{2}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6\\left(2 - \\sqrt{2}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\left(2 - \\sqrt{2}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$3\\left(2 + \\sqrt{2}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$6\\left(2 + \\sqrt{2}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Area enclosed by $\\left\\{(x, y) : 0 \\le y \\le 2|x| + 1, 0 \\le y \\le x^{2} + 1, |x| \\le 3\\right\\}$ is equals to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Area $= 2\\left[\\int_{0}^{2}(x^{2} + 1)\\,dn + \\frac{1}{2}\\left[5 + 7\\right]\\times 1\\right]$\n$= \\frac{64}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{17}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{32}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{64}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{80}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-28jan-s1-math-q08-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "There are 2 bad oranges mixed with 7 good oranges and 2 oranges are drawn at random. Let $X$ be the number of bad oranges. The variance of $X$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$X$ | $0$ | $1$ | $2$\n$P(X)$ | $\\frac{{}^{7}C_{2}}{{}^{9}C_{2}}$ | $\\frac{{}^{7}C_{1}\\cdot {}^{2}C_{1}}{{}^{9}C_{2}}$ | $\\frac{{}^{2}C_{2}}{{}^{9}C_{2}}$\nVariance $= 0^{2}\\cdot\\frac{{}^{7}C_{2}}{{}^{9}C_{2}} + 1^{2}\\cdot\\frac{{}^{7}C_{1}\\cdot {}^{2}C_{1}}{{}^{9}C_{2}} + 2^{2}\\cdot\\frac{{}^{2}C_{2}}{{}^{9}C_{2}}$\n$-\\left(\\frac{0\\cdot {}^{7}C_{2}}{{}^{9}C_{2}} + \\frac{1\\cdot {}^{7}C_{1}\\cdot {}^{2}C_{1}}{{}^{9}C_{2}} + \\frac{2\\cdot {}^{2}C_{2}}{{}^{9}C_{2}}\\right)^{2}$\n$= \\frac{7}{18} + \\frac{4}{36} - \\left(\\frac{7}{18} + \\frac{2}{36}\\right)^{2}$\n$= \\frac{49}{162}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{51}{268}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{49}{162}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{63}{108}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{91}{206}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\frac{2^{x}}{2^{x} + \\sqrt{2}}$, then $\\sum_{k=1}^{81} f\\left(\\frac{k}{82}\\right)$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\frac{2^{x}}{2^{x} + 2^{1/2}} = \\frac{2^{x}}{2^{x} + \\sqrt{2}}$\n$f(1-x) = \\frac{2^{1-x}}{2^{1-x} + 2^{1/2}} = \\frac{\\frac{2}{2^{x}}}{\\frac{2}{2^{x}} + 2^{1/2}} = \\frac{2}{2 + \\sqrt{2}\\,2^{x}}$\n$= \\frac{\\sqrt{2}}{2^{x} + \\sqrt{2}}$\n$\\Rightarrow f(x) + f(1-x) = \\frac{\\sqrt{2} + 2^{x}}{\\sqrt{2} + 2^{x}} = 1$\n$\\Rightarrow \\sum_{k=1}^{81} f\\left(\\frac{k}{82}\\right) + f\\left(\\frac{2}{82}\\right) + \\left(f\\left(\\frac{3}{82}\\right)\\right) + \\ldots$\n$\\ldots + f\\left(\\frac{40}{82}\\right) + f\\left(\\frac{41}{82}\\right) + f\\left(\\frac{42}{82}\\right)$\n$+ \\ldots + f\\left(\\frac{79}{82}\\right) + f\\left(\\frac{80}{82}\\right) + f\\left(\\frac{81}{82}\\right)$\n$= \\left[f\\left(\\frac{1}{82}\\right) + f\\left(\\frac{81}{82}\\right)\\right] + \\left[f\\left(\\frac{2}{82}\\right) + f\\left(\\frac{80}{82}\\right)\\right] + \\ldots$\n$+ \\left[f\\left(\\frac{40}{82}\\right) + f\\left(\\frac{42}{82}\\right) + f\\left(\\frac{41}{82}\\right)\\right]$\n$= \\underbrace{1 + 1 + \\ldots + 1}_{40\\text{ times}} + f\\left(\\frac{1}{2}\\right)$\n$= 40 + \\frac{\\sqrt{2}}{\\sqrt{2} + \\sqrt{2}} = 40 + \\frac{1}{2} = \\frac{81}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{81}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$41$"
+    },
+    {
+     "key": "C",
+     "text": "$41\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$81$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $k_{1}$ and $k_{2}$ be two randomly selected natural numbers.\nThe probability that $(i)^{k_{1}} + (i)^{k_{2}}$ is non-zero is (where $i = \\sqrt{-1}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(i)^{k_{1}} + (i)^{k_{2}}$ is non zero\n$\\Rightarrow k_{1} : 4\\lambda_{1} + r_{1},\\ r_{1} \\in \\{0, 1, 2, 3\\}$\n$K_{2} : 4\\lambda_{2} + r_{2},\\ r_{2} \\in \\{0, 1, 2, 3\\}$\nThe pairs to get zero will be\n$(1, -1), (i, -i)$\n$\\Rightarrow$ (i) $(1, -1)$ pair\n$\\Rightarrow (r_{1}, r_{2}) \\in \\{(2, 0), (0, 2)\\}$\n(ii) $(i, -i)$ pair\n$\\Rightarrow (r_{1}, r_{2}) \\in \\{(1, 3), (3, 1)\\}$\n$\\Rightarrow$ probablity $\\left(i^{k_{1}} + i^{k_{2}} \\ne 0\\right)$\n$= 1 -$ probablity $\\left(i^{k_{1}} + i^{k_{2}} \\ne 0\\right)$\n$= 1 - \\frac{4}{16} = \\frac{12}{16} = \\frac{3}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In $\\Delta ABC$, $A(4\\sin\\theta, 4\\cos\\theta)$, $B(-2\\cos\\theta, 0)$ and $C(2, 2\\sin\\theta)$. If locus of centroid is $(3x - 2)^{2} + (3y)^{2} = \\alpha$, then $\\alpha$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$h = \\frac{4\\sin\\theta - 2\\cos\\theta + 2}{3} \\Rightarrow 3h - 2 = 4\\sin\\theta - 2\\cos\\theta$ ...(1)\n$k = \\frac{4\\cos\\theta - 2\\sin\\theta}{3} \\Rightarrow 3k = 4\\cos\\theta + 2\\sin\\theta$ ...(2)\n$(1)^{2} + (2)^{2}$\n$(3h - 2)^{2} + (3k)^{2} = (4\\sin\\theta - 2\\cos\\theta)^{2} + (4\\cos\\theta + 2\\sin\\theta)^{2}$\n$= 16\\sin^{2}\\theta + 4\\cos^{2}\\theta - 8\\sin\\theta\\cos\\theta +$\n$16\\cos^{2}\\theta + 4\\sin^{2}\\theta - 8\\sin\\theta\\cos\\theta$\n$(3h - 2)^{2} + (3k)^{2} = 20$\n$(3x - 2)^{2} + (3y)^{2} = 20$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$16$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $E_{1} : \\frac{x^{2}}{9} + \\frac{y^{2}}{4} = 1$ be an ellipse and a series of ellipse are drawn that $E_{i+1}$ has same centre, eccentricity as $E_{i}$ and $E_{i+1}$'s major axis is minor axis of $E_{i}$. If $S_{i}$ be the area of $E_{i}$, then $\\left(\\frac{5}{\\pi}\\sum_{i=1}^{\\infty} S_{i}\\right)$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $b_{i}$ be minor axis of $E_{i}$\n$a_{i}$ be major axis of $E_{i}$\n$\\Rightarrow e_{i} = 1 - \\frac{b_{i}^{2}}{a_{i}^{2}}$\nNow, $b_{i+1}$ minor axis of $E_{i+1}$\n$A_{i+1}$ major axis of $E_{i+1}$\n$\\Rightarrow e_{i+1} = 1 - \\frac{b_{i+1}^{2}}{a_{i+1}^{2}}$, also $a_{i+1} = b_{i}$ and $e_{i} = e_{i+1}$\n$= \\frac{b_{i}^{2}}{a_{i}^{2}} = \\frac{b_{i+1}^{2}}{(b_{i})^{2}} \\Rightarrow b_{i+1} = \\frac{b_{i}^{2}}{a_{i}}$\n$\\Rightarrow$ Area of $E_{i} = S_{i} = \\pi a_{i}b_{i}$\n$\\Rightarrow S_{i+1} = \\pi a_{i+1}b_{i+1}$\n$= \\pi(b_{i})\\left(\\frac{b_{i}^{2}}{a_{i}}\\right)$\n$= \\pi(b_{i}a_{i})\\left(\\frac{b_{i}}{a_{i}}\\right)^{2}$\n$S_{i+1} = S_{i}(1 - e_{i}^{2})$\n$\\Rightarrow S_{i+1} = S_{i}\\left(1 - \\left(1 - \\frac{4}{9}\\right)\\right) = S_{i}\\cdot\\frac{4}{9}$\n$\\Rightarrow S_{i} = 6\\pi, S_{2} = 6\\pi\\cdot\\frac{4}{9}\\ S_{3} = 6\\pi\\cdot\\left(\\frac{4}{9}\\right)^{2}$\n$\\Rightarrow \\sum_{k=1}^{\\infty} S_{i} = \\left(\\frac{6\\pi}{1 - \\frac{4}{9}}\\right) = \\frac{54\\pi}{5}$\n$\\Rightarrow \\frac{5}{\\pi}\\sum_{k=1}^{\\infty} S_{i} = \\frac{5}{\\pi}\\cdot\\frac{54\\pi}{5} = 54$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$63$"
+    },
+    {
+     "key": "B",
+     "text": "$54$"
+    },
+    {
+     "key": "C",
+     "text": "$45$"
+    },
+    {
+     "key": "D",
+     "text": "$72$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $z_{1} = \\sqrt{3} + 2\\sqrt{2}i$ and $\\sqrt{3}|z_{1}| = |z_{2}|$ and $\\arg(z_{2}) = \\arg(z_{1}) + \\frac{\\pi}{6}$, then the area of triangle with vertices $z_{1}$, $z_{2}$ and origin is (in sq. units)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Area of $\\Delta OAB = \\frac{1}{2}\\times\\sqrt{11}\\times\\sqrt{33}\\sin\\frac{\\pi}{6}$\n$= \\frac{11\\sqrt{3}}{4}$ square units",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{11\\sqrt{3}}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{11\\sqrt{2}}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{11}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2\\sqrt{2}}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-28jan-s1-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\begin{cases} 2x, & x < 0 \\\\ \\min\\left(1 + x + [x], 1 + 2[x]\\right), & 0 \\le x < 2 \\\\ 5, & x \\ge 2 \\end{cases}$\nIf $\\alpha$ is the number of points of discontinuity and $\\beta$ is the number of points of non-differentiability, then $(\\alpha + \\beta)$ is equal to (where [.] denote greatest integer function)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\begin{cases} 2x, & x < 0 \\\\ \\min\\left(1 + x + [x], 1 + 2[x]\\right), & 0 \\le x < 2 \\\\ 5 & x \\ge 2 \\end{cases}$\n$1 + x + [x] = 1 + \\{x\\} + 2[x]$\nSince $\\{x\\} \\ge 0\\ \\forall x \\in R$\n$\\Rightarrow 1 + x + [x] \\ge 1 + 2[x]$\n$\\Rightarrow f(x) = \\begin{cases} 2x, & x < 0 \\\\ 1 + 2[x], & 0 \\le x < 0 \\\\ 5 & x \\ge 2 \\end{cases}$\nNumber of discontinuity $= 3 \\Rightarrow \\alpha = 3$\nNumber of point of non-differentiability\n$= 3 \\Rightarrow \\beta = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-28jan-s1-math-q16-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha = 1 + \\sum_{n=1}^{6}(-3)^{n-1}\\cdot{}^{12}C_{2n-1}$, then distance of point $\\left(12, \\sqrt{3}\\right)$ from the line $\\alpha x - \\sqrt{3}y + 100 = 0$ is,",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\alpha = 1 + \\sum_{r=1}^{6}(-3)^{r-1}\\cdot{}^{12}C_{2r-1}$\n$= 1 + \\sum_{r=1}^{6}\\left[\\left(\\sqrt{3}i\\right)^{2}\\right]^{r-1}\\cdot{}^{12}C_{2r-1}$\n$= 1 + \\frac{1}{\\sqrt{3}i}\\sum_{r=1}^{6}\\left(\\sqrt{3}i\\right)^{2r-1}\\cdot{}^{12}C_{2r-1}$\nLet $\\sqrt{3}i = x$\n$\\Rightarrow \\alpha = 1 + \\frac{1}{\\sqrt{3}i}\\sum_{r=1}^{6}{}^{12}C_{2r-1}\\cdot x^{2r-1}$\n$\\alpha = 1 + \\frac{1}{\\sqrt{3}i}\\left[{}^{12}C_{1}\\cdot x^{1} + {}^{12}C_{3}\\cdot x^{3} + {}^{12}C_{5}\\cdot x^{5} + \\ldots + {}^{12}C_{11}\\cdot x^{11}\\right]$\nLet $(1 + x)^{12} = {}^{12}C_{0}\\cdot x^{0} + {}^{12}C_{1}\\cdot x^{1} + {}^{12}C_{2}\\cdot x^{2} + \\ldots + {}^{12}C_{12}\\cdot x^{12}$\n$(1 - x)^{12} = {}^{12}C_{0}\\cdot x^{0} - {}^{12}C_{1}\\cdot x^{1} + {}^{12}C_{2}\\cdot x^{2} - {}^{12}C_{3}\\cdot x^{3} \\ldots + {}^{12}C_{12}\\cdot x^{12}$\n$(1 + x)^{12} - (1 - x)^{12} = 2\\left({}^{12}C_{1}\\cdot x^{1} + {}^{12}C_{3}\\cdot x^{3} + \\ldots + {}^{12}C_{11}\\cdot x^{11}\\right)$\n$\\Rightarrow \\alpha = 1 + \\frac{1}{\\sqrt{3}i}\\left[\\frac{(1 + x)^{12} - (1 - x)^{12}}{2}\\right]$\n$\\alpha = 1 + \\frac{1}{\\sqrt{3}i}\\left[\\frac{\\left(1 + \\sqrt{3}i\\right)^{12} - \\left(1 - \\sqrt{3}i\\right)^{12}}{2}\\right]$\nSince, $\\omega = \\frac{-1}{2} + \\frac{\\sqrt{3}i}{2} \\Rightarrow -2\\omega = 1 - \\sqrt{3}i$\n$\\omega^{2} = \\frac{-1}{2} - \\frac{\\sqrt{3}i}{2} \\Rightarrow -2\\omega^{2} = 1 + \\sqrt{3}i$\n$\\Rightarrow \\alpha = 1 + \\frac{1}{\\sqrt{3}i}\\left(\\frac{\\left(-2\\omega^{2}\\right)^{12} - (2\\omega)^{12}}{2}\\right)$\n$= 1 + \\frac{2^{11}}{\\sqrt{3}i}\\left(\\omega^{24} - \\omega^{12}\\right)$\n$= 1 + \\frac{2^{11}}{\\sqrt{3}i}(1 - 1) = 1$\n$\\alpha = 1, \\Rightarrow$ perpendicular distance from $\\left(12, \\sqrt{3}\\right)$ is\n$\\frac{\\left|12 - \\sqrt{3}\\left(\\sqrt{3}\\right) + 100\\right|}{\\sqrt{1^{2} + \\left(\\sqrt{3}\\right)^{2}}} = \\frac{109}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{109}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$55$"
+    },
+    {
+     "key": "C",
+     "text": "$54$"
+    },
+    {
+     "key": "D",
+     "text": "$109$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In an AP, $T_{m} = \\frac{1}{25}, T_{25} = \\frac{1}{20}$ and $20\\sum_{r=1}^{25} T_{r} = 13$, then $5m\\sum_{r=m}^{2m} T_{r}$ equals",
+   "correct_key": null,
+   "correct_value": 126,
+   "correct_keys": null,
+   "solution": "$T_{m} = a + (m - 1)d\\cdot\\frac{1}{25}$ ...(1)\n$T_{25} = a + 24d = \\frac{1}{20}$\n$20\\times\\frac{2r}{2}\\left[a + \\frac{1}{20}\\right] = 13 \\Rightarrow a = \\frac{1}{20\\times 25}$\n$20\\sum_{r=1}^{25} T = 20\\times\\frac{25}{2}[2a + 24d] = 13$\n$d = \\frac{1}{20\\times 25}$\nSubstitute a and d in (i)\n$\\Rightarrow m = 20$\nNow $5m\\sum_{r=m}^{2m} T_{r} = 5\\times 20\\left[\\sum_{r=20}^{40} T_{r}\\right]$\n$= 100\\left[\\frac{40}{2}[2a + 39d]\\right] - \\frac{19}{2}[2a + 18d]$\n$= 100\\left[\\frac{40}{2}\\times 41d - \\frac{19}{2}\\cdot 20d\\right]$\n$= 100\\left[\\frac{40}{2}\\times\\frac{41}{20\\times 25} - \\frac{19.20}{2\\times 20\\times 25}\\right]$\n$= 126$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

@@ -1,0 +1,504 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "29 Jan · Shift 1",
+  "title": "JEE Main 2025 · Mathematics · 29 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "11ZcSoNFksDlk2qxxgseoyIWhKxsBhuR5"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\frac{k^{3} + 6k^{2} + 11k + 5}{(k+3)!}$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\frac{k^{3} + 6x^{2} + 11k + 6 - 1}{(k+3)!}$\n$= \\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\frac{(k+1)(k+2)(k+3) - 1}{(k+3)!}$\n$= \\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\frac{1}{k!} - \\frac{1}{(k+3)!}$\n$= \\left(\\frac{1}{1!} + \\frac{1}{2!} + \\frac{1}{3!} + \\cdots\\infty\\right) - \\left(\\frac{1}{4!} + \\frac{1}{5!} + \\frac{1}{6!} + \\cdots\\infty\\right)$\n$= (e - 1) - \\left(e - 1 - \\frac{1}{1!} - \\frac{1}{2!} - \\frac{1}{3!}\\right)$\n$= 1 + \\frac{1}{2} + \\frac{1}{6} = \\frac{10}{6} = \\frac{5}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{8}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Sum of first three terms of an AP with integer common difference is 54 and sum of first twenty terms lies between 1600 to 1800, find $a_{11}$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let AP be $a, a + d, a + 2d \\ldots$\n$3a + 3d = 54$\n$a + d = 18$ …(i)\n$1600 < \\frac{20}{2}[2a + 19d] < 1800$\n$160 < 2a + 19d < 180$\n$160 < 18 \\times 2 + 17d < 180$\n$\\frac{124}{7} < d < \\frac{144}{17}$\n$\\because d \\in$ Integer $\\Rightarrow d = 8$\n$a + d = 18$\n$\\Rightarrow a = 10$\nNow $a_{11} = a + 10d$\n$= 10 + 10 \\times 8$\n$= 90$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$108$"
+    },
+    {
+     "key": "B",
+     "text": "$90$"
+    },
+    {
+     "key": "C",
+     "text": "$111$"
+    },
+    {
+     "key": "D",
+     "text": "$115$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Evaluate $I = 80\\int_{0}^{\\frac{\\pi}{2}} \\frac{\\sin x + \\cos x}{(9\\sin x + 16\\cos x)}\\,dx$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sin x \\cos x = A[9\\sin x + 16\\cos x] + B[9\\cos x - 16\\sin x]$\n$= \\sin x[9A - 16B] + \\cos x[16A + 9B]$\n$\\Rightarrow 9A - 16B = 16A + 9B = 1$\n$\\Rightarrow -7A = 25B \\Rightarrow B = \\frac{-7A}{25}$\n$9A - 16\\left(\\frac{-7A}{25}\\right) = 1 \\Rightarrow 337A = 25,\\ B = \\frac{-7}{337}$\n$$I = 80\\int_{0}^{\\frac{\\pi}{2}} \\frac{\\frac{25}{337}(9\\sin x - 16\\cos x)\\ \\frac{-7}{337}[9\\cos x - 16\\sin x]}{(9\\sin x + 16\\cos x)}\\,dx$$\n$$I = 80\\int_{0}^{\\frac{\\pi}{2}} \\frac{25}{337}\\,dx - 80\\int_{0}^{\\frac{\\pi}{2}} \\frac{\\frac{7}{337}\\,d(9\\sin x + 16\\cos x)}{(9\\sin x + 16\\cos x)}$$\n$$I = 80\\left(\\frac{25x}{337}\\right)\\Big|_{0}^{\\frac{\\pi}{2}} - \\frac{80 \\cdot 7}{337}\\ln(9\\sin x + 16\\cos x)\\Big|_{0}^{\\frac{\\pi}{2}}$$\n$$I = \\frac{80 \\cdot 25}{337}\\left(\\frac{\\pi}{2}\\right) - \\frac{80 \\cdot (7)}{337}\\ln\\left(\\frac{9}{16}\\right)$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{80}{327}\\left[\\frac{25\\pi}{2} + 7\\ln\\left(\\frac{9}{16}\\right)\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{80}{337}\\left[\\frac{25\\pi}{2} - 7\\ln\\left(\\frac{9}{16}\\right)\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{40}{327}\\left[\\frac{25\\pi}{2} + 7\\ln\\left(\\frac{9}{16}\\right)\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{40}{327}\\left[\\frac{25\\pi}{2} - 7\\ln\\left(\\frac{9}{16}\\right)\\right]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $R$ be a relation defined on $(0, \\pi/2)$ such that $xRy \\Rightarrow \\sec^{2}x - \\tan^{2}y = 1$, then the relation $R$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$xRy \\Rightarrow \\sec^{2}x - \\tan^{2}y = 1$\n• $xRx \\Rightarrow \\sec^{2}x - \\tan^{2}x = 1$\n$\\Rightarrow R$ is reflexive\n• $xRy \\Rightarrow yRx$\n$\\Rightarrow \\sec^{2}x - \\tan^{2}y = 1$\n$\\sec^{2}y - \\tan^{2}x = (1 + \\tan^{2}y) - (\\sec^{2}x - 1)$\n$= 2\\sec^{2}x + \\tan^{2}y$\n$= 2 - (\\sec^{2}x - \\tan^{2}y) = 2 - 1 = 1$\n$\\Rightarrow R$ is symmetric\n• $xRy \\Rightarrow yRz$\n$\\Rightarrow \\sec^{2}x - \\tan^{2}y = 1$\n$\\sec^{2}y - \\tan^{2}z = 1$\nAdd $\\Rightarrow \\sec^{2}x + \\sec^{2}y - \\tan^{2}y - \\tan^{2}z = 2$\n$\\Rightarrow \\sec^{2}x + (1) - \\tan^{2}z = 2$\n$\\Rightarrow \\sec^{2}x - \\tan^{2}z = 1$\n$\\Rightarrow x\\,R\\,z$\n$\\Rightarrow R$ is transitive.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Equivalence relation"
+    },
+    {
+     "key": "B",
+     "text": "Reflexive and transitive only"
+    },
+    {
+     "key": "C",
+     "text": "Symmetric and transitive only"
+    },
+    {
+     "key": "D",
+     "text": "Neither reflexive nor transitive"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $z_1$ lies on $|z - 8 + 2i| = 1$ and $z_2$ lies on $|z - 2 - 6i| = 2$, then $|z_1 - z_2|_{\\min}$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|Z_1 - Z_2|_{\\min} = \\sqrt{(8 - 2)^{2} + (2 + 6)^{2}} - 3$\n$= \\sqrt{36 + 64} - 3$\n$= 10 - 3 = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$9$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-29jan-s1-math-q05-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\cos^{-1}x = \\pi + \\sin^{-1}x + \\sin^{-1}(2x - 1)$, then find the sum of all values of ‘$x$’.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\cos^{-1}x = \\pi + \\sin^{-1}x + \\sin^{-1}(2x - 1)$\nNow $-1 \\le 2x - 1 \\le 1$\n$0 \\le x \\le 1$\n$\\Rightarrow \\pi + \\sin^{-1}x + \\sin^{-1}(2x - 1) \\ge \\frac{\\pi}{2}$\nand $\\cos^{-1}x$ for $x \\in [0, 1]$ always lies in $\\left[0, \\frac{\\pi}{2}\\right]$\n$\\Rightarrow$ LHS = RHS = $\\frac{\\pi}{2}$\n$\\Rightarrow \\cos^{-1}x = \\frac{\\pi}{2} \\Rightarrow \\boxed{x = 0}$\nHence only $x = 0$ is the possible solution.\nSum of all solution = 0.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If\n$$\\begin{vmatrix} \\sin^{2}x & 1+\\cos^{2}x & \\sin 4x \\\\ 1+\\sin^{2}x & \\cos^{2}x & \\sin 4x \\\\ \\sin^{2}x & \\cos^{2}x & 1+\\sin 4x \\end{vmatrix} = L$$\nand $L_{\\min} = m$ and $L_{\\max} = M$, then $|M^{4} - m^{4}|$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\begin{vmatrix} \\sin^{2}x & 1+\\cos^{2}x & \\sin 4x \\\\ 1+\\sin^{2}x & \\cos^{2}x & \\sin 4x \\\\ \\sin^{2}x & \\cos^{2}x & 1+\\sin 4x \\end{vmatrix} = -\\sin(4x) - 2 = L$$\n$L_{\\min} = -3 = m \\quad L_{\\max} = -1 = M$\n$\\therefore m^{4} - M^{4} = 81 - 1 = 80$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$79$"
+    },
+    {
+     "key": "B",
+     "text": "$78$"
+    },
+    {
+     "key": "C",
+     "text": "$80$"
+    },
+    {
+     "key": "D",
+     "text": "$76$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha, \\beta$ are real numbers such that $\\sec^{2}(\\tan^{-1}\\alpha) + \\mathrm{cosec}^{2}(\\cot^{-1}\\beta) = 36$ and $\\alpha + \\beta = 8$, where $\\alpha > \\beta$, then $(\\alpha^{3} + \\beta^{3})$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $A = \\tan^{-1}(\\alpha)$, $B = \\cot^{-1}(\\beta)$\n$\\Rightarrow \\alpha = \\tan A, \\beta = \\cot B$\n$\\Rightarrow \\tan A + \\cot B = 8$\n$\\sec^{2}(A) + \\mathrm{cosec}^{2}(B) = 36$\n$\\Rightarrow 1 + \\tan^{2}A + 1 + \\cot^{2}B = 36$\n$\\Rightarrow \\tan^{2}A + \\cot^{2}B = 34$\n$\\Rightarrow (\\tan A + \\cot B)^{2} = 64 = 34 + 2\\tan A \\cdot \\cot B$\n$\\Rightarrow \\tan A \\cdot \\cot B = 15$\n$\\Rightarrow x^{2} - 8x + 25 = 0$ has roots $\\tan A, \\cot B$\n$\\Rightarrow \\tan A = 5, \\cot B = 3$\nAs $\\alpha > \\beta$\n$\\Rightarrow \\alpha^{3} > \\beta^{3} = (\\tan A)^{3} + (\\cot B)^{3} = 5^{3} + 3^{3} = 125 + 27 = 152$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$146$"
+    },
+    {
+     "key": "B",
+     "text": "$152$"
+    },
+    {
+     "key": "C",
+     "text": "$148$"
+    },
+    {
+     "key": "D",
+     "text": "$150$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "How many 6 letter words can be formed using the word MATHS such that any letter can be used maximum two times.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "MATHS has only 5 letters, so in a 6-letter word at least one letter has to repeat.\nLet’s make cases:\n(i) Case-I: Exactly one letter is repeated twice.\n${}^{5}C_{1} \\cdot \\frac{6!}{2!}$    MM ATHS\n(ii) Case-II: Exactly two letters are repeated twice.\n${}^{5}C_{2} \\cdot {}^{3}C_{2} \\frac{6!}{2!2!}$    MM AA THS\n(iii) Case-III: Exactly 3 letters are repeated twice\n${}^{5}C_{3} \\frac{6!}{2!2!2!}$\n$\\therefore$ Required words = 8100",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6400$"
+    },
+    {
+     "key": "B",
+     "text": "$8100$"
+    },
+    {
+     "key": "C",
+     "text": "$10000$"
+    },
+    {
+     "key": "D",
+     "text": "$9824$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A triangle is formed by three lines $2x + 3y - 5 = 0$, $x + y - 1 = 0$, $3x + 4y - 7 = 0$. Let $(h, k)$ be the image of the centroid of $\\Delta ABC$ in the line $2x + 4y - 7 = 0$ then $h^{2} + k^{2} + hk$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Centroid $\\left(\\frac{-3 + 1 - 2}{3}, \\frac{4 + 3 + 1}{3}\\right)\\left(\\frac{-4}{3}, \\frac{8}{3}\\right)$\nImage of $\\left(\\frac{-4}{3}, \\frac{8}{3}\\right)$ in $2x + 4y - 7 = 0$ is $(h, k)$\n$$\\frac{h + \\frac{4}{3}}{2} = \\frac{k - \\frac{8}{3}}{4} = -2\\left[\\frac{\\frac{-8}{3} + \\frac{32}{3} - 7}{4 + 16}\\right]$$\n$$\\frac{h + \\frac{4}{3}}{2} = \\frac{k - \\frac{8}{3}}{4} = \\frac{-1}{10}$$\n$h = -\\frac{1}{5} - \\frac{4}{3} = -\\frac{23}{15}$\n$k = -\\frac{2}{5} + \\frac{8}{3} = -\\frac{35}{15}$\n$h^{2} + k^{2} + hk = \\left(\\frac{-23}{15}\\right)^{2} + \\left(\\frac{35}{15}\\right)^{2} - \\frac{23}{15} \\times \\frac{34}{15}$\n$= \\frac{903}{225}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{903}{225}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{223}{225}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{100}{23}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{10006}{225}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-29jan-s1-math-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If two lines $L_1 : \\frac{x - 1}{1} = \\frac{y - 2}{-1} = \\frac{z - 1}{2}$; $L_2 : \\frac{x + 1}{-1} = \\frac{y - 2}{2} = \\frac{z}{1}$. Let the line $L_3$ passes through the point $(\\alpha, \\beta, \\gamma)$ such that $L_3$ is perpendicular to $L_1$ to $L_2$ and $L_3$ intersects $L_1$. Then $|5\\alpha - 11\\beta - 8\\gamma|$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let the $L_3$ be\n$\\frac{x - \\alpha}{a} = \\frac{y - \\beta}{b} = \\frac{z - \\gamma}{c}$, $(a\\hat{i} + \\hat{b} + c\\hat{k})$ is parallel to\n$(\\hat{i} - \\hat{j} + 2\\hat{k}) \\times (-\\hat{i} + 2\\hat{j} + \\hat{k})$\n$(a, b, c) \\equiv (5, 3, 1)$\n$\\Rightarrow \\frac{x - \\alpha}{5} = \\frac{y - \\beta}{3} = \\frac{z - \\gamma}{-1}$\n$\\Rightarrow$ Let the point of intersection be $P$.\n$\\Rightarrow 5\\lambda + \\alpha = P + 1,\\ 3\\lambda + \\beta = P + 2,\\ -\\lambda + \\gamma = 2P + 1$\n$\\Rightarrow \\alpha = (P + 1 - 5\\lambda),\\ \\beta = (-P + 2 - 3\\lambda),\\ \\gamma = (2P + 1 + \\lambda)$\n$\\Rightarrow |5\\alpha - 11\\beta - 8\\gamma| = |-25| = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$18$"
+    },
+    {
+     "key": "B",
+     "text": "$25$"
+    },
+    {
+     "key": "C",
+     "text": "$16$"
+    },
+    {
+     "key": "D",
+     "text": "$20$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The minimum value of $n$ for which the number of integer terms in the binomial expansion $\\left(7^{\\frac{1}{3}} + 11^{\\frac{1}{12}}\\right)^{n}$ is 183, is",
+   "correct_key": null,
+   "correct_value": 2184,
+   "correct_keys": null,
+   "solution": "$T_{k+1} = {}^{n}C_{K} \\cdot \\left(11^{\\frac{1}{12}}\\right)^{k} \\cdot 7^{\\frac{1}{3}(n - k)}$\n$12 \\mid k$ and $3 \\mid (n - k) \\Rightarrow 3 \\mid n$\nFor integer terms.\n$\\Rightarrow$ Multiples of 12 for $k$ would work.\n$\\Rightarrow k = 0, 12, 24, \\ldots$\n$\\Rightarrow k_{\\max} = 12 \\times 182 = 2184$\n$\\Rightarrow$ Minimum value of $n$ will be 2184 as $3 \\mid 2184$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Area Under Curves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Area enclosed by $y \\ge |x - 1|$, $y + |x| \\le 3$, $x^{2} \\le 2y - 3$ is $A$, then $6A$ is (in sq. units)",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "$$\\text{Area} = 2\\left[\\int_{0}^{1} (3 - x) - \\left(\\frac{x^{2} + 3}{2}\\right)dx\\right]$$\n$$= 2\\left[3x - \\frac{x^{2}}{2} - \\frac{1}{2}\\left[\\frac{x^{3}}{3} + 3x\\right]\\right]_{0}^{1}$$\n$$= 2\\left(3 - \\frac{1}{2} - \\frac{1}{2}\\left[\\frac{1}{3} + 3\\right]\\right)$$\n$$= 2\\left(\\frac{5}{6} - \\frac{1}{6} - \\frac{3}{2}\\right) = 2\\left(\\frac{5}{6}\\right) = A$$\n$6A = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j25-29jan-s1-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Number of 7 digit numbers made with the digits 1, 2, 3 such that sum of the digits is 11 is equal to",
+   "correct_key": null,
+   "correct_value": 161,
+   "correct_keys": null,
+   "solution": "Case-I : 3 2 2 1 1 1 1\n$n_1 = \\frac{7!}{4!2!} = 105$\nCase II: 2 2 2 2 1 1 1\n$\\Rightarrow n_2 = \\frac{7!}{4!3!} = 35$\nCase III : 3 3 1 1 1 1 1\n$\\Rightarrow n_3 = \\frac{7!}{5!2!} = 21$\nTotal numbers $n_1 + n_2 + n_3$\n$= 105 + 35 + 21$\n$= 161$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two parabolas having common focus at $(4, 3)$ intersect at points $A$ and $B$. Find the value of $(AB)^{2}$, given that directrices of these parabolas are along $X$-axis and $Y$-axis respectively.",
+   "correct_key": null,
+   "correct_value": 192,
+   "correct_keys": null,
+   "solution": "Equation of parabolas:\n$(x - y)^{2} + (y - 3)^{2} = x^{2}$\n$(x - y)^{2} + (y - 3)^{2} = y^{2}$\nLet they intersect at $(x_1, y_1)$ and $(x_2, y_2)$\n$\\therefore x_1^{2} = y_1^{2} \\Rightarrow x_1 = y_1 \\quad (x_1 > 0, y_1 > 0)$\n$\\therefore (x_1 - 4)^{2} + (x_1 - 3)^{2} = x_1^{2}$\n$\\Rightarrow x_1^{2} - 14x_1 + 25 = 0$\n$x_1 + x_2 = 14,\\ x_1 \\cdot x_2 = 25$\n$(AB)^{2} = \\left(\\sqrt{(x_1 - x_2) + (y_1 - y_2)}\\right)^{2}$\n$= 2(x_1 - x_2)^{2}$\n$= 2((x_1 + x_2)^{2} - 4x_1 x_2)$\n$= 2(196 - 100)$\n$= 192$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

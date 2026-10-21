@@ -1,0 +1,484 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "24 Jan · Shift 1",
+  "title": "JEE Main 2025 · Mathematics · 24 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1tYGznhDLD-BHJOspgji0GRBy-xumvfQP"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the $5^{\\text{th}}$, $6^{\\text{th}}$ and $7^{\\text{th}}$ term of the binomial expansion of $(1 + x^{2})^{n+4}$ are in A.P. Then the greatest binomial coefficient in the expansion of $(1 + x^{2})^{n+4}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Binomial coefficient of $T_{r+1} = {}^{n+4}C_{r}$\n${}^{n+4}C_{4}, {}^{n+4}C_{5}, {}^{n+4}C_{6}$ in A.P.\n$\\Rightarrow \\frac{(n+4)!}{4!\\,n!} + \\frac{(n+4)!}{6!\\,(n-2)!} = 2\\frac{(n+4)!}{(n-1)!\\,5!}$\n$\\Rightarrow$ Solving $n = 3$\n$\\Rightarrow$ Greatest binomial coefficient in the expansion of $(1 + x^{2})^{n+4} = (1 + x^{2})^{7}$\n$\\Rightarrow {}^{7}C_{3} = {}^{7}C_{4} \\Rightarrow \\frac{7!}{3!\\,4!} = \\frac{7 \\times 6 \\times 5}{6} = 35$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$35$"
+    },
+    {
+     "key": "C",
+     "text": "$25$"
+    },
+    {
+     "key": "D",
+     "text": "$14$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If A is $3 \\times 3$ matrix such that $\\det(A) = 2$. Then $\\det(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}A))))$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\det(\\underbrace{\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}A)))}_{r\\ \\text{times}}) = |A|^{(n-1)^{r}}$\nAs $|A| = 2$\n$\\therefore \\det(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}A)))) = |A|^{(3-1)^{4}}$\n$= |A|^{2^{4}} = |A|^{16}$\n$= 2^{16}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2^{32}$"
+    },
+    {
+     "key": "B",
+     "text": "$2^{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$2^{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$2^{12}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Evaluate\n$$\\lim_{x \\to 0} \\operatorname{cosec}x.\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} - \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)$$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\lim_{x \\to 0} \\frac{\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} - \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}{(\\sin x)\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}$$\n$\\frac{1}{2\\sqrt{5}} \\lim_{x \\to 0} \\frac{2\\cos^{2}x + 3\\cos x - \\cos^{2}x - \\sin x - 4}{\\sin x}$\n$\\frac{1}{2\\sqrt{5}} \\lim_{x \\to 0} \\left[\\frac{\\cos^{2}x + 3\\cos x - \\sin x - 4}{\\sin x}\\right]$\nApply L' Hopital\n$\\frac{1}{2\\sqrt{5}} \\lim_{x \\to 0} \\left[\\frac{-2\\cos x \\sin x - 3\\sin x - \\cos x}{\\cos x}\\right]$\n$= -\\frac{1}{2\\sqrt{5}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2\\sqrt{5}}$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\frac{1}{2\\sqrt{5}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\vec{a} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$, $\\vec{b} = 3\\hat{i} + \\hat{j} - \\hat{k}$ and $\\vec{c}$ is coplanar with $\\vec{a}$ and $\\vec{b}$. Also $\\vec{a} \\cdot \\vec{c} = 5$ and $\\vec{c}$ is perpendicular to $\\vec{b}$. Then $|\\vec{c}|$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{a} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$\n$\\vec{b} = 3\\hat{i} + \\hat{j} - \\hat{k}$\n$\\vec{c}$ coplanar with $\\vec{a}$ and $\\vec{b}$ (Let $\\vec{c} = a_{1}\\hat{i} + a_{2}\\hat{j} + a_{3}\\hat{k}$)\n$\\Rightarrow (\\vec{a} \\times \\vec{b}) \\cdot \\vec{c} = 0$\n$(-5\\hat{i} + 10\\hat{j} - 5\\hat{k}) \\cdot (a_{1}\\hat{i} + a_{2}\\hat{j} + a_{3}\\hat{k}) = 0$\n$\\Rightarrow -5a_{1} + 10a_{2} - 5a_{3} = 0$\n$\\Rightarrow a_{1} + a_{3} = 2a_{2}$ ...(i)\n$\\vec{c} \\cdot \\vec{b} = 0$ and $\\vec{a} \\cdot \\vec{c} = 5$\n$3a_{1} + a_{2} - a_{3} = 0$ ...(ii)\n$(a_{1} + 2a_{2} + 3a_{3}) = 5$ ...(ii)\nSolving (i), (ii) and (iii)\n$a_{1} = \\frac{1}{6},\\ a_{2} = \\frac{2}{3},\\ a_{3} = \\frac{7}{6}$\n$\\Rightarrow \\vec{c} = \\frac{1}{6}\\hat{i} + \\frac{2}{3}\\hat{j} + \\frac{7}{6}\\hat{k}$\n$\\Rightarrow |\\vec{c}| = \\sqrt{\\frac{11}{6}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$18$"
+    },
+    {
+     "key": "B",
+     "text": "$16$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{5}}{14}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{11}{6}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region bounded by $S(x, y)$ such that $S = \\{(x, y) : x^{2} + 4x + 2 \\le y \\le |x + 2|\\}$ is (in sq. units)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2} + 4x + 2 \\le y \\le |x + 2|$\n(See figure: Required area $= (A_{1})$ minus $(A_{2})$, where $A_{1}$ is the region between $y = 2$ and the parabola and $A_{2}$ is the triangle.)\n$A_{1} = \\int_{-4}^{0} [2 - (x^{2} + 4x + 2)]dx - \\frac{1}{2} \\times 4 \\times 2$\n$= \\left(\\frac{-x^{3}}{3} - 2x^{2}\\right)\\Big|_{-4}^{0} - 4$\n$= 0 - \\left(\\frac{64}{3} - 32\\right) - 4$\n$= 32 - \\frac{64}{3} - 4 = \\frac{20}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{24}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{20}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s1-math-q05-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\frac{dy}{dx} + \\left(\\frac{x}{1 + x^{2}}\\right)y = \\frac{\\sqrt{x}}{\\sqrt{1 + x^{2}}}$; $y(0) = 0$, then $y(1)$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{dy}{dx} - \\left(\\frac{x}{1 + x^{2}}\\right)y = \\frac{\\sqrt{x}}{\\sqrt{1 + x^{2}}}$\nIf $= e^{\\int \\frac{x}{1 + x^{2}}dx} = e^{\\frac{1}{2}\\ln(1 + x^{2})} = \\sqrt{1 + x^{2}}$\nSolution will be $y\\sqrt{1 + x^{2}} = \\int \\frac{\\sqrt{x}}{\\sqrt{1 + x^{2}}} \\cdot \\sqrt{1 + x^{2}}\\,dx$\n$y\\sqrt{1 + x^{2}} = \\frac{2x^{3/2}}{3} + c$\n$y(0) = 0 \\Rightarrow c = 0$\n$y = \\frac{2}{3}\\frac{x^{3/2}}{\\sqrt{1 + x^{2}}}$\nNow $y(1) = \\frac{\\sqrt{2}}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{2}}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{2}{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha$ and $\\beta$ are real numbers such that $\\sec^{2}(\\tan^{-1}(\\alpha)) + \\operatorname{cosec}^{2}(\\cot^{-1}(\\beta)) = 36$ and $\\alpha + \\beta = 8$, then $(\\alpha^{2} + \\beta)$ is $(\\alpha < \\beta)$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\tan^{-1}\\alpha = A \\Rightarrow \\tan A = \\alpha$\n$\\cot^{-1}\\beta = B \\Rightarrow \\cot B = \\beta$\n$\\sec^{2}A + \\operatorname{cosec}^{2}B = 36$\n$(1 + \\tan^{2}A) + (1 + \\cot^{2}B) = 36$\n$\\Rightarrow 1 + \\alpha^{2} + 1 + \\beta^{2} = 36$\n$\\Rightarrow \\alpha^{2} + \\beta^{2} = 34$\n$\\alpha + \\beta = 8$\n$(\\alpha + \\beta)^{2} = 34 + 2\\alpha\\beta = 64$\n$\\Rightarrow \\alpha\\beta = 15$\n$\\Rightarrow \\alpha, \\beta$ are roots of equation\n$x^{2} - 8x + 15 = 0$\n$(x - 3)(x - 5) = 0$\n$\\Rightarrow x = 3, 5$\n$\\Rightarrow \\alpha = 3, \\beta = 5$\n$\\Rightarrow \\alpha^{2} + \\beta = 14$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$23$"
+    },
+    {
+     "key": "B",
+     "text": "$14$"
+    },
+    {
+     "key": "C",
+     "text": "$24$"
+    },
+    {
+     "key": "D",
+     "text": "$27$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two persons A and B throws a pair of dice alternatively. For A to win he should throw sum of 5 before B throws sum of 8. If A throws first, then the probability that A wins, is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For sum 5, (1, 4), (2, 3) (3, 2), (4, 1) $\\Rightarrow P(A) = \\frac{4}{36}$\nFor sum 8, (2, 6), (3, 5) (4, 4), (5, 3), (6, 2) $\\Rightarrow P(B) = \\frac{5}{36}$\n$\\Rightarrow P(\\bar{A}) = \\frac{32}{36}, P(\\bar{B}) = \\frac{31}{36}$\n$P(\\text{A wins}) =$\n$P(A) + P(\\bar{A})P(\\bar{B})P(A) + P(\\bar{A})P(\\bar{B})P(\\bar{A})P(\\bar{B})P(A) + \\ldots$\n$= \\frac{P(A)}{1 - P(\\bar{A})P(\\bar{B})} = \\frac{\\frac{4}{36}}{1 - \\frac{32}{36} \\cdot \\frac{31}{36}} = \\frac{9}{19}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{8}{19}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{9}{19}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{8}{17}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{9}{17}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For a distribution of 10 observations, $\\sum_{i=1}^{10} x_{i} = 55$ and $\\sum_{i=1}^{10} x_{i}^{2} = 328$. If the observations 4 and 5 are replaced by 6 and 8 respectively, then the new variance is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x_{1} + x_{2} \\ldots + x_{8} + 4 + 5 = 55,$\n$x_{1}^{2} + x_{2}^{2} \\ldots + x_{8}^{2} + 16 + 25 = 328$\n$\\mu = \\frac{x_{1} + x_{2} \\ldots + x_{8} + 6 + 8}{10} = 6,$\n$x_{1}^{2} + x_{2}^{2} + \\ldots + x_{8}^{2} + 36 + 64 = 387$\n$\\Rightarrow \\sigma^{2} = \\frac{387}{10} - 36 = \\frac{387 - 360}{10} = \\frac{27}{10} = 2.7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2.5$"
+    },
+    {
+     "key": "B",
+     "text": "$2.7$"
+    },
+    {
+     "key": "C",
+     "text": "$3.4$"
+    },
+    {
+     "key": "D",
+     "text": "$3.6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $S$ be the set of 10 distinct primes and let $A$ be the set of products of two or more elements from the set $S$. If $P = \\{(x, y) : x \\in S$ and $y \\in A$ and $y$ is divided by $x\\}$. Then $n(P)$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$S = \\{P_{1}, P_{2}, P_{3} \\ldots, P_{10}\\}$\n$A = \\{$product of distinct elements of $S\\}$\nIf $P = \\{(x, y) : x \\in S, y \\in A$ and $y$ is divided by $x\\}$ then $n(P)$ is\n$\\Rightarrow$ since $x \\in S$.\nLet $x = P_{i} \\in S$, selected from $S$ in $({}^{10}C_{1})$ ways.\nNow, $x | y$ iff $y$ contains $P_{i}$ in product.\n$\\Rightarrow$ $(P_{i})$ is there and at rest one other element as a product\n$\\Rightarrow ({}^{10}C_{1}) \\cdot [(1) \\cdot (2^{9} - 1)] = 10 \\cdot (511) = 5110$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5110$"
+    },
+    {
+     "key": "B",
+     "text": "$5000$"
+    },
+    {
+     "key": "C",
+     "text": "$5220$"
+    },
+    {
+     "key": "D",
+     "text": "$5420$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $I(m, n) = \\int_{0}^{1} x^{m-1}(1 - x)^{n-1}dx$, $m, n > 0$, then $I(9, 14) + I(10, 13)$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Beta function\n$$\\beta(p, q) = \\int_{0}^{1} x^{p-1}(1 - x)^{q-1}dx = \\frac{(p - 1)!(q - 1)!}{(p + q - 1)!}\\ p, q \\in I$$\n$\\Rightarrow I(9, 14) = \\frac{8!\\,13!}{22!}$\n$I(10, 13) = \\frac{9! \\cdot 12!}{22!}$\n$\\Rightarrow I(9, 14) + I(10, 13) = \\frac{1}{22!}(8!\\,13! + 9! \\cdot 12!)$\n$\\Rightarrow = \\frac{1}{22!} 8! \\cdot 12!(13 + 9) = \\frac{8!\\,12!}{21!}$\n$= \\frac{(9 - 1)!(13 - 1)!}{(9 + 13 - 1)!} = I(9, 13)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$I(1, 13)$"
+    },
+    {
+     "key": "B",
+     "text": "$I(9, 1)$"
+    },
+    {
+     "key": "C",
+     "text": "$I(9, 13)$"
+    },
+    {
+     "key": "D",
+     "text": "$I(19, 29)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of 3 digit numbers which is divisible by 2 and 3 but not divisible by 4 and 9?",
+   "correct_key": null,
+   "correct_value": 125,
+   "correct_keys": null,
+   "solution": "Total number divisible by 6\n102, 108, ... 996\nSo total number = 150\nNumber divisible by 36\n108, ..., 972\nTotal number = 25\nRequired number = (divisible by 6) $-$ (divisible by 36)\n$= 150 - 25 = 125$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Quadratic Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The product of all real roots of equation $(x^{2} - 9x + 11)^{2} - (x - 4)(x - 5) = 2$ is",
+   "correct_key": null,
+   "correct_value": 99,
+   "correct_keys": null,
+   "solution": "$(x^{2} - 9x + 11)^{2} - (x - 4)(x - 5) = 2$\n$(x^{2} - 9x + 11)^{2} - (x^{2} - 9x + 20) = 2$\nLet $x^{2} - 9x + 11 = t$\n$t^{2} - (t + 9) = 2$\n$t^{2} - t - 11 = 0$\n$t = \\frac{1 \\pm \\sqrt{1 + 44}}{2} = \\frac{1 \\pm \\sqrt{45}}{2}$\n$x^{2} - 9x + 11 = \\frac{1 + \\sqrt{45}}{2}$\n$x^{2} - 9x = \\frac{\\sqrt{45} - 21}{2}$\n$D_{1} : 81 - 4\\left(\\frac{\\sqrt{45} - 21}{2}\\right) > 0$\nSimilarly,\n$x^{2} - 9x + 11 = \\left(\\frac{1 - \\sqrt{45}}{2}\\right)$\n$\\Rightarrow D_{2} : 81 - 4\\left(\\frac{-21 - \\sqrt{45}}{2}\\right) > 0$\n$\\Rightarrow$ All roots are real\n$\\Rightarrow$ Product of roots $= \\left(\\frac{\\text{Constant term}}{1}\\right)$\n$= \\left(\\frac{121 - (20) - 2}{1}\\right) = \\frac{121 - 22}{1} = 99$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $S_{n} = \\frac{1}{2} + \\frac{1}{6} + \\frac{1}{12} + \\ldots n$ terms. The sum of first six terms in A.P. with first term equal to $-p$ and common difference $p$ is $\\sqrt{2026 \\cdot S_{2025}}$. The absolute value of difference between $20^{\\text{th}}$ and $15^{\\text{th}}$ terms in A.P. is",
+   "correct_key": null,
+   "correct_value": 25,
+   "correct_keys": null,
+   "solution": "$S_{n} = \\frac{1}{1 \\cdot 2} + \\frac{1}{2 \\cdot 3} + \\frac{1}{3 \\cdot 4} + \\ldots \\frac{1}{n(n + 1)}$\n$= \\left(\\frac{1}{1} - \\frac{1}{2}\\right) + \\left(\\frac{1}{2} - \\frac{1}{3}\\right) + \\left(\\frac{1}{3} - \\frac{1}{4}\\right) + \\ldots + \\left(\\frac{1}{n} - \\frac{1}{n + 1}\\right)$\n$= 1 - \\frac{1}{n + 1} = \\frac{n}{n + 1} \\Rightarrow S_{2025} = \\frac{2025}{2026}$\nFor A.P. $\\frac{6}{2}(-2p + (6 - 1)p) = \\sqrt{2026 \\times \\frac{2025}{2026}} = 45$\n$\\Rightarrow 3p = \\frac{45}{3} \\Rightarrow p = 5$\nNow for A.P. $|a_{20} - a_{15}| = |19 \\times 5 - 14 \\times 5| = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

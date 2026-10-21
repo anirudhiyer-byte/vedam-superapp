@@ -1,0 +1,484 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "24 Jan · Shift 2",
+  "title": "JEE Main 2025 · Mathematics · 24 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "12obKY4vqbbW4VsIF_rQxXlslqoZ9jrwi"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $7 = 5 + \\frac{1}{7}(5 + \\alpha) + \\frac{1}{7^{2}}(5 + 2\\alpha) + \\ldots\\ \\infty$ terms, then $\\alpha$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$S = a + (a + d)r + (a + 2d)r^{2} + \\ldots\\ \\infty$\nThen $S = \\frac{a}{1 - r} + \\frac{dr}{(1 - r)^{2}}$\n$7 = \\frac{S}{1 - \\frac{1}{7}} + \\frac{\\alpha \\cdot \\frac{1}{7}}{\\left(1 - \\frac{1}{7}\\right)^{2}}$\n$\\Rightarrow \\alpha = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{6}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $A$ and $B$ are binomial coefficients of $30^{\\text{th}}$ and $12^{\\text{th}}$ term of binomial expansion $(1 + x)^{2n - 1}$. If $2A = 5B$, then the value of $n$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T_{r+1} = {}^{2n-1}C_{r}\\, x^{r}$\nCoefficient of $T_{30} = {}^{2n-1}C_{29} = A$\nCoefficient of $T_{12} = {}^{2n-1}C_{11} = B$\n$\\Rightarrow 2\\left({}^{2n-1}C_{29}\\right) = 5\\left({}^{2n-1}C_{11}\\right)$\n$\\Rightarrow$ Solving we get $n = 21$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$21$"
+    },
+    {
+     "key": "C",
+     "text": "$14$"
+    },
+    {
+     "key": "D",
+     "text": "$20$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The equation of chord of the ellipse $\\frac{x^{2}}{25} + \\frac{y^{2}}{16} = 1$ with $(3, 1)$ as mid-point is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Chord with given mid-point\n$\\Rightarrow T = S_{1}$\n$\\Rightarrow \\left(\\frac{xx_{1}}{25} + \\frac{yy_{1}}{16} - 1\\right) = \\frac{x_{1}^{2}}{25} + \\frac{y_{1}^{2}}{16} - 1$\n$\\Rightarrow \\frac{3x}{25} + \\frac{y}{16} - 1 = \\frac{9}{25} + \\frac{1}{16} - 1$\n$\\Rightarrow 48x + 25y - 400 = 144 + 25 - 400$\n$\\Rightarrow 48x + 25y = 169$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$48x + 25y - 169 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$25x + 5y - 125 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$65x + 2y - 12 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$45x + 4y - 135 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If system of equations\n$x + 2y - 3z = 2$\n$2x + \\lambda y + 5z = 5$\n$4x + 3y + \\mu z = 33$ has infinite solutions, then $\\lambda + \\mu$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta = \\begin{vmatrix} 1 & 2 & -3 \\\\ 2 & \\lambda & 5 \\\\ 4 & 3 & \\mu \\end{vmatrix} = 0$\n$\\Rightarrow 12\\lambda + \\lambda\\mu - 4\\mu + 7 = 0$\n$\\Delta z = 25\\lambda - 95 = 0$\n$\\Rightarrow \\lambda = \\frac{95}{25} = \\frac{19}{5}$\n$\\Delta y = 0$\n$\\Rightarrow \\frac{263 - \\mu}{5} = 0$\n$\\Rightarrow \\mu = 263$\n$\\therefore \\lambda + \\mu = \\frac{1334}{5}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1334}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1269}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{261}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1063}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S_{n}$ denotes the sum of the first $n$ terms of an arithmetic progression. If $S_{40} = 1030$ and $S_{12} = 57$, then the value of $S_{30} - S_{10}$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$S_{40} = 1030 \\Rightarrow \\frac{40}{2}\\left[2a + 39d\\right] = 1030$ …(i)\n$S_{12} = 57 \\Rightarrow \\frac{12}{2}[2a + 11d] = 57$ …(ii)\nFrom (i) & (ii) $a = \\frac{-7}{2}$, $d = \\frac{3}{2}$\n$\\Rightarrow S_{30} - S_{10} = \\frac{30}{2}[2a + 29d] - \\frac{10}{2}[2a + 9d] = 20a + 390d$\n$= 515$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$505$"
+    },
+    {
+     "key": "B",
+     "text": "$510$"
+    },
+    {
+     "key": "C",
+     "text": "$515$"
+    },
+    {
+     "key": "D",
+     "text": "$520$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of region enclosed by the curves $y = e^{x}$, $y = |e^{x} - 1|$ and $y$ – axis is (in sq. units)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[See figure]\n$e^{x} = 1 - e^{x} \\Rightarrow 2e^{x} = 1$\n$\\Rightarrow e^{x} = \\frac{1}{2}$\n$\\Rightarrow x = \\ln\\frac{1}{2}$\n$\\Rightarrow \\int_{\\ln\\left(\\frac{1}{2}\\right)}^{0} \\left[e^{x} - (1 - e^{x})\\right] dx$\n$= \\int_{\\ln 2}^{0} (2e^{x} - 1)\\,dx = \\left.2e^{x} - x\\right|_{-\\ln 2}^{0}$\n$= 2 - (1 + \\ln 2)$\n$= 1 - \\ln 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$1 - \\ln 2$"
+    },
+    {
+     "key": "C",
+     "text": "$1 + \\ln 2$"
+    },
+    {
+     "key": "D",
+     "text": "$\\ln 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s2-math-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider an event $E$ such that a matrix of order $2 \\times 2$ is invertible with entries 0 or 1. Then, $P(E)$ is (where $P(X)$ denotes the probability of event $X$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = 0$\n$\\Rightarrow ad - bc = 0$\n$\\Rightarrow ad = bc$\nCase-I: $ad = bc = 1$\n$a = b = c = d = 1$\nCase-II: $ad = bc = 0$\n$a = 0, d = 0$ | $b = 0, c = 0$\n$a = 0, d = 1$ | $b = 0, c = 1$\n$a = 1, d = 0$ | $b = 1, c = 0$\n$3 \\times 3 = 9$ cases\n$\\therefore \\frac{2^{4} - 10}{2^{4}} = \\frac{6}{16} = \\frac{3}{8}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{8}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{8}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of real roots of the equation $x^{2} + 3x + 2 = \\min(|x + 2|, |x - 3|)$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[See figure: graphs of $y = x^{2} + 3x + 2$ and $y = \\min(|x + 2|, |x - 3|)$ intersect at two points.]",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s2-math-q08-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A function $f: R \\rightarrow (-1, 1)$ such that $f(x) = \\frac{2^{x} - 2^{-x}}{2^{x} + 2^{-x}}$. The function $f$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\frac{2^{2x} - 1}{2^{2x} + 1} = 1 - \\frac{2}{2^{2x} + 1}$\n$f'(x) = \\frac{2}{(2^{2x} + 1)^{2}} \\cdot 2^{2x} \\cdot (\\ln 2) \\cdot 2 > 0$\n$\\therefore f(x)$ is increasing $\\therefore$ one-one\nas $x \\rightarrow -\\infty$, $f(x) \\rightarrow -1$\nas $x \\rightarrow \\infty$, $f(x) \\rightarrow 1$\n$\\therefore$ range is $(-1, 1)$ $\\therefore$ onto",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both one-one and onto"
+    },
+    {
+     "key": "B",
+     "text": "only one-one"
+    },
+    {
+     "key": "C",
+     "text": "only onto"
+    },
+    {
+     "key": "D",
+     "text": "Both many-one and onto"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s2-math-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 3\\hat{i} + 2\\hat{j} - \\hat{k}$, $b = \\vec{a} \\times (\\hat{i} - 2\\hat{j})$ and $\\vec{c} = b \\times \\hat{k}$, then projection of $\\vec{c} - 2\\hat{j}$ on $\\vec{a}$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 3 & 2 & -1 \\\\ 1 & -2 & 0 \\end{vmatrix} = -2\\hat{i} - \\hat{j} - 8\\hat{k}$\n$\\vec{c} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ -2 & -1 & -8 \\\\ 0 & 0 & 1 \\end{vmatrix} = -\\hat{i} + 2\\hat{j}$\n$\\Rightarrow \\vec{c} - 2\\hat{j} = -\\hat{i}$\n$\\Rightarrow$ Projection of $\\vec{c} - 2\\hat{j}$ on $\\vec{a} = \\left|(\\vec{c} - 2\\hat{j}) \\cdot \\hat{a}\\right|$\n$= \\frac{3}{\\sqrt{14}} = \\frac{3\\sqrt{14}}{14}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\sqrt{14}$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\sqrt{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3\\sqrt{14}}{14}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha > \\beta > \\gamma > 0$ then find\n$\\cot^{-1}\\left(\\frac{1 + \\alpha\\beta}{\\alpha - \\beta}\\right) + \\cot^{-1}\\left(\\frac{1 + \\beta\\gamma}{\\beta - \\gamma}\\right) + \\cot^{-1}\\left(\\frac{1 + \\gamma\\alpha}{\\gamma - \\alpha}\\right)$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\cot^{-1}\\left(\\frac{1 + \\alpha\\beta}{\\alpha - \\beta}\\right) + \\cot^{-1}\\left(\\frac{1 + \\beta\\gamma}{\\beta - \\gamma}\\right) + \\cot^{-1}\\left(\\frac{1 + \\gamma\\alpha}{\\gamma - \\alpha}\\right)$\n$= \\tan^{-1}\\left(\\frac{\\alpha - \\beta}{1 + \\alpha\\beta}\\right) + \\tan^{-1}\\left(\\frac{\\beta - \\gamma}{1 + \\beta\\gamma}\\right) + \\pi + \\tan^{-1}\\left(\\frac{\\gamma - \\alpha}{1 + \\gamma\\alpha}\\right)$\n$\\because \\gamma - \\alpha < 0$\n$= \\tan^{-1}\\left(\\frac{\\alpha - \\beta}{1 + \\alpha\\beta}\\right) + \\tan^{-1}\\left(\\frac{\\beta - \\gamma}{1 + \\beta\\gamma}\\right) + \\tan^{-1}\\left(\\frac{\\gamma - \\alpha}{1 + 4\\alpha}\\right) + \\pi$\n$= \\tan^{-1}\\alpha - \\tan^{-1}\\beta + \\tan^{-1}\\beta - \\tan^{-1}\\gamma + \\tan^{-1}\\gamma - \\tan^{-1}\\alpha + \\pi$\n$= 0 + \\pi$\n$= \\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2} - (\\alpha + \\beta + \\gamma)$"
+    },
+    {
+     "key": "D",
+     "text": "$3\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Limits",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\lim_{x \\to 0} \\begin{vmatrix} a + \\frac{\\sin x}{x} & 1 & 1 \\\\ a & 1 + \\frac{\\sin x}{x} & 1 \\\\ a & 1 & a + \\frac{\\sin x}{x} \\end{vmatrix} = \\mu a^{2} + \\lambda a + \\alpha$, then $\\mu + \\lambda + \\alpha$ is",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$\\begin{vmatrix} a + 1 & 1 & 1 \\\\ a & 2 & 1 \\\\ a & 1 & a + 1 \\end{vmatrix} = a^{2} + 2a + 1$\n$\\therefore \\mu = 1$\n$\\lambda = 2$\n$\\alpha = 1$\n$\\therefore \\mu + \\lambda + \\alpha = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Straight Lines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The point $P\\left(\\frac{11}{2}, \\alpha\\right)$ lies on or inside the triangle formed by the lines $x + y = 11$, $x + 2y = 16$ and $2x + 3y = 29$, then minimum value of $10\\alpha$ is equal to",
+   "correct_key": null,
+   "correct_value": 55,
+   "correct_keys": null,
+   "solution": "[See figure]\nClearly, $x = \\frac{11}{2}$ intersect\n$x + y - 11 = 0$ at $\\left(\\frac{11}{2}, \\frac{11}{2}\\right)$ and\n$2x + 3y - 29 = 0$ at $\\left(\\frac{11}{2}, 6\\right)$.\n$\\Rightarrow \\alpha \\in \\left[\\frac{11}{2}, 6\\right]$\n$\\Rightarrow$ minimum value of $10\\alpha = 55$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j25-24jan-s2-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In group $A$, there are 7 boys and 3 girls and in group $B$, there are 4 boys and 5 girls. For a picnic trip 4 boys and 4 girls are required such that 5 are selected from group A and 3 are selected from group $B$. Then the total number of ways to select the team for picnic trip is",
+   "correct_key": null,
+   "correct_value": 5880,
+   "correct_keys": null,
+   "solution": "Group A (7B + 3G), Group B (4B + 5G)\nNumber of required ways $= \\left({}^{7}C_{4} \\cdot {}^{3}C_{1}\\right) \\cdot \\left({}^{4}C_{0} \\cdot {}^{5}C_{3}\\right) + \\left({}^{7}C_{3} \\cdot {}^{3}C_{2}\\right) \\cdot \\left({}^{4}C_{1} \\cdot {}^{5}C_{2}\\right) + \\left({}^{7}C_{2} \\cdot {}^{3}C_{3}\\right) \\cdot \\left({}^{4}C_{2} \\cdot {}^{5}C_{1}\\right)$\n$= 5880$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

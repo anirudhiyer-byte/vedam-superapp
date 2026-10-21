@@ -1,0 +1,764 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2025,
+  "set_label": "29 Jan · Shift 1",
+  "title": "JEE Main 2025 · Physics · 29 Jan Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": "11ZcSoNFksDlk2qxxgseoyIWhKxsBhuR5"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion: At the peak of mountain, time period of pendulum increases.\nReason: Time period of pendulum increases with decrease in $g$.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = 2\\pi\\sqrt{\\frac{l}{g}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Assertion is correct, reason is incorrect"
+    },
+    {
+     "key": "B",
+     "text": "Assertion is incorrect, reason is correct"
+    },
+    {
+     "key": "C",
+     "text": "Assertion is incorrect, reason is incorrect"
+    },
+    {
+     "key": "D",
+     "text": "Assertion is correct, reason is correct"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The velocity of a particle moving on a straight line varies with time as $v = At^{2} + \\frac{Bt}{C + t}$ where $A$, $B$, $C$ are constants. Find the dimensions of $ABC$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$[v] = [A][t^{2}] = \\frac{[B][t]}{[C]} = \\mathrm{LT^{-1}}$\n$\\Rightarrow [A] = \\mathrm{LT^{-3}}$\n$[B] = \\mathrm{LT^{-1}}$\n$[C] = \\mathrm{T}$\n$[ABC] = \\mathrm{L^{2}T^{-3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{L^{2}T^{-2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{L^{2}T^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{L^{2}T^{-3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{LT^{-3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A pendulum of mass $\\frac{m}{2}$ is released from given situation, find speed of another pendulum after collision $(e = 1)$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Speed before collision $= \\sqrt{2 \\cdot g \\cdot \\frac{\\ell}{2}} = \\sqrt{g\\ell}$\n$\\frac{m}{2}u = mv_{1} + \\frac{m}{2}v_{2}$\n$u = 2v_{1} + v_{2}$\n$u = v_{1} - v_{2}$\n$v_{1} = \\frac{2u}{3} = \\frac{2}{3}\\sqrt{g\\ell}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{\\frac{3}{2}g\\ell}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}\\sqrt{g\\ell}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{g\\ell}{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3}\\sqrt{g\\ell}$"
+    }
+   ],
+   "stem_figure": "j25-29jan-s1-phy-q03.png",
+   "solution_figure": "j25-29jan-s1-phy-q03-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The graph between wavelengths ($\\lambda$) of incident light and kinetic energy (K.E.) of photoelectrons in photoelectric effect is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{hc}{\\lambda} = \\frac{hc}{\\lambda_{0}} + \\mathrm{KE}$\n$\\mathrm{K} = \\frac{a}{\\lambda} - b$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "j25-29jan-s1-phy-q04-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "j25-29jan-s1-phy-q04-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "j25-29jan-s1-phy-q04-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "j25-29jan-s1-phy-q04-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify the logic gate represented by the circuit shown below.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C = \\overline{\\left(\\overline{AB}\\right)\\left(\\overline{A + B}\\right)}$ (De Morgan Rule: $\\overline{\\overline{X}\\,\\overline{Y}} = X + Y$)\n$= AB + A + B$\n$= A + B$\ni.e. OR Gate",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "OR Gate"
+    },
+    {
+     "key": "B",
+     "text": "NAND Gate"
+    },
+    {
+     "key": "C",
+     "text": "AND Gate"
+    },
+    {
+     "key": "D",
+     "text": "NOR Gate"
+    }
+   ],
+   "stem_figure": "j25-29jan-s1-phy-q05.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Statement-1: Electromagnetic wave have both energy and momentum.\nStatement-2: Rest mass of photon is zero.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Because of radiation pressure, EMW exerts force must carry momentum.\nAccording to special relativity theory, no massive particle can attain speed of light.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement-1 is correct, statement-2 is correct"
+    },
+    {
+     "key": "B",
+     "text": "Statement-1 is correct, statement-2 is incorrect"
+    },
+    {
+     "key": "C",
+     "text": "Statement-1 is incorrect, statement-2 is correct"
+    },
+    {
+     "key": "D",
+     "text": "Statement-1 is incorrect, statement-2 is incorrect"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two projectile were launched from same position simultaneously only same speed on of the projectile was launched at angle $(45 - \\alpha)^\\circ$ and the other at an angle of $(45 + \\alpha)^\\circ$. Find the ratio of maximum height of the projectile.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{2gh_{1} = 4^{2}\\sin^{2}(45 - \\alpha)}{2gh_{2} = 4^{2}\\sin^{2}(45 + \\alpha)}$\n$\\Rightarrow \\frac{h_{1}}{h_{2}} = \\frac{\\left(\\frac{\\cos\\alpha}{\\sqrt{2}} - \\frac{\\sin\\alpha}{\\sqrt{2}}\\right)^{2}}{\\left(\\frac{\\cos\\alpha}{\\sqrt{2}} + \\frac{\\sin\\alpha}{\\sqrt{2}}\\right)^{2}}$\n$\\Rightarrow \\frac{h_{1}}{h_{2}} = \\frac{\\cos^{2}\\alpha + \\sin^{2}\\alpha - 2\\sin\\alpha\\cos\\alpha}{\\cos^{2}\\alpha + \\sin^{2}\\alpha + 2\\sin\\alpha\\cos\\alpha}$\n$\\Rightarrow \\frac{h_{1}}{h_{2}} = \\frac{1 - \\sin 2\\alpha}{1 + \\sin 2\\alpha}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1 - \\sin\\alpha}{1 + \\sin\\alpha}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1 - \\sin 2\\alpha}{1 + \\sin 2\\alpha}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1 - \\tan\\alpha}{1 + \\tan\\alpha}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1 - \\cos\\alpha}{1 + \\cos\\alpha}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-29jan-s1-phy-q07-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A river is flowing with speed 9 km/h. Boat is going downstream. Speed of boat in still water is 27 km/h. A person in boat throws a ball upwards with speed 10 m/s. Find range of the ball as seen by an observer at bank of river",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = \\frac{2u}{g} = \\frac{2 \\times 10}{10} = 2\\ \\mathrm{s}$\n$R = (9 + 27)\\frac{5}{18} \\times 2$\n$R = 20\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10\\ \\mathrm{m}$"
+    },
+    {
+     "key": "B",
+     "text": "$20\\ \\mathrm{m}$"
+    },
+    {
+     "key": "C",
+     "text": "$25\\ \\mathrm{m}$"
+    },
+    {
+     "key": "D",
+     "text": "$20\\sqrt{3}\\ \\mathrm{m}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of two physical quantities have same dimensions?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(1) $\\frac{L}{h} = \\frac{mvr}{Et} = \\frac{mv^{2}}{E} \\equiv \\mathrm{M^{0}L^{0}T^{0}}$\n(2) $\\frac{\\overline{L}}{I} = \\frac{rF\\sin\\theta}{mr^{2}} \\equiv \\mathrm{M^{0}L^{0}T^{-2}}$\n(3) $\\frac{I}{s} = \\frac{Ft}{F/\\ell} \\equiv \\mathrm{LT}$\n(4) $\\frac{p}{\\omega} = \\frac{mv}{mv^{2}} = \\mathrm{L^{-1}T}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Angular momentum and Planck’s constant"
+    },
+    {
+     "key": "B",
+     "text": "Torque and moment of inertia"
+    },
+    {
+     "key": "C",
+     "text": "Impulse and surface tension"
+    },
+    {
+     "key": "D",
+     "text": "Momentum and work done"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If radius of first Bohr’s orbit of H-atom is $a_{0}$. Then find the radius of $2^{\\text{nd}}$ Bohr’s orbit of H-atom.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a = \\frac{a_{0}n^{2}}{2}$\nSo, $a(n = 2) = 4a_{0}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8a_{0}$"
+    },
+    {
+     "key": "B",
+     "text": "$4a_{0}$"
+    },
+    {
+     "key": "C",
+     "text": "$2a_{0}$"
+    },
+    {
+     "key": "D",
+     "text": "$6\\pi a_{0}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two coils having self-inductance $L_{1}$ and $L_{2}$ are placed closely such that they have a mutual inductance $M$. If the carry currents $i_{1}$ and $i_{2}$ as shown in the figure, then the induced emf in coil 1 is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\phi_{1} = L_{1}i_{1} + Mi_{2}$\n$\\frac{-d\\phi_{1}}{dt} = -L_{1}\\left(\\frac{di_{1}}{dt}\\right) - M\\left(\\frac{di_{2}}{dt}\\right)$\n$\\varepsilon_{1} = -L_{1}\\left(\\frac{di_{1}}{dt}\\right) - M\\left(\\frac{di_{2}}{dt}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-L_{1}\\left(\\frac{di_{1}}{dt}\\right) + M\\left(\\frac{di_{2}}{dt}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$-L_{1}\\left(\\frac{di_{1}}{dt}\\right) - M\\left(\\frac{di_{2}}{dt}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$-L_{1}\\left(\\frac{di_{2}}{dt}\\right) + M\\left(\\frac{di_{1}}{dt}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$-L_{1}\\left(\\frac{di_{2}}{dt}\\right) - M\\left(\\frac{di_{1}}{dt}\\right)$"
+    }
+   ],
+   "stem_figure": "j25-29jan-s1-phy-q11.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An infinite solid cylindrical wire of radius $R$ carries a current $I$ uniformly distributed along its area. The distance from the centre where the magnetic field is equal to $\\frac{\\mu_{0}I}{4\\pi R}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B_{\\text{inside}} = \\frac{\\mu_{0}Ir}{2\\pi R^{2}}$\n$\\Rightarrow r = \\frac{R}{2}$\n$B_{\\text{outside}} = \\frac{\\mu_{0}I}{2\\pi r}$\n$\\Rightarrow r = 2R$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{R}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$R$"
+    },
+    {
+     "key": "C",
+     "text": "$4R$"
+    },
+    {
+     "key": "D",
+     "text": "$0$"
+    }
+   ],
+   "stem_figure": "j25-29jan-s1-phy-q12.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Mechanical Properties of Solids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When ball is kept under sea at depth 2.5 km. Find percentage change in it’s volume. If bulk modulus of water is $2 \\times 10^{9}\\ \\mathrm{Pa}$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\beta = \\frac{\\Delta P}{\\frac{-\\Delta V}{V}} \\Rightarrow \\frac{\\Delta V}{V} = \\frac{\\Delta P}{\\beta}$\n$= \\frac{10^{3} \\times 10 \\times 2500}{2 \\times 10^{9}} \\times 100$\n$= \\frac{25}{20}$\n$= 1.25\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\%$"
+    },
+    {
+     "key": "B",
+     "text": "$1.5\\%$"
+    },
+    {
+     "key": "C",
+     "text": "$1.25\\%$"
+    },
+    {
+     "key": "D",
+     "text": "$2.75\\%$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Heat given to 0.5 moles of a monoatomic gas at constant pressure is 500 J. Initial temperature of gas was $27^\\circ\\mathrm{C}$. Find value of $\\Delta U$ and $\\Delta T$.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "At constant pressure,\n$\\Delta Q = nC_{p}\\Delta T$\n$500 = \\frac{n.5}{2}R\\Delta T$\n$\\Delta U = nC_{v}\\Delta T = \\frac{3}{2}nR\\Delta T$\n$= \\frac{3}{2} \\times 200$\n$= 300\\ \\mathrm{J}$\n$\\Delta T = \\frac{200 \\times 3}{0.5 \\times 25}$\n$\\Delta T = 48$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$300\\ \\mathrm{J}$, $48^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "B",
+     "text": "$150\\ \\mathrm{J}$, $24^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "C",
+     "text": "$180\\ \\mathrm{J}$, $16^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "D",
+     "text": "$210\\ \\mathrm{J}$, $18^\\circ\\mathrm{C}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assertion: A negative potential is required to stop the photoelectron.\nReason: Speed of electron decreases when a negative potential is applied in a photo cell.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Conceptual",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Assertion is correct but Reason is false"
+    },
+    {
+     "key": "B",
+     "text": "Assertion is correct and Reason is also correct"
+    },
+    {
+     "key": "C",
+     "text": "Assertion is false but Reason is correct"
+    },
+    {
+     "key": "D",
+     "text": "Assertion is false and Reason is also false"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If electric dipole of dipole moment $\\vec{P}$ is placed in electric field $\\vec{E}$ with $\\vec{P} \\parallel \\vec{E}$. It is rotated slightly (and slowly) and released. Find the time period of oscillation of dipole (moment of inertia of dipole is $I$).",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T_{(R)} = -(\\overline{P})(\\overline{E})\\sin\\theta \\approx -|\\overline{P}||\\overline{E}|\\theta$\n$\\alpha = -\\omega^{2}\\theta = -\\frac{PE}{I} \\cdot \\theta$\n$\\Rightarrow T = 2\\pi\\sqrt{\\frac{I}{PE}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$T = 2\\pi\\sqrt{\\frac{I}{PE}}$"
+    },
+    {
+     "key": "B",
+     "text": "$T = \\frac{1}{2\\pi}\\sqrt{\\frac{PE}{I}}$"
+    },
+    {
+     "key": "C",
+     "text": "$T = 2\\pi\\sqrt{\\frac{IE}{P}}$"
+    },
+    {
+     "key": "D",
+     "text": "$T = \\frac{1}{2\\pi}\\sqrt{\\frac{PI}{E}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j25-29jan-s1-phy-q16-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In adiabatic process of closed system, work done by the gas depends explicitly on",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta\\theta = \\Delta V + \\Delta W \\Rightarrow \\Delta W = -\\Delta V$\n$W = -\\frac{\\mu R\\Delta T}{\\gamma - 1}$ (Only Change in temperature) $= -\\frac{1}{\\gamma - 1}(P_{2}V_{2} - P_{1}V_{1})$ (Both on change in pressure and volume)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Change in volume"
+    },
+    {
+     "key": "B",
+     "text": "Change in pressure"
+    },
+    {
+     "key": "C",
+     "text": "Change in temperature"
+    },
+    {
+     "key": "D",
+     "text": "Change in number of moles"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match the correct option for List-I and List-II, where symbols have usual meanings.\nList-I | List-II\n(A) Electric field inside the spherical shell | (i) $\\frac{\\sigma}{2\\varepsilon_{0}}$\n(B) Electric field just outside the spherical shell | (ii) $\\frac{\\sigma}{\\varepsilon_{0}}$\n(C) Electric field inside the charged parallel plate capacitor | (iii) $0$\n(D) Electric field of infinite charge sheet | (iv) $\\frac{2\\sigma}{\\varepsilon_{0}}$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-(iii), B-(ii), C-(iv), D-(ii)"
+    },
+    {
+     "key": "B",
+     "text": "A-(iii), B-(ii), C-(ii), D-(i)"
+    },
+    {
+     "key": "C",
+     "text": "A-(iii), B-(ii), C-(ii), D-(iv)"
+    },
+    {
+     "key": "D",
+     "text": "A-(iv), B-(iii), C-(i), D-(ii)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle is able to complete the vertical circular motion with speed $n\\sqrt{gR}$ at top-most point. Find the ratio of $\\frac{\\mathrm{KE_{(Bottom)}}}{\\mathrm{KE_{(Top)}}}$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_{\\tau} = n\\sqrt{gR}$\n$V_{\\text{Bottom}}^{2} = V_{\\tau}^{2} + 4gR = n^{2}gR + 4gR$\n$\\frac{\\mathrm{KE_{Bottom}}}{\\mathrm{KE_{Top}}} = \\frac{gR(n^{2} + 4)}{gRn^{2}} = \\frac{n^{2} + 4}{n^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{n^{2} + 4}{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{n}{n^{2} + 4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{n^{2} + 2}{n}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{n^{2} + 4}{n^{2}}$"
+    }
+   ],
+   "stem_figure": "j25-29jan-s1-phy-q19.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a hydraulic lift, the two sides have areas $A_{1} = 25\\ \\mathrm{cm^{2}}$ and $A_{2} = 100\\ \\mathrm{cm^{2}}$. If a force of 100 N is applied normally on the area $A_{1}$, then the force on the area $A_{2}$ is _______ N.",
+   "correct_key": null,
+   "correct_value": 400,
+   "correct_keys": null,
+   "solution": "From Pascal’s law\n$\\frac{F_{1}}{A_{1}} = \\frac{F_{2}}{A_{2}}$ or $\\frac{100\\ \\mathrm{N}}{25\\ \\mathrm{cm^{2}}} = \\frac{F_{2}}{100\\ \\mathrm{cm^{2}}}$\n$\\Rightarrow F_{2} = 400\\ \\mathrm{N}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Find magnitude of component of torque about origin in $z$-direction when force $\\vec{F} = \\hat{i} - \\hat{j} + \\hat{k}$ acts at $(1, 1, 1)$.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$\\vec{\\tau}_{2} = \\hat{k}(-1, -1) = -2\\hat{k}$\n$\\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & +1 & 1 \\\\ 1 & -1 & 1 \\end{vmatrix}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
