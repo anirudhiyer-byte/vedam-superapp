@@ -306,7 +306,8 @@ function HeroDemo() {
   const sel = still ? d.c : st.sel;
   const rev = still || st.rev;
   return (
-    <div className={"mini" + (rev ? (sel === d.c ? " res-ok" : " res-bad") : "")} ref={root}>
+    <div className={"heroart" + (rev ? (sel === d.c ? " res-ok" : " res-bad") : "")} aria-hidden>
+    <div className="mini" ref={root}>
       <div className={"mbody" + (st.fade ? " fade" : "")}>
         <div className="mtop"><span className="topicpill">{d.topic}</span><span className="marks">+4 / −1</span></div>
         <div className="mq">{d.q}</div>
@@ -338,6 +339,7 @@ function HeroDemo() {
           <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 2l15 8.5-6.6 1.9L9.6 19.5z" fill="#fff" stroke="#0b0618" strokeWidth="1.4" strokeLinejoin="round" /></svg>
         </div>
       )}
+    </div>
     </div>
   );
 }
@@ -384,9 +386,7 @@ function Landing({ papers, go, signedIn, firstName }: { papers: Paper[] | null; 
             )}
           </div>
         </div>
-        <div className="heroart" aria-hidden>
-          <HeroDemo />
-        </div>
+        <HeroDemo />
       </div>
 
       <div className="exam-tiles">
