@@ -818,8 +818,9 @@ function Test({ paperId, go, toast, onSubmitted }: {
           )}
           <div className="qtop">
             <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-              {/* The number printed on the paper, so it matches the PDF and answer key. */}
-              <span className="qno">Question {q.q_no}<span className="muted" style={{ fontWeight: 600, fontSize: 14 }}> · {i + 1} of {N}</span></span>
+              {/* Sequential 1..N; the number printed on the paper is kept as a small label when it differs. */}
+              <span className="qno">Question {i + 1}<span className="muted" style={{ fontWeight: 600, fontSize: 14 }}> of {N}</span></span>
+              {q.q_no !== i + 1 && <span className="muted" style={{ fontSize: 12, fontWeight: 600 }}>Paper Q{q.q_no}</span>}
               {q.section && <span className="secpill">{q.section}</span>}
               {q.topic && <span className="topicpill">{q.topic}</span>}
               <span className="marks">{theory ? `${marksWord(q.marks_correct)} · read-only` : markLabel(q.marks_correct, q.marks_wrong)}</span>
@@ -952,7 +953,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
                   if (idx === i) c += " c";
                   if (isTheory(qq)) c += st?.marked_for_later ? " t m" : " t";
                   else if (isAnswered(st)) c += " a"; else if (st?.marked_for_later) c += " m";
-                  return <button key={qq.id} className={c} onClick={() => setI(idx)} aria-label={`Question ${qq.q_no}`}>{qq.q_no}</button>;
+                  return <button key={qq.id} className={c} onClick={() => setI(idx)} aria-label={`Question ${idx + 1}`}>{idx + 1}</button>;
                 })}
               </div>
             </div>
@@ -1051,7 +1052,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
         </div>
         <div className="review panel">
           <h3 style={{ fontSize: 16 }}>Question-wise review</h3>
-          {data.review.map((r) => {
+          {data.review.map((r, n) => {
             const numeric = r.qtype === "numeric";
             const multi = r.qtype === "multi";
             const attempted = numeric ? r.selected_value != null : multi ? !!r.selected_keys?.length : r.selected_key != null;
@@ -1073,7 +1074,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
             return (
               <div key={r.id} className="rev">
                 {r.topic && <div className="tp">{r.topic}</div>}
-                <div className="q">Q{r.q_no}. <MathText text={r.stem} /></div>
+                <div className="q">Q{n + 1}.{r.q_no !== n + 1 && <span className="muted" style={{ fontSize: 11.5, fontWeight: 600 }}> (Paper Q{r.q_no})</span>} <MathText text={r.stem} /></div>
                 <Fig src={r.stem_figure_url} alt={`Figure for question ${r.q_no}`} />
                 <div className="ans">
                   <span className={`y ${!attempted ? "" : got ? "ok" : part ? "part" : "no"}`}>
