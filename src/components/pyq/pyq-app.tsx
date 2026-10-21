@@ -242,6 +242,86 @@ function Loading({ label = "Loading…" }: { label?: string }) {
   return <section className="screen"><div className="loading">{label}</div></section>;
 }
 
+/* Hero demo — a looping, purely decorative "cursor attempts a question" animation:
+   cursor glides in → picks a wrong option (red) → then the correct one (green) → next question.
+   Respects prefers-reduced-motion (static card) and pauses while off-screen. */
+const HERO_DEMO = [
+  { topic: "Electromagnetic Induction", q: "Self-inductance of a coil depends on:", o: ["Only on geometry", "Only on medium property", "Geometry and medium property", "Value of current through the inductor"], c: 2, w: 1 },
+  { topic: "Chemical Bonding", q: "The shape of an NH₃ molecule is:", o: ["Trigonal pyramidal", "Trigonal planar", "Linear", "Tetrahedral"], c: 0, w: 3 },
+  { topic: "Differentiation", q: "If f(x) = x², then f′(3) equals:", o: ["2", "6", "9", "3"], c: 1, w: 2 },
+];
+
+function HeroDemo() {
+  const [qi, setQi] = useState(0);
+  const [st, setSt] = useState({ hov: -1, bad: false, ok: false, fade: false });
+  const [cur, setCur] = useState({ x: 0, y: 0, show: false, press: false });
+  const [vis, setVis] = useState(true);
+  const [still, setStill] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  const opts = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) setStill(true);
+    const el = root.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([e]) => setVis(e.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (still || !vis) return;
+    const d = HERO_DEMO[qi];
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const at = (ms: number, fn: () => void) => { timers.push(setTimeout(fn, ms)); };
+    const aim = (i: number) => {
+      const el = opts.current[i];
+      if (el) setCur((c) => ({ ...c, show: true, press: false, x: el.offsetLeft + el.offsetWidth * 0.8, y: el.offsetTop + el.offsetHeight * 0.5 }));
+    };
+    const r = root.current;
+    setSt({ hov: -1, bad: false, ok: false, fade: false });
+    setCur({ x: r ? r.offsetWidth - 34 : 0, y: r ? r.offsetHeight + 6 : 0, show: false, press: false });
+    at(500, () => aim(d.w));
+    at(1500, () => setSt((s) => ({ ...s, hov: d.w })));
+    at(1900, () => setCur((c) => ({ ...c, press: true })));
+    at(2050, () => { setCur((c) => ({ ...c, press: false })); setSt((s) => ({ ...s, hov: -1, bad: true })); });
+    at(3000, () => aim(d.c));
+    at(3900, () => setSt((s) => ({ ...s, hov: d.c })));
+    at(4200, () => setCur((c) => ({ ...c, press: true })));
+    at(4350, () => { setCur((c) => ({ ...c, press: false })); setSt((s) => ({ ...s, hov: -1, ok: true })); });
+    at(6200, () => { setSt((s) => ({ ...s, fade: true })); setCur((c) => ({ ...c, show: false })); });
+    at(6700, () => setQi((n) => (n + 1) % HERO_DEMO.length));
+    return () => timers.forEach(clearTimeout);
+  }, [qi, vis, still]);
+
+  const d = HERO_DEMO[still ? 0 : qi];
+  const ok = still || st.ok;
+  return (
+    <div className="mini" ref={root}>
+      <div className={"mbody" + (st.fade ? " fade" : "")}>
+        <div className="mtop"><span className="topicpill">{d.topic}</span><span className="marks">+4 / −1</span></div>
+        <div className="mq">{d.q}</div>
+        {d.o.map((t, i) => (
+          <div
+            key={i}
+            ref={(el) => { opts.current[i] = el; }}
+            className={"mo" + (st.hov === i ? " hov" : "") + (st.bad && i === d.w ? " bad" : "") + (ok && i === d.c ? " ok" : "")}
+          >
+            <i>{"ABCD"[i]}</i>{t}
+            {ok && i === d.c && <span className="t">✓ correct</span>}
+            {st.bad && i === d.w && !still && <span className="t bad">✗ wrong</span>}
+          </div>
+        ))}
+      </div>
+      {!still && (
+        <div className={"cur" + (cur.show ? " on" : "") + (cur.press ? " press" : "")} style={{ transform: `translate(${cur.x}px,${cur.y}px)` }}>
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 2l15 8.5-6.6 1.9L9.6 19.5z" fill="#fff" stroke="#0b0618" strokeWidth="1.4" strokeLinejoin="round" /></svg>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ============================================================ S1 Landing */
 function Landing({ papers, go, signedIn, firstName }: { papers: Paper[] | null; go: (u: string) => void; signedIn: boolean; firstName: string }) {
   // Signed-in visitors skip signup: tiles and CTAs go straight to the papers / their dashboard.
@@ -282,14 +362,7 @@ function Landing({ papers, go, signedIn, firstName }: { papers: Paper[] | null; 
           </div>
         </div>
         <div className="heroart" aria-hidden>
-          <div className="mini">
-            <div className="mtop"><span className="topicpill">Electromagnetic Induction</span><span className="marks">+4 / −1</span></div>
-            <div className="mq">Self-inductance of a coil depends on:</div>
-            <div className="mo"><i>A</i>Only on geometry</div>
-            <div className="mo"><i>B</i>Only on medium property</div>
-            <div className="mo ok"><i>C</i>Geometry and medium property<span className="t">✓ correct</span></div>
-            <div className="mo"><i>D</i>Value of current through the inductor</div>
-          </div>
+          <HeroDemo />
         </div>
       </div>
 

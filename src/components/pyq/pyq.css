@@ -58,7 +58,7 @@
 .pyq .heroart{aspect-ratio:4/3;max-width:100%;border-radius:18px;border:1px solid var(--line);background:
   radial-gradient(400px 300px at 70% 20%,rgba(0,207,229,.18),transparent 60%),
   linear-gradient(160deg,rgba(138,24,255,.25),rgba(249,125,3,.12));display:grid;place-items:center;color:var(--muted);font-weight:700;padding:22px}
-.pyq .mini{width:100%;max-width:330px;padding:16px;border-radius:15px;background:rgba(11,6,24,.72);border:1px solid var(--line2);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.pyq .mini{position:relative;width:100%;max-width:330px;padding:16px;border-radius:15px;background:rgba(11,6,24,.72);border:1px solid var(--line2);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .pyq .mini .mtop{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
 .pyq .mini .mq{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:10px}
 .pyq .mini .mo{display:flex;align-items:center;gap:9px;border:1px solid var(--line2);border-radius:9px;padding:7px 9px;font-size:12px;font-weight:600;color:var(--ink);margin-top:6px}
@@ -248,3 +248,20 @@
 .pyq .lg.t{border-style:dashed}
 .pyq .why{padding:20px 22px;margin-top:18px;border-radius:15px}
 .pyq .why p{font-size:14px;margin:8px 0 0;max-width:72ch}
+
+/* Hero demo animation */
+.pyq .mini .mbody{transition:opacity .45s}
+.pyq .mini .mbody.fade{opacity:0}
+.pyq .mini .mo{transition:border-color .2s,background .2s}
+.pyq .mini .mo.hov{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.06)}
+.pyq .mini .mo.bad{border-color:var(--bad);background:rgba(255,91,106,.12);animation:heroShake .35s}
+.pyq .mini .mo.bad i{background:var(--bad);border-color:var(--bad);color:#2a0608}
+.pyq .mini .mo .t.bad{color:var(--bad)}
+.pyq .mini .mo.ok{animation:heroPop .35s}
+.pyq .mini .cur{position:absolute;left:0;top:0;z-index:2;pointer-events:none;opacity:0;transition:transform .9s cubic-bezier(.45,0,.2,1),opacity .3s;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5))}
+.pyq .mini .cur.on{opacity:1}
+.pyq .mini .cur svg{display:block;transition:transform .12s;transform-origin:4px 2px}
+.pyq .mini .cur.press svg{transform:scale(.82)}
+@keyframes heroShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}60%{transform:translateX(4px)}}
+@keyframes heroPop{0%{transform:scale(.98)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.pyq .mini .mo.bad,.pyq .mini .mo.ok{animation:none}}
