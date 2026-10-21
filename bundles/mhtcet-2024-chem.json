@@ -1,0 +1,1875 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Chemistry",
+  "year": 2024,
+  "set_label": "Full paper",
+  "title": "MHT-CET 2024 · Chemistry · Full paper",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "+1 correct · no negative marking",
+  "sort_order": 20,
+  "duration_mins": 60,
+  "source_file_id": "1bxAKqveXUnWLHvCqRbmvkIaEk_FisaDq"
+ },
+ "questions": [
+  {
+   "q_no": 51,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the length of the body diagonal of a FCC unit cell is $x$ Å, the distance between two octahedral voids in the cell in Å is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In a FCC unit cell, octahedral voids are present at the body center and edge centers. The distance between two octahedral voids is calculated as follows:\n1. The length of the body diagonal is:\n$$x = \\sqrt{3}a,$$\nwhere $a$ is the edge length.\n2. From this, the edge length is:\n$$a = \\frac{x}{\\sqrt{3}}.$$\n3. The distance between octahedral voids is:\n$$\\text{Distance} = \\frac{a}{\\sqrt{2}}.$$\nSubstitute $a = \\frac{x}{\\sqrt{3}}$:\n$$\\text{Distance} = \\frac{\\frac{x}{\\sqrt{3}}}{\\sqrt{2}} = \\frac{x}{\\sqrt{3}\\cdot\\sqrt{2}} = \\frac{x}{\\sqrt{6}}.$$\nFinal Answer: $\\frac{x}{\\sqrt{6}}$\nQuick Tip: In FCC crystals, the relationship between body diagonal and edge length is Body Diagonal $= \\sqrt{3}\\cdot$ Edge Length. Use this to compute distances involving voids.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{x}{\\sqrt{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{x}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{x}{\\sqrt{6}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{x}{\\sqrt{8}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 52,
+   "topic": "Chemistry in Everyday Life",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Ortho-sulphobenzimide is used as:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Ortho-sulphobenzimide is the chemical name for saccharin. It is commonly used as a non-caloric artificial sweetener.\nFinal Answer: Artificial sweetener\nQuick Tip: Saccharin is a widely used artificial sweetener. It is much sweeter than sugar and has no calories.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Antioxidant"
+    },
+    {
+     "key": "B",
+     "text": "Artificial sweetener"
+    },
+    {
+     "key": "C",
+     "text": "Food preservative"
+    },
+    {
+     "key": "D",
+     "text": "Food supplement"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 53,
+   "topic": "Some Basic Concepts of Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Volume of a gas at NTP is $1.12 \\times 10^{-7}\\ \\mathrm{cm^{3}}$. The number of molecules in it is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "At NTP, $22,400\\ \\mathrm{cm^{3}}$ of gas contains $6.02 \\times 10^{23}$ molecules.\nFor $1.12 \\times 10^{-7}\\ \\mathrm{cm^{3}}$:\n$$\\text{Number of molecules} = \\frac{6.02 \\times 10^{23}}{22,400} \\cdot 1.12 \\times 10^{-7}.$$\nSimplify:\n$$\\text{Number of molecules} = \\frac{6.02 \\cdot 1.12 \\times 10^{23} \\cdot 10^{-7}}{22,400}.$$\nCalculate:\n$$\\text{Number of molecules} = 3.01 \\times 10^{12}.$$\nFinal Answer: $3.01 \\times 10^{12}$\nQuick Tip: Use the proportionality between volume and number of molecules to calculate the number of molecules at given conditions.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3.01 \\times 10^{12}$"
+    },
+    {
+     "key": "B",
+     "text": "$3.01 \\times 10^{24}$"
+    },
+    {
+     "key": "C",
+     "text": "$3.01 \\times 10^{23}$"
+    },
+    {
+     "key": "D",
+     "text": "$3.01 \\times 10^{20}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 54,
+   "topic": "Structure of Atom",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The wavelength of the radiation emitted, when a hydrogen atom electron falls from infinity to stationary state 1, would be: (Rydberg constant $R = 1.097 \\times 10^{7}\\ \\mathrm{m^{-1}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The wavelength $\\lambda$ of radiation is given by the Rydberg formula:\n$$\\frac{1}{\\lambda} = R\\left(\\frac{1}{n_1^{2}} - \\frac{1}{n_2^{2}}\\right),$$\nwhere: - $R = 1.097 \\times 10^{7}\\ \\mathrm{m^{-1}}$, - $n_1 = 1$ (final state), - $n_2 = \\infty$ (initial state).\n1. Simplify the formula:\n$$\\frac{1}{\\lambda} = R \\cdot \\frac{1}{1^{2}}.$$\n2. Substitute $R$:\n$$\\frac{1}{\\lambda} = 1.097 \\times 10^{7}.$$\n3. Solve for $\\lambda$:\n$$\\lambda = \\frac{1}{1.097 \\times 10^{7}} = 91\\ \\mathrm{nm}.\\ (approx)$$\nFinal Answer: $91\\ \\mathrm{nm}$\nQuick Tip: For transitions to the first stationary state, the wavelength can be directly calculated using $\\lambda = \\frac{1}{R}$ for $n_2 = \\infty$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$406\\ \\mathrm{nm}$"
+    },
+    {
+     "key": "B",
+     "text": "$192\\ \\mathrm{nm}$"
+    },
+    {
+     "key": "C",
+     "text": "$91\\ \\mathrm{nm}$"
+    },
+    {
+     "key": "D",
+     "text": "$9.1 \\times 10^{-8}\\ \\mathrm{nm}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 55,
+   "topic": "Chemical Bonding and Molecular Structure",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In $\\mathrm{NO_3^{-}}$ ion, the number of bond pairs and lone pairs of electrons on the nitrogen atom are:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The structure of $\\mathrm{NO_3^{-}}$ ion is:\n$$\\mathrm{O = N^{+} - O^{-} - O}.$$\nIn $\\mathrm{NO_3^{-}}$: - The nitrogen atom forms 4 bond pairs (3 sigma bonds and 1 pi bond).\n- The nitrogen atom has no lone pairs.\nFinal Answer: $4, 0$\nQuick Tip: Count the shared electron pairs as bond pairs and non-shared electron pairs as lone pairs to determine the bonding in ions.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2, 2$"
+    },
+    {
+     "key": "B",
+     "text": "$3, 1$"
+    },
+    {
+     "key": "C",
+     "text": "$1, 3$"
+    },
+    {
+     "key": "D",
+     "text": "$4, 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 56,
+   "topic": "Redox Reactions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In which of the compounds does 'manganese' exhibit the highest oxidation number?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In $\\mathrm{K_2MnO_4}$, the oxidation number of Mn can be calculated as:\n$$2(+1) + x + 4(-2) = 0,$$\nwhere $x$ is the oxidation number of Mn.\nSimplify:\n$$2 + x - 8 = 0 \\implies x = +6.$$\nIn the other compounds: - $\\mathrm{MnO_2}$ : Mn = $+4$,\n- $\\mathrm{Mn_3O_4}$ : Mn = $+8/3$ (average),\n- $\\mathrm{MnSO_4}$ : Mn = $+2$.\nThus, the highest oxidation number is in $\\mathrm{K_2MnO_4}$.\nFinal Answer: $\\mathrm{K_2MnO_4}$\nQuick Tip: The oxidation number of a metal in a compound is determined by the charges of the other atoms or groups in the compound.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{MnO_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Mn_3O_4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{K_2MnO_4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{MnSO_4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 57,
+   "topic": "s-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Alkali metals are powerful reducing agents because:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Alkali metals have a single valence electron, and their low ionisation energy makes it easy to lose this electron and get oxidised. This property makes them strong reducing agents.\nFinal Answer: Their ionisation energies are low\nQuick Tip: The lower the ionisation energy, the easier it is for an atom to lose electrons, increasing its reducing power.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "They are metals"
+    },
+    {
+     "key": "B",
+     "text": "They are monovalent"
+    },
+    {
+     "key": "C",
+     "text": "Their ionic radii are large"
+    },
+    {
+     "key": "D",
+     "text": "Their ionisation energies are low"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 58,
+   "topic": "States of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A balloon filled with an air sample occupies $3\\ \\mathrm{L}$ volume at $35^\\circ\\mathrm{C}$. On lowering the temperature to $T$, the volume decreases to $2.5\\ \\mathrm{L}$. The temperature $T$ is: [Assume $P$-constant]",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "From Charles's law:\n$$\\frac{V_1}{T_1} = \\frac{V_2}{T_2}.$$\nSubstitute the known values:\n$$\\frac{3}{308} = \\frac{2.5}{T_2},$$\nwhere $T_1 = 35^\\circ\\mathrm{C} = 273 + 35 = 308\\ \\mathrm{K}$.\nSolve for $T_2$:\n$$T_2 = \\frac{2.5 \\cdot 308}{3} = 256.6\\ \\mathrm{K}.$$\nConvert to Celsius:\n$$T_2 = 256.6 - 273 = -16.4^\\circ\\mathrm{C} \\approx -16^\\circ\\mathrm{C}.$$\nFinal Answer: $-16^\\circ\\mathrm{C}$\nQuick Tip: Use Charles's law to relate the volume and temperature of gases when the pressure is constant.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "B",
+     "text": "$-16^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "C",
+     "text": "$24^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "D",
+     "text": "$-20^\\circ\\mathrm{C}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 59,
+   "topic": "Surface Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which one of the following is used as an eye lotion?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Silver sol can be used as an eye lotion because of its antibacterial and healing properties. It helps in treating eye infections effectively.\nFinal Answer: Silver sol\nQuick Tip: Colloidal silver is often used in medical applications for its antibacterial properties.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Milk of magnesia"
+    },
+    {
+     "key": "B",
+     "text": "Silver sol"
+    },
+    {
+     "key": "C",
+     "text": "Colloidal antimony"
+    },
+    {
+     "key": "D",
+     "text": "Chromium salt sol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 60,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify ortho and para directing groups from the following:\n$\\mathrm{-CHO}$, $\\mathrm{-NHCOCH_3}$, $\\mathrm{-OCH_3}$, $\\mathrm{-SO_3H}$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Electron-donating groups like $\\mathrm{-NHCOCH_3}$ and $\\mathrm{-OCH_3}$ are ortho and para directing because they increase electron density at the ortho and para positions of the benzene ring through resonance or inductive effects.\nElectron-withdrawing groups like $\\mathrm{-CHO}$ and $\\mathrm{-SO_3H}$ are meta directing.\nFinal Answer: II, III\nQuick Tip: Ortho and para directing groups are usually electron-donating, while meta directing groups are electron-withdrawing.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "III, IV"
+    },
+    {
+     "key": "B",
+     "text": "II, III"
+    },
+    {
+     "key": "C",
+     "text": "II, IV"
+    },
+    {
+     "key": "D",
+     "text": "I, IV"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 61,
+   "topic": "Basic Principles of Organic Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which one of the carbanions is the least stable?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Carbanion stability depends on the electron-withdrawing nature of attached groups:\n- $\\mathrm{-NO_2}$ and $\\mathrm{-CHO}$ are strong electron-withdrawing groups, stabilising the negative charge.\n- $\\mathrm{-CH_3}$ is electron-donating, which destabilises the negative charge.\nThus, $\\mathrm{CH_2 - CH_3}$ is the least stable as it lacks electron-withdrawing groups.\nFinal Answer: $\\mathrm{\\overset{\\ominus}{C}H_2 - CH_3}$\nQuick Tip: Carbanions are stabilised by electron-withdrawing groups and destabilised by electron-donating groups.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{\\overset{\\ominus}{C}H_2 - NO_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{\\overset{\\ominus}{C}H_2 - CHO}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{\\overset{\\ominus}{C}H_2 - CH_3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{\\overset{\\ominus}{C}H_3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 62,
+   "topic": "Chemical Bonding and Molecular Structure",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In $\\mathrm{O_2^{-}}$, $\\mathrm{O_2}$, and $\\mathrm{O_2^{2-}}$ molecular species, the total number of antibonding electrons respectively are:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The molecular orbital electronic configurations are:\n- $\\mathrm{O_2^{-}}$: $\\pi_{2p_x}^{2}\\pi_{2p_y}^{2}\\pi_{2p_x}^{1}$ (7 antibonding electrons),\n- $\\mathrm{O_2}$: $\\pi_{2p_x}^{2}\\pi_{2p_y}^{2}$ (6 antibonding electrons),\n- $\\mathrm{O_2^{2-}}$: $\\pi_{2p_x}^{2}\\pi_{2p_y}^{2}\\pi_{2p_x}^{2}$ (8 antibonding electrons).\nFinal Answer: $7, 6, 8$\nQuick Tip: The number of antibonding electrons depends on the molecular orbital configuration.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$7, 6, 8$"
+    },
+    {
+     "key": "B",
+     "text": "$1, 0, 2$"
+    },
+    {
+     "key": "C",
+     "text": "$6, 6, 6$"
+    },
+    {
+     "key": "D",
+     "text": "$8, 6, 8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 63,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "People living at high altitudes often reported a problem of feeling weak and inability to think clearly. The reason for this is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "At high altitudes, the partial pressure of oxygen is lower, leading to reduced oxygen availability in the blood. This condition, called hypoxia, causes symptoms like weakness and difficulty in thinking, known as anoxia.\nFinal Answer: At high altitudes the partial pressure of oxygen is less than at the ground level.\nQuick Tip: Low oxygen levels at high altitudes can lead to altitude sickness or anoxia.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "At high altitudes the partial pressure of oxygen is less than at the ground level."
+    },
+    {
+     "key": "B",
+     "text": "At high altitudes the partial pressure of oxygen is more than at the ground level."
+    },
+    {
+     "key": "C",
+     "text": "At high altitudes the partial pressure of oxygen is equal to that at the ground level."
+    },
+    {
+     "key": "D",
+     "text": "None of these"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 64,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Specific conductance of $0.1\\ \\mathrm{M\\ HNO_3}$ is $6.3 \\times 10^{-2}\\ \\mathrm{ohm^{-1}\\,cm^{-1}}$. The molar conductance of the solution is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Molar conductance is given by:\n$$\\Lambda_m = \\kappa \\cdot \\frac{1000}{C},$$\nwhere: - $\\kappa = 6.3 \\times 10^{-2}\\ \\mathrm{ohm^{-1}\\,cm^{-1}}$,\n- $C = 0.1\\ \\mathrm{M}$.\nSubstitute:\n$$\\Lambda_m = 6.3 \\times 10^{-2} \\cdot \\frac{1000}{0.1} = 6.3 \\times 10^{2} = 630\\ \\mathrm{ohm^{-1}\\,cm^{2}\\,mol^{-1}}.$$\nFinal Answer: $630\\ \\mathrm{ohm^{-1}\\,cm^{2}\\,mol^{-1}}$\nQuick Tip: Molar conductance is directly proportional to specific conductance and inversely proportional to concentration.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100\\ \\mathrm{ohm^{-1}\\,cm^{2}\\,mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$515\\ \\mathrm{ohm^{-1}\\,cm^{2}\\,mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$630\\ \\mathrm{ohm^{-1}\\,cm^{2}\\,mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$6300\\ \\mathrm{ohm^{-1}\\,cm^{2}\\,mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 65,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The rate constant for a first-order reaction whose half-life is 480 seconds is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For a first-order reaction, the rate constant $k$ is related to the half-life $t_{1/2}$ as:\n$$k = \\frac{0.693}{t_{1/2}}.$$\nSubstitute $t_{1/2} = 480\\ \\mathrm{s}$:\n$$k = \\frac{0.693}{480}.$$\nSimplify:\n$$k = 1.44 \\times 10^{-3}\\ \\mathrm{s^{-1}}.$$\nThis value corresponds to the rate constant for the reaction, which depends only on the half-life for a first-order process.\nFinal Answer: $1.44 \\times 10^{-3}\\ \\mathrm{s^{-1}}$\nQuick Tip: In first-order reactions, the rate constant is inversely proportional to the half-life. Use $k = \\frac{0.693}{t_{1/2}}$ to quickly find the rate constant.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2.88 \\times 10^{-3}\\ \\mathrm{s^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$2.72 \\times 10^{-3}\\ \\mathrm{s^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.44 \\times 10^{-3}\\ \\mathrm{s^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.44\\ \\mathrm{s^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 66,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the activation energy for the forward reaction is $150\\ \\mathrm{kJ/mol}$ and that of the reverse reaction is $260\\ \\mathrm{kJ/mol}$, what is the enthalpy change for the reaction?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The enthalpy change $\\Delta H$ for a reaction is related to the activation energies of the forward reaction ($E_a^{\\mathrm{f}}$) and the reverse reaction ($E_a^{\\mathrm{r}}$) as:\n$$\\Delta H = E_a^{\\mathrm{f}} - E_a^{\\mathrm{r}}.$$\nSubstitute the given values:\n$$\\Delta H = 150 - 260 = -110\\ \\mathrm{kJ/mol}.$$\nSince $\\Delta H$ is negative, this indicates that the reaction is exothermic (releases heat).\nFinal Answer: $-110\\ \\mathrm{kJ/mol}$\nQuick Tip: For exothermic reactions, $E_a^{\\mathrm{r}} > E_a^{\\mathrm{f}}$, resulting in a negative $\\Delta H$. For endothermic reactions, $\\Delta H$ is positive.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$410\\ \\mathrm{kJ/mol}$"
+    },
+    {
+     "key": "B",
+     "text": "$-110\\ \\mathrm{kJ/mol}$"
+    },
+    {
+     "key": "C",
+     "text": "$110\\ \\mathrm{kJ/mol}$"
+    },
+    {
+     "key": "D",
+     "text": "$-410\\ \\mathrm{kJ/mol}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 67,
+   "topic": "Surface Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For $\\mathrm{As_2S_3}$ sol, the most effective coagulating agent is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The coagulation of a negatively charged sol like $\\mathrm{As_2S_3}$ is most effective with a highly positively charged ion, as stated by the Hardy-Schulze rule.\nAmong the given options: - $\\mathrm{FeCl_3}$ produces $\\mathrm{Fe^{3+}}$, which has the highest positive charge ($+3$).\n- Higher charges neutralise the negative charge of the sol more effectively, causing coagulation.\nOther options, such as $\\mathrm{CaCO_3}$ ($\\mathrm{Ca^{2+}}$) and NaCl ($\\mathrm{Na^{+}}$), have lower positive charges and are less effective.\nFinal Answer: $\\mathrm{FeCl_3}$\nQuick Tip: The effectiveness of a coagulating agent is proportional to the charge magnitude of its ions, as per the Hardy-Schulze rule.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CaCO_3}$"
+    },
+    {
+     "key": "B",
+     "text": "NaCl"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{FeCl_3}$"
+    },
+    {
+     "key": "D",
+     "text": "Clay"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 68,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Element not showing variable oxidation state is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Fluorine is the most electronegative element and does not exhibit variable oxidation states because:\n1. It cannot expand its octet (no available $d$-orbitals).\n2. Fluorine always has an oxidation state of $-1$ in its compounds due to its high electronegativity.\nOther halogens, such as bromine, iodine, and chlorine, can show variable oxidation states due to the presence of vacant $d$-orbitals.\nFinal Answer: Fluorine\nQuick Tip: Highly electronegative elements like fluorine have fixed oxidation states, as they cannot expand their octet.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Bromine"
+    },
+    {
+     "key": "B",
+     "text": "Iodine"
+    },
+    {
+     "key": "C",
+     "text": "Chlorine"
+    },
+    {
+     "key": "D",
+     "text": "Fluorine"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 69,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following arrangements does not represent the correct order of the property stated against it?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Paramagnetic behaviour is determined by the number of unpaired electrons in the electronic configuration. The configurations are:\n- $\\mathrm{V^{2+}}$ : $3d^{3}$ (3 unpaired electrons),\n- $\\mathrm{Cr^{2+}}$ : $3d^{4}$ (4 unpaired electrons),\n- $\\mathrm{Mn^{2+}}$ : $3d^{5}$ (5 unpaired electrons),\n- $\\mathrm{Fe^{2+}}$ : $3d^{6}$ (4 unpaired electrons).\nThe correct order of paramagnetic behaviour should be:\n$$\\mathrm{V^{2+} < Cr^{2+} < Fe^{2+} < Mn^{2+}}.$$\nThus, the arrangement given in Option (1) does not represent the correct order of paramagnetic behaviour.\nFinal Answer: $\\mathrm{V^{2+} < Cr^{2+} < Mn^{2+} < Fe^{2+}}$\nQuick Tip: The number of unpaired electrons determines the paramagnetic behaviour of an ion. The greater the number of unpaired electrons, the stronger the paramagnetic behaviour.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{V^{2+} < Cr^{2+} < Mn^{2+} < Fe^{2+}}$: Paramagnetic behaviour"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Ni^{2+} < Co^{2+} < Fe^{2+} < Mn^{2+}}$: Ionic size"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{Co^{3+} < Fe^{3+} < Cr^{3+} < Sc^{3+}}$: Stability in aqueous solution"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{Sc < Ti < Cr < Mn}$: Number of oxidation states"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 70,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The IUPAC name for the complex $\\mathrm{[Co(ONO)(NH_3)_5]Cl_2}$ is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given complex $\\mathrm{[Co(ONO)(NH_3)_5]Cl_2}$ contains:\n- ONO: Nitrito ligand coordinated through oxygen (denoted as \\\"nitrito-O\\\"),\n- $\\mathrm{NH_3}$: Neutral ammine ligands,\n- $\\mathrm{Cl_2}$: Counter ions.\nThe oxidation state of cobalt is calculated as:\n$$\\mathrm{Co} + 5(0) + (-1) + 2(-1) = 0 \\implies \\mathrm{Co} = +3.$$\nThus, the IUPAC name of the complex is:\nPentaammine-nitrito-O-cobalt(III) chloride.\nQuick Tip: In naming coordination compounds, specify the donor atom (O or N) of ambidentate ligands like ONO to avoid ambiguity.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Pentaammine-nitrito-O-cobalt(II)chloride"
+    },
+    {
+     "key": "B",
+     "text": "Pentaammine-nitrito-O-cobalt(III)chloride"
+    },
+    {
+     "key": "C",
+     "text": "Nitrito-N-pentaamminecobalt(III)chloride"
+    },
+    {
+     "key": "D",
+     "text": "Nitrito-N-pentaamminecobalt(II)chloride"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 71,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following compounds will give racemic mixture on nucleophilic substitution by $\\mathrm{OH^{-}}$ ion?\n(i) $\\mathrm{CH_3-CH(C_2H_5)-Br}$\n(ii) $\\mathrm{CH_3-CH(Br)(C_2H_5)-CH_3}$\n(iii) $\\mathrm{CH_3-CH(C_2H_5)-CH_2Br}$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Compounds that follow the $\\mathrm{S_N1}$ mechanism during nucleophilic substitution reactions will give a racemic mixture. The $\\mathrm{S_N1}$ mechanism proceeds via the formation of a planar carbocation intermediate, which can be attacked by the nucleophile from either side, resulting in a 1:1 mixture of enantiomers.\nThe reactivity order for $\\mathrm{S_N1}$ is:\n$$3^\\circ > 2^\\circ > 1^\\circ\\ \\text{(alkyl halides)}.$$\n- Compound (i): Contains a secondary carbon and follows the $\\mathrm{S_N1}$ mechanism.\n- Compound (ii): Contains a tertiary carbon and strongly favours the $\\mathrm{S_N1}$ mechanism.\n- Compound (iii): Contains a secondary carbon and follows the $\\mathrm{S_N1}$ mechanism.\nThus, all three compounds produce a racemic mixture.\nFinal Answer: (i), (ii), and (iii)\nQuick Tip: Racemic mixtures are formed in nucleophilic substitutions that proceed through $\\mathrm{S_N1}$, where the intermediate carbocation allows equal probability of attack from both sides.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(i)"
+    },
+    {
+     "key": "B",
+     "text": "(i), (ii), and (iii)"
+    },
+    {
+     "key": "C",
+     "text": "(ii) and (iii)"
+    },
+    {
+     "key": "D",
+     "text": "(i) and (iii)"
+    }
+   ],
+   "stem_figure": "m24-q071.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 72,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which one of the following is not correct for an ideal solution?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "An ideal solution is characterised by the following properties:\n1. It obeys Raoult's law over the entire range of composition.\n2. There is no heat change during mixing ($\\Delta H = 0$).\n3. There is no volume change during mixing ($\\Delta V = 0$).\nOption (3), which states that $\\Delta H = \\Delta V \\neq 0$, is incorrect because both $\\Delta H$ and $\\Delta V$ must be zero for an ideal solution.\nFinal Answer: $\\Delta H = \\Delta V \\neq 0$\nQuick Tip: In an ideal solution, no heat or volume changes occur during mixing. Deviations from these conditions indicate non-ideal behaviour.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It must obey Raoult's law."
+    },
+    {
+     "key": "B",
+     "text": "$\\Delta H = 0$."
+    },
+    {
+     "key": "C",
+     "text": "$\\Delta H = \\Delta V \\neq 0$."
+    },
+    {
+     "key": "D",
+     "text": "All are correct."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 73,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For the relation $\\Delta_r G = -nFE_{\\mathrm{cell}}$, $E_{\\mathrm{cell}} = E^\\circ_{\\mathrm{cell}}$, in which of the following conditions?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For $E_{\\mathrm{cell}} = E^\\circ_{\\mathrm{cell}}$, the Nernst equation becomes:\n$$E_{\\mathrm{cell}} = E^\\circ_{\\mathrm{cell}} - \\frac{RT}{nF}\\ln Q,$$\nwhere $Q$ is the reaction quotient.\nTo ensure $E_{\\mathrm{cell}} = E^\\circ_{\\mathrm{cell}}$, the logarithmic term $\\ln Q$ must be zero, which occurs when:\n$$Q = 1 \\implies \\text{Concentration of all reactant and product species is unity}.$$\nThis condition ensures that the cell operates under standard conditions, where $E_{\\mathrm{cell}}$ equals $E^\\circ_{\\mathrm{cell}}$.\nFinal Answer: Concentration of all the reactant and product species should be unity.\nQuick Tip: For $E_{\\mathrm{cell}}$ to equal $E^\\circ_{\\mathrm{cell}}$, all reactants and products must have unit concentrations, ensuring standard-state conditions.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Concentration of any one of the reacting species should be unity."
+    },
+    {
+     "key": "B",
+     "text": "Concentration of all the product species should be unity."
+    },
+    {
+     "key": "C",
+     "text": "Concentration of all the reactant and product species should be unity."
+    },
+    {
+     "key": "D",
+     "text": "Concentration of all reacting and product species should be unity."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 74,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which one of the lanthanoids given below is the most stable in divalent form?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The divalent state stability depends on the electronic configuration of the ion. Fully filled and half-filled configurations are exceptionally stable:\n$$\\mathrm{Ce^{2+}} \\rightarrow 4f^{1},\\quad \\mathrm{Sm^{2+}} \\rightarrow 4f^{6},\\quad \\mathrm{Eu^{2+}} \\rightarrow 4f^{7},\\quad \\mathrm{Yb^{2+}} \\rightarrow 4f^{14}.$$\nReduction potential comparison:\n$$E^\\circ_{M^{3+}/M^{2+}}:\\quad \\mathrm{Eu} = -0.35\\ \\mathrm{V},\\quad \\mathrm{Yb} = -1.05\\ \\mathrm{V}.$$\nEuropium ($\\mathrm{Eu^{2+}}$) is more stable than $\\mathrm{Yb^{2+}}$ due to the lower reduction potential and the stability of the half-filled $4f^{7}$ configuration.\nQuick Tip: Stability in lanthanoids depends on electronic configuration and reduction potential. Fully filled ($4f^{14}$) and half-filled ($4f^{7}$) configurations are the most stable.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Ce (Atomic Number 58)"
+    },
+    {
+     "key": "B",
+     "text": "Sm (Atomic Number 62)"
+    },
+    {
+     "key": "C",
+     "text": "Eu (Atomic Number 63)"
+    },
+    {
+     "key": "D",
+     "text": "Yb (Atomic Number 70)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 75,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The value of the 'spin only' magnetic moment for one of the following configurations is $2.84\\ \\mathrm{BM}$. The correct one is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The spin-only magnetic moment is given by:\n$$\\mu = \\sqrt{n(n+2)}\\ \\mathrm{BM},$$\nwhere $n$ is the number of unpaired electrons.\nConfigurations and calculations:\n$d^{5}$ (strong ligand field): $n = 1$, $\\mu = \\sqrt{3} = 1.73\\ \\mathrm{BM}$,\n$d^{3}$ (weak/strong field): $n = 3$, $\\mu = \\sqrt{15} = 3.87\\ \\mathrm{BM}$,\n$d^{4}$ (weak field): $n = 4$, $\\mu = \\sqrt{24} = 4.89\\ \\mathrm{BM}$,\n$d^{4}$ (strong field): $n = 2$, $\\mu = \\sqrt{8} = 2.82\\ \\mathrm{BM}$.\nThe configuration $d^{4}$ (in strong ligand field) corresponds to $\\mu = 2.84\\ \\mathrm{BM}$.\nFinal Answer: $d^{4}$ (in strong ligand fields)\nQuick Tip: Magnetic moment depends on unpaired electrons. In strong ligand fields, the pairing of electrons reduces the number of unpaired electrons.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$d^{5}$ (in strong ligand field)"
+    },
+    {
+     "key": "B",
+     "text": "$d^{3}$ (in weak as well as strong fields)"
+    },
+    {
+     "key": "C",
+     "text": "$d^{4}$ (in weak ligand fields)"
+    },
+    {
+     "key": "D",
+     "text": "$d^{4}$ (in strong ligand fields)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 76,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Chlorobenzene reacts with Mg in dry ether to give a compound ($A$) which further reacts with ethanol to yield:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step-by-step reaction:\n1. Chlorobenzene ($\\mathrm{C_6H_5Cl}$) reacts with magnesium in dry ether to form phenyl magnesium chloride ($\\mathrm{C_6H_5MgCl}$), a Grignard reagent:\n$$\\mathrm{C_6H_5Cl + Mg \\xrightarrow{dry\\ ether} C_6H_5MgCl}.$$\n2. Phenyl magnesium chloride reacts with ethanol ($\\mathrm{C_2H_5OH}$) to form benzene ($\\mathrm{C_6H_6}$) and magnesium ethoxide ($\\mathrm{C_2H_5OMgCl}$):\n$$\\mathrm{C_6H_5MgCl + C_2H_5OH \\rightarrow C_6H_6 + C_2H_5OMgCl}.$$\nFinal Answer: Benzene\nQuick Tip: Grignard reagents react with alcohols to form hydrocarbons. Always identify the functional groups in both reactants to predict the products.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Phenol"
+    },
+    {
+     "key": "B",
+     "text": "Benzene"
+    },
+    {
+     "key": "C",
+     "text": "Ethylbenzene"
+    },
+    {
+     "key": "D",
+     "text": "Phenyl ether"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 77,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The products formed in the following reaction, A and B, are:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The reaction involves two steps:\nStep 1: Oxidation using Tollens' reagent $[Ag(NH_3)_2]^{+}$ and $OH^{-}$\n- Tollens' reagent selectively oxidizes aldehydes to carboxylic acids.\n- The aldehyde group ($-CHO$) in the given compound is oxidized to a carboxylic acid group ($-COOH$).\nThe product $A$ after oxidation is:\nA = Compound with the aldehyde oxidized to a carboxylic acid: $HCOOH$.\nStep 2: Reduction using $NaBH_4$\n- Sodium borohydride ($NaBH_4$) reduces ketones and aldehydes to alcohols.\n- In the given compound, the ketone group ($-C=O$) is reduced to a secondary alcohol ($-CH(OH)-$).\nThe product $B$ after reduction is:\nB = Compound with the ketone reduced to an alcohol: $HCOOH$.\nFinal Answer: The products A and B correspond to: Option C\nQuick Tip: Oxidation with $[Ag(NH_3)]^{+}$ selectively oxidizes aldehydes to carboxylic acids, while reduction with $\\mathrm{NaBH_4}$ converts ketones to alcohols.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "m24-q077-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "m24-q077-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "m24-q077-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "m24-q077-optD.png"
+    }
+   ],
+   "stem_figure": "m24-q077.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 78,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following represents the correct order of acidity in the given compounds?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Acidity in carboxylic acids increases due to the electron-withdrawing (-I) effect of substituents attached to the carbon adjacent to the carboxylic acid group (COOH).\nOrder of electronegativity:\n$$\\mathrm{F > Cl > Br > H}.$$\nFluorine induces the strongest -I effect, stabilizing the carboxylate ion and increasing acidity, followed by chlorine, bromine, and finally hydrogen.\nFinal Answer: $\\mathrm{FCH_2COOH > ClCH_2COOH > BrCH_2COOH > CH_3COOH}$\nQuick Tip: Electron-withdrawing groups increase acidity by stabilizing the carboxylate ion. The stronger the -I effect, the higher the acidity.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{FCH_2COOH > CH_3COOH > BrCH_2COOH > ClCH_2COOH}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{BrCH_2COOH > ClCH_2COOH > FCH_2COOH > CH_3COOH}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{FCH_2COOH > ClCH_2COOH > BrCH_2COOH > CH_3COOH}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{CH_3COOH > BrCH_2COOH > ClCH_2COOH > FCH_2COOH}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 79,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Ethyl alcohol can be prepared from Grignard reagent by the reaction of:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Grignard reagents react with carbonyl compounds to form alcohols. Formaldehyde ($\\mathrm{HCHO}$) reacts with Grignard reagents to produce primary alcohols like ethyl alcohol ($\\mathrm{C_2H_5OH}$).\nStep 1: Reaction mechanism.\n1. The nucleophilic $\\mathrm{CH_3MgBr}$ attacks the electrophilic carbon in formaldehyde:\n$$\\mathrm{HCHO + CH_3MgBr \\rightarrow CH_3CH_2OMgBr}.$$\n2. The intermediate alcoholate ion ($\\mathrm{CH_3CH_2OMgBr}$) is hydrolyzed to form ethyl alcohol:\n$$\\mathrm{CH_3CH_2OMgBr + H_3O^{+} \\rightarrow CH_3CH_2OH}.$$\nFinal Answer: $\\mathrm{HCHO}$\nQuick Tip: Grignard reagents react with formaldehyde to produce primary alcohols, with other carbonyl compounds yielding secondary or tertiary alcohols.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{HCHO}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{R_2CO}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{RCN}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{RCOCl}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 80,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is most acidic?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Phenols are more acidic than alcohols because the phenoxide ion formed after losing $\\mathrm{H^{+}}$ is resonance stabilized. Among phenols, electron-withdrawing substituents like -Cl increase acidity by stabilizing the negative charge on the oxygen atom.\nStep 1: Compare structures.\nBenzyl alcohol: Less acidic because the -OH group is attached to a saturated carbon.\nCyclohexanol: Similar to benzyl alcohol, it lacks resonance stabilization.\nPhenol: Acidic due to resonance stabilization of the phenoxide ion.\n$m$-chlorophenol: Most acidic because the -Cl group has an electron-withdrawing (-I) effect, enhancing resonance stabilization.\nFinal Answer: $m$-chlorophenol\nQuick Tip: Electron-withdrawing substituents increase the acidity of phenols by stabilizing the negative charge on the phenoxide ion.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Benzyl alcohol"
+    },
+    {
+     "key": "B",
+     "text": "Cyclohexanol"
+    },
+    {
+     "key": "C",
+     "text": "Phenol"
+    },
+    {
+     "key": "D",
+     "text": "$m$-chlorophenol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 81,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Nitration of the compound is carried out. This compound gives red-orange precipitate with 2,4-DNP, undergoes Cannizzaro reaction but not aldol, then the possible product due to nitration is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The compound undergoes Cannizzaro reaction but not aldol condensation, indicating the absence of alpha-hydrogens. This suggests that the compound is an aldehyde. Upon nitration, benzaldehyde forms 3-nitrobenzaldehyde.\nStep 1: Reaction mechanism.\n$$\\mathrm{CHO \\xrightarrow{Nitration} NO_2\\text{-}CHO}.$$\nThe nitration occurs at the meta-position relative to the aldehyde group due to the electron-withdrawing nature of the -CHO group.\nFinal Answer: 3-nitrobenzaldehyde\nQuick Tip: Aldehydes lacking alpha-hydrogens undergo Cannizzaro reactions. The electron-withdrawing nature of -CHO directs electrophilic substitution to the meta-position.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3-nitroacetophenone"
+    },
+    {
+     "key": "B",
+     "text": "(2-nitro)-2-phenylethanol"
+    },
+    {
+     "key": "C",
+     "text": "(2-nitro)-1-phenylpropan-2-one"
+    },
+    {
+     "key": "D",
+     "text": "3-nitrobenzaldehyde"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 82,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following reactions will not give a primary amine?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The reactions and their respective products are as follows:\n(a) Hofmann Bromamide Reaction:\n$$\\mathrm{CH_3CONH_2 \\xrightarrow{Br_2/KOH} CH_3NH_2}.$$\nThis reaction involves the conversion of an amide ($\\mathrm{CONH_2}$) to a primary amine ($\\mathrm{CH_3NH_2}$) with the loss of one carbon atom.\n(b) Reduction of Nitriles:\n$$\\mathrm{CH_3CN \\xrightarrow{LiAlH_4} CH_3CH_2NH_2}.$$\nNitriles (CN) are reduced to primary amines ($\\mathrm{CH_3CH_2NH_2}$) using lithium aluminium hydride ($\\mathrm{LiAlH_4}$).\n(c) Reduction of Isocyanides (Methyl Isocyanide):\n$$\\mathrm{CH_3NC \\xrightarrow{LiAlH_4} CH_3NHCH_3}.$$\nIsocyanides (NC) are reduced to secondary amines ($\\mathrm{CH_3NHCH_3}$) using lithium aluminium hydride. Hence, this reaction does not produce a primary amine.\n(d) Reduction of Amides:\n$$\\mathrm{CH_3CONH_2 \\xrightarrow{LiAlH_4} CH_3CH_2NH_2}.$$\nAmides ($\\mathrm{CONH_2}$) are reduced to primary amines ($\\mathrm{CH_3CH_2NH_2}$) using lithium aluminium hydride.\nConclusion: Among the given reactions, option (3) does not produce a primary amine; it produces a secondary amine instead.\nFinal Answer: $\\mathrm{CH_3NC \\xrightarrow{LiAlH_4} CH_3NHCH_3}$ (Secondary Amine)\nQuick Tip: The Hofmann Bromamide Reaction and reduction of nitriles or amides produce primary amines, while the reduction of isocyanides produces secondary amines.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3CONH_2 \\xrightarrow{Br_2/KOH}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CH_3CN \\xrightarrow{LiAlH_4}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CH_3NC \\xrightarrow{LiAlH_4}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{CH_3CONH_2 \\xrightarrow{LiAlH_4}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 83,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following compounds is most reactive towards nucleophilic addition reactions?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The reactivity of carbonyl compounds in nucleophilic addition reactions depends on:\nThe electrophilicity of the carbonyl carbon,\nSteric hindrance around the carbonyl group,\nElectronic effects due to substituents.\nStep 1: Compare aldehydes and ketones.\n- Aldehydes ($\\mathrm{CH_3CHO}$ and $\\mathrm{C_6H_5CHO}$) have only one alkyl or aryl group attached to the carbonyl carbon, making them less sterically hindered and more reactive.\n- Ketones ($\\mathrm{CH_3COCH_3}$ and $\\mathrm{C_6H_5COCH_3}$) have two substituents, increasing steric hindrance and reducing reactivity.\nStep 2: Analyze electronic effects.\n- In aldehydes, the single alkyl group stabilizes the partial positive charge on the carbonyl carbon via an inductive effect.\n- Benzaldehyde ($\\mathrm{C_6H_5CHO}$) is less reactive than acetaldehyde ($\\mathrm{CH_3CHO}$) because the phenyl group participates in resonance, reducing the electrophilicity of the carbonyl carbon.\nStep 3: Final comparison.\n- Acetaldehyde ($\\mathrm{CH_3CHO}$) has minimal steric hindrance and no resonance effects, making it the most reactive towards nucleophilic addition.\n- Benzaldehyde, though less sterically hindered than ketones, has reduced reactivity due to resonance.\n- Ketones ($\\mathrm{CH_3COCH_3}$ and $\\mathrm{C_6H_5COCH_3}$) are the least reactive due to steric hindrance from two substituents.\nFinal Answer: $\\mathrm{CH_3CHO}$\nQuick Tip: Aldehydes are more reactive than ketones towards nucleophilic addition due to lower steric hindrance and higher electrophilicity of the carbonyl carbon.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3-C(=O)-H}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CH_3-C(=O)-CH_3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{C_6H_5-C(=O)-H}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{C_6H_5-C(=O)-CH_3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 84,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Molecules whose mirror image is non-superimposable over them are known as chiral. Which of the following molecules is chiral in nature?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "A molecule is chiral if it contains at least one carbon atom (referred to as a chiral carbon or asymmetric carbon) bonded to four different substituents. Such molecules lack a plane of symmetry, and their mirror images are non-superimposable.\nStep 1: Analyze each option.\nOption (1): 2-bromobutane The second carbon in $\\mathrm{CH_3\\text{-}CHBr\\text{-}CH_2\\text{-}CH_3}$ is attached to:\nA bromine atom (Br),\nA methyl group ($\\mathrm{CH_3}$),\nAn ethyl group ($\\mathrm{CH_2CH_3}$),\nA hydrogen atom (H).\nSince the second carbon is bonded to four different groups, 2-bromobutane is chiral.\nOption (2): 1-bromobutane The first carbon in $\\mathrm{CH_3\\text{-}CH_2\\text{-}CH_2\\text{-}CH_2\\text{-}Br}$ is bonded to:\nA bromine atom (Br),\nTwo hydrogen atoms (H),\nAn ethyl group ($\\mathrm{CH_2CH_2CH_3}$).\nSince this carbon is bonded to two identical substituents (H), 1-bromobutane is not chiral.\nOption (3): 2-bromopropane The second carbon in $\\mathrm{CH_3\\text{-}CHBr\\text{-}CH_3}$ is bonded to:\nA bromine atom (Br),\nTwo methyl groups ($\\mathrm{CH_3}$),\nA hydrogen atom (H).\nSince this carbon is bonded to two identical methyl groups, 2-bromopropane is not chiral.\nOption (4): 2-bromopropan-2-ol The second carbon in $\\mathrm{CH_3\\text{-}CBr(OH)\\text{-}CH_3}$ is bonded to:\nA bromine atom (Br),\nA hydroxyl group (OH),\nTwo methyl groups ($\\mathrm{CH_3}$).\nSince this carbon is bonded to two identical methyl groups, 2-bromopropan-2-ol is not chiral.\nStep 2: Conclusion. Among the given options, only 2-bromobutane contains a chiral carbon and is therefore chiral.\nFinal Answer: 2-bromobutane\nQuick Tip: A chiral carbon is a carbon atom bonded to four different groups. Molecules containing such carbons are non-superimposable on their mirror images.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2-bromobutane"
+    },
+    {
+     "key": "B",
+     "text": "1-bromobutane"
+    },
+    {
+     "key": "C",
+     "text": "2-bromopropane"
+    },
+    {
+     "key": "D",
+     "text": "2-bromopropan-2-ol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 85,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The most reactive amine towards dilute hydrochloric acid is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The reactivity of an amine towards dilute HCl depends on its basic strength, which is influenced by electron-donating groups that increase the electron density on nitrogen and steric hindrance around the nitrogen atom.\nMethylamine ($\\mathrm{CH_3NH_2}$) is a primary amine with one electron-donating group ($\\mathrm{CH_3}$). It increases the electron density on nitrogen, making it basic. However, it is less basic than dimethylamine because it has a weaker inductive effect.\nDimethylamine ($\\mathrm{(CH_3)_2NH}$) is a secondary amine with two $\\mathrm{CH_3}$ groups. These groups provide a strong inductive effect, increasing the electron density on nitrogen and enhancing its basic strength. Dimethylamine has lower steric hindrance compared to tertiary amines, making it the most reactive towards dilute HCl.\nTrimethylamine ($\\mathrm{(CH_3)_3N}$) is a tertiary amine with three $\\mathrm{CH_3}$ groups. While the inductive effect is strong, steric hindrance around the nitrogen reduces its ability to react with HCl, making it less reactive than dimethylamine.\nAniline ($\\mathrm{C_6H_5NH_2}$) is less basic than aliphatic amines because the lone pair of electrons on nitrogen is delocalized into the benzene ring via resonance. This reduces the availability of the lone pair for protonation, making aniline the least reactive among the given options.\nThe reaction of dimethylamine with dilute HCl is as follows:\n$$\\mathrm{(CH_3)_2NH + HCl \\rightarrow (CH_3)_2NH_2^{+} + Cl^{-}}.$$\nFinal Answer: $\\mathrm{(CH_3)_2NH}$\nQuick Tip: Secondary amines like dimethylamine are more basic than primary and tertiary amines due to strong inductive effects and lower steric hindrance, making them more reactive towards dilute acids.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3NH_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{(CH_3)_2NH}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{(CH_3)_3N}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{C_6H_5NH_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 86,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "One of essential $\\alpha$-amino acids is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Essential amino acids are those that cannot be synthesized by the human body and must be obtained from the diet. Lysine is an essential amino acid because it plays a crucial role in protein synthesis and other metabolic functions.\nGlycine, serine, and proline are non-essential amino acids because they can be synthesized by the body.\nFinal Answer: Lysine\nQuick Tip: Essential amino acids must be obtained through diet, as the body cannot synthesize them.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Lysine"
+    },
+    {
+     "key": "B",
+     "text": "Serine"
+    },
+    {
+     "key": "C",
+     "text": "Glycine"
+    },
+    {
+     "key": "D",
+     "text": "Proline"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 87,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following statements is true about a peptide bond (RCONHR')?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "A peptide bond is a covalent bond formed between the carboxyl group of one amino acid and the amino group of another. It has the following properties:\nPeptide Bond: RCONHR'\nExplanation of options:\n1. The peptide bond is planar, not non-planar, due to the partial double-bond character arising from resonance.\n2. The NH group can act as a hydrogen bond donor, and the C=O group can act as a hydrogen bond acceptor. Thus, it is capable of forming hydrogen bonds.\n3. The trans configuration is favoured over the cis configuration because it reduces steric hindrance.\n4. Single bond rotation is not permitted between nitrogen and the carbonyl group due to the partial double-bond character.\nFinal Answer: It is capable of forming a hydrogen bond.\nQuick Tip: Peptide bonds are planar due to resonance and can form hydrogen bonds, which are crucial for protein structure.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It is non-planar."
+    },
+    {
+     "key": "B",
+     "text": "It is capable of forming a hydrogen bond."
+    },
+    {
+     "key": "C",
+     "text": "The cis configuration is favoured over the trans configuration."
+    },
+    {
+     "key": "D",
+     "text": "Single bond rotation is permitted between nitrogen and the carbonyl group."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 88,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is an example for chain-growth polymer?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Chain-growth polymerization involves the successive addition of monomer units to a growing chain, initiated by free radicals, cations, or anions. Examples include polymers like polyethylene, polystyrene, and Teflon.\nBakelite, Nylon, and Terylene are formed through step-growth polymerization, where small molecules react to form bonds and produce the polymer.\nFinal Answer: Teflon\nQuick Tip: Chain-growth polymers are formed by the repeated addition of monomers with unsaturated bonds, initiated by radicals or ions.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Bakelite"
+    },
+    {
+     "key": "B",
+     "text": "Teflon"
+    },
+    {
+     "key": "C",
+     "text": "Nylon"
+    },
+    {
+     "key": "D",
+     "text": "Terylene"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 89,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following polymers is formed due to the co-polymerization of 1, 3-butadiene and phenylethene?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The co-polymerization of 1, 3-butadiene and phenylethene (styrene) produces Buna-S, a synthetic rubber.\nBuna-N, Neoprene, and Novolac are different polymers:\n- Buna-N is formed from 1, 3-butadiene and acrylonitrile.\n- Neoprene is formed from chloroprene.\n- Novolac is a phenol-formaldehyde resin.\nFinal Answer: Buna-S\nQuick Tip: Buna-S is a synthetic rubber formed by the co-polymerization of 1, 3-butadiene and phenylethene (styrene).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Buna-N"
+    },
+    {
+     "key": "B",
+     "text": "Neoprene"
+    },
+    {
+     "key": "C",
+     "text": "Novolac"
+    },
+    {
+     "key": "D",
+     "text": "Buna-S"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 90,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For 1 molal aqueous solution of the following compounds, which one will show the highest freezing point?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The freezing point of a solution is inversely proportional to the number of particles ($i$) produced upon dissociation. This is given by:\n$$\\Delta T_f = K_f \\cdot m \\cdot i,$$\nwhere $i$ is the van 't Hoff factor, representing the number of particles resulting from dissociation.\nFor the given compounds:\n1. $\\mathrm{[Co(H_2O)_6]Cl_3}$ dissociates into 4 particles: $\\mathrm{[Co(H_2O)_6]^{3+}}$ and $\\mathrm{3Cl^{-}}$.\n2. $\\mathrm{[Co(H_2O)_5Cl]Cl_2 \\cdot H_2O}$ dissociates into 3 particles: $\\mathrm{[Co(H_2O)_5Cl]^{2+}}$ and $\\mathrm{2Cl^{-}}$.\n3. $\\mathrm{[Co(H_2O)_4Cl_2]Cl \\cdot 2H_2O}$ dissociates into 2 particles: $\\mathrm{[Co(H_2O)_4Cl_2]^{+}}$ and $\\mathrm{Cl^{-}}$.\n4. $\\mathrm{[Co(H_2O)_3Cl_3] \\cdot 3H_2O}$ does not dissociate, producing 1 particle.\nSince $\\mathrm{[Co(H_2O)_3Cl_3] \\cdot 3H_2O}$ produces the fewest particles ($i = 1$), it will have the highest freezing point.\nFinal Answer: $\\mathrm{[Co(H_2O)_3Cl_3] \\cdot 3H_2O}$\nQuick Tip: Compounds with the lowest degree of dissociation produce fewer particles, resulting in the highest freezing point.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{[Co(H_2O)_6]Cl_3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{[Co(H_2O)_5Cl]Cl_2 \\cdot H_2O}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{[Co(H_2O)_4Cl_2]Cl \\cdot 2H_2O}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{[Co(H_2O)_3Cl_3] \\cdot 3H_2O}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 91,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following expressions correctly represents molar conductivity?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The molar conductivity ($\\Lambda_m$) of an electrolyte solution is defined as the conductance of all ions present in a 1-mole solution placed between two electrodes of unit area separated by a unit distance.\n1. $\\Lambda_m = \\frac{K}{C}$: This formula relates molar conductivity ($\\Lambda_m$) to conductivity ($K$) and molar concentration ($C$):\n$$\\Lambda_m = \\frac{K}{C}.$$\n2. $\\Lambda_m = \\frac{KA}{l}$: This expression is derived from the definition of conductance ($G$) and its relationship with molar conductivity. Here:\n$$\\Lambda_m = \\frac{KA}{l},$$\nwhere $A$ is the cross-sectional area, and $l$ is the distance between electrodes.\n3. $\\Lambda_m = KV$: For a solution containing 1 mole of electrolyte, $V$ is the volume, and the relationship between molar conductivity and conductivity is:\n$$\\Lambda_m = KV.$$\nAll three formulas are correct representations of molar conductivity.\nFinal Answer: All of these\nQuick Tip: Molar conductivity is proportional to conductivity and depends on the concentration and geometry of the electrolyte solution.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\Lambda_m = \\frac{K}{C}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\Lambda_m = \\frac{KA}{l}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\Lambda_m = KV$"
+    },
+    {
+     "key": "D",
+     "text": "All of these"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 92,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The plot that represents the zero-order reaction is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For a zero-order reaction, the rate of reaction is independent of the concentration of the reactant. The rate law is:\n$$r = k[\\mathrm{R}]^{0} = k.$$\nThe integrated rate equation for zero-order reactions is:\n$$[\\mathrm{R}] = [\\mathrm{R_0}] - kt,$$\nwhere $[\\mathrm{R_0}]$ is the initial concentration, $k$ is the rate constant, and $t$ is time.\nThe equation $[\\mathrm{R}] = [\\mathrm{R_0}] - kt$ represents a straight-line graph with a negative slope ($-k$) when $[\\mathrm{R}]$ is plotted against $t$. Therefore, the correct plot for a zero-order reaction is $[\\mathrm{R}]$ vs. $t$, showing a downward slope.\nFinal Answer: (2)\nQuick Tip: For zero-order reactions, the rate is constant, and the concentration decreases linearly with time.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "m24-q092-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "m24-q092-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "m24-q092-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "m24-q092-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 93,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In acidic medium, which of the following does not change its colour?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In an acidic medium:\n- $\\mathrm{MnO_4^{-}}$ remains stable and retains its purple colour.\n- $\\mathrm{MnO_2^{2-}}$ undergoes disproportionation to form $\\mathrm{MnO_4^{-}}$ and $\\mathrm{Mn^{2+}}$.\n- $\\mathrm{CrO_4^{2-}}$ converts to $\\mathrm{Cr_2O_7^{2-}}$, changing from yellow to orange.\n- $\\mathrm{FeO_4^{2-}}$ decomposes into $\\mathrm{Fe^{3+}}$, losing its colour.\nThus, $\\mathrm{MnO_4^{-}}$ does not change its colour in acidic medium.\nFinal Answer: $\\mathrm{MnO_4^{-}}$\nQuick Tip: In acidic conditions, $\\mathrm{MnO_4^{-}}$ is stable and retains its purple colour.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{MnO_4^{-}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{MnO_4^{2-}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CrO_4^{2-}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{FeO_4^{2-}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 94,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is the life-saving mixture for an asthma patient?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "A mixture of helium and oxygen (commonly known as Heliox) is used as a life-saving mixture for asthma patients. Helium is an inert gas with a low density, which helps reduce airway resistance, improving breathing efficiency in patients with obstructed airways.\nOther mixtures, such as neon and oxygen, xenon and nitrogen, or argon and oxygen, are not used for this purpose.\nFinal Answer: Mixture of helium and oxygen\nQuick Tip: Heliox (a mixture of helium and oxygen) reduces airway resistance and is beneficial for asthma patients.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Mixture of helium and oxygen"
+    },
+    {
+     "key": "B",
+     "text": "Mixture of neon and oxygen"
+    },
+    {
+     "key": "C",
+     "text": "Mixture of xenon and nitrogen"
+    },
+    {
+     "key": "D",
+     "text": "Mixture of argon and oxygen"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 95,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The compounds $\\mathrm{[PtCl_2(NH_3)_4]Br_2}$ and $\\mathrm{[PtBr_2(NH_3)_4]Cl_2}$ constitute a pair of:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Understanding the given compounds. The compounds $\\mathrm{[PtCl_2(NH_3)_4]Br_2}$ and $\\mathrm{[PtBr_2(NH_3)_4]Cl_2}$ both have the platinum coordination complex $\\mathrm{Pt(NH_3)_4}$ as the central entity, with $\\mathrm{Cl^{-}}$ and $\\mathrm{Br^{-}}$ ions arranged differently between the coordination sphere and the outer sphere.\nStep 2: Ionization isomerism. Ionization isomers are coordination compounds that have the same chemical composition but differ in the identity of the anion (or ion) present in the coordination sphere and the outer sphere. These isomers can be distinguished because they give different ions in solution. For example:\n$$\\mathrm{[PtCl_2(NH_3)_4]Br_2 \\rightarrow 2Br^{-} + [PtCl_2(NH_3)_4]^{0}}$$\n$$\\mathrm{[PtBr_2(NH_3)_4]Cl_2 \\rightarrow 2Cl^{-} + [PtBr_2(NH_3)_4]^{0}}$$\nHere:\n- In $\\mathrm{[PtCl_2(NH_3)_4]Br_2}$, two bromide ions are in the outer sphere, and two chloride ions are bound to platinum in the coordination sphere.\n- In $\\mathrm{[PtBr_2(NH_3)_4]Cl_2}$, two chloride ions are in the outer sphere, and two bromide ions are bound to platinum in the coordination sphere.\nThus, the two compounds are ionization isomers.\nStep 3: Why other options are incorrect.\n- Coordination isomers: These arise when the ligands are exchanged between the coordination entities. This is not the case here, as the coordination entity remains the same in both compounds.\n- Linkage isomers: These occur when a ligand can bind through different atoms (e.g., $\\mathrm{NO_2^{-}}$ binding through N or O). This is not applicable to the given compounds.\n- Optical isomers: These are non-superimposable mirror images. The given compounds do not exhibit chirality.\nFinal Answer: Ionization isomers\nQuick Tip: Ionization isomers differ in the exchange of anions between the inner coordination sphere and the outer sphere.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Coordination isomers"
+    },
+    {
+     "key": "B",
+     "text": "Linkage isomers"
+    },
+    {
+     "key": "C",
+     "text": "Ionization isomers"
+    },
+    {
+     "key": "D",
+     "text": "Optical isomers"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 96,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Tincture of iodine is the common name for:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Tincture of iodine is a solution of iodine (2-3%) in alcohol and water, commonly used as an antiseptic. The alcohol acts as a solvent, and the iodine provides antimicrobial properties.\nOther options:\n- Iodoform ($\\mathrm{CHI_3}$) is a yellow crystalline compound, not related to tincture.\n- 2-Iodopropane and iodobenzene are organic compounds unrelated to tincture.\nThus, the correct answer is 2-3% iodine solution in alcohol-water.\nFinal Answer: 2-3% iodine solution in alcohol-water\nQuick Tip: Tincture of iodine is an alcohol-based iodine solution used for wound disinfection.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Iodoform"
+    },
+    {
+     "key": "B",
+     "text": "2-iodopropane"
+    },
+    {
+     "key": "C",
+     "text": "2-3% iodine solution in alcohol-water"
+    },
+    {
+     "key": "D",
+     "text": "Iodobenzene"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 97,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The monomers of Buna-S rubber are:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Buna-S rubber (also called styrene-butadiene rubber) is a synthetic polymer formed by the copolymerization of:\n$$\\text{Butadiene } (\\mathrm{CH_2{=}CH\\text{-}CH{=}CH_2}) \\text{ and Styrene } (\\mathrm{C_6H_5\\text{-}CH{=}CH_2}).$$\nThe reaction involves a 3:1 ratio of butadiene and styrene. Buna-S is used in making automobile tires due to its durability and resistance to abrasion.\nOther options:\n- Isoprene is used in natural rubber.\n- Phenol and vinyl chloride are not components of Buna-S.\nFinal Answer: Styrene and butadiene\nQuick Tip: Buna-S rubber is a copolymer of styrene and butadiene, widely used in the tire industry.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Isoprene and butadiene"
+    },
+    {
+     "key": "B",
+     "text": "Butadiene and phenol"
+    },
+    {
+     "key": "C",
+     "text": "Styrene and butadiene"
+    },
+    {
+     "key": "D",
+     "text": "Vinyl chloride and sulphur"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 98,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The number of nearest neighbours in a BCC unit cell is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In a Body-Centered Cubic (BCC) unit cell, the lattice consists of:\n- One atom at the center of the cube,\n- Eight atoms at the corners of the cube.\nEach atom in the center of the cube touches the eight corner atoms, which are its nearest neighbours. The coordination number of a BCC lattice is therefore 8.\nOther options:\n- 12 is the coordination number for Face-Centered Cubic (FCC) structures.\n- 6 is the coordination number for Simple Cubic structures.\n- 4 does not apply to BCC.\nFinal Answer: 8\nQuick Tip: In a BCC unit cell, the atom at the center is surrounded by 8 nearest neighbours located at the corners of the cube.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "12"
+    },
+    {
+     "key": "B",
+     "text": "8"
+    },
+    {
+     "key": "C",
+     "text": "6"
+    },
+    {
+     "key": "D",
+     "text": "4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 99,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The cell potential for the following cell notation is approximately:\n$\\mathrm{M(s)|M^{3+}}(aq, 0.1M)||\\mathrm{N^{2+}}(aq, 0.1M)|\\mathrm{N(s)}$\n$$E^\\circ_{\\mathrm{M^{3+}/M}} = 0.6\\ \\mathrm{V}, \\quad E^\\circ_{\\mathrm{N^{2+}/N}} = 0.1\\ \\mathrm{V}.$$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given the cell notation:\n$$\\mathrm{M(s)|M^{3+}(aq,\\ 0.01\\ M)||N^{2+}(aq,\\ 0.1\\ M)|N(s)}$$\nand the standard electrode potentials:\n$$E^\\circ_{\\mathrm{M^{3+}/M}} = 0.6\\ \\mathrm{V}, \\quad E^\\circ_{\\mathrm{N^{2+}/N}} = 0.1\\ \\mathrm{V}.$$\nStep 1: Overall Cell Reaction The half-cell reactions are:\n$$\\mathrm{M \\rightarrow M^{3+}} + 3e^{-} \\quad \\text{(oxidation, multiplied by 2)},$$\n$$\\mathrm{N^{2+}} + 2e^{-} \\rightarrow \\mathrm{N} \\quad \\text{(reduction, multiplied by 3)}.$$\nThe overall reaction is:\n$$\\mathrm{2M(s) + 3N^{2+}(aq) \\rightarrow 2M^{3+}(aq) + 3N(s)}.$$\nStep 2: Standard Cell Potential ($E^\\circ_{\\mathrm{cell}}$) The standard cell potential is:\n$$E^\\circ_{\\mathrm{cell}} = E^\\circ_{\\mathrm{cathode}} - E^\\circ_{\\mathrm{anode}}.$$\nSubstitute the given values:\n$$E^\\circ_{\\mathrm{cell}} = 0.1 - 0.6 = -0.5\\ \\mathrm{V}.$$\nStep 3: Nernst Equation The Nernst equation for the cell is:\n$$E_{\\mathrm{cell}} = E^\\circ_{\\mathrm{cell}} - \\frac{0.059}{n}\\log Q,$$\nwhere $n = 6$ (number of electrons transferred), and the reaction quotient is:\n$$Q = \\frac{[\\mathrm{M^{3+}}]^{2}}{[\\mathrm{N^{2+}}]^{3}}.$$\nSubstitute the concentrations:\n$$Q = \\frac{(0.01)^{2}}{(0.1)^{3}}.$$\nSimplify:\n$$Q = \\frac{10^{-4}}{10^{-3}} = 10^{-1}.$$\nStep 4: Calculate $E_{\\mathrm{cell}}$ Substitute into the Nernst equation:\n$$E_{\\mathrm{cell}} = -0.5 - \\frac{0.059}{6}\\log(10^{-1}).$$\nSimplify:\n$$E_{\\mathrm{cell}} = -0.5 - \\frac{0.059}{6} \\cdot (-1).$$\n$$E_{\\mathrm{cell}} = -0.5 + \\frac{0.059}{6}.$$\n$$E_{\\mathrm{cell}} = -0.5 + 0.00983 = -0.49017\\ \\mathrm{V}.$$\nStep 5: Approximation To match the given options, approximate:\n$$E_{\\mathrm{cell}} \\approx -0.51\\ \\mathrm{V}.$$\nFinal Answer: The cell potential is: $0.51\\ \\mathrm{V}$ (Option A).\nQuick Tip: To calculate the cell potential, always identify the cathode and anode, then use the Nernst equation.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.51\\ \\mathrm{V}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.5\\ \\mathrm{V}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.0\\ \\mathrm{V}$"
+    },
+    {
+     "key": "D",
+     "text": "$2.5\\ \\mathrm{V}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 100,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In Williamson synthesis, if tertiary alkyl halide is used, then:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The Williamson synthesis involves the reaction between an alkyl halide and an alkoxide ion to form an ether:\n$$\\mathrm{R\\text{-}O^{-} + R'\\text{-}X \\rightarrow R\\text{-}O\\text{-}R' + X^{-}}.$$\nWhen tertiary alkyl halides are used:\n1. The reaction mechanism predominantly shifts to elimination (E2) instead of substitution (SN2).\n2. This is due to the steric hindrance in tertiary alkyl halides, which makes nucleophilic substitution difficult.\nFor example:\n$$\\mathrm{(CH_3)_3C\\text{-}Br + CH_3ONa \\rightarrow (CH_3)_2C{=}CH_2 + CH_3OH + NaBr}.$$\nThus, the major product is the alkene ($\\mathrm{(CH_3)_2C{=}CH_2}$), and no ether is formed.\nFinal Answer: Alkene is the only reaction product.\nQuick Tip: Tertiary alkyl halides are unsuitable for Williamson synthesis as they undergo elimination reactions, forming alkenes instead of ethers.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Ether is obtained in good yield."
+    },
+    {
+     "key": "B",
+     "text": "Ether is obtained in poor yield."
+    },
+    {
+     "key": "C",
+     "text": "Alkene is the only reaction product."
+    },
+    {
+     "key": "D",
+     "text": "A mixture of alkene as a major product and ether as a minor product forms."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

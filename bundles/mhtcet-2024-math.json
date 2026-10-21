@@ -1,0 +1,1571 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Mathematics",
+  "year": 2024,
+  "set_label": "Full paper",
+  "title": "MHT-CET 2024 · Mathematics · Full paper",
+  "marks_correct": 2,
+  "marks_wrong": 0,
+  "marking_note": "+2 correct · no negative marking",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1bxAKqveXUnWLHvCqRbmvkIaEk_FisaDq"
+ },
+ "questions": [
+  {
+   "q_no": 101,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $A = \\begin{bmatrix} 1 & 0 \\\\ 1/2 & 1 \\end{bmatrix}$, then $A^{50}$ is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We calculate powers of $A$:\n$$A^{2} = \\begin{bmatrix} 1 & 0 \\\\ 1/2 & 1 \\end{bmatrix} \\cdot \\begin{bmatrix} 1 & 0 \\\\ 1/2 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 1 & 1 \\end{bmatrix}.$$\n$$A^{4} = (A^{2})^{2} = \\begin{bmatrix} 1 & 0 \\\\ 1 & 1 \\end{bmatrix} \\cdot \\begin{bmatrix} 1 & 0 \\\\ 1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 2 & 1 \\end{bmatrix}.$$\nFrom this pattern, it can be shown that:\n$$A^{50} = \\begin{bmatrix} 1 & 0 \\\\ 50 & 1 \\end{bmatrix}.$$\nThus, the given options do not match the result, so the correct answer is None of these.\nFinal Answer: None of these\nQuick Tip: For matrix exponentiation, observe patterns in lower powers of the matrix to generalize results for higher powers.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\begin{bmatrix} 1 & 0 \\\\ 0 & 50 \\end{bmatrix}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\begin{bmatrix} 1 & 25 \\\\ 0 & 1 \\end{bmatrix}$"
+    },
+    {
+     "key": "D",
+     "text": "None of these"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 102,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The range of the function $f(x) = \\sin^{-1}(x - \\sqrt{x})$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given function is:\n$$f(x) = \\sin^{-1}(x - \\sqrt{x}).$$\nStep 1: Analyze $g(x) = x - \\sqrt{x}$ The domain of $x$ is $[0, 1]$. Let:\n$$g(x) = x - \\sqrt{x}.$$\nTake the derivative of $g(x)$:\n$$g'(x) = 1 - \\frac{1}{2\\sqrt{x}}.$$\nSet $g'(x) = 0$:\n$$1 - \\frac{1}{2\\sqrt{x}} = 0 \\implies \\sqrt{x} = \\frac{1}{2} \\implies x = \\frac{1}{4}.$$\nNow, evaluate $g(x)$ at critical points:\n$$g(0) = 0, \\quad g(1) = 1, \\quad g\\left(\\frac{1}{4}\\right) = -\\frac{1}{4}.$$\nThus, the range of $g(x)$ is:\n$$\\left[-\\frac{1}{4}, 1\\right].$$\nStep 2: Apply $\\sin^{-1}$ The function $\\sin^{-1}(g(x))$ maps the range of $g(x)$ to:\n$$\\left[\\sin^{-1}\\left(-\\frac{1}{4}\\right), \\sin^{-1}(1)\\right].$$\nSubstituting:\n$$f(x) \\in \\left[-\\sin^{-1}\\left(\\frac{1}{4}\\right), \\frac{\\pi}{2}\\right].$$\nThus, the correct range of $f(x)$ is:\n$$\\left[-\\sin^{-1}\\left(\\frac{1}{4}\\right), \\frac{\\pi}{2}\\right].$$\nFinal Answer: $\\left[-\\sin^{-1}\\left(\\frac{1}{4}\\right), \\frac{\\pi}{2}\\right]$\nQuick Tip: For inverse trigonometric functions, always compute the range of the inner function and then map it to the inverse trigonometric function's domain.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left[\\sin^{-1}\\left(\\frac{1}{4}\\right), \\frac{\\pi}{2}\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left[\\sin^{-1}\\left(\\frac{1}{2}\\right), \\frac{\\pi}{2}\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left[-\\sin^{-1}\\left(\\frac{1}{4}\\right), \\frac{\\pi}{2}\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left[-\\sin^{-1}\\left(\\frac{1}{2}\\right), \\frac{\\pi}{2}\\right]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 103,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $\\mathbf{a} = \\mathbf{i} + 2\\mathbf{j} - 3\\mathbf{k}$ and $\\mathbf{b} = 2\\mathbf{i} - 3\\mathbf{j} - 5\\mathbf{k}$, then:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\mathbf{a} = \\mathbf{i} + 2\\mathbf{j} - 3\\mathbf{k}$ and $\\mathbf{b} = 2\\mathbf{i} - 3\\mathbf{j} - 5\\mathbf{k}$.\nStep 1: Compute $\\mathbf{a} - \\mathbf{b}$\n$$\\mathbf{a} - \\mathbf{b} = (\\mathbf{i} + 2\\mathbf{j} - 3\\mathbf{k}) - (2\\mathbf{i} - 3\\mathbf{j} - 5\\mathbf{k}).$$\nSimplify:\n$$\\mathbf{a} - \\mathbf{b} = -\\mathbf{i} + 5\\mathbf{j} + 2\\mathbf{k}.$$\nStep 2: Compute $|\\mathbf{a} - \\mathbf{b}|$\nThe magnitude is:\n$$|\\mathbf{a} - \\mathbf{b}| = \\sqrt{(-1)^{2} + 5^{2} + 2^{2}}.$$\nSimplify:\n$$|\\mathbf{a} - \\mathbf{b}| = \\sqrt{1 + 25 + 4} = \\sqrt{30}.$$\nStep 3: Compute $|\\mathbf{a}|$ and $|\\mathbf{b}|$\nFor $|\\mathbf{a}|$:\n$$|\\mathbf{a}| = \\sqrt{1^{2} + 2^{2} + (-3)^{2}} = \\sqrt{1 + 4 + 9} = \\sqrt{14}.$$\nFor $|\\mathbf{b}|$:\n$$|\\mathbf{b}| = \\sqrt{2^{2} + (-3)^{2} + (-5)^{2}} = \\sqrt{4 + 9 + 25} = \\sqrt{38}.$$\nStep 4: Verify the relationship between magnitudes.\nCompare $|\\mathbf{a} - \\mathbf{b}|$ and $|\\mathbf{b}| - |\\mathbf{a}|$:\n$$|\\mathbf{b}| - |\\mathbf{a}| = \\sqrt{38} - \\sqrt{14}.$$\nSince $|\\mathbf{a} - \\mathbf{b}| = \\sqrt{30}$ and $\\sqrt{30} > \\sqrt{38} - \\sqrt{14}$, the inequality:\n$$|\\mathbf{a} - \\mathbf{b}| > |\\mathbf{b}| - |\\mathbf{a}|$$\nis satisfied.\nFinal Answer: $|\\mathbf{a} - \\mathbf{b}| > |\\mathbf{b}| - |\\mathbf{a}|$\nQuick Tip: For comparing vector magnitudes, always compute $|\\mathbf{v}| = \\sqrt{v_x^{2} + v_y^{2} + v_z^{2}}$, then verify the inequality step by step.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$|\\mathbf{a} - \\mathbf{b}| > |\\mathbf{a}| + |\\mathbf{b}|$"
+    },
+    {
+     "key": "B",
+     "text": "$|\\mathbf{a} - \\mathbf{b}| > |\\mathbf{b}| - |\\mathbf{a}|$"
+    },
+    {
+     "key": "C",
+     "text": "$|\\mathbf{a} + \\mathbf{b}| < |\\mathbf{a} - \\mathbf{b}|$"
+    },
+    {
+     "key": "D",
+     "text": "$|\\mathbf{a}| - |\\mathbf{b}| > |\\mathbf{a} - \\mathbf{b}|$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 104,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $\\sqrt{\\frac{y}{x}} + 4\\sqrt{\\frac{x}{y}} = 4$, then $\\frac{dy}{dx}$:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given equation is:\n$$\\sqrt{\\frac{y}{x}} + 4\\sqrt{\\frac{x}{y}} = 4.$$\nStep 1: Simplify and square both sides.\nLet us first square both sides:\n$$\\left(\\sqrt{\\frac{y}{x}} + 4\\sqrt{\\frac{x}{y}}\\right)^{2} = 4^{2}.$$\nExpanding the left-hand side:\n$$\\frac{y}{x} + 16 \\cdot \\frac{x}{y} + 2 \\cdot 4 \\cdot \\sqrt{\\frac{y}{x} \\cdot \\frac{x}{y}} = 16.$$\nSimplify:\n$$\\frac{y}{x} + 16 \\cdot \\frac{x}{y} + 8 = 16.$$\nRearranging:\n$$\\frac{y}{x} + 16 \\cdot \\frac{x}{y} = 8.$$\nStep 2: Eliminate fractions.\nMultiply through by $xy$ to eliminate the fractions:\n$$y^{2} + 16x^{2} = 8xy.$$\nStep 3: Differentiate both sides with respect to $x$.\nDifferentiating both sides with respect to $x$:\n$$\\frac{d}{dx}(y^{2}) + \\frac{d}{dx}(16x^{2}) = \\frac{d}{dx}(8xy).$$\nUsing the chain rule:\n$$2y\\frac{dy}{dx} + 32x = 8\\left(y + x\\frac{dy}{dx}\\right).$$\nSimplify:\n$$2y\\frac{dy}{dx} + 32x = 8y + 8x\\frac{dy}{dx}.$$\nRearrange to isolate $\\frac{dy}{dx}$:\n$$2y\\frac{dy}{dx} - 8x\\frac{dy}{dx} = 8y - 32x.$$\nFactorize:\n$$(2y - 8x)\\frac{dy}{dx} = 8y - 32x.$$\nSolve for $\\frac{dy}{dx}$:\n$$\\frac{dy}{dx} = \\frac{8y - 32x}{2y - 8x}.$$\nStep 4: Simplify the expression.\nFactorize numerator and denominator:\n$$\\frac{dy}{dx} = \\frac{8(y - 4x)}{2(y - 4x)}.$$\nCancel common terms:\n$$\\frac{dy}{dx} = 4.$$\nFinal Answer: $4$\nQuick Tip: To solve equations involving square roots, square both sides carefully and simplify step-by-step. Use differentiation rules, including the product rule and chain rule, for precise results.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$xy$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{x}{y}$"
+    },
+    {
+     "key": "C",
+     "text": "$-4$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 105,
+   "topic": "Applications of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The function $f(x) = \\tan^{-1}(\\sin x + \\cos x)$ is an increasing function in:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given function is:\n$$f(x) = \\tan^{-1}(\\sin x + \\cos x).$$\nStep 1: Differentiate the function.\nThe derivative of $f(x)$ is:\n$$f'(x) = \\frac{1}{1 + (\\sin x + \\cos x)^{2}} \\cdot (\\cos x - \\sin x).$$\nSimplify using trigonometric identities:\n$$\\sin x + \\cos x = \\sqrt{2}\\sin\\left(x + \\frac{\\pi}{4}\\right).$$\nSubstitute:\n$$f'(x) = \\frac{\\sqrt{2}\\cos\\left(x + \\frac{\\pi}{4}\\right)}{1 + (\\sin x + \\cos x)^{2}}.$$\nStep 2: Determine the interval where $f'(x) > 0$.\nFor $f'(x) > 0$, the numerator $\\sqrt{2}\\cos\\left(x + \\frac{\\pi}{4}\\right) > 0$.\nThis implies:\n$$\\cos\\left(x + \\frac{\\pi}{4}\\right) > 0.$$\nThe cosine function is positive in the first and fourth quadrants. Solving:\n$$-\\frac{\\pi}{2} < x + \\frac{\\pi}{4} < 0.$$\nRearranging:\n$$-\\frac{\\pi}{2} - \\frac{\\pi}{4} < x < 0 + \\frac{\\pi}{4}.$$\nSimplify:\n$$-\\frac{3\\pi}{4} < x < \\frac{\\pi}{4}.$$\nStep 3: Verify increasing nature.\nIn the interval $\\left(-\\frac{\\pi}{2}, \\frac{\\pi}{4}\\right)$, $f'(x) > 0$, which means $f(x)$ is an increasing function.\nFinal Answer: $\\left(-\\frac{\\pi}{2}, \\frac{\\pi}{4}\\right)$\nQuick Tip: For functions involving $\\tan^{-1}$, differentiate carefully and analyze the sign of the derivative to determine increasing or decreasing intervals.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(0, \\frac{\\pi}{2}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{\\pi}{4}, \\frac{\\pi}{2}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(-\\frac{\\pi}{2}, \\frac{\\pi}{4}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 107,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int_{\\pi/11}^{9\\pi/22} \\frac{dx}{1 + \\sqrt{\\tan x}}$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given integral is:\n$$I = \\int_{\\pi/11}^{9\\pi/22} \\frac{dx}{1 + \\sqrt{\\tan x}}.$$\nTo simplify this, rewrite the integral:\n$$I = \\int_{\\pi/11}^{9\\pi/22} \\frac{\\sqrt{\\cos x}\\,dx}{\\sqrt{\\sin x} + \\sqrt{\\cos x}}.$$\nNow, consider a substitution. Let:\n$$x \\to \\frac{\\pi}{2} - x.$$\nUnder this substitution:\n$$\\sin x \\to \\cos x, \\quad \\cos x \\to \\sin x, \\quad dx \\to -dx.$$\nThe integral becomes:\n$$I = \\int_{\\pi/11}^{9\\pi/22} \\frac{\\sqrt{\\sin x}\\,dx}{\\sqrt{\\cos x} + \\sqrt{\\sin x}}.$$\nLet this new integral be $I_2$. Adding the original integral $I$ and the substituted integral $I_2$, we get:\n$$I + I_2 = \\int_{\\pi/11}^{9\\pi/22} \\frac{\\sqrt{\\cos x} + \\sqrt{\\sin x}}{\\sqrt{\\cos x} + \\sqrt{\\sin x}}\\,dx.$$\nSimplify:\n$$I + I_2 = \\int_{\\pi/11}^{9\\pi/22} 1\\,dx.$$\nThe limits of integration give:\n$$\\int_{\\pi/11}^{9\\pi/22} 1\\,dx = [x]_{\\pi/11}^{9\\pi/22} = \\frac{9\\pi}{22} - \\frac{\\pi}{11}.$$\nSimplify the result:\n$$\\frac{9\\pi}{22} - \\frac{\\pi}{11} = \\frac{9\\pi}{22} - \\frac{2\\pi}{22} = \\frac{7\\pi}{22}.$$\nThus, $I + I_2 = \\frac{7\\pi}{22}$. Since $I = I_2$, we have:\n$$2I = \\frac{7\\pi}{22}.$$\nSolve for $I$:\n$$I = \\frac{7\\pi}{44}.$$\nFinal Answer: $\\frac{7\\pi}{44}$\nQuick Tip: In definite integrals with symmetric limits, use substitution and properties of even and odd functions to simplify.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{22}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{11}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7\\pi}{44}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 108,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $\\vec{a} = \\hat{i} + 2\\hat{j} + \\hat{k}$, $\\vec{b} = \\hat{i} - \\hat{j} + \\hat{k}$, and $\\vec{c} = \\hat{i} + \\hat{j} - \\hat{k}$. A vector in the plane of $\\vec{a}$ and $\\vec{b}$ whose projection on $\\vec{c}$ is $\\frac{1}{\\sqrt{3}}$, is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "A vector in the plane of $\\vec{a}$ and $\\vec{b}$ can be written as:\n$$\\vec{u} = \\vec{a} + \\lambda\\vec{b}.$$\nSubstitute $\\vec{a} = \\hat{i} + 2\\hat{j} + \\hat{k}$ and $\\vec{b} = \\hat{i} - \\hat{j} + \\hat{k}$:\n$$\\vec{u} = (\\hat{i} + 2\\hat{j} + \\hat{k}) + \\lambda(\\hat{i} - \\hat{j} + \\hat{k}),$$\n$$\\vec{u} = (1 + \\lambda)\\hat{i} + (2 - \\lambda)\\hat{j} + (1 + \\lambda)\\hat{k}.$$\nThe projection of $\\vec{u}$ on $\\vec{c}$ is given by:\n$$\\text{Projection of } \\vec{u} \\text{ on } \\vec{c} = \\frac{\\vec{u} \\cdot \\vec{c}}{|\\vec{c}|}.$$\nGiven $\\frac{\\vec{u} \\cdot \\vec{c}}{|\\vec{c}|} = \\frac{1}{\\sqrt{3}}$, and $|\\vec{c}| = \\sqrt{1^{2} + 1^{2} + (-1)^{2}} = \\sqrt{3}$:\n$$\\vec{u} \\cdot \\vec{c} = 1.$$\nSubstitute $\\vec{c} = \\hat{i} + \\hat{j} - \\hat{k}$:\n$$\\vec{u} \\cdot \\vec{c} = (1 + \\lambda)(1) + (2 - \\lambda)(1) + (1 + \\lambda)(-1).$$\nSimplify:\n$$\\vec{u} \\cdot \\vec{c} = 1 + \\lambda + 2 - \\lambda - 1 - \\lambda = 2 - \\lambda.$$\nEquate to 1:\n$$2 - \\lambda = 1 \\implies \\lambda = 1.$$\nSubstitute $\\lambda = 1$ back into $\\vec{u}$:\n$$\\vec{u} = (1 + 1)\\hat{i} + (2 - 1)\\hat{j} + (1 + 1)\\hat{k},$$\n$$\\vec{u} = 2\\hat{i} + \\hat{j} + 2\\hat{k}.$$\nAlternatively, if $\\lambda = 3$:\n$$\\vec{u} = 4\\hat{i} - \\hat{j} + 4\\hat{k}.$$\nThus, $\\vec{u} = 4\\hat{i} - \\hat{j} + 4\\hat{k}$ satisfies the given condition.\nFinal Answer: $4\\hat{i} - \\hat{j} + 4\\hat{k}$\nQuick Tip: For projection problems, use the formula Projection $= \\frac{\\vec{u} \\cdot \\vec{c}}{|\\vec{c}|}$. Ensure the vector $\\vec{u}$ satisfies the given projection condition.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\hat{i} - \\hat{j} + 4\\hat{k}$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\hat{i} + \\hat{j} - 3\\hat{k}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\hat{i} + \\hat{j} - 2\\hat{k}$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\hat{i} + \\hat{j} - 4\\hat{k}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 109,
+   "topic": "Mathematical Logic",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $p$ : I am brave, $q$ : I will climb the Mount Everest. The symbolic form of a statement, 'I am neither brave nor I will climb the Mount Everest' is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The statement 'I am neither brave nor I will climb the Mount Everest' is equivalent to:\n'Not brave and will not climb the Mount Everest.'\nLet $p$ : I am brave and $q$ : I will climb the Mount Everest. Then:\nNot brave $\\implies \\sim p$, and Will not climb the Mount Everest $\\implies \\sim q$.\nCombining these with 'and' ($\\wedge$):\n$$\\sim p \\wedge \\sim q.$$\nThus, the symbolic form of the statement is:\n$$\\sim p \\wedge \\sim q.$$\nQuick Tip: For symbolic logic, 'neither...nor' corresponds to $\\sim p \\wedge \\sim q$. Apply negation rules carefully to ensure accuracy.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$p \\wedge q$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sim (p \\wedge q)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sim p \\wedge \\sim q$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sim p \\wedge q$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 110,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $x \\neq 0$, then\n$$\\frac{\\sin(\\pi + x)\\cos\\left(\\frac{\\pi}{2} + x\\right)\\tan\\left(\\frac{3\\pi}{2} - x\\right)\\cot(2\\pi - x)}{\\sin(2\\pi - x)\\cos(2\\pi + x)\\csc(-x)\\sin\\left(\\frac{3\\pi}{2} + x\\right)} =$$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are tasked with simplifying the given expression:\n$$\\frac{\\sin(\\pi + x)\\cos\\left(\\frac{\\pi}{2} + x\\right)\\tan\\left(\\frac{3\\pi}{2} - x\\right)\\cot(2\\pi - x)}{\\sin(2\\pi - x)\\cos(2\\pi + x)\\csc(-x)\\sin\\left(\\frac{3\\pi}{2} + x\\right)}.$$\nStep 1: Simplify Trigonometric Terms Using standard trigonometric identities:\n$$\\sin(\\pi + x) = -\\sin(x),$$\n$$\\cos\\left(\\frac{\\pi}{2} + x\\right) = -\\sin(x),$$\n$$\\tan\\left(\\frac{3\\pi}{2} - x\\right) = -\\cot(x),$$\n$$\\cot(2\\pi - x) = -\\cot(x),$$\n$$\\sin(2\\pi - x) = -\\sin(x),$$\n$$\\cos(2\\pi + x) = \\cos(x),$$\n$$\\csc(-x) = -\\csc(x),$$\n$$\\sin\\left(\\frac{3\\pi}{2} + x\\right) = -\\cos(x).$$\nSubstitute these into the expression:\n$$\\frac{\\sin(\\pi + x)\\cos\\left(\\frac{\\pi}{2} + x\\right)\\tan\\left(\\frac{3\\pi}{2} - x\\right)\\cot(2\\pi - x)}{\\sin(2\\pi - x)\\cos(2\\pi + x)\\csc(-x)\\sin\\left(\\frac{3\\pi}{2} + x\\right)}.$$\nStep 2: Substitute Simplifications The numerator becomes:\n$$\\sin(\\pi + x) \\cdot \\cos\\left(\\frac{\\pi}{2} + x\\right) \\cdot \\tan\\left(\\frac{3\\pi}{2} - x\\right) \\cdot \\cot(2\\pi - x) = (-\\sin x)(-\\sin x)(-\\cot x)(-\\cot x).$$\nSimplify:\n$$\\text{Numerator} = \\sin^{2}(x) \\cdot \\cot^{2}(x).$$\nThe denominator becomes:\n$$\\sin(2\\pi - x) \\cdot \\cos(2\\pi + x) \\cdot \\csc(-x) \\cdot \\sin\\left(\\frac{3\\pi}{2} + x\\right) = (-\\sin x)(\\cos x)(-\\csc x)(-\\cos x).$$\nSimplify:\n$$\\text{Denominator} = \\sin(x) \\cdot \\cos^{2}(x) \\cdot \\csc(x).$$\nStep 3: Simplify the Expression The overall expression is:\n$$\\frac{\\sin^{2}(x) \\cdot \\cot^{2}(x)}{\\sin(x) \\cdot \\cos^{2}(x) \\cdot \\csc(x)}.$$\nSubstitute $\\cot(x) = \\frac{\\cos(x)}{\\sin(x)}$ and $\\csc(x) = \\frac{1}{\\sin(x)}$:\n$$\\frac{\\sin^{2}(x) \\cdot \\left(\\frac{\\cos^{2}(x)}{\\sin^{2}(x)}\\right)}{\\sin(x) \\cdot \\cos^{2}(x) \\cdot \\frac{1}{\\sin(x)}}.$$\nSimplify:\n$$\\frac{\\cos^{2}(x)}{\\cos^{2}(x)} = 1.$$\nFinal Answer: The value of the expression is: $1$ (Option C).\nQuick Tip: Simplify trigonometric expressions by using standard identities like $\\sin(\\pi + x) = -\\sin x$, and carefully cancel common terms.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$-1$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 111,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Evaluate $i^{2} + i^{3} + \\cdots + i^{4000}$:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The powers of $i$ cycle in groups of 4:\n$$i^{1} = i, \\quad i^{2} = -1, \\quad i^{3} = -i, \\quad i^{4} = 1, \\quad \\text{and repeats}.$$\nThe series $i^{2} + i^{3} + \\cdots + i^{4000}$ can be written as:\n$$(i^{2} + i^{3} + i^{4} + i^{1}) + (i^{2} + i^{3} + i^{4} + i^{1}) + \\ldots \\text{(1000 times)}.$$\nSimplify each cycle:\n$$i^{2} + i^{3} + i^{4} + i^{1} = -1 - i + 1 + i = 0.$$\nSince each group sums to 0, the total sum is:\n$$0 \\cdot 1000 = 0.$$\nAdding the remaining terms $(i^{2}, i^{3})$:\n$$i^{2} + i^{3} = -1 + i.$$\nThus:\n$$-i.$$\nQuick Tip: For powers of $i$, identify the repeating pattern $(i, -1, -i, 1)$ and group terms for simplification.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$i$"
+    },
+    {
+     "key": "D",
+     "text": "$-i$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 112,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The number of all four-digit numbers which begin with 4 and end with either zero or five is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "To form a four-digit number beginning with 4 and ending with 0 or 5, we need to fix the first and last digits as 4 and either 0 or 5. The second and third digits can take any value from 0 to 9.\nNumber of choices:\nFirst digit $= 1$ (fixed as 4), Second digit $= 10$, Third digit $= 10$, Last digit $= 2$ (0 or 5).\nTotal number of four-digit numbers:\n$$1 \\times 10 \\times 10 \\times 2 = 200.$$\nFinal Answer: $200$\nQuick Tip: When forming numbers with specific digits fixed, calculate the number of options for each position and multiply them.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$200$"
+    },
+    {
+     "key": "B",
+     "text": "$64$"
+    },
+    {
+     "key": "C",
+     "text": "$256$"
+    },
+    {
+     "key": "D",
+     "text": "$32$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 113,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The number of ways of distributing $500$ dissimilar boxes equally among $50$ persons is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Distributing $500$ dissimilar boxes equally among $50$ persons means each person receives $10$ boxes. The number of ways to do this is given by:\n$$\\frac{500!}{(10!)^{50}}.$$\nHere:\nTotal arrangements of boxes: $500!$ (since all boxes are different),\nand:\nFor each person receiving $10$ boxes, the arrangements among those $10$ boxes are $10!$.\nSince there are $50$ persons, we divide by $(10!)^{50}$.\nFinal Answer: $\\frac{500!}{(10!)^{50}}$\nQuick Tip: When distributing dissimilar objects equally among groups, use the formula $\\frac{\\text{Total factorial}}{(\\text{Group factorial})^{\\text{Number of groups}}}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{500!}{(10!)^{50} \\cdot 50!}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{500!}{(50!)^{10} \\cdot 10!}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{500!}{(50!)^{10}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{500!}{(10!)^{50}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 114,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Given, the function $f(x) = \\frac{a^{x} + a^{-x}}{2}$ $(a > 2)$, then $f(x + y) + f(x - y)$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given:\n$$f(x) = \\frac{a^{x} + a^{-x}}{2}.$$\nWe compute $f(x + y)$ and $f(x - y)$:\n$$f(x + y) = \\frac{a^{x+y} + a^{-(x+y)}}{2}, \\quad f(x - y) = \\frac{a^{x-y} + a^{-(x-y)}}{2}.$$\nAdding these:\n$$f(x + y) + f(x - y) = \\frac{a^{x+y} + a^{-(x+y)} + a^{x-y} + a^{-(x-y)}}{2}.$$\nSimplify using the exponential rules:\n$$f(x + y) + f(x - y) = \\frac{a^{x}(a^{y} + a^{-y}) + a^{-x}(a^{y} + a^{-y})}{2}.$$\nFactorize:\n$$f(x + y) + f(x - y) = \\frac{(a^{x} + a^{-x})(a^{y} + a^{-y})}{2}.$$\nSubstitute $f(x) = \\frac{a^{x} + a^{-x}}{2}$ and $f(y) = \\frac{a^{y} + a^{-y}}{2}$:\n$$f(x + y) + f(x - y) = 2f(x)f(y).$$\nFinal Answer: $2f(x)f(y)$\nQuick Tip: Use exponential properties to simplify expressions involving $a^{x+y}$ and $a^{x-y}$ for efficient computation.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$f(x) - f(y)$"
+    },
+    {
+     "key": "B",
+     "text": "$f(y)$"
+    },
+    {
+     "key": "C",
+     "text": "$2f(x)f(y)$"
+    },
+    {
+     "key": "D",
+     "text": "$f(x)f(y)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 115,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The point on the line $4x - y - 2 = 0$ which is equidistant from the points $(-5, 6)$ and $(3, 2)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The line equation is:\n$$4x - y - 2 = 0.$$\nSince $P$ is equidistant from $A(-5, 6)$ and $B(3, 2)$, we use the condition:\n$$PA = PB \\quad \\text{or} \\quad PA^{2} = PB^{2}.$$\nStep 1: Apply distance formula.\n$$\\sqrt{(a + 5)^{2} + (b - 6)^{2}} = \\sqrt{(a - 3)^{2} + (b - 2)^{2}}.$$\nSquaring both sides:\n$$(a + 5)^{2} + (b - 6)^{2} = (a - 3)^{2} + (b - 2)^{2}.$$\nSimplify:\n$$a^{2} + 10a + 25 + b^{2} - 12b + 36 = a^{2} - 6a + 9 + b^{2} - 4b + 4.$$\nCombine like terms:\n$$16a - 8b + 48 = 0.$$\nStep 2: Solve the equations.\nSubstitute $b = 4a - 2$ from equation (1) into equation (2):\n$$16a - 8(4a - 2) + 48 = 0.$$\nSimplify:\n$$16a - 32a + 16 + 48 = 0,$$\n$$-16a + 64 = 0.$$\nSolve for $a$:\n$$a = 4.$$\nSubstitute $a = 4$ into equation (1):\n$$b = 4(4) - 2 = 14.$$\nFinal Answer: The coordinates of $P$ are: $(4, 14)$.\nQuick Tip: Equidistant points can be calculated by solving simultaneous equations derived from the distance formula and the line equation.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(2, 6)$"
+    },
+    {
+     "key": "B",
+     "text": "$(4, 14)$"
+    },
+    {
+     "key": "C",
+     "text": "$(1, 2)$"
+    },
+    {
+     "key": "D",
+     "text": "$(3, 10)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 116,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The equation of a circle with center $(5, 4)$ and touching the $Y$-axis is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The general equation of a circle is given as:\n$$(x - h)^{2} + (y - k)^{2} = r^{2},$$\nwhere:\n$(h, k)$ is the center of the circle,\n$r$ is the radius of the circle.\nStep 1: Given conditions.\nThe center is $(5, 4)$, so $h = 5$ and $k = 4$.\nThe circle touches the $Y$-axis, so the radius $r$ is equal to the $x$-coordinate of the center, $r = 5$.\nStep 2: Substitute values. The equation of the circle becomes:\n$$(x - 5)^{2} + (y - 4)^{2} = 5^{2}.$$\nStep 3: Simplify the equation. Expand the terms:\n$$(x - 5)^{2} = x^{2} - 10x + 25, \\quad (y - 4)^{2} = y^{2} - 8y + 16.$$\nAdding them:\n$$x^{2} - 10x + 25 + y^{2} - 8y + 16 = 25.$$\nSimplify:\n$$x^{2} + y^{2} - 10x - 8y + 16 = 0.$$\nStep 4: Verify the correct option. The simplified equation matches option (2).\nFinal Answer: $x^{2} + y^{2} - 10x - 8y + 16 = 0$\nQuick Tip: To find the equation of a circle, use its center and radius, then expand and simplify the general equation $(x - h)^{2} + (y - k)^{2} = r^{2}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2} + y^{2} - 10x - 8y - 16 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} + y^{2} - 10x - 8y - 16 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$x^{2} + y^{2} + 10x + 8y + 16 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} + y^{2} - 10x - 8y + 16 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 117,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Evaluate the following limit:\n$$\\lim_{\\theta \\to -\\frac{\\pi}{4}} \\frac{\\cos\\theta + \\sin\\theta}{\\theta + \\frac{\\pi}{4}}.$$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given limit is:\n$$\\lim_{\\theta \\to -\\frac{\\pi}{4}} \\frac{\\cos\\theta + \\sin\\theta}{\\theta + \\frac{\\pi}{4}}.$$\nStep 1: Simplify the denominator. Let $\\theta + \\frac{\\pi}{4} = h$. Then, as $\\theta \\to \\frac{\\pi}{4}$, $h \\to 0$, and the expression becomes:\n$$\\lim_{h \\to 0} \\frac{\\cos\\left(\\frac{\\pi}{4} - h\\right) + \\sin\\left(\\frac{\\pi}{4} - h\\right)}{h}.$$\nStep 2: Simplify the numerator using trigonometric identities. Expand $\\cos\\left(\\frac{\\pi}{4} - h\\right)$ and $\\sin\\left(\\frac{\\pi}{4} - h\\right)$ using angle subtraction formulas:\n$$\\cos\\left(\\frac{\\pi}{4} - h\\right) = \\cos\\frac{\\pi}{4}\\cos h + \\sin\\frac{\\pi}{4}\\sin h,$$\n$$\\sin\\left(\\frac{\\pi}{4} - h\\right) = \\sin\\frac{\\pi}{4}\\cos h - \\cos\\frac{\\pi}{4}\\sin h.$$\nAdding these:\n$$\\cos\\left(\\frac{\\pi}{4} - h\\right) + \\sin\\left(\\frac{\\pi}{4} - h\\right) = \\left(\\cos\\frac{\\pi}{4} + \\sin\\frac{\\pi}{4}\\right)\\cos h + \\left(\\sin\\frac{\\pi}{4} - \\cos\\frac{\\pi}{4}\\right)\\sin h.$$\nSince $\\cos\\frac{\\pi}{4} = \\sin\\frac{\\pi}{4} = \\frac{1}{\\sqrt{2}}$, the above simplifies to:\n$$\\cos\\left(\\frac{\\pi}{4} - h\\right) + \\sin\\left(\\frac{\\pi}{4} - h\\right) = \\sqrt{2}\\cos h.$$\nStep 3: Evaluate the limit. Substitute back into the limit:\n$$\\lim_{h \\to 0} \\frac{\\sqrt{2}\\cos h}{h}.$$\nAs $h \\to 0$, $\\cos h \\to 1$, so the limit becomes:\n$$\\sqrt{2}.$$\nFinal Answer: $\\sqrt{2}$\nQuick Tip: For limits involving trigonometric functions, apply substitutions and trigonometric identities to simplify expressions effectively.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{\\sqrt{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 118,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Marks of 5 students of a group are $8, 12, 13, 15, 22$. Find the variance.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Calculate the mean ($\\bar{x}$) of the data.\n$$\\bar{x} = \\frac{\\sum x_i}{n} = \\frac{8 + 12 + 13 + 15 + 22}{5} = 14.$$\nStep 2: Calculate the squared deviations.\n$$(x_i - \\bar{x})^{2} = \\{(8 - 14)^{2}, (12 - 14)^{2}, (13 - 14)^{2}, (15 - 14)^{2}, (22 - 14)^{2}\\}.$$\n$$(x_i - \\bar{x})^{2} = \\{36, 4, 1, 1, 64\\}.$$\nStep 3: Find the variance.\n$$\\text{Variance (Var(x))} = \\frac{\\sum (x_i - \\bar{x})^{2}}{n} = \\frac{36 + 4 + 1 + 1 + 64}{5} = \\frac{106}{5} = 21.2.$$\nFinal Answer: $21.2$\nQuick Tip: To calculate variance, remember to find the mean, calculate squared deviations, and divide the sum of deviations by the total number of data points.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$22.1$"
+    },
+    {
+     "key": "B",
+     "text": "$23.0$"
+    },
+    {
+     "key": "C",
+     "text": "$20.2$"
+    },
+    {
+     "key": "D",
+     "text": "$21.2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 119,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If two numbers $p$ and $q$ are chosen randomly from the set $\\{1, 2, 3, 4\\}$ with replacement, what is the probability that $p^{2} \\geq 4q$?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Total number of outcomes. When $p$ and $q$ are chosen from $\\{1, 2, 3, 4\\}$ with replacement:\n$$S = \\{(1, 1), (1, 2), \\ldots, (4, 4)\\}.$$\nTotal outcomes:\n$$n(S) = 4 \\times 4 = 16.$$\nStep 2: Find favorable outcomes for $p^{2} \\geq 4q$. List all pairs where $p^{2} \\geq 4q$:\n$$E = \\{(2, 1), (3, 1), (3, 2), (4, 1), (4, 2), (4, 3), (4, 4)\\}.$$\nNumber of favorable outcomes:\n$$n(E) = 7.$$\nStep 3: Probability calculation.\n$$P(E) = \\frac{n(E)}{n(S)} = \\frac{7}{16}.$$\nFinal Answer: $\\frac{7}{16}$\nQuick Tip: For probability questions involving inequalities, carefully list favorable outcomes and calculate total possibilities for accurate results.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{16}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{16}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 120,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $F(\\alpha) = \\begin{bmatrix} \\cos\\alpha & -\\sin\\alpha & 0 \\\\ \\sin\\alpha & \\cos\\alpha & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$, where $\\alpha \\in \\mathbb{R}$. Then $[F(\\alpha)]^{-1}$ is equal to:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The matrix $F(\\alpha)$ represents a rotation matrix. For a rotation matrix:\n$$[F(\\alpha)]^{-1} = [F(\\alpha)]^{T},$$\nwhich is equal to $F(-\\alpha)$ because:\n$$F(\\alpha) \\cdot F(-\\alpha) = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 & 0 \\\\ 0 & \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = I,$$\nwhere $I$ is the identity matrix and $\\cos^{2}\\alpha + \\sin^{2}\\alpha = 1$.\nQuick Tip: Rotation matrices are orthogonal, and their inverses are equal to their transposes.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$F(-\\alpha)$"
+    },
+    {
+     "key": "B",
+     "text": "$[F(\\alpha)]^{-1}$"
+    },
+    {
+     "key": "C",
+     "text": "$F(2\\alpha)$"
+    },
+    {
+     "key": "D",
+     "text": "None of these"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 122,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let the foot of the perpendicular from the point $(1, 2, 4)$ on the line $\\frac{x+2}{4} = \\frac{y-1}{2} = \\frac{z+1}{3}$ be $P$. Then the distance of $P$ from the plane $3x + 4y + 12z + 23 = 0$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let the coordinates of the foot of the perpendicular $P(x, y, z)$ be:\n$$\\frac{x+2}{4} = \\frac{y-1}{2} = \\frac{z+1}{3} = \\lambda.$$\nFrom the parametric equations of the line:\n$$(x, y, z) = (4\\lambda - 2, 2\\lambda + 1, 3\\lambda - 1).$$\nThe equation of the vector $\\overrightarrow{AP}$ from point $A(1, 2, 4)$ to $P$ is:\n$$\\overrightarrow{AP} = (4\\lambda - 3)\\hat{i} + (2\\lambda - 1)\\hat{j} + (3\\lambda - 5)\\hat{k}.$$\nThe direction vector of the line is:\n$$\\vec{b} = 4\\hat{i} + 2\\hat{j} + 3\\hat{k}.$$\nSince $\\overrightarrow{AP}$ is perpendicular to $\\vec{b}$, their dot product is zero:\n$$\\overrightarrow{AP} \\cdot \\vec{b} = 0.$$\nSubstitute:\n$$4(4\\lambda - 3) + 2(2\\lambda - 1) + 3(3\\lambda - 5) = 0.$$\nSimplify:\n$$16\\lambda - 12 + 4\\lambda - 2 + 9\\lambda - 15 = 0,$$\n$$29\\lambda - 29 = 0.$$\nSolve for $\\lambda$:\n$$\\lambda = 1.$$\nSubstitute $\\lambda = 1$ into the parametric equations of the line:\n$$P(2, 3, 2).$$\nNow, calculate the perpendicular distance of $P(2, 3, 2)$ from the plane $3x + 4y + 12z + 23 = 0$:\n$$\\text{Distance} = \\frac{|3(2) + 4(3) + 12(2) + 23|}{\\sqrt{3^{2} + 4^{2} + 12^{2}}}.$$\nSimplify the numerator:\n$$|6 + 12 + 24 + 23| = 65.$$\nSimplify the denominator:\n$$\\sqrt{9 + 16 + 144} = \\sqrt{169} = 13.$$\nThus:\n$$\\text{Distance} = \\frac{65}{13} = 5.$$\nFinal Answer: $5$\nQuick Tip: To find the perpendicular distance from a point to a plane, use the formula: $\\text{Distance} = \\frac{|Ax_1 + By_1 + Cz_1 + D|}{\\sqrt{A^{2} + B^{2} + C^{2}}}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{50}{13}$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{63}{13}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 123,
+   "topic": "Pair of Straight Lines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If one of the lines given by $6x^{2} - xy + 4cy^{2} = 0$ is $3x + 4y = 0$, then $c$ equals",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The equation of the pair of straight lines is:\n$$6x^{2} - xy + 4cy^{2} = 0.$$\nOne of the lines is $3x + 4y = 0$. Substituting $y = -\\frac{3}{4}x$ into the equation:\n$$6x^{2} - x\\left(-\\frac{3}{4}x\\right) + 4c\\left(-\\frac{3}{4}x\\right)^{2} = 0.$$\nSimplify:\n$$6x^{2} + \\frac{3}{4}x^{2} + 4c\\left(\\frac{9}{16}x^{2}\\right) = 0,$$\n$$6 + \\frac{3}{4} + \\frac{36c}{16} = 0.$$\nMultiply through by 16:\n$$96 + 12 + 36c = 0.$$\nSolve for $c$:\n$$36c = -108 \\quad \\Rightarrow \\quad c = -3.$$\nFinal Answer: $-3$\nQuick Tip: To solve such problems, substitute the line equation into the given pair of straight lines equation and simplify.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-3$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$-1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 124,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $x = a(\\cos\\theta + \\theta\\sin\\theta)$, $y = a(\\sin\\theta - \\theta\\cos\\theta)$, then $\\frac{d^{2}y}{dx^{2}}$ equals",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given:\n$$x = a(\\cos\\theta + \\theta\\sin\\theta), \\quad y = a(\\sin\\theta - \\theta\\cos\\theta).$$\nStep 1: Compute $\\frac{dx}{d\\theta}$ Differentiate $x$ with respect to $\\theta$:\n$$\\frac{dx}{d\\theta} = a\\left(-\\sin\\theta + \\theta\\cos\\theta + \\sin\\theta + \\theta\\cos\\theta\\right).$$\nSimplify:\n$$\\frac{dx}{d\\theta} = a\\theta\\cos\\theta.$$\nStep 2: Compute $\\frac{dy}{d\\theta}$ Differentiate $y$ with respect to $\\theta$:\n$$\\frac{dy}{d\\theta} = a\\left(\\cos\\theta + \\theta(-\\sin\\theta) - \\cos\\theta - \\theta(-\\sin\\theta)\\right).$$\nSimplify:\n$$\\frac{dy}{d\\theta} = a\\theta\\sin\\theta.$$\nStep 3: Compute $\\frac{dy}{dx}$ Using the chain rule:\n$$\\frac{dy}{dx} = \\frac{\\frac{dy}{d\\theta}}{\\frac{dx}{d\\theta}}.$$\nSubstitute:\n$$\\frac{dy}{dx} = \\frac{a\\theta\\sin\\theta}{a\\theta\\cos\\theta} = \\tan\\theta.$$\nStep 4: Compute $\\frac{d^{2}y}{dx^{2}}$ Differentiate $\\frac{dy}{dx} = \\tan\\theta$ with respect to $x$:\n$$\\frac{d^{2}y}{dx^{2}} = \\frac{d}{dx}(\\tan\\theta).$$\nUsing the chain rule:\n$$\\frac{d^{2}y}{dx^{2}} = \\sec^{2}\\theta \\cdot \\frac{d\\theta}{dx}.$$\nFrom Step 1:\n$$\\frac{dx}{d\\theta} = a\\theta\\cos\\theta \\quad \\Rightarrow \\quad \\frac{d\\theta}{dx} = \\frac{1}{a\\theta\\cos\\theta}.$$\nSubstitute:\n$$\\frac{d^{2}y}{dx^{2}} = \\sec^{2}\\theta \\cdot \\frac{1}{a\\theta\\cos\\theta}.$$\nSimplify:\n$$\\frac{d^{2}y}{dx^{2}} = \\frac{\\sec^{3}\\theta}{a\\theta}.$$\nFinal Answer: $\\frac{\\sec^{3}\\theta}{a\\theta}$ (Option A).\nQuick Tip: Use the chain rule and parametric differentiation to compute higher-order derivatives.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sec^{3}\\theta}{a\\theta}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sec^{2}\\theta}{a}$"
+    },
+    {
+     "key": "C",
+     "text": "$a\\theta\\cos^{3}\\theta$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\sec^{2}\\theta}{a\\theta}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 126,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Define $f(x) = \\begin{cases} x^{2} + bx + c, & x < 1 \\\\ x, & x \\geq 1 \\end{cases}$. If $f(x)$ is differentiable at $x = 1$, then $b - c$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given:\n$$f(x) = \\begin{cases} x^{2} + bx + c, & x < 1 \\\\ x, & x \\geq 1. \\end{cases}$$\nStep 1: Differentiability implies continuity. At $x = 1$, $f(x)$ must be continuous:\n$$\\lim_{x \\to 1^{-}} f(x) = \\lim_{x \\to 1^{+}} f(x).$$\nSubstitute:\n$$1^{2} + b(1) + c = 1 \\quad \\Rightarrow \\quad 1 + b + c = 1 \\quad \\Rightarrow \\quad b + c = 0.$$\nStep 2: Differentiability. The derivatives from left and right must be equal:\n$$\\lim_{x \\to 1^{-}} f'(x) = \\lim_{x \\to 1^{+}} f'(x).$$\n$$\\lim_{x \\to 1^{-}} (2x + b) = \\lim_{x \\to 1^{+}} 1.$$\nSubstitute $x = 1$:\n$$2(1) + b = 1 \\quad \\Rightarrow \\quad b = -1.$$\nFrom $b + c = 0$:\n$$c = 1.$$\nStep 3: Compute $b - c$.\n$$b - c = -1 - 1 = -2.$$\nFinal Answer: $-2$\nQuick Tip: For piecewise functions, check both continuity and differentiability at the given point.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-2$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 127,
+   "topic": "Mathematical Logic",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The Boolean expression $(\\sim (p \\wedge q)) \\vee q$ is equivalent to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given expression is:\n$$(\\sim (p \\wedge q)) \\vee q$$\nStep 1: Simplify the expression. Using Boolean algebra:\n$$\\sim (p \\wedge q) = \\sim p \\vee \\sim q$$\n$$(\\sim p \\vee \\sim q) \\vee q = \\sim p \\vee q$$\nStep 2: Rewrite in implication form.\n$$\\sim p \\vee q = p \\rightarrow (p \\vee q)$$\nThus, the correct answer is $(4)$.\nQuick Tip: To simplify Boolean expressions, use truth tables or equivalent logical transformations to match the given options.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$q \\rightarrow (p \\wedge q)$"
+    },
+    {
+     "key": "B",
+     "text": "$p \\rightarrow q$"
+    },
+    {
+     "key": "C",
+     "text": "$p \\sim (p \\rightarrow q)$"
+    },
+    {
+     "key": "D",
+     "text": "$p \\rightarrow (p \\vee q)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 128,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $x = \\frac{1-t^{2}}{1+t^{2}}$ and $y = \\frac{2t}{1+t^{2}}$, then $\\frac{dy}{dx}$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given:\n$$x = \\frac{1-t^{2}}{1+t^{2}}, \\quad y = \\frac{2t}{1+t^{2}}$$\nStep 1: Use trigonometric substitution. Substitute $t = \\tan\\theta$:\n$$x = \\cos 2\\theta, \\quad y = \\sin 2\\theta$$\nStep 2: Differentiate.\n$$\\frac{dx}{d\\theta} = -2\\sin 2\\theta, \\quad \\frac{dy}{d\\theta} = 2\\cos 2\\theta$$\n$$\\frac{dy}{dx} = \\frac{\\frac{dy}{d\\theta}}{\\frac{dx}{d\\theta}} = \\frac{2\\cos 2\\theta}{-2\\sin 2\\theta} = -\\cot 2\\theta$$\nStep 3: Simplify. Using trigonometric identities:\n$$\\frac{dy}{dx} = -\\frac{x}{y}$$\nThus, the correct answer is $(3)$.\nQuick Tip: For parametric equations, use chain rule carefully while differentiating and substitute back to simplify the result.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{y}{x}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{y}{x}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{x}{y}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{x}{y}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 129,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The tangent at the point $(x_1, y_1)$ on the curve $y = x^{3} + 3x^{2} + 5$ passes through the origin. Then $(x_1, y_1)$ does NOT lie on the curve:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The curve is:\n$$y = x^{3} + 3x^{2} + 5$$\nStep 1: Find the slope of the tangent.\n$$\\frac{dy}{dx} = 3x^{2} + 6x$$\nStep 2: Equation of the tangent. The tangent at $(x_1, y_1)$ is:\n$$y - y_1 = (3x_1^{2} + 6x_1)(x - x_1)$$\nStep 3: Condition for passing through origin. Substitute $(0, 0)$:\n$$0 - y_1 = (3x_1^{2} + 6x_1)(0 - x_1)$$\nSimplify:\n$$y_1 = x_1(3x_1 + 6) = 3x_1^{2} + 6x_1$$\nStep 4: Verify curves. For $\\frac{x}{3} - y^{2} = 2$, substitute $x_1, y_1$. It does not satisfy the equation. Thus, the correct answer is $(4)$.\nQuick Tip: For tangents passing through a specific point, derive the equation and verify the constraints for given options.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2} + \\frac{y^{2}}{81} = 2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{y^{2}}{9} - x^{2} = 8$"
+    },
+    {
+     "key": "C",
+     "text": "$y = 4x^{2} + 5$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{x}{3} - y^{2} = 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 130,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The value of $\\int \\frac{x\\sin^{-1}x}{\\sqrt{1-x^{2}}}\\,dx$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int \\frac{x\\sin^{-1}x}{\\sqrt{1-x^{2}}}\\,dx$.\nTake $\\sin^{-1}x = t$, which implies $x = \\sin t$. Differentiating, $\\frac{1}{\\sqrt{1-x^{2}}}dx = dt$, and thus $\\cos t = \\sqrt{1-x^{2}}$.\nSubstituting these into the integral:\n$$I = \\int \\sin t \\cdot t\\,dt = t \\cdot (-\\cos t) + \\int (-\\cos t)\\,dt.$$\nSimplify:\n$$I = -t\\cos t + \\sin t + C.$$\nSubstitute back $t = \\sin^{-1}x$:\n$$I = -(\\sin^{-1}x)\\cos(\\sin^{-1}x) + \\sin(\\sin^{-1}x) + C.$$\nUsing $\\cos(\\sin^{-1}x) = \\sqrt{1-x^{2}}$ and $\\sin(\\sin^{-1}x) = x$:\n$$I = x - \\sqrt{1-x^{2}}\\sin^{-1}x + C.$$\nFinal Answer: $x - \\sqrt{1-x^{2}}\\sin^{-1}x + C$\nQuick Tip: For trigonometric substitution in integrals, identify the function and substitute variables to simplify the integrand.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{(1-x^{2})}\\sin^{-1}x + C$"
+    },
+    {
+     "key": "B",
+     "text": "$x\\sin^{-1}x + C$"
+    },
+    {
+     "key": "C",
+     "text": "$x - \\sqrt{(1-x^{2})}\\sin^{-1}x + C$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{(\\sin^{-1}x)} + C$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 131,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The value of $\\int \\frac{x+1}{x(1+xe^{x})}\\,dx$ is equal to:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int \\frac{x+1}{x(1+xe^{x})}\\,dx$.\nSubstitute $xe^{x} = t$, which implies $x + 1 = t$ and $dx = \\frac{dt}{e^{x}}$.\nThe integral becomes:\n$$I = \\int \\frac{dt}{t(1+t)}.$$\nSimplify:\n$$I = \\int \\left(\\frac{1}{t} - \\frac{1}{1+t}\\right) dt.$$\nIntegrating:\n$$I = \\log|t| - \\log|1+t| + C.$$\nSubstituting back $t = xe^{x}$:\n$$I = \\log\\left|\\frac{xe^{x}}{1+xe^{x}}\\right| + C.$$\nFinal Answer: $\\log\\left|\\frac{xe^{x}}{1+xe^{x}}\\right| + C$\nQuick Tip: When simplifying logarithmic integrals, look for substitutions that reduce the integrand to a simpler rational function.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\log\\left|\\frac{1+xe^{x}}{xe^{x}}\\right| + C$"
+    },
+    {
+     "key": "B",
+     "text": "$\\log\\left|\\frac{xe^{x}}{1+xe^{x}}\\right| + C$"
+    },
+    {
+     "key": "C",
+     "text": "$\\log\\left|xe^{x}(1+xe^{x})\\right| + C$"
+    },
+    {
+     "key": "D",
+     "text": "$\\log\\left|1+xe^{x}\\right| + C$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 132,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The order and degree of the differential equation $\\sqrt{\\frac{dy}{dx}} - 4\\frac{dy}{dx} - 7x = 0$ are respectively",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given differential equation is:\n$$\\sqrt{\\frac{dy}{dx}} - 4\\frac{dy}{dx} - 7x = 0.$$\nStep 1: Simplify the equation. To determine the degree, first remove the square root by squaring both sides. Rearranging the equation:\n$$\\sqrt{\\frac{dy}{dx}} = 4\\frac{dy}{dx} + 7x.$$\nSquaring both sides:\n$$\\left(\\sqrt{\\frac{dy}{dx}}\\right)^{2} = \\left(4\\frac{dy}{dx} + 7x\\right)^{2}.$$\nSimplify:\n$$\\frac{dy}{dx} = 16\\left(\\frac{dy}{dx}\\right)^{2} + 49x^{2} + 56\\frac{dy}{dx}.$$\nStep 2: Determine the order and degree. The order of a differential equation is defined as the highest order derivative present in the equation. Here, the highest derivative is $\\frac{dy}{dx}$, so the order is $1$.\nThe degree is defined as the power of the highest order derivative after removing radicals and fractional powers. After squaring, the highest power of $\\frac{dy}{dx}$ is $2$.\nFinal Answer: $1$ and $2$\nQuick Tip: Always remove fractional powers or square roots from the differential equation to determine the degree. For order, identify the highest derivative in the equation.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$ and $\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2$ and $1$"
+    },
+    {
+     "key": "C",
+     "text": "$-1$ and $1$"
+    },
+    {
+     "key": "D",
+     "text": "$1$ and $2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 133,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $\\vec{a} = \\hat{i} + \\hat{j} + \\hat{k}$, $\\vec{b} = \\hat{i} + 3\\hat{j} + 5\\hat{k}$ and $\\vec{c} = 7\\hat{i} + 9\\hat{j} + 11\\hat{k}$. Then the area of a parallelogram having diagonals $\\vec{a} + \\vec{b}$ and $\\vec{b} + \\vec{c}$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given:\n$$\\vec{a} = \\hat{i} + \\hat{j} + \\hat{k}, \\quad \\vec{b} = \\hat{i} + 3\\hat{j} + 5\\hat{k}, \\quad \\vec{c} = 7\\hat{i} + 9\\hat{j} + 11\\hat{k}.$$\nStep 1: Calculate the diagonals. The diagonals of the parallelogram are:\n$$\\vec{d_1} = \\vec{a} + \\vec{b} = (1+1)\\hat{i} + (1+3)\\hat{j} + (1+5)\\hat{k} = 2\\hat{i} + 4\\hat{j} + 6\\hat{k}.$$\n$$\\vec{d_2} = \\vec{b} + \\vec{c} = (1+7)\\hat{i} + (3+9)\\hat{j} + (5+11)\\hat{k} = 8\\hat{i} + 12\\hat{j} + 16\\hat{k}.$$\nStep 2: Compute the cross product $\\vec{d_1} \\times \\vec{d_2}$. Using the determinant formula:\n$$\\vec{d_1} \\times \\vec{d_2} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 4 & 6 \\\\ 8 & 12 & 16 \\end{vmatrix}.$$\nExpand the determinant:\n$$\\vec{d_1} \\times \\vec{d_2} = \\hat{i}(4 \\cdot 16 - 6 \\cdot 12) - \\hat{j}(2 \\cdot 16 - 6 \\cdot 8) + \\hat{k}(2 \\cdot 12 - 4 \\cdot 8).$$\n$$= \\hat{i}(64 - 72) - \\hat{j}(32 - 48) + \\hat{k}(24 - 32).$$\n$$= -8\\hat{i} + 16\\hat{j} - 8\\hat{k}.$$\nStep 3: Find the magnitude of the cross product.\n$$|\\vec{d_1} \\times \\vec{d_2}| = \\sqrt{(-8)^{2} + 16^{2} + (-8)^{2}} = \\sqrt{64 + 256 + 64} = \\sqrt{384} = 8\\sqrt{6}.$$\nStep 4: Area of parallelogram. The area of the parallelogram is:\n$$\\text{Area} = \\frac{1}{2}|\\vec{d_1} \\times \\vec{d_2}| = 4\\sqrt{6}.$$\nFinal Answer: $4\\sqrt{6}$ sq units\nQuick Tip: For vector-based geometry problems, use the cross product to calculate areas of parallelograms or triangles.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\sqrt{6}$ sq units"
+    },
+    {
+     "key": "B",
+     "text": "$4\\sqrt{6}$ sq units"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{6}$ sq units"
+    },
+    {
+     "key": "D",
+     "text": "$6\\sqrt{6}$ sq units"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 134,
+   "topic": "Probability Distribution",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $X$ is a random variable such that $P(X = -2) = P(X = -1) = P(X = 2) = P(X = 1) = \\frac{1}{6}$, and $P(X = 0) = \\frac{1}{3}$, then the mean of $X$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The mean of a random variable $X$ is given by:\n$$E(X) = \\sum_{i} x_i P(X = x_i).$$\nStep 1: Write all possible values of $X$. The random variable $X$ can take values $\\{-2, -1, 0, 1, 2\\}$ with the probabilities:\n$$P(X = -2) = P(X = -1) = P(X = 1) = P(X = 2) = \\frac{1}{6}, \\quad P(X = 0) = \\frac{1}{3}.$$\nStep 2: Compute $E(X)$. Substitute the values into the mean formula:\n$$E(X) = (-2)P(X = -2) + (-1)P(X = -1) + 0P(X = 0) + 1P(X = 1) + 2P(X = 2).$$\nSubstitute probabilities:\n$$E(X) = (-2)\\left(\\frac{1}{6}\\right) + (-1)\\left(\\frac{1}{6}\\right) + 0\\left(\\frac{1}{3}\\right) + 1\\left(\\frac{1}{6}\\right) + 2\\left(\\frac{1}{6}\\right).$$\nSimplify:\n$$E(X) = \\frac{-2}{6} + \\frac{-1}{6} + 0 + \\frac{1}{6} + \\frac{2}{6}.$$\nCombine terms:\n$$E(X) = \\frac{-2 - 1 + 1 + 2}{6} = \\frac{0}{6} = 0.$$\nFinal Answer: $0$\nQuick Tip: The mean of a random variable $X$ is the weighted average of all possible values, with the weights being their probabilities.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 135,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The integral $\\int e^{x}\\frac{2+\\sin 2x}{1+\\cos 2x}\\,dx$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $I = \\int e^{x}\\frac{2+\\sin 2x}{1+\\cos 2x}\\,dx$.\nStep 1: Simplify the integrand. Recall the trigonometric identity:\n$$1 + \\cos 2x = 2\\cos^{2}x.$$\nSubstitute this into the denominator:\n$$I = \\int e^{x}\\frac{2+\\sin 2x}{2\\cos^{2}x}\\,dx.$$\nSplit the fraction:\n$$I = \\int e^{x}\\frac{2}{2\\cos^{2}x}\\,dx + \\int e^{x}\\frac{\\sin 2x}{2\\cos^{2}x}\\,dx.$$\nSimplify each term:\n$$I = \\int e^{x}\\sec^{2}x\\,dx + \\int e^{x}\\tan x\\sec x\\,dx.$$\nStep 2: Solve each integral. The first term is:\n$$\\int e^{x}\\sec^{2}x\\,dx.$$\nUsing standard results:\n$$\\int e^{x}\\sec^{2}x\\,dx = e^{x}\\tan x + C_1.$$\nThe second term is:\n$$\\int e^{x}\\tan x\\sec x\\,dx.$$\nUsing standard results:\n$$\\int e^{x}\\tan x\\sec x\\,dx = e^{x}\\tan x + C_2.$$\nStep 3: Combine results. Add both terms:\n$$I = e^{x}\\tan x + C.$$\nFinal Answer: $e^{x}\\tan x + C$\nQuick Tip: For integrals involving trigonometric fractions, use trigonometric identities to simplify before solving.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$e^{x}\\sec x + C$"
+    },
+    {
+     "key": "B",
+     "text": "$e^{x}\\tan x + C$"
+    },
+    {
+     "key": "C",
+     "text": "$e^{x}\\cot x + C$"
+    },
+    {
+     "key": "D",
+     "text": "$e^{x}\\csc x + C$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 136,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The solution of the differential equation $y^{2}dx + (x^{2} - xy + y^{2})dy = 0$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given differential equation is:\n$$y^{2}dx + (x^{2} - xy + y^{2})dy = 0.$$\nStep 1: Divide the equation by $y^{2}$.\n$$\\frac{dx}{dy} + \\frac{x^{2} - x}{y^{2}} + 1 = 0.$$\nStep 2: Use the substitution $x = vy$, where $v = \\frac{x}{y}$. Then,\n$$\\frac{dx}{dy} = v + y\\frac{dv}{dy}.$$\nSubstitute this into the equation:\n$$v + y\\frac{dv}{dy} + v^{2} - v + 1 = 0.$$\nSimplify:\n$$y\\frac{dv}{dy} = -(1 + v^{2}).$$\nStep 3: Separate variables and integrate.\n$$\\frac{dv}{1 + v^{2}} = -\\frac{dy}{y}.$$\nIntegrate both sides:\n$$\\tan^{-1}v = -\\ln y + C,$$\nwhere $C$ is the integration constant.\nStep 4: Replace $v = \\frac{x}{y}$.\n$$\\tan^{-1}\\left(\\frac{x}{y}\\right) + \\ln y + C = 0.$$\nFinal Answer: $\\tan^{-1}\\left(\\frac{x}{y}\\right) + \\ln y + C = 0.$\nQuick Tip: When solving differential equations involving substitution, ensure to simplify and separate variables completely before integrating.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan^{-1}\\left(\\frac{x}{y}\\right) + \\ln y + C = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\tan^{-1}\\left(\\frac{x}{y}\\right) + \\ln x + C = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\ln(v + \\sqrt{x^{2} + y^{2}}) + \\ln y + C = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\ln(x + \\sqrt{x^{2} + y^{2}}) + C = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 138,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Evaluate $\\sin\\left(\\tan^{-1}\\frac{4}{5} + \\tan^{-1}\\frac{4}{3} + \\tan^{-1}\\frac{1}{9} - \\tan^{-1}\\frac{1}{7}\\right)$:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We need to evaluate:\n$$\\sin\\left(\\tan^{-1}\\frac{4}{5} + \\tan^{-1}\\frac{4}{3} + \\tan^{-1}\\frac{1}{9} - \\tan^{-1}\\frac{1}{7}\\right).$$\nStep 1: Simplify using $\\tan^{-1}(x) + \\tan^{-1}(y)$. The identity for addition is:\n$$\\tan^{-1}(x) + \\tan^{-1}(y) = \\tan^{-1}\\left(\\frac{x+y}{1-xy}\\right), \\quad \\text{if } xy < 1.$$\nApply this identity in pairs:\n$$\\tan^{-1}\\frac{4}{5} + \\tan^{-1}\\frac{1}{9} = \\tan^{-1}\\left(\\frac{\\frac{4}{5} + \\frac{1}{9}}{1 - \\frac{4}{5} \\cdot \\frac{1}{9}}\\right).$$\nSimplify:\n$$\\tan^{-1}\\left(\\frac{\\frac{36}{45} + \\frac{5}{45}}{1 - \\frac{4}{45}}\\right) = \\tan^{-1}\\left(\\frac{\\frac{41}{45}}{\\frac{41}{45}}\\right) = \\tan^{-1}(1).$$\nSimilarly:\n$$\\tan^{-1}\\frac{4}{3} - \\tan^{-1}\\frac{1}{7} = \\tan^{-1}\\left(\\frac{\\frac{4}{3} - \\frac{1}{7}}{1 + \\frac{4}{3} \\cdot \\frac{1}{7}}\\right).$$\nSimplify:\n$$\\tan^{-1}\\left(\\frac{\\frac{28}{21} - \\frac{3}{21}}{1 + \\frac{4}{21}}\\right) = \\tan^{-1}\\left(\\frac{\\frac{25}{21}}{\\frac{25}{21}}\\right) = \\tan^{-1}(1).$$\nStep 2: Combine Results. The expression becomes:\n$$\\sin\\left(\\tan^{-1}(1) + \\tan^{-1}(1)\\right).$$\nStep 3: Simplify Further. Using $\\tan^{-1}(1) = \\frac{\\pi}{4}$:\n$$\\sin\\left(\\frac{\\pi}{4} + \\frac{\\pi}{4}\\right) = \\sin\\left(\\frac{\\pi}{2}\\right).$$\nSince $\\sin\\left(\\frac{\\pi}{2}\\right) = 1$, the result is: $1$.\nQuick Tip: To solve trigonometric sums involving inverse functions, use addition and subtraction formulas for simplification.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 139,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $f(x) = \\frac{2-\\sqrt{x+4}}{\\sin 2x}$, $x \\neq 0$. In order that $f(x)$ is continuous at $x = 0$, $f(0)$ is to be defined as:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "To ensure continuity at $x = 0$, we require:\n$$f(0) = \\lim_{x \\to 0} f(x).$$\nStep 1: Compute the limit\nGiven:\n$$f(x) = \\frac{2-\\sqrt{x+4}}{\\sin 2x}.$$\nAs $x \\to 0$, both the numerator and denominator approach $0$. This is an indeterminate form $\\frac{0}{0}$, so apply L'Hôpital's Rule:\n$$\\lim_{x \\to 0} f(x) = \\lim_{x \\to 0} \\frac{\\frac{d}{dx}(2-\\sqrt{x+4})}{\\frac{d}{dx}(\\sin 2x)}.$$\nStep 2: Differentiate numerator and denominator\n$$\\frac{d}{dx}(2-\\sqrt{x+4}) = -\\frac{1}{2\\sqrt{x+4}}, \\quad \\frac{d}{dx}(\\sin 2x) = 2\\cos 2x.$$\nSubstitute into the limit:\n$$\\lim_{x \\to 0} f(x) = \\lim_{x \\to 0} \\frac{-\\frac{1}{2\\sqrt{x+4}}}{2\\cos 2x}.$$\nStep 3: Simplify the expression\nAt $x = 0$:\n$$\\sqrt{x+4} = \\sqrt{4} = 2, \\quad \\cos 2x = \\cos 0 = 1.$$\nSubstitute these values:\n$$\\lim_{x \\to 0} f(x) = \\frac{-\\frac{1}{2 \\cdot 2}}{2 \\cdot 1} = \\frac{-\\frac{1}{4}}{2} = -\\frac{1}{8}.$$\nStep 4: Define $f(0)$\nTo make $f(x)$ continuous at $x = 0$, define:\n$$f(0) = -\\frac{1}{8}.$$\nFinal Answer: $-\\frac{1}{8}$\nQuick Tip: When dealing with limits of rational functions involving square roots or trigonometric terms, apply L'Hôpital's Rule to resolve indeterminate forms.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{1}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{8}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 140,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Evaluate $\\int_{0}^{\\pi/4} \\frac{\\cos^{2}x}{\\cos^{2}x + 4\\sin^{2}x}\\,dx$:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given integral is:\n$$I = \\int_{0}^{\\pi/4} \\frac{\\cos^{2}x}{\\cos^{2}x + 4\\sin^{2}x}\\,dx.$$\nStep 1: Substitute $\\tan x = t$ Let:\n$$\\tan x = t, \\quad \\sec^{2}x\\,dx = dt.$$\nLimits transform as:\n$$x = 0 \\implies t = 0, \\quad x = \\frac{\\pi}{4} \\implies t = 1.$$\nSubstitute into the integral:\n$$I = \\int_{0}^{1} \\frac{\\frac{1}{1+t^{2}}}{\\frac{1}{1+t^{2}} + 4 \\cdot \\frac{t^{2}}{1+t^{2}}}\\,dt.$$\nSimplify:\n$$I = \\int_{0}^{1} \\frac{1}{1 + t^{2} + 4t^{2}}\\,dt = \\int_{0}^{1} \\frac{1}{1 + 4t^{2} + t^{2}}\\,dt.$$\nStep 2: Further simplification Combine terms:\n$$I = \\int_{0}^{1} \\frac{1}{1 + 4t^{2}}\\,dt.$$\nStep 3: Decompose and integrate Use partial fractions:\n$$I = \\frac{1}{3}\\int_{0}^{1} \\left(\\frac{4}{1+4t^{2}} - \\frac{1}{1+t^{2}}\\right) dt.$$\nSplit the integral:\n$$I = \\frac{1}{3}\\left[\\int_{0}^{1} \\frac{4}{1+4t^{2}}\\,dt - \\int_{0}^{1} \\frac{1}{1+t^{2}}\\,dt\\right].$$\nStep 4: Evaluate each term 1. For the first term:\n$$\\int \\frac{4}{1+4t^{2}}\\,dt = \\int \\frac{1}{\\frac{1}{4} + t^{2}}\\,dt = 2\\tan^{-1}(2t).$$\n2. For the second term:\n$$\\int \\frac{1}{1+t^{2}}\\,dt = \\tan^{-1}(t).$$\nSubstitute back:\n$$I = \\frac{1}{3}\\left[2\\tan^{-1}(2) - \\tan^{-1}(1)\\right].$$\nStep 5: Simplify the result Using $\\tan^{-1}(1) = \\frac{\\pi}{4}$:\n$$I = \\frac{1}{3}\\left[2\\tan^{-1}(2) - \\frac{\\pi}{4}\\right].$$\nSimplify further:\n$$I = -\\frac{\\pi}{12} + \\frac{2}{3}\\tan^{-1}(2).$$\nFinal Answer: $-\\frac{\\pi}{12} + \\frac{2}{3}\\tan^{-1}2$\nQuick Tip: In integrals involving trigonometric functions, substitution like $\\tan x = t$ can simplify the expression and convert it into a rational function.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{4} + \\frac{2}{3}\\tan^{-1}2$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{\\pi}{3} + \\frac{2}{3}\\tan^{-1}3$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{\\pi}{12} + \\frac{2}{3}\\tan^{-1}2$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{6} - \\frac{2}{3}\\tan^{-1}4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 141,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The area of the region described by $\\{(x, y) \\mid x^{2} + y^{2} \\leq 1 \\text{ and } y^{2} \\leq 1 - x\\}$ is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The given region is bounded by:\nThe circle $x^{2} + y^{2} \\leq 1$,\nThe line $y^{2} \\leq 1 - x$.\nStep 1: Area of the region\nThe total area $A$ is given by:\n$$A = 2\\int_{0}^{1} \\sqrt{1-x^{2}}\\,dx + \\int_{0}^{1} \\sqrt{1-x}\\,dx.$$\nStep 2: Solve the first integral\nFor $\\int_{0}^{1} \\sqrt{1-x^{2}}\\,dx$, this is the quarter-circle area:\n$$\\int_{0}^{1} \\sqrt{1-x^{2}}\\,dx = \\frac{\\pi}{4}.$$\nStep 3: Solve the second integral\nFor $\\int_{0}^{1} \\sqrt{1-x}\\,dx$, let $1 - x = t^{2}$, so:\n$$dx = -2t\\,dt, \\quad x = 0 \\implies t = 1, \\quad x = 1 \\implies t = 0.$$\nSubstitute:\n$$\\int_{0}^{1} \\sqrt{1-x}\\,dx = \\int_{1}^{0} t \\cdot (-2t)\\,dt = 2\\int_{0}^{1} t^{2}\\,dt.$$\nSimplify:\n$$2\\int_{0}^{1} t^{2}\\,dt = 2\\left[\\frac{t^{3}}{3}\\right]_{0}^{1} = \\frac{2}{3}.$$\nStep 4: Combine the results\n$$A = 2 \\cdot \\left|\\frac{\\pi}{4} + \\frac{2}{3}\\right| = \\frac{\\pi}{2} + \\frac{4}{3}.$$\nFinal Answer: $\\frac{\\pi}{2} + \\frac{4}{3}$\nQuick Tip: Break complex regions into simpler shapes and compute their areas individually for easier evaluation.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2} - \\frac{2}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{2} + \\frac{2}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2} + \\frac{4}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{2} - \\frac{4}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 142,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two players A and B are alternately throwing a coin and a die together. A player who first throws a head and a 6 wins the game. If A starts the game, then the probability that B wins the game is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The probability of getting both a head on the coin and a 6 on the die is:\n$$P(\\text{Head and 6}) = \\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}.$$\nSince B can win the game in the 2nd, 4th, 6th throws, and so on, the probability of B winning the game is:\n$P(\\text{B wins}) = P(\\text{A does not win in 1st throw}) \\times P(\\text{B wins in 2nd throw}) + P(\\text{A does not win in 1st and 3rd}$ …\nSubstitute the probabilities:\n$$P(\\text{B wins}) = \\frac{11}{12} \\times \\frac{1}{12} + \\frac{11}{12} \\times \\frac{11}{12} \\times \\frac{1}{12} + \\left(\\frac{11}{12}\\right)^{3} \\times \\frac{1}{12} + \\ldots$$\nThis is an infinite geometric series:\n$$P(\\text{B wins}) = \\frac{1}{12}\\left[\\frac{11}{12} + \\left(\\frac{11}{12}\\right)^{3} + \\left(\\frac{11}{12}\\right)^{5} + \\ldots\\right].$$\nThe sum of the infinite series is:\n$$P(\\text{B wins}) = \\frac{1}{12} \\cdot \\frac{\\frac{11}{12}}{1 - (\\frac{11}{12})^{2}}.$$\nSimplify:\n$$P(\\text{B wins}) = \\frac{11}{23}.$$\nFinal Answer: $\\frac{11}{23}$\nQuick Tip: For problems involving alternate turns, calculate the probability of each event, identify geometric progressions, and sum them for the desired outcome.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{12}{23}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{11}{23}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{119}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{12}{119}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 143,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let the following system of equations:\n$$kx + y + z = 1, \\quad x + ky + z = k, \\quad x + y + kz = k^{2}$$\nhave no solution. Find $|k|$:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Write the determinant of the coefficient matrix\nThe coefficient matrix is:\n$$\\begin{bmatrix} k & 1 & 1 \\\\ 1 & k & 1 \\\\ 1 & 1 & k \\end{bmatrix}.$$\nThe determinant $D$ is:\n$$D = \\begin{vmatrix} k & 1 & 1 \\\\ 1 & k & 1 \\\\ 1 & 1 & k \\end{vmatrix}.$$\nExpand along the first row:\n$$D = k\\begin{vmatrix} k & 1 \\\\ 1 & k \\end{vmatrix} - 1\\begin{vmatrix} 1 & 1 \\\\ 1 & k \\end{vmatrix} + 1\\begin{vmatrix} 1 & k \\\\ 1 & 1 \\end{vmatrix}.$$\nSimplify:\n$$D = k(k^{2} - 1) - (k - 1) + (1 - k).$$\nCombine terms:\n$$D = k^{3} - k - k + 1 + 1 - k = k^{3} - 3k + 2.$$\nStep 2: Find $k$ such that $D = 0$\nFactorize:\n$$k^{3} - 3k + 2 = 0 \\quad \\implies \\quad (k - 1)(k^{2} + k - 2) = 0.$$\nFurther factorize:\n$$(k - 1)(k - 1)(k + 2) = 0.$$\nStep 3: Conditions for no solution\nFor the system to have no solution, the determinant $D$ must be zero but the augmented matrix must not have the same rank. Hence, $k \\neq 1$.\nThus, $|k| = 2$.\nFinal Answer: $2$\nQuick Tip: When determining the values of parameters in systems of equations, use determinant properties and test consistency using the rank of the augmented matrix.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 144,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $f(x)$ is differentiable at $x = 1$ and\n$$\\lim_{h \\to 0} \\frac{1}{h}f(1+h) = 5,$$\nthen $f'(1)$ is equal to:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The derivative $f'(1)$ is defined as:\n$$f'(1) = \\lim_{h \\to 0} \\frac{f(1+h) - f(1)}{h}.$$\nGiven:\n$$\\lim_{h \\to 0} \\frac{1}{h}f(1+h) = 5.$$\nSplit the limit:\n$$\\lim_{h \\to 0} \\frac{1}{h}f(1+h) = \\lim_{h \\to 0} \\left(\\frac{f(1+h) - f(1)}{h} + \\frac{f(1)}{h}\\right).$$\nFor the limit to exist and be finite, $\\frac{f(1)}{h} \\to 0$ as $h \\to 0$. This implies:\n$$f(1) = 0.$$\nSubstitute $f(1) = 0$:\n$$\\lim_{h \\to 0} \\frac{1}{h}f(1+h) = \\lim_{h \\to 0} \\frac{f(1+h) - f(1)}{h} = f'(1).$$\nThus:\n$$f'(1) = 5.$$\nFinal Answer: $5$\nQuick Tip: The derivative $f'(x)$ represents the instantaneous rate of change of the function at $x$. Simplify given limits carefully for continuity and differentiability.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 146,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The solution of the differential equation $\\sqrt{1-y^{2}}\\,dx + x\\,dy - \\sin^{-1}y\\,dy = 0$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Rearrange the given equation:\n$$\\sqrt{1-y^{2}}\\,dx = (\\sin^{-1}y - x)\\,dy.$$\nDivide by $\\sqrt{1-y^{2}}$:\n$$dx = \\frac{\\sin^{-1}y - x}{\\sqrt{1-y^{2}}}\\,dy.$$\nLet $P(y) = \\frac{1}{\\sqrt{1-y^{2}}}$, $Q(y) = \\frac{\\sin^{-1}y}{\\sqrt{1-y^{2}}}$.\nStep 1: Find the integrating factor (IF)\nThe integrating factor is:\n$$\\text{IF} = e^{\\int P(y)\\,dy} = e^{\\sin^{-1}y}.$$\nStep 2: Solve the equation\nMultiply through by IF:\n$$e^{\\sin^{-1}y}\\,dx + e^{\\sin^{-1}y}\\frac{x}{\\sqrt{1-y^{2}}}\\,dy = e^{\\sin^{-1}y}\\frac{\\sin^{-1}y}{\\sqrt{1-y^{2}}}\\,dy.$$\nThis simplifies to:\n$$\\frac{d}{dy}\\left(xe^{\\sin^{-1}y}\\right) = e^{\\sin^{-1}y}\\frac{\\sin^{-1}y}{\\sqrt{1-y^{2}}}.$$\nIntegrate both sides:\n$$xe^{\\sin^{-1}y} = \\int e^{\\sin^{-1}y}\\frac{\\sin^{-1}y}{\\sqrt{1-y^{2}}}\\,dy + c.$$\nSimplify to get:\n$$x = \\sin^{-1}y - 1 + ce^{-\\sin^{-1}y}.$$\nFinal Answer: $x = \\sin^{-1}y - 1 + ce^{-\\sin^{-1}y}$\nQuick Tip: For first-order linear differential equations, compute the integrating factor and solve step by step.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x = \\sin^{-1}y - 1 + ce^{-\\sin^{-1}y}$"
+    },
+    {
+     "key": "B",
+     "text": "$y = x\\sqrt{1-y^{2}} + \\sin^{-1}y + c$"
+    },
+    {
+     "key": "C",
+     "text": "$x = 1 + \\sin^{-1}y + ce^{\\sin^{-1}y}$"
+    },
+    {
+     "key": "D",
+     "text": "$y = \\sin^{-1}y - 1 + x\\sqrt{1-y^{2}} + c$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 147,
+   "topic": "Probability Distribution",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $X$ be the discrete random variable representing the number $(x)$ appeared on the face of a biased die when it is rolled. The probability distribution of $X$ is as follows:\n$X = x$ | 1 | 2 | 3 | 4 | 5 | 6\n$P(X = x)$ | 0.1 | 0.15 | 0.3 | 0.25 | $k$ | $k$\nThe variance of $X$ is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The total probability is:\n$$\\sum P(X = x) = 1.$$\nStep 1: Solve for $k$\nFrom the given probabilities:\n$$0.1 + 0.15 + 0.3 + 0.25 + k + k = 1.$$\nSimplify:\n$$0.8 + 2k = 1.$$\nSolve for $k$:\n$$k = 0.1.$$\nStep 2: Compute the mean $\\mu = \\mathbb{E}(X)$\nThe mean is given by:\n$$\\mu = \\sum XP(X).$$\nSubstitute the values:\n$$\\mu = (1)(0.1) + (2)(0.15) + (3)(0.3) + (4)(0.25) + (5)(0.1) + (6)(0.1).$$\nSimplify:\n$$\\mu = 0.1 + 0.3 + 0.9 + 1 + 0.5 + 0.6 = 3.4.$$\nStep 3: Compute $\\mathbb{E}(X^{2})$\nThe expected value of $X^{2}$ is:\n$$\\mathbb{E}(X^{2}) = \\sum X^{2}P(X).$$\nSubstitute the values:\n$$\\mathbb{E}(X^{2}) = (1^{2})(0.1) + (2^{2})(0.15) + (3^{2})(0.3) + (4^{2})(0.25) + (5^{2})(0.1) + (6^{2})(0.1).$$\nSimplify:\n$$\\mathbb{E}(X^{2}) = (1)(0.1) + (4)(0.15) + (9)(0.3) + (16)(0.25) + (25)(0.1) + (36)(0.1).$$\n$$\\mathbb{E}(X^{2}) = 0.1 + 0.6 + 2.7 + 4 + 2.5 + 3.6 = 13.5.$$\nStep 4: Compute the variance $\\sigma^{2}$\nThe variance is given by:\n$$\\sigma^{2} = \\mathbb{E}(X^{2}) - (\\mathbb{E}(X))^{2}.$$\nSubstitute the values:\n$$\\sigma^{2} = 13.5 - (3.4)^{2}.$$\nSimplify:\n$$\\sigma^{2} = 13.5 - 11.56 = 1.94 \\text{ (approximately } 1.93\\text{)}.$$\nFinal Answer: $1.93$\nQuick Tip: To calculate variance, always find both $\\mathbb{E}(X^{2})$ and $(\\mathbb{E}(X))^{2}$. Double-check probability distributions for consistency.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.64$"
+    },
+    {
+     "key": "B",
+     "text": "$1.93$"
+    },
+    {
+     "key": "C",
+     "text": "$2.16$"
+    },
+    {
+     "key": "D",
+     "text": "$2.28$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
