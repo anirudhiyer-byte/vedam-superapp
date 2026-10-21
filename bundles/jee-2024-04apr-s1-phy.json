@@ -1,0 +1,228 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2024,
+  "set_label": "4 Apr · Shift 1",
+  "title": "JEE Main 2024 · Physics · 4 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": "1lD82QkBnYNQiCEN1Kjtn5n56Us8kLocM"
+ },
+ "questions": [
+  {
+   "q_no": 2,
+   "topic": "Ray Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "5 convex lens are kept together each having power of 25 D. Find the focal length.",
+   "correct_key": null,
+   "correct_value": 0.8,
+   "correct_keys": null,
+   "solution": "$P_{eq} = P \\times 5$\n$= 25 \\times 5$\n$= 125\\mathrm{D}$\n$\\frac{1}{f_{eq}} = 125\\ \\mathrm{m}$\n$= \\frac{100}{125}\\ \\mathrm{cm}$\n$= \\frac{4}{5}\\ \\mathrm{cm}$\n$= 0.8\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Kinematics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A body moving with constant acceleration covers 102.5 m in $n^{\\text{th}}$ second of its motion and covers 115.0 m in $(n + 2)^{\\text{th}}$ second then find its acceleration.",
+   "correct_key": null,
+   "correct_value": 6.25,
+   "correct_keys": null,
+   "solution": "Let, acceleration = a (constant)\n$S_{n^{th}} = u + \\frac{a}{2}[2n - 1] = 102.5$ …(i)\n$S_{(n+2)^{th}} = u + \\frac{a}{2}[2(n + 2) - 1] = 115$\n$\\Rightarrow u + \\frac{a}{2}[2n + 3] = 115$ …(ii)\nby using (i) and (ii)\n$102.5 - \\frac{a}{2}[2n - 1] + \\frac{a}{2}[2n + 3] = 115$\n$\\Rightarrow 102.5 + \\frac{a}{2} + \\frac{3a}{2} = 115$\n$\\Rightarrow 2a = 115 - 102.5$\n$a = \\frac{12.5}{2} = 6.25\\ \\mathrm{m/s^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particles of mass m dropped from height h above the ground. After collision, rises to height h/2, Then loss in energy during collision and speed of particle just before collision respectively are.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta E = mg\\frac{h}{2} - mgh = -mg\\frac{h}{2}$\ni.e. 50% loss in energy\n$v = \\sqrt{2gh}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "50%, $\\sqrt{2gh}$"
+    },
+    {
+     "key": "B",
+     "text": "40%, $\\sqrt{2gh}$"
+    },
+    {
+     "key": "C",
+     "text": "50%, $\\sqrt{gh}$"
+    },
+    {
+     "key": "D",
+     "text": "40%, $\\sqrt{gh}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Instantaneous current in a circuit is zero. In which of the options voltage will be maximum.\n(a) L\n(b) C\n(c) R\n(d) LC",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Phase difference between current and voltage is $90^\\circ$.\nSo, possible circuit are (A), (B) and (D).",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "ABD"
+    },
+    {
+     "key": "B",
+     "text": "B"
+    },
+    {
+     "key": "C",
+     "text": "BC"
+    },
+    {
+     "key": "D",
+     "text": "D"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Kinematics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "x and y coordinates of a body performing some motion is given as:\n$x = 3 + 4t$\n$y = 3t^{2} + 4t$\nIdentify the trajectory of motion.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x = 3 + 4t \\Rightarrow t = \\frac{x - 3}{4}$ ….(1)\n$y = 3t^{2} + 4t$ ….(2)\nequation (1) in (2)\n$y = 3\\frac{(x - 3)^{2}}{16} + 4\\frac{(x - 3)}{4}$\n$\\Rightarrow y = \\frac{3}{16}(x^{2} + 9 - 6x) + (x - 3)$\n$\\Rightarrow y = \\frac{1}{16}\\left[3x^{2} + 27 - 18x + 16x - 48\\right]$\n$y = \\frac{1}{16}\\left[3x^{2} - 2x - 21\\right]$\n$\\Rightarrow$ it is quadratic in x\n$\\Rightarrow$ its trajectory is parabola.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Parabola"
+    },
+    {
+     "key": "B",
+     "text": "Circular"
+    },
+    {
+     "key": "C",
+     "text": "Straight line"
+    },
+    {
+     "key": "D",
+     "text": "Hyperbola"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Atoms",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "De-Broglie wavelength of electron moving from n = 4 to n = 3 of a hydrogen is $b(\\pi a)$; Where a is bohr radius of the hydrogen atom. Find the value of b.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$E = \\frac{hc}{\\lambda}$, $mvr = \\frac{nh}{2\\pi}$\n$\\lambda = \\frac{h}{mv} = \\frac{2\\pi r}{n}$\n$(\\lambda_1)_{n=4} = \\frac{(2\\pi)(a_0 n^{2})}{n}$\n$(\\lambda_1)_{n=4} = (2\\pi)(a_0 n) = 8\\pi a_0$\n$(\\lambda_2)_{n=3} = 6\\pi a_0$\n$\\Delta\\lambda = \\lambda_1 - \\lambda_2 = 8\\pi a_0 - 6\\pi a_0$\n$\\Delta\\lambda = 2\\pi a_0$\nTherefore b = 2",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Alternating Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Current as a function of time is given as $i = 6 + \\sqrt{56}\\sin\\left(100t + \\frac{\\pi}{3}\\right)$ A. Find rms value of current.",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": "$i_{rms} = \\sqrt{6^{2} + \\frac{(\\sqrt{56})^{2}}{2}}$\n$= \\sqrt{36 + 28}$\n$= \\sqrt{64}$\n= 8 A",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In Celsius the temperature of a body increases by $40^\\circ\\mathrm{C}$. The increasing temperature on Fahrenheit scale is:",
+   "correct_key": null,
+   "correct_value": 72,
+   "correct_keys": null,
+   "solution": "$T_F = \\frac{9}{5}T_c + 32$\n$\\Delta T_f = \\frac{9}{5}\\Delta T_c$\n$\\Rightarrow \\Delta T_F = \\frac{9}{5} \\times 40$\n$\\Rightarrow \\Delta T_F = 72^\\circ\\ \\mathrm{F}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

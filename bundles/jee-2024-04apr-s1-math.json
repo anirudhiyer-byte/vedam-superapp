@@ -1,0 +1,359 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2024,
+  "set_label": "4 Apr · Shift 1",
+  "title": "JEE Main 2024 · Mathematics · 4 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1lD82QkBnYNQiCEN1Kjtn5n56Us8kLocM"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $f(x) = \\begin{cases} x - 2 & 0 \\le x \\le 2 \\\\ -2 & -2 \\le x \\le 0 \\end{cases}$ and $h(x) = f(|x|) + |f(x)|$ then $\\int_{0}^{k} h(x)\\,dx$ is equal to $(k > 0)$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(|x|) = \\begin{cases} -2 - x, & x < 0 \\\\ x - 2, & x > 0 \\end{cases} \\qquad |f(x)| = \\begin{cases} 2, & x < 0 \\\\ 2 - x, & x > 0 \\end{cases}$\n$\\Rightarrow h(x) = f(|x|) + |f(x)| = \\begin{cases} -x, & x < 0 \\\\ 0, & x > 0 \\end{cases}$\n$\\Rightarrow \\int_{0}^{k} h(x)\\,dx = \\int_{0}^{k} 0\\,dx = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{k}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$2k$"
+    },
+    {
+     "key": "D",
+     "text": "$k$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Find the number of rational numbers in the expansion of $\\left(2^{\\frac{1}{5}} + 5^{\\frac{1}{3}}\\right)^{15}$.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$T_{r+1} = {}^{15}C_{r}\\left(2^{1/5}\\right)^{15-r}\\left(5^{1/3}\\right)^{r}$\n$= {}^{15}C_{r}\\,2^{3-\\frac{r}{5}}.5^{\\frac{r}{3}};\\ r = 3K\\ \\&\\ 5K$\nThere $r = 0;\\ 15$\nSo Total No. of Rational Terms are \"2\".",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "AB, BC, CA are sides of triangle having 5, 6, 7 points respectively. How many triangles are possible using these points.",
+   "correct_key": null,
+   "correct_value": 751,
+   "correct_keys": null,
+   "solution": "${}^{18}C_{3} - {}^{5}C_{3} - {}^{6}C_{3} - {}^{7}C_{3}$\n$= 17 \\times 16 \\times 3 - 10 - 20 - 35$\n$= 816 - 65 = 751$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the domain of the function $\\sin^{-1}\\left(\\frac{3x - 22}{2x - 19}\\right) + \\log_{e}\\left(\\frac{3x^{2} - 8x + 5}{x^{2} - 3x - 10}\\right)$ is $[\\alpha, \\beta]$ then $3\\alpha + 10\\beta$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$-1 \\le \\frac{3x - 22}{2x - 19} \\le 1$\n$\\frac{3x - 22}{2x - 19} + 1 \\ge 0$\n$\\frac{5x - 41}{2x - 19} \\ge 0 \\Rightarrow x \\in \\left(-\\infty, \\frac{41}{5}\\right] \\cup \\left(\\frac{19}{2}, \\infty\\right)$\n$\\frac{3x - 22}{2x - 19} - 1 \\le 0$\n$\\frac{x - 3}{2x - 19} \\le 0 \\Rightarrow x \\in \\left[3, \\frac{19}{2}\\right)$\n(sign schemes: see solution figure)\n$\\frac{3x^{2} - 3x - 5x + 5}{x^{2} - 5x + 2x - 10} > 0$\n$\\frac{(3x - 5)(x - 1)}{(x - 5)(x + 2)} > 0$\n$\\Rightarrow \\left[5, \\frac{41}{5}\\right]$\n$= 3 \\times 5 + 10 \\times \\frac{41}{5}$\n$= 15 + 82 = 97$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100$"
+    },
+    {
+     "key": "B",
+     "text": "$95$"
+    },
+    {
+     "key": "C",
+     "text": "$97$"
+    },
+    {
+     "key": "D",
+     "text": "$98$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j24-04apr-s1-math-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = x^{5} + 2e^{x/4}$ for all $x \\in R$. consider a function $(gof)(x) = x$ for all $x \\in R$. Then the value of $8g'(2)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$g(f(x)) = x$\n$g'(f(x)).f'(x) = 1$\n$g'(f(x)) = \\frac{1}{f'(x)}$ ; $\\quad f'(x) = 5x^{4} + \\frac{1}{2}e^{x/4}$\n$g'(2) = \\frac{1}{f'(0)} = \\frac{1}{2/4} = 2$ $\\quad f'(0) = \\frac{1}{2}$\n$8'g'(2) = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$16$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f(x) = \\frac{2x^{2} - 3x + 9}{2x^{2} + 3x + 4}$. If maximum value of $f(x)$ is m and minimum value of $f(x)$ is n then find\n$m + n$?",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "$y = \\frac{2x^{2} - 3x + 9}{2x^{2} + 3x + 4}$\n$y(2x^{2} + 3x + 4) = 2x^{2} - 3x + 9$\n$(y - 1)2x^{2} + 3x(y + 1) + 4y - 9 = 0$\nIf $y \\ne 1 \\Rightarrow D \\ge 0$\n$9(y + 1)^{2} - 4(y - 1)(4y - 9) \\ge 0$\n$9(y^{2} + 2y + 1) - 4(4y^{2} - 9y - 4y + 9) \\ge 0$\n$9y^{2} - 16y^{2} + 18y + 52y + 9 - 36 \\ge 0$\n$-7y^{2} + 70y - 27 \\ge 0$\n$7y^{2} - 70y + 27 \\le 0$ has roots $\\alpha$ and $\\beta$ $\\quad y = \\frac{70 \\pm \\sqrt{4900 - 4 \\times 7 \\times 27}}{2 \\times 7}$\n$\\Rightarrow \\alpha \\le y \\le \\beta$ $\\quad y = \\frac{70 \\pm \\sqrt{4144}}{14}$\n$\\alpha = m = \\frac{70 - \\sqrt{4144}}{14}$\n$\\beta = n = \\frac{70 + \\sqrt{4144}}{14}$\n$= m + n = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Continuity and Differentiability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "$f(x) = \\begin{cases} \\frac{1 - \\cos 2x}{x^{2}} & x < 0 \\\\ \\alpha & x = 0 \\\\ \\beta\\frac{\\sqrt{1 - \\cos x}}{x} & x > 0 \\end{cases}$. If $f(x)$ is continuous at $x = 0$ find $\\alpha^{2} + \\beta^{2}$.",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to 0^{-}} \\frac{1 - \\cos 2x}{x^{2}} = 2 = \\alpha = \\lim_{x \\to 0^{+}} \\beta\\sqrt{\\frac{1 - \\cos x}{x^{2}}} = \\frac{\\beta}{\\sqrt{2}}$.\nHence $\\alpha^{2} + \\beta^{2} = 4 + 8 = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A square is inscribed in the circle $x^{2} + y^{2} - 10x - 6y + 30 = 0$. One side of this square is parallel to $y = x + 3$. If $(x_{i}, y_{i})$ are the vertices of the square, then $\\sum\\left(x_{i}^{2} + y_{i}^{2}\\right)$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sum x_{i}^{2} + y_{i}^{2} = 25 + 25 + 49 + 9 + 25 + 1 + 9 + 9 = 152$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$148$"
+    },
+    {
+     "key": "B",
+     "text": "$156$"
+    },
+    {
+     "key": "C",
+     "text": "$152$"
+    },
+    {
+     "key": "D",
+     "text": "$160$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j24-04apr-s1-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If differential equation satisfies $\\frac{dy}{dx} - y = \\cos x$ at $x = 0,\\ y = \\frac{-1}{2}$. Find $y\\left(\\frac{\\pi}{4}\\right)$.",
+   "correct_key": null,
+   "correct_value": 0,
+   "correct_keys": null,
+   "solution": "$\\frac{dy}{dx} - y = \\cos x$\n$I \\cdot f = e^{\\int -1\\,dx} = e^{-x}$\n$y \\cdot e^{-x} = \\int e^{-x} \\cdot \\cos x\\,dx$\n$I = \\int e^{-x}\\cos x\\,dx$\n$I = \\left(-e^{-x}\\right)\\cos x - \\int(-\\sin x)\\left(-e^{-x}\\right)dx$\n$I = -e^{-x}\\cos x - \\int e^{-x}\\sin x\\,dx$\n$I = -e^{-x}\\cos x - \\left[\\left(-e^{-x}\\right)\\sin x + \\int e^{-x}\\cos x\\,dx\\right]$\n$I = -e^{-x}\\cos x + e^{-x}\\sin x - I$\n$2I = e^{-x}(\\sin x - \\cos x)$\n$y \\cdot e^{-x} = \\frac{e^{-x}(\\sin x - \\cos x)}{2} + c$\n$y = \\frac{(\\sin x - \\cos x)}{2} + c$\n$c = 0$\n$y\\left(\\frac{\\pi}{4}\\right) = \\frac{\\frac{1}{\\sqrt{2}} - \\frac{1}{\\sqrt{2}}}{2} = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta, \\in R$. Let the mean and the variance of 6 observations $-3, 4, 7, -6, \\alpha, \\beta$ be 2 and 23 respectively. The mean deviation about the mean of these 6 observations is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\bar{x} = 2 = \\frac{-3 + 4 + 7 - 6 + \\alpha + \\beta}{6} \\Rightarrow \\alpha + \\beta = 10$\n$\\sigma^{2} = 23 = \\frac{(-3 - 2)^{2} + (4 - 2)^{2} + (7 - 2)^{2} + (-6 - 2)^{2} + (\\alpha - 2)^{2} + (\\beta - 2)^{2}}{6}$\n$\\Rightarrow \\alpha^{2} + \\beta^{2} = 52$\n$\\therefore \\alpha = 6$ & $\\beta = 4$\n$\\therefore$ M. D. about mean $= \\frac{13}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{11}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{16}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{13}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{14}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Parabola",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the length of focal chord of $y^{2} = 12x$ is 15 and if the distance of the focal chord from origin is p then $10p^{2}$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y^{2} = 4(3)x;\\ a = 3$ $\\quad \\Rightarrow$ focus $= (3,0)$\n$t_{1}t_{2} = -1$\n$A = 3t^{2}, 6t$\nthen $B = \\frac{3}{t^{2}}, \\frac{-6}{t}$\nAB = length of focal chord\n$= a(t_{1} - t_{2})^{2}$\n$= 3\\left(t + \\frac{1}{t}\\right)^{2} = 15$\n$3\\left(t + \\frac{1}{t}\\right)^{2} = 15$\n$t + \\frac{1}{t} = \\sqrt{5}$\n$t - \\frac{1}{t} = \\sqrt{\\left(t + \\frac{1}{t}\\right)^{2} - 4}$\n$t - \\frac{1}{t} = 1$\n$m_{AB} = \\frac{6t - \\frac{6}{t}}{3t^{2} - \\frac{3}{t^{2}}}$\n$m_{AB} = \\frac{2}{t - \\frac{1}{t}}$\n$\\therefore m_{AB} = 2$\nEquation of AB: $y - 0 = 2(x - 3)$\n$y = 2x - 6$\n$2x - y - 6 = 0$\nDistance from origin, $P = \\frac{|2(0) - 0 - 6|}{\\sqrt{2^{2} + 1}} = \\frac{6}{\\sqrt{5}}$\n$10P^{2} = \\frac{10 \\times 36}{5} = 72$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$36$"
+    },
+    {
+     "key": "B",
+     "text": "$25$"
+    },
+    {
+     "key": "C",
+     "text": "$72$"
+    },
+    {
+     "key": "D",
+     "text": "$144$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "j24-04apr-s1-math-q19-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Area Under Curves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Curve $y = 1 + 3x - 2x^{2}$ and $y = \\frac{1}{x}$ intersects at point $\\left(\\frac{1}{2}, 2\\right)$ then area enclosed between curve is $\\frac{1}{24}\\left(\\ell\\sqrt{5} + m\\right) - n\\log_{e}\\left(1 + \\sqrt{5}\\right)$ then find the value of $\\ell + m + n$ is",
+   "correct_key": null,
+   "correct_value": 30,
+   "correct_keys": null,
+   "solution": "$1 + 3x - 2x^{2} = \\frac{1}{x}$\n$\\Rightarrow x + 3x^{2} - 2x^{3} = 1$\n$\\Rightarrow 2x^{3} - 3x^{2} - x + 1 = 0$\n$\\Rightarrow 2x^{3} - x^{2} - 2x^{2} + x - 2x + 1 = 0$\n$\\Rightarrow (2x - 1)x^{2} - x(2x - 1) - 1(2x - 1) = 0$\n$\\Rightarrow (2x - 1)\\left(x^{2} - x - 1\\right) = 0$\n$x = \\frac{1}{2}$ or $x^{2} - x - 1 = 0$\n$x = \\frac{1 \\pm \\sqrt{5}}{2}$\n$x = \\frac{1 + \\sqrt{5}}{2}, \\frac{1 - \\sqrt{5}}{2}$\nArea $= \\int_{1/2}^{\\frac{\\sqrt{5}+1}{2}} \\left(\\left(-2x^{2} + 3x + 1\\right) - \\frac{1}{x}\\right)dx$\n$= \\left[-\\frac{2x^{3}}{3} + \\frac{3x^{2}}{2} + x - \\ln x\\right]_{1/2}^{\\frac{\\sqrt{5}+1}{2}}$\n$= \\left(-\\frac{2}{3}\\left(\\frac{\\sqrt{5} + 1}{2}\\right)^{3} + \\frac{3}{2}\\left(\\frac{\\sqrt{5} + 1}{2}\\right)^{2} + \\left(\\frac{\\sqrt{5} + 1}{2}\\right) - \\ln\\left(\\frac{\\sqrt{5} + 1}{2}\\right)\\right)$\n$-\\left(-\\frac{1}{12} + \\frac{3}{8} + \\frac{1}{2} - \\ln\\frac{1}{2}\\right)$\n$= -\\frac{1}{12}(5\\sqrt{5} + 1 + 3\\sqrt{5}(\\sqrt{5} + 1)) + \\frac{3}{8}(6 + 2\\sqrt{5}) + \\frac{\\sqrt{5} + 1}{2}$\n$-\\ln(\\sqrt{5} + 1) + \\ln 2 - \\left(\\frac{-2 + 9 + 12}{24}\\right) - \\ln 2$\n$= -\\frac{1}{12}(16 + 8\\sqrt{5}) + \\frac{3}{4}(3 + \\sqrt{5}) + \\frac{\\sqrt{5} + 1}{2} - \\frac{19}{24} - \\ln(\\sqrt{5} + 1)$\n$= \\frac{1}{24}[-32 - 16\\sqrt{5} + 54 + 18\\sqrt{5} + 12\\sqrt{5} + 12 - 19] - \\ln(\\sqrt{5} + 1)$\n$= \\frac{1}{24}[15 + 14\\sqrt{5}] - \\ln(\\sqrt{5} + 1)$\nSo $\\ell = 14,\\ m = 15,\\ n = 1$\nHence $\\ell + m + n = 14 + 15 + 1 = 30$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "j24-04apr-s1-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
