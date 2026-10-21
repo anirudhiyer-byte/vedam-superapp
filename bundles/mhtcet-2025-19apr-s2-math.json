@@ -1,0 +1,498 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "19 Apr · Shift 2 (partial)",
+  "title": "MHT-CET 2025 · Mathematics · 19 Apr · Shift 2 (partial)",
+  "marks_correct": 2,
+  "marks_wrong": 0,
+  "marking_note": "+2 correct · no negative marking · partial paper (only the questions available)",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": "1412zGX6h1aiefKD7hupCGarzN5C3IsZ5"
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The value of the definite integral $\\int_{0}^{\\pi} \\sin^{2} x\\,dx$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given the definite integral $\\int_{0}^{\\pi} \\sin^{2} x\\,dx$, and we need to evaluate it.\nStep 1: Use a standard trigonometric identity\nWe can use the identity for $\\sin^{2} x$:\n$$\\sin^{2} x = \\frac{1 - \\cos(2x)}{2}$$\nSo, the integral becomes:\n$$\\int_{0}^{\\pi} \\sin^{2} x\\,dx = \\int_{0}^{\\pi} \\frac{1 - \\cos(2x)}{2}\\,dx$$\nStep 2: Break the integral into two parts\n$$= \\frac{1}{2}\\int_{0}^{\\pi} 1\\,dx - \\frac{1}{2}\\int_{0}^{\\pi} \\cos(2x)\\,dx$$\nStep 3: Evaluate the integrals\n- The first integral is straightforward:\n$$\\int_{0}^{\\pi} 1\\,dx = x\\Big|_{0}^{\\pi} = \\pi$$\n- The second integral involves the cosine function:\n$$\\int_{0}^{\\pi} \\cos(2x)\\,dx = \\frac{\\sin(2x)}{2}\\Big|_{0}^{\\pi} = \\frac{\\sin(2\\pi)}{2} - \\frac{\\sin(0)}{2} = 0$$\nStep 4: Combine the results\nNow, substituting the results back into the expression:\n$$\\int_{0}^{\\pi} \\sin^{2} x\\,dx = \\frac{1}{2} \\times \\pi - \\frac{1}{2} \\times 0 = \\frac{\\pi}{2}$$\nThus, the value of the integral is $\\frac{\\pi}{2}$.\nAnswer: The value of the integral is $\\frac{\\pi}{2}$, so the correct answer is option (1).\nQuick Tip: When dealing with integrals of trigonometric functions like $\\sin^{2} x$, use trigonometric identities to simplify the integrand before performing the integration.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $\\tan\\theta = 2$, then the value of $\\sec^{2}\\theta$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given that $\\tan\\theta = 2$, and we need to find the value of $\\sec^{2}\\theta$.\nStep 1: Use the trigonometric identity\nWe know the following identity:\n$$\\sec^{2}\\theta = 1 + \\tan^{2}\\theta$$\nStep 2: Substitute the given value of $\\tan\\theta$\nSubstitute $\\tan\\theta = 2$ into the identity:\n$$\\sec^{2}\\theta = 1 + (2)^{2} = 1 + 4 = 5$$\nAnswer: The value of $\\sec^{2}\\theta$ is $5$, so the correct answer is option (1).\nQuick Tip: When given $\\tan\\theta$, use the identity $\\sec^{2}\\theta = 1 + \\tan^{2}\\theta$ to quickly find $\\sec^{2}\\theta$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the roots of the quadratic equation $x^{2} - 7x + 12 = 0$ are $\\alpha$ and $\\beta$, then the value of $\\alpha + \\beta$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given the quadratic equation $x^{2} - 7x + 12 = 0$, and we are asked to find the value of $\\alpha + \\beta$, where $\\alpha$ and $\\beta$ are the roots of the equation.\nStep 1: Use Vieta's formulas\nVieta's formulas state that for a quadratic equation of the form:\n$$ax^{2} + bx + c = 0$$\nThe sum of the roots $\\alpha + \\beta$ is given by:\n$$\\alpha + \\beta = -\\frac{b}{a}$$\nHere, for the equation $x^{2} - 7x + 12 = 0$, we have $a = 1$, $b = -7$, and $c = 12$.\nStep 2: Apply the formula for the sum of the roots\n$$\\alpha + \\beta = -\\frac{-7}{1} = 7$$\nAnswer: The value of $\\alpha + \\beta$ is $7$, so the correct answer is option (1).\nQuick Tip: For a quadratic equation, use Vieta's formulas to quickly find the sum and product of the roots. The sum is $-\\frac{b}{a}$, and the product is $\\frac{c}{a}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$7$"
+    },
+    {
+     "key": "B",
+     "text": "$12$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The general solution of the differential equation $\\frac{dy}{dx} = 3x^{2}$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given the differential equation $\\frac{dy}{dx} = 3x^{2}$, and we need to find its general solution.\nStep 1: Integrate both sides\nTo solve for $y$, integrate both sides of the equation with respect to $x$:\n$$y = \\int 3x^{2}\\,dx$$\nStep 2: Perform the integration\nWe know that the integral of $x^{2}$ is $\\frac{x^{3}}{3}$, so:\n$$y = 3 \\times \\frac{x^{3}}{3} + C = x^{3} + C$$\nHere, $C$ is the constant of integration.\nAnswer: The general solution of the differential equation is $y = x^{3} + C$, so the correct answer is option (1).\nQuick Tip: When solving simple differential equations like $\\frac{dy}{dx} = f(x)$, integrate both sides with respect to $x$ and add the constant of integration $C$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$y = x^{3} + C$"
+    },
+    {
+     "key": "B",
+     "text": "$y = 3x^{3} + C$"
+    },
+    {
+     "key": "C",
+     "text": "$y = \\frac{3}{2}x^{3} + C$"
+    },
+    {
+     "key": "D",
+     "text": "$y = x^{3} + 3C$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $A = \\begin{bmatrix} 2 & 1 \\\\ 3 & 4 \\end{bmatrix}$, then the determinant of matrix $A$ is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given the matrix $A = \\begin{bmatrix} 2 & 1 \\\\ 3 & 4 \\end{bmatrix}$, and we need to find the determinant of matrix $A$.\nStep 1: Use the formula for the determinant of a 2x2 matrix\nThe determinant of a 2x2 matrix $\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}$ is given by:\n$$\\det(A) = ad - bc$$\nStep 2: Substitute the values from matrix $A$\nFor the given matrix $A = \\begin{bmatrix} 2 & 1 \\\\ 3 & 4 \\end{bmatrix}$, we have $a = 2$, $b = 1$, $c = 3$, and $d = 4$.\n$$\\det(A) = (2)(4) - (1)(3) = 8 - 3 = 5$$\nAnswer: The determinant of matrix $A$ is $5$, so the correct answer is option (2).\nQuick Tip: For a 2x2 matrix, use the formula $\\det(A) = ad - bc$ to quickly calculate the determinant.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The limit of $\\lim_{x \\to 0} \\frac{\\sin x}{x}$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are asked to find the limit $\\lim_{x \\to 0} \\frac{\\sin x}{x}$.\nStep 1: Recall a standard limit result\nThe limit $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$ is a well-known standard result in calculus.\nStep 2: Conclusion\nThus, the value of the limit is:\n$$\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$$\nAnswer: The value of the limit is $1$, so the correct answer is option (1).\nQuick Tip: Remember that $\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1$ is a standard result in calculus that you should know.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\infty$"
+    },
+    {
+     "key": "D",
+     "text": "Does not exist"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $\\vec{A} = 2\\hat{i} + 3\\hat{j}$ and $\\vec{B} = 4\\hat{i} - \\hat{j}$, then the dot product $\\vec{A} \\cdot \\vec{B}$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given two vectors $\\vec{A} = 2\\hat{i} + 3\\hat{j}$ and $\\vec{B} = 4\\hat{i} - \\hat{j}$, and we need to find their dot product.\nStep 1: Use the formula for the dot product\nThe dot product of two vectors $\\vec{A} = a_1\\hat{i} + a_2\\hat{j}$ and $\\vec{B} = b_1\\hat{i} + b_2\\hat{j}$ is given by:\n$$\\vec{A} \\cdot \\vec{B} = a_1 b_1 + a_2 b_2$$\nStep 2: Substitute the values of the vectors\nFor $\\vec{A} = 2\\hat{i} + 3\\hat{j}$ and $\\vec{B} = 4\\hat{i} - \\hat{j}$, we have:\n$$\\vec{A} \\cdot \\vec{B} = (2)(4) + (3)(-1) = 8 - 3 = 5$$\nAnswer: The dot product $\\vec{A} \\cdot \\vec{B}$ is $5$, so the correct answer is option (1).\nQuick Tip: To calculate the dot product of two vectors, multiply their corresponding components and sum the results.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Applications of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The maximum value of the function $f(x) = -2x^{2} + 4x + 1$ occurs at:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given the function $f(x) = -2x^{2} + 4x + 1$, and we need to find the value of $x$ at which the function reaches its maximum.\nStep 1: Find the first derivative of the function\nTo find the critical points, we first need to differentiate the function:\n$$f'(x) = \\frac{d}{dx}\\left(-2x^{2} + 4x + 1\\right)$$\nUsing standard differentiation rules, we get:\n$$f'(x) = -4x + 4$$\nStep 2: Set the first derivative equal to zero to find the critical points\nSet $f'(x) = 0$ to find the critical points:\n$$-4x + 4 = 0$$\nSolving for $x$, we get:\n$$x = 1$$\nStep 3: Verify whether this is a maximum or minimum\nTo confirm that $x = 1$ corresponds to a maximum, we check the second derivative:\n$$f''(x) = \\frac{d}{dx}(-4x + 4) = -4$$\nSince $f''(x) = -4$ is negative, the function is concave down, indicating that $x = 1$ corresponds to a maximum.\nAnswer: The maximum value of the function occurs at $x = 1$, so the correct answer is option (1).\nQuick Tip: To find the maximum or minimum of a function, first find the critical points by setting the first derivative equal to zero. Use the second derivative to determine whether it's a maximum or minimum.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x = 1$"
+    },
+    {
+     "key": "B",
+     "text": "$x = -1$"
+    },
+    {
+     "key": "C",
+     "text": "$x = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x = 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The value of the integral $\\int_{0}^{1} x^{2}\\,dx$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are asked to find the value of the integral $\\int_{0}^{1} x^{2}\\,dx$.\nStep 1: Use the power rule of integration\nWe know the power rule of integration:\n$$\\int x^{n}\\,dx = \\frac{x^{n+1}}{n+1} + C$$\nFor our integral, we have $n = 2$.\n$$\\int_{0}^{1} x^{2}\\,dx = \\left[\\frac{x^{3}}{3}\\right]_{0}^{1}$$\nStep 2: Evaluate the integral\nNow, substitute the limits of integration:\n$$= \\frac{1^{3}}{3} - \\frac{0^{3}}{3} = \\frac{1}{3} - 0 = \\frac{1}{3}$$\nAnswer: The value of the integral is $\\frac{1}{3}$, so the correct answer is option (1).\nQuick Tip: When integrating polynomials, use the power rule and evaluate the result by substituting the upper and lower limits of the integral.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $z = 3 + 4i$, then the modulus of $z$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are given the complex number $z = 3 + 4i$, and we need to find its modulus.\nStep 1: Recall the formula for the modulus of a complex number\nThe modulus of a complex number $z = a + bi$ is given by:\n$$|z| = \\sqrt{a^{2} + b^{2}}$$\nHere, $a = 3$ and $b = 4$.\nStep 2: Calculate the modulus\nSubstitute $a = 3$ and $b = 4$ into the formula:\n$$|z| = \\sqrt{3^{2} + 4^{2}} = \\sqrt{9 + 16} = \\sqrt{25} = 5$$\nAnswer: The modulus of $z$ is $5$, so the correct answer is option (1).\nQuick Tip: To find the modulus of a complex number $a + bi$, use the formula $|z| = \\sqrt{a^{2} + b^{2}}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$9$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A die is rolled. What is the probability of getting a number less than or equal to 4?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are asked to find the probability of rolling a number less than or equal to 4 on a die.\nStep 1: Total possible outcomes\nWhen a fair die is rolled, there are 6 possible outcomes: $1, 2, 3, 4, 5, 6$.\nStep 2: Favorable outcomes\nThe favorable outcomes are the numbers less than or equal to 4, which are $1, 2, 3, 4$. Thus, there are 4 favorable outcomes.\nStep 3: Calculate the probability\nThe probability of an event is given by:\n$$P(\\text{Event}) = \\frac{\\text{Number of favorable outcomes}}{\\text{Total number of outcomes}}$$\nSubstituting the values:\n$$P(\\text{number} \\le 4) = \\frac{4}{6} = \\frac{2}{3}$$\nAnswer: The probability of rolling a number less than or equal to 4 is $\\frac{2}{3}$, so the correct answer is option (1).\nQuick Tip: When calculating probabilities, divide the number of favorable outcomes by the total number of possible outcomes.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{6}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In how many ways can 5 people be arranged in a row?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are asked to find the number of ways to arrange 5 people in a row.\nStep 1: Use the formula for permutations\nThe number of ways to arrange $n$ distinct objects in a row is given by the formula:\n$$P(n) = n!$$\nFor 5 people, $n = 5$, so we need to calculate $5!$.\nStep 2: Calculate $5!$\n$$5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$$\nAnswer: The number of ways to arrange 5 people in a row is $120$, so the correct answer is option (1).\nQuick Tip: To calculate the number of ways to arrange $n$ objects, use the formula $n!$, which represents the factorial of $n$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$120$"
+    },
+    {
+     "key": "B",
+     "text": "$60$"
+    },
+    {
+     "key": "C",
+     "text": "$24$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Linear Programming",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The feasible region of the linear programming problem is determined by the system of inequalities:\n$$x + y \\le 6, \\quad x \\ge 0, \\quad y \\ge 0.$$\nWhat is the maximum value of $x + y$ in the feasible region?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We are asked to find the maximum value of $x + y$ for the given system of inequalities:\n$$x + y \\le 6, \\quad x \\ge 0, \\quad y \\ge 0.$$\nStep 1: Graph the inequalities\n- The inequality $x + y \\le 6$ represents a region below the line $x + y = 6$. - The inequalities $x \\ge 0$ and $y \\ge 0$ represent the first quadrant of the coordinate plane.\nThus, the feasible region is the triangular region formed by the points where the line $x + y = 6$ intersects the axes, along with the positive $x$ and $y$ axes.\nStep 2: Find the vertices of the feasible region\nThe line $x + y = 6$ intersects the $x$-axis at $(6, 0)$ and the $y$-axis at $(0, 6)$. The third vertex is the origin $(0, 0)$.\nThe vertices of the feasible region are $(0, 0)$, $(6, 0)$, and $(0, 6)$.\nStep 3: Evaluate $x + y$ at each vertex\n- At $(0, 0)$, $x + y = 0 + 0 = 0$ - At $(6, 0)$, $x + y = 6 + 0 = 6$ - At $(0, 6)$, $x + y = 0 + 6 = 6$\nStep 4: Conclusion\nThe maximum value of $x + y$ in the feasible region is $6$, which occurs at the points $(6, 0)$ and $(0, 6)$.\nAnswer: The maximum value of $x + y$ is $6$, so the correct answer is option (1).\nQuick Tip: When solving linear programming problems, identify the feasible region and evaluate the objective function at the vertices of the region.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
