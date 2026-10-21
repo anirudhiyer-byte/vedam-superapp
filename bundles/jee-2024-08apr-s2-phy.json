@@ -1,0 +1,957 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2024,
+  "set_label": "8 Apr · Shift 2",
+  "title": "JEE Main 2024 · Physics · 8 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A block is simply released from the top of an inclined plane as shown in the figure above. The maximum compression in the spring when the block hits the spring is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$w_g + w_{Fr} + w_s = \\Delta KE$\n$5 \\times 10 \\times 5 - 0.5 \\times 5 \\times 10 \\times x - \\frac{1}{2}Kx^{2} = 0 - 0$\n$250 = 25x + 50x^{2}$\n$2x^{2} + x - 10 = 0$\n$x = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{6}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\ \\mathrm{m}$"
+    },
+    {
+     "key": "C",
+     "text": "$1\\ \\mathrm{m}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{5}\\ \\mathrm{m}$"
+    }
+   ],
+   "stem_figure": "jn24-08apr-s2-phy-q31.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Nuclear Physics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a hypothetical fission reaction $_{92}X^{236} \\rightarrow {}_{56}Y^{141} + {}_{36}Z^{92} + 3R$\nThe identity of emitted particles (R) is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Z in LHS $= 92$\nZ in RHS $= 56 + 36 = 92$\nA in LHS $= 236$\nA in RHS $= 141 + 92 = 233$\nSo 3 neutrons are released.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Proton"
+    },
+    {
+     "key": "B",
+     "text": "Electron"
+    },
+    {
+     "key": "C",
+     "text": "Neutron"
+    },
+    {
+     "key": "D",
+     "text": "$\\gamma$-radiations"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\epsilon_0$ is the permittivity of free space and E is the electric field, then $\\epsilon_0 E^{2}$ has the dimensions :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = \\frac{KQ}{R^{2}}$\n$E = \\frac{Q}{4\\pi\\epsilon_{o}R^{2}}$\n$\\epsilon_{o} = \\frac{Q}{4\\pi R^{2}E}$\nNow, $\\epsilon_{o}E^{2} = \\frac{Q}{4\\pi R^{2}E}\\cdot E^{2} = \\frac{Q}{4\\pi R^{2}}\\cdot E$\n$[\\epsilon_{o}E^{2}] = \\left[\\frac{QE}{R^{2}}\\right] = \\frac{[Q][E]}{[R^{2}]} = \\frac{[Q]}{[R^{2}]}\\frac{[W]}{[Q][R]}$\n$= \\frac{[W]}{[R^{3}]} = \\frac{ML^{2}T^{-2}}{L^{3}} = ML^{-1}T^{-2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[\\mathrm{M^{0}L^{-2}TA}]$"
+    },
+    {
+     "key": "B",
+     "text": "$[\\mathrm{ML^{-1}T^{-2}}]$"
+    },
+    {
+     "key": "C",
+     "text": "$[\\mathrm{M^{-1}L^{-3}T^{4}A^{2}}]$"
+    },
+    {
+     "key": "D",
+     "text": "$[\\mathrm{ML^{2}T^{-2}}]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The position of the image formed by the combination of lenses is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For lens 1 : $f_1 = 10,\\ u = -30,\\ v = ?$\n$v = \\frac{uf}{u+f} = \\frac{-30 \\times 10}{-30 + 10} = 15$\nFor lens 2 : $f_1 = -10,\\ u = 10,\\ v = ?$\n$v = \\frac{uf}{u+f} = \\frac{10 \\times -10}{10 - 10} = \\infty$\nFor lens 3 : $f = 30,\\ u = -\\infty,\\ v = ?$\nSo v will be 30.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "30 cm (right of third lens)"
+    },
+    {
+     "key": "B",
+     "text": "15 cm (left of second lens)"
+    },
+    {
+     "key": "C",
+     "text": "30 cm (left of third lens)"
+    },
+    {
+     "key": "D",
+     "text": "15 cm (right of second lens)"
+    }
+   ],
+   "stem_figure": "jn24-08apr-s2-phy-q34.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A plane progressive wave is given by $y = 2\\cos 2\\pi(330\\,t - x)$ m. The frequency of the wave is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y = 2\\cos 2\\pi(330\\,t - x)$ m\n$y = A\\cos(\\omega t - kx)$\nby comparing $\\omega = 2\\pi \\times 330$\n$2\\pi f = 2\\pi \\times 330$\n$f = 330$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$165\\ \\mathrm{Hz}$"
+    },
+    {
+     "key": "B",
+     "text": "$330\\ \\mathrm{Hz}$"
+    },
+    {
+     "key": "C",
+     "text": "$660\\ \\mathrm{Hz}$"
+    },
+    {
+     "key": "D",
+     "text": "$340\\ \\mathrm{Hz}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A thin circular disc of mass M and radius R is rotating in a horizontal plane about an axis passing through its centre and perpendicular to its plane with angular velocity $\\omega$. If another disc of same dimensions but of mass $\\frac{M}{2}$ is placed gently on the first disc co-axially, then the new angular velocity of the system is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I_1\\omega = I_2\\omega_2$\n$\\frac{MR^{2}}{2}\\omega = \\frac{3}{2}\\left(\\frac{MR^{2}}{2}\\right)\\omega_2$\n$\\omega_2 = \\frac{2}{3}\\omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{5}\\omega$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5}{4}\\omega$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{3}\\omega$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{2}\\omega$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A cube of ice floats partly in water and partly in kerosene oil. The ratio of volume of ice immersed in water to that in kerosene oil (specific gravity of Kerosene oil $= 0.8$, specific gravity of ice $= 0.9$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$v_1$ = volume immersed in water.\n$v_2$ = volume immersed in oil.\n$v_1\\rho_w g + v_2\\rho_o g = (v_1 + v_2)\\rho_c g$\n$v_1 + \\frac{v_2\\rho_o}{\\rho_w} = (v_1 + v_2)\\frac{\\rho_c}{\\rho_w}$\n$= v_1 + 0.8v_2 = 0.9v_1 + 0.9v_2$\n$= 0.1v_1 = 0.1v_2$\n$v_1 : v_2 = 1 : 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8 : 9$"
+    },
+    {
+     "key": "B",
+     "text": "$5 : 4$"
+    },
+    {
+     "key": "C",
+     "text": "$9 : 10$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 1$"
+    }
+   ],
+   "stem_figure": "jn24-08apr-s2-phy-q37.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement (I) : The mean free path of gas molecules is inversely proportional to square of molecular diameter.\nStatement (II) : Average kinetic energy of gas molecules is directly proportional to absolute temperature of gas.\nIn the light of the above statements, choose the correct answer from the option given below:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda = \\frac{RT}{\\sqrt{2}\\pi d^{2}N_A P}$\n$KE = \\frac{f}{2}nRT$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is false but Statement II is true."
+    },
+    {
+     "key": "B",
+     "text": "Statement I is true but Statement II is false."
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two satellite A and B go round a planet in circular orbits having radii $4\\,R$ and $R$ respectively. If the speed of A is $3v$, the speed of B will be :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$v = \\sqrt{\\frac{GM}{R}}$\n$\\frac{v_A}{v_B} = \\sqrt{\\frac{R_B}{R_A}} = \\sqrt{\\frac{R}{4R}} = \\frac{1}{2}$\n$v_B = 2v_A = 6v$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{3}v$"
+    },
+    {
+     "key": "B",
+     "text": "$3v$"
+    },
+    {
+     "key": "C",
+     "text": "$6v$"
+    },
+    {
+     "key": "D",
+     "text": "$12v$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Magnetic Effects of Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A long straight wire of radius $a$ carries a steady current I. The current is uniformly distributed across its cross section. The ratio of the magnetic field at $\\frac{a}{2}$ and $2a$ from axis of the wire is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B_1\\,2\\pi\\frac{a}{2} = \\mu_o\\frac{I}{4}$\n$B_1 = \\frac{\\mu_o I}{4\\pi a}$\n$B_2\\,2\\pi\\,2a = \\mu_o I$\n$B_2 = \\frac{\\mu_o I}{4\\pi a}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 : 4$"
+    },
+    {
+     "key": "B",
+     "text": "$4 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$1 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$3 : 4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Projectile Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The angle of projection for a projectile to have same horizontal range and maximum height is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{u^{2}\\sin 2\\theta}{g} = \\frac{u^{2}\\sin^{2}\\theta}{2g}$\n$4\\sin\\theta\\cos\\theta = \\sin^{2}\\theta$\n$4 = \\tan\\theta$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan^{-1}(2)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan^{-1}(4)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan^{-1}\\left(\\frac{1}{4}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\tan^{-1}\\left(\\frac{1}{2}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Water boils in an electric kettle in 20 minutes after being switched on. Using the same main supply, the length of the heating element should be ………….. to …………. times of its initial length if the water is to be boiled in 15 minutes.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P = \\frac{v^{2}}{R},\\ R = \\frac{\\rho\\ell}{A}$\n$P \\propto \\frac{1}{\\ell}$\n$\\frac{P_1}{P_2} = \\frac{t_2}{t_1} = \\frac{15}{20} = \\frac{\\ell_2}{\\ell_1}$\n$\\ell_2 = \\frac{3}{4}\\ell_1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "increased, $\\frac{3}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "increased, $\\frac{4}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "decreased, $\\frac{3}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "decreased, $\\frac{4}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Capacitors",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A capacitor has air as dielectric medium and two conducting plates of area $12\\ \\mathrm{cm^{2}}$ and they are $0.6\\ \\mathrm{cm}$ apart. When a slab of dielectric having area $12\\ \\mathrm{cm^{2}}$ and $0.6\\ \\mathrm{cm}$ thickness is inserted between the plates, one of the conducting plates has to be moved by $0.2\\ \\mathrm{cm}$ to keep the capacitance same as in previous case. The dielectric constant of the slab is : (Given $\\epsilon_0 = 8.834 \\times 10^{-12}\\ \\mathrm{F/m}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{A\\epsilon_o}{d} = \\frac{A\\epsilon_o}{\\left(0.2 + \\frac{d}{k}\\right)}$\n$0.6 = 0.2 + \\frac{0.6}{k}$\n$k = \\frac{3}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.50$"
+    },
+    {
+     "key": "B",
+     "text": "$1.33$"
+    },
+    {
+     "key": "C",
+     "text": "$0.66$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A given object takes n times the time to slide down $45^\\circ$ rough inclined plane as it takes the time to slide down an identical perfectly smooth $45^\\circ$ inclined plane. The coefficient of kinetic friction between the object and the surface of inclined plane is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Case-1 : No friction\n$a = g\\sin\\theta$\n$\\ell = \\frac{1}{2}(g\\sin\\theta)t_1^{2}$\n$t_1 = \\sqrt{\\frac{2\\ell}{g\\sin\\theta}}$\nCase-2 : With friction\n$a = g\\sin\\theta - \\mu g\\cos\\theta$\n$\\ell = \\frac{1}{2}(g\\sin\\theta - \\mu g\\cos\\theta)t_2^{2}$\n$\\sqrt{\\frac{2\\ell}{g\\sin\\theta - \\mu g\\cos\\theta}} = n\\sqrt{\\frac{2\\ell}{g\\sin\\theta}}$\n$\\mu = 1 - \\frac{1}{n^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 - \\frac{1}{n^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$1 - n^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{1 - \\frac{1}{n^{2}}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{1 - n^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-phy-q44-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A coil of negligible resistance is connected in series with $90\\ \\Omega$ resistor across $120\\ \\mathrm{V}$, $60\\ \\mathrm{Hz}$ supply. A voltmeter reads $36\\ \\mathrm{V}$ across resistance. Inductance of the coil is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$36 = I_{rms}R$\n$36 = \\frac{120}{\\sqrt{X_L^{2} + R^{2}}} \\times R$\n$R = 90\\ \\Omega \\Rightarrow 36 = \\frac{120 \\times 90}{\\sqrt{X_L^{2} + 90^{2}}}$\n$\\sqrt{X_L^{2} + 90^{2}} = 300$\n$X_L^{2} = 81900$\n$X_L = 286.18$\n$\\omega L = 286.18$\n$L = \\frac{286.18}{376.8}$\n$L = 0.76\\ \\mathrm{H}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.76\\ \\mathrm{H}$"
+    },
+    {
+     "key": "B",
+     "text": "$2.86\\ \\mathrm{H}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.286\\ \\mathrm{H}$"
+    },
+    {
+     "key": "D",
+     "text": "$0.91\\ \\mathrm{H}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "There are 100 divisions on the circular scale of a screw gauge of pitch 1 mm. With no measuring quantity in between the jaws, the zero of the circular scale lies 5 divisions below the reference line. The diameter of a wire is then measured using this screw gauge. It is found that 4 linear scale divisions are clearly visible while 60 divisions on circular scale coincide with the reference line. The diameter of the wire is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Least count $= \\frac{1}{100}\\mathrm{mm} = 0.01\\ \\mathrm{mm}$\nzero error $= +0.05\\ \\mathrm{mm}$\nReading $= 4 \\times 1\\ \\mathrm{mm} + 60 \\times 0.01\\ \\mathrm{mm} - 0.05\\ \\mathrm{mm}$\n$= 4.55\\ \\mathrm{mm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4.65\\ \\mathrm{mm}$"
+    },
+    {
+     "key": "B",
+     "text": "$4.55\\ \\mathrm{mm}$"
+    },
+    {
+     "key": "C",
+     "text": "$4.60\\ \\mathrm{mm}$"
+    },
+    {
+     "key": "D",
+     "text": "$3.35\\ \\mathrm{mm}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Dual Nature of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A proton and an electron have the same de Broglie wavelength. If $K_p$ and $K_e$ be the kinetic energies of proton and electron respectively. Then choose the correct relation :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "De Broglie wavelength of proton & electron $= \\lambda$\n$\\because \\lambda = \\frac{h}{p}$\n$\\therefore p_{proton} = p_{electron}$\n$\\because KE = \\frac{p^{2}}{2m}$\n$\\therefore KE_{proton} < KE_{electron}$\n$[K_p < K_e]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$K_p > K_e$"
+    },
+    {
+     "key": "B",
+     "text": "$K_p = K_e$"
+    },
+    {
+     "key": "C",
+     "text": "$K_p = K_e^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$K_p < K_e$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Least count of a vernier caliper is $\\frac{1}{20N}$ cm. The value of one division on the main scale is 1 mm. Then the number of divisions of main scale that coincide with N divisions of vernier scale is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Least count of vernier calipers $= \\frac{1}{20N}\\mathrm{cm}$\n$\\because$ Least count $= 1\\ \\mathrm{MSD} - 1\\ \\mathrm{VSD}$\nlet x no. of divisions of main scale coincides with N division of vernier scale, then\n$1\\ \\mathrm{VSD} = \\frac{x \\times 1\\mathrm{mm}}{N}$\n$\\therefore\\ \\frac{1}{20N}\\mathrm{cm} = 1\\ \\mathrm{mm} - \\frac{x \\times 1\\mathrm{mm}}{N}$\n$\\frac{1}{2N}\\mathrm{mm} = 1\\mathrm{mm} - \\frac{x}{N}\\mathrm{mm}$\n$x = \\left(1 - \\frac{1}{2N}\\right)N$\n$x = \\frac{2N-1}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(\\frac{2N-1}{20N}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{2N-1}{2}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$(2N - 1)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{2N-1}{2N}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $M_o$ is the mass of isotope ${}_{5}^{12}\\mathrm{B}$, $M_p$ and $M_n$ are the masses of proton, neutron, then nuclear binding energy of isotope is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B.E. = \\Delta mC^{2}$\n$(5M_p + 7M_n - M_o)C^{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(5M_p + 7M_n - M_o)C^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$(M_o - 5M_p)C^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$(M_o - 12M_n)C^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$(M_o - 5M_p - 7M_n)C^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A diatomic gas ($\\gamma = 1.4$) does $100\\ \\mathrm{J}$ of work in an isobaric expansion. The heat given to the gas is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For Isobaric process\n$w = P\\Delta v = nR\\Delta T = 100\\ \\mathrm{J}$\n$Q = \\Delta u + w$\n$\\Delta Q = \\frac{F}{2}nR\\Delta T + nR\\Delta T$\n$\\left(\\frac{f}{2} + 1\\right)nR\\Delta T$\n$\\left(\\frac{5}{2} + 1\\right)100 = 350\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$350\\ \\mathrm{J}$"
+    },
+    {
+     "key": "B",
+     "text": "$490\\ \\mathrm{J}$"
+    },
+    {
+     "key": "C",
+     "text": "$150\\ \\mathrm{J}$"
+    },
+    {
+     "key": "D",
+     "text": "$250\\ \\mathrm{J}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Magnetism and Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The coercivity of a magnet is $5 \\times 10^{3}\\ \\mathrm{A/m}$. The amount of current required to be passed in a solenoid of length $30\\ \\mathrm{cm}$ and the number of turns $150$, so that the magnet gets demagnetised when inside the solenoid is …………A.",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "$H_c = \\frac{\\mu_o ni}{\\mu_o}$\n$5 \\times 10^{3} = \\frac{150}{30} \\times 100 \\times i$\n$\\frac{50}{5} = i$\n$I = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-phy-q51-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Small water droplets of radius $0.01\\ \\mathrm{mm}$ are formed in the upper atmosphere and falling with a terminal velocity of $10\\ \\mathrm{cm/s}$. Due to condensation, if 8 such droplets are coalesced and formed a larger drop, the new terminal velocity will be ………..cm/s.",
+   "correct_key": null,
+   "correct_value": 40,
+   "correct_keys": null,
+   "solution": "$m$ = mass of small drop\n$M$ = mass of bigger drop\n$V_t = \\frac{2}{9}\\frac{R^{2}(\\rho - \\sigma)g}{\\eta}$\n$8 \\propto m = M$\n$8r^{3} = R^{3} \\Rightarrow R = 2R$\nas $V_t \\times R^{2}$ $\\because$ Radius double so $V_t$ becomes 4 time\n$\\therefore 4 \\times 10 = 40\\ \\mathrm{cm/s}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Electrostatics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the net electric field at point P along Y axis is zero, then the ratio of $\\left|\\frac{q_2}{q_3}\\right|$ is $\\frac{8}{5\\sqrt{x}}$, where $x =$ …………..",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$\\frac{Kq_2}{20}\\cos\\beta = \\frac{Kq_3}{25}\\cos\\theta$\n$\\frac{Kq_2}{20}\\frac{4}{\\sqrt{20}} = \\frac{Kq_3}{25}\\frac{4}{\\sqrt{25}}$\n$\\frac{q_2}{q_3} = \\frac{20}{25}\\sqrt{\\frac{20}{25}} = \\frac{8}{5\\sqrt{x}}$\n$\\Rightarrow \\sqrt{x} = \\frac{8 \\times 25\\sqrt{25}}{5 \\times 20\\sqrt{20}}$\n$x = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-08apr-s2-phy-q53.png",
+   "solution_figure": "jn24-08apr-s2-phy-q53-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A heater is designed to operate with a power of $1000\\ \\mathrm{W}$ in a $100\\ \\mathrm{V}$ line. It is connected in combination with a resistance of $10\\ \\Omega$ and a resistance R, to a $100\\ \\mathrm{V}$ mains as shown in figure. For the heater to operate at $62.5\\ \\mathrm{W}$, the value of R should be …………….$\\Omega$.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$R_{heater} = \\frac{V^{2}}{P} = \\frac{(100)^{2}}{1000} = 10\\ \\Omega$\nFor heater $P = \\frac{V^{2}}{R} \\Rightarrow V = \\sqrt{PR}$\n$V = \\sqrt{62.5 \\times 10}$\n$V = 25\\ \\mathrm{v}$\n$i_1 = \\frac{75}{10} = 7.5\\ \\mathrm{A},\\quad i_H = \\frac{25}{10} = 2.5\\ \\mathrm{A}.$\n$i_R = i_1 - i_H = 5$\n$V = IR$\n$R = \\frac{25}{5} = 5\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-08apr-s2-phy-q54.png",
+   "solution_figure": "jn24-08apr-s2-phy-q54-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Alternating Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An alternating emf $E = 110\\sqrt{2}\\sin 100t$ volt is applied to a capacitor of $2\\ \\mu\\mathrm{F}$, the rms value of current in the circuit is ………. mA.",
+   "correct_key": null,
+   "correct_value": 22,
+   "correct_keys": null,
+   "solution": "$C = 2\\mu f;\\quad E = 110\\sqrt{2}\\ \\sin(100\\,t)$\n$X_C = \\frac{1}{\\omega c} = \\frac{1}{100 \\times 2 \\times 10^{6}}$\n$= \\frac{10000}{2} = 5000\\ \\Omega$\n$i_o = \\frac{110\\sqrt{2}}{5000}$\n$i_{rms} = \\frac{110\\sqrt{2}}{5000\\sqrt{2}}$\n$= \\frac{110}{5}\\mathrm{mA}$\n$= 22\\ \\mathrm{mA}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two slits are $1\\ \\mathrm{mm}$ apart and the screen is located $1\\ \\mathrm{m}$ away from the slits. A light wavelength $500\\ \\mathrm{nm}$ is used. The width of each slit to obtain 10 maxima of the double slit pattern within the central maximum of the single slit pattern is ……….. $\\times 10^{-4}\\ \\mathrm{m}$.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$d = 1\\ \\mathrm{mm},\\ D = 1\\mathrm{m},\\ \\lambda = 500\\ \\mathrm{nm}$\n$10\\left(\\frac{\\lambda D}{d}\\right) = \\frac{2\\lambda D}{a}$\n$a = \\frac{d}{5}$\n$= \\frac{10 \\times 10^{-4}\\mathrm{m}}{5}$\n$= 2 \\times 10^{-4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Simple Harmonic Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An object of mass $0.2\\ \\mathrm{kg}$ executes simple harmonic motion along x axis with frequency of $\\left(\\frac{25}{\\pi}\\right)\\mathrm{Hz}$. At the position $x = 0.04\\ \\mathrm{m}$ the object has kinetic energy $0.5\\ \\mathrm{J}$ and potential energy $0.4\\ \\mathrm{J}$. The amplitude of oscillation is …………. cm.",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "Total energy $=$ K.E. $+$ P.E.\nat $x = 0.04\\ \\mathrm{m}$, T.E. $= 0.5 + 0.4 = 0.9\\ \\mathrm{J}$\n$T.E = 1\\ m\\omega^{2}A^{2} = 0.9$\n$= \\frac{1}{2} \\times 0.2\\left(2\\pi \\times \\frac{25}{\\pi}\\right)^{2} \\times A^{2} = 0.9$\n$\\Rightarrow A = 0.06\\ \\mathrm{m}$\n$A = 6\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Semiconductor Devices",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A potential divider circuit is connected with a dc source of $20\\ \\mathrm{V}$, a light emitting diode of glow in voltage $1.8\\ \\mathrm{V}$ and a zener diode of breakdown voltage of $3.2\\ \\mathrm{V}$. The length (PR) of the resistive wire is $20\\ \\mathrm{cm}$. The minimum length of PQ to just glow the LED is …………. cm.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$PR = 20\\ \\mathrm{cm}$\n$V_{PQ} = \\frac{1}{4} \\times R_{PR}$\n$\\ell_{min}(PQ) = \\frac{1}{4} \\times 20$\n$= 5\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-08apr-s2-phy-q58.png",
+   "solution_figure": "jn24-08apr-s2-phy-q58-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Projectile Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A body of mass M thrown horizontally with velocity $v$ from the top of the tower of height H touches the ground at a distance of $100\\ \\mathrm{m}$ from the foot of the tower. A body of mass $2M$ thrown at a velocity $\\frac{v}{2}$ from the top of the tower of height $4H$ will touch the ground at a distance of ……….m.",
+   "correct_key": null,
+   "correct_value": 100,
+   "correct_keys": null,
+   "solution": "$100 = v\\sqrt{\\frac{2H}{g}};\\qquad x = \\frac{v}{2}\\sqrt{\\frac{2(4H)}{g}} = v\\sqrt{\\frac{2H}{g}}$\n$\\Rightarrow x = 100$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-phy-q59-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Circular Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A circular table is rotating with an angular velocity of $\\omega$ rad/s about its axis (see figure). There is a smooth groove along a radial direction on the table. A steel ball is gently placed at a distance of $1\\ \\mathrm{m}$ on the groove. All the surface are smooth. If the radius of the table is $3\\ \\mathrm{m}$, the radial velocity of the ball w.r.t. the table at the time ball leaves the table is $x\\sqrt{2}\\omega$ m/s, where the value of x is………..",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$a_c = \\omega^{2}x$\n$\\frac{v\\,dv}{dx} = \\omega^{2}x$\n$\\int_{0}^{V} v\\,dv = \\int_{1}^{3} \\omega^{2}x\\,dx$\n$\\frac{v^{2}}{2} = \\omega^{2}\\left[\\frac{x^{2}}{2}\\right]$\n$\\frac{v^{2}}{2} = \\frac{\\omega^{2}}{2}\\left[3^{2} - 1^{2}\\right]$\n$v = 2\\sqrt{2}\\omega$\n$x = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-08apr-s2-phy-q60.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

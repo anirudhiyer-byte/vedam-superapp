@@ -10,60 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "10luG5flRaz15jfCzxWtC8WSrHJPEh_MZ"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "topic": "Chemical Bonding",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$\\mathrm{C_6H_5CH_3 \\xrightarrow[\\mathrm{CH_2Cl_2}]{\\mathrm{CrO_2Cl_2}} A \\xrightarrow{\\mathrm{H_3O^+}} B \\xrightarrow{\\mathrm{NaHSO_3}} Product}$\nThe product is",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": null,
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q01-optA.png"
-    },
-    {
-     "key": "B",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q01-optB.png"
-    },
-    {
-     "key": "C",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q01-optC.png"
-    },
-    {
-     "key": "D",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q01-optD.png"
-    }
-   ],
-   "stem_figure": "j25-22jan-s2-chem-q01.png",
-   "solution_figure": "j25-22jan-s2-chem-q01-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 2,
-   "topic": "Some Basic Concepts of Chemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Density of $3\\ \\mathrm{M}$ $\\mathrm{NaOH}$ is $1.25\\ \\mathrm{g/ml}$. Molality of solution is",
+   "stem": "Arrange the following compounds in increasing order of their dipole moment :\n$\\mathrm{HBr}$, $\\mathrm{H_2S}$, $\\mathrm{NF_3}$ and $\\mathrm{CHCl_3}$",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$$M = \\frac{1000\\,M}{1000\\,d - M \\times M_0}$$\n$$= \\frac{3 \\times 1000}{1250 - 3 \\times 40}$$\n$$= \\frac{3 \\times 1000}{1130} = 2.65$$",
+   "solution": "Increasing order of Dipole moment\n$\\mathrm{NF_3 < HBr < H_2S < CHCl_3}$\n$\\mu = 0.24\\ \\mathrm{D}$, $0.79\\ \\mathrm{D}$, $0.95\\ \\mathrm{D}$, $1.04\\ \\mathrm{D}$\nIt is NCERT Data Based",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -71,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$2.65$"
+     "text": "$\\mathrm{NF_3 < HBr < H_2S < CHCl_3}$"
     },
     {
      "key": "B",
-     "text": "$2.5$"
+     "text": "$\\mathrm{HBr < H_2S < NF_3 < CHCl_3}$"
     },
     {
      "key": "C",
-     "text": "$2.8$"
+     "text": "$\\mathrm{H_2S < HBr < NF_3 < CHCl_3}$"
     },
     {
      "key": "D",
-     "text": "$3$"
+     "text": "$\\mathrm{CHCl_3 < NF_3 < HBr < H_2S}$"
     }
    ],
    "stem_figure": null,
@@ -92,15 +51,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 3,
-   "topic": "Coordination Compounds",
+   "q_no": 2,
+   "topic": "Biomolecules",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Arrange according to CFSE.\n(i) $\\mathrm{[Co(NH_3)_4]^{2+}}$\n(ii) $\\mathrm{[Co(NH_3)_6]^{3+}}$\n(iii) $\\mathrm{[Co(NH_3)_6]^{2+}}$\n(iv) $\\mathrm{[Co(en)_3]^{3+}}$",
+   "stem": "Identify the number of structure/s from the following which can be correlated to D-glyceraldehyde.",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Crystal Field Splitting Energy (CFSE)\n$\\propto$ Charge on central metal ion\n$\\propto$ Ligand field strength\nOn this basis the correct decreasing order of CFSE\n$\\mathrm{[Co(en)_3]^{3+} > [Co(NH_3)_6]^{3+} > [Co(NH_3)_6]^{2+} > [Co(NH_3)_4]^{2+}}$",
+   "solution": "In A, B, D $*$ $\\mathrm{-OH}$ group in right hand side then D-configuration is assign",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -108,19 +67,56 @@
    "options": [
     {
      "key": "A",
-     "text": "(iv) > (ii) > (iii) > (i)"
+     "text": "three"
     },
     {
      "key": "B",
-     "text": "(iv) > (iii) > (ii) > (i)"
+     "text": "two"
     },
     {
      "key": "C",
-     "text": "(i) > (iii) > (ii) > (iv)"
+     "text": "four"
     },
     {
      "key": "D",
-     "text": "(i) > (ii) > (iii) > (iv)"
+     "text": "one"
+    }
+   ],
+   "stem_figure": "jn25-22jan-s2-chem-q52.png",
+   "solution_figure": "jn25-22jan-s2-chem-q52-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The maximum covalency of a non-metallic group 15 element 'E' with weakest E–E bond is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{N - N < P - P}$ : single ($\\sigma$) bond strength\nDue to L.P.-L.P. replusion\nand maximum possible covalency of nitrogen is 4.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5"
+    },
+    {
+     "key": "B",
+     "text": "3"
+    },
+    {
+     "key": "C",
+     "text": "6"
+    },
+    {
+     "key": "D",
+     "text": "4"
     }
    ],
    "stem_figure": null,
@@ -130,14 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "General Organic Chemistry",
+   "topic": "Chemical Kinetics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "What is correct order of stability of carbocation.",
+   "stem": "Consider the given figure and choose the correct option :",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Solution stability of $\\mathrm{C^{\\oplus}} \\propto +M,\\ HC,\\ +I$\n$$\\propto \\frac{1}{-M,\\ -Z}$$",
+   "solution": "Activation energy of forward reaction $= E_{1} + E_{2}$\nEnergy of product $>$ Energy of reactant\nStability\nReactant $>$ Product",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -145,36 +141,36 @@
    "options": [
     {
      "key": "A",
-     "text": "a > b > c > d"
+     "text": "Activation energy of backward reaction is $E_{1}$ and product is more stable than reactant."
     },
     {
      "key": "B",
-     "text": "c > a > d > b"
+     "text": "Activation energy of forward reaction is $E_{1} + E_{2}$ and product is more stable than reactant."
     },
     {
      "key": "C",
-     "text": "a > c > d > b"
+     "text": "Activation energy of forward reaction is $E_{1} + E_{2}$ and product is less stable than reactant."
     },
     {
      "key": "D",
-     "text": "c > b > a > d"
+     "text": "Activation energy of both forward and backward reaction is $E_{1} + E_{2}$ and reactant is more stable than product."
     }
    ],
-   "stem_figure": "j25-22jan-s2-chem-q04.png",
+   "stem_figure": "jn25-22jan-s2-chem-q54.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 5,
-   "topic": "Redox Reactions",
+   "topic": "Hydrocarbons",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following anion will not undergoe disproportionation?",
-   "correct_key": "A",
+   "stem": "When sec-butylcyclohexane reacts with bromine in the presence of sunlight, the major product is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "In $\\mathrm{ClO_4^-} \\rightarrow$ chlorine is in its highest oxidation state i.e., $+7$.\nChlorine can exhibit $-1$ to $+7$ oxidation state.\nThe oxidation states of chlorine which can undergo disproportionation are : $0$, $+1$, $+3$ and $+5$.",
+   "solution": "Formation of more stable free radical intermediate",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -182,36 +178,40 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{ClO_4^-}$"
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q55-optA.png"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{ClO_3^-}$"
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q55-optB.png"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{ClO_2^-}$"
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q55-optC.png"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{ClO^-}$"
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q55-optD.png"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn25-22jan-s2-chem-q55-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 6,
-   "topic": "Chemical Bonding and Molecular Structure",
+   "topic": "Redox Reactions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Compare dipole moment of\n(I) $\\mathrm{NF_3}$\n(II) $\\mathrm{CHCl_3}$\n(III) $\\mathrm{H_2S}$\n(IV) $\\mathrm{HBr}$",
-   "correct_key": "C",
+   "stem": "The species which does not undergo disproportionation reaction is :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{NH_3}$ | $\\mathrm{CHCl_3}$ | $\\mathrm{H_2S}$ | $\\mathrm{HBr}$\n$\\Rightarrow$ $0.230$ | $1.04$ | $0.95$ | $0.79$\nSo, order is\n$\\mathrm{CHCl_3 > H_2S > HBr > NF_3}$",
+   "solution": "$\\mathrm{ClO_4^{-}} \\rightarrow x + \\{(-2) \\times 4\\} = -1 \\Rightarrow x = +7$\nChlorine is in its maximum oxidation state, so disproportionation not possible in $\\mathrm{ClO_4^{-}}$.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -219,19 +219,19 @@
    "options": [
     {
      "key": "A",
-     "text": "I > II > III > IV"
+     "text": "$\\mathrm{ClO_2^{-}}$"
     },
     {
      "key": "B",
-     "text": "II > III > I > IV"
+     "text": "$\\mathrm{ClO_4^{-}}$"
     },
     {
      "key": "C",
-     "text": "II > III > IV > I"
+     "text": "$\\mathrm{ClO^{-}}$"
     },
     {
      "key": "D",
-     "text": "III > I > IV > II"
+     "text": "$\\mathrm{ClO_3^{-}}$"
     }
    ],
    "stem_figure": null,
@@ -241,85 +241,11 @@
   },
   {
    "q_no": 7,
-   "topic": "General Organic Chemistry",
+   "topic": "Amines",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Given below are two statements\nS-I: Lassaigne test is used for detection of Nitrogen, phosphorous, sulphur and Halogens.\nS-II: Lassaigne extract is made with magnesium metal.",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Lassaigne extract is made with sodium metal, and not with magnesium metal.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Both S-I and S-II are correct."
-    },
-    {
-     "key": "B",
-     "text": "Both S-I and S-II are incorrect."
-    },
-    {
-     "key": "C",
-     "text": "S-I is correct but S-II is incorrect."
-    },
-    {
-     "key": "D",
-     "text": "S-I is incorrect but S-II is correct"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 8,
-   "topic": "Hydrocarbons",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Which one has two secondary Hydrogen atoms?",
+   "stem": "Match the Compounds (List-I) with the appropriate Catalyst/Reagents (List-II) for their reduction into corresponding amines.\nList-I (Compounds) | List-II (Catalyst/Reagents)\n(A) $\\mathrm{R-CO-NH_2}$ | (I) NaOH (aqueous)\n(B) Nitrobenzene (benzene ring with $\\mathrm{NO_2}$, see figure) | (II) $\\mathrm{H_2/Ni}$\n(C) $\\mathrm{R-C \\equiv N}$ | (III) $\\mathrm{LiAlH_4, H_2O}$\n(D) N-substituted phthalimide (see figure) | (IV) $\\mathrm{Sn, HCl}$\nChoose the correct answer from the options given below :",
    "correct_key": "D",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "(1) Number of $2^\\circ$H = 6\n(2) Number of $2^\\circ$H = 4\n(3) Number of $2^\\circ$H = 8\n(4) Number of $2^\\circ$H = 2",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "2, 2, 4, 4-tetramethylheptane"
-    },
-    {
-     "key": "B",
-     "text": "2, 2, 3, 4-tetramethylheptane"
-    },
-    {
-     "key": "C",
-     "text": "2, 2, 3, 3-tetramethyloctane"
-    },
-    {
-     "key": "D",
-     "text": "3-ethyl-2, 2-dimethylpentane"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": "j25-22jan-s2-chem-q08-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 9,
-   "topic": "Hydrocarbons",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Secondary butyl cyclohexane when reacts with $\\mathrm{Br_2}$ in presence of sunlight produce",
-   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
    "solution": null,
@@ -330,40 +256,36 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q09-optA.png"
+     "text": "(A)-(III), (B)-(II), (C)-(IV), (D)-(I)"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q09-optB.png"
+     "text": "(A)-(II), (B)-(IV), (C)-(III), (D)-(I)"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q09-optC.png"
+     "text": "(A)-(II), (B)-(I), (C)-(III), (D)-(IV)"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-22jan-s2-chem-q09-optD.png"
+     "text": "(A)-(III), (B)-(IV), (C)-(II), (D)-(I)"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": "j25-22jan-s2-chem-q09-sol.png",
+   "stem_figure": "jn25-22jan-s2-chem-q57.png",
+   "solution_figure": "jn25-22jan-s2-chem-q57-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 10,
-   "topic": "Some Basic Concepts of Chemistry",
+   "q_no": 8,
+   "topic": "Haloalkanes and Haloarenes",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$200\\ \\mathrm{mL}$ of $0.2\\ \\mathrm{M}$ solution of $\\mathrm{NaOH}$ is mixed with $400\\ \\mathrm{mL}$ of $0.5\\ \\mathrm{M}$ $\\mathrm{NaOH}$ solution. Molarity of mixture is",
+   "stem": "$\\mathrm{RBr} \\xrightarrow[\\mathrm{(ii)\\ H_2O}]{\\mathrm{(i)\\ Mg,\\ dry\\ ether}}$ 2-Methylbutane\n\nThe maximum number of $\\mathrm{RBr}$ producing 2-methylbutane by above sequence of reactions is _____. (Consider the structural isomers only)",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$M_1 = 0.2\\ \\mathrm{M}$\n$M_2 = 0.5\\ \\mathrm{M}$\n$V_1 = 200\\ \\mathrm{mL}$\n$V_2 = 400\\ \\mathrm{mL}$\nMolarity of mixture $= \\frac{M_1V_1 + M_2V_2}{V_1 + V_2}$\n$$= \\frac{0.2 \\times 200 + 0.5 \\times 400}{600}\\ \\mathrm{M}$$\n$$= \\frac{40 + 200}{600}$$\n$$= \\frac{240}{600} = 0.4\\ \\mathrm{M}$$",
+   "solution": "Total number of possible structural $\\mathrm{RBr} = 4$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -371,19 +293,93 @@
    "options": [
     {
      "key": "A",
-     "text": "$0.4$"
+     "text": "4"
     },
     {
      "key": "B",
-     "text": "$0.6$"
+     "text": "5"
     },
     {
      "key": "C",
-     "text": "$4\\ \\mathrm{M}$"
+     "text": "3"
     },
     {
      "key": "D",
-     "text": "$0.8\\ \\mathrm{M}$"
+     "text": "1"
+    }
+   ],
+   "stem_figure": "jn25-22jan-s2-chem-q58.png",
+   "solution_figure": "jn25-22jan-s2-chem-q58-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List-I with List-II.\nList-I (Partial Derivatives) | List-II (Thermodynamic Quantity)\n(A) $\\left(\\frac{\\partial G}{\\partial T}\\right)_{P}$ | (I) $C_{P}$\n(B) $\\left(\\frac{\\partial H}{\\partial T}\\right)_{P}$ | (II) $-S$\n(C) $\\left(\\frac{\\partial G}{\\partial P}\\right)_{T}$ | (III) $C_{V}$\n(D) $\\left(\\frac{\\partial U}{\\partial T}\\right)_{V}$ | (IV) $V$\nChoose the correct answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) $dG = VdP - SdT$\nConstant pressure\n$dG = -SdT$\n$\\left(\\frac{\\partial G}{\\partial T}\\right)_{P} = -S$\n(B) $dH = (dq)_{P} = nC_{p}dT$\n$\\left(\\frac{\\partial H}{\\partial T}\\right)_{P} = C_{P}$\n(C) $dG = VdP - SdT$\nAt constant temperature\n$dG = VdP$\n$\\left(\\frac{\\partial G}{\\partial P}\\right)_{T} = V$\n(D) $dU = nC_{v}dT = (q)_{V}$\n$\\left(\\frac{\\partial U}{\\partial T}\\right)_{V} = C_{V}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(II), (B)-(I), (C)-(III), (D)-(IV)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(I), (B)-(II), (C)-(IV), (D)-(III)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(II), (B)-(III), (C)-(I), (D)-(IV)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The correct order of the following complexes in terms of their crystal field stabilization energies is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Order of CFSE\n$\\mathrm{[Co(NH_3)_4]^{+2} < [Co(NH_3)_6]^{+2} < [Co(NH_3)_6]^{+3} < [Co(en)_3]^{+3}}$\nCharge $\\uparrow$ CFSE $\\uparrow$ (between the second and third complexes); on increasing strength of ligand CFSE $\\uparrow$ (between the third and fourth complexes)\nSFL : $\\mathrm{NH_3 < en}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{[Co(NH_3)_4]^{2+} < [Co(NH_3)_6]^{2+} < [Co(en)_3]^{3+} < [Co(NH_3)_6]^{3+}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{[Co(NH_3)_4]^{2+} < [Co(NH_3)_6]^{2+} < [Co(NH_3)_6]^{3+} < [Co(en)_3]^{3+}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{[Co(NH_3)_6]^{2+} < [Co(NH_3)_6]^{3+} < [Co(NH_3)_4]^{2+} < [Co(en)_3]^{3+}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{[Co(en)_3]^{3+} < [Co(NH_3)_6]^{3+} < [Co(NH_3)_6]^{2+} < [Co(NH_3)_4]^{2+}}$"
     }
    ],
    "stem_figure": null,
@@ -393,11 +389,274 @@
   },
   {
    "q_no": 11,
-   "topic": "Biomolecules",
+   "topic": "Solutions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Correct structure of L-Glyceraldehyde is",
+   "stem": "Density of 3 M NaCl solution is 1.25 g/mL. The molality of the solution is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "3M NaCl, $d_{sol} = 1.25$ gm/mol\nMolality $= \\frac{M \\times 1000}{1000d - M \\times M_{W}} = \\frac{3000}{1250 - 175.5}$\n$= 2.79$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1.79 m"
+    },
+    {
+     "key": "B",
+     "text": "2 m"
+    },
+    {
+     "key": "C",
+     "text": "3 m"
+    },
+    {
+     "key": "D",
+     "text": "2.79 m"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The molar solubility(s) of zirconium phosphate with molecular formula $\\mathrm{(Zr^{4+})_3(PO_4^{3-})_4}$ is given by relation :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{Zr_3(PO_4)_4(s) \\rightleftharpoons 3Zr^{4+}(aq) + 4PO_4^{3-}(aq)}$\n$3s$ and $4s$\n$K_{sp} = (3s)^{3}(4s)^{4} = 6912\\, s^{7}$\n$s = \\left(\\frac{K_{sp}}{6912}\\right)^{1/7}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(\\frac{K_{sp}}{6912}\\right)^{\\frac{1}{7}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{K_{sp}}{5348}\\right)^{\\frac{1}{6}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{K_{sp}}{8435}\\right)^{\\frac{1}{7}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{K_{sp}}{9612}\\right)^{\\frac{1}{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "General Organic Chemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The most stable carbocation from the following is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Due to $+M$ effect of $\\mathrm{-OMe}$ at para position, the p-methoxybenzyl carbocation will be most stable among these.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q63-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q63-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q63-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn25-22jan-s2-chem-q63-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s2-chem-q63-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Periodic Table",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement (I) : An element in the extreme left of the periodic table forms acidic oxides.\nStatement (II) : Acid is formed during the reaction between water and oxide of a reactive element present in the extreme right of the periodic table.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Statement-I : False but Statement-II is true.\nOn moving left to right in periodic table non-metallic character increases and we know that non-metal oxides are acidc in nature.\nNon metallic character $\\uparrow$ Acidic strength of oxide $\\uparrow$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement-I is false but Statement-II is true."
+    },
+    {
+     "key": "B",
+     "text": "Both Statement-I and Statement-II are false."
+    },
+    {
+     "key": "C",
+     "text": "Statement-I is true but Statement-II is false."
+    },
+    {
+     "key": "D",
+     "text": "Both Statement-I and Statement-II are true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Atomic Structure",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement (I) : A spectral line will be observed for a $2p_{x} \\rightarrow 2p_{y}$ transition.\nStatement (II) : $2p_{x}$ and $2p_{y}$ are degenerate orbitals.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "No spectral line will be observed for a $2p_{x} \\rightarrow 2p_{y}$ transition because $2p_{x}$ and $2p_{y}$ orbitals are degenerate orbitals.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement-I and Statement-II are true."
+    },
+    {
+     "key": "B",
+     "text": "Both Statement-I and Statement-II are false."
+    },
+    {
+     "key": "C",
+     "text": "Statement-I is true but Statement-II is false."
+    },
+    {
+     "key": "D",
+     "text": "Statement-I is false but Statement-II is true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Practical Organic Chemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statement :\nStatement (I) : Nitrogen, sulphur, halogen and phosphorus present in an organic compound are detected by Lassaigne's Test.\nStatement (II) : The elements present in the compound are converted from covalent form into ionic form by fusing the compound with Magnesium in Lassaigne's test.\nIn the light of the above statements, choose the correct answer from the options given below :",
    "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The elements present in the compound are converted from covalent form into ionic form by fusing the compound with sodium in Lassigne's test",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "C",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is false but Statement II is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify the homoleptic complex(es) that is/are low spin.\n(A) $\\mathrm{[Fe(CN)_5NO]^{2-}}$\n(B) $\\mathrm{[CoF_6]^{3-}}$\n(C) $\\mathrm{[Fe(CN)_6]^{4-}}$\n(D) $\\mathrm{[Co(NH_3)_6]^{3+}}$\n(E) $\\mathrm{[Cr(H_2O)_6]^{2+}}$\nChoose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) $\\mathrm{[Fe(CN)_5NO]^{-2}} \\rightarrow$ Heteroleptic, $\\mathrm{Fe^{+2}}$, $3d^{6}$, $t_{2g}^{6}e_{g}^{0}$, $d^{2}sp^{3}$, Low spin (3d series + SFL)\n(B) $\\mathrm{[CoF_6]^{-3}} \\rightarrow$ Homoleptic, $sp^{3}d^{2}$, High spin, $\\mathrm{Co^{+3}}$, $3d^{6}$ (3d series + WFL)\n(C) $\\mathrm{[Fe(CN)_6]^{-4}} \\rightarrow$ Homoleptic $\\mathrm{Fe^{+2}}$, $3d^{6}$, $d^{2}sp^{3}$, $t_{2g}^{6}e_{g}^{0}$ Low spin (3d series + SFL)\n(D) $\\mathrm{[Co(NH_3)_6]^{+3}} \\rightarrow$ Homoleptic, $\\mathrm{Co^{3+}}$ $3d^{6}$, $d^{2}sp^{3}$, $t_{2g}^{6}e_{g}^{0}$, Low spin (3d series + SFL)\n(E) $\\mathrm{[Cr(H_2O)_6]^{+2}} \\rightarrow$ Homoleptic $\\mathrm{Cr^{+2}}$ $3d^{4}$, $d^{2}sp^{3}$, High spin $t_{2g}^{3}e_{g}^{1}$ (3d series + WFL)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(B) and (E) only"
+    },
+    {
+     "key": "B",
+     "text": "(A) and (C) only"
+    },
+    {
+     "key": "C",
+     "text": "(C) and (D) only"
+    },
+    {
+     "key": "D",
+     "text": "(C) only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Aldehydes and Ketones",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Toluene (excess) $\\xrightarrow{\\mathrm{(i)\\ CrO_2Cl_2,\\ CS_2;\\ (ii)\\ H_3O^{+};\\ (iii)\\ NaHSO_3}}$ Filter $\\longrightarrow$ Residue (A)\nResidue (A) + HCl (dil.) $\\rightarrow$ Compound (B)\nStructure of residue (A) and compound (B) Formed respectively is :\n[A] | [B]",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
    "solution": null,
@@ -409,187 +668,39 @@
     {
      "key": "A",
      "text": "",
-     "figure": "j25-22jan-s2-chem-q11-optA.png"
+     "figure": "jn25-22jan-s2-chem-q68-optA.png"
     },
     {
      "key": "B",
      "text": "",
-     "figure": "j25-22jan-s2-chem-q11-optB.png"
+     "figure": "jn25-22jan-s2-chem-q68-optB.png"
     },
     {
      "key": "C",
      "text": "",
-     "figure": "j25-22jan-s2-chem-q11-optC.png"
+     "figure": "jn25-22jan-s2-chem-q68-optC.png"
     },
     {
      "key": "D",
      "text": "",
-     "figure": "j25-22jan-s2-chem-q11-optD.png"
+     "figure": "jn25-22jan-s2-chem-q68-optD.png"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": "j25-22jan-s2-chem-q11-sol.png",
+   "stem_figure": "jn25-22jan-s2-chem-q68.png",
+   "solution_figure": "jn25-22jan-s2-chem-q68-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 12,
-   "topic": "Thermodynamics",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Identify the extensive and intensive property?",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "The properties which do not depend upon amount of substance is known as intensive property and the properties which depend upon amount of substance are extensive properties of matter.\nMass, volume and internal energy depend on amount of substance.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Mass, volume, conductivity – Intensive property"
-    },
-    {
-     "key": "B",
-     "text": "Mass, temperature, heat, volume – Extensive property"
-    },
-    {
-     "key": "C",
-     "text": "Mass, volume, internal energy – Extensive property"
-    },
-    {
-     "key": "D",
-     "text": "Density, temperature, moles, internal energy – Intensive property"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 13,
-   "topic": "p-Block Elements",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Among Group-15 elements, what is the maximum covalency of an element having weakest E–E bond (E = element)",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "The E – E bond energies of the elements of group-15 are\nN – N | $167\\ \\mathrm{kJ\\,mol^{-1}}$\nP – P | $201\\ \\mathrm{kJ\\,mol^{-1}}$\nAs – As | $146\\ \\mathrm{kJ\\,mol^{-1}}$\nSb – Sb | $121\\ \\mathrm{kJ\\,mol^{-1}}$\nAntimony (Sb) has the weakest E – E bond and its maximum covalency is 5.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$4$"
-    },
-    {
-     "key": "B",
-     "text": "$3$"
-    },
-    {
-     "key": "C",
-     "text": "$5$"
-    },
-    {
-     "key": "D",
-     "text": "$2$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 14,
-   "topic": "Ionic Equilibrium",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "What is the relation between $K_{sp}$ and S of $\\mathrm{Zr_3(PO_4)_4}$",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$$\\mathrm{Zr_3(PO_4)_4(s) \\rightleftharpoons \\underset{3s}{3Zr^{4+}(aq)} + \\underset{4s}{4PO_4^{3-}(aq)}}$$\n$K_{sp} = (3s)^{3}(4s)^{4}$\n$= 27 \\times 256\\ S^{7}$\n$K_{sp} = 6912\\ S^{7}$\n$$S = \\left(\\frac{K_{sp}}{6912}\\right)^{\\frac{1}{7}}$$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$S = \\left(\\frac{K_{sp}}{6912}\\right)^{\\frac{1}{7}}$"
-    },
-    {
-     "key": "B",
-     "text": "$S = \\left(\\frac{K_{sp}}{144}\\right)^{\\frac{1}{7}}$"
-    },
-    {
-     "key": "C",
-     "text": "$S = \\frac{K_{sp}}{6912}$"
-    },
-    {
-     "key": "D",
-     "text": "None"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 15,
-   "topic": "Thermodynamics",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Match the column and choose the correct option\n(A) $\\left(\\frac{\\partial H}{\\partial T}\\right)_P$ | (P) $C_P$\n(B) $\\left(\\frac{\\partial G}{\\partial P}\\right)_T$ | (Q) $C_V$\n(C) $\\left(\\frac{\\partial U}{\\partial T}\\right)_V$ | (R) $-S$\n(D) $\\left(\\frac{\\partial G}{\\partial T}\\right)_P$ | (S) $V$",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Heat exchanged at constant pressure is $\\Delta H$\nHeat exchanged at constant volume is $\\Delta U$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "(A) – (P), (B) – (S), (C) – (Q), (D) – (R)"
-    },
-    {
-     "key": "B",
-     "text": "(A) – (P), (B) – (S), (C) – (R), (D) – (Q)"
-    },
-    {
-     "key": "C",
-     "text": "(A) – (P), (B) – (R), (C) – (Q), (D) – (S)"
-    },
-    {
-     "key": "D",
-     "text": "(A) – (Q), (B) – (S), (C) – (P), (D) – (R)"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 16,
+   "q_no": 19,
    "topic": "Electrochemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Consider the following statements S-1 and S-2 and choose the correct option.\nS-1 : During corrosion pure metal acts as anode and impure metal acts as cathode.\nS-2 : Rate of corrosion is more in alkaline medium than in acidic medium.",
-   "correct_key": "B",
+   "stem": "Given below are two statements :\nStatement (I) : Corrosion is an electrochemical phenomenon in which pure metal acts as an anode and impure metal as a cathode.\nStatement (II) : The rate of corrosion is more in alkaline medium than in acidic medium.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "In corrosion, a metal is oxidised by loss of electrons to oxygen. Electron released at anodic spot move through the same metal and go to another spot on the metal and reduce oxygen in the presence of $\\mathrm{H^+}$ (which is believed to be available from $\\mathrm{H_2CO_3}$ formed due to dissolution of $\\mathrm{CO_2}$ from air into water.\nCathode : $\\mathrm{O_2(g) + 4H^+ + 4e^- \\rightarrow 2H_2O(l)}$ $\\quad E^{0}_{\\mathrm{H^+|O_2|H_2O}} = 1.23\\ \\mathrm{V}$\nAnode : $\\mathrm{2Fe(s) \\rightarrow 2Fe^{2+} + 4e^-}$ $\\quad E^{0}_{\\mathrm{Fe^{2+}|Fe}} = -0.44\\ \\mathrm{V}$\n$\\therefore$ Both the statements S-1 and S-2 are incorrect.",
+   "solution": "Statement I :\nCorrosion is an example of electrochemical phenomenon\nIn which pure metal act as anode and impure metal (rusted metal) act as cathode.\nStatement II :\nCorrosion is more favourable in acid medium than alkaline so rate of corrosion is high is acid medium then alkaline.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -597,36 +708,93 @@
    "options": [
     {
      "key": "A",
-     "text": "Both S-1 and S-2 are correct"
+     "text": "Both Statement I and Statement II are false"
     },
     {
      "key": "B",
-     "text": "Both S-1 and S-2 are incorrect"
+     "text": "Statement I is false but Statement II is true"
     },
     {
      "key": "C",
-     "text": "S-1 is correct but S-2 is incorrect"
+     "text": "Both Statement I and Statement II are true"
     },
     {
      "key": "D",
-     "text": "S-1 is incorrect but S-2 is correct"
+     "text": "Statement I is true but Statement II is false"
     }
    ],
    "stem_figure": null,
    "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The alkane from below having two secondary hydrogens is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4-Ethyl-3,4-dimethyloctane"
+    },
+    {
+     "key": "B",
+     "text": "2,2,4,4-Tetramethylhexane"
+    },
+    {
+     "key": "C",
+     "text": "2,2,3,3-Tetramethylpentane"
+    },
+    {
+     "key": "D",
+     "text": "2,2,4,5-Tetramethylheptane"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s2-chem-q70-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 21,
+   "topic": "Hydrocarbons",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The compound with molecular formula $\\mathrm{C_6H_6}$, which gives only one monobromo derivative and takes up four moles of hydrogen per mole for complete hydrogenation has _______ $\\pi$ electrons.",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s2-chem-q71-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
    "topic": "d- and f-Block Elements",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "In Ru and Nb, if in Ru, $4d$ electrons are x and in Nb, $4d$ electrons are y then find the sum of x and y.",
+   "stem": "Niobium (Nb) and ruthenium (Ru) have “x” and “y” number of electrons in their respective 4d orbitals. The value of x + y is _______",
    "correct_key": null,
    "correct_value": 11,
    "correct_keys": null,
-   "solution": "$\\mathrm{_{44}Ru} \\Rightarrow \\mathrm{[Kr]}\\,4d^{7}5s^{1}$\n$x = 7$\n$\\mathrm{_{41}Nb} \\Rightarrow \\mathrm{[Kr]}\\,4d^{4}5s^{1}$\n$y = 4$\n$x + y = 11$",
+   "solution": "$Z = 41 \\rightarrow$ Nb (Niobium) : $\\mathrm{[Kr]_{36}}\\ 4d^{4}\\,5s^{1}$\nNumber of electron in 4d $= 4 = x$\n$Z = 44 \\rightarrow$ Ru (Ruthenium) : $\\mathrm{[Kr]_{36}}\\ 4d^{7}\\,5s^{1}$\nNumber of electron in 4d $= 7 = y$\n$x + y = 11$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -638,75 +806,55 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 22,
+   "q_no": 23,
    "topic": "Coordination Compounds",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "$\\mathrm{Ni^{2+} + 2DMG \\longrightarrow Complex}$\nHow many hydrogen bonds are present in a molecule of the complex?",
+   "stem": "The complex of $\\mathrm{Ni^{2+}}$ ion and dimethyl glyoxime contains ______ number of Hydrogen (H) atoms.",
    "correct_key": null,
-   "correct_value": 2,
+   "correct_value": 14,
    "correct_keys": null,
-   "solution": "$\\mathrm{Ni^{2+} + 2\\,(CH_3C(=NOH)C(=NOH)CH_3) + 2OH^- \\longrightarrow [Ni(DMG)_2]}$\nNumber of H-bonds in a molecule of $\\mathrm{[Ni(DMG)_2]}$ = 2",
+   "solution": "$\\mathrm{[Ni(dmg)_2]}$\nNumber of H-atom $= 14$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
    "stem_figure": null,
-   "solution_figure": "j25-22jan-s2-chem-q22-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 23,
-   "topic": "Haloalkanes and Haloarenes",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$\\mathrm{R - Br + Mg \\xrightarrow{\\text{dry ether}} A \\xrightarrow{H_2O}}$ [product drawn in the figure]\nHow many R – Br can form isopentane?",
-   "correct_key": null,
-   "correct_value": 4,
-   "correct_keys": null,
-   "solution": "$\\therefore$ Total 4 R–Br can form isopentane in this reaction.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j25-22jan-s2-chem-q23.png",
-   "solution_figure": "j25-22jan-s2-chem-q23-sol.png",
+   "solution_figure": "jn25-22jan-s2-chem-q73-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 24,
-   "topic": "Hydrocarbons",
+   "topic": "Thermodynamics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "$\\mathrm{C_6H_6} \\xrightarrow{\\text{Monobromination}}$ Single product\n$\\mathrm{C_6H_6} \\xrightarrow[\\text{Cat.}]{\\text{4 moles of } \\mathrm{H_2}}$ Completely hydrogenated product\nFind the number of $\\pi$-electrons in $\\mathrm{C_6H_6}$.",
+   "stem": "Consider the following cases of standard enthalpy of reaction ($\\Delta H_{r}^{\\circ}$ in $\\mathrm{kJ\\ mol^{-1}}$)\n$\\mathrm{C_2H_6(g) + \\frac{7}{2}O_2(g) \\rightarrow 2CO_2(g) + 3H_2O(\\ell)}\\quad \\Delta H_{1}^{\\circ} = -1550$\n$\\mathrm{C(graphite) + O_2(g) \\rightarrow CO_2(g)}\\quad \\Delta H_{2}^{\\circ} = -393.5$\n$\\mathrm{H_2(g) + \\frac{1}{2}O_2(g) \\rightarrow H_2O(\\ell)}\\quad \\Delta H_{3}^{\\circ} = -286$\nThe magnitude of $\\Delta H_{f}^{\\circ}\\ \\mathrm{C_2H_6(g)}$ is ______ $\\mathrm{kJ\\ mol^{-1}}$ (Nearest integer).",
    "correct_key": null,
-   "correct_value": 8,
+   "correct_value": 95,
    "correct_keys": null,
-   "solution": "Degree of unsaturation of $\\mathrm{C_6H_6}$ = 4\n$\\mathrm{C_6H_6}$ is a symmetrical dialkyne.\n$\\mathrm{HC \\equiv C - CH_2 - CH_2 - C \\equiv CH \\xrightarrow{Monobromination} HC \\equiv C - CH(Br) - CH_2 - C \\equiv CH}$ (Single product)\n$\\mathrm{HC \\equiv C - CH_2 - CH_2 - C \\equiv CH + 4H_2 \\longrightarrow CH_3 - CH_2 - CH_2 - CH_2 - CH_2 - CH_3}$\nNumber of $\\pi$-electrons in $\\mathrm{C_6H_6}$ = 8",
+   "solution": "$\\mathrm{2C_{(graphite)} + 3H_2(g) \\rightarrow C_2H_6(g)}\\quad \\Delta H_{f} = ?$\n$\\mathrm{C_2H_6(g) + \\frac{7}{2}O_2(g) \\rightarrow 2CO_2(g) + 3H_2O(l)}\\quad \\Delta H_{1} = -1550$\n$\\mathrm{C_{(graphite)} + O_2(g) \\rightarrow CO_2(g)}\\quad \\Delta H_{2} = -393.5$\n$\\mathrm{H_2(g) + \\frac{1}{2}O_2(g) \\rightarrow H_2O(l)}\\quad \\Delta H_{3} = -286$\n$\\Delta H_{f} = 2\\Delta H_{2} + 3\\Delta H_{3} - \\Delta H_{1}$\n$= 95$ kJ/mole.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-22jan-s2-chem-q24.png",
-   "solution_figure": "j25-22jan-s2-chem-q24-sol.png",
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 25,
-   "topic": "Structure of Atom",
+   "topic": "Some Basic Concepts of Chemistry",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Calculate the radius of first excited state of $\\mathrm{He^+}$ ion (in Å)",
+   "stem": "20 mL of 2 M NaOH solution is added to 400 mL of 0.5 M NaOH solution. The final concentration of the solution is ______ $\\times\\ 10^{-2}$ M. (Nearest integer).",
    "correct_key": null,
-   "correct_value": 1,
+   "correct_value": 57,
    "correct_keys": null,
-   "solution": "$$r = a_0\\frac{n^{2}}{z}$$\n$n = 2$\n$z = 2$\n$$r = a_0\\frac{4}{2}$$\n$= 2a_0$\n$= 2 \\times 0.529$\n$= 1.058$\n$\\approx 1$",
+   "solution": "$M_{F} = \\frac{M_{1}V_{1} + M_{2}V_{2}}{V_{1} + V_{2}}$\n$= \\frac{2 \\times 20 + 0.5 \\times 400}{420} = 0.571\\ \\mathrm{M}$\n$= 57.1 \\times 10^{-2}\\ \\mathrm{M}$\n$= 57$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

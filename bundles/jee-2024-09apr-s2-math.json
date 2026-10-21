@@ -1,0 +1,957 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2024,
+  "set_label": "9 Apr · Shift 2",
+  "title": "JEE Main 2024 · Mathematics · 9 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\lim_{x\\to0}\\frac{e-(1+2x)^{\\frac{1}{2x}}}{x}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x\\to0}\\frac{e-e^{\\frac{1}{2x}\\ln(1+2x)}}{x}$\n$=\\lim_{x\\to0}(-e)\\frac{\\left(e^{\\frac{\\ln(1+2x)}{2x}-1}-1\\right)}{x}$\n$=\\lim_{x\\to0}(-e)\\frac{\\ln(1+2x)-2x}{2x^{2}}$\n$=(-e)\\times(-1)\\frac{4}{2\\times2}=e$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$e$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{-2}{e}$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$e-e^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the line L passing through the points $(1, 2, 3)$ and $(2, 3, 5)$. The distance of the point $\\left(\\frac{11}{3}, \\frac{11}{3}, \\frac{19}{3}\\right)$ from the line L along the line $\\frac{3x-11}{2}=\\frac{3y-11}{1}=\\frac{3z-19}{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{x-1}{2-1}=\\frac{y-2}{3-2}=\\frac{z-3}{5-3}$\n$\\Rightarrow \\frac{x-1}{1}=\\frac{y-2}{1}=\\frac{z-3}{2}=\\lambda$\n$B(1+\\lambda, 2+\\lambda, 3+2\\lambda)$\nD.R. of $AB=\\left\\langle\\frac{3\\lambda-8}{3},\\frac{3\\lambda-5}{3},\\frac{6\\lambda-10}{3}\\right\\rangle$\n$B\\left(\\frac{5}{3},\\frac{8}{3},\\frac{13}{3}\\right)$  $\\frac{3\\lambda-8}{3\\lambda-5}=\\frac{2}{1}\\Rightarrow 3\\lambda-8=6\\lambda-10$\n$3\\lambda=2$\n$\\lambda=\\frac{2}{3}$\n$AB=\\frac{\\sqrt{36+9+36}}{3}=\\frac{9}{3}=3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s2-math-q02-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\int_{0}^{x}\\sqrt{1-(y'(t))^{2}}\\,dt=\\int_{0}^{x}y(t)\\,dt,\\ 0\\le x\\le3,\\ y\\ge0,\\ y(0)=0$. Then at $x=2$, $y''+y+1$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sqrt{1-(y'(x))^{2}}=y(x)$\n$1-\\left(\\frac{dy}{dx}\\right)^{2}=y^{2}$\n$\\left(\\frac{dy}{dx}\\right)^{2}=1-y^{2}$\n$\\frac{dy}{\\sqrt{1-y^{2}}}=dx$ OR $\\frac{dy}{\\sqrt{1-y^{2}}}=-dx$\n$\\Rightarrow \\sin^{-1}y=x+c,\\ \\sin^{-1}y=-x+c$\n$x=0,\\ y=0\\ \\Rightarrow\\ c=0$\n$\\sin^{-1}y=x$, as $y\\ge0$\n$\\sin x=y$\n$\\Rightarrow \\frac{dy}{dx}=\\cos x$\n$\\frac{d^{2}y}{dx^{2}}=-\\sin x$\n$\\Rightarrow -\\sin x+\\sin x+1=1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$1/2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $z$ be a complex number such that the real part of $\\frac{z-2i}{z+2i}$ is zero. Then, the maximum value of $|z-(6+8i)|$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{z-2i}{z+2i}+\\frac{\\bar{z}+2i}{\\bar{z}-2i}=0$\n$z\\bar{z}-2i\\bar{z}-2iz+4(-1)$\n$+z\\bar{z}+2zi+2\\bar{z}i+4(-1)=0$\n$\\Rightarrow 2|z|^{2}=8\\Rightarrow|z|=2$\n$|z-(6+8i)|_{\\text{maximum}}=10+2=12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12$"
+    },
+    {
+     "key": "B",
+     "text": "$\\infty$"
+    },
+    {
+     "key": "C",
+     "text": "$10$"
+    },
+    {
+     "key": "D",
+     "text": "$8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area (in square units) of the region enclosed by the ellipse $x^{2}+3y^{2}=18$ in the first quadrant below the line $y=x$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{x^{2}}{18}+\\frac{y^{2}}{6}=1$\n$\\frac{x^{2}}{18}+\\frac{3x^{2}}{18}=1\\Rightarrow 4x^{2}=18\\Rightarrow x^{2}=\\frac{9}{2}$\n$\\int_{\\frac{3}{\\sqrt{2}}}^{3\\sqrt{2}}\\frac{\\sqrt{18-x^{2}}}{\\sqrt{3}}\\,dx$\n$=\\frac{1}{\\sqrt{3}}\\left(\\frac{x\\sqrt{18-x^{2}}}{2}+\\frac{18}{2}\\sin^{-1}\\frac{x}{3\\sqrt{2}}\\right)_{\\frac{3}{\\sqrt{2}}}^{3\\sqrt{2}}$\n$=\\frac{1}{\\sqrt{3}}\\left(9\\times\\frac{\\pi}{2}-\\frac{3}{2\\sqrt{2}}\\times\\frac{3\\sqrt{3}}{\\sqrt{2}}-9\\times\\frac{\\pi}{6}\\right)$\nRequired Area\n$=\\frac{1}{2}\\times\\frac{9}{2}+\\left(\\frac{18\\pi}{6}-\\frac{9\\sqrt{3}}{4}\\right)\\frac{1}{\\sqrt{3}}$\n$=\\sqrt{3}\\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3}\\pi+\\frac{3}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{3}\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3}\\pi-\\frac{3}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{3}\\pi+1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s2-math-q05-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the foci of a hyperbola H coincide with the foci of the ellipse $E:\\frac{(x-1)^{2}}{100}+\\frac{(y-1)^{2}}{75}=1$ and the eccentricity of the hyperbola H be the reciprocal of the eccentricity of the ellipse E. If the length of the transverse axis of H is $\\alpha$ and the length of its conjugate axis is $\\beta$, then $3\\alpha^{2}+2\\beta^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$e_1=\\sqrt{1-\\frac{75}{100}}=\\frac{5}{10}=\\frac{1}{2}$\n$e_2=2$\n$F_1(6,1),\\ F_2(-4,1)$\n$2ae_2=10\\Rightarrow a=\\frac{5}{2}\\Rightarrow 2a=5$\n$\\Rightarrow\\alpha=5$\n$4=1+\\frac{b^{2}}{a^{2}}\\Rightarrow b^{2}=3a^{2}$\n$b=\\sqrt{3}\\times\\frac{5}{2}$\n$\\beta=5\\sqrt{3}$\n$3\\alpha^{2}+2\\beta^{2}=3\\times25+2\\times25\\times3=225$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$242$"
+    },
+    {
+     "key": "B",
+     "text": "$225$"
+    },
+    {
+     "key": "C",
+     "text": "$237$"
+    },
+    {
+     "key": "D",
+     "text": "$205$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s2-math-q06-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two vertices of a triangle ABC are $A(3,-1)$ and $B(-2,3)$, and its orthocentre is $P(1,1)$. If the coordinates of the point C are $(\\alpha,\\beta)$ and the centre of the circle circumscribing the triangle PAB is $(h,k)$, then the value of $(\\alpha+\\beta)+2(h+k)$ equals :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$M_{AB}=\\frac{4}{-5}\\Rightarrow M_{DP}=\\frac{5}{4}$\nEquation of PC is $y-1=\\frac{5}{4}(x-1)$ .......(1)\n$M_{AP}=\\frac{2}{-2}=-1\\Rightarrow M_{BC}=+1$\nEquation of BC is $y-3=(x+2)$ .........(2)\nOn solving (1) and (2)\n$x+4=\\frac{5}{4}(x-1)\\Rightarrow 4x+16=5x-5\\Rightarrow\\alpha=21$\n$\\Rightarrow\\beta=y=x+5=26$\n$\\alpha+\\beta=47$\nEquation of $\\perp$ bisector of AP\n$y-0=(x-2)$ ............. (3)\nEquation of $\\perp$ bisector of AB\n$y-1=\\frac{5}{4}\\left(x-\\frac{1}{2}\\right)$ ............(4)\nOn solving (3) & (4)\n$(x-3)4=5x-\\frac{5}{2}$\n$x=\\frac{-19}{2}=h$\n$y=\\frac{-23}{2}=k$\n$\\Rightarrow 2(h+k)=-42$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$51$"
+    },
+    {
+     "key": "B",
+     "text": "$81$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$15$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s2-math-q07-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the variance of the frequency distribution is $160$, then the value of $c\\in N$ is\nx | $c$ | $2c$ | $3c$ | $4c$ | $5c$ | $6c$\n$f$ | $2$ | $1$ | $1$ | $1$ | $1$ | $1$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "x | $C$ | $2C$ | $3C$ | $4C$ | $5C$ | $6C$\nf | $2$ | $1$ | $1$ | $1$ | $1$ | $1$\n$\\bar{x}=\\frac{(2+2+3+4+5+6)C}{7}=\\frac{22C}{7}$\n$\\text{Var}(x)=\\frac{c^{2}\\left(2+2^{2}+3^{2}+4^{2}+5^{2}+6^{2}\\right)}{7}-\\left(\\frac{22c}{7}\\right)^{2}$\n$=\\frac{92c^{2}}{7}-c^{2}\\times\\frac{484}{49}$\n$=\\frac{(644-484)c^{2}}{49}=\\frac{160c^{2}}{49}$\n$160=\\frac{160\\times c^{2}}{49}\\Rightarrow c=7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$7$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the range of the function $f(x)=\\frac{1}{2+\\sin3x+\\cos3x},\\ x\\in\\mathbb{R}$ be $[a, b]$. If $\\alpha$ and $\\beta$ are respectively the A.M. and the G.M. of $a$ and $b$, then $\\frac{\\alpha}{\\beta}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x)=\\frac{1}{2+\\sin3x+\\cos3x}$\n$\\left[\\frac{1}{2+\\sqrt{2}},\\ \\frac{1}{2-\\sqrt{2}}\\right]$\n$\\frac{\\alpha}{\\beta}=\\frac{a+b}{2\\sqrt{ab}}=\\frac{1}{2}\\left(\\sqrt{\\frac{a}{b}}+\\sqrt{\\frac{b}{a}}\\right)$\n$=\\frac{1}{2}\\left(\\sqrt{\\frac{2-\\sqrt{2}}{2+\\sqrt{2}}}+\\sqrt{\\frac{2+\\sqrt{2}}{2-\\sqrt{2}}}\\right)$\n$=\\frac{(2-\\sqrt{2})+(2+\\sqrt{2})}{2\\times\\sqrt{2}}=\\sqrt{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\pi}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Between the following two statements :\nStatement-I : Let $\\vec{a}=\\hat{i}+2\\hat{j}-3\\hat{k}$ and $\\vec{b}=2\\hat{i}+\\hat{j}-\\hat{k}$. Then the vector $\\vec{r}$ satisfying $\\vec{a}\\times\\vec{r}=\\vec{a}\\times\\vec{b}$ and $\\vec{a}\\cdot\\vec{r}=0$ is of magnitude $\\sqrt{10}$.\nStatement-II : In a triangle ABC, $\\cos2A+\\cos2B+\\cos2C\\ge-\\frac{3}{2}$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{a}=\\hat{i}+2\\hat{j}-3\\hat{k}$\n$\\vec{a}=2\\hat{i}+\\hat{j}-\\hat{k}$\n$\\vec{a}\\times\\vec{r}=\\vec{a}\\times\\vec{b};\\ \\vec{a}\\cdot\\vec{r}=0$\n$\\Rightarrow\\vec{a}\\times(\\vec{r}-\\vec{b})=\\vec{0}$\n$\\Rightarrow\\vec{a}=\\lambda(\\vec{r}-\\vec{b})$\n$\\vec{a}\\cdot\\vec{a}=\\lambda(\\vec{a}\\cdot\\vec{r}-\\vec{a}\\cdot\\vec{b})$\n$14=-7\\lambda\\Rightarrow\\lambda=-2$\n$\\frac{-\\vec{a}}{2}=\\vec{r}-\\vec{b}\\Rightarrow\\vec{r}=\\vec{b}-\\frac{\\vec{a}}{2}$\n$=\\frac{2\\vec{b}-\\vec{a}}{2}=\\frac{3\\hat{i}+\\hat{k}}{2}$\nStatement (I) is incorrect\n$\\cos2A+\\cos2B+\\cos2C\\ge-\\frac{3}{2}$\n$2A+2B+2C=2\\pi$\n$\\cos2A+\\cos2B+\\cos2C$\n$=-1-4\\cos A\\cdot\\cos B\\cdot\\cos C$\n$\\ge-1-4\\times\\frac{1}{2}\\times\\frac{1}{2}\\times\\frac{1}{2}$\n$=-\\frac{3}{2}$\nStatement (II) is correct.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement-I and Statement-II are incorrect"
+    },
+    {
+     "key": "B",
+     "text": "Statement-I is incorrect but Statement-II is correct"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement-I and Statement-II are correct"
+    },
+    {
+     "key": "D",
+     "text": "Statement-I is correct but Statement-II is incorrect"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\lim_{x\\to\\frac{\\pi}{2}}\\left(\\frac{\\int_{x^{3}}^{(\\pi/2)^{3}}\\left(\\sin\\left(2t^{1/3}\\right)+\\cos\\left(t^{1/3}\\right)\\right)dt}{\\left(x-\\frac{\\pi}{2}\\right)^{2}}\\right)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x\\to\\frac{\\pi}{2}}\\frac{0-\\{\\sin(2x)+\\cos(x)\\}\\cdot3x^{2}}{2\\left(x-\\frac{\\pi}{2}\\right)}$\n$=\\lim_{x\\to\\frac{\\pi}{2}}\\frac{-\\{2\\sin x\\cos x+\\cos x\\}3x^{2}}{2\\left(x-\\frac{\\pi}{2}\\right)}$\n$=\\lim_{x\\to\\frac{\\pi}{2}}\\left\\{\\frac{2\\sin x\\sin\\left(\\frac{\\pi}{2}-x\\right)}{2\\left(x-\\frac{\\pi}{2}\\right)}+\\frac{\\sin\\left(\\frac{\\pi}{2}-x\\right)}{2\\left(\\frac{\\pi}{2}-x\\right)}\\right\\}3x^{2}$\n$=\\left(1(1)+\\frac{1}{2}\\right)3\\left(\\frac{\\pi}{2}\\right)^{2}$\n$=\\frac{9\\pi^{2}}{8}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{9\\pi^{2}}{8}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{11\\pi^{2}}{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3\\pi^{2}}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5\\pi^{2}}{9}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of the coefficient of $x^{2/3}$ and $x^{-2/5}$ in the binomial expansion of $\\left(x^{2/3}+\\frac{1}{2}x^{-2/5}\\right)^{9}$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T_{r+1}={}^{9}C_r\\left(x^{2/3}\\right)^{9-r}\\left(\\frac{x^{-2/5}}{2}\\right)^{r}$\n$={}^{9}C_r\\left(\\frac{1}{2}\\right)^{r}(x)^{\\left(6-\\frac{2r}{3}-\\frac{2r}{5}\\right)}$\nfor coefficient of $x^{2/3}$, put $6-\\frac{2r}{3}-\\frac{2r}{5}=\\frac{2}{3}$\n$\\Rightarrow r=5$\n$\\therefore$ Coefficient of $x^{2/3}$ is ${}^{9}C_5\\left(\\frac{1}{5}\\right)^{5}$\nFor coefficient of $x^{-2/5}$, put $6-\\frac{2r}{3}-\\frac{2r}{5}=-\\frac{2}{5}$\n$\\Rightarrow r=6$\nCoefficient of $x^{-2/5}$ is ${}^{9}C_6\\left(\\frac{1}{2}\\right)^{6}$\nSum $={}^{9}C_5\\left(\\frac{1}{2}\\right)^{5}+{}^{9}C_6\\left(\\frac{1}{2}\\right)^{6}=\\frac{21}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$21/4$"
+    },
+    {
+     "key": "B",
+     "text": "$69/16$"
+    },
+    {
+     "key": "C",
+     "text": "$63/16$"
+    },
+    {
+     "key": "D",
+     "text": "$19/4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $B=\\begin{bmatrix}1&3\\\\1&5\\end{bmatrix}$ and A be a $2\\times2$ matrix such that $AB^{-1}=A^{-1}$. If $BCB^{-1}=A$ and $C^{4}+\\alpha C^{2}+\\beta I=O$, then $2\\beta-\\alpha$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$BCB^{-1}=A$\n$\\Rightarrow(BCB^{-1})(BCB^{-1})=A\\cdot A$\n$\\Rightarrow BCICB^{-1}=A^{2}$\n$\\Rightarrow BC^{2}B^{-1}=A^{2}$\n$\\Rightarrow B^{-1}(BC^{2}B^{-1})B=B^{-1}(A\\cdot A)B$\nFrom equation (1)\n$C^{2}=A^{-1}\\cdot A\\cdot B$\n$C^{2}=B$\nAlso $AB^{-1}=A^{-1}$\n$\\Rightarrow AB^{-1}\\cdot A=A^{-1}A=I$\n$\\Rightarrow A^{-1}(AB^{-1}A)=A^{-1}I$\n$B^{-1}A=A^{-1}$\nNow characteristics equation of $C^{2}$ is\n$|C_{2}-\\lambda I|=0$\n$|B-\\lambda I|=0$\n$\\Rightarrow\\begin{vmatrix}1-\\lambda&3\\\\1&5-\\lambda\\end{vmatrix}=0$\n$\\Rightarrow(1-\\lambda)(5-l)-3=0\\Rightarrow(\\lambda^{2}-6\\lambda+5)-3=0$\n$\\Rightarrow\\lambda^{2}-6\\lambda+2=0$\n$\\Rightarrow B^{2}-6B+2I=0$\n$\\Rightarrow C^{4}-6C^{2}+2I=0$\n$\\alpha=-6$\n$\\beta=2$\n$\\therefore 2\\beta-\\alpha=4+6=10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\log_e y=3\\sin^{-1}x$, then $(1-x^{2})y''-xy'$ at $x=\\frac{1}{2}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\ln(y)=3\\sin^{-1}x$\n$\\frac{1}{y}\\cdot y'=3\\left(\\frac{1}{\\sqrt{1-x^{2}}}\\right)$\n$\\Rightarrow y'=\\frac{3y}{\\sqrt{1-x^{2}}}$  at $x=\\frac{1}{2}$\n$\\Rightarrow y'=\\frac{3e^{3\\left(\\frac{\\pi}{6}\\right)}}{\\frac{\\sqrt{3}}{2}}=2\\sqrt{3}e^{\\frac{\\pi}{2}}$\n$\\Rightarrow y''=3\\left(\\frac{\\sqrt{1-x^{2}}\\,y'-y\\frac{1}{2\\sqrt{1-x^{2}}}(-2x)}{(1-x^{2})}\\right)$\n$\\Rightarrow(1-x^{2})y''=3\\left(3y+\\frac{xy}{\\sqrt{1-x^{2}}}\\right)$\n$\\downarrow$ at $x=\\frac{1}{2}$, $y=e^{3\\sin^{-1}\\left(\\frac{1}{2}\\right)}=e^{3\\left(\\frac{\\pi}{6}\\right)}=e^{\\frac{\\pi}{2}}$\n$(1-x^{2})y''\\Big|_{\\text{at }x=\\frac{1}{2}}=3\\left(3e^{\\frac{\\pi}{2}}+\\frac{\\frac{1}{2}\\left(e^{\\frac{\\pi}{2}}\\right)}{\\frac{\\sqrt{3}}{2}}\\right)$\n$=3e^{\\frac{\\pi}{2}}\\left(3+\\frac{1}{\\sqrt{3}}\\right)$\n$(1-x^{2})y''-xy'\\Big|_{\\text{at }x=\\frac{1}{2}}$\n$=3e^{\\frac{\\pi}{2}}\\left(3+\\frac{1}{\\sqrt{3}}\\right)-\\frac{1}{2}\\left(2\\sqrt{3}e^{\\frac{\\pi}{2}}\\right)=9e^{\\frac{\\pi}{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9e^{\\pi/6}$"
+    },
+    {
+     "key": "B",
+     "text": "$2e^{\\pi/6}$"
+    },
+    {
+     "key": "C",
+     "text": "$3e^{\\pi/2}$"
+    },
+    {
+     "key": "D",
+     "text": "$9e^{\\pi/2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The integral $\\int_{1/4}^{3/4}\\cos\\left(2\\cot^{-1}\\sqrt{\\frac{1-x}{1+x}}\\right)dx$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I=\\int_{1/4}^{3/4}\\cos\\left(2\\cot^{-1}\\left(\\sqrt{\\frac{1-x}{1+x}}\\right)dx\\right)$\n$\\int_{1/4}^{3/4}\\cos\\left(2\\left(\\tan^{-1}\\sqrt{\\frac{1+x}{1+x}}\\right)\\right)dx$\n$\\int_{1/4}^{3/4}\\frac{1-\\tan^{2}\\left(\\tan^{-1}\\sqrt{\\frac{1+x}{1-x}}\\right)}{1+\\tan^{2}\\left(\\tan^{-1}\\sqrt{\\frac{1+x}{1-x}}\\right)}dx$\n$=\\int_{1/4}^{3/4}\\frac{1-\\left(\\frac{1+x}{1-x}\\right)}{1+\\left(\\frac{1+x}{1-x}\\right)}dx=\\int_{1/4}^{3/4}\\frac{-2x}{2}dx$\n$=\\int_{1/4}^{3/4}(-x)\\,dx=-\\left(\\frac{x^{2}}{2}\\right)_{1/4}^{3/4}$\n$=-\\frac{1}{2}\\left[\\frac{9}{16}-\\frac{1}{16}\\right]$\n$=-\\frac{1}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-1/2$"
+    },
+    {
+     "key": "B",
+     "text": "$1/4$"
+    },
+    {
+     "key": "C",
+     "text": "$1/2$"
+    },
+    {
+     "key": "D",
+     "text": "$-1/4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $a,\\ ar,\\ ar^{2},\\ \\ldots\\ldots$ be an infinite G.P. If $\\sum_{n=0}^{\\infty}ar^{n}=57$ and $\\sum_{n=0}^{\\infty}a^{3}r^{3n}=9747$, then $a+18r$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sum_{n=0}^{\\infty}ar^{n}=57$\n$a+ar+ar^{2}+\\infty=57$\n$\\frac{a}{1-r}=57$ ............ (I)\n$\\sum_{n=0}^{\\infty}a^{3}r^{3n}=9747$\n$a^{3}+a^{3}\\cdot r^{3}+a^{3}\\cdot r^{6}+\\ldots\\ldots\\infty=9746$\n$\\frac{a^{3}}{1-r^{3}}=9746$ ............ (II)\n$\\frac{(\\text{I})^{3}}{(\\text{II})}\\Rightarrow\\frac{\\frac{a^{3}}{(1-r)^{3}}}{\\frac{a^{3}}{1-r^{3}}}=\\frac{57^{3}}{9717}=19$\nOn solving, $r=\\frac{2}{3}$ and $r=\\frac{3}{2}$ (rejected)\n$a=19$\n$\\therefore a+18r=19+18\\times\\frac{2}{3}=31$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$27$"
+    },
+    {
+     "key": "B",
+     "text": "$46$"
+    },
+    {
+     "key": "C",
+     "text": "$38$"
+    },
+    {
+     "key": "D",
+     "text": "$31$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If an unbiased dice is rolled thrice, then the probability of getting a greater number in the $i^{th}$ roll than the number obtained in the $(i-1)^{th}$ roll, $i=2,3$, is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Favourable cases $={}^{6}C_3$\nTotal out comes $=6^{3}$\nProbability of getting greater number than previous one\n$=\\frac{{}^{6}C_3}{r^{3}}=\\frac{20}{216}=\\frac{5}{54}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3/54$"
+    },
+    {
+     "key": "B",
+     "text": "$2/54$"
+    },
+    {
+     "key": "C",
+     "text": "$5/54$"
+    },
+    {
+     "key": "D",
+     "text": "$1/54$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of the integral $\\int_{-1}^{2}\\log_e\\left(x+\\sqrt{x^{2}+1}\\right)dx$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I=\\int_{-1}^{2}1\\cdot\\log_e\\left(x+\\sqrt{x^{2}+1}\\right)dx$\n$=x\\log_e\\left(x+\\sqrt{x^{2}+1}\\right)-\\int_{-1}^{2}\\left(\\frac{1+\\frac{x}{\\sqrt{x^{2}+1}}}{x+\\sqrt{x^{2}+1}}\\right)dx$\n$=x\\log_e\\left(x+\\sqrt{x^{2}+1}\\right)-\\int_{-1}^{2}\\frac{x}{\\sqrt{x^{2}+1}}dx$\n$=x\\log_e\\left(x+\\sqrt{x^{2}+1}\\right)-\\sqrt{x^{2}+1}\\Big|_{-1}^{2}$\n$=\\left(2\\log_e\\left(2+\\sqrt{5}\\right)-\\sqrt{5}\\right)$\n$-\\left(-\\log_e\\left(-1+\\sqrt{2}\\right)-\\sqrt{2}\\right)$\n$=\\log_e\\left(2+\\sqrt{5}\\right)^{2}-\\sqrt{5}+\\log_e\\left(\\sqrt{2}-1\\right)+\\sqrt{2}$\n$=\\sqrt{2}-\\sqrt{5}+\\log_e\\left(\\frac{\\left(2+\\sqrt{5}\\right)^{2}}{\\sqrt{2}+1}\\right)$\n$=\\sqrt{2}-\\sqrt{5}+\\log_e\\left(\\frac{9+4\\sqrt{5}}{\\sqrt{2}+1}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{5}-\\sqrt{2}+\\log_e\\left(\\frac{9+4\\sqrt{5}}{1+\\sqrt{2}}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{2}-\\sqrt{5}+\\log_e\\left(\\frac{9+4\\sqrt{5}}{1+\\sqrt{2}}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{5}-\\sqrt{2}+\\log_e\\left(\\frac{7+4\\sqrt{5}}{1+\\sqrt{2}}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{2}-\\sqrt{5}+\\log_e\\left(\\frac{7+4\\sqrt{5}}{1+\\sqrt{2}}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha,\\beta;\\ \\alpha>\\beta$, be the roots of the equation $x^{2}-\\sqrt{2}x-\\sqrt{3}=0$. Let $P_n=\\alpha^{n}-\\beta^{n},\\ n\\in N$. Then $\\left(11\\sqrt{3}-10\\sqrt{2}\\right)P_{10}+\\left(11\\sqrt{2}+10\\right)P_{11}-11P_{12}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2}-\\sqrt{2}x-\\sqrt{3}=0$ with roots $\\alpha,\\ \\beta$\n$\\alpha^{n+2}-\\sqrt{2}\\alpha^{n+1}-\\sqrt{3}\\alpha^{n}=0$\nand $\\beta^{n+2}-\\sqrt{2}\\beta^{n+1}-\\sqrt{3}\\beta^{n}=0$\nSubtracting\n$\\left(\\alpha^{n+2}-\\beta^{n+2}\\right)-\\sqrt{2}\\left(\\alpha^{n+1}-\\beta^{n+1}\\right)-\\sqrt{3}\\left(\\alpha^{n}-\\beta^{n}\\right)=0$\n$\\Rightarrow P_{n+2}-\\sqrt{2}P_{n+1}-\\sqrt{3}P_{n}=0$\nPut $n=10$\n$P_{12}-\\sqrt{2}P_{11}-\\sqrt{3}P_{10}=0$\n$n=9$\n$P_{11}-\\sqrt{2}P_{10}-\\sqrt{3}P_{9}=0$\n$11\\left(\\sqrt{3}\\cdot P_{10}+\\sqrt{2}P_{11}-P_{11}\\right)-10\\left(\\sqrt{2}P_{10}-P_{11}\\right)$\n$=0-10\\left(-\\sqrt{3}P_{9}\\right)=10\\sqrt{3}P_{9}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10\\sqrt{2}P_{9}$"
+    },
+    {
+     "key": "B",
+     "text": "$10\\sqrt{3}P_{9}$"
+    },
+    {
+     "key": "C",
+     "text": "$11\\sqrt{2}P_{9}$"
+    },
+    {
+     "key": "D",
+     "text": "$11\\sqrt{3}P_{9}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a}=2\\hat{i}+\\alpha\\hat{j}+\\hat{k},\\ \\vec{b}=-\\hat{i}+\\hat{k},\\ \\vec{c}=\\beta\\hat{j}-\\hat{k}$, where $\\alpha$ and $\\beta$ are integers and $\\alpha\\beta=-6$. Let the values of the ordered pair $(\\alpha,\\beta)$ for which the area of the parallelogram of diagonals $\\vec{a}+\\vec{b}$ and $\\vec{b}+\\vec{c}$ is $\\frac{\\sqrt{21}}{2}$, be $(\\alpha_1,\\beta_1)$ and $(\\alpha_2,\\beta_2)$. Then $\\alpha_1^{2}+\\beta_1^{2}-\\alpha_2\\beta_2$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Area of parallelogram $=\\frac{1}{2}|\\vec{d}_1\\times\\vec{d}_2|$\n$A=\\frac{1}{2}\\left|(\\vec{a}+\\vec{b})\\times(\\vec{b}+\\vec{c})\\right|=\\frac{\\sqrt{21}}{2}$\nso, $\\vec{a}+\\vec{b}=\\hat{i}+\\alpha\\hat{j}+2\\hat{k}$\n$\\vec{b}+\\vec{c}=-\\hat{i}+\\beta\\hat{j}$\n$(\\vec{a}+\\vec{b})\\times(\\vec{b}+\\vec{c})=\\begin{vmatrix}\\hat{i}&\\hat{j}&\\hat{k}\\\\1&\\alpha&2\\\\-1&\\beta&0\\end{vmatrix}$\n$=\\hat{i}(-2\\beta)-\\hat{j}(2)+\\hat{k}(\\beta+\\alpha)$\n$\\left|(\\vec{a}+\\vec{b})\\times(\\vec{b}+\\vec{c})\\right|=\\sqrt{4\\beta^{2}+4+(\\alpha+\\beta)^{2}}=\\sqrt{21}$\n$4\\beta^{2}+4+\\alpha^{2}+\\beta^{2}+2\\alpha\\beta=21$\n$\\alpha^{2}+5\\beta^{2}-12=17$\n$\\alpha^{2}+5\\beta^{2}=29$\nand $\\alpha\\beta=-6$\nand given $\\alpha,\\beta$ are integers\nso,\n$\\alpha=-3,\\ \\beta=2$\nor\n$\\alpha=3,\\ \\beta=-2$\n$(\\alpha_1,\\beta_1)=(-3,2)$\n$(\\alpha_2,\\beta_2)=(3,-2)$\n$\\alpha_1^{2}+\\beta_1^{2}-\\alpha_2\\beta_2=9+4+6=19$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$17$"
+    },
+    {
+     "key": "B",
+     "text": "$24$"
+    },
+    {
+     "key": "C",
+     "text": "$21$"
+    },
+    {
+     "key": "D",
+     "text": "$19$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the circle $C: x^{2}+y^{2}=4$ and the parabola $P: y^{2}=8x$. If the set of all values of $\\alpha$, for which three chords of the circle C on three distinct lines passing through the point $(\\alpha, 0)$ are bisected by the parabola P is the interval $(p, q)$, then $(2q-p)^{2}$ is equal to _____.",
+   "correct_key": null,
+   "correct_value": 80,
+   "correct_keys": null,
+   "solution": "$T=S_1$\n$xx_1+yy_1=x_1^{2}+y_1^{2}$\n$\\alpha x_1=x_1^{2}+y_1^{2}$\n$\\alpha(2t^{2})=4t^{4}+16t^{2}$\n$\\alpha=2t^{2}+8$\n$\\frac{\\alpha-8}{2}=t^{2}$\nAlso $4t^{4}+16t^{2}-4<0$\n$t^{2}=-2+\\sqrt{5}$\n$\\alpha=4+2\\sqrt{5}$\n$\\therefore\\ \\alpha\\in(8,\\ 4+2\\sqrt{5})$\n$\\therefore\\ (2q-p)^{2}=80$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s2-math-q21-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Application of Derivatives",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the set of all values of $p$, for which $f(x)=(p^{2}-6p+8)(\\sin^{2}2x-\\cos^{2}2x)+2(2-p)x+7$ does not have any critical point, be the interval $(a, b)$. Then $16ab$ is equal to _____ .",
+   "correct_key": null,
+   "correct_value": 252,
+   "correct_keys": null,
+   "solution": "$f(x)=-(p^{2}-6p+8)\\cos4x+2(2-p)x+7$\n$f'(x)=+4(p^{2}-6p+8)\\sin4x+(4-2p)\\neq0$\n$\\sin4x\\neq\\frac{2p-4}{4(p-4)(p-2)}$\n$\\sin4x\\neq\\frac{2(p-2)}{4(p-4)(p-2)}$\n$p\\neq2$\n$\\sin4x\\neq\\frac{1}{2(p-4)}$\n$\\Rightarrow\\left|\\frac{1}{2(p-4)}\\right|>1$\non solving we get\n$\\therefore\\ p\\in\\left(\\frac{7}{2},\\frac{9}{2}\\right)$\nHence $a=\\frac{7}{2},\\ b=\\frac{9}{2}$\n$\\therefore\\ 16ab=252$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "For a differentiable function $f:\\mathbb{R}\\to\\mathbb{R}$, suppose $f'(x)=3f(x)+\\alpha$, where $\\alpha\\in\\mathbb{R}$, $f(0)=1$ and $\\lim_{x\\to-\\infty}f(x)=7$. Then $9f(-\\log_e3)$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 61,
+   "correct_keys": null,
+   "solution": "$\\frac{dy}{dx}-3y=\\alpha$\nIf $e^{\\int-3dx}=e^{-3x}$\n$\\therefore\\ y\\cdot e^{-3x}=\\int e^{-3x}\\cdot\\alpha\\,dx$\n$ye^{-3x}=\\frac{\\alpha e^{-3x}}{-3}+c$\n$(\\times e^{3x})$\n$y=\\frac{\\alpha}{-3}+C\\cdot e^{3x}$\non substituting $x=0,\\ y=1$\n$x\\to-\\infty,\\ y=7$\nwe get $y=7-6e^{3x}$\n$9f(-\\log_e3)=61$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of integers, between $100$ and $1000$ having the sum of their digits equals to $14$, is ______.",
+   "correct_key": null,
+   "correct_value": 70,
+   "correct_keys": null,
+   "solution": "$N=abc$\n(i) All distinct digits\n$a+b+c=14$\n$a\\ge1$\n$b,c\\in\\{0\\text{ to }9\\}$\nby hit & trial : 8 cases\n$(6,5,3)$  $(8,6,0)$  $(9,4,1)$\n$(7,6,1)$  $(8,5,1)$  $(9,3,2)$\n$(7,5,2)$  $(8,4,2)$\n$(7,4,3)$  $(9,5,0)$\n(ii) 2 same, 1 diff  $a=b;\\ c$\n$2a+c=14$\nby values :\n$(3,8),\\ (4,6),\\ (5,4),\\ (6,2),\\ (7,0)$\nTotal $\\frac{3!}{2!}\\times5-1=14$ cases\n(iii) all same :\n$3a=14$\n$a=\\frac{14}{3}\\times$ rejected\n0 cases\nHence, Total cases :\n$8\\times3!+2\\times(4)+14$\n$=48+22$\n$=70$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A=\\{(x, y): 2x+3y=23,\\ x, y\\in N\\}$ and $B=\\{x:(x, y)\\in A\\}$. Then the number of one-one functions from A to B is equal to _____.",
+   "correct_key": null,
+   "correct_value": 24,
+   "correct_keys": null,
+   "solution": "$2x+3y=23$\n$x=1\\quad y=7$\n$x=4\\quad y=5$\n$x=7\\quad y=3$\n$x=10\\quad y=1$\nA | B\n$(1,7)$ | $1$\n$(4,5)$ | $4$\n$(7,3)$ | $7$\n$(10,1)$ | $10$\nThe number of one-one functions from A to B is equal to $4!$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let A, B and C be three points on the parabola $y^{2}=6x$ and let the line segment AB meet the line L through C parallel to the $x$-axis at the point D. Let M and N respectively be the feet of the perpendiculars from A and B on L. Then $\\left(\\frac{AM\\cdot BN}{CD}\\right)^{2}$ is equal to _______.",
+   "correct_key": null,
+   "correct_value": 36,
+   "correct_keys": null,
+   "solution": "$m_{AB}=m_{AD}$\n$\\Rightarrow\\frac{2}{t_1+t_2}=\\frac{2a(t_1-t_3)}{at_1^{2}-\\alpha}$\n$\\Rightarrow at_1^{2}-\\alpha=a\\{t_1^{2}-t_1t_3+t_1t_2-t_2t_3\\}$\n$\\Rightarrow\\alpha=a(t_1t_3+t_2t_3-t_1t_2)$\n$AM=|2a(t_1-t_3)|,\\quad BN=|2a(t_2-t_3)|,\\quad CD=|at_3^{2}-\\alpha|$\n$CD=\\left|at_3^{2}-a(t_1t_3+t_2t_3-t_1t_2)\\right|$\n$=a\\left|t_3^{2}-t_1t_3-t_2t_3+t_1t_2\\right|$\n$=a\\left|t_3(t_3-t_1)-t_2(t_3-t_1)\\right|$\n$CD=a\\left|(t_3-t_2)(t_3-t_1)\\right|$\n$\\left(\\frac{AM\\cdot BN}{CD}\\right)^{2}=\\left\\{\\frac{2a(t_1-t_3)\\cdot2a(t_2-t_3)}{a(t_3-t_2)(t_3-t_1)}\\right\\}^{2}$\n$16a^{2}=16\\times\\frac{9}{4}=36$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s2-math-q26-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The square of the distance of the image of the point $(6, 1, 5)$ in the line $\\frac{x-1}{3}=\\frac{y}{2}=\\frac{z-2}{4}$, from the origin is ______.",
+   "correct_key": null,
+   "correct_value": 62,
+   "correct_keys": null,
+   "solution": "Let $M(3\\lambda+1,\\ 2\\lambda,\\ 4\\lambda+2)$\n$\\overrightarrow{AM}\\cdot\\vec{b}=0$\n$\\Rightarrow 9\\lambda-15+4\\lambda-2+16\\lambda-12=0$\n$\\Rightarrow 29\\lambda=29$\n$\\Rightarrow\\lambda=1$\n$M(4,2,6),\\ I=(2,3,7)$\nRequired Distance $=\\sqrt{4+9+49}=\\sqrt{62}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s2-math-q27-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\left(\\frac{1}{\\alpha+1}+\\frac{1}{\\alpha+2}+\\ldots.+\\frac{1}{\\alpha+1012}\\right)-\\left(\\frac{1}{2\\cdot1}+\\frac{1}{4\\cdot3}+\\frac{1}{6\\cdot5}+\\ldots.+\\frac{1}{2024\\cdot2023}\\right)=\\frac{1}{2024}$, then $\\alpha$ is equal to-",
+   "correct_key": null,
+   "correct_value": 1011,
+   "correct_keys": null,
+   "solution": "$\\left(\\frac{1}{\\alpha+1}+\\frac{1}{\\alpha+2}+\\ldots+\\frac{1}{\\alpha+2012}\\right)$\n$-\\left\\{\\left(\\frac{1}{1}-\\frac{1}{2}\\right)+\\left(\\frac{1}{3}-\\frac{1}{4}\\right)+\\ldots+\\left(\\frac{1}{2023}-\\frac{1}{2024}\\right)\\right\\}=\\frac{1}{2024}$\n$\\Rightarrow\\left(\\frac{1}{\\alpha+1}+\\frac{1}{\\alpha+2}+\\ldots+\\frac{1}{\\alpha+2012}\\right)$\n$-\\left\\{\\left(\\frac{1}{1}+\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{4}\\right)+\\ldots+\\frac{1}{2023}\\right.$\n$\\left.-\\frac{1}{2024}-2\\left(\\frac{1}{2}+\\frac{1}{4}+\\ldots+\\frac{1}{2022}\\right)\\right\\}=\\frac{1}{2024}$\n$\\Rightarrow\\left(\\frac{1}{\\alpha+1}+\\frac{1}{\\alpha+2}+\\ldots+\\frac{1}{\\alpha+2012}\\right)$\n$-\\left(\\frac{1}{1}+\\frac{1}{2}+\\ldots+\\frac{1}{2023}\\right)$\n$+\\frac{1}{2024}+\\left(\\frac{1}{1}+\\frac{1}{2}+\\ldots+\\frac{1}{1011}\\right)=\\frac{1}{2024}$\n$\\Rightarrow\\frac{1}{\\alpha+1}+\\frac{1}{\\alpha+2}+\\ldots+\\frac{1}{\\alpha+2012}$\n$=\\frac{1}{1012}+\\frac{1}{1013}+\\ldots+\\frac{1}{2023}$\n$\\Rightarrow\\alpha=1011$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the inverse trigonometric functions take principal values. The number of real solutions of the equation $2\\sin^{-1}x+3\\cos^{-1}x=\\frac{2\\pi}{5}$, is ______.",
+   "correct_key": null,
+   "correct_value": 0,
+   "correct_keys": null,
+   "solution": "$2\\sin^{-1}x+3\\cos^{-1}x=\\frac{2\\pi}{5}$\n$\\Rightarrow\\pi+\\cos^{-1}x=\\frac{2\\pi}{5}$\n$\\Rightarrow\\cos^{-1}x=\\frac{-3\\pi}{5}$\nNot possible",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Matrices and Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the matrices : $A=\\begin{bmatrix}2&-5\\\\3&m\\end{bmatrix}$, $B=\\begin{bmatrix}20\\\\m\\end{bmatrix}$ and $X=\\begin{bmatrix}x\\\\y\\end{bmatrix}$. Let the set of all $m$, for which the system of equations $AX=B$ has a negative solution (i.e., $x<0$ and $y<0$), be the interval $(a, b)$. Then $8\\int_{a}^{b}|A|\\,dm$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 450,
+   "correct_keys": null,
+   "solution": "$A=\\begin{pmatrix}2&-5\\\\3&m\\end{pmatrix},\\ B=\\begin{pmatrix}20\\\\m\\end{pmatrix}$\n$X=\\begin{pmatrix}x\\\\y\\end{pmatrix}$\n$2x-5y=20$ ...(1)\n$3x+my=m$ ...(2)\n$\\Rightarrow y=\\frac{2m-60}{2m+15}$\n$y<0\\Rightarrow m\\in\\left(\\frac{-15}{2},30\\right)$\n$x=\\frac{25m}{2m+15}$\n$x<0\\Rightarrow m\\in\\left(\\frac{-15}{2},0\\right)$\n$\\Rightarrow m\\in\\left(\\frac{-15}{2},0\\right)$\n$|A|=2m+15$\nNow,\n$8\\int_{-\\frac{15}{2}}^{0}(2m+15)\\,dm=8\\left\\{m^{2}+15m\\right\\}_{-\\frac{15}{2}}^{0}$\n$\\Rightarrow 8\\left\\{-\\left(\\frac{225}{4}-\\frac{225}{2}\\right)\\right\\}$\n$=8\\times\\frac{225}{4}=450$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

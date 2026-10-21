@@ -1,0 +1,957 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2024,
+  "set_label": "8 Apr · Shift 1",
+  "title": "JEE Main 2024 · Mathematics · 8 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of $k \\in \\mathbb{N}$ for which the integral $I_{n} = \\int_{0}^{1} (1 - x^{k})^{n}\\,dx,\\ n \\in \\mathbb{N}$, satisfies $147\\, I_{20} = 148\\, I_{21}$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I_{n} = \\int_{0}^{1} (1 - x^{k})^{n} \\cdot 1\\, dx$\n$I_{n} = (1 - x^{k})^{n} \\cdot x - nk \\int_{0}^{1} (1 - x^{k})^{n-1} \\cdot x^{k-1}\\, dx$\n$I_{n} = nk \\int_{0}^{1} \\left[(1 - x^{k})^{n} - (1 - x^{k})^{n-1}\\right] dx$\n$I_{n} = nk I_{n} - nk I_{n}$\n$\\frac{I_{n}}{I_{n-1}} = \\frac{nk}{nk + 1}$\n$\\frac{I_{21}}{I_{20}} = \\frac{21k}{1 + 21k}$\n$= \\frac{147}{148} \\Rightarrow k = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$14$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of all the solutions of the equation $(8)^{2x} - 16 \\cdot (8)^{x} + 48 = 0$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(8)^{2x} - 16 \\cdot (8)^{x} + 48 = 0$\nPut $8^{x} = t$\n$t^{2} - 16 + 48 = 0$\n$\\Rightarrow t = 4$ or $t = 12$\n$\\Rightarrow 8^{x} = 4$, $8^{x} = 12$\n$\\Rightarrow x = \\log_{8}x$, $x = \\log_{8}12$\nsum of solution $= \\log_{8}4 + \\log_{8}12$\n$= \\log_{8}48 = \\log_{8}(6 \\cdot 8)$\n$= 1 + \\log_{8}6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 + \\log_{6}(8)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\log_{8}(6)$"
+    },
+    {
+     "key": "C",
+     "text": "$1 + \\log_{8}(6)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\log_{8}(4)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the circles $C_{1} : (x - \\alpha)^{2} + (y - \\beta)^{2} = r_{1}^{2}$ and $C_{2} : (x - 8)^{2} + \\left(y - \\frac{15}{2}\\right)^{2} = r_{2}^{2}$ touch each other externally at the point $(6, 6)$. If the point $(6, 6)$ divides the line segment joining the centres of the circles $C_{1}$ and $C_{2}$ internally in the ratio $2 : 1$, then $(\\alpha + \\beta) + 4\\left(r_{1}^{2} + r_{2}^{2}\\right)$ equals",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because \\frac{16 + \\alpha}{3} = 6$ and $\\frac{15 + \\beta}{3} = 6$\n$\\Rightarrow (\\alpha, \\beta) \\equiv (2, 3)$\nAlso, $C_{1}C_{2} = r_{1} + r_{2}$\n$\\Rightarrow \\sqrt{(2 - 8)^{2} + \\left(3 - \\frac{15}{2}\\right)^{2}} = 2r_{2} + r_{2}$\n$\\Rightarrow r_{2} = \\frac{5}{2} \\Rightarrow r_{1} = 2r_{2} = 5$\n$\\therefore (\\alpha + \\beta) + 4(r_{1}^{2} + r_{2}^{2})$\n$= 5 + 4\\left(\\frac{25}{4} + 25\\right) = 130$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$110$"
+    },
+    {
+     "key": "B",
+     "text": "$130$"
+    },
+    {
+     "key": "C",
+     "text": "$125$"
+    },
+    {
+     "key": "D",
+     "text": "$145$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s1-math-q03-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P(x, y, z)$ be a point in the first octant, whose projection in the $xy$-plane is the point $Q$. Let $OP = \\gamma$ ; the angle between $OQ$ and the positive $x$-axis be $\\theta$ ; and the angle between $OP$ and the positive $z$-axis be $\\phi$, where $O$ is the origin. Then the distance of $P$ from the $x$-axis is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P(x, y, z)$, $Q(x, y, O)$ ; $x^{2} + y^{2} + z^{2} = \\gamma^{2}$\n$\\overrightarrow{OQ} = x\\hat{i} + y\\hat{j}$\n$\\cos\\theta = \\frac{x}{\\sqrt{x^{2} + y^{2}}}$\n$\\cos\\phi = \\frac{z}{\\sqrt{x^{2} + y^{2} + z^{2}}}$\n$\\Rightarrow \\sin^{2}\\phi = \\frac{x^{2} + y^{2}}{x^{2} + y^{2} + z^{2}}$\ndistance of $P$ from $x$-axis $\\sqrt{y^{2} + z^{2}}$\n$\\Rightarrow \\sqrt{\\gamma^{2} - x^{2}} \\Rightarrow \\gamma\\sqrt{1 - \\frac{x^{2}}{\\gamma^{2}}}$\n$= \\gamma\\sqrt{1 - \\cos^{2}\\theta\\sin^{2}\\phi}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\gamma\\sqrt{1 - \\sin^{2}\\phi\\cos^{2}\\theta}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\gamma\\sqrt{1 + \\cos^{2}\\theta\\sin^{2}\\phi}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\gamma\\sqrt{1 - \\sin^{2}\\theta\\cos^{2}\\phi}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\gamma\\sqrt{1 + \\cos^{2}\\phi\\sin^{2}\\theta}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of critical points of the function $f(x) = (x - 2)^{2/3}(2x + 1)$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = (x - 2)^{2/3}(2x + 1)$\n$f'(x) = \\frac{2}{3}(x - 2)^{-1/3}(2x + 1) + (x - 2)^{2/3}(2)$\n$f'(x) = 2 \\times \\frac{(2x + 1) + (x - 2)}{3(x - 2)^{1/3}}$\n$\\frac{3x - 1}{(x - 2)^{1/3}} = 0$\nCritical points $x = \\frac{1}{3}$ and $x = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x)$ be a positive function such that the area bounded by $y = f(x)$, $y = 0$ from $x = 0$ to $x = a > 0$ is $e^{-a} + 4a^{2} + a - 1$. Then the differential equation, whose general solution is $y = c_{1}f(x) + c_{2}$, where $c_{1}$ and $c_{2}$ are arbitrary constants, is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\int_{0}^{a} f(x)\\,dx = e^{-a} + 4a^{2} + a - 1$\n$f(a) = -e^{-a} + 8a + 1$\n$f(x) = -e^{-x} + 8x + 1$\nNow $y = C_{1}f(x) + C_{2}$\n$\\frac{dy}{dx} = C_{1}f'(x) = C_{1}(e^{-x} + 8)$ .....(1)\n$\\frac{d^{2}y}{dx^{2}} = -C_{1}e^{-x} \\Rightarrow -e^{x}\\frac{d^{2}y}{dx^{2}}$\nPut in equation (1)\n$\\frac{dy}{dx} = -e^{x}\\frac{d^{2}y}{dx^{2}}(e^{-x} + 8)$\n$(8e^{x} + 1)\\frac{d^{2}y}{dx^{2}} + \\frac{dy}{dx} = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(8e^{x} - 1)\\frac{d^{2}y}{dx^{2}} + \\frac{dy}{dx} = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$(8e^{x} + 1)\\frac{d^{2}y}{dx^{2}} - \\frac{dy}{dx} = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$(8e^{x} + 1)\\frac{d^{2}y}{dx^{2}} + \\frac{dy}{dx} = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$(8e^{x} - 1)\\frac{d^{2}y}{dx^{2}} - \\frac{dy}{dx} = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = 4\\cos^{3}x + 3\\sqrt{3}\\cos^{2}x - 10$. The number of points of local maxima of $f$ in interval $(0, 2\\pi)$ is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = 4\\cos^{3}(x) + 3\\sqrt{3}\\cos^{2}(x) - 10$ ; $x \\in (0, 2\\pi)$\n$\\Rightarrow f'(x) = 12\\cos^{2}x[-\\sin(x)] + 3\\sqrt{3}(2\\cos(x))[-\\sin(x)]$\n$\\Rightarrow f'(x) = -6\\sin(x)\\cos(x)[2\\cos(x) + \\sqrt{3}]$\n(sign-scheme diagram of $f'(x)$ on the number line with marks $0, \\frac{\\pi}{2}, \\frac{5\\pi}{6}, \\pi, \\frac{7\\pi}{6}, \\frac{3\\pi}{2}, 2\\pi$ is in the figure)\nlocal maxima at $x = \\frac{5\\pi}{6}, \\frac{7\\pi}{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s1-math-q07-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\begin{bmatrix} 2 & a & 0 \\\\ 1 & 3 & 1 \\\\ 0 & 5 & b \\end{bmatrix}$. If $A^{3} = 4A^{2} - A - 21I$, where $I$ is the identity matrix of order $3 \\times 3$, then $2a + 3b$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A^{3} - 4A^{2} + A + 21I = 0$\n$\\mathrm{tr}(A) = 4 = 5 + 6 \\Rightarrow b = -1$\n$|A| = -21$\n$-16 + a = -21 \\Rightarrow a = -5$\n$2a + 3b = -13$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-10$"
+    },
+    {
+     "key": "B",
+     "text": "$-13$"
+    },
+    {
+     "key": "C",
+     "text": "$-9$"
+    },
+    {
+     "key": "D",
+     "text": "$-12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the shortest distance between the lines\n$L_{1} : \\vec{r} = (2 + \\lambda)\\hat{i} + (1 - 3\\lambda)\\hat{j} + (3 + 4\\lambda)\\hat{k},\\ \\lambda \\in \\mathbb{R}$\n$L_{2} : \\vec{r} = 2(1 + \\mu)\\hat{i} + 3(1 + \\mu)\\hat{j} + (5 + \\mu)\\hat{k},\\ \\mu \\in \\mathbb{R}$\nis $\\frac{m}{\\sqrt{n}}$, where $\\gcd(m, n) = 1$, then the value of $m + n$ equals.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(diagram: lines through $A(2\\hat{i} + \\hat{j} + 3\\hat{k})$ with $\\vec{p} = \\hat{i} - 3\\hat{j} + 4\\hat{k}$ and $B(2\\hat{i} + 3\\hat{j} + 5\\hat{k})$ with $\\vec{q} = 2\\hat{i} + 3\\hat{j} + \\hat{k}$, and $\\vec{p} \\times \\vec{q}$ computed as a determinant, is in the figure)\nShortest distance $(CD) = \\left|\\frac{\\overrightarrow{AB} \\cdot \\vec{p} \\times \\vec{q}}{|\\vec{p} \\times \\vec{q}|}\\right|$\n$= \\left|\\frac{(0\\hat{i} + 2\\hat{j} + 2\\hat{k}) \\cdot (-15\\hat{i} + 7\\hat{j} + 9\\hat{k})}{\\sqrt{355}}\\right|$\n$= \\frac{0 + 14 + 18}{\\sqrt{355}} = \\frac{32}{\\sqrt{355}}$\n$\\therefore m + n = 32 + 355 = 387$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$384$"
+    },
+    {
+     "key": "B",
+     "text": "$387$"
+    },
+    {
+     "key": "C",
+     "text": "$377$"
+    },
+    {
+     "key": "D",
+     "text": "$390$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s1-math-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the sum of two positive integers be $24$. If the probability, that their product is not less than $\\frac{3}{4}$ times their greatest positive product, is $\\frac{m}{n}$, where $\\gcd(m, n) = 1$, then $n - m$ equals :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x + y = 24$, $x, y \\in N$\n$AM > GM \\Rightarrow xy \\leq 144$\n$xy \\geq 108$\nFavorable pairs of $(x, y)$ are\n$(13, 11), (12, 12), (14, 10), (15, 9), (16, 8),$\n$(17, 7), (18, 6), (6, 18), (7, 17), (8, 16), (9, 15),$\n$(10, 14), (11, 13)$\ni.e. 13 cases\nTotal choices for $x + y = 24$ is 23\nProbability $= \\frac{13}{23} = \\frac{m}{n}$\n$n - m = 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9$"
+    },
+    {
+     "key": "B",
+     "text": "$11$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Trigonometric Ratios",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\sin x = -\\frac{3}{5}$, where $\\pi < x < \\frac{3\\pi}{2}$, then $80(\\tan^{2}x - \\cos x)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sin x = \\frac{-3}{5}$, $\\pi < x < \\frac{3\\pi}{2}$\n$\\tan x = \\frac{3}{4}$, $\\cos x = -\\frac{4}{5}$\n$80(\\tan^{2}x - \\cos x)$\n$= 80\\left(\\frac{9}{16} + \\frac{4}{5}\\right) = 45 + 64 = 109$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$109$"
+    },
+    {
+     "key": "B",
+     "text": "$108$"
+    },
+    {
+     "key": "C",
+     "text": "$18$"
+    },
+    {
+     "key": "D",
+     "text": "$19$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $I(x) = \\int \\frac{6}{\\sin^{2}x(1 - \\cot x)^{2}}\\,dx$. If $I(0) = 3$, then $I\\left(\\frac{\\pi}{12}\\right)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I(x) = \\int \\frac{6\\,dx}{\\sin^{2}x(1 - \\cot x)^{2}} = \\int \\frac{6\\,\\mathrm{cosec}^{2}x\\,dx}{(1 - \\cot x)^{2}}$\nPut $1 - \\cot x = t$\n$\\mathrm{cosec}^{2}x\\,dx = dt$\n$I = \\int \\frac{6\\,dt}{t^{2}} = \\frac{-6}{t} + c$\n$I(x) = \\frac{-6}{1 - \\cot x} + c$, $c = 3$\n$I(x) = 3 - \\frac{6}{1 - \\cot x}$, $I\\left(\\frac{\\pi}{12}\\right) = 3 - \\frac{6}{1 - (2 + \\sqrt{3})}$\n$I\\left(\\frac{\\pi}{12}\\right) = 3 + \\frac{6}{\\sqrt{3} + 1} = 3 + \\frac{6(\\sqrt{3} - 1)}{2} = 3\\sqrt{3}\\sqrt{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$6\\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The equations of two sides $AB$ and $AC$ of a triangle $ABC$ are $4x + y = 14$ and $3x - 2y = 5$, respectively. The point $\\left(2, -\\frac{4}{3}\\right)$ divides the third side $BC$ internally in the ratio $2 : 1$. The equation of the side $BC$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(triangle $ABC$ with $B(x_{1}, 14 - 4x_{1})$, $C\\left(x_{2}, \\frac{3x_{2} - 5}{2}\\right)$, $P\\left(2, -\\frac{4}{3}\\right)$ dividing $BC$ in the ratio $2 : 1$ is in the figure)\n$\\frac{2x_{2} + x_{1}}{3} = 2$, $\\frac{2\\left(\\frac{3x_{2} - 5}{2}\\right) + (14 - 4x_{1})}{3} = \\frac{-4}{3}$\n$2x_{2} + x_{1} = 6$, $3x_{2} - 4x_{1} = -13$\n$x_{2} = 1$, $x_{1} = 4$\nSo, $C(1, -1)$, $B(4, -2)$\n$m = \\frac{-1}{3}$\nEquation of $BC$ : $y + 1 = \\frac{-1}{3}(x - 1)$\n$3y + 3 = -x + 1$\n$x + 3y + 2 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x - 6y - 10 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x - 3y - 6 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$x + 3y + 2 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x + 6y + 6 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s1-math-q13-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $[t]$ be the greatest integer less than or equal to $t$. Let $A$ be the set of all prime factors of $2310$ and $f : A \\to \\mathbb{Z}$ be the function $f(x) = \\left[\\log_{2}\\left(x^{2} + \\left[\\frac{x^{3}}{5}\\right]\\right)\\right]$. The number of one-to-one functions from $A$ to the range of $f$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$N = 2310 = 231 \\times 10$\n$= 3 \\times 11 \\times 7 \\times 2 \\times 5$\n$A = \\{2, 3, 5, 7, 11\\}$\n$f(x) = \\left[\\log_{2}\\left(x^{2} + \\left[\\frac{x^{3}}{5}\\right]\\right)\\right]$\n$f(2) = [\\log_{2}(5)] = 2$\n$f(3) = [\\log_{2}(14)] = 3$\n$f(5) = [\\log_{2}(25 + 25)] = 5$\n$f(7) = [\\log_{2}(117)] = 6$\n$f(11) = [\\log_{2}387] = 8$\nRange of $f : B = \\{2, 3, 5, 6, 8\\}$\nNo. of one-one functions $= 5! = 120$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$120$"
+    },
+    {
+     "key": "C",
+     "text": "$25$"
+    },
+    {
+     "key": "D",
+     "text": "$24$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $z$ be a complex number such that $|z + 2| = 1$ and $\\mathrm{Im}\\left(\\frac{z + 1}{z + 2}\\right) = \\frac{1}{5}$. Then the value of $\\left|\\mathrm{Re}\\left(\\overline{z + 2}\\right)\\right|$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|z + 2| = 1$, $\\mathrm{Im}\\left(\\frac{z + 1}{z + 2}\\right) = \\frac{1}{5}$\nLet $z + 2 = \\cos\\theta + i\\sin\\theta$\n$\\frac{1}{z + 2} = \\cos\\theta - i\\sin\\theta$\n$\\Rightarrow \\frac{z + 1}{z + 2} = 1 - \\frac{1}{z + 2} = 1 - (\\cos\\theta - i\\sin\\theta)$\n$= (1 - \\cos\\theta) + i\\sin\\theta$\n$\\mathrm{Im}\\left(\\frac{z + 1}{z + 2}\\right) = \\sin\\theta$, $\\sin\\theta = \\frac{1}{5}$\n$\\cos\\theta = \\pm\\sqrt{1 - \\frac{1}{25}} = \\pm\\frac{2\\sqrt{6}}{5}$\n$\\left|\\mathrm{Re}\\left(\\overline{z + 2}\\right)\\right| = \\frac{2\\sqrt{6}}{5}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sqrt{6}}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1 + \\sqrt{6}}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{24}{5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2\\sqrt{6}}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the set $R = \\{(a, b) ; a + 5b = 42,\\ a, b \\in \\mathbb{N}\\}$ has $m$ elements and $\\sum_{n=1}^{m}\\left(1 + i^{n!}\\right) = x + iy$, where $I = \\sqrt{-1}$, then the value of $m + x + y$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a + 5b = 42$, $a, b \\in N$\n$a = 42 - 5b$, $b = 1, a = 37$\n$b = 2, a = 32$\n$b = 3, a = 27$\n$\\vdots$\n$b = 8, a = 2$\n$R$ has \"8\" elements $\\Rightarrow m = 8$\n$\\sum_{n=1}^{8}(1 - i^{n!}) = x + iy$\nfor $n \\geq 4$, $i^{n!} = 1$\n$\\Rightarrow (1 - i) + (1 - i^{2!}) + (1 - i^{3!})$\n$= 1 - I + 2 + 1 + 1$\n$= 5 - I = x + iy$\n$m + x + y = 8 + 5 - 1 = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8$"
+    },
+    {
+     "key": "B",
+     "text": "$12$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the function $f(x) = (\\cos x) - x + 1,\\ x \\in \\mathbb{R}$, between the following two statements\n(S1) $f(x) = 0$ for only one value of $x$ is $[0, \\pi]$.\n(S2) $f(x)$ is decreasing in $\\left[0, \\frac{\\pi}{2}\\right]$ and increasing in $\\left[\\frac{\\pi}{2}, \\pi\\right]$.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\cos x - x + 1$\n$f'(x) = -\\sin x - 1$\n$f$ is decreasing $\\forall x \\in R$\n$f(x) = 0$\n$f(0) = 2$, $f(\\pi) = -\\pi$\n$f$ is strictly decreasing in $[0, \\pi]$ and $f(0) \\cdot f(\\pi) < 0$\n$\\Rightarrow$ only one solution of $f(x) = 0$\nS1 is correct and S2 is incorrect.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (S1) and (S2) are correct"
+    },
+    {
+     "key": "B",
+     "text": "Only (S1) is correct"
+    },
+    {
+     "key": "C",
+     "text": "Both (S1) and (S2) are incorrect"
+    },
+    {
+     "key": "D",
+     "text": "Only (S2) is correct"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The set of all $\\alpha$, for which the vector $\\vec{a} = \\alpha t\\hat{i} + 6\\hat{j} - 3\\hat{k}$ and $\\vec{b} = t\\hat{i} - 2\\hat{j} - 2\\alpha t\\hat{k}$ are inclined at an obtuse angle for all $t \\in \\mathbb{R}$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{a} = \\alpha t\\hat{i} + 6\\hat{j} - 3\\hat{k}$\n$\\vec{b} = t\\hat{i} - 2\\hat{j} - 2\\alpha t\\hat{k}$\nso $\\vec{a} \\cdot \\vec{b} < 0$, $\\forall t \\in R$\n$\\alpha t^{2} - 12 + 6\\alpha t < 0$\n$\\alpha t^{2} + 6\\alpha t - 12 < 0$, $\\forall t \\in R$\n$\\alpha < 0$, and $D < 0$\n$36\\alpha^{2} + 48\\alpha < 0$\n$12\\alpha(3\\alpha + 4) < 0$\n$\\frac{-4}{3} < \\alpha < 0$\nalso for $\\alpha = 0$, $\\vec{a} \\cdot \\vec{b} < 0$\nhence $\\alpha \\in \\left(\\frac{-4}{3}, 0\\right]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[0, 1)$"
+    },
+    {
+     "key": "B",
+     "text": "$(-2, 0]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(-\\frac{4}{3}, 0\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(-\\frac{4}{3}, 1\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $(1 + y^{2})e^{\\tan x}dx + \\cos^{2}x(1 + e^{2\\tan x})dy = 0$, $y(0) = 1$. Then $y\\left(\\frac{\\pi}{4}\\right)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(1 + y^{2})e^{\\tan x}dx + \\cos^{2}x(1 + e^{2\\tan x})dy = 0$\n$\\int \\frac{\\sec^{2}x\\,e^{\\tan x}}{1 + e^{2\\tan x}}dx + \\int \\frac{dy}{1 + y^{2}} = C$\n$\\Rightarrow \\tan^{-1}(e^{\\tan x}) + \\tan^{-1}y = C$\nfor $x = 0$, $y = 1$, $\\tan^{-1}(1) + \\tan^{-1}1 = C$\n$C = \\frac{\\pi}{2}$\n$\\tan^{-1}(e^{\\tan x}) + \\tan^{-1}y = \\frac{\\pi}{2}$\nPut $x = \\pi$, $\\tan^{-1}e + \\tan^{-1}y = \\frac{\\pi}{2}$\n$\\tan^{-1}y = \\cot^{-1}e$\n$y = \\frac{1}{e}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{e}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{e^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{e}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{e^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Hyperbola",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $H : \\frac{-x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$ be the hyperbola, whose eccentricity is $\\sqrt{3}$ and the length of the latus rectum is $4\\sqrt{3}$. Suppose the point $(\\alpha, 6)$, $\\alpha > 0$ lies on $H$. If $\\beta$ is the product of the focal distances of the point $(\\alpha, 6)$, then $\\alpha^{2} + \\beta$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$H : \\frac{y^{2}}{b^{2}} - \\frac{x^{2}}{a^{2}} = 1$, $e = \\sqrt{3}$\n$e = \\sqrt{1 + \\frac{a^{2}}{b^{2}}} = \\sqrt{3} \\Rightarrow \\frac{a^{2}}{b^{2}} = 2$\n$a^{2} = 2b^{2}$\nlength of L.R. $= \\frac{2a^{2}}{b} = 4\\sqrt{3}$\n$a = \\sqrt{6}$\n$P(\\alpha, 6)$ lie on $\\frac{y^{2}}{3} - \\frac{x^{2}}{6} = 1$\n$12 - \\frac{\\alpha^{2}}{6} = 1 \\Rightarrow \\alpha^{2} = 66$\nFoci $= (0, \\pm be) = (0, 3)$ & $(0, -3)$\nLet $d_{1}$ & $d_{2}$ be focal distances of $P(\\alpha, 6)$\n$d_{1} = \\sqrt{\\alpha^{2} + (6 + be)^{2}}$, $d_{2} = \\sqrt{\\alpha^{2} + (6 - be)^{2}}$\n$d_{1} = \\sqrt{66 + 81}$, $d_{2} = \\sqrt{66 + 9}$\n$\\beta = d_{1}d_{2} = \\sqrt{147 \\times 75} = 105$\n$\\alpha^{2} + \\beta = 66 + 105 = 171$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$170$"
+    },
+    {
+     "key": "B",
+     "text": "$171$"
+    },
+    {
+     "key": "C",
+     "text": "$169$"
+    },
+    {
+     "key": "D",
+     "text": "$172$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Matrices",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A = \\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix}$. If the sum of the diagonal elements of $A^{13}$ is $3^{n}$, then $n$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 7,
+   "correct_keys": null,
+   "solution": "$A = \\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix}$\n$A^{2} = \\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix}\\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix} = \\begin{bmatrix} 3 & -3 \\\\ 3 & 0 \\end{bmatrix}$\n$A^{3} = \\begin{bmatrix} 3 & -3 \\\\ 3 & 0 \\end{bmatrix}\\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix} = \\begin{bmatrix} 3 & -6 \\\\ 6 & -3 \\end{bmatrix}$\n$A^{4} = \\begin{bmatrix} 3 & -6 \\\\ 6 & -3 \\end{bmatrix}\\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix} = \\begin{bmatrix} 0 & -9 \\\\ 9 & -9 \\end{bmatrix}$\n$A^{5} = \\begin{bmatrix} 0 & -9 \\\\ 9 & -9 \\end{bmatrix}\\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix} = \\begin{bmatrix} -9 & -9 \\\\ 9 & -18 \\end{bmatrix}$\n$A^{6} = \\begin{bmatrix} -9 & -9 \\\\ 9 & -18 \\end{bmatrix}\\begin{bmatrix} 2 & -1 \\\\ 1 & 1 \\end{bmatrix} = \\begin{bmatrix} -27 & 0 \\\\ 0 & -27 \\end{bmatrix}$\n$A^{7} = \\begin{bmatrix} -27 & -0 \\\\ 0 & -27 \\end{bmatrix}\\begin{bmatrix} -54 & 27 \\\\ -27 & -27 \\end{bmatrix} = \\begin{bmatrix} 3^{6} \\times 2 & -27^{2} \\\\ 27^{2} & 3^{6} \\end{bmatrix}$\n$3^{7} = 3^{n} \\Rightarrow n = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Straight Lines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the orthocentre of the triangle formed by the lines $2x + 3y - 1 = 0$, $x + 2y - 1 = 0$ and $ax + by - 1 = 0$, is the centroid of another triangle, whose circumcentre and orthocentre respectively are $(3, 4)$ and $(-6, -8)$, then the value of $|a - b|$ is ______.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "$2x + 3y - 1 = 0$\n$x + 2y - 1 = 0$\n$ax + by - 1 = 0$\n$H(-6, -8)$ ---2--- $G(6, 6)$ ---1--- $O(3, 4)$ (line diagram as printed)\n$\\left(\\frac{6 - 6}{3}, \\frac{8 - 8}{3}\\right)$\n$= (0, 0)$\n(triangle diagram: apex $(-1, 1)$, sides $2x + 3y - 1 = 0$ and $x + 2y - 1 = 0 \\Rightarrow m = -\\frac{1}{2}$, orthocentre $(0, 0)$, is in the figure)\n$ax + by - 1 = 0$\n$\\left(\\frac{1 - 0}{-1 - 0}\\right)\\left(\\frac{-a}{b}\\right) = -1$\n$\\Rightarrow -a = b$\n$\\Rightarrow ax - ay - 1 = 0$\n$ax - a\\left(1 - \\frac{2x}{3}\\right) - 1$\n$x\\left(a + \\frac{2a}{3}\\right) = \\frac{a}{3}$\n$x = \\frac{a + 3}{5a}$\n$2\\left(\\frac{a + 3}{5a}\\right) + 3y - 1 = 0$\n$y = \\frac{1 - \\frac{2a + 6}{5a}}{3} = \\frac{3a - 6}{3 \\times 5a}$\n$y = \\frac{a - 2}{5a}$\n$\\frac{\\left(\\frac{a - 2}{5a}\\right)}{\\left(\\frac{a + 3}{5a}\\right)} = 2 \\Rightarrow a - 2 = 2a + 6$\n$a = -8$\n$b = 8$\n$-8x + 8y - 1 = 0$\n$|a - b| = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s1-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Probability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Three balls are drawn at random from a bag containing $5$ blue and $4$ yellow balls. Let the random variables $X$ and $Y$ respectively denote the number of blue and yellow balls. If $\\bar{X}$ and $\\bar{Y}$ are the means of $X$ and $Y$, respectively, then $7\\bar{X} + 4\\bar{Y}$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 17,
+   "correct_keys": null,
+   "solution": "Blue balls | $0$ | $1$ | $2$ | $3$ | $4$ | $5$\nProb. | $\\frac{{}^{5}C_{0} \\cdot {}^{4}C_{1}}{{}^{9}C_{3}}$ | $\\frac{{}^{5}C_{1} \\cdot {}^{4}C_{2}}{{}^{9}C_{3}}$ | $\\frac{{}^{5}C_{2} \\cdot {}^{4}C_{1}}{{}^{9}C_{3}}$ | $\\frac{{}^{5}C_{3} \\cdot {}^{4}C_{0}}{{}^{9}C_{3}}$ | $0$ | $0$\n$7\\bar{x} = \\frac{{}^{5}C_{1}{}^{4}C_{2} + {}^{5}C_{2} \\cdot {}^{4}C_{1} \\times 2 + {}^{5}C_{3} \\cdot {}^{4}C_{0} \\times 3}{{}^{9}C_{3}} \\times 7$\n$\\frac{30 + 80 + 30}{84} \\times 7$\n$= \\frac{140}{12} = \\frac{70}{6} = \\frac{35}{3}$\nyellow | $0$ | $1$ | $2$ | $3$ | $4$\n | | ${}^{5}C_{2}{}^{4}C_{1}$ | ${}^{5}C_{1}{}^{4}C_{2}$ | ${}^{5}C_{0}{}^{4}C_{3}$ | $0$\n$4\\bar{y} = \\frac{40 + 60 + 12}{84} \\times 4 = \\frac{112}{21} = \\frac{16}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of 3-digit numbers, formed using the digits $2, 3, 4, 5$ and $7$, when the repetition of digits is not allowed, and which are not divisible by $3$, is equal to ______.",
+   "correct_key": null,
+   "correct_value": 36,
+   "correct_keys": null,
+   "solution": "$2, 3, 4, 5, 7$\ntotal number of three digit numbers not divisible by 3 will be formed by using the digits\n$(4, 5, 7)$\n$(3, 4, 7)$\n$(2, 5, 7)$\n$(2, 4, 7)$\n$(2, 4, 5)$\n$(2, 3, 5)$\nnumber of ways $= 6 \\times 3! = 36$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the positive integers be written in the form :\n$1$\n$2 \\quad 3$\n$4 \\quad 5 \\quad 6$\n$7 \\quad 8 \\quad 9 \\quad 10$\n$\\ddots \\qquad\\qquad \\ddots$\nIf the $k^{th}$ row contains exactly $k$ numbers for every natural number $k$, then the row in which the number $5310$ will be, is ______.",
+   "correct_key": null,
+   "correct_value": 103,
+   "correct_keys": null,
+   "solution": "$S = 1 + 2 + 4 + 7 + \\ldots.. + T_{n}$\n$S = 1 + 2 + 4 + \\ldots\\ldots$\n$T_{n} = 1 + 1 + 2 + 3 + \\ldots\\ldots + (T_{n} - T_{n-1})$\n$T_{n} = 1 + \\left(\\frac{n - 1}{2}\\right)[2 + (n - 2) \\times 1]$\n$T_{n} = 1 + 1 + \\frac{n(n - 1)}{2}$\n$n = 100$: $T_{n} = 1 + \\frac{100 \\times 99}{2} = 4950 + 1$\n$n = 101$: $T_{n} = 1 + \\frac{101 \\times 100}{2} = 5050 + 1 = 5051$\n$n = 102$: $T_{n} = 1 + \\frac{102 \\times 101}{2} = 5151 + 1 = 5152$\n$n = 103$: $T_{n} = 1 + \\frac{103 \\times 102}{2} = 5254$\n$n = 104$: $T_{n} = 1 + \\frac{104 \\times 103}{2} = 5357$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-08apr-s1-math-q25.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Trigonometric Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the range of $f(\\theta) = \\frac{\\sin^{4}\\theta + 3\\cos^{2}\\theta}{\\sin^{4}\\theta + \\cos^{2}\\theta},\\ \\theta \\in \\mathbb{R}$ is $[\\alpha, \\beta]$, then the sum of the infinite G.P., whose first term is $64$ and the common ratio is $\\frac{\\alpha}{\\beta}$, is equal to ______.",
+   "correct_key": null,
+   "correct_value": 96,
+   "correct_keys": null,
+   "solution": "$f(\\theta) = \\frac{\\sin^{4}\\theta + 3\\cos^{2}\\theta}{\\sin^{4}\\theta + \\cos^{2}\\theta}$\n$f(\\theta) = 1 + \\frac{2\\cos^{2}\\theta}{\\sin^{4}\\theta + \\cos^{2}\\theta}$\n$f(\\theta) = \\frac{2\\cos^{2}\\theta}{\\cos^{4}\\theta - \\cos^{2}\\theta + 1} + 1$\n$f(\\theta) = \\frac{2}{\\cos^{2}\\theta + \\sec^{2}\\theta - 1} + 1$\n$f(\\theta)\\big|_{\\min.} = 1$\n$f(\\theta)_{\\max.} = 3$\n$S = \\frac{64}{1 - 1/3} = 96$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\alpha = \\sum_{r=0}^{n}(4r^{2} + 2r + 1)\\,{}^{n}C_{r}$ and $\\beta = \\left(\\sum_{r=0}^{n}\\frac{{}^{n}C_{r}}{r + 1}\\right) + \\frac{1}{n + 1}$. If $140 < \\frac{2\\alpha}{\\beta} < 281$, then the value of $n$ is ______.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$\\alpha = \\sum_{r=0}^{n}(4r^{2} + 2r + 1) \\cdot {}^{n}C_{r}$\n$\\alpha = 4\\sum_{r=0}^{n} r^{2} \\cdot \\frac{n}{r} \\cdot {}^{n-1}C_{r-1} + 2\\sum_{r=0}^{n} r \\cdot \\frac{n}{r} \\cdot {}^{n-1}C_{r-} + \\sum_{r=0}^{n}{}^{n}C_{r}$\n$+4n\\sum_{r=0}^{n}{}^{n-1}C_{r-1} + 2n\\sum_{r=0}^{n}{}^{n-1}C_{r-1} + \\sum_{r=0}^{n}{}^{n}C_{r}$\n$\\alpha = 4n(n - 1) \\cdot 2^{n-2} + 4n \\cdot 2^{n-1} + 2n \\cdot 2^{n-1} + 2^{n}$\n$\\alpha = 2^{n-2}[4n(n-1) + 8n + 4n + 4]$\n$\\alpha = 2^{n-2}[4n^{2} + 8n + 4]$\n$\\alpha = 2n(n + 1)^{2}$\n$\\beta = \\sum_{r=0}^{n}\\frac{{}^{n}C_{r}}{r + 1} + \\frac{1}{n + 1}$\n$= \\sum_{r=0}^{n}\\frac{{}^{n+1}C_{r+1}}{n + 1} + \\frac{1}{n + 1}$\n$= \\frac{1}{n + 1}\\left(1 + {}^{n+1}C_{1} + \\ldots. + {}^{n+1}C_{n+1}\\right)$\n$= \\frac{2^{n+1}}{n + 1}$\n$\\frac{2\\alpha}{\\beta} = \\frac{2^{n+1}(n + 1)^{2}}{2^{n+1}} \\cdot (n + 1) = (n + 1)^{3}$\n$140 < (n + 1)^{3} < 281$\n$n = 4 \\Rightarrow (n + 1)^{3} = 125$\n$n = 5 \\Rightarrow (n + 1)^{3} = 216$\n$n = 6 \\Rightarrow (n + 1)^{3} = 343$\n$\\therefore n = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Vector Algebra",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\vec{a} = 9\\hat{i} - 13\\hat{j} + 25\\hat{k}$, $\\vec{b} = 3\\hat{i} + 7\\hat{j} - 13\\hat{k}$ and $\\vec{c} = 17\\hat{i} - 2\\hat{j} + \\hat{k}$ be three given vectors. If $\\vec{r}$ is a vector such that $\\vec{r} \\times \\vec{a} = (\\vec{b} + \\vec{c}) \\times \\vec{a}$ and $\\vec{r} \\cdot (\\vec{b} - \\vec{c}) = 0$, then $\\frac{|593\\vec{r} + 67\\vec{a}|^{2}}{(593)^{2}}$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 569,
+   "correct_keys": null,
+   "solution": "$\\vec{a} = 9\\hat{i} - 13\\hat{j} + 25\\hat{k}$\n$\\vec{b} = 3\\hat{i} + 7\\hat{j} - 13\\hat{k}$\n$\\vec{c} = 17\\hat{i} - 2\\hat{j} + \\hat{k}$\n$\\vec{b} + \\vec{c} = 20\\hat{i} + 5\\hat{j} - 12\\hat{k}$\n$\\vec{b} - \\vec{c} = -14\\hat{i} + 9\\hat{j} - 14\\hat{k}$\n$(\\vec{r} - (\\vec{b} + \\vec{c})) \\times \\vec{a} = 0$\n$r - (\\vec{b} + \\vec{c}) = \\lambda\\vec{a}$\n$\\vec{r} = \\lambda\\vec{a} + \\vec{b} + \\vec{c}$\nBut $\\vec{r} \\cdot (\\vec{b} - \\vec{c}) = 0$\n$\\Rightarrow (\\lambda\\vec{a} + \\vec{b} + \\vec{c}) \\cdot (\\vec{b} - \\vec{c}) = 0$\n$\\Rightarrow \\lambda\\vec{a} \\cdot \\vec{b} + \\vec{b} \\cdot \\vec{b} + \\vec{c} \\cdot \\vec{b} - \\lambda\\vec{a} \\cdot \\vec{c} - \\vec{b} \\cdot \\vec{c} - \\vec{c} \\cdot \\vec{c} = 0$\n$\\lambda = \\frac{\\vec{c} \\cdot \\vec{c} - \\vec{b} \\cdot \\vec{b}}{\\vec{a} \\cdot \\vec{b} - \\vec{a} \\cdot \\vec{c}} = \\frac{294 - 227}{-389 = 204} = \\frac{-67}{593}$\n$\\therefore \\vec{r} = \\vec{b} + \\vec{c} - \\frac{67}{593}\\vec{a}$\n$\\Rightarrow 593\\vec{r} + 67\\vec{a} = 593(\\vec{b} + \\vec{c})$\n$\\Rightarrow |\\vec{b} + \\vec{c}|^{2} = 569$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Area Under Curves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the area of the region enclosed by the curve $y = \\min\\{\\sin x, \\cos x\\}$ and the $x$-axis between $x = -\\pi$ to $x = \\pi$ be $A$. Then $A^{2}$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "$y = \\min\\{\\sin x, \\cos x\\}$\n$x$-axis, $x = -\\pi$, $x = \\pi$\n(graph of the region is in the figure)\n$\\int_{0}^{\\pi/4}\\sin x = (\\cos x)_{\\pi/4}^{0} = 1 - \\frac{1}{\\sqrt{2}}$\n$\\int_{-\\pi}^{-3\\pi/4}(\\sin x - \\cos x) = (-\\cos x - \\sin x)_{-\\pi}^{-3\\pi/4}$\n$= (\\cos x + \\sin x)_{-3\\pi/4}^{-\\pi}$\n$= (-1 + 0) - \\left(-\\frac{1}{\\sqrt{2}} - \\frac{1}{\\sqrt{2}}\\right)$\n$= -1 + \\frac{1}{\\sqrt{2}} + \\frac{1}{\\sqrt{2}}$\n$\\int_{\\pi/4}^{\\pi/2}\\cos x\\,dx = (\\sin x)_{\\pi/4}^{\\pi/2} = 1 - \\frac{1}{\\sqrt{2}}$\n$A = 4$\n$A^{2} = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s1-math-q29-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Limits",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The value of $\\lim_{x \\to 0} 2\\left(\\frac{1 - \\cos x\\sqrt{\\cos 2x}\\,\\sqrt[3]{\\cos 3x}\\ldots\\ldots\\sqrt[10]{\\cos 10x}}{x^{2}}\\right)$ is ______.",
+   "correct_key": null,
+   "correct_value": 55,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to 0} 2\\left(\\frac{1 - \\left(1 - \\frac{x^{2}}{2!}\\right)\\left(1 - \\frac{4x^{2}}{2!}\\right)\\left(1 - \\frac{9x^{2}}{2!}\\right)\\ldots..\\left(1 - \\frac{100x^{2}}{2!}\\right)}{x^{2}}\\right)$\nBy expansion\n$\\lim_{x \\to 0} \\frac{2\\left(1 - \\left(1 - \\frac{x^{2}}{2}\\right)\\left(1 - \\frac{1}{2} \\cdot \\frac{4x^{2}}{2}\\right)\\left(1 - \\frac{1}{3} \\cdot \\frac{9x^{2}}{2}\\right)\\ldots..\\left(1 - \\frac{1}{10} \\cdot \\frac{100x^{2}}{2}\\right)\\right)}{x^{2}}$\n$\\lim_{x \\to 0} 2\\left(\\frac{1 - \\left(1 - \\frac{x^{2}}{2}\\right)\\left(1 - \\frac{2x^{2}}{2}\\right)\\left(1 - \\frac{3x^{2}}{2}\\right)\\ldots..\\left(1 - \\frac{10x^{2}}{2}\\right)}{x^{2}}\\right)$\n$\\lim_{x \\to 0} \\frac{2\\left(1 - 1 + x^{2}\\left(\\frac{1}{2} + \\frac{2}{2} + \\frac{3}{2} + \\ldots.. + \\frac{10}{2}\\right)\\right)}{x^{2}}$\n$2\\left(\\frac{1}{2} + \\frac{2}{2} + \\frac{3}{2} + \\ldots.. + \\frac{10}{2}\\right)$\n$1 + 2 + \\ldots\\ldots + 10 = \\frac{10 \\times 11}{2} = 55$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

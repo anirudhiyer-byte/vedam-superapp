@@ -1,0 +1,857 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "29 Jan · Shift 2",
+  "title": "JEE Main 2025 · Mathematics · 29 Jan Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the set of all $a \\in \\mathbf{R}$, for which the equation $2x^{2} + (a-5)x + 15 = 3a$ has no real root, is the interval $(\\alpha, \\beta)$, and $X = \\{x \\in \\mathbf{Z} : \\alpha < x < \\beta\\}$, then $\\sum_{x \\in X} x^{2}$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(a-5)^{2} - 8(15-3a) < 0$\n$a^{2} + 14a + 25 - 120 < 0$\n$a^{2} + 14a - 95 < 0$\n$(a+19)(a-5) < 0$\n$a \\in (-19, 5)$\n$\\therefore -19 < x < 5$\n$\\therefore \\sum_{x \\in X} x^{2} = (1^{2} + 2^{2} + \\ldots + 4^{2}) + (1^{2} + 2^{2} + \\ldots + 18^{2})$\n$= \\frac{4 \\times 5 \\times 9}{6} + \\frac{18 \\times 19 \\times 37}{6}$\n$= 30 + 2109$\n$= 2139$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2109$"
+    },
+    {
+     "key": "B",
+     "text": "$2129$"
+    },
+    {
+     "key": "C",
+     "text": "$2139$"
+    },
+    {
+     "key": "D",
+     "text": "$2119$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\sin x + \\sin^{2}x = 1$, $x \\in \\left(0, \\frac{\\pi}{2}\\right)$, then\n$(\\cos^{12}x + \\tan^{12}x) + 3(\\cos^{10}x + \\tan^{10}x + \\cos^{8}x + \\tan^{8}x) + (\\cos^{6}x + \\tan^{6}x)$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sin x + \\sin^{2}x = 1$\n$\\Rightarrow \\sin x = \\cos^{2}x \\Rightarrow \\tan x = \\cos x$\n$\\therefore$ Given expression\n$= 2\\cos^{12}x + 6[\\cos^{10}x + \\cos^{8}x] + 2\\cos^{6}x$\n$= 2[\\sin^{6}x + 3\\sin^{5}x + 3\\sin^{4}x + \\sin^{3}x]$\n$= 2\\sin^{3}x[(\\sin x + 1)^{3}]$\n$= 2[\\sin^{2}x + \\sin x]^{3}$\n$= 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the area enclosed between the curves $|y| = 1 - x^{2}$ and $x^{2} + y^{2} = 1$ be $\\alpha$. If $9\\alpha = \\beta\\pi + \\gamma$; $\\beta, \\gamma$ are integers, then the value of $|\\beta - \\gamma|$ equals",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C_{1} : |y| = 1 - x^{2}$\n$C_{2} : x^{2} + y^{2} = 1$\n$\\therefore$ Required Area\n$= \\alpha = 4\\left[\\text{Area of circle in 1st quad.} - \\int_{0}^{1}(1 - x^{2})dx\\right]$\n$= 4\\left[\\frac{\\pi}{4} - \\left[x - \\frac{x^{3}}{3}\\right]_{0}^{1}\\right]$\n$\\alpha = \\pi - \\frac{8}{3}$\n$\\therefore 3\\alpha = 3\\pi - 8$\n$\\therefore 9\\alpha = 9\\pi - 24$\n$\\therefore \\beta = 9, \\gamma = -24$\n$\\therefore |\\beta - \\gamma| = 33$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$27$"
+    },
+    {
+     "key": "B",
+     "text": "$18$"
+    },
+    {
+     "key": "C",
+     "text": "$15$"
+    },
+    {
+     "key": "D",
+     "text": "$33$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-29jan-s2-math-q03-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the domain of the function $\\log_{5}\\left(18x - x^{2} - 77\\right)$ is $(\\alpha, \\beta)$ and the domain of the function $\\log_{(x-1)}\\left(\\frac{2x^{2} + 3x - 2}{x^{2} - 3x - 4}\\right)$ is $(\\gamma, \\delta)$, then $\\alpha^{2} + \\beta^{2} + \\gamma^{2}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f_{1}(x) = \\log_{5}(18x - x^{2} - 77)$\n$\\therefore 18x - x^{2} - 77 > 0$\n$x^{2} - 18x + 77 < 0$\n$x \\in (7, 11)$ $\\alpha = 7, \\beta = 11$\n$f_{2}(x) = \\log_{(x-1)}\\left(\\frac{2x^{2} + 3x - 2}{x^{2} - 3x - 4}\\right)$\n$\\therefore x - 1 > 0,\\ x - 1 \\neq 1,\\ \\frac{2x^{2} + 3x - 2}{x^{2} - 3x - 4} > 0$\n$x > 1,\\ x \\neq 2,\\ \\frac{(2x-1)(x+2)}{(x-4)(x+1)} > 0$\n$x > 1,\\ x \\neq 2,$\nSign diagram: $+\\ \\underset{-2}{|}\\ -\\ \\underset{-1}{|}\\ +\\ \\underset{1/2}{|}\\ -\\ \\underset{4}{|}\\ +$\n$\\therefore x \\in (4, \\infty)$\n$\\therefore \\gamma = 4$\n$\\therefore \\alpha^{2} + \\beta^{2} + \\gamma^{2} = 49 + 121 + 16$\n$= 186$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$195$"
+    },
+    {
+     "key": "B",
+     "text": "$174$"
+    },
+    {
+     "key": "C",
+     "text": "$186$"
+    },
+    {
+     "key": "D",
+     "text": "$179$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the function $f(x) = (x^{2} - 1)|x^{2} - ax + 2| + \\cos|x|$ be not differentiable at the two points $x = \\alpha = 2$ and $x = \\beta$. Then the distance of the point $(\\alpha, \\beta)$ from the line $12x + 5y + 10 = 0$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a straight line $L$ pass through the point $P(2, -1, 3)$ and be perpendicular to the lines\n$\\frac{x-1}{2} = \\frac{y+1}{1} = \\frac{z-3}{-2}$ and $\\frac{x-3}{1} = \\frac{y-2}{3} = \\frac{z+2}{4}$.\nIf the line $L$ intersects the yz-plane at the point $Q$, then the distance between the points $P$ and $Q$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Vector parallel to 'L'\n$= \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 1 & -2 \\\\ 1 & 3 & 4 \\end{vmatrix} = 10\\hat{i} - 10\\hat{j} + 5\\hat{k}$\n$= 5(2\\hat{i} - 2\\hat{j} + \\hat{k})$\nEquation of 'L'\n$\\frac{x-2}{2} = \\frac{y+1}{-2} = \\frac{z-3}{1} = \\lambda$ (say)\nLet $Q(2\\lambda + 2, -2\\lambda - 1, \\lambda + 3)$\n$\\Rightarrow 2\\lambda + 2 = 0 \\Rightarrow \\lambda = -1$\n$\\Rightarrow Q(0, 1, 2)$\n$d(P, Q) = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S = \\mathbf{N} \\cup \\{0\\}$. Define a relation $\\mathbf{R}$ from $S$ to $\\mathbf{R}$ by :\n$\\mathbf{R} = \\left\\{(x, y) : \\log_{e}y = x\\log_{e}\\left(\\frac{2}{5}\\right), x \\in S, y \\in \\mathbf{R}\\right\\}$.\nThen, the sum of all the elements in the range of $\\mathbf{R}$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$S = \\{0, 1, 2, 3 \\ldots\\ldots\\}$\n$\\log_{e}y = x\\log_{e}\\left(\\frac{2}{5}\\right)$\n$\\Rightarrow y = \\left(\\frac{2}{5}\\right)^{x}$\nRequired\nSum $= 1 + \\left(\\frac{2}{5}\\right)^{1} + \\left(\\frac{2}{5}\\right)^{2} + \\left(\\frac{2}{5}\\right)^{3} + \\ldots\\ldots = \\frac{1}{1 - \\frac{2}{5}} = \\frac{5}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{10}{9}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-29jan-s2-math-q07-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the line $x + y = 1$ meet the axes of $x$ and $y$ at $A$ and $B$, respectively. A right angled triangle $AMN$ is inscribed in the triangle $OAB$, where $O$ is the origin and the points $M$ and $N$ lie on the lines $OB$ and $AB$, respectively. If the area of the triangle $AMN$ is $\\frac{4}{9}$ of the area of the triangle $OAB$ and $AN : NB = \\lambda : 1$, then the sum of all possible value(s) of $\\lambda$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Area of $\\Delta AOB = \\frac{1}{2}$\nArea of $\\Delta AMN = \\frac{4}{9} \\times \\frac{1}{2} = \\frac{2}{9}$\nEquation of $AB$ is $x + y = 1$\n$OA = 1$, $AM = \\sec(45^\\circ - \\theta)$\n$AN = \\sec(45^\\circ - \\theta)\\cos\\theta$\n$MN = \\sec(45^\\circ - \\theta)\\sin\\theta$\n$\\text{Ar}(\\Delta AMN) = \\frac{1}{2} \\times \\sec^{2}(45^\\circ - \\theta)\\sin\\theta\\cos\\theta = \\frac{2}{9}$\n$\\Rightarrow \\tan\\theta = 2, \\frac{1}{2}$\n$\\tan\\theta = 2$ is rejected\n$\\frac{AN}{NB} = \\frac{\\lambda}{1} = \\cot\\theta = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{13}{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-29jan-s2-math-q08-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Ellipse",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha x + \\beta y = 109$ is the equation of the chord of the ellipse $\\frac{x^{2}}{9} + \\frac{y^{2}}{4} = 1$, whose mid point is $\\left(\\frac{5}{2}, \\frac{1}{2}\\right)$, then $\\alpha + \\beta$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equation of chord $T = S_{1}$\n$\\frac{5}{2}\\left(\\frac{x}{9}\\right) + \\frac{1}{2}\\left(\\frac{y}{4}\\right) = \\frac{25}{36} + \\frac{1}{16}$\n$\\Rightarrow \\frac{5x}{18} + \\frac{y}{8} = \\frac{100 + 9}{144} = \\frac{109}{144}$\n$\\Rightarrow 40x + 18y = 109$\n$\\Rightarrow \\alpha = 40, \\beta = 18$\n$\\Rightarrow \\alpha + \\beta = 58$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$37$"
+    },
+    {
+     "key": "B",
+     "text": "$46$"
+    },
+    {
+     "key": "C",
+     "text": "$58$"
+    },
+    {
+     "key": "D",
+     "text": "$72$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-29jan-s2-math-q09-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If all the words with or without meaning made using all the letters of the word \"KANPUR\" are arranged as in a dictionary, then the word at $440^{\\mathrm{th}}$ position in this arrangement, is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "A, K, N, P, R, U\n$\\boxed{\\mathrm{A}}\\ \\ldots\\ldots\\ldots = 5! = 120$\n$\\boxed{\\mathrm{K}}\\ \\ldots\\ldots\\ldots = 5! = 120$\n$\\boxed{\\mathrm{N}}\\ \\ldots\\ldots\\ldots = 5! = 120$\n$\\boxed{\\mathrm{P}}\\boxed{\\mathrm{A}}\\ \\ldots\\ldots = 4! = 24$\n$\\boxed{\\mathrm{P}}\\boxed{\\mathrm{K}}\\ \\ldots\\ldots = 4! = 24$\n$\\boxed{\\mathrm{P}}\\boxed{\\mathrm{N}}\\ \\ldots\\ldots = 4! = 24$\n$\\boxed{\\mathrm{P}}\\boxed{\\mathrm{R}}\\boxed{\\mathrm{A}}\\ \\ldots\\ldots = 3! = 6$\n$\\boxed{\\mathrm{P}}\\boxed{\\mathrm{R}}\\boxed{\\mathrm{K}}\\boxed{\\mathrm{A}}\\boxed{\\mathrm{N}}\\boxed{\\mathrm{U}} = 1$\n$\\boxed{\\mathrm{P}}\\boxed{\\mathrm{R}}\\boxed{\\mathrm{K}}\\boxed{\\mathrm{A}}\\boxed{\\mathrm{U}}\\boxed{\\mathrm{N}} = 1$\nTotal = 440\n$\\Rightarrow 440^{\\mathrm{th}}$ word",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "PRNAKU"
+    },
+    {
+     "key": "B",
+     "text": "PRKANU"
+    },
+    {
+     "key": "C",
+     "text": "PRKAUN"
+    },
+    {
+     "key": "D",
+     "text": "PRNAUK"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta$ ($\\alpha \\neq \\beta$) be the values of $m$, for which the equations $x + y + z = 1$; $x + 2y + 4z = m$ and $x + 4y + 10z = m^{2}$ have infinitely many solutions. Then the value of $\\sum_{n=1}^{10}\\left(n^{\\alpha} + n^{\\beta}\\right)$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & 2 & 4 \\\\ 1 & 4 & 10 \\end{vmatrix} = 1(20 - 16) - 1(10 - 4) + 1(4 - 2)$\n$= 4 - 6 + 2 = 0$\nFor infinite solutions\n$\\Delta_{x} = \\Delta_{y} = \\Delta_{z} = 0$\n$m^{2} - 3m + 2 = 0$\n$m = 1, 2$\n$\\alpha = 1, \\beta = 2$\n$\\therefore \\sum_{n=1}^{10}(n^{\\alpha} + n^{\\beta}) = \\sum_{n=1}^{10} n^{1} + \\sum_{n=1}^{10} n^{2}$\n$= \\frac{10(11)}{2} + \\frac{10(11)(21)}{6}$\n$= 55 + 385$\n$= 440$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$440$"
+    },
+    {
+     "key": "B",
+     "text": "$3080$"
+    },
+    {
+     "key": "C",
+     "text": "$3410$"
+    },
+    {
+     "key": "D",
+     "text": "$560$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = [a_{ij}]$ be a matrix of order $3 \\times 3$, with $a_{ij} = \\left(\\sqrt{2}\\right)^{i+j}$. If the sum of all the elements in the third row of $A^{2}$ is $\\alpha + \\beta\\sqrt{2}$, $\\alpha, \\beta \\in \\mathbf{Z}$, then $\\alpha + \\beta$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A = \\begin{bmatrix} (\\sqrt{2})^{2} & (\\sqrt{2})^{3} & (\\sqrt{2})^{4} \\\\ (\\sqrt{2})^{3} & (\\sqrt{2})^{4} & (\\sqrt{2})^{5} \\\\ (\\sqrt{2})^{4} & (\\sqrt{2})^{5} & (\\sqrt{2})^{6} \\end{bmatrix}$\n$A = \\begin{bmatrix} 2 & 2\\sqrt{2} & 4 \\\\ 2\\sqrt{2} & 4 & 4\\sqrt{2} \\\\ 4 & 4\\sqrt{2} & 8 \\end{bmatrix}$\n$A^{2} = 2^{2}\\begin{bmatrix} 1 & \\sqrt{2} & 2 \\\\ \\sqrt{2} & 2 & 2\\sqrt{2} \\\\ 2 & 2\\sqrt{2} & 4 \\end{bmatrix}\\begin{bmatrix} 1 & \\sqrt{2} & 2 \\\\ \\sqrt{2} & 2 & 2\\sqrt{2} \\\\ 2 & 2\\sqrt{2} & 4 \\end{bmatrix}$\n$= 4\\begin{bmatrix} - & - & - \\\\ - & - & - \\\\ (2 + 4 + 8) & (2\\sqrt{2} + 4\\sqrt{2} + 8\\sqrt{2}) & (4 + 8 + 16) \\end{bmatrix}$\nSum of elements of $3^{\\mathrm{rd}}$ row $= 4(14 + 14\\sqrt{2} + 28)$\n$= 4(42 + 14\\sqrt{2})$\n$= 168 + 56\\sqrt{2}$\n$\\alpha + \\beta\\sqrt{2}$\n$\\therefore \\alpha + \\beta = 168 + 56 = 224$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$280$"
+    },
+    {
+     "key": "B",
+     "text": "$168$"
+    },
+    {
+     "key": "C",
+     "text": "$210$"
+    },
+    {
+     "key": "D",
+     "text": "$224$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P$ be the foot of the perpendicular from the point $(1, 2, 2)$ on the line $L : \\frac{x-1}{1} = \\frac{y+1}{-1} = \\frac{z-2}{2}$.\nLet the line $\\vec{r} = \\left(-\\hat{i} + \\hat{j} - 2\\hat{k}\\right) + \\lambda\\left(\\hat{i} - \\hat{j} + \\hat{k}\\right)$, $\\lambda \\in \\mathbf{R}$, intersect the line $L$ at $Q$. Then $2(PQ)^{2}$ is equal to:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L : \\frac{x-1}{1} = \\frac{y+1}{-1} = \\frac{z-2}{2} = \\mu$\n$P(\\mu + 1, -\\mu - 1, 2\\mu + 2)$\n$\\overrightarrow{AP} \\cdot \\vec{d} = 0 \\Rightarrow (\\mu, -\\mu - 3, 2\\mu) \\cdot (1, -1, 2) = 0$\n$\\Rightarrow \\mu + \\mu + 3 + 4\\mu = 0 \\Rightarrow \\mu = -\\frac{1}{2}$\n$\\therefore P\\left(\\frac{-1}{2} + 1, +\\frac{1}{2} - 1, 2\\left(\\frac{-1}{2}\\right) + 2\\right)$\n$P\\left(\\frac{1}{2}, \\frac{-1}{2}, 1\\right)$\nNow general pt. on $L_{2}$ is $Q(-1 + \\lambda, 1 - \\lambda, -2 + \\lambda)$\nEquate it with general pt of L\n$\\mu + 1 = -1 + \\lambda$, $-\\mu - 1 = 1 - \\lambda$, $2\\mu + 2 = -2 + \\lambda$\n$\\mu = \\lambda - 2$, $\\mu = \\lambda - 2$\n$2(\\lambda - 2) + 2 = -2 + \\lambda$\n$2\\lambda - 4 + 2 = -2 + \\lambda$\n$\\therefore \\mu = -2$, $\\lambda = 0$\n$\\therefore Q \\equiv (-1, 1, -2)$\n$P\\left(\\frac{1}{2}, \\frac{-1}{2}, 1\\right)$ and $Q(-1, 1, -2)$\n$PQ = \\sqrt{\\left(\\frac{1}{2} + 1\\right)^{2} + \\left(\\frac{-1}{2} - 1\\right)^{2} + (1 + 2)^{2}}$\n$= \\sqrt{\\frac{9}{4} + \\frac{9}{4} + 9} = \\sqrt{\\frac{54}{4}}$\n$\\therefore 2(PQ)^{2} = 2\\left(\\frac{54}{4}\\right) = 27$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$27$"
+    },
+    {
+     "key": "B",
+     "text": "$25$"
+    },
+    {
+     "key": "C",
+     "text": "$29$"
+    },
+    {
+     "key": "D",
+     "text": "$19$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-29jan-s2-math-q13-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a circle $C$ pass through the points $(4, 2)$ and $(0, 2)$, and its centre lie on $3x + 2y + 2 = 0$. Then the length of the chord, of the circle $C$, whose mid-point is $(1, 2)$, is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$M_{AB} = 0 \\Rightarrow OM$ is vertical\n$\\Rightarrow \\alpha = 2$\n$\\therefore$ Centre $(O) \\equiv (2, -4)$\n$r = OA = \\sqrt{(2-4)^{2} + (2+4)^{2}} = \\sqrt{40}$\nmid point of chord is $N \\equiv (1, 2)$ $\\therefore ON = \\sqrt{37}$\n$\\therefore$ length of chord $= 2\\sqrt{r^{2} - (ON)^{2}}$\n$= 2\\sqrt{40 - 37} = 2\\sqrt{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$4\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-29jan-s2-math-q14-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = [a_{ij}]$ be a $2 \\times 2$ matrix such that $a_{ij} \\in \\{0, 1\\}$ for all $i$ and $j$. Let the random variable $X$ denote the possible values of the determinant of the matrix $A$. Then, the variance of $X$ is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|A| = \\begin{vmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\end{vmatrix}$\n$= a_{11}a_{22} - a_{21}a_{12}$\n$= \\{-1, 0, 1\\}$\n$x$ | $P_{i}$ | $P_{i}X_{i}$ | $P_{i}X_{i}^{2}$\n$-1$ | $\\frac{3}{16}$ | $-\\frac{3}{16}$ | $\\frac{3}{16}$\n$0$ | $\\frac{10}{16}$ | $0$ | $0$\n$1$ | $\\frac{3}{16}$ | $\\frac{3}{16}$ | $\\frac{3}{16}$\n | | $\\sum P_{i}X_{i} = 0$ | $\\sum P_{i}X_{i}^{2} = \\frac{3}{8}$\n$\\therefore \\text{var}(x) = \\sum P_{i}X_{i}^{2} - (\\sum P_{i}X_{i})^{2}$\n$= \\frac{3}{8} - 0 = \\frac{3}{8}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{8}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Bag 1 contains 4 white balls and 5 black balls, and Bag 2 contains $n$ white balls and 3 black balls. One ball is drawn randomly from Bag 1 and transferred to Bag 2. A ball is then drawn randomly from Bag 2. If the probability, that the ball drawn is white, is $\\frac{29}{45}$, then $n$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Bag 1 $= \\{4W, 5B\\}$\nBag 2 $= \\{nW, 3B\\}$\n$P\\left(\\frac{W}{\\text{Bag 2}}\\right) = \\frac{29}{45}$\n$\\Rightarrow P\\left(\\frac{W}{B_{1}}\\right) \\times P\\left(\\frac{W}{B_{2}}\\right) + P\\left(\\frac{B}{B_{1}}\\right) \\times P\\left(\\frac{W}{B_{2}}\\right) = \\frac{29}{45}$\n$\\frac{4}{9} \\times \\frac{n+1}{n+4} + \\frac{5}{9} \\times \\frac{n}{n+4} = \\frac{29}{45}$\n$\\boxed{n = 6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$5$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The remainder, when $7^{103}$ is divided by 23, is equal to:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$7^{103} = 7(7^{102}) = 7(343)^{34} = 7(345 - 2)^{34}$\n$7^{103} = 23K_{1} + 7 \\cdot 2^{34}$\nNow $7 \\cdot 2^{34} = 7 \\cdot 2^{2} \\cdot 2^{32}$\n$= 28 \\cdot (256)^{4}$\n$= 28(253 + 3)^{4}$\n$\\therefore 28 \\times 81 \\Rightarrow (23 + 5)(69 + 12)$\n$23K_{2} + 60$\n$\\therefore$ Remainder: $\\boxed{14}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$14$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$17$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\int_{0}^{x} t\\left(t^{2} - 9t + 20\\right)dt$, $1 \\leq x \\leq 5$. If the range of $f$ is $[\\alpha, \\beta]$, then $4(\\alpha + \\beta)$ equals:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f'(x) = x^{3} - 9x^{2} + 20x = x(x-4)(x-5)$\nSign diagram: $-\\ \\underset{0}{|}\\ +\\ \\underset{4}{|}\\ -\\ \\underset{5}{|}\\ +$\n$\\therefore f(x) = \\frac{x^{4}}{4} - \\frac{9x^{3}}{3} + \\frac{20x^{2}}{2}$\n$f(1) = \\frac{1}{4} - 3 + 10 = \\frac{29}{4} = \\alpha$\n$f(4) = \\frac{256}{4} - 3(64) + 10(16) = 32 = \\beta$\n$4(\\alpha + \\beta) = 4\\left(\\frac{29}{4} + 32\\right) = 157$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$157$"
+    },
+    {
+     "key": "B",
+     "text": "$253$"
+    },
+    {
+     "key": "C",
+     "text": "$125$"
+    },
+    {
+     "key": "D",
+     "text": "$154$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\hat{a}$ be a unit vector perpendicular to the vectors $\\vec{b} = \\hat{i} - 2\\hat{j} + 3\\hat{k}$ and $\\vec{c} = 2\\hat{i} + 3\\hat{j} - \\hat{k}$, and makes an angle of $\\cos^{-1}\\left(-\\frac{1}{3}\\right)$ with the vector $\\hat{i} + \\hat{j} + \\hat{k}$. If $\\hat{a}$ makes an angle of $\\frac{\\pi}{3}$ with the vector $\\hat{i} + \\alpha\\hat{j} + \\hat{k}$, then the value of $\\alpha$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let $\\vec{v} = \\hat{i} + \\hat{j} + \\hat{k}$\n$\\vec{b} \\times \\vec{c} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & -2 & 3 \\\\ 2 & 3 & -1 \\end{vmatrix}$\n$= -7\\hat{i} + 7\\hat{j} + 7\\hat{k}$\n$= -7(\\hat{i} - \\hat{j} - \\hat{k})$\nNow $\\hat{a} = \\frac{\\hat{i} - \\hat{j} - \\hat{k}}{\\sqrt{3}}$ or $\\frac{-\\hat{i} + \\hat{j} + \\hat{k}}{\\sqrt{3}}$\n$\\cos\\theta = \\frac{\\hat{a} \\cdot \\vec{v}}{|\\vec{v}|} = \\frac{1 - 1 - 1}{\\sqrt{3}\\sqrt{3}} = \\frac{-1}{3}$ ; $\\cos\\theta = \\frac{\\hat{a} \\cdot \\vec{v}}{|\\vec{v}|} = \\frac{-1 + 1 + 1}{3} = \\frac{1}{3}$ (rejected)\n$\\Rightarrow \\hat{a} = \\frac{\\hat{i} - \\hat{j} - \\hat{k}}{\\sqrt{3}}$\nNow $\\cos\\frac{\\pi}{3} = \\frac{\\hat{a} \\cdot (\\hat{i} + \\alpha\\hat{j} + \\hat{k})}{\\sqrt{1 + \\alpha^{2} + 1}}$\n$\\Rightarrow \\frac{1}{2} = \\frac{1 - \\alpha - 1}{\\sqrt{3}\\sqrt{\\alpha^{2} + 2}}$\n$\\Rightarrow \\frac{\\sqrt{3}}{2}\\sqrt{\\alpha^{2} + 2} = -\\alpha$ ($\\because \\alpha < 0$)\n$3\\alpha^{2} + 6 = 4\\alpha^{2}$\n$\\Rightarrow \\alpha = -\\sqrt{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\sqrt{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\sqrt{6}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If for the solution curve $y = f(x)$ of the differential equation $\\frac{dy}{dx} + (\\tan x)y = \\frac{2 + \\sec x}{(1 + 2\\sec x)^{2}}$, $x \\in \\left(\\frac{-\\pi}{2}, \\frac{\\pi}{2}\\right)$, $f\\left(\\frac{\\pi}{3}\\right) = \\frac{\\sqrt{3}}{10}$, then $f\\left(\\frac{\\pi}{4}\\right)$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "If $e^{\\int \\tan x\\,dx} = e^{\\ln(\\sec x)} = \\sec x$\n$\\therefore y \\cdot \\sec x = \\int \\left\\{\\frac{2 + \\sec x}{(1 + 2\\sec x)^{2}}\\right\\}\\sec x\\,dx$\n$= \\int \\frac{2\\cos x + 1}{(\\cos x + 2)^{2}}dx$ Let $\\cos x = \\frac{1 - t^{2}}{1 + t^{2}}$\n$= \\int \\frac{2\\left(\\frac{1 - t^{2}}{1 + t^{2}}\\right) + 1}{\\left(\\frac{1 - t^{2}}{1 + t^{2}} + 2\\right)^{2}}2\\,dt$\n$= \\int \\frac{2 - 2t^{2} + 1 + t^{2}}{(1 - t^{2} + 2 + 2t^{2})^{2}} \\times 2\\,dt$\n$= 2\\int \\frac{3 - t^{2}}{(t^{2} + 3)^{2}}dt$\nLet $t + \\frac{3}{t} = u$\n$\\left(1 - \\frac{3}{t^{2}}\\right)dt = du$\n$= -2\\int \\frac{du}{u^{2}}$\n$y \\cdot (\\sec x) = \\frac{2}{u} + c$\n$\\boxed{y \\cdot \\sec x = \\frac{2}{t + \\frac{3}{t}} + c}$ .........(I)\nAt $x = \\frac{\\pi}{3}$, $t = \\tan\\frac{x}{2} = \\frac{1}{\\sqrt{3}}$\n$2 \\cdot \\frac{\\sqrt{3}}{10} = \\frac{2}{\\frac{1}{\\sqrt{3}} + 3\\sqrt{3}} + c$\n$2 \\cdot \\frac{\\sqrt{3}}{10} = \\frac{2\\sqrt{3}}{10} + c \\Rightarrow C = 0$\nAt $x = \\frac{\\pi}{4}$, $t = \\tan\\frac{x}{2} = \\sqrt{2} - 1$\n$\\therefore y \\cdot \\sqrt{2} = \\frac{2}{\\sqrt{2} - 1 + \\frac{3}{\\sqrt{2} - 1}}$\n$y \\cdot \\sqrt{2} = \\frac{2(\\sqrt{2} - 1)}{6 - 2\\sqrt{2}}$\n$y = \\frac{\\sqrt{2}(\\sqrt{2} - 1)}{2(3 - \\sqrt{2})} = \\frac{1}{\\sqrt{2}} \\times \\frac{2\\sqrt{2} - 1}{7} = \\frac{4 - \\sqrt{2}}{14}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{9\\sqrt{3} + 3}{10\\left(4 + \\sqrt{3}\\right)}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{3} + 1}{10\\left(4 + \\sqrt{3}\\right)}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5 - \\sqrt{3}}{2\\sqrt{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4 - \\sqrt{2}}{14}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $24\\int_{0}^{\\frac{\\pi}{4}}\\left(\\sin\\left|4x - \\frac{\\pi}{12}\\right| + \\left[2\\sin x\\right]\\right)dx = 2\\pi + \\alpha$, where $[\\cdot]$ denotes the greatest integer function, then $\\alpha$ is equal to _________.",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "$= 24\\left[\\int_{0}^{\\pi/48} -\\sin\\left(4x - \\frac{\\pi}{12}\\right) + \\int_{\\pi/48}^{\\pi/4} \\sin\\left(4x - \\frac{\\pi}{12}\\right)\\right.$\n$\\left.+ \\int_{0}^{\\pi/6} [0]\\,dx + \\int_{\\pi/6}^{\\pi/4} \\underset{\\downarrow}{[2\\sin x]}\\,dx\\right]$ (the arrow under $[2\\sin x]$ points to $1$)\n$= 24\\left[\\frac{1 - \\cos\\frac{\\pi}{12}}{4} - \\frac{-\\cos\\frac{\\pi}{12} - 1}{4} + \\frac{\\pi}{4} - \\frac{\\pi}{6}\\right]$\n$= 24\\left(\\frac{1}{2} + \\frac{\\pi}{12}\\right) = 2\\pi + 12$\n$\\alpha = 12$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Limits",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\lim_{t \\to 0}\\left(\\int_{0}^{1}(3x + 5)^{t}dx\\right)^{\\frac{1}{t}} = \\frac{\\alpha}{5e}\\left(\\frac{8}{5}\\right)^{\\frac{2}{3}}$, then $\\alpha$ is equal to _______.",
+   "correct_key": null,
+   "correct_value": 64,
+   "correct_keys": null,
+   "solution": "$1^{\\infty}$ form\nNow $L = e^{\\lim_{t \\to 0}\\frac{1}{t}\\left(\\left.\\frac{(3x + 5)^{t+1}}{3(t+1)}\\right|_{0}^{1} - 1\\right)}$\n$= e^{\\lim_{t \\to 0}\\frac{8^{t+1} - 5^{t+1} - 3t - 3}{3t(t+1)}}$\n$= e^{\\frac{8\\ln 8 - 5\\ln 5 - 3}{3}}$\n$= \\left(\\frac{8}{5}\\right)^{2/3}\\left(\\frac{64}{5}\\right) = \\frac{\\alpha}{5e}\\left(\\frac{8}{5}\\right)^{2/3}$\nOn comparing\n$\\alpha = 64$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $a_{1}, a_{2}, \\ldots, a_{2024}$ be an Arithmetic Progression such that $a_{1} + (a_{5} + a_{10} + a_{15} + \\ldots + a_{2020}) + a_{2024} = 2233$. Then $a_{1} + a_{2} + a_{3} + \\ldots + a_{2024}$ is equal to _________.",
+   "correct_key": null,
+   "correct_value": 11132,
+   "correct_keys": null,
+   "solution": "$a_{1} + a_{5} + a_{10} + \\ldots\\ldots + a_{2020} + a_{2024} = 2233$\nIn an A.P. the sum of terms equidistant from ends is equal.\n$a_{1} + a_{2024} = a_{5} + a_{2020} = a_{10} + a_{2015}\\ \\ldots\\ldots$\n$\\Rightarrow 203$ pairs\n$\\Rightarrow 203(a_{1} + a_{2024}) = 2233$\nHence,\n$S_{2024} = \\frac{2024}{2}(a_{1} + a_{2024})$\n$= 1012 \\times 11$\n$= 11132$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Complex Numbers",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let integers $a, b \\in [-3, 3]$ be such that $a + b \\neq 0$. Then the number of all possible ordered pairs $(a, b)$, for which $\\left|\\frac{z - a}{z + b}\\right| = 1$ and $\\begin{vmatrix} z + 1 & \\omega & \\omega^{2} \\\\ \\omega & z + \\omega^{2} & 1 \\\\ \\omega^{2} & 1 & z + \\omega \\end{vmatrix} = 1$, $z \\in \\mathbf{C}$, where $\\omega$ and $\\omega^{2}$ are the roots of $x^{2} + x + 1 = 0$, is equal to _______.",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "$a, b \\in I$, $-3 \\leq a, b \\leq 3$, $a + b \\neq 0$\n$|z - a| = |z + b|$\n$\\begin{vmatrix} z + 1 & \\omega & \\omega^{2} \\\\ \\omega & z + \\omega^{2} & 1 \\\\ \\omega^{2} & 1 & z + \\omega \\end{vmatrix} = 1$\n$\\Rightarrow \\begin{vmatrix} z & z & z \\\\ \\omega & z + \\omega^{2} & 1 \\\\ \\omega^{2} & 1 & z + \\omega \\end{vmatrix} = 1$\n$\\Rightarrow z\\begin{vmatrix} 1 & 1 & 1 \\\\ \\omega & z + \\omega^{2} & 1 \\\\ \\omega^{2} & 1 & z + \\omega \\end{vmatrix} = 1$\n$\\Rightarrow z\\begin{vmatrix} 1 & 0 & 0 \\\\ \\omega & z + \\omega^{2} - \\omega & 1 - \\omega \\\\ \\omega^{2} & 1 - \\omega^{2} & z + \\omega - \\omega^{2} \\end{vmatrix} = 1$\n$\\Rightarrow z^{3} = 1$\n$\\Rightarrow z = \\omega, \\omega^{2}, 1$\nNow\n$|1 - a| = |1 + b|$\n$\\Rightarrow 10$ pairs",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Parabola",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $y^{2} = 12x$ the parabola and $S$ be its focus. Let $PQ$ be a focal chord of the parabola such that $(SP)(SQ) = \\frac{147}{4}$. Let $C$ be the circle described taking $PQ$ as a diameter. If the equation of a circle $C$ is $64x^{2} + 64y^{2} - \\alpha x - 64\\sqrt{3}\\,y = \\beta$, then $\\beta - \\alpha$ is equal to _________.",
+   "correct_key": null,
+   "correct_value": 1328,
+   "correct_keys": null,
+   "solution": "$y^{2} = 12x$ $a = 3$ $SP \\times SQ = \\frac{147}{4}$\nLet $P(3t^{2}, 6t)$ and $t_{1}t_{2} = -1$ (ends of focal chord)\nSo, $Q\\left(\\frac{3}{t^{2}}, \\frac{-6}{t}\\right)$\n$S(3, 0)$\n$SP \\times SQ = PM_{1} \\times QM_{2}$ (dist. from directrix)\n$= (3 + 3t^{2})\\left(3 + \\frac{3}{t^{2}}\\right) = \\frac{147}{4}$\n$\\Rightarrow \\frac{(1 + t^{2})^{2}}{t^{2}} = \\frac{49}{12}$\n$t^{2} = \\frac{3}{4}, \\frac{4}{3}$\n$t = \\pm\\frac{\\sqrt{3}}{2}, \\pm\\frac{2}{\\sqrt{3}}$\nconsidering $t = \\frac{-\\sqrt{3}}{2}$\n$P\\left(\\frac{9}{4}, -3\\sqrt{3}\\right)$ and $Q\\left(4, 4\\sqrt{3}\\right)$\nHence, diametric circle:\n$(x - 4)\\left(x - \\frac{9}{4}\\right) + (y + 3\\sqrt{3})(y - 4\\sqrt{3}) = 0$\n$\\Rightarrow x^{2} + y^{2} - \\frac{25}{4}x - \\sqrt{3}y - 27 = 0$\n$\\Rightarrow \\alpha = 400$, $\\beta = 1728$\n$\\beta - \\alpha = 1328$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

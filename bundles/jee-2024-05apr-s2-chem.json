@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "1_648PUjmALqINxOaoe29dwx1TaZ0_8qN"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "General Organic Chemistry",
+   "topic": "Chemical Bonding",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "IUPAC naming of given compound",
-   "correct_key": "A",
+   "stem": "Match List - I with List - II.\nList - I | List - II\n(A) $\\mathrm{ICl}$ | (I) T -Shape\n(B) $\\mathrm{ICl_3}$ | (II) Square pyramidal\n(C) $\\mathrm{ClF_5}$ | (III) Pentagonal bipyramidal\n(D) $\\mathrm{IF_7}$ | (IV) Linear\nChoose the correct answer from the options given below:",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "2-formyl-4-hydroxy hept-6-enoic acid.",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,36 +30,36 @@
    "options": [
     {
      "key": "A",
-     "text": "2-formyl-4-hydroxy hept-6-enoic acid"
+     "text": "(A)–(I), (B)–(IV), C–(III), D–(II)"
     },
     {
      "key": "B",
-     "text": "6-formyl-4-hydroxy hept-1-enoic acid"
+     "text": "(A)–(I), (B)–(III), C–(II), D–(IV)"
     },
     {
      "key": "C",
-     "text": "4-hydroxy-6-formyl-hept-1-enoic acid"
+     "text": "(A)–(IV), (B)–(I), C–(II), D–(III)"
     },
     {
      "key": "D",
-     "text": "4-hydroxy-2-formyl-hept-6-enoic acid"
+     "text": "(A)–(IV), (B)–(III), C–(II), D–(I)"
     }
    ],
-   "stem_figure": "j24-05apr-s2-chem-q01.png",
-   "solution_figure": null,
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-chem-q61-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 2,
-   "topic": "Biomolecules",
+   "topic": "Practical Chemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Coagulation of egg is due to",
+   "stem": "While preparing crystals of Mohr's salt, dil. $\\mathrm{H_2SO_4}$ is added to a mixture of ferrous sulphate and ammonium sulphate, before dissolving this mixture in water, dil. $\\mathrm{H_2SO_4}$ is added here to:",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Coagulation of egg is due to denaturation of protein.",
+   "solution": "$\\mathrm{Fe^{+2}}$ ions undergoes hydrolysis, therefore while preparing aqueous solution of ferrous sulphate and ammonium sulphate in water dilute sulphuric acid is added to prevent hydrolysis of ferrous sulphate.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,19 +67,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Denaturation of protein"
+     "text": "prevent the hydrolysis of ferrous sulphate"
     },
     {
      "key": "B",
-     "text": "$2^\\circ$ structure does not change"
+     "text": "prevent the hydrolysis of ammonium sulphate"
     },
     {
      "key": "C",
-     "text": "$1^\\circ$ structure does not change"
+     "text": "make the medium strongly acidic"
     },
     {
      "key": "D",
-     "text": "$3^\\circ$ structure does not change"
+     "text": "increase the rate of formation of crystals"
     }
    ],
    "stem_figure": null,
@@ -89,14 +89,14 @@
   },
   {
    "q_no": 3,
-   "topic": "Coordination Compounds",
+   "topic": "Haloalkanes and Haloarenes",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Square planar complex $\\mathrm{Mabcd}$ will have how many isomers",
-   "correct_key": "B",
+   "stem": "Identify the major product in the following reaction.",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Square planar complex $\\mathrm{Mabcd}$ will have 3 isomers.",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,76 +104,40 @@
    "options": [
     {
      "key": "A",
-     "text": "2"
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q63-optA.png"
     },
     {
      "key": "B",
-     "text": "3"
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q63-optB.png"
     },
     {
      "key": "C",
-     "text": "4"
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q63-optC.png"
     },
     {
      "key": "D",
-     "text": "5"
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q63-optD.png"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": null,
+   "stem_figure": "jn24-05apr-s2-chem-q63.png",
+   "solution_figure": "jn24-05apr-s2-chem-q63-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 4,
-   "topic": "Structure of Atom",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "For $n = 4$, $|m| = 1$, $m_s = \\frac{1}{2}$ then maximum number of electron with this combination will be",
-   "correct_key": null,
-   "correct_value": 6,
-   "correct_keys": null,
-   "solution": "$n = 4,\\ l = 0, 1, 2, 3$\n$l = 0,\\ m = 0$\n$l = 1,\\ m = -1, 0, +1 \\Rightarrow 2$\n$l = 2,\\ m = -2, -1, 0, +1, +2 \\Rightarrow 2$\n$l = 3,\\ m = -3, -2, -1, 0, +1, +2, +3 \\Rightarrow 2$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 5,
-   "topic": "Aldehydes, Ketones and Carboxylic Acids",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Calculate number of $\\pi$ bond present in product B",
-   "correct_key": null,
-   "correct_value": 4,
-   "correct_keys": null,
-   "solution": "total number of $\\pi$ bond in B = 4",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s2-chem-q05.png",
-   "solution_figure": "j24-05apr-s2-chem-q05-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 6,
-   "topic": "Coordination Compounds",
+   "topic": "Nomenclature of Organic Compounds",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following doesn't have electron in $t_2$ orbital",
-   "correct_key": "A",
+   "stem": "The correct nomenclature for the following compound is:",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{Ti^{+4}}$ have $d^{0}$ electronic configuration.",
+   "solution": "2-formyl-4-hydroxyhept-6-enoic acid",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -181,19 +145,93 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{[TiCl_4]}$"
+     "text": "2–carboxy–4–hydroxyhept–6–enal"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{[MnO_4]^{2-}}$"
+     "text": "2–carboxy–4–hydroxyhept–7–enal"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{[FeCl_4]^{2-}}$"
+     "text": "2–formyl–4–hydroxyhept–6–enoic acid"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{[Co(CN)_4]^{2-}}$"
+     "text": "2–formyl–4–hydroxyhept–7–enoic acid"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s2-chem-q64.png",
+   "solution_figure": "jn24-05apr-s2-chem-q64-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Chemical Bonding",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements : one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A) : $\\mathrm{NH_3}$ and $\\mathrm{NF_3}$ molecule have pyramidal shape with a lone pair of electrons on nitrogen atom. The resultant dipole moment of $\\mathrm{NH_3}$ is greater than that of $\\mathrm{NF_3}$.\nReason (R) : In $\\mathrm{NH_3}$, the orbital dipole due to lone pair is in the same direction as the resultant dipole moment of the N–H bonds. F is the most electronegative element.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Resultant dipole moment $= 0.80 \\times 10^{-30}$ Cm\nResultant dipole moment $= 4.90 \\times 10^{-30}$ cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) is true and (R) is the correct explanation of (A)"
+    },
+    {
+     "key": "B",
+     "text": "(A) is false but (R) is true"
+    },
+    {
+     "key": "C",
+     "text": "(A) is true but (R) is false"
+    },
+    {
+     "key": "D",
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-chem-q65-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Ionic Equilibrium",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\nStatement I : On passing $\\mathrm{HCl_{(g)}}$ through a saturated solution of $\\mathrm{BaCl_2}$, at room temperature white turbidity appears.\nStatement II : When HCl gas is passed through a saturated solution of NaCl, sodium chloride is precipitated due to common ion effect.\nIn the light of the above statements, choose the most appropriate answer from the options given below:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{BaCl_2}$, NaCl are soluble but on adding HCl(g) to $\\mathrm{BaCl_2}$, NaCl solutions, Sodium or Barium chlorides may precipitate out, as a consequence of the law of mass action.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is correct but Statement II is incorrect"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are incorrect"
+    },
+    {
+     "key": "C",
+     "text": "Statement I is incorrect but Statement II is correct"
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are correct"
     }
    ],
    "stem_figure": null,
@@ -203,10 +241,121 @@
   },
   {
    "q_no": 7,
-   "topic": "Haloalkanes and Haloarenes",
+   "topic": "Coordination Compounds",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Major product in the given reaction",
+   "stem": "The metal atom present in the complex MABXL (where A, B, X and L are unidentate ligands and M is metal) involves $sp^{3}$ hybridization. The number of geometrical isomers exhibited by the complex is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Tetrahedral complex does not show geometrical isomerism.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4"
+    },
+    {
+     "key": "B",
+     "text": "0"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "3"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Isomerism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List - I with List - II.\nList - I (Pair of Compounds) | List - II (Isomerism)\n(A) n-propanol and Isopropanol | (I) Metamerism\n(B) Methoxypropane and ethoxyethane | (II) Chain Isomerism\n(C) Propanone and propanal | (III) Position Isomerism\n(D) Neopentane and Isopentane | (IV) Functional Isomerism",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)–(II), (B)–(I), (C)–(IV), (D)–(III)"
+    },
+    {
+     "key": "B",
+     "text": "(A)–(III), (B)–(I), (C)–(II), (D)–(IV)"
+    },
+    {
+     "key": "C",
+     "text": "(A)–(I), (B)–(III), (C)–(IV), (D)–(II)"
+    },
+    {
+     "key": "D",
+     "text": "(A)–(III), (B)–(I), (C)–(IV), (D)–(II)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-chem-q68-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The quantity of silver deposited when one coulomb charge is passed through $\\mathrm{AgNO_3}$ solution:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$W = ZIt$\n$W = ZQ$\n$Q = \\frac{W}{Z}$\n$W = ZQ = $ (electrochemical equivalent)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.1 g atom of silver"
+    },
+    {
+     "key": "B",
+     "text": "1 chemical equivalent of silver"
+    },
+    {
+     "key": "C",
+     "text": "1 g of silver"
+    },
+    {
+     "key": "D",
+     "text": "1 electrochemical equivalent of silver"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which one of the following reactions is NOT possible?",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
@@ -219,133 +368,39 @@
     {
      "key": "A",
      "text": "",
-     "figure": "j24-05apr-s2-chem-q07-optA.png"
+     "figure": "jn24-05apr-s2-chem-q70-optA.png"
     },
     {
      "key": "B",
      "text": "",
-     "figure": "j24-05apr-s2-chem-q07-optB.png"
+     "figure": "jn24-05apr-s2-chem-q70-optB.png"
     },
     {
      "key": "C",
      "text": "",
-     "figure": "j24-05apr-s2-chem-q07-optC.png"
+     "figure": "jn24-05apr-s2-chem-q70-optC.png"
     },
     {
      "key": "D",
      "text": "",
-     "figure": "j24-05apr-s2-chem-q07-optD.png"
-    }
-   ],
-   "stem_figure": "j24-05apr-s2-chem-q07.png",
-   "solution_figure": "j24-05apr-s2-chem-q07-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 8,
-   "topic": "Chemical Bonding and Molecular Structure",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Statement-A : $\\mathrm{NF_3}$ have less dipole moment than $\\mathrm{NH_3}$.\nStatement-R : F is more electronegative and bond moment of N–H bond is in same direction of lone pair.",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\mathrm{NF_3}$ have less dipole moment than $\\mathrm{NH_3}$.\nF is more electronegative and bond moment of N–H bond is in same direction of lone pair.\nBoth A and R are correct and R is the correct explanation of A.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Both A and R are correct and R is the correct explanation of A."
-    },
-    {
-     "key": "B",
-     "text": "Both A and R are correct, but R is not the correct explanation of A."
-    },
-    {
-     "key": "C",
-     "text": "A is correct but, R is incorrect."
-    },
-    {
-     "key": "D",
-     "text": "R is correct but, A is incorrect."
+     "figure": "jn24-05apr-s2-chem-q70-optD.png"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 9,
-   "topic": "Chemical Bonding and Molecular Structure",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Compound having dipole moment = 0\n$\\mathrm{H_2, BF_3, CH_4, NH_3, H_2O, CO_2, NF_3, BeF_2, SiF_4, H_2S}$",
-   "correct_key": null,
-   "correct_value": 6,
-   "correct_keys": null,
-   "solution": "$\\mathrm{H_2, BF_3, CH_4, CO_2, BeF_2, SiF_4}$ will have dipole moment = 0.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 10,
-   "topic": "Aldehydes, Ketones and Carboxylic Acids",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Find the major product in given sequence\n$$\\mathrm{CH_3{-}CH_2{-}OH} \\xrightarrow[\\text{(ii) }\\mathrm{KMnO_4}\\text{, (iii) }\\mathrm{NaOH / CaO /}\\ \\Delta]{\\text{(i) Jones reagent}}$$",
-   "correct_key": "D",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\mathrm{CH_3{-}CH_2{-}OH} \\xrightarrow[\\text{(ii) }\\mathrm{KMnO_4}]{\\text{(i) Jones reagent}} \\mathrm{CH_3-COOH} \\xrightarrow[\\text{decarboxylation}]{\\text{(iii) }\\mathrm{NaOH/CaO}/\\Delta} \\mathrm{CH_4 + CO_2}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Acetic acid"
-    },
-    {
-     "key": "B",
-     "text": "Acetaldehyde"
-    },
-    {
-     "key": "C",
-     "text": "ethane"
-    },
-    {
-     "key": "D",
-     "text": "methane"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn24-05apr-s2-chem-q70-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 11,
-   "topic": "Chemical Bonding and Molecular Structure",
+   "topic": "Periodic Properties",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "List-I | List-II\n(P) $\\mathrm{IF}$ | (1) Linear\n(Q) $\\mathrm{IF_7}$ | (2) Pentagonal bipyramidal\n(R) $\\mathrm{ICl_3}$ | (3) T-shape\n(S) $\\mathrm{BF_3}$ | (4) Trigonal Planar",
+   "stem": "Given below are two statements :\nStatement I : The metallic radius of Na is $1.86\\ \\mathrm{\\AA}$ and the ionic radius of $\\mathrm{Na^{+}}$ is lesser than $1.86\\ \\mathrm{\\AA}$.\nStatement II : Ions are always smaller in size than the corresponding elements.\nIn the light of the above statements, choose the correct answer from the options given below :",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$P \\rightarrow 1;\\ Q \\rightarrow 2;\\ R \\rightarrow 3;\\ S \\rightarrow 4$ is the correct match.",
+   "solution": "$r_{\\mathrm{Na}} > r_{\\mathrm{Na^{+}}}$\nSo, Statement (I) is correct but size of anions are greater than size of neutral atoms.\nSo statement (II) is incorrect.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -353,19 +408,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$P \\rightarrow 1;\\ Q \\rightarrow 2;\\ R \\rightarrow 3;\\ S \\rightarrow 4$"
+     "text": "Statement I is correct but Statement II is false"
     },
     {
      "key": "B",
-     "text": "$P \\rightarrow 2;\\ Q \\rightarrow 3;\\ R \\rightarrow 4;\\ S \\rightarrow 1$"
+     "text": "Both Statement I and Statement II are true"
     },
     {
      "key": "C",
-     "text": "$P \\rightarrow 3;\\ Q \\rightarrow 4;\\ R \\rightarrow 2;\\ S \\rightarrow 1$"
+     "text": "Both Statement I and Statement II are false"
     },
     {
      "key": "D",
-     "text": "$P \\rightarrow 4;\\ Q \\rightarrow 1;\\ R \\rightarrow 2;\\ S \\rightarrow 3$"
+     "text": "Statement I is incorrect but Statement II is true"
     }
    ],
    "stem_figure": null,
@@ -375,34 +430,14 @@
   },
   {
    "q_no": 12,
-   "topic": "d- and f-Block Elements",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$\\mathrm{FeO.Cr_2O_3 + Na_2CO_3 \\xrightarrow{air} A + B + C\\ (CO_2)}$\nSum of magnetic moment (nearest integer) of central metals in A and B will be",
-   "correct_key": null,
-   "correct_value": 6,
-   "correct_keys": null,
-   "solution": "A = $\\mathrm{Fe_2O_3 \\rightarrow Fe^{+3}} \\rightarrow d^{5}$ configuration, $\\mu = 5.87$ BM\nB = $\\mathrm{Na_2CrO_4 \\rightarrow Cr^{+6}} \\rightarrow d^{0}$ configuration, $\\mu = 0$ BM",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 13,
-   "topic": "Electrochemistry",
+   "topic": "Alcohols, Phenols and Ethers",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$E^{o}_{\\mathrm{M^{2+}/M}} = 0.34\\mathrm{V}$ and $E^{o}_{\\mathrm{X_2/X^-}} = -0.46\\mathrm{V}$\nSelect the correct statement",
-   "correct_key": "D",
+   "stem": "$\\mathrm{CH_3CH_2{-}OH} \\xrightarrow{\\text{(i) Jone's Reagent, (ii) }\\mathrm{KMnO_4}\\text{, (iii) }\\mathrm{NaOH, CaO}, \\Delta} \\mathrm{P}$\nConsider the above reaction sequence and identify the major product P.",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$E^{0}_{\\mathrm{cell}} = E^{0}_{\\mathrm{M^{2+}/M}} + E^{0}_{\\mathrm{X^-/X_2}}$\n$= -0.34 + 0.46 = 0.12\\mathrm{V}$\nCell reaction $\\mathrm{M^{2+} + 2X^- \\rightarrow M + X_2}$ is spontaneous",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -410,19 +445,93 @@
    "options": [
     {
      "key": "A",
-     "text": "$E_{\\mathrm{cell}} = 0.80\\mathrm{V}$"
+     "text": "Methane"
     },
     {
      "key": "B",
-     "text": "$E_{\\mathrm{cell}} = -0.80\\mathrm{V}$"
+     "text": "Methanal"
     },
     {
      "key": "C",
-     "text": "Cell reaction $\\mathrm{M + X_2 \\rightarrow M^{2+} + 2X^-}$ is spontaneous"
+     "text": "Methoxymethane"
     },
     {
      "key": "D",
-     "text": "Cell reaction $\\mathrm{M^{2+} + 2X^- \\rightarrow M + X_2}$ is spontaneous"
+     "text": "Methanoic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-chem-q72-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the given chemical reaction :\nProduct \"A\" is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "picric acid"
+    },
+    {
+     "key": "B",
+     "text": "oxalic acid"
+    },
+    {
+     "key": "C",
+     "text": "acetic acid"
+    },
+    {
+     "key": "D",
+     "text": "adipic acid"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s2-chem-q73.png",
+   "solution_figure": "jn24-05apr-s2-chem-q73-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the electro chemical cell $\\mathrm{M|M^{2+}||X|X^{2-}}$\nIf $E^{0}_{(\\mathrm{M^{2+}/M})} = 0.46\\ \\mathrm{V}$ and $E^{0}_{(\\mathrm{X/X^{2-}})} = 0.34\\ \\mathrm{V}$.\nWhich of the following is correct ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{M|M^{+2}||X|X^{2-}}$\n$E^{o}_{\\mathrm{cell}} = E^{o}_{\\mathrm{M/M^{+2}}} + E^{o}_{\\mathrm{X/X^{-2}}}$\n$= -0.46 + 0.34 = -0.12\\ \\mathrm{V}$\nAs $E^{o}_{\\mathrm{cell}}$ is negative so anode becomes cathode and cathode become anode. Spontaneous reaction will be\n$\\mathrm{M^{+2} + X^{2-} \\longrightarrow M + X}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$E_{\\mathrm{cell}} = -0.80\\ \\mathrm{V}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{M + X \\rightarrow M^{2+} + X^{2-}}$ is a spontaneous reaction"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{M^{2+} + X^{2-} \\rightarrow M + X}$ is a spontaneous reaction"
+    },
+    {
+     "key": "D",
+     "text": "$E_{\\mathrm{cell}} = 0.80\\ \\mathrm{V}$"
     }
    ],
    "stem_figure": null,
@@ -431,15 +540,89 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 14,
+   "q_no": 15,
+   "topic": "Mole Concept",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of moles of methane required to produce 11g $\\mathrm{CO_2(g)}$ after complete combustion is:\n(Given molar mass of methane in g $\\mathrm{mol^{-1}}$ : 16)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{C_nH_{2n+2}} + \\frac{3n+1}{2}\\mathrm{O_2} \\longrightarrow n\\mathrm{CO_2} + (n+1)\\mathrm{H_2O}$\n$\\mathrm{CH_4 + 2O_2 \\longrightarrow CO_2 + 2H_2O}$\n4gm | 11gm\n0.25 mole | 0.25 mole\n0.25 mole $\\mathrm{CH_4}$ gives 0.25 mole (or 11gm) $\\mathrm{CO_2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.75"
+    },
+    {
+     "key": "B",
+     "text": "0.25"
+    },
+    {
+     "key": "C",
+     "text": "0.35"
+    },
+    {
+     "key": "D",
+     "text": "0.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of complexes from the following with no electrons in the $t_{2}$ orbital is _______.\n$\\mathrm{TiCl_4}$, $\\mathrm{[MnO_4]^{-}}$, $\\mathrm{[FeO_4]^{2-}}$, $\\mathrm{[FeCl_4]^{-}}$, $\\mathrm{[CoCl_4]^{2-}}$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{TiCl_4} \\Rightarrow \\mathrm{Ti^{+4}}$ | $e^{0}t_{2}^{0}$\n$\\mathrm{MnO_4^{-}} \\Rightarrow \\mathrm{Mn^{+7}}$ | $e^{0}t_{2}^{0}$\n$\\mathrm{FeO_4^{2-}} \\Rightarrow \\mathrm{Fe^{+6}}$ | $e^{2}t_{2}^{0}$\n$\\mathrm{FeCl_4^{2-}} \\Rightarrow \\mathrm{Fe^{+2}}$ | $e^{3}t_{2}^{3}$\n$\\mathrm{CoCl_4^{2-}} \\Rightarrow \\mathrm{Co^{+2}}$ | $e^{4}t_{2}^{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "1"
+    },
+    {
+     "key": "C",
+     "text": "4"
+    },
+    {
+     "key": "D",
+     "text": "2"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
    "topic": "d- and f-Block Elements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$\\mathrm{Ti^{2+}}$, $\\mathrm{Cr^{2+}}$, $\\mathrm{V^{2+}}$\nHow many of them liberate $\\mathrm{H_2}$ gas with dil. mineral acid",
-   "correct_key": "D",
+   "stem": "The number of ions from the following that have the ability to liberate hydrogen from a dilute acid is _______. $\\mathrm{Ti^{2+}}$, $\\mathrm{Cr^{2+}}$ and $\\mathrm{V^{2+}}$",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "All of them liberate $\\mathrm{H_2}$ gas.",
+   "solution": "The ions $\\mathrm{Ti^{+2}}$, $\\mathrm{V^{+2}}$ $\\mathrm{Cr^{+2}}$ are strong reducing agents and will liberate hydrogen from a dilute acid, eg.\n$\\mathrm{2Cr^{+2}_{(aq.)} + 2H^{+}_{(aq.)} \\longrightarrow 2Cr^{+3}_{(aq.)} + H_2(g)}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -455,85 +638,11 @@
     },
     {
      "key": "C",
-     "text": "1"
-    },
-    {
-     "key": "D",
      "text": "3"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 16,
-   "topic": "Electrochemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "On passing 1C charge through an aq. $\\mathrm{AgNO_3}$ solution:",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$W = Z \\times q$\nGiven : $q = 1$\n$W = Z$\nThus, 1 electrochemical equivalent of Ag is deposited",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "1g atom of Ag is deposited"
-    },
-    {
-     "key": "B",
-     "text": "1 electrochemical equivalent of Ag is deposited"
-    },
-    {
-     "key": "C",
-     "text": "1 chemical equivalent of Ag is deposited"
     },
     {
      "key": "D",
-     "text": "1 gm of Ag is deposited"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 17,
-   "topic": "General Organic Chemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "List-I | List-II\n(P) Metamer | (1) Isopentane & neopentane\n(Q) Chain isomer | (2) propanal & propanone\n(R) Functional isomer | (3) methoxy propane & ethoxyethane\n(S) Position isomer | (4) n-propanol & isopropanol",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$P \\rightarrow 3;\\ Q \\rightarrow 1;\\ R \\rightarrow 2;\\ S \\rightarrow 4$ is correct match",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$P \\rightarrow 3;\\ Q \\rightarrow 1;\\ R \\rightarrow 2;\\ S \\rightarrow 4$"
-    },
-    {
-     "key": "B",
-     "text": "$P \\rightarrow 3;\\ Q \\rightarrow 1;\\ R \\rightarrow 4;\\ S \\rightarrow 2$"
-    },
-    {
-     "key": "C",
-     "text": "$P \\rightarrow 3;\\ Q \\rightarrow 2;\\ R \\rightarrow 1;\\ S \\rightarrow 4$"
-    },
-    {
-     "key": "D",
-     "text": "$P \\rightarrow 1;\\ Q \\rightarrow 3;\\ R \\rightarrow 2;\\ S \\rightarrow 4$"
+     "text": "1"
     }
    ],
    "stem_figure": null,
@@ -543,14 +652,129 @@
   },
   {
    "q_no": 18,
-   "topic": "Solutions",
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify A and B in the given chemical reaction sequence : -",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q78-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q78-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q78-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn24-05apr-s2-chem-q78-optD.png"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s2-chem-q78.png",
+   "solution_figure": "jn24-05apr-s2-chem-q78-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The correct statements from the following are :\n(A) The decreasing order of atomic radii of group 13 elements is Tl > In > Ga > Al > B.\n(B) Down the group 13 electronegativity decreases from top to bottom.\n(C) Al dissolves in dil. HCl and liberate $\\mathrm{H_2}$ but conc. $\\mathrm{HNO_3}$ renders Al passive by forming a protective oxide layer on the surface.\n(D) All elements of group 13 exhibits highly stable +1 oxidation state.\n(E) Hybridisation of Al in $\\mathrm{[Al(H_2O)_6]^{3+}}$ ion is $sp^{3}d^{2}$.\nChoose the correct answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "A. size order Tl > In > Al > Ga > B\nB. Electronegativity order B > Al < Ga < In < Tl\nD. B, Al are more stable in +3 oxidation state\nSo, only C, E statements are correct.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(C) and (E) only"
+    },
+    {
+     "key": "B",
+     "text": "(A), (C) and (E) only"
+    },
+    {
+     "key": "C",
+     "text": "(A), (B), (C) and (E) only"
+    },
+    {
+     "key": "D",
+     "text": "(A) and (C) only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Coagulation of egg, on heating is because of :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Coagulation of egg give primary structure of protein, which is known as denaturation of protein",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Denaturation of protein occurs"
+    },
+    {
+     "key": "B",
+     "text": "The secondary structure of protein remains unchanged"
+    },
+    {
+     "key": "C",
+     "text": "Breaking of the peptide linkage in the primary structure of protein occurs"
+    },
+    {
+     "key": "D",
+     "text": "Biological property of protein remains unchanged"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Thermodynamics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Acetic acid dimerizes in liquid benzene. 60 g of acetic acid is dissolved in 500g of benzene.\nFind the value of $\\Delta T_f$ (Given : $K_f = 5\\ \\frac{\\mathrm{K \\times kg}}{\\mathrm{mole}}$)\nAssume complete association",
+   "stem": "Combustion of 1 mole of benzene is expressed at\n$\\mathrm{C_6H_6(l) + \\frac{15}{2}O_2(g) \\rightarrow CO_2(g) + 3H_2O(l)}$.\nThe standard enthalpy of combustion of 2 mol of benzene is – 'x' kJ.\nx = ______.\n(1) standard Enthalpy of formation of 1 mol of $\\mathrm{C_6H_6(l)}$, for the reaction\n$\\mathrm{6C(graphite) + 3H_2(g) \\rightarrow C_6H_6(l)}$ is $48.5\\ \\mathrm{kJ\\,mol^{-1}}$.\n(2) Standard Enthalpy of formation of 1 mol of $\\mathrm{CO_2(g)}$, for the reaction\n$\\mathrm{C(graphite) + O_{2(g)} \\rightarrow CO_2(g)}$ is $-393.5\\ \\mathrm{kJ\\,mol^{-1}}$.\n(3) Standard and Enthalpy of formation of 1 mol of $\\mathrm{H_2O(l)}$, for the reaction\n$\\mathrm{H_2(g) + \\frac{1}{2}O_2(g) \\rightarrow H_2O(l)}$ is $-286\\ \\mathrm{kJ\\,mol^{-1}}$.",
    "correct_key": null,
-   "correct_value": 5,
+   "correct_value": 6535,
    "correct_keys": null,
-   "solution": "$i = 1 - \\frac{1}{2} = \\frac{1}{2}$\n$\\Delta T_f = \\frac{1}{2} \\times 5 \\left(\\frac{\\frac{60}{60}}{0.5}\\right) = 5$",
+   "solution": "$\\mathrm{6C(graphite) + 3H_2(g) \\rightarrow C_6H_6(\\ell)}$; $\\Delta H = 48.5$ kJ/mol\n$\\mathrm{C(graphite) + O_2(g) \\rightarrow CO_2(g)}$; $\\Delta H = -393.5$ kJ/mol\n$\\mathrm{H_2^{(g)}} + \\frac{1}{2}\\mathrm{(g)} \\longrightarrow \\mathrm{H_2O(\\ell)}$ ; $\\Delta H = -286$ kJ/mol\nequation $-(1) \\times 1 + (2) \\times 6 + (3) \\times 3$\n$-48.5 - 6 \\times 393.5 - 3 \\times 286$\n$= -3267.5$ kJ for 1 mol\n$= -6535$ kJ for 2 mol\nAns. 6535 kJ",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -562,80 +786,182 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 21,
-   "topic": "Alcohols, Phenols and Ethers",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Which of the following is incorrect match for product",
-   "correct_key": "A",
-   "correct_value": null,
+   "q_no": 22,
+   "topic": "d- and f-Block Elements",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The fusion of chromite ore with sodium carbonate in the presence of air leads to the formation of products A and B along with the evolution of $\\mathrm{CO_2}$. The sum of spin-only magnetic moment values of A and B is ___ B.M. (Nearest integer)\n(Given atomic number : C : 6, Na : 11, O : 8, Fe : 26, Cr : 24]",
+   "correct_key": null,
+   "correct_value": 6,
    "correct_keys": null,
-   "solution": "The substitution of $\\mathrm{-OH}$ group in phenol is not possible due to delocalization of its lone pair within benzene ring",
+   "solution": "$\\mathrm{4FeCr_2O_4 + 8Na_2CO_3 + 7O_2} \\rightarrow \\underset{A}{\\mathrm{8Na_2CrO_4}} + \\underset{B}{\\mathrm{2Fe_2O_3}} + \\mathrm{8CO_2}$\nSpin only magnetic moment\nFor $\\mathrm{Na_2CrO_4}$ $\\mu_B = 0$\nFor $\\mathrm{Fe_2O_3}$ $\\mu_B = 5.9$\nsum $= 5.9$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "",
-     "figure": "j24-05apr-s2-chem-q21-optA.png"
-    },
-    {
-     "key": "B",
-     "text": "",
-     "figure": "j24-05apr-s2-chem-q21-optB.png"
-    },
-    {
-     "key": "C",
-     "text": "",
-     "figure": "j24-05apr-s2-chem-q21-optC.png"
-    },
-    {
-     "key": "D",
-     "text": "",
-     "figure": "j24-05apr-s2-chem-q21-optD.png"
-    }
-   ],
+   "options": [],
    "stem_figure": null,
-   "solution_figure": "j24-05apr-s2-chem-q21-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 22,
-   "topic": "Hydrocarbons",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Consider the following reaction :",
-   "correct_key": "A",
-   "correct_value": null,
+   "q_no": 23,
+   "topic": "Amines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "X of enthanamine was subjected to reaction with $\\mathrm{NaNO_2/HCl}$ followed by hydrolysis to liberate $\\mathrm{N_2}$ and HCl. The HCl generated was completely neutralised by 0.2 moles of NaOH. X is ____ g.",
+   "correct_key": null,
+   "correct_value": 9,
    "correct_keys": null,
-   "solution": null,
+   "solution": "$\\mathrm{CH_3{-}CH_2{-}NH_2} \\xrightarrow{\\mathrm{NaNO_2 + HCl}} \\mathrm{CH_3{-}CH_2{-}\\overset{\\oplus}{N_2}\\overset{\\ominus}{Cl}} \\xrightarrow{\\mathrm{HOH}} \\mathrm{CH_3{-}CH_2{-}OH + N_2 + HCl}$\n0.2 mole (under ethanamine); 0.2 mole (under HCl)\nMW of ethanamine = 45\n$45 \\times 0.2 = 9$ gm",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Adipic acid"
-    },
-    {
-     "key": "B",
-     "text": "Oxalic acid"
-    },
-    {
-     "key": "C",
-     "text": "Succinic acid"
-    },
-    {
-     "key": "D",
-     "text": "Benzoic Acid"
-    }
-   ],
-   "stem_figure": "j24-05apr-s2-chem-q22.png",
-   "solution_figure": "j24-05apr-s2-chem-q22-sol.png",
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Atomic Structure",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In an atom, total number of electrons having quantum numbers $n = 4$, $|m_{\\ell}| = 1$ and $m_s = -\\frac{1}{2}$ is",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$n = 4$\n$\\ell$ | $m_{\\ell}$\n0 | 0\n1 | $-1, 0, +1$\n2 | $-2, -1, 0, +1, +2, +3$\nSo number of orbital associated with $n = 4$, $|m_{\\ell}| = 1$ are 6\nNow each orbital contain one $e^{-}$ with $m_s = -\\frac{1}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Purification and Characterisation of Organic Compounds",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Using the given figure, the ratio of $R_f$ values of sample A and sample C is $x \\times 10^{-2}$. Value of $x$ is __________.",
+   "correct_key": null,
+   "correct_value": 50,
+   "correct_keys": null,
+   "solution": "$R_f$ of A $= \\frac{5}{12.5}$ | $R_f$ of C $= \\frac{10}{12.5}$\nRatio $= \\frac{R_{f(A)}}{R_{f(C)}} = \\frac{1}{2} = 0.5$ or $50 \\times 10^{-2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s2-chem-q85.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In the Claisen-Schmidt reaction to prepare 351 g of dibenzalacetone using 87 g of acetone, the amount of benzaldehyde required is _________g. (Nearest integer)",
+   "correct_key": null,
+   "correct_value": 318,
+   "correct_keys": null,
+   "solution": "Claisen Schmidt reaction\nmw of benzaldehyde = 106\n$106 \\times 3 = 318$ gm. Benzaldehyde is required to give 1.5 mole (or 351 gm) product",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-chem-q86-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Chemical Kinetics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the following single step reaction in gas phase at constant temperature.\n$\\mathrm{2A_{(g)} + B_{(g)} \\rightarrow C_{(g)}}$\nThe initial rate of the reaction is recorded as $r_1$ when the reaction starts with 1.5 atm pressure of A and 0.7 atm pressure of B. After some time, the rate $r_2$ is recorded when the pressure of C becomes 0.5 atm. The ratio $r_1 : r_2$ is ________ $\\times 10^{-1}$. (Nearest integer)",
+   "correct_key": null,
+   "correct_value": 315,
+   "correct_keys": null,
+   "solution": "$\\mathrm{2A(g) + B(g) \\longrightarrow C(g)}$\n | A | B | C\n$r_1$ | 1.5 atm | 0.7 atm | \n$r_2$ | 0.5 atm | 0.2 atm | 0.5 atm\n$\\because r = K[P_A]^{2}[P_B]$\n$r_1 = K[1.5]^{2}[0.7]$\n$r_2 = K[0.5]^{2}[0.2]$\n$\\frac{r_1}{r_2} = 9 \\times \\frac{7}{2} = 31.5 = 315 \\times 10^{-1}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The product (C) in the following sequence of reactions has _________ $\\pi$ bonds.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$\\pi$ bonds = 4",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s2-chem-q88.png",
+   "solution_figure": "jn24-05apr-s2-chem-q88-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Solutions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Considering acetic acid dissociates in water, its dissociation constant is $6.25 \\times 10^{-5}$. If 5 mL of acetic acid is dissolved in 1 litre water, the solution will freeze at $-x \\times 10^{-2}\\ ^{\\circ}\\mathrm{C}$, provided pure water freezes at $0\\ ^{\\circ}\\mathrm{C}$.\n$x$ = _________. (Nearest integer)\nGiven : $(K_f)_{\\mathrm{water}} = 1.86\\ \\mathrm{K\\,kg\\,mol^{-1}}$.\ndensity of acetic acid is $1.2\\ \\mathrm{g\\,mol^{-1}}$\nmolar mass of water $= 18\\ \\mathrm{g\\,mol^{-1}}$.\nmolar mass of acetic acid $= 60\\ \\mathrm{g\\,mol^{-1}}$.\ndensity of water $= 1\\ \\mathrm{g\\,cm^{-3}}$\nAcetic acid dissociates as\n$\\mathrm{CH_3COOH \\rightleftharpoons CH_3COO^{\\ominus} + H^{\\oplus}}$",
+   "correct_key": null,
+   "correct_value": 19,
+   "correct_keys": null,
+   "solution": "Mass of $\\mathrm{CH_3COOH} = V \\times d$\n$= 5\\ \\mathrm{ml} \\times 1.2\\ \\mathrm{g/ml}$\n$= 6$ gm\n$n_{\\mathrm{CH_3COOH}} = \\frac{6}{60} = 0.1\\,\\mathrm{mol}$\n$m_{\\mathrm{CH_3COOH}} \\approx M_{\\mathrm{CH_3COOH}} = \\frac{0.1}{1} = 0.1\\mathrm{M}$\n$\\mathrm{CH_3COOH \\rightleftharpoons CH_3COO^{-} + H^{+}}$\n$C$ | 0 | 0\n$C - C\\alpha$ | $C\\alpha$ | $C\\alpha$\n$K_a = \\frac{C\\alpha^{2}}{1-\\alpha}$\n$1 - \\alpha \\approx 1 \\Rightarrow K_a = C\\alpha^{2}$\n$\\alpha = \\sqrt{\\frac{K_a}{C}} = \\sqrt{\\frac{6.25 \\times 10^{-5}}{0.1}} = 25 \\times 10^{-3}$\nV.f. (i) $= 1 + \\alpha(n-1) = 1 + \\alpha(2-1) = 1 + \\alpha$\n$= 1 + 25 \\times 10^{-3} = 1.025$\n$\\Delta T_f = iK_f m$\n$= (1.025)(1.86)(0.1)$\n$= 0.19$\n$= 19 \\times 10^{-2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Chemical Bonding",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Number of compounds from the following with zero dipole moment is ___________.\n$\\mathrm{HF, H_2, H_2S, CO_2, NH_3, BF_3, CH_4, CHCl_3, SiF_4, H_2O, BeF_2}$",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$\\mathrm{H_2, CO_2, BF_3, CH_4, SiF_4, BeF_2}$ are symm. molecule so dipole moment is zero",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   }

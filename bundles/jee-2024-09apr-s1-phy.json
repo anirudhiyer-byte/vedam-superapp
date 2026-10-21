@@ -1,0 +1,957 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Physics",
+  "year": 2024,
+  "set_label": "9 Apr · Shift 1",
+  "title": "JEE Main 2024 · Physics · 9 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Dual Nature of Matter and Radiation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A proton, an electron and an alpha particle have the same energies. Their de-Broglie wavelengths will be compared as:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda_{DB} = \\frac{h}{p} = \\frac{h}{\\sqrt{2mk}}$\n$\\Rightarrow \\lambda_{DB} \\propto \\frac{1}{\\sqrt{m}}$\n$\\Rightarrow \\lambda_\\alpha < \\lambda_p < \\lambda_e$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\lambda_e > \\lambda_\\alpha > \\lambda_p$"
+    },
+    {
+     "key": "B",
+     "text": "$\\lambda_\\alpha < \\lambda_p < \\lambda_e$"
+    },
+    {
+     "key": "C",
+     "text": "$\\lambda_p < \\lambda_e < \\lambda_\\alpha$"
+    },
+    {
+     "key": "D",
+     "text": "$\\lambda_p > \\lambda_e > \\lambda_\\alpha$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Kinematics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle moving in a straight line covers half the distance with speed 6 m/s. The other half is covered in two equal time intervals with speeds 9 m/s and 15 m/s respectively. The average speed of the particle during the motion is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$BD \\Rightarrow S = 9t + 15t = 24t$\n$AB \\Rightarrow S = 6t_1 = 24t \\Rightarrow t_1 = 4t$\n$\\langle \\text{speed} \\rangle = \\frac{\\text{dist.}}{\\text{time}} = \\frac{48t}{2t + t_1}$\n$= \\frac{48t}{2t + 4t} \\Rightarrow \\frac{48t}{6t} \\Rightarrow 8\\ \\mathrm{m/s}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "8.8 m/s"
+    },
+    {
+     "key": "B",
+     "text": "10 m/s"
+    },
+    {
+     "key": "C",
+     "text": "9.2 m/s"
+    },
+    {
+     "key": "D",
+     "text": "8 m/s"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-phy-q32-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A plane EM wave is propagating along x direction. It has a wavelength of 4 mm. If electric field is in y direction with the maximum magnitude of $60\\ \\mathrm{V m^{-1}}$, the equation for magnetic field is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = BC \\Rightarrow 60 = B \\times 3 \\times 10^{8}$\n$\\Rightarrow B = 2 \\times 10^{-7}$\nAlso $C = f\\lambda$\n$\\Rightarrow 3 \\times 10^{8} = f \\times 4 \\times 10^{-3}$\n$\\Rightarrow f = \\frac{3}{4} \\times 10^{11}$\n$\\Rightarrow \\omega = 2\\pi f = \\frac{3}{4} \\times 2\\pi \\times 10^{11}$\n$\\Rightarrow \\omega = \\frac{\\pi}{2} \\times 10^{3} C$\n$\\Rightarrow$ Electric field $\\Rightarrow$ y direction\nPropagation $\\Rightarrow$ x direction\nMagnetic field $\\Rightarrow$ z-direction",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$B_z = 60 \\sin\\left[\\frac{\\pi}{2}\\left(x - 3 \\times 10^{8} t\\right)\\right] \\hat{k}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "B",
+     "text": "$B_z = 2 \\times 10^{-7} \\sin\\left[\\frac{\\pi}{2} \\times 10^{3}\\left(x - 3 \\times 10^{8} t\\right)\\right] \\hat{k}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "C",
+     "text": "$B_x = 60 \\sin\\left[\\frac{\\pi}{2}\\left(x - 3 \\times 10^{8} t\\right)\\right] \\hat{i}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "D",
+     "text": "$B_z = 2 \\times 10^{-7} \\sin\\left[\\frac{\\pi}{2}\\left(x - 3 \\times 10^{8} t\\right)\\right] \\hat{k}\\ \\mathrm{T}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\nStatement (I): When an object is placed at the centre of curvature of a concave lens, image is formed at the centre of curvature of the lens on the other side.\nStatement (II): Concave lens always forms a virtual and erect image.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is false but Statement II is true."
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are false."
+    },
+    {
+     "key": "C",
+     "text": "Statement I is true but Statement II is false."
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A light emitting diode (LED) is fabricated using GaAs semiconducting material whose band gap is 1.42 eV. The wavelength of light emitted from the LED is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda = \\frac{1240}{1.42} = 875\\ \\mathrm{nm}$ (Approx)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "650 nm"
+    },
+    {
+     "key": "B",
+     "text": "1243 nm"
+    },
+    {
+     "key": "C",
+     "text": "875 nm"
+    },
+    {
+     "key": "D",
+     "text": "1400 nm"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Fluid Mechanics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A sphere of relative density $\\sigma$ and diameter D has concentric cavity of diameter d. The ratio of $\\frac{D}{d}$, if it just floats on water in a tank is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "weight $(w) = \\frac{4}{3}\\pi\\left(\\frac{D^{3} - d^{3}}{8}\\right)\\sigma g$\nBuoyant force $(F_b) = 1 \\times \\frac{4}{3}\\pi\\left(\\frac{D^{3}}{8}\\right) \\cdot g$\nFor Just Float $\\Rightarrow w = F_b$\n$\\Rightarrow (D^{3} - d^{3})\\sigma = D^{3}$\n$\\Rightarrow 1 - \\frac{d^{3}}{D^{3}} = \\frac{1}{\\sigma}$\n$\\Rightarrow 1 - \\frac{1}{\\sigma} = \\left(\\frac{d}{D}\\right)^{3}$\n$\\Rightarrow \\left(\\frac{\\sigma}{\\sigma - 1}\\right)^{\\frac{1}{3}} = \\left(\\frac{D}{d}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(\\frac{\\sigma}{\\sigma - 1}\\right)^{\\frac{1}{3}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{\\sigma + 1}{\\sigma - 1}\\right)^{\\frac{1}{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{\\sigma - 1}{\\sigma}\\right)^{\\frac{1}{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{\\sigma - 2}{\\sigma + 2}\\right)^{\\frac{1}{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Capacitors",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A capacitor is made of a flat plate of area A and a second plate having a stair-like structure as shown in figure. If the area of each stair is $\\frac{A}{3}$ and the height is d, the capacitance of the arrangement is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "All capacitor are in parallel combination.\nAlso effective area is common area only\n$\\Rightarrow C_{eq} = C_1 + C_2 + C_3$\n$\\Rightarrow C_{eq} = \\frac{A\\varepsilon_0}{3d} + \\frac{A\\varepsilon_0}{3(2d)} + \\frac{A\\varepsilon_0}{3(3d)}$\n$\\Rightarrow C_{eq} = \\frac{A\\varepsilon_0}{3}\\left(\\frac{11}{6d}\\right)$\n$\\Rightarrow C_{eq} = \\frac{11A\\varepsilon_0}{18d}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{11\\varepsilon_0 A}{18d}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{13\\varepsilon_0 A}{17d}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{11\\varepsilon_0 A}{20d}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{18\\varepsilon_0 A}{11d}$"
+    }
+   ],
+   "stem_figure": "jn24-09apr-s1-phy-q37.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A light unstretchable string passing over a smooth light pulley connects two blocks of masses $m_1$ and $m_2$. If the acceleration of the system is $\\frac{g}{8}$, then the ratio of the masses $\\frac{m_2}{m_1}$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a_{sys} = \\left(\\frac{m_2 - m_1}{m_1 + m_2}\\right) g = \\frac{g}{8}$\n$\\Rightarrow \\frac{m_2}{m_1} = \\frac{9}{7}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "9 : 7"
+    },
+    {
+     "key": "B",
+     "text": "4 : 3"
+    },
+    {
+     "key": "C",
+     "text": "5 : 3"
+    },
+    {
+     "key": "D",
+     "text": "8 : 1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The dimensional formula of latent heat is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Latent heat is specific heat\n$\\Rightarrow \\frac{ML^{2}T^{-2}}{M} = M^{0}L^{2}T^{-2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[M^{0}LT^{-2}]$"
+    },
+    {
+     "key": "B",
+     "text": "$[MLT^{-2}]$"
+    },
+    {
+     "key": "C",
+     "text": "$[M^{0}L^{2}T^{-2}]$"
+    },
+    {
+     "key": "D",
+     "text": "$[ML^{2}T^{-2}]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The volume of an ideal gas ($\\gamma = 1.5$) is changed adiabatically from 5 litres to 4 litres. The ratio of initial pressure to final pressure is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For Adiabatic process\n$P_i V_i^{\\gamma} = P_f V_f^{\\gamma}$\n$P_i (5)^{1.5} = P_f (4)^{1.5}$\n$\\frac{P_i}{P_f} = \\left(\\frac{4}{5}\\right)^{\\frac{3}{2}} = \\frac{4}{5} \\cdot \\left(\\frac{4}{5}\\right)^{\\frac{1}{2}} \\Rightarrow \\frac{8}{5\\sqrt{5}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{16}{25}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{8}{5\\sqrt{5}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{\\sqrt{5}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The energy equivalent of 1g of substance is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = mC^{2}$\n$\\Rightarrow E = (1 \\times 10^{-3}) \\times (3 \\times 10^{8})^{2}\\ \\mathrm{J}$\n$\\Rightarrow E = (10^{-3})(9 \\times 10^{16})(6.241 \\times 10^{18})\\ \\mathrm{eV}$\n$E = 56.169 \\times 10^{31}\\ \\mathrm{eV}$\n$E \\approx 5.6 \\times 10^{26}\\ \\mathrm{MeV}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$11.2 \\times 10^{24}\\ \\mathrm{MeV}$"
+    },
+    {
+     "key": "B",
+     "text": "$5.6 \\times 10^{12}\\ \\mathrm{MeV}$"
+    },
+    {
+     "key": "C",
+     "text": "$5.6\\ \\mathrm{eV}$"
+    },
+    {
+     "key": "D",
+     "text": "$5.6 \\times 10^{26}\\ \\mathrm{MeV}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An astronaut takes a ball of mass m from earth to space. He throws the ball into a circular orbit about earth at an altitude of 318.5 km. From earth's surface to the orbit, the change in total mechanical energy of the ball is $x\\frac{GM_e m}{21R_e}$. The value of x is (take $R_e = 6370\\ \\mathrm{km}$):",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$h = 318.5 \\approx \\left(\\frac{R_e}{20}\\right)$\n$T{\\cdot}E_i = \\frac{-GM_e m}{R_e}$\n$T{\\cdot}E_f = \\frac{-GM_e m}{2(R_e + h)} = \\frac{-GM_e m}{2\\left(R_e + \\frac{R_e}{20}\\right)}$\n$\\Rightarrow T{\\cdot}E_f = \\frac{-10GM_e m}{21R_e}$\nChange in total mechanical energy\n$= TE_f - TE_i$\n$= \\frac{GM_e m}{R_e}\\left[1 - \\frac{10}{21}\\right] = \\frac{11GM_e m}{21R_e}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "11"
+    },
+    {
+     "key": "B",
+     "text": "9"
+    },
+    {
+     "key": "C",
+     "text": "12"
+    },
+    {
+     "key": "D",
+     "text": "10"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\nStatement (I) : When currents vary with time, Newton's third law is valid only if momentum carried by the electromagnetic field is taken into account.\nStatement (II) : Ampere's circuital law does not depend on Biot-Savart's law.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Conceptual.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are false."
+    },
+    {
+     "key": "B",
+     "text": "Statement I is true but Statement II is false."
+    },
+    {
+     "key": "C",
+     "text": "Statement I is false but Statement II is true."
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle of mass m moves on a straight line with its velocity increasing with distance according to the equation $v = \\alpha\\sqrt{x}$, where $\\alpha$ is a constant. The total work done by all the forces applied on the particle during its displacement from x = 0 to x = d, will be:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$v = \\alpha\\sqrt{x}$\nat $x = 0 : v = 0$\n& at $x = d$ ; $v = \\alpha\\sqrt{d}$\n$W.D = K_f - K_i$\n$W.D = \\frac{1}{2}m\\left(\\alpha\\sqrt{d}\\right)^{2} - \\frac{1}{2}m(0)^{2}$\n$\\Rightarrow W.D = \\frac{m\\alpha^{2} d}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{m}{2\\alpha^{2} d}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{md}{2\\alpha^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{m\\alpha^{2} d}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2m\\alpha^{2} d$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A galvanometer has a coil of resistance $200\\ \\Omega$ with a full scale deflection at $20\\ \\mu\\mathrm{A}$. The value of resistance to be added to use it as an ammeter of range (0–20) mA is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$G = 200\\ \\Omega$\n$i_g = 20\\ \\mu\\mathrm{A}$\n$i = i_g\\left(\\frac{G}{S} + 1\\right)$\n$\\Rightarrow 20 \\times 10^{-3} = 20 \\times 10^{-6}\\left(\\frac{200}{S} + 1\\right)$\n$\\Rightarrow \\frac{200}{S} = 999$\n$\\Rightarrow S \\approx 0.2\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.40\\ \\Omega$"
+    },
+    {
+     "key": "B",
+     "text": "$0.20\\ \\Omega$"
+    },
+    {
+     "key": "C",
+     "text": "$0.50\\ \\Omega$"
+    },
+    {
+     "key": "D",
+     "text": "$0.10\\ \\Omega$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A heavy iron bar, of weight W is having its one end on the ground and the other on the shoulder of a person. The bar makes an angle $\\theta$ with the horizontal. The weight experienced by the person is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "R = net reaction force by shoulder\nBalancing torque about pt of contact on ground:\n$W\\left(\\frac{L}{2}\\cos\\theta\\right) = R\\left(L\\cos\\theta\\right)$\n$\\Rightarrow R = \\frac{W}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{W}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$W$"
+    },
+    {
+     "key": "C",
+     "text": "$W\\cos\\theta$"
+    },
+    {
+     "key": "D",
+     "text": "$W\\sin\\theta$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-phy-q46-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "One main scale division of a vernier caliper is equal to m units. If $n^{\\text{th}}$ division of main scale coincides with $(n + 1)^{\\text{th}}$ division of vernier scale, the least count of the vernier caliper is:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$n\\ \\mathrm{MSD} = (n + 1)\\ \\mathrm{VSD}$\n$\\Rightarrow 1\\ \\mathrm{VSD} = \\frac{n}{n + 1}\\ \\mathrm{MSD}$\n$L{\\cdot}C = 1\\ \\mathrm{MSD} - 1\\ \\mathrm{VSD}$\n$L{\\cdot}C = m - m\\left(\\frac{n}{n + 1}\\right)$\n$L{\\cdot}C = m\\left(\\frac{n + 1 - n}{n + 1}\\right)$\n$\\Rightarrow L{\\cdot}C = \\left(\\frac{m}{n + 1}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{n}{(n + 1)}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{m}{(n + 1)}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{(n + 1)}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{m}{n(n + 1)}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A bulb and a capacitor are connected in series across an ac supply. A dielectric is then placed between the plates of the capacitor. The glow of the bulb:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$Z = \\sqrt{R^{2} + X_C^{2}}$ & $X_C = \\frac{1}{\\omega C}$\ndue to dielectric\n$C\\uparrow \\Rightarrow X_c\\downarrow \\Rightarrow Z\\downarrow$\nSo, current increases & thus bulb will glow more brighter.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "increases"
+    },
+    {
+     "key": "B",
+     "text": "remains same"
+    },
+    {
+     "key": "C",
+     "text": "becomes zero"
+    },
+    {
+     "key": "D",
+     "text": "decreases"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-phy-q48-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The equivalent resistance between A and B is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$18\\ \\Omega$"
+    },
+    {
+     "key": "B",
+     "text": "$25\\ \\Omega$"
+    },
+    {
+     "key": "C",
+     "text": "$27\\ \\Omega$"
+    },
+    {
+     "key": "D",
+     "text": "$19\\ \\Omega$"
+    }
+   ],
+   "stem_figure": "jn24-09apr-s1-phy-q49.png",
+   "solution_figure": "jn24-09apr-s1-phy-q49-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A sample of 1 mole gas at temperature T is adiabatically expanded to double its volume. If adiabatic constant for the gas is $\\gamma = \\frac{3}{2}$, then the work done by the gas in the process is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$TV^{\\gamma - 1} = \\text{constant}$\n$\\Rightarrow T(V)^{\\frac{3}{2} - 1} = T_f(2V)^{\\frac{3}{2} - 1}$\n$\\Rightarrow TV^{\\frac{1}{2}} = T_f(2)^{\\frac{1}{2}}(V)^{\\frac{1}{2}}$\n$\\Rightarrow T_f = \\left(\\frac{T}{\\sqrt{2}}\\right)$\nNow, W.D. $= \\frac{nR\\Delta T}{1 - \\gamma} = \\frac{1 \\cdot R\\left[\\frac{T}{\\sqrt{2}} - T\\right]}{1 - \\frac{3}{2}}$\n$\\Rightarrow$ W.D. $= 2RT\\left[1 - \\frac{1}{\\sqrt{2}}\\right]$\n$\\Rightarrow$ W.D. $= RT\\left[2 - \\sqrt{2}\\right]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$RT\\left[2 - \\sqrt{2}\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{R}{T}\\left[2 - \\sqrt{2}\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$RT\\left[2 + \\sqrt{2}\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{T}{R}\\left[2 + \\sqrt{2}\\right]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Vectors",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\vec{a}$ and $\\vec{b}$ makes an angle $\\cos^{-1}\\left(\\frac{5}{9}\\right)$ with each other, then $|\\vec{a} + \\vec{b}| = \\sqrt{2}\\,|\\vec{a} - \\vec{b}|$ for $|\\vec{a}| = n|\\vec{b}|$\nThe integer value of n is _______.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "$\\cos\\theta = \\frac{5}{9}$\n$\\frac{\\vec{a} \\cdot \\vec{b}}{ab} = \\frac{5}{9}$ .......(1)\n$|\\vec{a} + \\vec{b}| = \\sqrt{2}\\,|\\vec{a} - \\vec{b}|$\n$a^{2} + b^{2} + 2\\vec{a} \\cdot \\vec{b} = 2a^{2} + 2b^{2} - 4\\vec{a} \\cdot \\vec{b}$\n$6\\vec{a} \\cdot \\vec{b} = a^{2} + b^{2}$\n$6 \\times \\frac{5}{9}ab = a^{2} + b^{2}$\n$\\frac{10}{3}ab = a^{2} + b^{2}$ & $a = nb$\n$\\frac{10}{3}nb^{2} = n^{2}b^{2} + b^{2}$\n$3n^{2} - 10n + 3 = 0$\n$n = \\frac{1}{3}$ and $n = 3$\ninteger value n = 3",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Electrostatics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "At the centre of a half ring of radius $R = 10\\ \\mathrm{cm}$ and linear charge density $4n\\ \\mathrm{C\\,m^{-1}}$, the potential is $x\\pi\\ \\mathrm{V}$. The value of x is ________.",
+   "correct_key": null,
+   "correct_value": 36,
+   "correct_keys": null,
+   "solution": "Potential at centre of half ring\n$V = \\frac{KQ}{R}$\n$V = \\frac{K\\lambda\\pi R}{R}$\n$V = K\\lambda\\pi \\Rightarrow V = 9 \\times 10^{9} \\times 4 \\times 10^{-9}\\pi$\n$V = 36\\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Nuclei",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A star has 100% helium composition. It starts to convert three $\\mathrm{{}^{4}He}$ into one $\\mathrm{{}^{12}C}$ via triple alpha process as $\\mathrm{{}^{4}He + {}^{4}He + {}^{4}He \\rightarrow {}^{12}C + Q}$. The mass of the star is $2.0 \\times 10^{32}\\ \\mathrm{kg}$ and it generates energy at the rate of $5.808 \\times 10^{30}\\ \\mathrm{W}$. The rate of converting these $\\mathrm{{}^{4}He}$ to $\\mathrm{{}^{12}C}$ is $n \\times 10^{42}\\ \\mathrm{s^{-1}}$, where n is _______.\n[Take, mass of $\\mathrm{{}^{4}He}$ = 4.0026 u, mass of $\\mathrm{{}^{12}C}$ = 12 u]",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a Young's double slit experiment, the intensity at a point is $\\left(\\frac{1}{4}\\right)^{\\text{th}}$ of the maximum intensity, the minimum distance of the point from the central maximum is ________ $\\mu\\mathrm{m}$.\n(Given : $\\lambda = 600\\ \\mathrm{nm}$, $d = 1.0\\ \\mathrm{mm}$, $D = 1.0\\ \\mathrm{m}$)",
+   "correct_key": null,
+   "correct_value": 200,
+   "correct_keys": null,
+   "solution": "$I = I_0\\cos^{2}\\left(\\frac{\\Delta\\phi}{2}\\right)$\n$\\frac{I_0}{4} = \\cos^{2}\\left(\\frac{\\Delta\\phi}{2}\\right)$\n$\\Delta\\phi = \\frac{2\\pi}{3}$\n$\\frac{2\\pi}{\\lambda}\\left(\\frac{yd}{D}\\right) = \\frac{2\\pi}{3}$\n$y = \\frac{\\lambda D}{3d} = \\frac{600 \\times 10^{-9} \\times 1}{3 \\times 10^{-3}} = 2 \\times 10^{-4}\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A string is wrapped around the rim of a wheel of moment of inertia $0.40\\ \\mathrm{kg m^{2}}$ and radius 10 cm. The wheel is free to rotate about its axis. Initially the wheel is at rest. The string is now pulled by a force of 40 N. The angular velocity of the wheel after 10 s is x rad/s, where x is _______.",
+   "correct_key": null,
+   "correct_value": 100,
+   "correct_keys": null,
+   "solution": "$\\tau = FR = I\\alpha \\Rightarrow 40 \\times 0.1 = 0.4\\alpha$\n$\\alpha = 10\\ \\mathrm{rad/s^{2}}$\n$\\omega_f = 10 \\times 10 = 100\\ \\mathrm{rad/s}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Magnetic Effects of Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A square loop of edge length 2 m carrying current of 2 A is placed with its edges parallel to the x-y axis. A magnetic field is passing through the x-y plane and expressed as $\\vec{B} = B_0(1 + 4x)\\hat{k}$, where $B_0 = 5\\ \\mathrm{T}$. The net magnetic force experienced by the loop is _______ N.",
+   "correct_key": null,
+   "correct_value": 160,
+   "correct_keys": null,
+   "solution": "$B(x = 0) = B_0,\\quad B(x = 2) = 9B_0$\nAlso, $F = i\\ell B$\n$\\Rightarrow F_1 = i\\ell B_0$ & $F_2 = 9i\\ell B_0$\n$F = F_2 - F_1 = 8i\\ell B_0 = 8 \\times 2 \\times 2 \\times 5$\n$F = 160\\ \\mathrm{N}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-phy-q56-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Elasticity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two persons pull a wire towards themselves. Each person exerts a force of 200 N on the wire. Young's modulus of the material of wire is $1 \\times 10^{11}\\ \\mathrm{N m^{-2}}$. Original length of the wire is 2 m and the area of cross section is $2\\ \\mathrm{cm^{2}}$. The wire will extend in length by ______ $\\mu\\mathrm{m}$.",
+   "correct_key": null,
+   "correct_value": 20,
+   "correct_keys": null,
+   "solution": "$\\frac{F}{A} = Y\\frac{\\Delta\\ell}{\\ell} \\Rightarrow \\Delta\\ell = \\frac{F\\ell}{AY}$\n$\\Delta\\ell = \\frac{200 \\times 2}{2 \\times 10^{-4} \\times 10^{11}} = 2 \\times 10^{-5} = 20\\ \\mu\\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Alternating Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "When a coil is connected across a 20 V dc supply, it draws a current of 5 A. When it is connected across 20 V, 50 Hz ac supply, it draws a current of 4 A. The self inductance of the coil is ______ mH. (Take $\\pi = 3$)",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "Case-I:\n$i = \\frac{20}{R} \\Rightarrow R = 4\\ \\Omega$\nCase-II:\n$i = \\frac{20}{Z}$\n$4 = \\frac{20}{\\sqrt{R^{2} + X_L^{2}}} \\Rightarrow \\sqrt{R^{2} + X_L^{2}} = 5$\n$R^{2} + X_L^{2} = 25 \\Rightarrow X_L = 3\\ \\Omega$\n$L = \\frac{3}{2\\pi f} = \\frac{1}{2 \\times 50} = \\frac{1000}{100}\\ \\mathrm{mH}$\n$L = 10\\ \\mathrm{mH}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Simple Harmonic Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The position, velocity and acceleration of a particle executing simple harmonic motion are found to have magnitudes of 4 m, $2\\ \\mathrm{ms^{-1}}$ and $16\\ \\mathrm{ms^{-2}}$ at a certain instant. The amplitude of the motion is $\\sqrt{x}$ m where x is _______.",
+   "correct_key": null,
+   "correct_value": 17,
+   "correct_keys": null,
+   "solution": "$x = 4\\ \\mathrm{m},\\ V = 2\\ \\mathrm{m/s},\\ a = 16\\ \\mathrm{m/s^{2}}$\n$|a| = \\omega^{2}x$\n$\\Rightarrow 16 = \\omega^{2}(4)$\n$\\omega = 2\\ \\mathrm{rad/s}$\n$v = \\omega\\sqrt{A^{2} - x^{2}}$\n$A = \\sqrt{\\frac{v^{2}}{\\omega^{2}} + x^{2}} \\Rightarrow A = \\sqrt{\\frac{4}{4} + 16}$\n$A = \\sqrt{17}\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The current flowing through the $1\\ \\Omega$ resistor is $\\frac{n}{10}$ A. The value of n is ________.",
+   "correct_key": null,
+   "correct_value": 25,
+   "correct_keys": null,
+   "solution": "$\\frac{y - 5}{2} + \\frac{y - 0}{2} + \\frac{y - x + 10}{1} = 0$\n$y - 5 + y + 2y - 2x + 20 = 0$\n$4y - 2x + 15 = 0$ ....(i)\n$\\frac{x - 5}{4} + \\frac{x - 0}{4} + \\frac{x - 10 - y}{1} = 0$\n$x - 5 + x + 4x - 40 - 4y = 0$\n$6x - 4y - 45 = 0$ ..(i)\n$-2x + 4y + 15 = 0$ ..(ii)\n$4x - 30 = 0$\n$x = \\frac{15}{2}$ & $4y - 15 + 15 = 0$\n$y = 0$\n$i = \\frac{y - x + 10}{1}$\n$i = \\frac{0 - 7.5 + 10}{1}$\n$i = 2.5\\ \\mathrm{A} = \\frac{n}{10}\\ \\mathrm{A}$\n$n = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-09apr-s1-phy-q60.png",
+   "solution_figure": "jn24-09apr-s1-phy-q60-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

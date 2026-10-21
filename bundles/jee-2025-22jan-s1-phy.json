@@ -10,7 +10,7 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "1IoGHYqK8LGttRapNnICVSpS1aKT_dCWZ"
+  "source_file_id": null
  },
  "questions": [
   {
@@ -18,11 +18,11 @@
    "topic": "Units and Measurements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Find the dimensions of $\\frac{B}{\\mu_0}$",
+   "stem": "Given below are two statements :\nStatement I : In a vernier callipers, one vernier scale division is always smaller than one main scale division.\nStatement II : The vernier constant is given by one main scale division multiplied by the number of vernier scale division.\nIn the light of the above statements, choose the correct answer from the options given below.",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\oint B \\cdot dl = \\mu_0 i \\Rightarrow \\frac{B}{\\mu_0} = \\frac{i}{l} \\equiv [\\mathrm{AL^{-1}}]$",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$[\\mathrm{AL}]$"
+     "text": "Both Statement I and Statement II are false."
     },
     {
      "key": "B",
-     "text": "$[\\mathrm{AL^{-1}}]$"
+     "text": "Statement I is true but Statement II is false."
     },
     {
      "key": "C",
-     "text": "$[\\mathrm{MAL}]$"
+     "text": "Both Statement I and Statement II are true."
     },
     {
      "key": "D",
-     "text": "$[\\mathrm{MALT^{-1}}]$"
+     "text": "Statement I is false but Statement II is true."
     }
    ],
    "stem_figure": null,
@@ -52,14 +52,14 @@
   },
   {
    "q_no": 2,
-   "topic": "Gravitation",
+   "topic": "Electrostatics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Solid sphere of mass $M$, radius $R$ exerts force $F$ on a point mass. Now a concentric spherical mass $\\frac{M}{7}$ is removed. What is new force?",
-   "correct_key": "B",
+   "stem": "A line charge of length $\\frac{a}{2}$ is kept at the center of an edge BC of a cube ABCDEFGH having edge length 'a' as shown in the figure. If the density of line is $\\lambda$ C per unit length, then the total electric flux through all the faces of the cube will be ____. (Take, $\\epsilon_0$ as the free space permittivity)",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$F = \\frac{GMm}{r^{2}}$\n$F' = \\frac{G\\left(M - \\frac{M}{7}\\right)m}{r^{2}}$\n$\\Rightarrow F' = \\frac{6}{7}F$",
+   "solution": "Total charge inside the cube $= \\frac{\\lambda \\frac{a}{2}}{4} = \\frac{\\lambda a}{8}$\n$\\therefore\\ \\phi = \\frac{q_{in}}{\\epsilon_0} = \\frac{\\lambda a}{8\\epsilon_0}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,147 +67,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{F}{7}$"
+     "text": "$\\frac{\\lambda a}{8\\epsilon_0}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{6}{7}F$"
+     "text": "$\\frac{\\lambda a}{16\\epsilon_0}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{5F}{7}$"
+     "text": "$\\frac{\\lambda a}{2\\epsilon_0}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{3F}{7}$"
+     "text": "$\\frac{\\lambda a}{4\\epsilon_0}$"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 3,
-   "topic": "Electrostatic Potential and Capacitance",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Find out equivalent capacitance for the situation show in figure.",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Here,\n$C_1 = \\frac{2 \\times A\\varepsilon_0 K_1}{2d} = \\frac{A\\varepsilon_0 K_1}{d}$\n$C_2 = \\frac{A\\varepsilon_0 K_2}{d}$\n$C_3 = \\frac{A\\varepsilon_0 K_3}{2d}$\nNow $C_1$ and $C_2$ are in series\nSo, $\\frac{1}{C_1'} = \\frac{1}{C_1} + \\frac{1}{C_2}$\n$\\Rightarrow \\frac{1}{C_1'} = \\frac{d}{A\\varepsilon_0 K}\\left[\\frac{1}{K_1} + \\frac{1}{K_2}\\right] = \\frac{d(K_1 + K_2)}{A\\varepsilon_0 K_1K_2}$\n$\\Rightarrow C_1' = \\frac{A\\varepsilon_0 K_1K_2}{d(K_1 + K_2)}$\nNow $C_1'$ is parallel to $C_3$\n$\\Rightarrow C_{eq} = \\frac{A\\varepsilon_0}{d}\\left[\\frac{K_1K_2}{K_1 + K_2} + \\frac{K_3}{2}\\right]$\n$\\Rightarrow C_{eq} = \\frac{A\\varepsilon_0}{d}\\left[\\frac{2K_1K_2 + K_2K_3 + K_3K_1}{2(K_1 + K_2)}\\right]$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$C_{eq} = \\frac{A\\varepsilon_0}{d}\\left(\\frac{K_1K_2 + K_2K_3 + K_3K_1}{K_1 + K_2}\\right)$"
-    },
-    {
-     "key": "B",
-     "text": "$C_{eq} = \\frac{A\\varepsilon_0}{d}\\left(\\frac{2K_1K_2 + K_2K_3 + K_3K_1}{2(K_1 + K_2)}\\right)$"
-    },
-    {
-     "key": "C",
-     "text": "$C_{eq} = \\frac{A\\varepsilon_0}{d}\\left(\\frac{K_1K_2 + K_2K_3 + K_3K_1}{2(K_1 + K_2)}\\right)$"
-    },
-    {
-     "key": "D",
-     "text": "$C_{eq} = \\frac{A\\varepsilon_0}{2d}\\left(\\frac{K_1K_2 + K_2K_3 + K_3K_1}{(K_1 + K_2)}\\right)$"
-    }
-   ],
-   "stem_figure": "j25-22jan-s1-phy-q03.png",
+   "stem_figure": "jn25-22jan-s1-phy-q27.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 4,
-   "topic": "System of Particles and Rotational Motion",
+   "topic": "Wave Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "From a sphere of mass $M$ and radius $R$, a cavity of radius $\\frac{R}{2}$ is created. Find the moment of inertia about an axis passing through the centre of sphere and cavity.",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$I = \\frac{2}{5}MR^{2} - \\frac{2}{5}\\left(\\frac{M}{8}\\right)\\left(\\frac{R}{2}\\right)^{2}$\n$= \\frac{31}{80}MR^{2}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$\\frac{31}{48}MR^{2}$"
-    },
-    {
-     "key": "B",
-     "text": "$\\frac{31}{80}MR^{2}$"
-    },
-    {
-     "key": "C",
-     "text": "$\\frac{13}{32}MR^{2}$"
-    },
-    {
-     "key": "D",
-     "text": "$\\frac{21}{32}MR^{2}$"
-    }
-   ],
-   "stem_figure": "j25-22jan-s1-phy-q04.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 5,
-   "topic": "Mechanical Properties of Fluids",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Find the radius of curvature of the common surface of two bubbles ($R_1 > R_2$)",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$P_1 - P_0 = \\frac{4S}{R_1}; P_2 - P_0 = \\frac{4S}{R_2}$\nSo, $P_2 - P_1 = \\Delta P = \\frac{4S}{R} = 4S\\left[\\frac{1}{R_2} - \\frac{1}{R_1}\\right]$\nor $\\frac{1}{R} = \\frac{R_1 - R_2}{R_1R_2}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$R = \\frac{R_1R_2}{R_1 + R_2}$"
-    },
-    {
-     "key": "B",
-     "text": "$R = \\frac{2R_1R_2}{R_1 - R_2}$"
-    },
-    {
-     "key": "C",
-     "text": "$R = \\frac{R_1R_2}{R_1 - R_2}$"
-    },
-    {
-     "key": "D",
-     "text": "$R = \\frac{R_1R_2}{(R_1 - R_2)}$"
-    }
-   ],
-   "stem_figure": "j25-22jan-s1-phy-q05.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 6,
-   "topic": "Semiconductor Electronics",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "From the given option, identify the diode connected in forward bias.",
+   "stem": "Given below are two statements : one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A) : If Young's double slit experiment is performed in an optically denser medium than air, then the consecutive fringes come closer.\nReason (R) : The speed of light reduces in an optically denser medium than air while its frequency does not change.\nIn the light of the above statements, choose the most appropriate answer from the options given below :",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Only in option (1), the p-side is connected at higher potential than the n-side of the diode.",
+   "solution": "$\\beta$ (fringe width) $= \\frac{\\lambda D}{d}$\nIn denser medium, $\\lambda \\downarrow \\Rightarrow \\beta \\downarrow$\n$\\Rightarrow$ fringe come closer\nAlso, $\\mu = \\frac{c}{V} \\Rightarrow V = \\frac{c}{\\mu}$\nFrequency remains same,\n$\\Rightarrow \\mu = \\frac{\\lambda_{vac.} f}{\\lambda_{med} f} \\Rightarrow \\lambda_{med} = \\frac{\\lambda_{vac.}}{\\mu}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -215,23 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q06-optA.png"
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q06-optB.png"
+     "text": "(A) is false but (R) is true."
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q06-optC.png"
+     "text": "Both (A) and (R) are true but (R) is not the correct explanation of (A)"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q06-optD.png"
+     "text": "(A) is true but (R) is false."
     }
    ],
    "stem_figure": null,
@@ -240,15 +125,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 7,
-   "topic": "Atoms",
+   "q_no": 5,
+   "topic": "Thermal Properties of Matter",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Radius of electron in ground state for hydrogen is $a_0$, then radius of electron in $\\mathrm{He^{+}}$ ion in 3rd excited state is $a$. Then $\\frac{a_0}{a}$ is",
-   "correct_key": "D",
+   "stem": "Two spherical bodies of same materials having radii 0.2 m and 0.8 m are placed in same atmosphere. The temperature of the smaller body is 800 K and temperature of bigger body is 400 K. If the energy radiate from the smaller body is E, the energy radiated from the bigger body is (assume, effect of the surrounding to be negligible)",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\boxed{r = \\frac{n^{2}}{z}r_0} \\Rightarrow$ for $H$\n$a_0 = \\frac{1}{1}r_0$\n$a = \\frac{4^{2}}{2}r_0$\n$\\frac{a_0}{a} = \\frac{1}{8}$",
+   "solution": "$\\frac{d\\theta}{dt} = \\sigma e A T^{4} \\Rightarrow P \\propto A T^{4}$\n$\\frac{P_{smaller}}{P_{larger}} = \\frac{(0.2)^{2}\\times 800^{4}}{(0.8)^{2}\\times 400^{4}}$\n$\\frac{1}{16}\\times 16 = 1$\n$\\therefore\\ P_{larger} = P_{smaller}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -256,19 +141,93 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{1}{2}$"
+     "text": "$256\\,E$"
     },
     {
      "key": "B",
-     "text": "$\\frac{1}{4}$"
+     "text": "$E$"
     },
     {
      "key": "C",
-     "text": "$\\frac{1}{16}$"
+     "text": "$64\\,E$"
     },
     {
      "key": "D",
-     "text": "$\\frac{1}{8}$"
+     "text": "$16\\,E$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Calorimetry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An amount of ice of mass $10^{-3}$ kg and temperature $-10^\\circ\\mathrm{C}$ is transformed to vapour of temperature $110^\\circ$ by applying heat. The total amount of work required for this conversion is,\n(Take, specific heat of ice $= 2100\\ \\mathrm{J\\,kg^{-1}K^{-1}}$, specific heat of water $= 4180\\ \\mathrm{J\\,kg^{-1}K^{-1}}$, specific heat of steam $= 1920\\ \\mathrm{J\\,kg^{-1}K^{-1}}$, Latent heat of ice $= 3.35\\times 10^{5}\\ \\mathrm{J\\,kg^{-1}}$ and Latent heat of steam $= 2.25\\times 10^{6}\\ \\mathrm{J\\,kg^{-1}}$)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Stages 1 to 5 as marked on the temperature line in the figure ($-10^\\circ \\to 0^\\circ \\to 0^\\circ \\to 100^\\circ \\to 100^\\circ \\to 110^\\circ$).\n$\\Delta Q_1 = m\\times S_i\\times \\Delta T = 10^{-3}\\times 2100\\times 10 = 21\\ \\mathrm{J}$\n$\\Delta Q_2 = m\\times L_f = 10^{-3}\\times 3.35\\times 10^{5} = 335\\ \\mathrm{J}$\n$\\Delta Q_3 = m\\times S_w\\times \\Delta T = 10^{-3}\\times 4180\\times 100 = 418\\ \\mathrm{J}$\n$\\Delta Q_4 = m\\times L_v = 10^{-3}\\times 2.25\\times 10^{6} = 2250\\ \\mathrm{J}$\n$\\Delta Q_5 = m\\times S_v\\times \\Delta T = 10^{-3}\\times 1920\\times 10 = 19.2\\ \\mathrm{J}$\n$\\Delta Q_{net} = 3043.2\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3022\\ \\mathrm{J}$"
+    },
+    {
+     "key": "B",
+     "text": "$3043\\ \\mathrm{J}$"
+    },
+    {
+     "key": "C",
+     "text": "$3003\\ \\mathrm{J}$"
+    },
+    {
+     "key": "D",
+     "text": "$3024\\ \\mathrm{J}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s1-phy-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Atomic Structure",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron in the ground state of the hydrogen atom has the orbital radius of $5.3\\times 10^{-11}$ m while that for the electron in third excited state is $8.48\\times 10^{-10}$ m. The ratio of the de Broglie wavelengths of electron in the ground state to that in excited state is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda = \\frac{h}{mv}$\n$mvr = \\frac{nh}{2\\pi}$\n$mv = \\frac{nh}{2\\pi r}$\n$\\lambda = \\frac{2\\pi r h}{nh}$\n$\\lambda \\propto \\frac{r}{n}$\n$\\frac{\\lambda_1}{\\lambda_4} = \\frac{r_1 n_4}{n_1 r_4} = \\frac{5.3\\times 10^{-11}\\times 4}{1\\times 84.8\\times 10^{-11}}$\n$\\frac{\\lambda_1}{\\lambda_4} = \\frac{1}{4}$\nNote : Most appropriate answer will be option (1).",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$16$"
     }
    ],
    "stem_figure": null,
@@ -278,14 +237,14 @@
   },
   {
    "q_no": 8,
-   "topic": "Thermal Properties of Matter",
+   "topic": "Ray Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Ice at $-10^\\circ\\mathrm{C}$ is to be converted into steam at $110^\\circ\\mathrm{C}$. Mass of ice is $10^{-3}$ kg. What amount of heat is required?",
-   "correct_key": "A",
+   "stem": "In the diagram given below, there are three lenses formed. Considering negligible thickness of each of them as compared to $[R_1]$ and $[R_2]$, i.e., the radii of curvature for upper and lower surfaces of the glass lens, the power of the combination is",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$-10^\\circ\\mathrm{C}$ ice to $0^\\circ\\mathrm{C}$ ice $\\rightarrow$ $0^\\circ\\mathrm{C}$ ice to $0^\\circ\\mathrm{C}$ water + $0^\\circ\\mathrm{C}$ water to $100^\\circ\\mathrm{C}$ water + $100^\\circ\\mathrm{C}$ water to $100^\\circ\\mathrm{C}$ steam + $110^\\circ\\mathrm{C}$ steam.\n$\\Rightarrow \\Delta Q = \\left(1 \\times \\frac{1}{2} \\times 10\\right) + (1 \\times 80) + (1 \\times 1 \\times 100)$\n$+ (1 \\times 540) + \\left(1 \\times \\frac{1}{2} \\times 10\\right) = 730$ cal",
+   "solution": "$\\Rightarrow p_{eq} = p_1 + p_2 + p_3$\n$\\Rightarrow p_1 = \\left(\\frac{4}{3} - 1\\right)\\left(\\frac{1}{\\infty} - \\frac{1}{-|R_1|}\\right)$\n$\\Rightarrow p_1 = \\left(\\frac{1}{3|R_1|}\\right)$\n$\\Rightarrow p_2 = \\left(\\frac{1}{2}\\right)\\left(\\frac{1}{-|R_1|} - \\frac{1}{-|R_2|}\\right)$\n$\\Rightarrow p_2 = \\frac{1}{2}\\left(\\frac{1}{|R_2|} - \\frac{1}{|R_1|}\\right)$\n$\\Rightarrow p_3 = \\left(\\frac{1}{3}\\right)\\left(\\frac{1}{-|R_2|} - \\frac{1}{\\infty}\\right) = -\\frac{1}{3|R_2|}$\n$\\Rightarrow p_{eq} = \\frac{1}{3}\\left(\\frac{1}{|R_1|} - \\frac{1}{|R_2|}\\right) - \\frac{1}{2}\\left(\\frac{1}{|R_1|} - \\frac{1}{|R_2|}\\right)$\n$= -\\frac{1}{6}\\left(\\frac{1}{|R_1|} - \\frac{1}{|R_2|}\\right)$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -293,19 +252,97 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\Delta Q = 730$ cal"
+     "text": "$-\\frac{1}{6}\\left(\\frac{1}{|R_1|} + \\frac{1}{|R_2|}\\right)$"
     },
     {
      "key": "B",
-     "text": "$\\Delta Q = 900$ cal"
+     "text": "$-\\frac{1}{6}\\left(\\frac{1}{|R_1|} - \\frac{1}{|R_2|}\\right)$"
     },
     {
      "key": "C",
-     "text": "$\\Delta Q = 1210$ cal"
+     "text": "$\\frac{1}{6}\\left(\\frac{1}{|R_1|} + \\frac{1}{|R_2|}\\right)$"
     },
     {
      "key": "D",
-     "text": "$\\Delta Q = 870$ cal"
+     "text": "$\\frac{1}{6}\\left(\\frac{1}{|R_1|} - \\frac{1}{|R_2|}\\right)$"
+    }
+   ],
+   "stem_figure": "jn25-22jan-s1-phy-q33.png",
+   "solution_figure": "jn25-22jan-s1-phy-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron is made to enters symmetrically between two parallel and equally but oppositely charged metal plates, each of 10 cm length. The electron emerges out of the field region with a horizontal component of velocity $10^{6}$ m/s. If the magnitude of the electric between the plates is 9.1 V/cm, then the vertical component of velocity of electron is\n(mass of electron $= 9.1\\times 10^{-31}$ kg and charge of electron $= 1.6\\times 10^{-19}$ C)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Rightarrow t = \\frac{\\ell}{V_x} = \\frac{10\\times 10^{-2}}{10^{6}} = 10^{-7}$\n$\\Rightarrow V_y = u_y + a_y t$\n$\\Rightarrow V_y = 0 + \\frac{eE}{m}\\times 10^{-7}$\n$\\Rightarrow V_y = \\frac{1.6\\times 10^{-19}}{9.1\\times 10^{-31}}\\times 9.1\\times 10^{-2}\\times 10^{-7}$\n$\\Rightarrow V_y = 16\\times 10^{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1\\times 10^{6}\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "B",
+     "text": "$0$"
+    },
+    {
+     "key": "C",
+     "text": "$16\\times 10^{6}\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "D",
+     "text": "$16\\times 10^{4}\\ \\mathrm{m/s}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s1-phy-q34-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following resistivity ($\\rho$) v/s temperature ($T$) curves is most suitable to be used in wire bound standard resistors?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Resistivity is independent of temperature for wire bound resistors",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn25-22jan-s1-phy-q35-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn25-22jan-s1-phy-q35-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn25-22jan-s1-phy-q35-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn25-22jan-s1-phy-q35-optD.png"
     }
    ],
    "stem_figure": null,
@@ -314,52 +351,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 9,
-   "topic": "Electric Charges and Fields",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "A charge of value $q$ is placed at the edge of a imaginary cube of side a as shown in figure. Find the net flux through the cube",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\phi_4$ such cubes $= \\frac{q}{\\varepsilon_0}$\n$\\phi_1$ cube $= \\frac{q}{4\\varepsilon_0}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$\\frac{q}{6\\varepsilon_0}$"
-    },
-    {
-     "key": "B",
-     "text": "$\\frac{q}{4\\varepsilon_0}$"
-    },
-    {
-     "key": "C",
-     "text": "$\\frac{q}{8\\varepsilon_0}$"
-    },
-    {
-     "key": "D",
-     "text": "$\\frac{q}{2\\varepsilon_0}$"
-    }
-   ],
-   "stem_figure": "j25-22jan-s1-phy-q09.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 10,
+   "q_no": 11,
    "topic": "Waves",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A closed organ pipe in 9th harmonic resonates with 4th harmonic of open organ pipe [$l_{\\mathrm{closed}} = 10$ cm]. Find length of open organ pipe.",
-   "correct_key": "D",
+   "stem": "A closed organ and an open organ tube filled by two different gases having same bulk modulus but different densities $\\rho_1$ and $\\rho_2$ respectively. The frequency of $9^{th}$ harmonic of closed tube is identical with $4^{th}$ harmonic of open tube. If the length of the closed tube is 10 cm and the density ratio of the gases is $\\rho_1 : \\rho_2 = 1 : 16$, then the length of the open tube is :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\frac{9v}{4L_c} = \\frac{4v}{2L_0} \\Rightarrow L_0 = \\frac{8L_c}{9}$",
+   "solution": "$9^{th}$ harmonic of closed pipe $= \\frac{9V_1}{4\\ell_1}$\n$4^{th}$ harmonic of open pipe $= \\frac{2V_2}{\\ell_2}$\n$\\therefore\\ \\frac{9V_1}{4\\ell_1} = \\frac{2V_2}{\\ell_2}$\n$\\therefore\\ \\frac{9}{4\\ell_1}\\sqrt{\\frac{B}{\\rho_1}} = \\frac{2}{\\ell_2}\\sqrt{\\frac{B}{\\rho_2}} \\Rightarrow \\frac{\\ell_2}{\\ell_1} = \\frac{8}{9}\\sqrt{\\frac{\\rho_1}{\\rho_2}}$\n$\\ell_2 = \\ell_1\\times\\frac{8}{9}\\times\\frac{1}{4} = \\frac{20}{9}\\ \\mathrm{cm}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -367,19 +367,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$L_0 = 15$ cm"
+     "text": "$\\frac{20}{7}\\ \\mathrm{cm}$"
     },
     {
      "key": "B",
-     "text": "$L_0 = \\frac{100}{9}$ cm"
+     "text": "$\\frac{15}{7}\\ \\mathrm{cm}$"
     },
     {
      "key": "C",
-     "text": "$L_0 = \\frac{110}{7}$ cm"
+     "text": "$\\frac{20}{9}\\ \\mathrm{cm}$"
     },
     {
      "key": "D",
-     "text": "$L_0 = \\frac{80}{9}$ cm"
+     "text": "$\\frac{15}{9}\\ \\mathrm{cm}$"
     }
    ],
    "stem_figure": null,
@@ -389,14 +389,14 @@
   },
   {
    "q_no": 12,
-   "topic": "Current Electricity",
+   "topic": "Rotational Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following graphs correctly represents the variation of resistivity ($\\rho$) with temperature ($T$).",
-   "correct_key": "A",
+   "stem": "A uniform circular disc of radius 'R' and mass 'M' is rotating about an axis perpendicular to its plane and passing through its centre. A small circular part of radius R/2 is removed from the original disc as shown in the figure. Find the moment of inertia of the remaining part of the original disc about the axis as given above.",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The resistivity of conductors increases with increase in temperature non-linearly.",
+   "solution": "$I = \\frac{MR^{2}}{2} - \\left[\\frac{\\frac{M}{4}\\left(\\frac{R}{2}\\right)^{2}}{2} + \\frac{M}{4}\\left(\\frac{R}{2}\\right)^{2}\\right]$\n$I = \\frac{13}{32}MR^{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -404,40 +404,36 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q12-optA.png"
+     "text": "$\\frac{7}{32}MR^{2}$"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q12-optB.png"
+     "text": "$\\frac{9}{32}MR^{2}$"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q12-optC.png"
+     "text": "$\\frac{17}{32}MR^{2}$"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-22jan-s1-phy-q12-optD.png"
+     "text": "$\\frac{13}{32}MR^{2}$"
     }
    ],
-   "stem_figure": null,
+   "stem_figure": "jn25-22jan-s1-phy-q37.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 13,
-   "topic": "Wave Optics",
+   "topic": "Gravitation",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If whole YDSE apparatus is immersed in a liquid of refractive index $\\mu$, then what is the effect on fringe width?",
-   "correct_key": "B",
+   "stem": "A small point of mass m is placed at a distance 2R from the centre 'O' of a big uniform solid sphere of mass M and radius R. The gravitational force on 'm' due to M is $F_1$. A spherical part of radius R/3 is removed from the big sphere as shown in the figure and the gravitational force on m due to remaining part of M is found to be $F_2$. The value of ratio $F_1 : F_2$ is",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\Delta\\omega = \\frac{\\lambda D}{\\lambda}$\nSo, for RI of $\\mu$\n$\\Delta\\omega' = \\frac{\\lambda D}{\\mu d}$",
+   "solution": "$F_1 = \\frac{GMm}{(2R)^{2}}$  ...(1)\n$F_2 = \\frac{GMm}{(2R)^{2}} - \\frac{G\\left(\\frac{M}{27}\\right)m}{\\left(\\frac{4R}{3}\\right)^{2}}$\n$F_2 = \\frac{11}{48}\\frac{GMm}{R^{2}}$  ...(2)\n$F_1 : F_2 = 12 : 11$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -445,36 +441,36 @@
    "options": [
     {
      "key": "A",
-     "text": "Fringe width increases"
+     "text": "$16 : 9$"
     },
     {
      "key": "B",
-     "text": "Fringe width decreases"
+     "text": "$11 : 10$"
     },
     {
      "key": "C",
-     "text": "Fringe width remains unchanged"
+     "text": "$12 : 11$"
     },
     {
      "key": "D",
-     "text": "It may increase on one side and decrease on other side"
+     "text": "$12 : 9$"
     }
    ],
-   "stem_figure": null,
+   "stem_figure": "jn25-22jan-s1-phy-q38.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 14,
-   "topic": "Thermal Properties of Matter",
+   "topic": "Dual Nature of Matter",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Two spherical black bodies of radius 0.8 m and 0.2 m are at temperatures of 400 K and 800 K respectively. Find ratio of rate of heat loss.",
-   "correct_key": "D",
+   "stem": "The work functions of cesium (Cs) and lithium (Li) metals are 1.9 eV and 2.5 eV, respectively. If we incident a light of wavelength 550 nm on these two metal surface, then photo-electric effect is possible for the case of",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$P_1 = \\sigma 4\\pi (0.8)^{2} (400)^{4}$\n$P_2 = \\sigma 4\\pi (0.2)^{2} (800)^{4}$\n$\\frac{P_1}{P_2} = \\frac{4 \\times 4}{2^{4}} = 1$",
+   "solution": "$E = \\frac{1240}{\\lambda} = \\frac{1240}{550} \\simeq 2.25$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -482,19 +478,19 @@
    "options": [
     {
      "key": "A",
-     "text": "8"
+     "text": "Li only"
     },
     {
      "key": "B",
-     "text": "4"
+     "text": "Cs only"
     },
     {
      "key": "C",
-     "text": "2"
+     "text": "Neither Cs nor Li"
     },
     {
      "key": "D",
-     "text": "1"
+     "text": "Both Cs and Li"
     }
    ],
    "stem_figure": null,
@@ -504,14 +500,14 @@
   },
   {
    "q_no": 15,
-   "topic": "Ray Optics and Optical Instruments",
+   "topic": "Units and Dimensions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The equiconvex lens shown in figure is silvered on one side. For what distance of object from the lens is the image formed on the object itself?",
-   "correct_key": "C",
+   "stem": "If B is magnetic field and $\\mu_0$ is permeability of free space, then the dimensions of $(B/\\mu_0)$ is",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Silvering of lens\n$\\frac{1}{F_{eq}} = \\frac{1}{f_m} - \\frac{2}{f_\\ell}$\n$\\frac{1}{f_\\ell} = (\\mu - 1)\\left(\\frac{1}{R} - \\left(\\frac{1}{-R}\\right)\\right)$\n$\\frac{1}{f_\\ell} = \\frac{2(\\mu - 1)}{R}$\n$= \\frac{-2}{R} - \\frac{4(\\mu - 1)}{R}$\n$= \\frac{-2(1 + 2\\mu - 2)}{R}$\n$F = \\frac{-R}{2(2\\mu - 1)}$\nFor object-image to coincide distance should be $2f$\n$|u| = 2|F|$\n$= \\frac{R}{2\\mu - 1}$",
+   "solution": "$B = \\mu_0 n i$\n$\\left[\\frac{B}{\\mu_0}\\right] = [ni] = L^{-1}A^{1}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -519,56 +515,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mu R$"
+     "text": "$\\mathrm{MT^{-2}A^{-1}}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{R}{\\mu}$"
+     "text": "$\\mathrm{L^{-1}A}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{R}{2\\mu - 1}$"
+     "text": "$\\mathrm{LT^{-2}A^{-1}}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{R}{2\\mu - 2}$"
-    }
-   ],
-   "stem_figure": "j25-22jan-s1-phy-q15.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 16,
-   "topic": "Dual Nature of Radiation and Matter",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Light of wavelength 550 nm is incident an surfaces of cerium and lithium. Work function are respectively 1.9 eV and 2.5 eV. Then electron will be ejected from",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\mathrm{E}(\\mathrm{eV}) = \\frac{1240}{\\lambda(\\mathrm{nm})} = \\frac{1240}{550} \\simeq 2.25$\n$2.25 > 1.9$ for cerium only",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Cerium only"
-    },
-    {
-     "key": "B",
-     "text": "Lithium only"
-    },
-    {
-     "key": "C",
-     "text": "From both of them"
-    },
-    {
-     "key": "D",
-     "text": "None of them"
+     "text": "$\\mathrm{ML^{2}T^{-2}A^{-1}}$"
     }
    ],
    "stem_figure": null,
@@ -577,15 +536,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 17,
-   "topic": "Electric Charges and Fields",
+   "q_no": 16,
+   "topic": "Work, Energy and Power",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The figure shows an electron entering the space between the plates of a parallel plate capacitor with an initial velocity, $v_x = 10^{6}\\ \\mathrm{m/s}$ parallel to the plates. If the length of plates is $l = 10$ cm and the electric field in the region $E = 9.1$ N/C, then the value of $v_y$ when the electron comes out of the plates is (Electronic mass = $9.1 \\times 10^{-31}$ kg)",
-   "correct_key": "B",
+   "stem": "A bob of mass m is suspended at a point O by a light string of length $l$ and left to perform vertical motion (circular) as shown in figure. Initially, by applying horizontal velocity $v_0$ at the point 'A'. the string becomes slack when, the bob reaches at the point 'D'. The ratio of the kinetic energy of the bob at the points B and C is ______.",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Time inside the electric field, $t = \\frac{l}{v_x}$\nAcceleration of electron along $y$-axis, $a = \\frac{eE}{m}$\nVelocity $v_y = at$\n$= \\frac{eE}{m} \\cdot \\frac{l}{v_x}$\n$= \\frac{1.6 \\times 10^{-19} \\times 9.1 \\times 10 \\times 10^{-2}}{9.1 \\times 10^{-31} \\times 10^{6}}\\ \\mathrm{m/s}$\n$= 1.6 \\times 10^{5}\\ \\mathrm{m/s}$",
+   "solution": "$\\frac{1}{2}mv_A^{2} = \\frac{1}{2}mv_B^{2} + mgh$\n$\\Rightarrow \\frac{1}{2}m(5g\\ell) = \\frac{1}{2}mv_B^{2} + mg\\frac{\\ell}{2}$\n$\\Rightarrow \\frac{5mg\\ell}{2} - \\frac{mg\\ell}{2} = KE_B$\n$\\Rightarrow KE_B = 2mg\\ell$\n$\\frac{1}{2}mv_C^{2} = \\frac{1}{2}mv_D^{2} + mg\\frac{\\ell}{2}$\n$\\Rightarrow KE_C = \\frac{1}{2}mg\\ell + mg\\frac{\\ell}{2} = mg\\ell \\Rightarrow \\frac{KE_B}{KE_C} = 2$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -593,36 +552,73 @@
    "options": [
     {
      "key": "A",
-     "text": "$1.6 \\times 10^{4}\\ \\mathrm{m/s}$"
+     "text": "$2$"
     },
     {
      "key": "B",
-     "text": "$1.6 \\times 10^{5}\\ \\mathrm{m/s}$"
+     "text": "$1$"
     },
     {
      "key": "C",
-     "text": "$1.6 \\times 10^{7}\\ \\mathrm{m/s}$"
+     "text": "$4$"
     },
     {
      "key": "D",
-     "text": "$1.6 \\times 10^{3}\\ \\mathrm{m/s}$"
+     "text": "$3$"
     }
    ],
-   "stem_figure": "j25-22jan-s1-phy-q17.png",
+   "stem_figure": "jn25-22jan-s1-phy-q41.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement-I : The equivalent emf of two nonideal batteries connected in parallel is smaller than either of the two emfs.\nStatement-II : The equivalent internal resistance of two nonideal batteries connected in parallel is smaller than the internal resistance of either of the two batteries.\nIn the light of the above statements, choose the correct answer from the options given below.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$= \\frac{\\frac{\\epsilon_1}{r_1} + \\frac{\\epsilon_2}{r_2}}{\\frac{1}{r_1} + \\frac{1}{r_2}} = \\epsilon$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement-I is true but Statement-II is false"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement-I and Statement-II are false"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement-I and Statement-II are true"
+    },
+    {
+     "key": "D",
+     "text": "Statement-I is false but Statement-II is true"
+    }
+   ],
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 18,
-   "topic": "Ray Optics and Optical Instruments",
+   "topic": "Semiconductor Devices",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Find the equivalent power of the thin lens combination shown in the figure.",
+   "stem": "Which of the following circuits represents a forward biased diode ?\nChoose the correct answer from the options given below :",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Net power $= P_1 + P_2 + P_3$\n$= \\frac{(\\mu_1 - 1)}{R_1} + (\\mu_2 - 1)\\left(\\frac{1}{-R_1} + \\frac{1}{-R_2}\\right) + \\frac{(\\mu_3 - 1)}{R_2}$\n$= \\frac{(\\mu_1 - \\mu_2)}{R_1} + \\frac{(\\mu_3 - \\mu_2)}{R_2}$\n$= \\left(\\frac{4}{3} - \\frac{3}{2}\\right)\\frac{1}{R_1} + \\left(\\frac{4}{3} - \\frac{3}{2}\\right)\\frac{1}{R_2}$\n$= -\\frac{1}{6}\\left(\\frac{1}{R_1} + \\frac{1}{R_2}\\right)$\n$= -\\left(\\frac{R_1 + R_2}{6R_1R_2}\\right)$",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -630,63 +626,197 @@
    "options": [
     {
      "key": "A",
-     "text": "$+\\left(\\frac{R_1 + R_2}{R_1 + R_2}\\right)$"
+     "text": "(B), (D) and (E) only"
     },
     {
      "key": "B",
-     "text": "$-\\left(\\frac{R_1 + R_2}{R_1R_2}\\right)$"
+     "text": "(A) and (D) only"
     },
     {
      "key": "C",
-     "text": "$-\\left(\\frac{R_1 + R_2}{6R_1R_2}\\right)$"
+     "text": "(B), (C) and (E) only"
     },
     {
      "key": "D",
-     "text": "$+\\left(\\frac{R_1 + R_2}{6R_1R_2}\\right)$"
+     "text": "(C) and (E) only"
     }
    ],
-   "stem_figure": "j25-22jan-s1-phy-q18.png",
+   "stem_figure": "jn25-22jan-s1-phy-q43.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Capacitance",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A parallel-plate capacitor of capacitance $40\\ \\mu\\mathrm{F}$ is connected to a 100 V power supply. Now the intermediate space between the plates is filled with a dielectric material of dielectric constant K = 2. Due to the introduction of dielectric material, the extra charge and the change in the electrostatic energy in the capacitor, respectively, are -",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta q = (KC - C)V$\n$= 40\\times 10^{-6}\\times 100$\n$= 4000\\times 10^{-3} = 4\\ \\mathrm{mC}$\n$\\Delta U = \\frac{1}{2}C'V^{2} - \\frac{1}{2}CV^{2} = \\frac{1}{2}(K-1)CV^{2}$\n$= \\frac{1}{2}CV^{2}(2-1)$\n$= \\frac{1}{2}CV^{2} = \\frac{1}{2}\\times 40\\times 10^{-6}\\times 10000$\n$= 0.2\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\ \\mathrm{mC}$ and $0.2\\ \\mathrm{J}$"
+    },
+    {
+     "key": "B",
+     "text": "$8\\ \\mathrm{mC}$ and $2.0\\ \\mathrm{J}$"
+    },
+    {
+     "key": "C",
+     "text": "$4\\ \\mathrm{mC}$ and $0.2\\ \\mathrm{J}$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\ \\mathrm{mC}$ and $0.4\\ \\mathrm{J}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given is a thin convex lens of glass (refractive index $\\mu$) and each side having radius of curvature R. One side is polished for complete reflection. At what distance from the lens, an object be placed on the optic axis so that the image gets formed on the object itself.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P_{eq} = 2P_\\ell + P_m$\n$-\\frac{1}{f_Q} = \\frac{2}{f_\\ell} - \\frac{1}{f_m}$\n$= \\frac{4(\\mu - 1)}{R} - \\frac{2}{-R} = \\frac{1}{R}(4\\mu - 4 + 2)$\n$-\\frac{1}{f_{eq}} = \\frac{1}{R}(4\\mu - 2)$\n$\\Rightarrow \\frac{1}{f_{eq}} = \\frac{-1}{R}(4\\mu - 2)$\n$f_{eq} = \\frac{R}{2}$\n$R = 2f_{eq} = -2\\left(\\frac{R}{4\\mu - 2}\\right) = \\frac{-R}{(2\\mu - 1)}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$R/\\mu$"
+    },
+    {
+     "key": "B",
+     "text": "$R/(2\\mu - 3)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mu R$"
+    },
+    {
+     "key": "D",
+     "text": "$R/(2\\mu - 1)$"
+    }
+   ],
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 21,
-   "topic": "Work, Energy and Power",
+   "topic": "Surface Tension",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The particle shown in figure is just able to complete the vertical circular motion. Find the ratio of kinetic energy at $A$ to the kinetic energy at $B$.",
+   "stem": "Two soap bubbles of radius 2 cm and 4 cm, respectively, are in contact with each other. The radius of curvature of the common surface, in cm, is ______ .",
    "correct_key": null,
-   "correct_value": 2,
+   "correct_value": 4,
    "correct_keys": null,
-   "solution": "$v = \\sqrt{5gR}$\n$\\mathrm{KE}_A = \\frac{1}{2}mv^{2} - mg\\frac{R}{2}$\n$\\mathrm{KE}_A = 2mgR$\n$\\mathrm{KE}_B = \\frac{1}{2}mv^{2} - mg\\left(\\frac{3R}{2}\\right)$\n$= mgR$\n$\\frac{\\mathrm{KE}_A}{\\mathrm{KE}_B} = 2$",
+   "solution": "$r = \\frac{r_1\\cdot r_2}{r_1 - r_2} = \\frac{2\\cdot 4}{4-2} = 4\\ \\mathrm{cm}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-22jan-s1-phy-q21.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 22,
-   "topic": "Current Electricity",
+   "topic": "Ray Optics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The current drawn from battery in the circuit shown below is _____ A",
+   "stem": "The driver sitting inside a parked car is watching vehicles approaching from behind with the help of his side view mirror, which is a convex mirror with radius of curvature R = 2 m. Another car approaches him from behind with a uniform speed of 90 km/hr. When the car is at a distance of 24 m from him, the magnitude of the acceleration of the image of the side view mirror is 'a'. The value of $100a$ is ______ $\\mathrm{m/s^{2}}$.",
    "correct_key": null,
-   "correct_value": 1,
+   "correct_value": 8,
    "correct_keys": null,
-   "solution": "$\\frac{1}{R_1'} = \\frac{1}{2} + 2 = \\frac{5}{2}$\n$\\Rightarrow R_1' = \\frac{2}{5}\\ \\Omega$\nNow, $R = \\frac{2}{5} + \\frac{1}{2} = \\frac{9}{10}\\ \\Omega$\nSo, $I = \\frac{9 \\times 10}{10 \\times 9} = 1\\ \\mathrm{A}$",
+   "solution": "$v = \\frac{uf}{u-f} = \\frac{-24\\cdot 1}{-24-1} = \\frac{24}{25}$\n$m = \\frac{-v}{u} = -\\frac{24}{25(-24)} = \\frac{1}{25}$\n$\\frac{1}{v} - \\frac{1}{u} = \\frac{1}{f}$\n$v_I = -m^{2}\\cdot v_0 = \\frac{-1}{(25)^{2}}\\cdot 25 = \\frac{-1}{25}$\nDiff.\n$\\frac{-1}{v^{2}}\\left(\\frac{dv}{dt}\\right) + \\frac{1}{u^{2}}\\left(\\frac{du}{dt}\\right) = 0\\quad\\left[\\frac{dv}{dt} = v_I;\\ \\frac{du}{dt} = v_0\\right]$\n$\\frac{+2}{v^{3}}\\cdot(v_I)^{2} - \\frac{1}{v^{2}}\\cdot a_I - \\frac{2}{u^{3}}\\cdot(v_0)^{2} + \\frac{1}{u^{2}}\\cdot a_0 = 0$\n$\\frac{a_I}{v^{2}} = \\frac{2}{v^{3}}\\cdot v_I^{2} - \\frac{2}{u^{3}}\\cdot v_0^{2}$\n$a_I = \\frac{2}{v}\\cdot v_I^{2} - \\frac{2v^{2}}{u^{3}}\\cdot v_0^{2}$\n$= \\frac{2\\cdot 25}{24}\\cdot\\frac{1}{25}\\cdot\\frac{1}{25} - \\frac{2}{(24)^{3}}\\cdot\\frac{24}{25}\\cdot\\frac{24}{25}\\cdot 25\\cdot 25$\n$a_I = \\frac{2}{24\\cdot 25} - \\frac{2}{24}$\n$a_I = \\frac{2}{24}\\cdot\\frac{-24}{25} = \\frac{-2}{25}$\n$100a_I = \\frac{2}{25}\\times 100 = 8$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-22jan-s1-phy-q22.png",
+   "stem_figure": null,
    "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Three conductions of same length having thermal conductivity $k_1$, $k_2$ and $k_3$ are connected as shown in figure.\nArea of cross sections of $1^{st}$ and $2^{nd}$ conductor are same and for $3^{rd}$ conductor it is double of the $1^{st}$ conductor. The temperatures are given in the figure. In steady state condition, the value of $\\theta$ is __________ $^\\circ\\mathrm{C}$.\n(Given : $k_1 = 60\\ \\mathrm{J\\,s^{-1}m^{-1}K^{-1}}$, $k_2 = 120\\ \\mathrm{J\\,s^{-1}m^{-1}K^{-1}}$, $k_3 = 135\\ \\mathrm{J\\,s^{-1}m^{-1}K^{-1}}$)",
+   "correct_key": null,
+   "correct_value": 40,
+   "correct_keys": null,
+   "solution": "$R_1 = \\frac{2L}{K_1 A}$\n$R_2 = \\frac{2L}{K_2 A}$\n$R_3 = \\frac{L}{K_3 A}$\n$\\frac{\\theta - 100}{\\frac{R_1R_2}{R_1+R_2}} + \\frac{\\theta - 0}{R_3} = 0$\n$\\theta = 40$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn25-22jan-s1-phy-q48.png",
+   "solution_figure": "jn25-22jan-s1-phy-q48-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The position vectors of two 1 kg particles, (A) and (B), are given by\n$\\vec{r}_A = \\left(\\alpha_1 t^{2}\\hat{i} + \\alpha_2 t\\hat{j} + \\alpha_3 t\\hat{k}\\right)\\ \\mathrm{m}$\nand $\\vec{r}_B = \\left(\\beta_1 t\\hat{i} + \\beta_2 t^{2}\\hat{j} + \\beta_3 t\\hat{k}\\right)\\ \\mathrm{m}$, respectively ;\n($\\alpha_1 = 1\\ \\mathrm{m/s^{2}}$, $\\alpha_2 = 3n\\ \\mathrm{m/s}$, $\\alpha_3 = 2\\ \\mathrm{m/s}$, $\\beta_1 = 2\\ \\mathrm{m/s}$, $\\beta_2 = -1\\ \\mathrm{m/s^{2}}$, $\\beta_3 = 4p\\ \\mathrm{m/s}$), where t is time, n and p are constants, At t = 1s, $|\\vec{V}_A| = |\\vec{V}_B|$ and velocities $\\vec{V}_A$ and $\\vec{V}_B$ of the particles are orthogonal to each other. At t = 1 s, the magnitude of angular momentum of particle (A) with respect to the position of particle (B) is $\\sqrt{L}\\ \\mathrm{kg\\,m^{2}s^{-1}}$. The value of L is _____.",
+   "correct_key": null,
+   "correct_value": 90,
+   "correct_keys": null,
+   "solution": "$\\vec{V}_A = \\left(2t\\hat{i} + 3n\\hat{j} + 2\\hat{k}\\right)$\n$\\vec{V}_B = \\left(2\\hat{i} - 2t\\hat{j} + 4p\\hat{k}\\right)$\n$\\vec{V}_A\\cdot\\vec{V}_B = 0$\n$4 - 6n + 8p = 0$\n$2 - 3n + 4p = 0$\n$3n = 2 + 4p$\n$\\left|\\vec{V}_A\\right| = \\left|\\vec{V}_B\\right|$\n$4 + 9n^{2} + 4 = 4 + 4 + 16p^{2}$\n$p = \\frac{-1}{4} \\Rightarrow n = \\frac{1}{3}$\n$\\vec{L} = m_A\\left(\\vec{r}_{A/B}\\times\\vec{V}_A\\right)$\n$\\vec{r}_{A/B} = (\\alpha_1 - \\beta_1)\\hat{i} + (\\alpha_2 - \\beta_2)\\hat{j} + (\\alpha_3 - \\beta_3)\\hat{k}$\n$= (1-2)\\hat{i} + (1+1)\\hat{j} + 3\\hat{k}$\n$= \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ -1 & 2 & 3 \\\\ 2 & 1 & 2 \\end{vmatrix} = \\hat{i} + 8\\hat{j} - 5\\hat{k}$\n$= \\sqrt{1 + 64 + 25} = \\sqrt{90}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Projectile Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A particle is projected at an angle of $30^\\circ$ from horizontal at a speed of 60 m/s. The height traversed by the particle in the first second is $h_0$ and height traversed in the last second, before it reaches the maximum height, is $h_1$. The ratio $h_0 : h_1$ is ______.\n[Take, g = 10 m/s$^{2}$]",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$60\\sin 30^\\circ = 30$\n$S_1 = 30\\times 1 - \\frac{1}{2}\\times 10\\times 1 = 25$\n$S_3 = 30 + \\left(\\frac{-10}{2}\\right)\\times(2\\times 3 - 1) = 5$\n$\\frac{S_1}{S_3} = \\frac{25}{5} = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s1-phy-q50-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   }

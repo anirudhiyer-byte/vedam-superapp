@@ -10,44 +10,78 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "1nmLrL69P-npD4tKnDI5agZ0IywTMY1yt"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Thermodynamics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "For any reaction $\\mathrm{2P + Q \\rightarrow S}$\n$\\Delta H = 400\\ \\mathrm{kJ/mol}$ & $\\Delta S = 0.2\\ \\mathrm{kJ/K}$\nAt what temperature equilibrium is attained?",
-   "correct_key": null,
-   "correct_value": 2000,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The correct arrangement for decreasing order of electrophilic substitution for above compounds",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$T = \\frac{\\Delta H}{\\Delta S} = \\frac{400}{0.2} = 2000\\ \\mathrm{K}$",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(IV) > (I) > (II) > (III)"
+    },
+    {
+     "key": "B",
+     "text": "(III) > (I) > (II) > (IV)"
+    },
+    {
+     "key": "C",
+     "text": "(II) > (IV) > (III) > (I)"
+    },
+    {
+     "key": "D",
+     "text": "(III) > (IV) > (II) > (I)"
+    }
+   ],
+   "stem_figure": "jn24-06apr-s2-chem-q61.png",
+   "solution_figure": "jn24-06apr-s2-chem-q61-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 2,
-   "topic": "Structure of Atom",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "An electron present in first excite state in H-atom having energy $-3.4\\ \\mathrm{eV}$. Find its kinetic energy.",
-   "correct_key": null,
-   "correct_value": 3.4,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Molality (m) of 3 M aqueous solution of NaCl is:\n(Given : Density of solution $= 1.25\\ \\mathrm{g\\,mL^{-1}}$, Molar mass in $\\mathrm{g\\,mol^{-1}}$ : Na-23, Cl-35.5)",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Kinetic energy $= -$ Total energy $= 3.4\\ \\mathrm{eV}$",
+   "solution": "3 moles are present in 1 litre solution\n$$\\text{molality} = \\frac{3 \\times 1000}{1.25 \\times 1000 - [3 \\times 58.5]} = 2.79\\ m$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$2.90\\ m$"
+    },
+    {
+     "key": "B",
+     "text": "$2.79\\ m$"
+    },
+    {
+     "key": "C",
+     "text": "$1.90\\ m$"
+    },
+    {
+     "key": "D",
+     "text": "$3.85\\ m$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -55,19 +89,36 @@
   },
   {
    "q_no": 3,
-   "topic": "Chemical Bonding and Molecular Structure",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Total number of molecules in which central atom is $sp^{2}$ Hybridised\n$\\mathrm{SiO_2, NH_3, CO_2, SO_2, C_2H_4, C_2H_2, C_6H_6}$",
-   "correct_key": null,
-   "correct_value": 3,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The incorrect statements regarding enzymes are:\n(A) Enzymes are biocatalysts.\n(B) Enzymes are non-specific and can catalyse different kinds of reactions.\n(C) Most Enzymes are globular proteins.\n(D) Enzyme - oxidase catalyses the hydrolysis of maltose into glucose.\nChoose the correct answer from the option given below:",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{SO_2, C_2H_4, C_6H_6}$",
+   "solution": "Direct NCERT Based",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "(B) and (C)"
+    },
+    {
+     "key": "B",
+     "text": "(B), (C) and (D)"
+    },
+    {
+     "key": "C",
+     "text": "(B) and (D)"
+    },
+    {
+     "key": "D",
+     "text": "(A), (B) and (C)"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -75,11 +126,11 @@
   },
   {
    "q_no": 4,
-   "topic": "Amines",
+   "topic": "Haloalkanes and Haloarenes",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$\\mathrm{C_6H_5NH_2}$ (aniline) $\\xrightarrow{\\mathrm{(i)\\ NaNO_2 + HCl;\\ (ii)\\ Cu_2Cl_2 + HCl;\\ (iii)\\ NaOH/\\Delta;\\ (iv)\\ H^{+}}}$ major product is",
-   "correct_key": "A",
+   "stem": "Consider the above chemical reaction. Product \"A\" is:",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
    "solution": null,
@@ -91,39 +142,39 @@
     {
      "key": "A",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q04-optA.png"
+     "figure": "jn24-06apr-s2-chem-q64-optA.png"
     },
     {
      "key": "B",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q04-optB.png"
+     "figure": "jn24-06apr-s2-chem-q64-optB.png"
     },
     {
      "key": "C",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q04-optC.png"
+     "figure": "jn24-06apr-s2-chem-q64-optC.png"
     },
     {
      "key": "D",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q04-optD.png"
+     "figure": "jn24-06apr-s2-chem-q64-optD.png"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-chem-q04-sol.png",
+   "stem_figure": "jn24-06apr-s2-chem-q64.png",
+   "solution_figure": "jn24-06apr-s2-chem-q64-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 5,
-   "topic": "Equilibrium",
+   "topic": "Salt Analysis",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For reaction\n$\\mathrm{CO(g) + \\frac{1}{2}O_2(g) \\rightleftharpoons CO_2(g)}$\nThen the value of $\\frac{K_p}{K_C}$ will be",
+   "stem": "During the detection of acidic radical present in a salt, a student gets a pale yellow precipitate soluble with difficulty in $\\mathrm{NH_4OH}$ solution when sodium carbonate extract was first acidified with dil. $\\mathrm{HNO_3}$ and then $\\mathrm{AgNO_3}$ solution was added. This indicates presence of:",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$K_P = K_C (RT)^{\\Delta n_g}$\n$\\Delta n_g = -\\frac{1}{2}$\n$\\frac{K_P}{K_C} = \\frac{1}{(RT)^{1/2}}$",
+   "solution": "$\\mathrm{Ag^{+} + I^{-} \\rightarrow AgI}$ : Yellow ppt.\n$\\mathrm{Ag^{+} + Cl^{-} \\rightarrow AgCl}$ : White ppt\n$\\mathrm{Ag^{+} + Br^{-} \\rightarrow AgBr}$ : Pale yellow ppt",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -131,19 +182,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{1}{(RT)^{1/2}}$"
+     "text": "$\\mathrm{Br^{-}}$"
     },
     {
      "key": "B",
-     "text": "$(RT)^{1/2}$"
+     "text": "$\\mathrm{CO_3^{2-}}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{1}{RT}$"
+     "text": "$\\mathrm{I^{-}}$"
     },
     {
      "key": "D",
-     "text": "$RT$"
+     "text": "$\\mathrm{Cl^{-}}$"
     }
    ],
    "stem_figure": null,
@@ -153,14 +204,14 @@
   },
   {
    "q_no": 6,
-   "topic": "Hydrocarbons",
+   "topic": "Electrochemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Incorrect statement for But-2-ene.",
-   "correct_key": "C",
+   "stem": "How can an electrochemical cell be converted into an electrolytic cell ?",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "cis isomer has more dipole moment than trans isomer, because it has 2 similar groups on same size of double bond.",
+   "solution": "Applied external potential should be greater than $E^{0}_{cell}$ in opposite direction.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -168,36 +219,36 @@
    "options": [
     {
      "key": "A",
-     "text": "If form two stereo isomer"
+     "text": "Applying an external opposite potential greater than $E^{0}_{cell}$"
     },
     {
      "key": "B",
-     "text": "Trans form is more stable than Cis"
+     "text": "Reversing the flow of ions in salt bridge."
     },
     {
      "key": "C",
-     "text": "Dipole - moment of Trans > Cis"
+     "text": "Applying an external opposite potential lower than $E^{0}_{cell}$."
     },
     {
      "key": "D",
-     "text": "Melting point of Trans > Cis"
+     "text": "Exchanging the electrodes at anode and cathode."
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-chem-q06-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 7,
-   "topic": "The d- and f-Block Elements",
+   "topic": "d- and f-Block Elements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Correct increasing order of no. of unpaired electron\nSc, Ti, Cr, Mn, V",
-   "correct_key": "C",
+   "stem": "Arrange the following elements in the increasing order of number of unpaired electrons in it.\n(A) Sc\n(B) Cr\n(C) V\n(D) Ti\n(E) Mn\nChoose the correct answer from the options given below:",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Cr $>$ Mn $>$ V $>$ Ti $>$ Sc",
+   "solution": "Unpaired electron\n$\\mathrm{Sc[Ar]}\\ 4s^{2}\\,3d^{1}$ : 1\n$\\mathrm{Cr[Ar]}\\ 4s^{1}\\,3d^{5}$ : 6\n$\\mathrm{V[Ar]}\\ 4s^{2}\\,3d^{3}$ : 3\n$\\mathrm{Ti : [Ar]}\\ 4s^{2}\\,3d^{2}$ : 2\n$\\mathrm{Mn : [Ar]}\\ 4s^{2}\\,3d^{5}$ : 5",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -205,19 +256,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Cr $>$ V $>$ Mn $>$ Ti $>$ Sc"
+     "text": "(C) < (E) < (B) < (A) < (D)"
     },
     {
      "key": "B",
-     "text": "Mn $>$ Cr $>$ V $>$ Ti $>$ Sc"
+     "text": "(B) < (C) < (D) < (E) < (A)"
     },
     {
      "key": "C",
-     "text": "Cr $>$ Mn $>$ V $>$ Ti $>$ Sc"
+     "text": "(A) < (D) < (C) < (B) < (E)"
     },
     {
      "key": "D",
-     "text": "Cr $>$ Mn $>$ Ti $>$ V $>$ Sc"
+     "text": "(A) < (D) < (C) < (E) < (B)"
     }
    ],
    "stem_figure": null,
@@ -227,11 +278,48 @@
   },
   {
    "q_no": 8,
+   "topic": "s-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List-I with List-II.\nList-I (Alkali Metal) | List-II (Emission Wavelength in nm)\n(A) Li | (I) 589.2\n(B) Na | (II) 455.5\n(C) Rb | (III) 670.8\n(D) Cs | (IV) 780.0\nChoose the correct answer from the options given below:",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Fact Based",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(I), (B)-(IV), (C)-(III), (D)-(II)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(III), (B)-(I), (C)-(IV), (D)-(II)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(IV), (B)-(II), (C)-(I), (D)-(III)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(II), (B)-(IV), (C)-(III), (D)-(I)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
    "topic": "Alcohols, Phenols and Ethers",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$\\mathrm{C_6H_5-O-CH_3}$ (anisole) $\\xrightarrow[\\mathrm{Conc.\\,H_2SO_4}]{\\mathrm{Conc.\\,HNO_3}}$ (X) $\\xrightarrow[\\mathrm{Fe}]{\\mathrm{Br_2\\,(excess)}}$ (Y); (x) and (Y) are respectively-",
-   "correct_key": "A",
+   "stem": "The major products formed:\nA and B respectively are:",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
    "solution": null,
@@ -243,39 +331,39 @@
     {
      "key": "A",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q08-optA.png"
+     "figure": "jn24-06apr-s2-chem-q69-optA.png"
     },
     {
      "key": "B",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q08-optB.png"
+     "figure": "jn24-06apr-s2-chem-q69-optB.png"
     },
     {
      "key": "C",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q08-optC.png"
+     "figure": "jn24-06apr-s2-chem-q69-optC.png"
     },
     {
      "key": "D",
      "text": "",
-     "figure": "j24-06apr-s2-chem-q08-optD.png"
+     "figure": "jn24-06apr-s2-chem-q69-optD.png"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-chem-q08-sol.png",
+   "stem_figure": "jn24-06apr-s2-chem-q69.png",
+   "solution_figure": "jn24-06apr-s2-chem-q69-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 9,
-   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "q_no": 10,
+   "topic": "Hydrocarbons",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$\\mathrm{R-COOH}$ $\\xrightarrow{\\mathrm{(i)\\ LiAlH_4;\\ (ii)\\ P.C.C;\\ (iii)\\ HCN;\\ (iv)\\ H_3O^{+}}}$ major product (x) is",
-   "correct_key": "C",
+   "stem": "The incorrect statement regarding the geometrical isomers of 2-butene is:",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{R-COOH \\longrightarrow R-CH_2OH \\longrightarrow R-CHO \\longrightarrow R-CH(OH)-CN \\longrightarrow R-CH(OH)-COOH}$",
+   "solution": "Cis–but–2–ene has higher dipole moment than trans–but–2–ene.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -283,36 +371,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{R-H}$"
+     "text": "cis-2-butene and trans-2-butene are not interconvertible at room temperature."
     },
     {
      "key": "B",
-     "text": "$\\mathrm{R-CHO}$"
+     "text": "cis-2-butene has less dipole moment than trans-2-butene."
     },
     {
      "key": "C",
-     "text": "$\\mathrm{R-CH(OH)-COOH}$"
+     "text": "trans-2-butene is more stable than cis-2-butene."
     },
     {
      "key": "D",
-     "text": "$\\mathrm{R-CH_2-COOH}$"
+     "text": "cis-2-butene and trans-2-butene are stereoisomers."
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn24-06apr-s2-chem-q70-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 11,
-   "topic": "The s-Block Elements",
+   "topic": "Chemical Bonding",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Correct increasing order of wavelength of following metals Li, Cs, Rb, K",
-   "correct_key": "B",
+   "stem": "Given below are two statements:\nStatement I: $\\mathrm{PF_5}$ and $\\mathrm{BrF_5}$ both exhibit $sp^{3}d$ hybridisation.\nStatement II: Both $\\mathrm{SF_6}$ and $\\mathrm{[Co(NH_3)_6]^{3+}}$ exhibit $sp^{3}d^{2}$ hybridisation.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "increasing order of wavelength $\\rightarrow$ Rb $>$ K $>$ Li $>$ Cs",
+   "solution": "Hybridisation | Hybridisation\n$\\mathrm{PF_5}$ : $sp^{3}d$ | $\\mathrm{SF_6}$ : $sp^{3}d^{2}$\n$\\mathrm{BrF_5}$ : $sp^{3}d^{2}$ | $\\mathrm{[Co(NH_3)_6]^{3+}}$ : $d^{2}sp^{3}$\nBoth Statement (1) and (2) are false.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -320,19 +408,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Li $>$ Cs $>$ Rb $>$ K"
+     "text": "Statement I is true but Statement II is false"
     },
     {
      "key": "B",
-     "text": "Rb $>$ K $>$ Li $>$ Cs"
+     "text": "Both Statement I and Statement II are true"
     },
     {
      "key": "C",
-     "text": "Li $>$ Cs $>$ K $>$ Rb"
+     "text": "Both Statement I and Statement II are false"
     },
     {
      "key": "D",
-     "text": "Cs $>$ Li $>$ Rb $>$ K"
+     "text": "Statement I is false but Statement II is true"
     }
    ],
    "stem_figure": null,
@@ -342,14 +430,14 @@
   },
   {
    "q_no": 12,
-   "topic": "Practical Chemistry",
+   "topic": "p-Block Elements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Salt $\\xrightarrow{\\mathrm{AgNO_3}}$ yellow ppt $\\xrightarrow{\\mathrm{NH_4OH}}$ insoluble\nSalt may contain anion -",
-   "correct_key": "A",
+   "stem": "The number of ions from the following that are expected to behave as oxidising agent is:\n$\\mathrm{Sn^{4+}, Sn^{2+}, Pb^{2+}, Tl^{3+}, Pb^{4+}, Tl^{+}}$",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Yellow ppt = $\\mathrm{AgI}$\nTherefore, salt contain $\\mathrm{I^{-}}$",
+   "solution": "Due to inert pair effect; $\\mathrm{Tl^{+3}}$ and $\\mathrm{Pb^{+4}}$ can behave as oxidising agents.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -357,19 +445,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{I^{-}}$"
+     "text": "3"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{Br^{-}}$"
+     "text": "4"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{Cl^{-}}$"
+     "text": "1"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{F^{-}}$"
+     "text": "2"
     }
    ],
    "stem_figure": null,
@@ -378,145 +466,11 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 14,
-   "topic": "Solutions",
+   "q_no": 13,
+   "topic": "Amines",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For $3\\ \\mathrm{M}$ aq NaCl solution ($d = 1.25\\ \\mathrm{gm/ml}$) calculate molality?",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$m = \\frac{3}{(1250 - 3 \\times 58.5)/1000} = \\frac{3}{1.0745} = 2.79$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "2.17"
-    },
-    {
-     "key": "B",
-     "text": "2.79"
-    },
-    {
-     "key": "C",
-     "text": "3.7"
-    },
-    {
-     "key": "D",
-     "text": "3.17"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 15,
-   "topic": "General Organic Chemistry",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Number of Carbocation which is not Stabilised by Hyper Conjugation",
-   "correct_key": null,
-   "correct_value": 4,
-   "correct_keys": null,
-   "solution": "B,D,E,F",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-06apr-s2-chem-q15.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 16,
-   "topic": "Chemical Bonding and Molecular Structure",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Choose correct statement\nStatement-I : $\\mathrm{PCl_5}$ and $\\mathrm{BrF_5}$ are $sp^{3}d$ hybridised.\nStatement-II : $\\mathrm{SF_6}$ and $\\mathrm{[Co(NH_3)_6]^{3+}}$ are $sp^{3}d^{2}$ hybridised.",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Both statement are incorrect.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Both statements are correct."
-    },
-    {
-     "key": "B",
-     "text": "Both statements are incorrect"
-    },
-    {
-     "key": "C",
-     "text": "Only statement-I is correct"
-    },
-    {
-     "key": "D",
-     "text": "Only statement-II is correct"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 17,
-   "topic": "Alcohols, Phenols and Ethers",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$\\mathrm{C_6H_5-O-C_2H_5}$ $\\xrightarrow{\\mathrm{Conc.\\,H_2SO_4 + Conc.\\,HNO_3}}$ (X) $\\xrightarrow[\\mathrm{FeBr_3}]{\\mathrm{Br_2\\,(2\\,eq)}}$ (Y); In [Y],\nratio of oxygen and Bromine is $n \\times 10^{-1}$, then find out the value of (n)-",
-   "correct_key": null,
-   "correct_value": 15,
-   "correct_keys": null,
-   "solution": "$\\frac{3}{2} = 1.5 = 15 \\times 10^{-1}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-chem-q17-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 18,
-   "topic": "Solutions",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In $100\\ \\mathrm{ml}$ $\\mathrm{H_2O}$, $x \\times 10^{-3}\\ \\mathrm{ml}$ of EtOH ($d = 0.8\\ \\mathrm{g/ml}$) is added and following graph is observed x is\n$(K_f)_{\\mathrm{H_2O}} = 1.86\\ \\mathrm{K\\,kg/mol}$",
-   "correct_key": null,
-   "correct_value": 7728,
-   "correct_keys": null,
-   "solution": "$\\Delta T_f = K_f \\cdot m$\n$2.5 = 1.86 \\times \\frac{x \\times 10^{-3} \\times 0.8 \\times 46}{0.1}$\n$x = 7728.495 \\simeq 7728\\ \\mathrm{ml}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-06apr-s2-chem-q18.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 19,
-   "topic": "Hydrocarbons",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Rate of E.A.S.R is for given compound\n(I) $\\mathrm{C_6H_5-O-CH_3}$ (II) $\\mathrm{C_6H_6}$ (III) $\\mathrm{C_6H_5-CH_3}$ (IV) $\\mathrm{C_6H_5-NO_2}$",
+   "stem": "Identify the product A in the following reaction.",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
@@ -528,36 +482,262 @@
    "options": [
     {
      "key": "A",
-     "text": "I > III > II > IV"
+     "text": "",
+     "figure": "jn24-06apr-s2-chem-q73-optA.png"
     },
     {
      "key": "B",
-     "text": "I > II > III > IV"
+     "text": "",
+     "figure": "jn24-06apr-s2-chem-q73-optB.png"
     },
     {
      "key": "C",
-     "text": "IV > III > I > II"
+     "text": "",
+     "figure": "jn24-06apr-s2-chem-q73-optC.png"
     },
     {
      "key": "D",
-     "text": "I = III > II > IV"
+     "text": "",
+     "figure": "jn24-06apr-s2-chem-q73-optD.png"
     }
    ],
-   "stem_figure": "j24-06apr-s2-chem-q19.png",
-   "solution_figure": "j24-06apr-s2-chem-q19-sol.png",
+   "stem_figure": "jn24-06apr-s2-chem-q73.png",
+   "solution_figure": "jn24-06apr-s2-chem-q73-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Purification of Organic Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The correct statements among the following, for a \"chromatography\" purification method is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Non polar compounds are having higher value of $\\mathrm{R_f}$ than polar compound.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Organic compounds run faster than solvent in the thin layer chromatographic plate."
+    },
+    {
+     "key": "B",
+     "text": "Non-polar compounds are retained at top and polar compounds come down in column chromatography."
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{R_f}$ of a polar compound is smaller than that of a non-polar compound."
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{R_f}$ is an integral value."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Evaluate the following statements related to group 14 elements for their correctness.\n(A) Covalent radius decreases down the group from C to Pb in a regular manner.\n(B) Electronegativity decreases from C to Pb down the group gradually.\n(C) Maximum covalence of C is 4 whereas other elements can expand their covalence due to presence of d orbitals.\n(D) Heavier elements do not form p$\\pi$-p$\\pi$ bonds.\n(E) Carbon can exhibit negative oxidation states.\nChoose the correct answer from the options given below:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) Down the group; radius increases\n(B) EN does not decrease gradually from C to Pb.\n(C) Correct.\n(D) Correct.\n(E) Range of oxidation state of carbon ; $-4$ to $+4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(C), (D) and (E) Only"
+    },
+    {
+     "key": "B",
+     "text": "(A) and (B) Only"
+    },
+    {
+     "key": "C",
+     "text": "(A), (B) and (C) Only"
+    },
+    {
+     "key": "D",
+     "text": "(C) and (D) Only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Redox Reactions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List-I with the List-II\nList-I (Reaction) | List-II (Type of redox reaction)\n(A) $\\mathrm{N_{2(g)} + O_{2(g)} \\rightarrow 2NO_{(g)}}$ | (I) Decomposition\n(B) $\\mathrm{2Pb(NO_3)_{2(s)} \\rightarrow 2PbO_{(s)} + 4NO_{2(g)} + O_{2(g)}}$ | (II) Displacement\n(C) $\\mathrm{2Na_{(s)} + 2H_2O_{(l)} \\rightarrow 2NaOH_{(aq.)} + H_{2(g)}}$ | (III) Disproportionation\n(D) $\\mathrm{2NO_{2(g)} + 2\\,{}^{-}OH_{(aq.)} \\rightarrow NO^{-}_{2(aq.)} + NO^{-}_{3(aq.)} + H_2O_{(l)}}$ | (IV) Combination\nChoose the correct answer from the options given below:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "A $\\rightarrow$ (IV)\nB $\\rightarrow$ (I)\nC $\\rightarrow$ (II)\nD $\\rightarrow$ (III)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(I), (B)-(II), (C)-(III), (D)-(IV)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(III), (B)-(II), (C)-(I), (D)-(IV)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(II), (B)-(III), (C)-(IV), (D)-(I)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(IV), (B)-(I), (C)-(II), (D)-(III)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the given reaction, identify the major product P.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_3 - CH_2 - CH_2 - OH}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CH_3 - CH_2 - \\overset{O}{\\overset{\\|}{C}} - NH_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CH_3 - \\overset{O}{\\overset{\\|}{C}} - CH_2CH_3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{CH_3 - \\overset{OH}{\\overset{|}{CH}} - COOH}$"
+    }
+   ],
+   "stem_figure": "jn24-06apr-s2-chem-q77.png",
+   "solution_figure": "jn24-06apr-s2-chem-q77-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The correct IUPAC name of $\\mathrm{[PtBr_2(PMe_3)_2]}$ is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Dibromo bis(trimethylphosphine) platinum (II)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "bis(trimethylphosphine)dibromoplatinum(II)"
+    },
+    {
+     "key": "B",
+     "text": "bis[bromo(trimethylphosphine)]platinum(II)"
+    },
+    {
+     "key": "C",
+     "text": "dibromobis(trimethylphosphine)platinum(II)"
+    },
+    {
+     "key": "D",
+     "text": "dibromodi(trimethylphosphine)platinum(II)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List-I with List-II\nList-I (Tetrahedral Complex) | List-II (Electronic configuration)\n(A) $\\mathrm{TiCl_4}$ | (I) $e^{2}, t_2^{0}$\n(B) $\\mathrm{[FeO_4]^{2-}}$ | (II) $e^{4}, t_2^{3}$\n(C) $\\mathrm{[FeCl_4]^{-}}$ | (III) $e^{0}, t_2^{0}$\n(D) $\\mathrm{[CoCl_4]^{2-}}$ | (IV) $e^{2}, t_2^{3}$\nChoose the correct answer from the option given below:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(I), (B)-(III), (C)-(IV), (D)-(II)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(III), (B)-(IV), (C)-(II), (D)-(I)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(III), (B)-(I), (C)-(IV), (D)-(II)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-chem-q79-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 20,
-   "topic": "Structure of Atom",
+   "topic": "Chemical Equilibrium",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Find out the shortest wavelength of paschen series for H-atom",
-   "correct_key": "A",
+   "stem": "The ratio $\\frac{K_P}{K_C}$ for the reaction:\n$$\\mathrm{CO_{(g)} + \\frac{1}{2}O_{2(g)} \\rightleftharpoons CO_{2(g)}}$$\nis:",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\frac{1}{\\lambda} = R.Z^{2}\\left[\\frac{1}{n_1^{2}} - \\frac{1}{n_2^{2}}\\right]$\n$\\frac{1}{\\lambda} = R.(1)^{2}\\left[\\frac{1}{(3)^{2}} - \\frac{1}{(\\infty)^{2}}\\right]$\n$\\frac{1}{\\lambda} = R\\left(\\frac{1}{9}\\right)$\n$\\lambda = \\frac{9}{R}$",
+   "solution": "$\\mathrm{CO(g) + \\frac{1}{2}O_2(g) \\rightleftharpoons CO_2(g)}$\n$$\\Delta n_g = 1 - \\left(1 + \\frac{1}{2}\\right) = -\\frac{1}{2}$$\n$$\\frac{K_P}{K_C} = (RT)^{\\Delta n_g} = \\frac{1}{\\sqrt{RT}}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -565,169 +745,221 @@
    "options": [
     {
      "key": "A",
-     "text": "$9/R$"
+     "text": "$(RT)^{1/2}$"
     },
     {
      "key": "B",
-     "text": "$16/R$"
+     "text": "$RT$"
     },
     {
      "key": "C",
-     "text": "$144/7R$"
+     "text": "$1$"
     },
     {
      "key": "D",
-     "text": "$7R/144$"
+     "text": "$\\frac{1}{\\sqrt{RT}}$"
     }
    ],
    "stem_figure": null,
    "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Amines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An amine (X) is prepared by ammonolysis of benzyl chloride. On adding p-toluenesulphonyl chloride to it the solution remains clear. Molar mass of the amine (X) formed is______ $\\mathrm{g\\,mol^{-1}}$.\n(Given molar mass in $\\mathrm{g\\,mol^{-1}}$ C : 12, H : 1, O : 16, N : 14)",
+   "correct_key": null,
+   "correct_value": 287,
+   "correct_keys": null,
+   "solution": "Molar Mass of (X) is $287\\ \\mathrm{g\\,mol^{-1}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-chem-q81-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 22,
-   "topic": "Redox Reactions",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Match the column -\nReaction | Name\n(A) $\\mathrm{Na^{+} + H_2O \\rightarrow NaOH + H_2}$ | (P) Decompostion\n(B) $\\mathrm{N_2 + O_2 \\rightarrow 2NO}$ | (Q) Displacement\n(C) $\\mathrm{NO_2 \\rightarrow NO_2^{-} + NO_3^{-}}$ | (R) Combination\n(D) $\\mathrm{PbCO_3 \\rightarrow PbO + CO_2}$ | (S) Disproportionation",
-   "correct_key": "C",
-   "correct_value": null,
+   "topic": "Coordination Compounds",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the following reactions\n$\\mathrm{NiS + HNO_3 + HCl \\rightarrow A + NO + S + H_2O}$\nThe number of protons that do not involve in hydrogen bonding in the product B is______.",
+   "correct_key": null,
+   "correct_value": 12,
    "correct_keys": null,
-   "solution": "(P) Decompostion, $\\mathrm{PbCO_3 \\rightarrow PbO + CO_2}$\n(Q) Displacement, $\\mathrm{Na^{+} + H_2O \\rightarrow NaOH + H_2}$\n(R) Combination, $\\mathrm{N_2 + O_2 \\rightarrow 2NO}$\n(S) Disproportionation, $\\mathrm{NO_2 \\rightarrow NO_2^{-} + NO_3^{-}}$",
+   "solution": "$\\mathrm{3NiS + 2HNO_3 + 6HCl \\rightarrow 3NiCl_2 + 2NO + 3S + 4H_2O}$\n$\\mathrm{NiCl_2 + 2NH_4OH + }$ $\\mathrm{H_3C-C=N-OH}$ / $\\mathrm{H_3C-C=N-OH}$ (the two joined by a C–C bond) $\\mathrm{\\rightarrow NH_4Cl + H_2O + (B)}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$A \\rightarrow Q;\\ B \\rightarrow S;\\ C \\rightarrow R;\\ D \\rightarrow P$"
-    },
-    {
-     "key": "B",
-     "text": "$A \\rightarrow P;\\ B \\rightarrow R;\\ C \\rightarrow S;\\ D \\rightarrow Q$"
-    },
-    {
-     "key": "C",
-     "text": "$A \\rightarrow Q;\\ B \\rightarrow R;\\ C \\rightarrow S;\\ D \\rightarrow P$"
-    },
-    {
-     "key": "D",
-     "text": "$A \\rightarrow P;\\ B \\rightarrow S;\\ C \\rightarrow R;\\ D \\rightarrow Q$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
+   "options": [],
+   "stem_figure": "jn24-06apr-s2-chem-q82.png",
+   "solution_figure": "jn24-06apr-s2-chem-q82-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 23,
-   "topic": "Electrochemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "How can we convert electrochemical cell into electrolytic cell",
-   "correct_key": "D",
-   "correct_value": null,
+   "topic": "Solutions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "When 'x' $\\times 10^{-2}$ mL methanol (molar mass = 32 g; density = 0.792 $\\mathrm{g/cm^3}$) is added to 100 mL water (density = 1 $\\mathrm{g/cm^3}$), the following diagram is obtained.\nx =………………(nearest integer)\n[Given: Molal freezing point depression constant of water at 273.15 K is $1.86\\ \\mathrm{K\\,kg\\,mol^{-1}}$]",
+   "correct_key": null,
+   "correct_value": 543,
    "correct_keys": null,
-   "solution": "By applying opposite higher potential.",
+   "solution": "$\\Delta T_f = 273.15 - 270.65 = 2.5\\ \\mathrm{K}$\n$\\Delta T_f = K_f\\, m \\Rightarrow 2.5 = 1.86 \\times \\frac{n}{0.1}$\n$\\Rightarrow n = 0.1344$ moles\n$\\Rightarrow w = 0.1344 \\times 32 = 4.3\\ \\mathrm{g}$\n$\\text{Volume} = \\frac{4.3}{0.792} = 5.43\\ \\mathrm{ml} = 543 \\times 10^{-2}\\ \\mathrm{ml}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "By changing electrodes"
-    },
-    {
-     "key": "B",
-     "text": "By reversing movement of ions in salt bridge"
-    },
-    {
-     "key": "C",
-     "text": "By applying opposite lower potential"
-    },
-    {
-     "key": "D",
-     "text": "By applying opposite higher potential"
-    }
-   ],
-   "stem_figure": null,
+   "options": [],
+   "stem_figure": "jn24-06apr-s2-chem-q83.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 24,
-   "topic": "The p-Block Elements",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "In $14^{\\mathrm{th}}$ group of periodic table, find correct option\n(A) Covalent radius decreases down the group\n(B) Down the group $p\\pi\\text{-}p\\pi$ bond strength decreases\n(C) Electronegativity decreases down the group\n(D) Carbon do not show negative oxidation state",
-   "correct_key": "C",
-   "correct_value": null,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The ratio of number of oxygen atoms to bromine atoms in the product Q is_____ $\\times 10^{-1}$.",
+   "correct_key": null,
+   "correct_value": 15,
    "correct_keys": null,
-   "solution": "(B) Down the group $p\\pi\\text{-}p\\pi$ bond strength decreases\n(C) Electronegativity decreases down the group",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "A, B, C"
-    },
-    {
-     "key": "B",
-     "text": "A, B, C, D"
-    },
-    {
-     "key": "C",
-     "text": "B, C"
-    },
-    {
-     "key": "D",
-     "text": "B, C, D"
-    }
-   ],
+   "options": [],
+   "stem_figure": "jn24-06apr-s2-chem-q84.png",
+   "solution_figure": "jn24-06apr-s2-chem-q84-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "General Organic Chemistry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Number of carbocation from the following that are not stabilized by hyperconjugation is………….",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-06apr-s2-chem-q85.png",
+   "solution_figure": "jn24-06apr-s2-chem-q85-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Thermodynamics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "For the reaction at 298 K, $\\mathrm{2A + B \\rightarrow C}$. $\\Delta H = 400\\ \\mathrm{kJ\\,mol^{-1}}$ and $\\Delta S = 0.2\\ \\mathrm{kJ\\,mol^{-1}\\,K^{-1}}$. The reaction will become spontaneous above______ K.",
+   "correct_key": null,
+   "correct_value": 2000,
+   "correct_keys": null,
+   "solution": "$\\Delta G = 0$\n$$T = \\frac{\\Delta H}{\\Delta S} = \\frac{400}{0.2} = 2000\\ \\mathrm{K}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 25,
-   "topic": "Coordination Compounds",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "IUPAC name of $\\mathrm{[PtBr_2(PMe_3)_2]}$",
-   "correct_key": "A",
-   "correct_value": null,
+   "q_no": 27,
+   "topic": "Chemical Bonding",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Total number of species from the following with central atom utilising $2p^{2}$ hybrid orbitals for bonding is…………….\n$\\mathrm{NH_3, SO_2, SiO_2, BeCl_2, C_2H_2, C_2H_4, BCl_3, HCHO, C_6H_6, BF_3, C_2H_4Cl_2}$",
+   "correct_key": null,
+   "correct_value": 6,
    "correct_keys": null,
-   "solution": "Dibromido(trimethylphosphine)platinum(II)",
+   "solution": "Central atom utilising $sp^{2}$ hybrid orbitals\n$\\mathrm{SO_2, C_2H_4, BCl_3, HCHO, C_6H_6, BF_3}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Dibromido(trimethylphosphine)platinum(II)"
-    },
-    {
-     "key": "B",
-     "text": "Dibromido(trimethylphosphine)platinum(IV)"
-    },
-    {
-     "key": "C",
-     "text": "Dibromido(trimethylphosphine)platinate(IV)"
-    },
-    {
-     "key": "D",
-     "text": "(trimethylphosphine)Dibromidoplatinum(IV)"
-    }
-   ],
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Chemical Kinetics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the two different first order reactions given below\n$\\mathrm{A + B \\rightarrow C}$ (Reaction 1)\n$\\mathrm{P \\rightarrow Q}$ (Reaction 2)\nThe ratio of the half life of Reaction 1 : Reaction 2 is 5 : 2. If $t_1$ and $t_2$ represent the time taken to complete $\\frac{2}{3}^{rd}$ and $\\frac{4}{5}^{th}$ of Reaction 1 and Reaction 2, respectively, then the value of the ratio $t_1 : t_2$ is________ $\\times 10^{-1}$ (nearest integer).\n[Given: $\\log_{10}(3) = 0.477$ and $\\log_{10}(5) = 0.699$]",
+   "correct_key": null,
+   "correct_value": 17,
+   "correct_keys": null,
+   "solution": "$\\frac{(t_{1/2})_I}{(t_{1/2})_{II}} = \\frac{K_2}{K_1} = \\frac{5}{2}$\n$\\therefore K_1 t_1 = \\ln\\frac{1}{1 - \\frac{2}{3}} = \\ln 3$\n$K_2 t_2 = \\ln\\frac{1}{1 - \\frac{4}{5}} = \\ln 5$\n$\\Rightarrow \\frac{K_1}{K_2} \\times \\frac{t_1}{t_2} = \\frac{0.477}{0.699}$\n$\\Rightarrow \\frac{t_1}{t_2} = \\frac{0.477}{0.699} \\times \\frac{5}{2} = 1.7 = 17 \\times 10^{-1}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Atomic Structure",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "For hydrogen atom, energy of an electron in first excited state is $-3.4\\ \\mathrm{eV}$, K.E. of the same electron of hydrogen atom is x eV. Value of x is______ $\\times 10^{-1}$ eV. (Nearest integer)",
+   "correct_key": null,
+   "correct_value": 34,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "d- and f-Block Elements",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Among $\\mathrm{VO_2^{+}, MnO_4^{-}}$ and $\\mathrm{Cr_2O_7^{2-}}$, the spin-only magnetic moment value of the species with least oxidising ability is………….BM (Nearest integer).\n(Given atomic member V = 23, Mn = 25, Cr = 24)",
+   "correct_key": null,
+   "correct_value": 0,
+   "correct_keys": null,
+   "solution": "For 3d transition series;\nOxidising power : $\\mathrm{V^{+5} < Cr^{+6} < Mn^{+7}}$\n$\\mathrm{V^{+5}}$ : $\\mathrm{[Ar]}\\ 4s^{0}\\,3d^{0}$\nNumber of unpaired electron = 0\n$\\mu = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,

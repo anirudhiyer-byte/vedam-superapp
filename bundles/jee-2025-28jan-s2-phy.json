@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "1CqJGeJ_DXEYyA5qGvsew7vCqLFEYqYTT"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Atoms",
+   "topic": "Electromagnetic Induction",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Bohr’s model is applicable for single electron atom of atomic number $z$. Dependency of frequency of rotation of electron in $n^{\\text{th}}$ principal quantum number is proportional to",
-   "correct_key": "B",
+   "stem": "A uniform magnetic field of $0.4\\ \\mathrm{T}$ acts perpendicular to a circular copper disc $20\\ \\mathrm{cm}$ in radius. The disc is having a uniform angular velocity of $10\\pi\\ \\mathrm{rad\\,s^{-1}}$ about an axis through its centre and perpendicular to the disc. What is the protential difference developed between the axis of the disc and the rim ? ($\\pi = 3.14$)",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$f = \\frac{v}{2\\pi r} \\propto \\frac{z}{n\\left(\\frac{n^{2}}{z}\\right)} = \\frac{z^{2}}{n^{3}}$",
+   "solution": "$B = 0.4\\ \\mathrm{T}$\n$r = 20\\ \\mathrm{cm}$\n$\\omega = 10\\pi\\ \\mathrm{rad/s}$\n$$E = \\frac{1}{2}B\\omega R^{2}$$\n$= 0.2512\\ \\mathrm{V}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{z}{n^{2}}$"
+     "text": "$0.0628\\ \\mathrm{V}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{z^{2}}{n^{3}}$"
+     "text": "$0.5024\\ \\mathrm{V}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{n^{3}}{z}$"
+     "text": "$0.2512\\ \\mathrm{V}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{z}{n}$"
+     "text": "$0.1256\\ \\mathrm{V}$"
     }
    ],
    "stem_figure": null,
@@ -52,14 +52,14 @@
   },
   {
    "q_no": 2,
-   "topic": "Current Electricity",
+   "topic": "Capacitors",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In the given circuit, find $I$ if the potentials at $A$ and $B$ are equal",
-   "correct_key": "B",
+   "stem": "A parallel plate capacitor of capacitance $1\\ \\mu\\mathrm{F}$ is charged to a potential difference of $20\\ \\mathrm{V}$. The distance between plates is $1\\ \\mu\\mathrm{m}$. The energy density between plates of capacitor is :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Given potential at $A$ and $B$ are equal.\n$\\Rightarrow$ This is a wheat-stone Bridge\ni.e., $\\frac{R}{10\\Omega} = \\frac{40\\Omega}{20\\Omega}$\nor $R = 20\\Omega$\nEquivalent resistance $= 20\\Omega$\n$I = \\frac{40V}{20\\Omega} = 2A$",
+   "solution": "$C = 1\\ \\mu\\mathrm{F}$\n$V = 20\\ \\mathrm{V}$\n$d = 1\\ \\mu\\mathrm{m}$\nEnergy density $= \\frac{1}{2}\\epsilon_0 E^{2}$\n$$E = \\frac{V}{d} = 20 \\times 10^{6}\\ \\mathrm{V/m}$$\n$U = 1.77 \\times 10^{3}\\ \\mathrm{J/m^{3}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,36 +67,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$1A$"
+     "text": "$1.8 \\times 10^{3}\\ \\mathrm{J/m^{3}}$"
     },
     {
      "key": "B",
-     "text": "$2A$"
+     "text": "$2 \\times 10^{-4}\\ \\mathrm{J/m^{3}}$"
     },
     {
      "key": "C",
-     "text": "$3A$"
+     "text": "$2 \\times 10^{2}\\ \\mathrm{J/m^{3}}$"
     },
     {
      "key": "D",
-     "text": "$4A$"
+     "text": "$1.8 \\times 10^{5}\\ \\mathrm{J/m^{3}}$"
     }
    ],
-   "stem_figure": "j25-28jan-s2-phy-q02.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 3,
-   "topic": "Electromagnetic Waves",
+   "topic": "Units and Dimensions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In an electromagnetic wave, the magnetic field is given as $\\vec{B} = \\left(\\frac{\\sqrt{3}}{2}\\hat{i} + \\frac{1}{2}\\hat{j}\\right)30\\sin(\\omega t - kz)$, the corresponding electric field is",
-   "correct_key": "B",
+   "stem": "Match List-I with List-II\nList-I | List-II\n(A) Angular Impulse | (I) $[\\mathrm{M^{0}L^{2}T^{-2}}]$\n(B) Latent Heat | (II) $[\\mathrm{M L^{2}T^{-3}A^{-1}}]$\n(C) Electrical resistivity | (III) $[\\mathrm{M L^{2}T^{-1}}]$\n(D) Electromotive force | (IV) $[\\mathrm{M L^{3}T^{-3}A^{-2}}]$\nChoose the correct answer from the options given below :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$E = BC$\n$= 30 \\times 3 \\times 10^{8} = 9 \\times 10^{9}\\ \\mathrm{N/C}$\n$\\hat{E} = \\hat{B} \\times \\hat{C}$\n$= \\left(\\frac{\\sqrt{3}}{2}\\hat{i} + \\frac{1}{2}\\hat{j}\\right) \\times k$\n$= \\left(\\frac{\\sqrt{3}}{2}\\hat{j} + \\frac{1}{2}\\hat{i}\\right)$\n$\\vec{E} = \\left(\\frac{1}{2}\\hat{i} - \\frac{\\sqrt{3}}{2}\\hat{j}\\right)9 \\times 10^{9}\\sin(\\omega t - kz)$",
+   "solution": "Angular impulse $= [\\mathrm{M L^{2}T^{-1}}]$\nLatent Heat $= [\\mathrm{M^{0}L^{2}T^{-2}}]$\nElectrical resistivity $= [\\mathrm{M L^{3}T^{-3}A^{-2}}]$\nElectromotive force $= [\\mathrm{M L^{2}T^{-3}A^{-1}}]$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\left(\\frac{1}{2}\\hat{i} + \\frac{\\sqrt{3}}{2}\\hat{j}\\right)9 \\times 10^{9}\\sin(\\omega t - kz)$"
+     "text": "(A)-(III), (B)-(I), (C)-(IV), (D)-(II)"
     },
     {
      "key": "B",
-     "text": "$\\left(\\frac{1}{2}\\hat{i} - \\frac{\\sqrt{3}}{2}\\hat{j}\\right)9 \\times 10^{9}\\sin(\\omega t - kz)$"
+     "text": "(A)-(I), (B)-(III), (C)-(IV), (D)-(II)"
     },
     {
      "key": "C",
-     "text": "$\\left(\\frac{1}{2}\\hat{i} + \\frac{\\sqrt{3}}{2}\\hat{j}\\right)9 \\times 10^{9}\\cos(\\omega t - kz)$"
+     "text": "(A)-(III), (B)-(I), (C)-(II), (D)-(IV)"
     },
     {
      "key": "D",
-     "text": "$\\left(\\frac{1}{2}\\hat{i} - \\frac{\\sqrt{3}}{2}\\hat{j}\\right)9 \\times 10^{9}\\cos(\\omega t - kz)$"
+     "text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III)"
     }
    ],
    "stem_figure": null,
@@ -126,14 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "Moving Charges and Magnetism",
+   "topic": "Kinetic Theory of Gases",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The magnetic field $B$ at the centre $O$ of the given arrangement is",
-   "correct_key": "A",
+   "stem": "The ratio of vapour densities of two gases at the same temperature is $\\frac{4}{25}$, then the ratio of r.m.s. velocities will be :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\vec{B}_{\\text{net}} = \\vec{B}_{\\text{circle}} + \\vec{B}_{\\text{wire 1}} + \\vec{B}_{\\text{wire 2}}$\n$= \\frac{3}{4}\\left(\\frac{\\mu_0 I}{2a}\\right)(+\\hat{k}) + \\vec{O} + \\frac{\\mu_0 I}{4\\pi a}(+\\hat{k})$\n$= \\frac{+\\mu_0 I}{8\\pi a}(3\\pi + 2)\\hat{k}$",
+   "solution": "$$\\frac{\\rho_1}{\\rho_2} = \\frac{4}{25}$$\nRatio of rms velocities $= \\sqrt{\\frac{\\rho_2}{\\rho_1}} = \\frac{5}{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -141,36 +141,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{+\\mu_0 I}{8\\pi a}(3\\pi + 2)\\hat{k}$"
+     "text": "$\\frac{25}{4}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{-\\mu_0 I}{8\\pi a}(3\\pi + 2)\\hat{k}$"
+     "text": "$\\frac{2}{5}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{+\\mu_0 I}{8\\pi a}(3\\pi - 2)\\hat{k}$"
+     "text": "$\\frac{5}{2}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{-\\mu_0 I}{8\\pi a}(3\\pi - 2)\\hat{k}$"
+     "text": "$\\frac{4}{25}$"
     }
    ],
-   "stem_figure": "j25-28jan-s2-phy-q04.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 5,
-   "topic": "Mechanical Properties of Solids",
+   "topic": "Kinetic Theory of Gases",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A cube of side 10 cm having bulk modulus of $1.4 \\times 10^{11}$ Pa is placed in atmosphere. Now it is subjected to extra pressure of $7 \\times 10^{6}$ Pa then magnitude of change in volume of cube is",
-   "correct_key": "C",
+   "stem": "The kinetic energy of translation of the molecules in $50\\ \\mathrm{g}$ of $\\mathrm{CO_2}$ gas at $17^\\circ\\mathrm{C}$ is :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$B = \\frac{\\Delta P}{\\Delta V/V}$\n$|\\Delta V| = \\frac{\\Delta P V}{B}$\n$|\\Delta V| = \\frac{7 \\times 10^{6} \\times 10^{-3}}{1.4 \\times 10^{11}}$\n$|\\Delta V|_{\\mathrm{mL}} = \\frac{5 \\times 10^{3}}{10^{11}} \\times 10^{6}$\n$= 0.05$ mL",
+   "solution": "$(\\mathrm{KE})_{\\mathrm{Translational}} = \\left[\\frac{3}{2}KT\\right] \\times$ no. of molecule\nNo. of molecule $= \\left[\\frac{50}{44} \\times 6.023 \\times 10^{23}\\right]$\n$(\\mathrm{KE})_{\\mathrm{Translational}} = 4108.644\\ \\mathrm{J}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -178,19 +178,19 @@
    "options": [
     {
      "key": "A",
-     "text": "0.03 mL"
+     "text": "$3986.3\\ \\mathrm{J}$"
     },
     {
      "key": "B",
-     "text": "0.3 mL"
+     "text": "$4102.8\\ \\mathrm{J}$"
     },
     {
      "key": "C",
-     "text": "0.05 mL"
+     "text": "$4205.5\\ \\mathrm{J}$"
     },
     {
      "key": "D",
-     "text": "0.2 mL"
+     "text": "$3582.7\\ \\mathrm{J}$"
     }
    ],
    "stem_figure": null,
@@ -200,14 +200,14 @@
   },
   {
    "q_no": 6,
-   "topic": "Electrostatic Potential and Capacitance",
+   "topic": "Ray Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Choose the correct option representing the energy density between the plates of a parallel plate capacitor with plate area $A$, plate separation $d$ and potential difference $V$.",
-   "correct_key": "A",
+   "stem": "In a long glass tube, mixture of two liquids A and B with refractive indices $1.3$ and $1.4$ respectively, forms a convex refractive meniscus towards A. If an object placed at $13\\ \\mathrm{cm}$ from the vertex of the meniscus in A forms an image with a magnification of '$-2$' then the radius of curvature of the meniscus is :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$E = \\frac{V}{d}$\nEnergy density $= \\frac{1}{2}\\varepsilon_0 E^{2}$\n$= \\frac{1}{2}\\varepsilon_0 \\frac{V^{2}}{d^{2}}$",
+   "solution": "$$\\frac{n_2}{v} - \\frac{n_1}{u} = \\frac{n_2 - n_1}{R}$$\n$$\\frac{1.4}{v} - \\frac{1.3}{-13} = \\frac{0.1}{R}$$\n$$\\frac{1.4}{v} = \\frac{1 - R}{10R}$$\n$$m = \\frac{v/n_2}{u/n_1}$$\n$$-2 \\times \\frac{(-13)}{1.3} = \\frac{10R}{1 - R}$$\n$R = \\frac{2}{3}\\ \\mathrm{cm}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -215,19 +215,56 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{\\varepsilon_0 V^{2}}{2d^{2}}$"
+     "text": "$1\\ \\mathrm{cm}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{\\varepsilon_0 V d^{2}}{2}$"
+     "text": "$\\frac{1}{3}\\ \\mathrm{cm}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{\\varepsilon_0 A V^{2}}{2d}$"
+     "text": "$\\frac{2}{3}\\ \\mathrm{cm}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{\\varepsilon_0 A V^{2}}{2d^{2}}$"
+     "text": "$\\frac{4}{3}\\ \\mathrm{cm}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-28jan-s2-phy-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Atoms and Nuclei",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The frequency of revolution of the electron in Bohr's orbit varies with n, the principal quantum number as",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Frequency of revolution $\\propto \\frac{1}{n^{3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{n^{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{n^{4}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{n^{2}}$"
     }
    ],
    "stem_figure": null,
@@ -236,15 +273,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 7,
+   "q_no": 8,
    "topic": "Wave Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following phenomenon is not explained by wave theory of light",
+   "stem": "Which of the following phenomena can not be explained by wave theory of light ?",
    "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Compton effect is based on particle nature of light.",
+   "solution": "Comptan effect is based on particle nature of light.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -256,11 +293,11 @@
     },
     {
      "key": "B",
-     "text": "Refraction of light"
+     "text": "Diffraction of light"
     },
     {
      "key": "C",
-     "text": "Diffraction"
+     "text": "Refraction of light"
     },
     {
      "key": "D",
@@ -273,15 +310,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 8,
-   "topic": "Laws of Motion",
+   "q_no": 9,
+   "topic": "Kinematics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A balloon system having mass $m$ is moving up with acceleration $a$, find the mass to be removed from it to have acceleration $3a$.\n(Neglect the volume of mass attached)",
+   "stem": "The velocity-time graph of an object moving along a straight line is shown in figure. What is the distance covered by the object between $t = 0$ to $t = 4\\ \\mathrm{s}$ ?",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$F_B - mg = ma$ ...(i)\n$F_B - (m - x)g = 3(m - x)a$ ...(ii)\nOn solving\n$x = \\frac{2ma}{3a + g}$",
+   "solution": "Distance = Area under v v/s t graph\n$$\\text{Distance} = \\frac{1}{2} \\times 2 \\times 10 + 2 \\times 10 = 30\\ \\mathrm{m}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -289,73 +326,39 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{2ma}{3a + g}$"
+     "text": "$30\\ \\mathrm{m}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{2ma}{2a + g}$"
+     "text": "$10\\ \\mathrm{m}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{ma}{3a + g}$"
+     "text": "$13\\ \\mathrm{m}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{ma}{g - 3a}$"
+     "text": "$11\\ \\mathrm{m}$"
     }
    ],
-   "stem_figure": "j25-28jan-s2-phy-q08.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 9,
-   "topic": "Gravitation",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Mass $M$ and radius $R$ of a planet is related with mass $M_e$ and Radius $R_e$ of earth as $M_e = 8M_P$ and $R_e = 2R_P$. If escape speed for earth is 11.2 km/sec, then escape speed for the planet is",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\frac{v'}{v_e} = \\sqrt{\\frac{GM}{\\frac{RG(8M)}{2R}}} = \\frac{1}{2}$\n$v' = \\frac{v_e}{2} = \\frac{11.2}{2} = 5.6$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$11.2\\sqrt{2}$ km/sec"
-    },
-    {
-     "key": "B",
-     "text": "5.6 km/sec"
-    },
-    {
-     "key": "C",
-     "text": "$5.6\\sqrt{2}$ km/sec"
-    },
-    {
-     "key": "D",
-     "text": "11.2 km/sec"
-    }
-   ],
-   "stem_figure": null,
+   "stem_figure": "jn25-28jan-s2-phy-q34.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 10,
-   "topic": "Semiconductor Electronics",
+   "topic": "Errors in Measurement",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The correct variation of voltage across $AB$ is given by (consider that the threshold voltage of the diode is very small)",
+   "stem": "A bar magnet has total length $2l = 20$ units and the field point P is at a distance $d = 10$ units from the centre of the magnet. If the relative uncertainty of length measurement is $1\\%$, then uncertainty of the magnetic field at point P is :",
    "correct_key": "B",
    "correct_value": null,
-   "correct_keys": null,
-   "solution": "The diode will only conduct in negative half.",
+   "correct_keys": [
+    "B",
+    "C"
+   ],
+   "solution": "Method-1 :\nWithout considering uncertainty in $\\ell$.\n$$B = \\frac{\\mu_0}{4\\pi}\\frac{m}{r^{3}}$$\n$$B \\propto \\frac{1}{r^{3}}$$\n$$\\frac{\\Delta B}{B} = 3 \\times \\left(\\frac{\\Delta r}{r}\\right)$$\n$\\%$ uncertainty in $B = 3\\%$\nMethod-2 :\nWith considering uncertainty in $\\ell$.\n$$B \\propto \\frac{1}{r^{3}}$$\n$$\\frac{\\Delta B}{B} = \\frac{\\Delta \\ell}{\\ell} + 3 \\times \\left(\\frac{\\Delta r}{r}\\right) = 1 + 3 \\times 1 = 4\\%$$\n$\\%$ uncertainty in $B = 4\\%$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -363,40 +366,36 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-28jan-s2-phy-q10-optA.png"
+     "text": "$10\\%$"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-28jan-s2-phy-q10-optB.png"
+     "text": "$4\\%$"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-28jan-s2-phy-q10-optC.png"
+     "text": "$3\\%$"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-28jan-s2-phy-q10-optD.png"
+     "text": "$5\\%$"
     }
    ],
-   "stem_figure": "j25-28jan-s2-phy-q10.png",
+   "stem_figure": "jn25-28jan-s2-phy-q35.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 11,
-   "topic": "Moving Charges and Magnetism",
+   "topic": "Gravitation",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "An equilateral triangle frame of side $l$ is carrying current $i$, find magnetic field at its centroid",
-   "correct_key": "C",
+   "stem": "Earth has mass 8 times and radius 2 times that of a planet. If the escape velocity from the earth is $11.2\\ \\mathrm{km/s}$, the escape velocity in $\\mathrm{km/s}$ from the planet will be :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$B = 3\\left(\\frac{\\mu_0 i}{4\\pi l\\tan30^\\circ}\\right)2\\cos30^\\circ$\n$= \\frac{3\\mu_0 i}{2\\pi l}\\sqrt{3} \\cdot \\frac{\\sqrt{3}}{2}$\n$= \\frac{9\\mu_0 i}{2\\pi l}$",
+   "solution": "$$V_{\\mathrm{escape}} = \\sqrt{\\frac{2GM}{R}}$$\n$$\\frac{(V_{\\mathrm{escape}})_{\\mathrm{Planet}}}{(V_{\\mathrm{escape}})_{\\mathrm{Earth}}} = \\sqrt{\\left(\\frac{M_P}{M_E}\\right) \\times \\left(\\frac{R_E}{R_P}\\right)} = \\frac{1}{2}$$\n$$(V_{\\mathrm{escape}})_{\\mathrm{Planet}} = \\frac{1}{2}(V_{\\mathrm{escape}})_{\\mathrm{Earth}} = 5.6\\ \\mathrm{km/s}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -404,36 +403,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{3\\mu_0 i}{4\\pi l}$"
+     "text": "$11.2$"
     },
     {
      "key": "B",
-     "text": "$\\frac{3\\mu_0 i}{\\pi l}$"
+     "text": "$5.6$"
     },
     {
      "key": "C",
-     "text": "$\\frac{9\\mu_0 i}{2\\pi l}$"
+     "text": "$2.8$"
     },
     {
      "key": "D",
-     "text": "$\\frac{\\mu_0 i}{\\pi l}$"
+     "text": "$8.4$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j25-28jan-s2-phy-q11-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 12,
-   "topic": "Units and Measurements",
+   "topic": "Simple Harmonic Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Select the correct match for dimensions\nColumn-I | Column-II\n(A) Angular Momentum | (I) $[MLT^{-2}]$\n(B) Force | (II) $[ML^{2}T^{-1}]$\n(C) Energy | (III) $[ML^{-1}T^{-2}]$\n(D) Pressure | (IV) $[ML^{2}T^{-2}]$",
-   "correct_key": "C",
+   "stem": "Given below are two statements. One is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A) : Knowing initial position $x_0$ and initial momentum $p_0$ is enough to determine the position and momentum at any time t for a simple harmonic motion with a given angular frequency $\\omega$.\nReason (R) : The amplitude and phase can be expressed in terms of $x_0$ and $p_0$.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Angular momentum $= [ML^{2}T^{-1}]$\nForce $= [MLT^{-2}]$\nEnergy $= [ML^{2}T^{-2}]$\nPressure $= [ML^{-1}T^{-2}]$",
+   "solution": "$x = A\\sin(\\omega t + \\phi)$\n$x_0 = A\\sin\\phi$ ...(1)\n$p = mA\\omega\\cos(\\omega t + \\phi)$\n$p_0 = mA\\omega\\cos\\phi$ ....(2)\n$(2)/(1) \\Rightarrow \\tan\\phi = \\left(\\frac{x_0}{p_0}\\right)m\\omega$\n$$\\sin\\phi = \\frac{x_0 m\\omega}{\\sqrt{(m\\omega x_0)^{2} + p_0^{2}}}$$\nFrom (1), $A = \\frac{x_0}{\\sin\\phi} = \\frac{\\sqrt{(m\\omega x_0)^{2} + p_0^{2}}}{m\\omega}$\nThis means we can explain assertion with the given reason.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -441,19 +440,19 @@
    "options": [
     {
      "key": "A",
-     "text": "A-(II), B(III), C-(I), D-(IV)"
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)."
     },
     {
      "key": "B",
-     "text": "A-(I), B(II), C-(III), D-(IV)"
+     "text": "(A) is false but (R) is true."
     },
     {
      "key": "C",
-     "text": "A-(II), B(I), C-(IV), D-(III)"
+     "text": "(A) is true but (R) is false."
     },
     {
      "key": "D",
-     "text": "A-(II), B(I), C-(III), D-(IV)"
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)."
     }
    ],
    "stem_figure": null,
@@ -466,11 +465,11 @@
    "topic": "Ray Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In the figure shown the object kept at a distance 13 cm from the interface forms a real image which is double in size. The radius of currature of the interface is",
-   "correct_key": "B",
+   "stem": "A concave mirror produces an image of an object such that the distance between the object and image is $20\\ \\mathrm{cm}$. If the magnification of the image is '$-3$', then the magnitude of the radius of curvature of the mirror is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Magnification $= m = \\frac{\\frac{v}{\\mu_2}}{\\frac{u}{\\mu_1}}$\n$\\Rightarrow m = -2 = \\frac{\\frac{v}{1.4}}{\\frac{-13}{1.3}}$\n$\\Rightarrow v = +28$ cm\nUsing formula for refraction at a curved surface\n$\\frac{\\mu_2}{v} - \\frac{\\mu_1}{u} = \\frac{\\mu_2 - \\mu_1}{R}$\n$\\frac{1.4}{+28\\ \\mathrm{cm}} - \\frac{1.3}{-13\\ \\mathrm{cm}} = \\frac{1.4 - 1.3}{R}$\n$\\frac{1}{2} + 1 = \\frac{1}{R}$\n$R = \\frac{2}{3}$ cm",
+   "solution": "$m = -3 = -\\frac{v}{u}$ and $v - u = 20\\ \\mathrm{cm}$\n$$f = \\frac{vu}{v + u} = \\frac{(-30)(-10)}{-30 - 10}$$\n$\\therefore R = +15$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -478,36 +477,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{3}{2}$ cm"
+     "text": "$3.75\\ \\mathrm{cm}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{2}{3}$ cm"
+     "text": "$30\\ \\mathrm{cm}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{3}{4}$ cm"
+     "text": "$7.5\\ \\mathrm{cm}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{4}{3}$ cm"
+     "text": "$15\\ \\mathrm{cm}$"
     }
    ],
-   "stem_figure": "j25-28jan-s2-phy-q13.png",
-   "solution_figure": null,
+   "stem_figure": null,
+   "solution_figure": "jn25-28jan-s2-phy-q38-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 14,
-   "topic": "Magnetism and Matter",
+   "topic": "Work, Energy and Power",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Due to the bar magnet shown, if the % uncertainity in $d$ is 1%, find uncertainity in the magnetic field at $P$.\n[$d$ : 10 units, $l$ = 10 units]",
-   "correct_key": "C",
+   "stem": "A body of mass $4\\ \\mathrm{kg}$ is placed on a plane at a point P having coordinate $(3, 4)\\ \\mathrm{m}$. Under the action of force $\\vec{F} = \\left(2\\hat{i} + 3\\hat{j}\\right)\\mathrm{N}$, it moves to a new point Q having coordinates $(6, 10)\\mathrm{m}$ in $4\\ \\mathrm{sec}$. The average power and instantaneous power at the end of $4\\ \\mathrm{sec}$ are in the ratio of :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$B = \\frac{2\\mu_0 m}{4\\pi r^{2}}\\cos\\theta$\n$r = \\sqrt{(10)^{2} + d^{2}}$\n$\\cos\\theta = \\frac{10}{\\sqrt{(10)^{2} + (d)^{2}}}$\n$B = 2\\left(\\frac{\\mu_0}{4\\pi}\\right)\\frac{10m}{(10^{2} + d^{2})^{3/2}}$\n$\\frac{dB}{dd} = \\frac{3B}{2}\\frac{2d}{(10^{2} + d^{2})}$\n$\\frac{dB}{B} = \\left(\\frac{3d^{2}}{10^{2} + d^{2}}\\right)\\left(\\frac{dd}{d}\\right)$\n$= 1.5\\%$",
+   "solution": "$$\\langle p \\rangle = \\frac{(2\\hat{i} + 3\\hat{j}).(3\\hat{i} + 6\\hat{j})}{4} = 6$$\n$$\\vec{a} = \\left(\\frac{\\vec{F}}{m} = \\frac{1}{2}\\hat{i} + \\frac{3}{4}\\hat{j}\\right)$$\n$\\vec{v}$ at $t = 4\\ \\mathrm{sec} = \\left(\\frac{1}{2}\\hat{i} + \\frac{3}{4}\\hat{j}\\right) \\times 4 = (2\\hat{i} + 3\\hat{j})$\n$P_{ins} = (2\\hat{i} + 3)(2\\hat{i} + 3\\hat{j}) = 13$\n$$\\frac{\\langle P \\rangle}{P_{ins}} = \\frac{6}{13}$$\nNote : Given data is not matching.\n$S = ut + \\frac{1}{2}at^{2}$\n$$S = 0 + \\frac{1}{2}\\frac{(2\\hat{i} + 3\\hat{j})}{4}(4)^{2} = 4\\hat{i} + 6\\hat{j}$$\nIf $\\vec{r}_i = 3\\hat{i} + 4\\hat{j}$ then $\\vec{r}_f = 7\\hat{i} + 10\\hat{j}$\nBut Final position given in the question is $(6, 10)$.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -515,36 +514,36 @@
    "options": [
     {
      "key": "A",
-     "text": "2%"
+     "text": "$13 : 6$"
     },
     {
      "key": "B",
-     "text": "3%"
+     "text": "$6 : 13$"
     },
     {
      "key": "C",
-     "text": "1.5%"
+     "text": "$1 : 2$"
     },
     {
      "key": "D",
-     "text": "0.5%"
+     "text": "$4 : 3$"
     }
    ],
-   "stem_figure": "j25-28jan-s2-phy-q14.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 15,
-   "topic": "Electrostatic Potential and Capacitance",
+   "topic": "Semiconductor Devices",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A capacitor of capacitance $1\\ \\mu\\mathrm{F}$ is charged to potential of 20 V. Distance between plates is $10\\ \\mu\\mathrm{m}$, then charge density on plates is",
-   "correct_key": "B",
+   "stem": "In the circuit shown here, assuming threshold voltage of diode is negligibly small, then voltage $V_{AB}$ is correctly represented by :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$Q = 20 \\times 10^{-6}\\ \\mathrm{C}$\n$\\frac{\\varepsilon_0 A}{d} = 10^{-6}$\n$A = \\frac{10^{-6} \\times 10 \\times 10^{-6}}{8.85 \\times 10^{-12}} = \\frac{10}{8.85}$\n$\\sigma = \\frac{20 \\times 10^{-6}}{10} \\times 8.85$\n$= 17.7 \\times 10^{-6}$\n$= 17.7\\ \\mu\\mathrm{C/m^{2}}$",
+   "solution": "$V = V_0 \\sin\\omega t$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -552,36 +551,39 @@
    "options": [
     {
      "key": "A",
-     "text": "$17.7\\ \\mathrm{nC/m^{2}}$"
+     "text": "$V_{AB}$ would be zero at all times"
     },
     {
      "key": "B",
-     "text": "$17.7\\ \\mu\\mathrm{C/m^{2}}$"
+     "text": "",
+     "figure": "jn25-28jan-s2-phy-q40-optB.png"
     },
     {
      "key": "C",
-     "text": "$8.85\\ \\mathrm{nC/m^{2}}$"
+     "text": "",
+     "figure": "jn25-28jan-s2-phy-q40-optC.png"
     },
     {
      "key": "D",
-     "text": "$4.42\\ \\mu\\mathrm{C/m^{2}}$"
+     "text": "",
+     "figure": "jn25-28jan-s2-phy-q40-optD.png"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": null,
+   "stem_figure": "jn25-28jan-s2-phy-q40.png",
+   "solution_figure": "jn25-28jan-s2-phy-q40-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 16,
-   "topic": "Wave Optics",
+   "topic": "Magnetic Effects of Current",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A ring of radius 3 cm has a soap film which is getting evaporated. Light of wavelength $\\lambda$ = 580 nm gives minimum transmission every 12 s. Find the rate of evaporation. (refractive index = 1.45)",
+   "stem": "An infinite wire has a circular bend of radius a, and carrying a current I as shown in figure. The magnitude of magnetic field at the origin O of the arc is given by :",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$2\\mu l = n\\lambda$\n$2\\mu\\Delta l = \\Delta n\\lambda$\n$\\left(\\frac{\\Delta l}{\\Delta t}\\right) = \\frac{\\Delta n}{\\Delta t}\\frac{\\lambda}{2\\mu}$\n$= \\frac{1}{12}\\frac{580\\ \\mathrm{nm}}{2 \\times 1.45\\ \\mathrm{s}} = \\frac{5}{3}\\ \\mathrm{nm/s}$\nRate of evaporation $= \\pi R^{2}\\frac{\\Delta l}{\\Delta t}$\n$= \\pi\\left(a \\times 10^{-4}\\right) \\times \\left(\\frac{5}{3} \\times 10^{-9}\\right)\\ \\mathrm{m^{3}/s}$\n$= 15\\pi \\times 10^{-13}\\ \\mathrm{m^{3}/s}$",
+   "solution": "$$B_1 = \\frac{\\mu_0 i}{4\\pi a} \\otimes$$\n$$B_2 = \\frac{\\mu_0}{4\\pi}\\frac{i}{a}\\left(\\frac{3\\pi}{2}\\right) \\otimes$$\n$B_3 = 0$\n$$B = \\frac{\\mu_0}{4\\pi}\\frac{i}{a}\\left(1 + \\frac{3\\pi}{2}\\right) \\otimes$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -589,19 +591,93 @@
    "options": [
     {
      "key": "A",
-     "text": "$1.5\\pi \\times 10^{-13}\\ \\mathrm{m^{3}/s}$"
+     "text": "$\\frac{\\mu_0}{4\\pi}\\frac{I}{a}\\left[\\frac{\\pi}{2} + 1\\right]$"
     },
     {
      "key": "B",
-     "text": "$15\\pi \\times 10^{-13}\\ \\mathrm{m^{3}/s}$"
+     "text": "$\\frac{\\mu_0}{4\\pi}\\frac{I}{a}\\left[\\frac{3\\pi}{2} + 1\\right]$"
     },
     {
      "key": "C",
-     "text": "$3\\pi \\times 10^{-13}\\ \\mathrm{m^{3}/s}$"
+     "text": "$\\frac{\\mu_0}{2\\pi}\\frac{I}{a}\\left[\\frac{\\pi}{2} + 2\\right]$"
     },
     {
      "key": "D",
-     "text": "$3\\pi \\times 10^{-12}\\ \\mathrm{m^{3}/s}$"
+     "text": "$\\frac{\\mu_0}{4\\pi}\\frac{I}{a}\\left[\\frac{3\\pi}{2} + 2\\right]$"
+    }
+   ],
+   "stem_figure": "jn25-28jan-s2-phy-q41.png",
+   "solution_figure": "jn25-28jan-s2-phy-q41-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A uniform rod of mass $250\\ \\mathrm{g}$ having length $100\\ \\mathrm{cm}$ is balanced on a sharp edge at $40\\ \\mathrm{cm}$ mark. A mass of $400\\ \\mathrm{g}$ is suspended at $10\\ \\mathrm{cm}$ mark. To maintain the balance of the rod, the mass to be suspended at $90\\ \\mathrm{cm}$ mark, is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\tau_{\\mathrm{Net}} = 0 \\Rightarrow (400g \\times 30) = (250g \\times 10) + (mg \\times 50)$\n$$m = \\frac{12000 - 2500}{50} = \\frac{9500}{50}$$\n$M = 190\\ \\mathrm{g}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$300\\ \\mathrm{g}$"
+    },
+    {
+     "key": "B",
+     "text": "$190\\ \\mathrm{g}$"
+    },
+    {
+     "key": "C",
+     "text": "$200\\ \\mathrm{g}$"
+    },
+    {
+     "key": "D",
+     "text": "$290\\ \\mathrm{g}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-28jan-s2-phy-q42-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Fluid Mechanics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "a $400\\ \\mathrm{g}$ solid cube having an edge of length $10\\ \\mathrm{cm}$ floats in water. How much volume of the cube is outside the water ?\n(Given : density of water $= 1000\\ \\mathrm{kg\\,m^{-3}}$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{Mg} = \\mathrm{F_B} \\Rightarrow (400 \\times 10^{-3}) = 10^{3} \\times V_d$\n$V_d = 400 \\times 10^{-6}\\ \\mathrm{m^{3}}$\n$(\\mathrm{Vol.})_{\\mathrm{outside}} = (10 \\times 10^{-2})^{3} - 400 \\times 10^{-6}$\n$= 600 \\times 10^{-6}\\ \\mathrm{m^{2}} = 600\\ \\mathrm{cm^{3}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1400\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "B",
+     "text": "$4000\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$400\\ \\mathrm{cm^{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$600\\ \\mathrm{cm^{3}}$"
     }
    ],
    "stem_figure": null,
@@ -610,15 +686,109 @@
    "or_solution_figure": null
   },
   {
+   "q_no": 19,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The magnetic field of an E.M. wave is given by $\\vec{B} = \\left(\\frac{\\sqrt{3}}{2}\\hat{i} + \\frac{1}{2}\\hat{j}\\right)30\\sin\\left[\\omega\\left(t - \\frac{z}{c}\\right)\\right]$ (S.I. Units)\nThe corresponding electric field in S.I. units is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{B} = \\left(\\frac{\\sqrt{3}}{2}\\hat{i} + \\frac{1}{2}\\hat{j}\\right)30\\sin\\left[\\omega\\left(t - \\frac{z}{c}\\right)\\right]$\n$\\vec{E} = \\vec{B} \\times \\vec{c}$ and $E = B_0 c$\nHere $\\vec{E}\\left(\\frac{\\sqrt{3}}{2}(-\\hat{j}) + \\frac{1}{2}\\hat{i}\\right)$\n$E_0 = 30c$\n$$\\vec{E} = \\left(\\frac{1}{2}\\hat{i} - \\frac{\\sqrt{3}}{2}\\hat{j}\\right)30c\\sin\\left[\\omega\\left(t - \\frac{z}{c}\\right)\\right]$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\vec{E} = \\left(\\frac{1}{2}\\hat{i} - \\frac{\\sqrt{3}}{2}\\hat{j}\\right)30c\\sin\\left[\\omega\\left(t - \\frac{z}{c}\\right)\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\vec{E} = \\left(\\frac{3}{4}\\hat{i} + \\frac{1}{4}\\hat{j}\\right)30c\\cos\\left[\\omega\\left(t - \\frac{z}{c}\\right)\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\vec{E} = \\left(\\frac{1}{2}\\hat{i} + \\frac{\\sqrt{3}}{2}\\hat{j}\\right)30c\\sin\\left[\\omega\\left(t + \\frac{z}{c}\\right)\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\vec{E} = \\left(\\frac{\\sqrt{3}}{2}\\hat{i} - \\frac{1}{2}\\hat{j}\\right)30c\\sin\\left[\\omega\\left(t + \\frac{z}{c}\\right)\\right]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A balloon and its content having mass M is moving up with an acceleration 'a'. The mass that must be released from the content so that the balloon starts moving up with an acceleration '3a' will be : (Take 'g' as acceleration due to gravity)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F - mg = ma$\n$F = ma + mg$\n$F - (m - x)g = (m - x)3a$\nPut $F$\n$Ma + mg - mg + xg = 3ma - 3xa$\n$$x = \\frac{2ma}{g + 3a}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3Ma}{2a - g}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3Ma}{2a + g}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2Ma}{3a + g}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2Ma}{3a - g}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-28jan-s2-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
    "q_no": 21,
-   "topic": "Electric Charges and Fields",
+   "topic": "Electromagnetic Induction",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "An electric dipole of moment $6 \\times 10^{-6}$ cm is placed parallelly in electric field of strength $10^{6}$ N/C. Work done required to rotate the dipole by $180^\\circ$ is $X$ joules, then $X$ is",
+   "stem": "A conducting bar moves on two conducting rails as shown in the figure. A constant magnetic field B exists into the page. The bar starts to move from the vertex at time $t = 0$ with a constant velocity. If the induced EMF is $E \\propto t^{n}$, then value of n is ___ .",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$E = \\ell v B$\n$$E = \\frac{2x}{\\sqrt{3}} \\times vB \\text{ and } x = vt$$\n$$E = \\frac{2}{\\sqrt{3}}v^{2}Bt \\qquad E \\propto t^{1}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn25-28jan-s2-phy-q46.png",
+   "solution_figure": "jn25-28jan-s2-phy-q46-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Electrostatics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An electric dipole of dipole moment $6 \\times 10^{-6}\\ \\mathrm{Cm}$ is placed in uniform electric field of magnitude $10^{6}\\ \\mathrm{V/m}$. Initially, the dipole moment is parallel to electric field. The work that needs to be done on the dipole to make its dipole moment opposite to the field, will be _____ J.",
    "correct_key": null,
    "correct_value": 12,
    "correct_keys": null,
-   "solution": "$\\omega = \\Delta U = -pE\\cos180^\\circ - (-pE\\cos0)$\n$= 2pE = 2 \\times 6 \\times 10^{-6} \\times 10^{6}$",
+   "solution": "$p = 6 \\times 10^{-6}\\ \\mathrm{Cm}$\n$E = 10^{6}\\ \\mathrm{v/m}$\n$W = \\Delta U = -pE(\\cos\\theta_f - \\cos\\theta_i)$\n$W = 2pE = 12\\ \\mathrm{J}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -630,55 +800,55 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 22,
-   "topic": "Electromagnetic Induction",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "The figure shows a conducting rod sliding on two conducting rails having angle ($\\theta = 60^\\circ$) in a uniform magnetic field with a constant velocity $V$. Find $n$ if the motional emf $E$ various with time as $E = ct^{n}$.",
-   "correct_key": null,
-   "correct_value": 1,
-   "correct_keys": null,
-   "solution": "Slide $= \\frac{2}{\\sqrt{3}}x$\n$= \\frac{2}{\\sqrt{3}}vt$\n$Emf = B\\left(\\frac{2}{\\sqrt{3}}vt\\right)v$\n$= \\frac{2Bv^{2}}{\\sqrt{3}}t$\n$E \\propto t$\nor $n = 1$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j25-28jan-s2-phy-q22.png",
-   "solution_figure": "j25-28jan-s2-phy-q22-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
    "q_no": 23,
-   "topic": "Motion in a Straight Line",
+   "topic": "Mechanical Properties of Solids",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The velocity vs time graph of a particle moving along X-axis is plotted as shown. The distance travelled (in metre) by the particle in the interval $t$ = 0 s to $t$ = 4 s is",
+   "stem": "The volume contraction of a solid copper cube of edge length $10\\ \\mathrm{cm}$, when subjected to a hydraulic pressure of $7 \\times 10^{6}\\ \\mathrm{Pa}$, would be _____ $\\mathrm{mm^{3}}$.\n(Given bulk modulus of copper $= 1.4 \\times 10^{11}\\ \\mathrm{Nm^{-2}}$)",
    "correct_key": null,
-   "correct_value": 30,
+   "correct_value": 50,
    "correct_keys": null,
-   "solution": "Distance = displacement as direction of velocity does not change in the given interval.\n$\\Rightarrow$ Distance $= \\frac{1}{2}(2\\mathrm{s} + 4\\mathrm{s}) \\times 10\\ \\mathrm{m/s}$\n[Area of trapezium with base 4s]\n= 30m",
+   "solution": "$$B = \\frac{\\Delta P}{\\frac{\\Delta V}{V}}$$\n$$\\Delta V = \\frac{7 \\times 10^{6}}{1.4 \\times 10^{11}} \\times (10 \\times 10^{-2})^{3}$$\n$\\Delta V = 50\\ \\mathrm{mm^{3}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-28jan-s2-phy-q23.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 24,
-   "topic": "Ray Optics",
+   "topic": "Current Electricity",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Distance between real object and its three times magnified image formed by concave mirror is 20 cm then radius of curvature of the mirror is $X$ cm, then $X$ is",
+   "stem": "The value of current I in the electrical circuit as given below, when potential at A is equal to the potential at B, will be __________ A.",
    "correct_key": null,
-   "correct_value": 15,
+   "correct_value": 2,
    "correct_keys": null,
-   "solution": "$\\left|\\frac{v}{u}\\right| = 3$\n$|v| = 3|u|$\n$|u| = X$\n$|v| = 3X$\n$3X - X = 20$\n$X = 10$ cm\n$\\frac{1}{-30} - \\frac{1}{10} = \\frac{1}{f}$\n$-\\frac{4}{30} = \\frac{1}{f}$\n$R = \\frac{2 \\times 30}{4} = 15$ cm",
+   "solution": "$V_A = V_B \\Rightarrow$ the bridge is balanced\n$$\\Rightarrow \\frac{10}{R} = \\frac{20}{40}$$\n$R = 20\\ \\Omega$\n$$I = \\frac{40}{20} = 2\\ \\mathrm{A}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn25-28jan-s2-phy-q49.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A thin transparent film with refractive index $1.4$, is held on circular ring of radius $1.8\\ \\mathrm{cm}$. The fluid in the film evaporates such that transmission through the film at wavelength $560\\ \\mathrm{nm}$ goes to a minimum every $12$ seconds. Assuming that the film is flat on its two sides, the rate of evaporation is _______ $\\pi \\times 10^{-13}\\ \\mathrm{m^{3}/s}$.",
+   "correct_key": null,
+   "correct_value": 54,
+   "correct_keys": null,
+   "solution": "Maxima condition\n$$2\\mu t = n\\lambda \\Rightarrow t = \\frac{n\\lambda}{2\\mu} \\Rightarrow t = \\frac{\\lambda}{2\\mu}, \\frac{2\\lambda}{2\\mu}, .....$$\nMinima condition $2\\mu t = (2n - 1)\\lambda/2$\n$$\\Rightarrow t = \\frac{(2n - 1)\\lambda}{4\\mu} \\Rightarrow t = \\frac{\\lambda}{4\\mu}, \\frac{3\\lambda}{4\\mu}, .....$$\n$$\\Delta t = \\frac{2\\lambda}{4\\mu}$$\n$$\\text{Rate of evaporation} = \\frac{A(\\Delta t)}{\\mathrm{time}} = 54 \\times 10^{-13}\\ \\mathrm{m^{3}/s}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

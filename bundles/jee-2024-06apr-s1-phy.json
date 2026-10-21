@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "16cGNvlkcRCjD0zhHZQ3a_vnV63oP1STm"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 2,
-   "topic": "Dual Nature of Radiation and Matter",
+   "q_no": 1,
+   "topic": "Units and Measurements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following do not explain wave theory of particle?",
-   "correct_key": "C",
+   "stem": "To find the spring constant ($k$) of a spring experimentally, a student commits $2\\%$ positive error in the measurement of time and $1\\%$ negative error in measurement of mass. The percentage error in determining value of $k$ is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Photoelectric effect can not be explain by wave theory of light.",
+   "solution": "$T = 2\\pi\\sqrt{\\frac{m}{k}}$\n$T^{2} \\propto \\frac{m}{k}$\n$\\frac{2\\Delta T}{T}\\% = \\frac{\\Delta m}{m}\\% - \\frac{\\Delta k}{k}\\%$\n$\\frac{\\Delta k}{k}\\% = \\frac{\\Delta m}{m}\\% - \\frac{2\\Delta T}{T}\\%$\n$\\frac{\\Delta k}{k}\\% = (-1)\\% - 2(2)\\% = |-5\\%| = 5\\%$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,19 +30,56 @@
    "options": [
     {
      "key": "A",
-     "text": "Reflection"
+     "text": "$3\\%$"
     },
     {
      "key": "B",
-     "text": "Diffraction"
+     "text": "$1\\%$"
     },
     {
      "key": "C",
-     "text": "Photoelectric effect"
+     "text": "$4\\%$"
     },
     {
      "key": "D",
-     "text": "Interference"
+     "text": "$5\\%$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A bullet of mass $50\\ \\mathrm{g}$ is fired with a speed $100\\ \\mathrm{m/s}$ on a plywood and emerges with $40\\ \\mathrm{m/s}$. The percentage loss of kinetic energy is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$K_i = \\frac{1}{2}m(100)^{2}$\n$K_f = \\frac{1}{2}m(40)^{2}$\n$\\%\\text{loss} = \\frac{|K_f - K_i|}{K_i} \\times 100$\n$= \\frac{\\left|\\frac{1}{2}m(40)^{2} - \\frac{1}{2}m(100)^{2}\\right|}{\\frac{1}{2}m(100)^{2}} \\times 100$\n$= \\frac{|1600 - 100\\times 100|}{100} = 84\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$32\\%$"
+    },
+    {
+     "key": "B",
+     "text": "$44\\%$"
+    },
+    {
+     "key": "C",
+     "text": "$16\\%$"
+    },
+    {
+     "key": "D",
+     "text": "$84\\%$"
     }
    ],
    "stem_figure": null,
@@ -52,14 +89,14 @@
   },
   {
    "q_no": 3,
-   "topic": "Dual Nature of Radiation and Matter",
+   "topic": "Atoms",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the above phenomena represent particle nature",
-   "correct_key": "D",
+   "stem": "The ratio of the shortest wavelength of Balmer series to the shortest wavelength of Lyman series for hydrogen atom is :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Photoelectric effect can not be explain by wave theory of light.",
+   "solution": "$\\frac{1}{\\lambda} = Rz^{2}\\left(\\frac{1}{n_1^{2}} - \\frac{1}{n_2^{2}}\\right)$\n$\\frac{1}{\\lambda_L} = Rz^{2}\\left(\\frac{1}{1^{2}}\\right)$\n$\\frac{1}{\\lambda_B} = Rz^{2}\\left(\\frac{1}{2^{2}}\\right)$\n$\\frac{\\lambda_B}{\\lambda_L} = 4 : 1$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,19 +104,56 @@
    "options": [
     {
      "key": "A",
-     "text": "Interference"
+     "text": "$4 : 1$"
     },
     {
      "key": "B",
-     "text": "Diffraction"
+     "text": "$1 : 2$"
     },
     {
      "key": "C",
-     "text": "Polarisation"
+     "text": "$1 : 4$"
     },
     {
      "key": "D",
-     "text": "Photelectric effect"
+     "text": "$2 : 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-phy-q33-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "To project a body of mass $m$ from earth's surface to infinity, the required kinetic energy is (assume, the radius of earth is $R_E$, $g$ = acceleration due to gravity on the surface of earth) :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{2}mv_e^{2} = \\frac{GMm}{R_E}$\n$g = \\frac{GM}{R_E^{2}}$\n$K = mgR_E$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2mgR_E$"
+    },
+    {
+     "key": "B",
+     "text": "$mgR_E$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2}mgR_E$"
+    },
+    {
+     "key": "D",
+     "text": "$4mgR_E$"
     }
    ],
    "stem_figure": null,
@@ -88,20 +162,74 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 4,
-   "topic": "Ray Optics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In a prism the ratio of minimum deviation and prism angle is 1 and refractive index of prism is $\\sqrt{3}$. Find the prism angle.",
-   "correct_key": null,
-   "correct_value": 60,
+   "q_no": 5,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Electromagnetic waves travel in a medium with speed of $1.5 \\times 10^{8}\\ \\mathrm{m\\,s^{-1}}$. The relative permeability of the medium is $2.0$. The relative permittivity will be :",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Given $\\mu = \\sqrt{3}$\n$= \\frac{\\delta_{min}}{A} = 1$\n$= \\delta_{min} = A$\n$= \\mu = \\frac{\\sin\\left(\\frac{A + \\delta_{min}}{2}\\right)}{\\sin\\frac{A}{2}}$\n$= \\sqrt{3} = \\frac{\\sin\\left(\\frac{A + A}{2}\\right)}{\\sin\\frac{A}{2}}$\n$= \\frac{2\\sin\\frac{A}{2}\\cos\\frac{A}{2}}{\\sin\\frac{A}{2}}$\n$= \\sqrt{3} = 2\\cos\\frac{A}{2}$\n$= \\frac{\\sqrt{3}}{2} = \\cos\\frac{A}{2}$\n$= \\frac{A}{2} = 30^\\circ$\n$A = 60^\\circ$",
+   "solution": "$\\frac{\\varepsilon_m \\times \\mu_m}{\\varepsilon_0 \\times \\mu_0} = \\frac{\\frac{1}{v^{2}}}{\\frac{1}{c^{2}}}$\n$\\varepsilon_r \\times \\mu_r = \\frac{c^{2}}{v^{2}}$\n$\\varepsilon_r \\times 2 = \\frac{(3\\times 10^{8})^{2}}{(1.5\\times 10^{8})^{2}}$\n$\\varepsilon_r \\times 2 = 4$\n$\\varepsilon_r = 2$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following phenomena does not explain by wave nature of light.\n(A) reflection\n(B) diffraction\n(C) photoelectric effect\n(D) interference\n(E) polarization\nChoose the **most appropriate** answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(Theory)\nPhotoelectric effect prove particle nature of light.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "E only"
+    },
+    {
+     "key": "B",
+     "text": "C only"
+    },
+    {
+     "key": "C",
+     "text": "B, D only"
+    },
+    {
+     "key": "D",
+     "text": "A, C only"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -109,19 +237,36 @@
   },
   {
    "q_no": 7,
-   "topic": "Oscillations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A particle is performing SHM with $A = 0.6$ m and time period $(T) = \\pi$. Find the maximum velocity.",
-   "correct_key": null,
-   "correct_value": 1.2,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "While measuring diameter of wire using screw gauge the following readings were noted. Main scale reading is $1\\ \\mathrm{mm}$ and circular scale reading is equal to $42$ divisions. Pitch of screw gauge is $1\\ \\mathrm{mm}$ and it has $100$ divisions on circular scale. The diameter of the wire is $\\frac{x}{50}\\ \\mathrm{mm}$. The value of $x$ is :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$T = \\pi$\n$\\frac{2\\pi}{\\omega} = \\pi$\n$\\omega = 2$ rad/s\nMaximum velocity $= \\omega A = 2 \\times 0.6 = 1.2$ m/s.",
+   "solution": "$\\text{MSR} = 1\\ \\mathrm{mm}$, $\\text{CSR} = 42$, pitch $= 1\\ \\mathrm{mm}$\n$LC = \\frac{\\text{pitch}}{\\text{No. of CSD}} = \\left(\\frac{1}{100}\\right) = 0.01\\ \\mathrm{mm}$\nDiameter $= \\text{MSR} + LC \\times \\text{CSD}$\nDiameter $= 1 + (0.01) \\times 42\\ \\mathrm{mm}$\nDiameter $= 1.42\\ \\mathrm{mm} = \\frac{x}{50}$\n$\\therefore x = 71$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$142$"
+    },
+    {
+     "key": "B",
+     "text": "$71$"
+    },
+    {
+     "key": "C",
+     "text": "$42$"
+    },
+    {
+     "key": "D",
+     "text": "$21$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -129,40 +274,185 @@
   },
   {
    "q_no": 8,
-   "topic": "Atoms",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find the ratio of shortest wavelength of Lyman to Balmer series?",
-   "correct_key": null,
-   "correct_value": 0.25,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\sigma$ is the uniform surface charge density of a thin spherical shell of radius $R$. The electric field at any point on the surface of the spherical shell is :",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\frac{1}{\\lambda} = RZ^{2}\\left(\\frac{1}{n_1^{2}} - \\frac{1}{n_2^{2}}\\right)$\n$\\frac{1}{\\lambda_L} = RZ^{2}\\left(\\frac{1}{1^{2}} - \\frac{1}{\\infty}\\right)$ .....(i)\nAnd\n$\\frac{1}{\\lambda_B} = RZ^{2}\\left(\\frac{1}{2^{2}} - \\frac{1}{\\infty}\\right)$ .....(ii)\nFrom (i) and (ii)\n$\\frac{\\lambda_L}{\\lambda_B} = \\frac{\\frac{1}{4}}{1} = \\frac{1}{4}$",
+   "solution": "By Gauss law $\\int \\vec{E}\\cdot d\\vec{A} = \\frac{q_{in}}{\\epsilon_0}$\n$E\\,dA = \\frac{\\sigma \\times dA}{\\epsilon_0}$\n$E = \\frac{\\sigma}{\\epsilon_0}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sigma/\\epsilon_0 R$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sigma/2\\epsilon_0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sigma/\\epsilon_0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sigma/4\\epsilon_0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The value of unknown resistance ($x$) for which the potential difference between B and D will be zero in the arrangement shown, is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In case of balanced Wheatstone Bridge\n$\\frac{V_{AB}}{V_{AD}} = \\frac{V_{BC}}{V_{CD}} \\Rightarrow \\frac{12}{6+x} = \\frac{0.5}{0.5}$\n$x = 6\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3\\ \\Omega$"
+    },
+    {
+     "key": "B",
+     "text": "$9\\ \\Omega$"
+    },
+    {
+     "key": "C",
+     "text": "$6\\ \\Omega$"
+    },
+    {
+     "key": "D",
+     "text": "$42\\ \\Omega$"
+    }
+   ],
+   "stem_figure": "jn24-06apr-s1-phy-q39.png",
+   "solution_figure": "jn24-06apr-s1-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The specific heat at constant pressure of a real gas obeying $PV^{2} = RT$ equation is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$dQ = du + dW$\n$C\\,dT = C_V\\,dT + P\\,dV$ $\\;\\ldots(1)$\n$\\therefore PV^{2} = RT$\n$P = \\text{constant}$\n$P(2V\\,dV) = R\\,dT$\n$P\\,dV = \\frac{R\\,dT}{2V}$\nPut in equation (1)\n$C = C_V + \\frac{R}{2V}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$C_V + R$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{R}{3} + C_V$"
+    },
+    {
+     "key": "C",
+     "text": "$R$"
+    },
+    {
+     "key": "D",
+     "text": "$C_V + \\frac{R}{2V}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 10,
-   "topic": "Current Electricity",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In the circuit below potential at B and potential at D are same, then find the value of resistance x.",
-   "correct_key": null,
-   "correct_value": 3,
+   "q_no": 11,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match **List I** with **List II**\nLIST I | LIST II\nA. Torque | I. $[M^{1}L^{1}T^{-2}A^{-2}]$\nB. Magnetic field | II. $[L^{2}A^{1}]$\nC. Magnetic moment | III. $[M^{1}T^{-2}A^{-1}]$\nD. Permeability of free space | IV. $[M^{1}L^{2}T^{-2}]$\nChoose the **correct** answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "If $V_B = V_D$\n$R_{AB} \\times R_{CD} = R_{BC} \\times R_{AD}$ (wheatstone bridge type)\nAs shown in circuit\n$R_{AB} = 6\\Omega$\n$R_{BC} = \\frac{1}{2}\\Omega$\n$R_{CD} = 0.5\\Omega$\n$R_{AB} = x + 3\\Omega$\nUsing formula\n$6(0.5) = (0.5)(x + 3)$\n$\\Rightarrow x + 3 = 6$\n$x = 3\\Omega$",
+   "solution": "$[\\vec{\\tau}] = [\\vec{r}\\times\\vec{F}] = [ML^{2}T^{-2}]$\n$[F] = [qVB]$\n$\\Rightarrow B = \\left[\\frac{F}{qV}\\right] = \\left[\\frac{MLT^{-2}}{ATLT^{-1}}\\right] = [MA^{-1}T^{-2}]$\n$[M] = [I\\times A] = [AL^{2}]$\n$B = \\frac{\\mu_0}{4\\pi}\\frac{Idl\\sin\\theta}{r^{2}}$\n$\\Rightarrow [\\mu] = \\left[\\frac{Br^{2}}{Idl}\\right] = \\left[\\frac{MT^{-2}A^{-1}\\times L^{2}}{AL}\\right]$\n$= [MLT^{-2}A^{-2}]$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-06apr-s1-phy-q10.png",
+   "options": [
+    {
+     "key": "A",
+     "text": "A-I, B-III, C-II, D-IV"
+    },
+    {
+     "key": "B",
+     "text": "A-IV, B-III, C-II, D-I"
+    },
+    {
+     "key": "C",
+     "text": "A-III, B-I, C-II, D-IV"
+    },
+    {
+     "key": "D",
+     "text": "A-IV, B-II, C-III, D-I"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\n**Statement I :** In an LCR series circuit, current is maximum at resonance.\n**Statement II :** Current in a purely resistive circuit can never be less than that in a series LCR circuit when connected to same voltage source.\nIn the light of the above statements, choose the *correct* from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "**Statement-I**\n$I_m = \\frac{V_m}{\\sqrt{R^{2} + (X_L - X_C)^{2}}}$ at resonance $X_L = X_C$\nThus, $I_m = \\frac{V_m}{R}$\n$\\because$ Impedance is minimum therefore $I$ is maximum at resonance.\n**Statement-II**\n$I = \\left(\\frac{V}{R}\\right)$ in purely resistive circuit.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "B",
+     "text": "Statement I is false but Statement II is true"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are false"
+    }
+   ],
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
@@ -172,11 +462,11 @@
    "topic": "Semiconductor Electronics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following materials is not semiconductor.",
-   "correct_key": "C",
+   "stem": "The correct truth table for the following logic circuit is :\n**Options :**",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Theoretical.",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -184,19 +474,167 @@
    "options": [
     {
      "key": "A",
-     "text": "Germanium"
+     "text": "A | B | Y\n0 | 0 | 0\n0 | 1 | 1\n1 | 0 | 0\n1 | 1 | 1"
     },
     {
      "key": "B",
-     "text": "Silicon"
+     "text": "A | B | Y\n0 | 0 | 1\n0 | 1 | 1\n1 | 0 | 0\n1 | 1 | 1"
     },
     {
      "key": "C",
-     "text": "Graphite"
+     "text": "A | B | Y\n0 | 0 | 1\n0 | 1 | 1\n1 | 0 | 0\n1 | 1 | 0"
     },
     {
      "key": "D",
-     "text": "Copper oxide"
+     "text": "A | B | Y\n0 | 0 | 0\n0 | 1 | 0\n1 | 0 | 0\n1 | 1 | 1"
+    }
+   ],
+   "stem_figure": "jn24-06apr-s1-phy-q43.png",
+   "solution_figure": "jn24-06apr-s1-phy-q43-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A sample contains mixture of helium and oxygen gas. The ratio of root mean square speed of helium and oxygen in the sample, is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$V_{rms} = \\sqrt{\\frac{3RT}{M_w}}$\n$\\Rightarrow \\frac{V_{O_2}}{V_{He}} = \\sqrt{\\frac{M_{w,He}}{M_{w,O_2}}}$\n$= \\sqrt{\\frac{4}{32}} = \\frac{1}{2\\sqrt{2}}$\n$\\frac{V_{He}}{V_{O_2}} = \\frac{2\\sqrt{2}}{1}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{32}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2\\sqrt{2}}{1}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2\\sqrt{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A light string passing over a smooth light pulley connects two blocks of masses $m_1$ and $m_2$ (where $m_2 > m_1$). If the acceleration of the system is $\\frac{g}{\\sqrt{2}}$, then the ratio of the masses $\\frac{m_1}{m_2}$ is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$a = \\left(\\frac{M_2 - M_1}{M_1 + M_2}\\right)g$\n$\\frac{g}{\\sqrt{2}} = \\left(\\frac{M_2 - M_1}{M_1 + M_2}\\right)g$\n$(M_1 + M_2) = \\sqrt{2}M_2 - \\sqrt{2}M_1$\n$\\frac{M_1}{M_2} = \\left(\\frac{\\sqrt{2}-1}{\\sqrt{2}+1}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sqrt{2}-1}{\\sqrt{2}+1}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1+\\sqrt{5}}{\\sqrt{5}-1}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1+\\sqrt{5}}{\\sqrt{2}-1}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\sqrt{3}+1}{\\sqrt{2}-1}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Four particles A, B, C, D of mass $\\frac{m}{2}$, $m$, $2m$, $4m$, have same momentum, respectively. The particle with maximum kinetic energy is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$KE = \\frac{p^{2}}{2m}$\nSame momentum, so less mass means more KE.\nSo $\\frac{m}{2}$ will have max. KE.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "D"
+    },
+    {
+     "key": "B",
+     "text": "C"
+    },
+    {
+     "key": "C",
+     "text": "A"
+    },
+    {
+     "key": "D",
+     "text": "B"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Kinematics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A train starting from rest first accelerates uniformly up to a speed of $80\\ \\mathrm{km/h}$ for time $t$, then it moves with a constant speed for time $3t$. The average speed of the train for this duration of journey will be (in km/h) :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Average speed $= \\frac{\\text{total distance}}{\\text{time taken}}$\n$= \\frac{\\frac{80\\times t}{2} + 80\\times 3t}{4t} = 70\\ \\mathrm{km/hr.}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$80$"
+    },
+    {
+     "key": "B",
+     "text": "$70$"
+    },
+    {
+     "key": "C",
+     "text": "$30$"
+    },
+    {
+     "key": "D",
+     "text": "$40$"
     }
    ],
    "stem_figure": null,
@@ -206,34 +644,125 @@
   },
   {
    "q_no": 18,
-   "topic": "Kinematics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A train starting from rest first accelerates up to speed 80 km/h for time t then it moves with a constant speed for time 3t. The average speed of the train for this duration of journey will be:",
-   "correct_key": null,
-   "correct_value": 70,
+   "topic": "Magnetic Effects of Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An element $\\Delta \\vec{l} = \\Delta x\\,\\hat{i}$ is placed at the origin and carries a large current $I = 10\\ \\mathrm{A}$. The magnetic field on the y-axis at a distance of $0.5\\ \\mathrm{m}$ from the elements $\\Delta x$ of $1\\ \\mathrm{cm}$ length is :",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$V_{average} = \\frac{\\text{Total distance}}{\\text{Total time}}$\n$= \\frac{\\left(\\frac{1}{2} \\times t \\times 80\\right) + \\left(80 \\times 3t\\right)}{4t}$\n$= \\frac{40t + 240t}{4t}$\n$= \\frac{280}{4} = 70$ km/h",
+   "solution": "$\\vec{r} = 0.5\\hat{j}$\n$\\Delta \\vec{l} = \\Delta x\\,\\hat{i}$\n$d\\vec{B} = \\frac{\\mu_0 I}{4\\pi}\\frac{(d\\vec{l}\\times\\vec{r})}{r^{3}}$ (Tesla)\n$= \\frac{10^{-7}\\times 10\\times\\left(\\frac{1}{2}\\times\\frac{1}{100}\\right)(+\\hat{k})}{\\left(\\frac{1}{2}\\right)^{3}} = 4\\times 10^{-8}\\ \\mathrm{T}\\ (+\\hat{k})$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\times 10^{-8}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "B",
+     "text": "$8\\times 10^{-8}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "C",
+     "text": "$12\\times 10^{-8}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "D",
+     "text": "$10\\times 10^{-8}\\ \\mathrm{T}$"
+    }
+   ],
+   "stem_figure": "jn24-06apr-s1-phy-q48.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Fluid Mechanics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A small ball of mass $m$ and density $\\rho$ is dropped in a viscous liquid of density $\\rho_0$. After sometime, the ball falls with constant velocity. The viscous force on the ball is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$mg - F_B - F_v = ma$\n$a = 0$ for constant velocity\n$mg - F_B = F_v$\n$F_v = mg - v\\rho_0 g = mg - \\frac{m}{\\rho}\\rho_0 g = mg\\left(1 - \\frac{\\rho_0}{\\rho}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$mg\\left(\\frac{\\rho_0}{\\rho} - 1\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$mg\\left(1 + \\frac{\\rho}{\\rho_0}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$mg(1 - \\rho\\rho_0)$"
+    },
+    {
+     "key": "D",
+     "text": "$mg\\left(1 - \\frac{\\rho_0}{\\rho}\\right)$"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s1-phy-q18-sol.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Dual Nature of Matter and Radiation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In photoelectric experiment energy of $2.48\\ \\mathrm{eV}$ irradiates a photo sensitive material. The stopping potential was measured to be $0.5\\ \\mathrm{V}$. Work function of the photosensitive material is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$eV_s = h\\nu - \\phi$\n$0.5\\ \\mathrm{V} = 2.48 - \\phi$\nwork function ($\\phi$) $= 2.48\\ \\mathrm{V} - 0.5\\ \\mathrm{V} = 1.98\\ \\mathrm{V}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.5\\ \\mathrm{eV}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.68\\ \\mathrm{eV}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.48\\ \\mathrm{eV}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.98\\ \\mathrm{eV}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 21,
-   "topic": "Units and Measurements",
+   "topic": "Rotational Motion",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "While measuring diameter of a wire using a screw gauge the following readings were noted as main scale reading is 1 mm and circular scale reading is equal to 42 division. Pitch of screw gauge is 1mm and it has 100 divisions on circular scale. The diameter of wire is $\\frac{x}{50}$ mm. The value of x is:",
+   "stem": "If the radius of earth is reduced to three-fourth of its present value without change in its mass then value of duration of the day of earth will be ______ hours $30$ minutes.",
    "correct_key": null,
-   "correct_value": 71,
+   "correct_value": 13,
    "correct_keys": null,
-   "solution": "Least count $= \\frac{\\text{Pitch}}{\\text{No of division on circular scale}}$\n$= \\frac{1\\ \\mathrm{mm}}{100}$\n= 0.01 mm\nDiameter of wire = 1 mm + $42 \\times 0.01$ mm\n= 1.42 mm",
+   "solution": "By conservation of angular momentum\n$I_1\\omega_1 = I_2\\omega_2$\n$\\left(\\frac{2}{5}MR^{2}\\right)\\frac{2\\pi}{T_1} = \\frac{2}{5}M\\left(\\frac{3}{4}R\\right)^{2}\\frac{2\\pi}{T_2}$\n$\\frac{1}{T_1} = \\frac{9}{16T_2}$\n$\\frac{1}{T_2} = \\frac{9}{16}\\times T_1 = \\frac{9}{16}\\times 24\\ \\mathrm{hr} = \\frac{27}{2}\\ \\mathrm{hr} = 13\\ \\mathrm{hr}\\ 30\\ \\mathrm{mins.}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -246,34 +775,34 @@
   },
   {
    "q_no": 22,
-   "topic": "Atoms",
+   "topic": "Electrostatics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A hydrogen atom having E energy in ground state, when it is revolving in radius of orbit $r = 8.48$ Å. Its energy become $\\frac{E}{x}$. Find the value of x.",
+   "stem": "Three infinitely long charged thin sheets are placed as shown in figure. The magnitude of electric field at the point P is $\\frac{x\\sigma}{\\epsilon_0}$. The value of $x$ is _________ (all quantities are measured in SI units).",
    "correct_key": null,
-   "correct_value": 16,
+   "correct_value": 2,
    "correct_keys": null,
-   "solution": "$r = 0.529\\frac{n^{2}}{z^{2}}$ Å (for hydrogen z = 1)\n$r = 0.529n^{2}$\n$\\Rightarrow 8.48$ Å $= 0.529n^{2}$\n$n^{2} = 16$\n$n = 4$\nand we know that,\nT.E. $= -13.6\\frac{z^{2}}{n^{2}}$ eV\nAt $n = 1 \\Rightarrow$ T.E. $= -13.6 = E$\nAt $n = 4 \\Rightarrow$ T.E. $= -\\frac{13.6}{4^{2}} = \\frac{E}{x}$\n$= \\frac{E}{x} = \\frac{E}{16}$\n$x = 16$",
+   "solution": "$\\vec{E}_P = \\left(\\frac{\\sigma}{2\\epsilon_0} + \\frac{2\\sigma}{2\\epsilon_0} + \\frac{\\sigma}{2\\epsilon_0}\\right)(-\\hat{i})$\n$= -\\frac{2\\sigma}{\\epsilon_0}\\hat{i}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": null,
+   "stem_figure": "jn24-06apr-s1-phy-q52.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 23,
-   "topic": "Dual Nature of Radiation and Matter",
+   "topic": "Surface Tension",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Energy incident on metal surface is 2.48 eV and the stopping potential is 0.5 V. Find the work function.",
+   "stem": "A big drop is formed by coalescing 1000 small droplets of water. The ratio of surface energy of 1000 droplets to that of energy of big drop is $\\frac{10}{x}$. The value of $x$ is _________.",
    "correct_key": null,
-   "correct_value": 1.98,
+   "correct_value": 1,
    "correct_keys": null,
-   "solution": "$eV_s = K.E_{max}$\n$V_s = \\frac{h\\nu - \\phi}{e}$\n$0.5$ eV $= 2.48$ eV $- \\phi$\n$\\phi = (2.48 - 0.5)$ eV\n$\\phi = 1.98$ eV",
+   "solution": "$1000\\cdot\\frac{4}{3}\\pi r^{3} = \\frac{4}{3}\\pi R^{3}$\n$10r = R$\n$R = 10r$\n$\\frac{\\text{S.E. of 1000 drops}}{\\text{S.E. of Big drop}} = \\frac{1000(4\\pi r^{2})T}{4\\pi R^{2}T}$\n$= \\frac{1000\\times r^{2}}{(10r)^{2}} = 10 = \\frac{10}{x}$\n$\\therefore x = 1$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -287,35 +816,138 @@
   {
    "q_no": 24,
    "topic": "Alternating Current",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Statement-1: Inductor has maximum current at resonance frequency.\nStatement-2: Current in purely resistive circuit can never be less than current in series in LRC circuit.",
-   "correct_key": "C",
-   "correct_value": null,
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "When a dc voltage of $100\\ \\mathrm{V}$ is applied to an inductor, a dc current of $5\\ \\mathrm{A}$ flows through it. When an ac voltage of $200\\ \\mathrm{V}$ peak value is connected to inductor, its inductive reactance is found to be $20\\sqrt{3}\\ \\Omega$. The power dissipated in the circuit is _________ W.",
+   "correct_key": null,
+   "correct_value": 250,
    "correct_keys": null,
-   "solution": "Theoretical",
+   "solution": "For DC voltage\n$R = \\frac{V}{I} = \\frac{100}{5} = 20\\ \\Omega$\nfor AC voltage\n$X_L = 20\\sqrt{3}\\ \\Omega$\n$R = 20\\ \\Omega$\n$Z = \\sqrt{X_L^{2} + R^{2}} = \\sqrt{3\\times 400 + 400} = 40\\ \\Omega$\nPower $= i_{rms}^{2}R$\n$= \\left(\\frac{V_{rms}}{Z}\\right)^{2}\\times R = \\left(\\frac{\\frac{200}{\\sqrt{2}}}{40}\\right)^{2}\\times 20 = 250\\ \\mathrm{W}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Only statement -1 is correct."
-    },
-    {
-     "key": "B",
-     "text": "Only statement -2 is correct."
-    },
-    {
-     "key": "C",
-     "text": "Both of the statements are correct."
-    },
-    {
-     "key": "D",
-     "text": "None of the statements is correct"
-    }
-   ],
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Ray Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The refractive index of prism is $\\mu = \\sqrt{3}$ and the ratio of the angle of minimum deviation to the angle of prism is one. The value of angle of prism is _________$^\\circ$.",
+   "correct_key": null,
+   "correct_value": 60,
+   "correct_keys": null,
+   "solution": "For $\\delta_{min}$\n$i = e$\n$r_1 = r_2 = \\frac{A}{2}$\n$\\frac{\\delta_{min}}{A} = 1$\n$\\frac{2i - A}{A} = 1$\n$2i = 2A$\n$i = A$\nSnell's law\n$1\\times\\sin i = \\mu\\sin r$\n$\\sin i = \\mu\\sin\\left(\\frac{A}{2}\\right)$\n$\\sin A = \\mu\\sin\\left(\\frac{A}{2}\\right)$\n$2\\sin\\frac{A}{2}\\cos\\frac{A}{2} = \\sqrt{3}\\sin\\left(\\frac{A}{2}\\right)$\n$\\cos\\left(\\frac{A}{2}\\right) = \\frac{\\sqrt{3}}{2}$\n$\\therefore \\frac{A}{2} = 30^\\circ$\n$\\therefore A = 60^\\circ$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-phy-q55-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A wire of resistance $R$ and radius $r$ is stretched till its radius became $\\frac{r}{2}$. If new resistance of the wire is $xR$, then value of $x$ is _________.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "We know $R = \\frac{\\rho l}{A}$, $R \\propto \\frac{l}{r^{2}}$\nAs we stretch the wire, its length will increase but its radius will decrease keeping the volume constant\n$V_i = V_f$\n$\\pi r^{2}l = \\pi\\frac{r^{2}}{4}l_f$\n$l_f = 4l$\n$\\frac{R_{new}}{R_{old}} = \\left(\\frac{4l}{\\frac{r^{2}}{4}}\\right)\\left(\\frac{r^{2}}{l}\\right) = 16$\n$R_{new} = 16R$\n$\\therefore x = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Atoms",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Radius of a certain orbit of hydrogen atom is $8.48\\ \\mathrm{\\AA}$. If energy of electron in this orbit is $E/x$, then $x =$ _________.\n(Given $a_0 = 0.529\\ \\mathrm{\\AA}$, $E$ = energy of electron in ground state)",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "We know\n$r = 0.529\\frac{n^{2}}{Z} \\Rightarrow 8.48 = 0.529\\frac{n^{2}}{1}$\n$n^{2} = 16 \\Rightarrow n = 4$\nWe know\n$E \\propto \\frac{1}{n^{2}}$\n$E_{n^{th}} = \\frac{E}{16}$\n$x = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Magnetism and Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A circular coil having 200 turns, $2.5 \\times 10^{-4}\\ \\mathrm{m^{2}}$ area and carrying $100\\ \\mu\\mathrm{A}$ current is placed in a uniform magnetic field of $1\\ \\mathrm{T}$. Initially the magnetic dipole moment ($\\vec{M}$) was directed along $\\vec{B}$. Amount of work, required to rotate the coil through $90^\\circ$ from its initial orientation such that $\\vec{M}$ becomes perpendicular to $\\vec{B}$, is _________ $\\mu\\mathrm{J}$.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "We know\n$W_{ext} = \\Delta U + \\Delta KE$ $\\quad\\left(P.E. = -\\vec{M}\\cdot\\vec{B}\\right)$\n$= -\\vec{M}\\cdot\\vec{B}_f + \\vec{M}\\cdot\\vec{B}_i + 0$\n$= -MB\\cos 90 + MB\\cos 0$\n$= MB$\n$= NIAB$\n$= 200\\times 100\\times 10^{-6}\\times\\frac{5}{2}\\times 10^{-4}\\times 1 = 5\\ \\mu\\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-phy-q58-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Simple Harmonic Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A particle is doing simple harmonic motion of amplitude $0.06\\ \\mathrm{m}$ and time period $3.14\\ \\mathrm{s}$. The maximum velocity of the particle is _______ cm/s.",
+   "correct_key": null,
+   "correct_value": 12,
+   "correct_keys": null,
+   "solution": "We know\n$v_{max} = \\omega A$ at mean position\n$= \\frac{2\\pi}{T}A = \\frac{2\\pi}{\\pi}\\times 0.06 = 0.12\\ \\mathrm{m/sec}$\n$v_{max} = 12\\ \\mathrm{cm/sec}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Vectors",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "For three vectors $\\vec{A} = (-x\\hat{i} - 6\\hat{j} - 2\\hat{k})$, $\\vec{B} = (-\\hat{i} + 4\\hat{j} + 3\\hat{k})$ and $\\vec{C} = (-8\\hat{i} - \\hat{j} + 3\\hat{k})$, if $\\vec{A}\\cdot(\\vec{B}\\times\\vec{C}) = 0$, them value of $x$ is _________.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$\\vec{B}\\times\\vec{C} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ -1 & 4 & 3 \\\\ -8 & -1 & 3 \\end{vmatrix} = 15\\hat{i} - 21\\hat{j} + 33\\hat{k}$\n$\\vec{A}\\cdot(\\vec{B}\\times\\vec{C}) = (-x\\hat{i} - 6\\hat{j} - 2\\hat{k})\\cdot(15\\hat{i} - 21\\hat{j} + 33\\hat{k})$\n$0 = -15x + 126 - 66$\n$15x = 60$\n$x = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,

@@ -10,24 +10,41 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "1dfTIMmZn7y8V9VqrnnqKi-YytEWmSTCi"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Oscillations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Position of a particle performing SHM is given by $x = 100\\sin(\\omega t + \\pi/3)$. Find its initial velocity if time period is 3.14 sec.",
-   "correct_key": null,
-   "correct_value": 100,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The translational degrees of freedom $(f_t)$ and rotational degrees of freedom $(f_r)$ of $\\mathrm{CH_4}$ molecule are :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$x = 100\\sin(\\omega t + \\pi/3)$\n$v = \\frac{dx}{dt} = [100\\cos(\\omega t + \\pi/3) \\times \\omega$\n$(v)_{t=0} = 100\\omega\\cos(\\pi/3)$\n$= 100 \\times \\omega/2$\n$= 50\\omega$\n$= 50 \\times \\frac{2\\pi}{T} = \\frac{100\\pi}{3.14}$",
+   "solution": "Since $\\mathrm{CH_4}$ is polyatomic Non-Linear\nD.O.F of $\\mathrm{CH_4}$\nT. DOF $= 3$\nR DOF $= 3$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$f_t = 2$ and $f_r = 2$"
+    },
+    {
+     "key": "B",
+     "text": "$f_t = 3$ and $f_r = 3$"
+    },
+    {
+     "key": "C",
+     "text": "$f_t = 3$ and $f_r = 2$"
+    },
+    {
+     "key": "D",
+     "text": "$f_t = 2$ and $f_r = 3$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -35,79 +52,262 @@
   },
   {
    "q_no": 2,
-   "topic": "Laws of Motion",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find the value of friction coefficient between block and the inclined for body to just start sliding.",
-   "correct_key": null,
-   "correct_value": 1,
+   "topic": "Kinematics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A cyclist starts from the point P of a circular ground of radius 2 km and travels along its circumference to the point S. The displacement of a cyclist is :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mu = \\tan 45^\\circ$\n$\\mu = 1$",
+   "solution": "$\\therefore$ Displacement $= R\\sqrt{2} = 2\\sqrt{2} = \\sqrt{8}$ km",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-04apr-s2-phy-q02.png",
-   "solution_figure": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6 km"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{8}$ km"
+    },
+    {
+     "key": "C",
+     "text": "4 km"
+    },
+    {
+     "key": "D",
+     "text": "8 km"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-phy-q32.png",
+   "solution_figure": "jn24-04apr-s2-phy-q32-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 3,
-   "topic": "Electromagnetic Induction",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find potential difference between points P and Q in the given figure. Magnetic field is perpendicular to the plane of rotation.",
-   "correct_key": null,
-   "correct_value": 0,
+   "topic": "Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The magnetic moment of a bar magnet is $0.5\\ \\mathrm{Am^{2}}$. It is suspended in a uniform magnetic field of $8 \\times 10^{-2}\\ \\mathrm{T}$. The work done in rotating it from its most stable to most unstable position is :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "P and Q will be at same potential\nSo $V_P - V_Q = 0$",
+   "solution": "At stable equilibrium\n$U = -mB\\cos 0^\\circ = -mB$\nAt unstable equilibrium\n$U = -mB\\cos 180^\\circ = +mB$\n$W = \\Delta U$\n$W.D. = 2mB$\n$= 2\\,(0.5)\\,8 \\times 10^{-2} = 8 \\times 10^{-2}\\ \\mathrm{J}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-04apr-s2-phy-q03.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 5,
-   "topic": "Kinematics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A bus moving with 72 km/hr stops in 4 seconds due to uniform retardation. Find the value of stopping distance.",
-   "correct_key": null,
-   "correct_value": 40,
-   "correct_keys": null,
-   "solution": "$S = \\left(\\frac{u + v}{2}\\right)t$\n$u = 72 \\times \\frac{5}{18}\\ \\mathrm{m/s}$ & $v = 0$\nTherefore, $s = \\left(\\frac{20 + 0}{2}\\right) \\times 4$\n$= 40\\ \\mathrm{m}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$16 \\times 10^{-2}\\ \\mathrm{J}$"
+    },
+    {
+     "key": "B",
+     "text": "$8 \\times 10^{-2}\\ \\mathrm{J}$"
+    },
+    {
+     "key": "C",
+     "text": "$4 \\times 10^{-2}\\ \\mathrm{J}$"
+    },
+    {
+     "key": "D",
+     "text": "Zero"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 7,
-   "topic": "Current Electricity",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Two wires A and B of same length are made of same material. Radius of B is double of radius of A. Find resistance of B if resistance of A is $2\\ \\Omega$.",
-   "correct_key": null,
-   "correct_value": 8,
+   "q_no": 4,
+   "topic": "Semiconductor Devices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the diode circuit shows correct biasing used for the measurement of dynamic resistance of p-n junction diode :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$R = \\frac{\\rho l}{A}$\n$R \\propto \\frac{1}{r^{2}}$\n$\\frac{R_B}{R_A} = \\left(\\frac{r_B}{r_A}\\right)^{2}$\n$R_B = 2 \\times 4 = 8\\Omega$",
+   "solution": "Diode should be in forward biased to calculate dynamic resistance\nHence correct answer would be 2.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn24-04apr-s2-phy-q34-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn24-04apr-s2-phy-q34-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn24-04apr-s2-phy-q34-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn24-04apr-s2-phy-q34-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Arrange the following in the ascending order of wavelength :\n(A) Gamma rays $(\\lambda_1)$\n(B) x-ray $(\\lambda_2)$\n(C) Infrared waves $(\\lambda_3)$\n(D) Microwaves $(\\lambda_4)$\nChoose the most appropriate answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lambda_1 < \\lambda_2 < \\lambda_3 < \\lambda_4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\lambda_4 < \\lambda_3 < \\lambda_1 < \\lambda_2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\lambda_4 < \\lambda_3 < \\lambda_2 < \\lambda_1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\lambda_1 < \\lambda_2 < \\lambda_3 < \\lambda_4$"
+    },
+    {
+     "key": "D",
+     "text": "$\\lambda_2 < \\lambda_1 < \\lambda_4 < \\lambda_3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Semiconductor Devices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify the logic gate given in the circuit :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$Y = \\overline{\\bar{A}\\cdot\\bar{B}}$\nBy De-Morgan Law\n$Y = \\overline{\\overline{A+B}}$\n$Y = A + B$\nHence OR gate",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "NAND - gate"
+    },
+    {
+     "key": "B",
+     "text": "OR - gate"
+    },
+    {
+     "key": "C",
+     "text": "AND gate"
+    },
+    {
+     "key": "D",
+     "text": "NOR gate"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-phy-q36.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The width of one of the two slits in a Young's double slit experiment is 4 times that of the other slit. The ratio of the maximum of the minimum intensity in the interference pattern is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Since, Intensity $\\propto$ width of slit $(\\omega)$\nso, $I_1 = I$, $I_2 = 4I$\n$I_{min} = \\left(\\sqrt{I_1} - \\sqrt{I_2}\\right)^{2} = I$\n$I_{max} = \\left(\\sqrt{I_1} + \\sqrt{I_2}\\right)^{2} = 9I$\n$\\frac{I_{max}}{I_{min}} = \\frac{9I}{I} = \\frac{9}{1}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$16 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$1 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$4 : 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Correct formula for height of a satellite from earths surface is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Rightarrow \\frac{GMm}{(R+h)^{2}} = \\frac{mv^{2}}{(R+h)}$\n$\\Rightarrow \\frac{GM}{(R+h)} = v^{2}\\ \\ldots(1)$\n$\\Rightarrow v = (R+h)\\omega$\n$\\Rightarrow v = (R+h)\\frac{2\\pi}{T}\\ \\ldots\\ldots(2)$\n$\\Rightarrow \\frac{GM}{R^{2}} = g$\n$\\Rightarrow GM = gR^{2}\\ \\ldots\\ldots..(3)$\nPut value from (2) & (3) in eq. (1)\n$\\Rightarrow \\frac{gR^{2}}{(R+h)} = (R+h)^{2}\\left(\\frac{2\\pi}{T}\\right)^{2}$\n$\\Rightarrow \\frac{T^{2}R^{2}g}{(2\\pi)^{2}} = (R+h)^{3}$\n$\\Rightarrow \\left[\\frac{T^{2}R^{2}g}{(2\\pi)^{2}}\\right]^{1/3} - R = h$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(\\frac{T^{2}R^{2}g}{4\\pi}\\right)^{1/2} - R$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{T^{2}R^{2}g}{4\\pi^{2}}\\right)^{1/3} - R$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{T^{2}R^{2}}{4\\pi^{2}g}\\right)^{1/3} - R$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{T^{2}R^{2}}{4\\pi^{2}}\\right)^{-1/3} + R$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -115,19 +315,73 @@
   },
   {
    "q_no": 9,
-   "topic": "Current Electricity",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If power consumed by an electrical instrument is 500 watts at 200 volts, then find power consumed at 100 volts.",
-   "correct_key": null,
-   "correct_value": 125,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List I with List II.\nList-I: A. Purely capacitive circuit; B. Purely inductive circuit; C. LCR series at resonance; D. LCR series circuit.\nList-II: I-IV are the phasor diagrams of $I$ and $V$ shown in the figure (I. $I$ along $+y$, $V$ along $+x$; II. $I$ and $V$ along the same direction; III. $V$ at angle $\\theta$ above $I$; IV. $V$ along $+y$, $I$ along $+x$).\nChoose the correct answer from the options given below :",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$P = \\frac{v^{2}}{R} \\Rightarrow P \\propto v^{2}$\n$\\frac{P_2}{P_1} = \\left(\\frac{V_2}{V_1}\\right)^{2}$\n$\\frac{P_2}{P_1} = \\left(\\frac{100}{200}\\right)^{2}$\n$P_2 = \\frac{P_1}{4} \\Rightarrow P_2 = \\frac{500}{4} = 125$",
+   "solution": "A $-$ V lags by $90^\\circ$ from I hence option (I) is correct.\nB $-$ V lead by $90^\\circ$ from I hence option (IV) is correct\nC $-$ In LCR resonance $X_L = X_C$. Hence circuit is purely resistive so option (II) is correct\nD $-$ In LCR series V is at some angle from I hence (III) is correct\nHence option (4) is correct.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "A-I, B-IV, C-III, D-II"
+    },
+    {
+     "key": "B",
+     "text": "A-IV, B-I, C-III, D-II"
+    },
+    {
+     "key": "C",
+     "text": "A-IV, B-I, C-II, D-III"
+    },
+    {
+     "key": "D",
+     "text": "A-I, B-IV, C-II, D-III"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-phy-q39.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Properties of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement I : The contact angle between a solid and a liquid is a property of the material of the solid and liquid as well.\nStatement II : The rise of a liquid in a capillary tube does not depend on the inner radius of the tube.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Statement I is correct as we know contact angle depends on cohesine and adhesive forces.\nStatement II is incorrect because height of liquid is given by $h = \\frac{2T\\cos\\theta_C}{\\rho g r}$ where r is radius of Tube (assuming length of capillary is sufficient)\nHence option (3) is correct.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "B",
+     "text": "Statement I is false but Statement II is true."
+    },
+    {
+     "key": "C",
+     "text": "Statement I is true but Statement II is false."
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are true."
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -135,34 +389,384 @@
   },
   {
    "q_no": 11,
-   "topic": "Kinematics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A particle travels on a circle of radius 2m from P to S. Find the displacement of the particle",
-   "correct_key": null,
-   "correct_value": 2.82,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of m kg slides from rest along the curve of vertical circle from point A to B in friction less path. The velocity of the body at B is :\n(given, $R = 14\\ \\mathrm{m}$, $g = 10\\ \\mathrm{m/s^{2}}$ and $\\sqrt{2} = 1.4$)",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$|PS| = \\sqrt{r^{2} + r^{2}} = \\sqrt{2}r = \\sqrt{2} \\times 2\\ \\mathrm{m} = 2.82\\ \\mathrm{m}$",
+   "solution": "Apply W.E.T. from A to B\n$\\Rightarrow W_{mg} = K_B - K_A$\n$\\Rightarrow mg \\times \\left(\\frac{R}{\\sqrt{2}} + R\\right) = \\frac{1}{2}mv_B^{2} - 0\\ \\{v_A = 0\\ \\text{rest}\\}$\n$\\Rightarrow mgR\\frac{(\\sqrt{2}+1)}{\\sqrt{2}} = \\frac{1}{2}mv_B^{2}$\n$\\Rightarrow \\sqrt{gR\\frac{2(\\sqrt{2}+1)}{\\sqrt{2}}} = v_B$\n$\\Rightarrow \\sqrt{\\frac{10\\times 14\\times 2\\,(2.4)}{1.4}} = v_B$\n$\\Rightarrow 21.9 = v_B$\nHence option (2) is correct",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-04apr-s2-phy-q11.png",
-   "solution_figure": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$19.8\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "B",
+     "text": "$21.9\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "C",
+     "text": "$16.7\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "D",
+     "text": "$10.6\\ \\mathrm{m/s}$"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-phy-q41.png",
+   "solution_figure": "jn24-04apr-s2-phy-q41-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 12,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electric bulb rated 50 W $-$ 200 V is connected across a 100 V supply. The power dissipation of the bulb is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Rated power & voltage gives resistance\n$R = \\frac{V^{2}}{P} = \\frac{(200)^{2}}{50} = \\frac{40000}{50}$\n$R = 800$\n$P = \\frac{(V_{applied})^{2}}{R} = \\frac{(100)^{2}}{800}$\n$P = 12.5$ watt\nHence option 1 is correct.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "12.5 W"
+    },
+    {
+     "key": "B",
+     "text": "25 W"
+    },
+    {
+     "key": "C",
+     "text": "50 W"
+    },
+    {
+     "key": "D",
+     "text": "100 W"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A 2 kg brick begins to slide over a surface which is inclined at an angle of $45^\\circ$ with respect to horizontal axis. The co-efficient of static friction between their surfaces is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$mg\\sin 45 = f_L$\n$mg\\cos 45 = N$\n$f_L = \\mu_s N$\n$\\mu_s = \\tan 45 = 1$\nor\n$\\tan\\theta = \\mu_s$ ($\\theta$ is angle of repose)\n$\\tan 45 = \\mu_s = 1$\ncorrect option (1)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.5$"
+    },
+    {
+     "key": "D",
+     "text": "$1.7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-phy-q43-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Simple Harmonic Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In simple harmonic motion, the total mechanical energy of given system is E. If mass of oscillating particle P is doubled then the new energy of the system for same amplitude is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T.E. = \\frac{1}{2}kA^{2}$\nsince A is same T.E. will be same\ncorrect option (2)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{E}{\\sqrt{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$E$"
+    },
+    {
+     "key": "C",
+     "text": "$E\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2E$"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-phy-q44.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements : one is labelled as Assertion A and the other is labelled as Reason R.\nAssertion A : Number of photons increases with increase in frequency of light.\nReason R : Maximum kinetic energy of emitted electrons increases with the frequency of incident radiation.\nIn the light of the above statements, choose the most appropriate answer from the options given below :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Intensity of light $I = \\frac{nh\\nu}{A}$\nHere n is no. of photons per unit time.\n$n = \\frac{IA}{h\\nu}$ so on increasing frequency $\\nu$, n decreases taking intensity constant.\n$k_{max} = h\\nu - \\phi$\nSo on increasing $\\nu$, kinetic energy increases.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both A and R are correct and R is NOT the correct explanation of A."
+    },
+    {
+     "key": "B",
+     "text": "A is correct but R is not correct."
+    },
+    {
+     "key": "C",
+     "text": "Both A and R are correct and R is the correct explanation of A."
+    },
+    {
+     "key": "D",
+     "text": "A is not correct but R is correct."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Atomic Physics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "According to Bohr's theory, the moment of momentum of an electron revolving in $4^{th}$ orbit of hydrogen atom is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Moment of momentum is $\\vec{r}\\times\\vec{P}$\n$\\vec{L} = \\vec{r}\\times m\\vec{v}$\n$L = mvr = \\frac{nh}{2\\pi} = \\frac{4h}{2\\pi} = \\frac{2h}{\\pi}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8\\frac{h}{\\pi}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{h}{\\pi}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\frac{h}{\\pi}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{h}{2\\pi}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A sample of gas at temperature T is adiabatically expanded to double its volume. Adiabatic constant for the gas is $\\gamma = 3/2$. The work done by the gas in the process is : ($\\mu = 1$ mole)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$W = \\frac{nR\\Delta T}{1-\\gamma}$\n$TV^{\\gamma-1} = \\text{constant} = T_f\\,(2V)^{\\gamma-1}$\n$T_f = T\\left(\\frac{1}{2}\\right)^{1/2} = \\frac{T}{\\sqrt{2}}$\n$W = \\frac{R\\left(\\frac{T}{\\sqrt{2}} - T\\right)}{1 - \\frac{3}{2}} = 2RT\\frac{(\\sqrt{2}-1)}{\\sqrt{2}}$\n$= RT\\left(2 - \\sqrt{2}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$RT\\left[\\sqrt{2} - 2\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$RT\\left[1 - 2\\sqrt{2}\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$RT\\left[2\\sqrt{2} - 1\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$RT\\left[2 - \\sqrt{2}\\right]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A charge q is placed at the center of one of the surface of a cube. The flux linked with the cube is :-",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "From [figure of a cube with charge q at the centre of one face]\n$2\\phi = \\frac{q}{\\epsilon_0}$\n$\\phi = \\frac{q}{2\\epsilon_0}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{q}{4\\epsilon_0}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{q}{2\\epsilon_0}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{q}{8\\epsilon_0}$"
+    },
+    {
+     "key": "D",
+     "text": "Zero"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Applying the principle of homogeneity of dimensions, determine which one is correct.\nwhere T is time period, G is gravitational constant, M is mass, r is radius of orbit.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "According to principle of homogeneity dimension of LHS should be equal to dimensions of RHS so option (3) is correct.\n$T^{2} = \\frac{4\\pi^{2}r^{3}}{GM}$\n$\\left[T^{2}\\right] = \\frac{[L^{3}]}{[M^{-1}L^{3}T^{-2}][M]}$\n(Dimension of G is $[M^{-1}L^{3}T^{-2}]$)\n$\\left[T^{2}\\right] = \\frac{[L^{3}]}{[L^{3}T^{-2}]} = \\left[T^{2}\\right]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$T^{2} = \\frac{4\\pi^{2}r}{GM^{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$T^{2} = 4\\pi^{2}r^{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$T^{2} = \\frac{4\\pi^{2}r^{3}}{GM}$"
+    },
+    {
+     "key": "D",
+     "text": "$T^{2} = \\frac{4\\pi^{2}r^{2}}{GM}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
    "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A 90 kg body placed at 2R distance from surface of earth experiences gravitational pull of :\n(R = Radius of earth, $g = 10\\ \\mathrm{ms^{-2}}$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Value of $g = g_s\\left(1 + \\frac{h}{R}\\right)^{-2}$\n$= g_s(1+2)^{-2} = \\frac{g_s}{9}$\nHere $g_s$ = gravitational acceleration at surface\nForce $= mg = 90 \\times \\frac{g_s}{9} = 100$ N",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "300 N"
+    },
+    {
+     "key": "B",
+     "text": "225 N"
+    },
+    {
+     "key": "C",
+     "text": "120 N"
+    },
+    {
+     "key": "D",
+     "text": "100 N"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Simple Harmonic Motion",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Determine the weight of a man standing at a height of 2R (where R = radius of earth) from the earth surface. Given that mass of the man = 90kg.",
+   "stem": "The displacement of a particle executing SHM is given by $x = 10\\sin\\left(\\omega t + \\frac{\\pi}{3}\\right)\\ \\mathrm{m}$. The time period of motion is 3.14 s. The velocity of the particle at $t = 0$ is ______ m/s.",
    "correct_key": null,
    "correct_value": 10,
    "correct_keys": null,
-   "solution": "$g = \\frac{g_s}{\\left(1 + \\frac{h}{R}\\right)^{2}}$\n$g = \\frac{g_s}{\\left(1 + \\frac{2R}{R}\\right)^{2}} = \\frac{g_s}{9}$\nThen weight of man at height 2R\n$W = \\frac{W_s}{9}$\n$= 10$ kg-wt",
+   "solution": "Given,\n$T = 3.14 = \\frac{2\\pi}{\\omega}$\n$\\omega = 2$ rad/s\n$x = 10\\sin\\left(\\omega t + \\frac{\\pi}{3}\\right)$\n$v = \\frac{dx}{dt} = 10\\omega\\cos\\left(\\omega t + \\frac{\\pi}{3}\\right)$\nat $t = 0$\n$v = 10\\omega\\cos\\left(\\frac{\\pi}{3}\\right) = 10\\times 2\\times\\frac{1}{2}$ [using $\\omega = 2$ rad/s]\n$v = 10$ m/s",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -174,15 +778,175 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 13,
-   "topic": "System of Particles and Rotational Motion",
+   "q_no": 22,
+   "topic": "Kinematics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "3 Kg mass is displaced by 2cm towards 2kg mass. How much should 2kg mass be displaced towards 3kg such that centre of mass remains at the same point.",
+   "stem": "A bus moving along a straight highway with speed of 72 km/h is brought to halt within 4s after applying the brakes. The distance travelled by the bus during this time (Assume the retardation is uniform) is _______m.",
+   "correct_key": null,
+   "correct_value": 40,
+   "correct_keys": null,
+   "solution": "Initial velocity $= u = 72$ km/h $= 20$ m/s\n$v = u + at$\n$\\Rightarrow 0 = 20 + a\\times 4$\n$a = -5\\ \\mathrm{m/s^{2}}$\n$v^{2} - u^{2} = 2as$\n$\\Rightarrow 0^{2} - 20^{2} = 2(-5).s$\n$s = 40$ m",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Capacitors",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A parallel plate capacitor of capacitance 12.5 pF is charged by a battery connected between its plates to potential difference of 12.0 V. The battery is now disconnected and a dielectric slab $(\\epsilon_r = 6)$ is inserted between the plates. The change in its potential energy after inserting the dielectric slab is _______$\\times 10^{-12}$ J.",
+   "correct_key": null,
+   "correct_value": 750,
+   "correct_keys": null,
+   "solution": "Before inserting dielectric capacitance is given $C_0 = 12.5$ pF and charge on the capacitor $Q = C_0V$\nAfter inserting dielectric capacitance will become $\\epsilon_r C_0$.\nChange in potential energy of the capacitor $= E_i - E_f$\n$= \\frac{Q^{2}}{2C_i} - \\frac{Q^{2}}{2C_f} = \\frac{Q^{2}}{2C_0}\\left[1 - \\frac{1}{\\epsilon_r}\\right]$\n$= \\frac{(C_0V)^{2}}{2C_0}\\left[1 - \\frac{1}{\\epsilon_r}\\right] = \\frac{1}{2}C_0V^{2}\\left[1 - \\frac{1}{\\epsilon_r}\\right]$\nUsing $C_0 = 12.5$ pF, $V = 12$ V, $\\epsilon_r = 6$\n$= \\frac{1}{2}(12.5)\\times 12^{2}\\left[1 - \\frac{1}{6}\\right] = \\frac{1}{2}(12.5)\\times 12^{2}\\times\\frac{5}{6}$\n$= 750$ pJ $= 750\\times 10^{-12}$ J",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Centre of Mass",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a system two particles of masses $m_1 = 3$kg and $m_2 = 2$kg are placed at certain distance from each other. The particle of mass $m_1$ is moved towards the center of mass of the system through a distance 2cm. In order to keep the center of mass of the system at the original position, the particle of mass $m_2$ should move towards the center of mass by the distance ____ cm.",
    "correct_key": null,
    "correct_value": 3,
    "correct_keys": null,
-   "solution": "As COM remain stationary\n$\\overline{d_{com}} = 0 = \\frac{3 \\times (2) + 2(-x)}{5}$\n$x = 3\\ \\mathrm{cm}$",
+   "solution": "$\\Delta X_{C.O.M.} = \\frac{m_1\\Delta x_1 + m_2\\Delta x_2}{m_1 + m_2}$\n$\\Rightarrow 0 = \\frac{3\\times 2 + 2(-x)}{3+2}$\n$\\Rightarrow x = 3$ cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Nuclei",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The disintegration energy Q for the nuclear fission of $^{235}\\mathrm{U} \\rightarrow {}^{140}\\mathrm{Ce} + {}^{94}\\mathrm{Zr} + n$ is ____MeV.\nGiven atomic masses of\n$^{235}\\mathrm{U}$ : 235.0439u; $^{140}\\mathrm{Ce}$ : 139.9054u,\n$^{94}\\mathrm{Zr}$ : 93.9063u; n : 1.0086u,\nValue of $c^{2} = 931$ MeV/u.",
+   "correct_key": null,
+   "correct_value": 208,
+   "correct_keys": null,
+   "solution": "$^{235}\\mathrm{U} \\rightarrow {}^{140}\\mathrm{Ce} + {}^{94}\\mathrm{Zr} + n$\nDisintegration energy\n$Q = (m_R - m_P).c^{2}$\n$m_R = 235.0439$ u\n$m_P = 139.9054\\mathrm{u} + 93.9063\\mathrm{u} + 1.0086\\mathrm{u} = 234.8203\\mathrm{u}$\n$Q = (235.0439\\mathrm{u} - 234.8203\\mathrm{u})c^{2}$\n$= 0.2236\\ c^{2}$\n$= 0.2236\\times 931$\n$Q = 208.1716$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Ray Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A light ray is incident on a glass slab of thickness $4\\sqrt{3}$ cm and refractive index $\\sqrt{2}$. The angle of incidence is equal to the critical angle for the glass slab with air. The lateral displacement of ray after passing through glass slab is ____cm.\n(Given $\\sin 15^\\circ = 0.25$)",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$i = \\theta_C$\n$\\Rightarrow i = \\sin^{-1}\\left(\\frac{1}{\\mu}\\right)$\n$\\Rightarrow i = 45^\\circ$\nand according to snell's law\n$1\\sin 45^\\circ = \\sqrt{2}\\sin r$\n$\\Rightarrow r = 30^\\circ$\nLateral displacement $\\Delta = \\frac{t\\sin(i-r)}{\\cos r}$\n$\\Rightarrow \\Delta = \\frac{4\\sqrt{3}\\times\\sin 15^\\circ}{\\cos 30^\\circ}$\n$\\Rightarrow \\Delta = 2$cm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-phy-q56-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Electromagnetic Induction",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A rod of length 60 cm rotates with a uniform angular velocity 20 rad $\\mathrm{s^{-1}}$ about its perpendicular bisector, in a uniform magnetic field 0.5 T. The direction of magnetic field is parallel to the axis of rotation. The potential difference between the two ends of the rod is ____V.",
+   "correct_key": null,
+   "correct_value": 0,
+   "correct_keys": null,
+   "solution": "$\\because V_0 - V_A = \\frac{B\\omega\\ell^{2}}{2}$\n$V_0 - V_B = \\frac{B\\omega\\ell^{2}}{2}$\n$\\therefore V_A = V_B \\therefore V_A - V_B = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-phy-q57-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two wires A and B are made up of the same material and have the same mass. Wire A has radius of 2.0 mm and wire B has radius of 4.0 mm. The resistance of wire B is $2\\ \\Omega$. The resistance of wire A is _____$\\Omega$.",
+   "correct_key": null,
+   "correct_value": 32,
+   "correct_keys": null,
+   "solution": "$\\because R = \\frac{\\rho\\ell}{A} = \\frac{\\rho V}{A^{2}}$\n$\\therefore \\frac{R_A}{R_B} = \\frac{A_B^{2}}{A_A^{2}} = \\frac{r_B^{4}}{r_A^{4}}$\n$\\Rightarrow \\frac{R_A}{2} = \\left[\\frac{4\\times 10^{-3}}{2\\times 10^{-3}}\\right]^{4}$\n$\\Rightarrow R_A = 32\\ \\Omega$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Magnetic Effects of Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two parallel long current carrying wire separated by a distance 2r are shown in the figure. The ratio of magnetic field at A to the magnetic field produced at C is $\\frac{x}{7}$. The value of x is ___.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$B_A = \\frac{\\mu_0 i}{2\\pi r} + \\frac{\\mu_0(2i)}{2\\pi(3r)} = \\frac{5\\mu_0 i}{6\\pi r}$\n$B_C = \\frac{\\mu_0(2i)}{2\\pi r} + \\frac{\\mu_0 i}{2\\pi(3r)} = \\frac{7\\mu_0 i}{6\\pi r}$\n$\\therefore \\frac{B_A}{B_C} = \\frac{5}{7}$\n$\\therefore x = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-04apr-s2-phy-q59.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Fluid Mechanics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Mercury is filled in a tube of radius 2 cm up to a height of 30 cm. The force exerted by mercury on the bottom of the tube is ___N.\n(Given, atmospheric pressure $= 10^{5}\\ \\mathrm{Nm^{-2}}$, density of mercury $= 1.36\\times 10^{4}\\ \\mathrm{kg\\ m^{-3}}$, $g = 10\\ \\mathrm{ms^{-2}}$, $\\pi = \\frac{22}{7}$)",
+   "correct_key": null,
+   "correct_value": 177,
+   "correct_keys": null,
+   "solution": "$F = P_0A + \\rho_m ghA$\n$= 10^{5}\\times\\frac{22}{7}\\times\\left(2\\times 10^{-2}\\right)^{2}$\n$+ 1.36\\times 10^{4}\\times 10\\times\\left(30\\times 10^{-2}\\right)\\left(\\frac{22}{7}\\times\\left(2\\times 10^{-2}\\right)^{2}\\right)$\n$F = 51.29 + 125.71 = 177$ N",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

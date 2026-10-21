@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "17CEh-fkHOoiHLE37nQ39bD5oKS3pFuON"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Thermodynamics",
+   "topic": "Projectile Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Find total work done from $A$ to $E$.",
-   "correct_key": "A",
+   "stem": "A ball having kinetic energy KE, is projected at an angle of $60^\\circ$ from the horizontal. What will be the kinetic energy of ball at the highest point of its flight?",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Work done = Area under curve\n$= -4\\,P_0V_0 + P_0V_0$\n$= -3\\,P_0V_0$",
+   "solution": "Initial K.E,\n$K.E. = \\frac{1}{2}mu^{2}$\nSpeed at heighest point\n$V = u\\cos 60^\\circ = \\frac{u}{2}$\n$\\therefore KE_{2} = \\frac{1}{2}m\\left(\\frac{u}{2}\\right)^{2}$\n$= \\frac{1}{4}\\times\\frac{1}{2}mu^{2}$\n$= \\frac{KE}{4}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,36 +30,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$-3\\,P_0V_0$"
+     "text": "$\\frac{(KE)}{8}$"
     },
     {
      "key": "B",
-     "text": "$3\\,P_0V_0$"
+     "text": "$\\frac{(KE)}{4}$"
     },
     {
      "key": "C",
-     "text": "$3\\,P_0V_0$"
+     "text": "$\\frac{(KE)}{16}$"
     },
     {
      "key": "D",
-     "text": "$5\\,P_0V_0$"
+     "text": "$\\frac{(KE)}{2}$"
     }
    ],
-   "stem_figure": "j25-23jan-s2-phy-q01.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 2,
-   "topic": "Dual Nature of Radiation and Matter",
+   "topic": "Electrostatics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Statement 1: Graph of frequency $f$ of X ray and atomic number $Z$ of heavy nucleus is straight line, in X ray emission.\nStatement 2: Graph of square root of frequency $\\sqrt{f}$ of X ray and atomic number $Z$ of heavy nucleus is straight line in X ray emission.",
-   "correct_key": "B",
+   "stem": "Two charges $7\\ \\mu\\mathrm{c}$ and $-4\\ \\mu\\mathrm{c}$ are placed at $(-7\\ \\mathrm{cm}, 0, 0)$ and $(7\\ \\mathrm{cm}, 0, 0)$ respectively. Given, $\\epsilon_{0} = 8.85 \\times 10^{-12}\\ \\mathrm{C^{2}\\,N^{-1}\\,m^{-2}}$, the electrostatic potential energy of the charge configuration is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Mosley law $\\sqrt{f} = a(z-b)$",
+   "solution": "P.E. of two charges\n$u = \\frac{1}{4\\pi\\epsilon_{0}}\\frac{q_{1}q_{2}}{r}$\n$r = \\sqrt{(x_{2}-x_{1})^{2}+(y_{2}-y_{1})^{2}+(z_{2}-z_{1})^{2}}$\n$= 14\\ \\mathrm{cm}$\n$\\therefore u = \\frac{9\\times10^{9}\\times7\\times10^{-6}\\times(-4)\\times10^{-6}}{14\\times10^{-2}}$\n$= -1.8\\ \\mathrm{J}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,19 +67,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Statement 1 is correct and statement 2 is correct"
+     "text": "$-1.5\\ \\mathrm{J}$"
     },
     {
      "key": "B",
-     "text": "Statement 1 is incorrect and statement 2 is correct"
+     "text": "$-2.0\\ \\mathrm{J}$"
     },
     {
      "key": "C",
-     "text": "Statement 1 is correct and statement 2 is incorrect"
+     "text": "$-1.2\\ \\mathrm{J}$"
     },
     {
      "key": "D",
-     "text": "Statement 1 is incorrect and statement 2 is incorrect"
+     "text": "$-1.8\\ \\mathrm{J}$"
     }
    ],
    "stem_figure": null,
@@ -89,14 +89,14 @@
   },
   {
    "q_no": 3,
-   "topic": "Semiconductor Devices",
+   "topic": "Ray Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Two ideal diodes are connected in circuit as shown. Find current through battery.",
-   "correct_key": "C",
+   "stem": "The refractive index of the material of a glass prism is $\\sqrt{3}$. The angle of minimum deviation is equal to the angle of the prism. What is the angle of the prism?",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Both diode are in forward bias.\n$I = \\frac{5}{20} + \\frac{5}{20}$\n$I = 0.5\\ \\mathrm{A}$",
+   "solution": "$\\mu = \\frac{\\sin\\left(\\frac{A+\\delta_{min}}{2}\\right)}{\\sin\\frac{A}{2}}$\nGiven $\\delta_{min} = A$\n$\\sqrt{3} = \\frac{\\sin A}{\\sin\\frac{A}{2}} = \\frac{2\\sin\\frac{A}{2}\\cos\\frac{A}{2}}{\\sin\\frac{A}{2}}$\n$\\cos\\frac{A}{2} = \\frac{\\sqrt{3}}{2}$\n$A = 60^\\circ$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,36 +104,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$0.3\\ \\mathrm{A}$"
+     "text": "$50^\\circ$"
     },
     {
      "key": "B",
-     "text": "$1\\ \\mathrm{A}$"
+     "text": "$60^\\circ$"
     },
     {
      "key": "C",
-     "text": "$0.5\\ \\mathrm{A}$"
+     "text": "$58^\\circ$"
     },
     {
      "key": "D",
-     "text": "$0.25\\ \\mathrm{A}$"
+     "text": "$48^\\circ$"
     }
    ],
-   "stem_figure": "j25-23jan-s2-phy-q03.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 4,
-   "topic": "Alternating Current",
+   "topic": "Waves",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In a series LCR circuit, inductance $L = 100\\ \\mathrm{mH}$ and capacitance $C = 1\\ \\mathrm{nF}$. The angular frequency of the source when current has maximum amplitude in the circuit is",
+   "stem": "The equation of a transverse wave travelling along a string is $y(x, t) = 4.0\\sin[20\\times10^{-3}x + 600t]\\ \\mathrm{mm}$, where $x$ is in the mm and $t$ is in second. The velocity of the wave is :",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The current is maximum at resonance,\n$\\Rightarrow w = \\frac{1}{\\sqrt{LC}} = \\frac{1}{\\sqrt{(100\\times10^{-3}\\ \\mathrm{H})(1\\times10^{-9}\\ \\mathrm{F})}} = 10^{5}\\ \\mathrm{rad/s}$",
+   "solution": "$y = 4\\sin(20\\times10^{-3}x + 600t)$\nHere $\\omega = 600\\ \\mathrm{s^{-1}}$\n$k = 20\\times10^{-3}\\ \\mathrm{m/s^{-1}}$\n$\\therefore v = \\frac{w}{k} = \\frac{600}{20\\times10^{-3}}$\n$= 30\\times10^{-3}\\ \\mathrm{mm/s}$\n$= 30\\ \\mathrm{m/s}$\n& direction is towards $-$ve $x$ axis\n$\\therefore v = -30\\ \\mathrm{m/s}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -141,19 +141,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{10^{4}}{2\\pi}\\ \\mathrm{rad/s}$"
+     "text": "$+30\\ \\mathrm{m/s}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{10^{5}}{2\\pi}\\ \\mathrm{rad/s}$"
+     "text": "$-60\\ \\mathrm{m/s}$"
     },
     {
      "key": "C",
-     "text": "$10^{5}\\ \\mathrm{rad/s}$"
+     "text": "$-30\\ \\mathrm{m/s}$"
     },
     {
      "key": "D",
-     "text": "$10^{6}\\ \\mathrm{rad/s}$"
+     "text": "$+60\\ \\mathrm{m/s}$"
     }
    ],
    "stem_figure": null,
@@ -163,14 +163,14 @@
   },
   {
    "q_no": 5,
-   "topic": "Electrostatics",
+   "topic": "Units and Measurements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Two charges $+7\\ \\mathrm{C}$ and $-4\\ \\mathrm{C}$ are located at $(-7, 0, 0)$ and $(7, 0, 0)$, find electrostatic potential energy of the system. $\\left(k = \\frac{1}{4\\pi\\epsilon_0} = 9\\times10^{9}\\ \\mathrm{SI\\ units}\\right)$",
-   "correct_key": "B",
+   "stem": "The energy of a system is given as $E(t) = \\alpha^{3}e^{-\\beta t}$, where $t$ is the time and $\\beta = 0.3\\ \\mathrm{s^{-1}}$. The errors in the measurement of $\\alpha$ and $t$ are $1.2\\%$ and $1.6\\%$, respectively. At $t = 5\\ \\mathrm{s}$, maximum percentage error in the energy is :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$E = \\frac{Kq_1q_2}{r}$\n$= \\frac{-9\\times10^{9}\\times7\\times4}{14}$\n$= -18\\times10^{9}\\ \\mathrm{J}$",
+   "solution": "$\\alpha^{3}e^{-\\beta t}$\n$\\ln E = 3\\ln\\alpha - \\beta t$\n$\\left(\\frac{dE}{E}\\right)_{max} = \\frac{3d\\alpha}{\\alpha} + \\beta\\frac{dt}{t}\\times t$\n$= 3\\times1.2\\% + (0.3\\times1.6\\times5)\\%$\n$= 6\\%$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -178,19 +178,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$-6\\times10^{9}\\ \\mathrm{J}$"
+     "text": "$4\\%$"
     },
     {
      "key": "B",
-     "text": "$-18\\times10^{9}\\ \\mathrm{J}$"
+     "text": "$11.6\\%$"
     },
     {
      "key": "C",
-     "text": "$18\\times10^{9}\\ \\mathrm{J}$"
+     "text": "$6\\%$"
     },
     {
      "key": "D",
-     "text": "$6\\times10^{9}\\ \\mathrm{J}$"
+     "text": "$8.4\\%$"
     }
    ],
    "stem_figure": null,
@@ -200,14 +200,14 @@
   },
   {
    "q_no": 6,
-   "topic": "Gravitation",
+   "topic": "Dual Nature of Matter",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A satellite is nine times closer to earth compared to moon. Time period of moon is 27 days then period of satellite is",
-   "correct_key": "C",
+   "stem": "In photoelectric effect an em-wave is incident on a metal surface and electrons are ejected from the surface. If the work function of the metal is $2.14\\ \\mathrm{eV}$ and stopping potential is $2\\mathrm{V}$, what is the wavelength of the em-wave?\n(Given $hc = 1242\\ \\mathrm{eV\\,nm}$ where $h$ is the Planck's constant and $c$ is the speed of light in vaccum.)",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\frac{T_m^{2}}{T_s^{2}} = \\frac{r_m^{2}}{\\left(\\frac{r_m}{9}\\right)^{3}} = 9^{3}$\n$\\Rightarrow T_s = \\frac{T_m}{9^{3/2}} = 1$ day",
+   "solution": "$eV_{s} = E - \\phi$\n$2\\ \\mathrm{eV} = E - 2.14\\ \\mathrm{eV}$\n$E = 4.14\\ \\mathrm{eV}$\n$E = \\frac{hc}{\\lambda}$\n$\\lambda = \\frac{1242}{4.14} = 300\\ \\mathrm{nm}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -215,19 +215,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$3$ days"
+     "text": "$400\\ \\mathrm{nm}$"
     },
     {
      "key": "B",
-     "text": "$9$ days"
+     "text": "$600\\ \\mathrm{nm}$"
     },
     {
      "key": "C",
-     "text": "$1$ day"
+     "text": "$200\\ \\mathrm{nm}$"
     },
     {
      "key": "D",
-     "text": "$3\\sqrt{3}$ days"
+     "text": "$300\\ \\mathrm{nm}$"
     }
    ],
    "stem_figure": null,
@@ -237,14 +237,14 @@
   },
   {
    "q_no": 7,
-   "topic": "Ray Optics",
+   "topic": "Rotational Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A concave mirror of focal length $f$ dipped into a fluid of refractive index $\\mu$. The new focal length mirror is",
-   "correct_key": "B",
+   "stem": "A circular disk of radius $R$ meter and mass $M$ kg is rotating around the axis perpendicular to the disk. An external torque is applied to the disk such that $\\theta(t) = 5t^{2} - 8t$, where $\\theta(t)$ is the angular position of the rotating disc as a function of time $t$.\nHow much power is delivered by the applied torque, when $t = 2\\mathrm{s}$?",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Focal length of spherical mirror does not depends on medium in which it placed.",
+   "solution": "$\\theta = 5t^{2} - 8t$\n$\\omega = \\frac{d\\theta}{dt} = 10t - 8$\n$\\alpha = \\frac{d\\omega}{dt} = 10$\n$\\therefore p = \\tau\\omega$\n$= (I\\alpha)\\ \\omega$\n$= \\left(\\frac{mR^{2}}{2}\\right)\\alpha\\omega$\n$= \\left(\\frac{mR^{2}}{2}\\right)(10)(10t - 8)$\nPut $t = 2$\n$p = 60\\ mR^{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -252,19 +252,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mu f$"
+     "text": "$60\\ MR^{2}$"
     },
     {
      "key": "B",
-     "text": "$f$"
+     "text": "$72\\ MR^{2}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{f}{\\mu - 1}$"
+     "text": "$108\\ MR^{2}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{f}{\\mu}$"
+     "text": "$8\\ MR^{2}$"
     }
    ],
    "stem_figure": null,
@@ -274,14 +274,14 @@
   },
   {
    "q_no": 8,
-   "topic": "Electromagnetic Waves",
+   "topic": "Fluid Mechanics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In an electromagnetic wave of frequency $20\\ \\mathrm{MHz}$, value of electric field is $9.3\\ \\mathrm{V/m}$, then magnitude of magnetic field at that instant is",
-   "correct_key": "C",
+   "stem": "Water flows in a horizontal pipe whose one end is closed with a valve. The reading of the pressure gauge attached to the pipe is $P_{1}$. The reading of the pressure gauge falls to $P_{2}$ when the valve is opened. The speed of water flowing in the pipe is proportional to",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$E = CB$\n$\\Rightarrow B = \\frac{9.3}{3\\times10^{8}} = 3.1\\times10^{-8}\\ T$",
+   "solution": "By Bernoulli equation\n$P_{1} + \\frac{1}{2}\\times\\rho\\times0^{2} = P_{2} + \\frac{1}{2}\\rho V^{2}$\n$v = \\sqrt{2\\rho(P_{1}-P_{2})}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -289,19 +289,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$3.1\\times10^{8}$"
+     "text": "$\\sqrt{P_{1}-P_{2}}$"
     },
     {
      "key": "B",
-     "text": "$27.9\\times10^{8}$"
+     "text": "$(P_{1}-P_{2})^{2}$"
     },
     {
      "key": "C",
-     "text": "$3.1\\times10^{-8}$"
+     "text": "$(P_{1}-P_{2})^{4}$"
     },
     {
      "key": "D",
-     "text": "$18.6\\times10^{-6}$"
+     "text": "$P_{1}-P_{2}$"
     }
    ],
    "stem_figure": null,
@@ -314,11 +314,11 @@
    "topic": "Units and Dimensions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Match the correct dimensions\n(a) Magnetic field | (i) $\\mathrm{ML^{2}}$\n(b) Permittivity of free space | (ii) $\\mathrm{M^{-1}L^{-3}T^{4}A^{2}}$\n(c) Moment of inertia | (iii) $\\mathrm{MT^{-2}A^{-1}}$\n(d) Velocity | (iv) $\\mathrm{LT^{-1}}$",
-   "correct_key": "C",
+   "stem": "Match List-I with List-II.\nList-I | List-II\n(A) Permeability of free space | (I) $[\\mathrm{M\\,L^{2}\\,T^{-2}}]$\n(B) Magnetic field | (II) $[\\mathrm{M\\,T^{-2}\\,A^{-1}}]$\n(C) Magnetic moment | (III) $[\\mathrm{M\\,L\\,T^{-2}\\,A^{-2}}]$\n(D) Torsional constant | (IV) $[\\mathrm{L^{2}\\,A}]$\nChoose the correct answer from the options given below :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$qvB = F$\n$B = \\frac{\\mathrm{MLT^{-2}}}{\\mathrm{A}}$\n$\\mathrm{MT^{-2}A^{-1}}$\n$\\frac{q}{\\epsilon_0} = EA$\n$\\frac{1}{\\epsilon_0} = \\frac{\\mathrm{MLT^{-2}}}{\\mathrm{AT}}\\frac{\\mathrm{L^{2}}}{\\mathrm{AT}}$\n$\\epsilon_0 = \\frac{\\mathrm{A^{2}T^{2}}}{\\mathrm{ML^{3}T^{-2}}}$",
+   "solution": "$B = \\frac{\\mu_{0}I}{2\\pi r}$\n$\\Rightarrow [\\mu_{0}] = \\left[\\frac{B\\times r}{I}\\right] = \\left[\\frac{MT^{-2}A^{-1}\\times L}{A}\\right] = [MLT^{-2}A^{-2}]$\nmagnetic field $F = qvB$\n$B = \\left[\\frac{MLT^{-2}}{AT\\ L/T}\\right] = [MT^{-2}A^{-1}]$\n$[M] = [NTA] = [M] = [ML^{2}]$\n$\\tau = c\\theta \\Rightarrow c = \\left[\\frac{\\tau}{\\theta}\\right] = [ML^{2}T^{-2}]$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -326,19 +326,19 @@
    "options": [
     {
      "key": "A",
-     "text": "(a) $\\to$ (iii), (b) $\\to$ (ii), (c) $\\to$ (i), (d) $\\to$ (iii)"
+     "text": "(A)-(I), (B)-(IV), (C)-(II), (D)-(III)"
     },
     {
      "key": "B",
-     "text": "(a) $\\to$ (iii), (b) $\\to$ (iv), (c) $\\to$ (iv), (d) $\\to$ (iv)"
+     "text": "(A)-(II), (B)-(I), (C)-(III), (D)-(IV)"
     },
     {
      "key": "C",
-     "text": "(a) $\\to$ (iii), (b) $\\to$ (ii), (c) $\\to$ (i), (d) $\\to$ (iv)"
+     "text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II)"
     },
     {
      "key": "D",
-     "text": "(a) $\\to$ (i), (b) $\\to$ (ii), (c) $\\to$ (iii), (d) $\\to$ (iv)"
+     "text": "(A)-(III), (B)-(II), (C)-(IV), (D)-(I)"
     }
    ],
    "stem_figure": null,
@@ -348,14 +348,14 @@
   },
   {
    "q_no": 10,
-   "topic": "Thermodynamics",
+   "topic": "Gravitation",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The temperature of a body of mass $m$ and specific heat capacity $s$ is raised slowly from $T_1$ to $T_2$. The change is entropy of the system is",
+   "stem": "If a satellite orbiting the Earth is 9 times closer to the Earth than the Moon, what is the time period of rotation of the satellite? Given rotational time period of Moon = 27 days and gravitational attraction between the satellite and the moon is neglected.",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$d(\\mathrm{Entrophy})_{sys} = \\frac{dQ}{T}$\n$(\\Delta\\mathrm{Entrophy})_{sys} = \\int_{T_1}^{T_2}\\frac{dQ}{T}$\n$= ms\\int_{T_1}^{T_2}\\frac{dT}{T}$\n$= ms\\ \\ln\\frac{T_2}{T_1}$",
+   "solution": "$T^{2}\\propto R^{3}$\n$\\left(\\frac{T_{m}}{T_{s}}\\right)^{2} = \\left(\\frac{R}{R/9}\\right)^{3}$\n$\\frac{T_{m}}{T_{s}} = (3)^{3}$\n$\\Rightarrow T_{s} = \\left(\\frac{27}{27}\\right) = 1\\ \\mathrm{day}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -363,19 +363,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$ms\\ln\\left(\\frac{T_2}{T_1}\\right)$"
+     "text": "1 day"
     },
     {
      "key": "B",
-     "text": "$ms$"
+     "text": "81 days"
     },
     {
      "key": "C",
-     "text": "$ms\\ln\\left(\\frac{T_1}{T_2}\\right)$"
+     "text": "27 days"
     },
     {
      "key": "D",
-     "text": "Zero"
+     "text": "3 days"
     }
    ],
    "stem_figure": null,
@@ -385,14 +385,14 @@
   },
   {
    "q_no": 11,
-   "topic": "Moving Charges and Magnetism",
+   "topic": "Electrostatics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A moving coil galvanometer with coil resistance $G = 30\\ \\Omega$, shows full scale deflection when the current through it is $20\\ \\mathrm{mA}$. The galvanometer is converted to an ammeter of range $3\\ \\mathrm{A}$ by using a shunt resistance S, then resistance $S$ is",
+   "stem": "Two point charges $-4\\ \\mu\\mathrm{c}$ and $4\\ \\mu\\mathrm{c}$, constituting an electric dipole, are placed at $(-9, 0, 0)$ cm and $(9, 0, 0)$ cm in a uniform electric field of strength $10^{4}\\ \\mathrm{NC^{-1}}$. The work done on the dipole in rotating it from the equilibrium through $180^\\circ$ is :",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$i_g G = IS$\n$S = \\frac{i_g G}{I} = \\frac{(20\\times10^{-3}\\ \\mathrm{A})(30\\ \\Omega)}{(3\\ \\mathrm{A})} = \\frac{1}{5}\\ \\Omega$",
+   "solution": "$U = -PE\\cos\\theta$\n$w_{ext} = \\Delta U = U_{f} - U_{i} = -PE\\cos180^\\circ + PE\\cos0^\\circ$\n$w_{ext} = 2PE$\n$= 2\\times(4\\times10^{-6})(18)\\times10^{4}$\n$= 144\\times10^{-2}$\n$= 14.4\\ \\mathrm{mJ}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -400,19 +400,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$0.2\\ \\Omega$"
+     "text": "$14.4\\ \\mathrm{mJ}$"
     },
     {
      "key": "B",
-     "text": "$2\\ \\Omega$"
+     "text": "$18.4\\ \\mathrm{mJ}$"
     },
     {
      "key": "C",
-     "text": "$0.8\\ \\Omega$"
+     "text": "$12.4\\ \\mathrm{mJ}$"
     },
     {
      "key": "D",
-     "text": "$1.2\\ \\Omega$"
+     "text": "$16.4\\ \\mathrm{mJ}$"
     }
    ],
    "stem_figure": null,
@@ -422,14 +422,14 @@
   },
   {
    "q_no": 12,
-   "topic": "Rotational Motion",
+   "topic": "Current Electricity",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Torque on a uniform disk of mass $2\\ \\mathrm{kg}$, radius $1\\ \\mathrm{m}$ is given as $\\tau(t) = 5t^{2} - 8t$. If the disk was initially at rest, find power by torque at $t = 1\\mathrm{s}$.",
+   "stem": "A galvanometer having a coil of resistance $30\\ \\Omega$ need $20\\ \\mathrm{mA}$ of current for full-scale deflection. If a maximum current of $3\\ \\mathrm{A}$ is to be measured using this galvanometer, the resistance of the shunt to be added to the galvanometer should be $\\frac{30}{X}\\ \\Omega$, where X is",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\rho = \\vec{\\tau}\\cdot\\vec{\\omega}$\n$\\tau = I\\alpha$\n$I = \\frac{MR^{2}}{2} = 1$\n$\\alpha = 5t^{2} - 8t$\n$\\omega = \\frac{5}{3}t^{3} - 4t^{2}$\nAt $t = 1$, $\\omega = \\frac{5}{3} - 4 = -\\frac{7}{3}$\n$t(3) = 5 - 8 = -3$\n$\\rho = \\vec{\\tau}\\cdot\\vec{\\omega} = 7\\ \\mathrm{W}$",
+   "solution": "$I_{g}R_{g} = (I - I_{g})r_{s}$\n$20\\times10^{-3}\\times30 = (3 - 0.02)\\times r_{s}$\n$r_{s} = \\left(\\frac{0.6}{2.98}\\right) = \\frac{30}{x}$\n$x = \\left(\\frac{2.98\\times30}{0.6}\\right) = 149$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -437,36 +437,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$5\\ \\mathrm{W}$"
+     "text": "447"
     },
     {
      "key": "B",
-     "text": "$3\\ \\mathrm{W}$"
+     "text": "298"
     },
     {
      "key": "C",
-     "text": "$7\\ \\mathrm{W}$"
+     "text": "149"
     },
     {
      "key": "D",
-     "text": "$9\\ \\mathrm{W}$"
+     "text": "596"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn25-23jan-s2-phy-q37-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 13,
-   "topic": "Electromagnetic Waves",
+   "topic": "Wave Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "During charging of capacitor of $2.5\\ \\mu\\mathrm{F}$ in DC circuit, the displacement current is found to be $0.25\\ \\mathrm{mA}$ then find rate of change of voltage $V$ w.r.t. time $\\frac{dV}{dt}$.",
+   "stem": "The width of one of the two slits in Young's double slit experiment is $d$ while that of the other slit is $xd$. If the ratio of the maximum to the minimum intensity in the interference pattern on the screen is $9 : 4$ then what is the value of $x$?\n(Assume that the field strength varies according to the slit width.)",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$V = \\frac{q}{C}$\n$\\frac{dV}{dt} = \\frac{i}{C} = \\frac{0.25\\times10^{-3}}{2.5\\times10^{-6}}$\n$\\frac{1000}{10}$",
+   "solution": "$I\\propto(\\mathrm{width})^{2}$\n$\\left(\\frac{\\sqrt{I_{1}}+\\sqrt{I_{2}}}{\\sqrt{I_{1}}-\\sqrt{I_{2}}}\\right)^{2} = \\frac{9}{4}$\n$\\frac{\\sqrt{I_{1}}+\\sqrt{I_{2}}}{\\sqrt{I_{1}}-\\sqrt{I_{2}}} = \\frac{3}{2}$\n$\\frac{(x+1)d}{(x-1)d} = \\frac{3}{2}$\n$\\Rightarrow 3x - 3 = 2x + 2$\n$x = 5$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -474,19 +474,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$1\\ \\mathrm{V/s}$"
+     "text": "2"
     },
     {
      "key": "B",
-     "text": "$10\\ \\mathrm{V/s}$"
+     "text": "3"
     },
     {
      "key": "C",
-     "text": "$100\\ \\mathrm{V/s}$"
+     "text": "5"
     },
     {
      "key": "D",
-     "text": "$0.1\\ \\mathrm{V/s}$"
+     "text": "4"
     }
    ],
    "stem_figure": null,
@@ -496,14 +496,14 @@
   },
   {
    "q_no": 14,
-   "topic": "Dual Nature of Radiation and Matter",
+   "topic": "Nuclei",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In a photoelectric experiment, the stopping potential of $2\\ \\mathrm{V}$, the work function of metal is $2.14\\ \\mathrm{eV}$. Find the wavelength of incident light (given $hc = 1242\\ \\mathrm{eV\\text{-}nm}$)",
+   "stem": "Given below are two statements. One is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A) : The binding energy per nucleon is found to be practically independent of the atomic number A, for nuclei with mass numbers between 30 and 170.\nReason (R) : Nuclear force is long range.\nIn the light of the above statements, choose the correct answer from the options given below :",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$E = 2 + 2.14 = 4.14\\ \\mathrm{eV}$\n$E = \\frac{hc}{\\lambda}$\n$\\therefore \\lambda = \\frac{1242}{4.14} = 300\\ \\mathrm{nm}$",
+   "solution": "Conceptual",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -511,19 +511,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$200\\ \\mathrm{nm}$"
+     "text": "(A) is false but (R) is true"
     },
     {
      "key": "B",
-     "text": "$300\\ \\mathrm{nm}$"
+     "text": "(A) is true but (R) is false"
     },
     {
      "key": "C",
-     "text": "$600\\ \\mathrm{nm}$"
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
     },
     {
      "key": "D",
-     "text": "$400\\ \\mathrm{nm}$"
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)"
     }
    ],
    "stem_figure": null,
@@ -533,14 +533,14 @@
   },
   {
    "q_no": 15,
-   "topic": "Waves",
+   "topic": "Thermodynamics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The equation of wave travelling in a medium is given by $y(x, t) = 4.0\\sin(20\\times10^{-3}x + 600t)\\mathrm{mm}$. The velocity of wave is $n\\times10^{4}\\ \\mathrm{m/s}$. Find $n$.",
+   "stem": "Water of mass $m$ gram is slowly heated to increase the temperature from $T_{1}$ to $T_{2}$. The change in entropy of the water, given specific heat of water is $1\\ \\mathrm{Jkg^{-1}K^{-1}}$, is :",
    "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Velocity of wave $= \\frac{\\text{Coefficient of } t}{\\text{Coefficient of } x}$\n$= \\frac{600}{20\\times10^{-3}}$\n$= 3\\times10^{4}\\ \\mathrm{m/s}$\n$n = 3$",
+   "solution": "$dQ = msdT$\n$dS = \\frac{dQ}{T} = \\frac{msdT}{T}$\n$\\Delta S = \\int\\frac{msdT}{T} = ms\\,\\ln\\frac{T_{f}}{T_{i}}$\n$\\Delta S = m\\,\\ln\\frac{T_{2}}{T_{1}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -548,19 +548,204 @@
    "options": [
     {
      "key": "A",
-     "text": "$7$"
+     "text": "zero"
     },
     {
      "key": "B",
-     "text": "$5$"
+     "text": "$m(T_{2}-T_{1})$"
     },
     {
      "key": "C",
-     "text": "$4$"
+     "text": "$m\\,\\ln\\left(\\frac{T_{1}}{T_{2}}\\right)$"
     },
     {
      "key": "D",
-     "text": "$3$"
+     "text": "$m\\,\\ln\\left(\\frac{T_{2}}{T_{1}}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Semiconductor Devices",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "What is the current through the battery in the circuit shown below?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Both are forward biased hence $R_{eq} = 10\\ \\Omega$\n$i = \\frac{V}{R} = \\frac{5}{10} = \\frac{1}{2}\\mathrm{A}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.0\\ \\mathrm{A}$"
+    },
+    {
+     "key": "B",
+     "text": "$1.5\\ \\mathrm{A}$"
+    },
+    {
+     "key": "C",
+     "text": "$0.5\\ \\mathrm{A}$"
+    },
+    {
+     "key": "D",
+     "text": "$0.25\\ \\mathrm{A}$"
+    }
+   ],
+   "stem_figure": "jn25-23jan-s2-phy-q41.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A plane electromagnetic wave of frequency $20\\ \\mathrm{MHz}$ travels in free space along the $+x$ direction. At a particular point in space and time, the electric field vector of the wave is $E_{y} = 9.3\\ \\mathrm{Vm^{-1}}$. Then, the magnetic field vector of the wave at that point is-",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E = BC$\n$9.3 = B\\times3\\times10^{8}$\n$B = \\frac{9.3}{3\\times10^{8}} = 3.1\\times10^{-8}\\ \\mathrm{T}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$B_{z} = 9.3\\times10^{-8}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "B",
+     "text": "$B_{z} = 1.55\\times10^{-8}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "C",
+     "text": "$B_{z} = 6.2\\times10^{-8}\\ \\mathrm{T}$"
+    },
+    {
+     "key": "D",
+     "text": "$B_{z} = 3.1\\times10^{-8}\\ \\mathrm{T}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Using the given P-V diagram, the work done by an ideal gas along the path ABCD is-",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$w_{ABCD} = w_{AB} + w_{BC} + w_{CD}$\n$= P_{0}V_{0} + 0 + (-2P_{0}\\times2V_{0})$\n$= P_{0}V_{0} - 4P_{0}V_{0}$\n$= -3P_{0}V_{0}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4P_{0}V_{0}$"
+    },
+    {
+     "key": "B",
+     "text": "$3P_{0}V_{0}$"
+    },
+    {
+     "key": "C",
+     "text": "$-4P_{0}V_{0}$"
+    },
+    {
+     "key": "D",
+     "text": "$-3P_{0}V_{0}$"
+    }
+   ],
+   "stem_figure": "jn25-23jan-s2-phy-q43.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A concave mirror of focal length $f$ in air is dipped in a liquid of refractive index $\\mu$. Its focal length in the liquid will be :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Focal length of mirror will not change because focal length of mirror doesn't depend on medium.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{f}{\\mu}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{f}{(\\mu-1)}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mu f$"
+    },
+    {
+     "key": "D",
+     "text": "$f$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A massless spring gets elongated by amount $x_{1}$ under a tension of $5\\mathrm{N}$. Its elongation is $x_{2}$ under the tension of $7\\mathrm{N}$. For the elongation of $(5x_{1} - 2x_{2})$, the tension in the spring will be,",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$kx_{1} = 5\\mathrm{N}$\n$kx_{2} = 7\\mathrm{N}$\n$k(5x_{1} - 2x_{2}) = 5kx_{1} - 2kx_{2}$\n$= 5\\times5 - 2\\times7 = 11\\ \\mathrm{N}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$15\\ \\mathrm{N}$"
+    },
+    {
+     "key": "B",
+     "text": "$20\\ \\mathrm{N}$"
+    },
+    {
+     "key": "C",
+     "text": "$11\\ \\mathrm{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$39\\ \\mathrm{N}$"
     }
    ],
    "stem_figure": null,
@@ -570,74 +755,74 @@
   },
   {
    "q_no": 21,
-   "topic": "Capacitors",
+   "topic": "Fluid Mechanics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Find charge on the capacitor (in $\\mu\\mathrm{F}$) at steady state.",
+   "stem": "An air bubble of radius $1.0\\ \\mathrm{mm}$ is observed at a depth of $20\\ \\mathrm{cm}$ below the free surface of a liquid having surface tension $0.095\\ \\mathrm{J/m^{2}}$ and density $10^{3}\\ \\mathrm{kg/m^{3}}$. The difference between pressure inside the bubble and atmospheric pressure ______ $\\mathrm{N/m^{2}}$. (Take $g = 10\\ \\mathrm{m/s^{2}}$)",
    "correct_key": null,
-   "correct_value": 16,
+   "correct_value": 2190,
    "correct_keys": null,
-   "solution": "$i = \\frac{5}{25} = \\frac{1}{5}\\ \\mathrm{A}$\n$V = 10\\times\\frac{1}{5} = 2\\ \\mathrm{V}$\n$Q = CV = 8\\times2\\ \\mu\\mathrm{F}$\n$= 16\\ \\mu\\mathrm{F}$",
+   "solution": "$P_{in} = P_{0} + \\rho gh + \\frac{2T}{R}$\n$\\Delta P = P_{in} - P_{0}$\n$= \\rho gh + \\frac{2T}{R} = \\frac{1000\\times10\\times20}{100} + \\frac{2\\times0.095}{10^{-3}}$\n$= 2000 + 190$\n$= 2190$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-23jan-s2-phy-q21.png",
-   "solution_figure": null,
+   "stem_figure": null,
+   "solution_figure": "jn25-23jan-s2-phy-q46-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 22,
-   "topic": "Projectile Motion",
+   "topic": "Gravitation",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A particle of mass $m$ is projected at angle $60^\\circ$ with horizontal. If initial kinetic energy is $KE_0$ and kinetic energy at maximum height is $\\frac{KE_0}{x}$, find value of $x$.",
+   "stem": "A satellite of mass $\\frac{M}{2}$ is revolving around earth in a circular orbit at a height of $\\frac{R}{3}$ from earth surface. The angular momentum of the satellite is $M\\sqrt{\\frac{GMR}{x}}$. The value of $x$ is _______, where $M$ and $R$ are the mass and radius of earth, respectively. (G is the gravitational constant)",
    "correct_key": null,
-   "correct_value": 4,
+   "correct_value": 3,
    "correct_keys": null,
-   "solution": "$KE_0 = \\frac{1}{2}mV^{2}$\n$KE = \\frac{1}{2}m(V\\cos60^\\circ)^{2}$\n$= \\frac{1}{2}m\\frac{V^{2}}{4}$\n$x = 4$",
+   "solution": "(i) If earth is assumed to be stationary\norbital velocity $v_{0} = \\sqrt{\\frac{GM}{4R/3}} = \\sqrt{\\frac{3GM}{4R}}$\nAngular momentum of satellite $= \\frac{M}{2}v_{0}\\frac{4R}{3}$\n$= \\frac{M}{2}\\cdot\\sqrt{\\frac{3GM}{4R}}\\cdot\\frac{4R}{3}$\n$= M\\sqrt{\\frac{GMR}{3}}$\n$x = 3$\n(ii) Since mass of satellite is comparable to the mass of earth.\n$\\frac{G.M.\\frac{M}{2}}{\\left(\\frac{4R}{3}\\right)^{2}} = \\frac{M}{2}\\omega^{2}\\cdot\\frac{8R}{9}$\n$\\omega = \\sqrt{\\frac{81GM}{128R^{3}}}$\nAngular momentum of satellite about common centre of mass,\n$L = \\frac{M}{2}\\left(\\frac{8R}{9}\\right)^{2}\\cdot\\omega$\n$L = M\\sqrt{GMR\\left(\\frac{8}{81}\\right)}$\n$x = \\frac{81}{8}\\simeq10$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn25-23jan-s2-phy-q47-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 23,
-   "topic": "Units and Measurements",
+   "topic": "Capacitors",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The energy in a system varies with position and time as $E(x, t) = x^{3}e^{-\\beta t}$, where $\\beta = 0.3\\ \\mathrm{sec^{-1}}$. Given that the percentage error in $x = 1.2\\%$ and that the % error in $t = 1.6\\%$, find the maximum % error in $E$ at $t = 5$ sec.",
+   "stem": "At steady state the charge on the capacitor, as shown in the circuit below, is ______ $\\mu\\mathrm{C}$.",
    "correct_key": null,
-   "correct_value": 6,
+   "correct_value": 16,
    "correct_keys": null,
-   "solution": "$E = x^{3}e^{-\\beta t}$\n$\\ln E = 3\\ln x - \\beta t$\n$\\frac{1}{E}dE = \\frac{3}{x}dx - \\beta\\,dt$\n$\\left(\\frac{dE}{E}\\times100\\right) = 3\\left(\\frac{dx}{x}\\times100\\right) + 100\\beta\\,dt$\n% error in $E = 3(1.2\\%) + (100)(0.3)\\left(\\frac{1.6}{100}\\times5\\right)\\%$\n% error in $E = 6\\%$",
+   "solution": "$i = \\left(\\frac{5}{25}\\right)$\n$Q = CV$\n$Q = (8\\times10^{-6})\\left(\\frac{5}{25}\\times10\\right)$\n$Q = \\left(\\frac{8\\times5\\times10^{-2}}{25}\\right) = 16\\ \\mu\\mathrm{C}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
+   "stem_figure": "jn25-23jan-s2-phy-q48.png",
+   "solution_figure": "jn25-23jan-s2-phy-q48-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 24,
-   "topic": "Ray Optics",
+   "topic": "Electromagnetic Induction and Displacement Current",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "For a prism, the minimum deviation is equal to the angle of prism. If the refractive index is $\\sqrt{3}$, find the minimum deviation (in degrees)",
+   "stem": "A time varying potential difference is applied between the plates of a parallel plate capacitor of capacitance $2.5\\ \\mu\\mathrm{F}$. The dielectric constant of the medium between the capacitor plates is 1. It produces an instantaneous displacement current of $0.25\\ \\mathrm{mA}$ in the intervening space between the capacitor plates, the magnitude of the rate of change of the potential difference will be _______ $\\mathrm{Vs^{-1}}$.",
    "correct_key": null,
-   "correct_value": 60,
+   "correct_value": 100,
    "correct_keys": null,
-   "solution": "$\\mu = \\frac{\\sin\\left(\\frac{A+\\delta}{2}\\right)}{\\sin\\left(\\frac{A}{2}\\right)}$\n$\\mu = 2\\cos\\left(\\frac{A}{2}\\right)$\n$\\frac{A}{2} = 30^\\circ$\n$A = 60^\\circ$\n$\\therefore \\delta = 60^\\circ$",
+   "solution": "$\\frac{CdV}{dt} = I_{d}$\n$\\frac{dV}{dt} = \\frac{I_{d}}{C}$\n$= \\frac{0.25\\times10^{-3}}{2.5\\times10^{-6}}$\n$= 100$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -650,14 +835,14 @@
   },
   {
    "q_no": 25,
-   "topic": "Gravitation",
+   "topic": "Alternating Current",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A satellite of mass $m$ is moving in circular orbit at a heigh $R$ from surface of Earth (mass $M$, radius $R$). If the angular momentum of the satellite is $m\\sqrt{NGMR}$, find $N$.",
+   "stem": "In a series LCR circuit, a resistor of $300\\ \\Omega$, a capacitor of $25\\ \\mathrm{nF}$ and an inductor of $100\\ \\mathrm{mH}$ are used. For maximum current in the circuit, the angular frequency of the ac source is _____ $\\times 10^{4}$ radians $\\mathrm{s^{-1}}$.",
    "correct_key": null,
    "correct_value": 2,
    "correct_keys": null,
-   "solution": "$L = mvr$\n$= m\\sqrt{\\frac{GM}{2R}}\\ 2R$\n$= m\\sqrt{2GMR}$",
+   "solution": "$\\omega = \\frac{1}{\\sqrt{LC}}$\n$\\omega = \\frac{1}{\\sqrt{25\\times10^{-9}\\times100\\times10^{-3}}}$\n$\\omega = \\frac{10^{+6}}{5\\times10} = 2$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

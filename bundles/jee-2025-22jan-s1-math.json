@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 30,
   "duration_mins": 60,
-  "source_file_id": "1IoGHYqK8LGttRapNnICVSpS1aKT_dCWZ"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Three Dimensional Geometry",
+   "topic": "Relations and Functions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The shortest distance between the lines\n$\\frac{x-1}{2} = \\frac{y-2}{3} = \\frac{z-1}{4}$ and\n$\\frac{x+2}{7} = \\frac{y-2}{8} = \\frac{z+1}{2}$ is",
-   "correct_key": "A",
+   "stem": "The number of non-empty equivalence relations on the set $\\{1,2,3\\}$ is :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$d = \\frac{\\left|(a_{2} - a_{1}) \\cdot (b_{1} \\times b_{2})\\right|}{\\left|b_{1} \\times b_{2}\\right|}$\n$b_{1} \\times b_{2} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 3 & 4 \\\\ 7 & 8 & 2 \\end{vmatrix}$\n$= -26\\hat{i} + 24\\hat{j} - 5\\hat{k}$, $a_{2} - a_{1} = 3\\hat{i} + 2\\hat{k}$\n$d = \\left|\\frac{(3\\hat{i} + 2\\hat{k}) \\cdot (-26\\hat{i} + 24\\hat{j} - 5\\hat{k})}{\\sqrt{26^{2} + 24^{2} + 5^{2}}}\\right|$\n$= \\left|\\frac{-78 - 10}{\\sqrt{1277}}\\right| = \\frac{88}{\\sqrt{1277}}$",
+   "solution": "Let $R$ be the required relation\n$A = \\{(1,1), (2,2), (3,3)\\}$\n(i) $|R| = 3$, when $R = A$\n(ii) $|R| = 5$, e.g. $R = A \\cup \\{(1,2),(2,1)\\}$\nNumber of $R$ can be $[3]$\n(iii) $R = \\{1,2,3\\} \\times \\{1,2,3\\}$\nAns. $(5)$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{88}{\\sqrt{1277}}$"
+     "text": "$6$"
     },
     {
      "key": "B",
-     "text": "$\\frac{78}{\\sqrt{1277}}$"
+     "text": "$7$"
     },
     {
      "key": "C",
-     "text": "$\\frac{66}{\\sqrt{1277}}$"
+     "text": "$5$"
     },
     {
      "key": "D",
-     "text": "$\\frac{55}{\\sqrt{1277}}$"
+     "text": "$4$"
     }
    ],
    "stem_figure": null,
@@ -52,14 +52,14 @@
   },
   {
    "q_no": 2,
-   "topic": "Probability",
+   "topic": "Differential Equations",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In a bag there are 6 white and 4 black balls two balls are drawn at random, then the probability that both ball are white are",
-   "correct_key": "B",
+   "stem": "Let $f : \\mathbb{R} \\to \\mathbb{R}$ be a twice differentiable function such that $f(x+y) = f(x)f(y)$ for all $x, y \\in \\mathbb{R}$. If $f'(0) = 4a$ and $f$ satisfies $f''(x) - 3af'(x) - f(x) = 0$, $a > 0$, then the area of the region $R = \\{(x,y) \\mid 0 \\le y \\le f(ax),\\ 0 \\le x \\le 2\\}$ is :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$P(E) = \\frac{{}^{6}C_{2}}{{}^{10}C_{2}}$\n$= \\frac{15}{45} = \\frac{1}{3}$",
+   "solution": "$f(x+y) = f(x) \\cdot f(y)$\n$\\Rightarrow f(x) = e^{\\lambda x}$, $f'(0) = 4a$\n$\\Rightarrow f'(x) = \\lambda e^{\\lambda x} \\Rightarrow \\lambda = 4a$\nSo, $f(x) = e^{4ax}$\n$f''(x) - 3af'(x) - f(x) = 0$\n$\\Rightarrow \\lambda^{2} - 3a\\lambda - 1 = 0$\n$\\Rightarrow 16a^{2} - 12a^{2} - 1 = 0 \\Rightarrow 4a^{2} = 1 \\Rightarrow a = \\frac{1}{2}$\n(figure: region under $f(ax) = e^{x}$ between $x = 0$ and $x = 2$)\n$F(x) = e^{2x}$\nArea $= \\int_{0}^{2} e^{x}\\,dx = e^{2} - 1$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,36 +67,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{1}{2}$"
+     "text": "$e^{2} - 1$"
     },
     {
      "key": "B",
-     "text": "$\\frac{1}{3}$"
+     "text": "$e^{4} + 1$"
     },
     {
      "key": "C",
-     "text": "$\\frac{2}{3}$"
+     "text": "$e^{4} - 1$"
     },
     {
      "key": "D",
-     "text": "$\\frac{1}{4}$"
+     "text": "$e^{2} + 1$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn25-22jan-s1-math-q02-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 3,
-   "topic": "Sets, Relations and Functions",
+   "topic": "Straight Lines",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let $A = \\{1, 2, 3\\}$ number of non-empty equivalence relations from A to A are",
-   "correct_key": "B",
+   "stem": "Let the triangle $PQR$ be the image of the triangle with vertices $(1,3)$, $(3,1)$ and $(2,4)$ in the line $x + 2y = 2$. If the centroid of $\\Delta PQR$ is the point $(\\alpha, \\beta)$, then $15(\\alpha - \\beta)$ is equal to :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The partitions far a set with 3 elements, $\\{1, 2, 3\\}$\n$\\{\\{1\\}, \\{2\\}, \\{3\\}\\}$ – Every element is in its own subset\n$\\{\\{1, 2\\}, \\{3\\}\\}$ – Two elements are together, one separate\n$\\{\\{1, 3\\}, \\{2\\}\\}$ – Two elements are together, one separate\n$\\{\\{2, 3\\}, \\{1\\}\\}$ – Two elements are together, one separate\n$\\{\\{1, 2, 3\\}\\}$ – All elements are together in one subset\n$\\therefore$ Therefore, total possible equivalence relation = 5",
+   "solution": "Let 'G' be the centroid of $\\Delta$ formed by $(1,3)$ $(3,1)$ & $(2,4)$\n$G \\cong \\left(2, \\frac{8}{3}\\right)$\nImage of $G$ w.r.t. $x + 2y - 2 = 0$\n$$\\frac{\\alpha - 2}{1} = \\frac{\\beta - \\frac{8}{3}}{2} = -2\\,\\frac{\\left(2 + \\frac{16}{3} - 2\\right)}{1 + 4}$$\n$$= \\frac{-2}{5}\\left(\\frac{16}{3}\\right)$$\n$$\\Rightarrow \\alpha = \\frac{-32}{15} + 2 = \\frac{-2}{15},\\ \\beta = \\frac{-32 \\times 2}{15} + \\frac{8}{3} = \\frac{-24}{15}$$\n$15(\\alpha - \\beta) = -2 + 24 = 22$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "4"
+     "text": "$24$"
     },
     {
      "key": "B",
-     "text": "5"
+     "text": "$19$"
     },
     {
      "key": "C",
-     "text": "6"
+     "text": "$21$"
     },
     {
      "key": "D",
-     "text": "8"
+     "text": "$22$"
     }
    ],
    "stem_figure": null,
@@ -126,14 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "Inverse Trigonometric Functions",
+   "topic": "Complex Numbers",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $f(x) = 16(\\sec^{-1}x)^{2} + (\\operatorname{cosec}^{-1}x)^{2}$. Then the maximum and minimum value of $f(x)$ is",
-   "correct_key": "B",
+   "stem": "Let $z_1$, $z_2$ and $z_3$ be three complex numbers on the circle $|z| = 1$ with $\\arg(z_1) = \\frac{-\\pi}{4}$, $\\arg(z_2) = 0$ and $\\arg(z_3) = \\frac{\\pi}{4}$. If $\\left|z_1\\overline{z_2} + z_2\\overline{z_3} + z_3\\overline{z_1}\\right|^{2} = \\alpha + \\beta\\sqrt{2}$, $\\alpha, \\beta \\in Z$, then the value of $\\alpha^{2} + \\beta^{2}$ is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$f(x) = (4\\sec^{-1}x)^{2} + (\\operatorname{cosec}^{-1}x)^{2}$\n$= (4\\sec^{-1}x + \\operatorname{cosec}^{-1}x)^{2} - 8\\sec^{-1}x\\,\\operatorname{cosec}^{-1}x$\n$= \\left(3\\sec^{-1}x + \\frac{\\pi}{2}\\right)^{2} - 8\\sec^{-1}x\\left[\\frac{\\pi}{2} - \\sec^{-1}x\\right]$\n$= 9(\\sec^{-1}x)^{2} + \\frac{\\pi^{2}}{4} + 3\\pi\\sec^{-1}x - 4\\pi\\sec^{-1}x + 8(\\sec^{-1}x)^{2}$\n$= 17(\\sec^{-1}x)^{2} - \\pi(\\sec^{-1}x) + \\frac{\\pi^{2}}{4}$\n$= 17\\left[\\left(\\sec^{-1}x\\right)^{2} - \\frac{\\pi}{17}(\\sec^{-1}x) + \\frac{\\pi^{2}}{34^{2}}\\right] + \\frac{\\pi^{2}}{4} - \\frac{17\\pi^{2}}{34^{2}}$\n$= 17\\left[\\left(\\sec^{-1}x - \\frac{\\pi}{34}\\right)^{2}\\right] + \\frac{\\pi^{2}}{4} - \\frac{\\pi^{2}}{68}$\n$= 17\\left[\\left(\\sec^{-1}x - \\frac{\\pi}{34}\\right)^{2}\\right] + \\frac{4\\pi^{2}}{17}$\nMin $= \\frac{4\\pi^{2}}{17}$\nMax if $\\sec^{-1}x = \\pi$\n$17\\left[\\left(\\pi - \\frac{\\pi}{34}\\right)^{2}\\right] + \\frac{4\\pi^{2}}{17}$\n$\\frac{1089}{68}\\pi^{2} + \\frac{4\\pi^{2}}{17} = \\frac{1105\\pi^{2}}{68}$",
+   "solution": "$Z_1 = e^{-i\\pi/4}$, $Z_2 = 1$, $Z_3 = e^{i\\pi/4}$\n$$\\left|z_1\\overline{z_2} + z_2\\overline{z_3} + z_3\\overline{z_1}\\right|^{2} = \\left|e^{\\frac{-i\\pi}{4}} \\times 1 + 1 \\times e^{\\frac{-i\\pi}{4}} + e^{\\frac{i\\pi}{4}} \\times e^{\\frac{i\\pi}{4}}\\right|^{2}$$\n$$\\left|e^{\\frac{-i\\pi}{4}} + e^{\\frac{-i\\pi}{4}} + e^{\\frac{i\\pi}{4}}\\right|^{2}$$\n$$= \\left|2e^{\\frac{-i\\pi}{4}} + i\\right|^{2} = \\left|\\sqrt{2} - \\sqrt{2}i + i\\right|^{2}$$\n$$= (\\sqrt{2})^{2} + (1 - \\sqrt{2})^{2} = 2 + 1 + 2 - 2\\sqrt{2} = 5 - 2\\sqrt{2}$$\n$\\alpha = 5$, $\\beta = -2$\n$\\Rightarrow \\alpha^{2} + \\beta^{2} = 29$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -141,19 +141,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{1001\\pi^{2}}{33}$ and $\\frac{2\\pi^{2}}{9}$"
+     "text": "$24$"
     },
     {
      "key": "B",
-     "text": "$\\frac{1105\\pi^{2}}{68}$ and $\\frac{4\\pi^{2}}{17}$"
+     "text": "$41$"
     },
     {
      "key": "C",
-     "text": "$\\frac{1117\\pi^{2}}{59}$ and $\\frac{6\\pi^{2}}{19}$"
+     "text": "$31$"
     },
     {
      "key": "D",
-     "text": "$\\frac{1268\\pi^{2}}{27}$ and $\\frac{3\\pi^{2}}{16}$"
+     "text": "$29$"
     }
    ],
    "stem_figure": null,
@@ -163,14 +163,14 @@
   },
   {
    "q_no": 5,
-   "topic": "Sequences and Series",
+   "topic": "Inverse Trigonometric Functions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $8 = 3 + \\frac{1}{4}(3 + p) + \\frac{1}{4^{2}}(3 + p^{2}) + \\ldots\\infty$ then the value of p is",
-   "correct_key": "B",
+   "stem": "Using the principal values of the inverse trigonometric functions the sum of the maximum and the minimum values of $16\\left((\\sec^{-1}x)^{2} + (\\operatorname{cosec}^{-1}x)^{2}\\right)$ is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$8 = \\left(3 + \\frac{3}{4} + \\frac{3}{4^{2}} + \\ldots + \\infty\\right) + \\left(\\frac{p}{4} + \\frac{p^{2}}{4^{2}} + \\ldots + \\infty\\right)$\n$8 = 3\\left(1 + \\frac{1}{4} + \\frac{1}{4^{2}} + \\ldots + \\infty\\right) + \\left(\\frac{p}{4} + \\frac{p^{2}}{4^{2}} + \\ldots + \\infty\\right)$\n$8 = 3\\left(\\frac{1}{1 - \\frac{1}{4}}\\right) + \\frac{\\frac{p}{4}}{1 - \\frac{p}{4}}$\n$8 = 3\\left(\\frac{4}{3}\\right) + \\frac{p}{4 - p}$\n$4 = \\frac{p}{4 - p}$\n$\\Rightarrow 16 - 4p = p$\n$\\Rightarrow 5p = 16$\n$\\Rightarrow p = \\frac{16}{5}$",
+   "solution": "$16(\\sec^{-1}x)^{2} + (\\operatorname{cosec}^{-1}x)^{2}$\n$\\sec^{-1}x = a \\in [0, \\pi] - \\left\\{\\frac{\\pi}{2}\\right\\}$\n$\\operatorname{cosec}^{-1}x = \\frac{\\pi}{2} - a$\n$$= 16\\left[a^{2} + \\left(\\frac{\\pi}{2} - a\\right)^{2}\\right] = 16\\left[2a^{2} - \\pi a + \\frac{\\pi^{2}}{4}\\right]$$\n$$\\max\\Big]_{a=\\pi} = 16\\left[2\\pi^{2} - \\pi^{2} + \\frac{\\pi^{2}}{4}\\right] = 20\\pi^{2}$$\n$$\\min\\Big]_{a=\\frac{\\pi}{4}} = 16\\left[\\frac{2 \\times \\pi^{2}}{16} - \\frac{\\pi^{2}}{4} + \\frac{\\pi^{2}}{4}\\right] = 2\\pi^{2}$$\nSum $= 22\\pi^{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -178,19 +178,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{14}{5}$"
+     "text": "$24\\pi^{2}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{16}{5}$"
+     "text": "$18\\pi^{2}$"
     },
     {
      "key": "C",
-     "text": "$\\frac{3}{5}$"
+     "text": "$31\\pi^{2}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{4}{5}$"
+     "text": "$22\\pi^{2}$"
     }
    ],
    "stem_figure": null,
@@ -200,14 +200,14 @@
   },
   {
    "q_no": 6,
-   "topic": "Differential Equations",
+   "topic": "Statistics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $\\frac{dx}{dy} + \\frac{x}{y^{2}} = \\frac{1}{y^{3}}$, $x(1) = 1$. Then $x\\left(\\frac{1}{2}\\right)$ equals to",
+   "stem": "A coin is tossed three times. Let $X$ denote the number of times a tail follows a head. If $\\mu$ and $\\sigma^{2}$ denote the mean and variance of $X$, then the value of $64(\\mu + \\sigma^{2})$ is :",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "I.F $= e^{\\int \\frac{1}{y^{2}}}$\nI.F $= e^{-\\frac{1}{y}}$\n$\\therefore\\ x \\cdot e^{-\\frac{1}{y}} = \\int e^{-\\left(\\frac{1}{y}\\right)} \\cdot \\left(\\frac{1}{y^{3}}\\right) dy$\n$x \\cdot e^{-\\frac{1}{y}} = \\int e^{-\\left(\\frac{1}{y}\\right)} \\cdot \\left(\\frac{1}{y}\\right)\\left(\\frac{1}{y^{2}}\\right) dy$\nPut $\\frac{1}{y} = t$\n$-\\frac{1}{y^{2}}dy = dt$\n$\\therefore\\ xe^{-t} = -\\int e^{-t} \\cdot t\\ dt$\n$xe^{-t} = -\\left[t\\,e^{-t} - \\int\\left(\\frac{d(t)}{dt} \\cdot \\int e^{-t} \\cdot dt\\right)dt\\right]$\n$xe^{-t} = -\\left[-t\\,e^{-t} - e^{-t}\\right] + c$\n$xe^{-t} = te^{-t} + e^{-t} + c$ …(1)\nGiven $x(1) = 1$\n$e^{-1} = e^{-1} + e^{-1} + c$\n$\\boxed{-e^{-1} = c}$\n$\\therefore$ from (1)\n$x = t + 1 - (e^{-t} \\cdot e^{t})$\nPut $y = \\frac{1}{2}$\n$\\boxed{x = 3 - e}$",
+   "solution": "$HHH \\to 0$\n$HHT \\to 0$\n$HTH \\to 1$\n$HTT \\to 0$\n$THH \\to 1$\n$THT \\to 1$\n$TTH \\to 1$\n$TTT \\to 0$\nProbability distribution\n$x_i$ | $0$ | $1$\n$P(x_i)$ | $\\frac{1}{2}$ | $\\frac{1}{2}$\n$\\mu = \\sum x_i p_i = \\frac{1}{2}$\n$\\sigma^{2} = \\sum x_i^{2} p_i - \\mu^{2}$\n$= \\frac{1}{2} - \\frac{1}{4} = \\frac{1}{4}$\n$64(\\mu + \\sigma^{2}) = 64\\left(\\frac{1}{2} + \\frac{1}{4}\\right) = 48$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -215,19 +215,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$2 - e$"
+     "text": "$51$"
     },
     {
      "key": "B",
-     "text": "$3 - e$"
+     "text": "$48$"
     },
     {
      "key": "C",
-     "text": "$5 - e$"
+     "text": "$32$"
     },
     {
      "key": "D",
-     "text": "$7 - e$"
+     "text": "$64$"
     }
    ],
    "stem_figure": null,
@@ -240,11 +240,11 @@
    "topic": "Sequences and Series",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let $T_{r} = \\frac{(2r-1)(2r+1)(2r+3)(2r+5)}{64}$, then\n$\\lim_{n \\to \\infty} \\sum_{r=1}^{n} \\frac{1}{T_{r}}$ is equal to",
-   "correct_key": "D",
+   "stem": "Let $a_1, a_2, a_3, \\ldots$ be a G.P. of increasing positive terms. If $a_1 a_5 = 28$ and $a_2 + a_4 = 29$, the $a_6$ is equal to",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$T_{r} = \\frac{(2r-1)(2r+1)(2r+3)(2r+5)}{64}$\n$\\Rightarrow \\frac{1}{T_{r}} = \\frac{64}{16\\left(r - \\frac{1}{2}\\right)\\left(r + \\frac{1}{2}\\right)\\left(r + \\frac{3}{2}\\right)\\left(r + \\frac{5}{2}\\right)}$\n$\\Rightarrow \\frac{1}{T_{r}} = \\frac{\\frac{4}{3}\\left[\\left(r + \\frac{5}{2}\\right) - \\left(r - \\frac{1}{2}\\right)\\right]}{\\left(r - \\frac{1}{2}\\right)\\left(r + \\frac{1}{2}\\right)\\left(r + \\frac{3}{2}\\right)\\left(r + \\frac{5}{2}\\right)}$\n$\\Rightarrow \\frac{1}{T_{r}} = \\frac{4}{3}\\left[\\frac{1}{\\left(r - \\frac{1}{2}\\right)\\left(r + \\frac{1}{2}\\right)\\left(r - \\frac{3}{2}\\right)} - \\frac{1}{\\left(r + \\frac{1}{2}\\right)\\left(r + \\frac{3}{2}\\right)\\left(r + \\frac{5}{2}\\right)}\\right]$\n$\\lim_{n \\to \\infty} \\sum_{r=1}^{n} \\frac{1}{T_{r}} = \\frac{4}{3}\\left[\\frac{1}{\\frac{1}{2} \\cdot \\frac{3}{2} \\cdot \\frac{5}{2}} - \\frac{1}{\\frac{3}{2} \\cdot \\frac{5}{2} \\cdot \\frac{7}{2}}\\right]$\n$\\frac{1}{\\frac{3}{2} \\cdot \\frac{5}{2} \\cdot \\frac{7}{2}} - \\frac{1}{\\frac{5}{2} \\cdot \\frac{7}{2} \\cdot \\frac{9}{2}}$\n$= \\frac{4}{3}\\left[\\frac{8}{15}\\right] = \\frac{32}{45}$",
+   "solution": "$a_1 \\cdot a_5 = 28 \\Rightarrow a \\cdot ar^{4} = 28 \\Rightarrow a^{2}r^{4} = 28$ $\\quad\\ldots(1)$\n$a_2 + a_4 = 29 \\Rightarrow ar + ar^{3} = 29$\n$\\Rightarrow ar(1 + r^{2}) = 29$\n$\\Rightarrow a^{2}r^{2}(1 + r^{2})^{2} = (29)^{2}$ $\\quad\\ldots(2)$\nBy Eq. (1) & (2)\n$$\\frac{r^{2}}{(1 + r^{2})^{2}} = \\frac{28}{29 \\times 29}$$\n$$\\Rightarrow \\frac{r}{1 + r^{2}} = \\frac{\\sqrt{28}}{29} \\Rightarrow r = \\sqrt{28}$$\n$\\because a^{2}r^{4} = 28 \\Rightarrow a^{2} \\times (28)^{2} = 28$\n$$\\Rightarrow a = \\frac{1}{\\sqrt{28}}$$\n$$\\therefore a_6 = ar^{5} = \\frac{1}{\\sqrt{28}} \\times (28)^{2}\\sqrt{28} = 784$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -252,19 +252,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{22}{45}$"
+     "text": "$628$"
     },
     {
      "key": "B",
-     "text": "$\\frac{32}{35}$"
+     "text": "$526$"
     },
     {
      "key": "C",
-     "text": "$\\frac{27}{45}$"
+     "text": "$784$"
     },
     {
      "key": "D",
-     "text": "$\\frac{32}{45}$"
+     "text": "$812$"
     }
    ],
    "stem_figure": null,
@@ -274,14 +274,14 @@
   },
   {
    "q_no": 8,
-   "topic": "Binomial Theorem",
+   "topic": "Three Dimensional Geometry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Coefficient of $x^{2012}$ in $(1 - x)^{2008}(1 + x + x^{2})^{2007}$",
-   "correct_key": "A",
+   "stem": "Let $L_1 : \\frac{x-1}{2} = \\frac{y-2}{3} = \\frac{z-3}{4}$ and $L_2 : \\frac{x-2}{3} = \\frac{y-4}{4} = \\frac{z-5}{5}$ be two lines. Then which of the following points lies on the line of the shortest distance between $L_1$ and $L_2$ ?",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$(1 - x)[(1 - x)(1 + x + x^{2})]^{2007}$\n$= (1 - x)(1 - x^{3})^{2007}$\n$= (1 - x^{3})^{2007} - x(1 - x^{3})^{2007}$\n[$(1 - x^{3})^{2007}$ contains $3\\lambda$ types of exponents while $x(1 - x^{3})^{2007}$ will have $(3\\lambda + 1)$ type while 2012 is $(3\\lambda + 2)$ type] that is not possible $\\Rightarrow 0$\nCoefficient of $x^{2012}$ in $(1 - x^{3})^{2007} = 0$\nCoefficient of $x^{2011}$ in $(1 - x^{3})^{2007} = 0$\n$\\Rightarrow$ Coefficient of $x^{2012}$ in $(1 - x)^{2008}(1 + x + x^{2})^{2007} = 0$",
+   "solution": "(figure: lines $L_1$, $L_2$ with common perpendicular $PQ$, points $P$ on $L_1$ and $Q$ on $L_2$)\n$P(2\\lambda + 1, 3\\lambda + 2, 4\\lambda + 3)$ on $L_1$\n$Q(3\\mu + 2, 4\\mu + 4, 5\\mu + 5)$ on $L_2$\nDr's of $PQ = 3\\mu - 2\\lambda + 1,\\ 4\\mu - 3\\lambda + 2,\\ 5\\mu - 4\\lambda + 2$\n$PQ \\perp L_1$\n$\\Rightarrow (3\\mu - 2\\lambda + 1)2 + (4\\mu - 3\\lambda + 2)3 + (5\\mu - 4\\lambda + 2)4 = 0$\n$38\\mu - 29\\lambda + 16 = 0$ $\\quad\\ldots(1)$\n$PQ \\perp L_2$\n$\\Rightarrow (3\\mu - 2\\lambda + 1)3 + (4\\mu - 3\\lambda + 2)4 + (5\\mu - 4\\lambda + 2)5 = 0$\n$50\\mu - 38\\lambda + 21 = 0$ $\\quad\\ldots(2)$\nBy (1) & (2)\n$\\lambda = \\frac{1}{3}$ ; $\\mu = \\frac{-1}{6}$\n$\\therefore P\\left(\\frac{5}{3}, 3, \\frac{13}{3}\\right)$ & $Q\\left(\\frac{3}{2}, \\frac{10}{3}, \\frac{25}{6}\\right)$\nLine $PQ$\n$$\\frac{x - \\frac{5}{3}}{\\frac{1}{6}} = \\frac{y - 3}{\\frac{-1}{3}} = \\frac{z - \\frac{13}{3}}{\\frac{1}{6}}$$\n$$\\frac{x - \\frac{5}{3}}{1} = \\frac{y - 3}{-2} = \\frac{z - \\frac{13}{3}}{1}$$\nPoint $\\left(\\frac{14}{3}, -3, \\frac{22}{3}\\right)$ lies on the line $PQ$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -289,19 +289,19 @@
    "options": [
     {
      "key": "A",
-     "text": "0"
+     "text": "$\\left(-\\frac{5}{3}, -7, 1\\right)$"
     },
     {
      "key": "B",
-     "text": "1"
+     "text": "$\\left(2, 3, \\frac{1}{3}\\right)$"
     },
     {
      "key": "C",
-     "text": "2"
+     "text": "$\\left(\\frac{8}{3}, -1, \\frac{1}{3}\\right)$"
     },
     {
      "key": "D",
-     "text": "3"
+     "text": "$\\left(\\frac{14}{3}, -3, \\frac{22}{3}\\right)$"
     }
    ],
    "stem_figure": null,
@@ -311,14 +311,14 @@
   },
   {
    "q_no": 9,
-   "topic": "Straight Lines",
+   "topic": "Logarithms",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If the images of the points $A(1, 3)$, $B(3, 1)$ and $C(2, 4)$ in the line $x + 2y = 4$ are D, E and F respectively, then the centroid of the triangle DEF is",
-   "correct_key": "C",
+   "stem": "The product of all solutions of the equation $e^{5(\\log_e x)^{2} + 3} = x^{8}$, $x > 0$, is :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Centroid of the $\\Delta DEF$ is the mirror image of the centroid of the $\\Delta ABC$ about the line $x + 2y = 4$.\n$G_{1}$ = Centroid of $\\Delta ABC \\equiv (2, 3)$, $G_{2} \\equiv$ Centroid of $\\Delta DEF$.\n[Figure: $G_{1}(2, 3)$, foot $M\\left(\\frac{x_{1}+2}{2}, \\frac{y_{1}+3}{2}\\right)$ on $x + 2y = 4$, $G_{2}(x_{1}, y_{1})$]\n$\\Rightarrow \\frac{y_{1} - 3}{x_{1} - 2} = 2,\\ \\frac{x_{1} + 2}{2} + (y_{1} + 3) = 4$\n$\\Rightarrow x_{1} = \\frac{2}{5},\\ y_{1} = -\\frac{1}{5}$\n$\\Rightarrow G_{2} = \\left(\\frac{2}{5}, -\\frac{1}{5}\\right)$",
+   "solution": "$e^{5(\\ln x)^{2} + 3} = x^{8}$\n$\\Rightarrow \\ln e^{5(\\ln x)^{2} + 3} = \\ln x^{8}$\n$\\Rightarrow 5(\\ln x)^{2} + 3 = 8\\ln x$\n$(\\ln x = t)$\n$\\Rightarrow 5t^{2} - 8t + 3 = 0$\n$t_1 + t_2 = \\frac{8}{5}$\n$\\ln x_1 x_2 = \\frac{8}{5}$\n$x_1 x_2 = e^{8/5}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -326,36 +326,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$(3, -1)$"
+     "text": "$e^{8/5}$"
     },
     {
      "key": "B",
-     "text": "$\\left(-\\frac{3}{5}, -\\frac{2}{5}\\right)$"
+     "text": "$e^{6/5}$"
     },
     {
      "key": "C",
-     "text": "$\\left(\\frac{2}{5}, -\\frac{1}{5}\\right)$"
+     "text": "$e^{2}$"
     },
     {
      "key": "D",
-     "text": "$\\left(\\frac{1}{5}, -\\frac{2}{5}\\right)$"
+     "text": "$e$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j25-22jan-s1-math-q09-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 10,
-   "topic": "Sets, Relations and Functions",
+   "topic": "Sequences and Series",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $A = \\{1, 2, 3, \\ldots, 10\\}$.\n$B = \\left\\{\\frac{m}{n},\\ m, n \\in A \\text{ and } m < n \\text{ and gcd of } (m, n) = 1\\right\\}$.\nThen number of elements in set B is",
-   "correct_key": "B",
+   "stem": "If $\\sum_{r=1}^{n} T_r = \\frac{(2n-1)(2n+1)(2n+3)(2n+5)}{64}$, then $\\lim_{n\\to\\infty} \\sum_{r=1}^{n}\\left(\\frac{1}{T_r}\\right)$ is equal to :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$n = 1\\ \\ m \\in \\phi$ …0\n$n = 2\\ \\ m = 1 \\Rightarrow \\frac{m}{n}$ can be $\\frac{1}{2}$ …1\n$n = 3\\ \\ m = 1, 2 \\Rightarrow \\frac{m}{n}$ can be $\\frac{1}{3}, \\frac{2}{3}$ …2\n$n = 4\\ \\ m = 1, 3 \\Rightarrow \\frac{m}{n}$ can be $\\frac{1}{4}, \\frac{3}{4}$ …2\n$n = 5\\ \\ m = 1, 2, 3, 4 \\Rightarrow \\frac{m}{n} = \\frac{1}{5}, \\frac{2}{5}, \\frac{3}{5}, \\frac{4}{5}$ …4\n$n = 6\\ \\ m = 1, 5 \\Rightarrow \\frac{m}{n} = \\frac{1}{6}, \\frac{5}{6}$ …2\n$n = 7\\ \\ m = 1, 2, 3, 4, 5, 6 \\Rightarrow \\frac{m}{n} = \\frac{1}{7}, \\frac{2}{7}, \\frac{3}{7}, \\frac{4}{7}, \\frac{5}{7}, \\frac{6}{7}$ …6\n$n = 8\\ \\ m = 1, 3, 5, 7 \\Rightarrow \\frac{m}{n} = \\frac{1}{8}, \\frac{3}{8}, \\frac{5}{8}, \\frac{7}{8}$ …4\n$n = 9\\ \\ m = 1, 2, 4, 5, 7, 8 \\Rightarrow \\frac{m}{n} = \\frac{1}{9}, \\frac{2}{9}, \\frac{3}{9}, \\frac{4}{9}, \\frac{5}{9}, \\frac{7}{9}, \\frac{8}{9}$ …6\n$n = 10\\ \\ m = 1, 3, 7, 9 \\Rightarrow \\frac{m}{n} = \\frac{1}{10}, \\frac{3}{10}, \\frac{7}{10}, \\frac{9}{10}$ …4",
+   "solution": "$T_n = S_n - S_{n-1}$\n$$\\Rightarrow T_n = \\frac{1}{8}(2n-1)(2n+1)(2n+3)$$\n$$\\Rightarrow \\frac{1}{T_n} = \\frac{8}{(2n-1)(2n+1)(2n+3)}$$\n$$\\lim_{n\\to\\infty}\\sum_{r=1}^{n}\\frac{1}{T_r} = \\lim_{n\\to\\infty} 8\\sum_{r=1}^{n}\\frac{1}{(2n-1)(2n+1)(2n+3)}$$\n$$= \\lim_{n\\to\\infty}\\frac{8}{4}\\sum\\left(\\frac{1}{(2n-1)(2n+1)} - \\frac{1}{(2n+1)(2n+3)}\\right)$$\n$$= \\lim_{n\\to\\infty} 2\\left[\\left(\\frac{1}{1\\cdot 3} - \\frac{1}{3\\cdot 5}\\right) + \\left(\\frac{1}{3\\cdot 5} - \\frac{1}{5\\cdot 7}\\right) + \\ldots\\right]$$\n$$= \\frac{2}{3}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -363,19 +363,19 @@
    "options": [
     {
      "key": "A",
-     "text": "30"
+     "text": "$1$"
     },
     {
      "key": "B",
-     "text": "31"
+     "text": "$0$"
     },
     {
      "key": "C",
-     "text": "28"
+     "text": "$\\frac{2}{3}$"
     },
     {
      "key": "D",
-     "text": "29"
+     "text": "$\\frac{1}{3}$"
     }
    ],
    "stem_figure": null,
@@ -388,11 +388,11 @@
    "topic": "Permutations and Combinations",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "How many ways are there to pick 5 letters from English alphabets such that M is the middle of the letters (repetition not allowed).",
-   "correct_key": "B",
+   "stem": "From all the English alphabets, five letters are chosen and are arranged in alphabetical order. The total number of ways, in which the middle letter is 'M', is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\underline{\\mathrm{A}_{1}}\\ \\underline{\\mathrm{A}_{2}}\\ \\ \\underset{\\uparrow \\text{fixed}}{\\underline{\\mathrm{M}}}\\ \\ \\underline{\\mathrm{A}_{3}}\\ \\underline{\\mathrm{A}_{4}}$\n${}^{25}C_{4} \\times 4!$",
+   "solution": "$\\underbrace{AB\\ldots}_{12}\\ M\\ \\underbrace{N\\ldots\\ldots\\ldots Z}_{13}$\n$= {}^{12}C_{2} \\times {}^{13}C_{2} = 5148$\n(${}^{12}C_{2}$: selection of two letters before $M$; ${}^{13}C_{2}$: selection of two letters after $M$)",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -400,19 +400,19 @@
    "options": [
     {
      "key": "A",
-     "text": "${}^{26}\\mathrm{C}_{5}.5!$"
+     "text": "$14950$"
     },
     {
      "key": "B",
-     "text": "${}^{25}\\mathrm{C}_{4}.4!$"
+     "text": "$6084$"
     },
     {
      "key": "C",
-     "text": "${}^{26}\\mathrm{C}_{4}.4!$"
+     "text": "$4356$"
     },
     {
      "key": "D",
-     "text": "${}^{25}\\mathrm{C}_{5}.5!$"
+     "text": "$5148$"
     }
    ],
    "stem_figure": null,
@@ -422,14 +422,14 @@
   },
   {
    "q_no": 12,
-   "topic": "Complex Numbers",
+   "topic": "Differential Equations",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let $|Z_{i}| = 1$ for $i = 1, 2, 3$ satisfying $\\left|\\bar{Z}_{1}Z_{2} + \\bar{Z}_{2}Z_{3} + \\bar{Z}_{3}Z_{1}\\right|^{2} = a + b\\sqrt{2}$, where a, b an rational numbers such that $\\arg(Z_{1}) = \\frac{\\pi}{4},\\ \\arg(Z_{2}) = 0$ and $\\arg(Z_{3}) = \\frac{-\\pi}{4}$, then find (a, b)",
+   "stem": "Let $x = x(y)$ be the solution of the differential equation $y^{2}dx + \\left(x - \\frac{1}{y}\\right)dy = 0$. If $x(1) = 1$, then $x\\left(\\frac{1}{2}\\right)$ is :",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$Z_{1} = |1|\\,e^{i\\frac{\\pi}{4}} = \\frac{1}{\\sqrt{2}} + i \\cdot \\frac{1}{\\sqrt{2}}$\n$Z_{2} = |1|\\,e^{-(0)}1 + 0i$\n$Z_{3} = |1|\\,e^{-i\\frac{\\pi}{4}} = \\frac{1}{\\sqrt{2}} - \\frac{i}{\\sqrt{2}}$\n$\\bar{Z}_{1}Z_{2} = \\left(\\frac{1}{\\sqrt{2}} - \\frac{i}{\\sqrt{2}}\\right)(1)$\n$\\bar{Z}_{2}Z_{3} = 1\\left(\\frac{1}{\\sqrt{2}} - \\frac{i}{\\sqrt{2}}\\right)$\n$\\bar{Z}_{3}Z_{1} = \\left(\\frac{1}{\\sqrt{2}} + \\frac{i}{\\sqrt{2}}\\right)\\left(\\frac{1}{\\sqrt{2}} + \\frac{i}{\\sqrt{2}}\\right)$\n$\\Rightarrow \\bar{Z}_{1}Z_{2} + \\bar{Z}_{2}Z_{3} + \\bar{Z}_{3}Z_{1} = \\left(\\frac{1}{\\sqrt{2}} - \\frac{i}{\\sqrt{2}}\\right) + \\left(\\frac{1}{\\sqrt{2}} - \\frac{i}{\\sqrt{2}}\\right) + \\left(\\frac{1}{2} - \\frac{1}{2}\\right) + 2i\\left(\\frac{1}{2}\\right)$\n$= \\sqrt{2} - \\sqrt{2}i + i$\n$\\Rightarrow \\left|\\bar{Z}_{1}Z_{2} + \\bar{Z}_{2}Z_{3} + \\bar{Z}_{3}Z_{1}\\right|^{2} = \\left|\\sqrt{2} + i\\left(-\\sqrt{2} + 1\\right)\\right|^{2}$\n$= \\left(\\sqrt{\\left(\\sqrt{2}\\right)^{2} + \\left(1 - \\sqrt{2}\\right)^{2}}\\right)^{2}$\n$= 5 - 2\\sqrt{2}$\n$(a, b) = (5, -2)$",
+   "solution": "$$\\frac{dx}{dy} + \\left(\\frac{1}{y^{2}}\\right)x = \\frac{1}{y^{3}}$$\n$$\\text{I.F.} = e^{\\int\\frac{1}{y^{2}}dy} = e^{-\\frac{1}{y}}$$\n$$\\Rightarrow x.e^{-\\frac{1}{y}} = \\int\\left(e^{-\\frac{1}{t}} \\cdot \\frac{1}{y^{3}}\\right)dy$$\nPut $-\\frac{1}{y} = t$\n$+\\frac{1}{y^{2}}dy = dt$\n$$x.e^{-\\frac{1}{y}} = -\\int t.e^{t}dt$$\n$$x.e^{-\\frac{1}{y}} = -te^{t} + e^{t} + C$$\n$$x.e^{-\\frac{1}{y}} = \\frac{+1}{y}e^{-\\frac{1}{y}} + e^{-\\frac{1}{y}} + C$$\n$x = 1,\\ y = 1$\n$$\\frac{1}{e} = \\frac{1}{e} + \\frac{1}{e} + C$$\n$$\\Rightarrow C = -\\frac{1}{e}$$\nPut $y = \\frac{1}{2}$\n$$\\frac{x}{e^{2}} = \\frac{2}{e^{2}} + \\frac{1}{e^{2}} - \\frac{1}{e}$$\n$x = 3 - e$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -437,19 +437,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$(5, 2)$"
+     "text": "$\\frac{1}{2} + e$"
     },
     {
      "key": "B",
-     "text": "$(-5, -2)$"
+     "text": "$\\frac{3}{2} + e$"
     },
     {
      "key": "C",
-     "text": "$(5, -2)$"
+     "text": "$3 - e$"
     },
     {
      "key": "D",
-     "text": "$(-5, 2)$"
+     "text": "$3 + e$"
     }
    ],
    "stem_figure": null,
@@ -459,14 +459,14 @@
   },
   {
    "q_no": 13,
-   "topic": "Probability",
+   "topic": "Parabola",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let a coin is tossed thrice. Let the random variable x is tail follows head. Let the mean of x is $\\mu$ and variance is $\\sigma^{2}$. Find $64(\\mu + \\sigma^{2})$.",
-   "correct_key": "A",
+   "stem": "Let the parabola $y = x^{2} + px - 3$, meet the coordinate axes at the points $P$, $Q$ and $R$. If the circle $C$ with centre at $(-1, -1)$ passes through the points $P$, $Q$ and $R$, then the area of $\\Delta PQR$ is :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "| $x_{i}$ | $P_{i}$\nHHH | 0 | $\\frac{1}{8}$\nTTT | 0 | $\\frac{1}{8}$\nHHT | 1 | $\\frac{1}{8}$\nHTH | 1 | $\\frac{1}{8}$\nTHH | 0 | $\\frac{1}{8}$\nTTH | 0 | $\\frac{1}{8}$\nTHT | 1 | $\\frac{1}{8}$\nHTT | 1 | $\\frac{1}{8}$\n$\\mu = \\Sigma P_{i}\\,x_{i} = \\frac{1}{2}$\n$\\sigma^{2} = \\Sigma P_{i}x_{i}^{2} - \\mu^{2}$\n$= \\frac{1}{2} - \\frac{1}{4} = \\frac{1}{4}$\n$64\\left(\\frac{1}{2} + \\frac{1}{4}\\right) = 64 \\times \\frac{3}{4} = 48$",
+   "solution": "$y = x^{2} + px - 3$\nLet $P(\\alpha, 0)$, $Q(\\beta, 0)$, $R(0, -3)$\nCircle with centre $(-1,-1)$ is $(x+1)^{2} + (y+1)^{2} = r^{2}$\nPasses through $(0, -3)$\n$1^{2} + (-2)^{2} = r^{2}$\n$r^{2} = 5$\n$(x+1)^{2} + (y+1)^{2} = 5$\nPut $y = 0$\n$(x+1)^{2} = 5 - 1$\n$(x+1)^{2} = 4$\n$x + 1 = \\pm 2$\n$x = 1$ or $x = -3$\n$\\therefore P(1, 0)$ and $Q(-3, 0)$\n$$\\text{Area of } \\Delta PQR = \\frac{1}{2}\\begin{vmatrix} 1 & 0 & 1 \\\\ -3 & 0 & 1 \\\\ 0 & -3 & 1 \\end{vmatrix} = 6$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -474,19 +474,19 @@
    "options": [
     {
      "key": "A",
-     "text": "48"
+     "text": "$4$"
     },
     {
      "key": "B",
-     "text": "64"
+     "text": "$6$"
     },
     {
      "key": "C",
-     "text": "132"
+     "text": "$7$"
     },
     {
      "key": "D",
-     "text": "128"
+     "text": "$5$"
     }
    ],
    "stem_figure": null,
@@ -496,14 +496,14 @@
   },
   {
    "q_no": 14,
-   "topic": "Application of Derivatives",
+   "topic": "Circles",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let $g(x) = 3f\\left(\\frac{x}{3}\\right) + f(3 - x)\\ \\forall x \\in (0, 3)$ and $f''(x) > 0\\ \\forall x \\in (0, 3)$ then $g(x)$ decreases in interval $(0, \\alpha)$, then $\\alpha$ is",
-   "correct_key": "C",
+   "stem": "A circle $C$ of radius $2$ lies in the second quadrant and touches both the coordinate axes. Let $r$ be the radius of a circle that has centre at the point $(2, 5)$ and intersects the circle $C$ at exactly two points. If the set of all possible values of $r$ is the interval $(\\alpha, \\beta)$, then $3\\beta - 2\\alpha$ is equal to :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$g(x) = 3f\\left(\\frac{x}{3}\\right) + f(3 - x)$\n$g'(x) = 3 \\cdot \\frac{1}{3}f'\\left(\\frac{3}{3}\\right) - f'(3 - x)$\n$= f'\\left(\\frac{x}{3}\\right) - f'(3 - x)$\n$g''(x) = \\frac{f''(x)}{3} + f''(3 - x)$\n$\\Rightarrow g'(x) > 0$\n$f'\\left(\\frac{3}{3}\\right) - f'(3 - x) > 0$\n$f'(x) > 0 \\Rightarrow f'(x)$ is increasing",
+   "solution": "(figure: circle $C$ with centre $(-2, 2)$ touching both axes in the second quadrant)\n$S_1 : (x+2)^{2} + (y-2)^{2} = 2^{2}$\n$S_2 : (x-2)^{2} + (y-5)^{2} = r^{2}$\nBoth circles intersect at two points\n$\\therefore |r_1 - r_2| < c_1c_2 < r_1 + r_2$\n$|r - 2| < 5 < 2 + r$\n$\\Rightarrow 3 < r < 7$\n$r \\in (3, 7)$\n$\\alpha = 3,\\ \\beta = 7$\n$3\\beta - 2\\alpha = 15$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -511,36 +511,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{7}{4}$"
+     "text": "$15$"
     },
     {
      "key": "B",
-     "text": "$\\frac{2}{3}$"
+     "text": "$14$"
     },
     {
      "key": "C",
-     "text": "$\\frac{9}{4}$"
+     "text": "$12$"
     },
     {
      "key": "D",
-     "text": "$\\frac{7}{3}$"
+     "text": "$10$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn25-22jan-s1-math-q14-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 15,
-   "topic": "Vector Algebra",
+   "topic": "Definite Integrals",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let $\\vec{b} = \\lambda\\hat{i} + 4\\hat{k}, \\lambda > 0$ and the projection vector of $\\vec{b}$ on $\\vec{a} = 2\\hat{i} + 2\\hat{j} - \\hat{k}$ is $\\vec{c}$. If $|\\vec{a} + \\vec{c}| = 7$, then the area of the parallelogram formed by vector $\\vec{b}$ and $\\vec{c}$ is (in square units)",
+   "stem": "Let for $f(x) = 7\\tan^{8}x + 7\\tan^{6}x - 3\\tan^{4}x - 3\\tan^{2}x$, $I_1 = \\int_{0}^{\\pi/4} f(x)\\,dx$ and $I_2 = \\int_{0}^{\\pi/4} x f(x)\\,dx$. Then $7I_1 + 12I_2$ is equal to :",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\vec{c} = (\\vec{b} \\cdot \\hat{a})\\hat{a} = \\frac{2\\lambda - 4}{6}\\vec{a}$\n$\\because\\ |\\vec{a} + \\vec{c}| = 7 \\Rightarrow \\left|\\vec{a}\\left(1 + \\frac{2\\lambda - 4}{9}\\right)\\right| = 7$\n$\\left|\\frac{5 + 2\\lambda}{9}\\right| \\times 3 = 7 \\Rightarrow |5 + 2\\lambda| = 21$\n$\\because\\ \\lambda > 0 \\Rightarrow \\lambda = 8$\n$\\Rightarrow \\vec{c} = \\frac{4}{3}\\vec{a}$ and $\\vec{b} = 4(2\\hat{i} - \\hat{k})$\n$\\Rightarrow \\vec{b} \\times \\vec{c} = \\frac{16}{3}\\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 0 & 1 \\\\ 2 & 2 & -1 \\end{vmatrix} = \\frac{16}{3}(-2\\hat{i} + 4\\hat{j} + 4\\hat{k})$\n$\\Rightarrow \\left|\\vec{b} \\times \\vec{c}\\right| = \\frac{32}{3}|-\\hat{i} + 2\\hat{j} + 2\\hat{k}| = 32$\n$\\Rightarrow$ Area of parallelogram formed by $\\vec{b}$ and $\\vec{c}$\n$\\Rightarrow \\left|\\vec{b} \\times \\vec{c}\\right| = 32$",
+   "solution": "$f(x) = (7\\tan^{6}x - 3\\tan^{2}x)(\\sec^{2}x)$\n$$I_1 = \\int_{0}^{\\pi/4}(7\\tan^{6}x - 3\\tan^{2}x)(\\sec^{2}x)\\,dx$$\nPut $\\tan x = t$\n$$I_1 = \\int_{0}^{1}(7t^{6} - 3t^{2})\\,dt = \\left[t^{7} - t^{3}\\right]_{0}^{1} = 0$$\n$$I_2 = \\int_{0}^{\\pi/4} x\\,(7\\tan^{6}x - 3\\tan^{2}x)(\\sec^{2}x)\\,dx$$\n(first function: $x$; second function: $(7\\tan^{6}x - 3\\tan^{2}x)(\\sec^{2}x)$)\n$$= \\left[x(\\tan^{7}x - \\tan^{3}x)\\right]_{0}^{\\pi/4} - \\int_{0}^{\\pi/4}(\\tan^{7}x - \\tan^{3}x)\\,dx$$\n$$= 0 - \\int_{0}^{\\pi/4}\\tan^{3}x\\left(\\tan^{2}x - 1\\right)\\left(1 + \\tan^{2}x\\right)dx$$\nPut $\\tan x = t$\n$$= -\\int_{0}^{1}(t^{5} - t^{3})\\,dt = -\\left[\\frac{t^{6}}{6} - \\frac{t^{4}}{4}\\right]_{0}^{1} = \\frac{1}{12}$$\n$7I_1 + 12I_2 = 1$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -548,19 +548,19 @@
    "options": [
     {
      "key": "A",
-     "text": "8"
+     "text": "$2\\pi$"
     },
     {
      "key": "B",
-     "text": "16"
+     "text": "$\\pi$"
     },
     {
      "key": "C",
-     "text": "32"
+     "text": "$1$"
     },
     {
      "key": "D",
-     "text": "64"
+     "text": "$2$"
     }
    ],
    "stem_figure": null,
@@ -570,14 +570,14 @@
   },
   {
    "q_no": 16,
-   "topic": "Circles",
+   "topic": "Differential Equations",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let the parabola $y = x^{2} + px - 3$ cuts the coordinate axes at P, Q and R. A circle with centre $(-1, -1)$ passes through P, Q and R, then the area of triangle PQR.",
+   "stem": "Let $f(x)$ be a real differentiable function such that $f(0) = 1$ and $f(x+y) = f(x)f'(y) + f'(x)f(y)$ for all $x, y \\in \\mathbf{R}$. Then $\\sum_{n=1}^{100}\\log_e f(n)$ is equal to :",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Since at $x = 0$, $y = -3$, parabola cuts the coordinate y-axe at $(0, -3)$\n$\\Rightarrow$ Equation of circle will be\n$(x + 1)^{2} + (y + 1)^{2} = (-1 - 0)^{2} + (-1 + 3)^{2}$\n$= 1 + 4 = 5$\n$x^{2} + 2x + y^{2} + 2y = -3 = 0$\nCircle cuts x-axis at $y = 0$\n$\\Rightarrow x^{2} + 2x - 3 = 0, (x + 3)(x - 1) = 0$\n$\\Rightarrow (-3, 0), (1, 0)$\n$\\Rightarrow$ Area of $\\Delta$\n$\\Rightarrow \\frac{1}{2}\\begin{vmatrix} -3 & 0 & 1 \\\\ 0 & -3 & 0 \\\\ 1 & 0 & 0 \\end{vmatrix} = \\frac{1}{2}(3) = \\frac{3}{2}$",
+   "solution": "$f(x+y) = f(x)f'(y) + f'(x)f(y)$\nPut $x = y = 0$\n$f(0) = f(0)f'(0) + f'(0)f(0)$\n$f'(0) = \\frac{1}{2}$\nPut $y = 0$\n$f(x) = f(x)f'(0) + f'(x)f(0)$\n$f(x) = \\frac{1}{2}f(x) + f'(x)$\n$f'(x) = \\frac{f(x)}{2}$\n$\\frac{dy}{dx} = \\frac{y}{2} \\Rightarrow \\int\\frac{dy}{y} = \\int\\frac{dx}{2}$\n$\\Rightarrow \\ln y = \\frac{x}{2} + c$\n$\\because f(0) = 1 \\Rightarrow C = 0$\n$\\ln y = \\frac{\\pi}{2} \\Rightarrow f(x) = e^{x/2}$\n$\\ln f(n) = \\frac{n}{2}$\n$$\\sum_{n=1}^{100}\\ln f(n) = \\frac{1}{2}\\sum_{n=1}^{100} n = \\frac{5050}{2}$$\n$= 2525$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -585,19 +585,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{5}{2}$"
+     "text": "$2384$"
     },
     {
      "key": "B",
-     "text": "$\\frac{3}{2}$"
+     "text": "$2525$"
     },
     {
      "key": "C",
-     "text": "3"
+     "text": "$5220$"
     },
     {
      "key": "D",
-     "text": "5"
+     "text": "$2406$"
     }
    ],
    "stem_figure": null,
@@ -607,14 +607,14 @@
   },
   {
    "q_no": 17,
-   "topic": "Conic Sections",
+   "topic": "Sets and Relations",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If the circle $\\left(x - 2\\sqrt{3}\\right)^{2} + y^{2} = 12$ and parabola $y^{2} = 2\\sqrt{3}x$ intersects at P, Q and R. Then the area of triangle PQR is",
-   "correct_key": "B",
+   "stem": "Let $A = \\{1, 2, 3, \\ldots\\ldots\\ldots, 10\\}$ and $B = \\left\\{\\frac{m}{n} : m, n \\in A,\\ m < n \\text{ and } \\gcd(m, n) = 1\\right\\}$. Then $n(B)$ is equal to :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Simply solving both we get $x = 0,\\ 2\\sqrt{3}$\n[Figure: P(0, 0), $Q(2\\sqrt{3}, 2\\sqrt{3})$, $R(2\\sqrt{3}, -2\\sqrt{3})$]\n$\\Delta PQR = \\frac{1}{2} \\times (4\\sqrt{3})(2\\sqrt{3})$",
+   "solution": "$A = \\{1, 2, \\ldots 10\\}$\n$B\\ \\{\\frac{m}{n} = m,\\ n \\in A,\\ m < n,\\ \\gcd(m, n) = 1\\}$\n$n(B)$\n$n = 2$ : $\\left\\{\\frac{1}{2}\\right\\}$\n$n = 3$ : $\\left\\{\\frac{1}{3}, \\frac{2}{3}\\right\\}$\n$n = 4$ : $\\left\\{\\frac{1}{4}, \\frac{3}{4}\\right\\}$\n$n = 5$ : $\\left\\{\\frac{1}{5}, \\frac{2}{5}, \\frac{3}{5}, \\frac{4}{5}\\right\\}$\n$n = 6$ : $\\left\\{\\frac{1}{6}, \\frac{5}{6}\\right\\}$\n$n = 7$ : $\\left\\{\\frac{1}{7}, \\frac{2}{7}, \\frac{3}{7}, \\frac{4}{7}, \\frac{5}{7}, \\frac{6}{7}\\right\\}$\n$n = 8$ : $\\left\\{\\frac{1}{8}, \\frac{3}{8}, \\frac{5}{8}, \\frac{7}{8}\\right\\}$\n$n = 9$ : $\\left\\{\\frac{1}{9}, \\frac{2}{9}, \\frac{4}{9}, \\frac{5}{9}, \\frac{7}{9}, \\frac{8}{9}\\right\\}$\n$n = 10$ : $\\left\\{\\frac{1}{10}, \\frac{3}{10}, \\frac{7}{10}, \\frac{9}{10}\\right\\}$\n$n(B) = 31$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -622,36 +622,36 @@
    "options": [
     {
      "key": "A",
-     "text": "10 sq. units"
+     "text": "$31$"
     },
     {
      "key": "B",
-     "text": "12 sq. units"
+     "text": "$36$"
     },
     {
      "key": "C",
-     "text": "14 sq. units"
+     "text": "$37$"
     },
     {
      "key": "D",
-     "text": "16 sq. units"
+     "text": "$29$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j25-22jan-s1-math-q17-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 18,
-   "topic": "Conic Sections",
+   "topic": "Area Under Curves",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A hyperbola with foci $(1, 14)$ and $(1, -12)$ passes through the point $(1, 6)$. The length of the latus rectum of the hyperbola is",
+   "stem": "The area of the region, inside the circle $\\left(x - 2\\sqrt{3}\\right)^{2} + y^{2} = 12$ and outside the parabola $y^{2} = 2\\sqrt{3}\\,x$ is",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$|sp - s'p| = 2a$, $ss' = 2ae$\n$s(1, 14)$, $s'(1, -12)$, $P(1, 6)$\n$\\Rightarrow 2a = |8 - 18|$\n$\\Rightarrow a = 5;\\ 2ae = 26$\n$\\Rightarrow ae = 13$\n[Figure: foci $F_{2}(1, 14)$, $F_{1}(1, -12)$, vertex $S(1, 6)$]\nLength of latus rectum $1 = \\frac{2b^{2}}{a} = \\frac{2a^{2}(e^{2} - 1)}{a}$\n$= \\frac{2(169 - 25)}{5} = \\frac{288}{5}$",
+   "solution": "(figure: circle and parabola with the required region shaded)\n$y^{2} = 2\\sqrt{3}\\,x$\n$\\left(x - 2\\sqrt{3}\\right)^{2} + y^{2} = \\left(2\\sqrt{3}\\right)^{2}$\n$$A = \\frac{\\pi r^{2}}{2} - 2\\int_{0}^{2\\sqrt{3}}\\sqrt{2\\sqrt{3}\\,x}\\,dx$$\n$$\\frac{\\pi(12)}{2} - 2\\sqrt{2\\sqrt{3}}\\,\\frac{\\left(x^{3/2}\\right)_{0}^{2/3}}{3/2}$$\n$= 6\\pi - 16$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -659,11 +659,85 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{144}{5}$"
+     "text": "$6\\pi - 8$"
     },
     {
      "key": "B",
-     "text": "50"
+     "text": "$3\\pi - 8$"
+    },
+    {
+     "key": "C",
+     "text": "$6\\pi - 16$"
+    },
+    {
+     "key": "D",
+     "text": "$3\\pi + 8$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s1-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two balls are selected at random one by one without replacement from a bag containing $4$ white and $6$ black balls. If the probability that the first selected ball is black, given that the second selected ball is also black, is $\\frac{m}{n}$, where $\\gcd(m, n) = 1$, then $m + n$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$P = \\frac{\\frac{6}{10} \\times \\frac{5}{9}}{\\frac{4}{10} \\times \\frac{6}{9} + \\frac{6}{10} \\times \\frac{5}{9}} = \\frac{5}{9}$$\n$m = 5,\\ n = 9$\n$m + n = 14$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$14$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$11$"
+    },
+    {
+     "key": "D",
+     "text": "$13$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Hyperbola",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the foci of a hyperbola be $(1, 14)$ and $(1, -12)$. If it passes through the point $(1, 6)$, then the length of its latus-rectum is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(figure: hyperbola with foci $(1, 14)$, $(1, -12)$ and the point $(1, 6)$)\n$be = 13,\\ b = 5$\n$a^{2} = b^{2}(e^{2} - 1)$\n$= b^{2}e^{2} - b^{2}$\n$= 169 - 25 = 144$\n$$\\ell(LR) = \\frac{2a^{2}}{b} = \\frac{2 \\times 144}{5} = \\frac{288}{5}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{25}{6}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{24}{5}$"
     },
     {
      "key": "C",
@@ -671,24 +745,44 @@
     },
     {
      "key": "D",
-     "text": "100"
+     "text": "$\\frac{144}{5}$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j25-22jan-s1-math-q18-sol.png",
+   "solution_figure": "jn25-22jan-s1-math-q20-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 21,
-   "topic": "Matrices and Determinants",
+   "topic": "Area Under Curves",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If A be a $3 \\times 3$ square matrix such that $\\det(A) = -2$. If $\\det(3\\,\\mathrm{adj}(-6\\,\\mathrm{adj}(3A)) = 2^{n} \\cdot 3^{m}$, where $m \\ge n$, then $4m + 2n$ is equal to",
+   "stem": "Let the function, $f(x) = \\begin{cases} -3ax^{2} - 2, & x < 1 \\\\ a^{2} + bx, & x \\ge 1 \\end{cases}$ Be differentiable for all $x \\in \\mathbf{R}$, where $a > 1$, $b \\in \\mathbf{R}$. If the area of the region enclosed by $y = f(x)$ and the line $y = -20$ is $\\alpha + \\beta\\sqrt{3}$, $\\alpha, \\beta \\in Z$, then the value of $\\alpha + \\beta$ is ____.",
    "correct_key": null,
-   "correct_value": 104,
+   "correct_value": 34,
    "correct_keys": null,
-   "solution": "Concept: $A.\\,\\mathrm{adj}(A) = |A|I$, $\\det(\\lambda A) = \\lambda^{n}\\det(A)$\n$\\Rightarrow \\det(A) = |A|^{n-1}$, where n is order\n$\\Rightarrow \\det(3\\,\\mathrm{adj}(-6\\,\\mathrm{adj}(3A)))$\n$= 3^{3} \\cdot \\det(\\mathrm{adj}(-6\\,\\mathrm{adj}(3A)))$\n$= 3^{3} \\cdot (-6\\,\\mathrm{adj}(3A)))^{2}$\n$= 3^{3} \\cdot (-6)^{6}\\,|3A|^{4}$\n$= 3^{9} \\cdot 2^{6} \\cdot 3^{12} \\cdot (-2)^{4}$\n$= 3^{21} \\cdot 2^{10}$\n$\\therefore\\ n = 10, m = 21$\n$\\therefore\\ 4m + 2n = 104$",
+   "solution": "$f(x)$ is continuous and differentiable at $x = 1$ ; LHL $=$ RHL, LHD $=$ RHD\n$-3a - 2 = a^{2} + b,\\ -6a = b$\n$a = 2, 1;\\ b = -12$\n$$f(x) = \\begin{cases} -6x^{2} - 2 & ; x < 1 \\\\ 4 - 12x & ; x \\ge 1 \\end{cases}$$\n(figure: graph of $y = f(x)$ with the line $y = -20$)\n$$\\text{Area} = \\int_{-\\sqrt{3}}^{1}\\left(-6x^{2} - 2 + 20\\right)dx + \\int_{1}^{2}(4 - 12x + 20)\\,dx$$\n$16 + 12\\sqrt{3} + 6 = 22 + 12\\sqrt{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s1-math-q21-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\sum_{r=0}^{5}\\frac{{}^{11}C_{2r+1}}{2r+2} = \\frac{m}{n}$, $\\gcd(m, n) = 1$, then $m - n$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 2035,
+   "correct_keys": null,
+   "solution": "$$\\int_{0}^{1}(1+x)^{11}dx = \\left[C_0 x + \\frac{C_1 x^{2}}{2} + \\frac{C_2 x^{3}}{3} + \\ldots\\right]_{0}^{1}$$\n$$\\frac{2^{12} - 1}{12} = C_0 + \\frac{C_1}{2} + \\frac{C_2}{3} + \\frac{C_3}{4} + \\ldots$$\n$$\\int_{-1}^{0}(1+x)^{11}dx = \\left[C_0 x + \\frac{C_1 x^{2}}{2} + \\frac{C_2 x^{3}}{3} + \\ldots\\right]_{-1}^{0}$$\n$$\\frac{1}{12} = C_0 - \\frac{C_1}{2} + \\frac{C_2}{3} - \\frac{C_3}{4} + \\ldots$$\n$$\\frac{2^{12} - 2}{12} = 2\\left(\\frac{C_1}{2} + \\frac{C_3}{4} + \\frac{C_5}{6} + \\ldots\\right)$$\n$$\\frac{C_1}{2} + \\frac{C_3}{4} + \\frac{C_5}{6} + \\ldots = \\frac{2^{11} - 1}{12} = \\frac{2047}{12}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -700,15 +794,55 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 22,
-   "topic": "Sequences and Series",
+   "q_no": 23,
+   "topic": "Matrices and Determinants",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If $a_{1}, a_{2}, a_{3}, \\ldots, a_{n}$ are in geometric progression such that $a_{1}a_{5} = 28$, $a_{2} + a_{4} = 29$, then the value of $a_{6}$ is",
+   "stem": "Let $A$ be a square matrix of order $3$ such that $\\det(A) = -2$ and $\\det(3\\,\\mathrm{adj}(-6\\,\\mathrm{adj}(3A))) = 2^{m+n} \\cdot 3^{mn}$, $m > n$. Then $4m + 2n$ is equal to _____.",
    "correct_key": null,
-   "correct_value": 784,
+   "correct_value": 34,
    "correct_keys": null,
-   "solution": "$a_{1}a_{5} = 28 \\Rightarrow a^{2}r^{4} = 28$\n$a_{2} + a_{4} = 29 \\Rightarrow ar + ar^{3} = 29$\n$ar, ar^{3}$ are roots of $k^{2} - 29k + 28 = 0$\n$\\Rightarrow k = 1, k = 28$\n$\\Rightarrow ar = 1, ar^{3} = 28$\n$\\Rightarrow r^{2} = 28,\\ a^{2} = \\frac{1}{28}$\n$a_{6} = ar^{5} \\Rightarrow a_{6}^{2} = a^{2}r^{10} = \\frac{1}{28} \\times (28)^{5} = (28)^{4}$\n$\\Rightarrow a_{6} = (28)^{2} = 784$",
+   "solution": "$|A| = -2$\n$\\det(3\\,\\mathrm{adj}(-6\\,\\mathrm{adj}(3A)))$\n$= 3^{3}\\det(\\mathrm{adj}(-\\mathrm{adj}(3A)))$\n$= 3^{3}(-6)^{6}(\\det(3A))^{4}$\n$= 3^{21} \\times 2^{10}$\n$m + n = 10$\n$mn = 21$\n$m = 7\\ ;\\ n = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $L_1 : \\frac{x-1}{3} = \\frac{y-1}{-1} = \\frac{z+1}{0}$ and $L_2 : \\frac{x-2}{2} = \\frac{y}{0} = \\frac{z+4}{\\alpha}$, $\\alpha \\in \\mathbf{R}$, be two lines, which intersect at the point $B$. If $P$ is the foot of perpendicular from the point $A(1, 1, -1)$ on $L_2$, then the value of $26\\alpha(PB)^{2}$ is ____.",
+   "correct_key": null,
+   "correct_value": 216,
+   "correct_keys": null,
+   "solution": "Point $B$\n$(3\\lambda + 1,\\ -\\lambda + 1,\\ -1) \\equiv (2\\mu + 2,\\ 0,\\ \\alpha\\mu - 4)$\n$3\\lambda + 1 = 2\\mu + 2$\n$-\\lambda + 1 = 0$\n$-1 = \\alpha\\mu - 4$\n$\\lambda = 1,\\ \\mu = 1,\\ \\alpha = 3$\n$B(4, 0, -1)$\nLet Point 'P' is $(2\\delta + 2,\\ 0,\\ 3\\delta - 4)$\nDr's of $AP$ $\\langle 2\\delta + 1,\\ -1,\\ 3\\delta - 3\\rangle$\n$AP \\perp L_2 \\Rightarrow \\delta = \\frac{7}{13}$\n$P\\left(\\frac{40}{13}, 0, \\frac{-31}{13}\\right)$\n$$26\\alpha(PB)^{2} = 26 \\times 3 \\times \\left(\\frac{144}{169} + \\frac{324}{169}\\right)$$\n$= 216$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Vector Algebra",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\vec{c}$ be the projection vector of $\\vec{b} = \\lambda\\hat{i} + 4\\hat{k}$, $\\lambda > 0$, on the vector $\\vec{a} = \\hat{i} + 2\\hat{j} + 2\\hat{k}$. If $|\\vec{a} + \\vec{c}| = 7$, then the area of the parallelogram formed by the vectors $\\vec{b}$ and $\\vec{c}$ is ______.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "$$\\vec{c} = \\left(\\frac{\\vec{b} \\cdot \\vec{a}}{|\\vec{a}|}\\right)\\frac{\\vec{a}}{|\\vec{a}|}$$\n$$= \\left(\\frac{\\lambda + 8}{9}\\right)\\left(\\hat{i} + 2\\hat{j} + 2\\hat{k}\\right)$$\n$|\\vec{a} + \\vec{c}| = 7 \\Rightarrow \\lambda = 4$\nArea of parallelogram\n$$= |\\vec{b} \\times \\vec{c}| = \\left|\\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\frac{4}{3} & \\frac{8}{3} & \\frac{8}{3} \\\\ 4 & 0 & 4 \\end{vmatrix}\\right|$$\n$= 16$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

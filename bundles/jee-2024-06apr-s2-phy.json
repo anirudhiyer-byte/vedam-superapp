@@ -10,24 +10,78 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "1nmLrL69P-npD4tKnDI5agZ0IywTMY1yt"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Thermodynamics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Energy supplied to 1 mole of monoatomic gas is 48 J and changes its temperature by $2^\\circ\\mathrm{C}$. Find the work done by gas.",
-   "correct_key": null,
-   "correct_value": 23,
+   "topic": "Atomic Physics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The longest wavelength associated with Paschen series is : (Given $R_{H} = 1.097 \\times 10^{7}$ SI unit)",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "By $1^{st}$ law of thermodynamics\n$\\Delta Q = \\Delta W + \\Delta U$\n$48 = W_{gas}\\ \\frac{3}{2} \\times 1 \\times \\frac{25}{3} \\times 2$\n$\\Rightarrow W_{gas} = 48 - 25$\n$\\Rightarrow W_{gas} = 23\\ \\mathrm{J}$",
+   "solution": "For longest wavelength in Paschen's series:\n$$\\frac{1}{\\lambda} = R\\left[\\frac{1}{n_1^{2}} - \\frac{1}{n_2^{2}}\\right]$$\nFor longest $n_1 = 3$, $n_2 = 4$\n$$\\frac{1}{\\lambda} = R\\left[\\frac{1}{(3)^{2}} - \\frac{1}{(4)^{2}}\\right]$$\n$$\\frac{1}{\\lambda} = R\\left[\\frac{1}{9} - \\frac{1}{16}\\right]$$\n$$\\frac{1}{\\lambda} = R\\left[\\frac{16-9}{16 \\times 9}\\right]$$\n$$\\Rightarrow \\lambda = \\frac{16 \\times 9}{7R} = \\frac{16 \\times 9}{7 \\times 1.097 \\times 10^{7}}$$\n$\\lambda = 1.876 \\times 10^{-6}\\ \\mathrm{m}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.094 \\times 10^{-6}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "B",
+     "text": "$2.973 \\times 10^{-6}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "C",
+     "text": "$3.646 \\times 10^{-6}\\ \\mathrm{m}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.876 \\times 10^{-6}\\ \\mathrm{m}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A total of 48 J heat is given to one mole of helium kept in a cylinder. The temperature of helium increases by $2^\\circ\\mathrm{C}$. The work done by the gas is : (Given, $R = 8.3\\ \\mathrm{J\\,K^{-1}mol^{-1}}$.)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$1^{\\mathrm{st}}$ law of thermodynamics\n$\\Delta Q = \\Delta U + W$\n$\\Rightarrow +48 = nC_v\\Delta T + W$\n$\\Rightarrow 48 = (1)\\left(\\frac{3R}{2}\\right)(2) + W$\n$\\Rightarrow W = 48 - 3 \\times R$\n$\\Rightarrow W = 48 - 3 \\times (8.3)$\n$\\Rightarrow W = 23.1\\ \\mathrm{Joule}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$72.9\\ \\mathrm{J}$"
+    },
+    {
+     "key": "B",
+     "text": "$24.9\\ \\mathrm{J}$"
+    },
+    {
+     "key": "C",
+     "text": "$48\\ \\mathrm{J}$"
+    },
+    {
+     "key": "D",
+     "text": "$23.1\\ \\mathrm{J}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -35,19 +89,36 @@
   },
   {
    "q_no": 3,
-   "topic": "Kinematics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If displacement in terms of time is given by $x^{2} = 1 + t^{2}$ and acceleration is a function of x is $x^{-n}$, then find the value of n.",
-   "correct_key": null,
-   "correct_value": 3,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In finding out refractive index of glass slab the following observations were made through travelling microscope 50 vernier scale division = 49 MSD; 20 divisions on main scale in each cm\nFor mark on paper\n$\\mathrm{MSR} = 8.45\\ \\mathrm{cm}$, $\\mathrm{VC} = 26$\nFor mark on paper seen through slab\n$\\mathrm{MSR} = 7.12\\ \\mathrm{cm}$, $\\mathrm{VC} = 41$\nFor powder particle on the top surface of the glass slab\n$\\mathrm{MSR} = 4.05\\ \\mathrm{cm}$, $\\mathrm{VC} = 1$\n(MSR = Main Scale Reading, VC = Vernier Coincidence)\nRefractive index of the glass slab is:",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$x^{2} = 1 + t^{2}$\n$2x\\frac{dx}{dt} = 2t \\quad \\ldots(i)$\n$\\frac{dx}{dt} = \\frac{t}{x}$\nDifferentiating eq. (i)\n$x\\frac{d^{2}x}{dt^{2}} + \\left(\\frac{dx}{dt}\\right)^{2} = 1$\n$x(a) + \\left(\\frac{t}{x}\\right)^{2} = 1$\n$a = \\frac{1 - \\left(\\frac{t}{x}\\right)^{2}}{x} \\Rightarrow \\frac{\\left(x^{2} - t^{2}\\right)}{x^{3}}$\n$a = \\frac{1}{x^{3}} = x^{-3}$\n$n = 3$",
+   "solution": "$1\\ \\mathrm{MSD} = \\frac{1\\ \\mathrm{cm}}{20} = 0.05\\ \\mathrm{cm}$\n$1\\ \\mathrm{VSD} = \\frac{49}{50}\\mathrm{MSD} = \\frac{49}{50} \\times 0.05\\ \\mathrm{cm} = 0.049\\ \\mathrm{cm}$\n$\\mathrm{LC} = 1\\mathrm{MSD} - 1\\mathrm{VSD} = 0.001\\ \\mathrm{cm}$\nFor mark on paper, $L_1 = 8.45\\ \\mathrm{cm} + 26 \\times 0.001\\ \\mathrm{cm} = 84.76\\ \\mathrm{mm}$\nFor mark on paper through slab, $L_2 = 7.12\\ \\mathrm{cm} + 41 \\times 0.001\\ \\mathrm{cm} = 71.61\\ \\mathrm{mm}$\nFor powder particle on top surface, $\\mathrm{ZE} = 4.05\\ \\mathrm{cm} + 1 \\times 0.001\\ \\mathrm{cm} = 40.51\\ \\mathrm{mm}$\n$\\therefore$ actual $L_1 = 84.76 - 40.51 = 44.25\\ \\mathrm{mm}$\nactual $L_2 = 71.61 - 40.51 = 31.10\\ \\mathrm{mm}$\n$$L_2 = \\frac{L_1}{\\mu}$$\n$$\\Rightarrow \\mu = \\frac{L_1}{L_2} = \\frac{44.25}{31.10} = 1.42$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.42$"
+    },
+    {
+     "key": "B",
+     "text": "$1.52$"
+    },
+    {
+     "key": "C",
+     "text": "$1.24$"
+    },
+    {
+     "key": "D",
+     "text": "$1.35$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -55,59 +126,110 @@
   },
   {
    "q_no": 4,
-   "topic": "Laws of Motion",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "There is a block of weight 200N which is hanged from a chain of mass 10 kg which is connected with a tree from top. Find the tension at the topmost point of chain.",
-   "correct_key": null,
-   "correct_value": 300,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In the given electromagnetic wave\n$E_y = 600 \\sin (\\omega t - kx)\\ \\mathrm{Vm^{-1}}$, intensity of the associated light beam is (in $\\mathrm{W/m^{2}}$): (Given $\\epsilon_0 = 9 \\times 10^{-12}\\ \\mathrm{C^{2}N^{-1}m^{-2}}$)",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "F = 100 + 200\n= 300 N",
+   "solution": "$$\\text{Intensity} = \\frac{1}{2}\\epsilon_0 E_0^{2} c$$\n$$= \\frac{1}{2} \\times 9 \\times 10^{-12} \\times (600)^{2} \\times 3 \\times 10^{8}$$\n$$= \\frac{9}{2} \\times 36 \\times 3 = 486\\ \\mathrm{w/m^{2}}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$486$"
+    },
+    {
+     "key": "B",
+     "text": "$243$"
+    },
+    {
+     "key": "C",
+     "text": "$729$"
+    },
+    {
+     "key": "D",
+     "text": "$972$"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-phy-q04-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 5,
-   "topic": "Ray Optics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find the refractive index of a convex lens whose $R_{1}$ and $R_{2}$ are 15cm and 30cm respectively and its focus is 20cm.",
-   "correct_key": null,
-   "correct_value": 1.5,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Assuming the earth to be a sphere of uniform mass density, a body weighed 300 N on the surface of earth. How much it would weigh at R/4 depth under surface of earth ?",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$R_{1} = 15\\ \\mathrm{cm}$\n$R_{2} = 30\\ \\mathrm{cm}$\n$f = 20\\ \\mathrm{cm}$\n$\\mu = ?$\n$\\frac{1}{f} = (\\mu - 1)\\left(\\frac{1}{R_{1}} - \\frac{1}{R_{2}}\\right)$\n$\\frac{1}{20} = (\\mu - 1)\\left(\\frac{1}{15} - \\frac{1}{(-30)}\\right)$\n$\\frac{1}{20} = (\\mu - 1)\\left(\\frac{1}{10}\\right)$\n$\\mu - 1 = \\frac{1}{2}$\n$\\mu = 1.5$",
+   "solution": "At surface: $mg = 300\\ \\mathrm{N}$\n$$m = \\frac{300}{g_s}$$\nAt Depth $\\frac{R}{4}$: $g_d = g_s\\left[1 - \\frac{d}{R}\\right]$\n$$g_d = g_s\\left[1 - \\frac{R}{4R}\\right]$$\n$$g_d = \\frac{3g_s}{4}$$\nweight at depth $= m \\times g_d = m \\times \\frac{3g_s}{4} = \\frac{3}{4} \\times 300 = 225\\ \\mathrm{N}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$75\\ \\mathrm{N}$"
+    },
+    {
+     "key": "B",
+     "text": "$375\\ \\mathrm{N}$"
+    },
+    {
+     "key": "C",
+     "text": "$300\\ \\mathrm{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$225\\ \\mathrm{N}$"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-phy-q05-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 6,
-   "topic": "Work, Energy and Power",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If kinetic energy of a particle increases by 36%. What is the percentage change in momentum of the particle?",
-   "correct_key": null,
-   "correct_value": 16.62,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The acceptor level of a p-type semiconductor is 6 eV. The maximum wavelength of light which can create a hole would be : Given $hc = 1242\\ \\mathrm{eV\\,nm}$",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$K = \\frac{p^{2}}{2m}$\n$\\Rightarrow p = \\sqrt{2mk}$\n$\\Delta p = \\frac{p_{f} - p_{i}}{p_{i}} \\times 100$\n$= \\left[\\frac{p_{f}}{p_{i}} - 1\\right] \\times 100$\n$= \\left[\\frac{\\sqrt{2mk_{f}}}{\\sqrt{2mk_{i}}} - 1\\right] \\times 100$\n$= \\left[\\sqrt{\\frac{k_{F}}{k_{i}}} - 1\\right] \\times 100 = \\left[\\sqrt{\\frac{136}{100}} - 1\\right] \\times 100$\n$= 16.619\\ \\%$\n$\\simeq 16.62\\%$ increase",
+   "solution": "Energy $= \\frac{hc}{\\lambda}$ ;\n$$E = \\frac{1240}{\\lambda(\\mathrm{nm})}\\ \\mathrm{eV}$$\n$$6 = \\frac{1240}{\\lambda(\\mathrm{nm})}$$\n$$\\lambda = \\frac{1240}{6} = 207\\ \\mathrm{nm}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$407\\ \\mathrm{nm}$"
+    },
+    {
+     "key": "B",
+     "text": "$414\\ \\mathrm{nm}$"
+    },
+    {
+     "key": "C",
+     "text": "$207\\ \\mathrm{nm}$"
+    },
+    {
+     "key": "D",
+     "text": "$103.5\\ \\mathrm{nm}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -115,19 +237,147 @@
   },
   {
    "q_no": 7,
-   "topic": "Dual Nature of Radiation and Matter",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Light of wavelength $\\lambda = 300\\ \\mathrm{nm}$ incident on a metal surface whose work function $\\phi = 2.4\\ \\mathrm{eV}$, then find stopping potential.",
-   "correct_key": null,
-   "correct_value": 1.73,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A car of 800 kg is taking turn on a banked road of radius 300 m and angle of banking $30^\\circ$. If coefficient of static friction is 0.2 then the maximum speed with which car can negotiate the turn safely : ($g = 10\\ \\mathrm{m/s^{2}}$, $\\sqrt{3} = 1.73$)",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$eV_{s} = \\frac{hc}{\\lambda} - \\phi \\quad , \\frac{hc}{\\lambda} = \\frac{12400}{\\lambda(\\text{in } \\mathring{A})}\\ \\mathrm{eV}$\nEnergy of photon $= \\frac{12400}{3000} = \\frac{124}{30}\\ \\mathrm{ev}$\n$eV_{s} = \\frac{124}{30}\\ \\mathrm{eV} - 2.4\\ \\mathrm{eV}$\n$V_{s} = 1.73\\ \\mathrm{V}$",
+   "solution": "$m = 800\\ \\mathrm{kg}$\n$r = 300\\ \\mathrm{m}$\n$\\theta = 30^\\circ$\n$\\mu_s = 0.2$\n$$V_{max} = \\sqrt{Rg\\left[\\frac{\\tan\\theta + \\mu}{1 - \\mu\\tan\\theta}\\right]}$$\n$$= \\sqrt{300 \\times g \\times \\left[\\frac{\\tan 30^\\circ + 0.2}{1 - 0.2 \\times \\tan 30^\\circ}\\right]}$$\n$$= \\sqrt{300 \\times 10 \\times \\left[\\frac{0.57 + 0.2}{1 - 0.2 \\times 0.57}\\right]}$$\n$V_{max} = 51.4\\ \\mathrm{m/s}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$70.4\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "B",
+     "text": "$51.4\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "C",
+     "text": "$264\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "D",
+     "text": "$102.8\\ \\mathrm{m/s}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two identical conducting spheres P and S with charge Q on each, repel each other with a force 16N. A third identical uncharged conducting sphere R is successively brought in contact with the two spheres. The new force of repulsion between P and S is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F_{PS} \\propto Q^{2}$\n$F_{PS} = 16\\ \\mathrm{N}$\nNow If P & R are brought in contact then\nNow If S & R are brought in contact then\nNew force between P & S is :\n$$F_{PS} \\propto \\frac{Q}{2} \\times \\frac{3Q}{4}$$\n$$F_{PS} \\propto \\frac{3Q^{2}}{8} = \\frac{3}{8} \\times 16 = 6\\ \\mathrm{N}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\ \\mathrm{N}$"
+    },
+    {
+     "key": "B",
+     "text": "$6\\ \\mathrm{N}$"
+    },
+    {
+     "key": "C",
+     "text": "$1\\ \\mathrm{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$12\\ \\mathrm{N}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a coil, the current changes form $-2\\ \\mathrm{A}$ to $+2\\mathrm{A}$ in 0.2 s and induces an emf of 0.1 V. The self-inductance of the coil is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(\\mathrm{Emf})_{induced} = -L\\frac{di}{dt}$\nIn magnitude form,\n$$\\left|\\mathrm{Emf}_{ind}\\right| = \\left|(-)L\\frac{di}{dt}\\right|$$\n$$\\Rightarrow 0.1 = \\frac{(L)[+2-(-2)]}{0.2}$$\n$$\\Rightarrow L = \\frac{0.1 \\times 0.2}{4} = 5\\ \\mathrm{mH}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5\\ \\mathrm{mH}$"
+    },
+    {
+     "key": "B",
+     "text": "$1\\ \\mathrm{mH}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.5\\ \\mathrm{mH}$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\ \\mathrm{mH}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the thin convex lens, the radii of curvature are at 15 cm and 30 cm respectively. The focal length the lens is 20 cm. The refractive index of the material is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{1}{f} = \\left(\\frac{\\mu_{lens}}{\\mu_{air}} - 1\\right)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right)$$\n$$\\Rightarrow \\frac{1}{+20} = \\left(\\frac{\\mu}{1} - 1\\right)\\left(\\frac{1}{+15} - \\frac{1}{(-30)}\\right)$$\n$$\\Rightarrow \\frac{1}{20} = (\\mu - 1)\\left(\\frac{3}{30}\\right)$$\n$$\\Rightarrow \\mu - 1 = \\frac{1}{2}$$\n$$\\Rightarrow \\mu = 1 + \\frac{1}{2} = \\frac{3}{2} = 1.5$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.2$"
+    },
+    {
+     "key": "B",
+     "text": "$1.4$"
+    },
+    {
+     "key": "C",
+     "text": "$1.5$"
+    },
+    {
+     "key": "D",
+     "text": "$1.8$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -135,39 +385,110 @@
   },
   {
    "q_no": 11,
-   "topic": "Gravitation",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If the weight of an object at surface of earth is 300 N then find the weight of object at depth R/4 from surface of the earth.",
-   "correct_key": null,
-   "correct_value": 225,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Energy of 10 non rigid diatomic molecules at temperature T is :",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$W = mg$\n$300 = mg_{s} \\quad \\ldots(i)$\nfor depth\n$g' = g_{s}\\left[1 - \\frac{d}{R}\\right]$\n$g' = g_{s}\\left[1 - \\frac{R/4}{R}\\right]$\n$= g_{s}[1 - 1/4]$\n$g' = \\frac{3}{4}g_{s}$\n$W' = mg'$\n$\\Rightarrow W' = m\\left(\\frac{3}{4}g_{s}\\right) \\quad \\ldots(2)$\nUsing (1) and (2)\n$\\frac{W'}{300} = \\frac{3}{4} \\Rightarrow W' = 225$",
+   "solution": "Degree of freedom$(f) = 5 + 2(3N - 5)$\n$f = 5 + 2(3 \\times 2 - 1) = 7$\nenergy of one molecule $= \\frac{f}{2}K_BT$\nenergy of 10 molecules\n$$= 10\\left(\\frac{f}{2}K_BT\\right) = 10\\left(\\frac{7}{2}K_BT\\right) = 35\\ K_BT$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{7}{2}RT$"
+    },
+    {
+     "key": "B",
+     "text": "$70\\ K_BT$"
+    },
+    {
+     "key": "C",
+     "text": "$35\\ RT$"
+    },
+    {
+     "key": "D",
+     "text": "$35\\ K_BT$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 13,
-   "topic": "Electromagnetic Waves",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "An EM wave is travelling along the x-axis, the equation of electric field is $E = 600\\sin(kx - \\omega t)$. Find out intensity of EM wave.",
-   "correct_key": null,
-   "correct_value": 477.9,
+   "q_no": 12,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of weight 200 N is suspended form a tree branch thought a chain of mass 10 kg. The branch pulls the chain by a force equal to (if $g = 10\\ \\mathrm{m/s^{2}}$):",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$I = \\frac{1}{2}\\varepsilon_{0}E_{0}^{2}C$\n$= \\frac{1}{2} \\times 8.85 \\times 10^{-12} \\times (600)^{2} \\times 3 \\times 10^{8}$\n$= \\frac{1}{2} \\times 8.85 \\times 6 \\times 6 \\times 3 = 477.9\\ \\mathrm{watt/m^{2}}$.",
+   "solution": "total weight $= 200 + 10 \\times 10 = 300\\ \\mathrm{N}$\nChain block system is in equilibrium so\n$T = 200 + 100 = 300\\ \\mathrm{N}$.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$150\\ \\mathrm{N}$"
+    },
+    {
+     "key": "B",
+     "text": "$300\\ \\mathrm{N}$"
+    },
+    {
+     "key": "C",
+     "text": "$200\\ \\mathrm{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$100\\ \\mathrm{N}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-phy-q42-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When UV light of wavelength 300 nm is incident on the metal surface having work function 2.13 eV, electron emission takes place. The stopping potential is : (Given $hc = 1240\\ \\mathrm{eV\\,nm}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{hc}{\\lambda} - \\phi = e.V_s$$\n$$\\Rightarrow \\frac{1240}{300}\\ \\mathrm{eV} - 2.13\\ \\mathrm{eV} = eV_s$$\n$$\\Rightarrow 4.13\\ \\mathrm{eV} - 2.13\\ \\mathrm{eV} = eV_s.$$\n$$\\Rightarrow \\text{So, } V_s = 2\\ \\mathrm{volt}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\ \\mathrm{V}$"
+    },
+    {
+     "key": "B",
+     "text": "$4.1\\ \\mathrm{V}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\ \\mathrm{V}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.5\\ \\mathrm{V}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -175,34 +496,273 @@
   },
   {
    "q_no": 14,
-   "topic": "Electric Charges and Fields",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Two identical conducting shell having same charge are placed at finite distance. The force applied by one conductor on another is 16 N. Now an uncharged identical conducting shell is introduced such that it touch one by one the conducting shell respectively. Find out final coloumb force acting between the conducting spheres.",
-   "correct_key": null,
-   "correct_value": 6,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of electrons flowing per second in the filament of a 110 W bulb operating at 220 V is : (Given $e = 1.6 \\times 10^{-19}\\ \\mathrm{C}$)",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$F = \\frac{kQ^{2}}{r^{2}} = 16\\ \\mathrm{N}$\nWhen it is touched with first, charge distributed in both the shell\n$\\frac{Q_{1}}{Q_{2}} = \\frac{R_{2}}{R_{1}} \\Rightarrow 1$\n$Q_{1} = Q_{2} = \\frac{Q}{2}$\nNow the shell is touched with another\n$Q_{1}' = \\frac{Q}{2} + \\frac{Q}{4} = \\frac{3Q}{4}$\n$Q_{2}' = \\frac{3Q}{4}$\nNow force\n$F' = \\frac{k\\left(\\frac{Q}{2}\\right)\\left(\\frac{3Q}{4}\\right)}{r^{2}} = \\frac{3}{8}\\left(\\frac{kQ^{2}}{r^{2}}\\right) \\Rightarrow \\frac{3}{8} \\times 16 = 6\\ \\mathrm{N}$",
+   "solution": "Power $(P) = V.I$\n$\\Rightarrow 110 = (220)(I)$\n$\\Rightarrow I = 0.5\\ \\mathrm{A}$\nNow, $I = \\frac{n \\cdot e}{t}$\n$$\\Rightarrow 0.5 = \\left(\\frac{n}{t}\\right)(1.6 \\times 10^{-19})$$\n$$\\Rightarrow \\frac{n}{t} = \\frac{0.5}{1.6 \\times 10^{-19}}$$\n$$\\Rightarrow \\frac{n}{t} = 31.25 \\times 10^{17}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$31.25 \\times 10^{17}$"
+    },
+    {
+     "key": "B",
+     "text": "$6.25 \\times 10^{18}$"
+    },
+    {
+     "key": "C",
+     "text": "$6.25 \\times 10^{17}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.25 \\times 10^{19}$"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-phy-q14-sol.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When kinetic energy of a body becomes 36 times of its original value, the percentage increase in the momentum of the body will be :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Kinetic energy $(K) = \\frac{P^{2}}{2m}$\n$\\Rightarrow P = \\sqrt{2mK}$\nIf $K_f = 36\\ K_i$\nSo, $P_f = 6\\ P_i$\n$$\\%\\text{ increase in momentum} = \\frac{P_f - P_i}{P_i} \\times 100\\%$$\n$$= \\frac{6P_i - P_i}{P_i} \\times 100\\%$$\n$$= 500\\%$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$500\\%$"
+    },
+    {
+     "key": "B",
+     "text": "$600\\%$"
+    },
+    {
+     "key": "C",
+     "text": "$6\\%$"
+    },
+    {
+     "key": "D",
+     "text": "$60\\%$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Surface Tension",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Pressure inside a soap bubble is greater than the pressure outside by an amount :\n(given : R = Radius of bubble, S = Surface tension of bubble)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "There are two liquid-air surfaces in bubble so\n$$\\Delta P = 2\\left(\\frac{2S}{R}\\right) = \\frac{4S}{R}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4S}{R}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4R}{S}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{S}{R}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2S}{R}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Magnetic Effects of Current and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List-I with List-II",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) Graph between Magnetic susceptibility and magnetising field is :\n(B) magnetic field due to a current carrying wire for $x < a$ :\n$$B = \\frac{\\mu_0\\, i\\, r}{2\\pi a^{2}}$$\n(C) magnetic field due to a current carrying wire for $x > a$ :\n$$B = \\frac{\\mu_0\\, i}{2\\pi a}$$\n(D) magnetic field inside solenoid varies as:",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(III), (B)-(I), (C)-(IV), (D)-(II)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(I), (B)-(III), (C)-(II), (D)-(IV)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(IV), (B)-(I), (C)-(III), (D)-(II)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II)"
+    }
+   ],
+   "stem_figure": "jn24-06apr-s2-phy-q47.png",
+   "solution_figure": "jn24-06apr-s2-phy-q47-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 18,
-   "topic": "Alternating Current",
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a vernier calliper, when both jaws touch each other, zero of the vernier scale shifts towards left and its $4^{\\mathrm{th}}$ division coincides exactly with a certain division on main scale. If 50 vernier scale divisions equal to 49 main scale divisions and zero error in the instrument is 0.04 mm then how many main scale divisions are there in 1 cm ?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$40$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$20$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement (I) : Dimensions of specific heat is $[L^{2}T^{-2}K^{-1}]$\nStatement (II) : Dimensions of gas constant is $[M\\,L^{2}T^{-1}K^{-1}]$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta Q = mS\\Delta T$\n$$s = \\frac{\\Delta Q}{m\\Delta T}$$\n$$[s] = \\left[\\frac{ML^{2}T^{-2}}{MK}\\right]$$\n$[s] = [L^{2}\\,T^{-2}\\,K^{-1}]$\nStatement-(I) is correct\n$PV = nRT \\Rightarrow R = \\frac{PV}{nT}$\n$$[R] = \\frac{[ML^{-1}T^{-2}][L^{3}]}{[\\mathrm{mol}][K]}$$\n$[R] = [ML^{2}T^{-2}\\,\\mathrm{mol}^{-1}K^{-1}]$\nStatement-II is incorrect",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement (I) is incorrect but statement (II) is correct"
+    },
+    {
+     "key": "B",
+     "text": "Both statement (I) and statement (II) are incorrect"
+    },
+    {
+     "key": "C",
+     "text": "Statement (I) is correct but statement (II) is incorrect"
+    },
+    {
+     "key": "D",
+     "text": "Both statement (I) and statement (II) are correct"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Kinematics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body projected vertically upwards with a certain speed from the top of a tower reaches the ground in $t_1$. If it is projected vertically downwards from the same point with the same speed, it reaches the ground in $t_2$. Time required to reach the ground, if it is dropped from the top of the tower, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$t_1 = \\frac{u + \\sqrt{u^{2} + 2gh}}{g}$$\n$$t_2 = \\frac{-u + \\sqrt{u^{2} + 2gh}}{g}$$\n$$t = \\frac{\\sqrt{2gh}}{g}$$\n$$t_1 t_2 = \\frac{(u^{2} + 2gh) - u^{2}}{g^{2}} = \\frac{2gh}{g^{2}} = t^{2}$$\n$$\\Rightarrow t = \\sqrt{t_1 t_2}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{t_1 t_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{t_1 - t_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{t_1}{t_2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{t_1 + t_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Atomic Physics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If the maximum current is drawn from a LRC circuit of $R = 100\\ \\Omega$, $C = 2.5\\ \\mathrm{nF}$, $L = 100\\ \\mathrm{H}$ then find frequency in rad/sec.",
+   "stem": "In Franck-Hertz experiment, the first dip in the current-voltage graph for hydrogen is observed at 10.2 V. The wavelength of light emitted by hydrogen atom when excited to the first excitation level is ______ nm.\n(Given $hc = 1245\\ \\mathrm{eV\\,nm}$, $e = 1.6 \\times 10^{-19}\\ \\mathrm{C}$).",
    "correct_key": null,
-   "correct_value": 2000,
+   "correct_value": 122,
    "correct_keys": null,
-   "solution": "i is max in resonance condition.\n$X_{L} = X_{C}$\n$\\Rightarrow \\omega L = \\frac{1}{\\omega C}$\n$\\Rightarrow \\omega^{2} = \\frac{1}{LC}$\n$\\Rightarrow \\omega = \\frac{1}{\\sqrt{LC}}$\n$\\Rightarrow \\omega = \\frac{1}{\\sqrt{100 \\times 2.5 \\times 10^{-9}}}$\n$= \\frac{10^{5}}{50} = \\frac{1000}{5}$\n$\\omega = 2000\\ \\mathrm{rad/sec}$.",
+   "solution": "$$10.2\\ \\mathrm{eV} = \\frac{hc}{\\lambda}$$\n$$\\lambda = \\frac{1245\\ \\mathrm{eV-nm}}{10.2\\ \\mathrm{eV}} = 122.06\\ \\mathrm{nm}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -214,21 +774,181 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 21,
-   "topic": "Oscillations",
+   "q_no": 22,
+   "topic": "Alternating Current",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The time period of SHM is 3.14 with amplitude 0.06 m and the maximum velocity of particle is $k \\times 10^{-2}\\ \\mathrm{m/s}$. Find the value of k.",
+   "stem": "For a given series LCR circuit it is found that maximum current is drawn when value of variable capacitance is 2.5 nF. If resistance of $200\\ \\Omega$ and 100 mH inductor is being used in the given circuit. The frequency of ac source is _____ $\\times 10^{3}$ Hz. (given $\\pi^{2} = 10$)",
    "correct_key": null,
-   "correct_value": 12,
+   "correct_value": 10,
    "correct_keys": null,
-   "solution": "$\\omega = \\frac{2\\pi}{T} = \\frac{2 \\times \\pi}{3.14} = 2\\ \\mathrm{rad/sec}$\n$v_{max} = \\omega A = 2 \\times 0.06 = 12 \\times 10^{-2}\\ \\mathrm{m/s}$\n$K = 12$",
+   "solution": "for maximum current, circuit must be in resonance.\n$$f_0 = \\frac{1}{2\\pi\\sqrt{L \\times C}}$$\n$$f_0 = \\frac{1}{2\\pi\\sqrt{100 \\times 10^{-3} \\times 2.5 \\times 10^{-9}}}$$\n$$= \\frac{1}{2\\pi\\sqrt{25 \\times 10^{-11}}}$$\n$$= \\frac{1}{2\\pi \\times 5} \\times 10^{5} \\times \\sqrt{10}\\ \\mathrm{Hz}$$\n$$= \\frac{100}{10} \\times 10^{3}\\ \\mathrm{Hz}$$\n$f_0 = 10 \\times 10^{3}\\ \\mathrm{Hz}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
    "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Kinematics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A particle moves in a straight line so that its displacement x at any time t is given by $x^{2} = 1 + t^{2}$. Its acceleration at any time t is $x^{-n}$ where n = _____.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "$x^{2} = 1 + t^{2}$\n$$2x\\frac{dx}{dt} = 2t$$\n$xv = t$\n$$x\\frac{dv}{dt} + v\\frac{dx}{dt} = 1$$\n$x.a + v^{2} = 1$\n$$a = \\frac{1 - v^{2}}{x} = \\frac{1 - t^{2}/x^{2}}{x}$$\n$$a = \\frac{1}{x^{3}} = x^{-3}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Three balls of masses 2kg, 4kg and 6kg respectively are arranged at centre of the edges of an equilateral triangle of side 2 m. The moment of inertia of the system about an axis through the centroid and perpendicular to the plane of triangle, will be ______ $\\mathrm{kg\\ m^{2}}$.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$r = \\frac{1}{\\sqrt{3}}$\nMoment of inertia about C and perpendicular to the plane is :\n$I = r^{2}\\,[2 + 4 + 6]$\n$= \\frac{1}{3} \\times 12$\n$I = 4\\ \\mathrm{kg\\text{-}m^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-phy-q54-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Magnetic Effects of Current and Magnetism",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A coil having 100 turns, area of $5 \\times 10^{-3}\\ \\mathrm{m^{2}}$, carrying current of 1 mA is placed in uniform magnetic field of 0.20 T such a way that plane of coil is perpendicular to the magnetic field. The work done in turning the coil through $90^\\circ$ is _____ $\\mu\\mathrm{J}$.",
+   "correct_key": null,
+   "correct_value": 100,
+   "correct_keys": null,
+   "solution": "$W = \\Delta U = U_f - U_i$\n$W = (-\\vec{\\mu}.\\vec{B})_f - (-\\vec{\\mu}.\\vec{B})_i$\n$= 0 + (\\vec{\\mu}.\\vec{B})_i$\n$= (100 \\times 5 \\times 10^{-3} \\times 1 \\times 10^{-3}) \\times 0.2\\ \\mathrm{J}$\n$= 1 \\times 10^{-4}\\ \\mathrm{J} = 100\\ \\mu\\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In the given figure an ammeter A consists of a $240\\Omega$ coil connected in parallel to a $10\\ \\Omega$ shunt. The reading of the ammeter is ______ mA.",
+   "correct_key": null,
+   "correct_value": 160,
+   "correct_keys": null,
+   "solution": "$R_{eq} = 140.4 + \\frac{240 \\times 10}{240 + 10}$\n$R_{eq} = 140.4 + \\frac{2400}{250}$\n$R_{eq.} = 150\\Omega$\n$\\therefore$ Current in ammeter $= \\frac{24}{150} = 160\\ \\mathrm{mA}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-06apr-s2-phy-q56.png",
+   "solution_figure": "jn24-06apr-s2-phy-q56-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Properties of Solids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A wire of cross sectional area A, modulus of elasticity $2 \\times 10^{11}\\ \\mathrm{Nm^{-2}}$ and length 2 m is stretched between two vertical rigid supports. When a mass of 2 kg is suspended at the middle it sags lower from its original position making angle $\\theta = \\frac{1}{100}$ radian on the points of support. The value of A is _____ $\\times 10^{-4}\\ \\mathrm{m^{2}}$ (consider $x \\ll L$).\n(given : $g = 10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "In vertical direction\n$2T\\sin\\theta = 20$\nusing small angle approximation $\\sin\\theta = \\theta$\n$$\\theta = \\frac{1}{100}$$\n$$\\therefore T = \\frac{10}{\\theta}$$\n$T = 1000\\ \\mathrm{N}$\nChange in length $\\Delta L = 2\\sqrt{x^{2} + L^{2}} - 2L$\n$$= 2L\\left[1 + \\frac{x^{2}}{2L^{2}} - 1\\right]$$\n$$\\Delta L = \\frac{x^{2}}{L}$$\n$\\therefore$ Modulus of elasticity $= \\frac{\\text{stress}}{\\text{strain}}$\n$$2 \\times 10^{11} = \\frac{10^{3}}{A \\times \\frac{x^{2}}{L}} \\times 2L$$\n$\\therefore A = 1 \\times 10^{-4}\\ \\mathrm{m^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-06apr-s2-phy-q57.png",
+   "solution_figure": "jn24-06apr-s2-phy-q57-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Wave Optics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two coherent monochromatic light beams of intensities I and 4I are superimposed. The difference between maximum and minimum possible intensities in the resulting beam is x I. The value of x is______.",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": "$$I_{max} = \\left(\\sqrt{I} + \\sqrt{4I}\\right)^{2} = 9I$$\n$$I_{min} = \\left(\\sqrt{4I} - \\sqrt{I}\\right)^{2} = I$$\n$\\therefore I_{max} - I_{min} = 8I$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Waves and Sound",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Two open organ pipes of length 60 cm and 90 cm resonate at $6^{\\mathrm{th}}$ and $5^{\\mathrm{th}}$ harmonics respectively. The difference of frequencies for the given modes is _____ Hz.\n(Velocity of sound in air = 333 m/s)",
+   "correct_key": null,
+   "correct_value": 740,
+   "correct_keys": null,
+   "solution": "The difference in frequency in open organ pipe =\n$$f = \\frac{nv}{2L}$$\n$$\\Delta f = \\frac{6v}{2 \\times 0.6} - \\frac{5v}{2 \\times 0.9}$$\n$v = 333\\ \\mathrm{m/s}$\n$\\Delta f = 740\\ \\mathrm{Hz}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Electrostatics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A capacitor of $10\\ \\mu\\mathrm{F}$ capacitance whose plates are separated by 10 mm through air and each plate has area $4\\ \\mathrm{cm^{2}}$ is now filled equally with two dielectric media of $K_1 = 2$, $K_2 = 3$ respectively as shown in figure. If new force between the plates is 8 N. The supply voltage is _____ V.",
+   "correct_key": null,
+   "correct_value": 80,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-06apr-s2-phy-q60.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null

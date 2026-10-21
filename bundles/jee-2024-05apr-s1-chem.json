@@ -10,39 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "1oyaQBVHQpHKJTWLmt5zynuW_CQ_kzoyp"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Haloalkanes and Haloarenes",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "How many of the following can be prepared by Sandmeyer reaction:",
-   "correct_key": null,
-   "correct_value": 2,
-   "correct_keys": null,
-   "solution": null,
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s1-chem-q01.png",
-   "solution_figure": "j24-05apr-s1-chem-q01-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 2,
-   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "topic": "Some Basic Concepts of Chemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following is the correct product for the given reaction",
-   "correct_key": "A",
+   "stem": "The incorrect postulates of the Dalton's atomic theory are :\n(A) Atoms of different elements differ in mass.\n(B) Matter consists of divisible atoms.\n(C) Compounds are formed when atoms of different element combine in a fixed ratio.\n(D) All the atoms of given element have different properties including mass.\n(E) Chemical reactions involve reorganisation of atoms.\nChoose the correct answer from the options given below :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "-Wolff- kishner reduction it reduces aldehyde & ketone into corresponding alkane.",
+   "solution": "B, D",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -50,60 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j24-05apr-s1-chem-q02-optA.png"
+     "text": "(B), (D), (E) only"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j24-05apr-s1-chem-q02-optB.png"
+     "text": "(A), (B), (D) only"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j24-05apr-s1-chem-q02-optC.png"
+     "text": "(C), (D), (E) only"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j24-05apr-s1-chem-q02-optD.png"
-    }
-   ],
-   "stem_figure": "j24-05apr-s1-chem-q02.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 3,
-   "topic": "The d- and f-Block Elements",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Which of the following element show maximum oxidation state",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Mn show maximum oxidation state +7.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Mn"
-    },
-    {
-     "key": "B",
-     "text": "Ti"
-    },
-    {
-     "key": "C",
-     "text": "Co"
-    },
-    {
-     "key": "D",
-     "text": "Na"
+     "text": "(B), (D) only"
     }
    ],
    "stem_figure": null,
@@ -112,15 +51,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 4,
-   "topic": "The d- and f-Block Elements",
+   "q_no": 2,
+   "topic": "Chemical Equilibrium",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following has lowest paramagnetic character in +2 oxidation state with water",
-   "correct_key": "C",
+   "stem": "The following reaction occurs in the Blast furnace where iron ore is reduced to iron metal\n$\\mathrm{Fe_2O_{3(s)} + 3CO_{(g)} \\rightleftharpoons Fe_{(l)} + 3CO_{2(g)}}$\nUsing the Le-chatelier's principle, predict which one of the following will not disturb the equilibrium.",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{Fe^{2+}} \\rightarrow d^{6}\\quad n = 4$\n$\\mathrm{Co^{2+}} \\rightarrow d^{7}\\quad n = 3$\n$\\mathrm{Ni^{2+}} \\rightarrow d^{8}\\quad n = 2$\n$\\mathrm{Mn^{2+}} \\rightarrow d^{5}\\quad n = 5$\nWhere n is number of unpaired electrons. So, $\\mathrm{Ni^{2+}}$ has lowest paramagnetic character.",
+   "solution": "When solid added no effect on equilibrium.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -128,19 +67,97 @@
    "options": [
     {
      "key": "A",
-     "text": "Fe"
+     "text": "Addition of $\\mathrm{Fe_2O_3}$"
     },
     {
      "key": "B",
-     "text": "Co"
+     "text": "Addition of $\\mathrm{CO_2}$"
     },
     {
      "key": "C",
-     "text": "Ni"
+     "text": "Removal of $\\mathrm{CO}$"
     },
     {
      "key": "D",
-     "text": "Mn"
+     "text": "Removal of $\\mathrm{CO_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify compound (Z) in the following reaction sequence.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q63-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q63-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q63-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q63-optD.png"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-chem-q63.png",
+   "solution_figure": "jn24-05apr-s1-chem-q63-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements : One is labelled as Assertion (A) and the other is labelled as Reason (R)\nAssertion (A): Enthalpy of neutralisation of strong monobasic acid with strong monoacidic base is always $-57\\ \\mathrm{kJ\\,mol^{-1}}$\nReason (R): Enthalpy of neutralisation is the amount of heat liberated when one mole of $\\mathrm{H^{+}}$ ions furnished by acid combine with one mole of $\\mathrm{{}^{-}OH}$ ions furnished by base to form one mole of water.\nIn the light of the above statements, choose the correct answer from the options given below.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Enthalpy of neutralization of SA & SB is always $-57\\ \\mathrm{kJ/mol}$ because strong monoacid gives one mole of $\\mathrm{H^{+}}$ and strong mono base gives one mole of $\\mathrm{OH^{-}}$ which form one mole of water.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A) is true but (R) is false"
+    },
+    {
+     "key": "B",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
+    },
+    {
+     "key": "C",
+     "text": "(A) is false but (R) is true"
+    },
+    {
+     "key": "D",
+     "text": "Both (A) and (R) are true but (R) is not the correct explanation of (A)"
     }
    ],
    "stem_figure": null,
@@ -150,34 +167,14 @@
   },
   {
    "q_no": 5,
-   "topic": "Chemical Bonding and Molecular Structure",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In the lewis dot structure for $\\mathrm{NO_2^-}$ total numbers of valance electron around nitrogen is:",
-   "correct_key": null,
-   "correct_value": 8,
-   "correct_keys": null,
-   "solution": "lewis dot structure for $\\mathrm{NO_2^-} \\rightarrow$ (structure shown in figure)\nTotal valance electron around nitrogen = 8",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-05apr-s1-chem-q05-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 7,
-   "topic": "Classification of Elements and Periodicity in Properties",
+   "topic": "Periodic Properties",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following are correct statement(s) for given species.\n$\\mathrm{O^{2-}}$, $\\mathrm{F^-}$, $\\mathrm{Na^+}$, $\\mathrm{Mg^{2+}}$.\n(a) $\\mathrm{O^{2-}}$ is largest in size\n(b) $\\mathrm{Mg^{2+}}$ is smallest in size\n(c) All have same effective nuclear charge\n(d) All are isoelectronic",
-   "correct_key": "B",
+   "stem": "The statement(s) that are correct about the species $\\mathrm{O^{2-}}$, $\\mathrm{F^{-}}$, $\\mathrm{Na^{+}}$ and $\\mathrm{Mg^{2+}}$.\n(A) All are isoelectronic\n(B) All have the same nuclear charge\n(C) $\\mathrm{O^{2-}}$ has the largest ionic radii\n(D) $\\mathrm{Mg^{2+}}$ has the smallest ionic radii\nChoose the most appropriate answer from the options given below :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "All have same number of electrons so they are isoelectronic\nOrder of ionic radii $\\mathrm{O^{2-} > F^- > Na^+ > Mg^{2+}}$.",
+   "solution": "$\\mathrm{O^{2-}}$ | $\\mathrm{F^{-}}$ | $\\mathrm{Na^{+}}$ | $\\mathrm{Mg^{2+}}$\n(No. of $e^{-}$) | 10 | 10 | 10 | 10\n(Ionic radius) $\\mathrm{O^{2-} > F^{-} > Na^{+} > Mg^{2+}}$\n$Z_{eff}$ $\\mathrm{O^{2-} < F^{-} < Na^{+} < Mg^{2+}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -185,19 +182,93 @@
    "options": [
     {
      "key": "A",
-     "text": "a, b and c"
+     "text": "(B), (C) and (D) only"
     },
     {
      "key": "B",
-     "text": "a, b and d"
+     "text": "(A), (B), (C) and (D)"
     },
     {
      "key": "C",
-     "text": "b,c and d"
+     "text": "(C) and (D) only"
     },
     {
      "key": "D",
-     "text": "a, c and d"
+     "text": "(A), (C) and (D) only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "General Organic Chemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For the compounds:\n(A) $\\mathrm{H_3C-CH_2-O-CH_2-CH_2-CH_3}$\n(B) $\\mathrm{H_3C-CH_2-CH_2-CH_2-CH_3}$\n(C) $\\mathrm{CH_3-CH_2-C(=O)-CH_2-CH_3}$\n(D) $\\mathrm{H_3C-CH(OH)-CH_2-CH_2-CH_3}$\nThe increasing order of boiling point is :\nChoose the correct answer from the options given below.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Compounds having same number of carbon atoms follow the boiling point order as:\n$(\\text{Boiling point})_{\\text{Hydrogen bonding}} > (\\text{Boiling point})_{\\text{high polarity}} > (\\text{Boiling point})_{\\text{low polarity}} > (\\text{Boiling point})_{\\text{non polar}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(A) < (B) < (C) < (D)$"
+    },
+    {
+     "key": "B",
+     "text": "$(B) < (A) < (C) < (D)$"
+    },
+    {
+     "key": "C",
+     "text": "$(D) < (C) < (A) < (B)$"
+    },
+    {
+     "key": "D",
+     "text": "$(B) < (A) < (D) < (C)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement I: In group 13, the stability of $+1$ oxidation state increases down the group.\nStatement II: The atomic size of gallium is greater than that of aluminium.\nIn the light of the above statements, choose the most appropriate answer from the options given below:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Statement I : Number of d & f electrons, increases down the group and due to poor shielding of d & f $e^{-}$, stability of lower oxidation states increases down the group\nStatement II : The atomic size of aluminium is greater than that of gallium",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is incorrect but Statement II is correct"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are correct"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are incorrect"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is correct but Statement II is incorrect"
     }
    ],
    "stem_figure": null,
@@ -207,34 +278,14 @@
   },
   {
    "q_no": 8,
-   "topic": "Alcohols, Phenols and Ethers",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$\\xrightarrow[\\mathrm{H_2SO_4}]{\\text{Conc.}} \\mathrm{(A)} \\xrightarrow[\\mathrm{HNO_3}]{\\text{Conc.}} \\mathrm{(B)}$\nFind sum of total number of O atom(s) in A and B",
-   "correct_key": null,
-   "correct_value": 14,
-   "correct_keys": null,
-   "solution": "Total O atoms in A = 7\nTotal O atoms in B = 7",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s1-chem-q08.png",
-   "solution_figure": "j24-05apr-s1-chem-q08-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 9,
-   "topic": "Alcohols, Phenols and Ethers",
+   "topic": "Chemical Bonding",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$\\xrightarrow[\\mathrm{HCl}]{\\mathrm{NaOH,\\ 620^\\circ C}} \\xrightarrow{\\mathrm{HNO_3 + H_2SO_4}}$ major product",
-   "correct_key": "A",
+   "stem": "Number of $\\sigma$ and $\\pi$ bonds present in ethylene molecule is respectively :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": null,
+   "solution": "ethylene is $\\mathrm{H_2C=CH_2}$, it has $5\\sigma$ bonds and $1\\pi$ bond.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -242,36 +293,262 @@
    "options": [
     {
      "key": "A",
-     "text": "Orthonitrophenol"
+     "text": "3 and 1"
     },
     {
      "key": "B",
-     "text": "Paranitrophenol"
+     "text": "5 and 2"
     },
     {
      "key": "C",
-     "text": "Picric acid"
+     "text": "4 and 1"
     },
     {
      "key": "D",
-     "text": "Metanitrophenol"
+     "text": "5 and 1"
     }
    ],
-   "stem_figure": "j24-05apr-s1-chem-q09.png",
-   "solution_figure": "j24-05apr-s1-chem-q09-sol.png",
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Aldehydes and Ketones",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify 'A' in the following reaction :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Wolf kishner reduction.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q69-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q69-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q69-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn24-05apr-s1-chem-q69-optD.png"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-chem-q69.png",
+   "solution_figure": "jn24-05apr-s1-chem-q69-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 10,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The reaction at cathode in the cells commonly used in clocks involves.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In the cathode reaction manganese (Mn) is reduced from the +4 oxidation state to the +3 state.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "reduction of Mn from $+4$ to $+3$"
+    },
+    {
+     "key": "B",
+     "text": "oxidation of Mn from $+3$ to $+4$"
+    },
+    {
+     "key": "C",
+     "text": "reduction of Mn from $+7$ to $+2$"
+    },
+    {
+     "key": "D",
+     "text": "oxidation of Mn from $+2$ to $+7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which one of the following complexes will exhibit the least paramagnetic behaviour ?\n[Atomic number, Cr = 24, Mn = 25, Fe = 26, Co = 27]",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "| Number of unpaired $e^{-}$ | $\\mu = \\sqrt{n(n+2)}$ B.M.\n$\\mathrm{[Co(H_2O)_6]^{2+}}$ | 3 | 3.87\n$\\mathrm{[Fe(H_2O)_6]^{2+}}$ | 4 | 4.89\n$\\mathrm{[Mn(H_2O)_6]^{2+}}$ | 5 | 5.92\n$\\mathrm{[Cr(H_2O)_6]^{2+}}$ | 4 | 4.89\nLeast paramagnetic behaviour = $\\mathrm{[Co(H_2O)_6]^{2+}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{[Co(H_2O)_6]^{2+}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{[Fe(H_2O)_6]^{2+}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{[Mn(H_2O)_6]^{2+}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{[Cr(H_2O)_6]^{2+}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Isomerism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements : one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Cis form of alkene is found to be more polar than the trans form\nReason (R): Dipole moment of trans isomer of 2-butene is zero.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Dipole moment is a vector quantity and for compound net dipole moment is the vector sum of all dipoles hence dipole moment of cis form is greater than trans form.\nCis ($\\mu > 0$) $>$ trans ($\\mu = 0$)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)"
+    },
+    {
+     "key": "B",
+     "text": "(A) is true but (R) is false"
+    },
+    {
+     "key": "C",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
+    },
+    {
+     "key": "D",
+     "text": "(A) is false but (R) is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s1-chem-q72-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement I: Nitration of benzene involves the following step –\nStatement II: Use of Lewis base promotes the electrophilic substitution of benzene.\nIn the light of the above statements, choose the most appropriate answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "In nitration of benzene concentrated $\\mathrm{H_2SO_4}$ and $\\mathrm{HNO_3}$ is used as reagent which generates electrophile $\\mathrm{N\\overset{\\oplus}{O}_2}$ in following steps:\n$\\mathrm{H_2SO_4 + HNO_3 \\rightleftharpoons HSO_4^{\\ominus} + H-\\overset{H}{\\underset{\\oplus}{O}}-NO_2 \\rightleftharpoons HSO_4^{\\ominus} + H_2O + NO_2^{\\oplus}}$\nLewis acids can promote the formation of electrophiles not Lewis base",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are incorrect"
+    },
+    {
+     "key": "B",
+     "text": "Statement I is correct but Statement II is incorrect"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are correct"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is incorrect but Statement II is correct"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-chem-q73.png",
+   "solution_figure": "jn24-05apr-s1-chem-q73-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The correct order of ligands arranged in increasing field strength.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Experimental order $\\mathrm{Br^{-} < F^{-} < H_2O < NH_3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Cl^{-} < {}^{-}OH < Br^{-} < CN^{-}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{F^{-} < Br^{-} < I^{-} < NH_3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{Br^{-} < F^{-} < H_2O < NH_3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{H_2O < {}^{-}OH < CN^{-} < NH_3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
    "topic": "Biomolecules",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which will give +ve Ninhydrin test",
+   "stem": "Which of the following gives a positive test with ninhydrin ?",
    "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Ninhydrin test is given by amino acids and proteins.\n(1) Cellulose $\\rightarrow$ Carbohydrate | (2) Starch $\\rightarrow$ Carbohydrate\n(3) Polyvinyl chloride $\\rightarrow$ Polymer | (4) Egg albumin $\\rightarrow$ Protein",
+   "solution": "Ninhydrin test is a test of amino acids. Egg albumin contains protein which is a natural polymer of amino acids which will show positive ninhydrin test",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -300,15 +577,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 11,
-   "topic": "Alcohols, Phenols and Ethers",
+   "q_no": 16,
+   "topic": "d- and f-Block Elements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Correct order of boiling point for\n(P) Diethyl ether\n(Q) n-butanol\n(R) n-butane\n(S) ethylmethyl ketone",
+   "stem": "The metal that shows highest and maximum number of oxidation state is:",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "(P) Diethyl ether - dipole moment is not 0\n(Q) n-butanol – Hydrogen bonding\n(R) n-butane - dipole moment is 0\n(S) ethylmethyl ketone - dipole-dipole interaction",
+   "solution": "Mn shows highest oxidation state ($\\mathrm{Mn^{+7}}$) in 3d series metals.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -316,152 +593,21 @@
    "options": [
     {
      "key": "A",
-     "text": "$P > Q > R > S$"
+     "text": "Fe"
     },
     {
      "key": "B",
-     "text": "$Q > S > P > R$"
+     "text": "Mn"
     },
     {
      "key": "C",
-     "text": "$S > R > Q > P$"
+     "text": "Ti"
     },
     {
      "key": "D",
-     "text": "$S > Q > P > R$"
+     "text": "Co"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 13,
-   "topic": "The p-Block Elements",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Assertion : For group 13 element stability of +1 oxidation state increases down the group\nReason : Atomic size of Ga is greater than Al.",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Due to inert pair effect +1 oxidation state increases down the group for group 13 element",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Both, A and R, are true and R is the correct explanation of A"
-    },
-    {
-     "key": "B",
-     "text": "Both, A and R, are true but R is not the correct explanation of A"
-    },
-    {
-     "key": "C",
-     "text": "If A is true but R is false"
-    },
-    {
-     "key": "D",
-     "text": "If A is false but R is true"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 14,
-   "topic": "Equilibrium",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "$\\mathrm{Fe_2O_3(s) + 3CO(g) \\longrightarrow 2Fe(s) + 3CO_2(g)}$\nEquilibrium does not shift according to Le-chatelier's principle",
-   "correct_key": "D",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Equilibrium does not shift according to Le-chatelier's principle by Addition of $\\mathrm{Fe_2O_3}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Removal of $\\mathrm{CO_2}$"
-    },
-    {
-     "key": "B",
-     "text": "Addition of $\\mathrm{CO_2}$"
-    },
-    {
-     "key": "C",
-     "text": "Removal of CO"
-    },
-    {
-     "key": "D",
-     "text": "Addition of $\\mathrm{Fe_2O_3}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 15,
-   "topic": "Coordination Compounds",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Predict correct order of strength of ligands $\\mathrm{Br^-}$ , $\\mathrm{F^-}$ $\\mathrm{H_2O}$, $\\mathrm{NH_3}$",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "order of strength $\\mathrm{Br^- < F^- < H_2O < NH_3}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$\\mathrm{Br^- < H_2O < F^- < NH_3}$"
-    },
-    {
-     "key": "B",
-     "text": "$\\mathrm{H_2O < Br^- < F^- < NH_3}$"
-    },
-    {
-     "key": "C",
-     "text": "$\\mathrm{Br^- < F^- < H_2O < NH_3}$"
-    },
-    {
-     "key": "D",
-     "text": "$\\mathrm{Br^- < H_2O < NH_3 < F^-}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 16,
-   "topic": "Electrochemistry",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Molar conductivity of divalent cation and anion are 57 and 73 $\\mathrm{S\\ cm^{-1}\\ mol^{-1}}$. The molar conductivity of solution is $\\underline{\\qquad}$",
-   "correct_key": null,
-   "correct_value": 130,
-   "correct_keys": null,
-   "solution": "$\\Lambda_{m} = \\Lambda_{\\mathrm{cation}} + \\Lambda_{\\mathrm{anion}}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -469,19 +615,36 @@
   },
   {
    "q_no": 17,
-   "topic": "Chemical Kinetics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "For the reaction $\\mathrm{2A + B \\rightarrow C}$ is given\n$[\\mathrm{A_0}]$ | $[\\mathrm{B_0}]$ | Rate\n0.1 | 0.1 | $6 \\times 10^{-3}$\n0.4 | 0.1 | $12 \\times 10^{-3}$\n0.4 | 0.2 | $48 \\times 10^{-3}$\nFind order reaction",
-   "correct_key": null,
-   "correct_value": 2.5,
+   "topic": "Some Basic Concepts of Chemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An organic compound has 42.1% carbon, 6.4% hydrogen and remainder is oxygen. If its molecular weight is 342, then its molecular formula is :",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Rate $= k[A]^{x}[B]^{y}$\n$$\\frac{6 \\times 10^{-3}}{12 \\times 10^{-3}} = \\frac{[0.1]^{x}[0.1]^{y}}{[0.4]^{x}[0.1]^{y}}$$\n$$\\frac{1}{2} = \\left[\\frac{0.1}{0.4}\\right]^{x}$$\n$$\\frac{1}{2} = \\left(\\frac{1}{4}\\right)^{x}$$\n$x = \\frac{1}{2}$\n$$\\frac{12 \\times 10^{-3}}{48 \\times 10^{-3}} = \\frac{[0.4]^{x}[0.1]^{y}}{[0.4]^{x}[0.2]^{y}}$$\n$$\\frac{1}{4} = \\left(\\frac{1}{2}\\right)^{y}$$\n$y = 2$\nSo, order of reaction is 2.5",
+   "solution": "only $\\mathrm{C_{12}H_{22}O_{11}}$ has 42.1% carbon, 6.4% hydrogen & 51.5 percent oxygen.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{C_{11}H_{18}O_{12}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{C_{12}H_{20}O_{12}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{C_{14}H_{20}O_{10}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{C_{12}H_{22}O_{11}}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -489,19 +652,73 @@
   },
   {
    "q_no": 18,
-   "topic": "The p-Block Elements",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Most abundant isotopes of boron has X number of neutrons\n$\\mathrm{B + O_2} \\rightarrow$ Oxidation number of boron (Y)\nFind X + Y?",
-   "correct_key": null,
-   "correct_value": 9,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statement :\nStatement I : Bromination of phenol in solvent with low polarity such as $\\mathrm{CHCl_3}$ or $\\mathrm{CS_2}$ requires Lewis acid catalyst.\nStatement II : The lewis acid catalyst polarises the bromine to generate $\\mathrm{Br^{+}}$.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Isotope of B $= \\mathrm{{}_{5}B^{11}}$\nOxidation No. = +3\n$X = 6$\n$Y = 3$\n$X + Y = 9$",
+   "solution": "Phenol is a highly activated compound which can undergo bromination directly with Bromine without any lewis acid.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is true but Statement II is false."
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are false."
+    },
+    {
+     "key": "D",
+     "text": "Statement I is false but Statement II is true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Molar ionic conductivities of divalent cation and anion are $57\\ \\mathrm{S\\ cm^{2}\\ mol^{-1}}$ and $73\\ \\mathrm{S\\ cm^{2}\\ mol^{-1}}$ respectively. The molar conductivity of solution of an electrolyte with the above cation and anion will be :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Lambda_{C}^{+2} = 57\\ \\mathrm{S\\,cm^{2}\\,mol^{-1}}$\n$\\Lambda_{A}^{+2} = 73\\ \\mathrm{S\\,cm^{2}\\,mol^{-1}}$\n$\\Lambda_{Solution} = \\lambda_{C}^{+2} + \\Lambda_{A}^{-2}$\n$= 57 + 73 = 130$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$65\\ \\mathrm{S\\ cm^{2}\\ mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$130\\ \\mathrm{S\\ cm^{2}\\ mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$187\\ \\mathrm{S\\ cm^{2}\\ mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$260\\ \\mathrm{S\\ cm^{2}\\ mol^{-1}}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -509,34 +726,14 @@
   },
   {
    "q_no": 20,
-   "topic": "Amines",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$\\xrightarrow[\\text{(Excess)}]{\\mathrm{Br_2 + H_2O}}$ White ppt\n9.3 gm | 24.6 gm\nFind out % yield of white ppt product",
-   "correct_key": null,
-   "correct_value": 70,
-   "correct_keys": null,
-   "solution": "Moles = 0.1 $\\quad$ Moles = 0.07\n% yield $= \\frac{0.07}{0.1} \\times 100 = 70\\%$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s1-chem-q20.png",
-   "solution_figure": "j24-05apr-s1-chem-q20-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 21,
-   "topic": "Salt Analysis",
+   "topic": "p-Block Elements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following cation will give green colour in reducing flame in borax bead test",
-   "correct_key": "A",
+   "stem": "The number of neutrons present in the more abundant isotope of boron is 'x'. Amorphous boron upon heating with air forms a product, in which the oxidation state of boron is 'y'. The value of $x + y$ is …",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Iron cation will give green colour in reducing flame in borax bead test",
+   "solution": "More abundant isotope = $\\mathrm{B^{11}}$\n[Number of neutrons = 6]\n$x = 6$\n$\\mathrm{B + O_2 \\rightarrow B_2O_3}$\nOxidation state of B in $\\mathrm{B_2O_3}$ = +3\nSo, $y = 3$\nHence $x + y = 9$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -544,19 +741,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Iron"
+     "text": "4"
     },
     {
      "key": "B",
-     "text": "Cobalt"
+     "text": "6"
     },
     {
      "key": "C",
-     "text": "Manganese"
+     "text": "3"
     },
     {
      "key": "D",
-     "text": "Nickel"
+     "text": "9"
     }
    ],
    "stem_figure": null,
@@ -565,38 +762,41 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 22,
-   "topic": "Some Basic Concepts of Chemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Which postulate of Dalton's theory is wrong",
-   "correct_key": "B",
-   "correct_value": null,
+   "q_no": 21,
+   "topic": "Atomic Structure",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The value of Rydberg constant ($R_H$) is $2.18\\times10^{-18}$ J. The velocity of electron having mass $9.1\\times10^{-31}$ kg in Bohr's first orbit of hydrogen atom = ……… $\\times 10^{5}\\ \\mathrm{ms^{-1}}$ (nearest integer)",
+   "correct_key": null,
+   "correct_value": 22,
    "correct_keys": null,
-   "solution": "Theory Based",
+   "solution": "$V = 2.18 \\times 10^{6} \\times \\frac{Z}{n}$\n$= 21.8 \\times 10^{5} \\times \\frac{1}{1} \\approx 22 \\times 10^{5}$ (nearest)",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Matter consist of indivisible atoms"
-    },
-    {
-     "key": "B",
-     "text": "All atoms of a given element have identical properties but different masses"
-    },
-    {
-     "key": "C",
-     "text": "Compounds are formed when atoms of different elements combines in a fixed ratio"
-    },
-    {
-     "key": "D",
-     "text": "Chemical reaction involves reorganisation of atoms"
-    }
-   ],
+   "options": [],
    "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Qualitative Analysis",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a borax bead test under hot condition, a metal salt (one from the given) is heated at point B of the flame, resulted in green colour salt bead. The spin-only magnetic moment value of the salt is …………. BM (Nearest integer)\n[Given atomic number of Cu = 29, Ni = 28, Mn = 25, Fe = 26]",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$\\mathrm{Fe^{3+}}$ will give green coloured bead when heated at point B.\nNumber of unpaired $e^{-}$ in $\\mathrm{Fe^{3+}} = 5$\n$\\mu = 5.92$\nNearest integer = 6",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s1-chem-q82.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
@@ -606,11 +806,11 @@
    "topic": "Thermodynamics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The heat of combustion of solid benzoic acid at constant volume is $-321.30$K at $27^\\circ\\mathrm{C}$. The heat of combustion at constant pressure $(-321.30 - x)$KJ the value of x is.",
+   "stem": "The heat of combustion of solid benzoic acid at constant volume is $-321.30$ kJ at $27^\\circ$C. The heat of combustion at constant pressure is $(-321.30 - xR)$ kJ, the value of x is …………….",
    "correct_key": null,
-   "correct_value": 1.25,
+   "correct_value": 150,
    "correct_keys": null,
-   "solution": "$\\mathrm{C_6H_5COOH(s) + \\frac{15}{2}O_2 \\longrightarrow 7CO_2(g) + 3H_2O(l)}$\n$\\Delta H = \\Delta U + \\Delta n_{g}RT$\n$$= -321.3 + \\left(-\\frac{1}{2}\\right) \\times \\frac{8.314}{1000} \\times 300$$\n$= -321.3 - 1.25$\n$$= -322.55\\ \\frac{\\mathrm{KJ}}{\\mathrm{mol}}$$",
+   "solution": "$\\mathrm{C_6H_5COOH(s) + \\frac{15}{2}O_2(g) \\rightarrow 7CO_2(g) + 3H_2O(\\ell)}$\n$\\Delta H = \\Delta U + \\Delta n_g RT$\n$= -321.30 - \\frac{1}{2}\\frac{R}{100} \\times 300$\n$= (-321.30 - 150R)$ kJ",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -618,6 +818,146 @@
    "options": [],
    "stem_figure": null,
    "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the given chemical reaction sequence :\nTotal sum of oxygen atoms in Product A and Product B are ………",
+   "correct_key": null,
+   "correct_value": 14,
+   "correct_keys": null,
+   "solution": "Picric acid is prepared by treating phenol first with concentrated sulphuric acid which converts it to phenol-2,4-disulphonic acid and then with concentrated nitric acid to get 2, 4, 6 trinitrophenol.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s1-chem-q84.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "d- and f-Block Elements",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The spin only magnetic moment value of the ion among $\\mathrm{Ti^{2+}}$, $\\mathrm{V^{2+}}$, $\\mathrm{Co^{3+}}$ and $\\mathrm{Cr^{2+}}$, that acts as strong oxidising agent in aqueous solution is ……….. BM (Near integer).\n(Given atomic numbers : Ti : 22, V : 23, Cr : 24, Co : 27)",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "Strong oxidising agent = $\\mathrm{Co^{+3}}$\nNo. of unpaired $e^{-}$ in $\\mathrm{Co^{+3}[3d^{6}]} = 4$\nHence $\\mu = \\sqrt{n(n+2)} = \\sqrt{24}$ BM\nNearest integer = 5",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Chemical Kinetics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "During Kinetic study of reaction $\\mathrm{2A + B \\rightarrow C + D}$, the following results were obtained :\n | $A[M]$ | $B[M]$ | initial rate of formation of D\nI | 0.1 | 0.1 | $6.0 \\times 10^{-3}$\nII | 0.3 | 0.2 | $7.2 \\times 10^{-2}$\nIII | 0.3 | 0.4 | $2.88 \\times 10^{-1}$\nIV | 0.4 | 0.1 | $2.40 \\times 10^{-2}$\nBased on above data, overall order of the reaction is ……….",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "$r = K[A]^{x}[B]^{y}$\n(I) $6 \\times 10^{-3} = K[0.1]^{x}[0.1]^{y}$\n(IV) $2.4 \\times 10^{-2} = K[0.4]^{x}[0.1]^{y}$\n(IV)/(I)\n$4 = (4)^{x}$\n$x = 1$\n$r = K[A]^{x}[B]^{y}$\n(III) $2.88 \\times 10^{-1} = K[0.3]^{x}[0.4]^{y}$\n(II) $7.2 \\times 10^{-2} = K[0.3]^{x}[0.2]^{y}$\n(III)/(II)\n$4 = 2^{y}$\n$y = 2$\nOverall order = $x + y = 1 + 2 = 3$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Solutions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An artificial cell is made by encapsulating 0.2 M glucose solution within a semipermeable membrane. The osmotic pressure developed when the artificial cell is placed within a 0.05 M solution of NaCl at 300 K is _______ $\\times 10^{-1}$ bar. (Nearest Integer)\n[Given : $R = 0.083\\ \\mathrm{L\\ bar\\ mol^{-1}\\ K^{-1}}$]\nAssume complete dissociation of NaCl",
+   "correct_key": null,
+   "correct_value": 25,
+   "correct_keys": null,
+   "solution": "0.2 M Glucose (inside the cell) | 0.05 M NaCl Sol. (outside)\n$\\mathrm{NaCl \\longrightarrow Na^{+} + Cl^{-}}$\n$0.05\\,\\mathrm{M}$ | $0.05\\,\\mathrm{M}$ | $0.05\\,\\mathrm{M}$\nTotal $C_1 = 0.05 + 0.05 = 0.1$ M (NaCl)\n$C_2 = 0.2$ M (glucose)\n$\\pi = (C_2 - C_1)RT$\n$= (0.2 - 0.1) \\times 0.083 \\times 300$\n$= 2.49$ bar\n$= 24.9 \\times 10^{-1}$ bar",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Amines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of halobenzenes from the following that can be prepared by Sandmeyer's reaction is .......",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "In Sandmayer reaction only bromobenzene & chlorobenzene are prepared",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s1-chem-q88.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Chemical Bonding",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In the lewis dot structure for $\\mathrm{NO_2^{-}}$, total number of valence electrons around nitrogen is …….",
+   "correct_key": null,
+   "correct_value": 8,
+   "correct_keys": null,
+   "solution": "Number of valence $e^{-}$ around N-atom = 8",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Amines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "9.3 g of pure aniline is treated with bromine water at room temperature to give a white precipitate of the product 'P'. The mass of product 'P' obtained is 26.4 g. The percentage yield is ……… %.",
+   "correct_key": null,
+   "correct_value": 80,
+   "correct_keys": null,
+   "solution": "93 g of aniline produces 330 g of 2, 4, 6-tribromoaniline. Hence 9.3 g of aniline should produce 33g of 2, 4, 6-tribromoaniline. Hence percentage yield $\\frac{26.4 \\times 100}{33} = 80\\%$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s1-chem-q90-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   }

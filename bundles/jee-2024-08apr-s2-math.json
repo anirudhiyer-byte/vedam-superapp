@@ -1,0 +1,957 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2024,
+  "set_label": "8 Apr · Shift 2",
+  "title": "JEE Main 2024 · Mathematics · 8 Apr Shift 2",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the image of the point $(-4, 5)$ in the line $x + 2y = 2$ lies on the circle $(x + 4)^{2} + (y - 3)^{2} = r^{2}$, then $r$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Image of point $(-4, 5)$\n$\\frac{x - x_{1}}{a} = \\frac{y - y_{1}}{b} = -2\\left(\\frac{ax_{1} + by_{1} + c}{a^{2} + b^{2}}\\right)$\nLine : $x + 2y - 2 = 0$\n$\\frac{x + 4}{1} = \\frac{y - 5}{2} = -2\\left(\\frac{-4 + 10 - 2}{1^{2} + 2^{2}}\\right)$\n$= \\frac{-8}{5}$\n$x = -4 - \\frac{8}{5} = -\\frac{28}{5}$\n$y = -\\frac{16}{5} + 5 = \\frac{9}{5}$\nPoint lies on circle $(x + 4)^{2} + (y - 3)^{2} = r^{2}$\n$\\frac{64}{25} + \\left(\\frac{9}{5} - 3\\right)^{2} = r^{2}$\n$\\frac{100}{25} = r^{2}$, $r = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$2$"
+    },
+    {
+     "key": "C",
+     "text": "$75$"
+    },
+    {
+     "key": "D",
+     "text": "$3$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$, $\\vec{b} = 2\\hat{i} + 3\\hat{j} - 5\\hat{k}$ and $\\vec{c} = 3\\hat{i} - \\hat{j} + \\lambda\\hat{k}$ be three vectors. Let $\\vec{r}$ be a unit vector along $\\vec{b} + \\vec{c}$. If $\\vec{r} \\cdot \\vec{a} = 3$, then $3\\lambda$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{r} = k(\\vec{b} + \\vec{c})$\n$\\vec{r} \\cdot \\vec{a} = 3$\n$\\vec{r} \\cdot \\vec{a} = k(\\vec{b} \\cdot \\vec{a} + \\vec{c} \\cdot \\vec{a})$\n$3 = k(2 + 6 - 15 + 3 - 2 + 3\\lambda)$\n$3 = k(-6 + 3\\lambda)$ $\\quad$ ...(1)\n$\\vec{r} = k(5\\hat{i} + 2\\hat{j} - (5 - \\lambda)\\hat{k})$\n$|\\vec{r}| = k\\sqrt{25 + 4 + 25 + \\lambda^{2} - 10\\lambda} = 1$ $\\quad$ ...(2)\n$k = \\frac{3}{-6 + 3\\lambda} = \\frac{1}{-2 + \\lambda}$ $\\quad$ put in (2)\n$4 + \\lambda^{2} - 4\\lambda = 54 + \\lambda^{2} - 10\\lambda$\n$6\\lambda = 50$\n$3\\lambda = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$27$"
+    },
+    {
+     "key": "B",
+     "text": "$25$"
+    },
+    {
+     "key": "C",
+     "text": "$25$"
+    },
+    {
+     "key": "D",
+     "text": "$21$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha \\neq a$, $\\beta \\neq b$, $\\gamma \\neq c$ and $\\begin{vmatrix} \\alpha & b & c \\\\ a & \\beta & c \\\\ a & b & \\gamma \\end{vmatrix} = 0$, then $\\frac{a}{\\alpha - a} + \\frac{b}{\\beta - b} + \\frac{\\gamma}{\\gamma - c}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$R_{1} \\to R_{1} - R_{2},\\ R_{2} \\to R_{2} - R_{3}$\n$\\begin{vmatrix} \\alpha - a & b - \\beta & 0 \\\\ 0 & \\beta - b & c - \\gamma \\\\ a & b & \\gamma \\end{vmatrix} = 0$\n$(\\alpha - a)\\,(\\gamma(\\beta - b) - b(c - \\gamma)) - (b - \\beta)\\,(-a(c - \\gamma)) = 0$\n$\\gamma(\\alpha - a)\\,(\\beta - b) - b(\\alpha - a)\\,(c - \\gamma) + a(b - \\beta)\\,(c - \\gamma)$\n$\\frac{\\gamma}{\\gamma - c} + \\frac{b}{\\beta - b} + \\frac{a}{\\alpha - a} = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$0$"
+    },
+    {
+     "key": "D",
+     "text": "$1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In an increasing geometric progression of positive terms, the sum of the second and sixth terms is $\\frac{70}{3}$ and the product of the third and fifth terms is $49$. Then the sum of the $4^{\\text{th}}$, $6^{\\text{th}}$ and $8^{\\text{th}}$ terms is :-",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T_{2} + T_{6} = \\frac{70}{3}$\n$ar + ar^{5} = \\frac{70}{3}$\n$T_{3} \\cdot T_{5} = 49$\n$ar^{2} \\cdot ar^{4} = 49$\n$a^{2}r^{6} = 49$\n$ar^{3} = +7,\\ a = \\frac{7}{r^{3}}$\n$ar(1 + r^{4}) = \\frac{70}{3}$\n$\\frac{7}{r^{2}}(1 + r^{4}) = \\frac{70}{3},\\ r^{2} = t$\n$\\frac{1}{t}(1 + t^{2}) = \\frac{10}{3}$\n$3t^{2} - 10t + 3 = 0$\n$t = 3, \\frac{1}{3}$\nIncreasing G.P. $r^{2} = 3,\\ r = \\sqrt{3}$\n$T_{4} + T_{6} + T_{8}$\n$= ar^{3} + ar^{5} + ar^{7}$\n$= ar^{3}(1 + r^{2} + r^{4})$\n$= 7(1 + 3 + 9) = 91$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$96$"
+    },
+    {
+     "key": "B",
+     "text": "$78$"
+    },
+    {
+     "key": "C",
+     "text": "$91$"
+    },
+    {
+     "key": "D",
+     "text": "$84$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of ways five alphabets can be chosen from the alphabets of the word MATHEMATICS, where the chosen alphabets are not necessarily distinct, is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$AA,\\ MM,\\ TT,\\ H,\\ I,\\ C,\\ S,\\ E$\n(1) All distinct\n${}^{8}C_{5} \\to 56$\n(2) 2 same, 3 different\n${}^{3}C_{1} \\times {}^{7}C_{3} \\to 105$\n(3) 2 same I$^{\\text{st}}$ kind, 2 same II$^{\\text{nd}}$ kind, 1 different\n${}^{3}C_{2} \\times {}^{6}C_{1} \\to 18$\nTotal $\\to 179$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$175$"
+    },
+    {
+     "key": "B",
+     "text": "$181$"
+    },
+    {
+     "key": "C",
+     "text": "$177$"
+    },
+    {
+     "key": "D",
+     "text": "$179$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The sum of all possible values of $\\theta \\in [-\\pi, 2\\pi]$, for which $\\frac{1 + i\\cos\\theta}{1 - 2i\\cos\\theta}$ is purely imaginary, is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$Z = \\frac{1 + i\\cos\\theta}{1 - 2i\\cos\\theta}$\n$Z = -\\bar{Z} \\Rightarrow \\frac{1 + i\\cos\\theta}{1 - 2i\\cos\\theta} = -\\left(\\overline{\\frac{1 + i\\cos\\theta}{1 - 2i\\cos\\theta}}\\right)$\n$(1 + i\\cos\\theta)\\left(\\overline{1 - 2i\\cos\\theta}\\right) = -(1 - 2i\\cos\\theta)\\left(\\overline{1 + i\\cos\\theta}\\right)$\n$(1 + i\\cos\\theta)(1 + 2i\\cos\\theta) = -(1 - 2i\\cos\\theta)(1 - i\\cos\\theta)$\n$1 + 3i\\cos\\theta - 2\\cos^{2}\\theta = -(1 - 3i\\cos\\theta - 2\\cos^{2}\\theta)$\n$2 - 4\\cos^{2}\\theta = 0$\n$\\Rightarrow \\cos^{2}\\theta = \\frac{1}{2} \\Rightarrow \\theta = -\\frac{\\pi}{4}, -\\frac{3\\pi}{4}, \\frac{\\pi}{4}, \\frac{3\\pi}{4}, \\frac{5\\pi}{4}, \\frac{7\\pi}{4}$\nsum $= 3\\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$3\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$5\\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$4\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the system of equations $x + 4y - z = \\lambda$, $7x + 9y + \\mu z = -3$, $5x + y + 2z = -1$ has infinitely many solutions, then $(2\\mu + 3\\lambda)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta = \\begin{vmatrix} 1 & 4 & -1 \\\\ 7 & 9 & \\mu \\\\ 5 & 1 & 2 \\end{vmatrix} = 0$\n$\\Rightarrow (18 - \\mu) - 4(14 - 5\\mu) - (7 - 45) = 0 \\Rightarrow \\mu = 0$\n$\\Delta = \\Delta_{x} = \\Delta_{y} = \\Delta_{z} = 0$ (For infinite solution)\n$\\Delta_{x} = \\begin{vmatrix} \\lambda & 4 & -1 \\\\ -3 & 9 & \\mu \\\\ -1 & 1 & 2 \\end{vmatrix} = 0$\n$\\lambda(18 - \\mu) - 4(-6 + \\mu) - 1(-3 + 9) = 0$\n$18\\lambda + 24 - 6 = 0 \\Rightarrow \\lambda = -1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$-3$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$-2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the shortest distance between the lines $\\frac{x - \\lambda}{2} = \\frac{y - 4}{3} = \\frac{z - 3}{4}$ and $\\frac{x - 2}{4} = \\frac{y - 4}{6} = \\frac{z - 7}{8}$ is $\\frac{13}{\\sqrt{29}}$, then a value of $\\lambda$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{r}_{1} = (\\lambda\\hat{i} + 4\\hat{j} + 3\\hat{k}) + \\alpha(2\\hat{i} + 3\\hat{j} + 4\\hat{k})$ $\\quad$ $\\vec{b} = 2\\hat{i} + 3\\hat{j} + 4\\hat{k}$\n$\\vec{r}_{2} = (2\\hat{i} + 4\\hat{j} + 7\\hat{k}) + \\beta(2\\hat{i} + 3\\hat{j} + 4\\hat{k})$ $\\quad$ $\\vec{a}_{1} + \\lambda\\hat{i} + 4\\hat{j} + 3\\hat{k}$, $\\ \\vec{a}_{2} = 2\\hat{i} + 4\\hat{j} + 7\\hat{k}$\nShortest dist. $= \\frac{|\\vec{b} \\times (\\vec{a}_{2} - \\vec{a}_{1})|}{|\\vec{b}|} = \\frac{13}{\\sqrt{29}}$\n$\\frac{\\left|(2\\hat{i} + 3\\hat{j} + 4\\hat{k}) \\times ((2 - \\lambda)\\hat{i} + 4\\hat{k})\\right|}{\\sqrt{29}} = \\frac{13}{\\sqrt{29}}$\n$\\left|-8\\hat{j} - 3(2 - \\lambda)\\hat{k} + 12\\hat{i} + 4(2 - \\lambda)\\hat{j}\\right| = 13$\n$\\left|12\\hat{i} - 4\\lambda\\hat{j} + (3\\lambda - 6)\\hat{k}\\right| = 13$\n$144 + 16\\lambda^{2} + (3\\lambda - 6)^{2} = 169$\n$16\\lambda^{2} + (3\\lambda - 6)^{2} = 25 \\Rightarrow \\lambda = 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{13}{25}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{13}{25}$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$-1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Trigonometric Ratios",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the value of $\\frac{3\\cos 36^\\circ + 5\\sin 18^\\circ}{5\\cos 36^\\circ - 3\\sin 18^\\circ}$ is $\\frac{a\\sqrt{5} - b}{c}$, where $a$, $b$, $c$ are natural numbers and $\\gcd(a, c) = 1$, then $a + b + c$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{\\frac{3(\\sqrt{5} + 1)}{4} + 5\\left(\\frac{\\sqrt{5} - 1}{4}\\right)}{5\\left(\\frac{\\sqrt{5} + 1}{4}\\right) - 3\\left(\\frac{\\sqrt{5} - 1}{4}\\right)} = \\frac{8\\sqrt{5} - 2}{2\\sqrt{5} + 8}$\n$= \\frac{4\\sqrt{5} - 1}{\\sqrt{5} + 4} \\times \\frac{\\sqrt{5} - 4}{\\sqrt{5} - 4}$\n$= \\frac{20 - 16\\sqrt{5} - \\sqrt{5} + 4}{-11}$\n$= \\frac{17\\sqrt{5} - 24}{11} \\Rightarrow a = 17,\\ b = 27,\\ c = 11$\n$a + b + c = 52$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$50$"
+    },
+    {
+     "key": "B",
+     "text": "$40$"
+    },
+    {
+     "key": "C",
+     "text": "$52$"
+    },
+    {
+     "key": "D",
+     "text": "$54$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution curve of the differential equation $\\sec y \\frac{dy}{dx} + 2x\\sin y = x^{3}\\cos y$, $y(1) = 0$. Then $y\\left(\\sqrt{3}\\right)$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\sec^{2}y \\frac{dy}{dx} + 2x\\sin y \\sec y = x^{3}\\cos y \\sec y$\n$\\sec^{2}y \\frac{dy}{dx} + 2x\\tan y = x^{3}$\n$\\tan y = t \\Rightarrow \\sec^{2}y \\frac{dy}{dx} = \\frac{dt}{dx}$\n$\\frac{dt}{dx} + 2xt = x^{3}$, If $= e^{\\int 2x\\,dx} = e^{x^{2}}$\n$te^{x^{2}} = \\int x^{3} \\cdot e^{x^{2}}\\,dx + c$\n$x^{2} = Z \\Rightarrow t \\cdot e^{Z} = \\frac{1}{2}\\int e^{Z} \\cdot Z\\,dZ = \\frac{1}{2}\\left[e^{Z} \\cdot Z - e^{Z}\\right] + c$\n$2\\tan y = (x^{2} - 1) + 2ce^{-x^{2}}$\n$y(1) = 0 \\Rightarrow c = 0 \\Rightarrow y(\\sqrt{3}) = \\frac{\\pi}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{12}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region in the first quadrant inside the circle $x^{2} + y^{2} = 8$ and outside the parabola $y^{2} = 2x$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Required area = Ar(circle from 0 to 2) $-$ ar(para from 0 to 2)\n$= \\int_{0}^{2} \\sqrt{8 - x^{2}}\\,dx - \\int_{0}^{2} \\sqrt{2x}\\,dx$\n$= \\left[\\frac{x}{2}\\sqrt{8 - x^{2}} + \\frac{8}{2}\\sin^{-1}\\frac{x}{2\\sqrt{2}}\\right]_{0}^{2} - \\sqrt{2}\\left[\\frac{x\\sqrt{x}}{3/2}\\right]_{0}^{2}$\n$= \\frac{2}{2}\\sqrt{8 - 4} + \\frac{8}{2}\\sin^{-1}\\frac{2}{2\\sqrt{2}} - \\frac{2\\sqrt{2}}{3}\\left(2\\sqrt{2} - 0\\right)$\n$\\Rightarrow 2 + 4 \\cdot \\frac{\\pi}{4} - \\frac{8}{3} = \\pi - \\frac{2}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2} - \\frac{1}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\pi - \\frac{2}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{2} - \\frac{2}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pi - \\frac{1}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-math-q11-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the line segment joining the points $(5, 2)$ and $(2, a)$ subtends an angle $\\frac{\\pi}{4}$ at the origin, then the absolute value of the product of all possible values of $a$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$m_{OA} = \\frac{2}{5}$\n$m_{OB} = \\frac{a}{2}$\n$\\tan\\frac{\\pi}{4} = \\left|\\frac{2}{5} - \\frac{a}{2}\\right|$\n$1 = \\left|\\frac{4 - 5a}{10 + 2a}\\right|$\n$4 - 5a = \\pm(10 + 2a)$\n$4 - 5a = 10 + 2a \\Rightarrow 7a + 6 = 0 \\Rightarrow a = -\\frac{6}{7}$\n$4 - 5a = -10 - 2a \\Rightarrow 3a = 14 \\Rightarrow a = +\\frac{14}{3}$\n$-\\frac{6}{7} \\times \\frac{14}{3} = -4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-math-q12-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 4\\hat{i} - \\hat{j} + \\hat{k}$, $\\vec{b} = 11\\hat{i} - \\hat{j} + \\hat{k}$ and $\\vec{c}$ be a vector such that $(\\vec{a} + \\vec{b}) \\times \\vec{c} = \\vec{c} \\times (-2\\vec{a} + 3\\vec{b})$. If $(2\\vec{a} + 3\\vec{b}) \\cdot \\vec{c} = 1670$, then $|\\vec{c}|^{2}$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(\\vec{a} + \\vec{b}) \\times \\vec{c} - \\vec{c} \\times (-2\\vec{a} + 3\\vec{b}) = 0$\n$(\\vec{a} + \\vec{b}) \\times \\vec{c} + (-2\\vec{a} + 3\\vec{b}) \\times \\vec{c} = 0$\n$\\Rightarrow ((\\vec{a} + \\vec{b}) - 2\\vec{a} + 3\\vec{b}) \\times \\vec{c} = 0$\n$\\Rightarrow \\vec{c} = \\lambda(4\\vec{b} - \\vec{a})$\n$\\Rightarrow\\ = \\lambda\\left(44\\hat{i} - 4\\hat{j} + 4\\hat{k} - 4\\hat{i} + \\hat{j} - \\hat{k}\\right)$\n$= \\lambda\\left(40\\hat{i} - 3\\hat{j} + 3\\hat{k}\\right)$\nNow\n$\\left(8\\hat{i} - 2\\hat{j} + 2\\hat{k} + 33\\hat{i} - 3\\hat{j} + 3\\hat{k}\\right) \\cdot \\lambda(40\\hat{i} - 3\\hat{j} + 3\\hat{k}) = 1670$\n$\\Rightarrow \\left(41\\hat{i} - 5\\hat{j} + 5\\hat{k}\\right) \\cdot (40\\hat{i} - 3\\hat{j} + 3\\hat{k}) \\times \\lambda = 1670$\n$\\Rightarrow (1640 + 15 + 15)\\lambda = 1670 \\Rightarrow \\lambda = 1$\nso $\\vec{c} = 40\\hat{i} - 3\\hat{j} - 3\\hat{k}$\n$\\Rightarrow |\\vec{c}|^{2} = 1600 + 9 + 9 = 1618$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1627$"
+    },
+    {
+     "key": "B",
+     "text": "$1618$"
+    },
+    {
+     "key": "C",
+     "text": "$1600$"
+    },
+    {
+     "key": "D",
+     "text": "$1609$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the function $f(x) = 2x^{3} - 9ax^{2} + 12a^{2}x + 1$, $a > 0$ has a local maximum at $x = \\alpha$ and a local minimum at $x = \\alpha^{2}$, then $\\alpha$ and $\\alpha^{2}$ are the roots of the equation :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f'(x) = 6x^{2} - 18ax + 12a^{2} = 0$ (roots $\\alpha$, $\\alpha^{2}$)\n$\\alpha + \\alpha^{2} = 3a$ & $\\alpha \\times \\alpha^{2} = 2a^{2}$\n$(\\alpha + \\alpha^{2})^{3} = 27a^{3}$\n$\\Rightarrow 2a^{2} + 4a^{4} + 3(3a)(2a^{2}) = 27a^{3}$\n$\\Rightarrow 2 + 4a^{2} + 18a = 27a$\n$\\Rightarrow 4a^{2} - 9a + 2 = 0$\n$\\Rightarrow 4a^{2} - 8a - a + 2 = 0$\n$\\Rightarrow (4a - 1)(a - 2) = 0 \\Rightarrow a = 2$\nso $6x^{2} - 36x + 48 = 0$\n$\\Rightarrow x^{2} - 6x + 8 = 0$ $\\quad$ (1)\nIf we take $a = \\frac{1}{4}$ then $\\alpha = \\frac{1}{2}$ which is not possible",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2} - 6x + 8 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$8x^{2} + 6x - 8 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$8x^{2} - 6x + 1 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} + 6x + 8 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "There are three bags X, Y and Z. Bag X contains 5 one-rupee coins and 4 five-rupee coins; Bag Y contains 4 one-rupee coins and 5 five-rupee coins and Bag Z contains 3 one-rupee coins and 6 five-rupee coins. A bag is selected at random and a coin drawn from it at random is found to be a one-rupee coin. Then the probability, that it came from bag Y, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "X | Y | Z\n5 one & 4 five | 4 one & 5 five | 3 one & 6 five\n$P = \\frac{4/9}{5/9 + 4/9 + 3/9} = \\frac{4}{12} = \\frac{1}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{12}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\int_{\\alpha}^{\\log_{e} 4} \\frac{dx}{\\sqrt{e^{x} - 1}} = \\frac{\\pi}{6}$. Then $e^{\\alpha}$ and $e^{-\\alpha}$ are the roots of the equation :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\int_{\\alpha}^{\\log_{e} 4} \\frac{dx}{\\sqrt{e^{x} - 1}} = \\frac{\\pi}{6}$\nLet $e^{x} - 1 = t^{2}$\n$e^{x}\\,dx = 2t\\,dt$\n$= \\int \\frac{2\\,dt}{t^{2} + 1}$\n$= 2\\tan^{-1}t$\n$= 2\\tan^{-1}\\left(\\sqrt{e^{x} - 1}\\right)\\Big|_{\\alpha}^{\\log_{e} 4}$\n$= 2\\left[\\tan^{-1}\\sqrt{3} - \\tan^{-1}\\sqrt{e^{\\alpha} - 1}\\right] = \\frac{\\pi}{6}$\n$= \\frac{\\pi}{3} - \\tan^{-1}\\sqrt{e^{\\alpha} - 1} = \\frac{\\pi}{12}$\n$\\Rightarrow \\tan^{-1}\\sqrt{e^{\\alpha} - 1} = \\frac{\\pi}{4}$\n$e^{\\alpha} = 2$ $\\quad$ $e^{-\\alpha} = \\frac{1}{2}$\n$x^{2} - \\left(2 + \\frac{1}{2}\\right)x + 1 = 0$\n$2x^{2} - 5x + 2 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2x^{2} - 5x + 2 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} - 2x - 8 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$2x^{2} - 5x - 2 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} + 2x - 8 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\begin{cases} -a & \\text{if } -a \\le x \\le 0 \\\\ x + a & \\text{if } 0 < x \\le a \\end{cases}$ where $a > 0$ and $g(x) = (f(|x|) - |f(x)|)/2$. Then the function $g : [-a, a] \\to [-a, a]$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "neither one-one nor onto."
+    },
+    {
+     "key": "B",
+     "text": "both one-one and onto."
+    },
+    {
+     "key": "C",
+     "text": "one-one."
+    },
+    {
+     "key": "D",
+     "text": "onto"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-math-q17-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\{2, 3, 6, 8, 9, 11\\}$ and $B = \\{1, 4, 5, 10, 15\\}$. Let R be a relation on $A \\times B$ define by $(a, b)R(c, d)$ if and only if $3ad - 7bc$ is an even integer. Then the relation R is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A = \\{2, 3, 6, 8, 9, 11\\}$ $\\quad$ $(a, b)R(c, d)$\n$B = \\{1, 4, 5, 10, 15\\}$ $\\quad$ $3ad - 7bc$\nReflexive : $(a, b)R(a, b)$\n$\\Rightarrow 3ab - 7ba = -4ab$ always even so it is reflexive.\nSymmetric : If $3ad - 7bc$ = Even\nCase-I : odd odd\nCase-II : even even\n$(c, d)R(a, b) \\Rightarrow 3bc - 3ab$\nCase-I : odd odd\nCase-II : even even\nso symmetric relation\nTransitive :\nSet $(3, 4)R(6, 4)$ Satisfy relation\nSet $(6, 4)R(3, 1)$ Satisfy relation\nbut $(3, 4)R(3, 1)$ does not satisfy relation\nso not transitive.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "reflexive but not symmetric."
+    },
+    {
+     "key": "B",
+     "text": "transitive but not symmetric."
+    },
+    {
+     "key": "C",
+     "text": "reflexive and symmetric but not transitive."
+    },
+    {
+     "key": "D",
+     "text": "an equivalence relation."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Limits, Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For $a, b > 0$, let $f(x) = \\begin{cases} \\dfrac{\\tan((a + 1)x) + b\\tan x}{x}, & x < 0 \\\\ 3, & x = 0 \\\\ \\dfrac{\\sqrt{ax + b^{2}x^{2}} - \\sqrt{ax}}{b\\sqrt{a}\\,x\\sqrt{x}}, & x > 0 \\end{cases}$ be a continous function at $x = 0$. Then $\\frac{b}{a}$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\lim_{x \\to 0} f(x) = f(0) = 3$\n$\\lim_{x \\to 0^{+}} \\frac{\\sqrt{ax + b^{2}x^{2}} - \\sqrt{ax}}{b\\sqrt{a}\\,x\\sqrt{x}} = 3$\n$\\lim_{x \\to 0^{+}} \\frac{ax + b^{2}x^{2} - ax}{b\\sqrt{a}\\,x^{3/2}\\left(\\sqrt{ax + b^{2}x^{2}} + \\sqrt{ax}\\right)}$\n$\\lim_{x \\to 0^{+}} \\frac{b^{2}}{b\\sqrt{a}\\left(\\sqrt{a + b^{2}x} + \\sqrt{a}\\right)}$\n$\\frac{b}{\\sqrt{a} \\cdot 2\\sqrt{a}} \\Rightarrow \\frac{b}{2a} = 3 \\Rightarrow \\frac{b}{a} = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the term independent of $x$ in the expansion of $\\left(\\sqrt{a}\\,x^{2} + \\frac{1}{2x^{3}}\\right)^{10}$ is $105$, then $a^{2}$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left(\\sqrt{a}\\,x^{2} + \\frac{1}{2x^{3}}\\right)^{10}$\nGeneral term $= {}^{10}C_{r}\\left(\\sqrt{a}\\,x^{2}\\right)^{10 - r}\\left(\\frac{1}{2x^{3}}\\right)^{r}$\n$20 - 2r - 3r = 0$\n$r = 4$\n${}^{10}C_{4}\\,a^{3} \\cdot \\frac{1}{16} = 105$\n$a^{3} = 8$\n$a^{2} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$9$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Application of Derivatives",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let A be the region enclosed by the parabola $y^{2} = 2x$ and the line $x = 24$. Then the maximum area of the rectangle inscribed in the region A is ________ .",
+   "correct_key": null,
+   "correct_value": 128,
+   "correct_keys": null,
+   "solution": "$A = 2\\left(24 - \\frac{b^{2}}{2}\\right) \\cdot b$\n$\\frac{dA}{db} = 0 \\quad \\Rightarrow \\quad b = 4$\n$A = 2(24 - 8)4$\n$= 128$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-math-q21-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Limits, Continuity and Differentiability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\alpha = \\lim_{x \\to 0^{+}} \\left(\\frac{e^{\\sqrt{\\tan x}} - e^{\\sqrt{x}}}{\\sqrt{\\tan x} - \\sqrt{x}}\\right)$ and $\\beta = \\lim_{x \\to 0} (1 + \\sin x)^{\\frac{1}{2}\\cot x}$ are the roots of the quadratic equation $ax^{2} + bx - \\sqrt{e} = 0$, then $12\\log_{e}(a + b)$ is equal to __________ .",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$\\alpha = \\lim_{x \\to 0^{+}} e^{\\sqrt{x}}\\,\\frac{\\left(e^{\\sqrt{\\tan x} - \\sqrt{x}} - 1\\right)}{\\sqrt{\\tan x} - \\sqrt{x}}$\n$= 1$\n$\\beta = \\lim_{x \\to 0} (1 + \\sin x)^{\\frac{1}{2}\\cot x}$\n$= e^{1/2}$\n$x^{2} - \\left(1 + \\sqrt{e}\\right)x + \\sqrt{e} = 0$\n$ax^{2} + bx - \\sqrt{e} = 0$\nOn comparing\n$a = -1,\\ b = \\sqrt{e} + 1$\n$12\\ln(a + b) = 12 \\times \\frac{1}{2} = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let S be the focus of the hyperbola $\\frac{x^{2}}{3} - \\frac{y^{2}}{5} = 1$, on the positive x-axis. Let C be the circle with its centre at $A(\\sqrt{6}, \\sqrt{5})$ and passing through the point S. if O is the origin and SAB is a diameter of C then the square of the area of the triangle OSB is equal to -",
+   "correct_key": null,
+   "correct_value": 40,
+   "correct_keys": null,
+   "solution": "Area $= \\frac{1}{2}(OS)\\,h = \\frac{1}{2}\\sqrt{8}\\,2\\sqrt{5} = \\sqrt{40}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-math-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $P(\\alpha, \\beta, \\gamma)$ be the image of the point $Q(1, 6, 4)$ in the line $\\frac{x}{1} = \\frac{y - 1}{2} = \\frac{z - 2}{3}$. Then $2\\alpha + \\beta + \\gamma$ is equal to _______ .",
+   "correct_key": null,
+   "correct_value": 11,
+   "correct_keys": null,
+   "solution": "$A(t,\\ 2t + 1,\\ 3t + 2)$\n$\\overrightarrow{QA} = (t - 1)\\hat{i} + (2t - 5)\\hat{j} + (3t - 2)\\hat{k}$\n$\\overrightarrow{QA} \\cdot \\vec{b} = 0$\n$(t - 1) + 2(2t - 5) + 3(3t - 2) = 0$\n$14t = 17$\n$\\alpha = \\frac{20}{14}$ $\\quad$ $\\beta = \\frac{12}{14}$ $\\quad$ $\\gamma = \\frac{102}{14}$\n$2\\alpha + \\beta + \\gamma = \\frac{154}{14} = 11$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-math-q24-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An arithmetic progression is written in the following way\n$$\\begin{array}{c} 2 \\\\ 5 \\quad 8 \\\\ 11 \\quad 14 \\quad 17 \\\\ 20 \\quad 23 \\quad 26 \\quad 29 \\\\ \\vdots \\end{array}$$\nThe sum of all the terms of the $10^{\\text{th}}$ row is ______ .",
+   "correct_key": null,
+   "correct_value": 1505,
+   "correct_keys": null,
+   "solution": "$2, 5, 11, 20, \\ldots\\ldots$\nGeneral term $= \\frac{3n^{2} - 3n + 4}{2}$\n$T_{10} = \\frac{3(100) - 3(10) + 4}{2}$\n$= 137$\n10 terms with c.d. $= 3$\nsum $= \\frac{10}{2}\\left(2(137) + 9(3)\\right)$\n$= 1505$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Quadratic Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of distinct real roots of the equation $|x + 1||x + 3| - 4|x + 2| + 5 = 0$, is ________ .",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$|x + 1||x + 3| - 4|x + 2| + 5 = 0$\ncase-1\n$x \\le -3$\n$(x + 1)(x + 3) + 4(x + 2) + 5 = 0$\n$x^{2} + 4x + 3 + 4x + 8 + 5 = 0$\n$x^{2} + 8x + 16 = 0$\n$(x + 4)^{2} = 0$\n$x = -4$\ncase-2\n$-3 \\le x \\le -2$\n$-x^{2} - 4x - 3 + 4x + 8 + 5 = 0$\n$-x^{2} + 10 = 0$\n$x = \\pm\\sqrt{10}$\ncase-3\n$-2 \\le x \\le -1$\n$-x^{2} - 4x - 3 - 4x - 8 + 5 = 0$\n$-x^{2} - 8x - 6 = 0$\n$x^{2} + 8x + 6 = 0$\n$x = \\frac{-8 \\pm 2\\sqrt{10}}{2} = -4 \\pm \\sqrt{10}$\ncase-4\n$x \\ge -1$\n$x^{2} + 4x + 3 - 4x - 8 + 5 = 0$\n$x^{2} = 0$\n$x = 0$\nNo. of solution $= 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Straight Lines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let a ray of light passing through the point $(3, 10)$ reflects on the line $2x + y = 6$ and the reflected ray passes through the point $(7, 2)$. If the equation of the incident ray is $ax + by + 1 = 0$, then $a^{2} + b^{2} + 3ab$ is equal to_.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "For $B'$ $\\quad$ $\\frac{x - 7}{2} = \\frac{y - 2}{1} = -2\\left(\\frac{14 + 2 - 6}{5}\\right)$\n$\\frac{x - 7}{2} = \\frac{y - 2}{1} = -4$\n$x = -1$ $\\quad$ $y = -2$ $\\quad$ $B'(-1, -2)$\nincident ray $AB'$\n$M_{AB'} = 3$\n$y + 2 = 3(x + 1)$\n$3x - y + 1 = 0$\n$a = 3$ $\\quad$ $b = -1$\n$a^{2} + b^{2} + 3ab = 9 + 1 - 9 = 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-08apr-s2-math-q27-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Statistics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $a, b, c \\in N$ and $a < b < c$. Let the mean, the mean deviation about the mean and the variance of the 5 observations $9, 25, a, b, c$ be $18$, $4$ and $\\frac{136}{5}$, respectively. Then $2a + b - c$ is equal to _______ .",
+   "correct_key": null,
+   "correct_value": 33,
+   "correct_keys": null,
+   "solution": "$a, b, c \\in N$ $\\quad$ $a < b < c$\n$\\bar{x} = \\text{mean} = \\frac{9 + 25 + a + b + c}{5} = 18$\n$a + b + c = 56$\nMean deviation $= \\frac{\\Sigma\\,|x_{i} - \\bar{x}|}{n} = 4$\n$= 9 + 7 + |18 - a| + |18 - b| + |18 - c| = 20$\n$= |18 - a| + |18 - b| + |18 - c| = 4$\nVariance $= \\frac{\\Sigma\\,|x_{i} - \\bar{x}|^{2}}{n} = \\frac{136}{5}$\n$= 81 + 49 + |18 - a|^{2} + |18 - b|^{2} + |18 - c|^{2} = 136$\n$= (18 - a)^{2} + (18 - b)^{2} + (18 - c)^{2} = 6$\nPossible values $(18 - a)^{2} = 1,\\ (18 - b)^{2} = 1,\\ (18 - c)^{2} = 4$\n$a < b < c$\nso $18 - a = 1$ $\\quad$ $18 - b = -1$ $\\quad$ $18 - c = -2$\n$a = 17$ $\\quad$ $b = 19$ $\\quad$ $c = 20$\n$a + b + c = 56$\n$2a + b - c = 34 + 19 - 20 = 33$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\alpha|x| = |y|e^{xy - \\beta}$, $\\alpha, \\beta \\in N$ be the solution of the differential equation $x\\,dy - y\\,dx + xy(x\\,dy + y\\,dx) = 0$, $y(1) = 2$. Then $\\alpha + \\beta$ is equal to _",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$a|x| = |y|\\,e^{yx - \\beta}$, $a, b \\in N$\n$x\\,dy - y\\,dx + xy(x\\,dy + y\\,dx) = 0$\n$\\frac{dy}{y} - \\frac{dx}{x} + (x\\,dy + y\\,dx) = 0$\n$\\ln|y| - \\ln|x| + xy = c$\n$y(1) = 2$\n$\\ln|2| - 0 + 2 = c$\n$c = 2 + \\ln 2$\n$\\ln|y| - \\ln|x| + xy = 2 + \\ln 2$\n$\\ln|x| = \\ln\\left|\\frac{y}{2}\\right| - 2 + xy$\n$|x| = \\left|\\frac{y}{2}\\right|e^{xy - 2}$\n$2|x| = |y|e^{xy - 2}$\n$\\alpha = 2$ $\\quad$ $\\beta = 2$ $\\quad$ $\\alpha + \\beta = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Indefinite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $\\int \\frac{1}{\\sqrt[5]{(x - 1)^{4}(x + 3)^{6}}}\\,dx = A\\left(\\frac{\\alpha x - 1}{\\beta x + 3}\\right)^{B} + C$, where $C$ is the constant of integration, then the value of $\\alpha + \\beta + 20AB$ is _______ .",
+   "correct_key": null,
+   "correct_value": 7,
+   "correct_keys": null,
+   "solution": "$\\int \\frac{1}{\\sqrt[5]{(x - 1)^{4}(x + 3)^{6}}}\\,dx = A\\left(\\frac{\\alpha x - 1}{\\beta x + 3}\\right)^{B} + C$\n$I = \\int \\frac{1}{(x - 1)^{4/5}(x + 3)^{6/5}}\\,dx$\n$I = \\int \\frac{1}{\\left(\\frac{x - 1}{x + 3}\\right)^{4/5}(x + 3)^{2}}\\,dx$\n$\\left(\\frac{x - 1}{x + 3}\\right) = t \\quad \\Rightarrow \\quad \\frac{4}{(x + 3)^{2}}\\,dx = dt \\qquad t^{-4/5 + 1}$\n$I = \\frac{1}{4}\\int \\frac{1}{t^{4/5}}\\,dt = \\frac{1}{4}\\,\\frac{t^{1/5}}{1/5} + c$\n$I = \\frac{5}{4}\\left(\\frac{x - 1}{x + 3}\\right)^{1/5} + C$\n$A = \\frac{5}{4}$ $\\quad$ $\\alpha = \\beta = 1$ $\\quad$ $B = \\frac{1}{5}$\n$\\alpha + \\beta + 20AB = 2 + 20 \\times \\frac{5}{4} \\times \\frac{1}{5} = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

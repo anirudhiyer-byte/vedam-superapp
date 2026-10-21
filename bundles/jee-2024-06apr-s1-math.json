@@ -10,99 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 30,
   "duration_mins": 60,
-  "source_file_id": "16cGNvlkcRCjD0zhHZQ3a_vnV63oP1STm"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 2,
-   "topic": "Properties of Triangles",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "An equilateral triangle of side 12. A circle is embedded inside the triangle. And a square is embedded inside the circle. If area and perimeter of the square is 'm' and 'n' respectively then find $m + n^{2}$.",
-   "correct_key": null,
-   "correct_value": 408,
-   "correct_keys": null,
-   "solution": "$r = \\frac{\\frac{\\sqrt{3} \\times (12)^{2}}{4}}{18}$\n$r = \\frac{\\sqrt{3} \\times 36}{18}$\n$r = 2\\sqrt{3}$\nArea $= 24$\nPerimeter $= 4\\sqrt{24}$\n$m + n^{2} = 24 + 16 \\times 24 = 24 \\times 17 = 408$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s1-math-q02-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 5,
-   "topic": "Sets",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Let $A = \\{100, 101, 102, \\ldots, 700\\}$. Find number of numbers in set A which are neither divisible by 3 nor by 4.",
-   "correct_key": null,
-   "correct_value": 300,
-   "correct_keys": null,
-   "solution": "No. of numbers divisible by 3 $= 200$\nNo. of numbers divisible by 4 $= 151$\nNo. of numbers divisible by 12 $= 50$\n$\\therefore$ No. of numbers neither divisible by 3 nor by 4 $= 601 - (200 + 151 - 50) = 300$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s1-math-q05-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 8,
-   "topic": "Permutations and Combinations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In an octagon how many triangles are possible so that no side of triangle is side of octagon?",
-   "correct_key": null,
-   "correct_value": 16,
-   "correct_keys": null,
-   "solution": "Method – 1\nNo. of possible triangles $= {}^{6}c_{3} - {}^{4}c_{1}$\n$= 20 - 4$\n$= 16$\nMethod – 2\n$x_{1} + x_{2} + x_{3} = 5$    $x_{1} \\ge 1,\\ x_{2} \\ge 1,\\ x_{3} \\ge 1$\nNo. of possible triangles $= \\frac{{}^{4}c_{2} \\times {}^{8}c_{1}}{3} = \\frac{8 \\times 6}{3} = 16$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s1-math-q08-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 9,
-   "topic": "Straight Lines",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A variable line is passing through $(4, -9)$, slope of line is positive and it make intercepts on x and y-axis on point A and B. Find the minimum area of triangle OAB.",
-   "correct_key": null,
-   "correct_value": 72,
-   "correct_keys": null,
-   "solution": "$y + 9 = m(x - 4)$\nArea of $\\Delta OAB = \\left|\\frac{1}{2}\\left(4 + \\frac{9}{m}\\right)(-9 - 4m)\\right|$\n$= \\frac{1}{2}\\left|36 + 16m + \\frac{81}{m} + 36\\right|$\n$= \\frac{1}{2}\\left|72 + 16m + \\frac{81}{m}\\right|$\nArea of $\\Delta OAB$ will be minimum when, $m = \\frac{9}{4}$\nArea of $\\Delta OAB_{(\\min)} = \\frac{1}{2}|72 + 36 + 36|$\n$= \\frac{1}{2}(144) = 72$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s1-math-q09-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 11,
-   "topic": "Relations and Functions",
+   "q_no": 1,
+   "topic": "Differentiability",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Let $f : \\mathbb{R} \\rightarrow \\mathbb{R}$ is defined by $f(x) = \\frac{x^{2} - 2x - 15}{x^{2} - 4x + 9}$ then f is",
-   "correct_key": "C",
+   "stem": "If $f(x) = \\begin{cases} x^{3}\\sin\\left(\\frac{1}{x}\\right), & x \\neq 0 \\\\ 0, & x = 0 \\end{cases}$, then",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$y = \\frac{x^{2} - 2x - 15}{x^{2} - 4x + 9}$\nfor, $x^{2} - 4x + 9$\n$D < 0$, cannot be factorised\n$\\therefore$ f(x) is many one.\n$yx^{2} - 4xy + 9y = x^{2} - 2x - 15$\n$x^{2}(y - 1) + x(-4y + 2) + 9y + 15 = 0$\n$D < 0$ as $x \\in R$\n$(-4y + 2)^{2} - 4(y - 1)(9y + 15) < 0$\n$16y^{2} + 4 - 16y - 36y^{2} + 36y - 60y + 60 < 0$\n$-20y^{2} - 40y + 64 < 0$\n$-5y^{2} - 10y + 16 < 0$\n$5y^{2} + 10y - 16 > 0$\n$D < 0$\n$\\therefore$ Range $\\ne R$\n$\\therefore$ not onto\n$\\therefore$ f(x) is many-one into.",
+   "solution": "$f'(x) = 3x^{2}\\sin\\left(\\frac{1}{x}\\right) - x\\cos\\left(\\frac{1}{x}\\right)$\n$f''(x) = 6x\\sin\\left(\\frac{1}{x}\\right) - 3\\cos\\left(\\frac{1}{x}\\right) - \\cos\\left(\\frac{1}{x}\\right) - \\frac{\\sin\\left(\\frac{1}{x}\\right)}{x}$\n$f''\\left(\\frac{2}{\\pi}\\right) = \\frac{12}{\\pi} - \\frac{\\pi}{2} = \\frac{24-\\pi^{2}}{2\\pi}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -110,19 +30,389 @@
    "options": [
     {
      "key": "A",
-     "text": "one-one onto"
+     "text": "$f''(0) = 1$"
     },
     {
      "key": "B",
-     "text": "many-one onto"
+     "text": "$f''\\left(\\frac{2}{\\pi}\\right) = \\frac{24-\\pi^{2}}{2\\pi}$"
     },
     {
      "key": "C",
-     "text": "many-one into"
+     "text": "$f''\\left(\\frac{2}{\\pi}\\right) = \\frac{12-\\pi^{2}}{2\\pi}$"
     },
     {
      "key": "D",
-     "text": "one-one into"
+     "text": "$f''(0) = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $A(3, 1, -1)$, $B\\left(\\frac{5}{3}, \\frac{7}{3}, \\frac{1}{3}\\right)$, $C(2, 2, 1)$ and $D\\left(\\frac{10}{3}, \\frac{2}{3}, \\frac{-1}{3}\\right)$ are the vertices of a quadrilateral $ABCD$, then its area is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Area $= \\frac{1}{2}\\left|\\overrightarrow{BD} \\times \\overrightarrow{AC}\\right|$\n$\\overrightarrow{BD} = \\frac{5}{3}\\hat{i} - \\frac{5}{3}\\hat{j} - \\frac{2}{3}\\hat{k}$\n$\\overrightarrow{AC} = \\hat{i} - \\hat{j} - 2\\hat{k}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{4\\sqrt{2}}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5\\sqrt{2}}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2\\sqrt{2}}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-math-q02-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\int_{0}^{\\pi/4} \\frac{\\cos^{2}x\\sin^{2}x}{\\left(\\cos^{3}x + \\sin^{3}x\\right)^{2}}\\,dx$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Divide Nr & Dr by $\\cos x$\n$\\int_{0}^{\\pi/4} \\frac{\\tan^{2}x\\sec^{2}x\\,dx}{\\left(1 + \\tan^{3}x\\right)^{2}}dx$\nLet $1 + \\tan^{3}x = t$\n$\\tan^{2}x\\sec^{2}x\\,dx = \\frac{dt}{3}$\n$\\frac{1}{3}\\int_{1}^{2}\\frac{dt}{t^{2}} = \\frac{1}{6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1/12"
+    },
+    {
+     "key": "B",
+     "text": "1/9"
+    },
+    {
+     "key": "C",
+     "text": "1/6"
+    },
+    {
+     "key": "D",
+     "text": "1/3"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The mean and standard deviation of 20 observations are found to be 10 and 2, respectively. On respectively, it was found that an observation by mistake was taken 8 instead of 12. The correct standard deviation is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Mean $(\\bar{x}) = 10$\n$\\Rightarrow \\frac{\\Sigma x_{i}}{20} = 10$\n$\\Sigma x_{i} = 10 \\times 20 = 200$\nIf 8 is replaced by 12, then $\\Sigma x_{i} = 200 - 8 + 12 = 204$\n$\\therefore$ Correct mean $(\\bar{x}) = \\frac{\\Sigma x_{i}}{20}$\n$= \\frac{204}{20} = 10.2$\n$\\because$ Standard deviation $= 2$\n$\\therefore$ Variance $= (\\text{S.D.})^{2} = 2^{2} = 4$\n$\\Rightarrow \\frac{\\Sigma x_{i}^{2}}{20} - \\left(\\frac{\\Sigma x_{i}}{20}\\right)^{2} = 4$\n$\\Rightarrow \\frac{\\Sigma x_{i}^{2}}{20} - (10)^{2} = 4$\n$\\Rightarrow \\frac{\\Sigma x_{i}^{2}}{20} = 104$\n$\\Rightarrow \\Sigma x_{i}^{2} = 2080$\nNow, replaced '8' observations by '12'\nThen, $\\Sigma x_{i}^{2} = 2080 - 8^{2} + 12^{2} = 2160$\n$\\therefore$ Variance of removing observations\n$\\Rightarrow \\frac{\\Sigma x_{i}^{2}}{20} - \\left(\\frac{\\Sigma x_{i}}{20}\\right)^{2}$\n$\\Rightarrow \\frac{2160}{20} - (10.2)^{2}$\n$\\Rightarrow 108 - 104.04$\n$\\Rightarrow 3.96$\nCorrect standard deviation $= \\sqrt{3.96}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3.86}$"
+    },
+    {
+     "key": "B",
+     "text": "1.8"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3.96}$"
+    },
+    {
+     "key": "D",
+     "text": "1.94"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The function $f(x) = \\frac{x^{2} + 2x - 15}{x^{2} - 4x + 9}$, $x \\in \\mathbb{R}$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\frac{(x+5)(x-3)}{x^{2} - 4x + 9}$\nLet $g(x) = x^{2} - 4x + 9$\n$D < 0$\n$g(x) > 0$ for $x \\in R$\n$\\therefore \\begin{cases} f(-5) = 0 \\\\ f(3) = 0 \\end{cases}$\nSo, $f(x)$ is many-one.\nagain,\n$yx^{2} - 4xy + 9y = x^{2} + 2x - 15$\n$x^{2}(y - 1) - 2x(2y + 1) + (9y + 15) = 0$\nfor $\\forall\\ x \\in R \\Rightarrow D \\geq 0$\n$D = 4(2y + 1)^{2} - 4(y - 1)(9y + 15) \\geq 0$\n$5y^{2} + 2y + 16 \\leq 0$\n$(5y - 8)(y + 2) \\leq 0$\n$y \\in \\left[-2, \\frac{8}{5}\\right]$ range\nNote : If function is defined from $f : R \\to R$ then only correct answer is option (3)\n$\\Rightarrow$ Bonus",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "both one-one and onto."
+    },
+    {
+     "key": "B",
+     "text": "onto but not one-one."
+    },
+    {
+     "key": "C",
+     "text": "neither one-one nor onto."
+    },
+    {
+     "key": "D",
+     "text": "one-one but not onto."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-math-q05-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Sets",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\{n \\in [100, 700] \\cap \\mathbb{N} : n \\text{ is neither a multiple of 3 nor a multiple of 4}\\}$. Then the number of elements in $A$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$n(3) \\Rightarrow$ multiple of 3\n$102, 105, 108, \\ldots, 699$\n$T_{n} = 699 = 102 + (n - 1)(3)$\n$n = 200$\n$n(3) = 200$\n$\\because n(4) \\Rightarrow$ multiple of 4\n$100, 104, 108, \\ldots, 700$\n$T_{n} = 700 = 100 + (n - 1)(4)$\n$n = 151$\n$n(4) = 151$\n$n(3 \\cap 4) \\Rightarrow$ multiple of 3 & 4 both\n$108, 120, 132, \\ldots, 696$\n$T_{n} = 696 = 108 + (n - 1)(12)$\n$n = 50$\n$n(3 \\cap 4) = 50$\n$n(3 \\cup 4) = n(3) + n(4) - n(3 \\cap 4)$\n$= 200 + 151 - 50$\n$= 301$\n$n\\left(\\overline{3 \\cup 4}\\right) = \\text{Total} - n(3 \\cup 4) = $ neither a multiple of 3 nor a multiple of 4\n$= 601 - 301 = 300$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "300"
+    },
+    {
+     "key": "B",
+     "text": "280"
+    },
+    {
+     "key": "C",
+     "text": "310"
+    },
+    {
+     "key": "D",
+     "text": "290"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $C$ be the circle of minimum area touching the parabola $y = 6 - x^{2}$ and the lines $y = \\sqrt{3}\\,|x|$. Then, which one of the following points lies on the circle $C$ ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equation of circle\n$x^{2} + (y - (6 - r))^{2} = r^{2}$\ntouches $\\sqrt{3}x - y = 0$\n$p = r$\n$\\frac{|0 - (6 - r)|}{2} = r$\n$|r - 6| = 2r$\n$r = 2$\n$\\therefore$ Circle $x^{2} + (y - 4)^{2} = 4$\n$(2, 4)$ Satisfies this equation",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(2, 4)$"
+    },
+    {
+     "key": "B",
+     "text": "$(1, 2)$"
+    },
+    {
+     "key": "C",
+     "text": "$(2, 2)$"
+    },
+    {
+     "key": "D",
+     "text": "$(1, 1)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-math-q07-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For $\\alpha, \\beta \\in R$ and a natural number $n$, let $A_{r} = \\begin{vmatrix} r & 1 & \\frac{n^{2}}{2} + \\alpha \\\\ 2r & 2 & n^{2} - \\beta \\\\ 3r - 2 & 3 & \\frac{n(3n - 1)}{2} \\end{vmatrix}$. Then $2A_{10} - A_{8}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2A_{10} - A_{8} = \\begin{vmatrix} 20 & 1 & \\frac{n^{2}}{2} + \\alpha \\\\ 40 & 2 & n^{2} - \\beta \\\\ 56 & 3 & \\frac{n(3n-1)}{2} \\end{vmatrix} - \\begin{vmatrix} 8 & 1 & \\frac{n^{2}}{2} + \\alpha \\\\ 16 & 2 & n^{2} - \\beta \\\\ 22 & 3 & \\frac{n(3n-1)}{2} \\end{vmatrix}$\n$\\Rightarrow \\begin{vmatrix} 12 & 1 & \\frac{n^{2}}{2} + \\alpha \\\\ 24 & 2 & n^{2} - \\beta \\\\ 34 & 3 & \\frac{n(3n-1)}{2} \\end{vmatrix}$\n$\\Rightarrow \\begin{vmatrix} 0 & 1 & \\frac{n^{2}}{2} + \\alpha \\\\ 0 & 2 & n^{2} - \\beta \\\\ -2 & 3 & \\frac{n(3n-1)}{2} \\end{vmatrix}$\n$\\Rightarrow -2\\left(\\left(n^{2} - \\beta\\right) - \\left(n^{2} + 2\\alpha\\right)\\right)$\n$\\Rightarrow -2(-\\beta - 2\\alpha) \\Rightarrow 4\\alpha + 2\\beta$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\alpha + 2\\beta$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\alpha + 4\\beta$"
+    },
+    {
+     "key": "C",
+     "text": "$2n$"
+    },
+    {
+     "key": "D",
+     "text": "0"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The shortest distance between the lines $\\frac{x-3}{2} = \\frac{y+15}{-7} = \\frac{z-9}{5}$ and $\\frac{x+1}{2} = \\frac{y-1}{1} = \\frac{z-9}{-3}$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{x-3}{2} = \\frac{y+15}{-7} = \\frac{z-9}{5}$ & $\\frac{x+1}{2} = \\frac{y-1}{1} = \\frac{z-9}{-3}$\nS.D $= \\frac{\\left|\\left(\\vec{a}_{2} . \\vec{a}_{1}\\right) . \\left(\\vec{b}_{1} . \\vec{b}_{2}\\right)\\right|}{\\left|\\vec{b}_{1} \\times \\vec{b}_{2}\\right|}$\n$a_{1} = 3, -15, 9$ $\\qquad$ $b_{1} = 2, -7, 5$\n$a_{2} = -1, 1, 9$ $\\qquad$ $b_{2} = 2, 1, -3$\n$a_{2} - a_{1} = -4, 16, 0$\n$\\vec{b}_{1} \\times \\vec{b}_{2} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & -7 & 5 \\\\ 2 & 1 & -3 \\end{vmatrix} = \\hat{i}(16) - \\hat{j}(-16) + \\hat{k}(16)$\n$16(\\hat{i} + \\hat{j} + \\hat{k})$\n$\\left|\\vec{b}_{1} \\times \\vec{b}_{2}\\right| = 16\\sqrt{3}$\n$\\therefore \\left(\\vec{a}_{2} - \\vec{a}_{1}\\right) . \\left(\\vec{b}_{1} - \\vec{b}_{2}\\right) = 16\\left[-4 + 16\\right] = (16)(12)$\nS.D. $= \\frac{(16)(12)}{16\\sqrt{3}} = 4\\sqrt{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6\\sqrt{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$4\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$5\\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$8\\sqrt{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A company has two plants A and B to manufacture motorcycles. 60% motorcycles are manufactured at plant A and the remaining are manufactured at plant B. 80% of the motorcycles manufactured at plant A are rated of the standard quality, while 90% of the motorcycles manufactured at plant B are rated of the standard quality. A motorcycle picked up randomly from the total production is found to be of the standard quality. If $p$ is the probability that it was manufactured at plant B, then $126p$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "| A | B\nManufactured | 60% | 40%\nStandard quality | 80% | 90%\nP(Manufactured at B / found standard quality) = ?\nA : Found S.Q\nB : Manufacture B\nC : Manufacture A\n$P(E_{1}) = \\frac{40}{100}$\n$P(E_{2}) = \\frac{60}{100}$\n$P(A/E_{1}) = \\frac{90}{100}$\n$P(A/E_{2}) = \\frac{80}{100}$\n$\\because P(E_{1}/A) = \\frac{P(A/E_{1})P(E_{1})}{P(A/E_{1})P(E_{1}) + P(A/E_{2})P(E_{2})} = \\frac{3}{7}$\n$\\therefore 126P = 54$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "54"
+    },
+    {
+     "key": "B",
+     "text": "64"
+    },
+    {
+     "key": "C",
+     "text": "66"
+    },
+    {
+     "key": "D",
+     "text": "56"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta$ be the distinct roots of the equation $x^{2} - \\left(t^{2} - 5t + 6\\right)x + 1 = 0$, $t \\in R$ and $a_{n} = \\alpha^{n} + \\beta^{n}$. Then the minimum value of $\\frac{a_{2023} + a_{2025}}{a_{2024}}$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "by newton's theorem\n$a_{n+2} - (t^{2} - 5t + 6)a_{n+1} + a_{n} = 0$\n$\\therefore a_{2025} + a_{2023} = (t^{2} - 5t + 6)\\,a_{2024}$\n$\\therefore \\frac{a_{2025} + a_{2023}}{a_{2024}} = t^{2} - 5t + 6$\n$\\because t^{2} - 5t + 6 = \\left(t - \\frac{5}{2}\\right)^{2} - \\frac{1}{4}$\n$\\therefore$ minimum value $= -\\frac{1}{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1/4"
+    },
+    {
+     "key": "B",
+     "text": "$-1/2$"
+    },
+    {
+     "key": "C",
+     "text": "$-1/4$"
+    },
+    {
+     "key": "D",
+     "text": "1/2"
     }
    ],
    "stem_figure": null,
@@ -132,19 +422,73 @@
   },
   {
    "q_no": 12,
-   "topic": "Probability",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A company have two branches A and B. 'A' produce 60% of total production and remain by 'B'. Branch 'A' produce 80% good quality product and branch 'B' produce 90% good quality product. Randomly a product is selected and that was of good quality. P is the probability that selected product is from branch 'B' find value of 126P.",
-   "correct_key": null,
-   "correct_value": 54,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the relations $R_{1}$ and $R_{2}$ on the set $X = \\{1, 2, 3, \\ldots, 20\\}$ be given by $R_{1} = \\{(x, y) : 2x - 3y = 2\\}$ and $R_{2} = \\{(x, y) : -5x + 4y = 0\\}$. If $M$ and $N$ be the minimum number of elements required to be added in $R_{1}$ and $R_{2}$, respectively, in order to make the relations symmetric, then $M + N$ equals",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Production of A = 60%\nProduction of B = 40%\nProbability that product is of Branch $A = \\frac{60}{100}$\nProbability that product is of Branch $B = \\frac{40}{100}$\nLet E be the probability that the product is good.\nTotal probability that the product is good\n$= \\frac{60}{100} \\times \\frac{80}{100} + \\frac{40}{100} \\times \\frac{90}{100}$\nNow\n$P\\left(\\frac{B}{E}\\right) = \\frac{P(B) \\cdot P\\left(\\frac{E}{B}\\right)}{P(A) \\cdot P\\left(\\frac{E}{A}\\right) + P(B) \\cdot P\\left(\\frac{E}{B}\\right)} = \\frac{\\frac{40}{100} \\times \\frac{90}{100}}{\\frac{60}{100} \\times \\frac{80}{100} + \\frac{40}{100} \\times \\frac{90}{100}}$\n$= \\frac{0.4 \\times 0.9}{0.6 \\times 0.8 + 0.4 \\times 0.9}$\n$= \\frac{3}{7}$\n$\\therefore 126\\,P\\left(\\frac{B}{E}\\right) = 54$\n$126P = 54$",
+   "solution": "$X = \\{1, 2, 3, \\ldots, 20\\}$\n$R_{1} = \\{(x, y) : 2x - 3y = 2\\}$\n$R_{2} = \\{(x, y) : -5x + 4y = 0\\}$\n$R_{1} = \\{(4, 2), (7, 4), (10, 6), (13, 8), (16, 10), (19, 12)\\}$\n$R_{2} = \\{(4, 5), (8, 10), (12, 15), (16, 20)\\}$\nin $R_{1}$ 6 element needed\nin $R_{2}$ 4 element needed\nSo, total $6 + 4 = 10$ element",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "8"
+    },
+    {
+     "key": "B",
+     "text": "16"
+    },
+    {
+     "key": "C",
+     "text": "12"
+    },
+    {
+     "key": "D",
+     "text": "10"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a variable line of slope $m > 0$ passing through the point $(4, -9)$ intersect the coordinate axes at the points $A$ and $B$. the minimum value of the sum of the distances of $A$ and $B$ from the origin is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "equation of line is\n$y + 9 = m(x - 4)$\n$\\therefore A = \\left(\\frac{9 + 4m}{m}, 0\\right)$\n$B = (0, -9 - 4m)$\n$\\therefore OA + OB = \\frac{9 + 4m}{m} + 9 + 4m$\n$\\because m > 0$\n$= 13 + \\frac{9}{m} + 4m$\n$\\because \\frac{4m + \\frac{9}{m}}{2} \\geq \\sqrt{36} \\Rightarrow 4m + \\frac{9}{m} \\geq 12$\n$\\therefore OA + OB \\geq 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "25"
+    },
+    {
+     "key": "B",
+     "text": "30"
+    },
+    {
+     "key": "C",
+     "text": "15"
+    },
+    {
+     "key": "D",
+     "text": "10"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -152,19 +496,36 @@
   },
   {
    "q_no": 14,
-   "topic": "Binomial Theorem",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If in the expansion of $(x + y)^{n}$\n$T_{2} = 15$\n$T_{3} = 10$\n$T_{4} = \\frac{10}{3}$\nfor $n = 5$. Find the value of $\\left(n^{3} + x^{5} + 243y^{5}\\right)$",
-   "correct_key": null,
-   "correct_value": 143,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The interval in which the function $f(x) = x^{x}$, $x > 0$, is strictly increasing is",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$T_{2} = {}^{n}C_{1}(x)^{n-1}y = 15$\n$T_{3} = {}^{n}C_{2}x^{n-2}y^{2} = 10$\n$T_{4} = {}^{n}C_{3}x^{n-3}y^{3} = \\frac{10}{3}$\n${}^{5}C_{1}x^{4}y = 15$    ${}^{5}c_{2}x^{3}y^{2} = 10$\n$5x^{4}y = 15$    $10x^{3}y^{2} = 10$\n$x^{4}y = 3$    $x^{3}y^{2} = 1$\n$x = 9^{1/5}$    $y = \\frac{1}{x^{3/2}}$\n$\\therefore y = \\frac{1}{3^{3/5}}$\n$\\therefore n^{3} + x^{5} + 243y^{5}$\n$= 125 + 9 + \\frac{243}{27}$\n$= 125 + 9 + 9$\n$= 143$",
+   "solution": "$f(x) = x^{x}$ ; $x > 0$\n$\\ln y = x\\ln x$\n$\\frac{1}{y}\\frac{dy}{dx} = \\frac{x}{x} + \\ln x$\n$\\frac{dy}{dx} = x^{x}(1 + \\ln x)$\nfor strictly increasing\n$\\frac{dy}{dx} \\geq 0 \\Rightarrow x^{x}(1 + \\ln x) \\geq 0$\n$\\Rightarrow \\ln x \\geq -1$\n$x \\geq e^{-1}$\n$x \\geq \\frac{1}{e}$\n$x \\in \\left[\\frac{1}{e}, \\infty\\right)$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(0, \\frac{1}{e}\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left[\\frac{1}{e^{2}}, 1\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$(0, \\infty)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left[\\frac{1}{e}, \\infty\\right)$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -172,14 +533,236 @@
   },
   {
    "q_no": 15,
-   "topic": "Relations and Functions",
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A circle in inscribed in an equilateral triangle of side of length 12. If the area and perimeter of any square inscribed in this circle are $m$ and $n$, respectively, then $m + n^{2}$ is equal to",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because r = \\frac{\\Delta}{s} = \\frac{\\frac{\\sqrt{3}a^{2}}{4}}{\\frac{3a}{2}} = \\frac{a}{2\\sqrt{3}} = \\frac{12}{2\\sqrt{3}} = 2\\sqrt{3}$\n$\\therefore A = r\\sqrt{2} = 2\\sqrt{6}$\nArea $= m = A^{2} = 24$\nPerimeter $= n = 4A = 8\\sqrt{6}$\n$\\therefore m + n^{2} = 24 + 384 = 408$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "396"
+    },
+    {
+     "key": "B",
+     "text": "408"
+    },
+    {
+     "key": "C",
+     "text": "312"
+    },
+    {
+     "key": "D",
+     "text": "414"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of triangles whose vertices are at the vertices of a regular octagon but none of whose sides is a side of the octagon is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because$ no. of triangles having no side common with a $n$ sided polygon $= \\frac{{}^{n}C_{1} \\cdot {}^{n-4}C_{2}}{3}$\n$= \\frac{{}^{8}C_{1} \\cdot {}^{4}C_{2}}{3} = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "24"
+    },
+    {
+     "key": "B",
+     "text": "56"
+    },
+    {
+     "key": "C",
+     "text": "16"
+    },
+    {
+     "key": "D",
+     "text": "48"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $\\left(1 + x^{2}\\right)\\frac{dy}{dx} + y = e^{\\tan^{-1}x}$, $y(1) = 0$. Then $y(0)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{dy}{dx} + \\frac{y}{1 + x^{2}} = \\frac{e^{\\tan^{-1}x}}{1 + x^{2}}$\nI.F. $= e^{\\int\\frac{1}{1+x^{2}}dx} = e^{\\tan^{-1}x}$\n$y.e^{\\tan^{-1}x} = \\int\\left(\\frac{e^{\\tan^{-1}x}}{1 + x^{2}}\\right)e^{\\tan^{-1}x}.dx$\nLet $\\tan^{-1}x = z$ $\\qquad\\therefore \\frac{dx}{1 + x^{2}} = dz$\n$\\therefore y.e^{z} = \\int e^{2z}dz = \\frac{e^{2z}}{2} + C$\n$y.e^{\\tan^{-1}x} = \\frac{e^{2\\tan^{-1}x}}{2} + C$\n$\\Rightarrow y = \\frac{e^{\\tan^{-1}x}}{2} + \\frac{C}{e^{\\tan^{-1}x}}$\n$\\because y(1) = 0 \\Rightarrow 0 = \\frac{e^{\\pi/4}}{2} + \\frac{C}{e^{\\pi/4}} \\Rightarrow C = \\frac{-e^{\\pi/2}}{2}$\n$\\therefore y = \\frac{e^{\\tan^{-1}x}}{2} - \\frac{e^{\\pi/2}}{2e^{\\tan^{-1}x}}$\n$\\therefore y(0) = \\frac{1 - e^{\\pi/2}}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{4}\\left(e^{\\pi/2} - 1\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}\\left(1 - e^{\\pi/2}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4}\\left(1 - e^{\\pi/2}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}\\left(e^{\\pi/2} - 1\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $\\left(2x\\log_{e}x\\right)\\frac{dy}{dx} + 2y = \\frac{3}{x}\\log_{e}x$, $x > 0$ and $y(e^{-1}) = 0$. Then, $y(e)$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{dy}{dx} + \\frac{y}{x\\,\\ell n\\,x} = \\frac{3}{2x^{2}}$\n$\\therefore$ I.F. $= e^{\\int\\frac{1}{x\\,\\ell n\\,x}dx} = e^{\\ell n(\\ell n(x))} = \\ell n x$\n$y\\,\\ell n x = \\int\\frac{3\\ell n\\,x}{2x^{2}}dx$\n$= \\frac{3\\ell n\\,x}{2}\\int x^{-2}dx - \\int\\left(\\frac{3}{2x}.\\int x^{-2}\\,dx\\right)dx$\n$= \\frac{3\\ell n\\,x}{2}\\left(-\\frac{1}{x}\\right) - \\int\\frac{3}{2x}\\left(-\\frac{1}{x}\\right)dx$\n$y.\\ \\ell n x = \\frac{-3\\ell n x}{2x} - \\frac{3}{2x} + C$\n$\\because y(e^{-1}) = 0$\n$\\therefore 0\\,(-1) = \\frac{3e}{2} - \\frac{3e}{2} + C \\quad \\Rightarrow C = 0$\n$\\therefore y = \\frac{-3\\ell n x}{2x} - \\frac{3}{2x}$\n$\\therefore y(e) = \\frac{-3}{2e} - \\frac{3}{2e} = \\frac{-3}{e}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{3}{2e}$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{2}{3e}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{3}{e}$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\frac{2}{e}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the area of the region enclosed by the curves $y = 3x$, $2y = 27 - 3x$ and $y = 3x - x\\sqrt{x}$ be $A$. Then $10A$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y = 3x$, $2y = 27 - 3x$ & $y = 3x - x\\sqrt{x}$\n$A = \\int_{0}^{3} 3x - \\left(3x - x\\sqrt{x}\\right)dx + \\int_{3}^{9}\\left(\\frac{27 - 3x}{2}\\right) - \\left(3x - x\\sqrt{x}\\right)dx$\n$A = \\int_{0}^{3} x^{3/2}dx + \\int_{3}^{9}\\frac{27}{2} - \\frac{9x}{2} + x^{3/2}dx$\n$A = \\left[\\frac{2x^{5/2}}{5}\\right]_{0}^{3} + \\frac{27}{2}[x]_{3}^{9} - \\frac{9}{2}\\left[\\frac{x^{2}}{2}\\right]_{3}^{9} + \\left[\\frac{2x^{5/2}}{5}\\right]_{3}^{9}$\n$A = \\frac{2}{5}\\left(3^{5/2}\\right) + \\frac{27}{2}(6) - \\frac{9}{4}(72) + \\frac{2}{5}\\left(9^{5/2} - 3^{5/2}\\right)$\n$A = \\frac{2}{5}\\left(3^{5/2}\\right) + 81 - 162 + \\frac{2}{5} \\times 3^{5} - \\frac{2}{5} \\times 3^{5/2}$\n$A = \\frac{486}{5} - 81 = \\frac{81}{5}$\n$10A = 162$\nAns. $= 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "184"
+    },
+    {
+     "key": "B",
+     "text": "154"
+    },
+    {
+     "key": "C",
+     "text": "172"
+    },
+    {
+     "key": "D",
+     "text": "162"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-math-q19-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f : (-\\infty, \\infty) - \\{0\\} \\to R$ be a differentiable function such that $f'(1) = \\lim_{a \\to \\infty} a^{2}f\\left(\\frac{1}{a}\\right)$. Then $\\lim_{a \\to \\infty}\\frac{a(a + 1)}{2}\\tan^{-1}\\left(\\frac{1}{a}\\right) + a^{2} - 2\\log_{e}a$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f : (-\\infty, \\infty) - \\{0\\} \\to R$\n$f'(1) = \\lim_{a \\to \\infty} a^{2}f\\left(\\frac{1}{a}\\right)$\n$\\lim_{a \\to \\infty}\\frac{a(a + 1)}{2}\\tan^{-1}\\left(\\frac{1}{a}\\right) + a^{2} - 2\\ell n(a)$\n$\\lim_{a \\to \\infty} a^{2}\\left(\\frac{\\left(1 + \\frac{1}{a}\\right)}{2}\\tan^{-1}\\left(\\frac{1}{a}\\right) + 1 - \\frac{2}{a^{2}}\\ell n(a)\\right)$\n$f(x) = \\frac{1}{2}(1 + x)\\tan^{-1}(x) + 1 - 2x^{2}\\,\\ell n(x)$\n$f'(x) = \\frac{1}{2}\\left(\\frac{1 + x}{1 + x^{2}} + \\tan^{-1}(x) + 4x\\ell n(x)\\right) + 2x$\n$f'(1) = \\frac{1}{2}\\left(1 + \\frac{\\pi}{4}\\right) + 2$\n$f'(1) = \\frac{5}{2} + \\frac{\\pi}{8}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2} + \\frac{\\pi}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{8} + \\frac{\\pi}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{2} + \\frac{\\pi}{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{4} + \\frac{\\pi}{8}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Determinants",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Let $S = \\{1, 2, 3, \\ldots, 20\\}$ be a given set. Relation $R_{1}$ is define as $R_{1} = \\{(x, y) : 2x - 3y = 2\\}$ and $R_{2}$ as $R_{2} = \\{(x, y) : 4x = 5y\\}$ $(x, y \\in S)$. If m denotes number of elements required to make $R_{1}$ symmetric and n denote the number of elements to make $R_{2}$ symmetric. Then find $m + n$.",
+   "stem": "Let $\\alpha\\beta\\gamma = 45$ ; $\\alpha, \\beta, \\gamma \\in R$. If $x(\\alpha, 1, 2) + y(1, \\beta, 2) + z(2, 3, \\gamma) = (0, 0, 0)$ for some $x, y, z \\in R$, $xyz \\neq 0$, then $6\\alpha + 4\\beta + \\gamma$ is equal to_______",
    "correct_key": null,
-   "correct_value": 10,
+   "correct_value": 55,
    "correct_keys": null,
-   "solution": "$R_{1} = \\{(x, y) : 2x - 3y = 2\\}$\n$y = \\frac{2(x - 1)}{3}$\n$\\therefore R_{1} = \\{(4,2), (7,4), (10,6), (13,8), (16,10), (19,12)\\}$\nTo make it Symmetric\n$(2,4), (4,7), (6,10), (8,13), (10,16), (12,19)$ are required\n$\\therefore m = 6$\n$R_{2} = \\{(x,y) : 4x = 5y\\}$\n$y = \\frac{4}{5}x$\n$R_{2} = \\{(5,4), (10,8), (15,12), (20,16)\\}$\nTo make it symmetric\n$(4,5), (8,10), (12,15), (16,20)$ are required\n$\\therefore n = 4$\n$m + n = 10$",
+   "solution": "$\\alpha\\beta\\gamma = 45$, $\\alpha\\beta\\gamma \\in R$\n$x(\\alpha, 1, 2) + y(1, \\beta, 2) + z(2, 3, \\gamma) = (0, 0, 0)$\n$x, y, z \\in R$, $xyz \\neq 0$\n$\\alpha x + y + 2z = 0$\n$x + \\beta y + 3z = 0$\n$2x + 2y + \\gamma z = 0$\n$xyz \\neq 0 \\Rightarrow$ non-trivial\n$\\begin{vmatrix} \\alpha & 1 & 2 \\\\ 1 & \\beta & 3 \\\\ 2 & 2 & \\gamma \\end{vmatrix} = 0$\n$\\Rightarrow \\alpha(\\beta\\gamma - 6) - 1(\\gamma - 6) + 2(2 - 2\\beta) = 0$\n$\\Rightarrow \\alpha\\beta\\gamma - 6\\alpha - \\gamma + 6 + 4 - 4\\beta = 0$\n$\\Rightarrow 6\\alpha + 4\\beta + \\gamma = 55$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -191,35 +774,175 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 18,
-   "topic": "Area Under Curves",
+   "q_no": 22,
+   "topic": "Conic Sections",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Let the area of the region enclosed by curves $y = 3x$, $2y = 27 - 3x$ and $y = 3x - x\\sqrt{x}$ be A. Then 10A is equals to",
+   "stem": "Let a conic $C$ pass through the point $(4, -2)$ and $P(x, y)$, $x \\geq 3$, be any point on $C$. Let the slope of the line touching the conic $C$ only at a single point $P$ be half the slope of the line joining the points $P$ and $(3, -5)$. If the focal distance of the point $(7, 1)$ on $C$ is $d$, then $12d$ equals_______.",
    "correct_key": null,
-   "correct_value": 162,
+   "correct_value": 75,
    "correct_keys": null,
-   "solution": "Area of triangle AOB $= \\frac{1}{2} \\times 9 \\times 9$\n$= \\frac{81}{2}$\nArea of curve $= \\int_{0}^{9}\\left(3x - x^{3/2}\\right)dx$\n$= \\left[3\\frac{x^{2}}{2} - \\frac{2}{5}x^{5/2}\\right]_{0}^{9}$\n$= 3 \\times \\frac{81}{2} - \\frac{2}{5} \\times 243$\n$= 243\\left[\\frac{1}{2} - \\frac{2}{5}\\right] = 243\\left[\\frac{5 - 4}{10}\\right]$\n$= \\frac{243}{10}$\nArea of required region $= \\frac{81}{2} - \\frac{243}{10}$\n$= \\frac{405 - 243}{10} = \\frac{162}{10}$\n$= 16.2$",
+   "solution": "$P(x, y)$ & $x \\geq 3$\nSlope of line at $P(x, y)$ will be $\\frac{dy}{dx} = \\frac{1}{2}\\left(\\frac{y + 5}{x - 3}\\right)$\n$\\Rightarrow 2\\frac{dy}{(y + 5)} = \\frac{1}{(x - 3)}dx$\n$\\Rightarrow 2\\ell n(y + 5) = \\ell n(x - 3) + C$\nPasses through $(4, -2)$\n$\\Rightarrow 2\\ell n(3) = \\ell n(1) + C$\n$\\Rightarrow C = 2\\ell n(3)$\n$\\Rightarrow 2\\ell n(y + 5) = \\ell n(x - 3) + 2\\ell n(3)$\n$\\Rightarrow 2\\left(\\ell n\\left(\\frac{y + 5}{3}\\right)\\right) = \\ell n(x - 3)$\n$\\Rightarrow \\left(\\frac{y + 5}{3}\\right)^{2} = (x - 3)$\n$\\Rightarrow (y + 5)^{2} = 9(x - 3)$\n$\\downarrow$ Parabola\n$4a = 9$\n$a = \\frac{9}{4}$\n$d = \\sqrt{\\left(\\frac{7}{4}\\right)^{2} + 6^{2}}$\n$d = \\frac{\\sqrt{625}}{4}$\n$d = \\frac{25}{4}$\n$12d = 75$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s1-math-q18-sol.png",
+   "solution_figure": "jn24-06apr-s1-math-q22-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 19,
+   "q_no": 23,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $r_{k} = \\frac{\\int_{0}^{1}\\left(1 - x^{7}\\right)^{k}dx}{\\int_{0}^{1}\\left(1 - x^{7}\\right)^{k+1}dx}$, $k \\in N$. Then the value of $\\sum_{k=1}^{10}\\frac{1}{7\\left(r_{k} - 1\\right)}$ is equal to_______.",
+   "correct_key": null,
+   "correct_value": 65,
+   "correct_keys": null,
+   "solution": "$I_{K} = \\int 1.(1 - x^{7})^{K}dx$\n$I_{K} = (1 - x^{7})^{K}x\\Big|_{0}^{1} + 7K\\int_{0}^{1}(1 - x^{7})^{K-1}x^{6}.x\\,dx$\n$I_{K} = -7K\\int_{0}^{1}(1 - x^{7})^{K-1}((1 - x^{7}) - 1)dx$\n$I_{K} = -7K\\,I_{K} + 7K\\,I_{K-1}$\n$\\Rightarrow \\frac{I_{K}}{I_{K+1}} = \\frac{7K + 8}{7K + 7}$\n$r_{K} = \\frac{7K + 8}{7K + 7}$\n$r_{K} - 1 = \\frac{1}{7(K + 1)}$\n$\\Rightarrow 7(r_{K} - 1) = \\frac{1}{K + 1}$\n$\\sum_{K=1}^{10}(K + 1) = 11(6) - 1 = 65$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Complex Numbers",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $x_{1}, x_{2}, x_{3}, x_{4}$ be the solution of the equation $4x^{4} + 8x^{3} - 17x^{2} - 12x + 9 = 0$ and $\\left(4 + x_{1}^{2}\\right)\\left(4 + x_{2}^{2}\\right)\\left(4 + x_{3}^{2}\\right)\\left(4 + x_{4}^{2}\\right) = \\frac{125}{16}m$. Then the value of $m$ is ________.",
+   "correct_key": null,
+   "correct_value": 221,
+   "correct_keys": null,
+   "solution": "$4x^{4} + 8x^{3} - 17x^{2} - 12x + 9$\n$= 4(x - x_{1})(x - x_{2})(x - x_{3})(x - x_{4})$\nPut $x = 2i$ & $-2i$\n$64 - 64i + 68 - 24i + 9 = (2i - x_{1})(2i - x_{2})(2i - x_{3})(2i - x_{4})$\n$= 141 - 88i$ $\\qquad$ ......(1)\n$64 + 64i + 68 + 24i + 9 = 4(-2i - x_{1})(-2i - x_{2})(-2i - x_{3})(-2i - x_{4})$\n$= 141 + 88i$ $\\qquad$ .......(2)\n$\\frac{125}{16}m = \\frac{141^{2} + 88^{2}}{16}$\n$m = 221$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Conic Sections",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $L_{1}, L_{2}$ be the lines passing through the point $P(0, 1)$ and touching the parabola $9x^{2} + 12x + 18y - 14 = 0$. Let $Q$ and $R$ be the points on the lines $L_{1}$ and $L_{2}$ such that the $\\Delta PQR$ is an isosceles triangle with base $QR$. If the slopes of the lines $QR$ are $m_{1}$ and $m_{2}$. then $16\\left(m_{1}^{2} + m_{2}^{2}\\right)$ is equal to_______.",
+   "correct_key": null,
+   "correct_value": 68,
+   "correct_keys": null,
+   "solution": "$9x^{2} + 12x + 4 = -18(y - 1)$\n$(3x + 2)^{2} = -18(y - 1)$\n$\\left(x + \\frac{2}{3}\\right)^{2} = -2(y - 1)$\n$(0, 1)$\n$y = mx + 1$\n$\\left(x + \\frac{2}{3}\\right)^{2} = -2(y - 1)$\n$(3x + 2)^{2} = -18mx$\n$9x^{2} + (12 + 18m)x + 4 = 0$\n$4(6 + 9m)^{2} = 4(36)$\n$6 + 9m = 6, -6$\n$m = 0, \\frac{-4}{3}$\n$\\tan\\theta = -\\frac{4}{3}$\n$\\frac{2\\tan\\frac{\\theta}{2}}{1 - \\tan^{2}\\frac{\\theta}{2}} = \\frac{-4}{3}$\n$\\left(\\tan\\frac{\\theta}{2} - 2\\right)\\left(2\\tan\\frac{\\theta}{2} + 1\\right) = 0$\n$\\tan\\frac{\\theta}{2} = 2, \\frac{-1}{2}$\n$m_{QR} = \\tan\\left(90 + \\frac{\\theta}{2}\\right)$\n$= -\\cot\\frac{\\theta}{2}$\n$m_{1} = \\frac{-1}{2}$ $\\qquad$ $m_{2} = \\frac{-1}{-1/2} = 2$\n$16\\left(m_{1}^{2} + m_{2}^{2}\\right) = 16\\left(\\frac{1}{4} + 4\\right)$\n$= 4 + 64 = 68$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-math-q25-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the second, third and fourth terms in the expansion of $(x + y)^{n}$ are 135, 30 and $\\frac{10}{3}$, respectively, then $6\\left(n^{3} + x^{2} + y\\right)$ is equal to _____.",
+   "correct_key": null,
+   "correct_value": 806,
+   "correct_keys": null,
+   "solution": "${}^{n}C_{1}x^{n-1}y = 135$ $\\qquad$ ....(i)\n${}^{n}C_{2}x^{n-2}y^{2} = 30$ $\\qquad$ ....(ii)\n${}^{n}C_{3}x^{n-3}y^{3} = \\frac{10}{3}$ $\\qquad$ ....(iii)\nBy $\\frac{(i)}{(ii)}$\n$\\frac{{}^{n}C_{1}}{{}^{n}C_{2}}\\frac{x}{y} = \\frac{9}{2}$ $\\qquad$ .....(iv)\nBy $\\frac{(ii)}{(iii)}$\n$\\frac{{}^{n}C_{2}}{{}^{n}C_{3}}\\frac{x}{y} = 9$ $\\qquad$ .....(v)\nBy $\\frac{(iv)}{(v)}$\n$\\frac{{}^{n}C_{1}\\,{}^{n}C_{3}}{{}^{n}C_{2}\\,{}^{n}C_{2}} = \\frac{1}{2}$\n$\\frac{2n^{2}(n - 1)(n - 2)}{6} = \\frac{n(n - 1)}{2}\\,\\frac{n(n - 1)}{2}$\n$4n - 8 = 3n - 3$\n$\\Rightarrow n = 5$\nput in (v)\n$\\frac{x}{y} = 9$\n$x = 9y$\nput in (i)\n${}^{5}C_{1}x^{4}\\left(\\frac{x}{9}\\right) = 135$\n$x^{5} = 27 \\times 9$\n$\\Rightarrow x = 3, \\quad y = \\frac{1}{3}$\n$6\\left(n^{3} + x^{2} + y\\right) = 6\\left(125 + 9 + \\frac{1}{3}\\right) = 806$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the first term of a series be $T_{1} = 6$ and its $r^{th}$ term $T_{r} = 3T_{r-1} + 6^{r}$, $r = 2, 3, \\ldots, n$. If the sum of the first $n$ terms of this series is $\\frac{1}{5}\\left(n^{2} - 12n + 39\\right)\\left(4.6^{n} - 5.3^{n} + 1\\right)$. Then $n$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 6,
+   "correct_keys": null,
+   "solution": "$T_{r} = 3T_{r-1} + 6^{r}$, $r = 2, 3, 4, \\ldots n$\n$T_{2} = 3.T_{1} + 6^{2}$\n$T_{2} = 3.6 + 6^{2}$ $\\qquad$ ...(1)\n$T_{3} = 3T_{2} + 6^{3}$\n$T_{3} = 3T_{2} + 6^{3}$\n$T_{3} = 3(3.6 + 6^{2}) + 6^{3}$\n$T_{3} = 3^{2}.6 + 3.6^{2} + 6^{3}$ $\\qquad$ ...(2)\n$T_{r} = 3^{r-1}.6 + 3^{r-2}.6^{2} + \\ldots + 6^{r}$\n$T_{r} = 3^{r-1} \\cdot 6\\left[1 + \\frac{6}{3} + \\left(\\frac{6}{3}\\right)^{2} + \\ldots + \\left(\\frac{6}{3}\\right)^{r-1}\\right]$\n$T_{r} = 3^{r-1}.6(1 + 2 + 2^{2} + \\ldots + 2^{r-1})$\n$T_{r} = 6 \\cdot 3^{r-1}1.\\frac{(1 - 2^{r})}{(-1)}$\n$T_{r} = 6.3^{r-1}.(2^{r} - 1)$\n$T_{r} = \\frac{6 \\cdot 3^{r}}{3}.(2^{r} - 1)$\n$T_{r} = 2.(6^{r} - 3^{r})$\n$S_{n} = 2\\Sigma\\left(6^{r} - 3^{r}\\right)$\n$S_{n} = 2.\\left[\\frac{6.(6^{n} - 1)}{5} - \\frac{3.(3^{n} - 1)}{2}\\right]$\n$S_{n} = 2\\left[\\frac{12(6^{n} - 1) - 15(3^{n} - 1)}{10}\\right]$\n$S_{n} = \\frac{3}{5}\\left[4.6^{4} - 5.3^{n} + 1\\right]$\n$\\therefore n^{2} - 12n + 39 = 3$\n$n^{2} - 12n + 36 = 0$\n$n = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
    "topic": "Inverse Trigonometric Functions",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If $\\cot^{-1}3 + \\cot^{-1}4 + \\cot^{-1}5 + \\cot^{-1}n = \\frac{\\pi}{4}$. Then $n =$",
+   "stem": "For $n \\in N$, if $\\cot^{-1}3 + \\cot^{-1}4 + \\cot^{-1}5 + \\cot^{-1}n = \\frac{\\pi}{4}$, then $n$ is equal to ________.",
    "correct_key": null,
    "correct_value": 47,
    "correct_keys": null,
-   "solution": "$\\tan^{-1}\\left(\\frac{1}{3}\\right) + \\tan^{-1}\\left(\\frac{1}{4}\\right) + \\tan^{-1}\\left(\\frac{1}{5}\\right) + \\tan^{-1}\\left(\\frac{1}{n}\\right) = \\frac{\\pi}{4}$\n$\\tan^{-1}\\left(\\frac{\\frac{1}{3} + \\frac{1}{4}}{1 - \\frac{1}{12}}\\right) + \\tan^{-1}\\left(\\frac{1}{5}\\right) + \\tan^{-1}\\left(\\frac{1}{n}\\right) = \\frac{\\pi}{4}$\n$\\tan^{-1}\\left(\\frac{7}{11}\\right) + \\tan^{-1}\\left(\\frac{1}{5}\\right) + \\tan^{-1}\\left(\\frac{1}{n}\\right) = \\frac{\\pi}{4}$\n$\\tan^{-1}\\left(\\frac{23}{24}\\right) + \\tan^{-1}\\left(\\frac{1}{n}\\right) = \\frac{\\pi}{4}$\n$\\tan^{-1}\\left(\\frac{\\frac{23}{24} + \\frac{1}{n}}{1 - \\frac{23}{24n}}\\right) = \\frac{\\pi}{4}$\n$\\tan^{-1}\\left(\\frac{23n + 24}{24n - 23}\\right) = \\frac{\\pi}{4}$\n$\\frac{23n + 24}{24n - 23} = 1$\n$23n + 24 = 24n - 23$\n$n = 47$",
+   "solution": "$\\cot^{-1}3 + \\cot^{-1}4 + \\cot^{-1}5 + \\cot^{-1}n = \\frac{\\pi}{4}$\n$\\tan^{-1}\\frac{1}{3} + \\tan^{-1}\\frac{1}{4} + \\tan^{-1}\\frac{1}{5} + \\tan^{-1}\\frac{1}{n} = \\frac{\\pi}{4}$\n$\\tan^{-1}\\left(\\frac{46}{48}\\right) + \\tan^{-1}\\frac{1}{n} = \\frac{\\pi}{4}$\n$\\tan^{-1}\\left(\\frac{23}{24}\\right) + \\tan^{-1}\\frac{1}{n} = \\frac{\\pi}{4}$\n$\\tan^{-1}\\frac{1}{n} = \\tan^{-1}1 - \\tan^{-1}\\frac{23}{24}$\n$\\tan^{-1}\\frac{1}{n} = \\tan^{-1}\\left(\\frac{1 - \\frac{23}{24}}{1 + \\frac{23}{24}}\\right)$\n$\\tan^{-1}\\frac{1}{n} = \\tan^{-1}\\left(\\frac{\\frac{1}{24}}{\\frac{47}{24}}\\right)$\n$\\tan^{-1}\\frac{1}{n} = \\tan^{-1}\\frac{1}{47}$\n$n = 47$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $P$ be the point $(10, -2, -1)$ and $Q$ be the foot of the perpendicular drawn from the point $R(1, 7, 6)$ on the line passing through the points $(2, -5, 11)$ and $(-6, 7, -5)$. Then the length of the line segment $PQ$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 13,
+   "correct_keys": null,
+   "solution": "Line : $\\frac{x + 6}{-8} = \\frac{y - 7}{12} = \\frac{z + 5}{-16}$\n$\\frac{x + 6}{2} = \\frac{y - 7}{-3} = \\frac{z + 5}{4} = \\lambda$\n$Q(2\\lambda - 6, 7 - 3\\lambda, 4\\lambda - 5)$\n$\\overrightarrow{QR}\\left(2\\lambda - 7, -3\\lambda, 4\\lambda - 11\\right)$\n$\\overrightarrow{QR} \\cdot$ dr's of line $= 0$\n$4\\lambda - 14 + 9\\lambda + 16\\lambda - 44 = 0$\n$29\\lambda = 58 \\Rightarrow \\lambda = 2$\n$Q(-2, 1, 3)$\n$PQ = \\sqrt{144 + 9 + 16} = \\sqrt{169} = 13$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s1-math-q29-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Vector Algebra",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\vec{a} = 2\\hat{i} - 3\\hat{j} + 4\\hat{k}$, $\\vec{b} = 3\\hat{i} + 4\\hat{j} - 5\\hat{k}$, and a vector $\\vec{c}$ be such that $\\vec{a} \\times (\\vec{b} + \\vec{c}) + \\vec{b} \\times \\vec{c} = \\hat{i} + 8\\hat{j} + 13\\hat{k}$. If $\\vec{a} \\cdot \\vec{c} = 13$, then $(24 - \\vec{b} \\cdot \\vec{c})$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 46,
+   "correct_keys": null,
+   "solution": "$\\vec{a} \\times \\vec{b} + \\vec{a} \\times \\vec{c} + \\vec{b} \\times \\vec{c} = (1, 8, 13)$\n$\\vec{a} \\times (\\vec{a} \\times \\vec{b}) + \\vec{a} \\times (\\vec{a} \\times \\vec{c}) + \\vec{a} \\times (\\vec{b} \\times \\vec{c})$\n$= \\vec{a} \\times (\\hat{i} + 8\\hat{j} + 13\\hat{k})$\n$(\\vec{a} \\cdot \\vec{b})\\vec{a} - a^{2}\\vec{b} + (\\vec{a} \\cdot \\vec{c})\\vec{a} - a^{2}\\vec{c} + (\\vec{a} \\cdot \\vec{c})\\vec{b} - (\\vec{a} \\cdot \\vec{b})\\vec{c} = \\vec{a} \\times (\\hat{i} + 8\\hat{j} + 13\\hat{k})$\n$\\Rightarrow -26\\vec{a} - 29\\vec{b} + 13\\vec{a} - 29\\vec{c} + 13\\vec{b} + 26\\vec{c} = \\vec{a} \\times (\\hat{i} + 8\\hat{j} + 13\\hat{k})$\n$\\Rightarrow -13\\vec{a} - 16\\vec{b} - 3\\vec{c} = \\vec{a} \\times (\\hat{i} + 8\\hat{j} + 13\\hat{k})$\n$\\Rightarrow -13\\vec{a} \\cdot \\vec{b} - 16b^{2} - 3\\vec{b} \\cdot \\vec{c} = \\left\\{\\vec{a} \\times (\\hat{i} + 8\\hat{j} + 13\\hat{k})\\right\\} \\cdot \\vec{b}$\n$\\Rightarrow (-13)(-26) - 16(50) - 3\\vec{b} \\cdot \\vec{c} = \\begin{vmatrix} 2 & -3 & 4 \\\\ 1 & 8 & 13 \\\\ 3 & 4 & -5 \\end{vmatrix}$\n$\\Rightarrow -462 - 3\\vec{b} \\cdot \\vec{c} = -396$\n$\\Rightarrow \\vec{b} \\cdot \\vec{c} = -22$\nHence $24 - \\vec{b} \\cdot \\vec{c} = 46$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

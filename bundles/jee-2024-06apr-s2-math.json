@@ -10,24 +10,78 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 30,
   "duration_mins": 60,
-  "source_file_id": "1nmLrL69P-npD4tKnDI5agZ0IywTMY1yt"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 2,
-   "topic": "Matrices and Determinants",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$|A| = 3$, order = 3\nthen $|\\mathrm{adj}(4\\,\\mathrm{adj}(-3\\,\\mathrm{adj}(3\\,\\mathrm{adj}(2A)^{-1})| = 2^{m} \\cdot 3^{n}$. Find $m + n$",
-   "correct_key": null,
-   "correct_value": 80,
+   "q_no": 1,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let ABC be an equilateral triangle. A new triangle is formed by joining the middle points of all sides of the triangle ABC and the same process is repeated infinitely many times. If $P$ is the sum of perimeters and $Q$ is be the sum of areas of all the triangles formed in this process, then:",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$|\\mathrm{adj}(4\\,\\mathrm{adj}(-3 \\cdot 3^{2})\\mathrm{adj}\\,\\mathrm{adj}(2A)^{-1}|$\n$|\\mathrm{adj}(4(-3^{3})^{2}\\,\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}(2A)^{-1})))|$\n$|4^{2}3^{12}\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}\\,\\mathrm{adj}(2A)^{-1}|$\n$2^{12} \\cdot 3^{36}\\left|2A^{-1}\\right|^{2^{4}}$\n$2^{12} \\cdot 3^{36} \\cdot (2^{3})^{16}\\left|A^{-1}\\right|^{16}$\n$2^{12} \\times 3^{36} \\times 2^{48}\\frac{1}{|A|^{16}}$\n$= 2^{60} \\cdot 3^{36} \\cdot \\frac{1}{3^{16}}$\n$= 2^{60} \\cdot 3^{20}$\n$m = 60, n = 20$\n$m + n = 80$",
+   "solution": "Area of first $\\Delta = \\frac{\\sqrt{3}a^{2}}{4}$\nArea of second $\\Delta = \\frac{\\sqrt{3}a^{2}}{4}\\cdot\\frac{a^{2}}{4} = \\frac{\\sqrt{3}a^{2}}{16}$\nArea of third $\\Delta = \\frac{\\sqrt{3}a^{2}}{64}$\nsum of area $= \\frac{\\sqrt{3}a^{2}}{4}\\left(1 + \\frac{1}{4} + \\frac{1}{16} + \\ldots\\right)$\n$Q = \\frac{\\sqrt{3}a^{2}}{4}\\cdot\\frac{1}{\\frac{3}{4}} = \\frac{a^{2}}{\\sqrt{3}}$\nperimeter of $1^{\\mathrm{st}}\\ \\Delta = 3a$\nperimeter of $2^{\\mathrm{nd}}\\ \\Delta = \\frac{3a}{2}$\nperimeter of $3^{\\mathrm{rd}}\\ \\Delta = \\frac{3a}{4}$\n$P = 3a\\left(1 + \\frac{1}{2} + \\frac{1}{4} + \\ldots\\right)$\n$P = 3a \\cdot 2 = 6a$\n$a = \\frac{P}{6}$\n$Q = \\frac{1}{\\sqrt{3}}\\cdot\\frac{P^{2}}{36}$\n$P^{2} = 36\\sqrt{3}Q$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$P^{2} = 36\\sqrt{3}Q$"
+    },
+    {
+     "key": "B",
+     "text": "$P^{2} = 6\\sqrt{3}Q$"
+    },
+    {
+     "key": "C",
+     "text": "$P = 36\\sqrt{3}Q^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$P^{2} = 72\\sqrt{3}Q$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-math-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A = \\{1, 2, 3, 4, 5\\}$. Let $R$ be a relation on $A$ defined by $xRy$ if and only if $4x \\le 5y$. Let $m$ be the number of elements in $R$ and $n$ be the minimum number of elements from $A \\times A$ that are required to be added to $R$ to make it a symmetric relation. Then $m + n$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Given : $4x \\le 5y$\nthen\n$R = \\{(1,1),(1,2),(1,3),(1,4),(1,5),(2,2),(2,3),(2,4),(2,5),(3,3),(3,4),(3,5),(4,4),(4,5),(5,4),(5,5)\\}$\ni.e. 16 elements.\ni.e. $m = 16$\nNow to make $R$ a symmetric relation add\n$\\{(2,1)(3,2)(4,3)(3,1)(4,2)(5,3)(4,1)(5,2)(5,1)\\}$\ni.e. $n = 9$\nSo $m + n = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "24"
+    },
+    {
+     "key": "B",
+     "text": "23"
+    },
+    {
+     "key": "C",
+     "text": "25"
+    },
+    {
+     "key": "D",
+     "text": "26"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -35,19 +89,110 @@
   },
   {
    "q_no": 3,
-   "topic": "Quadratic Equations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Let $x^{2} + \\sqrt{2}x - 8 = 0$ and $S_{n} = \\alpha^{n} + \\beta^{n}$, here $\\alpha$ & $\\beta$ are roots of given equation, $(n \\ge 1)$. Find value of $\\frac{S_{10} + \\sqrt{2}S_{9}}{8S_{8}}$.",
-   "correct_key": null,
-   "correct_value": 1,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If three letters can be posted to any one of the 5 different addresses, then the probability that the three letters are posted to exactly two addresses is:",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$S_{n} + \\sqrt{2}\\,S_{n-1} - 8S_{n-2} = 0$\nput $n = 10$,\n$\\frac{S_{10} + \\sqrt{2}S_{9}}{8S_{8}} = 1$",
+   "solution": "Total method $= 5^{3}$\nfaverable $= {}^{5}C_{2}\\left(2^{3} - 2\\right) = 60$\nprobability $= \\frac{60}{125} = \\frac{12}{25}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{12}{25}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{18}{25}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{4}{25}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{6}{25}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Suppose the solution of the differential equation $\\frac{dy}{dx} = \\frac{(2 + \\alpha)x - \\beta y + 2}{\\beta x - 2\\alpha y - (\\beta\\gamma - 4\\alpha)}$ represents a circle passing through origin. Then the radius of this circle is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{dy}{dx} = \\frac{(2 + \\alpha)x - \\beta y + 2}{\\beta x - y(2\\alpha + \\beta) + 4\\alpha}$\n$\\beta x\\,dy - (2\\alpha + \\beta)y\\,dy + 4\\alpha\\,dy = (2 + \\alpha)x\\,dx - \\beta y\\,dx + 2\\,dx$\n$\\beta(x\\,dy + y\\,dx) - (2\\alpha + \\beta)y\\,dy + 4\\alpha\\,dy = (2 + \\alpha)x\\,dx + 2\\,dx$\n$\\beta xy - \\frac{(2\\alpha + \\beta)y^{2}}{2} + 4\\alpha y = \\frac{(2 + \\alpha)x^{2}}{2}$\n$\\Rightarrow \\beta = 0$ for this to be circle\n$(2 + \\alpha)\\frac{x^{2}}{2} + \\alpha y^{2} + 2x - 4\\alpha y = 0$\ncoeff. of $x^{2} = y^{2}$\n$2 + a = 2a$\n$\\Rightarrow \\alpha = 2$\ni.e. $2x^{2} + 2y^{2} + 2x - 8y = 0$\n$x^{2} + y^{2} + x - 4y = 0$\nrd $= \\sqrt{\\frac{1}{4} + 4} = \\frac{\\sqrt{17}}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{17}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{17}}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the locus of the point, whose distances from the point $(2, 1)$ and $(1, 3)$ are in the ratio $5 : 4$, is $ax^{2} + by^{2} + cxy + dx + ey + 170 = 0$, then the value of $a^{2} + 2b + 3c + 4d + e$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "let $P(x, y)$\n$\\frac{(x - 2)^{2} + (y - 1)^{2}}{(x - 1)^{2} + (y - 3)^{2}} = \\frac{25}{16}$\n$9x^{2} + 9y^{2} + 14x - 118y + 170 = 0$\n$a^{2} + 2b + 3c + 4d + e$\n$= 81 + 18 + 0 + 56 - 118$\n$= 155 - 118$\n$= 37$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5"
+    },
+    {
+     "key": "B",
+     "text": "-27"
+    },
+    {
+     "key": "C",
+     "text": "37"
+    },
+    {
+     "key": "D",
+     "text": "437"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -55,19 +200,36 @@
   },
   {
    "q_no": 6,
-   "topic": "Vector Algebra",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$\\vec{A} = \\hat{i} + \\hat{j} - 2\\hat{k}$\n$\\vec{B} = (\\vec{A} \\times (\\hat{i} + \\hat{j})) \\times \\hat{i}$\nthen find projection of $\\vec{A}$ on $\\vec{B}$",
-   "correct_key": null,
-   "correct_value": 2,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$\\lim_{n \\to \\infty} \\frac{(1^{2} - 1)(n - 1) + (2^{2} - 2)(n - 2) + \\ldots + \\left((n - 1)^{2} - (n - 1)\\right)\\cdot 1}{(1^{3} + 2^{3} + \\ldots + n^{3}) - (1^{2} + 2^{2} + \\ldots + n^{2})}$ is equal to:",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\vec{A} \\times (\\hat{i} + \\hat{j}) = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & 1 & -2 \\\\ 1 & 1 & 0 \\end{vmatrix}$\n$\\vec{A} \\times (\\hat{i} + \\hat{j}) = 2\\hat{i} - 2\\hat{j}$\n$\\vec{B} = (\\vec{A} \\times (\\hat{i} + \\hat{j})) \\times \\hat{j} = 2\\hat{k}$\nProjection of $\\vec{A}$ on $\\vec{B} = \\left|\\frac{\\vec{B}.\\vec{A}}{|\\vec{B}|}\\right| = \\left|\\frac{2\\hat{k}.(\\hat{i} + \\hat{j} - 2\\hat{k})}{2}\\right|$\n$= \\frac{4}{2} = 2$",
+   "solution": "$\\lim_{n \\to \\infty} \\frac{\\sum_{r=1}^{n-1}(r^{2} - r)(n - r)}{\\sum_{r=1}^{n} r^{3} - \\sum_{r=1}^{n} r^{2}}$\n$\\lim_{n \\to \\infty} \\frac{\\sum_{r=1}^{n-1}\\left(-r^{3} + r^{2}(n + 1) - nr\\right)}{\\left(\\frac{n(n + 1)}{2}\\right)^{2} - \\frac{n(n + 1)(2n + 1)}{6}}$\n$\\lim_{n \\to \\infty} \\frac{\\left(\\frac{(n - 1)n}{2}\\right)^{2} + \\frac{(n + 1)(n - 1)n(2n - 1)}{6} - \\frac{n^{2}(n - 1)}{2}}{\\frac{n(n + 1)}{2}\\left(\\frac{n(n + 1)}{2} - \\frac{2n + 1}{3}\\right)}$\n$\\lim_{n \\to \\infty} \\frac{\\frac{n(n - 1)}{2}\\left(\\frac{-n(n - 1)}{2} + \\frac{(n + 1)(2n - 1)}{3} - n\\right)}{\\frac{n(n + 1)}{2}\\cdot\\frac{3n^{2} + 3n - 4n - 2}{6}}$\n$\\lim_{n \\to \\infty} \\frac{(n - 1)\\left(-3n^{2} + 3n + 2(2n^{2} + n - 1) - 6\\right)}{(n + 1)\\left(3n^{2} - n - 2\\right)}$\n$\\lim_{n \\to \\infty} \\frac{(n - 1)\\left(n^{2} + 5n - 8\\right)}{(n + 1)\\left(3n^{2} - n - 2\\right)} = \\frac{1}{3}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -75,114 +237,125 @@
   },
   {
    "q_no": 7,
-   "topic": "Straight Lines",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In $\\Delta ABC$ vertices $A(2, 5), B(8, 3)$ and $C(h, k)$ and orthocenter is $(6, 1)$ then value of $2h + k$ is",
-   "correct_key": null,
-   "correct_value": 13,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $0 \\le r \\le n$. If ${}^{n+1}C_{r+1} : {}^{n}C_{r} : {}^{n-1}C_{r-1} = 55 : 35 : 21$, then $2n + 5r$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\therefore \\frac{4}{-4} \\times \\frac{k - 3}{h - 8} = -1 \\Rightarrow k - 3 = h - 8 \\Rightarrow h - k = 5$\nand $\\frac{2}{2} \\times \\frac{k - 5}{h - 2} = -1 \\Rightarrow k - 5 = -h + 2 \\Rightarrow h + k = 7$\n$\\therefore h = 6$\n$k = 1$\n$2h + k = 13$",
+   "solution": "$\\frac{{}^{n+1}C_{r}}{{}^{n}C_{r}} = \\frac{55}{35}$\n$\\frac{(n + 1)!}{(r + 1)!(n - r)!} ! \\frac{r!(n - r)!}{n!} = \\frac{11}{7}$\n$\\frac{(n + 1)}{r + 1} = \\frac{11}{7}$\n$7n = 4 + 11r$\n$\\frac{{}^{n}C_{r}}{{}^{n-1}C_{r-1}} = \\frac{35}{21}$\n$\\frac{n!}{r!(n - r)!} = \\frac{(r - 1)!(n - r)!}{(n - 1)!} = \\frac{5}{3}$\n$\\frac{n}{r} = \\frac{5}{3}$\n$3n = 5r$\nBy solving $r = 6$, $n = 10$\n$2n + 5r = 50$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "60"
+    },
+    {
+     "key": "B",
+     "text": "62"
+    },
+    {
+     "key": "C",
+     "text": "50"
+    },
+    {
+     "key": "D",
+     "text": "55"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-math-q07-sol.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A software company sets up $m$ number of computer systems to finish an assignment in 17 days. If 4 computer systems crashed on the start of the second day, 4 more computer systems crashed on the start of the third day and so on, then it took 8 more days to finish the assignment. The value of $m$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$17m = m + (m - 4) + (m - 4 \\times 2) + \\ldots + (m - 4 \\times 24)$\n$17m = 25m - 4(1 + 2 + \\ldots + 24)$\n$8m = \\frac{4 \\cdot 24 \\cdot 25}{2} = 150$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "125"
+    },
+    {
+     "key": "B",
+     "text": "150"
+    },
+    {
+     "key": "C",
+     "text": "180"
+    },
+    {
+     "key": "D",
+     "text": "160"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $z_{1}, z_{2}$ are two distinct complex number such that $\\left|\\frac{z_{1} - 2z_{2}}{\\frac{1}{2} - z_{1}\\overline{z_{2}}}\\right| = 2$, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{z_{1} - 2z_{2}}{\\frac{1}{2} - z_{1}\\overline{z_{2}}} \\times \\frac{\\overline{z_{1}} - 2\\overline{z_{2}}}{\\frac{1}{2} - \\overline{z_{1}}z_{2}} = 4$\n$|z_{1}|^{2}\\,2z_{1}\\overline{z_{2}} - 2\\overline{z_{1}}z_{2} + 4|z_{2}|^{2}$\n$= 4\\left(\\frac{1}{4} - \\frac{\\overline{z_{1}}z_{2}}{2} - \\frac{z_{1}\\overline{z_{2}}}{2} + |z_{1}|^{2}|z_{2}|^{2}\\right)$\n$z_{1}\\overline{z_{1}} + 2z_{2} \\cdot 2\\overline{z_{2}} - z_{1}\\overline{z_{1}}\\,2z_{2}\\,2\\overline{z_{2}} - 1 = 0$\n$(z_{1}\\overline{z_{1}} - 1)\\left(1 - 2z_{2} \\cdot 2\\overline{z_{2}}\\right) = 0$\n$\\left(|z_{1}|^{2} - 1\\right)\\left(|2z_{2}|^{2} - 1\\right) = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "either $z_{1}$ lies on a circle of radius $1$ or $z_{2}$ lies on a circle of radius $\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "either $z_{1}$ lies on a circle of radius $\\frac{1}{2}$ or $z_{2}$ lies on a circle of radius $1$."
+    },
+    {
+     "key": "C",
+     "text": "$z_{1}$ lies on a circle of radius $\\frac{1}{2}$ and $z_{2}$ lies on a circle of radius $1$."
+    },
+    {
+     "key": "D",
+     "text": "both $z_{1}$ and $z_{2}$ lie on the same circle."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 10,
-   "topic": "Area Under Curves",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If area enclosed by region $\\frac{a}{x^{2}} \\le y \\le \\frac{1}{x}$ between $x = 1$ and $x = 2$ (where $a \\in (0, 1)$) is $\\ln 2 - \\frac{1}{7}$, then find $(7a - 3)$",
-   "correct_key": null,
-   "correct_value": -1,
-   "correct_keys": null,
-   "solution": "$\\text{Area} = \\int_{1}^{2}\\left(\\frac{1}{x} - \\frac{a}{x^{2}}\\right)dx$\n$= \\left.\\ln x + \\frac{a}{x}\\right|_{1}^{2}$\n$= \\ln 2 + \\frac{a}{2} - a = \\ln 2 - \\frac{1}{7}$\n$\\frac{a}{2} = \\frac{1}{7}$\n$\\Rightarrow 7a = 2$\n$\\Rightarrow 7a - 3 = -1$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-math-q10-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 11,
-   "topic": "Sets and Relations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Let $A = \\{1, 2, 3, 4, 5\\}$, a Relation is defined as $4x \\ge 5y$, $x \\in A$, $y \\in A$. Number of elements in $R = m$ and number of elements in $A \\times A$ is $n$, then find $m + n$",
-   "correct_key": null,
-   "correct_value": 35,
-   "correct_keys": null,
-   "solution": "Relation is $4x \\ge 5y$\n$(4, 1) \\quad (5, 1) \\quad (5, 2) \\quad (5, 3) \\quad (5, 4)$\n$(4, 2) \\quad (4, 3) \\quad (3, 1) \\quad (3, 2) \\quad (2, 1)$\n$\\therefore m = 10$\nno. of element in $A \\times A = 5^{2} = 25 = n$\n$\\therefore m + n = 35$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 12,
-   "topic": "Permutations and Combinations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "${}^{n+1}C_{r+1} : {}^{n}C_{r} : {}^{n-1}C_{r-1} = 55 : 35 : 21$ then $2n + 5r$ is equal to",
-   "correct_key": null,
-   "correct_value": 50,
-   "correct_keys": null,
-   "solution": "$\\frac{{}^{n}C_{r}}{{}^{n+1}C_{r+1}} = \\frac{35}{55} \\Rightarrow \\frac{r + 1}{n + 1} = \\frac{7}{11}$\n$\\Rightarrow 11r + 11 = 7n + 7$\n$\\Rightarrow 11r = 7n - 4$\n$\\frac{{}^{n-1}C_{r-1}}{{}^{n}C_{r}} = \\frac{r}{n} = \\frac{3}{5} \\Rightarrow 5r = 3n$\n$\\Rightarrow 5r = 3n \\quad \\& \\quad 11r = 7n - 4$\nSolving we get\n$r = n - 4$\n$r = 6$\n$n = 10$\nSo, $2n + 5r = 2 \\times 10 + 5 \\times 6 = 20 + 30 = 50$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 13,
-   "topic": "Continuity and Differentiability",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If $f(x) = 3 + \\left[\\frac{x}{2}\\right] - [\\sqrt{x}]$ and $x \\in [0, 8]$ then find sum of points of discontinuity of $f(x)$",
-   "correct_key": null,
-   "correct_value": 17,
-   "correct_keys": null,
-   "solution": "Points to be check $x = 0, 1, 2, 4, 6, 8$\nat $x = 0 \\quad f(0) = 3 = f(0^{+})$ continuous\nat $x = 4 \\quad f(4) = f(4^{+}) = 3 = f(4^{-})$ continuous\n$\\Rightarrow \\text{Sum} = 1 + 2 + 6 + 8 = 17$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 14,
    "topic": "Application of Derivatives",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If the function $f(x) = \\left(\\frac{1}{x}\\right)^{2x}$ $x > 0$ attains the maximum value at $x = \\frac{1}{e}$ then",
-   "correct_key": "D",
+   "stem": "If the function $f(x) = \\left(\\frac{1}{x}\\right)^{2x}$ ; $x > 0$ attains the maximum value at $x = \\frac{1}{e}$ then :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$f\\left(\\frac{1}{\\pi}\\right) < f\\left(\\frac{1}{e}\\right)$\n$(\\pi)^{2/\\pi} < e^{\\left(\\frac{2}{e}\\right)} \\Rightarrow \\pi^{2e} < e^{2\\pi}$\n$\\pi^{e} < e^{\\pi}$",
+   "solution": "Let $y = \\left(\\frac{1}{x}\\right)^{2x}$\n$\\ell n y = 2x\\,\\ell n\\left(\\frac{1}{x}\\right)$\n$\\ell n y = -2x\\,\\ell n x$\n$\\frac{1}{y}\\frac{dy}{dx} = -2(1 + \\ell n x)$\nfor $x > \\frac{1}{e}$ $f^{n}$ is decreasing\nso, $e < \\pi$\n$\\left(\\frac{1}{e}\\right)^{2e} > \\left(\\frac{1}{\\pi}\\right)^{2\\pi}$\n$e^{\\pi} > \\pi^{e}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -198,33 +371,235 @@
     },
     {
      "key": "C",
-     "text": "$(2e)^{\\pi} > (\\pi)^{2e}$"
+     "text": "$e^{\\pi} > \\pi^{e}$"
     },
     {
      "key": "D",
-     "text": "$e^{\\pi} > \\pi^{e}$"
+     "text": "$(2e)^{\\pi} > \\pi^{(2e)}$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j24-06apr-s2-math-q14-sol.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 6\\hat{i} + \\hat{j} - \\hat{k}$ and $\\vec{b} = \\hat{i} + \\hat{j}$. If $\\vec{c}$ is a is vector such that $|\\vec{c}| \\ge 6$, $\\vec{a}.\\vec{c} = 6|\\vec{c}|$, $|\\vec{c} - \\vec{a}| = 2\\sqrt{2}$ and the angle between $\\vec{a} \\times \\vec{b}$ and $\\vec{c}$ is $60^\\circ$, then $\\left|(\\vec{a} \\times \\vec{b}) \\times \\vec{c}\\right|$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\left|(\\vec{a} \\times \\vec{b} \\times \\vec{c})\\right| = |\\vec{a} \\times \\vec{b}||\\vec{c}|\\frac{\\sqrt{3}}{2}$\n$|\\vec{c} - \\vec{a}| = 2\\sqrt{2}$\n$|c|^{2} + |a|^{2} - 2\\vec{c} \\cdot \\vec{a} = 8$\n$|z|^{2} + 38 - 12|z| = 8$\n$|z|^{2} - 12|z| + 30 = 0$\n$|z| = \\frac{12 \\pm \\sqrt{144 - 120}}{2}$\n$= \\frac{12 \\pm 2\\sqrt{6}}{2}$\n$|z| = 6 + \\sqrt{6}$\n$\\vec{a} \\times \\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 6 & 1 & -1 \\\\ 1 & 1 & 0 \\end{vmatrix}$\n$\\hat{i} - \\hat{j} + 5\\hat{k}$\n$|\\vec{a} \\times \\vec{b}| = \\sqrt{27}$\n$\\left|(\\vec{a} \\times b) \\times z\\right| = \\sqrt{27}\\left(6 + \\sqrt{6}\\right)\\frac{\\sqrt{3}}{2}$\n$\\frac{9}{2}\\left(6 + \\sqrt{6}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{9}{2}\\left(6 - \\sqrt{6}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{2}\\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{2}\\sqrt{6}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{9}{2}\\left(6 + \\sqrt{6}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If all the words with or without meaning made using all the letters of the word \"NAGPUR\" are arranged as in a dictionary, then the word at $315^{\\mathrm{th}}$ position in this arrangement is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "NAGPUR\n$A \\rightarrow 5! = 120$\n$G \\rightarrow 5! = 120$ | 240\n$NA \\rightarrow 4! = 24$ | 264\n$NG \\rightarrow 4! = 24$ | 288\n$NP \\rightarrow 4! = 24$ | 312\nNRAGPU $= 1$ | 313\nNRAGUP | 314\nNRAPGU | 315",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "NRAGUP"
+    },
+    {
+     "key": "B",
+     "text": "NRAGPU"
+    },
+    {
+     "key": "C",
+     "text": "NRAPGU"
+    },
+    {
+     "key": "D",
+     "text": "NRAPUG"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Suppose for a differentiable function $h$, $h(0) = 0$, $h(1) = 1$ and $h'(0) = h'(1) = 2$. If $g(x) = h(e^{x})\\,e^{h(x)}$, then $g'(0)$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$g(x) = h(e^{x}) \\cdot e^{h(x)}$\n$g'(x) = h(e^{x}) \\cdot e^{h(x)} \\cdot h'(x) + e^{h(x)}h'(e^{x}) \\cdot e^{x}$\n$g'(0) = h(1)e^{h(0)}h'(0) + e^{h(0)}h'(1)$\n$= 2 + 2 = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5"
+    },
+    {
+     "key": "B",
+     "text": "3"
+    },
+    {
+     "key": "C",
+     "text": "8"
+    },
+    {
+     "key": "D",
+     "text": "4"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $P(\\alpha, \\beta, \\gamma)$ be the image of the point $Q(3, -3, 1)$ in the line $\\frac{x - 0}{1} = \\frac{y - 3}{1} = \\frac{z - 1}{-1}$ and $R$ be the point $(2, 5, -1)$. If the area of the triangle $PQR$ is $\\lambda$ and $\\lambda^{2} = 14K$, then $K$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$RQ = \\sqrt{1 + 64 + 4} = \\sqrt{69}$\n$\\overrightarrow{RQ} = \\hat{i} - 8\\hat{j} + 2\\hat{k}$\n$\\overrightarrow{RS} = \\hat{i} + \\hat{j} - \\hat{k}$\n$\\cos\\theta = \\frac{\\overrightarrow{RQ} \\cdot \\overrightarrow{RS}}{|\\overrightarrow{RQ}||\\overrightarrow{RS}|} = \\left|\\frac{1 - 8 - 2}{\\sqrt{69}\\sqrt{3}}\\right| = \\frac{9}{3\\sqrt{23}}$\n$\\cos\\theta = \\frac{3}{\\sqrt{23}} = \\frac{RS}{RQ} = \\frac{RS}{\\sqrt{69}}$\n$RS = 3\\sqrt{3}$\n$\\sin\\theta = \\frac{\\sqrt{14}}{\\sqrt{23}} = \\frac{QS}{\\sqrt{69}}$\n$QS = \\sqrt{42}$\narea $= \\frac{1}{2} \\cdot 2QS \\cdot RS = \\sqrt{42} \\cdot 3\\sqrt{3}$\n$\\lambda = 9\\sqrt{14}$\n$\\lambda^{2} = 81.14 = 14k$\n$k = 81$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "36"
+    },
+    {
+     "key": "B",
+     "text": "72"
+    },
+    {
+     "key": "C",
+     "text": "18"
+    },
+    {
+     "key": "D",
+     "text": "81"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-math-q14-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $P(6, 1)$ be the orthocentre of the triangle whose vertices are $A(5, -2)$, $B(8, 3)$ and $C(h, k)$, then the point $C$ lies on the circle.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Slope of $AD = 3$\nSlope of $BC = -\\frac{1}{3}$\nequation of $BC = 3y + x - 17 = 0$\nslope of $BE = 1$\nSlope of $AC = -1$\nequation of $AC$ is $x + y - 3 = 0$\npoint $C$ is $(-4, 7)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2} + y^{2} - 65 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} + y^{2} - 74 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$x^{2} + y^{2} - 61 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} + y^{2} - 52 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-math-q15-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 16,
-   "topic": "Differential Equations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A curve $e^{y}\\sin x\\,dy + \\cos x(e^{y} + 1)dx = 0$ passes through $\\left(\\frac{\\pi}{2}, 0\\right)$. then find $e^{y\\left(\\frac{\\pi}{6}\\right)}$.",
-   "correct_key": null,
-   "correct_value": 3,
+   "topic": "Relations and Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\frac{1}{7 - \\sin 5x}$ be a function defined on $\\mathbb{R}$. Then the range of the function $f(x)$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\int \\frac{e^{y}}{e^{y} + 1}dy = \\int -\\frac{\\cos x}{\\sin x}dx$\n$\\ln\\left|e^{y} + 1\\right| = -\\ln|\\sin x| + c$\n$x = \\pi/2, y = 0$\n$\\Rightarrow \\ln 2 = 0 + c$\n$\\Rightarrow c = \\ln 2$\n$\\ln\\left|e^{y} + 1\\right| = -\\ln|\\sin x| + \\ln 2$\nWhen $x = \\frac{\\pi}{6}$\n$\\ln(e^{y} + 1) = -\\ln\\left(\\frac{1}{2}\\right) + \\ln 2$\n$\\ln(e^{y} + 1) = 2\\ln 2$\n$e^{y} + 1 = 4$\n$e^{y} = 3$\n$\\therefore e^{y\\left(\\frac{\\pi}{6}\\right)} = 3$",
+   "solution": "$\\sin 5x \\in [-1, 1]$\n$-\\sin 5x \\in [-1, 1]$\n$7 - \\sin 5x \\in [6, 8]$\n$\\frac{1}{7 - \\sin 5x} \\in \\left[\\frac{1}{8}, \\frac{1}{6}\\right]$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left[\\frac{1}{8}, \\frac{1}{5}\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left[\\frac{1}{7}, \\frac{1}{6}\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left[\\frac{1}{7}, \\frac{1}{5}\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left[\\frac{1}{8}, \\frac{1}{6}\\right]$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -232,19 +607,36 @@
   },
   {
    "q_no": 17,
-   "topic": "Sequences and Series",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$M$ computers complete a work in 17 days. If 4 Computers decrease everyday then it takes 8 more days to complete the same work. find the value of $M$.",
-   "correct_key": null,
-   "correct_value": 150,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 2\\hat{i} + \\hat{j} - \\hat{k}$, $\\vec{b} = \\left(\\left(\\vec{a} \\times \\left(\\hat{i} + \\hat{j}\\right)\\right) \\times \\hat{i}\\right) \\times \\hat{i}$. Then the square of the projection of $\\vec{a}$ on $\\vec{b}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Total work $= 17mx$\n$17mx = mx + (m - 4)x + (m - 8)x + \\ldots.25$ terms\n$\\Rightarrow 17m = \\frac{25}{2}(2m + 24(-4))$\n$\\Rightarrow 34m = 25(2m - 96)$\n$\\Rightarrow 25 \\times 96 = 16m$\n$\\Rightarrow m = \\frac{25 \\times 96}{16} = 150$",
+   "solution": "$\\vec{a} \\times \\left(\\hat{i} + \\hat{j}\\right) = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & 1 & -1 \\\\ 1 & 1 & 0 \\end{vmatrix}$\n$= \\hat{i} - \\hat{j} + \\hat{k}$\n$\\left(\\vec{a} \\times \\left(\\hat{i} \\times \\hat{j}\\right)\\right) \\times \\hat{i} = \\hat{k} + \\hat{j}$\n$\\left(\\left(\\vec{a} \\times \\left(\\hat{i} \\times \\hat{j}\\right)\\right) \\times i\\right) \\times \\hat{i} = \\hat{j} - \\hat{k}$\nprojection of $\\vec{a}$ on $\\hat{b} = \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$\n$= \\frac{1 + 1}{\\sqrt{2}} = \\sqrt{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{3}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -252,14 +644,125 @@
   },
   {
    "q_no": 18,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the area of the region $\\left\\{(x, y) : \\frac{a}{x^{2}} \\le y \\le \\frac{1}{x},\\ 1 \\le x \\le 2,\\ 0 < a < 1\\right\\}$ is $(\\log_{e}2) - \\frac{1}{7}$ then the value of $7a - 3$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "area $\\int_{1}^{2}\\left(\\frac{1}{x} - \\frac{a}{x^{2}}\\right)dx$\n$\\left[\\ell n x + \\frac{a}{x}\\right]_{1}^{2}$\n$\\ell n 2 + \\frac{a}{2} - a = \\log_{e}2 - \\frac{1}{7}$\n$\\frac{-a}{2} = -\\frac{1}{7}$\n$a = \\frac{2}{7}$\n$7a = 2$\n$7a - 3 = -1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2"
+    },
+    {
+     "key": "B",
+     "text": "0"
+    },
+    {
+     "key": "C",
+     "text": "-1"
+    },
+    {
+     "key": "D",
+     "text": "1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-06apr-s2-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Indefinite Integration",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\int \\frac{1}{a^{2}\\sin^{2}x + b^{2}\\cos^{2}x}\\,dx = \\frac{1}{12}\\tan^{-1}(3\\tan x) + $ constant, then the maximum value of $a\\sin x + b\\cos x$, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\int \\frac{\\sec^{2}x\\,dx}{a^{2}\\tan^{2}x + b^{2}}$\nlet $\\tan x = t$\n$\\sec^{2}x\\,dx = dt$\n$\\int \\frac{dt}{a^{2}t^{2} + b^{2}}$\n$\\frac{1}{a^{2}}\\int \\frac{dt}{t^{2} + \\left(\\frac{b}{a}\\right)^{2}}$\n$\\frac{1}{a^{2}}\\frac{1}{\\frac{b}{a}}\\tan^{-1}\\left(\\frac{t}{b}a\\right) + c$\n$\\frac{1}{ab}\\tan^{-1}\\left(\\frac{\\alpha}{b}\\tan x\\right) + c$\non comparing $\\frac{a}{b} = 3$\n$ab = 12$\n$a = 6,\\ b = 2$\nmaximum value of $6\\sin x + 2\\cos x$ is $\\sqrt{40}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{40}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{39}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{42}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{41}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $A$ is a square matrix of order 3 such that $\\det(A) = 3$ and $\\det\\left(\\mathrm{adj}\\left(-4\\,\\mathrm{adj}\\left(-3\\,\\mathrm{adj}\\left(3\\,\\mathrm{adj}\\left((2A)^{-1}\\right)\\right)\\right)\\right)\\right) = 2^{m}3^{n}$, then $m + 2n$ is equal to:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|A| = 3$\n$\\left|\\mathrm{adj}\\left(-4\\,\\mathrm{adj}\\left(-3\\,\\mathrm{adj}\\left(3\\,\\mathrm{adj}\\left((2A)^{-1}\\right)\\right)\\right)\\right)\\right|$\n$\\left|-4\\,\\mathrm{adj}\\left(-3\\,\\mathrm{adj}\\left(3\\,\\mathrm{adj}(2A)^{-1}\\right)\\right)\\right|^{2}$\n$4^{6}\\left|\\mathrm{adj}\\left(-3\\,\\mathrm{adj}\\left(3\\,\\mathrm{adj}(2A)^{-1}\\right)\\right)\\right|^{2}$\n$2^{12} \\cdot 3^{12}\\left|3\\,\\mathrm{adj}(2A)^{-1}\\right|^{8}$\n$2^{12} \\cdot 3^{12} \\cdot 3^{24}\\left|\\mathrm{adj}(2A)^{-1}\\right|^{8}$\n$2^{12} \\cdot 3^{36}\\left|(2A)^{-1}\\right|^{16}$\n$2^{12} \\cdot 3^{36}\\frac{1}{|2A|^{16}}$\n$2^{12} \\cdot 3^{36}\\frac{1}{2^{48}|A|^{16}}$\n$2^{12} \\cdot 3^{36}\\frac{1}{2^{48} \\cdot 3^{16}}$\n$\\frac{3^{20}}{2^{36}} = 2^{-36} \\cdot 3^{20}$\n$m = -36,\\ n = 20$\n$m + 2n = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "4"
+    },
+    {
+     "key": "D",
+     "text": "6"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
    "topic": "Continuity and Differentiability",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Let $g(x) = h(e^{x}) \\cdot e^{h(x)}$, and it is given that $h(0) = 0, h(1) = 1$, $h'(0) = h'(1) = 2$, then find $g'(0)$.",
+   "stem": "Let $[t]$ denote the greatest integer less than or equal to $t$. Let $f : [0, \\infty) \\to \\mathbb{R}$ be a function defined by $f(x) = \\left[\\frac{x}{2} + 3\\right] - \\left[\\sqrt{x}\\right]$. Let $S$ be the set of all points in the interval $[0, 8]$ at which $f$ is not continuous. Then $\\sum_{a \\in S} a$ is equal to ________.",
    "correct_key": null,
-   "correct_value": 4,
+   "correct_value": 17,
    "correct_keys": null,
-   "solution": "$g(x) = h(e^{x}) \\cdot e^{h(x)}$\n$\\Rightarrow g'(x) = h'(e^{x}) \\cdot e^{x}.e^{h(x)} + e^{h(x)} \\cdot h'(x) \\cdot h(e^{x})$\n$\\Rightarrow g'(0) = h'(1) \\cdot e^{0} \\cdot e^{h(0)} + e^{h(0)} \\cdot h'(0) \\cdot h(1)$\n$\\Rightarrow g'(0) = 2 \\times 1 \\times 1 + 1 \\cdot 2 \\cdot 1 = 4$",
+   "solution": "$\\left[\\frac{x}{2} + 3\\right]$ is discontinuous at $x = 2, 4, 6, 8$\n$\\sqrt{x}$ is discontinuous at $x = 1, 4$\n$F(x)$ is discontinuous at $x = 1, 2, 6, 8$\n$\\sum a = 1 + 2 + 6 + 8 = 17$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -271,15 +774,175 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 19,
+   "q_no": 22,
+   "topic": "Hyperbola",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The length of the latus rectum and directrices of a hyperbola with eccentricity $e$ are 9 and $x = \\pm\\frac{4}{\\sqrt{3}}$, respectively. Let the line $y - \\sqrt{3}\\,x + \\sqrt{3} = 0$ touch this hyperbola at $(x_{0}, y_{0})$. If $m$ is the product of the focal distances of the point $(x_{0}, y_{0})$, then $4e^{2} + m$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 61,
+   "correct_keys": null,
+   "solution": "Given $\\frac{2b^{2}}{a} = 9$ and $\\frac{a}{e} = \\pm\\frac{4}{\\sqrt{3}}$\nequation of tangent $y - \\sqrt{3}\\,x + \\sqrt{3} = 0$\nby equation of tangent\nLet slope $= S = \\sqrt{3}$\nConstant $= -\\sqrt{3}$\nBy condition of tangency\n$\\Rightarrow 6 = 6a^{2} - 9a$\n$\\Rightarrow a = 2,\\ b^{2} = 9$\nEquation of Hyperbola is\n$\\frac{x^{2}}{4} - \\frac{y^{2}}{9} = 1$ and for tangent\nPoint of contact is $(4, 3\\sqrt{3}) = (x_{0}, y_{0})$\nNow $e = \\sqrt{1 + \\frac{9}{4}} = \\frac{\\sqrt{13}}{2}$\nAgain product of focal distances\n$m = (x_{0}e + a)(x_{0}e - a)$\n$m + 4e^{2} = 20e^{2} - a^{2}$\n$= 20 \\times \\frac{13}{4} - 4 = 61$\n(There is a printing mistake in the equation of directrix $x = \\pm\\frac{4}{\\sqrt{3}}$.\nCorrected equation is $x = \\pm\\frac{4}{\\sqrt{13}}$ for directrix, as eccentricity must be greater than one, so question must be bonus)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $S(x) = (1 + x) + 2(1 + x)^{2} + 3(1 + x)^{3} + \\ldots + 60(1 + x)^{60}$, $x \\ne 0$, and $(60)^{2}\\,S(60) = a(b)^{b} + b$, where $a, b \\in \\mathbb{N}$, then $(a + b)$ equal to ______",
+   "correct_key": null,
+   "correct_value": 3660,
+   "correct_keys": null,
+   "solution": "$S(x) = (1 + x) + 2(1 + x)^{2} + 3(1 + x)^{3} + \\ldots + 60(1 + x)^{60}$\n$(1 + x)S = (1 + x)^{2} + \\ldots + 59(1 + x)^{60} + 60(1 + x)^{61}$\n$-xS = \\frac{(1 + x)\\left((1 + x)^{60} - 1\\right)}{x} - 60(1 + x)^{61}$\nPut $x = 60$\n$-60S = \\frac{61\\left((61)^{60} - 1\\right)}{60} - 60(61)^{61}$\non solving $3660$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
    "topic": "Definite Integrals",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "$\\int_{0}^{2}\\left(\\left[x^{2}\\right] + \\left[\\frac{x^{2}}{2}\\right]\\right)dx = a + b\\sqrt{2} + c\\sqrt{3}$, then find value of $a + b + c$",
+   "stem": "Let $[t]$ denote the largest integer less than or equal to $t$. If $\\int_{0}^{3}\\left([x^{2}] + \\left[\\frac{x^{2}}{2}\\right]\\right)dx = a + b\\sqrt{2} - \\sqrt{3} - \\sqrt{5} + c\\sqrt{6} - \\sqrt{7}$, where $a, b, c \\in \\mathbb{Z}$, then $a + b + c$ is equal to ______",
+   "correct_key": null,
+   "correct_value": 23,
+   "correct_keys": null,
+   "solution": "$\\int_{0}^{3}\\left[x^{2}\\right]dx + \\int_{0}^{3}\\left[\\frac{x^{2}}{2}\\right]dx$\n$= \\int_{0}^{1} 0\\,dx + \\int_{1}^{\\sqrt{2}} 1\\,dx + \\int_{\\sqrt{2}}^{\\sqrt{3}} 2\\,dx$\n$+ \\int_{\\sqrt{3}}^{2} 3\\,dx + \\int_{2}^{\\sqrt{5}} 4\\,dx + \\int_{\\sqrt{5}}^{\\sqrt{6}} 5\\,dx$\n$+ \\int_{\\sqrt{6}}^{\\sqrt{7}} 6\\,dx + \\int_{\\sqrt{7}}^{\\sqrt{8}} 7\\,dx + \\int_{\\sqrt{8}}^{3} 8\\,dx$\n$+ \\int_{0}^{\\sqrt{2}} 0\\,dx + \\int_{\\sqrt{2}}^{2} 1\\,dx$\n$+ \\int_{2}^{\\sqrt{6}} 2\\,dx + \\int_{\\sqrt{6}}^{\\sqrt{8}} 3\\,dx + \\int_{\\sqrt{8}}^{3} 4\\,dx = 31 - 6\\sqrt{2} - \\sqrt{3} - \\sqrt{5}$\n$-2\\sqrt{6} - \\sqrt{7}$\n$a = 31,\\ b = -6,\\ c = -2$\n$a + b + c = 31 - 6 - 2 = 23$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Probability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "From a lot of 12 items containing 3 defectives, a sample of 5 items is drawn at random. Let the random variable $X$ denote the number of defective items in the sample. Let items in the sample be drawn one by one without replacement. If variance of $X$ is $\\frac{m}{n}$, where $\\gcd(m, n) = 1$, then $n - m$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 71,
+   "correct_keys": null,
+   "solution": "$a = 1 - \\frac{{}^{3}C_{5}}{{}^{12}C_{5}}$\n$b = 3 \\cdot \\frac{{}^{9}C_{4}}{{}^{12}C_{5}}$\n$c = 3 \\cdot \\frac{{}^{9}C_{3}}{{}^{12}C_{5}}$\n$d = 1 \\cdot \\frac{{}^{9}C_{2}}{{}^{12}C_{5}}$\n$u = 0 \\cdot a + 1 \\cdot b + 2 \\cdot c + 3 \\cdot d = 1.25$\n$\\sigma^{2} = 0 \\cdot a + 1 \\cdot b + 4 \\cdot c + 9d - u^{2}$\n$\\sigma^{2} = \\frac{105}{176}$\nAns. $176 - 105 = 71$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Trigonometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In a triangle ABC, $BC = 7$, $AC = 8$, $AB = \\alpha \\in \\mathbb{N}$ and $\\cos A = \\frac{2}{3}$. If $49\\cos(3C) + 42 = \\frac{m}{n}$, where $\\gcd(m, n) = 1$, then $m + n$ is equal to ________",
+   "correct_key": null,
+   "correct_value": 39,
+   "correct_keys": null,
+   "solution": "$\\cos A = \\frac{b^{2} + c^{2} - a^{2}}{2bc}$\n$\\frac{2}{3} = \\frac{8^{2} + c^{2} - 7^{2}}{2 \\times 8 \\times c}$\n$C = 9$\n$\\cos C = \\frac{7^{2} + 8^{2} - 9^{2}}{2 \\times 7 \\times 8} = \\frac{2}{7}$\n$49\\cos 3C + 42$\n$49\\left(4\\cos^{3}C - 3\\cos C\\right) + 42$\n$49\\left(4\\left(\\frac{2}{7}\\right)^{3} - 3\\left(\\frac{2}{7}\\right)\\right) + 42$\n$= \\frac{32}{7}$\n$m + n = 32 + 7 = 39$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the shortest distance between the lines $\\frac{x - \\lambda}{3} = \\frac{y - 2}{-1} = \\frac{z - 1}{1}$ and $\\frac{x + 2}{-3} = \\frac{y + 5}{2} = \\frac{z - 4}{4}$ is $\\frac{44}{\\sqrt{30}}$, then the largest possible value of $|\\lambda|$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 43,
+   "correct_keys": null,
+   "solution": "$\\vec{a}_{1} = \\lambda\\hat{i} + 2\\hat{j} + \\hat{k}$\n$\\vec{a}_{2} = -2\\hat{i} - 5\\hat{j} + 4\\hat{k}$\n$\\vec{p} = 3\\hat{i} - \\hat{j} + \\hat{k}$\n$\\vec{q} = -3\\hat{i} + 2\\hat{j} + 4\\hat{k}$\n$(\\lambda + 2)\\hat{i} + 7\\hat{j} - 3\\hat{k} = \\vec{a}_{1} - \\vec{a}_{2}$\n$\\vec{p} \\times \\vec{q} = -6\\hat{i} - 15\\hat{j} + 3\\hat{k}$\n$\\frac{44}{\\sqrt{30}} = \\frac{|-6\\lambda - 12 - 105 - 9|}{\\sqrt{(-6)^{2} + (-15)^{2} + 3^{2}}}$\n$\\frac{44}{\\sqrt{30}} = \\frac{|6\\lambda + 126|}{3\\sqrt{30}}$\n$132 = |6\\lambda + 126|$\n$\\lambda = 1,\\ \\lambda = -43$\n$|\\lambda| = 43$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Quadratic Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $\\alpha, \\beta$ be roots of $x^{2} + \\sqrt{2}x - 8 = 0$. If $U_{n} = \\alpha^{n} + \\beta^{n}$, then $\\frac{U_{10} + \\sqrt{12}\\,U_{9}}{2U_{8}}$ is equal to ________.",
    "correct_key": null,
    "correct_value": 4,
    "correct_keys": null,
-   "solution": "$\\int_{0}^{2}\\left[x^{2}\\right]dx + \\int_{0}^{2}\\left[\\frac{x^{2}}{2}\\right]dx$\n$= 0 + [x]_{1}^{\\sqrt{2}} + 2[x]_{\\sqrt{2}}^{\\sqrt{3}} + 3[x]_{\\sqrt{3}}^{2} + 0 + [x]_{\\sqrt{2}}^{2}$\n$= (\\sqrt{2} - 1) + 2\\sqrt{3} - 2\\sqrt{2} + 6 - 3\\sqrt{3} + 2 - \\sqrt{2}$\n$= 7 - 2\\sqrt{2} - \\sqrt{3}$\n$a = 7, \\quad b = -2, c = -1$\nSo $a + b + c = 7 - 2 - 1 = 4$",
+   "solution": "$\\frac{\\alpha^{10} + \\beta^{10} + \\sqrt{2}\\left(\\alpha^{9} + \\beta^{9}\\right)}{2\\left(\\alpha^{8} + \\beta^{8}\\right)}$\n$\\frac{\\alpha^{8}\\left(\\alpha^{2} + \\sqrt{2}\\alpha\\right) + \\beta^{8}\\left(\\beta^{2} + \\sqrt{2}\\beta\\right)}{2\\left(\\alpha^{8} + \\beta^{8}\\right)}$\n$\\frac{8\\alpha^{8} + 8\\beta^{8}}{2\\left(\\alpha^{8} + \\beta^{8}\\right)} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Matrices and Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the system of equations\n$2x + 7y + \\lambda z = 3$\n$3x + 2y + 5z = 4$\n$x + \\mu y + 32z = -1$\nhas infinitely many solutions, then $(\\lambda - \\mu)$ is equal to ________ :",
+   "correct_key": null,
+   "correct_value": 38,
+   "correct_keys": null,
+   "solution": "$D = D_{1} = D_{2} = D_{3} = 0$\n$D_{3} = \\begin{vmatrix} 2 & 7 & 3 \\\\ 3 & 2 & 4 \\\\ 1 & \\mu & -1 \\end{vmatrix} = 0 \\Rightarrow \\mu = -39$\n$D = \\begin{vmatrix} 2 & 7 & \\lambda \\\\ 3 & 2 & 5 \\\\ 1 & -39 & 32 \\end{vmatrix} = 0 \\Rightarrow \\lambda = -1$\n$\\lambda - \\mu = 38$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If the solution $y(x)$ of the given differential equation $(e^{y} + 1)\\cos x\\,dx + e^{y}\\sin x\\,dy = 0$ passes through the point $\\left(\\frac{\\pi}{2}, 0\\right)$, then the value of $e^{y\\left(\\frac{\\pi}{6}\\right)}$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 3,
+   "correct_keys": null,
+   "solution": "$(e^{y} + 1)\\cos x\\,dx + e^{y}\\sin x\\,dy = 0$\n$\\Rightarrow d\\left(\\left(e^{y} + 1\\right)\\sin x\\right) = 0$\n$\\left(e^{y} + 1\\right)\\sin x = C$\nIt passes through $\\left(\\frac{\\pi}{2}, 0\\right)$\n$\\Rightarrow c = 2$\nNow, $x = \\frac{\\pi}{6}$\n$\\Rightarrow e^{y} = 3$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

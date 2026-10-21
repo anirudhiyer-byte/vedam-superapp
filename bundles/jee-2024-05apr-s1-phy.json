@@ -10,24 +10,115 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "1oyaQBVHQpHKJTWLmt5zynuW_CQ_kzoyp"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 3,
-   "topic": "Gravitation",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If time period of pendulum at R distance from earth surface is 4 units. Find the time period of pendulum at 2R distance from earth's surface. (where R = radius of earth)",
-   "correct_key": null,
-   "correct_value": 6,
+   "q_no": 1,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Light emerges out of a convex lens when a source of light kept at its focus. The shape of wavefront of the light is:",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$T \\propto \\frac{1}{\\sqrt{g}}$\n$\\frac{T_{1}}{T_{2}} = \\sqrt{\\frac{g_{2}}{g_{1}}} = \\sqrt{\\frac{g}{9} \\times \\frac{4}{g}} = \\frac{2}{3}$\n$T_{2} = \\frac{3T_{1}}{2} = \\frac{3}{2} \\times 4 = 6$",
+   "solution": "Light emerges parallel\n$\\therefore$ planar wavefront",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "Both spherical and cylindrical"
+    },
+    {
+     "key": "B",
+     "text": "Cylindrical"
+    },
+    {
+     "key": "C",
+     "text": "Spherical"
+    },
+    {
+     "key": "D",
+     "text": "Plane"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s1-phy-q31-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Following gates section is connected in a complete suitable circuit.\nFor which of the following combination, bulb will glow (ON):",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Bulb will glow if bulb have potential drop on it. One end of bulb must be at high (1) and other must be at low (0).\nOption (2) satisfy this condition",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$A = 0, B = 1, C = 1, D = 1$"
+    },
+    {
+     "key": "B",
+     "text": "$A = 1, B = 0, C = 0, D = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$A = 0, B = 0, C = 0, D = 1$"
+    },
+    {
+     "key": "D",
+     "text": "$A = 1, B = 1, C = 1, D = 0$"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-phy-q32.png",
+   "solution_figure": "jn24-05apr-s1-phy-q32-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $G$ be the gravitational constant and $u$ be the energy density then which of the following quantity have the dimension as that the $\\sqrt{uG}$ :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$[uG] = [(M^{1}L^{-1}T^{-2})(M^{-1}L^{3}T^{-2})]$\n$[uG] = [M^{0}L^{2}T^{-4}]$\n$[\\sqrt{uG}] = [L^{1}T^{-2}]$\nOption (2) is correct",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Pressure gradient per unit mass"
+    },
+    {
+     "key": "B",
+     "text": "Force per unit mass"
+    },
+    {
+     "key": "C",
+     "text": "Gravitational potential"
+    },
+    {
+     "key": "D",
+     "text": "Energy per unit mass"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -35,34 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "Electromagnetic Induction",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If magnetic field is perpendicular to the plane of rotation if rod then find potential difference between points P and Q in the given figure.",
-   "correct_key": null,
-   "correct_value": 0,
-   "correct_keys": null,
-   "solution": "$V_{P} = V_{Q}$\nP | e: $\\frac{B\\omega\\left(l^{2}\\right)}{4}$ | e: $\\frac{B\\omega\\left(l^{2}\\right)}{4}$ | Q\n$V_{P} = V_{Q} = 0$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s1-phy-q04.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 8,
-   "topic": "Semiconductor Electronics",
+   "topic": "Properties of Matter",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Truth table for a logic gate system is given below. Choose the correct option for which bulb will glow.",
-   "correct_key": "D",
+   "stem": "Given below are two statements :\n**Statement-I**: When a capillary tube is dipped into a liquid, the liquid neither rises nor falls in the capillary. The contact angle may be $0^\\circ$.\n**Statement-II**: The contact angle between a solid and a liquid is a property of the material of the solid and liquid as well :\nIn the light of above statement, choose the **correct** answer from the options given below.",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The bulb will glow if potential difference is 1\nSo, Potential difference = X–Y\nPotential difference = $\\left(\\overline{\\overline{A} + \\left(\\overline{B\\cdot C}\\right)}\\right)$\n(Potential difference)$_{D}$ = 1\nSo, the bulb will glow in case (D).",
+   "solution": "Capillary rise $h = \\frac{2T\\cos\\theta}{\\rho g r}$ ;\nIf $\\theta = 0^\\circ$ then rise is non-zero\n$\\therefore$ Statement-1 is incorrect.\nOption(1) is correct",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -70,61 +141,354 @@
    "options": [
     {
      "key": "A",
-     "text": "A = 1, B = 0, C = 0, D = 1"
+     "text": "**Statement-I** is false but **Statement-II** is true."
     },
     {
      "key": "B",
-     "text": "A = 0, B = 1, C = 1, D = 1"
+     "text": "Both **Statement-I** and **Statement-II** are true."
     },
     {
      "key": "C",
-     "text": "A = 1, B = 1, C = 1, D = 0"
+     "text": "Both **Statement-I** and **Statement-II** are false."
     },
     {
      "key": "D",
-     "text": "A = 1, B = 0, C = 1, D = 0"
+     "text": "**Statement-I** is true and **Statement-II** is false."
     }
    ],
-   "stem_figure": "j24-05apr-s1-phy-q08.png",
-   "solution_figure": "j24-05apr-s1-phy-q08-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 10,
-   "topic": "Wave Optics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In YDSE distance between two slits is 0.3 mm and distance of screen from plane of slits is 200 cm. If wavelength of light is used is 5000Å then find the distance of $3^{rd}$ bright fringe from central maxima.",
-   "correct_key": null,
-   "correct_value": 1,
-   "correct_keys": null,
-   "solution": "$y = n\\frac{D\\lambda}{d}$\n$= \\frac{3 \\times 2 \\times 5000 \\times 10^{-10}}{0.3 \\times 10^{-3}}$\n$= 10^{-2}\\ \\mathrm{m}$\n= 1 cm",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 13,
-   "topic": "Current Electricity",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "There is a conducting wire of radius 4 mm whose resistance is given $r = 2\\ \\Omega$. Now radius is halved keeping the length of wire same, then find the resistance of new wire.",
-   "correct_key": null,
-   "correct_value": 8,
+   "q_no": 5,
+   "topic": "Dual Nature of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\n**Statement-I:** Figure shows the variation of stopping potential with frequency ($\\nu$) for the two photosensitive materials $M_1$ and $M_2$. The slope gives value of $\\frac{h}{e}$, where $h$ is Planck's constant, $e$ is the charge of electron.\n**Statement-II:** $M_2$ will emit photoelectrons of greater kinetic energy for the incident radiation having same frequency.\nIn the light of the above statements, choose the most appropriate answer from the options given below.",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "r = 4 mm $\\quad$ r = 2mm\n$R = 2\\ \\Omega \\quad \\rho = \\frac{\\rho l}{\\pi r^{2}}$\n$R = \\frac{\\rho l}{A}$\n$R \\alpha \\frac{1}{r^{2}}$\n$\\frac{R_{1}}{R_{2}} = \\left(\\frac{r_{2}}{r_{1}}\\right)^{2} = \\left(\\frac{2}{4}\\right)^{2}$\n$R_{2} = 4R_{1} = 8\\ \\Omega$",
+   "solution": "$eV_{0} = h\\nu - \\phi$\n$V_{0} = \\frac{h}{e}\\nu - \\frac{\\phi}{e}$\n$M_2$ material has higher work function, so statement-(II) is incorrect.\nOption (1) is correct.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "**Statement-I** is correct and **Statement-II** is incorrect."
+    },
+    {
+     "key": "B",
+     "text": "**Statement-I** is incorrect but **Statement-II** is correct."
+    },
+    {
+     "key": "C",
+     "text": "Both **Statement-I** and **Statement-II** are incorrect."
+    },
+    {
+     "key": "D",
+     "text": "Both **Statement-I** and **Statement-II** are correct."
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-phy-q35.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The angle between vector $\\vec{Q}$ and the resultant of $(2\\vec{Q} + 2\\vec{P})$ and $(2\\vec{Q} - 2\\vec{P})$ is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{R} = (2\\vec{Q} + 2\\vec{P}) + (2\\vec{Q} - 2\\vec{P})$\n$\\vec{R} = 4\\vec{Q}$\nAngle between $\\vec{Q}$ and $\\vec{R}$ is zero\nOption (1) is correct",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0^\\circ$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan^{-1}\\frac{(2\\vec{Q} - 2\\vec{P})}{2\\vec{Q} + 2\\vec{P}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan^{-1}\\left(\\frac{P}{Q}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\tan^{-1}\\left(\\frac{2Q}{P}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In hydrogen like system the ratio of coulombian force and gravitational force between an electron and a proton is in the order of:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F_e = \\frac{kQ_1Q_2}{r^{2}} = \\frac{9\\times10^{9}\\times1.6\\times10^{-19}\\times1.6\\times10^{-19}}{r^{2}}$\n$F_g = \\frac{Gm_1m_2}{r^{2}} = \\frac{6.67\\times10^{-11}\\times9.1\\times10^{-31}\\times1.6\\times10^{-27}}{r^{2}}$\n$\\frac{F_e}{F_g} \\cong 0.23\\times10^{40} \\cong 2.3\\times10^{39}$\nOption (1)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10^{39}$"
+    },
+    {
+     "key": "B",
+     "text": "$10^{19}$"
+    },
+    {
+     "key": "C",
+     "text": "$10^{29}$"
+    },
+    {
+     "key": "D",
+     "text": "$10^{36}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Magnetic Effects of Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a co-axial straight cable, the central conductor and the outer conductor carry equal currents in opposite directions. The magnetic field is zero.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\oint \\vec{B}\\cdot d\\vec{\\ell} = \\mu_0 i_{enc} = 0$\n$\\therefore$ $B = 0$ outside the cable",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "inside the outer conductor"
+    },
+    {
+     "key": "B",
+     "text": "in between the two conductors"
+    },
+    {
+     "key": "C",
+     "text": "outside the cable"
+    },
+    {
+     "key": "D",
+     "text": "inside the inner conductor"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s1-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron rotates in a circle around a nucleus having positive charge $Ze$. Correct relation between total energy ($E$) of electron to its potential energy ($U$) is:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F = \\frac{k(Ze)(e)}{r^{2}} = \\frac{mv^{2}}{r}$\n$KE = \\frac{1}{2}mv^{2} = \\frac{1}{2}\\frac{K(Ze)(e)}{r}$\n$PE = -\\frac{K(Ze)(e)}{r}$\n$TE = \\frac{K(Ze)(e)}{2r} - \\frac{K(Ze)(e)}{r} = \\frac{-K(Ze)(e)}{2r}$\n$TE = \\frac{PE}{2}$\n$2TE = PE$\nOption (4)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$E = 2U$"
+    },
+    {
+     "key": "B",
+     "text": "$2E = 3U$"
+    },
+    {
+     "key": "C",
+     "text": "$E = U$"
+    },
+    {
+     "key": "D",
+     "text": "$2E = U$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the collision frequency of hydrogen molecules in a closed chamber at $27^\\circ$C is $Z$, then the collision frequency of the same system at $127^\\circ$ C is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Assuming mean free path constant.\n$f \\propto v \\propto \\sqrt{T}$\n$\\frac{f_1}{f_2} = \\sqrt{\\frac{T_1}{T_2}} = \\sqrt{\\frac{300}{400}}$\n$f_2 = \\sqrt{\\frac{4}{3}} f_1 = \\frac{2}{\\sqrt{3}}Z$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sqrt{3}}{2}Z$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4}{3}Z$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{\\sqrt{3}}Z$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3}{4}Z$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Ratio of radius of gyration of a hollow sphere to that of a solid cylinder of equal mass, for moment of Inertia about their diameter axis AB as shown in figure is $\\sqrt{\\frac{8}{x}}$. The value of x is:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I_{sphere} = \\frac{2}{3}MR^{2} = Mk_1^{2}$\n$I_{cylinder} = \\frac{1}{12}M(4R^{2}) + \\frac{1}{4}MR^{2} + M(2R)^{2}$\n$= \\frac{67}{12}MR^{2} = Mk_2^{2}$\n$\\frac{k_1}{k_2} = \\sqrt{\\frac{2}{3}\\cdot\\frac{12}{67}} = \\sqrt{\\frac{8}{67}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "34"
+    },
+    {
+     "key": "B",
+     "text": "17"
+    },
+    {
+     "key": "C",
+     "text": "67"
+    },
+    {
+     "key": "D",
+     "text": "51"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-phy-q41.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Two conducting circular loops A and B are placed in the same plane with their centres coinciding as shown in figure. The mutual inductance between them is:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\phi = Mi = BA$\n$\\Rightarrow Mi = \\frac{\\mu_0 i}{2b}\\pi a^{2}$\n$\\therefore M = \\frac{\\mu_0\\pi a^{2}}{2b}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\mu_0\\pi a^{2}}{2b}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\mu_0}{2\\pi}\\cdot\\frac{b^{2}}{a}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\mu_0\\pi b^{2}}{2a}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\mu_0}{2\\pi}\\cdot\\frac{a^{2}}{b}$"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-phy-q42.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match **list-I** with **list-II**:\nList-I | List-II\n(A) Kinetic energy of planet | (I) $-\\frac{GMm}{a}$\n(B) Gravitation Potential energy of Sun-planet system. | (II) $\\frac{GMm}{2a}$\n(C) Total mechanical energy of planet | (III) $\\frac{Gm}{r}$\n(D) Escape energy at the surface of planet for unit mass object | (IV) $-\\frac{GMm}{2a}$\n(Where $a$ = radius of planet orbit, $r$ = radius of planet, $M$ = mass of Sun, $m$ = mass of planet)\nChoose the correct answer from the options given below:",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$KE = \\frac{1}{2}mv^{2} = \\frac{GMm}{2a}$\n$PE = -2KE$\n$TE = -KE$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A) – II, (B) – I, (C) – IV, (D) – III"
+    },
+    {
+     "key": "B",
+     "text": "(A) – III, (B) – IV, (C) – I, (D) – II"
+    },
+    {
+     "key": "C",
+     "text": "(A) – I, (B) – IV, (C) – II, (D) – III"
+    },
+    {
+     "key": "D",
+     "text": "(A) – I, (B) – II, (C) – III, (D) – IV"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -132,34 +496,14 @@
   },
   {
    "q_no": 14,
-   "topic": "Alternating Current",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In the given LCR circuit. Find the voltage across the capacitor. ($\\omega = 100$)",
-   "correct_key": null,
-   "correct_value": 50,
-   "correct_keys": null,
-   "solution": "$X_{L} = \\omega L = 100 \\times 1 = 100$\n$\\omega = 100,\\ v_{0} = 50\\sqrt{2}$ (given)\n$X_{C} = \\frac{1}{\\omega_{C}} = \\frac{10}{100 \\times 200 \\times 10^{-6}}$\n$= 5 \\times 10^{2} = 500$\n$I_{0} = \\frac{V_{0}}{2}$\n$Z = \\sqrt{\\left(100 - 500\\right)^{2} + \\left(300\\right)^{2}}$\n$Z = \\sqrt{400^{2} + 300^{2}} = 500$\n$i_{0} = \\frac{50\\sqrt{2}}{500} = 0.141$\n$V_{rms)_{Cap.}} = \\frac{i_{0} \\times C}{\\sqrt{2}}$\n$= \\frac{\\left(0.141\\right)\\left(500\\right)}{\\sqrt{2}}$\n= 50 V.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s1-phy-q14.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 15,
-   "topic": "Mechanical Properties of Fluids",
+   "topic": "Laws of Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Statement-1: Capillary tube is inserted in liquid and the level of liquid does not rise or fall then contact angle may be $0^\\circ$.\nStatement-2: Contant angle depends on property of liquid and solid.",
-   "correct_key": "D",
+   "stem": "A wooden block of mass 5kg rests on soft horizontal floor. When an iron cylinder of mass 25 kg is placed on the top of the block, the floor yields and the block and the cylinder together go down with an acceleration of $0.1\\ \\mathrm{ms^{-2}}$. The action force of the system on the floor is equal to:",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$h = \\frac{2T\\cos\\theta}{\\rho rg}$\nIf h = 0 $\\Rightarrow \\cos\\theta = 0$\n$\\Rightarrow \\theta = \\frac{\\pi}{2}$",
+   "solution": "Taking $g = 9.8\\ \\mathrm{m/s^{2}}$\n$294 - N = 30 \\times 0.1$\n$N = 291$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -167,19 +511,56 @@
    "options": [
     {
      "key": "A",
-     "text": "Statement-1 and Statement-2 both are correct but $2^{nd}$ statements is not correct explanation of $1^{st}$ statement."
+     "text": "297 N"
     },
     {
      "key": "B",
-     "text": "Statement-1 and Statement-2 both are correct but $2^{nd}$ statements is correct explanation of $1^{st}$ statement."
+     "text": "294 N"
     },
     {
      "key": "C",
-     "text": "Statement-1 is correct and Statement-2 is wrong."
+     "text": "291 N"
     },
     {
      "key": "D",
-     "text": "Statement-1 is incorrect and Statement-2 is correct."
+     "text": "196 N"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s1-phy-q44-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A simple pendulum doing small oscillations at a place R height above earth surface has time period of $T_1 = 4$ s. $T_2$ would be it's time period if it is brought to a point at a height 2R from earth surface. Choose the correct relation [R = radius of Earth]:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T_1 = 2\\pi\\sqrt{\\frac{\\ell}{GM}(2R)^{2}}$\n$T_2 = 2\\pi\\sqrt{\\frac{\\ell}{GM}(3R)^{2}}$\n$\\therefore \\frac{T_1}{T_2} = \\frac{2}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$T_1 = T_2$"
+    },
+    {
+     "key": "B",
+     "text": "$2T_1 = 3T_2$"
+    },
+    {
+     "key": "C",
+     "text": "$3T_1 = 2T_2$"
+    },
+    {
+     "key": "D",
+     "text": "$2T_1 = T_2$"
     }
    ],
    "stem_figure": null,
@@ -188,35 +569,200 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 17,
-   "topic": "Laws of Motion",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "There is a two-block system placed on a platform which is moving downward with an acceleration of $2\\ \\mathrm{m/s^{2}}$ then find the normal force on block by the platform.",
-   "correct_key": null,
-   "correct_value": 240,
+   "q_no": 16,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of mass 50 kg is lifted to a height of 20 m from the ground in the two different ways as shown in the figures. The ratio of work done against the gravity in both the respective cases, will be:",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$30g - N = (30 \\times 2)$\n300 – N = 60\nN = 240 N",
+   "solution": "Work done by gravity is independent of path. It depends only on vertical displacement so work done in both cases will be same.\nOption (1) is correct",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s1-phy-q17.png",
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3} : 2$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 2$"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-phy-q46.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Time periods of oscillation of the same simple pendulum measured using four different measuring clocks were recorded as 4.62 s, 4.632 s, 4.6 s and 4.64 s. The arithmetic mean of these reading in correct significant figure is.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Sum of number by considering significant digit\nsum $= 4.6 + 4.6 + 4.6 + 4.6 = 18.4$\nArithmetic Mean $= \\frac{sum}{4} = \\frac{18.4}{4} = 4.6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4.623 s"
+    },
+    {
+     "key": "B",
+     "text": "4.62 s"
+    },
+    {
+     "key": "C",
+     "text": "4.6 s"
+    },
+    {
+     "key": "D",
+     "text": "5 s"
+    }
+   ],
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 18,
-   "topic": "Motion in a Plane",
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The heat absorbed by a system in going through the given cyclic process is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta U = 0$ (Cyclic process)\n$\\Delta Q = W =$ area of P-V curve.\n$= \\pi \\times (140\\times10^{3}\\ \\mathrm{Pa}) \\times (140\\times10^{-6}\\ \\mathrm{m^{3}})$\n$\\Delta Q = 61.6\\ \\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "61.6 J"
+    },
+    {
+     "key": "B",
+     "text": "431.2 J"
+    },
+    {
+     "key": "C",
+     "text": "616 J"
+    },
+    {
+     "key": "D",
+     "text": "19.6 J"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-phy-q48.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In the given figure $R_1 = 10\\Omega$, $R_2 = 8\\Omega$, $R_3 = 4\\Omega$ and $R_4 = 8\\Omega$. Battery is ideal with emf 12V. Equivalent resistant of the circuit and current supplied by the battery are respectively.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Here $R_2, R_3, R_4$ are in parallel\n$\\frac{1}{R_{234}} = \\frac{1}{R_2} + \\frac{1}{R_3} + \\frac{1}{R_4}$\n$R_{234} = 2\\Omega$\n$R_{234}$ is in series with $R_1$ so\n$R_{eq} = R_{234} + R_1 = 2 + 10 = 12\\Omega$\n$i = \\frac{12}{12} = 1\\ \\mathrm{Amp}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$12\\ \\Omega$ and $11.4\\ \\mathrm{A}$"
+    },
+    {
+     "key": "B",
+     "text": "$10.5\\ \\Omega$ and $1.14\\ \\mathrm{A}$"
+    },
+    {
+     "key": "C",
+     "text": "$10.5\\ \\Omega$ and $1\\ \\mathrm{A}$"
+    },
+    {
+     "key": "D",
+     "text": "$12\\ \\Omega$ and $1\\ \\mathrm{A}$"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s1-phy-q49.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An alternating voltage of amplitude 40 V and frequency 4 kHz is applied directly across the capacitor of 12 $\\mu$F. The maximum displacement current between the plates of the capacitor is nearly:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Displacement current is same as conduction current in capacitor.\n$X_C = \\frac{1}{\\omega C} = \\frac{1}{2\\pi f C}$\n$= \\frac{1}{2\\pi\\times4\\times10^{3}\\times12\\times10^{-6}} = 3.317\\Omega$\n$I = \\frac{V}{X_C} = \\frac{40}{3.317} = 12\\mathrm{A}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "13 A"
+    },
+    {
+     "key": "B",
+     "text": "8 A"
+    },
+    {
+     "key": "C",
+     "text": "10 A"
+    },
+    {
+     "key": "D",
+     "text": "12 A"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Wave Optics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If $2\\vec{P} + 2\\vec{Q} = \\vec{r}_{1}$ and $2\\vec{Q} - 2\\vec{P} = \\vec{r}_{2}$ then angle between the resultant vector of $\\vec{r}_{1} + \\vec{r}_{2}$ and $\\vec{Q}$ is:",
+   "stem": "In Young's double slit experiment, carried out with light of wavelength $5000\\ \\mathrm{\\AA}$, the distance between the slits is 0.3 mm and the screen is at 200 cm from the slits. The central maximum is at $x = 0$ cm. The value of $x$ for third maxima is ............. mm.",
    "correct_key": null,
-   "correct_value": 0,
+   "correct_value": 10,
    "correct_keys": null,
-   "solution": "$\\vec{r}_{1} + \\vec{r}_{2} = 4\\vec{Q}$\n$\\left(\\vec{r}_{1} + \\vec{r}_{2}\\right)$ is parallel to $\\vec{Q}$\nHence angle is $= 0^\\circ$",
+   "solution": "$\\beta = \\frac{\\lambda D}{d} = \\frac{5\\times10^{-7}\\times2}{3\\times10^{-4}} = \\frac{10\\times10^{-3}}{3}\\ \\mathrm{m}$\nFor $3^{rd}$ maxima $y_3 = 3\\beta = 10\\times10^{-3}\\ \\mathrm{m} = 10\\ \\mathrm{mm}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -228,15 +774,35 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 21,
-   "topic": "Electrostatic Potential and Capacitance",
+   "q_no": 22,
+   "topic": "Magnetic Effects of Current",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Three capacitors having capacitance $25\\ \\mu\\mathrm{F}$, $45\\ \\mu\\mathrm{F}$ and $30\\ \\mu\\mathrm{F}$ are connect in parallel and energy stored in the given combination is E.\nNow the given capacitors are connected in series and energy stored in the given combination is $\\frac{9E}{x}$. Find the value of x (consider same power supply in both cases).",
+   "stem": "A 2A current carrying straight metal wire of resistance $1\\ \\Omega$, resistivity $2\\times10^{-6}\\ \\Omega\\mathrm{m}$, area of cross-section $10\\ \\mathrm{mm^{2}}$ and mass 500 g is suspended horizontally in mid air by applying a uniform magnetic field $\\vec{B}$. The magnitude of $B$ is ............. $\\times 10^{-1}$ T (given, $g = 10\\ \\mathrm{m/s^{2}}$)",
    "correct_key": null,
-   "correct_value": 86,
+   "correct_value": 5,
    "correct_keys": null,
-   "solution": "$E = \\frac{1}{2}C_{eq}v^{2}$\nFor parallel combination, $C_{eq} = 25 + 45 + 30 = 100\\ \\mu\\mathrm{F}$\n$E = \\frac{1}{2} \\times 100 \\times v^{2} = 50v^{2}\\ \\mu\\mathrm{J}$\nFor series combination\n$\\frac{1}{C_{eq}} = \\frac{1}{25} + \\frac{1}{45} + \\frac{1}{30}$\n$C_{eq} = \\frac{450}{43}$\n$E' = \\frac{1}{2}C_{eq}V^{2}$\n$E' = \\frac{1}{2} \\times \\frac{450}{43}V^{2}$\n$\\frac{E'}{E} = \\frac{450}{43 \\times 100}$\n$E' = \\frac{9}{86}E$\n$E' = \\frac{9E}{x} \\Rightarrow \\boxed{x = 86}$",
+   "solution": "$R = \\frac{\\rho\\ell}{A} \\Rightarrow \\frac{2\\times10^{-6}\\times\\ell}{10^{-5}} = 1 \\Rightarrow \\ell = 5$\n$mg = Bi\\ell$\n$B = \\frac{mg}{i\\ell} = \\frac{5}{2\\times5} = 0.5 = 5\\times10^{-1}$ Tesla",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Capacitors",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The electric field between the two parallel plates of a capacitor of 1.5 $\\mu$F capacitance drops to one third of its initial value in 6.6 $\\mu$s when the plates are connected by a thin wire. The resistance of this wire is .............. $\\Omega$. (Given, $\\log 3 = 1.1$)",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$E = \\frac{E_0}{3} \\Rightarrow V = \\frac{V_0}{3}$\n$\\frac{V_0}{3} = V_0 e^{-\\frac{t}{\\tau}}$\n$t = \\tau \\ln 3$\n$6.6\\times10^{-6} = R(1.5\\times10^{-6})(1.1)$\n$R = \\frac{6}{1.5} = 4\\Omega$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -249,34 +815,54 @@
   },
   {
    "q_no": 24,
-   "topic": "Work, Energy and Power",
+   "topic": "Laws of Motion",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A block is moved up on a smooth wedge inclined at $60^\\circ$ and another block is moved vertically upward upto same height, find the ratio of work done by gravitational force in both the cases.",
+   "stem": "Three blocks $M_1$, $M_2$, $M_3$ having masses 4 kg, 6 kg and 10 kg respectively are hanging from a smooth pulley using rope 1, 2 and 3 as shown in figure. The tension in the rope 1, $T_1$ when they are moving upward with acceleration of $2\\ \\mathrm{ms^{-2}}$ is ............... N (if $g = 10\\ \\mathrm{m/s^{2}}$)",
    "correct_key": null,
-   "correct_value": 1,
+   "correct_value": 240,
    "correct_keys": null,
-   "solution": "$w_{1} = mgh$\n$w_{2} = mgh$\n$\\frac{w_{1}}{w_{2}} = 1$",
+   "solution": "FBD of $M_1$ :\n$T_1 - 200 = (4 + 6 + 10)\\times2$\n$\\therefore T_1 = 240$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j24-05apr-s1-phy-q24.png",
-   "solution_figure": null,
+   "stem_figure": "jn24-05apr-s1-phy-q54.png",
+   "solution_figure": "jn24-05apr-s1-phy-q54-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 25,
-   "topic": "Electromagnetic Waves",
+   "topic": "Properties of Matter",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Potential difference between the plates of capacitor of capacitance $12\\ \\mu\\mathrm{F}$ is 40V. The frequency is 40 KHZ. Find displacement current.",
+   "stem": "The density and breaking stress of a wire are $6\\times10^{4}\\ \\mathrm{kg/m^{3}}$ and $1.2\\times10^{8}\\ \\mathrm{N/m^{2}}$ respectively. The wire is suspended from a rigid support on a planet where acceleration due to gravity is $\\frac{1^{rd}}{3}$ of the value on the surface of earth. The maximum length of the wire with breaking is ............ m (take, $g = 10\\ \\mathrm{m/s^{2}}$)",
    "correct_key": null,
-   "correct_value": 0.0381,
+   "correct_value": 600,
    "correct_keys": null,
-   "solution": "$C = 12\\ \\mu\\mathrm{f}$\nV = 40 V\n$f = 40\\mathrm{kHz} = 40 \\times 10^{3}\\ \\mathrm{Hz}$\n$\\frac{dv}{dt} = 2\\pi fV$\n$\\frac{dv}{dt} = 2\\pi \\times 40 \\times 10^{3} \\times 40$\n$\\frac{dv}{dt} = 3200\\pi$\n$I_{d} = c\\frac{dv}{dt}$\n$I_{d} = 12 \\times 10^{-6} \\times 3000\\pi$\n$I_{d} \\approx 0.0381\\ \\mathrm{A}$",
+   "solution": "$T = mg$\n$\\sigma = \\frac{T}{A} = \\frac{mg}{A}$\n$\\frac{(\\sigma A\\ell)g}{A}$\n$\\Rightarrow \\ell = \\frac{\\sigma}{\\rho g} = \\frac{1.2\\times10^{8}\\times3}{6\\times10^{4}\\times10} = 600$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s1-phy-q55-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Kinematics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A body moves on a frictionless plane starting from rest. If $S_n$ is distance moved between $t = n - 1$ and $t = n$ and $S_{n-1}$ is distance moved between $t = n - 2$ and $t = n - 1$, then the ratio $\\frac{S_{n-1}}{S_n}$ is $\\left(1 - \\frac{2}{x}\\right)$ for $n = 10$. The value of $x$ is ............",
+   "correct_key": null,
+   "correct_value": 19,
+   "correct_keys": null,
+   "solution": "$S_n = \\frac{1}{2}a(2n-1) = \\frac{19a}{2}$\n$S_{n-1} = \\frac{1}{2}a(2n-3) = \\frac{17a}{2}$\n$\\frac{S_{n-1}}{S_n} = \\frac{17}{19} = 1 - \\frac{2}{x} \\Rightarrow x = 19$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -288,15 +874,75 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 26,
-   "topic": "Units and Measurements",
+   "q_no": 27,
+   "topic": "Nuclei",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Find arithmetic mean of 4.623, 4.6, 4.62 and 4.69. (Using significant figures)",
+   "stem": "If three helium nuclei combine to form a carbon nucleus then the energy released in this reaction is .......... $\\times 10^{-2}$ MeV. (Given 1 u = 931 MeV/$c^{2}$, atomic mass of helium = 4.002603 u)",
    "correct_key": null,
-   "correct_value": 4.6,
+   "correct_value": 727,
    "correct_keys": null,
-   "solution": "$\\frac{4.623 + 4.6 + 4.62 + 4.69}{4} = 4.633$\n= 4.6 Ans.",
+   "solution": "Reaction :\n$3\\,{}_{2}^{4}\\mathrm{He} \\longrightarrow {}_{6}^{12}\\mathrm{C} + \\gamma$ rays\nMass defect $= \\Delta m = (3m_{He} - m_C)$\n$= (3\\times4.002603 - 12) = 0.007809\\ \\mathrm{u}$\nEnergy released\n$= 931\\,\\Delta m$ MeV\n$= 7.27$ MeV $= 727\\times10^{-2}$ MeV",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Alternating Current",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "An ac source is connected in given series LCR circuit. The rms potential difference across the capacitor of 20 $\\mu$F is .............. V.",
+   "correct_key": null,
+   "correct_value": 50,
+   "correct_keys": null,
+   "solution": "$X_L = \\omega L = 100\\times1 = 100\\Omega$\n$X_C = \\frac{1}{\\omega C} = \\frac{1}{100\\times20\\times10^{-6}} = 500\\Omega$\n$Z = \\sqrt{(X_L - X_C)^{2} + R^{2}}$\n$\\sqrt{(100-500)^{2} + 300^{2}}$\n$Z = 500\\Omega$\n$i_{rms} = \\frac{V_{rms}}{Z} = \\frac{50}{500} = 0.1\\mathrm{A}$\nrms voltage across capacitor\n$V_{rms} = X_C\\, i_{rms}$\n$= 500\\times0.1 = 50\\mathrm{V}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s1-phy-q58.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "In the experiment to determine the galvanometer resistance by half-deflection method, the plot of $\\frac{1}{\\theta}$ vs the resistance ($R$) of the resistance box is shown in the figure. The figure of merit of the galvanometer is .............. $\\times10^{-1}$ A/division. [The source has emf 2V]",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "$i = K\\theta$\n$\\frac{2}{G+R} = K\\theta$\n$\\Rightarrow \\frac{1}{\\theta} = \\frac{(G+R)K}{2} = R\\left(\\frac{K}{2}\\right) + \\frac{KG}{2}$\nSlope $= \\frac{K}{2} = \\frac{1}{4} \\Rightarrow K = 0.5 = 5\\times10^{-1}\\ \\mathrm{A}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s1-phy-q59.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Capacitors",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Three capacitors of capacitances 25 $\\mu$F, 30 $\\mu$F and 45 $\\mu$F are connected in parallel to a supply of 100 V. Energy stored in the above combination is E. When these capacitors are connected in series to the same supply, the stored energy is $\\frac{9}{x}E$. The value of $x$ is .................",
+   "correct_key": null,
+   "correct_value": 86,
+   "correct_keys": null,
+   "solution": "In parallel combination : Potential difference is same across all\nEnergy $= \\frac{1}{2}(C_1 + C_2 + C_3)V^{2}$\n$= \\frac{1}{2}(25+30+45)\\times(100)^{2}\\times10^{-6} = 0.5 = E$\nIn series combination: Charge is same on all.\n$\\frac{1}{C_{equ}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\frac{1}{C_3} = \\frac{1}{25} + \\frac{1}{30} + \\frac{1}{45}$\n$\\frac{1}{C_{equ}} = \\frac{(18+15+10)}{450} = \\frac{43}{450} \\Rightarrow C_{equ} = \\frac{450}{43}$\nEnergy $= \\frac{Q^{2}}{2C_1} + \\frac{Q^{2}}{2C_2} + \\frac{Q^{2}}{2C_3}$\n$= \\frac{Q^{2}}{2}\\left[\\frac{1}{C_1} + \\frac{1}{C_2} + \\frac{1}{C_3}\\right]$\n$\\frac{(V\\times C_{equ})^{2}}{2}\\times\\frac{1}{C_{equ}} = \\frac{V^{2}C_{equ}}{2}$\n$\\frac{(100)^{2}}{2}\\times\\frac{450}{43}\\times10^{-6}$\n$\\Rightarrow \\frac{4.5}{86} = \\frac{9}{x}E = \\frac{9}{x}\\times0.5 \\Rightarrow x = 86$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

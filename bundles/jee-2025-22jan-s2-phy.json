@@ -10,7 +10,7 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "10luG5flRaz15jfCzxWtC8WSrHJPEh_MZ"
+  "source_file_id": null
  },
  "questions": [
   {
@@ -18,11 +18,11 @@
    "topic": "Ray Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "An equiconvex lens of focal length $f$, is cut into four parts as shown in the diagram. The focal length of each part is",
-   "correct_key": "B",
+   "stem": "A symmetric thin biconvex lens is cut into four equal parts by two planes AB and CD as shown in figure. If the power of original lens is $4D$ then the power of a part of the divided lens is",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$f = \\frac{R}{2(\\mu - 1)}$ (equiconvex lens)\n$f' = \\frac{R}{(\\mu - 1)}$ (plans convex lens)\n$f' = 2f$",
+   "solution": "$\\frac{1}{f_1} = (\\mu-1)\\frac{2}{R} = P = 4D$\n$\\frac{1}{f_2} = (\\mu-1)\\frac{1}{R} = \\frac{P}{2} = 2D$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,22 +30,22 @@
    "options": [
     {
      "key": "A",
-     "text": "$f$"
+     "text": "$8D$"
     },
     {
      "key": "B",
-     "text": "$2f$"
+     "text": "$4D$"
     },
     {
      "key": "C",
-     "text": "$f/2$"
+     "text": "$D$"
     },
     {
      "key": "D",
-     "text": "$4f$"
+     "text": "$2D$"
     }
    ],
-   "stem_figure": "j25-22jan-s2-phy-q01.png",
+   "stem_figure": "jn25-22jan-s2-phy-q26.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
@@ -55,11 +55,11 @@
    "topic": "Mechanical Properties of Fluids",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Radius of a tube decreases from $2R$ to $R$ in which ideal liquid is flowing at same level.\nSpeed at one end is 2 m/s as shown, find speed $v$ at other end",
-   "correct_key": "D",
+   "stem": "A small rigid spherical ball of mass $M$ is dropped in a long vertical tube containing glycerine. The velocity of the ball becomes constant after some time. If the density of glycerine is half of the density of the ball, then the viscous force acting on the ball will be\n(consider $g$ as acceleration due to gravity)",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$A_1 v_1 = A_2 = v_2$ equation of continuity\n$\\pi(2R)^{2} \\cdot 2 = \\pi R^{2} v$\n$v = 8$ m/s",
+   "solution": "$a = 0$\n$mg - F_B - f = 0$\n$\\Rightarrow mg - \\frac{mg}{2} - f = 0$\n$\\therefore f = \\frac{mg}{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,22 +67,22 @@
    "options": [
     {
      "key": "A",
-     "text": "4 m/s"
+     "text": "$\\frac{3}{2}Mg$"
     },
     {
      "key": "B",
-     "text": "1 m/s"
+     "text": "$\\frac{Mg}{2}$"
     },
     {
      "key": "C",
-     "text": "2 m/s"
+     "text": "$Mg$"
     },
     {
      "key": "D",
-     "text": "8 m/s"
+     "text": "$2\\,Mg$"
     }
    ],
-   "stem_figure": "j25-22jan-s2-phy-q02.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
@@ -92,11 +92,11 @@
    "topic": "Units and Measurements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The dimensional formula of capacitance is",
-   "correct_key": "C",
+   "stem": "The maximum percentage error in the measurment of density of a wire is\n[Given, mass of wire $= (0.60 \\pm 0.003)\\ \\mathrm{g}$\nradius of wire $= (0.50 \\pm 0.01)\\ \\mathrm{cm}$\nlength of wire $(10.00 \\pm 0.05)\\ \\mathrm{cm}$]",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The energy stored in capacitor in term of charge\n$E = \\frac{Q^{2}}{2C}$\n$C = \\frac{Q^{2}}{2E}$\n$[C] = \\frac{[A^{2}T^{2}]}{[ML^{2}T^{-2}]}$\n$= [\\mathrm{M^{-1}L^{-2}T^{4}A^{2}}]$",
+   "solution": "$d = \\frac{m}{\\mathrm{vol.}} = \\frac{m}{\\pi R^{2}\\ell} \\Rightarrow \\frac{d\\rho}{\\rho} = \\frac{dm}{m} + \\frac{2dR}{R} + \\frac{d\\ell}{\\ell}$\n$\\Rightarrow \\frac{d\\rho}{\\rho} = \\left(\\frac{0.003}{0.6} + \\frac{2 \\times 0.01}{0.5} + \\frac{0.05}{10}\\right)100 = 5\\%$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$[\\mathrm{M^{-1}L^{2}T^{2}A^{-3}}]$"
+     "text": "$4$"
     },
     {
      "key": "B",
-     "text": "$[\\mathrm{M^{-1}L^{-2}T^{4}A^{3}}]$"
+     "text": "$5$"
     },
     {
      "key": "C",
-     "text": "$[\\mathrm{M^{-1}L^{-2}T^{4}A^{2}}]$"
+     "text": "$8$"
     },
     {
      "key": "D",
-     "text": "$[\\mathrm{M^{-1}L^{-2}T^{2}A^{2}}]$"
+     "text": "$7$"
     }
    ],
    "stem_figure": null,
@@ -126,129 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "Moving Charges and Magnetism",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "A proton is moving with uniform velocity of $2 \\times 10^{8}$ m/s in uniform magnetic and electric fields which are perpendicular to each other. If electric field is switched off then proton moves in circular path of radius $1.6 \\times 10^{-5}$ m. Then magnetic field is $B$",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$r = \\frac{mv}{qB} \\Rightarrow 1.6 \\times 10^{-5} = \\frac{1.6 \\times 10^{-27} \\times 2 \\times 10^{8}}{1.6 \\times 10^{-19} \\times B}$\n$B = \\frac{5}{4} \\times 10^{5} = 1.25 \\times 10^{5}$ T",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$5 \\times 10^{-5}$ T"
-    },
-    {
-     "key": "B",
-     "text": "$1.2 \\times 10^{5}$ T"
-    },
-    {
-     "key": "C",
-     "text": "$2.5 \\times 10^{4}$ T"
-    },
-    {
-     "key": "D",
-     "text": "$2.5 \\times 10^{2}$ T"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 5,
-   "topic": "Electromagnetic Induction",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "A conducting circular ring is moving with a constant velocity in a uniform magnetic field as shown. Identify the correct graph between induced emf vs time",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\delta = 2Bv\\sqrt{R^{2} - x^{2}}$ (Equation of an ellipse)\n$x = R - vt$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "",
-     "figure": "j25-22jan-s2-phy-q05-optA.png"
-    },
-    {
-     "key": "B",
-     "text": "",
-     "figure": "j25-22jan-s2-phy-q05-optB.png"
-    },
-    {
-     "key": "C",
-     "text": "",
-     "figure": "j25-22jan-s2-phy-q05-optC.png"
-    },
-    {
-     "key": "D",
-     "text": "",
-     "figure": "j25-22jan-s2-phy-q05-optD.png"
-    }
-   ],
-   "stem_figure": "j25-22jan-s2-phy-q05.png",
-   "solution_figure": "j25-22jan-s2-phy-q05-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 6,
-   "topic": "Work, Energy and Power",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "The displacement of a particle moving under the action of a force $\\vec{F} = 2\\hat{i} + b\\hat{j} + \\hat{k}$ is $\\vec{d} = \\hat{i} + \\hat{j} + \\hat{k}$. Find the value of $b$ if the work done by the force is zero.",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Work $= \\vec{F} \\cdot \\vec{s} = (2\\hat{i} + b\\hat{j} + \\hat{k}) \\cdot (\\hat{i} + \\hat{j} + \\hat{k})$\n$= 2 + 1 + 1 = 3 + b = 0$\n$\\Rightarrow b = -3$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "0"
-    },
-    {
-     "key": "B",
-     "text": "$+3$"
-    },
-    {
-     "key": "C",
-     "text": "$-3$"
-    },
-    {
-     "key": "D",
-     "text": "$-1$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 7,
    "topic": "Alternating Current",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In a series LCR circuit the maximum amplitude of current is $I_0$ when the resistance is $R$. What is the maximum amplitude of current if the resistor is replaced by a resistor of resistance $\\frac{R}{2}$.",
+   "stem": "A series LCR circuit is connected to an alternating source of emf $E$. The current amplitude at resonant frequency is $I_0$. If the value of resistance $R$ becomes twice of its initial value then amplitude of current at resonance will be",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Current has maximum amplitude at resonance.\n$I_0 = \\frac{\\xi_0}{R}$\n$\\Rightarrow I_0' = \\frac{\\xi_0}{R/2} = \\frac{2\\xi_0}{R} = 2I_0$",
+   "solution": "Initially, $I_0 = \\frac{\\varepsilon_m}{R}$\nFinally, $I_0^{1} = \\frac{\\varepsilon_m}{2R} = \\frac{I_0}{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -260,15 +145,126 @@
     },
     {
      "key": "B",
-     "text": "$2I_0$"
-    },
-    {
-     "key": "C",
      "text": "$\\frac{I_0}{2}$"
     },
     {
+     "key": "C",
+     "text": "$\\frac{I_0}{\\sqrt{2}}$"
+    },
+    {
      "key": "D",
-     "text": "$\\frac{2I_0}{3}$"
+     "text": "$2I_0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For a short dipole placed at origin $O$, the dipole moment $P$ is along $x$-axis, as shown in the figure.\nIf the electric potential and electric field at $A$ are $V_0$ and $E_0$, respectively, then the correct combination of the electric potential and electric field, respectively, at point $B$ on the $y$-axis is given by",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$E_A = \\frac{2kP}{r^{3}} = E_0$ & $V_A = \\frac{kP}{r^{2}} = v_0$\n$E_B = \\frac{kP}{(2r)^{3}} = \\frac{E_0}{16}$ & $V_B = \\frac{k\\vec{P}.\\hat{r}}{r^{2}} = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{V_0}{2}$ and $\\frac{E_0}{16}$"
+    },
+    {
+     "key": "B",
+     "text": "zero and $\\frac{E_0}{8}$"
+    },
+    {
+     "key": "C",
+     "text": "zero and $\\frac{E_0}{16}$"
+    },
+    {
+     "key": "D",
+     "text": "$V_0$ and $\\frac{E_0}{4}$"
+    }
+   ],
+   "stem_figure": "jn25-22jan-s2-phy-q30.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which one of the following is the correct dimensional formula for the capacitance in $F$ ? $M$, $L$, $T$ and $C$ stand for unit of mass, length, time and charge,",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C = \\frac{q}{V} = \\frac{q.q}{V.q} = \\frac{q^{2}}{WD} = \\frac{C^{2}}{ML^{2}T^{-2}} = C^{2}M^{-1}L^{-2}T^{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[F] = [C^{2}M^{-2}L^{2}T^{2}]$"
+    },
+    {
+     "key": "B",
+     "text": "$[F] = [CM^{-2}L^{-2}T^{-2}]$"
+    },
+    {
+     "key": "C",
+     "text": "$[F] = [CM^{-1}L^{-2}T^{2}]$"
+    },
+    {
+     "key": "D",
+     "text": "$[F] = [C^{2}M^{-1}L^{-2}T^{2}]$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "An electron projected perpendicular to a uniform magnetic field $B$ moves in a circle. If Bohr's quantization is applicable, then the radius of the electronic orbit in the first excited state is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$r = \\frac{mv}{eB}$ & $mvr = \\frac{nh}{2\\pi} \\Rightarrow (eBr)r = \\frac{nh}{2\\pi}$\n$\\Rightarrow r = \\sqrt{\\frac{nh}{2\\pi eB}}$\nfirst excited state : $n = 2$ $\\therefore r = \\sqrt{\\frac{h}{\\pi eB}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{\\frac{2h}{\\pi eB}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{\\frac{4h}{\\pi eB}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\frac{h}{2\\pi eB}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{h}{\\pi eB}}$"
     }
    ],
    "stem_figure": null,
@@ -278,14 +274,14 @@
   },
   {
    "q_no": 8,
-   "topic": "Wave Optics",
+   "topic": "Kinetic Theory of Gases",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Statement-I : Fringe width of red light is more than fringe width of violet light.\nStatement-II : Fringe width is directly proportional to the wavelength of light used.\nChoose the correct option.",
-   "correct_key": "B",
+   "stem": "For a diatomic gas, if $\\gamma_1 = \\left(\\frac{C_p}{C_v}\\right)$ for rigid molecules and $\\gamma_2 = \\left(\\frac{C_p}{C_v}\\right)$ for another diatomic molecules, but also having vibrational modes. Then, which one of the following options is correct ?\n($C_p$ and $C_v$ are specific heats of the gas at constant pressure and volume)",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Fringe width $(\\beta) = \\frac{\\lambda D}{d}$",
+   "solution": "$\\gamma = \\frac{2}{f} + 1$\nwithout vibration : $f = 5 : \\gamma_1 = 1.4$\nwithout vibration : $f = 7 : \\gamma_2 = 1.14$\n$\\therefore \\gamma_2 < \\gamma_1$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -293,19 +289,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Statement-I is correct and statement-II is incorrect"
+     "text": "$\\gamma_2 > \\gamma_1$"
     },
     {
      "key": "B",
-     "text": "Both statement-I and statement-II are correct"
+     "text": "$\\gamma_2 = \\gamma_1$"
     },
     {
      "key": "C",
-     "text": "Statement-I is incorrect and statement-II is correct"
+     "text": "$2\\gamma_2 = \\gamma_1$"
     },
     {
      "key": "D",
-     "text": "Both statement-I and statement-II are incorrect"
+     "text": "$\\gamma_2 < \\gamma_1$"
     }
    ],
    "stem_figure": null,
@@ -315,14 +311,14 @@
   },
   {
    "q_no": 9,
-   "topic": "Kinetic Theory",
+   "topic": "Electromagnetic Induction",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For non-vibrating diatomic gas has adiabatic constant of $\\gamma_1$ & for vibrating diatomic gas has adiabatic constant of $\\gamma_2$ then",
-   "correct_key": "A",
+   "stem": "A rectangular metallic loop is moving out of a uniform magnetic field region to a field free region with a constant speed. When the loop is partially inside the magnate field, the plot of magnitude of induced emf ($\\varepsilon$) with time ($t$) is given by",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\gamma_1 = 1 + \\frac{2}{5} = \\frac{7}{5} = 1.4$\n$\\gamma_2 = 1 + \\frac{2}{7} = \\frac{9}{7} = 1.28$\nTherefore $\\gamma_1 > \\gamma_2$",
+   "solution": "$B$ = constant\nMotional emf : $\\varepsilon = B\\ell v$ = constant",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -330,19 +326,23 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\gamma_1 > \\gamma_2$"
+     "text": "",
+     "figure": "jn25-22jan-s2-phy-q34-optA.png"
     },
     {
      "key": "B",
-     "text": "$\\gamma_1 < \\gamma_2$"
+     "text": "",
+     "figure": "jn25-22jan-s2-phy-q34-optB.png"
     },
     {
      "key": "C",
-     "text": "$\\gamma_1 = \\gamma_2$"
+     "text": "",
+     "figure": "jn25-22jan-s2-phy-q34-optC.png"
     },
     {
      "key": "D",
-     "text": "None of these"
+     "text": "",
+     "figure": "jn25-22jan-s2-phy-q34-optD.png"
     }
    ],
    "stem_figure": null,
@@ -352,14 +352,14 @@
   },
   {
    "q_no": 10,
-   "topic": "Rotational Motion",
+   "topic": "Photoelectric Effect",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A force $\\vec{F} = (\\hat{i} + 2\\hat{j} - 3\\hat{k})N$ acts on point whose position vector is given as $\\vec{r} = (2\\hat{i} - 3\\hat{j} + 7\\hat{k})m$. Find torque about origin.",
+   "stem": "A light source of wavelength $\\lambda$ illuminates a metal surface and electrons are ejected with maximum kinetic energy of $2\\ \\mathrm{eV}$. If the same surface is illuminated by a wavelength $\\frac{\\lambda}{2}$, then the maximum kinetic energy of ejected electrons will be (The work function of metal is $1\\ \\mathrm{eV}$)",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\vec{T} = \\vec{r} \\times \\vec{F} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 2 & -3 & 7 \\\\ 1 & 2 & -3 \\end{vmatrix}$\n$= \\hat{i}(9 - 14) - \\hat{j}(-6 - 7) + \\hat{k}(4 + 3)$\n$= (-5\\hat{i} + 13\\hat{j} + 7\\hat{k})\\ N.m$",
+   "solution": "$\\frac{hc}{\\lambda} = \\phi + eV \\Rightarrow \\frac{hc}{\\lambda} = 1 + 2 = 3\\,\\mathrm{eV}$ ......(1)\n$\\frac{hc}{\\lambda/2} = 6 = 1 + k_{max}$ $\\therefore k_{max} = 5\\,\\mathrm{eV}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -367,19 +367,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$(+5\\hat{i} - 12\\hat{j} + 7\\hat{k})N.m$"
+     "text": "$2\\ \\mathrm{eV}$"
     },
     {
      "key": "B",
-     "text": "$(-5\\hat{i} - 12\\hat{j} + 8\\hat{k})N.m$"
+     "text": "$6\\ \\mathrm{eV}$"
     },
     {
      "key": "C",
-     "text": "$(-5\\hat{i} + 13\\hat{j} + 7\\hat{k})N.m$"
+     "text": "$5\\ \\mathrm{eV}$"
     },
     {
      "key": "D",
-     "text": "$(-5\\hat{i} + 13\\hat{j} - 7\\hat{k})N.m$"
+     "text": "$3\\ \\mathrm{eV}$"
     }
    ],
    "stem_figure": null,
@@ -389,14 +389,14 @@
   },
   {
    "q_no": 11,
-   "topic": "Moving Charges and Magnetism",
+   "topic": "Gravitation",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The net magnetic field at point $O$ due to the two infinite current carrying wires shown in the figure is",
+   "stem": "Given below are two statements. One is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A) : A simple pendulum is taken to a planet of mass and radius, 4 times and 2 times, respectively, than the Earth. The time period of the pendulum remains same on earth and the planet.\nReason (R) : The mass of the pendulum remains unchanged at Earth and the other planet. In the light of the above statements, choose the correct answer from the options given below :",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$B_{\\text{net}} = \\left|\\frac{\\mu_0(5\\ \\mathrm{A})}{2\\pi(10\\ \\mathrm{cm})} - \\frac{\\mu_0(4\\ \\mathrm{A})}{2\\pi(4\\ \\mathrm{cm})}\\right|$\n$= \\frac{25\\mu_0}{\\pi} = 10^{-5}$ T",
+   "solution": "$g = \\frac{GM}{R^{2}}$\n$g' = \\frac{G(4M)}{(2R)^{2}} = g$\nA is correct, R is correct ; but since $T = 2\\pi\\sqrt{\\frac{\\ell}{g}}$ doesn't depend on mass ; R doesn't explain A.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -404,36 +404,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$1 \\times 10^{-5}$ T"
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)"
     },
     {
      "key": "B",
-     "text": "$1.2 \\times 10^{-5}$ T"
+     "text": "(A) is true but (R) is false"
     },
     {
      "key": "C",
-     "text": "$1.5 \\times 10^{-5}$ T"
+     "text": "(A) is false but (R) is true"
     },
     {
      "key": "D",
-     "text": "$2 \\times 10^{-5}$ T"
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
     }
    ],
-   "stem_figure": "j25-22jan-s2-phy-q11.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 12,
-   "topic": "Gravitation",
+   "topic": "Rotational Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Read the statements and select the correct option.\nStatement I : A pendulum is taken from Earth to another planet having mass four times and radius double than earth, then time period of pendulum remain same as on earth.\nStatement II : The time period of pendulum only depends on the gravity of the planet.",
-   "correct_key": "A",
+   "stem": "The torque due to the force $\\left(2\\hat{i} + \\hat{j} + 2\\hat{k}\\right)$ about the origin, acting on a particle whose position vector is $\\left(\\hat{i} + \\hat{j} + \\hat{k}\\right)$, would be",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "On earth $T = 2\\pi\\sqrt{\\frac{l}{g}}$\nOn other planet, $g' = \\frac{G(4M)}{(2R)^{2}} = g$\nSo, time period will remain same and her $T$ depends on g as well as $l$.",
+   "solution": "$\\vec{\\tau} = \\vec{r} \\times \\vec{F} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & 1 & 1 \\\\ 2 & 1 & 2 \\end{vmatrix} = \\hat{i} - 0\\hat{j} - \\hat{k}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -441,19 +441,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Statement I is true but statement II is false."
+     "text": "$\\hat{i} - \\hat{j} + \\hat{k}$"
     },
     {
      "key": "B",
-     "text": "Statement II is true but statement I is false."
+     "text": "$\\hat{i} + \\hat{k}$"
     },
     {
      "key": "C",
-     "text": "Both statements are false."
+     "text": "$\\hat{i} - \\hat{k}$"
     },
     {
      "key": "D",
-     "text": "Both statements are true."
+     "text": "$\\hat{j} - \\hat{k}$"
     }
    ],
    "stem_figure": null,
@@ -466,11 +466,11 @@
    "topic": "Semiconductor Electronics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For a given logic circuit truth table is given identify the gate $G$.\nA | B | y\n0 | 0 | 1\n1 | 0 | 0\n0 | 1 | 0\n1 | 1 | 1",
-   "correct_key": "B",
+   "stem": "To obtain the given truth table, following logic gate should be placed at $G$ :\nA | B | Y\n0 | 0 | 1\n0 | 1 | 0\n1 | 0 | 0\n1 | 1 | 1",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "From truth table\nwe know its XNOR gate\ni.e. $y = \\overline{\\overline{A}B + A\\overline{B}}$\ntherefore gate $G$ must be NOR gate.",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -478,36 +478,36 @@
    "options": [
     {
      "key": "A",
-     "text": "AND"
+     "text": "NOR Gate"
     },
     {
      "key": "B",
-     "text": "NOR"
+     "text": "AND Gate"
     },
     {
      "key": "C",
-     "text": "NAND"
+     "text": "NAND Gate"
     },
     {
      "key": "D",
-     "text": "OR"
+     "text": "OR Gate"
     }
    ],
-   "stem_figure": "j25-22jan-s2-phy-q13.png",
+   "stem_figure": "jn25-22jan-s2-phy-q38.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 14,
-   "topic": "Semiconductor Electronics",
+   "topic": "Work, Energy and Power",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Name the logic gate",
+   "stem": "A force $\\vec{F} = 2\\hat{i} + b\\hat{j} + \\hat{k}$ is applied on a particle and it undergoes a displacement $\\hat{i} - 2\\hat{j} - \\hat{k}$. What will be the value of $b$, if work done on the particle is zero.",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "If both $A$ and $B$ are high only then $Y$ is high, otherwise $Y$ is low.\n$\\therefore$ AND Gate.",
+   "solution": "$WD = \\vec{F}.\\vec{S} = 2 - 2b - 1 = 0$\n$\\therefore b = \\frac{1}{2}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -515,36 +515,36 @@
    "options": [
     {
      "key": "A",
-     "text": "OR"
+     "text": "$0$"
     },
     {
      "key": "B",
-     "text": "AND"
+     "text": "$\\frac{1}{2}$"
     },
     {
      "key": "C",
-     "text": "NOT"
+     "text": "$\\frac{1}{3}$"
     },
     {
      "key": "D",
-     "text": "NAND"
+     "text": "$2$"
     }
    ],
-   "stem_figure": "j25-22jan-s2-phy-q14.png",
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 15,
-   "topic": "Electromagnetic Waves",
+   "topic": "Wave Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Displacement current in capacitor of area $16\\ \\mathrm{cm^{2}}$ is 6 A at an instant. Find displacement current across area $3.2\\ \\mathrm{cm^{2}}$",
-   "correct_key": "A",
+   "stem": "Given below are two statements. On is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A) : In Young's double slit experiment, the fringes produced by red light are closer as compared to those produced by blue light.\nReason (R) : The fringe width is directly proportional to the wavelength of light.\nIn the light of above statements, choose the correct answer from the options given below :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$id = \\epsilon_0 \\frac{d\\phi_E}{dt} = \\epsilon_0 A\\frac{dE}{dt} \\Rightarrow id \\propto A$\n$\\Rightarrow i' = \\left(\\frac{3.2}{16}\\right) id$\n$= 1.2$ A",
+   "solution": "$\\beta = \\frac{\\lambda D}{d}$ & $\\lambda_R > \\lambda_b$\n$\\therefore \\beta_R > \\beta_b$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -552,22 +552,59 @@
    "options": [
     {
      "key": "A",
-     "text": "1.2 A"
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
     },
     {
      "key": "B",
-     "text": "1.6 A"
+     "text": "(A) is false but (R) is true."
     },
     {
      "key": "C",
-     "text": "2.1 A"
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)."
     },
     {
      "key": "D",
-     "text": "0.5 A"
+     "text": "(A) is true but (R) is false."
     }
    ],
-   "stem_figure": "j25-22jan-s2-phy-q15.png",
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A ball of mass $100\\ \\mathrm{g}$ is projected with velocity $20\\ \\mathrm{m/s}$ at $60^\\circ$ with horizontal. The decrease in kinetic energy of the ball during the motion from point of projection to highest point is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$k_i = \\frac{1}{2}mv^{2}$\n$k_f = \\frac{1}{2}m(v\\cos 60^\\circ)^{2} = \\frac{1}{8}mv^{2}$\n$\\Delta k = k_i - k_f = \\frac{3}{8}mv^{2} = \\frac{3}{8} \\times 0.1 \\times 400 = 15\\,\\mathrm{J}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20\\ \\mathrm{J}$"
+    },
+    {
+     "key": "B",
+     "text": "$15\\ \\mathrm{J}$"
+    },
+    {
+     "key": "C",
+     "text": "zero"
+    },
+    {
+     "key": "D",
+     "text": "$5\\ \\mathrm{J}$"
+    }
+   ],
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
@@ -577,11 +614,11 @@
    "topic": "Wave Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A glass slab of refractive index $\\mu_g = 1.44$ is coated with a thin film of refractive index $\\mu_f = 2$. The minimum thickness of the film so that maximum transmission of green light of wavelength $\\lambda = 5000\\ \\mathrm{\\mathring{A}}$ (incident normally) takes place is",
+   "stem": "A transparent film of refractive index, $2.0$ is coated on a glass slab of refractive index, $1.45$. What is the minimum thickness of transparent film to be coated for the maximum transmission of Green light of wavelength $550\\ \\mathrm{nm}$. [Assume that the light is incident nearly perpendicular to the glass surface.]",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "For maximum transmission of light incident normally\n$2\\mu_f t = n\\lambda$ ($n$ = 1, 2, 3 …….)\n$t_{\\min} = \\frac{\\lambda}{2\\mu_f} = \\frac{5000 \\times 10^{-10}}{2(2)}$ m $= 0.125\\ \\mu\\mathrm{m}$",
+   "solution": "For transmitted green light to be maxima, reflected green should be minima.\n$\\Delta P = 2\\mu_0 t = n\\lambda$\n$\\Rightarrow t = \\frac{n\\lambda}{2\\mu_0}$ $\\therefore t_{min} = \\frac{\\lambda}{2\\mu_0} = \\frac{550}{2 \\times 2} = 137.5$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -589,19 +626,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$0.500\\ \\mu\\mathrm{m}$"
+     "text": "$94.8\\ \\mathrm{nm}$"
     },
     {
      "key": "B",
-     "text": "$0.250\\ \\mu\\mathrm{m}$"
+     "text": "$68.7\\ \\mathrm{nm}$"
     },
     {
      "key": "C",
-     "text": "$0.125\\ \\mu\\mathrm{m}$"
+     "text": "$137.5\\ \\mathrm{nm}$"
     },
     {
      "key": "D",
-     "text": "$1.00\\ \\mu\\mathrm{m}$"
+     "text": "$275\\ \\mathrm{nm}$"
     }
    ],
    "stem_figure": null,
@@ -611,14 +648,14 @@
   },
   {
    "q_no": 18,
-   "topic": "Electrostatics",
+   "topic": "Mechanical Properties of Fluids",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For the electric dipole shown in the figure, the electric field and the electric potential are $E_0$, $V_0$ at a distance $r$ on the axis. Then what is the electric field and the electric potential at a point on the equatorial plane at a distance $2r$.",
-   "correct_key": "A",
+   "stem": "The tube of length $L$ is shown in the figure. The radius of cross section at the point (1) is $2\\ \\mathrm{cm}$ and at the point (2) is $1\\ \\mathrm{cm}$, respectively. If the velocity of water entering at point (1) is $2\\ \\mathrm{m/s}$, then velocity of water leaving the point (2) will be :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$E_{\\text{axis}} = \\frac{2kP}{r^{3}} = E_0$\n$E_{\\text{equatorial}} = \\frac{kP}{(2r)^{3}} = \\frac{kP}{8r^{3}} = \\frac{E_0}{16}$\n$V = \\frac{kP\\cos\\theta}{r^{2}}$\n$V_{\\text{axis}} = \\frac{kP\\cos 0^\\circ}{r^{2}} = \\frac{kP}{r^{2}}$\n$V_{\\text{equatorial}} = \\frac{kP\\cos 90^\\circ}{(2r)^{3}} = 0$",
+   "solution": "$A_1 v_1 = A_2 V_2 \\Rightarrow 2\\pi(2R)^{2} = V_2 \\pi R^{2}$\n$\\therefore V_2 = 8\\ \\mathrm{m/s}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -626,36 +663,110 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{E_0}{16}, 0$"
+     "text": "$2\\ \\mathrm{m/s}$"
     },
     {
      "key": "B",
-     "text": "$\\frac{E_0}{4}, 0$"
+     "text": "$4\\ \\mathrm{m/s}$"
     },
     {
      "key": "C",
-     "text": "$E_0, V_0$"
+     "text": "$6\\ \\mathrm{m/s}$"
     },
     {
      "key": "D",
-     "text": "$\\frac{E_0}{8}, 0$"
+     "text": "$8\\ \\mathrm{m/s}$"
     }
    ],
-   "stem_figure": "j25-22jan-s2-phy-q18.png",
+   "stem_figure": "jn25-22jan-s2-phy-q43.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
+   "q_no": 19,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given are statements for certain thermodynamic variables,\n(A) Internal energy, volume (V) and mass (M) are extensive variables.\n(B) Pressure (P), temperature (T) and density ($\\rho$) are intensive variables.\n(C) Volume (V), temperature (T) and density ($\\rho$) are intensive variables.\n(D) Mass (M), temperature (T) and internal energy are extensive variables.\nChoose the correct answer from the points given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Extensive variables depends on size or mass of system ex : internal energy, volume, mass",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(C) and (D) only"
+    },
+    {
+     "key": "B",
+     "text": "(D) and (A) only"
+    },
+    {
+     "key": "C",
+     "text": "(A) and (B) only"
+    },
+    {
+     "key": "D",
+     "text": "(B) and (C) only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body of mass $100\\ \\mathrm{g}$ is moving in circular path of radius $2\\ \\mathrm{m}$ on vertical plane as shown in figure. The velocity of the body at point A is $10\\ \\mathrm{m/s}$. The ratio of its kinetic energies at point B and C is :\n(Take acceleration due to gravity as $10\\ \\mathrm{m/s^{2}}$)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{2}m \\times 100 + 0 = \\frac{1}{2}mV_B^{2} + mg\\left(R - \\frac{R\\sqrt{3}}{2}\\right)$\n$100 = V_B^{2} + 2gR\\left[1 - \\frac{\\sqrt{3}}{2}\\right]$\n$V_B^{2} = 100 - 20(2 - \\sqrt{3})$\n$V_B^{2} = 60 + 20\\sqrt{3}$\n$K.E_B = \\frac{1}{2}mV_B^{2} = \\frac{m}{2}(60 + 20\\sqrt{3})$\n$\\frac{1}{2}m(100) = \\frac{1}{2}mV_C^{2} + mg\\left(\\frac{3R}{2}\\right)$\n$100 = V_C^{2} = 60$\n$V_C^{2} = 40$\n$K.E_C = \\frac{1}{2}mV_C^{2} = \\frac{1}{2}m(40)$\n$\\frac{K.E_B}{K.E_C} = \\frac{60 + 20\\sqrt{3}}{40} = \\frac{3}{2} + \\frac{\\sqrt{3}}{2} = \\frac{3 + \\sqrt{3}}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2+\\sqrt{3}}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2+\\sqrt{2}}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3+\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3-\\sqrt{2}}{2}$"
+    }
+   ],
+   "stem_figure": "jn25-22jan-s2-phy-q45.png",
+   "solution_figure": "jn25-22jan-s2-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
    "q_no": 21,
-   "topic": "Motion in a Plane",
+   "topic": "Moving Charges and Magnetism",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A projectile is fired with speed of 20 m/s at angle of $60^\\circ$ with horizontal. The speed at highest point of trajectory is $x$ m/s then $x$ is",
+   "stem": "A proton is moving undeflected in a region of crossed electric and magnetic fields at a constant speed of $2 \\times 10^{5}\\ \\mathrm{m\\,s^{-1}}$. When the electric field is switched off, the proton moves along a circular path of radius $2\\ \\mathrm{cm}$. The magnitude of electric field is $x \\times 10^{4}\\ \\mathrm{N/C}$. the value of $x$ is _____.\nTake the mass of the proton $= 1.6 \\times 10^{-27}\\ \\mathrm{kg}$.",
    "correct_key": null,
-   "correct_value": 10,
+   "correct_value": 2,
    "correct_keys": null,
-   "solution": "$V_H = 4\\cos\\theta$\n$= 20\\cos 60^\\circ = 10$ m/s",
+   "solution": "For uniform speed $V = \\frac{E}{B}$\n$R = \\frac{mV}{eB} = \\frac{mV^{2}}{eE}$\n$\\Rightarrow E = \\frac{mV^{2}}{eR} = \\frac{1.6 \\times 10^{-27} \\times 4 \\times 10^{10}}{1.6 \\times 10^{-19} \\times 2 \\times 10^{-2}} = 2 \\times 10^{4}\\ \\mathrm{N/C}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -668,21 +779,81 @@
   },
   {
    "q_no": 22,
-   "topic": "Current Electricity",
+   "topic": "Moving Charges and Magnetism",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If equivalent resistance across $AB$ is $\\frac{NR}{2}$, find $N$",
+   "stem": "Two long parallel wires $X$ and $Y$, separated by a distance of $6\\ \\mathrm{cm}$, carry currents of $5\\ \\mathrm{A}$ and $4\\ \\mathrm{A}$, respectively, in opposite directions as shown in the figure. Magnitude of the resultant magnetic field at point $P$ at a distance of $4\\ \\mathrm{cm}$ from wire $Y$ is $x \\times 10^{-5}\\ \\mathrm{T}$. The value of $x$ is ________. Take permeability of free space as $\\mu_0 = 4\\pi \\times 10^{-7}$ SI units.",
    "correct_key": null,
-   "correct_value": 3,
+   "correct_value": 1,
    "correct_keys": null,
-   "solution": "Line of symmetry problem\n$R_{\\text{eq}} = \\frac{3R}{4} \\times 2 = \\frac{3R}{2}$",
+   "solution": "$B = \\frac{\\mu_0(5)}{2\\pi \\times .01} - \\frac{\\mu_0 4}{2\\pi \\times 0.04}$\n$= -\\frac{100\\mu_0}{4\\pi}$\n$= -100 \\times 10^{-7}$\n$= -1 \\times 10^{-5}\\ \\mathrm{T}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-22jan-s2-phy-q22.png",
+   "stem_figure": "jn25-22jan-s2-phy-q47.png",
    "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Electromagnetic Waves",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A parallel plate capacitor of area $A = 16\\ \\mathrm{cm^{2}}$ and separation between the plates $10\\ \\mathrm{cm}$, is charged by a DC current. Consider a hypothetical plane surface of area $A_0 = 3.2\\ \\mathrm{cm^{2}}$ inside the capacitor and parallel to the plates. At an instant, the current through the circuit is $6\\ \\mathrm{A}$. At the same instant the displacement current through $A_0$ is ________ mA.",
+   "correct_key": null,
+   "correct_value": 1200,
+   "correct_keys": null,
+   "solution": "$J_d = \\frac{I}{A} = \\frac{6}{16}$\n$\\therefore$ $I$ through small area $= J_d \\times A' = \\frac{6}{16} \\times 3.2 = 1.2\\ \\mathrm{A} = 1200\\ \\mathrm{mA}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A tube of length $1\\ \\mathrm{m}$ is filled completely with an ideal liquid of mass $2M$, and closed at both ends. The tube is rotated uniformly in horizontal plane about one of its ends. If the force exerted by the liquid at the other end is $F$ then angular velocity of the tube is $\\sqrt{\\frac{F}{\\alpha M}}$ in SI unit. The value of $\\alpha$ is ______.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$F = 2M\\omega^{2}\\frac{\\ell}{2} = Mw^{2}\\ell$\n$\\omega = \\sqrt{\\frac{F}{M\\ell}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The net current flowing in the given circuit is _______ A.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$R_{eq} = 2\\Omega$\n$I = \\frac{2}{2} = 1\\mathrm{A}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn25-22jan-s2-phy-q50.png",
+   "solution_figure": "jn25-22jan-s2-phy-q50-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   }

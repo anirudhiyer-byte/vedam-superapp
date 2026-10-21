@@ -10,24 +10,263 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 30,
   "duration_mins": 60,
-  "source_file_id": "1_648PUjmALqINxOaoe29dwx1TaZ0_8qN"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 3,
-   "topic": "Sequences and Series",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Minimum value of k so that $4^{x+1} + 4^{1-x}, \\frac{k}{2}, 16^{x} + 16^{-x}$ are in A.P.",
-   "correct_key": null,
-   "correct_value": 10,
+   "q_no": 1,
+   "topic": "Continuity and Differentiability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f: [-1, 2] \\rightarrow \\mathbb{R}$ be given by $f(x) = 2x^{2} + x + [x^{2}] - [x]$, where $[t]$ denotes the greatest integer less than or equal to $t$. The number of points, where $f$ is not continuous, is :",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$k = 4^{x} \\cdot 4 + \\frac{4}{4^{x}} + 16^{x} + \\frac{1}{16^{x}}$\n$k_{min} = 4 + 4 + 2 = 10$",
+   "solution": "Doubtful points : $-1, 0, 1, \\sqrt{2}, \\sqrt{3}, 2$\nat $x = \\sqrt{2}, \\sqrt{3}$\n$f(x) = \\left(2x^{2} + x - [x]\\right) + \\left[x^{2}\\right] =$ Discount (first bracket: Cont., second bracket: Cont.)\nat $x = -1$ :\nRHL $\\Rightarrow f(x) = (2 - 1 - (-1)) + 0 = 2$\n$f(-1) = 2 - 1 - (-1) + 1 = 3$ } Dis.\nat $x = 2$ :\nLHL $\\Rightarrow f(x) = 8 + 2 - 1 + 3 = 12$\n$f(2) = 8 + 2 - 2 + 4 = 12$ } Cont.\nat $x = 0$ :\nLHL $\\Rightarrow 0 + 0 - (-1) + 0 = 1$\n$f(0) = 0$ } Dis.\nat $x = 1$\nLHL $\\Rightarrow 2 + 1 - 0 + 0 = 3$\n$f(1) = 3 - 1 + 1 = 3$ } Cont.\nRHL $\\Rightarrow 2 + 1 - 1 + 1 = 3$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$6$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The differential equation of the family of circles passing the origin and having center at the line $y = x$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$C \\equiv x^{2} + y^{2} + gx + gy = 0$ .....(1)\n$2x + 2yy' + g + gy' = 0$\n$g = -\\left(\\frac{2x + 2yy'}{1 + y'}\\right)$\nPut in (1)\n$x^{2} + y^{2} - \\left(\\frac{2x + 2yy'}{1 + y'}\\right)(x + y) = 0$\n$(x^{2} - y^{2} - 2xy)y' = x^{2} - y^{2} + 2xy$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(x^{2} - y^{2} + 2xy)dx = (x^{2} - y^{2} + 2xy)dy$"
+    },
+    {
+     "key": "B",
+     "text": "$(x^{2} + y^{2} + 2xy)dx = (x^{2} + y^{2} - 2xy)dy$"
+    },
+    {
+     "key": "C",
+     "text": "$(x^{2} - y^{2} + 2xy)dx = (x^{2} - y^{2} - 2xy)dy$"
+    },
+    {
+     "key": "D",
+     "text": "$(x^{2} + y^{2} - 2xy)dx = (x^{2} + y^{2} + 2xy)dy$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $S_1 = \\{z \\in C : |z| \\leq 5\\}$, $S_2 = \\left\\{z \\in C : \\mathrm{Im}\\left(\\frac{z + 1 - \\sqrt{3}i}{1 - \\sqrt{3}i}\\right) \\geq 0\\right\\}$ and $S_3 = \\{z \\in C : \\mathrm{Re}(z) \\geq 0\\}$. Then the area of region $S_1 \\cap S_2 \\cap S_3$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$S_1 : x^{2} + y^{2} \\leq 25$ .....(1)\n$S_2$ : Im of $\\frac{z + \\left(1 - \\sqrt{3}i\\right)}{\\left(1 - \\sqrt{3}i\\right)} \\geq 0$\nIm of $\\left(\\frac{x + iy}{1 - \\sqrt{3}i} + 1\\right) \\geq 0$\nIm of $\\left(\\frac{(x + iy)\\left(1 + \\sqrt{3}i\\right)}{4}\\right) \\geq 0$\n$\\Rightarrow \\sqrt{3}x + y \\geq 0$ ......(2)\n$S_3 : x \\geq 0$ ......(3)\nArea $= \\frac{5}{12}\\left(\\pi(5)^{2}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{125\\pi}{6}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{125\\pi}{24}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{125\\pi}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{125\\pi}{12}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q03-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area enclosed between the curves $y = x|x|$ and $y = x - |x|$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$A = \\int_{-2}^{0} \\left(-x^{2} - 2x\\right) = \\frac{4}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{8}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q04-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "$60$ words can be made using all the letters of the word BHBJO, with or without meaning. If these words are written as in a dictionary, then the $50^{\\text{th}}$ word is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$B\\ B\\ H\\ J\\ O$\n$B$ _____ $4! = 24$\n$H$ _____ $\\frac{4!}{2!} = 12$\n$J$ _____ $\\frac{4!}{2!} = 12$\n$O\\ B\\ B\\ H\\ J$\n$O\\ B\\ B\\ J\\ H \\rightarrow 50^{\\text{th}}$ rank",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "OBBHJ"
+    },
+    {
+     "key": "B",
+     "text": "HBBJO"
+    },
+    {
+     "key": "C",
+     "text": "OBBJH"
+    },
+    {
+     "key": "D",
+     "text": "JBBOH"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\vec{a} = 2\\hat{i} + 5\\hat{j} - \\hat{k}$, $\\vec{b} = 2\\hat{i} - 2\\hat{j} + 2\\hat{k}$ and $\\vec{c}$ be three vectors such that $\\left(\\vec{c} + \\hat{i}\\right) \\times \\left(\\vec{a} + \\vec{b} + \\hat{i}\\right) = \\vec{a} \\times \\left(\\vec{c} + \\hat{i}\\right)$ . $\\vec{a} \\cdot \\vec{c} = -29$, then $\\vec{c} \\cdot \\left(-2\\hat{i} + \\hat{j} + \\hat{k}\\right)$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Let's assume $\\vec{v} = \\vec{a} + \\vec{b} + \\hat{i}$\n$= 5\\hat{i} + 3\\hat{j} + \\hat{k}$\nand $\\vec{c} + \\hat{i} = \\vec{p}$\nSo,\n$\\vec{p} \\times \\vec{v} = \\vec{a} \\times \\vec{p}$\n$\\vec{p} \\times \\vec{v} + \\vec{p} \\times \\vec{a} = \\vec{0}$\n$\\vec{p} \\times \\left(\\vec{v} + \\vec{a}\\right) = \\vec{0}$\n$\\Rightarrow \\vec{p} = \\lambda\\left(\\vec{v} + \\vec{a}\\right)$\n$\\vec{c} + \\hat{i} = \\lambda\\left(7\\hat{i} + 8\\hat{j}\\right)$\n$\\vec{a} \\cdot \\vec{c} + \\vec{a} \\cdot \\hat{i} = \\lambda \\vec{a} \\cdot \\left(7\\hat{i} + 8\\hat{j}\\right)$\n$-29 + 2 = \\lambda(14 + 40)$\n$\\lambda = -\\frac{1}{2}$\n$\\vec{c} \\cdot \\left(-2\\hat{i} + \\hat{j} + \\hat{k}\\right) + \\hat{i} \\cdot \\left(-2\\hat{i} + \\hat{j} + \\hat{k}\\right) = \\lambda\\left(7\\hat{i} + 8\\hat{j}\\right) \\cdot \\left(-2\\hat{i} + \\hat{j} + \\hat{k}\\right)$\n$= -\\frac{1}{2}(-14 + 8) + 2 = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$15$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider three vectors $\\vec{a}, \\vec{b}, \\vec{c}$. Let $|\\vec{a}| = 2, |\\vec{b}| = 3$ and $\\vec{a} = \\vec{b} \\times \\vec{c}$. If $\\alpha \\in \\left[0, \\frac{\\pi}{3}\\right]$ is the angle between the vectors $\\vec{b}$ and $\\vec{c}$, then the minimum value of $27|\\vec{c} - \\vec{a}|^{2}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$|\\vec{c} - \\vec{a}|^{2} = |\\vec{c}|^{2} + |\\vec{a}|^{2} - 2\\vec{a} \\cdot \\vec{c}$\n$= |\\vec{c}|^{2} + 4 - 0$\n$\\because \\vec{a} = \\vec{b} \\times \\vec{c}$\n$|\\vec{a}| = |\\vec{b} \\times \\vec{c}|$\n$2 = 3|\\vec{c}|\\sin\\alpha$\n$|\\vec{c}| = \\frac{2}{3}\\mathrm{cosec}\\,\\alpha$ $\\quad \\alpha \\in \\left[0, \\frac{\\pi}{3}\\right]$\n$|\\vec{c}|_{\\min} = \\frac{2}{3} \\times \\frac{2}{\\sqrt{3}}$ $\\quad \\mathrm{cosec}\\,\\alpha \\in \\left[\\frac{2}{\\sqrt{3}}, \\infty\\right)$\n$\\Rightarrow 27|\\vec{c} - \\vec{a}|^{2}_{\\min} = 27\\left(\\frac{16}{27} + 4\\right) = 124$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$110$"
+    },
+    {
+     "key": "B",
+     "text": "$105$"
+    },
+    {
+     "key": "C",
+     "text": "$124$"
+    },
+    {
+     "key": "D",
+     "text": "$121$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -35,59 +274,110 @@
   },
   {
    "q_no": 8,
-   "topic": "Circles",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find minimum value of expression $(x - 7)^{2} + \\left(\\sqrt{-x^{2} + 8x - 7} - 4\\right)^{2}$ where $x \\in [1, 7]$",
-   "correct_key": null,
-   "correct_value": 4,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $A(-1, 1)$ and $B(2, 3)$ be two points and $P$ be a variable point above the line $AB$ such that the area of $\\Delta PAB$ is $10$. If the locus of $P$ is $ax + by = 15$, then $5a + 2b$ is :",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$(x - 7)^{2} + \\left(\\sqrt{9 - (x - 4)^{2}} - 4\\right)^{2}$\nSquare of distance between\n$\\left(x, \\sqrt{9 - (x - 4)^{2}}\\right)$ & $(7, 4)$\nMinimum distance $= PC - r = 5 - 3 = 2$\nAns 4",
+   "solution": "$\\frac{1}{2}\\begin{vmatrix} h & k & 1 \\\\ -1 & 1 & 1 \\\\ 2 & 3 & 1 \\end{vmatrix} = 10$\n$-2x + 3y = 25$\n$-\\frac{6}{5}x + \\frac{9}{5}y = 15$\n$a = -\\frac{6}{5}, b = \\frac{9}{5}$\n$5a = -6, 2b = \\frac{18}{5}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$-\\frac{12}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{6}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$6$"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": "j24-05apr-s2-math-q08-sol.png",
+   "solution_figure": "jn24-05apr-s2-math-q08-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 9,
-   "topic": "Continuity and Differentiability",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find number of points of discontinuity of $f(x) = 2x^{2} + [x^{2}] - [x]$ where $x \\in [-1, 2]$",
-   "correct_key": null,
-   "correct_value": 4,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $(\\alpha, \\beta, \\gamma)$ be the image of the point $(8, 5, 7)$ in the line $\\frac{x - 1}{2} = \\frac{y + 1}{3} = \\frac{z - 2}{5}$. Then $\\alpha + \\beta + \\gamma$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Points to be check on $x = -1, 0, 1, \\sqrt{2}, \\sqrt{3}, 2$\nDiscontinues at $x = 0, -1, \\sqrt{2}, \\sqrt{3}$\nContinuous at $x = 1$ & $2$",
+   "solution": "$\\overrightarrow{AM} \\cdot \\left(2\\hat{i} + 3\\hat{j} + 5\\hat{k}\\right) = 0$\n$(2\\lambda - 7)(2) + (3\\lambda - 6)(3) + (5\\lambda - 5)(5) = 0$\n$38\\lambda = 57$\n$\\lambda = \\frac{3}{2}$\n$M\\left(4, \\frac{7}{2}, \\frac{19}{2}\\right)$\n$A'(0, 2, 12)$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$18$"
+    },
+    {
+     "key": "C",
+     "text": "$14$"
+    },
+    {
+     "key": "D",
+     "text": "$20$"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q09-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 10,
-   "topic": "Circles",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "$C_{1} : (x - 1)^{2} + (y - 1)^{2} = 1$\n$C_{2}$ : centre $(-1, 0)$, $R = 2$\nCommon chord passes through y-axis at P. Square of distance P from centre of $C_{1}$.",
-   "correct_key": null,
-   "correct_value": 2,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the constant term in the expansion of $\\left(\\frac{\\sqrt[5]{3}}{x} + \\frac{2x}{\\sqrt[3]{5}}\\right)^{12}$, $x \\neq 0$, is $\\alpha \\times 2^{8} \\times \\sqrt[5]{3}$, then $25\\alpha$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "common chord is $C_{1} - C_{2} = 0$\n$\\Rightarrow 4x + 2y - 1 = 3$\n$4x + 2y = 4$\nintersect y-axis at $P(0, 2)$\n$PC_{1} = \\sqrt{2}$\nAns $= 2$",
+   "solution": "$T_{r+1} = {}^{12}C_{r}\\left(\\frac{3^{1/5}}{x}\\right)^{12 - r}\\left(\\frac{2x}{5^{1/3}}\\right)^{r}$\n$T_{r+1} = \\frac{{}^{12}C_{r}(3)^{\\frac{12 - r}{5}}(2)^{r}(x)^{2r - 12}}{(5)^{r/3}}$\n$r = 6$\n$T_7 = \\frac{{}^{12}C_{6}(3)^{6/5}(2)^{6}}{5^{2}} = \\left(\\frac{9 \\times 11 \\times 7}{25}\\right)2^{8} \\cdot 3^{1/5}$\n$25\\alpha = 693$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$639$"
+    },
+    {
+     "key": "B",
+     "text": "$724$"
+    },
+    {
+     "key": "C",
+     "text": "$693$"
+    },
+    {
+     "key": "D",
+     "text": "$742$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -95,39 +385,73 @@
   },
   {
    "q_no": 11,
-   "topic": "Permutations and Combinations",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Let $S = \\left\\{2, 2^{2}, 2^{3}, 2^{4}, \\ldots, 2^{9}\\right\\}$. A, B, C are subsets of S having equal elements. Given that $A \\cap B = B \\cap C = C \\cap A = \\phi$. Find total number of ways A, B, C can chosen if $A \\cup B \\cup C = S$.",
-   "correct_key": null,
-   "correct_value": 1680,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f, g : \\mathbb{R} \\rightarrow \\mathbb{R}$ be defined as : $f(x) = |x - 1|$ and $g(x) = \\begin{cases} e^{x}, & x \\geq 0 \\\\ x + 1, & x \\leq 0 \\end{cases}$. Then the function $f(g(x))$ is",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\left(\\frac{9!}{(3!)^{3}} \\times \\frac{1}{(3!)}\\right) \\times 3!$\n$= \\frac{9!}{(3!)^{3}}$",
+   "solution": "$f(g(x)) = |g(x) - 1|$\n$f\\circ g = \\begin{cases} \\left|e^{x} - 1\\right| & x \\geq 0 \\\\ |x + 1 - 1| & x \\leq 0 \\end{cases}$\n$f\\circ g = \\begin{cases} e^{x} - 1 & x \\geq 0 \\\\ -x & x \\leq 0 \\end{cases}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "neither one-one nor onto."
+    },
+    {
+     "key": "B",
+     "text": "one-one but not onto."
+    },
+    {
+     "key": "C",
+     "text": "both one-one and onto."
+    },
+    {
+     "key": "D",
+     "text": "onto but not one-one."
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q11-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 12,
-   "topic": "Probability",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Let set $A = \\{1, 2, 3, 4, 5, 6\\}$ and $ax^{2} + bx + c = 0$ be a quadratic equation where ($a, b, c \\in A$) has real roots, then if the probability that one root is greater than other is $P$ then find the value of $43P$.",
-   "correct_key": null,
-   "correct_value": 38,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the circle $C_1 : x^{2} + y^{2} - 2(x + y) + 1 = 0$ and $C_2$ be a circle having centre at $(-1, 0)$ and radius $2$. If the line of the common chord of $C_1$ and $C_2$ intersects the $y$-axis at the point $P$, then the square of the distance of $P$ from the centre of $C_1$ is :",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "For real roots.\n$b^{2} \\geq 4ac$\n(i) $b = 6$ $\\quad ac \\leq 9$\n$a = 1$ $c = 1 \\ldots 6$\n$a = 2$ $c = 1, 2, 3, 4$\n$a = 3$ $c = 1, 2, 3$\n$a = 4$ $c = 1, 2$\n$a = 5$ $c = 1$\n$a = 6$ $c = 1$\n17 cases\n(II) $b = 5$ $\\quad ac \\leq \\frac{25}{4}$\n$a = 1$ $c = 1 \\ldots 6$\n$a = 2$ $c = 1, 2, 3$\n$a = 3$ $c = 1, 2$\n$a = 4$ $c = 1$\n$a = 5$ $c = 1$\n$a = 6$ $c = 1$\n14 cases\n(III) $b = 4$ $\\quad ac \\leq 4$\n$a = 1$ $c = 1, 2, 3, 4$\n$a = 2$ $c = 1, 2$\n$a = 3$ $c = 1$\n$a = 4$ $c = 1$\n8 cases\n(IV) $b = 3$ $\\quad ac \\leq \\frac{9}{4}$\n$a = 1$ $c = 1, 2$\n$a = 2$ $c = 1$\n3 cases\n(V) $b = 2$ $\\quad ac \\leq 1$\n$ac = 1$ : 1 case\nTotal cases\n$\\Rightarrow 17 + 8 + 14 + 3 + 1$\n$= 43$\nIf equal roots $b^{2} = 4ac$\n$b = 2$ $ac = 1$ : 1 case\n$b = 4$ $ac = 4$ : 3 cases\n$b = 6$ $ac = 9$ : 1 case\n5 cases\nProbability $= 1 - \\frac{5}{43}$\n$\\Rightarrow \\frac{38}{43}$\nAns. 38",
+   "solution": "$S_1 : x^{2} + y^{2} - 2x - 2y + 1 = 0$\n$S_2 : x^{2} + y^{2} + 2x - 3 = 0$\nCommon chord $= S_1 - S_2 = 0$\n$-4x - 2y + 4 = 0$\n$2x + y = 2 \\Rightarrow P(0, 2)$\n$d^{2}_{(c,p)} = (1 - 0)^{2} + (2 - 1)^{2} = 2$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -135,34 +459,490 @@
   },
   {
    "q_no": 13,
-   "topic": "Quadratic Equations",
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the set $S = \\{2, 4, 8, 16, \\ldots, 512\\}$ be partitioned into $3$ sets $A, B, C$ with equal number of elements such that $A \\cup B \\cup C = S$ and $A \\cap B = B \\cap C = A \\cap C = \\phi$. The maximum number of such possible partitions of $S$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{9!}{(3!3!3!)3!} \\times 3!$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1680$"
+    },
+    {
+     "key": "B",
+     "text": "$1520$"
+    },
+    {
+     "key": "C",
+     "text": "$1710$"
+    },
+    {
+     "key": "D",
+     "text": "$1640$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q13-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The values of $m, n$, for which the system of equations\n$x + y + z = 4$,\n$2x + 5y + 5z = 17$,\n$x + 2y + mz = n$\nhas infinitely many solutions, satisfy the equation :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$D = \\begin{vmatrix} 1 & 1 & 1 \\\\ 2 & 5 & 5 \\\\ 1 & 2 & m \\end{vmatrix} = 0 \\Rightarrow m = 2$\n$D_3 = \\begin{vmatrix} 1 & 1 & 4 \\\\ 2 & 5 & 17 \\\\ 1 & 2 & n \\end{vmatrix} = 0 \\Rightarrow n = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$m^{2} + n^{2} - m - n = 46$"
+    },
+    {
+     "key": "B",
+     "text": "$m^{2} + n^{2} + m + n = 64$"
+    },
+    {
+     "key": "C",
+     "text": "$m^{2} + n^{2} + mn = 68$"
+    },
+    {
+     "key": "D",
+     "text": "$m^{2} + n^{2} - mn = 39$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The coefficients $a, b, c$ in the quadratic equation $ax^{2} + bx + c = 0$ are from the set $\\{1, 2, 3, 4, 5, 6\\}$. If the probability of this equation having one real root bigger than the other is $p$, then $216p$ equals :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$D > 0$\n$b^{2} > 4ac$\n$b = 3 : (a, c) = (1, 1)(1, 2)(2, 1)$\n$b = 4 : (a, c) = (1, 1)(1, 2)(2, 1)(1, 3)(3, 1)$\n$b = 5 : (a, c) = (1, 1)(1, 2)(2, 1)(1, 3)(3, 1)(1, 4)(4, 1)(1, 5)(5, 1)(1, 6)(6, 1)(2, 3)(3, 2)(2, 2)$\n$b = 6 : (a, c) = (1, 1)(1, 2)(2, 1)(1, 3)(3, 1)(1, 4)(4, 1)(1, 5)(5, 1)(1, 6)(6, 1)(2, 3)(3, 2)(2, 4)(4, 2)(2, 2)$\nfav. cases $= 38$\nProb. : $\\frac{38}{6 \\times 6 \\times 6}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$57$"
+    },
+    {
+     "key": "B",
+     "text": "$38$"
+    },
+    {
+     "key": "C",
+     "text": "$19$"
+    },
+    {
+     "key": "D",
+     "text": "$76$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $ABCD$ and $AEFG$ be squares of side $4$ and $2$ units, respectively. The point $E$ is on the line segment $AB$ and the point $F$ is on the diagonal $AC$. Then the radius $r$ of the circle passing through the point $F$ and touching the line segments $BC$ and $CD$ satisfies :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$OF^{2} = r^{2}$\n$(2 - r)^{2} + (2 - r)^{2} = r^{2}$\n$r^{2} - 8r + 8 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$r = 1$"
+    },
+    {
+     "key": "B",
+     "text": "$r^{2} - 8r + 8 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$2r^{2} - 4r + 1 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$2r^{2} - 8r + 7 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q16-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Definite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\beta(m, n) = \\int_{0}^{1} x^{m - 1}(1 - x)^{n - 1}dx$, $m, n > 0$. If $\\int_{0}^{1}\\left(1 - x^{10}\\right)^{20}dx = a \\times \\beta(b, c)$, then $100(a + b + c)$ equals ______.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$I = \\int_{0}^{1} 1 \\cdot \\left(1 - x^{10}\\right)^{20}dx$\n$x^{10} = t$\n$x = t^{1/10}$\n$dx = \\frac{1}{10}(t)^{-9/10}dt$\n$I = \\int_{0}^{1}(1 - t)^{20}\\frac{1}{10}(t)^{-9/10}dt$\n$I = \\frac{1}{10}\\int_{0}^{1} t^{-9/10}(1 - t)^{20}dt$\n$a = \\frac{1}{10}$ $\\quad b = \\frac{1}{10}$ $\\quad c = 21$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1021$"
+    },
+    {
+     "key": "B",
+     "text": "$1120$"
+    },
+    {
+     "key": "C",
+     "text": "$2012$"
+    },
+    {
+     "key": "D",
+     "text": "$2120$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha\\beta \\neq 0$ and $A = \\begin{bmatrix} \\beta & \\alpha & 3 \\\\ \\alpha & \\alpha & \\beta \\\\ -\\beta & \\alpha & 2\\alpha \\end{bmatrix}$. If $B = \\begin{bmatrix} 3\\alpha & -9 & 3\\alpha \\\\ -\\alpha & 7 & -2\\alpha \\\\ -2\\alpha & 5 & -2\\beta \\end{bmatrix}$ is the matrix of cofactors of the elements of $A$, then $\\det(AB)$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equating co-factor of $A_{21}$\n$\\left(2\\alpha^{2} - 3\\alpha\\right) = \\alpha$\n$\\alpha = 0, 2$ (accept)\nNow, $2\\alpha^{2} - \\alpha\\beta = 3\\alpha$\n$\\alpha = 2$ $\\quad \\beta = 1$\n$|AB| = |A\\ \\mathrm{cof}(A)| = |A|^{3}$\n$A = \\begin{vmatrix} 1 & 2 & 3 \\\\ 2 & 2 & 1 \\\\ -1 & 2 & 4 \\end{vmatrix} = 6 - 2(9) + 3(6) = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$343$"
+    },
+    {
+     "key": "B",
+     "text": "$125$"
+    },
+    {
+     "key": "C",
+     "text": "$64$"
+    },
+    {
+     "key": "D",
+     "text": "$216$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $y(\\theta) = \\frac{2\\cos\\theta + \\cos 2\\theta}{\\cos 3\\theta + 4\\cos 2\\theta + 5\\cos\\theta + 2}$, then at $\\theta = \\frac{\\pi}{2}$, $y'' + y' + y$ is equal to:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y = \\frac{2\\cos\\theta + 2\\cos^{2}\\theta - 1}{4\\cos^{3}\\theta - 3\\cos\\theta + 8\\cos^{2}\\theta - 4 + 5\\cos\\theta + 2}$\n$y = \\frac{\\left(2\\cos^{2}\\theta + 2\\cos\\theta - 1\\right)}{\\left(2\\cos^{2}\\theta + 2\\cos\\theta - 1\\right)(2\\cos\\theta + 2)}$\n$y = \\frac{1}{2}\\left(\\frac{1}{1 + \\cos\\theta}\\right)$\n$\\Rightarrow \\theta = \\frac{\\pi}{2}$ $\\quad y = \\frac{1}{2}$\n$y' = \\frac{1}{2}\\left(\\frac{-1}{(1 + \\cos\\theta)^{2}} \\times (-\\sin\\theta)\\right)$\n$\\Rightarrow \\theta = \\frac{\\pi}{2}$ $\\quad y = \\frac{1}{2}$\n$y'' = \\frac{1}{2}\\left[\\frac{\\cos\\theta(1 + \\cos\\theta)^{2} - \\sin\\theta(2)(1 + \\cos\\theta)(-\\sin\\theta)}{(1 + \\cos\\theta)^{4}}\\right]$\n$\\Rightarrow \\theta = \\frac{\\pi}{2}$ $\\quad y = 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For $x \\geq 0$, the least value of $K$, for which $4^{1 + x} + 4^{1 - x}$, $\\frac{K}{2}$, $16^{x} + 16^{-x}$ are three consecutive terms of an A.P. is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$k = 4\\left(4^{x} + \\frac{1}{4^{x}}\\right) + \\left(4^{2x} + \\frac{1}{4^{2x}}\\right)$\n(first bracket $\\geq 2$, second bracket $\\geq 2$)\n$k \\geq 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$8$"
+    },
+    {
+     "key": "D",
+     "text": "$16$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Statistics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Find the number of solutions of the equation:\n$5|x + 3| + 7|x - 7| = 5.$",
+   "stem": "Let the mean and the standard deviation of the probability distribution\nX | $\\alpha$ | $1$ | $0$ | $-3$\nP(X) | $\\frac{1}{3}$ | K | $\\frac{1}{6}$ | $\\frac{1}{4}$\nbe $\\mu$ and $\\sigma$, respectively. If $\\sigma - \\mu = 2$, then $\\sigma + \\mu$ is equal to _____.",
    "correct_key": null,
-   "correct_value": 0,
+   "correct_value": 5,
    "correct_keys": null,
-   "solution": "$f(x) = 5|x + 3| + 7|x - 7|$\nFor: $-3 < x < 7$\n$f(x) = -2x + 64$\nFor ; $x \\geq 7$\n$f(x) = 12x - 34$\nFor ; $x \\leq -3$\n$f(x) = -12x + 34.$\nNo solution.",
+   "solution": "$\\frac{1}{3} + k + \\frac{1}{6} + \\frac{1}{4} = 1$ $\\quad \\Rightarrow k = \\frac{1}{4}$\n$\\mu = \\frac{\\alpha}{3} + \\frac{1}{4} - \\frac{3}{4}$\n$\\mu = \\frac{\\alpha}{3} - \\frac{1}{2}$\n$\\sigma = \\sqrt{\\left(\\alpha^{2}\\frac{1}{3} + \\frac{1}{4} + 9\\frac{1}{4}\\right) - \\left(\\frac{\\alpha}{3} - \\frac{1}{2}\\right)^{2}}$\n$\\sigma = \\sqrt{\\frac{2\\alpha^{2}}{9} + \\frac{\\alpha}{3} + \\frac{9}{4}}$\n$\\sigma = \\mu + 2$\n$\\sigma^{2} = (\\mu + 2)^{2} \\Rightarrow \\frac{2\\alpha^{2}}{9} + \\frac{\\alpha}{3} + \\frac{9}{4} = \\frac{\\alpha^{2}}{9} + \\frac{9}{4} + \\alpha$\n$\\frac{\\alpha^{2}}{9} - \\frac{2\\alpha}{3} = 0$\n$\\alpha = 0$, (reject) or $\\alpha = 6$\n($\\because$ $x = 0$ is already given)\n$\\Rightarrow \\sigma + \\mu = 2\\mu + 2$\n$= 5$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
    "stem_figure": null,
-   "solution_figure": "j24-05apr-s2-math-q13-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 18,
+   "q_no": 22,
+   "topic": "Differential Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $\\frac{dy}{dx} + \\frac{2x}{\\left(1 + x^{2}\\right)^{2}}y = xe^{\\frac{1}{\\left(1 + x^{2}\\right)}}$ ; $y(0) = 0$.\nThen the area enclosed by the curve $f(x) = y(x)e^{-\\frac{1}{\\left(1 + x^{2}\\right)}}$ and the line $y - x = 4$ is ____.",
+   "correct_key": null,
+   "correct_value": 18,
+   "correct_keys": null,
+   "solution": "$\\mathrm{IF} = e^{\\int \\frac{2x}{\\left(1 + x^{2}\\right)^{2}}dx} = e^{\\frac{-1}{1 + x^{2}}}$\n$y \\cdot e^{\\frac{-1}{1 + x^{2}}} = \\int x \\cdot e^{\\frac{1}{1 + x^{2}}} \\cdot e^{\\frac{-1}{1 + x^{2}}}dx$\n$y \\cdot e^{\\frac{-1}{1 + x^{2}}} = \\frac{x^{2}}{2} + c$\n$(0, 0) \\Rightarrow C = 0$\n$y(x) = \\frac{x^{2}}{2}e^{\\frac{1}{1 + x^{2}}}$\n$f(x) = \\frac{x^{2}}{2}$\n$A = \\int_{-2}^{4}(x + 4) - \\frac{x^{2}}{2}dx = 18$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Trigonometric Equations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The number of solutions of $\\sin^{2}x + \\left(2 + 2x - x^{2}\\right)\\sin x - 3(x - 1)^{2} = 0$, where $-\\pi \\leq x \\leq \\pi$, is",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$\\sin^{2}x - \\left(x^{2} - 2x - 2\\right)\\sin x - 3(x - 1)^{2} = 0$\n$\\sin^{2}x - (x - 1)^{2}\\sin x - 3(x - 1)^{2} = 0$ (as printed, with an unbalanced bracket)\nroots : $-3$, $(x - 1)^{2}$\n$\\sin x = -3$ (reject) or $(x - 1)^{2}$\n$\\sin x = (x - 1)^{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q23-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the point $(-1, \\alpha, \\beta)$ lie on the line of the shortest distance between the lines $\\frac{x + 2}{-3} = \\frac{y - 2}{4} = \\frac{z - 5}{2}$ and $\\frac{x + 2}{-1} = \\frac{y + 6}{2} = \\frac{z - 1}{0}$. Then $(\\alpha - \\beta)^{2}$ is equal to _____.",
+   "correct_key": null,
+   "correct_value": 25,
+   "correct_keys": null,
+   "solution": "$P(-3\\lambda - 2, 4\\lambda + 2, 2\\lambda + 5)$\n$Q(-\\mu - 2, 2\\mu - 6, 1)$\nDRS of $PQ = (3\\lambda - \\mu, 2\\mu - 4\\lambda - 8, -2\\lambda - 4)$\nDRS of $PQ = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ -1 & 2 & 0 \\\\ -3 & 4 & 2 \\end{vmatrix}$\n$= \\left(4\\hat{i} + 2\\hat{j} + 2\\hat{k}\\right)$\nOR\n$(2, 1, 1)$\n$\\frac{3\\lambda - \\mu}{2} = \\frac{2\\mu - 4\\lambda - 8}{1} = \\frac{-2\\lambda - 4}{1}$\n$\\Rightarrow \\mu = \\lambda + 2$ & $7\\lambda = \\mu - 8$\n$\\lambda = -1$ $\\quad \\mu = 1$\n$Q : (-3, -4, 1)$\n$L_{PQ} = \\frac{x + 3}{2} = \\frac{y + 4}{1} = \\frac{z - 1}{1}$\n$(-1, \\alpha, \\beta) \\Rightarrow 1 = \\frac{\\alpha + 4}{1} = \\frac{\\beta - 1}{1}$\n$\\Rightarrow \\alpha = -3, \\beta = 2$\n$(\\alpha - \\beta)^{2} = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q24-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Sequences and Series",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If\n$1 + \\frac{\\sqrt{3} - \\sqrt{2}}{2\\sqrt{3}} + \\frac{5 - 2\\sqrt{6}}{18} + \\frac{9\\sqrt{3} - 11\\sqrt{2}}{36\\sqrt{3}} + \\frac{49 - 20\\sqrt{6}}{180} + \\ldots$\nupto $\\infty = 2\\left(\\sqrt{\\frac{b}{a}} + 1\\right)\\log_{e}\\left(\\frac{a}{b}\\right)$, where $a$ and $b$ are integers with $\\gcd(a, b) = 1$, then $11a + 18b$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 76,
+   "correct_keys": null,
+   "solution": "$S = 1 + \\frac{x}{2\\sqrt{3}} + \\frac{x^{2}}{18} + \\frac{x^{3}}{36\\sqrt{3}} + \\frac{x^{4}}{180} + \\ldots\\infty$\nPut $\\frac{x}{\\sqrt{3}} = t$, where $x = \\sqrt{3} - \\sqrt{2}$\n$S = 1 + \\frac{t}{2} + \\frac{t^{2}}{6} + \\frac{t^{3}}{12} + \\frac{t^{4}}{20} + \\ldots$\n$S = 1 + t\\left(1 - \\frac{1}{2}\\right) + t^{2}\\left(\\frac{1}{2} - \\frac{1}{3}\\right) + t^{3}\\left(\\frac{1}{3} - \\frac{1}{4}\\right) + t^{4}\\left(\\frac{1}{4} - \\frac{1}{5}\\right)$\n$S = \\left(1 + t + \\frac{t^{2}}{2} + \\frac{t^{3}}{3} + \\frac{t^{3}}{4} + \\ldots\\right) - \\left(\\frac{t}{2} + \\frac{t^{2}}{3} + \\frac{t^{3}}{4} + \\frac{t^{4}}{5} + \\ldots\\right)$\n$S = \\left(t + \\frac{t^{2}}{2} + \\ldots\\right) - \\frac{1}{t}\\left(t + \\frac{t^{2}}{2} + \\frac{t^{3}}{3} + \\ldots\\right) + 2$\n$S = 2 + \\left(1 - \\frac{1}{t}\\right)(-\\log(1 - t)) = \\left(\\frac{1}{t} - 1\\right)\\log(1 - t) + 2$\n$S = 2 + \\left(\\frac{\\sqrt{3}}{\\sqrt{3} - \\sqrt{2}} - 1\\right)\\log\\left(1 - \\frac{\\sqrt{3} - \\sqrt{2}}{\\sqrt{3}}\\right)$\n$S = 2 + \\left(\\frac{\\sqrt{2}}{\\sqrt{3} - \\sqrt{2}}\\right)\\log_{e}\\frac{\\sqrt{2}}{\\sqrt{3}}$\n$S = 2 + \\frac{\\left(\\sqrt{6} + 2\\right)}{2}\\log_{e}\\frac{2}{3} = 2 + \\left(\\sqrt{\\frac{3}{2}} + 1\\right)\\log_{e}\\frac{2}{3}$\n$a = 2, b = 3$\n$11a + 18b = 11 \\times 2 + 18 \\times 3 = 76$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Limits",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $a > 0$ be a root of the equation $2x^{2} + x - 2 = 0$.\nIf $\\lim_{x \\to \\frac{1}{a}} \\frac{16\\left(1 - \\cos\\left(2 + x - 2x^{2}\\right)\\right)}{\\left(1 - ax^{2}\\right)} = \\alpha + \\beta\\sqrt{17}$, where $\\alpha, \\beta \\in Z$ then $\\alpha + \\beta$ is equal to ______.",
+   "correct_key": null,
+   "correct_value": 170,
+   "correct_keys": null,
+   "solution": "$2x^{2} + x - 2 = 0$ with roots $a$, $b$\n$2x^{2} - x - 2 = 0$ with roots $\\frac{1}{a}$, $\\frac{1}{b}$\n$\\lim_{x \\to \\frac{1}{a}} 16 \\cdot \\frac{\\left(1 - \\cos 2\\left(x - \\frac{1}{a}\\right)\\left(x - \\frac{1}{b}\\right)\\right)}{4\\left(x - \\frac{1}{b}\\right)^{2}} \\times \\frac{4\\left(x - \\frac{1}{b}\\right)^{2}}{a^{2}\\left(x - \\frac{1}{a}\\right)^{2}}$\n$= 16 \\times \\frac{2}{a^{2}}\\left(\\frac{1}{a} - \\frac{1}{b}\\right)^{2}$\n$= \\frac{32}{a^{2}}\\left(\\frac{17}{4}\\right) = \\frac{17 \\cdot 8}{a^{2}} = \\frac{17 \\times 8 \\times 16}{\\left(-1 + \\sqrt{117}\\right)^{2}}$\n$= \\frac{136 \\cdot 16}{18 \\cdot 2\\sqrt{7}} \\times \\frac{18 + 2\\sqrt{7}}{18 + 2\\sqrt{7}}$\n$= \\frac{136}{256}\\left(18 + 2\\sqrt{7}\\right) \\cdot 16$\n$= 153 + 17\\sqrt{17} = \\alpha + \\beta\\sqrt{17}$\n$\\alpha + \\beta = 153 + 17 = 170$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If $f(t) = \\int_{0}^{\\pi}\\frac{2x\\,dx}{1 - \\cos^{2}t\\sin^{2}x}$, $0 < t < \\pi$, then the value of $\\int_{0}^{\\pi/2}\\frac{\\pi^{2}dt}{f(t)}$ equals _____.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$f(t) = \\int_{0}^{\\pi}\\frac{2x}{1 - \\cos^{2}t\\sin^{2}x}dx$ .....(1)\n$= 2\\int_{0}^{\\pi}\\frac{(\\pi - x)dx}{1 - \\cos^{2}t\\sin^{2}x}$ ....(2)\n$2f(t) = 2\\int_{0}^{\\pi}\\frac{\\pi}{1 - \\cos^{2}t\\sin^{2}x}dx$\n$f(t) = \\int_{0}^{\\pi}\\frac{\\pi}{1 - \\cos^{2}t\\sin^{2}x}dx$\ndivide & by $\\cos^{2}x$\n$f(t) = \\pi\\int_{0}^{\\pi}\\frac{\\sec^{2}x\\,dx}{\\sec^{2}x - \\cos^{2}t\\tan^{2}x}$\n$f(t) = 2\\pi\\int_{0}^{\\pi/2}\\frac{\\sec^{2}x\\,dx}{\\sec^{2}x - \\cos^{2}t\\tan^{2}x}$\n$\\tan x = z$\n$\\sec^{2}x\\,dx = dz$\n$f(t) = 2\\pi\\int_{0}^{\\infty}\\frac{dz}{1 + \\sin^{2}t \\cdot z^{2}}$\n$= \\frac{\\pi^{2}}{\\sin t}$\nThen $\\int_{0}^{\\pi/2}\\frac{\\pi^{2}}{f(t)}dt$\n$= \\int_{0}^{\\pi/2}\\sin t\\,dt$\n$= 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Circles",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the maximum and minimum values of $\\left(\\sqrt{8x - x^{2} - 12} - 4\\right)^{2} + (x - 7)^{2}$, $x \\in \\mathbb{R}$ be $M$ and $m$ respectively. Then $M^{2} - m^{2}$ is equal to _____.",
+   "correct_key": null,
+   "correct_value": 1600,
+   "correct_keys": null,
+   "solution": "$(x - 7)^{2} + (y - 4)^{2}$\n$y = \\sqrt{8x - x^{2} - 12}$\n$y^{2} = -(x - 4)^{2} + 16 - 12$\n$(x - 4)^{2} + y^{2} = 4$\n$m = 9$\n$M = 41$\n$M^{2} - m^{2} = 41^{2} - 9^{2} = 1600$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-math-q28-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Parabola",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let a line perpendicular to the line $2x - y = 10$ touch the parabola $y^{2} = 4(x - 9)$ at the point $P$. The distance of the point $P$ from the centre of the circle $x^{2} + y^{2} - 14x - 8y + 56 = 0$ is ______.",
+   "correct_key": null,
+   "correct_value": 10,
+   "correct_keys": null,
+   "solution": "$y^{2} = 4(x - 9)$\nslope of tangent $= \\frac{-1}{2}$\nPoint of contact $P\\left(9 + \\frac{1}{\\left(-\\frac{1}{2}\\right)^{2}}, \\frac{2 \\times 1}{\\frac{-1}{2}}\\right)$\n$P(13, -4)$\ncenter of circle $C(7, 4)$\ndistance $CP = \\sqrt{(13 - 7)^{2} + (-4 - 4)^{2}}$\n$= 10$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
    "topic": "Quadratic Equations",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The number of real solutions of equation:\n$x|x + 5| + 2|x + 7| - 2 = 0$",
+   "stem": "The number of real solutions of the equation $x|x + 5| + 2|x + 7| - 2 = 0$ is _____.",
    "correct_key": null,
    "correct_value": 3,
    "correct_keys": null,
-   "solution": "(I) $x \\geq -5$\n$x^{2} + 5x + 2x + 14 - 2 = 0$\n$\\Rightarrow x^{2} + 7x + 12 = 0$\n$\\Rightarrow x = -3, -4$ (Accepted solutions)\n(II) $-7 < x < -5$\n$x(-x - 5) + 2(x + 7) - 2 = 0$\n$\\Rightarrow -x^{2} - 5x + 2x + 14 - 2 = 0$\n$\\Rightarrow x^{2} - 3x + 12 = 0$\n$\\Rightarrow x^{2} + 3x - 12 = 0 \\quad \\Rightarrow x = \\frac{-3 \\pm \\sqrt{9 + 48}}{2}$\n$x = \\frac{-3 \\pm \\sqrt{57}}{2}$\n(Accepted solutions) $\\Rightarrow x = \\frac{-3 - \\sqrt{57}}{2}$\n(III) $x \\leq -7$\n$-x^{2} - 5x - 2x - 14 - 2 = 0$\n$\\Rightarrow x^{2} + 7x + 16 = 0$\nD < 0, hence no real solution\nSo number of solution = 3",
+   "solution": "Case I : $x \\geq -5$\n$x^{2} + 5x + 2x + 12 = 0$\n$x^{2} + 7x + 12 = 0$\n$x = -3, -4$\nCase II : $-7 < x < -5$\n$-x^{2} - 5x + 2x + 14 - 2 = 0$\n$-x^{2} - 3x + 12 = 0$\n$x = \\frac{-3 \\pm \\sqrt{9 + 48}}{2}$\n$= \\frac{-3 \\pm \\sqrt{57}}{2}$\n$x = \\frac{-3 - \\sqrt{57}}{2}, \\frac{-3 + \\sqrt{57}}{2}$ (rejected)\nCase III : $x \\leq -7$\n$-x^{2} - 5x - 2x - 14 - 2 = 0$\n$x^{2} + 7x + 16 = 0$\n$D = 49 - 64 < 0$\nNo solutions\nNo. of solutions $= 3$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

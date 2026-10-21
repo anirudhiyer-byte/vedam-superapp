@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "1IoGHYqK8LGttRapNnICVSpS1aKT_dCWZ"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Coordination Compounds",
+   "topic": "Electrochemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For complex ion $\\mathrm{[NiCl_4]^{2-}}$ what is the charge on metal and shape of complex respectively?",
-   "correct_key": "A",
+   "stem": "A solution of aluminium chloride is electrolysed for 30 minutes using a current of $2\\ \\mathrm{A}$. The amount of the aluminium deposited at the cathode is ___ .\n[Given : molar mass of aluminium and chlorine are $27\\ \\mathrm{g\\,mol^{-1}}$ and $35.5\\ \\mathrm{g\\,mol^{-1}}$ respectively, Faraday constant $= 96500\\ \\mathrm{C\\,mol^{-1}}$].",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{[NiCl_4]^{2-}} \\Rightarrow \\mathrm{Ni^{2+}} \\rightarrow 3d^{8}$\n$\\mathrm{Cl^-}$ ligand is weak field ligand and hybridisation is $sp^{3}$. Shape of complex is tetrahedral.",
+   "solution": "gm equivalent of Al deposited $= \\frac{It}{96500}$\n$\\frac{w}{27}\\times 3 = \\frac{2\\times 30\\times 60}{96500}$\n$w = 0.336\\ \\mathrm{g}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "+2, Tetrahedral"
+     "text": "$1.660\\ \\mathrm{g}$"
     },
     {
      "key": "B",
-     "text": "+2, Square planar"
+     "text": "$1.007\\ \\mathrm{g}$"
     },
     {
      "key": "C",
-     "text": "+4, Tetrahedral"
+     "text": "$0.336\\ \\mathrm{g}$"
     },
     {
      "key": "D",
-     "text": "+4, Square Planar"
+     "text": "$0.441\\ \\mathrm{g}$"
     }
    ],
    "stem_figure": null,
@@ -52,14 +52,14 @@
   },
   {
    "q_no": 2,
-   "topic": "Solutions",
+   "topic": "Chemical Kinetics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Compare boiling point of given solutions\n(i) $10^{-4}\\ \\mathrm{M\\ NaCl}$\n(ii) $10^{-3}\\ \\mathrm{M\\ NaCl}$\n(iii) $10^{-2}\\ \\mathrm{M\\ NaCl}$\n(iv) $10^{-4}\\ \\mathrm{M}$ urea",
-   "correct_key": "B",
+   "stem": "Which of the following statement is not true for radioactive decay ?",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Higher the elevation in boiling point, higher will be the boiling point\n$\\Delta T_b \\propto i \\times m$\nFor urea $i = 1$\nFor NaCl $i = 2$\nBoiling point order $\\mathrm{III > II > I > IV}$",
+   "solution": "Decay constant is independent of temperature.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,19 +67,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{I > II > III > IV}$"
+     "text": "Amount of radioactive substance remained after three half lives is $\\frac{1}{8}$th of original amount."
     },
     {
      "key": "B",
-     "text": "$\\mathrm{III > II > I > IV}$"
+     "text": "Decay constant does not depend upon temperature."
     },
     {
      "key": "C",
-     "text": "$\\mathrm{II > I > III > IV}$"
+     "text": "Decay constant increases with increase in temperature."
     },
     {
      "key": "D",
-     "text": "$\\mathrm{III > I > II > IV}$"
+     "text": "Half life is $\\ln 2$ times of $\\frac{1}{\\text{rate constant}}$."
     }
    ],
    "stem_figure": null,
@@ -89,14 +89,14 @@
   },
   {
    "q_no": 3,
-   "topic": "Classification of Elements and Periodicity",
+   "topic": "Stereoisomerism",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The correct decreasing order of electronegativity is",
-   "correct_key": "C",
+   "stem": "How many different stereoisomers are possible for the given molecule ?\n$\\mathrm{CH_3-CH(OH)-CH=CH-CH_3}$",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The correct order is\n$\\mathrm{F > Cl > Br > I}$",
+   "solution": "$\\mathrm{CH_3-CH(OH)-CH=CH-CH_3}$\nIt has 4 stereoisomers $\\begin{bmatrix} R\\ cis & R\\ trans \\\\ S\\ cis & S\\ trans \\end{bmatrix}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{F > Cl > I > Br}$"
+     "text": "$3$"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{Cl > F > Br > I}$"
+     "text": "$1$"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{F > Cl > Br > I}$"
+     "text": "$2$"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{Br > F > I > Cl}$"
+     "text": "$4$"
     }
    ],
    "stem_figure": null,
@@ -126,14 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "Classification of Elements and Periodicity",
+   "topic": "Periodic Properties",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following has maximum size out of $\\mathrm{Al^{3+}}$, $\\mathrm{Mg^{2+}}$, $\\mathrm{F^{-}}$, $\\mathrm{Na^{+}}$?",
-   "correct_key": "C",
+   "stem": "Which of the following electronegativity order is incorrect?",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "For isoelectronic species, more the negative charge more will be the size, also more the positive charge smaller will be the size.\nThe correct order of ionic size is :\n$\\mathrm{Al^{3+} < Mg^{2+} < Na^{+} < F^{-}}$",
+   "solution": "(E.N.) on Pauling scale\nLi | Be | B | C | N | O | F\n1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4.0\nNa | Mg | Al | Si | P | S | Cl\n0.9 | 1.2 | 1.5 | 1.8 | 2.1 | 2.5 | 3.0\nCorrect order $\\mathrm{Mg < Al < B < N}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -141,19 +141,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{Al^{3+}}$"
+     "text": "$\\mathrm{Al < Mg < B < N}$"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{Mg^{2+}}$"
+     "text": "$\\mathrm{Al < Si < C < N}$"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{F^{-}}$"
+     "text": "$\\mathrm{Mg < Be < B < N}$"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{Na^{+}}$"
+     "text": "$\\mathrm{S < Cl < O < F}$"
     }
    ],
    "stem_figure": null,
@@ -163,14 +163,14 @@
   },
   {
    "q_no": 5,
-   "topic": "General Organic Chemistry",
+   "topic": "d- and f-Block Elements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The IUPAC name of given specie is\n$\\mathrm{HOOC-CH(CH_3)-CH(CH_3)-COOCH_3}$",
-   "correct_key": "C",
+   "stem": "Lanthanoid ions with $4f^{7}$ configuration are :\n(A) $\\mathrm{Eu^{2+}}$ (B) $\\mathrm{Gd^{3+}}$ (C) $\\mathrm{Eu^{3+}}$ (D) $\\mathrm{Tb^{3+}}$ (E) $\\mathrm{Sm^{2+}}$\nChoose the correct answer from the options given below :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "3-methoxycarbonyl-2-methyl butanoic acid",
+   "solution": "$_{63}\\mathrm{Eu^{2+}}$ – $\\mathrm{[Xe]\\,4f^{7}6s^{0}}$\n$_{64}\\mathrm{Gd^{3+}}$ – $\\mathrm{[Xe]\\,4f^{7}5d^{0}6s^{0}}$\n$_{63}\\mathrm{Eu^{3+}}$ – $\\mathrm{[Xe]\\,4f^{6}6s^{0}}$\n$_{65}\\mathrm{Tb^{3+}}$ – $\\mathrm{[Xe]\\,4f^{8}6s^{0}}$\n$_{62}\\mathrm{Sm^{2+}}$ – $\\mathrm{[Xe]\\,4f^{6}6s^{0}}$\n$\\mathrm{Eu^{2+}}$ & $\\mathrm{Gd^{3+}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -178,36 +178,36 @@
    "options": [
     {
      "key": "A",
-     "text": "2, 3-dimethyl methyl carboxy butanoic acid"
+     "text": "(A) and (B) only"
     },
     {
      "key": "B",
-     "text": "4-methoxy carbonyl-2, 3-dimethyl propanoic acid"
+     "text": "(A) and (D) only"
     },
     {
      "key": "C",
-     "text": "3-methoxycarbonyl-2-methyl butanoic acid"
+     "text": "(B) and (E) only"
     },
     {
      "key": "D",
-     "text": "1-carboxy-2, 3-dimethyl methyl butanoate"
+     "text": "(B) and (C) only"
     }
    ],
-   "stem_figure": "j25-22jan-s1-chem-q05.png",
-   "solution_figure": "j25-22jan-s1-chem-q05-sol.png",
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 6,
-   "topic": "Coordination Compounds",
+   "topic": "Periodic Properties",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Compare crystal field splitting energy($\\Delta$) for given complexes\n(i) $\\mathrm{K_4[Fe(CN)_6]}$\n(ii) $\\mathrm{[Cu(NH_3)_4]^{+2}}$s\n(iii) $\\mathrm{K_4[Fe(SCN)_6]}$\n(iv) $\\mathrm{[Fe(en)_3]Cl_3}$",
-   "correct_key": "B",
+   "stem": "Match List-I with List-II\nList-I | List-II\n(A) $\\mathrm{Al^{3+} < Mg^{2+} < Na^{+} < F^{-}}$ | (I) Ionisation Enthalpy\n(B) $\\mathrm{B < C < O < N}$ | (II) Metallic character\n(C) $\\mathrm{B < Al < Mg < K}$ | (III) Electronegativity\n(D) $\\mathrm{Si < P < S < Cl}$ | (IV) Ionic radii\nChoose the correct answer from the options given below :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{K_4[Fe(CN)_6]} \\Rightarrow d^{6} \\Rightarrow$ SFL,\n$\\mathrm{K_2[Cu(NH_3)_4]} \\Rightarrow d^{9} \\Rightarrow dsp^{2}$\n$\\mathrm{K_4[Fe(SCN)_6]} \\Rightarrow d^{6} \\Rightarrow$ WFL\n$\\mathrm{[Fe(en)_3]Cl_3} \\Rightarrow d^{5} \\Rightarrow$ SFL\nSplitting energy $\\propto$ Strength of ligand $\\propto$ Charge of CA.\n$\\Delta_{sp} > \\Delta_{o}$\n$\\mathrm{II > I > IV > III}$",
+   "solution": "Ionic radii – $\\mathrm{Al^{3+} < Mg^{2+} < Na^{+} < F^{-}}$\nIonisation energy – $\\mathrm{B < C < O < N}$\nMetallic character – $\\mathrm{B < Al < Mg < K}$\nElectron negativity – $\\mathrm{Si < P < S < Cl}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -215,19 +215,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{I > II > III > IV}$"
+     "text": "A-IV, B-I, C-III, D-II"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{II > I > IV > III}$"
+     "text": "A-II, B-III, C-IV, D-I"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{IV > I > III > II}$"
+     "text": "A-IV, B-I, C-II, D-III"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{IV > III > I > II}$"
+     "text": "A-III, B-IV, C-II, D-I"
     }
    ],
    "stem_figure": null,
@@ -237,88 +237,14 @@
   },
   {
    "q_no": 7,
-   "topic": "Chemical Equilibrium",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Consider the given equilibrium reaction\n$\\mathrm{CO_2(g) + C(s) \\rightleftharpoons 2CO(g)}$\nIf initial pressure of $\\mathrm{CO_2}$ is 0.6 atm and after equilibrium is established, total pressure is 0.8 atm. Then, find $K_p$.",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\mathrm{CO_2(g) + C(s) \\rightleftharpoons 2CO(g)}$\n$t = 0$: 0.6\n$t = t_{eq}$: $0.6 - p$ | $2p$\n$P_t$ at equilibrium $= 0.8 = 0.6 + p$\n$0.2 = p$\n$$K_p = \\frac{(p_{CO})^{2}}{(p_{CO_2})} = \\frac{(2p)^{2}}{0.6 - p} = \\frac{4 \\times 0.04}{0.6 - 0.2} = \\frac{4 \\times 0.04}{0.4} = 0.4$$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "0.4"
-    },
-    {
-     "key": "B",
-     "text": "0.2"
-    },
-    {
-     "key": "C",
-     "text": "0.6"
-    },
-    {
-     "key": "D",
-     "text": "0.8"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 8,
-   "topic": "Haloalkanes and Haloarenes",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Statement-I: $\\mathrm{CH_3-O-CH_2-Cl}$ will show nucleophilic substitution by $\\mathrm{S_N1}$ mechanism in protic medium.\nStatement-II: $\\mathrm{CH_3-C(CH_3)_2-CH_2-Cl}$ will not undergo nucleophilic substitution via $\\mathrm{S_N2}$ mechanism easily.",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\mathrm{CH_3-O-\\overset{\\oplus}{C}H_2}$ stabilised by resonance.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Statement-I and statement-II both are correct"
-    },
-    {
-     "key": "B",
-     "text": "Statement-I and statement-II both are incorrect"
-    },
-    {
-     "key": "C",
-     "text": "Statement-I is correct but statement-II is incorrect"
-    },
-    {
-     "key": "D",
-     "text": "Statement-I is incorrect but statement-II is correct"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 9,
    "topic": "Biomolecules",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following acids is also known as vitamin C?",
-   "correct_key": "B",
+   "stem": "Which of the following acids is a vitamin ?",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Ascorbic acid is also known as vitamin C.",
+   "solution": "Vitamin-C is Ascorbic acid.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -330,15 +256,89 @@
     },
     {
      "key": "B",
-     "text": "Ascorbic acid"
+     "text": "Aspartic acid"
     },
     {
      "key": "C",
-     "text": "Saccharic acid"
+     "text": "Ascorbic acid"
     },
     {
      "key": "D",
-     "text": "Aspartic acid"
+     "text": "Saccharic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A liquid when kept inside a thermally insulated closed vessel at $25^\\circ\\mathrm{C}$ was mechanically stirred from outside. What will be the correct option for the following thermodynamic parameters ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Thermally insulated $\\Rightarrow q = 0$\nfrom I$^{st}$ law\n$\\Delta U = q + w$\n$\\Delta U = w$\n$w > 0,\\ \\Delta U > 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\Delta U > 0,\\ q = 0,\\ w > 0$"
+    },
+    {
+     "key": "B",
+     "text": "$\\Delta U = 0,\\ q = 0,\\ w = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$\\Delta U < 0,\\ q = 0,\\ w > 0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\Delta U = 0,\\ q < 0,\\ w > 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Atomic Structure",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Radius of the first excited state of Helium ion is given as :\n$a_{0} \\rightarrow$ radius of first stationary state of hydrogen atom.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$r = a_0\\frac{n^{2}}{Z} = a_0 \\cdot \\frac{(2)^{2}}{2} = 2a_0$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$r = \\frac{a_0}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$r = \\frac{a_0}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$r = 4a_0$"
+    },
+    {
+     "key": "D",
+     "text": "$r = 2a_0$"
     }
    ],
    "stem_figure": null,
@@ -348,14 +348,14 @@
   },
   {
    "q_no": 10,
-   "topic": "Structure of Atom",
+   "topic": "Haloalkanes and Haloarenes",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "An electron of $\\mathrm{He^{+}}$ is present in $3^{rd}$ excited state. Find its de-Broglie wavelength.",
-   "correct_key": "A",
+   "stem": "Given below are two statements :\nStatement I : $\\mathrm{CH_3-O-CH_2-Cl}$ will undergo $\\mathrm{S_N1}$ reaction though it is a primary halide.\nStatement II : $\\mathrm{(CH_3)_3C-CH_2-Cl}$ will not undergo $\\mathrm{S_N2}$ reaction very easily though it is a primary halide.\nIn the light of the above statements, choose the most appropriate answer from the options given below :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$n\\lambda = 2\\pi r$\nFor $3^{rd}$ excited state, $n = 4$\n$$4\\lambda = 2 \\times \\pi \\times a_{\\circ}\\frac{n^{2}}{z}$$\n$$4\\lambda = 2 \\times \\pi \\times 0.529\\frac{16}{2}\\ \\mathrm{\\mathring{A}}$$\n$\\lambda = 2 \\times 3.14 \\times 0.529 \\times 2\\ \\mathrm{\\mathring{A}} = 6.64\\ \\mathrm{\\mathring{A}}$",
+   "solution": "$\\mathrm{CH_3-O-CH_2-Cl}$ will undergo $\\mathrm{S_N1}$ mechanism because $\\mathrm{CH_3-O-\\overset{+}{C}H_2}$ is highly stable.\n$\\mathrm{(CH_3)_3C-CH_2-Cl}$ (Neopentyl chloride) will undergo $\\mathrm{S_N2}$ mechanism at a slow rate because it's sterically crowded",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -363,19 +363,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$6.64\\ \\mathrm{\\mathring{A}}$"
+     "text": "Statement I is incorrect but Statement II is correct."
     },
     {
      "key": "B",
-     "text": "$1.66\\ \\mathrm{\\mathring{A}}$"
+     "text": "Both Statement I and Statement II are incorrect"
     },
     {
      "key": "C",
-     "text": "$3.32\\ \\mathrm{\\mathring{A}}$"
+     "text": "Statement I is correct but Statement II is incorrect."
     },
     {
      "key": "D",
-     "text": "$13.28\\ \\mathrm{\\mathring{A}}$"
+     "text": "Both Statement I and Statement II are correct."
     }
    ],
    "stem_figure": null,
@@ -385,14 +385,14 @@
   },
   {
    "q_no": 11,
-   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "topic": "Hydrocarbons",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following will show positive Fehling test?",
-   "correct_key": "C",
+   "stem": "Given below are two statements :\nStatement I : One mole of propyne reacts with excess of sodium to liberate half a mole of $\\mathrm{H_2}$ gas.\nStatement II : Four g of propyne reacts with $\\mathrm{NaNH_2}$ to liberate $\\mathrm{NH_3}$ gas which occupies $224\\ \\mathrm{mL}$ at STP.\nIn the light of the above statements, choose the most appropriate answer from the options given below:",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Fehling test is given by Aldehydes except benzaldehyde\n$\\mathrm{C_6H_5-CH_2-CHO}$ will give +ve Fehling test",
+   "solution": "$\\underset{1\\,\\mathrm{mole}}{\\mathrm{CH_3-C\\equiv CH}} + \\underset{(\\mathrm{excess})}{\\mathrm{Na}} \\rightarrow \\mathrm{CH_3-C\\equiv \\bar{C}\\,\\overset{+}{Na}} + \\frac{1}{2}\\mathrm{H_2}\\uparrow$ ($\\frac{1}{2}$ mole $\\mathrm{H_2}$)\n$\\mathrm{CH_3-C\\equiv CH + NaNH_2 \\rightarrow CH_3C\\equiv \\bar{C}\\,\\overset{+}{Na} + NH_3}$\n$4\\ \\mathrm{gm}$\n$\\frac{4}{40} = 0.1\\ \\mathrm{mole}$ ; $\\frac{0.1\\ \\mathrm{mole}}{2240\\ \\mathrm{mole}}$\nStatement I is correct but Statement II is incorrect",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -400,23 +400,19 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-22jan-s1-chem-q11-optA.png"
+     "text": "Statement I is correct but Statement II is incorrect."
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-22jan-s1-chem-q11-optB.png"
+     "text": "Both Statement I and Statement II are incorrect"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-22jan-s1-chem-q11-optC.png"
+     "text": "Statement I is incorrect but Statement II is correct"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{C_2H_5-CH(OH)-CH(OH)-CH_3}$",
-     "figure": "j25-22jan-s1-chem-q11-optD.png"
+     "text": "Both Statement I and Statement II are correct."
     }
    ],
    "stem_figure": null,
@@ -426,14 +422,14 @@
   },
   {
    "q_no": 12,
-   "topic": "d- and f-Block Elements",
+   "topic": "Chemical Equilibrium",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$4f^{7}$ configuration is possible for\n(a) $\\mathrm{Eu^{3+}}$, (b) $\\mathrm{Eu^{2+}}$, (c) $\\mathrm{Gd^{3+}}$, (d) $\\mathrm{Tb^{3+}}$, (e) $\\mathrm{Sm^{2+}}$",
+   "stem": "A vessel at $1000\\ \\mathrm{K}$ contains $\\mathrm{CO_2}$ with a pressure of $0.5\\ \\mathrm{atm}$. Some of $\\mathrm{CO_2}$ is converted into $\\mathrm{CO}$ on addition of graphite. If total pressure at equilibrium is $0.8\\ \\mathrm{atm}$, then $K_p$ is :",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Electronic configuration of:\n$\\mathrm{Eu^{3+}} \\Rightarrow 4f^{6}$\n$\\mathrm{Tb^{3+}} \\Rightarrow 4f^{8}$\n$\\mathrm{Eu^{2+}} \\Rightarrow 4f^{7}$\n$\\mathrm{Sn^{2+}} \\Rightarrow 4f^{5}$\n$\\mathrm{Gd^{3+}} \\Rightarrow 4f^{7}$",
+   "solution": "$\\mathrm{CO_2(g) + C(s) \\rightleftharpoons 2CO(g)}$\n$0.5 \\quad - \\quad 0$\n$0.5 - x \\quad 2x$\n$P_{total} = 0.5 + x = 0.8$\n$x = 0.3$\n$K_P = \\frac{(0.6)^{2}}{0.2} = 1.8$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -441,19 +437,19 @@
    "options": [
     {
      "key": "A",
-     "text": "(a) and (c)"
+     "text": "$0.18\\ \\mathrm{atm}$"
     },
     {
      "key": "B",
-     "text": "(b) and (c)"
+     "text": "$1.8\\ \\mathrm{atm}$"
     },
     {
      "key": "C",
-     "text": "(d) and (e)"
+     "text": "$0.3\\ \\mathrm{atm}$"
     },
     {
      "key": "D",
-     "text": "Only (c)"
+     "text": "$3\\ \\mathrm{atm}$"
     }
    ],
    "stem_figure": null,
@@ -463,14 +459,14 @@
   },
   {
    "q_no": 13,
-   "topic": "Chemical Equilibrium",
+   "topic": "IUPAC Nomenclature",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Given : $\\mathrm{NH_2COONH_4(s) \\rightleftharpoons 2NH_3(g) + CO_2(g)}$\nIf the partial pressure of $\\mathrm{CO_2}$ gas at equilibrium is 0.4 atm and the total pressure is 1 atm, then the value of $K_p$ at the same temperature is",
-   "correct_key": "C",
+   "stem": "The IUPAC name of the following compound is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{NH_2COONH_4(s) \\rightleftharpoons 2NH_3(g) + CO_2(g)}$\nTotal pressure at equilibrium = 1.0 atm\nPartial pressure of $\\mathrm{CO_2}$ at equilibrium = 0.4 atm\n$\\therefore$ Partial pressure of $\\mathrm{NH_3}$ at equilibrium = 0.6 atm\n$K_p = (p_{NH_3})^{2}(p_{CO_2})$\n$= (0.6)^{2}(0.4)$\n$= 0.144\\ \\mathrm{atm^{3}}$",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -478,36 +474,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$0.027\\ \\mathrm{atm^{3}}$"
+     "text": "2-Carboxy-5-methoxycarbonylhexane."
     },
     {
      "key": "B",
-     "text": "$0.064\\ \\mathrm{atm^{3}}$"
+     "text": "Methyl-6-carboxy-2,5-dimethylhexanoate."
     },
     {
      "key": "C",
-     "text": "$0.144\\ \\mathrm{atm^{3}}$"
+     "text": "Methyl-5-carboxy-2-methylhexanoate."
     },
     {
      "key": "D",
-     "text": "$0.216\\ \\mathrm{atm^{3}}$"
+     "text": "6-Methoxycarbonyl-2,5-dimethylhexanoic acid."
     }
    ],
-   "stem_figure": null,
+   "stem_figure": "jn25-22jan-s1-chem-q63.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 14,
-   "topic": "Haloalkanes and Haloarenes",
+   "topic": "Electrochemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "(Reactant shown in figure) $\\xrightarrow[\\text{Excess}]{\\mathrm{NH(CH_3)_2}}$ Product",
-   "correct_key": "A",
+   "stem": "Which of the following electrolyte can be sued to obtain $\\mathrm{H_2S_2O_8}$ by the process of electrolysis?",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Mechanism shown in figure.",
+   "solution": "Theory based.\nAt anode :\n$\\mathrm{2HSO_4^{-} \\rightarrow H_2S_2O_8 + 2e^{-}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -515,60 +511,19 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-22jan-s1-chem-q14-optA.png"
+     "text": "Dilute solution of sodium sulphate"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-22jan-s1-chem-q14-optB.png"
+     "text": "Dilute solution of sulphuric acid"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-22jan-s1-chem-q14-optC.png"
+     "text": "Concentrated solution of sulphuric acid"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-22jan-s1-chem-q14-optD.png"
-    }
-   ],
-   "stem_figure": "j25-22jan-s1-chem-q14.png",
-   "solution_figure": "j25-22jan-s1-chem-q14-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 15,
-   "topic": "Some Basic Concepts of Chemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "$\\mathrm{CO_2}$ gas is taken at 1 atm, 273K. Now it is allowed to pass through 0.1 M $\\mathrm{Ca(OH)_2}$ aq. solution. Excess amount of $\\mathrm{Ca(OH)_2}$ is neutralised with 40 mL of 0.1 M HCl. Then find volume of $\\mathrm{Ca(OH)_2}$ initially taken if 50% $\\mathrm{Ca(OH)_2}$ is react with $\\mathrm{CO_2}$",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "g meq of $\\mathrm{Ca(OH)_2}$ = 2 × gm eq of HCl\n$$0.1 \\times \\frac{V_{mL}}{1000} \\times 2 = 2 \\times 0.1 \\times \\frac{40}{1000} \\times 1$$\n$V_{mL} = 40\\ \\mathrm{mL}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "40 mL"
-    },
-    {
-     "key": "B",
-     "text": "20 mL"
-    },
-    {
-     "key": "C",
-     "text": "80 mL"
-    },
-    {
-     "key": "D",
-     "text": "50 mL"
+     "text": "Acidified dilute solution of sodium sulphate."
     }
    ],
    "stem_figure": null,
@@ -577,15 +532,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 16,
-   "topic": "Thermodynamics",
+   "q_no": 15,
+   "topic": "Aldehydes and Ketones",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In a closed insulated container, a liquid is stirred with a paddle to increase the temperature, which of the following is true?",
-   "correct_key": "B",
+   "stem": "The compounds which give positive Fehling's test are :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "In closed insulated container a liquid stirred with a paddle to increase the temperature, it behaves as an adiabatic container, $q = 0$\nFrom FLOT\n$\\Delta U = q + w$; $q = 0$\n$\\Delta E = w$ (but not zero)",
+   "solution": "$\\mathrm{CH_3CH=O}$ (C), $\\mathrm{PhCH_2CH=O}$ (D), $\\mathrm{HOCH_2-C(=O)-(CHOH)_3-CH_2OH}$ (E)\nAll gives positive Fehling test",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -593,19 +548,56 @@
    "options": [
     {
      "key": "A",
-     "text": "$w = 0, \\Delta E = q \\neq 0$"
+     "text": "(A),(C) and (D) Only"
     },
     {
      "key": "B",
-     "text": "$\\Delta E = w \\neq 0, q = 0$"
+     "text": "(A),(D) and (E) Only"
     },
     {
      "key": "C",
-     "text": "$\\Delta E = w = 0, q \\neq 0$"
+     "text": "(C), (D) and (E) Only"
     },
     {
      "key": "D",
-     "text": "$\\Delta E = 0, w = q \\neq 0$"
+     "text": "(A), (B) and (C) Only"
+    }
+   ],
+   "stem_figure": "jn25-22jan-s1-chem-q65.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In which of the following complexes the CFSE, $\\Delta_0$ will be equal to zero?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For complex $\\mathrm{K_3[Fe(SCN)_6]}$\nE.C. of $\\mathrm{Fe^{3+}}$ – $\\mathrm{[Ar]3d^{5}}$\nW.F.L. : $t_{2g}^{3}\\,e_{g}^{2}$ (each of the three $t_{2g}$ and two $e_g$ orbitals singly occupied)\nCalculation of CFSE\n$= (-0.4\\times 3 + 0.6\\times 2)\\Delta_0$\n$= 0\\ \\Delta_0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{[Fe(NH_3)_6]Br_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{[Fe(en)_3]Cl_3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{K_4[Fe(CN)_6]}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{K_3[Fe(SCN)_6]}$"
     }
    ],
    "stem_figure": null,
@@ -615,14 +607,14 @@
   },
   {
    "q_no": 17,
-   "topic": "Classification of Elements and Periodicity",
+   "topic": "Solutions",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Match the column and choose the correct option\n| Column-I (Properties) | | Column-II (Order)\n(A) | Electronegativity | (1) | $\\mathrm{B < C < N < O}$\n(B) | Cationic size | (2) | $\\mathrm{Li > Mg > Be}$\n(C) | Metallic Character | (3) | $\\mathrm{K > Mg > Al}$\n(D) | Electron affinity | (4) | $\\mathrm{Cl > F > Br > I}$",
+   "stem": "Arrange the following solutions in order of their increasing boiling points.\n(i) $10^{-4}\\ \\mathrm{M\\ NaCl}$\n(ii) $10^{-4}\\ \\mathrm{M\\ Urea}$\n(iii) $10^{-3}\\ \\mathrm{M\\ NaCl}$\n(iv) $10^{-2}\\ \\mathrm{M\\ NaCl}$",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{Li^{+} > Mg^{2+} > Be^{2+}}$\n$\\mathrm{Li^{+}}$: 76 pm, $\\mathrm{Mg^{2+}}$: 72 pm, $\\mathrm{Be^{2+}}$: 31 pm",
+   "solution": "$\\Delta T_b = i\\,K_b \\cdot m \\propto i.C.$\nwhere $C$ = concentration\nOptions | i.C.\n(i) | $2\\times 10^{-4}$\n(ii) | $1\\times 10^{-4}$\n(iii) | $2\\times 10^{-3}$\n(iv) | $2\\times 10^{-2}$\nB.P. order :\n(ii) < (i) < (iii) < (iv)",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -630,19 +622,19 @@
    "options": [
     {
      "key": "A",
-     "text": "A–1, B–2, C–3, D–4"
+     "text": "(ii) < (i) < (iii) < (iv)"
     },
     {
      "key": "B",
-     "text": "A–4, B–3, C–2, D–1"
+     "text": "(ii) < (i) $\\cong$ (iii) < (iv)"
     },
     {
      "key": "C",
-     "text": "A–2, B–3, C–4, D–1"
+     "text": "(i) < (ii) < (iii) < (iv)"
     },
     {
      "key": "D",
-     "text": "A–3, B–2, C–4, D–1"
+     "text": "(iv) < (iii) < (i) < (ii)"
     }
    ],
    "stem_figure": null,
@@ -655,11 +647,11 @@
    "topic": "Amines",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Nitrobenzene $\\xrightarrow{\\mathrm{Sn+HCl}}$ A $\\xrightarrow{\\mathrm{NaNO_2 + HCl}}$ B $\\xrightarrow{\\mathrm{C_2H_5OH}}$ C\nIdentify C.",
-   "correct_key": "A",
+   "stem": "The products formed in the following reaction sequence are :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Nitrobenzene $\\xrightarrow{\\mathrm{Sn+HCl}}$ Aniline $\\xrightarrow[(0\\text{-}5^\\circ\\mathrm{C})]{\\mathrm{NaNO_2/HCl}}$ $\\mathrm{C_6H_5N_2^{\\oplus}Cl^{\\ominus}}$ $\\xrightarrow{\\mathrm{C_2H_5OH}}$ Benzene",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -668,59 +660,133 @@
     {
      "key": "A",
      "text": "",
-     "figure": "j25-22jan-s1-chem-q18-optA.png"
+     "figure": "jn25-22jan-s1-chem-q68-optA.png"
     },
     {
      "key": "B",
      "text": "",
-     "figure": "j25-22jan-s1-chem-q18-optB.png"
+     "figure": "jn25-22jan-s1-chem-q68-optB.png"
     },
     {
      "key": "C",
      "text": "",
-     "figure": "j25-22jan-s1-chem-q18-optC.png"
+     "figure": "jn25-22jan-s1-chem-q68-optC.png"
     },
     {
      "key": "D",
      "text": "",
-     "figure": "j25-22jan-s1-chem-q18-optD.png"
+     "figure": "jn25-22jan-s1-chem-q68-optD.png"
     }
    ],
-   "stem_figure": "j25-22jan-s1-chem-q18.png",
-   "solution_figure": "j25-22jan-s1-chem-q18-sol.png",
+   "stem_figure": "jn25-22jan-s1-chem-q68.png",
+   "solution_figure": "jn25-22jan-s1-chem-q68-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "From the magnetic behaviour of $\\mathrm{[NiCl_4]^{2-}}$ (paramagnetic) and $\\mathrm{[Ni(CO)_4]}$ (diamagnetic), choose the correct geometry and oxidation state.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{[NiCl_4]^{2-}}$\n$\\mathrm{Ni^{+2}}$ – $\\mathrm{[Ar]\\,3d^{8}4s^{0}} \\rightarrow sp^{3}$, Tetrahedral\nNumber of unpaired electron = 2 paramagnetic\n$\\mathrm{[Ni(CO)_4]}$,\n$\\mathrm{Ni(0)} \\rightarrow \\mathrm{[Ar]\\,3d^{10}4s^{0}}$ (After rearrangement)\nNo unpaired electron\n$sp^{3}$, Tetrahedral, Diamagnetic",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{[NiCl_4]^{2-}}$ : $\\mathrm{Ni^{II}}$, square planar\n$\\mathrm{[Ni(CO)_4]}$ : $\\mathrm{Ni(0)}$, square planar"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{[NiCl_4]^{2-}}$ : $\\mathrm{Ni^{II}}$, tetrahedral\n$\\mathrm{[Ni(CO)_4]}$ : $\\mathrm{Ni(0)}$, tetrahedral"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{[NiCl_4]^{2-}}$ : $\\mathrm{Ni^{II}}$, tetrahedral\n$\\mathrm{[Ni(CO)_4]}$ : $\\mathrm{Ni^{II}}$, square planar"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{[NiCl_4]^{2-}}$ : $\\mathrm{Ni(0)}$, tetrahedral\n$\\mathrm{[Ni(CO)_4]}$ : $\\mathrm{Ni(0)}$, square planar"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Isomerism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The incorrect statements regarding geometrical isomerism are :\n(A) Propene shows geometrical isomerism.\n(B) Trans isomer has identical atoms/groups on the opposite sides of the double bond.\n(C) Cis-but-2-ene has higher dipole moment than trans-but-2-ene.\n(D) 2-methylbut-2-ene shows two geometrical isomers.\n(E) Trans-isomer has lower melting point that cis isomer.\nChoose the CORRECT answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A), (D) and (E) only"
+    },
+    {
+     "key": "B",
+     "text": "(C), (D) and (E) only"
+    },
+    {
+     "key": "C",
+     "text": "(B) and (C) only"
+    },
+    {
+     "key": "D",
+     "text": "(A) and (E) only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-22jan-s1-chem-q70-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 21,
-   "topic": "Amines",
+   "topic": "Mole Concept",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Find molecular weight of (A) in $\\mathrm{g\\ mol^{-1}}$",
+   "stem": "Some $\\mathrm{CO_2}$ gas was kept in a sealed container at a pressure of $1\\ \\mathrm{atm}$ and at $273\\ \\mathrm{K}$. This entire amount of $\\mathrm{CO_2}$ gas was later passed through an aqueous solution of $\\mathrm{Ca(OH)_2}$. The excess unreacted $\\mathrm{Ca(OH)_2}$ was later neutralized with $0.1\\ \\mathrm{M}$ of $40\\ \\mathrm{mL}$ HCl. If the volume of the sealed container of $\\mathrm{CO_2}$ was $x$, then $x$ is _____ $\\mathrm{cm^{3}}$ (nearest integer).\n[Given : The entire amount of $\\mathrm{CO_2(g)}$ reacted with exactly half the initial amount of $\\mathrm{Ca(OH)_2}$ present in the aqueous solution.]",
    "correct_key": null,
-   "correct_value": 154,
+   "correct_value": 45,
    "correct_keys": null,
-   "solution": "Nitrobenzene $\\xrightarrow{\\mathrm{Sn/HCl}}$ Aniline $\\xrightarrow[(0-5^\\circ\\mathrm{C})]{\\mathrm{NaNO_2 + HCl}}$ $\\mathrm{C_6H_5N_2^{+}Cl^{-}}$ $\\xrightarrow[\\mathrm{HCl}]{\\mathrm{CuCl}}$ Chlorobenzene $\\xrightarrow{\\text{Na/Dry ether}}$ Biphenyl (A)\nMolecular weight of (A) = 154 $\\mathrm{g\\ mol^{-1}}$",
+   "solution": "Let moles of $\\mathrm{CO_2} = n$\nmoles of $\\mathrm{Ca(OH)_2}$ total initially $= 2n$\nexcess $\\mathrm{Ca(OH)_2} = n$\ngm equivalent of $\\mathrm{Ca(OH)_2}$ = gm equivalent of HCl\n$n\\times 2 = 0.1\\times\\frac{40}{1000}\\times 1$\n$n = 2\\times 10^{-3}$\nVolume of $\\mathrm{CO_2} = 2\\times 10^{-3}\\times 22400 = 44.8\\ \\mathrm{cm^{3}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-22jan-s1-chem-q21.png",
-   "solution_figure": "j25-22jan-s1-chem-q21-sol.png",
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 22,
-   "topic": "General Organic Chemistry",
+   "topic": "Practical Organic Chemistry",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Calculate Number of stereoisomers of $\\mathrm{CH_3-CH=CH-CH(OH)-CH_3}$",
+   "stem": "In Carius method for estimation of halogens, $180\\ \\mathrm{mg}$ of an organic compound produced $143.5\\ \\mathrm{mg}$ of $\\mathrm{AgCl}$. The percentage composition of chlorine in the compound is _______ %.\n[Given : molar mass in $\\mathrm{g\\,mol^{-1}}$ of Ag : 108, Cl : 35.5]",
    "correct_key": null,
-   "correct_value": 4,
+   "correct_value": 20,
    "correct_keys": null,
-   "solution": "Number of centres which can show stereoisomerism in molecule = 2\nNumber of isomers $= 2^{2} = 4$",
+   "solution": "$n_{Cl} = n_{AgCl} = \\frac{143.5\\times 10^{-3}}{143.5} = 10^{-3}$\n$\\%\\ Cl = \\frac{10^{-3}\\times 35.5}{180\\times 10^{-3}}\\times 100 = 19.72$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -733,34 +799,34 @@
   },
   {
    "q_no": 23,
-   "topic": "Chemical Bonding and Molecular Structure",
+   "topic": "Chemical Bonding",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "How many compounds have linear shape $\\mathrm{SO_2}$, $\\mathrm{BeCl_2}$, $\\mathrm{N_3^{-}}$, $\\mathrm{I_3^{-}}$, $\\mathrm{NO_2^{+}}$, $\\mathrm{NO_2}$ ?",
+   "stem": "The number of molecules/ions that show linear geometry among the following is _______ .\n$\\mathrm{SO_2,\\ BeCl_2,\\ CO_2,\\ N_3^{-},\\ NO_2,\\ F_2O,\\ XeF_2,\\ NO_2^{+},\\ I_3^{-},\\ O_3}$",
    "correct_key": null,
-   "correct_value": 4,
+   "correct_value": 6,
    "correct_keys": null,
-   "solution": "$\\mathrm{SO_2}$: Bent; $\\mathrm{BeCl_2}$: Linear; $\\mathrm{N_3^{-}}$: Linear; $\\mathrm{I_3^{-}}$: Linear; $\\mathrm{NO_2^{+}}$: Linear; $\\mathrm{NO_2}$: Bent",
+   "solution": "Linear species are\n$\\mathrm{Cl-Be-Cl}$ (sp), $\\mathrm{O=C=O}$ (sp), $\\mathrm{N^{-}=N^{+}=N^{-}}$ (sp), $\\mathrm{F-Xe-F}$ ($sp^{3}d$), $\\mathrm{O=\\overset{+}{N}=O}$ (sp), $\\mathrm{I-\\overset{-}{I}-I}$ ($sp^{3}d$)",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
    "stem_figure": null,
-   "solution_figure": "j25-22jan-s1-chem-q23-sol.png",
+   "solution_figure": "jn25-22jan-s1-chem-q73-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 24,
-   "topic": "General Organic Chemistry",
+   "topic": "Chemical Kinetics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "In Carius method 180 mg of organic compound gives 143.5 mg of AgCl. Find the percentage of Cl in the organic compound. (Nearest integer)",
+   "stem": "$\\mathrm{A \\rightarrow B}$\nThe molecule A changes into its isomeric form B by following a first order kinetics at a temperature of $1000\\ \\mathrm{K}$. If the energy barrier with respect to reactant energy for such isomeric transformation is $191.48\\ \\mathrm{kJ\\,mol^{-1}}$ and the frequency factor is $10^{20}$, the time required for 50%, molecules of A to become B is ______ picoseconds (nearest integer).\n[$R = 8.314\\ \\mathrm{J\\,K^{-1}\\,mol^{-1}}$]",
    "correct_key": null,
-   "correct_value": 20,
+   "correct_value": 69,
    "correct_keys": null,
-   "solution": "Mass of organic compound = 180 mg\nMass of AgCl = 143.5 mg\nMass of Cl $= \\frac{143.5}{143.5} \\times 35.5$ mg\n$= 35.5$ mg\nPercentage of Cl in the organic compound\n$$= \\frac{35.5 \\times 100}{180}$$\n$= 19.72\\% \\simeq 20\\%$",
+   "solution": "$t_{1/2} = \\frac{0.693}{K}$\n$K = Ae^{-E_a/RT}$\n$= 10^{20}\\times e^{-\\frac{191.48\\times 10^{3}}{8.314\\times 1000}}$\n$= 10^{20}\\times e^{-23.031} = 10^{20}\\times e^{-\\ln 10\\times 10}$\n$= \\frac{10^{20}}{10^{10}} = 10^{10}$ sec.\n$t_{1/2} = \\frac{0.693}{10^{10}} = 6.93\\times 10^{-11}$\n$= 69.3\\times 10^{-12}$ sec.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -773,21 +839,21 @@
   },
   {
    "q_no": 25,
-   "topic": "Electrochemistry",
+   "topic": "Amines",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Two ampere current is allowed to pass through molten $\\mathrm{AlCl_3}$ for 30 min. Find the mass (in mg) of aluminium deposited at cathode. (Nearest integer)",
+   "stem": "Consider the following sequence of reactions :\nMolar mass of the product formed (A) is ________$\\mathrm{g\\ mol^{-1}}$ .",
    "correct_key": null,
-   "correct_value": 336,
+   "correct_value": 154,
    "correct_keys": null,
-   "solution": "Total charge passed $= 2 \\times 30 \\times 60$ C\nNumber of Faradays passed $= \\frac{2 \\times 30 \\times 60}{96500}$ F\nEquivalents of Al deposited $= \\frac{36}{965}$\nMass of Al deposited $= \\frac{36 \\times 9}{965}$ g\n$= \\frac{36 \\times 9 \\times 1000}{965}$ mg\n$= 335.75$ mg\n$\\simeq 336$ mg",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
+   "stem_figure": "jn25-22jan-s1-chem-q75.png",
+   "solution_figure": "jn25-22jan-s1-chem-q75-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   }

@@ -10,130 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 30,
   "duration_mins": 60,
-  "source_file_id": "1tYGznhDLD-BHJOspgji0GRBy-xumvfQP"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Binomial Theorem",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "If the $5^{\\text{th}}$, $6^{\\text{th}}$ and $7^{\\text{th}}$ term of the binomial expansion of $(1 + x^{2})^{n+4}$ are in A.P. Then the greatest binomial coefficient in the expansion of $(1 + x^{2})^{n+4}$ is",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Binomial coefficient of $T_{r+1} = {}^{n+4}C_{r}$\n${}^{n+4}C_{4}, {}^{n+4}C_{5}, {}^{n+4}C_{6}$ in A.P.\n$\\Rightarrow \\frac{(n+4)!}{4!\\,n!} + \\frac{(n+4)!}{6!\\,(n-2)!} = 2\\frac{(n+4)!}{(n-1)!\\,5!}$\n$\\Rightarrow$ Solving $n = 3$\n$\\Rightarrow$ Greatest binomial coefficient in the expansion of $(1 + x^{2})^{n+4} = (1 + x^{2})^{7}$\n$\\Rightarrow {}^{7}C_{3} = {}^{7}C_{4} \\Rightarrow \\frac{7!}{3!\\,4!} = \\frac{7 \\times 6 \\times 5}{6} = 35$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$10$"
-    },
-    {
-     "key": "B",
-     "text": "$35$"
-    },
-    {
-     "key": "C",
-     "text": "$25$"
-    },
-    {
-     "key": "D",
-     "text": "$14$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 2,
-   "topic": "Matrices and Determinants",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "If A is $3 \\times 3$ matrix such that $\\det(A) = 2$. Then $\\det(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}A))))$ is",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\det(\\underbrace{\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}A)))}_{r\\ \\text{times}}) = |A|^{(n-1)^{r}}$\nAs $|A| = 2$\n$\\therefore \\det(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}(\\mathrm{adj}A)))) = |A|^{(3-1)^{4}}$\n$= |A|^{2^{4}} = |A|^{16}$\n$= 2^{16}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$2^{32}$"
-    },
-    {
-     "key": "B",
-     "text": "$2^{16}$"
-    },
-    {
-     "key": "C",
-     "text": "$2^{8}$"
-    },
-    {
-     "key": "D",
-     "text": "$2^{12}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 3,
-   "topic": "Limits",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Evaluate\n$$\\lim_{x \\to 0} \\operatorname{cosec}x.\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} - \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)$$",
-   "correct_key": "D",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$$\\lim_{x \\to 0} \\frac{\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} - \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}{(\\sin x)\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}$$\n$\\frac{1}{2\\sqrt{5}} \\lim_{x \\to 0} \\frac{2\\cos^{2}x + 3\\cos x - \\cos^{2}x - \\sin x - 4}{\\sin x}$\n$\\frac{1}{2\\sqrt{5}} \\lim_{x \\to 0} \\left[\\frac{\\cos^{2}x + 3\\cos x - \\sin x - 4}{\\sin x}\\right]$\nApply L' Hopital\n$\\frac{1}{2\\sqrt{5}} \\lim_{x \\to 0} \\left[\\frac{-2\\cos x \\sin x - 3\\sin x - \\cos x}{\\cos x}\\right]$\n$= -\\frac{1}{2\\sqrt{5}}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$0$"
-    },
-    {
-     "key": "B",
-     "text": "$1$"
-    },
-    {
-     "key": "C",
-     "text": "$\\frac{1}{2\\sqrt{5}}$"
-    },
-    {
-     "key": "D",
-     "text": "$-\\frac{1}{2\\sqrt{5}}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 4,
    "topic": "Vector Algebra",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $\\vec{a} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$, $\\vec{b} = 3\\hat{i} + \\hat{j} - \\hat{k}$ and $\\vec{c}$ is coplanar with $\\vec{a}$ and $\\vec{b}$. Also $\\vec{a} \\cdot \\vec{c} = 5$ and $\\vec{c}$ is perpendicular to $\\vec{b}$. Then $|\\vec{c}|$ is",
+   "stem": "Let $\\vec{a} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$, $\\vec{b} = 3\\hat{i} + \\hat{j} - \\hat{k}$ and $\\vec{c}$ be three vectors. If $\\vec{c}$ is coplanar with $\\vec{a}$ and $\\vec{b}$, if the vector $\\vec{c}$ is perpendicular to $\\vec{b}$ and $\\vec{a}\\cdot\\vec{c} = 5$, then $|\\vec{c}|$ is equal to",
    "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\vec{a} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$\n$\\vec{b} = 3\\hat{i} + \\hat{j} - \\hat{k}$\n$\\vec{c}$ coplanar with $\\vec{a}$ and $\\vec{b}$ (Let $\\vec{c} = a_{1}\\hat{i} + a_{2}\\hat{j} + a_{3}\\hat{k}$)\n$\\Rightarrow (\\vec{a} \\times \\vec{b}) \\cdot \\vec{c} = 0$\n$(-5\\hat{i} + 10\\hat{j} - 5\\hat{k}) \\cdot (a_{1}\\hat{i} + a_{2}\\hat{j} + a_{3}\\hat{k}) = 0$\n$\\Rightarrow -5a_{1} + 10a_{2} - 5a_{3} = 0$\n$\\Rightarrow a_{1} + a_{3} = 2a_{2}$ ...(i)\n$\\vec{c} \\cdot \\vec{b} = 0$ and $\\vec{a} \\cdot \\vec{c} = 5$\n$3a_{1} + a_{2} - a_{3} = 0$ ...(ii)\n$(a_{1} + 2a_{2} + 3a_{3}) = 5$ ...(ii)\nSolving (i), (ii) and (iii)\n$a_{1} = \\frac{1}{6},\\ a_{2} = \\frac{2}{3},\\ a_{3} = \\frac{7}{6}$\n$\\Rightarrow \\vec{c} = \\frac{1}{6}\\hat{i} + \\frac{2}{3}\\hat{j} + \\frac{7}{6}\\hat{k}$\n$\\Rightarrow |\\vec{c}| = \\sqrt{\\frac{11}{6}}$",
+   "solution": "$\\vec{c} = \\lambda(\\vec{b} \\times (\\vec{a} \\times \\vec{b}))$\n$= \\lambda((\\vec{b}\\cdot\\vec{b})\\vec{a} - (\\vec{a}\\cdot\\vec{b})\\vec{b})$\n$= \\lambda(11\\vec{a} - 2\\vec{b}) = \\lambda(11\\hat{i} + 22\\hat{j} + 33\\hat{k} - 6\\hat{i} - 2\\hat{j} + 2\\hat{k})$\n$= \\lambda(5\\hat{i} + 20\\hat{j} + 35\\hat{k})$\n$= 5\\lambda(5\\hat{i} + 4\\hat{j} + 7\\hat{k})$\nGiven $\\vec{c}\\cdot\\vec{a} = 5$\n$5\\lambda(1 + 8 + 21) = 5 \\Rightarrow \\lambda = \\frac{1}{30} \\Rightarrow \\vec{c} = \\frac{1}{6}(\\hat{i} + 4\\hat{j} + 7\\hat{k})$\n$|\\vec{c}| = \\frac{\\sqrt{1 + 16 + 49}}{6} = \\sqrt{\\frac{11}{6}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -141,15 +30,15 @@
    "options": [
     {
      "key": "A",
-     "text": "$18$"
+     "text": "$\\frac{1}{3\\sqrt{2}}$"
     },
     {
      "key": "B",
-     "text": "$16$"
+     "text": "$18$"
     },
     {
      "key": "C",
-     "text": "$\\frac{\\sqrt{5}}{14}$"
+     "text": "$16$"
     },
     {
      "key": "D",
@@ -162,15 +51,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 5,
-   "topic": "Area Under Curves",
+   "q_no": 2,
+   "topic": "Definite Integrals",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The area of the region bounded by $S(x, y)$ such that $S = \\{(x, y) : x^{2} + 4x + 2 \\le y \\le |x + 2|\\}$ is (in sq. units)",
-   "correct_key": "C",
+   "stem": "In $I(m, n) = \\int_{0}^{1} x^{m-1}(1-x)^{n-1}\\,dx$, $m, n > 0$, then $I(9, 14) + I(10, 13)$ is",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$x^{2} + 4x + 2 \\le y \\le |x + 2|$\n(See figure: Required area $= (A_{1})$ minus $(A_{2})$, where $A_{1}$ is the region between $y = 2$ and the parabola and $A_{2}$ is the triangle.)\n$A_{1} = \\int_{-4}^{0} [2 - (x^{2} + 4x + 2)]dx - \\frac{1}{2} \\times 4 \\times 2$\n$= \\left(\\frac{-x^{3}}{3} - 2x^{2}\\right)\\Big|_{-4}^{0} - 4$\n$= 0 - \\left(\\frac{64}{3} - 32\\right) - 4$\n$= 32 - \\frac{64}{3} - 4 = \\frac{20}{3}$",
+   "solution": "$I(m,m) = \\int_{0}^{1} x^{m-1}(1-x)^{n-1}\\,dx$\nLet $x = \\sin^{2}\\theta$, $dx = 2\\sin\\theta\\cos\\theta\\, d\\theta$\n$I(m,n) = 2\\int_{0}^{\\pi/2} (\\sin\\theta)^{2m-1}(\\cos\\theta)^{2n-1}\\,d\\theta$\n$I(9, 14) + I(10, 13) = 2\\int_{0}^{\\pi/2} (\\sin\\theta)^{17}(\\cos\\theta)^{27}\\,d\\theta + 2\\int_{0}^{\\pi/2} (\\sin\\theta)^{19}(\\cos\\theta)^{25}\\,d\\theta$\n$= 2\\int_{0}^{\\pi/2} (\\sin\\theta)^{17}(\\cos\\theta)^{25}\\,d\\theta$\n$= I(9, 13)$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -178,7 +67,44 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{24}{5}$"
+     "text": "$I(9, 1)$"
+    },
+    {
+     "key": "B",
+     "text": "$I(19, 27)$"
+    },
+    {
+     "key": "C",
+     "text": "$I(1, 13)$"
+    },
+    {
+     "key": "D",
+     "text": "$I(9, 13)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f : \\mathbb{R} - \\{0\\} \\to \\mathbb{R}$ be a function such that $f(x) - 6f\\left(\\frac{1}{x}\\right) = \\frac{35}{3x} - \\frac{5}{2}$. If $\\lim_{x \\to 0}\\left(\\frac{1}{\\alpha x} + f(x)\\right) = \\beta$; $\\alpha, \\beta \\in \\mathbb{R}$, then $\\alpha + 2\\beta$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F(x) - 6f(1/x) = \\frac{35}{3x} - \\frac{5}{2}$ ......(1)\nReplace $x \\to \\frac{1}{x}$\n$F(1/x) - 6(x) = \\frac{35x}{3} - \\frac{5}{2}$ ......(2)\nUsing (1) & (2)\n$f(x) = -2x - \\frac{1}{3x} + \\frac{1}{2}$\n$B = \\lim_{x \\to 0}\\left(\\frac{1}{\\alpha x} + f(x)\\right) = \\lim_{x \\to 0}\\left(\\frac{1}{\\alpha x} - 2x - \\frac{1}{3x} + \\frac{1}{2}\\right)$\n$\\alpha = 3,\\ B = \\frac{1}{2}$\nSo, $\\alpha + 2B = 3 + 1 = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
     },
     {
      "key": "B",
@@ -186,28 +112,28 @@
     },
     {
      "key": "C",
-     "text": "$\\frac{20}{3}$"
+     "text": "$4$"
     },
     {
      "key": "D",
-     "text": "$7$"
+     "text": "$6$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j25-24jan-s1-math-q05-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 6,
-   "topic": "Differential Equations",
+   "q_no": 4,
+   "topic": "Sequences and Series",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $\\frac{dy}{dx} + \\left(\\frac{x}{1 + x^{2}}\\right)y = \\frac{\\sqrt{x}}{\\sqrt{1 + x^{2}}}$; $y(0) = 0$, then $y(1)$ is",
-   "correct_key": "C",
+   "stem": "Let $S_n = \\frac{1}{2} + \\frac{1}{6} + \\frac{1}{12} + \\frac{1}{20} + \\ldots$ upto $n$ terms. If the sum of the first six terms of an A.P. with first term $-p$ and common difference $p$ is $\\sqrt{2026\\, S_{2025}}$, then the absolute difference between $20^{\\text{th}}$ and $15^{\\text{th}}$ terms of the A.P. is",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\frac{dy}{dx} - \\left(\\frac{x}{1 + x^{2}}\\right)y = \\frac{\\sqrt{x}}{\\sqrt{1 + x^{2}}}$\nIf $= e^{\\int \\frac{x}{1 + x^{2}}dx} = e^{\\frac{1}{2}\\ln(1 + x^{2})} = \\sqrt{1 + x^{2}}$\nSolution will be $y\\sqrt{1 + x^{2}} = \\int \\frac{\\sqrt{x}}{\\sqrt{1 + x^{2}}} \\cdot \\sqrt{1 + x^{2}}\\,dx$\n$y\\sqrt{1 + x^{2}} = \\frac{2x^{3/2}}{3} + c$\n$y(0) = 0 \\Rightarrow c = 0$\n$y = \\frac{2}{3}\\frac{x^{3/2}}{\\sqrt{1 + x^{2}}}$\nNow $y(1) = \\frac{\\sqrt{2}}{3}$",
+   "solution": "$S_n = \\frac{1}{2} + \\frac{1}{6} + \\frac{1}{12} + \\frac{1}{20}\\ \\ldots$ N terms\n$S_{2025} = \\sum_{n=1}^{2025} \\frac{1}{n(n+1)} = \\sum_{n=1}^{2025}\\left(\\frac{1}{n} - \\frac{1}{n+1}\\right)$\n$= \\left(\\frac{1}{1} - \\frac{1}{2}\\right) + \\left(\\frac{1}{2} - \\frac{1}{3}\\right) \\ldots.. \\left(\\frac{1}{2025} - \\frac{1}{2026}\\right)$\n$= \\frac{2025}{2026}$\n$\\sqrt{2026\\, S_{2025}} = \\sqrt{2025} = 45$\nGiven: $\\frac{6}{2}\\left[-2p + (6-1)p\\right] = 45$\n$9p = 45$\n$p = 5$\n$|A_{20} - A_{15}| = |-5 + 19 \\times 5| - [-5 + 14 \\times 5]$\n$= |90 - 65|$\n$= 25$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -215,19 +141,93 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{2}{3}$"
+     "text": "$25$"
     },
     {
      "key": "B",
-     "text": "$\\frac{2}{\\sqrt{3}}$"
+     "text": "$90$"
     },
     {
      "key": "C",
-     "text": "$\\frac{\\sqrt{2}}{3}$"
+     "text": "$20$"
     },
     {
      "key": "D",
-     "text": "$\\sqrt{\\frac{2}{3}}$"
+     "text": "$45$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = \\frac{2^{x+2} + 16}{2^{2x+1} + 2^{x+4} + 32}$. Then the value of $8\\left(f\\left(\\frac{1}{15}\\right) + f\\left(\\frac{2}{15}\\right) + \\ldots + f\\left(\\frac{59}{15}\\right)\\right)$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = \\frac{4\\cdot 2^{x} + 16}{2\\cdot 2^{2x} + 16\\cdot 2^{x} + 32}$\n$f(x) = \\frac{2(2^{x} + 4)}{2^{2x} + 8\\cdot 2^{x} + 16}$\n$f(x) = \\frac{2}{2^{x} + 4}$\n$f(4 - x) = \\frac{2^{x}}{2(2^{x} + 4)}$\n$f(x) + f(4 - x) = \\frac{1}{2}$\nSo, $f\\left(\\frac{1}{15}\\right) + f\\left(\\frac{59}{15}\\right) = \\frac{1}{2}$\nSimilarly $= f\\left(\\frac{29}{15}\\right) + f\\left(\\frac{31}{15}\\right) = \\frac{1}{2}$\n$f\\left(\\frac{30}{15}\\right) = f(2) = \\frac{2}{2^{2} + 4} = \\frac{2}{8} = \\frac{1}{4}$\n$\\Rightarrow 8\\left(29 \\times \\frac{1}{2} + \\frac{1}{4}\\right)$\nAns. 118\nOption (4)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$118$"
+    },
+    {
+     "key": "B",
+     "text": "$92$"
+    },
+    {
+     "key": "C",
+     "text": "$102$"
+    },
+    {
+     "key": "D",
+     "text": "$108$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If $\\alpha$ and $\\beta$ are the roots of the equation $2z^{2} - 3z - 2i = 0$, where $i = \\sqrt{-1}$, then $16\\,\\mathrm{Re}\\left(\\frac{\\alpha^{19} + \\beta^{19} + \\alpha^{11} + \\beta^{11}}{\\alpha^{15} + \\beta^{15}}\\right)\\cdot \\mathrm{Im}\\left(\\frac{\\alpha^{19} + \\beta^{19} + \\alpha^{11} + \\beta^{11}}{\\alpha^{15} + \\beta^{15}}\\right)$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$2z^{2} - 3z - 2i = 0$\n$2\\left(z - \\frac{i}{z}\\right) = 3$\n$\\alpha - \\frac{i}{\\alpha} = \\frac{3}{2}$\n$\\Rightarrow \\alpha^{2} - \\frac{1}{\\alpha^{2}} - 2i = \\frac{9}{4}$\n$\\Rightarrow \\frac{9}{4} + 2i = \\alpha^{2} - \\frac{1}{\\alpha^{2}}$\n$\\Rightarrow \\frac{81}{16} - 4 + 9i = \\alpha^{4} + \\frac{1}{\\alpha^{4}} - 2$\n$\\Rightarrow \\frac{49}{16} + 9i = \\alpha^{4} + \\frac{1}{\\alpha^{4}}$\nSimilarly\n$\\Rightarrow \\frac{49}{16} + 9i = \\beta^{4} + \\frac{1}{\\beta^{4}}$\n$\\Rightarrow \\frac{\\alpha^{19} + \\beta^{19} + \\alpha^{11} + \\beta^{11}}{\\alpha^{15} + \\beta^{15}} = \\frac{\\alpha^{15}\\left(\\alpha^{4} + \\frac{1}{\\alpha^{4}}\\right) + \\beta^{15}\\left(\\beta^{4} + \\frac{1}{\\beta^{4}}\\right)}{\\alpha^{15} + \\beta^{15}}$\n$= \\frac{(\\alpha^{15} + \\beta^{15})\\left(\\frac{49}{16} + 9i\\right)}{(\\alpha^{15} + \\beta^{15})}$\nReal $= \\frac{49}{16}$\nIm $= 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$398$"
+    },
+    {
+     "key": "B",
+     "text": "$312$"
+    },
+    {
+     "key": "C",
+     "text": "$409$"
+    },
+    {
+     "key": "D",
+     "text": "$441$"
     }
    ],
    "stem_figure": null,
@@ -237,14 +237,14 @@
   },
   {
    "q_no": 7,
-   "topic": "Inverse Trigonometric Functions",
+   "topic": "Limits",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $\\alpha$ and $\\beta$ are real numbers such that $\\sec^{2}(\\tan^{-1}(\\alpha)) + \\operatorname{cosec}^{2}(\\cot^{-1}(\\beta)) = 36$ and $\\alpha + \\beta = 8$, then $(\\alpha^{2} + \\beta)$ is $(\\alpha < \\beta)$",
-   "correct_key": "B",
+   "stem": "$\\lim_{x \\to 0} \\mathrm{cosec}\\,x\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} - \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)$ is",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Let $\\tan^{-1}\\alpha = A \\Rightarrow \\tan A = \\alpha$\n$\\cot^{-1}\\beta = B \\Rightarrow \\cot B = \\beta$\n$\\sec^{2}A + \\operatorname{cosec}^{2}B = 36$\n$(1 + \\tan^{2}A) + (1 + \\cot^{2}B) = 36$\n$\\Rightarrow 1 + \\alpha^{2} + 1 + \\beta^{2} = 36$\n$\\Rightarrow \\alpha^{2} + \\beta^{2} = 34$\n$\\alpha + \\beta = 8$\n$(\\alpha + \\beta)^{2} = 34 + 2\\alpha\\beta = 64$\n$\\Rightarrow \\alpha\\beta = 15$\n$\\Rightarrow \\alpha, \\beta$ are roots of equation\n$x^{2} - 8x + 15 = 0$\n$(x - 3)(x - 5) = 0$\n$\\Rightarrow x = 3, 5$\n$\\Rightarrow \\alpha = 3, \\beta = 5$\n$\\Rightarrow \\alpha^{2} + \\beta = 14$",
+   "solution": "$\\lim_{x \\to 0} \\mathrm{cosec}\\,x\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} - \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)$\n$\\lim_{x \\to 0} \\frac{\\mathrm{cosec}\\,x\\left(\\cos^{2}x + 3\\cos x - \\sin x - 4\\right)}{\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}$\n$\\lim_{x \\to 0} \\frac{1}{\\sin x}\\,\\frac{\\left(\\cos^{2}x + 3\\cos x - 4\\right) - \\sin x}{\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}$\n$\\lim_{x \\to 0} \\frac{(\\cos x + 4)(\\cos x - 1) - \\sin x}{\\sin x\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}$\n$\\lim_{x \\to 0} \\frac{-2\\sin^{2}\\frac{x}{2}(\\cos x + 4) - 2\\sin\\frac{x}{2}\\cos\\frac{x}{2}}{2\\sin\\frac{x}{2}\\cos\\frac{x}{2}\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}$\n$\\lim_{x \\to 0} \\frac{-\\left(\\sin\\frac{x}{2}(\\cos x + 4) + \\cos\\frac{x}{2}\\right)}{\\cos\\frac{x}{2}\\left(\\sqrt{2\\cos^{2}x + 3\\cos x} + \\sqrt{\\cos^{2}x + \\sin x + 4}\\right)}$\n$-\\frac{1}{2\\sqrt{5}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -252,19 +252,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$23$"
+     "text": "$0$"
     },
     {
      "key": "B",
-     "text": "$14$"
+     "text": "$\\frac{1}{2\\sqrt{5}}$"
     },
     {
      "key": "C",
-     "text": "$24$"
+     "text": "$\\frac{1}{\\sqrt{15}}$"
     },
     {
      "key": "D",
-     "text": "$27$"
+     "text": "$-\\frac{1}{2\\sqrt{5}}$"
     }
    ],
    "stem_figure": null,
@@ -274,14 +274,14 @@
   },
   {
    "q_no": 8,
-   "topic": "Probability",
+   "topic": "Three Dimensional Geometry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Two persons A and B throws a pair of dice alternatively. For A to win he should throw sum of 5 before B throws sum of 8. If A throws first, then the probability that A wins, is",
+   "stem": "Let in a $\\Delta ABC$, the length of the side $AC$ be $6$, the vertex $B$ be $(1, 2, 3)$ and the vertices $A$, $C$ lie on the line $\\frac{x-6}{3} = \\frac{y-7}{2} = \\frac{z-7}{-2}$. Then the area (in sq. units) of $\\Delta ABC$ is",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "For sum 5, (1, 4), (2, 3) (3, 2), (4, 1) $\\Rightarrow P(A) = \\frac{4}{36}$\nFor sum 8, (2, 6), (3, 5) (4, 4), (5, 3), (6, 2) $\\Rightarrow P(B) = \\frac{5}{36}$\n$\\Rightarrow P(\\bar{A}) = \\frac{32}{36}, P(\\bar{B}) = \\frac{31}{36}$\n$P(\\text{A wins}) =$\n$P(A) + P(\\bar{A})P(\\bar{B})P(A) + P(\\bar{A})P(\\bar{B})P(\\bar{A})P(\\bar{B})P(A) + \\ldots$\n$= \\frac{P(A)}{1 - P(\\bar{A})P(\\bar{B})} = \\frac{\\frac{4}{36}}{1 - \\frac{32}{36} \\cdot \\frac{31}{36}} = \\frac{9}{19}$",
+   "solution": "Let $M(3\\lambda + 6,\\ 2\\lambda + 7,\\ -2\\lambda + 7)$\n$\\overrightarrow{BM} = (3\\lambda + 5)\\hat{i} + (2\\lambda + 5)\\hat{j} + (-2\\lambda + 4)\\hat{k}$\n$\\overrightarrow{AC}\\cdot\\overrightarrow{BM} = 0 = 3(3\\lambda + 5) + 2(2\\lambda + 5) - 2(-2\\lambda + 4)$\n$\\overrightarrow{BM} = 2\\hat{i} + 3\\hat{j} + 6\\hat{k}$\n$|\\overrightarrow{BM}| = 7$\nArea $= \\frac{1}{2} \\times 6 \\times 7 = 21$\nOption (2)",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -289,7 +289,118 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{8}{19}$"
+     "text": "$42$"
+    },
+    {
+     "key": "B",
+     "text": "$21$"
+    },
+    {
+     "key": "C",
+     "text": "$56$"
+    },
+    {
+     "key": "D",
+     "text": "$17$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-24jan-s1-math-q08-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $y = y(x)$ be the solution of the differential equation $\\left(xy - 5x^{2}\\sqrt{1 + x^{2}}\\right)dx + (1 + x^{2})\\,dy = 0$, $y(0) = 0$. Then $y(\\sqrt{3})$ is equal to",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(1 + x^{2})\\frac{dy}{dx} + xy = 5x^{1}\\sqrt{1 + x^{2}}$\n$\\frac{dy}{dx} + \\frac{xy}{1 + x^{2}} = \\frac{5x^{2}}{\\sqrt{1 + x^{2}}}$\n$\\therefore$ I.F. $= e^{\\int \\frac{x}{1+x^{2}}dx} = e^{\\frac{\\ln(1+x^{2})}{2}} = \\sqrt{1 + x^{2}}$\n$\\therefore y\\sqrt{1 + x^{2}} = \\int \\frac{5x^{2}}{\\sqrt{1 + x^{2}}}\\cdot\\sqrt{1 + x^{2}}\\,dx$\n$\\therefore y\\sqrt{1 + x^{2}} = \\int \\frac{5x^{2}}{\\sqrt{1 + x^{2}}}\\cdot\\sqrt{1 + x^{2}}\\,dx$\n$y\\sqrt{1 + x^{2}} = \\frac{5x^{3}}{3} + C$\n$\\because y(0) = 0 \\Rightarrow 0 = 0 + C \\Rightarrow C = 0$\n$\\therefore y = \\frac{5x^{3}}{3\\sqrt{1 + x^{2}}}$\n$y(\\sqrt{3}) = \\frac{15\\sqrt{3}}{32} = \\frac{5\\sqrt{3}}{2}$\nOption (1)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{\\frac{14}{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{\\frac{15}{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Ellipse",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the product of the focal distances of the point $\\left(\\sqrt{3}, \\frac{1}{2}\\right)$ on the ellipse $\\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$, $(a > b)$, be $\\frac{7}{4}$. Then the absolute difference of the eccentricities of two such ellipses is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Product of focal distances $= (a + ex_1)(a - ex_1)$\n$= a^{2} - e^{2}x_1^{2} = a^{2} - e^{2}(3)$\n$= a^{2} - 3e^{2} = \\frac{7}{4} \\Rightarrow a^{2} = \\frac{7}{4} + 3e^{2}$\n$\\Rightarrow 4a^{2} = 7 + 12e^{2}$\n& $\\left(\\sqrt{3}, \\frac{1}{2}\\right)$ lies on $\\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$\n$\\therefore \\frac{3}{a^{2}} + \\frac{1}{4b^{2}} = 1$\n$\\frac{3}{a^{2}} + \\frac{1}{4\\left(a^{2}\\right)\\left(1 - e^{2}\\right)} = 1$\n$12(1 - e^{2}) + 1 = 4a^{2}(1 - e^{2})$\n$13 - 12e^{2} = (7 + 12e^{2})(1 - e^{2})$\n$\\Rightarrow 13 - 12e^{2} = 7 - 7e^{2} + 12e^{2} - 12e^{4}$\n$\\Rightarrow 12e^{4} - 17e^{2} + 6 = 0$\n$\\therefore e^{2} = \\frac{17 \\pm \\sqrt{289 - 288}}{24} = \\frac{17 \\pm 1}{24} = \\frac{3}{4}\\ \\&\\ \\frac{2}{3}$\n$\\therefore e = \\frac{\\sqrt{3}}{2}\\ \\&\\ \\sqrt{\\frac{2}{3}}$\n$\\therefore$ difference $= \\frac{\\sqrt{3}}{2} - \\sqrt{\\frac{2}{3}} = \\frac{3 - 2\\sqrt{2}}{2\\sqrt{3}}$\nOption (3)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3 - 2\\sqrt{2}}{3\\sqrt{2}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1 - \\sqrt{3}}{\\sqrt{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3 - 2\\sqrt{2}}{2\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1 - 2\\sqrt{2}}{\\sqrt{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A and B alternately throw a pair of dice. A wins if he throws a sum of 5 before B throws a sum of 8, and B wins if he throws a sum of 8 before A throws a sum of 5. The probability, that A wins if A makes the first throw, is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$p(S_5) = \\frac{1}{9}$\n$p(S_5) = \\frac{5}{36}$\nrequired prob $= \\frac{1}{9} + \\frac{8}{9}\\cdot\\frac{31}{36}\\cdot\\frac{1}{9} + \\left(\\frac{8}{9}\\cdot\\frac{31}{36}\\right)^{2}\\cdot\\frac{1}{9} + \\ldots\\infty$\n$= \\frac{\\frac{1}{9}}{1 - \\frac{62}{81}} = \\frac{9}{19}$\nOption (2)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{9}{17}$"
     },
     {
      "key": "B",
@@ -301,7 +412,7 @@
     },
     {
      "key": "D",
-     "text": "$\\frac{9}{17}$"
+     "text": "$\\frac{8}{19}$"
     }
    ],
    "stem_figure": null,
@@ -310,89 +421,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 9,
-   "topic": "Statistics",
+   "q_no": 12,
+   "topic": "Application of Integrals",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For a distribution of 10 observations, $\\sum_{i=1}^{10} x_{i} = 55$ and $\\sum_{i=1}^{10} x_{i}^{2} = 328$. If the observations 4 and 5 are replaced by 6 and 8 respectively, then the new variance is",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$x_{1} + x_{2} \\ldots + x_{8} + 4 + 5 = 55,$\n$x_{1}^{2} + x_{2}^{2} \\ldots + x_{8}^{2} + 16 + 25 = 328$\n$\\mu = \\frac{x_{1} + x_{2} \\ldots + x_{8} + 6 + 8}{10} = 6,$\n$x_{1}^{2} + x_{2}^{2} + \\ldots + x_{8}^{2} + 36 + 64 = 387$\n$\\Rightarrow \\sigma^{2} = \\frac{387}{10} - 36 = \\frac{387 - 360}{10} = \\frac{27}{10} = 2.7$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$2.5$"
-    },
-    {
-     "key": "B",
-     "text": "$2.7$"
-    },
-    {
-     "key": "C",
-     "text": "$3.4$"
-    },
-    {
-     "key": "D",
-     "text": "$3.6$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 10,
-   "topic": "Permutations and Combinations",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "If $S$ be the set of 10 distinct primes and let $A$ be the set of products of two or more elements from the set $S$. If $P = \\{(x, y) : x \\in S$ and $y \\in A$ and $y$ is divided by $x\\}$. Then $n(P)$ is equal to",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$S = \\{P_{1}, P_{2}, P_{3} \\ldots, P_{10}\\}$\n$A = \\{$product of distinct elements of $S\\}$\nIf $P = \\{(x, y) : x \\in S, y \\in A$ and $y$ is divided by $x\\}$ then $n(P)$ is\n$\\Rightarrow$ since $x \\in S$.\nLet $x = P_{i} \\in S$, selected from $S$ in $({}^{10}C_{1})$ ways.\nNow, $x | y$ iff $y$ contains $P_{i}$ in product.\n$\\Rightarrow$ $(P_{i})$ is there and at rest one other element as a product\n$\\Rightarrow ({}^{10}C_{1}) \\cdot [(1) \\cdot (2^{9} - 1)] = 10 \\cdot (511) = 5110$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$5110$"
-    },
-    {
-     "key": "B",
-     "text": "$5000$"
-    },
-    {
-     "key": "C",
-     "text": "$5220$"
-    },
-    {
-     "key": "D",
-     "text": "$5420$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 11,
-   "topic": "Definite Integrals",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "If $I(m, n) = \\int_{0}^{1} x^{m-1}(1 - x)^{n-1}dx$, $m, n > 0$, then $I(9, 14) + I(10, 13)$ is equal to",
+   "stem": "Consider the region $R = \\left\\{(x, y) : x \\le y \\le 9 - \\frac{11}{3}x^{2},\\ x \\ge 0\\right\\}$. The area, of the largest rectangle of sides parallel to the coordinate axes and inscribed in $R$, is :",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Beta function\n$$\\beta(p, q) = \\int_{0}^{1} x^{p-1}(1 - x)^{q-1}dx = \\frac{(p - 1)!(q - 1)!}{(p + q - 1)!}\\ p, q \\in I$$\n$\\Rightarrow I(9, 14) = \\frac{8!\\,13!}{22!}$\n$I(10, 13) = \\frac{9! \\cdot 12!}{22!}$\n$\\Rightarrow I(9, 14) + I(10, 13) = \\frac{1}{22!}(8!\\,13! + 9! \\cdot 12!)$\n$\\Rightarrow = \\frac{1}{22!} 8! \\cdot 12!(13 + 9) = \\frac{8!\\,12!}{21!}$\n$= \\frac{(9 - 1)!(13 - 1)!}{(9 + 13 - 1)!} = I(9, 13)$",
+   "solution": "$t\\cdot\\left(9 - \\frac{11t^{2}}{3} - t\\right)$\n$A = 9t - t^{2} - \\frac{11}{3}t^{3}$\n$\\frac{dA}{dt} = 9 - 2t - 11t^{2}$\n$\\Rightarrow 11t^{2} + 2t - 9 = 0$\n$11t^{2} + 11t - 9t - 9 = 0$\n$t = -1\\ \\&\\ t = \\frac{9}{11}$\n$\\therefore \\frac{dA}{dt}$: sign is $-$ for $t < -1$, $+$ for $-1 < t < \\frac{9}{11}$, $-$ for $t > \\frac{9}{11}$\nMaxima at $t = \\frac{9}{11}$\n$\\therefore$ largest area $= \\frac{9}{11}\\left(9 - \\frac{11}{3}\\cdot\\frac{81}{121} - \\frac{9}{11}\\right)$\n$= \\frac{9}{11}\\cdot\\frac{63}{11} = \\frac{567}{121}$\nOption (3)",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -400,19 +437,315 @@
    "options": [
     {
      "key": "A",
-     "text": "$I(1, 13)$"
+     "text": "$\\frac{625}{111}$"
     },
     {
      "key": "B",
-     "text": "$I(9, 1)$"
+     "text": "$\\frac{730}{119}$"
     },
     {
      "key": "C",
-     "text": "$I(9, 13)$"
+     "text": "$\\frac{567}{121}$"
     },
     {
      "key": "D",
-     "text": "$I(19, 29)$"
+     "text": "$\\frac{821}{123}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-24jan-s1-math-q12-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Application of Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The area of the region $\\{(x, y) : x^{2} + 4x + 2 \\le y \\le |x + 2|\\}$ is equal to",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2} + 4x + 2 \\le y \\le |x + 2|$\nThe area bounded between\n$y = x^{2} + 4x + 2 = (x + 2)^{2} - 2$\nand $y = |x + 2|$ is same as\narea bounded between $y = x^{2} - 2$ and $y = |x|$\nFor P.O.I $|x|^{2} - 2 = |x|$\n$\\Rightarrow |x| = 2 \\Rightarrow x = \\pm 2$\n$\\therefore$ Required area $= -\\int_{-2}^{2}(x^{2} - 2)\\,dx + \\int_{-2}^{2}|x|\\,dx$\n$= -2\\int_{0}^{2}(x^{2} - 2)\\,dx + 2\\int_{0}^{2} x\\,dx$\n$= -2\\left[\\frac{x^{3}}{3} - 2x\\right]_{0}^{2} + 2\\left[\\frac{x^{2}}{2}\\right]_{0}^{2}$\n$= --2\\left[\\frac{8}{3} - 4\\right] + 2\\left[\\frac{4}{2}\\right]$\n$= -2 \\times \\left(\\frac{-4}{3}\\right) + 4$\n$= \\frac{20}{3}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$7$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{24}{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{20}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For a statistical data $x_1, x_2, \\ldots, x_{10}$ of $10$ values, a student obtained the mean as $5.5$ and $\\sum_{i=1}^{10} x_i^{2} = 371$. He later found that he had noted two values in the data incorrectly as $4$ and $5$, instead of the correct values $6$ and $8$, respectively. The variance of the corrected data is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Mean $\\bar{x} = 5.5$\n$= \\sum_{i=1}^{10} x_i = 5.5 \\times 10 = 55$\n$= \\sum_{i=1}^{10} x_i^{2} = 371$\n$\\left(\\sum x_i\\right)_{\\text{new}} = 55 - (4 + 5) + (6 + 8) = 60$\n$\\left(\\sum x_i^{2}\\right)_{\\text{new}} = 371 - (4^{2} + 5^{2}) + (6^{2} + 8^{2}) = 430$\nVariance $\\sigma^{2} = \\frac{\\sum x_i^{2}}{10} - \\left(\\frac{\\sum x_i}{10}\\right)^{2}$\n$\\sigma^{2} = \\frac{430}{10} - \\left(\\frac{60}{10}\\right)^{2}$\n$\\sigma^{2} = 43 - 36$\n$\\sigma^{2} = 7$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$7$"
+    },
+    {
+     "key": "B",
+     "text": "$4$"
+    },
+    {
+     "key": "C",
+     "text": "$9$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let circle $C$ be the image of $x^{2} + y^{2} - 2x + 4y - 4 = 0$ in the line $2x - 3y + 5 = 0$ and $A$ be the point on $C$ such that $OA$ is parallel to $x$-axis and $A$ lies on the right hand side of the centre $O$ of $C$. If $B(\\alpha, \\beta)$, with $\\beta < 4$, lies on $C$ such that the length of the arc $AB$ is $(1/6)^{\\text{th}}$ of the perimeter of $C$, then $\\beta - \\sqrt{3}\\alpha$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Centre $(1, -2)$, $r = 3$\nReflection of $(1, -2)$ about $2x - 3y + 5 = 0$\n$\\frac{x - 1}{2} = \\frac{y + 2}{-3} = \\frac{-2(2 + 6 + 5)}{13} = -2$\n$x = -3,\\ y = 4$\nEquation of circle 'C'\n$C : (x + 3)^{2} + (y - 4)^{2} = 9$\nA.T.Q.\n$AB = 3\\sqrt{3}$\n$\\ell(\\text{arc}AB) = \\frac{1}{6} \\times 2\\pi r$\n$r\\theta = \\frac{1}{6} \\times 2\\pi r$\n$\\theta = \\frac{\\pi}{3}$\n$(\\alpha + 6)^{2} + (\\beta - 4)^{2} = 27$\n$(\\alpha + 3)^{2} + (\\beta - 4)^{2} = 9$\n$(\\alpha + 6)^{2} - (\\alpha + 3)^{2} = 18$\n$\\Rightarrow 6\\alpha = -9$\n$\\Rightarrow \\alpha = \\frac{-3}{2},\\ \\beta = 4 - \\frac{3\\sqrt{3}}{2}$\n$\\therefore \\beta - \\sqrt{3}\\alpha = \\left(4 - \\frac{3\\sqrt{3}}{2}\\right) + \\frac{3\\sqrt{3}}{2}$\n$= 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$3 + \\sqrt{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$4 - \\sqrt{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-24jan-s1-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "For some $n \\ne 10$, let the coefficients of the $5^{\\text{th}}$, $6^{\\text{th}}$ and $7^{\\text{th}}$ terms in the binomial expansion of $(1 + x)^{n+4}$ be in A.P. Then the largest coefficient in the expansion of $(1 + x)^{n+4}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(1 + x)^{n+4}$\n${}^{n+4}C_4,\\ {}^{n+4}C_5,\\ {}^{n+4}C_6 \\to$ A.P.\n$\\Rightarrow 2 \\times {}^{n+4}C_5 = {}^{n+4}C_4 + {}^{n+4}C_6$\n$\\Rightarrow 4 \\times {}^{n+4}C_5 = ({}^{n+4}C_4 + {}^{n+4}C_5) + ({}^{n+4}C_5 + {}^{n+4}C_6)$\n$\\Rightarrow 4 \\times {}^{n+4}C_5 = {}^{n+5}C_5 + {}^{n+5}C_6$\n$\\Rightarrow 4 \\times \\frac{(n+4)!}{5!\\,(n-1)!} = \\frac{(n+6)!}{6!\\,n!}$\n$\\Rightarrow 4 = \\frac{(n+6)(n+5)}{6n}$\n$\\Rightarrow n^{2} + 11n + 30 = 24n$\n$\\Rightarrow n^{2} - 13n + 30 = 0$\n$\\Rightarrow n = 3,\\ 10$(rejected)\n$\\because n \\ne 10$\n$\\therefore$ Largest binomial coefficient in expansion of $(1 + x)^{7}$\n($\\because n + 4 = 7$)\nis coeff. of middle term\n$\\Rightarrow {}^{7}C_4 = {}^{7}C_3 = 35$\nN.T.A. Ans Option (2)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$70$"
+    },
+    {
+     "key": "B",
+     "text": "$35$"
+    },
+    {
+     "key": "C",
+     "text": "$20$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The product of all the rational roots of the equation $(x^{2} - 9x + 11)^{2} - (x - 4)(x - 5) = 3$, is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(x^{2} - 9x + 11)^{2} - (x^{2} - 9x + 20) = 3$\nLet\n$x^{2} - 9x = t$\n$\\Rightarrow t^{2} + 22t + 121 - t - 20 - 3 = 0$\n$\\Rightarrow t^{2} + 21t + 98 = 0$\n$\\Rightarrow (t + 14)(t + 7) = 0$\n$\\Rightarrow t = -7,\\ -14$\nSo, $x^{2} - 9x = -7,\\ -14$\n$x^{2} - 9x + 7 = 0$ or $x^{2} - 9x + 14 = 0$\n$x = \\frac{9 \\pm \\sqrt{81 - 4(7)}}{2 \\times 1}$  $x = \\frac{9 \\pm \\sqrt{81 - 4(14)}}{2}$\n$= \\frac{9 \\pm \\sqrt{53}}{2}$  $= \\frac{9 \\pm 5}{2}$\nProduct of all rational roots $= 7 \\times 2 = 14$\nOption (1)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$14$"
+    },
+    {
+     "key": "B",
+     "text": "$7$"
+    },
+    {
+     "key": "C",
+     "text": "$28$"
+    },
+    {
+     "key": "D",
+     "text": "$21$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the line passing through the points $(-1, 2, 1)$ and parallel to the line $\\frac{x - 1}{2} = \\frac{y + 1}{3} = \\frac{z}{4}$ intersect the line $\\frac{x + 2}{3} = \\frac{y - 3}{2} = \\frac{z - 4}{1}$ at the point $P$. Then the distance of $P$ from the point $Q(4, -5, 1)$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Equation of line through point $(-1, 2, 1)$ is $\\to$\n$\\Rightarrow \\frac{x + 1}{2} = \\frac{y - 2}{3} = \\frac{z - 1}{4}$ $- (2) = \\lambda$\nSo, $x = 2\\lambda - 1$, $y = 3\\lambda + 2$, $z = 4\\lambda + 1$\nBy (1) $\\to \\frac{x + 2}{3} = \\frac{y - 3}{2} = \\frac{z - 4}{1} = \\mu$ (Let)\nSo, $x = 3\\mu - 2$, $y = 2\\mu + 3$, $z = \\mu + 4$\nFor intersection point 'P'\n$x = 2\\lambda - 1 = 3\\mu - 2$\n$y = 3\\lambda + 2 = 2\\mu + 3$ $\\quad \\lambda = 1,\\ \\mu = 1$\n$z = 4\\lambda + 1 = \\mu + 4$\nSo, point $P(x, y, z) = (1, 5, 5)$\n& $Q(4, -5, 1)$\n$\\therefore PQ = \\sqrt{9 + 100 + 16}$\n$= \\sqrt{125} = 5\\sqrt{5}$\nOption (4)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$10$"
+    },
+    {
+     "key": "C",
+     "text": "$5\\sqrt{6}$"
+    },
+    {
+     "key": "D",
+     "text": "$5\\sqrt{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the lines $3x - 4y - \\alpha = 0$, $8x - 11y - 33 = 0$, and $2x - 3y + \\lambda = 0$ be concurrent. If the image of the point $(1, 2)$ in the line $2x - 3y + \\lambda = 0$ is $\\left(\\frac{57}{13}, \\frac{-40}{13}\\right)$, then $|\\alpha\\lambda|$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because PM = QM$\nSo, $M\\left(\\frac{\\frac{57}{13} + 1}{2},\\ \\frac{\\frac{-40}{13} + 2}{2}\\right)$\n$= \\left(\\frac{35}{13},\\ \\frac{-7}{13}\\right)$\n$\\because$ M lies on the time\n$2x - 3y + \\lambda = 0$\n$2\\left(\\frac{35}{13}\\right) - 3\\left(\\frac{-7}{13}\\right) + \\lambda = 0$\n$\\lambda = -\\frac{70}{13} + \\frac{21}{13}$\n$= \\frac{-91}{13} = -7$\n$\\begin{vmatrix} 3 & -4 & -\\alpha \\\\ 8 & -11 & -33 \\\\ 2 & 3 & \\lambda \\end{vmatrix} = 0$\n$\\Rightarrow 3(-11\\lambda - 99) + 4(8\\lambda + 66) - \\alpha(-24 + 22) = 0$\n$\\Rightarrow 33\\lambda - 297 + 32\\lambda + 264 + 24\\alpha - 22\\alpha = 0$\n$\\Rightarrow -\\lambda + 2\\alpha - 33 = 0$ .....(1)\n$\\therefore \\lambda = -7$\n$-(-7) + 2\\alpha - 33 = 0$\n$2\\alpha = 26$\n$\\alpha = 13$\n$\\therefore |\\alpha\\lambda| = |13 \\times (-7)|$\n$= 91$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$84$"
+    },
+    {
+     "key": "B",
+     "text": "$91$"
+    },
+    {
+     "key": "C",
+     "text": "$113$"
+    },
+    {
+     "key": "D",
+     "text": "$101$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the system of equations\n$2x - y + z = 4$\n$5x + \\lambda y + 3z = 12$\n$100x - 47y + \\mu z = 212$,\nhas infinitely many solutions, then $\\mu - 2\\lambda$ is equal to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\Delta = 0 \\Rightarrow \\begin{vmatrix} 2 & -1 & 1 \\\\ 5 & \\lambda & 3 \\\\ 100 & -47 & \\mu \\end{vmatrix} = 0$\n$2(\\lambda\\mu + 141) + (5\\mu - 300) - 235 - 100\\lambda = 0$ ...(1)\n$\\Delta_3 = 0 \\Rightarrow \\begin{vmatrix} 2 & -1 & 4 \\\\ 5 & \\lambda & 12 \\\\ 100 & -47 & 212 \\end{vmatrix} = 0$\n$6\\lambda = -12 \\Rightarrow \\lambda = -2$\nPut $\\lambda = 2$ in (1)\n$2(-2\\mu + 141) + 5\\mu - 300 - 235 + 200 = 0$\n$\\mu = 53$\n$\\therefore 57$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$56$"
+    },
+    {
+     "key": "B",
+     "text": "$59$"
+    },
+    {
+     "key": "C",
+     "text": "$55$"
+    },
+    {
+     "key": "D",
+     "text": "$57$"
     }
    ],
    "stem_figure": null,
@@ -422,14 +755,14 @@
   },
   {
    "q_no": 21,
-   "topic": "Permutations and Combinations",
+   "topic": "Differential Equations",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The number of 3 digit numbers which is divisible by 2 and 3 but not divisible by 4 and 9?",
+   "stem": "Let $f$ be a differentiable function such that $2(x + 2)^{2}f(x) - 3(x + 2)^{2} = 10\\int_{0}^{x}(t + 2)f(t)\\,dt$, $x \\ge 0$. Then $f(2)$ is equal to _____.",
    "correct_key": null,
-   "correct_value": 125,
+   "correct_value": 19,
    "correct_keys": null,
-   "solution": "Total number divisible by 6\n102, 108, ... 996\nSo total number = 150\nNumber divisible by 36\n108, ..., 972\nTotal number = 25\nRequired number = (divisible by 6) $-$ (divisible by 36)\n$= 150 - 25 = 125$",
+   "solution": "Differentiate both sides\n$4(x+2)\\,f(x) + 2(x+2)^{2}f'(x) - 6(x+2) = 10(x+2)\\,f(x)$\n$2(x+2)^{2}f'(x) - 6(x+2)f(x) = 6(x+2)$\n$(x+2)\\frac{dy}{dx} - 3y = 3$\n$\\int \\frac{dy}{dx} = 3\\int \\frac{dx}{x+2}$\n$\\ln(y+1) = 3\\ln(x+2) + C$\n$(y + 1) = C(x+2)^{3}$\n$f(0) = \\frac{3}{2}$\n$f(2) = 19$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -442,14 +775,14 @@
   },
   {
    "q_no": 22,
-   "topic": "Quadratic Equations",
+   "topic": "Inverse Trigonometric Functions",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The product of all real roots of equation $(x^{2} - 9x + 11)^{2} - (x - 4)(x - 5) = 2$ is",
+   "stem": "If for some $\\alpha, \\beta$; $\\alpha \\le \\beta$, $\\alpha + \\beta = 8$ and $\\sec^{2}(\\tan^{-1}\\alpha) + \\mathrm{cosec}^{2}(\\cot^{-1}\\beta) = 36$, then $\\alpha^{2} + \\beta$ is ______.",
    "correct_key": null,
-   "correct_value": 99,
+   "correct_value": 14,
    "correct_keys": null,
-   "solution": "$(x^{2} - 9x + 11)^{2} - (x - 4)(x - 5) = 2$\n$(x^{2} - 9x + 11)^{2} - (x^{2} - 9x + 20) = 2$\nLet $x^{2} - 9x + 11 = t$\n$t^{2} - (t + 9) = 2$\n$t^{2} - t - 11 = 0$\n$t = \\frac{1 \\pm \\sqrt{1 + 44}}{2} = \\frac{1 \\pm \\sqrt{45}}{2}$\n$x^{2} - 9x + 11 = \\frac{1 + \\sqrt{45}}{2}$\n$x^{2} - 9x = \\frac{\\sqrt{45} - 21}{2}$\n$D_{1} : 81 - 4\\left(\\frac{\\sqrt{45} - 21}{2}\\right) > 0$\nSimilarly,\n$x^{2} - 9x + 11 = \\left(\\frac{1 - \\sqrt{45}}{2}\\right)$\n$\\Rightarrow D_{2} : 81 - 4\\left(\\frac{-21 - \\sqrt{45}}{2}\\right) > 0$\n$\\Rightarrow$ All roots are real\n$\\Rightarrow$ Product of roots $= \\left(\\frac{\\text{Constant term}}{1}\\right)$\n$= \\left(\\frac{121 - (20) - 2}{1}\\right) = \\frac{121 - 22}{1} = 99$",
+   "solution": "If$\\left(\\tan(\\tan^{-1}(\\alpha)) + 1\\,(\\cot(\\cot^{-1}\\beta))^{2}\\right) = 36$\n$\\alpha^{2} + \\beta^{2} = 34$\n$\\alpha\\beta = 15$\n$\\alpha = 3,\\ \\beta = 5$\n$\\therefore \\alpha^{2} + \\beta = 9 + 5 = 14$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -462,14 +795,54 @@
   },
   {
    "q_no": 23,
-   "topic": "Sequences and Series",
+   "topic": "Permutations and Combinations",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If $S_{n} = \\frac{1}{2} + \\frac{1}{6} + \\frac{1}{12} + \\ldots n$ terms. The sum of first six terms in A.P. with first term equal to $-p$ and common difference $p$ is $\\sqrt{2026 \\cdot S_{2025}}$. The absolute value of difference between $20^{\\text{th}}$ and $15^{\\text{th}}$ terms in A.P. is",
+   "stem": "The number of $3$-digit numbers, that are divisible by $2$ and $3$, but not divisible by $4$ and $9$, is",
    "correct_key": null,
-   "correct_value": 25,
+   "correct_value": 125,
    "correct_keys": null,
-   "solution": "$S_{n} = \\frac{1}{1 \\cdot 2} + \\frac{1}{2 \\cdot 3} + \\frac{1}{3 \\cdot 4} + \\ldots \\frac{1}{n(n + 1)}$\n$= \\left(\\frac{1}{1} - \\frac{1}{2}\\right) + \\left(\\frac{1}{2} - \\frac{1}{3}\\right) + \\left(\\frac{1}{3} - \\frac{1}{4}\\right) + \\ldots + \\left(\\frac{1}{n} - \\frac{1}{n + 1}\\right)$\n$= 1 - \\frac{1}{n + 1} = \\frac{n}{n + 1} \\Rightarrow S_{2025} = \\frac{2025}{2026}$\nFor A.P. $\\frac{6}{2}(-2p + (6 - 1)p) = \\sqrt{2026 \\times \\frac{2025}{2026}} = 45$\n$\\Rightarrow 3p = \\frac{45}{3} \\Rightarrow p = 5$\nNow for A.P. $|a_{20} - a_{15}| = |19 \\times 5 - 14 \\times 5| = 25$",
+   "solution": "No. of 3 digits $= 999 - 99 = 900$\nNo. of 3 digit numbers divisible by 2 & 3 i.e. by 6\n$\\frac{900}{6} = 150$\nNo. of 3 digit numbers divisible by 4 & 9 i.e. by 36\n$\\frac{900}{36} = 25$\n$\\therefore$ No of 3 digit numbers divisible by 2 & 3 but not by 4 & 9\n$150 - 25 = 125$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Matrices and Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A$ be a $3 \\times 3$ matrix such that $X^{T}AX = O$ for all nonzero $3 \\times 1$ matrices $X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}$. If $A\\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 4 \\\\ -5 \\end{bmatrix}$, $A\\begin{bmatrix} 1 \\\\ 2 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 4 \\\\ -8 \\end{bmatrix}$, and $\\det(\\mathrm{adj}(2(A + I))) = 2^{\\alpha}3^{\\beta}5^{\\gamma}$, $\\alpha, \\beta, \\gamma \\in N$, then $\\alpha^{2} + \\beta^{2} + \\gamma^{2}$ is",
+   "correct_key": null,
+   "correct_value": 44,
+   "correct_keys": null,
+   "solution": "$X^{T}AX = 0$\n$(xyz)\\begin{pmatrix} a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{pmatrix}\\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = 0$\n$(xyz)\\begin{pmatrix} a_1x + a_2y + a_3z \\\\ b_1x + b_2y + b_3z \\\\ c_1x + c_2y + c_3z \\end{pmatrix} = 0$\n$x(a_1x + a_2y + a_3z) + y(b_1x + b_2y + b_3z) + z(c_1x + c_2y + c_3z) = 0$\n$a_1 = 0,\\ b_2 = 0,\\ c_3 = 0$\n$a_2 + b_1 = 0,\\ a_3 + c_1 = 0,\\ b_3 = c_2 = 0$\nA = skew symm matrix\n$A = \\begin{pmatrix} 0 & x & y \\\\ -x & 0 & z \\\\ -y & -z & 0 \\end{pmatrix}$ ; $A\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 4 \\\\ -5 \\end{pmatrix}$\n$\\Rightarrow A = \\begin{pmatrix} 0 & x & y \\\\ -x & 0 & z \\\\ -y & -z & 0 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 4 \\\\ -5 \\end{pmatrix}$\n$x + y = 1$\n$-x + z = 4$\n$y + z = 5$\n$\\begin{pmatrix} 0 & x & y \\\\ -x & 0 & z \\\\ -y & -z & 0 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 2 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 4 \\\\ -8 \\end{pmatrix}$\n$2x + y = 0$  $x = -1$\n$-x + z = 4$  $y = 2$\n$-y - 2z = -8$  $z = 3$\n$A = \\begin{pmatrix} 0 & -1 & 2 \\\\ 1 & 0 & 3 \\\\ -2 & -3 & 0 \\end{pmatrix}$\n$2(A + I) = \\begin{pmatrix} 2 & -2 & 4 \\\\ 2 & 2 & 6 \\\\ -2 & -6 & 2 \\end{pmatrix}$\n$2(A + I) = 120 \\Rightarrow \\det|\\mathrm{adj}(2(A + I))|$\n$= 120^{2} = 2^{6}\\cdot 3^{2}\\cdot 5^{2}$\n$\\alpha = 6,\\ \\beta = 2,\\ \\gamma = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Permutations and Combinations",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $S = \\{p_1, p_2, \\ldots, p_{10}\\}$ be the set of first ten prime numbers. Let $A = S \\cup P$, where $P$ is the set of all possible products of distinct element of $S$. Then the number of all ordered pairs $(x, y)$, $x \\in S$, $y \\in A$, such that $x$ divides $y$ , is ______.",
+   "correct_key": null,
+   "correct_value": 5120,
+   "correct_keys": null,
+   "solution": "Let $\\frac{y}{x} = \\lambda$\n$y = \\lambda x$\n$= 10 \\times \\left({}^{9}C_0 + {}^{9}C_1 + {}^{9}C_2 + {}^{9}C_3 + \\ldots + {}^{9}C_9\\right)$\n$= 10 \\times (2^{9})$\n$10 \\times 512$\n$5120$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

@@ -10,24 +10,152 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "1_648PUjmALqINxOaoe29dwx1TaZ0_8qN"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 3,
-   "topic": "Motion in a Plane",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A man revolving in a circle has completed 120 rev in 3 minutes. Find the centripetal acceleration of the monkey sitting on the shoulder of the man if the radius of circle is 9m. (Constant angular velocity)",
-   "correct_key": null,
-   "correct_value": 160,
+   "q_no": 1,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements :\nStatement I : When the white light passed through a prism, the red light bends lesser than yellow and violet.\nStatement II : The refractive indices are different for different wavelengths in dispersive medium.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "Total distance = $2\\pi \\times 120 = 240\\pi$\n$\\omega = \\frac{240\\pi}{3 \\times 60} = \\frac{4\\pi}{3}$\n$a_{c} = \\omega^{2}R = \\left(\\frac{4\\pi}{3}\\right)^{2} \\times 9 = 160\\ \\mathrm{m/s^{2}}$",
+   "solution": "As $\\lambda_{red} > \\lambda_{yellow} > \\lambda_{violet}$\nLight ray with longer wavelength bends less.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are true."
+    },
+    {
+     "key": "B",
+     "text": "Statement I is true but Statement II is false."
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are false."
+    },
+    {
+     "key": "D",
+     "text": "Statement I is false but Statement II is true."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Dual Nature of Matter and Radiation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following statement is not true about stopping potential ($V_0$)?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$KE_{max} = h\\nu - \\phi_0 = eV$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "It depends on the nature of emitter material."
+    },
+    {
+     "key": "B",
+     "text": "It depends upon frequency of the incident light."
+    },
+    {
+     "key": "C",
+     "text": "It increases with increase in intensity of the incident light."
+    },
+    {
+     "key": "D",
+     "text": "It is $1/e$ times the maximum kinetic energy of electrons emitted."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The angular momentum of an electron in a hydrogen atom is proportional to : (Where $r$ is the radius of orbit of electron)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$F_C = \\frac{mv^{2}}{r}$\n$\\frac{Kq_1q_2}{r^{2}} = \\frac{mv^{2}}{r}$\n$mv^{2}r^{2} = Kq_1q_2r$\n$\\frac{L^{2}}{m} = Kq_1q_2r$\n$L \\propto \\sqrt{r}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{r}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{r}$"
+    },
+    {
+     "key": "C",
+     "text": "$r$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{\\sqrt{r}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A galvanometer of resistance $100\\ \\Omega$ when connected in series with $400\\ \\Omega$ measures a voltage of upto $10\\ \\mathrm{V}$. The value of resistance required to convert the galvanometer into ammeter to read upto $10\\ \\mathrm{A}$ is $x \\times 10^{-2}\\ \\Omega$. The value of $x$ is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$i_g = \\frac{10}{400+100} = 20 \\times 10^{-3}\\ \\mathrm{A}$\nFor ammeter\nLet shunt resistance $= S$\n$i_gR = (i - i_g)S$\n$20 \\times 10^{-3} \\times 100 = 10\\,S$\n$S = 20 \\times 10^{-2}\\ \\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$"
+    },
+    {
+     "key": "B",
+     "text": "$800$"
+    },
+    {
+     "key": "C",
+     "text": "$20$"
+    },
+    {
+     "key": "D",
+     "text": "$200$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -35,19 +163,110 @@
   },
   {
    "q_no": 5,
-   "topic": "Motion in a Plane",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A particle is projected from horizontal at an angle such that maximum possible range is 64 m. Keeping angle of projection same, if velocity of projection becomes half then calculate new value of maximum possible range.",
-   "correct_key": null,
-   "correct_value": 16,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The vehicles carrying inflammable fluids usually have metallic chains touching the ground :",
+   "correct_key": "A",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "For $\\theta = 45^\\circ$\n$R_{max} = \\frac{u^{2}}{g}$\n$u \\rightarrow \\frac{u}{2}$\n$R'_{max} = \\frac{R_{max}}{4} = \\frac{64}{4} = 16\\mathrm{m}$",
+   "solution": "Static charge is developed due to air friction. This can result in combustion. So, metallic chains is used to discharge excess charge.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "To conduct excess charge due to air friction to ground and prevent sparking."
+    },
+    {
+     "key": "B",
+     "text": "To alert other vehicles."
+    },
+    {
+     "key": "C",
+     "text": "To protect tyres from catching dirt from ground."
+    },
+    {
+     "key": "D",
+     "text": "It is a custom."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If n is the number density and d is the diameter of the molecule, then the average distance covered by a molecule between two successive collisions (i.e. mean free path) is represented by :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "n = number of molecule per unit volume\nd = diameter of the molecule\n$\\lambda = \\frac{1}{\\sqrt{2}\\,\\pi d^{2}n}$  (By Theory)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{\\sqrt{2n\\pi d^{2}}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{2}\\,n\\pi d^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\sqrt{2}\\,n\\pi d^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{\\sqrt{2}\\,n^{2}\\pi^{2}d^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle moves in x-y plane under the influence of a force $\\vec{F}$ such that its linear momentum is $\\vec{P}(t) = \\hat{i}\\cos(kt) - \\hat{j}\\sin(kt)$. If $k$ is constant, the angle between $\\vec{F}$ and $\\vec{P}$ will be :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{P} = \\cos(kt)\\hat{i} - \\sin(kt)\\hat{j}$ ; $|\\vec{P}| = 1$\n$\\because\\ \\vec{P} = m\\vec{v}$\n$\\therefore\\ \\hat{P} = \\hat{v}$\n$\\Rightarrow \\hat{v} = \\cos(kt)\\hat{i} - \\sin(kt)\\hat{j}$\n$\\hat{a} = \\frac{-k\\sin(kt)\\hat{i} - k\\cos(kt)\\hat{j}}{k}$\n$\\Rightarrow \\hat{a} = -\\sin kt\\,\\hat{i} - \\cos kt\\,\\hat{j}$\n$\\because\\ \\hat{F} = \\hat{a} = -\\sin kt\\,\\hat{i} - \\cos kt\\,\\hat{j}$\n$\\cos\\theta = \\frac{\\hat{F}\\cdot\\hat{P}}{|\\hat{F}||\\hat{P}|} = -\\frac{\\sin kt\\cos kt + \\sin kt\\cos kt}{1 \\times 1} = 0$\n$\\Rightarrow \\theta = \\frac{\\pi}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{3}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -55,19 +274,36 @@
   },
   {
    "q_no": 8,
-   "topic": "Atoms",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If $\\lambda_{min}$ of lyman series is 915 Å, find the $\\lambda_{max}$ of balmer series.",
-   "correct_key": null,
-   "correct_value": 6588,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The electrostatic force ($\\vec{F}_1$) and magnetic force ($\\vec{F}_2$) acting on a charge q moving with velocity v can be written :",
+   "correct_key": "C",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "$l_{min} \\rightarrow$ max energy $[n = \\infty \\rightarrow n = 1]$\n$L_{max} \\rightarrow$ min energy $[n = 3 \\rightarrow n = 2]$\n$\\frac{hc}{\\lambda_{min}} = Rz^{2}\\left[\\frac{1}{1^{2}} - \\frac{1}{\\infty^{2}}\\right] = Rz^{2}$\n$\\frac{hc}{\\lambda_{max}} = Rz^{2}\\left[\\frac{1}{2^{2}} - \\frac{1}{3^{2}}\\right] = Rz^{2} \\times \\frac{5}{36}$\n$\\frac{\\lambda_{min}}{\\lambda_{max}} = \\frac{1 \\times 36}{5} \\Rightarrow \\lambda_{max} = \\lambda_{min} \\times \\frac{36}{5} = \\frac{915 \\times 36}{5} = 6588$Å",
+   "solution": "$\\vec{F}_1 = q\\vec{E}$  (Theory)\n$\\vec{F}_2 = q(\\vec{V}\\times\\vec{B})$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\vec{F}_1 = q\\vec{V}\\cdot\\vec{E}$, $\\vec{F}_2 = q(\\vec{B}\\cdot\\vec{V})$"
+    },
+    {
+     "key": "B",
+     "text": "$\\vec{F}_1 = q\\vec{B}$, $\\vec{F}_2 = q(\\vec{B}\\times\\vec{V})$"
+    },
+    {
+     "key": "C",
+     "text": "$\\vec{F}_1 = q\\vec{E}$, $\\vec{F}_2 = q(\\vec{V}\\times\\vec{B})$"
+    },
+    {
+     "key": "D",
+     "text": "$\\vec{F}_1 = q\\vec{E}$, $\\vec{F}_2 = q(\\vec{B}\\times\\vec{V})$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -75,19 +311,36 @@
   },
   {
    "q_no": 9,
-   "topic": "Units and Measurements",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If 20 division of vernier scale coincide with 19th division of main scale then find out main scale division (given 0.1 mm is the least count of vernier callipers).",
-   "correct_key": null,
-   "correct_value": 2,
+   "topic": "Circular Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A man carrying a monkey on his shoulder does cycling smoothly on a circular track of radius 9m and completes 120 revolutions in 3 minutes. The magnitude of centripetal acceleration of monkey is (in $\\mathrm{m/s^{2}}$) :",
+   "correct_key": "B",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "20 VSD = 19 MSD\n1 VSD = $\\frac{19}{20}$ MSD\nLC = 1 MSD- 1VSD\n= 1 MSD – $\\frac{19}{20}$ MSD\n0.1 mm = $\\frac{1}{20}$ MSD\n1 MSD = 2mm",
+   "solution": "Given : $R = 9\\,\\mathrm{m}$,\n120 revolution in 3 min\n$\\omega = \\frac{120\\ \\mathrm{Rev.}}{3\\ \\mathrm{min.}} = \\frac{120 \\times 2\\pi\\ \\mathrm{rad}}{3 \\times 60\\ \\mathrm{sec}} = \\frac{4\\pi}{3}\\ \\mathrm{rad/s}$\n$a_{centripetal} = \\omega^{2}R = \\left(\\frac{4\\pi}{3}\\right)^{2} \\times 9 = 16\\pi^{2}\\ \\mathrm{m/s^{2}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "zero"
+    },
+    {
+     "key": "B",
+     "text": "$16\\pi^{2}\\ \\mathrm{ms^{-2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$4\\pi^{2}\\ \\mathrm{ms^{-2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$57600\\,\\pi^{2}\\ \\mathrm{ms^{-2}}$"
+    }
+   ],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -96,33 +349,13 @@
   {
    "q_no": 10,
    "topic": "Alternating Current",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "In a series of RL circuit having $14\\Omega$ an inductance 10mH, applied source voltage is 220 V having frequency 50Hz. Find RMS value of current in the circuit.",
-   "correct_key": null,
-   "correct_value": 15.33,
-   "correct_keys": null,
-   "solution": "$X_{L} = 2\\pi fL = 2\\pi \\times 50 \\times 10 \\times 10^{-3}$\n$\\Rightarrow X_{L} = \\pi\\ \\Omega$\n$Z = \\sqrt{R^{2} + X_{L}^{2}} = \\sqrt{14^{2} + \\pi^{2}}$\n$\\Rightarrow I_{rms} = \\frac{V_{rms}}{Z} = \\frac{220}{\\sqrt{14^{2} + \\pi^{2}}} = 15.33$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s2-phy-q10.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 11,
-   "topic": "Dual Nature of Radiation and Matter",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following is incorrect –",
-   "correct_key": "B",
+   "stem": "A series LCR circuit is subjected to an AC signal of 200 V, 50 Hz. If the voltage across the inductor ($L = 10\\ \\mathrm{mH}$) is 31.4 V, then the current in this circuit is ________ :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$K.E_{max} = h\\nu - \\phi$\n$\\Rightarrow ev_{s} = h\\nu - \\phi$\n$\\Rightarrow v_{s} = \\left(\\frac{h}{e}\\right)\\nu - \\frac{\\phi}{e}$\nSo, stopping potential depends on frequency of light and nature of material of metal.\nStopping potential does not depends on intensity on incident light.",
+   "solution": "Voltage across inductor $V_L = IX_L$\n$31.4 = I[L\\omega]$\n$31.4 = I[L(2\\pi f)]$\n$31.4 = I[10 \\times 10^{-3}(2 \\times 3.14)] \\times 50$\n$\\Rightarrow I = 10\\ \\mathrm{A}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -130,19 +363,56 @@
    "options": [
     {
      "key": "A",
-     "text": "Stopping potential depends on frequency of incident light"
+     "text": "$68\\ \\mathrm{A}$"
     },
     {
      "key": "B",
-     "text": "Stopping potential increases by increasing intensity"
+     "text": "$63\\ \\mathrm{A}$"
     },
     {
      "key": "C",
-     "text": "Stopping potential depends on nature of material"
+     "text": "$10\\ \\mathrm{A}$"
     },
     {
      "key": "D",
-     "text": "Stopping potential is equal to K.E/e"
+     "text": "$10\\ \\mathrm{mA}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "What is the dimensional formula of $ab^{-1}$ in the equation $\\left(P + \\frac{a}{V^{2}}\\right)(V - b) = RT$, where letters have their usual meaning.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because\\ [V] = [b]$\n$\\therefore$ Dimension of $b = [L^{3}]$\n& $[P] = \\left[\\frac{a}{V^{2}}\\right]$\n$[a] = [PV^{2}] = [ML^{-1}T^{-2}][L^{6}]$\nDimension of $a = [ML^{5}T^{-2}]$\n$\\therefore\\ ab^{-1} = \\frac{[ML^{5}T^{-2}]}{[L^{3}]} = [ML^{2}T^{-2}]$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[M^{0}L^{3}T^{-2}]$"
+    },
+    {
+     "key": "B",
+     "text": "$[ML^{2}T^{-2}]$"
+    },
+    {
+     "key": "C",
+     "text": "$[M^{-1}L^{5}T^{3}]$"
+    },
+    {
+     "key": "D",
+     "text": "$[M^{6}L^{7}T^{4}]$"
     }
    ],
    "stem_figure": null,
@@ -152,154 +422,14 @@
   },
   {
    "q_no": 12,
-   "topic": "Electromagnetic Induction",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Current flowing in a coil depends on time ‘t’ given by i = 3t + 2, where t is in sec. If induced emf in the coil is 12mV, then find self inductance (in mH) of coil.",
-   "correct_key": null,
-   "correct_value": 4,
-   "correct_keys": null,
-   "solution": "$E = L\\frac{dr}{dt}$\n$12 = L \\times 3$\nL = 4 mH",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 14,
-   "topic": "Thermodynamics",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "It is given that $P \\propto T^{3}$ then find the value of $\\frac{C_{p}}{C_{v}}$ (process is adiabatic).",
-   "correct_key": null,
-   "correct_value": 1.5,
-   "correct_keys": null,
-   "solution": "$P \\propto T^{3} \\Rightarrow PT^{-3} = $ const\n$\\Rightarrow P(PV)^{-3} = $ const ($\\because PV = nRT$)\n$P^{-2}V^{-3} = $ const\n$\\Rightarrow PV^{3/2} = $ const\n$\\Rightarrow \\gamma = \\frac{3}{2} = \\frac{C_{p}}{C_{v}}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 15,
-   "topic": "System of Particles and Rotational Motion",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A hollow sphere is performing pure rolling on ground, find the ratio of rotational kinetic energy and total kinetic energy.",
-   "correct_key": null,
-   "correct_value": 0.4,
-   "correct_keys": null,
-   "solution": "Rotational K.E.= $\\frac{1}{2}I\\omega^{2} = \\frac{1}{2}I\\frac{v^{2}}{R^{2}}$\nT.E = $\\frac{1}{2}mv^{2} + \\frac{1}{2}I\\omega^{2} = \\frac{1}{2}mv^{2} + \\frac{1}{2}I\\frac{v^{2}}{R^{2}}$\n$I = \\frac{2}{3}mR^{2}$\n$\\frac{R.K.E}{T.E} = \\frac{\\frac{1}{2} \\times \\frac{2}{3}mR^{2} \\times \\frac{v^{2}}{R^{2}}}{\\frac{1}{2}mv^{2} + \\frac{1}{2} \\times \\frac{2}{3} \\times \\frac{v^{2}}{R^{2}} \\times mR^{2}} = \\frac{\\frac{1}{3}}{\\frac{1}{2} + \\frac{1}{3}} = \\frac{2}{5}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 16,
-   "topic": "Mechanical Properties of Fluids",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "If the small diameter of piston is $d_{1}$ = 1.4 cm and the larger diameter of piston is $d_{2}$ = 14 cm. If force of 10N is applied on small piston then find out $F_{2}$ required to maintain same level.",
-   "correct_key": null,
-   "correct_value": 1000,
-   "correct_keys": null,
-   "solution": "$\\frac{F_{2}}{A_{2}} = \\frac{F_{1}}{A_{1}}$\n$F_{2} = \\frac{F_{1}}{A_{1}}A_{2} = \\frac{10 \\times \\pi \\times 7^{2}}{\\pi \\times 0.7^{2}}$\nF = 1000 N",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s2-phy-q16.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 17,
-   "topic": "Laws of Motion",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "A block having mass 50 kg moving with velocity v, if coefficient of kinetic friction is 0.3 then force due to kinetic friction (take $g = 9.8\\ \\mathrm{m/s^{2}}$)",
-   "correct_key": null,
-   "correct_value": 147,
-   "correct_keys": null,
-   "solution": "$f = \\mu mg$\n$f = 0.3 \\times 50 \\times 9.8 = 147\\ \\mathrm{N}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s2-phy-q17.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 18,
-   "topic": "Electric Charges and Fields",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find ratio of electric field at points A and B, produced by electric dipole.",
-   "correct_key": null,
-   "correct_value": 16,
-   "correct_keys": null,
-   "solution": "$E_{A} = \\frac{2kp}{r^{3}}$\n$E_{B} = \\frac{k.p}{(2r)^{3}}$\n$\\frac{E_{A}}{E_{B}} = 16$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s2-phy-q18.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 20,
-   "topic": "Current Electricity",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "The ratio of heat dissipated per second through $5\\Omega$ and $10\\Omega$ will be –",
-   "correct_key": null,
-   "correct_value": 2,
-   "correct_keys": null,
-   "solution": "since voltage drop is same, so heat dissipated is inverse ratio of resistance,\n$H_{R1} : H_{R2} = \\frac{1}{R_{1}} : \\frac{1}{R_{2}}$\n$\\frac{H_{1}}{H_{2}} = \\frac{10}{5} = \\frac{2}{1}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": "j24-05apr-s2-phy-q20.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 21,
-   "topic": "Electric Charges and Fields",
+   "topic": "Semiconductor Electronics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Why metal chain hangs at the rear part of tankers containing inflammable liquid.",
-   "correct_key": "C",
+   "stem": "The output (Y) of logic circuit given below is 0 only when :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Due to air drag charges induced on tanker, to neutralise the charge metal chains hangs at the rear part of the tankers touching with earth.",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -307,19 +437,56 @@
    "options": [
     {
      "key": "A",
-     "text": "To make it look fancy"
+     "text": "$A = 1, B = 0$"
     },
     {
      "key": "B",
-     "text": "To inform other vehicles about tanker"
+     "text": "$A = 0, B = 0$"
     },
     {
      "key": "C",
-     "text": "So that extra electron can be transferred to earth."
+     "text": "$A = 1, B = 1$"
     },
     {
      "key": "D",
-     "text": "To protect the Tyre from damage."
+     "text": "$A = 0, B = 1$"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s2-phy-q42.png",
+   "solution_figure": "jn24-05apr-s2-phy-q42-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A body is moving unidirectionally under the influence of a constant power source. Its displacement in time t is proportional to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P = \\text{constant} \\Rightarrow FV = \\text{constant}$\n$\\Rightarrow m\\frac{dV}{dt}V = \\text{constant}$\n$\\int_{0}^{V} V\\,dV = (C)\\int_{0}^{t} dt$\n$\\left(\\frac{V^{2}}{2}\\right) = Ct$\n$V \\propto t^{1/2}$\n$\\frac{ds}{dt} \\propto t^{1/2}$\n$\\int_{0}^{S} ds = K\\int_{0}^{t} t^{1/2}\\,dt$\n$S = K \\times \\frac{2}{3}t^{3/2}$\n$S \\propto t^{3/2}$\n$\\therefore$ displacement is proportional to $(t)^{3/2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$t^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$t^{2/3}$"
+    },
+    {
+     "key": "C",
+     "text": "$t^{3/2}$"
+    },
+    {
+     "key": "D",
+     "text": "$t$"
     }
    ],
    "stem_figure": null,
@@ -328,15 +495,294 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 22,
+   "q_no": 14,
+   "topic": "Electromagnetic Waves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List-I with List-II :-\nList-I (EM-Wave) | List-II (Wavelength Range)\n(A) Infra-red | (I) $< 10^{-3}$ nm\n(B) Ultraviolet | (II) 400 nm to 1 nm\n(C) X-rays | (III) 1 mm to 700 nm\n(D) Gamma rays | (IV) 1 nm to $10^{-3}$ nm\nChoose the correct answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Infrared is the least energetic thus having biggest wavelength ($\\lambda$) & gamma rays are most energetic thus having smallest wavelength ($\\lambda$).",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(II), (B)-(I), (C)-(IV), (D)-(III)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(III), (B)-(II), (C)-(IV), (D)-(I)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(IV), (B)-(III), (C)-(II), (D)-(I)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(I), (B)-(III), (C)-(II), (D)-(IV)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "During an adiabatic process, if the pressure of a gas is found to be proportional to the cube of its absolute temperature, then the ratio of $\\frac{C_P}{C_V}$ for the gas is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$P \\propto T^{3}$\n$PT^{-3} = \\text{constant}$\n$\\because\\ \\frac{PV}{T} = nR = \\text{constant}$ from ideal gas equation\n$(P)(PV)^{-3} = \\text{constant}$\n$P^{-2}V^{-3} = \\text{constant}$  ...(1)\n$\\because$ Process equation for adiabatic process is\n$PV^{\\gamma} = \\text{constant}$  ...(2)\nComparing equation (1) and (2)\n$\\frac{C_P}{C_V} = \\gamma = \\frac{3}{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{5}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{9}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{7}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Properties of Solids and Liquids",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List-I with List-II :\nList-I | List-II\n(A) A force that restores an elastic body of unit area to its original state | (I) Bulk modulus\n(B) Two equal and opposite forces parallel to opposite faces | (II) Young's modulus\n(C) Forces perpendicular everywhere to the surface per unit area same everywhere | (III) Stress\n(D) Two equal and opposite forces perpendicular to opposite faces | (IV) Shear modulus\nChoose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) $\\text{stress} = \\frac{F_{restoring}}{A}$\nIf $A = 1$\n$\\text{Stress} = F_{restoring}$\n(A)-(III)\n(B) [drawing] $\\Rightarrow$ Shear stress\n(B)-(IV)\n(C) [drawing] $\\Rightarrow$ Volumetric stress\n(C)-(I)\n(D) [drawing] $\\Rightarrow$ Longitudinal stress\n(D)-(II)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(II), (B)-(IV), (C)-(I), (D)-(III)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(IV), (B)-(II), (C)-(III), (D)-(I)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(III), (B)-(I), (C)-(II), (D)-(IV)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-05apr-s2-phy-q46-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A vernier callipers has 20 divisions on the vernier scale, which coincides with $19^{\\mathrm{th}}$ division on the main scale. The least count of the instrument is 0.1 mm. One main scale division is equal to ____mm.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$20\\ \\mathrm{VSD} = 19\\ \\mathrm{MSD}$\n$1\\,\\mathrm{VSD} = \\frac{19}{20}\\mathrm{MSD}$\n$\\mathrm{L.C.} = 1\\ \\mathrm{MSD} - 1\\ \\mathrm{VSD}$\n$0.1\\ \\mathrm{mm} = 1\\mathrm{MSD} - \\frac{19}{20}\\mathrm{MSD}$\n$0.1 = \\frac{1}{20}\\mathrm{MSD}$\n$1\\ \\mathrm{MSD} = 2\\,\\mathrm{mm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1$"
+    },
+    {
+     "key": "B",
+     "text": "$0.5$"
+    },
+    {
+     "key": "C",
+     "text": "$2$"
+    },
+    {
+     "key": "D",
+     "text": "$5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
    "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A heavy box of mass 50 kg is moving on a horizontal surface. If co-efficient of kinetic friction between the box and horizontal surface is 0.3 then force of kinetic friction is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "[Drawing: box of 50 kg moving with velocity $v$ on a surface with $\\mu_k = 0.3$]\n$F_k = \\mu_kN = 0.3 \\times 50 \\times 9.8 = 147\\ \\mathrm{N}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$14.7\\ \\mathrm{N}$"
+    },
+    {
+     "key": "B",
+     "text": "$147\\ \\mathrm{N}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.47\\ \\mathrm{N}$"
+    },
+    {
+     "key": "D",
+     "text": "$1470\\ \\mathrm{N}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A satellite revolving around a planet in stationary orbit has time period 6 hours. The mass of planet is one-fourth the mass of earth. The radius orbit of planet is : (Given = Radius of geo-stationary orbit for earth is $4.2 \\times 10^{4}$ km)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$T = \\frac{2\\pi r^{3/2}}{\\sqrt{GM}}$\n$\\frac{T_1}{T_2} = \\left(\\frac{r_1}{r_2}\\right)^{3/2}\\left(\\frac{M_2}{M_1}\\right)^{1/2}$\n$\\frac{6}{24} = \\frac{(r_1)^{3/2}}{(4.2 \\times 10^{4})^{3/2}}\\left(\\frac{M}{M/4}\\right)^{1/2}$\n$r_1 = 1.05 \\times 10^{4}\\ \\mathrm{km}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.4 \\times 10^{4}\\ \\mathrm{km}$"
+    },
+    {
+     "key": "B",
+     "text": "$8.4 \\times 10^{4}\\ \\mathrm{km}$"
+    },
+    {
+     "key": "C",
+     "text": "$1.68 \\times 10^{5}\\ \\mathrm{km}$"
+    },
+    {
+     "key": "D",
+     "text": "$1.05 \\times 10^{4}\\ \\mathrm{km}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The ratio of heat dissipated per second through the resistance $5\\ \\Omega$ and $10\\ \\Omega$ in the circuit given below is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{i_1}{i_2} = \\frac{10}{5} = \\frac{2}{1}$\n$\\frac{P_1}{P_2} = \\frac{i_1^{2}R_1}{i_2^{2}R_2} = \\left(\\frac{2}{1}\\right)^{2} \\times \\frac{5}{10} = \\frac{2}{1}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 : 2$"
+    },
+    {
+     "key": "B",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$4 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 1$"
+    }
+   ],
+   "stem_figure": "jn24-05apr-s2-phy-q50.png",
+   "solution_figure": "jn24-05apr-s2-phy-q50-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Moving Charges and Magnetism",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A Force acts on a body such that momentum $\\vec{p} = \\cos(kt)\\,\\hat{i} - \\sin(kt)\\,\\hat{j}$. Find the angle between $\\vec{p}$ and $\\vec{F}$.",
+   "stem": "A solenoid of length 0.5 m has a radius of 1 cm and is made up of 'm' number of turns. It carries a current of 5A. If the magnitude of the magnetic field inside the solenoid is $6.28 \\times 10^{-3}$ T, then the value of m is :",
    "correct_key": null,
-   "correct_value": 90,
+   "correct_value": 500,
    "correct_keys": null,
-   "solution": "$\\vec{F} = \\frac{d\\vec{p}}{dt} = -K\\sin(Kt)\\hat{i} - K\\cos(Kt)\\hat{j}$\n$\\vec{P}.\\vec{F} = 0$\n$\\Rightarrow \\theta = 90^\\circ$",
+   "solution": "$\\mu_0ni = B$   $n$ = number of turns per unit length\n$\\mu_0\\left(\\frac{m}{\\ell}\\right)i = B$\n$m = \\frac{B.\\ell}{\\mu_0 i} = \\frac{6.28 \\times 10^{-3} \\times 0.5}{12.56 \\times 10^{-7} \\times 5}$\n$m = 500$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Atoms",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The shortest wavelength of the spectral lines in the Lyman series of hydrogen spectrum is 915 Å. The longest wavelength of spectral lines in the Balmer series will be _______ Å.",
+   "correct_key": null,
+   "correct_value": 6588,
+   "correct_keys": null,
+   "solution": "Lyman Series\nShortest, $\\frac{hc}{\\lambda} = -13.6\\left(\\frac{1}{n_1^{2}} - \\frac{1}{n_2^{2}}\\right)$\n$\\lambda\\downarrow\\ E\\uparrow$ ; $\\frac{hc}{\\lambda_0} = -13.6(1)$\nBalmer Series :\n$\\frac{hc}{\\lambda_1} = -13.6\\left(\\frac{1}{2^{2}} - \\frac{1}{3^{2}}\\right)$\n$\\frac{hc}{\\lambda_1} = -13.6\\left(\\frac{1}{4} - \\frac{1}{9}\\right)$\n$\\frac{hc}{\\lambda_1} = -13.6 \\times \\left(\\frac{5}{36}\\right)$\n$\\Rightarrow \\frac{-13.6\\lambda_0}{\\lambda_1} = -13.6 \\times \\frac{5}{36}$\n$\\lambda_1 = \\frac{\\lambda_0 \\times 36}{5} = \\frac{915 \\times 36}{5} = 6588$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -349,14 +795,14 @@
   },
   {
    "q_no": 23,
-   "topic": "Waves",
+   "topic": "Wave Optics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A sonometer wire of length 90cm, whose fundamental frequency is 400Hz. Wire has same tension and now, fundamental frequency changed to 600Hz. Find the new length of wire.",
+   "stem": "In a single slit experiment, a parallel beam of green light of wavelength 550 nm passes through a slit of width 0.20 mm. The transmitted light is collected on a screen 100 cm away. The distance of first order minima from the central maximum will be $x \\times 10^{-5}$ m. The value of x is :",
    "correct_key": null,
-   "correct_value": 60,
+   "correct_value": 275,
    "correct_keys": null,
-   "solution": "$n = \\frac{1}{2\\ell}\\sqrt{\\frac{T}{m}}$\n$n\\ell = $ const\n$n_{1}\\ell_{1} = n_{2}\\ell_{2}$\n$n_{1} = 400$, $n_{2} = 600$\n$\\ell_{1} = 90\\mathrm{cm}$, $\\ell_{2} = ?$\n$400 \\times 90 = 600 \\times \\ell_{2}$\n$\\ell_{2} = 60\\mathrm{cm}$",
+   "solution": "$\\lambda = 550\\ \\mathrm{nm}$, $d = 0.2\\ \\mathrm{mm}$ (distance to screen 100 cm)\n$y = \\frac{\\lambda D}{d} = \\frac{550 \\times 10^{-9} \\times 100 \\times 10^{-2}}{0.2 \\times 10^{-3}} = 275$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -369,21 +815,141 @@
   },
   {
    "q_no": 24,
-   "topic": "Moving Charges and Magnetism",
+   "topic": "Waves",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A galvanometer having resistance $100\\Omega$ is connected in series with $400\\Omega$ resistance and measures maximum of 10V and now galvanometer is converted into ammeter. What should be the value of shunt resistance so that it can measure maximum of 10A of current.",
+   "stem": "A sonometer wire of resonating length 90 cm has a fundamental frequency of 400 Hz when kept under some tension. The resonating length of the wire with fundamental frequency of 600 Hz under same tension _______ cm.",
    "correct_key": null,
-   "correct_value": 0.2,
+   "correct_value": 60,
    "correct_keys": null,
-   "solution": "$V = \\left(I_{g}\\right)_{max} \\times 500$\n$10 = \\left(I_{g}\\right)_{max} \\times 500$\n$\\left(I_{g}\\right)_{max} = \\frac{1}{50}\\ \\mathrm{A}$\n$\\left(10 - \\frac{1}{50}\\right)Rs = \\frac{1}{50} \\times Rg$\n$Rs = \\frac{\\frac{1}{50} \\times 100}{\\left(10 - \\frac{1}{50}\\right)} = \\frac{2}{10 - 0.02}$\n$Rs = 0.2\\Omega$",
+   "solution": "$f_0 = 400\\ \\mathrm{Hz}$ ; $v = \\sqrt{\\frac{T}{\\mu}} = \\text{constant}$\n$\\frac{\\lambda}{2} = L$ ; $v = f_0\\lambda$\n$\\frac{v}{2f_0} = L \\Rightarrow v = 2Lf_0$\n$L' = \\frac{v}{2f'} = \\frac{2Lf_0}{2f'}$\n$= \\frac{Lf_0}{f'} = \\frac{90 \\times 400}{600} = 60$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
    "stem_figure": null,
-   "solution_figure": "j24-05apr-s2-phy-q24-sol.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Rotational Motion",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A hollow sphere is rolling on a plane surface about its axis of symmetry. The ratio of rotational kinetic energy to its total kinetic energy is $\\frac{x}{5}$. The value of x is ________.",
+   "correct_key": null,
+   "correct_value": 2,
+   "correct_keys": null,
+   "solution": "$\\frac{\\frac{1}{2}I\\omega^{2}}{\\frac{1}{2}I\\omega^{2} + \\frac{1}{2}mv^{2}} = \\frac{\\left(\\frac{1}{2}\\right)\\left(\\frac{2}{3}mR^{2}\\right)\\omega^{2}}{\\left(\\frac{1}{2}\\right)\\left(\\frac{2}{3}mR^{2}\\right)\\omega^{2} + \\frac{1}{2}m(R\\omega)^{2}}$\n$= \\frac{\\frac{2}{3}}{\\frac{2}{3}+1} = \\frac{2}{5}$\n$x = 2$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Properties of Solids and Liquids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A hydraulic press containing water has two arms with diameters as mentioned in the figure. A force of 10 N is applied on the surface of water in the thinner arm. The force required to be applied on the surface of water in the thicker arm to maintain equilibrium of water is _______ N.",
+   "correct_key": null,
+   "correct_value": 1000,
+   "correct_keys": null,
+   "solution": "$\\frac{F_1}{A_1} = \\frac{F_2}{A_2}$\n$\\frac{F_1}{\\pi(7)^{2}} = \\frac{10}{\\pi \\times (0.7)^{2}}$\n$F_1 = 1000\\ \\mathrm{N}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s2-phy-q56.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Electrostatics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The electric field at point p due to an electric dipole is E. The electric field at point R on equitorial line will be $\\frac{E}{x}$. The value of x :",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "$E_P = \\frac{2KP}{r^{3}} = E$\n$E_R = \\frac{KP}{(2r)^{3}} = \\frac{E}{16}$\n$x = 16$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn24-05apr-s2-phy-q57.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Kinematics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The maximum height reached by a projectile is 64 m. If the initial velocity is halved, the new maximum height of the projectile is ______ m.",
+   "correct_key": null,
+   "correct_value": 16,
+   "correct_keys": null,
+   "solution": "$H_{max} = \\frac{u^{2}\\sin^{2}\\theta}{2g}$\n$\\frac{H_{1max}}{H_{2max}} = \\frac{u_1^{2}}{u_2^{2}}$\n$\\frac{64}{H_{2max}} = \\frac{u^{2}}{(u/2)^{2}}$\n$H_{2max} = 16\\ \\mathrm{m}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Current Electricity",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A wire of resistance $20\\ \\Omega$ is divided into 10 equal parts. A combination of two parts are connected in parallel and so on. Now resulting pairs of parallel combination are connected in series. The equivalent resistance of final combination is _______ $\\Omega$.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "[Drawing: wire of $20\\,\\Omega$] $\\Rightarrow$ 10 equal part\nEach part has resistance $= 2\\,\\Omega$\n2 parts are connected in parallel so, $R = 1\\,\\Omega$\nNow, there will be 5 parts each of resistance $1\\,\\Omega$, they are connected in series.\n$R_{eq} = 5R$, $R_{eq} = 5\\,\\Omega$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Electromagnetic Induction",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The current in an inductor is given by $I = (3t + 8)$ where t is in second. The magnitude of induced emf produced in the inductor is 12 mV. The self-inductance of the inductor _______ mH.",
+   "correct_key": null,
+   "correct_value": 4,
+   "correct_keys": null,
+   "solution": "$I = 3t + 8$\n$\\varepsilon = 12\\ \\mathrm{mV}$\n$|\\varepsilon| = L\\left|\\frac{dI}{dt}\\right|$\n$12 = L \\times 3$\n$L = 4\\ \\mathrm{mH}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   }

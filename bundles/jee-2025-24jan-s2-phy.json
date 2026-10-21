@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "12obKY4vqbbW4VsIF_rQxXlslqoZ9jrwi"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Rotational Motion",
+   "topic": "Wave Optics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A solid sphere and hollow sphere rolls down purely equal distances on same inclined plane (Starting from rest) in time $t_1$ and $t_2$ then.",
-   "correct_key": "B",
+   "stem": "Young's double slit interference apparatus is immersed in a liquid of refractive index $1.44$. It has slit separation of $1.5\\ \\mathrm{mm}$. The slits are illuminated by a parallel beam of light whose wavelength in air is $690\\ \\mathrm{nm}$. The fringe-width on a screen placed behind the plane of slits at a distance of $0.72\\ \\mathrm{m}$, will be :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$a_{SS} = \\frac{g\\sin\\theta}{1 + \\frac{2}{5}}$, $a_{HS} = \\frac{g\\sin\\theta}{1 + \\frac{2}{3}}$\n$a_{SS} > a_{HS} \\Rightarrow t_{SS} < t_{HS}$",
+   "solution": "$$\\beta = \\left(\\frac{\\lambda_0}{\\mu}\\right) \\times \\frac{D}{d} = \\frac{690 \\times 10^{-9} \\times 0.72}{1.44 \\times 1.5 \\times 10^{-3}} = 0.23\\ \\mathrm{mm}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$t_1 > t_2$"
+     "text": "$0.23\\ \\mathrm{mm}$"
     },
     {
      "key": "B",
-     "text": "$t_1 < t_2$"
+     "text": "$0.33\\ \\mathrm{mm}$"
     },
     {
      "key": "C",
-     "text": "$t_1 = 2t_2$"
+     "text": "$0.63\\ \\mathrm{mm}$"
     },
     {
      "key": "D",
-     "text": "$t_1 = t_2$"
+     "text": "$0.46\\ \\mathrm{mm}$"
     }
    ],
    "stem_figure": null,
@@ -52,14 +52,14 @@
   },
   {
    "q_no": 2,
-   "topic": "Rotational Motion",
+   "topic": "Electromagnetic Waves",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A solid sphere rolls without slipping on a horizontal plane. What is ratio of translational kinetic energy to the rotational kinetic energy of the sphere.",
-   "correct_key": "D",
+   "stem": "Arrange the following in the ascending order of wavelength ($\\lambda$) :\n(A) Microwaves ($\\lambda_1$)\n(B) Ultraviolet rays ($\\lambda_2$)\n(C) Infrared rays ($\\lambda_3$)\n(D) X-rays ($\\lambda_4$)\nChoose the most appropriate answer from the options given below :-",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\frac{\\mathrm{KE}_T}{\\mathrm{KE}_R} = \\frac{\\frac{1}{2}mv^{2}}{\\frac{1}{2}\\cdot\\frac{2}{5}mR^{2}\\omega^{2}}$\n$= \\frac{5}{2}$",
+   "solution": "Electromagnetic spectrum, with $\\lambda$ increasing to the right (arrow marked $\\lambda$):\n$\\gamma$-rays | X-rays | U.V rays | Visible rays | IR rays | Micro waves | Radio waves",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,19 +67,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{4}{3}$"
+     "text": "$\\lambda_4 < \\lambda_3 < \\lambda_2 < \\lambda_1$"
     },
     {
      "key": "B",
-     "text": "$\\frac{3}{4}$"
+     "text": "$\\lambda_3 < \\lambda_4 < \\lambda_2 < \\lambda_1$"
     },
     {
      "key": "C",
-     "text": "$\\frac{2}{5}$"
+     "text": "$\\lambda_4 < \\lambda_2 < \\lambda_3 < \\lambda_1$"
     },
     {
      "key": "D",
-     "text": "$\\frac{5}{2}$"
+     "text": "$\\lambda_4 < \\lambda_3 < \\lambda_1 < \\lambda_2$"
     }
    ],
    "stem_figure": null,
@@ -89,14 +89,14 @@
   },
   {
    "q_no": 3,
-   "topic": "Units and Dimensions",
+   "topic": "Magnetic Effects of Current",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "If $E$, $p$, $m$ and $c$ denote the energy, linear momentum, mass and speed of light, then the equation representing the correct relation could be",
-   "correct_key": "A",
+   "stem": "Given below are two statements. One is labelled as Assertion (A) and the other is labelled as Reason(R).\nAssertion (A) : A electron in a certain region of uniform magnetic field is moving with constant velocity in a straight line path.\nReason (A) : The magnetic field in that region is along the direction of velocity of the electron.\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$[E] = [pc] = [mc^{2}] = \\mathrm{ML^{2}T^{-2}}$\n$\\Rightarrow [E^{2}] = [p^{2}c^{2}] = [m^{2}c^{4}] = [p^{2}c^{2} + m^{2}c^{4}]$",
+   "solution": "$\\vec{F} = q\\left(\\vec{v} \\times \\vec{B}\\right)$\n$\\vec{F} = 0$\n$\\vec{v} \\parallel \\vec{B}$\n$\\theta = 0$ or $180$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$E^{2} = p^{2}c^{2} + m^{2}c^{4}$"
+     "text": "(A) is false but (R) is true"
     },
     {
      "key": "B",
-     "text": "$E^{2} = pc^{2} + m^{2}c^{4}$"
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
     },
     {
      "key": "C",
-     "text": "$E = p^{2}c^{2} + m^{2}c^{2}$"
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)"
     },
     {
      "key": "D",
-     "text": "$E^{2} = pc^{2} + m^{2}c^{2}$"
+     "text": "(A) is true but (R) is false"
     }
    ],
    "stem_figure": null,
@@ -126,14 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "Thermal Properties of Matter",
+   "topic": "Rotational Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following graph correctly represents the relation between Celsius($^\\circ$c) and Fahrenheit($^\\circ$F)",
-   "correct_key": "C",
+   "stem": "A solid sphere is rolling without slipping on a horizontal plane. The ratio of the linear kinetic energy of the centre of mass of the sphere and rotational kinetic energy is :",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$F = \\frac{9}{5}C + 32$\n$C = \\frac{5}{9}F - \\frac{5}{9}\\times 32$",
+   "solution": "$$\\frac{\\text{Linear KE}}{\\text{Rotational K.E}} = \\frac{\\frac{1}{2}mv_{cm}^{2}}{\\frac{1}{2}I\\omega^{2}}$$\n$$\\frac{mv_{cm}^{2}}{\\frac{2}{5}mR^{2}\\omega^{2}} = \\frac{5}{2} \\qquad (V = \\omega R)$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -141,23 +141,19 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q04-optA.png"
+     "text": "$\\frac{2}{5}$"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q04-optB.png"
+     "text": "$\\frac{5}{2}$"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q04-optC.png"
+     "text": "$\\frac{3}{4}$"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q04-optD.png"
+     "text": "$\\frac{4}{3}$"
     }
    ],
    "stem_figure": null,
@@ -167,14 +163,14 @@
   },
   {
    "q_no": 5,
-   "topic": "Thermal Properties of Matter",
+   "topic": "Magnetic Effects of Current",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Temperature of a body reduces from $40^\\circ$ to $24^\\circ\\mathrm{C}$ in 4 minutes in surrounding of $16^\\circ\\mathrm{C}$. What is the temperature of body after further 4 minutes?",
-   "correct_key": "C",
+   "stem": "A long straight wire of a circular cross-section with radius 'a' carries a steady current I. The current I is uniformly distributed across this cross-section. The plot of magnitude of magnetic field B with distance r from the centre of the wire is given by",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Using Newton's law of cooling\n$\\left|\\left\\langle \\frac{dT}{dt} \\right\\rangle\\right| = b(\\langle T \\rangle - T_0)$\n$\\frac{16}{4} = b(32 - 16)$\n$\\frac{24 - T}{4} = b\\left(\\frac{T + 24}{2} - 16\\right)$\n$\\frac{4\\times 4}{24 - T} = \\frac{16\\times 2}{T + 24 - 32}$\n$48 - 2T = T - 8$\n$\\frac{56}{3} = T$",
+   "solution": "$$B_{in} = \\frac{\\mu_0 \\left(\\vec{J} \\times \\vec{r}\\right)}{2}$$\n$B_{in} \\propto r$\n$$B_{out} = \\frac{\\mu_0 I}{2\\pi r}$$\n$B_{net} \\propto \\frac{1}{r}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -182,19 +178,60 @@
    "options": [
     {
      "key": "A",
-     "text": "$20^\\circ\\mathrm{C}$"
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q30-optA.png"
     },
     {
      "key": "B",
-     "text": "$22^\\circ\\mathrm{C}$"
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q30-optB.png"
     },
     {
      "key": "C",
-     "text": "$\\frac{56}{3}{}^\\circ\\mathrm{C}$"
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q30-optC.png"
     },
     {
      "key": "D",
-     "text": "$17^\\circ\\mathrm{C}$"
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q30-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-24jan-s2-phy-q30-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements. One is labelled as Assertion (A) and the other is labelled as Reason(R).\nAssertion (A) : In an insulated container, a gas is adiabatically shrunk to half of its initial volume. The temperature of the gas decreases.\nReason (R) : Free expansion of an ideal gas is an irreversible and an adiabatic process.\nIn the light of the above statement, choose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(A) $T_1V_1^{\\gamma-1} = T_2V_2^{\\gamma-1}$\nTemp increases\nR) Free expansion is assumed fast, so Adiabatic",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both (A) and (R) are true and (R) is the correct explanation of (A)"
+    },
+    {
+     "key": "B",
+     "text": "(A) is true but (R) is false"
+    },
+    {
+     "key": "C",
+     "text": "(A) is false but (R) is true"
+    },
+    {
+     "key": "D",
+     "text": "Both (A) and (R) are true but (R) is NOT the correct explanation of (A)"
     }
    ],
    "stem_figure": null,
@@ -203,52 +240,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 6,
-   "topic": "Motion in a Plane",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "The position of a particle varies with time as $\\vec{r} = (5t^{2}\\hat{i} - 5t\\hat{j})\\ \\mathrm{m}$. The magnitude and direction of velocity at $t = \\frac{1}{2}\\ \\mathrm{s}$ is",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\vec{r} = 5t^{2}\\hat{i} - 5t\\hat{j}$\n$\\vec{v} = \\frac{d\\vec{r}}{dt} = 10t\\hat{i} - 5\\hat{j}$\n$\\vec{v}\\left(t = \\frac{1}{2}\\ \\mathrm{s}\\right) = 10\\left(\\frac{1}{2}\\right)\\hat{i} - 5\\hat{j}$\n$= 5\\hat{i} - 5\\hat{j}$\nMagnitude $= \\sqrt{(5)^{2} + (-5)^{2}} = 5\\sqrt{2}\\ \\mathrm{m/s}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$5\\sqrt{2}\\ \\mathrm{m/s}$, $-45^\\circ$ with $+X$ axis"
-    },
-    {
-     "key": "B",
-     "text": "$5\\ \\mathrm{m/s}$, $-45^\\circ$ with $+X$ axis"
-    },
-    {
-     "key": "C",
-     "text": "$5\\sqrt{2}\\ \\mathrm{m/s}$, $-45^\\circ$ with $+Y$ axis"
-    },
-    {
-     "key": "D",
-     "text": "$5\\ \\mathrm{m/s}$, $+45^\\circ$ with $+Y$ axis"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": "j25-24jan-s2-phy-q06-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
    "q_no": 7,
-   "topic": "Thermodynamics",
+   "topic": "Electrostatics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "In given thermodynamic process (Circular in nature), find magnitude of work done by the gas in cycle $ABCA$",
-   "correct_key": "C",
+   "stem": "In the first configuration (1) as shown in the figure, four identical charges ($q_0$) are kept at the corners A,B,C and D of square of side length 'a'. In the second configuration (2), the same charges are shifted to mid points G,E,H and F, of the square, If $K = \\frac{1}{4\\pi\\varepsilon_0}$, the difference between the potential energies of configuration (2) and (1) is given by :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\omega = \\frac{\\pi r^{2}}{2} = \\frac{\\pi\\times(100\\times10^{3})\\times100\\times10^{-6}}{2}$\n$= 5\\pi$",
+   "solution": "$$U_1 = \\frac{4Kq_0^{2}}{a} + \\frac{2Kq_0^{2}}{\\sqrt{2}a} = \\frac{Kq_0^{2}}{a}\\left(4 + \\sqrt{2}\\right)$$\n$$U_2 = \\frac{Kq_0^{2}}{\\left(\\frac{a}{\\sqrt{2}}\\right)}\\left(4 + \\sqrt{2}\\right) = \\frac{Kq_0^{2}}{a}\\left(4\\sqrt{2} + 2\\right)$$\n$$U_2 - U_1 = \\frac{Kq_0^{2}}{a}\\left(3\\sqrt{2} - 2\\right)$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -256,36 +256,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$2\\pi$"
+     "text": "$\\frac{Kq_0^{2}}{a}\\left(4\\sqrt{2} - 2\\right)$"
     },
     {
      "key": "B",
-     "text": "$10\\pi$"
+     "text": "$\\frac{Kq_0^{2}}{a}\\left(3 - \\sqrt{2}\\right)$"
     },
     {
      "key": "C",
-     "text": "$5\\pi$"
+     "text": "$\\frac{Kq_0^{2}}{a}\\left(4 - 2\\sqrt{2}\\right)$"
     },
     {
      "key": "D",
-     "text": "Zero"
+     "text": "$\\frac{Kq_0^{2}}{a}\\left(3\\sqrt{2} - 2\\right)$"
     }
    ],
-   "stem_figure": "j25-24jan-s2-phy-q07.png",
+   "stem_figure": "jn25-24jan-s2-phy-q32.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 8,
-   "topic": "Electromagnetic Waves",
+   "topic": "Kinematics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Arrange the following in order of decreasing wavelength.\na : Microwave\nb : Ultraviolet\nc : Infrared\nd : X-rays",
+   "stem": "The position vector of a moving body at any instant of time is given as $\\vec{r} = \\left(5t^{2}\\hat{i} - 5t\\hat{j}\\right)\\mathrm{m}$. The magnitude and direction of velocity at $t = 2\\mathrm{s}$ is,",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Theoretical",
+   "solution": "$\\vec{r} = 5t^{2}\\hat{i} - 5t\\hat{j}$\n$\\vec{v} = 10t\\hat{i} - 5\\hat{j}$\n$\\vec{v} = 20\\hat{i} - 5\\hat{j}$ at $t = 2$ sec\n$\\tan\\theta = \\frac{20}{5} = 4$\n$\\theta = \\tan^{-1}4$\nFrom $-$ve Y-axis",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -293,36 +293,36 @@
    "options": [
     {
      "key": "A",
-     "text": "a > b > c > d"
+     "text": "$5\\sqrt{15}$ m/s, making an angle of $\\tan^{-1}4$ with $-$ve Y axis"
     },
     {
      "key": "B",
-     "text": "d > c > b > a"
+     "text": "$5\\sqrt{15}$ m/s, making an angle of $\\tan^{-1}4$ with $+$ve X axis"
     },
     {
      "key": "C",
-     "text": "a > c > b > d"
+     "text": "$5\\sqrt{17}$ m/s, making an angle of $\\tan^{-1}4$ with $-$ve Y axis"
     },
     {
      "key": "D",
-     "text": "c > a > b > d"
+     "text": "$5\\sqrt{17}$ m/s, making an angle of $\\tan^{-1}4$ with $+$ve X axis"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn25-24jan-s2-phy-q33-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 9,
-   "topic": "Oscillations",
+   "topic": "Rotational Motion",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "A particle oscillates along $x$-axis according to law $x = x_0\\sin^{2}(t/2)$ where $x_0 = 1$. Variation of kinetic energy ($k$) with position ($x$) is given by graph",
-   "correct_key": "C",
+   "stem": "A solid sphere and a hollow sphere of the same mass and of same radius are rolled on an inclined plane. Let the time taken to reach the bottom by the solid sphere and the hollow sphere be $t_1$ and $t_2$, respectively, then",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$x = \\sin^{2}\\frac{t}{2} = \\frac{1}{2} - \\frac{\\cos t}{2} \\Rightarrow \\left(x - \\frac{1}{2}\\right) = -\\frac{\\cos t}{2}$\n$x = 0$, $1$ are the extremes and $x = \\frac{1}{2}$ is the mean position.",
+   "solution": "$$t = \\sqrt{\\frac{2\\ell}{a_{cm}}}$$\n$$a_{cm} = \\frac{g\\sin\\theta}{1 + \\frac{I_{cm}}{MR^{2}}}$$\n$$a_1 = a_{cm_1} = \\frac{5g\\sin\\theta}{7} \\ \\ldots\\ \\text{Solid}$$\n$$a_2 = a_{cm_2} = \\frac{3g\\sin\\theta}{5} \\ \\ldots\\ \\text{Hollow}$$\n$a_1 > a_2$\n$t_1 < t_2$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -330,23 +330,19 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q09-optA.png"
+     "text": "$t_1 < t_2$"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q09-optB.png"
+     "text": "$t_1 = t_2$"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q09-optC.png"
+     "text": "$t_1 = 2t_2$"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-24jan-s2-phy-q09-optD.png"
+     "text": "$t_1 > t_2$"
     }
    ],
    "stem_figure": null,
@@ -356,14 +352,14 @@
   },
   {
    "q_no": 10,
-   "topic": "Moving Charges and Magnetism",
+   "topic": "Thermal Properties of Matter",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "There is a line solid cylinder carrying current along the axis with uniform current density. Variation of magnetic field ($B$) with radial distance from axis of cylinder ($r$) is best denoted by",
-   "correct_key": "C",
+   "stem": "Which of the following figure represents the relation between Celsius and Fahrenheit temperatures?",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$B = \\frac{\\mu_0 jr}{2}$ inside and $B = \\frac{\\mu_0 I}{2\\pi r}$ for outside",
+   "solution": "$$\\frac{C}{5} = \\frac{F - 32}{9} \\Rightarrow C = \\frac{5F}{9} - \\frac{160}{9}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -372,39 +368,39 @@
     {
      "key": "A",
      "text": "",
-     "figure": "j25-24jan-s2-phy-q10-optA.png"
+     "figure": "jn25-24jan-s2-phy-q35-optA.png"
     },
     {
      "key": "B",
      "text": "",
-     "figure": "j25-24jan-s2-phy-q10-optB.png"
+     "figure": "jn25-24jan-s2-phy-q35-optB.png"
     },
     {
      "key": "C",
      "text": "",
-     "figure": "j25-24jan-s2-phy-q10-optC.png"
+     "figure": "jn25-24jan-s2-phy-q35-optC.png"
     },
     {
      "key": "D",
      "text": "",
-     "figure": "j25-24jan-s2-phy-q10-optD.png"
+     "figure": "jn25-24jan-s2-phy-q35-optD.png"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn25-24jan-s2-phy-q35-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 11,
-   "topic": "Semiconductor Electronics",
+   "topic": "Magnetic Effects of Current",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "For which of the following input, output of the circuit is zero\n(A) $x = 0$, $y = 0$\n(B) $x = 0$, $y = 1$\n(C) $x = 1$, $y = 0$\n(D) $x = 1$, $y = 1$",
+   "stem": "$N$ equally spaced charges each of value $q$, are placed on a circle of radius $R$. The circle rotates about its axis with an angular velocity $\\omega$ as shown in the figure. A bigger Amperian loop B encloses the whole circle where as a smaller Amperian loop A encloses a small segment. The difference between enclosed currents, $I_A - I_B$, for the given Amperian loops is",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Combination of OR gate and NOT gate.\n$\\Rightarrow$ Equivalent to NOR gate",
+   "solution": "$$I_A = \\frac{Nq}{\\frac{2\\pi}{\\omega}}$$\n$$I_A = \\frac{Nq\\omega}{2\\pi},\\ I_B = 0$$\n$$I_A - I_B = \\frac{Nq\\omega}{2\\pi}$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -412,36 +408,36 @@
    "options": [
     {
      "key": "A",
-     "text": "A only"
+     "text": "$\\frac{N^{2}}{2\\pi}q\\omega$"
     },
     {
      "key": "B",
-     "text": "A, B, C only"
+     "text": "$\\frac{2\\pi}{N}q\\omega$"
     },
     {
      "key": "C",
-     "text": "B, C D only"
+     "text": "$\\frac{N}{2\\pi}q\\omega$"
     },
     {
      "key": "D",
-     "text": "A and C"
+     "text": "$\\frac{N}{\\pi}q\\omega$"
     }
    ],
-   "stem_figure": "j25-24jan-s2-phy-q11.png",
-   "solution_figure": null,
+   "stem_figure": "jn25-24jan-s2-phy-q36.png",
+   "solution_figure": "jn25-24jan-s2-phy-q36-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 12,
-   "topic": "Laws of Motion",
+   "topic": "Dual Nature of Matter",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "There is a conical pendulum of mass $m$ and length $l$ making $60^\\circ$ with vertical. Then tension in thread is",
+   "stem": "In photoelectric effect, the stopping potential ($V_0$) v/s frequency ($\\nu$) curve is plotted.\n(h is the Planck's constant and $\\phi_0$ is work function of metal)\n(A) $V_0$ v/s $\\nu$ is linear\n(B) The slope of $V_0$ v/s $\\nu$ curve $= \\frac{\\phi_0}{h}$\n(C) h constant is related to the slope of $V_0$ v/s $\\nu$ line\n(D) The value of electric charge of electron is not required to determine h using the $V_0$ v/s $\\nu$ curve.\n(E) The work function can be estimated without knowing the value of h.\nChoose the correct answer from the options given below :",
    "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$T\\cos60^\\circ = mg$\n$T = 2mg$",
+   "solution": "$h\\nu = \\phi + KE_{max}$\n$KE_{max} = eV_0$\n$$V_0 = \\frac{h\\nu - \\phi}{e}$$\n(A) $V_0$ v/s $\\nu$ is linear correct\n(B) Slope\n$$V_0 = \\left(\\frac{h}{e}\\right)\\nu - \\frac{\\phi}{e} \\quad \\text{Wrong}$$\nSlope $\\frac{h}{e}$\n(C) Correct\n(D) Incorrect\n(E) Correct",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -449,56 +445,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$mg$"
+     "text": "(A),(B) and (C) only"
     },
     {
      "key": "B",
-     "text": "$\\frac{mg}{2}$"
+     "text": "(C) and (D) only"
     },
     {
      "key": "C",
-     "text": "$2mg$"
+     "text": "(A),(C) and (E) only"
     },
     {
      "key": "D",
-     "text": "$3mg$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": "j25-24jan-s2-phy-q12-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 13,
-   "topic": "Electric Charges and Fields",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "There are two identical conducting spheres placed at certain distance $l$. On of them is carrying charge of $4\\times10^{-8}\\ \\mathrm{C}$ and the other is neutral. Now both are connected using a conducting wire and force between them is found to be $9\\times10^{-3}\\ \\mathrm{N}$, then distance $l$ is",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\frac{\\theta^{0}}{4\\pi\\varepsilon_0 l^{2}} = F$\n$\\frac{\\left(2\\times10^{-8}\\right)^{2}\\times9\\times10^{9}}{l^{2}} = 9\\times10^{-3}$\n$l = 2\\times10^{-2}\\ \\mathrm{m}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$4\\ \\mathrm{cm}$"
-    },
-    {
-     "key": "B",
-     "text": "$4\\ \\mathrm{m}$"
-    },
-    {
-     "key": "C",
-     "text": "$2\\ \\mathrm{cm}$"
-    },
-    {
-     "key": "D",
-     "text": "$1\\ \\mathrm{cm}$"
+     "text": "(D) and (E) only"
     }
    ],
    "stem_figure": null,
@@ -507,15 +466,315 @@
    "or_solution_figure": null
   },
   {
+   "q_no": 13,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The magnitude of heat exchanged by a system for the given cyclic process ABCA (as shown in figure) is (in SI unit)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$W = \\frac{1}{2}\\pi R^{2}$$\n$$= \\frac{1}{2} \\times \\pi \\times \\left(\\frac{200}{2} \\times 10^{3}\\right) \\times \\frac{200}{2} \\times 10^{-6}$$\n$$= \\frac{10\\pi}{2} = 5\\pi\\ \\mathrm{J}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$5\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "zero"
+    },
+    {
+     "key": "D",
+     "text": "$40\\pi$"
+    }
+   ],
+   "stem_figure": "jn25-24jan-s2-phy-q38.png",
+   "solution_figure": "jn25-24jan-s2-phy-q38-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A photograph of a landscape is captured by a drone camera at a height of $18\\ \\mathrm{km}$. The size of the camera film is $2\\ \\mathrm{cm} \\times 2\\ \\mathrm{cm}$ and the area of the landscape photographed is $400\\ \\mathrm{km^{2}}$. The focal length of the lens in the drone camera is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$H = 18\\ \\mathrm{km}$\nSize of camera film $= 2\\mathrm{cm} \\times 2\\mathrm{cm}$\n$A_{image} = 400\\ \\mathrm{km^{2}}$\n$x = 20 \\times 10^{3}\\ \\mathrm{m} = 2 \\times 10^{4}\\ \\mathrm{m}$\n$y = 2 \\times 10^{-2}\\ \\mathrm{m}$\n$$\\frac{x}{y} = 10^{6} = \\frac{18\\ \\mathrm{Km}}{f}$$\n$f = 18 \\times 10^{-3}\\ \\mathrm{m} = 18\\ \\mathrm{mm}$\n$f = 1.8\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1.8\\ \\mathrm{cm}$"
+    },
+    {
+     "key": "B",
+     "text": "$2.8\\ \\mathrm{cm}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.5\\ \\mathrm{cm}$"
+    },
+    {
+     "key": "D",
+     "text": "$0.9\\ \\mathrm{cm}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-24jan-s2-phy-q39-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The output of the circuit is low (zero) for :\n(A) X = 0, Y = 0\n(B) X = 0, Y = 1\n(C) X = 1, Y = 0\n(D) X = 1, Y = 1\nChoose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Truth table (X | Y | output):\n0 | 0 | 1\n0 | 1 | 0\n1 | 0 | 0\n1 | 1 | 0",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A), (C) and (D) only"
+    },
+    {
+     "key": "B",
+     "text": "(A), (B) and (C) only"
+    },
+    {
+     "key": "C",
+     "text": "(B), (C) and (D) only"
+    },
+    {
+     "key": "D",
+     "text": "(A), (B) and (D) only"
+    }
+   ],
+   "stem_figure": "jn25-24jan-s2-phy-q40.png",
+   "solution_figure": "jn25-24jan-s2-phy-q40-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The temperature of a body in air falls from $40^\\circ\\mathrm{C}$ to $24^\\circ\\mathrm{C}$ in 4 minutes. The temperature of the air is $16^\\circ\\mathrm{C}$. The temperature of the body in the next 4 minutes will be :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$\\frac{T_2 - T_1}{t} = K\\left[T_{avg} - T_s\\right]$$\n$T_1 = 24^\\circ\\mathrm{C}$; $T_2 = 40^\\circ\\mathrm{C}$, $t = 4$, $T_s = 16^\\circ\\mathrm{C}$\n$$\\frac{40 - 24}{4} = K\\left[32 - 16\\right]$$\n$$K = \\frac{4}{16} = \\frac{1}{4}$$\nNow $$\\frac{24 - T}{4} = K\\left[\\frac{T + 24}{2} - 16\\right]$$\n$$24 - T = \\frac{T - 16}{2} + 16$$\n$$\\frac{3T}{2} = 28$$\n$$T = \\frac{56}{3}\\ {}^\\circ\\mathrm{C}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{14}{3}\\ {}^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{28}{3}\\ {}^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{56}{3}\\ {}^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{42}{3}\\ {}^\\circ\\mathrm{C}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Units and Dimensions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The energy E and momentum p of a moving body of mass m are related by some equation. Given that c represents the speed of light, identify the correct equation.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$[E] = M^{1}L^{2}T^{-2}$\n$[Pc] = M^{1}L^{1}T^{-1} \\cdot L^{1}T^{-1} = M^{1}L^{2}T^{-2}$\n$[mc^{2}] = M^{1}L^{2}T^{-2}$\n$E^{2} = M^{1}L^{2}T^{-2}$\n$E^{2} = P^{2}c^{2} + m^{2}c^{4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$E^{2} = pc^{2} + m^{2}c^{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$E^{2} = pc^{2} + m^{2}c^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$E^{2} = p^{2}c^{2} + m^{2}c^{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$E^{2} = p^{2}c^{2} + m^{2}c^{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Electrostatics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A small uncharged conducting sphere is placed in contact with an identical sphere but having $4 \\times 10^{-8}$ C charge and then removed to a distance such that the force of repulsion between them is $9 \\times 10^{-3}$ N. The distance between them is (Take $\\frac{1}{4\\pi\\varepsilon_0}$ as $9 \\times 10^{9}$ in SI units)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$F = \\frac{k\\left(\\frac{Q}{2}\\right)\\left(\\frac{Q}{2}\\right)}{r^{2}}$$\n$$9 \\times 10^{-3} = \\frac{9 \\times 10^{9} \\times (4 \\times 10^{-8}) \\times 4 \\times 10^{-8}}{4 \\times r^{2}}$$\n$$r^{2} = \\frac{9 \\times 10^{9} \\times 16 \\times 10^{-16}}{4 \\times 9 \\times 10^{-3}} = 4 \\times 10^{-4}$$\n$r = 2 \\times 10^{-2}\\ \\mathrm{m} \\Rightarrow 2\\ \\mathrm{cm}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2$ cm"
+    },
+    {
+     "key": "B",
+     "text": "$3$ cm"
+    },
+    {
+     "key": "C",
+     "text": "$4$ cm"
+    },
+    {
+     "key": "D",
+     "text": "$1$ cm"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-24jan-s2-phy-q43-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A particle oscillates along the x-axis according to the law $x(t) = x_0 \\sin^{2}\\left(\\frac{t}{2}\\right)$ where $x_0 = 1$ m. The kinetic energy (K) of the particle as a function of x is correctly represented by the graph.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$$x = x_0\\sin^{2}\\frac{t}{2} = x_0\\left(\\frac{1 - \\cos t}{2}\\right)$$\n$$x - \\frac{x_0}{2} = \\frac{-\\cos t}{2}$$\nwhere $x_0 = 1$\n$$x - \\frac{1}{2} = \\frac{-\\cos t}{2}$$\nParticle is oscillating between $x = 0$ to $x = 1$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q44-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q44-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q44-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn25-24jan-s2-phy-q44-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "In a Young's double slit experiment, three polarizers are kept as shown in the figure. The transmission axes of $P_1$ and $P_2$ are orthogonal to each other. The polarizer $P_3$ covers both the slits with its transmission axis at $45^\\circ$ to those of $P_1$ and $P_2$. An unpolarized light of wavelength $\\lambda$ and intensity $I_0$ is incident on $P_1$ and $P_2$. The intensity at a point after $P_3$ where the path difference between the light waves from $s_1$ and $s_2$ is $\\frac{\\lambda}{3}$, is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "after passing through third poleriser, Intensity of both the waves must be $\\frac{I_0}{4}$\nnow, at a point where path diff is $\\frac{\\lambda}{3}$, phase difference\n$$\\Delta\\phi = 2K\\left(\\frac{\\Delta x}{\\lambda}\\right) = \\frac{2\\pi}{3}$$\n$$\\therefore I_{res} = \\sqrt{\\left(\\frac{I_0}{4}\\right)^{2} + \\left(\\frac{I_0}{4}\\right)^{2} + 2\\left(\\frac{I_0}{4}\\right)^{2}\\cos\\frac{2\\pi}{3}}$$\n$$= \\frac{I_0}{4}$$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{I_0}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{I_0}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$I_0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{I_0}{3}$"
+    }
+   ],
+   "stem_figure": "jn25-24jan-s2-phy-q45.png",
+   "solution_figure": "jn25-24jan-s2-phy-q45-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
    "q_no": 21,
-   "topic": "Gravitation",
+   "topic": "Magnetic Effects of Current",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "If the acceleration due to gravity on the surface of earth is '$g$', then acceleration due to gravity on a planet whose diameter is $\\frac{1}{3}$ of that of earth and same mass as that of earth is $g' = ng$ where $n$ is __________ .",
+   "stem": "A tightly wound long solenoid carries a current of $1.5$ A. An electron is executing uniform circular motion inside the solenoid with a time period of $75$ ns. The number of turns per metre in the solenoid is_______.\n[Take mass of electron $m_e = 9 \\times 10^{-31}$ kg, charge of electron $|q_e| = 1.6 \\times 10^{-19}$ C, $\\mu_0 = 4\\pi \\times 10^{-7}\\ \\frac{\\mathrm{N}}{\\mathrm{A}^{2}}$, 1 ns $= 10^{-9}$ s]",
    "correct_key": null,
-   "correct_value": 9,
+   "correct_value": 250,
    "correct_keys": null,
-   "solution": "Diameter $= 2R = d$\n$g = \\frac{GM}{R^{2}} = \\frac{4GM}{d^{2}}$\n$g' = \\frac{4GM}{(d/3)^{2}} = 9g$",
+   "solution": "Since time period of a revolving charge is $\\frac{2\\pi m}{qB}$\nWhere B = magnetic field due to a solenoid $= \\mu_0 nI$\n$$\\therefore T = \\frac{2\\pi m}{q(\\mu_0 nI)}$$\n$$75 \\times 10^{-9} = \\frac{(2\\pi)(9 \\times 10^{-31})}{1.6 \\times 10^{-19} \\times 4\\pi \\times 10^{-7} \\times n \\times 1.5}$$\n$N = 250$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -528,14 +787,74 @@
   },
   {
    "q_no": 22,
-   "topic": "Mechanical Properties of Solids",
+   "topic": "Circular Motion",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "The excess pressure required to decrease the volume of water sample by $0.2\\%$ is $P\\times10^{5}\\ \\mathrm{Pa}$. If the bulk modulus of water is $1.25\\times10^{9}\\ \\mathrm{Pa}$, then the value of P is ______ .",
+   "stem": "A string of length L is fixed at one end and carries a mass of M at the other end. The mass makes $\\left(\\frac{3}{\\pi}\\right)$ rotations per second about the vertical axis passing through end of the string as shown in the figure. The tension in the string is _____ ML.",
    "correct_key": null,
-   "correct_value": 25,
+   "correct_value": 36,
    "correct_keys": null,
-   "solution": "Given $\\frac{\\Delta v}{v}\\times100 = -0.2$\n$B = -\\frac{\\Delta P}{(\\Delta P/v)}$ or $\\Delta p = -B\\left(\\frac{\\Delta v}{v}\\right)$\n$\\Rightarrow \\Delta p = -(1.25\\times10^{9})\\left(-\\frac{0.2}{100}\\right)\\ \\mathrm{Pa}$\n$= 25\\times10^{5}\\ \\mathrm{Pa}$",
+   "solution": "$T\\cos\\theta = mg \\quad \\ldots(1)$\n$T\\sin\\theta = M\\omega^{2}R \\quad \\ldots(2)$\nUsing equation (2)\n$T\\sin\\theta = M\\omega^{2}(L\\sin\\theta)$\n$$T = M\\omega^{2}L = M\\left(\\frac{3}{\\pi} \\times 2\\pi\\right)^{2}L$$\n$T = 36\\ ML$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": "jn25-24jan-s2-phy-q47.png",
+   "solution_figure": "jn25-24jan-s2-phy-q47-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Dual Nature of Matter",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The ratio of the power of a light source $S_1$ to that the light source $S_2$ is 2. $S_1$ is emitting $2 \\times 10^{15}$ photons per second at $600$ nm. If the wavelength of the source $S_2$ is $300$ nm, then the number of photons per second emitted by $S_2$ is_____$\\times 10^{14}$.",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "Since power emitting by a source is given as $= \\frac{\\text{Total energy emitted}}{\\text{time}}$\n$$= \\frac{(E_1\\ \\text{photon}) \\times \\text{Number of photons}(N)}{t}$$\n$P_1 = (E_1)n$\n$$\\frac{P_1}{P_2} = \\frac{(E_1)n_1}{(E_2)n_2} = \\frac{\\left(\\frac{hC}{\\lambda_1}\\right)n_1}{\\left(\\frac{hC}{\\lambda_2}\\right)n_2}$$\n$$\\frac{P_1}{P_2} = \\left(\\frac{\\lambda_2}{\\lambda_1}\\right)\\frac{n_1}{n_2}$$\nSubstituting the given values\n$$2 = \\left(\\frac{300}{600}\\right) \\times \\frac{2 \\times 10^{15}}{n_2}$$\n$n_2 = \\frac{1}{2} \\times 10^{15} = 5 \\times 10^{14}$ Photon/sec",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Mechanical Properties of Solids and Fluids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The increase in pressure required to decrease the volume of a water sample by $0.2\\%$ is $P \\times 10^{5}\\ \\mathrm{Nm^{-2}}$. Bulk modulus of water is $2.15 \\times 10^{9}\\ \\mathrm{Nm^{-2}}$. The value of P is _______.",
+   "correct_key": null,
+   "correct_value": 43,
+   "correct_keys": null,
+   "solution": "Since bulk modulus is given as\n$$B = \\frac{-\\Delta P}{\\left(\\frac{\\Delta V}{V}\\right)}$$\n$$2.15 \\times 10^{9} = \\frac{-\\Delta P}{-\\left(\\frac{0.2}{100}\\right)}$$\n$\\Delta P = 2.15 \\times 10^{9} \\times 2 \\times 10^{-3}$\n$= 4.3 \\times 10^{6} = 43 \\times 10^{5}\\ \\mathrm{N/m^{2}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Gravitation",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Acceleration due to gravity on the surface of earth is 'g'. If the diameter of earth is reduced to one third of its original value and mass remains unchanged, then the acceleration due to gravity on the surface of the earth is ____g.",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "$\\because$ acceleration due to gravity on surface is given by\n$$g = \\frac{GM}{R_e^{2}}$$\nNow since diameter is reduced to $1/3^{rd}$, radius also reduces to $1/3^{rd}$, keeping mass constant\nNew value of acceleration due to gravity on Earth's surface is\n$$g' = \\frac{GM}{\\left(\\frac{R_e}{3}\\right)^{2}} = 9\\frac{GM_e}{R_e^{2}} = 9g$$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,

@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "17CEh-fkHOoiHLE37nQ39bD5oKS3pFuON"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "p-Block Elements",
+   "topic": "Thermodynamics",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "The correct order of melting points of Group-14 elements is",
-   "correct_key": "D",
+   "stem": "The effect of temperature on spontaneity of reactions are represented as:\n$\\Delta H$ | $\\Delta S$ | Temperature | Spontaneity\n(A) | $+$ | $-$ | any $T$ | Non spontaneous\n(B) | $+$ | $+$ | low $T$ | spontaneous\n(C) | $-$ | $-$ | low $T$ | Non spontaneous\n(D) | $-$ | $+$ | any $T$ | spontaneous",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Melting Points (in K)\nC | Si | Ge | Sn | Pb\n4373 | 1693 | 1218 | 505 | 600\nCorrect order will be\nC > Si > Ge > Pb > Sn",
+   "solution": "$\\because\\ \\Delta G = \\Delta H - T\\Delta S$\nFor spontaneity of reaction : $\\Delta G = -\\text{ve}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "C > Si > Ge > Sn > Pb"
+     "text": "(B) and (D) only"
     },
     {
      "key": "B",
-     "text": "Si > C > Ge > Sn > Pb"
+     "text": "(A) and (D) only"
     },
     {
      "key": "C",
-     "text": "Ge > Sn > C > Si > Pb"
+     "text": "(B) and (C) only"
     },
     {
      "key": "D",
-     "text": "C > Si > Ge > Pb > Sn"
+     "text": "(A) and (C) only"
     }
    ],
    "stem_figure": null,
@@ -52,14 +52,14 @@
   },
   {
    "q_no": 2,
-   "topic": "Biomolecules",
+   "topic": "Electrochemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "$\\alpha$-helix protein and $\\beta$-pleated sheets protein belong to which one of the following types of protein?",
-   "correct_key": "B",
+   "stem": "Standard electrode potentials for a few half cells are mentioned below:\n$E^{\\circ}_{\\mathrm{Cu^{2+}/Cu}} = 0.34\\,\\mathrm{V},\\ E^{\\circ}_{\\mathrm{Zn^{2+}/Zn}} = -0.76\\,\\mathrm{V}$\n$E^{\\circ}_{\\mathrm{Ag^{+}/Ag}} = 0.80\\,\\mathrm{V},\\ E^{\\circ}_{\\mathrm{Mg^{2+}/Mg}} = -2.37\\,\\mathrm{V}$\nWhich one of the following cells gives the most negative value of $\\Delta G^{\\circ}$ ?",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\alpha$-helix and $\\beta$-pleated sheet structure belong to secondary protein or $2^\\circ$ protein.",
+   "solution": "$\\because\\ \\Delta G^{\\circ} = -nFE^{\\circ}$\nOption (1) $E^{\\circ} = 0.8 + 0.76 = 1.56\\ \\mathrm{V}$\n$\\therefore\\ \\Delta G^{\\circ} = -2 \\times F \\times 1.56 = -3.12\\ \\mathrm{V}$\nOption (2) $E^{\\circ} = -2.37 + 0.76 = -1.61\\ \\mathrm{V}$\n$\\therefore\\ \\Delta G^{\\circ} = -2 \\times F \\times (-1.61) = +3.22\\ \\mathrm{V}$\nOption (3) $E^{\\circ} = -2.37 - 0.8 = -3.17\\ \\mathrm{V}$\n$\\therefore\\ \\Delta G^{\\circ} = -2 \\times F \\times (-3.17) = +6.34$\nOption (4) $E^{\\circ} = 0.8 - 0.34 = 0.46\\ \\mathrm{V}$\n$\\Delta G^{\\circ} = -2 \\times F \\times 0.46 = -0.92\\ \\mathrm{V}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,19 +67,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Primary"
+     "text": "$\\mathrm{Zn|Zn^{2+}(1M)||Ag^{+}(1M)|Ag}$"
     },
     {
      "key": "B",
-     "text": "Secondary"
+     "text": "$\\mathrm{Zn|Zn^{2+}(1M)||Mg^{2+}(1M)|Mg}$"
     },
     {
      "key": "C",
-     "text": "Tertiary"
+     "text": "$\\mathrm{Ag|Ag^{+}(1M)||Mg^{2+}(1M)|Mg}$"
     },
     {
      "key": "D",
-     "text": "Quarternary"
+     "text": "$\\mathrm{Cu|Cu^{2+}(1M)||Ag^{+}(1M)|Ag}$"
     }
    ],
    "stem_figure": null,
@@ -89,14 +89,14 @@
   },
   {
    "q_no": 3,
-   "topic": "Equilibrium",
+   "topic": "Biomolecules",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "What will be effect on pH of water when it is heated?",
-   "correct_key": "B",
+   "stem": "The $\\alpha$ - Helix and $\\beta$ - Pleated sheet structures of protein are associated with its:",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "As water is heated degree of ionisation increases $\\mathrm{[H^+]}$ ion concentration increases pH decreases.",
+   "solution": "$\\alpha$-helix and $\\beta$-pleated sheet belongs to secondary structure of protein, which have hydrogen bonds.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Increase"
+     "text": "quaternary structure"
     },
     {
      "key": "B",
-     "text": "Decrease"
+     "text": "primary structure"
     },
     {
      "key": "C",
-     "text": "Remains same"
+     "text": "secondary structure"
     },
     {
      "key": "D",
-     "text": "pH first increases then decreases"
+     "text": "tertiary structure"
     }
    ],
    "stem_figure": null,
@@ -126,14 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "d- and f-Block Elements",
+   "topic": "Aldehydes and Ketones",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Match the following List I with List II.\nList-I (Alloys) | List-II (Metals)\nA. Bronze | (i) Fe, Cr, and Ni\nB. Stainless steel | (ii) Cu and Sn\nC. UK Gold Coin | (iii) Cu and Zn\nD. Brass | (iv) Au, Ag, Cu, Zn and Ni",
-   "correct_key": "A",
+   "stem": "Given below are two statements:\nConsider the following reaction\nStatement (I) : In the case of formaldehyde ($\\mathrm{HCHO}$), K is about 2280, due to small substituents, hydration is faster.\nStatement (II) : In the case of trichloro acetaldehyde ($\\mathrm{CCl_3CHO}$), K is about 2000 due to $-I$ effect of $-$Cl.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Bronze is Made up of copper and Tin\nStainless steel is made up of Fe, Cr and Ni\nUK Gold coin is made up of – Au (91%), Ag, Cu, Zn and Ni.\nBrass is made up of Copper and Zinc.",
+   "solution": "$k_{eq}$ = 2280 is for HCHO\n$k_{eq}$ = 2000 is for chloral\nBoth data is given in clayden and warren book.\n$k_{eq} > 1$ because HCHO and chloral are more electrophilic.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -141,36 +141,36 @@
    "options": [
     {
      "key": "A",
-     "text": "A-(ii), B-(i), C-(iv), D-(iii)"
+     "text": "Statement I true but Statement II is false"
     },
     {
      "key": "B",
-     "text": "A-(iii), B-(iv), C-(i), D-(ii)"
+     "text": "Both Statement I and Statement II are true"
     },
     {
      "key": "C",
-     "text": "A-(iv), B-(iii), C-(ii), D-(i)"
+     "text": "Statement I is false but Statement II is true"
     },
     {
      "key": "D",
-     "text": "A-(i), B-(ii), C-(iii), D-(iv)"
+     "text": "Both Statement I and Statement II are false"
     }
    ],
-   "stem_figure": null,
+   "stem_figure": "jn25-23jan-s2-chem-q54.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 5,
-   "topic": "Chemical Kinetics",
+   "topic": "Chemical Equilibrium",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which one of the following plots represents zero order reaction?",
-   "correct_key": "A",
+   "stem": "Consider the reaction\n$\\mathrm{X_2Y(g) \\rightleftharpoons X_2(g) + \\tfrac{1}{2}Y_2(g)}$\nThe equation representing correct relationship between the degree of dissociation (x) of $\\mathrm{X_2Y(g)}$ with its equilibrium constant $K_p$ is________. Assume x to be very very small.",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The rate of a zero order reaction remains constant throughout the reaction.\nRate = k $\\mathrm{[Reactant]^{0}}$\nPlot of rate vs conc. of reactant is linear parallel to x-axis.",
+   "solution": "1 mole\n$\\mathrm{X_2Y_{(g)} \\rightleftharpoons X_{2(g)} + \\tfrac{1}{2}Y_{2(g)}}$\n$1-x$ mole, $x$ mole, $\\dfrac{x}{2}$ mole\n$\\therefore\\ P_{\\mathrm{X_2Y}} = \\dfrac{1-x}{1+\\frac{x}{2}} \\times P$\n$P_{\\mathrm{X_2}} = \\dfrac{x}{1+\\frac{x}{2}} \\times P$\n$P_{\\mathrm{Y_2}} = \\dfrac{x/2}{1+\\frac{x}{2}} \\times P$\n$\\therefore\\ K_p = \\left(\\dfrac{x}{1+\\frac{x}{2}}P\\right)\\left(\\dfrac{x}{2\\left(1+\\frac{x}{2}\\right)}P\\right)^{\\frac{1}{2}} \\Big/ \\left(\\dfrac{1-x}{1+\\frac{x}{2}} \\times P\\right)$\n$\\therefore\\ K_p = \\left(\\dfrac{x}{1-x}\\right)\\left(\\dfrac{x}{2\\left(1+\\frac{x}{2}\\right)}\\right)^{\\frac{1}{2}} \\times p^{\\frac{1}{2}}$\n$\\because$ x to be very very small\n$\\therefore\\ K_p = \\dfrac{x^{3/2}}{(2)^{\\frac{1}{2}}} \\times P^{\\frac{1}{2}}$\n$\\therefore\\ x^{\\frac{3}{2}} = \\dfrac{K_p \\times 2^{\\frac{1}{2}}}{P^{\\frac{1}{2}}}$\n$\\therefore\\ x^{3} = \\dfrac{K_p^{2} \\times 2}{P}$\n$x = \\left(\\dfrac{K_p^{2} \\times 2}{P}\\right)^{\\frac{1}{3}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -178,23 +178,19 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j25-23jan-s2-chem-q05-optA.png"
+     "text": "$x = \\sqrt[3]{\\dfrac{2K_p}{p}}$"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j25-23jan-s2-chem-q05-optB.png"
+     "text": "$x = \\sqrt[3]{\\dfrac{2K_p^{2}}{p}}$"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j25-23jan-s2-chem-q05-optC.png"
+     "text": "$x = \\sqrt[3]{\\dfrac{K_p}{2p}}$"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j25-23jan-s2-chem-q05-optD.png"
+     "text": "$x = \\sqrt[3]{\\dfrac{K_p}{p}}$"
     }
    ],
    "stem_figure": null,
@@ -204,346 +200,10 @@
   },
   {
    "q_no": 6,
-   "topic": "Thermodynamics",
+   "topic": "Qualitative Analysis",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "By using relation\n$\\Delta G = \\Delta H - T\\Delta S$\nWhich of the following relation is incorrect for spontaneous reaction at a given temperature?",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "If $\\Delta H > 0$, $\\Delta S > 0$, then process is spontaneous at high temperature\nIf $\\Delta H > 0$, $\\Delta S < 0$, process is always non spontaneous\nIf $\\Delta H < 0$ and $\\Delta S > 0$, then process is always spontaneous\nIf $\\Delta H < 0$ and $\\Delta S < 0$, then process is spontaneous at low temperature.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$\\Delta H > 0, \\Delta S > 0$"
-    },
-    {
-     "key": "B",
-     "text": "$\\Delta H > 0, \\Delta S < 0$"
-    },
-    {
-     "key": "C",
-     "text": "$\\Delta H < 0, \\Delta S > 0$"
-    },
-    {
-     "key": "D",
-     "text": "$\\Delta H < 0, \\Delta S < 0$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 7,
-   "topic": "Structure of Atom",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Statement-I : For a particular shell, maximum number of orbitals is $n^{2}$.\nStatement-II : For a subshell, possible orientations lies between $-l$ to $+l$ including zero.",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "If shell number is 2, then number of orbitals = $2^{2} = 4$\n$2s \\rightarrow \\square\\ ;\\ 2p \\rightarrow \\square\\square\\square = 4$\nIf $l = 2$, then value lies between $-2, -1, 0, +1, +2$.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Statement-I and Statement -II both are correct"
-    },
-    {
-     "key": "B",
-     "text": "Statement-I and Statement-II both are incorrect"
-    },
-    {
-     "key": "C",
-     "text": "Statement-I is correct, Statement-II is incorrect"
-    },
-    {
-     "key": "D",
-     "text": "Statement-I is incorrect, Statement-II is correct"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 8,
-   "topic": "Alcohols, Phenols and Ethers",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Chlorobenzene $\\xrightarrow[\\text{(ii) } \\mathrm{H^+/H_2O}]{\\text{(i) NaOH, high T \\& P}}$ A $\\xrightarrow[\\mathrm{H_2SO_4}]{\\mathrm{K_2Cr_2O_7}}$ B (Major)\nPredict A and B?",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Chlorobenzene $\\xrightarrow[\\text{(ii) } \\mathrm{H^+/H_2O}]{\\text{(i) NaOH, high T \\& P}}$ Phenol $\\xrightarrow[\\mathrm{H_2SO_4}\\text{ (oxidising agent)}]{\\mathrm{K_2Cr_2O_7}}$ p-Benzoquinone",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "",
-     "figure": "j25-23jan-s2-chem-q08-optA.png"
-    },
-    {
-     "key": "B",
-     "text": "",
-     "figure": "j25-23jan-s2-chem-q08-optB.png"
-    },
-    {
-     "key": "C",
-     "text": "",
-     "figure": "j25-23jan-s2-chem-q08-optC.png"
-    },
-    {
-     "key": "D",
-     "text": "None of these"
-    }
-   ],
-   "stem_figure": "j25-23jan-s2-chem-q08.png",
-   "solution_figure": "j25-23jan-s2-chem-q08-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 9,
-   "topic": "Coordination Compounds",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Which of the following complex has $d^{4}$ configuration?",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\mathrm{[Fe(CN)_6]^{3-} \\Rightarrow Fe^{3+} \\Rightarrow 3}d^{5}$ configuration\n$\\mathrm{[MnF_6]^{3-} \\Rightarrow Mn^{3+} \\Rightarrow 3}d^{4}$ configuration\n$\\mathrm{[Co(CN)_6]^{3-} \\Rightarrow Co^{3+} \\Rightarrow 3}d^{6}$ configuration\n$\\mathrm{[CoCl_4]^{2-} \\Rightarrow Co^{2+} \\Rightarrow 3}d^{7}$ configuration",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$\\mathrm{[Fe(CN)_6]^{3-}}$"
-    },
-    {
-     "key": "B",
-     "text": "$\\mathrm{[MnF_6]^{3-}}$"
-    },
-    {
-     "key": "C",
-     "text": "$\\mathrm{[Co(CN)_6]^{3-}}$"
-    },
-    {
-     "key": "D",
-     "text": "$\\mathrm{[CoCl_4]^{2-}}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 10,
-   "topic": "Organic Chemistry: Basic Principles",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "The total number of isomers possible (aldehyde & ketones) for $\\mathrm{C_4H_8O}$ are",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Butanal ; 2-Methylpropan-1-al ; Butan-2-one",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "3"
-    },
-    {
-     "key": "B",
-     "text": "4"
-    },
-    {
-     "key": "C",
-     "text": "5"
-    },
-    {
-     "key": "D",
-     "text": "6"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": "j25-23jan-s2-chem-q10-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 11,
-   "topic": "Equilibrium",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Consider the following reaction\n$\\mathrm{X_2Y(s) \\rightleftharpoons X_2(g) + \\frac{1}{2}Y_2(g)}$. If $\\alpha$ is the degree of dissociation. Calculate $K_P$ in terms of P (total pressure)",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$\\mathrm{X_2Y(s) \\rightleftharpoons X_2(g) + \\frac{1}{2}Y_2(g)}$\n$t_{eq.}$: $P'$, $\\frac{P'}{2}$\n$P_T = \\frac{3P'}{2} \\Rightarrow P' = \\left(\\frac{2P_T}{3}\\right)$\n$K_P = (P_{X_2})(P_{Y_2})^{1/2}$\n$K_P = P'\\left(\\frac{P'}{2}\\right)^{\\frac{1}{2}} = \\frac{(P')^{3/2}}{\\sqrt{2}} = \\frac{\\left(\\frac{2P}{3}\\right)^{3/2}}{\\sqrt{2}} = \\frac{2P^{3/2}}{3^{3/2}}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$K_P = \\frac{2P^{3/2}}{3^{3/2}}$"
-    },
-    {
-     "key": "B",
-     "text": "$K_P = \\frac{2P^{3/2}}{3}$"
-    },
-    {
-     "key": "C",
-     "text": "$K_P = \\sqrt{\\frac{2P}{3}}$"
-    },
-    {
-     "key": "D",
-     "text": "$K_P = \\frac{\\sqrt{2}P}{3}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 12,
-   "topic": "Thermodynamics",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "An ideal gas undergoes following process from $A \\rightarrow B \\rightarrow C \\rightarrow D \\rightarrow E$. Find work done.",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$|W|$ = Area under the curve\n$= 2P_0 \\times [3V_0 - V_0] - P_0 \\times [3V_0 - 2V_0]$\n$= 3P_0V_0$\nNet work is done on the system.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$-3P_0V_0$"
-    },
-    {
-     "key": "B",
-     "text": "$2P_0V_0$"
-    },
-    {
-     "key": "C",
-     "text": "$3P_0V_0$"
-    },
-    {
-     "key": "D",
-     "text": "$\\frac{3P_0V_0}{2}$"
-    }
-   ],
-   "stem_figure": "j25-23jan-s2-chem-q12.png",
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 13,
-   "topic": "Solutions",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "When a non-volatile solute (A) is added to a volatile solvent, the vapour pressure of solvent decreases by 10 mm Hg. Mole fraction of solute in solution is 0.2. If another non-volatile solute (B) is further added to the same solution and vapour pressure of solution decreases by 20 mm Hg, calculate mole fraction of $2^{nd}$ solute in the final solution.",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "For solute (A),\n$X_A = 0.2$\n$\\Delta P = 10$ mm Hg\nLet $P^{o}_{solvent}$ be vapour pressure of pure solvent\n$\\frac{\\Delta P}{P^{o}_{solvent}} = X_A$\n$P^{o}_{solvent} = \\frac{10}{0.2} = 50$ mm Hg\nFor solute (B),\nLet number of moles of solvent be 0.8 and $n_B$ be the number of moles of (B) added, then\n$X_B = \\frac{n_B}{0.2 + 0.8 + n_B} = \\frac{n_B}{1 + n_B}$\n$\\Delta P' = 10 + 20 = 30$ mm Hg\n$\\frac{\\Delta P'}{P^{o}_{solvent}} = \\frac{0.2 + n_B}{1 + n_B}$\n$\\frac{30}{50} = \\frac{0.2 + n_B}{1 + n_B}$\n$\\Rightarrow n_B = 1$\n$X_B = \\frac{1}{1 + 1} = 0.5$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "0.3"
-    },
-    {
-     "key": "B",
-     "text": "0.4"
-    },
-    {
-     "key": "C",
-     "text": "0.5"
-    },
-    {
-     "key": "D",
-     "text": "0.6"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 14,
-   "topic": "Electrochemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Consider the following $E^\\circ$ values of given half cell\n$E^\\circ_{\\mathrm{Ag^+/Ag}} = 0.8\\ \\mathrm{V}, E^\\circ_{\\mathrm{Zn^{2+}/Zn}} = -0.76\\ \\mathrm{V}$\n$E^\\circ_{\\mathrm{Cu^{2+}/Cu}} = 0.34\\ \\mathrm{V}, E^\\circ_{\\mathrm{Mg^{2+}/Mg}} = -2.36\\ \\mathrm{V}$\nThen which of the following will have the most negative value of $\\Delta G^\\circ$?",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "The cell which has most positive value of $E^\\circ_{Cell}$ will have most negative value of $\\Delta G^\\circ$.\n$E^{o}_{cell} = E^{o}_{\\mathrm{Ag^+|Ag}} - E^{o}_{\\mathrm{Mg^{2+}|Mg}} = 0.8 - (-2.36) = 3.16\\mathrm{V}$\n$\\Delta G^\\circ = -nFE^\\circ_{Cell}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$\\mathrm{Zn|Zn^{2+}||Cu^{2+}|Cu}$"
-    },
-    {
-     "key": "B",
-     "text": "$\\mathrm{Mg|Mg^{2+}||Ag^{+}|Ag}$"
-    },
-    {
-     "key": "C",
-     "text": "$\\mathrm{Mg|Mg^{2+}||Zn^{2+}|Zn}$"
-    },
-    {
-     "key": "D",
-     "text": "$\\mathrm{Cu|Cu^{2+}||Ag^{2+}|Ag}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 15,
-   "topic": "Hydrocarbons",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Match the following\n(Reactant / Product table shown in figure: reactants (A)–(D), products (i)–(iv))\nGive correct product of oxidative ozonolysis ($\\mathrm{O_3/H_2O}$)",
+   "stem": "Identify A, B and C in the given below reaction sequence",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
@@ -555,36 +215,373 @@
    "options": [
     {
      "key": "A",
-     "text": "A-ii, B-i, C-iii, D-iv"
+     "text": "$\\mathrm{PbCl_2,\\ PbSO_4,\\ PbCrO_4}$"
     },
     {
      "key": "B",
-     "text": "A-i, B-ii, C-iii, D-iv"
+     "text": "$\\mathrm{PbS,\\ PbSO_4,\\ PbCrO_4}$"
     },
     {
      "key": "C",
-     "text": "A-i, B-ii, C-iv, D-iii"
+     "text": "$\\mathrm{PbS,\\ PbSO_4,\\ Pb(CH_3COO)_2}$"
     },
     {
      "key": "D",
-     "text": "A-i, B-iv, C-ii, D-iii"
+     "text": "$\\mathrm{PbCl_2,\\ Pb(SO_4)_2,\\ PbCrO_4}$"
     }
    ],
-   "stem_figure": "j25-23jan-s2-chem-q15.png",
+   "stem_figure": "jn25-23jan-s2-chem-q56.png",
+   "solution_figure": "jn25-23jan-s2-chem-q56-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Alcohols, Phenols and Ethers",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\nStatement (I): The boiling points of alcohols and phenols increase with increase in the number of C-atoms.\nStatement (II): The boiling points of alcohols and phenols are higher in comparison to other class of compounds such as ethers, haloalkanes.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "B.P. $\\propto$ M.W.\nB.P. $\\propto$ Inter molecular hydrogen bonding\nAlcohol & Phenol have intermolecular H-bonding",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "B",
+     "text": "Statement I is false but Statement II is true"
+    },
+    {
+     "key": "C",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "When a non-volatile solute is added to the solvent, the vapour pressure of the solvent decreases by 10 mm of Hg. The mole fraction of the solute in the solution is 0.2. What would be the mole fraction of the solvent if decrease in vapour pressure is 20 mm of Hg ?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because\\ P^{\\circ} - P \\propto X_{\\mathrm{solute}}$\nand $\\because\\ 10 \\propto 0.2$\n$\\therefore\\ 20 \\propto 0.4$\n$\\therefore\\ X_{\\mathrm{solvent}} = 1 - X_{\\mathrm{solute}} = 1 - 0.4 = 0.6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.6"
+    },
+    {
+     "key": "B",
+     "text": "0.4"
+    },
+    {
+     "key": "C",
+     "text": "0.2"
+    },
+    {
+     "key": "D",
+     "text": "0.8"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Atomic Structure",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\nStatement (I) : For a given shell, the total number of allowed orbitals is given by $n^{2}$.\nStatement (II) : For any subshell, the spatial orientation of the orbitals is given by $-\\,l$ to $+\\,l$ values including zero.\nIn the light of the above statements, choose the correct answer from the options given below:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For a shell total number of orbitals $= n^{2}$\nMagnetic quantum number have values ($-\\ell$ to $+\\ell$) including 0.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "B",
+     "text": "Statement I is false but Statement II is true"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "D",
+     "text": "Both Statement I and Statement II are false"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The ascending order of relative rate of solvolysis of following compounds is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Solvolysis or $S_N1 \\propto$ stability of carbocation\nStability order",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(D) < (A) < (B) < (C)"
+    },
+    {
+     "key": "B",
+     "text": "(C) < (B) < (A) < (D)"
+    },
+    {
+     "key": "C",
+     "text": "(D) < (B) < (A) < (C)"
+    },
+    {
+     "key": "D",
+     "text": "(C) < (D) < (B) < (A)"
+    }
+   ],
+   "stem_figure": "jn25-23jan-s2-chem-q60.png",
+   "solution_figure": "jn25-23jan-s2-chem-q60-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List - I with List - II.\n(Table: List - I (Isomers of $\\mathrm{C_{10}H_{14}}$) items (A)-(D), List - II (Ozonolysis product) items (I)-(IV); see figure)\nChoose the correct answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Ozonolysis product",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(II), (B)-(III), (C)-(I), (D)-(IV)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(III), (B)-(IV), (C)-(I), (D)-(II)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(III), (B)-(II), (C)-(I), (D)-(IV)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(I), (B)-(IV), (C)-(III), (D)-(II)"
+    }
+   ],
+   "stem_figure": "jn25-23jan-s2-chem-q61.png",
+   "solution_figure": "jn25-23jan-s2-chem-q61-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Which of the following graphs most appropriately represents a zero order reaction ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "For zero order reaction : $\\mathrm{A \\rightarrow P}$\nRate $= k$\n$[A]_t = a_0 - kt$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q62-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q62-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q62-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q62-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-23jan-s2-chem-q62-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Metallurgy",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List - I with List - II.\nList - I | List - II\n(A) Bronze | (I) Cu, Ni\n(B) Brass | (II) Fe, Cr, Ni, C\n(C) UK silver coin | (III) Cu, Zn\n(D) Stainless Steel | (IV) Cu, Sn\nChoose the correct answer from the options given below :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Bronze $\\rightarrow$ Cu, Sn\nBrass $\\rightarrow$ Cu, Zn\nUK silver coin $\\rightarrow$ Cu, Ni\nStainless steel $\\rightarrow$ Fe, Cr, Ni, C",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(A)-(IV), (B)-(II), (C)-(III), (D)-(I)"
+    },
+    {
+     "key": "B",
+     "text": "(A)-(IV), (B)-(III), (C)-(I), (D)-(II)"
+    },
+    {
+     "key": "C",
+     "text": "(A)-(III), (B)-(I), (C)-(IV), (D)-(II)"
+    },
+    {
+     "key": "D",
+     "text": "(A)-(III), (B)-(IV), (C)-(II), (D)-(I)"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Identify the coordination complexes in which the central metal ion has $d^{4}$ configuration.\n(A) $\\mathrm{[FeO_4]^{2-}}$\n(B) $\\mathrm{[Mn(CN)_6]^{3-}}$\n(C) $\\mathrm{[Fe(CN)_6]^{3-}}$\n(D) $\\mathrm{Cr_2(O-CO-Me)_4(H_2O)_2}$\n(E) $\\mathrm{[NiF_6]^{2-}}$\nChoose the correct answer from the options given below:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{Fe^{+6} = [Ar]3d^{2}}$\n$\\mathrm{Mn^{+3} = [Ar]3d^{4}}$\n$\\mathrm{Fe^{+3} = [Ar]3d^{5}}$\n$\\mathrm{Cr^{+2} = [Ar]3d^{4}}$\n$\\mathrm{Ni^{+4} = [Ar]3d^{6}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "(C) and (E) only"
+    },
+    {
+     "key": "B",
+     "text": "(B), (C) and (D) only"
+    },
+    {
+     "key": "C",
+     "text": "(B) and (D) only"
+    },
+    {
+     "key": "D",
+     "text": "(A), (B) and (E) only"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are the atomic numbers of some group 14 elements. The atomic number of the element with lowest melting point is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Order of M.P. of group 14 : $\\mathrm{C > Si > Ge > Pb > Sn}$\nelement | M.P. ($^\\circ$C)\n$Z = 6 = \\mathrm{C}$ | 3730\n$Z = 14 = \\mathrm{Si}$ | 1410\n$Z = 32 = \\mathrm{Ge}$ | 937\n$Z = 50 = \\mathrm{Sn}$ | 232\n$Z = 82 = \\mathrm{Pb}$ | 327",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "14"
+    },
+    {
+     "key": "B",
+     "text": "6"
+    },
+    {
+     "key": "C",
+     "text": "82"
+    },
+    {
+     "key": "D",
+     "text": "50"
+    }
+   ],
+   "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 16,
-   "topic": "Haloalkanes and Haloarenes",
+   "topic": "Ionic Equilibrium",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Arrange the following compounds in the decreasing order of rate of hydrolysis",
-   "correct_key": "B",
+   "stem": "pH of water is 7 at $25^\\circ$C. If water is heated to $80^\\circ$C, it's pH will :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Rate of hydrolysis of the given compounds will be decided on the basis of stability of carbocation intermediate. Higher the stability of carbocation, higher will be the rate of hydrolysis of the parent compound. Stability order of carbocations obtained from the given compounds.\n(III) > (IV) > (I) > (II)",
+   "solution": "With increase in temperature, $K_w$ of water increases\nSo, degree of dissociation of water increase\n$\\therefore$ pH as well as pOH of water decrease.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -592,36 +589,36 @@
    "options": [
     {
      "key": "A",
-     "text": "(I) > (II) > (III) > (IV)"
+     "text": "Decrease"
     },
     {
      "key": "B",
-     "text": "(III) > (IV) > (I) > (II)"
+     "text": "Remains the same"
     },
     {
      "key": "C",
-     "text": "(IV) > (III) > (I) > (II)"
+     "text": "$\\mathrm{H^{+}}$ concentration increases, $\\mathrm{OH^{-}}$ concentration decreases"
     },
     {
      "key": "D",
-     "text": "(III) > (II) > (IV) > (I)"
+     "text": "Increase"
     }
    ],
-   "stem_figure": "j25-23jan-s2-chem-q16.png",
-   "solution_figure": "j25-23jan-s2-chem-q16-sol.png",
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 17,
-   "topic": "Some Basic Concepts of Chemistry",
+   "topic": "Haloalkanes and Haloarenes",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "0.01 mole of an organic compound (Hydrocarbon) gives 1.76 gm $\\mathrm{CO_2}$ and 0.9 gm $\\mathrm{H_2O}$ on complete combustion. Find out chemical formula of compound.",
-   "correct_key": "B",
+   "stem": "Identify the products [A] and [B], respectively in the following reaction :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{C_XH_Y} + \\left(x + \\frac{y}{4}\\right)\\mathrm{O_2} \\longrightarrow x\\mathrm{CO_2} + \\frac{y}{2}\\mathrm{H_2O}$\n$x = \\frac{0.04}{0.01} = 4$\n$\\frac{y}{2} = 5$\n$y = 10$\nFormula is $\\mathrm{C_4H_{10}}$",
+   "solution": "A is phenol and B is para benzoquinone.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -629,19 +626,134 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{C_3H_8}$"
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q67-optA.png"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{C_4H_{10}}$"
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q67-optB.png"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{C_5H_{12}}$"
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q67-optC.png"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{C_6H_{14}}$"
+     "text": "",
+     "figure": "jn25-23jan-s2-chem-q67-optD.png"
+    }
+   ],
+   "stem_figure": "jn25-23jan-s2-chem-q67.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider a binary solution of two volatile liquid components 1 and 2. $x_1$ and $y_1$ are the mole fractions of component 1 in liquid and vapour phase, respectively. The slope and intercept of the linear plot of $\\dfrac{1}{x_1}$ vs $\\dfrac{1}{y_1}$ are given respectively as :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\because$ For liquid solution of two liquids '1' and '2'\n$P_1 = P_T y_1 = P_1^{o} x_1$\n$\\therefore\\ \\dfrac{P_T}{x_1} = \\dfrac{P_1^{o}}{y_1}$\n$\\therefore\\ \\dfrac{P_2^{o} + x_1(P_1^{o} - P_2^{o})}{x_1} = \\dfrac{P_1^{o}}{y_1}$\n$\\therefore\\ \\dfrac{P_2^{o}}{x_1} + (P_1^{o} - P_2^{o}) = \\dfrac{P_1^{o}}{y_1}$\n$\\therefore\\ \\dfrac{1}{x_1} = \\left(\\dfrac{P_1^{o}}{P_2^{o}}\\right)\\left(\\dfrac{1}{y_1}\\right) + \\left(\\dfrac{P_2^{o} - P_1^{o}}{P_2^{o}}\\right)$\n$\\therefore$ Slope $= \\left(\\dfrac{P_1^{o}}{P_2^{o}}\\right)$\n$\\therefore$ Intercept $= \\left(\\dfrac{P_2^{o} - P_1^{o}}{P_2^{o}}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\dfrac{P_1^{0}}{P_2^{0}},\\ \\dfrac{P_2^{0}-P_1^{0}}{P_2^{0}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\dfrac{P_2^{0}}{P_1^{0}},\\ \\dfrac{P_1^{0}-P_2^{0}}{P_2^{0}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\dfrac{P_1^{0}}{P_2^{0}},\\ \\dfrac{P_1^{0}-P_2^{0}}{P_2^{0}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\dfrac{P_2^{0}}{P_1^{0}},\\ \\dfrac{P_2^{0}-P_1^{0}}{P_2^{0}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Atomic Structure",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements about X-ray spectra of elements :\nStatement (I) : A plot of $\\sqrt{\\nu}$ ($\\nu$ = frequency of X-rays emitted) vs atomic mass is a straight line.\nStatement (II) : A plot of $\\nu$ ($\\nu$ = frequency of X-rays emitted) vs atomic number is a straight line.\nIn the light of the above statements choose the correct answer from the options given below :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Statement I is true but Statement II is false"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "C",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is false but Statement II is true"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn25-23jan-s2-chem-q69-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Consider the following reactions\n$\\mathrm{K_2Cr_2O_7 \\xrightarrow[-H_2O]{KOH} [A] \\xrightarrow[-H_2O]{H_2SO_4} [B] + K_2SO_4}$\nThe products [A] and [B], respectively are :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\mathrm{K_2Cr_2O_7 \\xrightarrow[-H_2O]{KOH} \\underset{[A]}{K_2CrO_4} \\xrightarrow[-H_2O]{H_2SO_4} \\underset{[B]}{K_2Cr_2O_7} + K_2SO_4}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{K_2Cr(OH)_6}$ and $\\mathrm{Cr_2O_3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{K_2CrO_4}$ and $\\mathrm{Cr_2O_3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{K_2CrO_4}$ and $\\mathrm{K_2Cr_2O_7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{K_2CrO_4}$ and $\\mathrm{CrO}$"
     }
    ],
    "stem_figure": null,
@@ -651,41 +763,101 @@
   },
   {
    "q_no": 21,
-   "topic": "Amines",
+   "topic": "Some Basic Concepts of Chemistry",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "4-Ethoxyaniline $\\xrightarrow[0\\text{–}5^\\circ\\mathrm{C}]{\\mathrm{NaNO_2 + HCl}}$ A $\\xrightarrow[\\mathrm{pH} \\approx 8]{\\text{Phenol}}$ B $\\xrightarrow[\\text{(ii) } \\mathrm{CH_3CH_2Br}]{\\text{(i) NaOH}}$ C\nNumber of $sp^{3}$ hybridised carbon atoms in C is :",
+   "stem": "0.01 mole of an organic compound (X) containing 10% hydrogen, on complete combustion produced 0.9 g $\\mathrm{H_2O}$. Molar mass of (X) is ______ $\\mathrm{g\\ mol^{-1}}$.",
    "correct_key": null,
-   "correct_value": 4,
+   "correct_value": 100,
    "correct_keys": null,
-   "solution": "4-Ethoxyaniline $\\xrightarrow[0\\text{–}5^\\circ\\mathrm{C}]{\\mathrm{NaNO_2 + HCl}}$ (A) 4-ethoxybenzenediazonium chloride $\\xrightarrow[\\mathrm{pH} \\approx 8]{\\text{Phenol}}$ (coupling reaction) (B) $\\mathrm{CH_3CH_2O-C_6H_4-N=N-C_6H_4-OH}$ $\\xrightarrow{\\text{(i) NaOH}}$ $\\mathrm{H_3CH_2CO-C_6H_4-N=N-C_6H_4-O^-}$ $\\xrightarrow{\\text{(ii) } \\mathrm{CH_3CH_2Br}}$ (C) $\\mathrm{CH_3CH_2-O-C_6H_4-N=N-C_6H_4-OCH_2CH_3}$\nTotal 4 $sp^{3}$ hybridised carbon atoms are present in C",
+   "solution": "Organic compound $\\xrightarrow{\\text{combustion}}$ $\\mathrm{H_2O}$ (0.9 gm)\n$\\therefore$ mole of $\\mathrm{H_2O} = \\dfrac{0.9}{18} = 0.05$ mole\n$\\therefore$ mole of H in $\\mathrm{H_2O} = 0.05 \\times 2 = 0.1$ mole = mole of H in 0.01 mole Organic compound\n$\\therefore$ wt of H atom in 0.01 mole compound $= 0.1 \\times 1 = 0.1$ gm\n$\\therefore$ wt of H atom in one mole compound $= \\dfrac{0.1}{0.01} = 10$ gm\n$\\because$ wt. % of H $= \\dfrac{\\text{wt. of H in one mole compound}}{\\text{Molar mass of compound}} \\times 100$\n$10 = \\dfrac{10}{M} \\times 100$\n$\\therefore\\ M = 100$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-23jan-s2-chem-q21.png",
-   "solution_figure": "j25-23jan-s2-chem-q21-sol.png",
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 22,
-   "topic": "Hydrocarbons",
+   "topic": "Amines",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "A compound X consumes two moles of $\\mathrm{H_2}$ and when ‘X’ heated with $\\mathrm{KMnO_4/H^+}$ gives\n$\\mathrm{(CH_3)_2C=O}$, $\\mathrm{CH_3COOH}$, $\\mathrm{CH_3-CO-CH_2-CH_2-COOH}$\nNumber of $\\sigma$ bonds in X are ______.",
+   "stem": "Consider the following sequence of reactions.\nTotal number of $sp^{3}$ hybridised carbon atoms in the major product C formed is ________.",
    "correct_key": null,
-   "correct_value": 27,
+   "correct_value": 4,
    "correct_keys": null,
-   "solution": "Compound X has 27 $\\sigma$-bonds\n(X) $\\mathrm{CH_3-C(CH_3)=C(CH_3)-CH_2-CH_2-CH=CH-CH_3} \\xrightarrow{\\mathrm{KMnO_4/H^+}} \\mathrm{CH_3-CO-CH_2-CH_2-COOH + CH_3-CO-CH_3 + CH_3COOH}$",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
    "options": [],
-   "stem_figure": "j25-23jan-s2-chem-q22.png",
-   "solution_figure": "j25-23jan-s2-chem-q22-sol.png",
+   "stem_figure": "jn25-23jan-s2-chem-q72.png",
+   "solution_figure": "jn25-23jan-s2-chem-q72-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Some Basic Concepts of Chemistry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "When 81.0 g of aluminium is allowed to react with 128.0 g of oxygen gas, the mass of aluminium oxide produced in grams is ____. (Nearest integer)\nGiven :\nMolar mass of Al is $27.0\\ \\mathrm{g\\ mol^{-1}}$\nMolar mass of O is $16.0\\ \\mathrm{g\\ mol^{-1}}$",
+   "correct_key": null,
+   "correct_value": 153,
+   "correct_keys": null,
+   "solution": "$\\mathrm{4Al + 3O_2 \\longrightarrow 2Al_2O_3}$\n$\\dfrac{81}{27} = 3$ mole, $\\dfrac{128}{32} = 4$ mole\nLimiting reagent\n$\\therefore$ mole of $\\mathrm{Al_2O_3}$ formed $= \\dfrac{1}{2} \\times 3$ mole\n$\\therefore$ wt. $\\mathrm{Al_2O_3}$ formed $= \\dfrac{3}{2} \\times 102 = 153$ gm",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Thermodynamics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The bond dissociation enthalpy of $\\mathrm{X_2}$ $\\Delta H^{\\circ}_{bond}$ calculated from the given data is _______ $\\mathrm{kJ\\ mol^{-1}}$. (Nearest integer)\n$\\mathrm{M^{+}X^{-}(s) \\rightarrow M^{+}(g) + X^{-}(g)}$ $\\Delta H^{\\circ}_{lattice} = 800\\ \\mathrm{kJ\\ mol^{-1}}$\n$\\mathrm{M(s) \\rightarrow M(g)}$ $\\Delta H^{\\circ}_{sub} = 100\\ \\mathrm{kJ\\ mol^{-1}}$\n$\\mathrm{M(g) \\rightarrow M^{+}(g) + e^{-}(g)}$ $\\Delta H^{\\circ}_{i} = 500\\ \\mathrm{kJ\\ mol^{-1}}$\n$\\mathrm{X(g) + e^{-}(g) \\rightarrow X^{-}(g)}$ $\\Delta H^{\\circ}_{eg} = -300\\ \\mathrm{kJ\\ mol^{-1}}$\n$\\mathrm{M(s) + \\tfrac{1}{2}X_2(g) \\rightarrow M^{+}X^{-}(s)}$ $\\Delta H^{\\circ}_{f} = -400\\ \\mathrm{kJ\\ mol^{-1}}$\n[Given : $\\mathrm{M^{+}X^{-}}$ is a pure ionic compound and X forms a diatomic molecule $\\mathrm{X_2}$ is gaseous state]",
+   "correct_key": null,
+   "correct_value": 200,
+   "correct_keys": null,
+   "solution": "$\\therefore\\ \\Delta H_f(\\mathrm{MX}) = \\Delta H_{sub}(\\mathrm{M}) + \\mathrm{I.E.(M)} + \\dfrac{1}{2}[\\mathrm{B.E.(X-X)}] + \\mathrm{EG(X)} + \\mathrm{L.E.(MX)}$\n$-400 = (100) + (500) + \\dfrac{1}{2}(\\mathrm{B.E.}) + (-300) + (-800)$\n$\\therefore\\ \\mathrm{B.E.} = 200\\ \\mathrm{kJ\\ mole^{-1}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Hydrocarbons",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A compound 'X' absorbs 2 moles of hydrogen and 'X' upon oxidation with $\\mathrm{KMnO_4 | H^{+}}$ gives\n$\\mathrm{CH_3-CO-CH_3}$, $\\mathrm{CH_3-CO-OH}$ and $\\mathrm{CH_3-CO-CH_2CH_2-CO-OH}$\nThe total number of $\\sigma$ bonds present in the compound 'X' is ________.",
+   "correct_key": null,
+   "correct_value": 27,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn25-23jan-s2-chem-q75-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   }

@@ -10,19 +10,19 @@
   "marking_note": "+4 correct · −1 wrong",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "1dfTIMmZn7y8V9VqrnnqKi-YytEWmSTCi"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 2,
-   "topic": "Alcohols, Phenols and Ethers",
+   "q_no": 1,
+   "topic": "Chemical Equilibrium",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "IUPAC name of catechol is :",
-   "correct_key": "A",
+   "stem": "The equilibrium constant for the reaction\n$$\\mathrm{SO_3(g) \\rightleftharpoons SO_2(g) + \\frac{1}{2}O_2(g)}$$\nis $K_C = 4.9 \\times 10^{-2}$. The value of $K_C$ for the reaction given below is\n$$\\mathrm{2SO_2(g) + O_2(g) \\rightleftharpoons 2SO_3(g)}$$",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Theory based",
+   "solution": "$K'_C = \\left(\\frac{1}{K_C}\\right)^{2} = \\left(\\frac{1}{4.9 \\times 10^{-2}}\\right)^{2}$\n$K'_C = 416.49$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -30,36 +30,77 @@
    "options": [
     {
      "key": "A",
-     "text": "Benzene, 1,2-diol"
+     "text": "$4.9$"
     },
     {
      "key": "B",
-     "text": "Benzene, 1,3-diol"
+     "text": "$41.6$"
     },
     {
      "key": "C",
-     "text": "Benzene, 1,4-diol"
+     "text": "$49$"
     },
     {
      "key": "D",
-     "text": "3-Hydroxyphenol"
+     "text": "$416$"
     }
    ],
    "stem_figure": null,
    "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Haloalkanes and Haloarenes",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Find out the major product formed from the following reaction. [Me: $-\\mathrm{CH_3}$]",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "The above mechanism valid for both cis and trans isomers. So the products are same for both cis and trans isomers.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q62-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q62-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q62-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q62-optD.png"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-chem-q62.png",
+   "solution_figure": "jn24-04apr-s2-chem-q62-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 3,
-   "topic": "Haloalkanes and Haloarenes",
+   "topic": "p-Block Elements",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Major product ‘A’ is",
-   "correct_key": "A",
+   "stem": "When $\\mathrm{MnO_2}$ and $\\mathrm{H_2SO_4}$ is added to a salt (A), the greenish yellow gas liberated as salt (A) is :",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Strong base with high temperature tends to $\\mathrm{E_2}$ reaction.",
+   "solution": "$\\mathrm{2NH_4Cl + MnO_2 + 2H_2SO_4 \\xrightarrow{\\Delta} MnSO_4 + (NH_4)_2SO_4 + 2H_2O + Cl_2 \\uparrow}$ (Cl$_2$: greenish yellow solution)",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -67,40 +108,36 @@
    "options": [
     {
      "key": "A",
-     "text": "",
-     "figure": "j24-04apr-s2-chem-q03-optA.png"
+     "text": "$\\mathrm{NaBr}$"
     },
     {
      "key": "B",
-     "text": "",
-     "figure": "j24-04apr-s2-chem-q03-optB.png"
+     "text": "$\\mathrm{CaI_2}$"
     },
     {
      "key": "C",
-     "text": "",
-     "figure": "j24-04apr-s2-chem-q03-optC.png"
+     "text": "$\\mathrm{KNO_3}$"
     },
     {
      "key": "D",
-     "text": "",
-     "figure": "j24-04apr-s2-chem-q03-optD.png"
+     "text": "$\\mathrm{NH_4Cl}$"
     }
    ],
-   "stem_figure": "j24-04apr-s2-chem-q03.png",
-   "solution_figure": "j24-04apr-s2-chem-q03-sol.png",
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 4,
-   "topic": "The d- and f-Block Elements",
+   "topic": "Chemical Bonding",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Find the atomic number of element having 3 unpaired $\\mathrm{e^{-}}$ and belongs to transition series with $+2$ oxidation state",
+   "stem": "The correct statement/s about Hydrogen bonding is/are :\nA. Hydrogen bonding exists when H is covalently bonded to the highly electro negative atom.\nB. Intermolecular H bonding is present in o-nitro phenol\nC. Intramolecular H bonding is present in HF.\nD. The magnitude of H bonding depends on the physical state of the compound.\nE. H-bonding has powerful effect on the structure and properties of compounds.\nChoose the correct answer from the options given below :",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{{}_{23}V = [Ar]3d^{3}4s^{2}}$",
+   "solution": "(A) Generally hydrogen bonding exists when H is covalently bonded to the highly electronegative atom like F, O, N.\n(B) Intramolecular H bonding is present in o-nitrophenol (structure shown).\n(C) Intermolecular Hydrogen bonding is present in HF\n(D) The magnitude has Hydrogen bonding in solid state is greater than liquid state.\n(E) Hydrogen bonding has powerfull effect on the structure & properties of compound like melting point, boiling point, density etc.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -108,36 +145,36 @@
    "options": [
     {
      "key": "A",
-     "text": "22"
+     "text": "A only"
     },
     {
      "key": "B",
-     "text": "23"
+     "text": "A, D, E only"
     },
     {
      "key": "C",
-     "text": "24"
+     "text": "A, B, D only"
     },
     {
      "key": "D",
-     "text": "25"
+     "text": "A, B, C only"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q64-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 5,
-   "topic": "Classification of Elements and Periodicity",
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Correct order of ionisation enthalpy for\nLi, Na, Cl, F",
-   "correct_key": "B",
+   "stem": "In the above chemical reaction sequence “A” and “B” respectively are :",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\text{I.E.} \\propto Z_{\\text{eff}} \\propto \\frac{1}{\\text{no. of shell}}$",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -145,36 +182,36 @@
    "options": [
     {
      "key": "A",
-     "text": "Cl > F > Li > Na"
+     "text": "$\\mathrm{O_3, Zn/H_2O}$ and $\\mathrm{NaOH_{(alc.)}/I_2}$"
     },
     {
      "key": "B",
-     "text": "F > Cl > Li > Na"
+     "text": "$\\mathrm{H_2O, H^+}$ and $\\mathrm{NaOH_{(alc.)}/I_2}$"
     },
     {
      "key": "C",
-     "text": "Li > Na > F > Cl"
+     "text": "$\\mathrm{H_2O, H^+}$ and $\\mathrm{KMnO_4}$"
     },
     {
      "key": "D",
-     "text": "Li > Na > Cl > F"
+     "text": "$\\mathrm{O_3, Zn/H_2O}$ and $\\mathrm{KMnO_4}$"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": null,
+   "stem_figure": "jn24-04apr-s2-chem-q65.png",
+   "solution_figure": "jn24-04apr-s2-chem-q65-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 6,
-   "topic": "Chemical Bonding and Molecular Structure",
+   "topic": "Alcohols, Phenols and Ethers",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following molecule having pyramidal shape",
-   "correct_key": "B",
+   "stem": "Common name of Benzene-1, 2-diol is",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{SO_3^{2-}} \\rightarrow$",
+   "solution": "IUPAC name : Benzene-1,2-diol\nCommon name : catechol",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -182,36 +219,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{SO_4^{2-}}$"
+     "text": "quinol"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{SO_3^{2-}}$"
+     "text": "resorcinol"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{S_2O_3^{2-}}$"
+     "text": "catechol"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{S_2O_7^{2-}}$"
+     "text": "o-cresol"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j24-04apr-s2-chem-q06-sol.png",
+   "solution_figure": "jn24-04apr-s2-chem-q66-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 7,
-   "topic": "Structure of Atom",
+   "topic": "Haloalkanes and Haloarenes",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Consider the following statements:\nStatement I: The number of emitted photoelectrons Increases with increase in frequency of incident light.\nStatement II: Kinetic energy of emitted photoelectrons increases with increase in frequency of incident light",
+   "stem": "$\\mathrm{CH_3-CH_2-CH_2-Br + NaOH \\xrightarrow{C_2H_5OH} Product\\ 'A'}$\n\nConsider the above reactions, identify product B and product C.",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Theory based, Photoelectric effect",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -219,36 +256,36 @@
    "options": [
     {
      "key": "A",
-     "text": "Statement I is true but statement II is false"
+     "text": "B = C = 2-Propanol"
     },
     {
      "key": "B",
-     "text": "Statement I is false but statement II is true"
+     "text": "B = 2-Propanol  C = 1-Propanol"
     },
     {
      "key": "C",
-     "text": "Both Statement I and statement II are true"
+     "text": "B = 1-Propanol  C = 2-Propanol"
     },
     {
      "key": "D",
-     "text": "Both Statement I and statement II are false"
+     "text": "B = C = 1-Propanol"
     }
    ],
-   "stem_figure": null,
-   "solution_figure": null,
+   "stem_figure": "jn24-04apr-s2-chem-q67.png",
+   "solution_figure": "jn24-04apr-s2-chem-q67-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 8,
-   "topic": "The p-Block Elements",
+   "topic": "Purification of Organic Compounds",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Which of the following salt form yellowish green gas when treated with conc. $\\mathrm{H_2SO_4}$ and $\\mathrm{MnO_2}$",
-   "correct_key": "A",
+   "stem": "The adsorbent used in adsorption chromatography is/are\nA. silica gel\nB. alumina\nC. quick lime\nD. magnesia\nChoose the most appropriate answer from the options given below :",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{Cl^{-}}$ oxidises to give $\\mathrm{Cl_2\\,(g)}$ of yellowish green colour.",
+   "solution": "The most common polar and acidic support used is adsorption chromatography is silica. The surface silanol groups on their supported to adsorb polar compound and work particularly well for basic substances. Alumina is the example of polar and basic adsorbent that is used in adsorption chromatography.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -256,19 +293,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{NaCl}$"
+     "text": "B only"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{Na_2S}$"
+     "text": "C and D only"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{Na_2SO_4}$"
+     "text": "A and B only"
     },
     {
      "key": "D",
-     "text": "None of these"
+     "text": "A only"
     }
    ],
    "stem_figure": null,
@@ -278,54 +315,14 @@
   },
   {
    "q_no": 9,
-   "topic": "Coordination Compounds",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find the value of x + y in given complex\n$\\mathrm{[Fe(NH_3)_x(CN)_y]^{-1}}$",
-   "correct_key": null,
-   "correct_value": 6,
-   "correct_keys": null,
-   "solution": "Co-ordination number of $\\mathrm{Fe^{+3}}$ is 6.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 11,
-   "topic": "Chemical Bonding and Molecular Structure",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Find the sum of $\\sigma$ and $\\pi$ bonds present in 2-oxo-hex-4-yne-oicacid",
-   "correct_key": null,
-   "correct_value": 18,
-   "correct_keys": null,
-   "solution": "$[4\\pi + 14\\sigma = 18]$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [],
-   "stem_figure": null,
-   "solution_figure": "j24-04apr-s2-chem-q11-sol.png",
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 12,
-   "topic": "Structure of Atom",
+   "topic": "Haloalkanes and Haloarenes",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "What is angular momentum of $4^{\\text{th}}$ orbit ?",
-   "correct_key": "A",
+   "stem": "Product P is",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$mvr = \\frac{nh}{2\\pi} = \\frac{4h}{2\\pi} = \\frac{2h}{\\pi}$",
+   "solution": null,
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -333,19 +330,134 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\frac{2h}{\\pi}$"
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q69-optA.png"
     },
     {
      "key": "B",
-     "text": "$\\frac{h}{\\pi}$"
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q69-optB.png"
     },
     {
      "key": "C",
-     "text": "$\\frac{h}{2\\pi}$"
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q69-optC.png"
     },
     {
      "key": "D",
-     "text": "$\\frac{3h}{2\\pi}$"
+     "text": "",
+     "figure": "jn24-04apr-s2-chem-q69-optD.png"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-chem-q69.png",
+   "solution_figure": "jn24-04apr-s2-chem-q69-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "General Organic Chemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Correct order of stability of carbanion is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "As we know compound (d) is aromatic and the compound (a) is anti-aromatic. Hence compound (d) is most stable and compound (a) is least stable among these in compound (b) and (c) carbon atom of that positive charge is $sp^{3}$ hybridised they on the basis of angle strain theory compound (c) is more stable than compound (b).",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$c > b > d > a$"
+    },
+    {
+     "key": "B",
+     "text": "$a > b > c > d$"
+    },
+    {
+     "key": "C",
+     "text": "$d > a > c > b$"
+    },
+    {
+     "key": "D",
+     "text": "$d > c > b > a$"
+    }
+   ],
+   "stem_figure": "jn24-04apr-s2-chem-q70.png",
+   "solution_figure": "jn24-04apr-s2-chem-q70-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Periodic Table",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The correct order of the first ionization enthalpy is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) due to lanthanide contraction $\\mathrm{Tl}$ has more I.E. as compared to $\\mathrm{Ga}$ and $\\mathrm{Al}$\n(ii) due to scandide contraction $\\mathrm{Ga}$ has more I.E. as compared to $\\mathrm{Al}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Al > Ga > Tl}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Ga > Al > B}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{B > Al > Ga}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{Tl > Ga > Al}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If an iron (III) complex with the formula $\\mathrm{[Fe(NH_3)_x(CN)_y]^{-}}$ has no electron in its $e_g$ orbital, then the value of $x + y$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Complex is $\\mathrm{[Fe^{III}(NH_3)_2(CN)_4]^{\\ominus}}$\n$x = 2$\n$y = 4$\nso $x + y = 6$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$5$"
+    },
+    {
+     "key": "B",
+     "text": "$6$"
+    },
+    {
+     "key": "C",
+     "text": "$3$"
+    },
+    {
+     "key": "D",
+     "text": "$4$"
     }
    ],
    "stem_figure": null,
@@ -355,34 +467,51 @@
   },
   {
    "q_no": 13,
-   "topic": "Amines",
-   "qtype": "numeric",
-   "section": "Section B",
-   "stem": "Phthalimide $\\xrightarrow[\\text{(2) Benzyl chloride}]{\\text{(1) KOH}}$ P\nNumber of $\\pi$ bonds in product ‘P’",
-   "correct_key": null,
-   "correct_value": 8,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Fuel cell, using hydrogen and oxygen as fuels,\nA. has been used in spaceship\nB. has as efficiency of 40% to produce electricity\nC. uses aluminium as catalysts\nD. is eco-friendly\nE. is actually a type of Galvanic cell only",
+   "correct_key": "D",
+   "correct_value": null,
    "correct_keys": null,
-   "solution": "No. of $\\pi$ bond = 8",
+   "solution": "Fuel cell is used in spaceship and it is type of galvanic cell.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [],
+   "options": [
+    {
+     "key": "A",
+     "text": "A,B,C only"
+    },
+    {
+     "key": "B",
+     "text": "A,B,D only"
+    },
+    {
+     "key": "C",
+     "text": "A,B,D,E only"
+    },
+    {
+     "key": "D",
+     "text": "A,D,E only"
+    }
+   ],
    "stem_figure": null,
-   "solution_figure": "j24-04apr-s2-chem-q13-sol.png",
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 14,
-   "topic": "States of Matter: Gases and Kinetic Theory",
+   "topic": "Some Basic Concepts of Chemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Calculate the degree of freedom for translatory and rotatory motion of $\\mathrm{CH_4}$ molecule",
-   "correct_key": "C",
+   "stem": "Choose the Incorrect Statement about Dalton's Atomic Theory",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$\\mathrm{CH_4}$ Non-Linear Polyatomic molecule",
+   "solution": "In compound atoms of different elements combine in fixed ratio by mass.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -390,36 +519,110 @@
    "options": [
     {
      "key": "A",
-     "text": "2,3"
+     "text": "Compounds are formed when atoms of different elements combine in any ratio"
     },
     {
      "key": "B",
-     "text": "1,2"
+     "text": "All the atoms of a given element have identical properties including identical mass"
     },
     {
      "key": "C",
-     "text": "3,3"
+     "text": "Matter consists of indivisible atoms"
     },
     {
      "key": "D",
-     "text": "1,3"
+     "text": "Chemical reactions involve reorganization of atoms"
     }
    ],
    "stem_figure": null,
-   "solution_figure": "j24-04apr-s2-chem-q14-sol.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Match List I with List II\nList I | List II\nA. $\\alpha$- Glucose and $\\alpha$- Galactose | I. Functional isomers\nB. $\\alpha$- Glucose and $\\beta$- Glucose | II. Homologus\nC. $\\alpha$- Glucose and $\\alpha$- Fructose | III. Anomers\nD. $\\alpha$- Glucose and $\\alpha$- Ribose | IV. Epimers\nChoose the correct answer from the options given below:",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Based on biomolecules theory and structure of these named compounds –\n(A) $\\alpha$-Glucose and $\\alpha$-Galactose (IV) Epimers.\n(B) $\\alpha$-Glucose and $\\beta$-Glucose (III) Anomers\n(C) $\\alpha$-Glucose and $\\alpha$-Fructose (I) Functional isomers\n(D) $\\alpha$-Glucose and $\\alpha$-Ribose (II) Homologous",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "A-III, B-IV, C-II, D-I"
+    },
+    {
+     "key": "B",
+     "text": "A-III, B-IV, C-I, D-II"
+    },
+    {
+     "key": "C",
+     "text": "A-IV, B-III, C-I, D-II"
+    },
+    {
+     "key": "D",
+     "text": "A-IV, B-III, C-II, D-I"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Periodic Table",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Given below are two statements:\nStatement I : The correct order of first ionization enthalpy values of Li, Na, F and Cl is Na < Li < Cl < F.\nStatement II : The correct order of negative electron gain enthalpy values of Li, Na, F and Cl is Na < Li < F < Cl\nIn the light of the above statements, choose the correct answer from the options given below :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "(i) $\\mathrm{Na < Li < Cl < F}$\n$\\mathrm{I.E._1}$ in kJ/mol : $496$, $520$, $1256$, $1681$\n(ii) $\\mathrm{Na < Li < F < Cl}$\n$\\Delta_{eg}H$ in kJ/mol : $-53$, $-60$, $-328$, $-349$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Both Statement I and Statement II are true"
+    },
+    {
+     "key": "B",
+     "text": "Both Statement I and Statement II are false"
+    },
+    {
+     "key": "C",
+     "text": "Statement I is false but Statement II is true"
+    },
+    {
+     "key": "D",
+     "text": "Statement I is true but Statement II is false"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 17,
-   "topic": "Structure of Atom",
+   "topic": "Electrochemistry",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "How many orbitals have following set of quantum number n = 4, $m_l = 0$",
-   "correct_key": "D",
+   "stem": "For a strong electrolyte, a plot of molar conductivity against $(\\text{concentration})^{1/2}$ is a straight line, with a negative slope, the correct unit for the slope is",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "$n = 4 \\quad l = 0, 1, 2, 3$\n$l = 0 \\quad m_{\\ell} = 0$\n$l = 1 \\quad m_{\\ell} = 1, 0, 1$\n$l = 2 \\quad m_{\\ell} = -2, -1, 0, 1, 2$\n$l = 3 \\quad m_{\\ell} = -3, -1, 0, 1, 2, 3$",
+   "solution": "$\\Lambda_m = \\Lambda_m^{o} - A\\sqrt{C}$\nUnits of $A\\sqrt{C}$ = $\\mathrm{S\\ cm^{2}\\ mole^{-1}}$\nUits of $A$ = $\\mathrm{S\\ cm^{2}\\ mole^{-3/2}\\ L^{1/2}}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -427,19 +630,56 @@
    "options": [
     {
      "key": "A",
-     "text": "3"
+     "text": "$\\mathrm{S\\ cm^{2}\\ mol^{-3/2}\\ L^{1/2}}$"
     },
     {
      "key": "B",
-     "text": "5"
+     "text": "$\\mathrm{S\\ cm^{2}\\ mol^{-1}\\ L^{1/2}}$"
     },
     {
      "key": "C",
-     "text": "2"
+     "text": "$\\mathrm{S\\ cm^{2}\\ mol^{-3/2}\\ L}$"
     },
     {
      "key": "D",
-     "text": "4"
+     "text": "$\\mathrm{S\\ cm^{2}\\ mol^{-3/2}\\ L^{-1/2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "d- and f-Block Elements",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A first row transition metal in its +2 oxidation state has a spin-only magnetic moment value of 3.86 BM. The atomic number of the metal is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$_{22}\\mathrm{Ti^{+2}} \\Rightarrow \\mathrm{[Ar]3d^{2}}$\n$_{23}\\mathrm{V^{+2}} \\Rightarrow \\mathrm{[Ar]3d^{3}}$\n$_{25}\\mathrm{Mn^{+2}} \\Rightarrow \\mathrm{[Ar]3d^{5}}$\n$_{26}\\mathrm{Fe^{+2}} \\Rightarrow \\mathrm{[Ar]3d^{6}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$25$"
+    },
+    {
+     "key": "B",
+     "text": "$26$"
+    },
+    {
+     "key": "C",
+     "text": "$22$"
+    },
+    {
+     "key": "D",
+     "text": "$23$"
     }
    ],
    "stem_figure": null,
@@ -449,14 +689,14 @@
   },
   {
    "q_no": 19,
-   "topic": "Thermodynamics",
+   "topic": "Coordination Compounds",
    "qtype": "mcq",
    "section": "Section A",
-   "stem": "Calculate heat for Isothermal process if expansion takes place from 20 L to 60 L against 5 atm external pressure",
-   "correct_key": "A",
+   "stem": "The number of unpaired d-electrons in $\\mathrm{[Co(H_2O)_6]^{3+}}$ is______",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "We know according to FLOT,\n$\\Delta U = q + w$\nIsothermal $\\Delta T = 0$\n$\\Delta U = 0$\n$q = -w$\n$w = -P_{\\text{ext}}[V_2 - V_1]$\n$= -5[60 - 20]$\n$w = -200$ L-atm\n$q = -w = -[-200] = 200$ L-atm",
+   "solution": "$\\Rightarrow \\mathrm{[Co(H_2O)_6]^{+3}}$\n$\\mathrm{Co^{+3}}$: $d^{6}$ (splitting into $t_{2g}$ and $e_{g}$, as drawn)\nNo unpaired electrons",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -464,36 +704,93 @@
    "options": [
     {
      "key": "A",
-     "text": "200 L-atm"
+     "text": "$4$"
     },
     {
      "key": "B",
-     "text": "400 L-atm"
+     "text": "$2$"
     },
     {
      "key": "C",
-     "text": "300 L-atm"
+     "text": "$0$"
     },
     {
      "key": "D",
-     "text": "500 L-atm"
+     "text": "$1$"
     }
    ],
    "stem_figure": null,
-   "solution_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q79-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 20,
-   "topic": "Chemical Bonding and Molecular Structure",
+   "topic": "Chemical Bonding",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The number of species from the following that have pyramidal geometry around the central atom is________\n$$\\mathrm{S_2O_3^{2-},\\ SO_4^{2-},\\ SO_3^{2-},\\ S_2O_7^{2-}}$$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": null,
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4$"
+    },
+    {
+     "key": "B",
+     "text": "$3$"
+    },
+    {
+     "key": "C",
+     "text": "$1$"
+    },
+    {
+     "key": "D",
+     "text": "$2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q80-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Atomic Structure",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Find the total number of molecules which have non-zero dipole moment among the following\n$\\mathrm{NH_3}$, $\\mathrm{BCl_3}$, $\\mathrm{BeH_2}$, $\\mathrm{CCl_4}$, $\\mathrm{XeF_4}$",
+   "stem": "The maximum number of orbitals which can be identified with $n = 4$ and $m_{\\ell} = 0$ is_____",
    "correct_key": null,
-   "correct_value": 1,
+   "correct_value": 4,
    "correct_keys": null,
-   "solution": "$\\mathrm{NH_3}$ is polar among these.",
+   "solution": "So answer is 4.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q81-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Chemical Bonding",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Number of compounds/species from the following with non-zero dipole moment is_____\n$\\mathrm{BeCl_2,\\ BCl_3,\\ NF_3,\\ XeF_4,\\ CCl_4,\\ H_2O,\\ H_2S,\\ HBr,\\ CO_2,\\ H_2,\\ HCl}$",
+   "correct_key": null,
+   "correct_value": 5,
+   "correct_keys": null,
+   "solution": "Polar molecule ($\\mu \\neq 0$) : $\\mathrm{NF_3, H_2O, H_2S, HBr, HCl}$\nNon Polar molecule ($\\mu = 0$) : $\\mathrm{BeCl_2, BCl_3, XeF_4, CCl_4, CO_2, H_2}$\nSo answer is 5.",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -505,89 +802,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 21,
-   "topic": "Biomolecules",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "List-I | List-II\n(P) $\\alpha$-Glucose and $\\alpha$-Fructose | (1) Functional group isomer\n(Q) $\\alpha$-Glucose and $\\alpha$-Mannose | (2) Homologous\n(R) $\\alpha$-Glucose and $\\beta$-Glucose | (3) Epimers\n(S) $\\alpha$-Glucose and Ribose | (4) Anomers",
-   "correct_key": "B",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "Based on biomolecules theory.",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "P$\\rightarrow$B; Q$\\rightarrow$C; R$\\rightarrow$D; S$\\rightarrow$A"
-    },
-    {
-     "key": "B",
-     "text": "P$\\rightarrow$A; Q$\\rightarrow$C; R$\\rightarrow$D; S$\\rightarrow$B"
-    },
-    {
-     "key": "C",
-     "text": "P$\\rightarrow$A; Q$\\rightarrow$C; R$\\rightarrow$B; S$\\rightarrow$D"
-    },
-    {
-     "key": "D",
-     "text": "P$\\rightarrow$C; Q$\\rightarrow$A; R$\\rightarrow$D; S$\\rightarrow$B"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 22,
-   "topic": "Equilibrium",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "For the given chemical reaction :-\n$\\mathrm{SO_2 + \\frac{1}{2}O_2 \\rightleftharpoons SO_3} \\quad K_1 = 4.9 \\times 10^{-4}$\nFind $K_2$ = ? for chemical reaction given below\n$\\mathrm{2SO_3 \\rightleftharpoons 2SO_2 + O_2}$",
-   "correct_key": "A",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "$K_2 = \\left(\\frac{1}{K_1}\\right)^{2}$\n$= \\left(\\frac{1}{4.9 \\times 10^{-4}}\\right)^{2}$\n$= (2000)^{2}$\n$K_2 = 4 \\times 10^{6}$",
-   "marks_correct": 4,
-   "marks_wrong": -1,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$4 \\times 10^{6}$"
-    },
-    {
-     "key": "B",
-     "text": "$5 \\times 10^{7}$"
-    },
-    {
-     "key": "C",
-     "text": "$5 \\times 10^{8}$"
-    },
-    {
-     "key": "D",
-     "text": "$5 \\times 10^{5}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
    "q_no": 23,
-   "topic": "Coordination Compounds",
+   "topic": "Thermodynamics",
    "qtype": "numeric",
    "section": "Section B",
-   "stem": "Total number of unpaired $\\mathrm{e^{-}}$ at central metal ion in $\\mathrm{[Co(H_2O)_6]^{3+}}$",
+   "stem": "Three moles of an ideal gas are compressed isothermally from 60 L to 20 L using constant pressure of 5 atm. Heat exchange Q for the compression is $-$ ____ Lit. atm.",
    "correct_key": null,
-   "correct_value": 0,
+   "correct_value": 200,
    "correct_keys": null,
-   "solution": "For $\\mathrm{Co^{+3}}$ ion $\\mathrm{H_2O}$ act as SFL, then unpaired $\\mathrm{e^{-}}$ will be zero",
+   "solution": "As isothermal $\\Delta U = 0$\nand process is irreversible\n$Q = -W = -[-P_{ext}(V_2 - V_1)]$\n$Q = 5(20 - 60) = -200$ atm-L",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
@@ -600,36 +823,39 @@
   },
   {
    "q_no": 24,
-   "topic": "The p-Block Elements",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Arrange the following in increasing order of their first ionisation enthalpy:\nAl, Ga, In, Tl, B",
-   "correct_key": "B",
-   "correct_value": null,
+   "topic": "Amines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "From 6.55 g of aniline, the maximum amount of acetanilide that can be prepared will be___$\\times 10^{-1}$ g.",
+   "correct_key": null,
+   "correct_value": 95,
    "correct_keys": null,
-   "solution": "Theory based, Periodic table",
+   "solution": "93 g aniline form 135 gm acetanilide\nso 6.55 g aniline form $\\frac{135}{93} \\times 6.55 = 9.5$\n$95 \\times 10^{-1}$",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Tl < In < Ga < Al < B"
-    },
-    {
-     "key": "B",
-     "text": "In < Al < Ga < Tl < B"
-    },
-    {
-     "key": "C",
-     "text": "In < Ga < Al < B < Tl"
-    },
-    {
-     "key": "D",
-     "text": "B < Al < Ga < In < Tl"
-    }
-   ],
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q84-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Chemical Kinetics",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Consider the following reaction, the rate expression of which is given below\n$\\mathrm{A + B \\rightarrow C}$\nrate $= k[A]^{1/2}[B]^{1/2}$\nThe reaction is initiated by taking 1M concentration A and B each. If the rate constant (k) is $4.6 \\times 10^{-2}\\ \\mathrm{s^{-1}}$, then the time taken for A to become 0.1 M is_____sec. (nearest integer)",
+   "correct_key": null,
+   "correct_value": 50,
+   "correct_keys": null,
+   "solution": "$K = \\frac{2.303}{t}\\log\\frac{1}{0.1}$\n$4.6 \\times 10^{-2} = \\frac{2.303}{t}$\n$t = 50$ sec.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
    "stem_figure": null,
    "solution_figure": null,
    "or_stem_figure": null,
@@ -637,38 +863,101 @@
   },
   {
    "q_no": 26,
-   "topic": "Some Basic Concepts of Chemistry",
-   "qtype": "mcq",
-   "section": "Section A",
-   "stem": "Which of the following statement is incorrect?",
-   "correct_key": "B",
-   "correct_value": null,
+   "topic": "Amines",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Phthalimide is made to undergo following sequence of reactions.\n$$\\text{Phthalimide} \\xrightarrow[\\text{(ii) Benzylchloride}]{\\text{(i) KOH}} \\text{'P'}$$\nTotal number of $\\pi$ bonds present in product 'P' is/are",
+   "correct_key": null,
+   "correct_value": 8,
    "correct_keys": null,
-   "solution": "Fundamentals of mole concept.",
+   "solution": "Total number of $\\pi$-bonds present in product P is 8",
    "marks_correct": 4,
    "marks_wrong": -1,
    "or_stem": null,
    "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "In homogeneous mixture composition is uniform"
-    },
-    {
-     "key": "B",
-     "text": "Compounds are formed when atoms of different element combine together in any ratio"
-    },
-    {
-     "key": "C",
-     "text": "Atoms of same element have identical atomic mass a properties"
-    },
-    {
-     "key": "D",
-     "text": "In heterogeneous mixture composition is not uniform"
-    }
-   ],
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q86-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "General Organic Chemistry",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The total number of 'sigma' and 'Pi' bonds in 2-oxohex-4-ynoic acid is____.",
+   "correct_key": null,
+   "correct_value": 18,
+   "correct_keys": null,
+   "solution": "Number of $\\sigma$-bonds = 14\nNumber of $\\pi$-bonds = 4\n= 18",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q87-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "d- and f-Block Elements",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "A first row transition metal with highest enthalpy of atomisation, upon reaction with oxygen at high temperature forms oxides of formula $\\mathrm{M_2O_n}$ (where n = 3,4,5). The 'spin-only' magnetic moment value of the amphoteric oxide from the above oxides is___ BM (near integer)\n(Given atomic number : Sc : 21, Ti : 22, V : 23, Cr : 24, Mn : 25, Fe : 26, Co : 27, Ni : 28, Cu : 29, Zn : 30)",
+   "correct_key": null,
+   "correct_value": 0,
+   "correct_keys": null,
+   "solution": "'V' has highest enthalpy of atomisation (515 kJ/mol) among first row transition elements.\n$\\mathrm{V_2O_5}$\nHere 'V' is in +5 oxidation state\n$\\mathrm{V^{+5}} \\Rightarrow 1s^{2}\\ 2s^{2}\\ 2p^{6}\\ 3s^{2}\\ 3p^{6}$ (no unpaired electrons)",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
    "stem_figure": null,
    "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Solutions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "2.7 Kg of each of water and acetic acid are mixed, The freezing point of the solution will be $-x\\ ^\\circ\\mathrm{C}$. Consider the acetic acid does not dimerise in water, nor dissociates in water $x$ = ______(nearest integer)\n[Given : Molar mass of water = 18 g mol$^{-1}$, acetic acid = 60 g mol$^{-1}$\n$K_f$ $\\mathrm{H_2O}$ : 1.86 K kg mol$^{-1}$\n$K_f$ acetic acid : 3.90 K kg mol$^{-1}$\nfreezing point : $\\mathrm{H_2O}$ = 273 K, acetic acid = 290 K]",
+   "correct_key": null,
+   "correct_value": 31,
+   "correct_keys": null,
+   "solution": "As moles of water > moles of $\\mathrm{CH_3COOH}$\nwater is solvent.\n$T^{\\circ}_F - (T_F)_S = K_F \\times M$\n$0 - (T_F)_S = 1.86 \\times \\frac{2700/60}{2700/1000}$\n$(T_F)_S = -31^\\circ\\mathrm{C}$.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Aldehydes, Ketones and Carboxylic Acids",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Vanillin compound obtained from vanilla beans, has total sum of oxygen atoms and $\\pi$ electrons is__",
+   "correct_key": null,
+   "correct_value": 11,
+   "correct_keys": null,
+   "solution": "Vanillin compound is an organic compound molecular formula $\\mathrm{C_8H_8O_3}$. It is a phenolic aldehyde. Its functional compounds include aldehyde, hydroxyl and ether. It is the primary component of the extract of the vanilla beans.\nTotal sum of oxygen atoms and $\\pi$-electrons is $3 + 8 = 11$\nTotal number of oxygen atoms = 3\nTotal number of $\\pi$-bonds = 4\n$\\therefore$ Total number of $\\pi$-electrons = 8",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-04apr-s2-chem-q90-sol.png",
    "or_stem_figure": null,
    "or_solution_figure": null
   }

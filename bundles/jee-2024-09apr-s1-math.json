@@ -1,0 +1,957 @@
+{
+ "paper": {
+  "exam": "JEE Main",
+  "subject": "Mathematics",
+  "year": 2024,
+  "set_label": "9 Apr · Shift 1",
+  "title": "JEE Main 2024 · Mathematics · 9 Apr Shift 1",
+  "marks_correct": 4,
+  "marks_wrong": -1,
+  "marking_note": "+4 correct · −1 wrong",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let the line $L$ intersect the lines\n$x - 2 = -y = z - 1,\\ 2(x + 1) = 2(y - 1) = z + 1$\nand be parallel to the line $\\frac{x-2}{3} = \\frac{y-1}{1} = \\frac{z-2}{2}$.\nThen which of the following points lies on $L$ ?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$L_1 : \\frac{x-2}{1} = \\frac{y}{-1} = \\frac{z-1}{1} = \\lambda$\n$L_2 : \\frac{x+1}{\\frac{1}{2}} = \\frac{y-1}{\\frac{1}{2}} = \\frac{z+1}{1} = \\mu$\ndr of line $MN$ will be $\\langle 3 + \\lambda - \\frac{\\mu}{2},\\ -1 - \\lambda - \\frac{\\mu}{2},\\ 2 + \\lambda - \\mu \\rangle$ & it will be proportional to $\\langle 3, 1, 2 \\rangle$\n$\\therefore \\frac{3 + \\lambda - \\frac{\\mu}{2}}{3} = \\frac{-1 - \\lambda - \\frac{\\mu}{2}}{1} = \\frac{2 + \\lambda - \\mu}{2}$\n$4\\lambda + \\mu = -6$ and $4 + 3\\lambda = 0$\n$\\Rightarrow \\lambda = -\\frac{4}{3}$ & $\\mu = -\\frac{2}{3}$\n$\\therefore$ Coordinate of $M$ will be $\\left(\\frac{2}{3}, \\frac{4}{3}, -\\frac{1}{3}\\right)$\nand equation of required line will be.\n$\\frac{x - \\frac{2}{3}}{3} = \\frac{y - \\frac{4}{3}}{1} = \\frac{z + \\frac{1}{3}}{2} = k$\nSo any point on this line will be\n$\\left(\\frac{2}{3} + 3k,\\ \\frac{4}{3} + k,\\ -\\frac{1}{3} + 2k\\right)$\n$\\because \\frac{2}{3} + 3k = -\\frac{1}{3} \\Rightarrow k = -\\frac{1}{3}$\n$\\therefore$ Point lie on the line for $k = -\\frac{1}{3}$ is $\\left(-\\frac{1}{3}, 1, -1\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left(-\\frac{1}{3}, 1, 1\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(-\\frac{1}{3}, 1, -1\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(-\\frac{1}{3}, -1, -1\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{1}{3}, -1, 1\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q01-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The parabola $y^{2} = 4x$ divides the area of the circle $x^{2} + y^{2} = 5$ in two parts. The area of the smaller part is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$y^{2} = 4x$\n$x^{2} + y^{2} = 5$\n$\\therefore$ Area of shaded region as shown in the figure will be\n$A_1 = \\int_{0}^{1} \\sqrt{4x}\\,dx + \\int_{1}^{\\sqrt{5}} \\sqrt{5 - x^{2}}\\,dx$\n$= \\frac{4}{3}\\left[x^{\\frac{3}{2}}\\right]_{0}^{1} + \\left[\\frac{x}{2}\\sqrt{5 - x^{2}} + \\frac{5}{2}\\sin^{-1}\\frac{x}{\\sqrt{5}}\\right]_{1}^{\\sqrt{5}}$\n$= \\frac{1}{3} + \\frac{5\\pi}{4} - \\frac{5}{2}\\sin^{-1}\\left(\\frac{1}{\\sqrt{5}}\\right)$\n$\\therefore$ Required Area $= 2A_1$\n$= \\frac{2}{3} + \\frac{5\\pi}{2} - 5\\sin^{-1}\\left(\\frac{1}{\\sqrt{5}}\\right)$\n$= \\frac{2}{3} + 5\\left(\\frac{\\pi}{2} - \\sin^{-1}\\frac{1}{\\sqrt{5}}\\right)$\n$= \\frac{2}{3} + 5\\cos^{-1}\\frac{1}{\\sqrt{5}}$\n$= \\frac{2}{3} + 5\\sin^{-1}\\left(\\frac{2}{\\sqrt{5}}\\right)$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{3} + 5\\sin^{-1}\\left(\\frac{2}{\\sqrt{5}}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{3} + 5\\sin^{-1}\\left(\\frac{2}{\\sqrt{5}}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{3} + \\sqrt{5}\\sin^{-1}\\left(\\frac{2}{\\sqrt{5}}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{3} + \\sqrt{5}\\sin^{-1}\\left(\\frac{2}{\\sqrt{5}}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q02-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The solution curve, of the differential equation $2y\\frac{dy}{dx} + 3 = 5\\frac{dy}{dx}$, passing through the point $(0, 1)$ is a conic, whose vertex lies on the line :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(2y - 5)\\frac{dy}{dx} = -3$\n$(2y - 5)\\,dy = -3\\,dx$\n$2 \\cdot \\frac{y^{2}}{2} - 5y = -3x + \\lambda$\n$\\because$ Curve passes through $(0, 1)$\n$\\Rightarrow \\lambda = -4$\n$\\because$ Curve will be\n$\\left(y - \\frac{5}{2}\\right)^{2} = -3\\left(x - \\frac{3}{4}\\right)$\n$\\therefore$ Vertex of parabola will be $\\left(\\frac{3}{4}, \\frac{5}{2}\\right)$\n$\\because\\ 2x + 3y = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2x + 3y = 9$"
+    },
+    {
+     "key": "B",
+     "text": "$2x + 3y = -9$"
+    },
+    {
+     "key": "C",
+     "text": "$2x + 3y = -6$"
+    },
+    {
+     "key": "D",
+     "text": "$2x + 3y = 6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A ray of light coming from the point $P(1, 2)$ gets reflected from the point $Q$ on the x-axis and then passes through the point $R(4, 3)$. If the point $S(h, k)$ is such that $PQRS$ is a parallelogram, then $hk^{2}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Image of $P$ wrt x-axis will be $P'(1, -2)$ equation of line joining $P'R$ will be\n$y - 3 = \\frac{5}{3}(x - 4)$\nAbove line will meet x-axis at $Q$ where\n$y = 0 \\Rightarrow x = \\frac{11}{5}$\n$\\therefore Q\\left(\\frac{11}{5}, 0\\right)$\n$\\because$ $PQRS$ is parallelogram so their diagonals will bisects each other\n$\\Rightarrow \\frac{4 + 1}{2} = \\frac{\\frac{11}{5} + h}{2}$ & $\\frac{2 + 3}{2} = \\frac{k + 0}{2}$\n$\\Rightarrow h = \\frac{14}{5}$ & $k = 5$\n$\\therefore hk^{2} = \\frac{14}{5} \\times 5^{2} = 70$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$80$"
+    },
+    {
+     "key": "B",
+     "text": "$90$"
+    },
+    {
+     "key": "C",
+     "text": "$60$"
+    },
+    {
+     "key": "D",
+     "text": "$70$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q04-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Matrices and Determinants",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\lambda, \\mu \\in R$. If the system of equations\n$3x + 5y + \\lambda z = 3$\n$7x + 11y - 9z = 2$\n$97x + 155y - 189z = \\mu$\nhas infinitely many solutions, then $\\mu + 2\\lambda$ is equal to :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$3x + 5y + \\lambda z = 3$\n$7x + 11y - 9z = 2$\n$97x + 155y - 189z = \\mu$\n$93x + 155y + 31\\lambda z = 93$\n$97x + 155y - 189z = \\mu$\n$-4x + (31\\lambda + 189)z = 93 - \\mu$\n$1085x + 1705y - 1395z = 310$\n$1067x + 1705y - 2079z = 11\\mu$\n$18x + 684z = 310 - 11\\mu$\n$-36x + 9(31\\lambda + 189)z = 9(93 - \\mu)$\n$36x + 1368z = 2(310 - 11\\mu)$\n$(279\\lambda + 3069)z = 1457 - 31\\mu$\nfor infinite solutions -\n$\\lambda = \\frac{-3069}{279} = \\frac{-341}{31}$\n$\\mu = \\frac{1457}{31}$\n$\\mu + 2\\lambda = \\frac{1457 - 682}{31} = \\frac{775}{31} = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$25$"
+    },
+    {
+     "key": "B",
+     "text": "$24$"
+    },
+    {
+     "key": "C",
+     "text": "$27$"
+    },
+    {
+     "key": "D",
+     "text": "$22$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Binomial Theorem",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The coefficient of $x^{70}$ in $x^{2}(1 + x)^{98} + x^{3}(1 + x)^{97} + x^{4}(1 + x)^{96} + \\ldots\\ldots + x^{54}(1 + x)^{46}$ is ${}^{99}C_{p} - {}^{46}C_{q}$.\nThen a possible value of $p + q$ is :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2}(1 + x)^{98} + x^{3}(1 + x^{97}) + x^{4}(1 + x)^{96} + \\ldots\\ldots$\n$x^{54}(1 + x)^{46}$\nCoeff. of $x^{70}$ : ${}^{98}C_{68} + {}^{97}C_{67} + {}^{96}C_{66} + \\ldots\\ldots\\ldots$\n${}^{47}C_{17} + {}^{46}C_{16}$\n$= {}^{46}C_{30} + {}^{47}C_{30} + \\ldots\\ldots\\ldots\\ldots {}^{98}C_{30}$\n$= \\left({}^{46}C_{31} + {}^{46}C_{30}\\right) + {}^{47}C_{30} + \\ldots\\ldots\\ldots\\ldots {}^{98}C_{30} - {}^{46}C_{31}$\n$= {}^{47}C_{31} + {}^{47}C_{30} + \\ldots\\ldots\\ldots\\ldots {}^{98}C_{30} - {}^{46}C_{31}$\n$\\ldots\\ldots$\n$= {}^{99}C_{31} - {}^{46}C_{31} = {}^{99}C_{p} - {}^{46}C_{q}$\nPossible values of $(p + q)$ are $62, 83, 99, 46$\n$\\Rightarrow p + q = 83$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$55$"
+    },
+    {
+     "key": "B",
+     "text": "$61$"
+    },
+    {
+     "key": "C",
+     "text": "$68$"
+    },
+    {
+     "key": "D",
+     "text": "$83$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Indefinite Integrals",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\int \\frac{2 - \\tan x}{3 + \\tan x}\\,dx = \\frac{1}{2}\\left(\\alpha x + \\log_{e}\\left|\\beta\\sin x + \\gamma\\cos x\\right|\\right) + C$, where $C$ is the constant of integration.\nThen $\\alpha + \\frac{\\gamma}{\\beta}$ is equal to :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\int \\frac{2 - \\tan x}{3 + \\tan x}\\,dx = \\int \\frac{2\\cos x - \\sin x}{3\\cos x + \\sin x}\\,dx$\n$2\\cos x - \\sin x = A(3\\cos x + \\sin x) + B(\\cos x - 3\\sin x)$\n$3A + B = 2$\n$A - 3B = -1$\n$\\Rightarrow A = \\frac{1}{2}, B = \\frac{1}{2}$\n$\\therefore \\int \\frac{2\\cos x - \\sin x}{3\\cos x + \\sin x}\\,dx$\n$= \\frac{x}{2} + \\frac{1}{2}\\ln|3\\cos x + \\sin x| + C$\n$= \\frac{1}{2}\\left(x + \\ln|3\\cos x + \\sin x|\\right) + C$\n$= \\frac{1}{2}\\left(\\alpha x + \\ln|\\beta\\sin x + \\gamma\\cos x|\\right) + C$\n$\\alpha = 1, \\beta = 1, \\gamma = 3$\n$\\therefore \\alpha + \\frac{\\gamma}{\\beta} = 1 + \\frac{3}{1} = 4$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3$"
+    },
+    {
+     "key": "B",
+     "text": "$1$"
+    },
+    {
+     "key": "C",
+     "text": "$4$"
+    },
+    {
+     "key": "D",
+     "text": "$7$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "A variable line $L$ passes through the point $(3, 5)$ and intersects the positive coordinate axes at the points $A$ and $B$. The minimum area of the triangle $OAB$, where $O$ is the origin, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{x}{a} + \\frac{y}{b} = 1$\n$\\frac{3}{a} + \\frac{5}{b} = 1 \\Rightarrow b = \\frac{5a}{a - 3},\\ a > 3$\n$A = \\frac{1}{2}ab = \\frac{1}{2}a\\,\\frac{5a}{(a - 3)} = \\frac{5}{2} \\cdot \\frac{a^{2}}{a - 3}$\n$= \\frac{5}{2}\\left(\\frac{a^{2} - 9 + 9}{a - 3}\\right)$\n$= \\frac{5}{2}\\left(a + 3 + \\frac{9}{a - 3}\\right)$\n$= \\frac{5}{2}\\left(a - 3 + \\frac{9}{a - 3} + 6\\right) \\geq 30$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$30$"
+    },
+    {
+     "key": "B",
+     "text": "$25$"
+    },
+    {
+     "key": "C",
+     "text": "$40$"
+    },
+    {
+     "key": "D",
+     "text": "$35$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q08-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\left|\\cos\\theta\\cos(60 - \\theta)\\cos(60 - \\theta)\\right| \\leq \\frac{1}{8},\\ \\theta \\in [0, 2\\pi]$\nThen, the sum of all $\\theta \\in [0, 2\\pi]$, where $\\cos 3\\theta$ attains its maximum value, is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "We know that\n$(\\cos\\theta)(\\cos(60^\\circ - \\theta))(\\cos(60^\\circ + \\theta)) = \\frac{1}{4}\\cos 3\\theta$\nSo equation reduces to $\\left|\\frac{1}{4}\\cos 3\\theta\\right| \\leq \\frac{1}{8}$\n$\\Rightarrow |\\cos 3\\theta| \\leq \\frac{1}{2}$\n$\\Rightarrow -\\frac{1}{2} \\leq \\cos 3\\theta \\leq \\frac{1}{2}$\n$\\Rightarrow$ maximum value of $\\cos 3\\theta = \\frac{1}{2}$, here\n$\\Rightarrow 3\\theta = 2n\\pi \\pm \\frac{\\pi}{3}$\n$\\theta = \\frac{2n\\pi}{3} \\pm \\frac{\\pi}{9}$\nAs $\\theta \\in [0, 2\\pi]$ possible values are\n$\\theta = \\left\\{\\frac{\\pi}{9}, \\frac{5\\pi}{9}, \\frac{7\\pi}{9}, \\frac{11\\pi}{9}, \\frac{13\\pi}{9}, \\frac{17\\pi}{9}\\right\\}$\nWhose sum is\n$\\frac{\\pi}{9} + \\frac{5\\pi}{9} + \\frac{7\\pi}{9} + \\frac{11\\pi}{9} + \\frac{13\\pi}{9} + \\frac{17\\pi}{9} = \\frac{54\\pi}{9} = 6\\pi$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$9\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$18\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$6\\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$15\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\overrightarrow{OA} = 2\\vec{a},\\ \\overrightarrow{OB} = 6\\vec{a} + 5\\vec{b}$ and $\\overrightarrow{OC} = 3\\vec{b}$, where $O$ is the origin. If the area of the parallelogram with adjacent sides $\\overrightarrow{OA}$ and $\\overrightarrow{OC}$ is 15 sq. units, then the area (in sq. units) of the quadrilateral $OABC$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Area of parallelogram having sides $\\overrightarrow{OA}$ & $\\overrightarrow{OC}$ $= |\\overrightarrow{OA} \\times \\overrightarrow{OC}| = |2\\vec{a} \\times 3\\vec{b}| = 15$\n$6|\\vec{a} \\times \\vec{b}| = 15$\n$\\Rightarrow |\\vec{a} \\times \\vec{b}| = \\frac{5}{2}$ ........(1)\nArea of quadrilateral\n$OABC = \\frac{1}{2}|\\vec{d}_1 \\times \\vec{d}_2|$\n$= \\frac{1}{2}|\\overrightarrow{AC} \\times \\overrightarrow{OB}| = \\frac{1}{2}\\left|(3\\vec{b} - 2\\vec{a}) \\times (6\\vec{a} + 5\\vec{b})\\right|$\n$= \\frac{1}{2}\\left|18\\vec{b} \\times \\vec{a} - 10\\vec{a} \\times \\vec{b}\\right| = 14|\\vec{a} \\times \\vec{b}|$\n$= 14 \\times \\frac{5}{2} = 35$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$38$"
+    },
+    {
+     "key": "B",
+     "text": "$40$"
+    },
+    {
+     "key": "C",
+     "text": "$32$"
+    },
+    {
+     "key": "D",
+     "text": "$35$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q10-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the domain of the function $f(x) = \\sin^{-1}\\left(\\frac{x - 1}{2x + 3}\\right)$ is $R - (\\alpha, \\beta)$ then $12\\alpha\\beta$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Domain of $f(x) = \\sin^{-1}\\left(\\frac{x - 1}{2x + 3}\\right)$ is\n$2x + 3 \\neq 0$ & $x \\neq \\frac{-3}{2}$ and $\\left|\\frac{x - 1}{2x + 3}\\right| \\leq 1$\n$|x - 1| \\leq |2x + 3|$\nFor $|2x + 3| \\geq |x - 1|$\n$x \\in (-\\infty, -4] \\cup \\left(-\\frac{2}{3}, \\infty\\right)$\n$\\alpha = -4$ & $\\beta = -\\frac{2}{3} : 12\\alpha\\beta = 32$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$36$"
+    },
+    {
+     "key": "B",
+     "text": "$24$"
+    },
+    {
+     "key": "C",
+     "text": "$40$"
+    },
+    {
+     "key": "D",
+     "text": "$32$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q11-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Sequences and Series",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "If the sum of series\n$\\frac{1}{1\\cdot(1 + d)} + \\frac{1}{(1 + d)(1 + 2d)} + \\ldots\\ldots + \\frac{1}{(1 + 9d)(1 + 10d)}$\nis equal to 5, then $50d$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\frac{1}{1\\cdot(1 + d)} + \\frac{1}{(1 + d)(1 + 2d)} + \\ldots\\ldots\\ldots\\ldots$\n$\\frac{1}{d}\\left[\\frac{(1 + d) - 1}{1\\cdot(1 + d)} + \\frac{(1 + 2d) - (1 - d)}{(1 + d)(1 + 2d)} + \\ldots\\ldots\\ldots\\ldots\\right]$\n$\\frac{(1 + 10d) - (1 + 9d)}{(1 + 9d)(1 + 10d)} = 5$\n$\\frac{1}{d}\\left[\\left(1 - \\frac{1}{1 + d}\\right) + \\left(\\frac{1}{1 + d} - \\frac{1}{1 + 2d}\\right) + \\ldots\\ldots\\ldots\\ldots\\left(\\frac{1}{1 + 9d} - \\frac{1}{1 + 10d}\\right)\\right] = 5$\n$\\frac{1}{d}\\left[1 - \\frac{1}{(1 + 10d)}\\right] = 5$\n$\\frac{10d}{1 + 10d} = 5d$\n$50d = 5$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$20$"
+    },
+    {
+     "key": "B",
+     "text": "$5$"
+    },
+    {
+     "key": "C",
+     "text": "$15$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Application of Derivatives",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = ax^{3} + bx^{2} + cx + 41$ be such that $f(1) = 40$, $f'(1) = 2$ and $f''(1) = 4$.\nThen $a^{2} + b^{2} + c^{2}$ is equal to :",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = ax^{3} + bx^{2} + cx + 41$\n$f'(x) = 3ax^{2} + 2bx + cx$\n$\\Rightarrow f'(1) = 3a + 2b + c = 2$ ......... (1)\n$f''(n) = 6ax + 2b$\n$\\Rightarrow f''(1) = 6a + 2b = 4$\n$3a + b = 2$ ......... (2)\n(1) $-$ (2)\n$b + c = 0$ ......... (3)\n$f(1) = 40$\n$a + b + c + 41 = 40$\nuse (3)\n$a + 41 = 40$\nby (2)\n$-3 + b = 2 \\Rightarrow b = 5$ & $c = -5$\n$a^{2} + b^{2} + c^{2} = 1 + 25 + 25 = 51$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$62$"
+    },
+    {
+     "key": "B",
+     "text": "$73$"
+    },
+    {
+     "key": "C",
+     "text": "$54$"
+    },
+    {
+     "key": "D",
+     "text": "$51$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let a circle passing through $(2, 0)$ have its centre at the point $(h, k)$. Let $(x_c, y_c)$ be the point of intersection of the lines $3x + 5y = 1$ and $(2 + c)x + 5c^{2}y = 1$. If $h = \\lim_{c \\to 1} x_c$ and $k = \\lim_{c \\to 1} y_c$, then the equation of the circle is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(2 + c)x + 5c^{2}\\left(\\frac{1 - 3x}{5}\\right) = 1$\n$x = \\frac{1 - c^{2}}{2 + c - 3c^{2}},\\ y = \\frac{1 - 3x}{5} = \\frac{c - 1}{5(2 + c - 3c^{2})}$\n$h = \\lim_{c \\to 1} \\frac{(1 - c)(1 + c)}{(1 - c)(2 + 3c)} = \\frac{2}{5}$\n$K = \\lim_{c \\to 1} \\frac{c - 1}{-5(c - 1)(3c + 2)} = -\\frac{1}{25}$\nCentre $\\left(\\frac{2}{25}, -\\frac{1}{25}\\right)$,\n$r = \\sqrt{\\left(2 - \\frac{2}{5}\\right)^{2} + \\left(0 - \\frac{1}{25}\\right)^{2}} = \\sqrt{\\frac{64}{25} + \\frac{1}{625}}$\n$r = \\frac{\\sqrt{161}}{25}$\n$\\left(x - \\frac{2}{5}\\right)^{2} + \\left(y + \\frac{1}{25}\\right)^{2} = \\frac{161}{125}$\n$\\Rightarrow 25x^{2} + 25y^{2} - 20x + 2y - 60 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$25x^{2} + 25y^{2} - 20x + 2y - 60 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$5x^{2} + 5y^{2} - 4x - 2y - 12 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$25x^{2} + 25y^{2} - 2x + 2y - 60 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$5x^{2} + 5y^{2} - 4x + 2y - 12 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The shortest distance between the line\n$\\frac{x - 3}{4} = \\frac{y + 7}{-11} = \\frac{z - 1}{5}$ and $\\frac{x - 5}{3} = \\frac{y - 9}{-6} = \\frac{z + 2}{1}$\nis :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{n} = \\vec{p} \\times \\vec{q}$\n$\\vec{n} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 4 & -11 & 5 \\\\ 3 & -6 & 1 \\end{vmatrix} = 19\\hat{i} + 11\\hat{j} + 9\\hat{k}$\nS.d. = projection of $\\overrightarrow{AB}$ on $\\vec{n}$\n$= \\left|\\frac{\\overrightarrow{AB} \\cdot \\vec{n}}{|\\vec{n}|}\\right| = \\left|\\frac{(2\\hat{i} + 16\\hat{j} - 3\\hat{k}) \\cdot (19\\hat{i} + 11\\hat{j} + 9\\hat{k})}{\\sqrt{361 + 121 + 81}}\\right|$\n$= \\frac{38 + 176 - 27}{\\sqrt{563}}$\n$\\text{S.d.} = \\frac{187}{\\sqrt{563}}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{187}{\\sqrt{563}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{178}{\\sqrt{563}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{185}{\\sqrt{563}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{179}{\\sqrt{563}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q15-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Statistics",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The frequency distribution of the age of students in a class of 40 students is given below.\nAge | 15 | 16 | 17 | 18 | 19 | 20\nNo. of Students | 5 | 8 | 5 | 12 | $x$ | $y$\nIf the mean deviation about the median is 1.25, then $4x + 5y$ is equal to :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x + y = 10$ .........(1)\nMedian $= 18 = M$\n$\\text{M.D.} = \\frac{\\sum f_i |x_i - M|}{\\sum f_i}$\n$1.25 = \\frac{36 + x + 2y}{40}$\n$x + 2y = 14$ .........(1)\nby (1) & (2)\n$x = 6, y = 4$\n$\\Rightarrow 4x + 5y = 24 + 20 = 44$\nAge($x_i$) | $f$ | $|x_i - M|$ | $f_i|x_i - M|$\n15 | 5 | 3 | 15\n16 | 8 | 2 | 16\n17 | 5 | 1 | 5\n18 | 12 | 0 | 0\n19 | $x$ | 1 | $x$\n20 | $y$ | 2 | $2y$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$43$"
+    },
+    {
+     "key": "B",
+     "text": "$44$"
+    },
+    {
+     "key": "C",
+     "text": "$47$"
+    },
+    {
+     "key": "D",
+     "text": "$46$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "The solution of the differential equation $(x^{2} + y^{2})dx - 5xy\\,dy = 0$, $y(1) = 0$, is :",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$(x^{2} + y^{2})dx = 5xy\\,dy$\n$\\Rightarrow \\frac{dy}{dx} = \\frac{x^{2} + y^{2}}{5xy}$\nPut $y = Vx$\n$\\Rightarrow V + x\\frac{dv}{dx} = \\frac{1 + V^{2}}{5V}$\n$\\Rightarrow \\frac{x\\,dv}{dx} = \\frac{1 - 4V^{2}}{5V}$\n$\\Rightarrow \\int \\frac{V}{1 - 4V^{2}}\\,dV = \\int \\frac{dx}{5x}$\nLet $1 - 4V^{2} = t$\n$\\Rightarrow -8V\\,dV = dt$\n$\\Rightarrow \\int \\frac{dt}{(-8)(t)} = \\int \\frac{dx}{5x}$\n$\\Rightarrow \\frac{-1}{8}\\ln|t| = \\frac{1}{5}\\ln|x| + \\ln C$\n$\\Rightarrow -5\\ln|t| = 8\\ln|x| + \\ln K$\n$\\Rightarrow \\ln x^{8} + \\ln|t|^{5} + \\ln K = 0$\n$\\Rightarrow x^{8}|t|^{5} = C$\n$\\Rightarrow x^{8}\\left|1 - 4V^{2}\\right|^{5} = C$\n$\\Rightarrow x^{8}\\left|\\frac{x^{2} - 4y^{2}}{x^{2}}\\right|^{5} = C$\n$\\Rightarrow \\left|x^{2} - 4y^{2}\\right|^{5} = Cx^{2}$\ngiven $y(1) = 0$\n$\\Rightarrow |1|^{5} = C \\Rightarrow C = 1$\n$\\Rightarrow \\left|x^{2} - 4y^{2}\\right|^{5} = x^{2}$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\left|x^{2} - 4y^{2}\\right|^{5} = x^{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left|x^{2} - 2y^{2}\\right|^{6} = x$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left|x^{2} - 4y^{2}\\right|^{6} = x$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left|x^{2} - 2y^{2}\\right|^{5} = x^{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Vector Algebra",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let three vectors $\\vec{a} = \\alpha\\hat{i} + 4\\hat{j} + 2\\hat{k}$, $\\vec{b} = 5\\hat{i} + 3\\hat{j} + 4\\hat{k}$, $\\vec{c} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ form a triangle such that $\\vec{c} = \\vec{a} - \\vec{b}$ and the area of the triangle is $5\\sqrt{6}$. If $\\alpha$ is a positive real number, then $|\\vec{c}|^{2}$ is :",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$\\vec{c} = \\vec{a} - \\vec{b}$\n$\\Rightarrow (x, y, z) = (\\alpha - 5, 1, -2)$\n$\\Rightarrow x = \\alpha - 5,\\ y = 1,\\ z = -2$ ........(1)\nArea of $\\Delta = 5\\sqrt{6}$ (given)\n$\\frac{1}{2}|\\vec{a} \\times \\vec{c}| = 5\\sqrt{6}$\n$\\left\\|\\begin{matrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\alpha & 4 & 2 \\\\ x & 1 & -2 \\end{matrix}\\right\\| = 10\\sqrt{6}$\n$\\Rightarrow \\left|-10\\hat{i} - \\hat{j}(-2\\alpha - 2x) + \\hat{k}(\\alpha - 4x)\\right| = 10\\sqrt{6}$\n$\\Rightarrow (2\\alpha + 2\\alpha - 10)^{2} + (\\alpha - 4\\alpha + 20)^{2} = 500$\n$\\Rightarrow (4\\alpha - 10)^{2} + (20 - 3\\alpha)^{2} = 500$\n$\\Rightarrow 25\\alpha^{2} - 80\\alpha - 120\\alpha = 0$\n$\\Rightarrow \\alpha(25\\alpha - 200) = 0$\n$\\Rightarrow \\alpha = 8$ (given $\\alpha$ is +ve number)\n$\\Rightarrow x = \\alpha - 5 = 3$\n$|\\vec{c}|^{2} = x^{2} + y^{2} + z^{2}$\n$= 9 + 1 + 4$\n$= 14$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$14$"
+    },
+    {
+     "key": "C",
+     "text": "$12$"
+    },
+    {
+     "key": "D",
+     "text": "$10$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q18-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Quadratic Equations",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $\\alpha, \\beta$ be the roots of the equation $x^{2} + 2\\sqrt{2}x - 1 = 0$. The quadratic equation, whose roots are $\\alpha^{4} + \\beta^{4}$ and $\\frac{1}{10}\\left(\\alpha^{6} + \\beta^{6}\\right)$, is :",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$x^{2} + 2\\sqrt{2}x - 1 = 0$\n$\\alpha + \\beta = -2\\sqrt{2}$\n$\\alpha\\beta = -1$\n$\\alpha^{4} + \\beta^{4} = (\\alpha^{2} + \\beta^{2})^{2} - 2\\alpha^{2}\\beta^{2}$\n$= ((\\alpha + \\beta)^{2} - 2\\alpha\\beta)^{2} - 2(\\alpha\\beta)^{2}$\n$= (8 + 2)^{2} - 2(-1)^{2}$\n$= 100 - 2 = 98$\n$\\alpha^{6} + \\beta^{6} = (\\alpha^{3} + \\beta^{3})^{2} - 2\\alpha^{3}\\beta^{3}$\n$= ((\\alpha + \\beta)((\\alpha + \\beta)^{2} - 3\\alpha\\beta) - 2(\\alpha\\beta)^{3}$\n$= (-2\\sqrt{2}(8 + 3))^{2} + 2$\n$= (8)(121) + 2 = 970$\n$\\frac{1}{10}(\\alpha^{6} + \\beta^{6}) = 97$\n$x^{2} - (98 + 97)x + (98)(97) = 0$\n$\\Rightarrow x^{2} - 195x + 9506 = 0$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2} - 190x + 9466 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2} - 195x + 9466 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$x^{2} - 195x + 9506 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2} - 180x + 9506 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Ellipse",
+   "qtype": "mcq",
+   "section": "Section A",
+   "stem": "Let $f(x) = x^{2} + 9$, $g(x) = \\frac{x}{x - 9}$ and $a = fog(10)$, $b = gof(3)$. If $e$ and $l$ denote the eccentricity and the length of the latus rectum of the ellipse $\\frac{x^{2}}{a} + \\frac{y^{2}}{b} = 1$, then $8e^{2} + l^{2}$ is equal to.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "$f(x) = x^{2} + 9$  $g(x) = \\frac{x}{x - 9}$\n$a = f(g(10)) = f\\left(\\frac{10}{10 - 9}\\right)$\n$= f(10) = 109$\n$b = g(f(3)) = g(9 + 9)$\n$= g(18) = \\frac{18}{9} = 2$\n$E : \\frac{x^{2}}{109} + \\frac{y^{2}}{2} = 1$\n$e^{2} = 1 - \\frac{2}{109} = \\frac{107}{109}$\n$\\ell = \\frac{2(2)}{\\sqrt{109}} = \\frac{4}{\\sqrt{109}}$\n$8e^{2} + \\ell^{2} = \\frac{8(107)}{109} + \\frac{16}{109}$\n$= 8$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$16$"
+    },
+    {
+     "key": "B",
+     "text": "$8$"
+    },
+    {
+     "key": "C",
+     "text": "$6$"
+    },
+    {
+     "key": "D",
+     "text": "$12$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Probability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $a$, $b$ and $c$ denote the outcome of three independent rolls of a fair tetrahedral die, whose four faces are marked 1, 2, 3, 4. If the probability that $ax^{2} + bx + c = 0$ has all real roots is $\\frac{m}{n}$, $\\gcd(m, n) = 1$, then $m + n$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 19,
+   "correct_keys": null,
+   "solution": "$a, b, c \\in \\{1, 2, 3, 4\\}$\nTetrahedral dice\n$ax^{2} + bx + c = 0$\nhas all real roots\n$\\Rightarrow D \\geq 0$\n$\\Rightarrow b^{2} - 4ac \\geq 0$\nLet $b = 1 \\Rightarrow 1 - 4ac \\geq 0$ (Not feasible)\n$b = 2 \\Rightarrow 4 - 4ac \\geq 0$\n$1 \\geq ac \\Rightarrow a = 1, c = 1$,\n$b = 3 \\Rightarrow 9 - 4ac \\geq 0$\n$\\frac{9}{4} \\geq ac$\n$\\Rightarrow a = 1, c = 1$\n$\\Rightarrow a = 1, c = 2$\n$\\Rightarrow a = 2, c = 1$\n$b = 4 \\Rightarrow 16 - 4ac \\geq 0$\n$4 \\geq ac$\n$\\Rightarrow a = 1, c = 1$\n$\\Rightarrow a = 1, c = 2$   $\\Rightarrow a = 2, c = 1$\n$\\Rightarrow a = 1, c = 3$   $\\Rightarrow a = 3, c = 1$\n$\\Rightarrow a = 1, c = 4$   $\\Rightarrow a = 4, c = 1$\n$\\Rightarrow a = 2, c = 2$\nProbability $= \\frac{12}{(4)(4)(4)} = \\frac{3}{16} = \\frac{m}{m}$\n$m + n = 19$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q21-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Complex Numbers",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The sum of the square of the modulus of the elements in the set\n$\\{z = a + ib : a, b \\in Z, z \\in C, |z - 1| \\leq 1, |z - 5| \\leq |z - 5i|\\}$\nis ________.",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "$|z - 1| \\leq 1$\n$\\Rightarrow |(x - 1) + iy| \\leq 1$\n$\\Rightarrow \\sqrt{(x - 1)^{2} + y^{2}} \\leq 1$\n$\\Rightarrow (x - 1)^{2} + y^{2} \\leq 1$ ............ (1)\nAlso $|z - 5| \\leq |z - 5i|$\n$(x - 5)^{2} + y^{2} \\leq x^{2} + (y - 5)^{2}$\n$-10x \\leq -10y$\n$\\Rightarrow x \\geq y$ ............ (2)\nSolving (1) and (2)\n$\\Rightarrow (x - 1)^{2} + x^{2} = 1$\n$\\Rightarrow 2x^{2} - 2x = 0$\n$\\Rightarrow x(x - 1) = 0$\n$\\Rightarrow x = 0$ or $x = 1$\n$y = 0$ or $y = 1$\nGiven $x, y \\in I$\nPoints $(0, 0), (1, 0), (2, 0), (1, 1), (1, -1)$\nto find\n$|z_1|^{2} + |z_2|^{2} + |z_3|^{2} + |z_4|^{2} + |z_5|^{2}$\n$= 0 + 1 + 4 + 1 + 1 + 1 + 1 = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q22-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Application of Derivatives",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the set of all positive values of $\\lambda$, for which the point of local minimum of the function $(1 + x(\\lambda^{2} - x^{2}))$ satisfies $\\frac{x^{2} + x + 2}{x^{2} + 5x + 6} < 0$, be $(\\alpha, \\beta)$. Then $\\alpha^{2} + \\beta^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 39,
+   "correct_keys": null,
+   "solution": "$\\frac{x^{2} + x + 2}{x^{2} + 5x + 6} < 0$\n$\\Rightarrow \\frac{1}{(x + 2)(x + 3)} < 0$\n$x \\in (-3, -2)$ ..........(1)\n$f(x) = 1 + x\\left(\\lambda^{2} - x^{2}\\right)$\nFinding local minima\n$f'(x) = \\left(\\lambda^{2} - x^{2}\\right) + (-2x) \\cdot x$\nPut $f'(x) = 0$\n$\\Rightarrow \\lambda^{2} = 3x^{2}$\n$\\Rightarrow x = \\pm\\frac{\\lambda}{\\sqrt{3}}$\nLocal min   Local max\nWe want local min\n$\\Rightarrow x = \\frac{-\\lambda}{\\sqrt{3}}$\nfrom (1)\n$x \\in (-3, -2)$\n$-3 < \\frac{-\\lambda}{\\sqrt{3}} < -2$\n$3\\sqrt{3} > \\lambda > 2\\sqrt{3}$\n$\\alpha = 2\\sqrt{3}, \\beta = 3\\sqrt{3}$\n$\\alpha^{2} + \\beta^{2} = 12 + 27 = 39$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Definite Integrals",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let\n$$\\lim_{n \\to \\infty}\\left(\\frac{n}{\\sqrt{n^{4} + 1}} - \\frac{2n}{(n^{2} + 1)\\sqrt{n^{4} + 1}} + \\frac{n}{\\sqrt{n^{4} + 16}} - \\frac{8n}{(n^{2} + 4)\\sqrt{n^{4} + 16}} + \\ldots\\ldots + \\frac{n}{\\sqrt{n^{4} + n^{4}}} - \\frac{2n \\cdot n^{2}}{(n^{2} + n^{2})\\sqrt{n^{4} + n^{4}}}\\right)$$\nbe $\\frac{\\pi}{k}$, using only the principal values of the inverse trigonometric functions. Then $k^{2}$ is equal to _____.",
+   "correct_key": null,
+   "correct_value": 32,
+   "correct_keys": null,
+   "solution": "$\\sum_{r=1}^{\\infty} \\frac{n}{\\sqrt{n^{4} + r^{4}}} - \\frac{2nr^{2}}{(n^{2} + r^{2})\\sqrt{n^{4} + r^{4}}}$\n$\\sum_{r=1}^{\\infty} \\frac{\\frac{1}{n}}{\\sqrt{1 + \\left(\\frac{r}{n}\\right)^{4}}} - \\frac{2\\left(\\frac{1}{n}\\right)\\left(\\frac{r}{n}\\right)^{2}}{\\left(1 + \\left(\\frac{r}{n}\\right)^{2}\\right)\\sqrt{1 + \\left(\\frac{r}{n}\\right)^{4}}}$\n$\\Rightarrow \\int_{0}^{1} \\frac{dx}{\\sqrt{1 + x^{4}}} - \\frac{2x^{2}dx}{(1 + x^{2})\\sqrt{1 + x^{4}}}$\n$\\Rightarrow \\int_{0}^{1} \\frac{1 - x^{2}}{(1 + x^{2})\\sqrt{1 + x^{4}}}\\,dx$\n$\\Rightarrow \\int_{0}^{1} \\frac{\\frac{1}{x^{2}} - 1}{\\left(x + \\frac{1}{x}\\right)\\sqrt{x^{2} + \\frac{1}{x^{2}}}}\\,dx$\n$\\Rightarrow -\\int_{0}^{1} \\frac{1 - \\frac{1}{x^{2}}}{\\left(x + \\frac{1}{x}\\right)\\sqrt{\\left(x + \\frac{1}{x}\\right)^{2} - 2}}\\,dx$\n$x + \\frac{1}{x} = t \\Rightarrow 1 - \\frac{1}{x^{2}}dx = dt$\n$\\Rightarrow -\\int_{\\infty}^{2} \\frac{dt}{t\\sqrt{t^{2} - 2}}$\n$\\Rightarrow -\\int_{\\infty}^{2} \\frac{t\\,dt}{t^{2}\\sqrt{t^{2} - 2}}$\ntake $t^{2} - 2 = \\alpha^{2}$\n$t\\,dt = \\alpha\\,d\\alpha$\n$\\Rightarrow -\\int_{\\infty}^{\\sqrt{2}} \\frac{\\alpha\\,d\\alpha}{(\\alpha^{2} + 2)\\alpha}$\n$\\Rightarrow -\\int_{\\infty}^{\\sqrt{2}} \\frac{d\\alpha}{\\alpha^{2} + 2}$\n$\\Rightarrow \\frac{-1}{\\sqrt{2}}\\tan^{-1}\\frac{\\alpha}{\\sqrt{2}}\\Big|_{\\infty}^{\\sqrt{2}}$\n$\\Rightarrow \\frac{-1}{\\sqrt{2}}\\left\\{\\tan^{-1}1\\right\\} + \\frac{1}{\\sqrt{2}}\\tan^{-1}\\infty$\n$\\Rightarrow \\frac{1}{\\sqrt{2}}\\left\\{\\frac{\\pi}{2} - \\frac{\\pi}{4}\\right\\}$\n$\\Rightarrow \\frac{\\pi}{4\\sqrt{2}} = \\frac{\\pi}{K}$\nSo $K = 4\\sqrt{2}$\n$K^{2} = 32$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Binomial Theorem",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "The remainder when $428^{2024}$ is divided by 21 is ________.",
+   "correct_key": null,
+   "correct_value": 1,
+   "correct_keys": null,
+   "solution": "$(428)^{2024} = (420 + 8)^{2024}$\n$= (21 \\times 20 + 8)^{2024}$\n$= 21m + 8^{2024}$\nNow $8^{2024} = (8^{2})^{1012}$\n$= (64)^{1012}$\n$= (63 + 1)^{1012}$\n$= (21 \\times 3 + 1)^{1012}$\n$= 21n + 1$\n$\\Rightarrow$ Remainder is 1.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Continuity and Differentiability",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $f : (0, \\pi) \\to R$ be a function given by\n$$f(x) = \\begin{cases} \\left(\\frac{8}{7}\\right)^{\\frac{\\tan 8x}{\\tan 7x}}, & 0 < x < \\frac{\\pi}{2} \\\\ a - 8, & x = \\frac{\\pi}{2} \\\\ (1 + |\\cot x|)^{\\frac{b}{a}|\\tan x|}, & \\frac{\\pi}{2} < x < \\pi \\end{cases}$$\nWhere $a, b \\in Z$. If $f$ is continuous at $x = \\frac{\\pi}{2}$, then $a^{2} + b^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 81,
+   "correct_keys": null,
+   "solution": "LHL at $x = \\frac{\\pi}{2}$\n$\\lim_{x \\to \\frac{\\pi}{2}} \\left(\\frac{8}{7}\\right)^{\\frac{\\tan 8x}{\\tan 7x}} = \\left(\\frac{8}{7}\\right)^{0} = 1$\nRHL at $x = \\frac{\\pi}{2}$\n$\\lim_{x \\to \\frac{\\pi}{2}} (1 + |\\cot x|)^{\\frac{b}{a}|\\tan x|}$\n$= e^{\\lim_{x \\to \\frac{\\pi}{2}} |\\cot x|\\frac{b}{a}|\\tan x|} = e^{\\frac{b}{a}}$\n$\\Rightarrow 1 = a - 8 = e^{\\frac{b}{a}}$\n$\\Rightarrow a = 9, b = 0$\n$\\Rightarrow a^{2} + b^{2} = 81$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Matrices and Determinants",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A$ be a non-singular matrix of order 3. If $\\det(3\\,\\mathrm{adj}(2\\,\\mathrm{adj}((\\det A)A))) = 3^{-13} \\cdot 2^{-10}$ and $\\det(3\\,\\mathrm{adj}(2A)) = 2^{m} \\cdot 3^{n}$, then $|3m + 2n|$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 14,
+   "correct_keys": null,
+   "solution": "$|3\\,\\mathrm{adj}(2\\,\\mathrm{adj}(|A|A))| = |3\\,\\mathrm{adj}(2|A|^{2}\\,\\mathrm{adj}(A))|$\n$= |3.2^{2}|A|^{4}\\,\\mathrm{adj}(\\mathrm{adj}(A))| = 2^{6}3^{3}\\,|A|^{12}\\,|A|^{4}$\n$= 2^{6}\\,3^{3}\\,|A|^{16} = 2^{-10}\\,3^{-13}$\n$\\Rightarrow |A|^{16} = 2^{-16}\\,3^{-16} \\Rightarrow |A| = 2^{-1}\\,3^{-1}$\nNow $|3\\,\\mathrm{adj}(2A)| = |3.2^{2}\\,\\mathrm{adj}(A)|$\n$= 2^{6}\\,3^{3}\\,|A|^{2} = 2^{-m}\\,3^{-n}$\n$\\Rightarrow 2^{6}\\,3^{3}\\,2^{-2}\\,3^{-2} = 2^{-m}\\,3^{-n}$\n$\\Rightarrow 2^{-m}\\,3^{-n} = 2^{4}\\,3^{1}$\n$\\Rightarrow m = -4, n = -1$\n$\\Rightarrow |3m + 2n| = |-12 - 2| = 14$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Circles",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let the centre of a circle, passing through the point $(0, 0)$, $(1, 0)$ and touching the circle $x^{2} + y^{2} = 9$, be $(h, k)$. Then for all possible values of the coordinates of the centre $(h, k)$, $4(h^{2} + k^{2})$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 9,
+   "correct_keys": null,
+   "solution": "$(x - h)^{2} + (y - k)^{2} = h^{2} + k^{2}$\n$x^{2} + y^{2} - 2hx - 2ky = 0$\n$\\because$ passes through $(1, 0)$\n$\\Rightarrow 1 + 0 - 2h = 0$\n$\\Rightarrow h = 1/2$\n$\\because OC = \\frac{OP}{2}$\n$\\sqrt{\\left(\\frac{1}{2}\\right)^{2} + k^{2}} = \\frac{3}{2}$\n$\\frac{1}{4} + k^{2} = \\frac{9}{4}$\n$k^{2} = 2$\n$k = \\pm\\sqrt{2}$\n$\\therefore$ Possible coordinate of $c(h, k)$ $\\left(\\frac{1}{2}, \\sqrt{2}\\right)$ $\\left(\\frac{1}{2}, -\\sqrt{2}\\right)$\n$4(h^{2} + k^{2}) = 4\\left(\\frac{1}{4} + 2\\right) = 4\\left(\\frac{9}{4}\\right) = 9$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": "jn24-09apr-s1-math-q28-sol.png",
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "If a function $f$ satisfies $f(m + n) = f(m) + f(n)$ for all $m, n \\in N$ and $f(1) = 1$, then the largest natural number $\\lambda$ such that $\\sum_{k=1}^{2022} f(\\lambda + k) \\leq (2022)^{2}$ is equal to ________.",
+   "correct_key": null,
+   "correct_value": 1010,
+   "correct_keys": null,
+   "solution": "$f(m + n) = f(m) + f(n)$\n$\\Rightarrow f(x) = kx$\n$\\Rightarrow f(1) = 1$\n$\\Rightarrow k = 1$\n$f(x) = x$\nNow\n$\\sum_{k=1}^{2022} f(\\lambda + k) \\leq (2022)^{2}$\n$\\Rightarrow \\sum_{k=1}^{2022} (\\lambda + k) \\leq (2022)^{2}$\n$\\Rightarrow 2022\\lambda + \\frac{2022 \\times 2023}{2} \\leq (2022)^{2}$\n$\\Rightarrow \\lambda \\leq 2022 - \\frac{2023}{2}$\n$\\Rightarrow \\lambda \\leq 1010.5$\n$\\therefore$ largest natural no. $\\lambda$ is 1010.",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Relations and Functions",
+   "qtype": "numeric",
+   "section": "Section B",
+   "stem": "Let $A = \\{2, 3, 6, 7\\}$ and $B = \\{4, 5, 6, 8\\}$. Let $R$ be a relation defined on $A \\times B$ by $(a_1, b_1)\\,R\\,(a_2, b_2)$ if and only if $a_1 + a_2 = b_1 + b_2$. Then the number of elements in $R$ is ________.",
+   "correct_key": null,
+   "correct_value": 25,
+   "correct_keys": null,
+   "solution": "$A = \\{2, 3, 6, 7\\}$\n$B = \\{2, 5, 6, 8\\}$\n$(a_1, b_1)\\,R\\,(a_2, b_2)$\n$a_1 + a_2 = b_1 + b_2$\n1. $(2, 4)\\,R\\,(6, 4)$   2. $(2, 4)\\,R\\,(7, 5)$\n3. $(2, 5)\\,R\\,(7, 4)$   4. $(3, 4)\\,R\\,(6, 5)$\n5. $(3, 5)\\,R\\,(6, 4)$   6. $(3, 5)\\,R\\,(7, 5)$\n7. $(3, 6)\\,R\\,(7, 4)$   8. $(3, 4)\\,R\\,(7, 6)$\n9. $(6, 5)\\,R\\,(7, 8)$   10. $(6, 8)\\,R\\,(7, 5)$\n11. $(7, 8)\\,R\\,(7, 6)$   12. $(6, 8)\\,R\\,(6, 4)$\n(items 1 to 12 are marked $\\times 2$)\n13. $(6, 6)\\,R\\,(6, 6)$\nTotal $24 + 1 = 25$",
+   "marks_correct": 4,
+   "marks_wrong": -1,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
