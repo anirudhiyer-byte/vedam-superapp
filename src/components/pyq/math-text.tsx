@@ -31,5 +31,5 @@ export function MathText({ text, className }: { text: string; className?: string
     last = m.index + m[0].length;
   }
   if (last < text.length) nodes.push(<span key={key++}>{text.slice(last)}</span>);
-  return <span className={className} style={{ whiteSpace: "pre-line" }}>{nodes}</span>;
+  return <span className={className} style={{ whiteSpace: "pre-wrap" }}>{nodes}</span>;
 }
