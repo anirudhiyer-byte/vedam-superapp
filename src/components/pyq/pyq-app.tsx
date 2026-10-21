@@ -270,7 +270,7 @@ function Landing({ papers, go, signedIn, firstName }: { papers: Paper[] | null; 
           <div className="cta">
             {signedIn ? (
               <>
-                <button className="btn primary" onClick={() => toPapers()}>Continue practising →</button>
+                <button className="btn primary" onClick={() => toPapers()}>Continue practicing →</button>
                 <button className="btn ghost" onClick={() => go(DASHBOARD)}>My dashboard</button>
               </>
             ) : (
