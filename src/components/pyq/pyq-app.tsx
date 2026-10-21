@@ -306,7 +306,7 @@ function HeroDemo() {
   const sel = still ? d.c : st.sel;
   const rev = still || st.rev;
   return (
-    <div className="mini" ref={root}>
+    <div className={"mini" + (rev ? (sel === d.c ? " res-ok" : " res-bad") : "")} ref={root}>
       <div className={"mbody" + (st.fade ? " fade" : "")}>
         <div className="mtop"><span className="topicpill">{d.topic}</span><span className="marks">+4 / −1</span></div>
         <div className="mq">{d.q}</div>
