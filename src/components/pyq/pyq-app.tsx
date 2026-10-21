@@ -354,8 +354,11 @@ function Landing({ papers, go, signedIn, firstName }: { papers: Paper[] | null; 
     for (const e of EXAM_ORDER) {
       const list = (papers ?? []).filter((p) => p.exam === e);
       if (!papers) { m[e] = ""; continue; }
-      if (e === "CBSE Class 12") { const n = new Set(list.map((p) => p.subject)).size; m[e] = `${n} subject${n === 1 ? "" : "s"}`; }
-      else { const n = new Set(list.map((p) => p.year)).size; m[e] = n ? `${n} year${n === 1 ? "" : "s"}` : "Coming soon"; }
+      // Show the span of years the papers cover, e.g. "2023–2026" (a single year shows just "2024").
+      const ys = list.map((p) => p.year);
+      if (!ys.length) { m[e] = "Coming soon"; continue; }
+      const lo = Math.min(...ys), hi = Math.max(...ys);
+      m[e] = lo === hi ? String(lo) : `${lo}–${hi}`;
     }
     return m;
   }, [papers]);
