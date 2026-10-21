@@ -794,7 +794,6 @@ function Test({ paperId, go, toast, onSubmitted }: {
               {showInstr ? "Hide instructions" : "Instructions"}
             </button>
           )}
-          <button className="btn sm" onClick={() => setConfirming(true)}>Submit test</button>
         </span>
       </div>
 
