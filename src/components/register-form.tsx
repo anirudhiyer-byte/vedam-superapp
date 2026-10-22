@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { saveProfile } from "@/lib/supabase/profile-write";
 import { readUtm } from "@/lib/utm";
+import { otpAllowed } from "@/lib/otp-allowed";
 import { track } from "@/lib/analytics/track";
 import { Turnstile } from "@/components/turnstile";
 import { SearchableSelect } from "@/components/ui/searchable-select";
@@ -66,7 +67,7 @@ export function RegisterForm() {
   // ---------- resend the phone OTP (no re-validation / no existence check) ----------
   async function resendPhoneOtp() {
     setError(null);
-    const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null });
+    const allowed = await otpAllowed(e164(phone));
     if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again.");
     if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha to resend.");
     const { error } = await supabase.auth.signInWithOtp({
@@ -90,7 +91,7 @@ export function RegisterForm() {
 
     setLoading(true);
     // rate-limit OTP sends (per phone) to prevent SMS abuse — Turnstile already gates bots
-    const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null });
+    const allowed = await otpAllowed(e164(phone));
     if (allowed === false) { setLoading(false); setCaptchaToken(null); setCaptchaReset((x) => x + 1); return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
     const utm = readUtm();
     try { await fetch("/api/auth/reclaim", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ phone: e164(phone), email: email.trim() }) }); } catch { /* best effort */ }

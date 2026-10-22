@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
+import { otpAllowed } from "@/lib/otp-allowed";
 import { Turnstile } from "@/components/turnstile";
 
 type Mode = "phone" | "email";
@@ -39,7 +40,7 @@ export function LoginForm() {
   // resend the code on the OTP screen (fresh captcha token from the widget below)
   async function resendCode() {
     setError(null);
-    if (mode === "phone") { const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null }); if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
+    if (mode === "phone") { const allowed = await otpAllowed(e164(phone)); if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
     if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha to resend.");
     const { error } =
       mode === "phone"
@@ -65,7 +66,7 @@ export function LoginForm() {
   async function sendCode() {
     setError(null);
     if (mode === "phone" && phone.replace(/\D/g, "").length < 10) return setError("Enter a valid WhatsApp number.");
-    if (mode === "phone") { const { data: allowed } = await supabase.rpc("otp_allowed", { p_phone: e164(phone), p_ip: null }); if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
+    if (mode === "phone") { const allowed = await otpAllowed(e164(phone)); if (allowed === false) return setError("Too many code requests for this number. Please wait a few minutes and try again."); }
     if (mode === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Enter a valid email.");
     if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !captchaToken) return setError("Please complete the captcha.");
 
