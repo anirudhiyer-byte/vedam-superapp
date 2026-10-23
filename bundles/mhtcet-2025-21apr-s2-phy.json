@@ -3,26 +3,26 @@
   "exam": "MHT-CET",
   "subject": "Physics",
   "year": 2025,
-  "set_label": "21 Apr · Shift 2 (partial)",
-  "title": "MHT-CET 2025 · Physics · 21 Apr · Shift 2 (partial)",
+  "set_label": "21 April · Shift 2",
+  "title": "MHT-CET 2025 · Physics · 21 April Shift 2",
   "marks_correct": 1,
   "marks_wrong": 0,
-  "marking_note": "+1 correct · no negative marking · partial paper (only the questions available)",
+  "marking_note": "+1 correct · no negative marking",
   "sort_order": 10,
   "duration_mins": 60,
-  "source_file_id": "1lv-yT7uT9NsHd4ZQHsexQOg2lx7HyWw-"
+  "source_file_id": null
  },
  "questions": [
   {
    "q_no": 1,
-   "topic": "Electrostatic Potential and Capacitance",
+   "topic": "Units and Measurements",
    "qtype": "mcq",
    "section": null,
-   "stem": "What is the energy stored in a capacitor of capacitance $C = 10\\ \\mu\\mathrm{F}$ when a potential difference of $V = 20\\ \\mathrm{V}$ is applied across it?",
-   "correct_key": "A",
+   "stem": "Error in the measurement of radius of the sphere is $2\\%$. The error in the calculated value of its volume is",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use the formula for energy stored in a capacitor\n$$\\text{Energy} = \\frac{1}{2}CV^{2}$$\nGiven: - Capacitance $C = 10\\ \\mu\\mathrm{F} = 10 \\times 10^{-6}\\ \\mathrm{F}$ - Voltage $V = 20\\ \\mathrm{V}$\n$$\\text{Energy} = \\frac{1}{2} \\times (10 \\times 10^{-6}) \\times (20)^{2} = 0.01\\ \\mathrm{J}$$\nAnswer: Therefore, the energy stored in the capacitor is $0.01\\ \\mathrm{J}$. So, the correct answer is option (1).\nQuick Tip: Remember: Energy $= \\frac{1}{2}CV^{2}$ for capacitors. Ensure the units of capacitance and voltage are consistent.",
+   "solution": "Step 1: Volume of a sphere $V = \\frac{4}{3}\\pi r^{3}$, so $\\frac{\\Delta V}{V} = 3\\frac{\\Delta r}{r}$.\nStep 2: Substitute $\\frac{\\Delta r}{r} = 2\\%$: $\\frac{\\Delta V}{V} = 3 \\times 2\\% = 6\\%$.\nFinal Answer: (C) $6\\%$\nQuick Tip: Percentage error gets multiplied by the power of the quantity; constants like $\\frac{4}{3}\\pi$ add no error.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -30,19 +30,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$0.01\\ \\mathrm{J}$"
+     "text": "$3\\%$"
     },
     {
      "key": "B",
-     "text": "$2\\ \\mathrm{J}$"
+     "text": "$2\\%$"
     },
     {
      "key": "C",
-     "text": "$4\\ \\mathrm{J}$"
+     "text": "$6\\%$"
     },
     {
      "key": "D",
-     "text": "$0.1\\ \\mathrm{J}$"
+     "text": "$9\\%$"
     }
    ],
    "stem_figure": null,
@@ -52,14 +52,14 @@
   },
   {
    "q_no": 2,
-   "topic": "Waves",
+   "topic": "Current Electricity",
    "qtype": "mcq",
    "section": null,
-   "stem": "What is the frequency of a wave with a wavelength of $2\\ \\mathrm{m}$ and a velocity of $4\\ \\mathrm{m/s}$?",
-   "correct_key": "A",
+   "stem": "In the circuit shown in the figure, $P \\neq R$. The reading of the galvanometer remains the same with switch ' $S$ ' open or closed. Then",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use the wave equation\n$$v = f\\lambda$$\nWhere: - $v$ is the velocity of the wave - $f$ is the frequency - $\\lambda$ is the wavelength\nGiven: - Wavelength $\\lambda = 2\\ \\mathrm{m}$ - Velocity $v = 4\\ \\mathrm{m/s}$\nRearrange the formula to solve for frequency $f$:\n$$f = \\frac{v}{\\lambda} = \\frac{4}{2} = 2\\ \\mathrm{Hz}$$\nAnswer: Therefore, the frequency of the wave is $2\\ \\mathrm{Hz}$. So, the correct answer is option (1).\nQuick Tip: Always remember the formula: $v = f\\lambda$ for waves. If you know any two quantities (velocity, frequency, wavelength), you can solve for the third.",
+   "solution": "Step 1: Switch S joins B and D. If closing S does not change the galvanometer reading, no current flows through S, so $V_B = V_D$ (the bridge is balanced).\nStep 2: With no current in BD, the current $I_R$ entering D through R has only one exit, through the galvanometer G to C. Hence $I_R = I_G$ (similarly $I_P = I_Q$).\nStep 3: Since $P \\neq R$, $I_P \\neq I_R$, so options with $I_P$ or $I_Q$ equal to $I_G$ or $I_R$ are not true in general.\nFinal Answer: (C) $I_R = I_G$\nQuick Tip: No change on closing a switch across two nodes means those nodes are at equal potential, so the switch carries no current.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -67,36 +67,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$2\\ \\mathrm{Hz}$"
+     "text": "$I_Q = I_G$"
     },
     {
      "key": "B",
-     "text": "$0.5\\ \\mathrm{Hz}$"
+     "text": "$I_Q = I_R$"
     },
     {
      "key": "C",
-     "text": "$1\\ \\mathrm{Hz}$"
+     "text": "$I_R = I_G$"
     },
     {
      "key": "D",
-     "text": "$4\\ \\mathrm{Hz}$"
+     "text": "$I_P = I_G$"
     }
    ],
-   "stem_figure": null,
+   "stem_figure": "m25-21apr-s2-q02.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
    "q_no": 3,
-   "topic": "Motion in a Straight Line",
+   "topic": "Vectors",
    "qtype": "mcq",
    "section": null,
-   "stem": "A car travels a distance of 200 meters in 20 seconds. What is the average speed of the car?",
-   "correct_key": "A",
+   "stem": "A unit vector in the direction of resultant vector of $\\vec{A} = -2\\hat{i} + 3\\hat{j} + \\hat{k}$ and $\\vec{B} = \\hat{i} + 2\\hat{j} - 4\\hat{k}$ is",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use the formula for average speed\n$$\\text{Average speed} = \\frac{\\text{Total distance}}{\\text{Total time}}$$\nGiven: - Total distance $= 200\\ \\mathrm{m}$ - Total time $= 20\\ \\mathrm{s}$\nSubstitute the values into the formula:\n$$\\text{Average speed} = \\frac{200}{20} = 10\\ \\mathrm{m/s}$$\nAnswer: Therefore, the average speed of the car is $10\\ \\mathrm{m/s}$. So, the correct answer is option (1).\nQuick Tip: Remember: Average speed is the total distance divided by the total time, and it is a scalar quantity.",
+   "solution": "Step 1: Resultant $\\vec{R} = \\vec{A} + \\vec{B} = (-2 + 1)\\hat{i} + (3 + 2)\\hat{j} + (1 - 4)\\hat{k} = -\\hat{i} + 5\\hat{j} - 3\\hat{k}$.\nStep 2: Magnitude $|\\vec{R}| = \\sqrt{1 + 25 + 9} = \\sqrt{35}$.\nStep 3: Unit vector $\\hat{R} = \\frac{-\\hat{i} + 5\\hat{j} - 3\\hat{k}}{\\sqrt{35}}$.\nFinal Answer: (D) $\\frac{-\\hat{i} + 5\\hat{j} - 3\\hat{k}}{\\sqrt{35}}$\nQuick Tip: Add components first, then divide by the magnitude; all four options share $\\sqrt{35}$, so only the numerator matters.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$10\\ \\mathrm{m/s}$"
+     "text": "$\\frac{-3\\hat{i} + \\hat{j} + 5\\hat{k}}{\\sqrt{35}}$"
     },
     {
      "key": "B",
-     "text": "$20\\ \\mathrm{m/s}$"
+     "text": "$\\frac{\\hat{i} + 2\\hat{j} - 4\\hat{k}}{\\sqrt{35}}$"
     },
     {
      "key": "C",
-     "text": "$5\\ \\mathrm{m/s}$"
+     "text": "$\\frac{-2\\hat{i} + 3\\hat{j} + \\hat{k}}{\\sqrt{35}}$"
     },
     {
      "key": "D",
-     "text": "$40\\ \\mathrm{m/s}$"
+     "text": "$\\frac{-\\hat{i} + 5\\hat{j} - 3\\hat{k}}{\\sqrt{35}}$"
     }
    ],
    "stem_figure": null,
@@ -126,14 +126,14 @@
   },
   {
    "q_no": 4,
-   "topic": "Laws of Motion",
+   "topic": "Rotational Motion",
    "qtype": "mcq",
    "section": null,
-   "stem": "A block of mass $5\\ \\mathrm{kg}$ is placed on a frictionless surface. If a force of $10\\ \\mathrm{N}$ is applied to the block, what will be the acceleration of the block?",
-   "correct_key": "A",
+   "stem": "The moment of inertia of a ring about an axis passing through its centre and perpendicular to its plane is I. It is rotating with angular velocity $\\omega$. Another identical ring is gently placed on it so that their centres coincide. If both the rings are rotating about the same axis then loss in kinetic energy is",
+   "correct_key": "C",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use Newton's second law of motion\n$$F = ma$$\nWhere: - $F$ is the applied force - $m$ is the mass of the block - $a$ is the acceleration\nGiven: - $F = 10\\ \\mathrm{N}$ - $m = 5\\ \\mathrm{kg}$\nRearranging the formula to solve for acceleration $a$:\n$$a = \\frac{F}{m} = \\frac{10}{5} = 2\\ \\mathrm{m/s^{2}}$$\nAnswer: Therefore, the acceleration of the block is $2\\ \\mathrm{m/s^{2}}$. So, the correct answer is option (1).\nQuick Tip: Use Newton's second law: $F = ma$ to find acceleration. The force applied is directly proportional to the acceleration for a given mass.",
+   "solution": "Step 1: No external torque, so angular momentum is conserved: $I\\omega = (I + I)\\omega' \\Rightarrow \\omega' = \\frac{\\omega}{2}$.\nStep 2: Initial KE $= \\frac{1}{2}I\\omega^{2}$; final KE $= \\frac{1}{2}(2I)\\left(\\frac{\\omega}{2}\\right)^{2} = \\frac{I\\omega^{2}}{4}$.\nStep 3: Loss $= \\frac{I\\omega^{2}}{2} - \\frac{I\\omega^{2}}{4} = \\frac{I\\omega^{2}}{4}$.\nFinal Answer: (C) $\\frac{I\\omega^{2}}{4}$\nQuick Tip: When an identical body joins at rest, half of the initial rotational KE is always lost.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -141,19 +141,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$2\\ \\mathrm{m/s^{2}}$"
+     "text": "$\\frac{I\\omega^{2}}{16}$"
     },
     {
      "key": "B",
-     "text": "$5\\ \\mathrm{m/s^{2}}$"
+     "text": "$\\frac{I\\omega^{2}}{8}$"
     },
     {
      "key": "C",
-     "text": "$0.5\\ \\mathrm{m/s^{2}}$"
+     "text": "$\\frac{I\\omega^{2}}{4}$"
     },
     {
      "key": "D",
-     "text": "$10\\ \\mathrm{m/s^{2}}$"
+     "text": "$\\frac{I\\omega^{2}}{2}$"
     }
    ],
    "stem_figure": null,
@@ -163,14 +163,14 @@
   },
   {
    "q_no": 5,
-   "topic": "Motion in a Straight Line",
+   "topic": "Wave Optics",
    "qtype": "mcq",
    "section": null,
-   "stem": "A $0.2\\ \\mathrm{kg}$ ball is thrown vertically upwards with an initial velocity of $10\\ \\mathrm{m/s}$. What is the maximum height reached by the ball? (Acceleration due to gravity $g = 9.8\\ \\mathrm{m/s^{2}}$)",
-   "correct_key": "A",
+   "stem": "The two coherent sources produce interference with intensity ratio ' $b$ '. In the interference pattern, the ratio $\\frac{I_{\\max} + I_{\\min}}{I_{\\max} - I_{\\min}}$ will be",
+   "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use the kinematic equation to find the maximum height\nAt the maximum height, the final velocity $v = 0\\ \\mathrm{m/s}$. The equation for vertical motion is:\n$$v^{2} = u^{2} - 2gh$$\nWhere: - $v$ is the final velocity - $u$ is the initial velocity - $g$ is the acceleration due to gravity - $h$ is the maximum height\nGiven: - $u = 10\\ \\mathrm{m/s}$ - $v = 0\\ \\mathrm{m/s}$ - $g = 9.8\\ \\mathrm{m/s^{2}}$\nRearrange the formula to solve for height $h$:\n$$0 = (10)^{2} - 2 \\times 9.8 \\times h$$\n$$h = \\frac{(10)^{2}}{2 \\times 9.8} = \\frac{100}{19.6} \\approx 5\\ \\mathrm{m}$$\nAnswer: Therefore, the maximum height reached by the ball is $5\\ \\mathrm{m}$. So, the correct answer is option (1).\nQuick Tip: When an object is thrown upwards, use the kinematic equation $v^{2} = u^{2} - 2gh$ to find the maximum height. At the maximum height, the final velocity is zero.",
+   "solution": "Step 1: Let $I_1 = bI_2$. Then $I_{\\max} = (\\sqrt{I_1} + \\sqrt{I_2})^{2}$ and $I_{\\min} = (\\sqrt{I_1} - \\sqrt{I_2})^{2}$.\nStep 2: $I_{\\max} + I_{\\min} = 2(I_1 + I_2) = 2I_2(b + 1)$ and $I_{\\max} - I_{\\min} = 4\\sqrt{I_1 I_2} = 4I_2\\sqrt{b}$.\nStep 3: Ratio $= \\frac{2I_2(1 + b)}{4I_2\\sqrt{b}} = \\frac{1 + b}{2\\sqrt{b}}$.\nFinal Answer: (B) $\\frac{1 + b}{2\\sqrt{b}}$\nQuick Tip: Sum of max and min intensities is $2(I_1 + I_2)$; difference is $4\\sqrt{I_1 I_2}$.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -178,19 +178,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$5\\ \\mathrm{m}$"
+     "text": "$\\frac{1 + b}{\\sqrt{b}}$"
     },
     {
      "key": "B",
-     "text": "$10\\ \\mathrm{m}$"
+     "text": "$\\frac{1 + b}{2\\sqrt{b}}$"
     },
     {
      "key": "C",
-     "text": "$20\\ \\mathrm{m}$"
+     "text": "$\\frac{2\\sqrt{b}}{1 + b}$"
     },
     {
      "key": "D",
-     "text": "$2\\ \\mathrm{m}$"
+     "text": "$\\frac{2\\sqrt{b}}{(1 + b)^{2}}$"
     }
    ],
    "stem_figure": null,
@@ -200,14 +200,14 @@
   },
   {
    "q_no": 6,
-   "topic": "Work, Energy and Power",
+   "topic": "Gravitation",
    "qtype": "mcq",
    "section": null,
-   "stem": "A $1.5\\ \\mathrm{kg}$ object is moving with a velocity of $4\\ \\mathrm{m/s}$. What is its kinetic energy?",
+   "stem": "The radii of circular orbits of two satellites $A$ and $B$ of the earth are ' $4R$ ' and ' $R$ ' respectively, where $R$ is the radius of earth. If the speed of satellite $B$ is 6 V, then the speed of satellite $A$ will be",
    "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use the formula for kinetic energy\n$$KE = \\frac{1}{2}mv^{2}$$\nWhere: - $KE$ is the kinetic energy - $m$ is the mass of the object - $v$ is the velocity\nGiven: - $m = 1.5\\ \\mathrm{kg}$ - $v = 4\\ \\mathrm{m/s}$\nSubstitute the values into the formula:\n$$KE = \\frac{1}{2} \\times 1.5 \\times (4)^{2} = 12\\ \\mathrm{J}$$\nAnswer: Therefore, the kinetic energy of the object is $12\\ \\mathrm{J}$. So, the correct answer is option (1).\nQuick Tip: The kinetic energy of an object is calculated using the formula $KE = \\frac{1}{2}mv^{2}$. Make sure to square the velocity before multiplying.",
+   "solution": "Step 1: Orbital speed $v = \\sqrt{\\frac{GM}{r}}$, so $v \\propto \\frac{1}{\\sqrt{r}}$.\nStep 2: $\\frac{v_A}{v_B} = \\sqrt{\\frac{r_B}{r_A}} = \\sqrt{\\frac{R}{4R}} = \\frac{1}{2}$.\nStep 3: $v_A = \\frac{1}{2} \\times 6V = 3V$.\nFinal Answer: (A) 3 V\nQuick Tip: A farther satellite moves slower; four times the radius means half the speed.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -215,19 +215,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$12\\ \\mathrm{J}$"
+     "text": "3 V"
     },
     {
      "key": "B",
-     "text": "$24\\ \\mathrm{J}$"
+     "text": "4 V"
     },
     {
      "key": "C",
-     "text": "$6\\ \\mathrm{J}$"
+     "text": "12 V"
     },
     {
      "key": "D",
-     "text": "$48\\ \\mathrm{J}$"
+     "text": "$\\frac{3}{4}$ V"
     }
    ],
    "stem_figure": null,
@@ -237,14 +237,14 @@
   },
   {
    "q_no": 7,
-   "topic": "Current Electricity",
+   "topic": "Magnetism and Matter",
    "qtype": "mcq",
    "section": null,
-   "stem": "The resistance of a wire is $10\\ \\Omega$ and the current passing through it is $2\\ \\mathrm{A}$. What is the potential difference across the wire?",
-   "correct_key": "A",
+   "stem": "The space within the current carrying toroid is filled with aluminium of susceptibility ' $\\chi$ '. The percentage increase in the magnetic field ' $B$ ' will be",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use Ohm's law\n$$V = IR$$\nWhere: - $V$ is the potential difference - $I$ is the current - $R$ is the resistance\nGiven: - $I = 2\\ \\mathrm{A}$ - $R = 10\\ \\Omega$\nSubstitute the values into the formula:\n$$V = 2 \\times 10 = 20\\ \\mathrm{V}$$\nAnswer: Therefore, the potential difference across the wire is $20\\ \\mathrm{V}$. So, the correct answer is option (1).\nQuick Tip: Use Ohm's law $V = IR$ to calculate the potential difference when you know the current and resistance.",
+   "solution": "Step 1: Without the core $B_0 = \\mu_0 nI$; with the core $B = \\mu_0(1 + \\chi)nI$.\nStep 2: Fractional increase $= \\frac{B - B_0}{B_0} = \\frac{\\mu_0 \\chi nI}{\\mu_0 nI} = \\chi$.\nStep 3: Percentage increase $= \\chi \\times 100$.\nFinal Answer: (D) $\\chi \\times 100$\nQuick Tip: Relative permeability is $\\mu_r = 1 + \\chi$; the extra part $\\chi$ alone gives the fractional increase.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -252,19 +252,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$20\\ \\mathrm{V}$"
+     "text": "$\\frac{\\chi}{2} \\times 100$"
     },
     {
      "key": "B",
-     "text": "$5\\ \\mathrm{V}$"
+     "text": "$2\\chi \\times 100$"
     },
     {
      "key": "C",
-     "text": "$15\\ \\mathrm{V}$"
+     "text": "$(1 + \\chi) \\times 100$"
     },
     {
      "key": "D",
-     "text": "$10\\ \\mathrm{V}$"
+     "text": "$\\chi \\times 100$"
     }
    ],
    "stem_figure": null,
@@ -274,14 +274,14 @@
   },
   {
    "q_no": 8,
-   "topic": "Ray Optics",
+   "topic": "Atoms and Nuclei",
    "qtype": "mcq",
    "section": null,
-   "stem": "A light ray passes from air (refractive index $n_{1} = 1$) into water (refractive index $n_{2} = 1.33$). If the angle of incidence is $30^\\circ$, what is the angle of refraction in the water?",
-   "correct_key": "C",
+   "stem": "Using Bohr's quantization condition, the rotational kinetic energy in the third orbit for a diatomic molecule is ( $h$ = Planck's constant, I = moment of inertia of diatomic molecule)",
+   "correct_key": "A",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "Step 1: Use Snell's Law of refraction\n$$n_{1}\\sin\\theta_{1} = n_{2}\\sin\\theta_{2}$$\nWhere: - $n_{1}$ is the refractive index of air - $n_{2}$ is the refractive index of water - $\\theta_{1}$ is the angle of incidence - $\\theta_{2}$ is the angle of refraction\nGiven: - $n_{1} = 1$ - $n_{2} = 1.33$ - $\\theta_{1} = 30^\\circ$\nSubstitute the values into Snell's Law:\n$$1 \\times \\sin(30^\\circ) = 1.33 \\times \\sin(\\theta_{2})$$\n$$\\sin(\\theta_{2}) = \\frac{\\sin(30^\\circ)}{1.33} = \\frac{0.5}{1.33} \\approx 0.3759$$\n$$\\theta_{2} = \\sin^{-1}(0.3759) \\approx 23.6^\\circ$$\nAnswer: Therefore, the angle of refraction in water is $23.6^\\circ$. So, the correct answer is option (3).\nQuick Tip: Snell's law relates the angles of incidence and refraction through the refractive indices. Always use the sine of the angles in the law.",
+   "solution": "Step 1: Bohr's condition: angular momentum $L = \\frac{nh}{2\\pi}$; for the third orbit $n = 3$, so $L = \\frac{3h}{2\\pi}$.\nStep 2: Rotational KE $= \\frac{L^{2}}{2I} = \\frac{1}{2I}\\cdot\\frac{9h^{2}}{4\\pi^{2}}$.\nStep 3: KE $= \\frac{9h^{2}}{8\\pi^{2}I}$.\nFinal Answer: (A) $\\frac{9h^{2}}{8\\pi^{2}I}$\nQuick Tip: Rotational KE in state n is $\\frac{n^{2}h^{2}}{8\\pi^{2}I}$, so it grows as $n^{2}$.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -289,19 +289,1536 @@
    "options": [
     {
      "key": "A",
-     "text": "$22^\\circ$"
+     "text": "$\\frac{9h^{2}}{8\\pi^{2}I}$"
     },
     {
      "key": "B",
-     "text": "$30^\\circ$"
+     "text": "$\\frac{3h^{2}}{8\\pi^{2}I}$"
     },
     {
      "key": "C",
-     "text": "$23.6^\\circ$"
+     "text": "$\\frac{6h^{2}}{8\\pi I}$"
     },
     {
      "key": "D",
-     "text": "$40^\\circ$"
+     "text": "$\\frac{12h^{2}}{7\\pi^{2}I}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A body is rotating about its own axis. Its rotational kinetic energy is ' x ' and its angular momentum is ' $y$ '. Hence its moment of inertia about its own axis is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Rotational KE in terms of angular momentum: $K = \\frac{L^{2}}{2I}$.\nStep 2: Substitute $K = x$, $L = y$: $x = \\frac{y^{2}}{2I} \\Rightarrow I = \\frac{y^{2}}{2x}$.\nFinal Answer: (B) $\\frac{y^{2}}{2x}$\nQuick Tip: $K = \\frac{L^{2}}{2I}$ is the rotational analogue of $K = \\frac{p^{2}}{2m}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{x^{2}}{2y}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{y^{2}}{2x}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{x}{2y}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{y}{2x}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A ray of light travelling through rarer medium is incident at a very small angle ' $i$ ' on a glass slab and after refraction its velocity is reduced by $20\\%$. The angle of deviation is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Velocity in glass $= 0.8c$, so $\\mu = \\frac{c}{0.8c} = \\frac{5}{4}$.\nStep 2: For small angles Snell's law gives $i = \\mu r \\Rightarrow r = \\frac{i}{\\mu} = \\frac{4i}{5}$.\nStep 3: Deviation $\\delta = i - r = i - \\frac{4i}{5} = \\frac{i}{5}$.\nFinal Answer: (A) $\\frac{i}{5}$\nQuick Tip: For small angles $\\sin\\theta \\approx \\theta$, so the deviation is $i\\left(1 - \\frac{1}{\\mu}\\right)$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{i}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{i}{8}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{i}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{i}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "Motion in a Straight Line",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A body starts from rest and moves with a uniform acceleration. The ratio of the distance covered by the body in the $n^{\\text{th}}$ second of its motion to the total distance travelled in n second is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: From rest, distance in the $n^{\\text{th}}$ second: $s_n = \\frac{a}{2}(2n - 1)$.\nStep 2: Total distance in n seconds: $S = \\frac{1}{2}an^{2}$.\nStep 3: Ratio $= \\frac{2n - 1}{n^{2}} = \\frac{2}{n} - \\frac{1}{n^{2}}$.\nFinal Answer: (B) $\\frac{2}{n} - \\frac{1}{n^{2}}$\nQuick Tip: Check with $n = 1$: the ratio must be 1, and only $\\frac{2}{n} - \\frac{1}{n^{2}}$ gives 1.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{n^{2}} - \\frac{1}{n}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2}{n} - \\frac{1}{n^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{n} - \\frac{1}{n^{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{n^{2}} + \\frac{1}{n}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A coil is wound on a core of rectangular cross-section. If all the linear dimensions of core are increased by a factor 3 and number of turns per unit length of coil remains same, the self-inductance increases by a factor",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Self-inductance of a long coil: $L = \\mu_0 n^{2} A l$, where n is turns per unit length, A the cross-section area and l the length.\nStep 2: Scaling all linear dimensions by 3: $A \\to 9A$, $l \\to 3l$, n unchanged.\nStep 3: $L' = \\mu_0 n^{2}(9A)(3l) = 27L$.\nFinal Answer: (D) 27\nQuick Tip: With n fixed, L is proportional to the core volume $Al$, which scales as the cube of the linear size.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{6}$"
+    },
+    {
+     "key": "B",
+     "text": "1"
+    },
+    {
+     "key": "C",
+     "text": "3"
+    },
+    {
+     "key": "D",
+     "text": "27"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In air, a charged soap bubble of radius R breaks into 64 small soap bubbles of equal radius $r$. The ratio of mechanical force per unit area of big soap bubble to that of a small bubble is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Volume is conserved: $\\frac{4}{3}\\pi R^{3} = 64 \\times \\frac{4}{3}\\pi r^{3} \\Rightarrow R = 4r$.\nStep 2: The mechanical force per unit area due to surface tension is the excess pressure $\\frac{4T}{R}$, which is proportional to $\\frac{1}{\\text{radius}}$.\nStep 3: $\\frac{P_{big}}{P_{small}} = \\frac{r}{R} = \\frac{1}{4}$.\nFinal Answer: (A) $1 : 4$\nQuick Tip: Breaking into $N$ equal drops makes each radius $N^{-1/3}$ times the original; excess pressure scales as $\\frac{1}{r}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 : 4$"
+    },
+    {
+     "key": "B",
+     "text": "$4 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When photons of energies twice and thrice the work function of a metal are incident on the metal surface one after other, the maximum velocities of the photoelectrons emitted in the two cases are $V_1$ and $V_2$ respectively. The ratio $V_1 : V_2$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Einstein's equation: $\\frac{1}{2}mV^{2} = E - \\phi$.\nStep 2: Case 1: $\\frac{1}{2}mV_1^{2} = 2\\phi - \\phi = \\phi$. Case 2: $\\frac{1}{2}mV_2^{2} = 3\\phi - \\phi = 2\\phi$.\nStep 3: $\\frac{V_1^{2}}{V_2^{2}} = \\frac{1}{2} \\Rightarrow V_1 : V_2 = 1 : \\sqrt{2}$.\nFinal Answer: (D) $1 : \\sqrt{2}$\nQuick Tip: Subtract the work function first; the speeds go as the square root of the kinetic energies, not of the photon energies.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3} : \\sqrt{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{2} : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3} : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : \\sqrt{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "According to Huygen's wave theory of light, which one of the following statements is not correct?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Huygens' theory treats light as a wave: colour depends on wavelength, light is slower in a denser medium, and wavefront construction explains reflection and refraction.\nStep 2: 'Corpuscles' belong to Newton's corpuscular theory, not to Huygens' wave theory, so statement (B) is not correct.\nFinal Answer: (B) Different colours of light are due to different sizes of the corpuscles.\nQuick Tip: Corpuscles = Newton; wavefronts and wavelength = Huygens.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Different colours of light are due to different wavelengths of waves."
+    },
+    {
+     "key": "B",
+     "text": "Different colours of light are due to different sizes of the corpuscles."
+    },
+    {
+     "key": "C",
+     "text": "Speed of light in denser medium is less than that in rarer medium."
+    },
+    {
+     "key": "D",
+     "text": "It can explain laws of reflection and refraction."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A conveyor belt is moving with constant velocity (V). Sand is being dropped on the belt at the rate of $M\\ \\mathrm{kg/s}$. The force necessary to keep the belt moving with a constant velocity $V\\ \\mathrm{m/s}$ will be",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Force equals the rate of change of momentum: $F = \\frac{d(mv)}{dt} = V\\frac{dm}{dt}$ (V is constant).\nStep 2: Substitute $\\frac{dm}{dt} = M\\ \\mathrm{kg/s}$: $F = MV$ N.\nFinal Answer: (D) MV N\nQuick Tip: For variable mass at constant speed, $F = v\\frac{dm}{dt}$; do not use $F = ma$ with $a = 0$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{MV}{2}$ N"
+    },
+    {
+     "key": "B",
+     "text": "2 MV N"
+    },
+    {
+     "key": "C",
+     "text": "Zero N"
+    },
+    {
+     "key": "D",
+     "text": "MV N"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A coil having 9 turns carrying current produces magnetic field $B_1$ at the centre. Now that coil is rewounded into 3 turns carrying same current. Then magnetic field at the centre $B_2$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Wire length is fixed: $9(2\\pi r_1) = 3(2\\pi r_2) \\Rightarrow r_2 = 3r_1$.\nStep 2: Field at the centre $B = \\frac{\\mu_0 NI}{2r}$, so $\\frac{B_2}{B_1} = \\frac{N_2}{N_1}\\cdot\\frac{r_1}{r_2} = \\frac{3}{9}\\cdot\\frac{1}{3} = \\frac{1}{9}$.\nStep 3: $B_2 = \\frac{B_1}{9}$.\nFinal Answer: (A) $\\frac{B_1}{9}$\nQuick Tip: With fixed wire length, $B \\propto N^{2}$ for a rewound coil.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{B_1}{9}$"
+    },
+    {
+     "key": "B",
+     "text": "$9B_1$"
+    },
+    {
+     "key": "C",
+     "text": "$3B_1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{B_1}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two capillary tubes of same diameter are kept vertically in two liquids whose densities are in the ratio $4 : 3$. If their surface tensions are in the ratio $6 : 5$, the ratio of heights $\\left(\\frac{h_1}{h_2}\\right)$ of liquids in the two capillary tubes is (Their angle of contacts are same)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Capillary rise $h = \\frac{2T\\cos\\theta}{r\\rho g}$; with r and $\\theta$ equal, $h \\propto \\frac{T}{\\rho}$.\nStep 2: $\\frac{h_1}{h_2} = \\frac{T_1}{T_2}\\cdot\\frac{\\rho_2}{\\rho_1} = \\frac{6}{5}\\cdot\\frac{3}{4}$.\nStep 3: $= \\frac{18}{20} = \\frac{9}{10}$.\nFinal Answer: (B) $\\frac{9}{10}$\nQuick Tip: Height is directly proportional to surface tension and inversely to density; invert the density ratio.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{10}{7}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{9}{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{10}{9}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An ideal inductor of $\\left(\\frac{1}{\\pi}\\right)\\mathrm{H}$ is connected in series with a $300\\Omega$ resistor. If a $20\\ \\mathrm{V}, 200\\ \\mathrm{Hz}$ alternating source is connected across the combination, the phase difference between the voltage and current is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Inductive reactance $X_L = 2\\pi fL = 2\\pi \\times 200 \\times \\frac{1}{\\pi} = 400\\ \\Omega$.\nStep 2: For series LR, $\\tan\\phi = \\frac{X_L}{R} = \\frac{400}{300} = \\frac{4}{3}$.\nStep 3: $\\phi = \\tan^{-1}\\left(\\frac{4}{3}\\right)$.\nFinal Answer: (B) $\\tan^{-1}\\left(\\frac{4}{3}\\right)$\nQuick Tip: The source voltage (20 V) does not affect the phase angle; only $X_L$ and R do.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan^{-1}\\left(\\frac{3}{4}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan^{-1}\\left(\\frac{4}{3}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan^{-1}\\left(\\frac{5}{4}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\tan^{-1}\\left(\\frac{4}{5}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Hot water cools from $80^\\circ\\mathrm{C}$ to $60^\\circ\\mathrm{C}$ in 1 minutes. In cooling from $60^\\circ\\mathrm{C}$ to $50^\\circ\\mathrm{C}$ it will take (room temperature $= 30^\\circ\\mathrm{C}$)",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Newton's law of cooling (average form): $\\frac{\\Delta T}{t} = k(T_{avg} - T_0)$.\nStep 2: First case: $\\frac{80 - 60}{1\\ \\text{min}} = k(70 - 30) \\Rightarrow 20 = 40k \\Rightarrow k = \\frac{1}{2}\\ \\text{min}^{-1}$.\nStep 3: Second case: $\\frac{60 - 50}{t} = \\frac{1}{2}(55 - 30) = 12.5 \\Rightarrow t = \\frac{10}{12.5} = 0.8$ min.\nStep 4: $t = 0.8 \\times 60 = 48$ s.\nFinal Answer: (A) 48 s\nQuick Tip: Use the average temperature of each interval minus the surroundings; convert minutes to seconds at the end.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "48 s"
+    },
+    {
+     "key": "B",
+     "text": "42 s"
+    },
+    {
+     "key": "C",
+     "text": "50 s"
+    },
+    {
+     "key": "D",
+     "text": "45 s"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A Carnot engine has efficiency $\\frac{1}{6}$. It becomes $\\frac{1}{3}$, when the temperature of sink is lowered by 57 K. The temperature of the source is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\eta = 1 - \\frac{T_2}{T_1}$. Initially $\\frac{1}{6} = 1 - \\frac{T_2}{T_1} \\Rightarrow T_2 = \\frac{5}{6}T_1$.\nStep 2: After lowering the sink: $\\frac{1}{3} = 1 - \\frac{T_2 - 57}{T_1} \\Rightarrow T_2 - 57 = \\frac{2}{3}T_1$.\nStep 3: Subtract: $\\frac{5}{6}T_1 - \\frac{2}{3}T_1 = 57 \\Rightarrow \\frac{T_1}{6} = 57 \\Rightarrow T_1 = 342$ K.\nFinal Answer: (C) 342 K\nQuick Tip: Change in efficiency $= \\frac{\\Delta T_{sink}}{T_{source}}$: $\\frac{1}{3} - \\frac{1}{6} = \\frac{57}{T_1}$ gives the answer in one line.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "171 K"
+    },
+    {
+     "key": "B",
+     "text": "399 K"
+    },
+    {
+     "key": "C",
+     "text": "342 K"
+    },
+    {
+     "key": "D",
+     "text": "285 K"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An alternating e.m.f. having voltage $V = V_0 \\sin\\omega t$ is applied to a series L-C-R circuit. Given : $|X_L - X_C| = R$. The r.m.s. value of potential difference across capacitor will be",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Impedance $Z = \\sqrt{R^{2} + (X_L - X_C)^{2}} = \\sqrt{R^{2} + R^{2}} = \\sqrt{2}R$.\nStep 2: rms current $I_{rms} = \\frac{V_0/\\sqrt{2}}{\\sqrt{2}R} = \\frac{V_0}{2R}$.\nStep 3: rms voltage across C: $V_C = I_{rms}X_C = \\frac{V_0}{2R}\\cdot\\frac{1}{\\omega C} = \\frac{V_0}{2R\\omega C}$.\nFinal Answer: (C) $\\frac{V_0}{2R\\omega C}$\nQuick Tip: Remember the $\\frac{1}{\\sqrt{2}}$ for rms; combined with $Z = \\sqrt{2}R$ it gives the factor 2.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$V_0 R\\omega C$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{V_0}{R\\omega C}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{V_0}{2R\\omega C}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{V_0}{\\sqrt{2}R\\omega C}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Circular Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A simple pendulum oscillates with an angular amplitude $\\theta$. If the maximum tension in the string is 4 times the minimum tension then the value of $\\theta$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: At the extreme position the speed is zero: $T_{min} = mg\\cos\\theta$.\nStep 2: At the lowest point $v^{2} = 2gL(1 - \\cos\\theta)$, so $T_{max} = mg + \\frac{mv^{2}}{L} = mg(3 - 2\\cos\\theta)$.\nStep 3: $3 - 2\\cos\\theta = 4\\cos\\theta \\Rightarrow \\cos\\theta = 0.5 \\Rightarrow \\theta = \\cos^{-1}(0.5)$.\nFinal Answer: (B) $\\cos^{-1}(0.5)$\nQuick Tip: For a pendulum, $\\frac{T_{max}}{T_{min}} = \\frac{3 - 2\\cos\\theta}{\\cos\\theta}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\cos^{-1}(0.75)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\cos^{-1}(0.5)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sin^{-1}(0.5)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\sin^{-1}(0.75)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Atoms and Nuclei",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An electron moves in Bohr orbit. The magnetic field at the centre is proportional to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The orbiting electron is a current $I = \\frac{ev}{2\\pi r}$, giving $B = \\frac{\\mu_0 I}{2r} = \\frac{\\mu_0 ev}{4\\pi r^{2}}$, so $B \\propto \\frac{v}{r^{2}}$.\nStep 2: In Bohr's model $v \\propto \\frac{1}{n}$ and $r \\propto n^{2}$.\nStep 3: $B \\propto \\frac{n^{-1}}{n^{4}} = n^{-5}$.\nFinal Answer: (D) $n^{-5}$\nQuick Tip: Remember $r \\propto n^{2}$, $v \\propto n^{-1}$, $T \\propto n^{3}$; build other quantities from these.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$n^{-2}$"
+    },
+    {
+     "key": "B",
+     "text": "$n^{-3}$"
+    },
+    {
+     "key": "C",
+     "text": "$n^{-4}$"
+    },
+    {
+     "key": "D",
+     "text": "$n^{-5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The r.m.s. speed of gas molecules at 800 K will be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $v_{rms} = \\sqrt{\\frac{3RT}{M}}$, so $v_{rms} \\propto \\sqrt{T}$.\nStep 2: $\\frac{v_{800}}{v_{200}} = \\sqrt{\\frac{800}{200}} = \\sqrt{4} = 2$.\nFinal Answer: (B) twice the value at 200 K\nQuick Tip: Four times the absolute temperature doubles the rms speed.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "same as at 200 K"
+    },
+    {
+     "key": "B",
+     "text": "twice the value at 200 K"
+    },
+    {
+     "key": "C",
+     "text": "four times the value at 200 K"
+    },
+    {
+     "key": "D",
+     "text": "half the value at 200 K"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the charge on the capacitor is increased by 3C, the energy stored in it increases by $21\\%$. The original charge on the capacitor is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: For a given capacitor $U = \\frac{Q^{2}}{2C}$, so $U \\propto Q^{2}$.\nStep 2: $\\frac{(Q + 3)^{2}}{Q^{2}} = 1.21 \\Rightarrow \\frac{Q + 3}{Q} = 1.1$.\nStep 3: $Q + 3 = 1.1Q \\Rightarrow 0.1Q = 3 \\Rightarrow Q = 30$ C.\nFinal Answer: (C) 30 C\nQuick Tip: A $21\\%$ rise in a square-law quantity means a $10\\%$ rise in the base quantity ($1.1^{2} = 1.21$).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "6 C"
+    },
+    {
+     "key": "B",
+     "text": "3 C"
+    },
+    {
+     "key": "C",
+     "text": "30 C"
+    },
+    {
+     "key": "D",
+     "text": "90 C"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A conducting ring of certain resistance is falling towards a current carrying straight long conductor. The ring and conductor are in the same plane. Then",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The current in the wire flows to the right and the ring is above the wire. By the right-hand rule, the field above the wire points out of the page.\nStep 2: As the ring falls towards the wire, the field through it gets stronger, so the outward flux increases.\nStep 3: By Lenz's law, the induced current opposes this increase by producing a field into the page inside the ring, which needs a clockwise current (as seen in the figure).\nFinal Answer: (C) induced current in the coil is clockwise.\nQuick Tip: Increasing flux out of the page gives a clockwise induced current; decreasing outward flux gives anticlockwise.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "induced current in the coil is zero."
+    },
+    {
+     "key": "B",
+     "text": "induced current in the coil is anticlockwise."
+    },
+    {
+     "key": "C",
+     "text": "induced current in the coil is clockwise."
+    },
+    {
+     "key": "D",
+     "text": "ring will come to rest."
+    }
+   ],
+   "stem_figure": "m25-21apr-s2-q27.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In the following combination of logic gates, the output $Y$ can be written in the terms of inputs $A$ and B as",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Upper path: A and B go to an AND gate followed by a NOT gate, giving $\\overline{A \\cdot B}$.\nStep 2: Lower path: A passes through a NOT gate to give $\\overline{A}$, and B goes directly to the second AND gate, giving $\\overline{A} \\cdot B$.\nStep 3: The OR gate adds the two: $Y = (\\overline{A \\cdot B}) + (\\overline{A} \\cdot B)$.\nFinal Answer: (C) $(\\overline{A \\cdot B}) + (\\overline{A} \\cdot B)$\nQuick Tip: Trace each wire from the input to the gate, and watch for wire crossings drawn as small hops.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(A \\cdot \\overline{B}) + (\\overline{A} \\cdot B)$"
+    },
+    {
+     "key": "B",
+     "text": "$(A \\cdot B) + (\\overline{A} \\cdot B)$"
+    },
+    {
+     "key": "C",
+     "text": "$(\\overline{A \\cdot B}) + (\\overline{A} \\cdot B)$"
+    },
+    {
+     "key": "D",
+     "text": "$(\\overline{A \\cdot B}) + (A \\cdot \\overline{B})$"
+    }
+   ],
+   "stem_figure": "m25-21apr-s2-q28.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If a black body at 400 K surrounded by atmosphere at 300 K has rate of cooling ' $R_0$ ', the same body at 900 K, surrounded by same atmosphere, will have rate of cooling nearly",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: By the Stefan-Boltzmann law, rate of cooling $\\propto T^{4} - T_0^{4}$.\nStep 2: $\\frac{R}{R_0} = \\frac{900^{4} - 300^{4}}{400^{4} - 300^{4}} = \\frac{6561 - 81}{256 - 81}$ (in units of $100^{4}$).\nStep 3: $= \\frac{6480}{175} \\approx 37$, which is nearest to 36.\nFinal Answer: (C) $36R_0$\nQuick Tip: Subtract the surroundings' $T^{4}$ term; using $T^{4}$ alone would give $\\frac{81}{16}$, a trap option.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4R_0$"
+    },
+    {
+     "key": "B",
+     "text": "$16R_0$"
+    },
+    {
+     "key": "C",
+     "text": "$36R_0$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{81R_0}{16}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The electric field intensity on the surface of a solid charged sphere of radius r and volume charge density $\\sigma$ is ( $\\varepsilon_0$ = permittivity of free space)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Total charge $Q = \\sigma \\cdot \\frac{4}{3}\\pi r^{3}$.\nStep 2: By Gauss's law, on the surface $E = \\frac{Q}{4\\pi\\varepsilon_0 r^{2}} = \\frac{\\sigma \\cdot \\frac{4}{3}\\pi r^{3}}{4\\pi\\varepsilon_0 r^{2}}$.\nStep 3: $E = \\frac{\\sigma r}{3\\varepsilon_0}$.\nFinal Answer: (D) $\\frac{\\sigma r}{3\\varepsilon_0}$\nQuick Tip: For a uniformly charged solid sphere, $E = \\frac{\\rho r}{3\\varepsilon_0}$ at the surface (maximum value).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "zero"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5\\sigma r}{6\\varepsilon_0}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{4\\pi\\varepsilon_0}\\frac{\\sigma}{r}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\sigma r}{3\\varepsilon_0}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two strings ' X ' and ' Y ' of a guitar produces a beat frequency of 6 Hz. When the tension of the string ' Y ' is increased, the beat frequency is found to be 4 Hz. If the frequency of string ' X ' is 300 Hz, then the original frequency of string ' Y ' is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Beat frequency 6 Hz means $f_Y = 300 \\pm 6 = 306$ Hz or 294 Hz.\nStep 2: Increasing tension raises $f_Y$ (since $f \\propto \\sqrt{T}$).\nStep 3: If $f_Y = 306$ Hz, raising it increases the beats above 6. If $f_Y = 294$ Hz, raising it to 296 Hz gives 4 beats, as observed. So $f_Y = 294$ Hz.\nFinal Answer: (B) 294 Hz\nQuick Tip: If raising a frequency reduces the beats, that frequency was the lower one.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "296 Hz"
+    },
+    {
+     "key": "B",
+     "text": "294 Hz"
+    },
+    {
+     "key": "C",
+     "text": "306 Hz"
+    },
+    {
+     "key": "D",
+     "text": "304 Hz"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In common emitter mode of a transistor, the current gain is 8. The input impedance is $25\\mathrm{k}\\Omega$ and load resistance is $75\\mathrm{k}\\Omega$. The power gain is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Voltage gain $A_V = \\beta\\frac{R_L}{R_{in}} = 8 \\times \\frac{75}{25} = 24$.\nStep 2: Power gain $= \\beta \\times A_V = 8 \\times 24 = 192$.\nFinal Answer: (A) 192\nQuick Tip: Power gain $= \\beta^{2}\\frac{R_L}{R_{in}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "192"
+    },
+    {
+     "key": "B",
+     "text": "112"
+    },
+    {
+     "key": "C",
+     "text": "316"
+    },
+    {
+     "key": "D",
+     "text": "224"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A transverse displacement of vibrating string is $y = 0.06\\sin\\left(\\frac{2\\pi}{3}x\\right)\\cos(120\\pi t)$. If the mass per unit length of a string is $4 \\times 10^{-2}\\ \\mathrm{kg/m}$, then the tension in the string will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Compare with $y = A\\sin kx\\cos\\omega t$: $k = \\frac{2\\pi}{3}\\ \\mathrm{m^{-1}}$, $\\omega = 120\\pi\\ \\mathrm{rad/s}$.\nStep 2: Wave speed $v = \\frac{\\omega}{k} = \\frac{120\\pi \\times 3}{2\\pi} = 180\\ \\mathrm{m/s}$.\nStep 3: $v = \\sqrt{\\frac{T}{\\mu}} \\Rightarrow T = \\mu v^{2} = 4 \\times 10^{-2} \\times 32400 = 1296$ N.\nFinal Answer: (A) 1296 N\nQuick Tip: For a standing wave, the speed of the component waves is still $\\frac{\\omega}{k}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1296 N"
+    },
+    {
+     "key": "B",
+     "text": "1000 N"
+    },
+    {
+     "key": "C",
+     "text": "720 N"
+    },
+    {
+     "key": "D",
+     "text": "500 N"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The equation of a progressive wave is $Y = 3\\sin\\left[\\pi\\left(\\frac{t}{3} - \\frac{x}{5}\\right) + \\frac{\\pi}{4}\\right]$ where x and y are in meter and time in second. Which of the following is correct?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Compare with $Y = A\\sin(\\omega t - kx + \\phi)$: $A = 3$ m, $\\omega = \\frac{\\pi}{3}\\ \\mathrm{rad/s}$, $k = \\frac{\\pi}{5}\\ \\mathrm{m^{-1}}$.\nStep 2: $\\lambda = \\frac{2\\pi}{k} = 10$ m; $f = \\frac{\\omega}{2\\pi} = \\frac{1}{6}$ Hz; $v = \\frac{\\omega}{k} = \\frac{5}{3} \\approx 1.67$ m/s; amplitude is 3 m, not 3 cm.\nStep 3: Only the wavelength statement is correct.\nFinal Answer: (A) Wavelength $= 10\\ \\mathrm{m}$\nQuick Tip: Expand the bracket first so you read $\\omega$ and $k$ correctly: $\\omega = \\frac{\\pi}{3}$, $k = \\frac{\\pi}{5}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Wavelength $= 10\\ \\mathrm{m}$"
+    },
+    {
+     "key": "B",
+     "text": "Velocity $= 1.5\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "C",
+     "text": "Amplitude $= 3\\ \\mathrm{cm}$"
+    },
+    {
+     "key": "D",
+     "text": "Frequency $= 0.2\\ \\mathrm{Hz}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the internal resistance of cell is negligible then current flowing through the circuit is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Conventional current leaves the + terminal, passes through the $20\\ \\Omega$ resistor and enters the two parallel branches from the left.\nStep 2: In the middle branch $D_1$ points left to right, so it is forward biased and conducts. In the top branch $D_2$ points right to left, so it is reverse biased and carries no current.\nStep 3: Effective circuit: $20\\ \\Omega$ in series with $30\\ \\Omega$, so $R = 50\\ \\Omega$ and $I = \\frac{5}{50} = 0.1$ A.\nFinal Answer: (D) 0.10 A\nQuick Tip: Treat an ideal forward-biased diode as a plain wire and a reverse-biased one as an open switch.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.04\\ \\mathrm{A}$"
+    },
+    {
+     "key": "B",
+     "text": "0.06 A"
+    },
+    {
+     "key": "C",
+     "text": "0.08 A"
+    },
+    {
+     "key": "D",
+     "text": "0.10 A"
+    }
+   ],
+   "stem_figure": "m25-21apr-s2-q35.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Water flows through a horizontal pipe of varying cross-section at the rate of $\\pi \\times 10^{-1}\\ \\mathrm{m^{3}/s}$. The velocity of water at a point where the radius of the pipe is 10 cm is $(\\pi = 3.14)$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Area at that point $A = \\pi r^{2} = \\pi (0.1)^{2} = 0.01\\pi\\ \\mathrm{m^{2}}$.\nStep 2: Volume flow rate $Q = Av \\Rightarrow v = \\frac{Q}{A} = \\frac{0.1\\pi}{0.01\\pi}$.\nStep 3: $v = 10\\ \\mathrm{m/s}$.\nFinal Answer: (C) $10\\ \\mathrm{m/s}$\nQuick Tip: Convert cm to m before squaring the radius; the $\\pi$ cancels.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.1\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "B",
+     "text": "$1\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "C",
+     "text": "$10\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "D",
+     "text": "$100\\ \\mathrm{m/s}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In an electrical circuit ' $R$ ', ' $L$ ', ' $C$ ' and an a.c. voltage source are all connected in series. When ' L ' is removed from the circuit, the phase difference between the voltage and the current in the circuit is $\\frac{\\pi}{3}$. If instead ' $C$ ' is removed from the circuit, the phase difference is again $\\frac{\\pi}{3}$. The power factor of the circuit is $\\left(\\tan\\frac{\\pi}{3} = \\sqrt{3}\\right)$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: L removed (RC circuit): $\\tan\\frac{\\pi}{3} = \\frac{X_C}{R} \\Rightarrow X_C = \\sqrt{3}R$.\nStep 2: C removed (RL circuit): $\\tan\\frac{\\pi}{3} = \\frac{X_L}{R} \\Rightarrow X_L = \\sqrt{3}R$.\nStep 3: In the full LCR circuit $X_L = X_C$, so $Z = R$ (resonance) and power factor $\\cos\\phi = \\frac{R}{Z} = 1$.\nFinal Answer: (D) 1\nQuick Tip: Equal phase angles in the RL and RC cases mean $X_L = X_C$, i.e. resonance.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sqrt{3}}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{\\sqrt{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A parallel plate capacitor having plate area ' $A$ ' and separation ' $d$ ' is charged to a potential difference ' $V$ '. The charging battery is disconnected and the plates are pulled apart to four times the initial separation. The work required to increase the distance between the plates is ( $\\varepsilon_0$ = permittivity of free space)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Battery disconnected, so charge Q stays constant. $C = \\frac{\\varepsilon_0 A}{d}$ becomes $C' = \\frac{C}{4}$.\nStep 2: Energy $U = \\frac{Q^{2}}{2C}$, so $U' = 4U$. Work done $W = U' - U = 3U$.\nStep 3: $U = \\frac{1}{2}CV^{2} = \\frac{\\varepsilon_0 AV^{2}}{2d}$, so $W = \\frac{3\\varepsilon_0 AV^{2}}{2d}$.\nFinal Answer: (D) $\\frac{3\\varepsilon_0 AV^{2}}{2d}$\nQuick Tip: At constant charge, energy is proportional to separation; at constant voltage it is inversely proportional.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\varepsilon_0 AV^{2}}{3d}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\varepsilon_0 AV^{2}}{4d}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2\\varepsilon_0 AV^{2}}{d}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{3\\varepsilon_0 AV^{2}}{2d}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The length of the simple pendulum is made 3 times the original length. If ' T ' is its original time period, then the new time period will be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $T = 2\\pi\\sqrt{\\frac{L}{g}}$, so $T \\propto \\sqrt{L}$.\nStep 2: $T' = T\\sqrt{\\frac{3L}{L}} = \\sqrt{3}\\,T$.\nFinal Answer: (B) $\\sqrt{3}\\,T$\nQuick Tip: Time period scales as the square root of length; tripling L does not triple T.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3 T"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{3}\\,T$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{T}{\\sqrt{3}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{T}{3}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Ray Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A plano convex lens fits exactly in to a plano concave lens. Their plane surfaces are parallel to each other. Lenses are made up of different materials of refractive indices ' $n_1$ ' ' $n_2$ ' and ' R ' is the radius of curvature of the curved surface of lenses. Focal length of the combination is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Plano-convex lens: $\\frac{1}{f_1} = \\frac{n_1 - 1}{R}$. Plano-concave lens: $\\frac{1}{f_2} = -\\frac{n_2 - 1}{R}$.\nStep 2: Lenses in contact: $\\frac{1}{F} = \\frac{1}{f_1} + \\frac{1}{f_2} = \\frac{(n_1 - 1) - (n_2 - 1)}{R} = \\frac{n_1 - n_2}{R}$.\nStep 3: $F = \\frac{R}{n_1 - n_2}$.\nFinal Answer: (D) $\\frac{R}{n_1 - n_2}$\nQuick Tip: Powers of lenses in contact add, with the concave lens power negative.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{R}{n_1 + n_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2R}{n_1 - n_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{R}{2(n_1 - n_2)}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{R}{n_1 - n_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Moment of inertia of a thin uniform rod rotating about the perpendicular axis passing through its centre is ' $I$ '. If the same rod is bent in the form of ring, its moment of inertia about the diameter is ' $I_1$ '. If $I_1 = xI$, then the value of ' x ' is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Rod of mass M and length L: $I = \\frac{ML^{2}}{12}$.\nStep 2: Bent into a ring: $2\\pi r = L \\Rightarrow r = \\frac{L}{2\\pi}$. About a diameter, $I_1 = \\frac{Mr^{2}}{2} = \\frac{ML^{2}}{8\\pi^{2}}$.\nStep 3: $x = \\frac{I_1}{I} = \\frac{ML^{2}/8\\pi^{2}}{ML^{2}/12} = \\frac{12}{8\\pi^{2}} = \\frac{3}{2\\pi^{2}}$.\nFinal Answer: (B) $\\frac{3}{2\\pi^{2}}$\nQuick Tip: A ring's MI about a diameter is half its MI about the central perpendicular axis ($\\frac{MR^{2}}{2}$).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2\\pi^{2}}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{3}{2\\pi^{2}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3\\pi^{2}}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{3\\pi^{2}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If an ammeter is to be used in place of a galvanometer then we must connect",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: An ammeter must have very low resistance and must let most of the current bypass the delicate galvanometer coil.\nStep 2: This is done with a low resistance (shunt) connected in parallel with the galvanometer.\nFinal Answer: (A) low resistance in parallel.\nQuick Tip: Ammeter = low shunt in parallel; voltmeter = high resistance in series.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "low resistance in parallel."
+    },
+    {
+     "key": "B",
+     "text": "high resistance in series."
+    },
+    {
+     "key": "C",
+     "text": "high resistance in parallel."
+    },
+    {
+     "key": "D",
+     "text": "low resistance in series."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Kinetic Theory of Gases",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The temperature of an ideal gas is increased from 100 K to 400 K. If ' $x$ ' is the R.M.S. velocity of its molecules at 100 K, it becomes",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $v_{rms} = \\sqrt{\\frac{3RT}{M}} \\propto \\sqrt{T}$.\nStep 2: $v' = x\\sqrt{\\frac{400}{100}} = 2x$.\nFinal Answer: (B) $2x$\nQuick Tip: rms speed follows the square root of absolute temperature.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{x}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$2x$"
+    },
+    {
+     "key": "C",
+     "text": "$3x$"
+    },
+    {
+     "key": "D",
+     "text": "$4x$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the phase difference between the flux linked with a coil rotating in a uniform magnetic field and the induced e.m.f. produced in it?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Flux linked: $\\phi = NBA\\cos\\omega t$.\nStep 2: Induced emf: $e = -\\frac{d\\phi}{dt} = NBA\\omega\\sin\\omega t$.\nStep 3: $\\cos\\omega t$ and $\\sin\\omega t$ differ in phase by $\\frac{\\pi}{2}$ (emf is maximum when flux is zero).\nFinal Answer: (D) $\\frac{\\pi}{2}$\nQuick Tip: emf is the time derivative of flux, and differentiation shifts a sinusoid by $90^\\circ$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$-\\frac{\\pi}{6}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\pi}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\pi}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A pendulum bob has a speed $4\\ \\mathrm{m/s}$ at its lowest position. The pendulum is 1 m long. When the length of the string makes an angle of $60^\\circ$ with the vertical, the speed of the bob at that position is (acceleration due to gravity, $g = 10\\ \\mathrm{m/s^{2}}$, $\\cos 60^\\circ = 0.5$ )",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Height gained at $60^\\circ$: $h = L(1 - \\cos 60^\\circ) = 1 \\times 0.5 = 0.5$ m.\nStep 2: Energy conservation: $v^{2} = u^{2} - 2gh = 16 - 2 \\times 10 \\times 0.5 = 6$.\nStep 3: $v = \\sqrt{6}\\ \\mathrm{m/s}$.\nFinal Answer: (C) $\\sqrt{6}\\ \\mathrm{m/s}$\nQuick Tip: Height rise of a pendulum bob is $L(1 - \\cos\\theta)$, not $L\\cos\\theta$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$6\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{3}\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{6}\\ \\mathrm{m/s}$"
+    },
+    {
+     "key": "D",
+     "text": "$3\\ \\mathrm{m/s}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A vehicle starts from rest and accelerates along straight path at $2\\ \\mathrm{m/s^{2}}$. At the starting point of the vehicle, there is a stationary electric siren. How far has the vehicle nearly gone when the driver hears the siren at $94\\%$ of its value when the vehicle was at rest?\n(speed of sound $= 330\\ \\mathrm{m/s}$ )",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Observer moving away from a stationary source: $f' = f\\frac{v - u}{v}$.\nStep 2: $0.94f = f\\frac{330 - u}{330} \\Rightarrow u = 0.06 \\times 330 = 19.8\\ \\mathrm{m/s}$.\nStep 3: From rest with $a = 2\\ \\mathrm{m/s^{2}}$: $s = \\frac{u^{2}}{2a} = \\frac{(19.8)^{2}}{4} = \\frac{392.04}{4} \\approx 98$ m.\nFinal Answer: (A) 98 m\nQuick Tip: For a moving observer the fractional drop in frequency equals $\\frac{u}{v}$ exactly.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "98 m"
+    },
+    {
+     "key": "B",
+     "text": "49 m"
+    },
+    {
+     "key": "C",
+     "text": "196 m"
+    },
+    {
+     "key": "D",
+     "text": "24.5 m"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A parallel plate capacitor has plate area $50\\ \\mathrm{cm^{2}}$ and plate separation 3 mm. The space between the plates is filled with a dielectric medium of thickness 1 mm and dielectric constant 4. The capacitance becomes ( $\\varepsilon_0$ = permittivity of free space)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: With a slab of thickness t: $C = \\frac{\\varepsilon_0 A}{d - t + \\frac{t}{K}}$.\nStep 2: $A = 50 \\times 10^{-4} = 5 \\times 10^{-3}\\ \\mathrm{m^{2}}$; $d - t + \\frac{t}{K} = 3 - 1 + \\frac{1}{4} = 2.25$ mm $= 2.25 \\times 10^{-3}$ m.\nStep 3: $C = \\frac{5 \\times 10^{-3}}{2.25 \\times 10^{-3}}\\varepsilon_0 = \\frac{20}{9}\\varepsilon_0$.\nFinal Answer: (B) $\\frac{20\\varepsilon_0}{9}$\nQuick Tip: A dielectric slab of thickness t acts like reducing the gap by $t\\left(1 - \\frac{1}{K}\\right)$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{18\\varepsilon_0}{7}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{20\\varepsilon_0}{9}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{16\\varepsilon_0}{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{14\\varepsilon_0}{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Heat is given to an ideal gas in an isothermal process. Then\nA. internal energy of the gas will decrease.\nB. internal energy of the gas will increase.\nC. internal energy of the gas will not change.\nD. the gas will do negative work.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Internal energy of an ideal gas depends only on temperature; in an isothermal process $\\Delta T = 0$, so $\\Delta U = 0$ (statement C is true).\nStep 2: First law: $Q = \\Delta U + W = W$. Since heat is given ($Q > 0$), $W > 0$, so the gas does positive work (statement D is false).\nFinal Answer: (B) C\nQuick Tip: Isothermal ideal gas: all heat supplied goes into work done by the gas.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "B"
+    },
+    {
+     "key": "B",
+     "text": "C"
+    },
+    {
+     "key": "C",
+     "text": "D"
+    },
+    {
+     "key": "D",
+     "text": "A"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two long parallel wires carry currents $I_1$ and $I_2$ $(I_1 > I_2)$. When currents are flowing in the same direction, the magnetic field at a point midway between the wires is $6 \\times 10^{-6}\\ \\mathrm{T}$. If the direction of $I_2$ is reversed the field at midpoint becomes $3 \\times 10^{-5}\\ \\mathrm{T}$. The ratio $I_1 : I_2$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: At the midpoint each wire gives $B = \\frac{\\mu_0 I}{2\\pi d}$. Same direction: fields oppose, $B \\propto I_1 - I_2 = 6 \\times 10^{-6}$ (in the same units).\nStep 2: $I_2$ reversed: fields add, $B \\propto I_1 + I_2 = 30 \\times 10^{-6}$.\nStep 3: $\\frac{I_1 + I_2}{I_1 - I_2} = 5 \\Rightarrow I_1 + I_2 = 5I_1 - 5I_2 \\Rightarrow 6I_2 = 4I_1 \\Rightarrow I_1 : I_2 = 3 : 2$.\nFinal Answer: (A) $3 : 2$\nQuick Tip: Between two wires, like currents give fields that subtract; opposite currents give fields that add.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3 : 2$"
+    },
+    {
+     "key": "B",
+     "text": "$2 : 3$"
+    },
+    {
+     "key": "C",
+     "text": "$3 : 5$"
+    },
+    {
+     "key": "D",
+     "text": "$6 : 7$"
     }
    ],
    "stem_figure": null,

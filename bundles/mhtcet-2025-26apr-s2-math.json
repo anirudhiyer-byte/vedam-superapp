@@ -1,0 +1,1830 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Mathematics",
+  "year": 2025,
+  "set_label": "26 April · Shift 2",
+  "title": "MHT-CET 2025 · Mathematics · 26 April Shift 2",
+  "marks_correct": 2,
+  "marks_wrong": 0,
+  "marking_note": "+2 correct · no negative marking",
+  "sort_order": 30,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 101,
+   "topic": "Mathematical Logic",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following statement is a tautology?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $p \\vee \\sim p$ is always true (law of excluded middle).\nStep 2: In (D), $(\\sim q \\wedge p) \\vee (p \\vee \\sim p) = (\\sim q \\wedge p) \\vee T = T$ for every truth assignment, so it is a tautology.\nStep 3: (A) contains $p \\wedge \\sim p = F$, (B) contains $p \\wedge \\sim p$ after regrouping, and (C) contains $\\sim q \\wedge q$; all three are contradictions.\nFinal Answer: (D) $(\\sim q \\wedge p) \\vee (p \\vee \\sim p)$\nQuick Tip: Anything OR-ed with a tautology is a tautology; anything AND-ed with a contradiction is a contradiction.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(\\sim q \\wedge p) \\wedge (p \\wedge \\sim p)$"
+    },
+    {
+     "key": "B",
+     "text": "$(p \\wedge q) \\wedge (\\sim p \\wedge q)$"
+    },
+    {
+     "key": "C",
+     "text": "$[(\\sim q) \\wedge p] \\wedge q$"
+    },
+    {
+     "key": "D",
+     "text": "$(\\sim q \\wedge p) \\vee (p \\vee \\sim p)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 102,
+   "topic": "Continuity",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let $f(x) = \\begin{cases} \\frac{x^{4} - 5x^{2} + 4}{|(x-1)(x-2)|} & , x \\neq 1, 2 \\\\ 6 & , x = 1 \\\\ 12 & , x = 2 \\end{cases}$\nThen $f(x)$ is continuous on the set",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $x^{4} - 5x^{2} + 4 = (x-1)(x+1)(x-2)(x+2)$, so for $x \\neq 1, 2$: $f(x) = (x+1)(x+2)\\cdot\\frac{(x-1)(x-2)}{|(x-1)(x-2)|}$.\nStep 2: The sign factor is $+1$ for $x < 1$ or $x > 2$ and $-1$ for $1 < x < 2$. Elsewhere $f$ is a polynomial, hence continuous.\nStep 3: At $x = 1$: LHL $= (2)(3) = 6$, RHL $= -6$. Unequal, so $f$ is discontinuous at $x = 1$.\nStep 4: At $x = 2$: LHL $= -(3)(4) = -12$, RHL $= 12$. Unequal, so $f$ is discontinuous at $x = 2$. Hence $f$ is continuous on $\\mathbb{R} - \\{1, 2\\}$.\nFinal Answer: (D) $\\mathbb{R} - \\{1, 2\\}$\nQuick Tip: $\\frac{g(x)}{|g(x)|}$ jumps from $-1$ to $+1$ at a simple root, so the limit fails there unless the other factor is zero.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathbb{R} - \\{1\\}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathbb{R} - \\{2\\}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathbb{R}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathbb{R} - \\{1, 2\\}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 103,
+   "topic": "Applications of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $x$ and $y$ are sides of two squares such that $y = x - x^{2}$, then the rate of change of area of the second square with respect to that of the first square is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Areas: $A_1 = x^{2}$, $A_2 = y^{2}$. Required $\\frac{dA_2}{dA_1} = \\frac{2y\\frac{dy}{dx}}{2x}$.\nStep 2: $\\frac{dy}{dx} = 1 - 2x$, so $\\frac{dA_2}{dA_1} = \\frac{(x - x^{2})(1 - 2x)}{x} = (1 - x)(1 - 2x)$.\nStep 3: $(1 - x)(1 - 2x) = 2x^{2} - 3x + 1$.\nFinal Answer: (C) $2x^{2} - 3x + 1$\nQuick Tip: Rate of change of one quantity w.r.t. another = ratio of their derivatives w.r.t. a common variable.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2x^{2} + 3x + 1$"
+    },
+    {
+     "key": "B",
+     "text": "$3x^{2} + 2x - 1$"
+    },
+    {
+     "key": "C",
+     "text": "$2x^{2} - 3x + 1$"
+    },
+    {
+     "key": "D",
+     "text": "$3x^{2} + 2x + 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 104,
+   "topic": "Straight Lines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The acute angle between the line $4x - 2y + 13 = 0$ and the line which makes equal intercepts with the co-ordinate axes is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Slope of $4x - 2y + 13 = 0$ is $m_1 = 2$. A line with equal intercepts, $\\frac{x}{a} + \\frac{y}{a} = 1$, has slope $m_2 = -1$.\nStep 2: $\\tan\\theta = \\left|\\frac{m_1 - m_2}{1 + m_1 m_2}\\right| = \\left|\\frac{2 + 1}{1 - 2}\\right| = 3$.\nStep 3: Acute angle $\\theta = \\tan^{-1}(3)$.\nFinal Answer: (B) $\\tan^{-1}(3)$\nQuick Tip: Equal intercepts on both axes means slope $-1$; taking the modulus gives the acute angle.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan^{-1}(2)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan^{-1}(3)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan^{-1}\\left(\\frac{1}{2}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\tan^{-1}\\left(\\frac{1}{3}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 105,
+   "topic": "Definite Integration",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int_{0}^{1} x\\left|x - \\frac{1}{2}\\right| dx =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Split at $x = \\frac{1}{2}$: $I = \\int_{0}^{1/2} x\\left(\\frac{1}{2} - x\\right)dx + \\int_{1/2}^{1} x\\left(x - \\frac{1}{2}\\right)dx$.\nStep 2: First part $= \\left[\\frac{x^{2}}{4} - \\frac{x^{3}}{3}\\right]_{0}^{1/2} = \\frac{1}{16} - \\frac{1}{24} = \\frac{1}{48}$.\nStep 3: Second part $= \\left[\\frac{x^{3}}{3} - \\frac{x^{2}}{4}\\right]_{1/2}^{1} = \\left(\\frac{1}{3} - \\frac{1}{4}\\right) - \\left(\\frac{1}{24} - \\frac{1}{16}\\right) = \\frac{1}{12} + \\frac{1}{48} = \\frac{5}{48}$.\nStep 4: $I = \\frac{1}{48} + \\frac{5}{48} = \\frac{6}{48} = \\frac{1}{8}$.\nFinal Answer: (C) $\\frac{1}{8}$\nQuick Tip: Always split a modulus integral at the point where the expression inside changes sign.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{12}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{8}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{16}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 106,
+   "topic": "Applications of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The function $f(x) = [x(x-2)]^{2}$ is increasing in the set",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $f(x) = (x^{2} - 2x)^{2} \\Rightarrow f'(x) = 2(x^{2} - 2x)(2x - 2) = 4x(x - 1)(x - 2)$.\nStep 2: Critical points $0, 1, 2$. Sign of $f'$: negative on $(-\\infty, 0)$, positive on $(0, 1)$, negative on $(1, 2)$, positive on $(2, \\infty)$.\nStep 3: $f$ is increasing where $f' > 0$: $(0, 1) \\cup (2, \\infty)$.\nFinal Answer: (D) $(0, 1) \\cup (2, \\infty)$\nQuick Tip: For a product of linear factors, signs of $f'$ alternate between consecutive simple roots, starting positive on the far right.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(-\\infty, 0) \\cup (2, \\infty)$"
+    },
+    {
+     "key": "B",
+     "text": "$(-\\infty, 1)$"
+    },
+    {
+     "key": "C",
+     "text": "$(1, 2)$"
+    },
+    {
+     "key": "D",
+     "text": "$(0, 1) \\cup (2, \\infty)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 107,
+   "topic": "Mathematical Logic",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $p, q, r, s$ are statements, where, p : $A^{2} - B^{2} = (A - B)(A + B)$; A, B are matrices, $AB \\neq BA$\nq: $5 \\leq 5$\nr: ${}^{8}C_{1} + {}^{8}C_{2} + {}^{8}C_{3} + \\ldots + {}^{8}C_{8} = 256$\ns: Maximum value of ${}^{8}C_{r}$ is 70 then the statement from the following having truth value true is ....",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: p: $(A - B)(A + B) = A^{2} + AB - BA - B^{2} \\neq A^{2} - B^{2}$ when $AB \\neq BA$, so p is F. q: $5 \\leq 5$ is T.\nStep 2: r: ${}^{8}C_{1} + \\ldots + {}^{8}C_{8} = 2^{8} - 1 = 255 \\neq 256$, so r is F. s: maximum ${}^{8}C_{r} = {}^{8}C_{4} = 70$, so s is T.\nStep 3: (A) $(F \\wedge T) \\vee (F \\wedge F) = F$. (B) $(F \\vee F) \\leftrightarrow (T \\rightarrow T) = F \\leftrightarrow T = F$. (C) $(F \\leftrightarrow T) \\wedge \\ldots = F$.\nStep 4: (D) $(T \\vee T) \\leftrightarrow (T \\wedge T) = T \\leftrightarrow T = T$.\nFinal Answer: (D) $(s \\vee \\sim p) \\leftrightarrow (\\sim p \\wedge \\sim r)$\nQuick Tip: $\\sum_{r=0}^{n} {}^{n}C_{r} = 2^{n}$; the sum from $r = 1$ misses ${}^{n}C_{0} = 1$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(p \\wedge \\sim r) \\vee (\\sim q \\wedge \\sim s)$"
+    },
+    {
+     "key": "B",
+     "text": "$(p \\vee \\sim q) \\leftrightarrow (\\sim r \\rightarrow s)$"
+    },
+    {
+     "key": "C",
+     "text": "$(p \\leftrightarrow q) \\wedge (\\sim p \\vee \\sim q)$"
+    },
+    {
+     "key": "D",
+     "text": "$(s \\vee \\sim p) \\leftrightarrow (\\sim p \\wedge \\sim r)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 108,
+   "topic": "Applications of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The minimum value of $ax + by$ where $xy = c^{2}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Take $a, b, x, y > 0$. By AM-GM, $\\frac{ax + by}{2} \\geq \\sqrt{ax \\cdot by} = \\sqrt{ab\\,xy}$.\nStep 2: With $xy = c^{2}$: $ax + by \\geq 2\\sqrt{ab\\,c^{2}} = 2c\\sqrt{ab}$.\nStep 3: Equality holds when $ax = by$, so the minimum value is $2c\\sqrt{ab}$.\nFinal Answer: (A) $2c\\sqrt{ab}$\nQuick Tip: When the product of two positive terms is fixed, their sum is least when the terms are equal (AM-GM).",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2c\\sqrt{ab}$"
+    },
+    {
+     "key": "B",
+     "text": "$2ab\\sqrt{c}$"
+    },
+    {
+     "key": "C",
+     "text": "$-2c\\sqrt{ab}$"
+    },
+    {
+     "key": "D",
+     "text": "$2c(ab)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 109,
+   "topic": "Limits",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\lim_{x \\to 0} \\frac{e^{x^{2}} - \\cos 3x}{\\sin x \\log(1 + 2x)} =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Write the numerator as $(e^{x^{2}} - 1) + (1 - \\cos 3x)$ and divide numerator and denominator by $x^{2}$.\nStep 2: $\\frac{e^{x^{2}} - 1}{x^{2}} \\to 1$ and $\\frac{1 - \\cos 3x}{x^{2}} \\to \\frac{9}{2}$, so numerator$/x^{2} \\to \\frac{11}{2}$.\nStep 3: $\\frac{\\sin x}{x} \\cdot \\frac{\\log(1 + 2x)}{x} \\to 1 \\times 2 = 2$.\nStep 4: Limit $= \\frac{11/2}{2} = \\frac{11}{4}$.\nFinal Answer: (C) $\\frac{11}{4}$\nQuick Tip: Use $1 - \\cos kx \\approx \\frac{k^{2}x^{2}}{2}$, $e^{u} - 1 \\approx u$ and $\\log(1 + u) \\approx u$ near 0.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{-3}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{11}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{-11}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 110,
+   "topic": "Definite Integration",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int_{0}^{\\frac{\\pi}{2}} \\frac{300\\sin x + 100\\cos x}{\\sin x + \\cos x} dx = \\ldots$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Using $\\int_{0}^{a} f(x)dx = \\int_{0}^{a} f(a - x)dx$ with $a = \\frac{\\pi}{2}$: $I = \\int_{0}^{\\pi/2} \\frac{300\\cos x + 100\\sin x}{\\cos x + \\sin x}dx$.\nStep 2: Adding the two forms: $2I = \\int_{0}^{\\pi/2} \\frac{400(\\sin x + \\cos x)}{\\sin x + \\cos x}dx = 400 \\cdot \\frac{\\pi}{2} = 200\\pi$.\nStep 3: $I = 100\\pi$.\nFinal Answer: (A) $100\\pi$\nQuick Tip: For $\\int_{0}^{\\pi/2} \\frac{a\\sin x + b\\cos x}{\\sin x + \\cos x}dx$ the answer is $\\frac{(a + b)\\pi}{4}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$100\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$300\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$200\\pi$"
+    },
+    {
+     "key": "D",
+     "text": "$150\\pi$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 111,
+   "topic": "Matrices",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $A$ is a matrix of order 2 and $I$ is the identity matrix of order 2 such that $A^{2} - 4A + 3I = 0$ then $(A + 3I)^{-1} =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $(A + 3I)(A - 7I) = A^{2} - 4A - 21I$.\nStep 2: From $A^{2} - 4A + 3I = 0$: $A^{2} - 4A = -3I$, so $(A + 3I)(A - 7I) = -3I - 21I = -24I$.\nStep 3: Hence $(A + 3I)\\cdot\\frac{-(A - 7I)}{24} = I$, so $(A + 3I)^{-1} = \\frac{7I - A}{24} = \\frac{7I}{24} - \\frac{1}{24}A$.\nFinal Answer: (C) $\\frac{7I}{24} - \\frac{1}{24}A$\nQuick Tip: Divide the given matrix polynomial by $(A + kI)$; the constant remainder gives the inverse directly.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{A}{24} - \\frac{7}{24}I$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{A}{21} - \\frac{7}{21}I$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{7I}{24} - \\frac{1}{24}A$"
+    },
+    {
+     "key": "D",
+     "text": "A-3I"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 112,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a triangle $ABC$ with usual notations if $\\angle A = 30^\\circ$, then the value of $\\left(1 + \\frac{a}{c} + \\frac{b}{c}\\right)\\left(1 + \\frac{c}{b} - \\frac{a}{b}\\right) =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Expression $= \\frac{(b + c + a)(b + c - a)}{bc} = \\frac{(b + c)^{2} - a^{2}}{bc}$.\nStep 2: $= \\frac{b^{2} + c^{2} - a^{2} + 2bc}{bc} = \\frac{2bc\\cos A + 2bc}{bc} = 2\\cos A + 2$.\nStep 3: With $A = 30^\\circ$: $2 \\cdot \\frac{\\sqrt{3}}{2} + 2 = \\sqrt{3} + 2$.\nFinal Answer: (C) $\\sqrt{3} + 2$\nQuick Tip: $(b + c)^{2} - a^{2} = 2bc(1 + \\cos A)$ by the cosine rule.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\sqrt{3} - 2$"
+    },
+    {
+     "key": "B",
+     "text": "$2 + \\sqrt{5}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{3} + 2$"
+    },
+    {
+     "key": "D",
+     "text": "$2 - \\sqrt{5}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 113,
+   "topic": "Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a triangle PQR with usual notations, $\\angle R = \\frac{\\pi}{2}$. If $\\tan\\frac{P}{2}$ and $\\tan\\frac{Q}{2}$ are the roots of the equation $ax^{2} + bx + c = 0 (a \\neq 0)$, then",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $P + Q = \\frac{\\pi}{2}$, so $\\frac{P}{2} + \\frac{Q}{2} = \\frac{\\pi}{4}$ and $\\tan\\left(\\frac{P}{2} + \\frac{Q}{2}\\right) = 1$.\nStep 2: Sum of roots $= -\\frac{b}{a}$, product $= \\frac{c}{a}$, so $\\frac{-b/a}{1 - c/a} = 1$.\nStep 3: $\\frac{-b}{a - c} = 1 \\Rightarrow -b = a - c \\Rightarrow a + b = c$.\nFinal Answer: (A) $a + b = c$\nQuick Tip: Use $\\tan(\\alpha + \\beta) = \\frac{S}{1 - P}$ with $S, P$ the sum and product of the roots.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$a + b = c$"
+    },
+    {
+     "key": "B",
+     "text": "$b + c = a$"
+    },
+    {
+     "key": "C",
+     "text": "$a + c = b$"
+    },
+    {
+     "key": "D",
+     "text": "$b = c$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 114,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $\\cot^{-1}(\\sqrt{\\cos\\alpha}) - \\tan^{-1}(\\sqrt{\\cos\\alpha}) = x$, then the value of $\\sin x$ is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Let $t = \\sqrt{\\cos\\alpha}$ and $\\theta = \\tan^{-1}t$. Then $\\cot^{-1}t = \\frac{\\pi}{2} - \\theta$, so $x = \\frac{\\pi}{2} - 2\\theta$.\nStep 2: $\\sin x = \\cos 2\\theta = \\frac{1 - \\tan^{2}\\theta}{1 + \\tan^{2}\\theta} = \\frac{1 - \\cos\\alpha}{1 + \\cos\\alpha}$.\nStep 3: $\\frac{1 - \\cos\\alpha}{1 + \\cos\\alpha} = \\frac{2\\sin^{2}(\\alpha/2)}{2\\cos^{2}(\\alpha/2)} = \\tan^{2}\\frac{\\alpha}{2}$.\nFinal Answer: (D) $\\tan^{2}\\frac{\\alpha}{2}$\nQuick Tip: $\\cot^{-1}t + \\tan^{-1}t = \\frac{\\pi}{2}$ turns a difference into $\\frac{\\pi}{2} - 2\\tan^{-1}t$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\cot^{2}\\frac{\\alpha}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\cot\\frac{\\alpha}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan\\frac{\\alpha}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\tan^{2}\\frac{\\alpha}{2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 115,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Considering only the principal values of the inverse trigonometric functions, the value of $\\tan\\left(\\sin^{-1}\\left(\\frac{3}{5}\\right) - 2\\cos^{-1}\\left(\\frac{2}{\\sqrt{5}}\\right)\\right)$ is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Let $\\theta = \\sin^{-1}\\frac{3}{5}$, so $\\tan\\theta = \\frac{3}{4}$. Let $\\phi = \\cos^{-1}\\frac{2}{\\sqrt{5}}$, so $\\sin\\phi = \\frac{1}{\\sqrt{5}}$ and $\\tan\\phi = \\frac{1}{2}$.\nStep 2: $\\tan 2\\phi = \\frac{2 \\cdot \\frac{1}{2}}{1 - \\frac{1}{4}} = \\frac{4}{3}$.\nStep 3: $\\tan(\\theta - 2\\phi) = \\frac{\\frac{3}{4} - \\frac{4}{3}}{1 + \\frac{3}{4}\\cdot\\frac{4}{3}} = \\frac{-\\frac{7}{12}}{2} = -\\frac{7}{24}$.\nFinal Answer: (B) $\\frac{-7}{24}$\nQuick Tip: Convert each inverse function to an angle with a known tangent, then use the double-angle and difference formulas.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{7}{24}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{-7}{24}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5}{24}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{-5}{24}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 116,
+   "topic": "Area Under Curves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the area bounded by the curve $x^{2} = 4y$, X-axis and the line $x = 4$ is divided into equal areas by the line $x = \\alpha$, then the value of $\\alpha$ is ...",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Total area $= \\int_{0}^{4} \\frac{x^{2}}{4}dx = \\frac{64}{12} = \\frac{16}{3}$.\nStep 2: Area from $0$ to $\\alpha$ must be half: $\\int_{0}^{\\alpha} \\frac{x^{2}}{4}dx = \\frac{\\alpha^{3}}{12} = \\frac{8}{3}$.\nStep 3: $\\alpha^{3} = 32 \\Rightarrow \\alpha = (32)^{\\frac{1}{3}}$.\nFinal Answer: (D) $(32)^{\\frac{1}{3}}$\nQuick Tip: For $y = kx^{n}$ the area from 0 grows like $x^{n+1}$, so halving the area gives $\\alpha^{3} = \\frac{4^{3}}{2}$ here.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{32}$"
+    },
+    {
+     "key": "B",
+     "text": "32"
+    },
+    {
+     "key": "C",
+     "text": "$(32)^{\\frac{1}{2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$(32)^{\\frac{1}{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 117,
+   "topic": "Logarithms",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $p^{3} = q^{4} = r^{6} = t^{7} = s^{2}$, then $\\log_{t}(pqrs) = \\ldots\\ldots$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Let the common value be $k$. Then $\\log_{t}k = 7$ (since $t^{7} = k$).\nStep 2: $\\log_{t}p = \\frac{7}{3}$, $\\log_{t}q = \\frac{7}{4}$, $\\log_{t}r = \\frac{7}{6}$, $\\log_{t}s = \\frac{7}{2}$.\nStep 3: $\\log_{t}(pqrs) = 7\\left(\\frac{1}{3} + \\frac{1}{4} + \\frac{1}{6} + \\frac{1}{2}\\right) = 7 \\cdot \\frac{4 + 3 + 2 + 6}{12} = 7 \\cdot \\frac{15}{12} = \\frac{35}{4}$.\nFinal Answer: (D) $\\frac{35}{4}$\nQuick Tip: If $x^{m} = k$ then $\\log_{t}x = \\frac{\\log_{t}k}{m}$; a common value turns all logs into simple fractions.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{168}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "28"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{31}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{35}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 118,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The equation of the curve passing through the point $(0, 2)$ given that the sum of the ordinate and abscissa of any point exceeds the slope of the tangent to the curve at that point by 5 is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Condition: $x + y = \\frac{dy}{dx} + 5 \\Rightarrow \\frac{dy}{dx} - y = x - 5$. Integrating factor $= e^{-x}$.\nStep 2: $ye^{-x} = \\int (x - 5)e^{-x}dx = -(x - 5)e^{-x} - e^{-x} + C = (4 - x)e^{-x} + C$.\nStep 3: $y = 4 - x + Ce^{x}$. At $(0, 2)$: $2 = 4 + C \\Rightarrow C = -2$.\nFinal Answer: (B) $y = 4 - x - 2e^{x}$\nQuick Tip: Check the options at the given point first: only (B) and (C) give $y(0) = 2$; the slope condition then decides.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$y = x - 4 - 2e^{x}$"
+    },
+    {
+     "key": "B",
+     "text": "$y = 4 - x - 2e^{x}$"
+    },
+    {
+     "key": "C",
+     "text": "$y = 4 + x - 2e^{x}$"
+    },
+    {
+     "key": "D",
+     "text": "$y = 4 - x + 2e^{x}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 119,
+   "topic": "Complex Numbers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Let z be the complex number such that $|z| + z = 3 + i$ where $i = \\sqrt{-1}$, then $|z| =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Let $z = x + iy$. Comparing imaginary parts: $y = 1$; real parts: $\\sqrt{x^{2} + 1} + x = 3$.\nStep 2: $\\sqrt{x^{2} + 1} = 3 - x \\Rightarrow x^{2} + 1 = 9 - 6x + x^{2} \\Rightarrow x = \\frac{4}{3}$.\nStep 3: $|z| = 3 - x = 3 - \\frac{4}{3} = \\frac{5}{3}$.\nFinal Answer: (B) $\\frac{5}{3}$\nQuick Tip: $|z|$ is real, so the imaginary part of $z$ equals the imaginary part of the right side at once.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\sqrt{34}}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{5}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\sqrt{41}}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 120,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The solution of the differential equation $(1 + x)\\frac{dy}{dx} - xy = 1 - x$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\frac{dy}{dx} - \\frac{x}{1 + x}y = \\frac{1 - x}{1 + x}$. IF $= e^{-\\int \\frac{x}{1 + x}dx} = e^{-x + \\log(1 + x)} = (1 + x)e^{-x}$.\nStep 2: $y(1 + x)e^{-x} = \\int \\frac{1 - x}{1 + x}(1 + x)e^{-x}dx = \\int (1 - x)e^{-x}dx$.\nStep 3: Since $\\frac{d}{dx}(xe^{-x}) = (1 - x)e^{-x}$, the integral is $xe^{-x} + c$. So $y(1 + x)e^{-x} = xe^{-x} + c$.\nStep 4: Multiplying by $e^{x}$: $y(1 + x) = x + ce^{x}$.\nFinal Answer: (A) $y(1 + x) = x + ce^{x}$\nQuick Tip: Spot $\\int (f + f')e^{x}$-type patterns: $(1 - x)e^{-x}$ is exactly the derivative of $xe^{-x}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$y(1 + x) = x + ce^{x}$, where c is the constant of integration"
+    },
+    {
+     "key": "B",
+     "text": "$y(1 + x) = ce^{x}$, where c is the constant of integration"
+    },
+    {
+     "key": "C",
+     "text": "$y(1 - x) = x - ce^{x}$, where c is the constant of integration"
+    },
+    {
+     "key": "D",
+     "text": "$y(1 + x) = x$, where c is the constant of integration"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 121,
+   "topic": "Indefinite Integration",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int \\frac{dx}{\\sin^{2}x\\cos^{2}x} =$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Write $1 = \\sin^{2}x + \\cos^{2}x$: $\\frac{1}{\\sin^{2}x\\cos^{2}x} = \\frac{1}{\\cos^{2}x} + \\frac{1}{\\sin^{2}x} = \\sec^{2}x + \\csc^{2}x$.\nStep 2: $\\int (\\sec^{2}x + \\csc^{2}x)dx = \\tan x - \\cot x + c$.\nFinal Answer: (B) $\\tan x - \\cot x + c$\nQuick Tip: Splitting with $\\sin^{2}x + \\cos^{2}x = 1$ is the fastest route; note $\\tan x - \\cot x = -2\\cot 2x$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan x + \\cot x + c$, where c is the constant of integration."
+    },
+    {
+     "key": "B",
+     "text": "$\\tan x - \\cot x + c$, where c is the constant of integration."
+    },
+    {
+     "key": "C",
+     "text": "$\\tan x\\cot x + c$, where c is the constant of integration."
+    },
+    {
+     "key": "D",
+     "text": "$\\tan x - \\cot 2x + c$, , where c is the constant of integration."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 123,
+   "topic": "Pair of Straight Lines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If the pair of lines $3x^{2} - 5xy + py^{2} = 0$ and $6x^{2} - xy - 5y^{2} = 0$ have one line common, then $p =$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $6x^{2} - xy - 5y^{2} = (x - y)(6x + 5y)$, so its lines are $y = x$ and $6x + 5y = 0$.\nStep 2: If $y = x$ is common: $3 - 5 + p = 0 \\Rightarrow p = 2$.\nStep 3: If $6x + 5y = 0$ is common, put $x = 5$, $y = -6$: $3(25) - 5(5)(-6) + 36p = 75 + 150 + 36p = 0 \\Rightarrow p = -\\frac{225}{36} = -\\frac{25}{4}$.\nFinal Answer: (C) $2, \\frac{-25}{4}$\nQuick Tip: Factor the pair with numeric coefficients first and substitute a point of each line into the other pair.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2, \\frac{25}{4}$"
+    },
+    {
+     "key": "B",
+     "text": "$-2, \\frac{25}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$2, \\frac{-25}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$-2, \\frac{-25}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 124,
+   "topic": "Permutations and Combinations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The number of ways in which 6 boys and 4 girls can be seated around a round table such that 2 special boys and a special girl never sit together is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Total circular arrangements of 10 people $= (10 - 1)! = 9! = 362880$.\nStep 2: Arrangements with the 3 special persons together: treat them as one unit, giving $8$ units: $(8 - 1)! \\times 3! = 5040 \\times 6 = 30240$.\nStep 3: Required $= 362880 - 30240 = 332640$.\nFinal Answer: (C) 332640\nQuick Tip: 'Never all together' = total minus 'all together'; the block itself can be arranged internally in $3!$ ways.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "332620"
+    },
+    {
+     "key": "B",
+     "text": "332540"
+    },
+    {
+     "key": "C",
+     "text": "332640"
+    },
+    {
+     "key": "D",
+     "text": "332520"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 125,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The differential equation representing the family of parabolas having vertex at the origin and axis along the positive Y -axis is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Family: $x^{2} = 4ay$ (one arbitrary constant $a$).\nStep 2: Differentiate: $2x = 4a\\frac{dy}{dx} \\Rightarrow 4a = \\frac{2x}{dy/dx}$.\nStep 3: Substitute: $x^{2} = \\frac{2x}{dy/dx}\\,y \\Rightarrow x\\frac{dy}{dx} = 2y \\Rightarrow x\\frac{dy}{dx} - 2y = 0$.\nFinal Answer: (A) $x\\frac{dy}{dx} - 2y = 0$\nQuick Tip: One arbitrary constant means a first-order equation; eliminate $a$ between the curve and its derivative.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x\\frac{dy}{dx} - 2y = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{dy}{dx} + xy = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$x\\frac{dy}{dx} + y = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2}\\frac{dy}{dx} + y = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 126,
+   "topic": "Indefinite Integration",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int \\frac{dx}{x^{\\frac{1}{2}} + x^{\\frac{1}{3}}} = Ax^{\\frac{1}{2}} + Bx^{\\frac{1}{3}} + Cx^{\\frac{1}{6}} + D\\log\\left(x^{\\frac{1}{6}} + 1\\right) + k$\n(where k is the integration constant) then values of A, B, C and D are respectively,",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Put $x = t^{6}$, $dx = 6t^{5}dt$: $\\int \\frac{6t^{5}}{t^{3} + t^{2}}dt = 6\\int \\frac{t^{3}}{t + 1}dt$.\nStep 2: $\\frac{t^{3}}{t + 1} = t^{2} - t + 1 - \\frac{1}{t + 1}$, so the integral is $2t^{3} - 3t^{2} + 6t - 6\\log(t + 1) + k$.\nStep 3: With $t = x^{1/6}$: $2x^{1/2} - 3x^{1/3} + 6x^{1/6} - 6\\log(x^{1/6} + 1) + k$. So $A = 2, B = -3, C = 6, D = -6$.\nFinal Answer: (A) $2, -3, 6, -6$\nQuick Tip: For $x^{1/m}$ and $x^{1/n}$ together, substitute $x = t^{\\mathrm{LCM}(m, n)}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2, -3, 6, -6$"
+    },
+    {
+     "key": "B",
+     "text": "$2, 3, -6, 6$"
+    },
+    {
+     "key": "C",
+     "text": "$2, -3, -6, 6$"
+    },
+    {
+     "key": "D",
+     "text": "$-2, -3, 6, 6$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 127,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The probability that a non leap year selected at random will contain 52 Saturdays or 53 Sundays is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: A non-leap year has 365 days = 52 weeks + 1 extra day, which is any of the 7 days with probability $\\frac{1}{7}$ each.\nStep 2: 52 Saturdays exactly: extra day is not Saturday, $P = \\frac{6}{7}$. 53 Sundays: extra day is Sunday, $P = \\frac{1}{7}$.\nStep 3: If the extra day is Sunday, the year also has only 52 Saturdays, so the second event is contained in the first. $P(\\text{union}) = \\frac{6}{7}$.\nFinal Answer: (B) $\\frac{6}{7}$\nQuick Tip: Before adding probabilities for 'or', check whether one event already lies inside the other.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{7}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{6}{7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{2}{7}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{7}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 128,
+   "topic": "Differential Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The population of towns A and B increase at the rate proportional to their population present at that time. At the end of the year 1984, the population of both the towns was 20,000 . At the end of the year 1989, the population of town A was 25,000 and that of town B was 28,000 . The difference of populations of towns A and B at the end of 1994 was",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\frac{dP}{dt} = kP \\Rightarrow P = P_0e^{kt}$, so over equal time intervals the population is multiplied by the same factor.\nStep 2: Town A: factor over 5 years $= \\frac{25000}{20000} = \\frac{5}{4}$, so in 1994: $20000 \\cdot \\left(\\frac{5}{4}\\right)^{2} = 31250$.\nStep 3: Town B: factor $= \\frac{28000}{20000} = \\frac{7}{5}$, so in 1994: $20000 \\cdot \\frac{49}{25} = 39200$.\nStep 4: Difference $= 39200 - 31250 = 7950$.\nFinal Answer: (C) 7950\nQuick Tip: Exponential growth multiplies by a fixed ratio per fixed interval; 1984 to 1994 is two 5-year intervals.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5950"
+    },
+    {
+     "key": "B",
+     "text": "8000"
+    },
+    {
+     "key": "C",
+     "text": "7950"
+    },
+    {
+     "key": "D",
+     "text": "6950"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 129,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The vectors $\\bar{a}, \\bar{b}$ and $\\bar{c}$ are such that $|\\bar{a}| = 2, |\\bar{b}| = 4, |\\bar{c}| = 4$. If the projection of $\\bar{b}$ on $\\bar{a}$ is equal to projection of $\\bar{c}$ on $\\bar{a}$ and $\\bar{b}$ is perpendicular to $\\bar{c}$, then the value of $|\\bar{a} + \\bar{b} - \\bar{c}|$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Equal projections on $\\bar{a}$: $\\frac{\\bar{a}\\cdot\\bar{b}}{|\\bar{a}|} = \\frac{\\bar{a}\\cdot\\bar{c}}{|\\bar{a}|} \\Rightarrow \\bar{a}\\cdot\\bar{b} = \\bar{a}\\cdot\\bar{c}$. Also $\\bar{b}\\cdot\\bar{c} = 0$.\nStep 2: $|\\bar{a} + \\bar{b} - \\bar{c}|^{2} = |\\bar{a}|^{2} + |\\bar{b}|^{2} + |\\bar{c}|^{2} + 2\\bar{a}\\cdot\\bar{b} - 2\\bar{a}\\cdot\\bar{c} - 2\\bar{b}\\cdot\\bar{c}$.\nStep 3: $= 4 + 16 + 16 + 0 - 0 = 36$, so $|\\bar{a} + \\bar{b} - \\bar{c}| = 6$.\nFinal Answer: (C) 6\nQuick Tip: Square the magnitude and expand; the given conditions are designed to cancel the cross terms.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5"
+    },
+    {
+     "key": "B",
+     "text": "36"
+    },
+    {
+     "key": "C",
+     "text": "6"
+    },
+    {
+     "key": "D",
+     "text": "25"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 130,
+   "topic": "Circles",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two tangents to the circle $x^{2} + y^{2} = 4$ at the points A and B meet at $P(-4, 0)$. Then the area of quadrilateral PAOB, where ' $O$ ' is the origin is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Radius $r = 2$, $OP = 4$. Tangent length $PA = \\sqrt{OP^{2} - r^{2}} = \\sqrt{16 - 4} = 2\\sqrt{3}$.\nStep 2: $\\angle OAP = 90^\\circ$, so area of $\\triangle OAP = \\frac{1}{2} \\cdot 2 \\cdot 2\\sqrt{3} = 2\\sqrt{3}$.\nStep 3: PAOB consists of two congruent right triangles: area $= 2 \\times 2\\sqrt{3} = 4\\sqrt{3}$.\nFinal Answer: (C) $4\\sqrt{3}$ sq. units\nQuick Tip: Area of the quadrilateral formed by two tangents and two radii $= r \\times$ tangent length.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$8\\sqrt{3}$ sq. units"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{4}{\\sqrt{3}}$ sq. units"
+    },
+    {
+     "key": "C",
+     "text": "$4\\sqrt{3}$ sq. units"
+    },
+    {
+     "key": "D",
+     "text": "$\\sqrt{3}$ sq. units"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 131,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The lines $\\frac{6x - 6}{18} = \\frac{y + 1}{3} = \\frac{z - 1}{5}$ and $\\frac{3x + 6}{12} = \\frac{y - 1}{3} = \\frac{z + 1}{2}$ are ...",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Standard forms: $\\frac{x - 1}{3} = \\frac{y + 1}{3} = \\frac{z - 1}{5}$ (point $(1, -1, 1)$, direction $(3, 3, 5)$) and $\\frac{x + 2}{4} = \\frac{y - 1}{3} = \\frac{z + 1}{2}$ (point $(-2, 1, -1)$, direction $(4, 3, 2)$).\nStep 2: General points $(1 + 3s, -1 + 3s, 1 + 5s)$ and $(-2 + 4t, 1 + 3t, -1 + 2t)$. Equating x and y: $3 + 3s = 4t$ and $-2 + 3s = 3t$; subtracting gives $t = 5$, then $s = \\frac{17}{3}$.\nStep 3: z-check: $1 + 5 \\cdot \\frac{17}{3} = \\frac{88}{3}$ but $-1 + 2 \\cdot 5 = 9$. Not equal, so the lines do not intersect (also $3 \\cdot 4 + 3 \\cdot 3 + 5 \\cdot 2 = 31 \\neq 0$, so not perpendicular).\nFinal Answer: (C) do not intersect\nQuick Tip: Make the coefficients of x, y, z equal to 1 before reading the point and direction ratios.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "intersecting at point $(1, -1, 2)$"
+    },
+    {
+     "key": "B",
+     "text": "intersecting at right angles"
+    },
+    {
+     "key": "C",
+     "text": "do not intersect"
+    },
+    {
+     "key": "D",
+     "text": "intersecting at point $(3, 1, -1)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 132,
+   "topic": "Indefinite Integration",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "$\\int x^{2}\\cos x\\,dx =$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: By parts: $\\int x^{2}\\cos x\\,dx = x^{2}\\sin x - \\int 2x\\sin x\\,dx$.\nStep 2: $\\int 2x\\sin x\\,dx = -2x\\cos x + \\int 2\\cos x\\,dx = -2x\\cos x + 2\\sin x$.\nStep 3: Result $= x^{2}\\sin x + 2x\\cos x - 2\\sin x + c$.\nFinal Answer: (A) $x^{2}\\sin x + 2x\\cos x - 2\\sin x + c$\nQuick Tip: Check by differentiating: $2x\\sin x + x^{2}\\cos x + 2\\cos x - 2x\\sin x - 2\\cos x = x^{2}\\cos x$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x^{2}\\sin x + 2x\\cos x - 2\\sin x + c$, where c is the constant of integration"
+    },
+    {
+     "key": "B",
+     "text": "$x^{2}\\sin x - 2x\\cos x - 2\\sin x + c$, where c is the constant of integration"
+    },
+    {
+     "key": "C",
+     "text": "$x^{2}\\sin x - 2x\\cos x + 2\\sin x + c$, where c is the constant of integration"
+    },
+    {
+     "key": "D",
+     "text": "$x^{2}\\sin x + 2x\\cos x + 2\\sin x + c$, where c is the constant of integration"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 133,
+   "topic": "Probability Distribution",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A random variable $X$ has the following probability distribution :\n$X = x$ | 1 | 2 | 3 | 4\n$P(X = x)$ | 0.1 | 0.2 | 0.3 | 0.4\nThe mean and standard deviation of $X$ are respectively",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Mean $E(X) = 1(0.1) + 2(0.2) + 3(0.3) + 4(0.4) = 0.1 + 0.4 + 0.9 + 1.6 = 3$.\nStep 2: $E(X^{2}) = 1(0.1) + 4(0.2) + 9(0.3) + 16(0.4) = 0.1 + 0.8 + 2.7 + 6.4 = 10$.\nStep 3: $\\mathrm{Var}(X) = 10 - 3^{2} = 1$, so standard deviation $= 1$.\nFinal Answer: (B) 3 and 1\nQuick Tip: $\\mathrm{Var}(X) = E(X^{2}) - [E(X)]^{2}$; take the square root for the standard deviation.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2 and 3"
+    },
+    {
+     "key": "B",
+     "text": "3 and 1"
+    },
+    {
+     "key": "C",
+     "text": "3 and $\\sqrt{2}$"
+    },
+    {
+     "key": "D",
+     "text": "2 and 1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 134,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The values of $x$ for which the angle between the vectors $\\bar{a} = 2x^{2}\\hat{i} + 4x\\hat{j} + \\hat{k}$ and $\\bar{b} = 7\\hat{i} - 2\\hat{j} + x\\hat{k}$ is obtuse, are",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Angle obtuse $\\Rightarrow \\bar{a}\\cdot\\bar{b} < 0$: $14x^{2} - 8x + x = 14x^{2} - 7x < 0$.\nStep 2: $7x(2x - 1) < 0 \\Rightarrow 0 < x < \\frac{1}{2}$.\nStep 3: The vectors are never anti-parallel (the $\\hat{k}$ components 1 and $x > 0$ have the same sign), so the angle is strictly obtuse on this interval.\nFinal Answer: (A) $0 < x < \\frac{1}{2}$\nQuick Tip: Obtuse angle needs a negative dot product (and the vectors not anti-parallel).",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0 < x < \\frac{1}{2}$"
+    },
+    {
+     "key": "B",
+     "text": "$1 < x < 2$"
+    },
+    {
+     "key": "C",
+     "text": "$1 \\leq x \\leq 2$"
+    },
+    {
+     "key": "D",
+     "text": "$-1 < x < 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 135,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $\\bar{a}, \\bar{b}, \\bar{c}$ are three coplanar vectors such that $|\\bar{a}| = 1, |\\bar{b}| = 2, \\bar{b}\\cdot\\bar{c} = 8$ and the angle between $\\bar{b}$ and $\\bar{c}$ is $45^\\circ$ then the value of $|\\bar{a} \\times (\\bar{b} \\times \\bar{c})|$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\bar{b}\\cdot\\bar{c} = |\\bar{b}||\\bar{c}|\\cos 45^\\circ \\Rightarrow 8 = 2|\\bar{c}| \\cdot \\frac{1}{\\sqrt{2}} \\Rightarrow |\\bar{c}| = 4\\sqrt{2}$.\nStep 2: $|\\bar{b} \\times \\bar{c}| = |\\bar{b}||\\bar{c}|\\sin 45^\\circ = 2 \\cdot 4\\sqrt{2} \\cdot \\frac{1}{\\sqrt{2}} = 8$.\nStep 3: $\\bar{b} \\times \\bar{c}$ is normal to the plane of $\\bar{a}, \\bar{b}, \\bar{c}$, so $\\bar{a} \\perp (\\bar{b} \\times \\bar{c})$ and $|\\bar{a} \\times (\\bar{b} \\times \\bar{c})| = |\\bar{a}||\\bar{b} \\times \\bar{c}| \\sin 90^\\circ = 1 \\cdot 8 = 8$.\nFinal Answer: (A) 8\nQuick Tip: For coplanar vectors, the cross product of two of them is perpendicular to the third.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "8"
+    },
+    {
+     "key": "B",
+     "text": "$\\sqrt{2}$"
+    },
+    {
+     "key": "C",
+     "text": "2"
+    },
+    {
+     "key": "D",
+     "text": "5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 136,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $u = \\log(\\sqrt{x - 1} - \\sqrt{x + 1})$ and $v = \\sqrt{x + 1} + \\sqrt{x - 1}$ then $\\frac{du}{dv} = \\ldots$",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\frac{du}{dx} = \\frac{1}{\\sqrt{x - 1} - \\sqrt{x + 1}}\\left(\\frac{1}{2\\sqrt{x - 1}} - \\frac{1}{2\\sqrt{x + 1}}\\right) = \\frac{1}{\\sqrt{x - 1} - \\sqrt{x + 1}} \\cdot \\frac{\\sqrt{x + 1} - \\sqrt{x - 1}}{2\\sqrt{x^{2} - 1}} = \\frac{-1}{2\\sqrt{x^{2} - 1}}$.\nStep 2: $\\frac{dv}{dx} = \\frac{1}{2\\sqrt{x + 1}} + \\frac{1}{2\\sqrt{x - 1}} = \\frac{\\sqrt{x - 1} + \\sqrt{x + 1}}{2\\sqrt{x^{2} - 1}} = \\frac{v}{2\\sqrt{x^{2} - 1}}$.\nStep 3: $\\frac{du}{dv} = \\frac{-1}{2\\sqrt{x^{2} - 1}} \\cdot \\frac{2\\sqrt{x^{2} - 1}}{v} = \\frac{-1}{v}$.\nFinal Answer: (D) $\\frac{-1}{v}$\nQuick Tip: The derivative of a log is the same for $\\log|f|$ and $\\log f$, so treat the argument formally.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "u"
+    },
+    {
+     "key": "B",
+     "text": "v"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{-1}{u}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{-1}{v}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 137,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The line $\\frac{x - 1}{2} = \\frac{y + 2}{-1} = \\frac{z}{1}$ intersects the XY plane and the YZ plane at points A and B respectively. The equation of line through the points A and B is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: General point $(1 + 2t, -2 - t, t)$. XY plane ($z = 0$): $t = 0$, $A = (1, -2, 0)$.\nStep 2: YZ plane ($x = 0$): $t = -\\frac{1}{2}$, $B = \\left(0, -\\frac{3}{2}, -\\frac{1}{2}\\right)$.\nStep 3: $\\overrightarrow{AB} = -\\hat{i} + \\frac{1}{2}\\hat{j} - \\frac{1}{2}\\hat{k}$. Line through A parallel to $\\overrightarrow{AB}$: $[\\bar{r} - (\\hat{i} - 2\\hat{j} + 0\\hat{k})] \\times \\left(-\\hat{i} + \\frac{1}{2}\\hat{j} - \\frac{1}{2}\\hat{k}\\right) = \\bar{0}$.\nFinal Answer: (A) $[\\bar{r} - (\\hat{i} - 2\\hat{j} + 0\\hat{k})] \\times \\left(-\\hat{i} + \\frac{1}{2}\\hat{j} - \\frac{1}{2}\\hat{k}\\right) = \\bar{0}$\nQuick Tip: $(\\bar{r} - \\bar{a}) \\times \\bar{b} = \\bar{0}$ is the cross-product form of the line through $\\bar{a}$ parallel to $\\bar{b}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$[\\bar{r} - (\\hat{i} - 2\\hat{j} + 0\\hat{k})] \\times \\left(-\\hat{i} + \\frac{1}{2}\\hat{j} - \\frac{1}{2}\\hat{k}\\right) = \\bar{0}$"
+    },
+    {
+     "key": "B",
+     "text": "$[\\bar{r} + (\\hat{i} - 2\\hat{j} + 0\\hat{k})] \\times \\left(-\\hat{i} + \\frac{1}{2}\\hat{j} + \\frac{1}{2}\\hat{k}\\right) = \\bar{0}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\bar{r} = (-\\hat{i} - 2\\hat{j} + 0\\hat{k}) + \\lambda\\left(-\\hat{i} + \\frac{1}{2}\\hat{j} - \\frac{1}{2}\\hat{k}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\bar{r} = (\\hat{i} + 2\\hat{j}) + \\lambda\\left(-\\hat{i} + \\frac{1}{2}\\hat{j} - \\frac{1}{2}\\hat{k}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 138,
+   "topic": "Probability",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A fair $n$ faced die is rolled repeatedly until a number less than $n$ appears. If the mean of the number of tosses required is $\\frac{n}{9}$, then $n =$ ( where $n \\in \\mathbb{N}$)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Success on a toss (number less than $n$) has probability $p = \\frac{n - 1}{n}$; the number of tosses is geometric.\nStep 2: Mean number of tosses $= \\frac{1}{p} = \\frac{n}{n - 1}$.\nStep 3: $\\frac{n}{n - 1} = \\frac{n}{9} \\Rightarrow n - 1 = 9 \\Rightarrow n = 10$.\nFinal Answer: (D) 10\nQuick Tip: Expected number of trials until the first success is $\\frac{1}{p}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4"
+    },
+    {
+     "key": "B",
+     "text": "6"
+    },
+    {
+     "key": "C",
+     "text": "8"
+    },
+    {
+     "key": "D",
+     "text": "10"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 139,
+   "topic": "Binomial Distribution",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A fair coin is tossed a fixed number of times. If the probability of getting 5 tails is same as the probability of getting 7 tails, then the probability of getting 3 tails is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $P(X = r) = \\frac{{}^{n}C_{r}}{2^{n}}$. Equal for $r = 5$ and $7$: ${}^{n}C_{5} = {}^{n}C_{7} \\Rightarrow n = 12$.\nStep 2: $P(X = 3) = \\frac{{}^{12}C_{3}}{2^{12}} = \\frac{220}{4096}$.\nStep 3: $\\frac{220}{4096} = \\frac{55}{1024} = \\frac{55}{2^{10}}$.\nFinal Answer: (B) $\\frac{55}{2^{10}}$\nQuick Tip: ${}^{n}C_{a} = {}^{n}C_{b}$ with $a \\neq b$ means $a + b = n$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{44}{2^{13}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{55}{2^{10}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{55}{2^{13}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{44}{2^{10}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 140,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In the above figure, P divides AC in the ratio $3 : 4$ and Q divides BC in the ratio $4 : 3$. Then M divides AQ in the ratio",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Take B as origin with $\\overrightarrow{BA} = \\bar{a}$, $\\overrightarrow{BC} = \\bar{c}$. Then $Q = \\frac{4\\bar{c}}{7}$ and $P = \\frac{4\\bar{a} + 3\\bar{c}}{7}$.\nStep 2: M on AQ: $M = (1 - t)\\bar{a} + t\\cdot\\frac{4\\bar{c}}{7}$. M on BP: $M = s\\cdot\\frac{4\\bar{a} + 3\\bar{c}}{7}$.\nStep 3: Comparing coefficients: $1 - t = \\frac{4s}{7}$ and $\\frac{4t}{7} = \\frac{3s}{7} \\Rightarrow s = \\frac{4t}{3}$. Then $1 - t = \\frac{16t}{21} \\Rightarrow t = \\frac{21}{37}$.\nStep 4: $AM : MQ = t : (1 - t) = \\frac{21}{37} : \\frac{16}{37} = 21 : 16$.\nFinal Answer: (C) $21 : 16$\nQuick Tip: Write the intersection point in two ways and compare coefficients of non-collinear vectors.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$15 : 14$"
+    },
+    {
+     "key": "B",
+     "text": "$29 : 13$"
+    },
+    {
+     "key": "C",
+     "text": "$21 : 16$"
+    },
+    {
+     "key": "D",
+     "text": "$28 : 9$"
+    }
+   ],
+   "stem_figure": "m25-26apr-s2-q140.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 141,
+   "topic": "Conic Sections",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The tangent to the ellipse $9x^{2} + 16y^{2} = 288$ making equal intercepts on the co-ordinate axes intersects the X -axis and the Y -axis in the points $A$ and $B$ respectively. Then $A(\\triangle OAB) =$ (where O is origin)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\frac{x^{2}}{32} + \\frac{y^{2}}{18} = 1$, so $a^{2} = 32$, $b^{2} = 18$. Equal intercepts means slope $m = -1$.\nStep 2: Tangent: $y = mx \\pm \\sqrt{a^{2}m^{2} + b^{2}} = -x \\pm \\sqrt{50} \\Rightarrow x + y = \\pm 5\\sqrt{2}$.\nStep 3: Intercepts $OA = OB = 5\\sqrt{2}$, so area $= \\frac{1}{2}(5\\sqrt{2})^{2} = 25$.\nFinal Answer: (B) 25 sq. units\nQuick Tip: Condition of tangency for $y = mx + c$ to $\\frac{x^{2}}{a^{2}} + \\frac{y^{2}}{b^{2}} = 1$ is $c^{2} = a^{2}m^{2} + b^{2}$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{25}{2}$ sq. units"
+    },
+    {
+     "key": "B",
+     "text": "25 sq. units"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{25\\sqrt{5}}{2}$ sq. units"
+    },
+    {
+     "key": "D",
+     "text": "$25\\sqrt{5}$ sq. units"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 142,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The distance of the point $A(3, -4, 5)$ from the plane $2x + 5y - 6z = 16$ measured along the line $\\frac{x}{2} = \\frac{y}{1} = \\frac{z}{-2}$ is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Line through A parallel to $(2, 1, -2)$ (unit vector $\\frac{1}{3}(2, 1, -2)$): point $(3 + 2t, -4 + t, 5 - 2t)$.\nStep 2: Substitute in the plane: $2(3 + 2t) + 5(-4 + t) - 6(5 - 2t) = 16 \\Rightarrow -44 + 21t = 16 \\Rightarrow t = \\frac{60}{21} = \\frac{20}{7}$.\nStep 3: Distance $= |t| \\cdot \\sqrt{4 + 1 + 4} = \\frac{20}{7} \\times 3 = \\frac{60}{7}$.\nFinal Answer: (A) $\\frac{60}{7}$ units\nQuick Tip: Distance along a line = parameter value times the length of the direction vector used.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{60}{7}$ units"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{7}{60}$ units"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{7}$ units"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2}{7}$ units"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 143,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The direction cosines of a normal to the plane passing through $(4, 2, 3), (-1, 4, 2)$ and $(3, 2, 1)$ are .....",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Vectors in the plane: $(-1, 4, 2) - (4, 2, 3) = (-5, 2, -1)$ and $(3, 2, 1) - (4, 2, 3) = (-1, 0, -2)$.\nStep 2: Normal $= (-5, 2, -1) \\times (-1, 0, -2) = (2(-2) - (-1)(0),\\ (-1)(-1) - (-5)(-2),\\ (-5)(0) - 2(-1)) = (-4, -9, 2)$.\nStep 3: $|\\bar{n}| = \\sqrt{16 + 81 + 4} = \\sqrt{101}$, so direction cosines are $\\frac{-4}{\\sqrt{101}}, \\frac{-9}{\\sqrt{101}}, \\frac{2}{\\sqrt{101}}$.\nFinal Answer: (C) $\\frac{-4}{\\sqrt{101}}, \\frac{-9}{\\sqrt{101}}, \\frac{2}{\\sqrt{101}}$\nQuick Tip: Quick check: the normal must be perpendicular to both in-plane vectors: $20 - 18 - 2 = 0$ and $4 + 0 - 4 = 0$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{-2}{\\sqrt{101}}, \\frac{3}{\\sqrt{101}}, \\frac{8}{\\sqrt{101}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{-3}{\\sqrt{49}}, \\frac{2}{\\sqrt{49}}, \\frac{6}{\\sqrt{49}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{-4}{\\sqrt{101}}, \\frac{-9}{\\sqrt{101}}, \\frac{2}{\\sqrt{101}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{4}{22}, \\frac{-12}{22}, \\frac{18}{22}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 144,
+   "topic": "Vectors",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The unit vectors perpendicular to the plane determined by the points $A(1, -1, 2), B(2, 0, -1), C(0, 2, 1)$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\overrightarrow{AB} = \\hat{i} + \\hat{j} - 3\\hat{k}$, $\\overrightarrow{AC} = -\\hat{i} + 3\\hat{j} - \\hat{k}$.\nStep 2: $\\overrightarrow{AB} \\times \\overrightarrow{AC} = \\hat{i}(-1 + 9) - \\hat{j}(-1 - 3) + \\hat{k}(3 + 1) = 8\\hat{i} + 4\\hat{j} + 4\\hat{k} = 4(2\\hat{i} + \\hat{j} + \\hat{k})$.\nStep 3: $|2\\hat{i} + \\hat{j} + \\hat{k}| = \\sqrt{6}$, so the unit vectors are $\\pm\\frac{2\\hat{i} + \\hat{j} + \\hat{k}}{\\sqrt{6}}$.\nFinal Answer: (C) $\\pm\\left(\\frac{2\\hat{i} + \\hat{j} + \\hat{k}}{\\sqrt{6}}\\right)$\nQuick Tip: Take out common factors from the cross product before normalising.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\pm\\left(\\frac{3\\hat{i} + \\hat{j} + \\hat{k}}{\\sqrt{11}}\\right)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\pm\\left(\\frac{-\\hat{i} + 2\\hat{j} + \\hat{k}}{\\sqrt{6}}\\right)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\pm\\left(\\frac{2\\hat{i} + \\hat{j} + \\hat{k}}{\\sqrt{6}}\\right)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pm\\left(\\frac{\\hat{i} + \\hat{j} + \\hat{k}}{\\sqrt{3}}\\right)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 145,
+   "topic": "Three Dimensional Geometry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The equation of the plane passing through the point $(1, 1, 1)$ and through the line of intersection of $x + 2y - z + 1 = 0$ and $3x - y - 4z + 3 = 0$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Required plane: $(x + 2y - z + 1) + \\lambda(3x - y - 4z + 3) = 0$.\nStep 2: Through $(1, 1, 1)$: $(1 + 2 - 1 + 1) + \\lambda(3 - 1 - 4 + 3) = 3 + \\lambda = 0 \\Rightarrow \\lambda = -3$.\nStep 3: $x + 2y - z + 1 - 9x + 3y + 12z - 9 = 0 \\Rightarrow -8x + 5y + 11z - 8 = 0 \\Rightarrow 8x - 5y - 11z + 8 = 0$.\nFinal Answer: (C) $8x - 5y - 11z + 8 = 0$\nQuick Tip: Any plane through the intersection of $P_1 = 0$ and $P_2 = 0$ is $P_1 + \\lambda P_2 = 0$.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4x - 3y - 2z + 1 = 0$"
+    },
+    {
+     "key": "B",
+     "text": "$3x - 2y + 2z - 3 = 0$"
+    },
+    {
+     "key": "C",
+     "text": "$8x - 5y - 11z + 8 = 0$"
+    },
+    {
+     "key": "D",
+     "text": "$5x - 4y + 2z - 3 = 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 146,
+   "topic": "Linear Programming",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A manufacturing company produces two items, A and B. Each toy should be processed by two machines, I and II. Machine I can be operated for maximum 10 hours 40 minutes. It takes 20 minutes for an item of A and 15 minutes for B. Machine II can be operated for a total time at 8 hours 20 minutes. It takes 5 minutes for an item A and 8 minutes for B . The profit per item of $A$ is Rs 25 and per item of $B$ is ₹ 18 . The formulation of an L.P.P. to maximize the profit (where $x$ is number of items A and $y$ is the number of item $B$ ) is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Convert times to minutes: Machine I: 10 h 40 min $= 640$ min; Machine II: 8 h 20 min $= 500$ min.\nStep 2: Machine I: $20x + 15y \\leq 640$. Machine II: $5x + 8y \\leq 500$ (both are upper limits on available time). Also $x, y \\geq 0$.\nStep 3: Objective: maximize $z = 25x + 18y$.\nFinal Answer: (B) Maximize $z = 25x + 18y$ subject to $20x + 15y \\leq 640$, $5x + 8y \\leq 500$, $x, y \\geq 0$\nQuick Tip: Machine-time availability always gives '$\\leq$' constraints; keep all times in the same unit.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Maximize $z = 25x + 18y$\nsubject to $20x + 15y \\leq 640$\n$5x + 8y \\geq 500$\n$x, y \\geq 0$"
+    },
+    {
+     "key": "B",
+     "text": "Maximize $z = 25x + 18y$\nsubject to $20x + 15y \\leq 640$\n$5x + 8y \\leq 500$\n$x, y \\geq 0$"
+    },
+    {
+     "key": "C",
+     "text": "Maximize $z = 25x + 18y$\nsubject to $20x + 5y \\leq 8$\n$5x + 8y \\leq 10$\n$x, y \\geq 0$"
+    },
+    {
+     "key": "D",
+     "text": "Maximize $z = 25x + 18y$\nsubject to $4x + 3y \\leq 128$\n$5x + 8y \\geq 500$\n$x, y \\geq 0$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 147,
+   "topic": "Inverse Trigonometric Functions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $y = \\tan^{-1}\\left(\\frac{1}{1 + x + x^{2}}\\right) + \\tan^{-1}\\left(\\frac{1}{x^{2} + 3x + 3}\\right) + \\tan^{-1}\\left(\\frac{1}{x^{2} + 5x + 7}\\right)$\nthen the value of $y'(0)$ is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $1 + x + x^{2} = 1 + x(x + 1)$, $x^{2} + 3x + 3 = 1 + (x + 1)(x + 2)$, $x^{2} + 5x + 7 = 1 + (x + 2)(x + 3)$.\nStep 2: Using $\\tan^{-1}\\frac{v - u}{1 + uv} = \\tan^{-1}v - \\tan^{-1}u$ with $v - u = 1$: $y = [\\tan^{-1}(x + 1) - \\tan^{-1}x] + [\\tan^{-1}(x + 2) - \\tan^{-1}(x + 1)] + [\\tan^{-1}(x + 3) - \\tan^{-1}(x + 2)] = \\tan^{-1}(x + 3) - \\tan^{-1}x$.\nStep 3: $y' = \\frac{1}{1 + (x + 3)^{2}} - \\frac{1}{1 + x^{2}}$, so $y'(0) = \\frac{1}{10} - 1 = -\\frac{9}{10}$.\nFinal Answer: (C) $-\\frac{9}{10}$\nQuick Tip: Write each denominator as $1 + (\\text{consecutive terms})$ to make the sum telescope.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{9}{10}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{1}{10}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{9}{10}$"
+    },
+    {
+     "key": "D",
+     "text": "$-\\frac{1}{10}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 148,
+   "topic": "Trigonometric Equations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $0 \\leq x \\leq \\pi$ and $81^{\\sin^{2}x} + 81^{\\cos^{2}x} = 30$ Then $x$ takes the value",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Let $t = 81^{\\sin^{2}x}$. Then $81^{\\cos^{2}x} = 81^{1 - \\sin^{2}x} = \\frac{81}{t}$, so $t + \\frac{81}{t} = 30 \\Rightarrow t^{2} - 30t + 81 = 0 \\Rightarrow t = 27$ or $3$.\nStep 2: $81^{\\sin^{2}x} = 27 = 81^{3/4} \\Rightarrow \\sin^{2}x = \\frac{3}{4}$; $81^{\\sin^{2}x} = 3 = 81^{1/4} \\Rightarrow \\sin^{2}x = \\frac{1}{4}$.\nStep 3: In $[0, \\pi]$: $\\sin x = \\frac{\\sqrt{3}}{2}$ or $\\frac{1}{2}$, so $x = \\frac{\\pi}{6}, \\frac{\\pi}{3}, \\frac{2\\pi}{3}, \\frac{5\\pi}{6}$. Only option (A) lists values that are all solutions ($\\frac{\\pi}{4}$ and $\\frac{\\pi}{2}$ are not).\nFinal Answer: (A) $\\frac{\\pi}{6}, \\frac{\\pi}{3}$\nQuick Tip: Use $\\sin^{2}x + \\cos^{2}x = 1$ to turn the sum of two exponentials into a quadratic in one of them.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\pi}{6}, \\frac{\\pi}{3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi}{3}, \\frac{\\pi}{4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{5\\pi}{6}, \\frac{\\pi}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{2\\pi}{3}, \\frac{\\pi}{4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 149,
+   "topic": "Differentiation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If $f(x) = 3x^{2} + 2xf'(1) + f''(2)$, then $f(x) = \\ldots\\ldots$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $f'(1)$ and $f''(2)$ are constants. $f'(x) = 6x + 2f'(1)$ and $f''(x) = 6$.\nStep 2: At $x = 1$: $f'(1) = 6 + 2f'(1) \\Rightarrow f'(1) = -6$. Also $f''(2) = 6$.\nStep 3: $f(x) = 3x^{2} + 2x(-6) + 6 = 3x^{2} - 12x + 6$.\nFinal Answer: (C) $3x^{2} - 12x + 6$\nQuick Tip: Treat $f'(a)$, $f''(b)$ appearing in the definition as unknown constants and solve for them.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3x^{2} + 8x + 4$"
+    },
+    {
+     "key": "B",
+     "text": "$3x^{2} + 12x + 12$"
+    },
+    {
+     "key": "C",
+     "text": "$3x^{2} - 12x + 6$"
+    },
+    {
+     "key": "D",
+     "text": "$3x^{2} - 18x + 5$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 150,
+   "topic": "Applications of Derivatives",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The equation of the tangent to the curve $y = be^{-x/a}$ at the point where it crosses the Y axis is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: On the Y axis $x = 0$, so $y = b$: the point is $(0, b)$.\nStep 2: $\\frac{dy}{dx} = -\\frac{b}{a}e^{-x/a}$; at $x = 0$ the slope is $-\\frac{b}{a}$.\nStep 3: Tangent: $y - b = -\\frac{b}{a}x \\Rightarrow \\frac{x}{a} + \\frac{y}{b} = 1$.\nFinal Answer: (B) $\\frac{x}{a} + \\frac{y}{b} = 1$\nQuick Tip: Divide by $b$ to put the tangent in intercept form and match the options.",
+   "marks_correct": 2,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$x + y = ab$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{x}{a} + \\frac{y}{b} = 1$"
+    },
+    {
+     "key": "C",
+     "text": "$ax + by = 1$"
+    },
+    {
+     "key": "D",
+     "text": "$x + y = a + b$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}

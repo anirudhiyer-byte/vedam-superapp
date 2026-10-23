@@ -3,26 +3,26 @@
   "exam": "MHT-CET",
   "subject": "Chemistry",
   "year": 2025,
-  "set_label": "19 Apr · Shift 2 (partial)",
-  "title": "MHT-CET 2025 · Chemistry · 19 Apr · Shift 2 (partial)",
+  "set_label": "19 April · Shift 2",
+  "title": "MHT-CET 2025 · Chemistry · 19 April Shift 2",
   "marks_correct": 1,
   "marks_wrong": 0,
-  "marking_note": "+1 correct · no negative marking · partial paper (only the questions available)",
+  "marking_note": "+1 correct · no negative marking",
   "sort_order": 20,
   "duration_mins": 60,
-  "source_file_id": "1412zGX6h1aiefKD7hupCGarzN5C3IsZ5"
+  "source_file_id": null
  },
  "questions": [
   {
-   "q_no": 1,
-   "topic": "Ionic Equilibrium",
+   "q_no": 51,
+   "topic": "Organic Chemistry Basic Principles",
    "qtype": "mcq",
    "section": null,
-   "stem": "What is the pH of a $0.01\\ \\mathrm{M}$ hydrochloric acid ($\\mathrm{HCl}$) solution?",
+   "stem": "What is IUPAC name of following compound?",
    "correct_key": "B",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "We are given a $0.01\\ \\mathrm{M}$ solution of hydrochloric acid ($\\mathrm{HCl}$). Hydrochloric acid is a strong acid, which means it dissociates completely in water.\nStep 1: Write the dissociation equation\n$$\\mathrm{HCl \\rightarrow H^{+} + Cl^{-}}$$\nSince $\\mathrm{HCl}$ is a strong acid, the concentration of hydrogen ions ($\\mathrm{H^{+}}$) is equal to the concentration of $\\mathrm{HCl}$, which is $0.01\\ \\mathrm{M}$.\nStep 2: Calculate the pH\nThe formula for pH is:\n$$\\mathrm{pH} = -\\log[\\mathrm{H^{+}}]$$\nSubstituting the concentration of hydrogen ions:\n$$\\mathrm{pH} = -\\log(0.01) = -\\log(10^{-2}) = 2$$\nAnswer: The pH of the solution is 2, so the correct answer is option (2).\nQuick Tip: For strong acids like $\\mathrm{HCl}$, the concentration of $\\mathrm{H^{+}}$ is equal to the concentration of the acid.",
+   "solution": "Step 1: Reading the bond-line structure: $\\mathrm{CH_3-CH=CH-C(CH_3)_2-Br}$. The longest chain containing the C=C and the carbon bearing Br has 5 carbons (one of the two methyls on the quaternary carbon is part of the chain).\nStep 2: Number from the end nearer the double bond (it gets priority over the halo and methyl substituents): $\\mathrm{C^1H_3-C^2H=C^3H-C^4(CH_3)(Br)-C^5H_3}$. The double bond is at C-2; Br and a methyl group are on C-4.\nStep 3: Name with prefixes in alphabetical order: 4-Bromo-4-methylpent-2-ene.\nFinal Answer: (B) 4-Bromo-4-methylpent-2-ene\nQuick Tip: A name like 1,1-dimethylbut-... or 4,4-dimethylbut-... means the longest chain was not chosen; a methyl on the end carbon always extends the chain.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -30,36 +30,36 @@
    "options": [
     {
      "key": "A",
-     "text": "$1$"
+     "text": "1-Bromo-1,1-dimethylbut-2-ene"
     },
     {
      "key": "B",
-     "text": "$2$"
+     "text": "4-Bromo-4-methylpent-2-ene"
     },
     {
      "key": "C",
-     "text": "$3$"
+     "text": "2-Bromo-2-methylpent-3-ene"
     },
     {
      "key": "D",
-     "text": "$4$"
+     "text": "4-Bromo-4,4-dimethylbut-2-ene"
     }
    ],
-   "stem_figure": null,
+   "stem_figure": "m25-19apr-s2-q51.png",
    "solution_figure": null,
    "or_stem_figure": null,
    "or_solution_figure": null
   },
   {
-   "q_no": 2,
-   "topic": "Hydrogen",
+   "q_no": 52,
+   "topic": "Ionic Equilibria",
    "qtype": "mcq",
    "section": null,
-   "stem": "Which of the following gases is produced when zinc reacts with dilute hydrochloric acid?",
-   "correct_key": "B",
+   "stem": "What is the value of $K_{sp}$ for saturated solution of $\\mathrm{Ba(OH)_2}$ having pH 12 ?",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "When zinc reacts with dilute hydrochloric acid, the reaction is:\n$$\\mathrm{Zn + 2HCl \\rightarrow ZnCl_2 + H_2}$$\nHydrogen gas ($\\mathrm{H_2}$) is released during this reaction.\nAnswer: The gas produced is hydrogen, so the correct answer is option (2).\nQuick Tip: When a metal reacts with an acid, hydrogen gas is usually produced.",
+   "solution": "Step 1: pH = 12, so pOH = 2 and $[\\mathrm{OH^-}] = 10^{-2}\\ \\mathrm{M}$.\nStep 2: $\\mathrm{Ba(OH)_2 \\rightleftharpoons Ba^{2+} + 2OH^-}$, so $[\\mathrm{Ba^{2+}}] = \\frac{1}{2}[\\mathrm{OH^-}] = 5 \\times 10^{-3}\\ \\mathrm{M}$.\nStep 3: $K_{sp} = [\\mathrm{Ba^{2+}}][\\mathrm{OH^-}]^{2} = (5 \\times 10^{-3})(10^{-2})^{2} = 5 \\times 10^{-7}$\nFinal Answer: (D) $5 \\times 10^{-7}$\nQuick Tip: For an $\\mathrm{M(OH)_2}$ salt, $[\\mathrm{M^{2+}}]$ is half of $[\\mathrm{OH^-}]$; do not use $[\\mathrm{OH^-}]$ for both ions.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -67,19 +67,19 @@
    "options": [
     {
      "key": "A",
-     "text": "Oxygen"
+     "text": "$4 \\times 10^{-4}$"
     },
     {
      "key": "B",
-     "text": "Hydrogen"
+     "text": "$4 \\times 10^{-6}$"
     },
     {
      "key": "C",
-     "text": "Nitrogen"
+     "text": "$5 \\times 10^{-6}$"
     },
     {
      "key": "D",
-     "text": "Carbon dioxide"
+     "text": "$5 \\times 10^{-7}$"
     }
    ],
    "stem_figure": null,
@@ -88,15 +88,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 3,
-   "topic": "Redox Reactions",
+   "q_no": 53,
+   "topic": "Aldehydes Ketones And Carboxylic Acids",
    "qtype": "mcq",
    "section": null,
-   "stem": "Which of the following is an example of a redox reaction?",
-   "correct_key": "B",
+   "stem": "Benzonitrile on reduction with stannous chloride in presence of hydrochloric acid followed by acid hydrolysis forms,",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "A redox reaction involves the transfer of electrons between species. In the reaction:\n$$\\mathrm{2H_2O_2(aq) \\rightarrow 2H_2O(l) + O_2(g)}$$\nHydrogen peroxide ($\\mathrm{H_2O_2}$) undergoes both reduction and oxidation. The oxygen atoms in hydrogen peroxide are reduced and oxidized, respectively, leading to the formation of water and oxygen gas.\nAnswer: The reaction $\\mathrm{2H_2O_2 \\rightarrow 2H_2O + O_2}$ is a redox reaction, so the correct answer is option (2).\nQuick Tip: In a redox reaction, one species is reduced (gains electrons) and another is oxidized (loses electrons).",
+   "solution": "Step 1: This is the Stephen reaction. $\\mathrm{SnCl_2/HCl}$ reduces the nitrile to an imine (as its hydrochloride): $\\mathrm{C_6H_5C{\\equiv}N \\xrightarrow{SnCl_2/HCl} C_6H_5CH=NH}$\nStep 2: Acid hydrolysis of the imine gives the aldehyde: $\\mathrm{C_6H_5CH=NH + H_2O \\xrightarrow{H_3O^+} C_6H_5CHO + NH_3}$\nFinal Answer: (D) Benzaldehyde\nQuick Tip: Stephen reduction: nitrile $\\rightarrow$ aldehyde (same number of carbon atoms).",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -104,19 +104,19 @@
    "options": [
     {
      "key": "A",
-     "text": "$\\mathrm{NaCl}$ dissolving in water"
+     "text": "Benzal chloride"
     },
     {
      "key": "B",
-     "text": "$\\mathrm{2H_2O_2\\,(aq) \\rightarrow 2H_2O\\,(l) + O_2\\,(g)}$"
+     "text": "Benzoyl chloride"
     },
     {
      "key": "C",
-     "text": "$\\mathrm{NaOH}$ dissolving in water"
+     "text": "Benzophenone"
     },
     {
      "key": "D",
-     "text": "$\\mathrm{CaCO_3\\,(s) \\rightarrow CaO\\,(s) + CO_2\\,(g)}$"
+     "text": "Benzaldehyde"
     }
    ],
    "stem_figure": null,
@@ -125,89 +125,15 @@
    "or_solution_figure": null
   },
   {
-   "q_no": 4,
-   "topic": "Structure of Atom",
-   "qtype": "mcq",
-   "section": null,
-   "stem": "Which of the following elements does not have a completely filled outermost shell in its ground state?",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "The electron configuration of each element in its ground state:\n- Neon (Ne): $1s^{2}\\,2s^{2}\\,2p^{6} \\rightarrow$ Complete octet in the outermost shell. - Helium (He): $1s^{2} \\rightarrow$ Complete duet in the outermost shell. - Oxygen (O): $1s^{2}\\,2s^{2}\\,2p^{4} \\rightarrow$ Not completely filled in the 2p orbital (can hold 6 electrons). - Argon (Ar): $1s^{2}\\,2s^{2}\\,2p^{6}\\,3s^{2}\\,3p^{6} \\rightarrow$ Complete octet in the outermost shell.\nAnswer: Oxygen does not have a completely filled outermost shell, so the correct answer is option (3).\nQuick Tip: Elements with a completely filled outermost shell are typically noble gases (except for elements like oxygen, which do not achieve this configuration in their ground state).",
-   "marks_correct": 1,
-   "marks_wrong": 0,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "Neon"
-    },
-    {
-     "key": "B",
-     "text": "Helium"
-    },
-    {
-     "key": "C",
-     "text": "Oxygen"
-    },
-    {
-     "key": "D",
-     "text": "Argon"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 5,
-   "topic": "Chemical Bonding and Molecular Structure",
-   "qtype": "mcq",
-   "section": null,
-   "stem": "Which of the following compounds is an example of an ionic bond?",
-   "correct_key": "C",
-   "correct_value": null,
-   "correct_keys": null,
-   "solution": "An ionic bond is formed when one atom transfers electrons to another atom, resulting in the formation of oppositely charged ions that are held together by electrostatic forces.\n- $\\mathrm{H_2O}$ (water): Covalent bond between hydrogen and oxygen. - $\\mathrm{CO_2}$ (carbon dioxide): Covalent bond between carbon and oxygen. - $\\mathrm{NaCl}$ (sodium chloride): Ionic bond between sodium (Na) and chloride (Cl) ions. - $\\mathrm{Cl_2}$ (chlorine gas): Covalent bond between two chlorine atoms.\nAnswer: $\\mathrm{NaCl}$ is an example of an ionic bond, so the correct answer is option (3).\nQuick Tip: Ionic bonds typically occur between a metal and a non-metal, where electrons are transferred, forming positive and negative ions.",
-   "marks_correct": 1,
-   "marks_wrong": 0,
-   "or_stem": null,
-   "or_solution": null,
-   "options": [
-    {
-     "key": "A",
-     "text": "$\\mathrm{H_2O}$"
-    },
-    {
-     "key": "B",
-     "text": "$\\mathrm{CO_2}$"
-    },
-    {
-     "key": "C",
-     "text": "$\\mathrm{NaCl}$"
-    },
-    {
-     "key": "D",
-     "text": "$\\mathrm{Cl_2}$"
-    }
-   ],
-   "stem_figure": null,
-   "solution_figure": null,
-   "or_stem_figure": null,
-   "or_solution_figure": null
-  },
-  {
-   "q_no": 6,
+   "q_no": 54,
    "topic": "Solutions",
    "qtype": "mcq",
    "section": null,
-   "stem": "Which of the following gases is most soluble in water?",
-   "correct_key": "C",
+   "stem": "Identify from following salts so that the solubility of salt in water decreases with increase in temperature.",
+   "correct_key": "D",
    "correct_value": null,
    "correct_keys": null,
-   "solution": "The solubility of gases in water depends on their chemical nature and the interaction with water molecules. Among the given gases:\n- Oxygen ($\\mathrm{O_2}$) has limited solubility in water. - Nitrogen ($\\mathrm{N_2}$) is less soluble in water because of its nonpolar nature. - Carbon dioxide ($\\mathrm{CO_2}$) is highly soluble in water due to its ability to form carbonic acid ($\\mathrm{H_2CO_3}$) when dissolved. - Hydrogen ($\\mathrm{H_2}$) has limited solubility in water.\nAnswer: Carbon dioxide is most soluble in water, so the correct answer is option (3).\nQuick Tip: Gases like $\\mathrm{CO_2}$ that can react with water are usually more soluble than nonreactive gases like $\\mathrm{N_2}$ and $\\mathrm{O_2}$.",
+   "solution": "Step 1: Solubility rises with temperature when dissolution is endothermic, and falls when dissolution is exothermic (Le Chatelier's principle).\nStep 2: NaBr and $\\mathrm{NaNO_3}$ become more soluble on heating, and NaCl changes very little. Anhydrous $\\mathrm{Na_2SO_4}$ dissolves exothermically, so its solubility decreases as temperature increases (above about $32^\\circ\\mathrm{C}$).\nFinal Answer: (D) $\\mathrm{Na_2SO_4}$\nQuick Tip: Common textbook examples of salts with falling solubility on heating: $\\mathrm{Na_2SO_4}$ and $\\mathrm{Ce_2(SO_4)_3}$.",
    "marks_correct": 1,
    "marks_wrong": 0,
    "or_stem": null,
@@ -215,19 +141,1725 @@
    "options": [
     {
      "key": "A",
-     "text": "Oxygen"
+     "text": "NaBr"
     },
     {
      "key": "B",
-     "text": "Nitrogen"
+     "text": "NaCl"
     },
     {
      "key": "C",
-     "text": "Carbon dioxide"
+     "text": "$\\mathrm{NaNO_3}$"
     },
     {
      "key": "D",
-     "text": "Hydrogen"
+     "text": "$\\mathrm{Na_2SO_4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 55,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following polymers is obtained by condensation polymerisation method?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Condensation polymers form by joining two different functional groups with loss of a small molecule such as water.\nStep 2: Nylon 6,6 forms from hexamethylenediamine and adipic acid with loss of water: $\\mathrm{nH_2N(CH_2)_6NH_2 + nHOOC(CH_2)_4COOH \\rightarrow [-NH(CH_2)_6NHCO(CH_2)_4CO-]_n + 2nH_2O}$. Polythene, polyacrylonitrile and Teflon are addition polymers of alkenes.\nFinal Answer: (B) Nylon 6,6\nQuick Tip: Polyamides (nylons) and polyesters (terylene) are condensation polymers; poly-'alkene' names are addition polymers.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Polythene"
+    },
+    {
+     "key": "B",
+     "text": "Nylon 6,6"
+    },
+    {
+     "key": "C",
+     "text": "Polyacrylonitrile"
+    },
+    {
+     "key": "D",
+     "text": "Teflon"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 56,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For a Galvanic cell consisting zinc electrode and standard hydrogen electrode, $\\mathrm{E^{o}\\left(Zn^{+2}_{(aq)}\\,|\\,Zn_{(s)}\\right) = -0.76\\ V}$\nIdentify the reaction that takes place at positive electrode during working of cell?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $E^{o}$ of zinc ($-0.76$ V) is lower than that of SHE (0.00 V), so zinc is the anode (negative electrode) and SHE is the cathode (positive electrode).\nStep 2: Reduction takes place at the cathode, so at the positive electrode: $\\mathrm{2H^+ + 2e^- \\longrightarrow H_2}$.\nFinal Answer: (D) $\\mathrm{2H^{+}_{(g)} + 2e^- \\longrightarrow H_{2(g)}}$\nQuick Tip: In a galvanic cell the positive electrode is the cathode, where reduction occurs.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{Zn_{(s)} \\longrightarrow Zn^{+2}_{(aq)} + 2e^-}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Zn^{+2}_{(aq)} + 2e^- \\longrightarrow Zn_{(s)}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{H_{2(g)} \\longrightarrow 2H^{+}_{(g)} + 2e^-}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{2H^{+}_{(g)} + 2e^- \\longrightarrow H_{2(g)}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 57,
+   "topic": "Polymers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following polymers is classified as fibre?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Fibres have strong intermolecular forces (hydrogen bonds) that pack the chains closely, giving high tensile strength.\nStep 2: Nylon 6,6 has amide groups that form strong hydrogen bonds between chains, so it is a fibre. Urea formaldehyde resin is a thermosetting polymer, polystyrene is a thermoplastic and neoprene is an elastomer.\nFinal Answer: (A) Nylon 6,6\nQuick Tip: Common fibres: nylon 6,6, nylon 6, terylene (dacron), polyacrylonitrile (orlon).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Nylon 6,6"
+    },
+    {
+     "key": "B",
+     "text": "Urea formaldehyde resin"
+    },
+    {
+     "key": "C",
+     "text": "Polystyrene"
+    },
+    {
+     "key": "D",
+     "text": "Neoprene"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 58,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following is a correct representation of reaction rate for reaction stated below?\n$\\mathrm{N_{2(g)} + 3H_{2(g)} \\rightleftharpoons 2NH_{3(g)}}$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Rate = $-\\frac{1}{a}\\frac{d[\\text{reactant}]}{dt} = +\\frac{1}{b}\\frac{d[\\text{product}]}{dt}$, where $a$, $b$ are stoichiometric coefficients.\nStep 2: For $\\mathrm{N_2 + 3H_2 \\rightarrow 2NH_3}$: rate $= -\\frac{d[\\mathrm{N_2}]}{dt} = -\\frac{1}{3}\\frac{d[\\mathrm{H_2}]}{dt} = \\frac{1}{2}\\frac{d[\\mathrm{NH_3}]}{dt}$\nFinal Answer: (C) $-\\frac{d[\\mathrm{N_2}]}{dt} = -\\frac{1}{3}\\frac{d[\\mathrm{H_2}]}{dt} = \\frac{1}{2}\\frac{d[\\mathrm{NH_3}]}{dt}$\nQuick Tip: Reactant terms carry a minus sign, product terms a plus sign, and each is divided by its coefficient.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{d[\\mathrm{N_2}]}{dt} = -3\\frac{d[\\mathrm{H_2}]}{dt} = 2\\frac{d[\\mathrm{NH_3}]}{dt}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{d[\\mathrm{N_2}]}{dt} = -\\frac{1}{3}\\frac{d[\\mathrm{H_2}]}{dt} = \\frac{1}{2}\\frac{d[\\mathrm{NH_3}]}{dt}$"
+    },
+    {
+     "key": "C",
+     "text": "$-\\frac{d[\\mathrm{N_2}]}{dt} = -\\frac{1}{3}\\frac{d[\\mathrm{H_2}]}{dt} = \\frac{1}{2}\\frac{d[\\mathrm{NH_3}]}{dt}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{d[\\mathrm{N_2}]}{dt} = \\frac{1}{3}\\frac{d[\\mathrm{H_2}]}{dt} = -\\frac{1}{2}\\frac{d[\\mathrm{NH_3}]}{dt}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 59,
+   "topic": "Hydrogen",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following methods is used to prepare dihydrogen with purity greater than 99.5 ?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Pure water is a very poor conductor, so it cannot be electrolysed directly; other methods give hydrogen mixed with impurities ($\\mathrm{CO}$, $\\mathrm{CO_2}$, hydrocarbons etc.).\nStep 2: High-purity (greater than $99.5\\%$) dihydrogen is obtained by electrolysing warm aqueous barium hydroxide solution between nickel electrodes; $\\mathrm{H_2}$ is liberated at the cathode.\nFinal Answer: (D) Electrolysis of warm $\\mathrm{Ba(OH)_2}$ solution\nQuick Tip: Remember the pairing 'warm $\\mathrm{Ba(OH)_2}$ + Ni electrodes = $>99.5\\%$ pure $\\mathrm{H_2}$'.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Electrolysis of pure water"
+    },
+    {
+     "key": "B",
+     "text": "Action of NaOH on zinc"
+    },
+    {
+     "key": "C",
+     "text": "From hydrocarbons"
+    },
+    {
+     "key": "D",
+     "text": "Electrolysis of warm $\\mathrm{Ba(OH)_2}$ solution"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 60,
+   "topic": "Aldehydes Ketones And Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Cyclohexene on oxidation with $\\mathrm{KMnO_4}$ in dil. $\\mathrm{H_2SO_4}$ forms",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Acidified $\\mathrm{KMnO_4}$ is a strong oxidant that cleaves the C=C bond; each =CH- carbon becomes a -COOH group.\nStep 2: Since the double bond is in a ring, cleavage opens the ring into one chain with two -COOH groups: $\\mathrm{C_6H_{10} + 4[O] \\xrightarrow{KMnO_4/H^+} HOOC(CH_2)_4COOH}$ (hexanedioic acid).\nFinal Answer: (D) Adipic acid\nQuick Tip: Oxidative cleavage of a cyclic alkene gives a single dicarboxylic acid (or diketone), not two molecules.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Cyclohexanol"
+    },
+    {
+     "key": "B",
+     "text": "Cyclohexanone"
+    },
+    {
+     "key": "C",
+     "text": "Hexanoic acid"
+    },
+    {
+     "key": "D",
+     "text": "Adipic acid"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 61,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the enthalpy change of vaporisation of benzene if 13 gram of benzene vaporised by supplying 5.1 kJ of heat.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Molar mass of benzene $\\mathrm{C_6H_6} = 6(12) + 6(1) = 78\\ \\mathrm{g\\,mol^{-1}}$, so moles $= \\frac{13}{78} = \\frac{1}{6}\\ \\mathrm{mol}$.\nStep 2: $\\Delta_{vap}H = \\frac{\\text{heat supplied}}{\\text{moles}} = \\frac{5.1}{1/6} = 5.1 \\times 6 = 30.6\\ \\mathrm{kJ\\,mol^{-1}}$\nFinal Answer: (C) $30.6\\ \\mathrm{kJ\\,mol^{-1}}$\nQuick Tip: Molar enthalpy = heat absorbed divided by moles, not by grams.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$43.5\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$35.3\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$30.6\\ \\mathrm{kJ\\,mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$40.7\\ \\mathrm{kJ\\,mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 62,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The volume of simple unit cell is $x \\times 10^{-23}\\ \\mathrm{cm^3}$. Calculate the value of $x$ if volume occupied by a particle in it is $2.1 \\times 10^{-23}\\ \\mathrm{cm^3}$.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: A simple cubic cell has 1 particle, with $a = 2r$. Packing efficiency $= \\frac{\\frac{4}{3}\\pi r^{3}}{(2r)^{3}} = \\frac{\\pi}{6} = 0.524$\nStep 2: Volume of unit cell $= \\frac{\\text{volume occupied by particle}}{0.524} = \\frac{2.1 \\times 10^{-23}}{0.524} = 4.0 \\times 10^{-23}\\ \\mathrm{cm^3}$\nStep 3: So $x = 4.0$.\nFinal Answer: (C) 4.0\nQuick Tip: Packing efficiencies: simple cubic $52.4\\%$, bcc $68\\%$, fcc/ccp $74\\%$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "3.0"
+    },
+    {
+     "key": "B",
+     "text": "3.5"
+    },
+    {
+     "key": "C",
+     "text": "4.0"
+    },
+    {
+     "key": "D",
+     "text": "4.5"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 63,
+   "topic": "Alcohols Phenols And Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is IUPAC name of the following compound?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The structure is a cyclobutane ring with an $\\mathrm{-OCH_3}$ group on one carbon and two $\\mathrm{-CH_3}$ groups on the opposite (third) ring carbon. It is an ether named as a methoxy-substituted cycloalkane.\nStep 2: Ring numbering must give the lowest locant set. Starting at the dimethyl carbon gives $\\{1, 1, 3\\}$; starting at the methoxy carbon gives $\\{1, 3, 3\\}$. At the first point of difference, $\\{1, 1, 3\\}$ is lower, so the methyl carbon is C-1.\nStep 3: Name with prefixes in alphabetical order: 3-Methoxy-1,1-dimethylcyclobutane.\nFinal Answer: (B) 3-Methoxy-1,1-dimethylcyclobutane\nQuick Tip: The lowest-locant rule is applied before alphabetical order; alphabetical order decides only when the locant sets tie.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1-Methoxy-3,3-dimethylcyclobutane"
+    },
+    {
+     "key": "B",
+     "text": "3-Methoxy-1,1-dimethylcyclobutane"
+    },
+    {
+     "key": "C",
+     "text": "3,3-dimethylcyclobutoxymethane"
+    },
+    {
+     "key": "D",
+     "text": "1-methoxy-3-isopropyl butane"
+    }
+   ],
+   "stem_figure": "m25-19apr-s2-q63.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 64,
+   "topic": "Ionic Equilibria",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the pH of buffer solution prepared by mixing 0.01 M weak acid and 0.02 M salt of weak acid with strong base? $(\\mathrm{pK_a} = 4.680)$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Henderson equation for an acidic buffer: $\\mathrm{pH} = \\mathrm{pK_a} + \\log\\frac{[\\text{salt}]}{[\\text{acid}]}$\nStep 2: $\\mathrm{pH} = 4.680 + \\log\\frac{0.02}{0.01} = 4.680 + \\log 2 = 4.680 + 0.301 = 4.981$\nFinal Answer: (C) 4.981\nQuick Tip: When salt is more concentrated than acid, pH is above $\\mathrm{pK_a}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4.379"
+    },
+    {
+     "key": "B",
+     "text": "2.379"
+    },
+    {
+     "key": "C",
+     "text": "4.981"
+    },
+    {
+     "key": "D",
+     "text": "2.981"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 65,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the entropy change of surrounding if 2 moles of $\\mathrm{H_2}$ and 1 mole of $\\mathrm{O_2}$ gas combine to form 2 moles of liquid water by releasing 525 kJ heat to surrounding at constant pressure and at 300 K .",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Heat released by the system is absorbed by the surroundings: $q_{surr} = +525\\ \\mathrm{kJ} = 525000\\ \\mathrm{J}$.\nStep 2: $\\Delta S_{surr} = \\frac{q_{surr}}{T} = \\frac{525000}{300} = 1750\\ \\mathrm{J\\,K^{-1}}$\nFinal Answer: (B) $1750\\ \\mathrm{J\\,K^{-1}}$\nQuick Tip: $\\Delta S_{surr} = -\\frac{\\Delta H_{sys}}{T}$; an exothermic reaction increases the entropy of the surroundings.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1700\\ \\mathrm{J\\,K^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$1750\\ \\mathrm{J\\,K^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$1800\\ \\mathrm{J\\,K^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$1650\\ \\mathrm{J\\,K^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 66,
+   "topic": "Organic Chemistry Basic Principles",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the bond line formula of Neopentane.",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Neopentane is 2,2-dimethylpropane, $\\mathrm{C(CH_3)_4}$: one central carbon bonded to four methyl groups.\nStep 2: In bond-line form this is a cross (X) with four lines meeting at the central carbon. Option (A) is isopentane (2-methylbutane), (B) is 2,3-dimethylbutane and (D) is n-pentane.\nFinal Answer: (C) the cross-shaped structure, $\\mathrm{C(CH_3)_4}$\nQuick Tip: Count the line ends and junctions: neopentane has 5 carbons with one carbon joined to four others.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "",
+     "figure": "m25-19apr-s2-q66-optA.png"
+    },
+    {
+     "key": "B",
+     "text": "",
+     "figure": "m25-19apr-s2-q66-optB.png"
+    },
+    {
+     "key": "C",
+     "text": "",
+     "figure": "m25-19apr-s2-q66-optC.png"
+    },
+    {
+     "key": "D",
+     "text": "",
+     "figure": "m25-19apr-s2-q66-optD.png"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 67,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the number of faraday required to form $1\\ \\mathrm{mol\\,H_2}$ by reduction of $\\mathrm{H^+}$ ions?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Cathode reaction: $\\mathrm{2H^+ + 2e^- \\longrightarrow H_2}$\nStep 2: 1 mol $\\mathrm{H_2}$ needs 2 mol electrons, and 1 mol electrons = 1 faraday, so 2 F are required.\nFinal Answer: (B) 2\nQuick Tip: Faradays needed = moles of product × electrons transferred per formula unit.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4"
+    },
+    {
+     "key": "B",
+     "text": "2"
+    },
+    {
+     "key": "C",
+     "text": "0.5"
+    },
+    {
+     "key": "D",
+     "text": "1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 68,
+   "topic": "Stereochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the name of method used for three dimensional representation of molecule as follows.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The drawing is a cross: the chiral carbon is at the intersection, vertical bonds ($\\mathrm{COOH}$, $\\mathrm{CH_3}$) point away from the viewer and horizontal bonds (H, OH) point towards the viewer.\nStep 2: This cross representation of lactic acid is the Fischer projection formula. Wedge formulas use solid/dashed wedges, and Newman/Sawhorse formulas show conformations along a C-C bond.\nFinal Answer: (B) Fisher projection formula\nQuick Tip: Plain cross with the stereocentre at the crossing = Fischer projection.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Wedge formula"
+    },
+    {
+     "key": "B",
+     "text": "Fisher projection formula"
+    },
+    {
+     "key": "C",
+     "text": "Newman projection formula"
+    },
+    {
+     "key": "D",
+     "text": "Sawhorse formula"
+    }
+   ],
+   "stem_figure": "m25-19apr-s2-q68.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 69,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the correct molecular formula of 'Oleum' from following.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Oleum (fuming sulphuric acid) is formed when $\\mathrm{SO_3}$ dissolves in concentrated sulphuric acid: $\\mathrm{H_2SO_4 + SO_3 \\rightarrow H_2S_2O_7}$ (pyrosulphuric acid).\nStep 2: $\\mathrm{H_2S_2O_3}$ is thiosulphuric acid, $\\mathrm{H_2S_2O_5}$ is pyrosulphurous acid and $\\mathrm{H_2S_2O_8}$ is peroxodisulphuric acid.\nFinal Answer: (B) $\\mathrm{H_2S_2O_7}$\nQuick Tip: In the contact process $\\mathrm{SO_3}$ is absorbed in $\\mathrm{H_2SO_4}$ to give oleum, which is then diluted.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{H_2S_2O_3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{H_2S_2O_7}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{H_2S_2O_5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{H_2S_2O_8}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 70,
+   "topic": "Redox Reactions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is a redox reaction?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: A redox reaction involves a change in oxidation numbers. (A), (B) and (C) are double-decomposition reactions in which every element keeps its oxidation number.\nStep 2: In (D), Zn changes from 0 to +2 (oxidised) and Ag changes from +1 in AgCN to 0 (reduced).\nFinal Answer: (D) $\\mathrm{Zn + 2AgCN \\longrightarrow 2Ag + Zn(CN)_2}$\nQuick Tip: A free element appearing on one side and combined on the other is a quick sign of a redox reaction.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{NaCl + KNO_3 \\longrightarrow NaNO_3 + KCl}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{Mg(OH)_2 + 2NH_4Cl \\longrightarrow MgCl_2 + 2NH_4OH}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CaC_2O_4 + 2HCl \\longrightarrow CaCl_2 + H_2C_2O_4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{Zn + 2AgCN \\longrightarrow 2Ag + Zn(CN)_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 71,
+   "topic": "Aldehydes Ketones And Carboxylic Acids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the product ' B ' in the following sequence of reactions.\nMethyl magnesium bromide $\\xrightarrow{\\mathrm{CdCl_2}}$ A $\\xrightarrow{\\mathrm{CH_3COCl}}$ B",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\mathrm{2CH_3MgBr + CdCl_2 \\rightarrow (CH_3)_2Cd + 2Mg(Br)Cl}$, so A is dimethyl cadmium.\nStep 2: Dialkyl cadmium converts acid chlorides into ketones: $\\mathrm{(CH_3)_2Cd + 2CH_3COCl \\rightarrow 2CH_3COCH_3 + CdCl_2}$. So B is acetone (propanone).\nFinal Answer: (B) Propanone\nQuick Tip: R of the cadmium reagent + RCO of the acid chloride = ketone R-CO-R'.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Dimethyl cadmium"
+    },
+    {
+     "key": "B",
+     "text": "Propanone"
+    },
+    {
+     "key": "C",
+     "text": "Butanone"
+    },
+    {
+     "key": "D",
+     "text": "Propanal"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 72,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the number of $>\\mathrm{C=C}<$ bonds present in a linolenic acid molecule?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Linolenic acid is an 18-carbon unsaturated fatty acid, $\\mathrm{C_{17}H_{29}COOH}$ (octadeca-9,12,15-trienoic acid).\nStep 2: '-trienoic' means it has three C=C double bonds. (Oleic acid has one and linoleic acid has two.)\nFinal Answer: (D) Three\nQuick Tip: Oleic (1), linoleic (2), linolenic (3) C=C bonds; all are $\\mathrm{C_{18}}$ acids.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Zero"
+    },
+    {
+     "key": "B",
+     "text": "One"
+    },
+    {
+     "key": "C",
+     "text": "Two"
+    },
+    {
+     "key": "D",
+     "text": "Three"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 73,
+   "topic": "Haloalkanes And Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which among the following is an allylic halide?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: In an allylic halide the halogen is on an $sp^{3}$ carbon next to a C=C double bond.\nStep 2: 3-Bromopropene is $\\mathrm{CH_2=CH-CH_2Br}$: Br is on the carbon adjacent to the double bond, so it is allylic. 1- and 2-Bromopropene are vinylic halides (Br on a double-bonded carbon); in 4-bromobut-1-ene, $\\mathrm{CH_2=CH-CH_2-CH_2Br}$, Br is two carbons away (homoallylic).\nFinal Answer: (C) 3-Bromopropene\nQuick Tip: Vinylic = X on the C=C carbon; allylic = X on the next carbon.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1-Bromopropene"
+    },
+    {
+     "key": "B",
+     "text": "2-Bromopropene"
+    },
+    {
+     "key": "C",
+     "text": "3-Bromopropene"
+    },
+    {
+     "key": "D",
+     "text": "4-Bromobut-1-ene"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 74,
+   "topic": "Haloalkanes And Haloarenes",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When tert butyl bromide is heated with silver fluoride the major product obtained is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Heating an alkyl bromide with AgF is the Swarts reaction; Br is replaced by F at the same carbon and the carbon skeleton is unchanged.\nStep 2: $\\mathrm{(CH_3)_3C-Br + AgF \\xrightarrow{\\Delta} (CH_3)_3C-F + AgBr}$. $\\mathrm{(CH_3)_3CF}$ is 2-fluoro-2-methylpropane.\nFinal Answer: (B) 2-Fluoro-2-methylpropane\nQuick Tip: Swarts reaction (AgF, $\\mathrm{Hg_2F_2}$, $\\mathrm{CoF_2}$, $\\mathrm{SbF_3}$) is the standard way to make alkyl fluorides.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1-Fluoro-2-methylpropane"
+    },
+    {
+     "key": "B",
+     "text": "2-Fluoro-2-methylpropane"
+    },
+    {
+     "key": "C",
+     "text": "1-Flurobutane"
+    },
+    {
+     "key": "D",
+     "text": "2-Flurobutane"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 75,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the molal elevation constant of solvent if boiling point of 0.12 m solution is 319.8 K (Boling point of solvent $= 319.5\\ \\mathrm{K}$ )",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\Delta T_b = 319.8 - 319.5 = 0.3\\ \\mathrm{K}$\nStep 2: $\\Delta T_b = K_b m \\Rightarrow K_b = \\frac{0.3}{0.12} = 2.5\\ \\mathrm{K\\,kg\\,mol^{-1}}$\nFinal Answer: (C) $2.5\\ \\mathrm{K\\,kg\\,mol^{-1}}$\nQuick Tip: $K_b$ is the boiling-point elevation of a 1 molal solution.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2.0\\ \\mathrm{K\\,kg\\,mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$3.0\\ \\mathrm{K\\,kg\\,mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$2.5\\ \\mathrm{K\\,kg\\,mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$3.5\\ \\mathrm{K\\,kg\\,mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 76,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following pairs of carbohydrates produce equal quantity of glucose on hydrolysis per mole?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Hydrolysis products per mole: sucrose $\\rightarrow$ 1 glucose + 1 fructose; lactose $\\rightarrow$ 1 glucose + 1 galactose; maltose $\\rightarrow$ 2 glucose; raffinose $\\rightarrow$ 1 glucose + 1 fructose + 1 galactose.\nStep 2: Sucrose and lactose each give 1 mol glucose per mole, so they give equal quantities. The other pairs give 1 and 2 mol.\nFinal Answer: (A) Sucrose and Lactose\nQuick Tip: Maltose is the only common disaccharide made of two glucose units.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Sucrose and Lactose"
+    },
+    {
+     "key": "B",
+     "text": "Lactose and Maltose"
+    },
+    {
+     "key": "C",
+     "text": "Sucrose and Maltose"
+    },
+    {
+     "key": "D",
+     "text": "Raffinose and Maltose"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 77,
+   "topic": "Chemical Bonding",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following molecules has a regular geometry as expected?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Geometry is regular only when the central atom has no lone pairs (all electron pairs are bond pairs).\nStep 2: $\\mathrm{SiCl_4}$ has 4 bond pairs and 0 lone pairs, so it is a regular tetrahedron ($109.5^\\circ$). $\\mathrm{SF_4}$ (4 bp + 1 lp, see-saw), $\\mathrm{BrF_5}$ (5 bp + 1 lp, square pyramidal) and $\\mathrm{XeF_4}$ (4 bp + 2 lp, square planar) are distorted from their expected electron-pair geometry.\nFinal Answer: (A) $\\mathrm{SiCl_4}$\nQuick Tip: Lone pairs on the central atom distort the shape from the regular VSEPR geometry.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{SiCl_4}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{SF_4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{BrF_5}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{XeF_4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 78,
+   "topic": "Amines",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the loss in molar mass when a primary amine is obtained by Hofmann degradation of amide?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Hofmann bromamide degradation: $\\mathrm{RCONH_2 + Br_2 + 4NaOH \\rightarrow RNH_2 + Na_2CO_3 + 2NaBr + 2H_2O}$\nStep 2: The amine $\\mathrm{RNH_2}$ differs from the amide $\\mathrm{RCONH_2}$ by one CO group, so the loss in molar mass $= 12 + 16 = 28\\ \\mathrm{g\\,mol^{-1}}$.\nFinal Answer: (C) $28\\ \\mathrm{g\\,mol^{-1}}$\nQuick Tip: Hofmann degradation removes one carbon (as CO, leaving as carbonate) from the chain.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$32\\ \\mathrm{g\\,mol^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$14\\ \\mathrm{g\\,mol^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$28\\ \\mathrm{g\\,mol^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$30\\ \\mathrm{g\\,mol^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 79,
+   "topic": "States Of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following is true according to Gay-Lussac's law?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Gay-Lussac's (pressure-temperature) law: at constant volume, the pressure of a fixed mass of gas is directly proportional to its absolute temperature, $P \\propto T$, i.e. $\\frac{P}{T} =$ constant.\nStep 2: (A) is Charles' law and (D) is Boyle's law; (B) is a form of Boyle's law, not Gay-Lussac's law.\nFinal Answer: (C) $\\frac{\\mathrm{P}}{\\mathrm{T}} =$ constant at constant volume and fixed mass of gas.\nQuick Tip: Boyle: T fixed; Charles: P fixed; Gay-Lussac: V fixed.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\mathrm{V}}{\\mathrm{T}} =$ constant at constant pressure and for fixed mass of gas."
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\mathrm{P}}{\\mathrm{d}} =$ constant at constant temperature and fixed mass of gas."
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\mathrm{P}}{\\mathrm{T}} =$ constant at constant volume and fixed mass of gas."
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{P \\times V} =$ constant at constant temperature and for fixed mass of gas."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 80,
+   "topic": "Surface Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify example of sorption from following.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Sorption is the simultaneous occurrence of adsorption and absorption.\nStep 2: When chalk is dipped in ink, the coloured dye is held on the surface of the chalk (adsorption) while the solvent soaks deep into it (absorption). So both processes occur together. The other options are examples of adsorption only.\nFinal Answer: (B) Chalk is dipped in ink.\nQuick Tip: Chalk in ink is the standard textbook example of sorption.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Charcoal is added to methylene blue solution."
+    },
+    {
+     "key": "B",
+     "text": "Chalk is dipped in ink."
+    },
+    {
+     "key": "C",
+     "text": "Hydrogen gas is passed over platinum"
+    },
+    {
+     "key": "D",
+     "text": "Oxygen gas is passed over finely divided nickel."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 81,
+   "topic": "Biomolecules",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following carbohydrates produces double quantity of glucose on hydrolysis per mole as compared with sucrose?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Sucrose on hydrolysis gives 1 mol glucose (+ 1 mol fructose) per mole.\nStep 2: Maltose gives 2 mol glucose per mole, double that of sucrose. Lactose (glucose + galactose), raffinose (glucose + fructose + galactose) and stachyose (glucose + fructose + 2 galactose) each give only 1 mol glucose.\nFinal Answer: (D) Maltose\nQuick Tip: Raffinose and stachyose are built on a sucrose unit, so they too give only one glucose.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Lactose"
+    },
+    {
+     "key": "B",
+     "text": "Raffinose"
+    },
+    {
+     "key": "C",
+     "text": "Stachyose"
+    },
+    {
+     "key": "D",
+     "text": "Maltose"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 82,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In ionic solid, anions are arranged in ccp array and cations occupy $1/3$ tetrahedral voids. What is the formula of ionic compound?\n[Consider $\\mathrm{A}$ = cation; $\\mathrm{B}$ = anion]",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Let the number of anions (B) in the ccp array be N. The number of tetrahedral voids is 2N.\nStep 2: Cations (A) occupy $\\frac{1}{3}$ of them: number of A $= \\frac{1}{3} \\times 2N = \\frac{2N}{3}$\nStep 3: A : B $= \\frac{2N}{3} : N = 2 : 3$, so the formula is $\\mathrm{A_2B_3}$.\nFinal Answer: (B) $\\mathrm{A_2B_3}$\nQuick Tip: In ccp/hcp, octahedral voids = N and tetrahedral voids = 2N.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{AB_3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{A_2B_3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{A_3B_2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{AB_4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 83,
+   "topic": "Alcohols Phenols And Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following is NOT dihydric phenol?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Catechol (benzene-1,2-diol), resorcinol (benzene-1,3-diol) and hydroquinone (benzene-1,4-diol) each have two -OH groups, so they are dihydric phenols.\nStep 2: Phloroglucinol is benzene-1,3,5-triol with three -OH groups, so it is a trihydric phenol.\nFinal Answer: (B) Phloroglucinol\nQuick Tip: Trihydric phenols: pyrogallol (1,2,3) and phloroglucinol (1,3,5).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Catechol"
+    },
+    {
+     "key": "B",
+     "text": "Phloroglucinol"
+    },
+    {
+     "key": "C",
+     "text": "Resorcinol"
+    },
+    {
+     "key": "D",
+     "text": "Hydroquinone"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 84,
+   "topic": "Solutions",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Calculate the concentration of an aqueous solution of non electrolyte at 300 K if its osmotic pressure is 12 atm .\n$\\left[\\mathrm{R = 0.0821\\ atm\\,dm^{3}\\,K^{-1}\\,mol^{-1}}\\right]$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Osmotic pressure $\\pi = CRT \\Rightarrow C = \\frac{\\pi}{RT}$\nStep 2: $C = \\frac{12}{0.0821 \\times 300} = \\frac{12}{24.63} = 0.487\\ \\mathrm{M}$\nFinal Answer: (C) 0.487 M\nQuick Tip: With R in $\\mathrm{atm\\,dm^{3}\\,K^{-1}\\,mol^{-1}}$, $\\pi/RT$ gives concentration directly in $\\mathrm{mol\\,dm^{-3}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "0.371 M"
+    },
+    {
+     "key": "B",
+     "text": "0.615 M"
+    },
+    {
+     "key": "C",
+     "text": "0.487 M"
+    },
+    {
+     "key": "D",
+     "text": "0.726 M"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 85,
+   "topic": "Hydrocarbons",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which from following compounds is least soluble in water at STP?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Solubility in water depends on the ability to form hydrogen bonds with water molecules.\nStep 2: Ethanol, methanol and methylamine all form hydrogen bonds with water (via -OH or $\\mathrm{-NH_2}$) and are highly soluble. $\\mathrm{CH_4}$ is non-polar and cannot form hydrogen bonds, so it is the least soluble.\nFinal Answer: (D) $\\mathrm{CH_4}$\nQuick Tip: 'Like dissolves like': non-polar hydrocarbons are nearly insoluble in water.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{C_2H_5OH}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CH_3OH}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CH_3NH_2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{CH_4}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 86,
+   "topic": "p-Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following statements is correct about $\\mathrm{O_2}$ and $\\mathrm{O_3}$ molecule?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\mathrm{3O_2(g) \\rightarrow 2O_3(g)}$, $\\Delta H = +142\\ \\mathrm{kJ\\,mol^{-1}}$ (per mole $\\mathrm{O_3}$). The formation of ozone is endothermic, so statement (B) is correct.\nStep 2: (A) is wrong because $\\mathrm{O_3}$ is diamagnetic. (C) is wrong because 3 mol gas gives 2 mol gas, so entropy decreases. (D) is wrong because, being endothermic, $\\mathrm{O_3}$ is less stable than $\\mathrm{O_2}$ and decomposes to it.\nFinal Answer: (B) The enthalpy change during the formation of $\\mathrm{O_3}$ from $\\mathrm{O_2}$ is positive\nQuick Tip: Ozone formation has $\\Delta H > 0$ and $\\Delta S < 0$, so $\\Delta G > 0$: it needs silent electric discharge.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{O_2}$ and $\\mathrm{O_3}$ are paramagnetic"
+    },
+    {
+     "key": "B",
+     "text": "The enthalpy change during the formation of $\\mathrm{O_3}$ from $\\mathrm{O_2}$ is positive"
+    },
+    {
+     "key": "C",
+     "text": "The entropy change in the formation of $\\mathrm{O_3}$ from $\\mathrm{O_2}$ is positive"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{O_3}$ is more stable than $\\mathrm{O_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 87,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the total number of donor atoms present in Tetracyanonickelate(II) ion?",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Tetracyanonickelate(II) is $\\mathrm{[Ni(CN)_4]^{2-}}$, with four cyanide ligands.\nStep 2: Each $\\mathrm{CN^-}$ is monodentate and donates through its carbon atom, so there are 4 donor atoms (coordination number 4).\nFinal Answer: (B) 4\nQuick Tip: Number of donor atoms = coordination number = (number of ligands × denticity).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "6"
+    },
+    {
+     "key": "D",
+     "text": "1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 88,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Half life of a first order reaction is 900 minute at 400 K , find its half life at 300 K ? $\\left(\\frac{\\mathrm{E_a}}{2.303\\mathrm{R}} = 1.3056 \\times 10^{3}\\right)$",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Arrhenius: $\\log\\frac{k_{400}}{k_{300}} = \\frac{E_a}{2.303R}\\left(\\frac{1}{300} - \\frac{1}{400}\\right) = 1305.6 \\times \\frac{1}{1200} = 1.088$\nStep 2: $\\frac{k_{400}}{k_{300}} = 10^{1.088} \\approx 12.25$\nStep 3: For first order, $t_{1/2} = \\frac{0.693}{k}$, so $t_{1/2}(300) = t_{1/2}(400) \\times \\frac{k_{400}}{k_{300}} = 900 \\times 12.25 = 11025.0$ minute.\nFinal Answer: (B) 11025.0 minute\nQuick Tip: Half-life of a first-order reaction is inversely proportional to k, so a lower temperature means a longer half-life.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5512.5 minute"
+    },
+    {
+     "key": "B",
+     "text": "11025.0 minute"
+    },
+    {
+     "key": "C",
+     "text": "8314.3 minute"
+    },
+    {
+     "key": "D",
+     "text": "2303.1 minute"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 89,
+   "topic": "Green Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which solvent from following is used in order to avoid creation of waste and pollution of air?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: A principle of green chemistry is to use safer solvents; chlorinated solvents are toxic, volatile and pollute air and water.\nStep 2: Water is non-toxic, non-flammable, cheap and does not pollute, so it is the preferred green solvent.\nFinal Answer: (D) $\\mathrm{H_2O}$\nQuick Tip: Green solvents: water, supercritical $\\mathrm{CO_2}$, ionic liquids.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{CH_2Cl_3}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{CHCl_3}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CCl_4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{H_2O}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 90,
+   "topic": "Electrochemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For the cell,\n$^{\\ominus}\\mathrm{Zn_{(s)}\\,|\\,Zn^{+2}(1M)\\,||\\,Ag^{+1}(1M)\\,|\\,Ag_{(s)}}^{\\oplus}$\nIf concentration of $\\mathrm{Zn^{+2}}$ decreases to 0.1 M at 298 K , then emf of cell",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Cell reaction: $\\mathrm{Zn + 2Ag^+ \\rightarrow Zn^{2+} + 2Ag}$, $n = 2$. Nernst equation: $E = E^{o} - \\frac{0.0592}{2}\\log\\frac{[\\mathrm{Zn^{2+}}]}{[\\mathrm{Ag^+}]^{2}}$\nStep 2: Initially $[\\mathrm{Zn^{2+}}] = [\\mathrm{Ag^+}] = 1$ M, so $E = E^{o}$.\nStep 3: With $[\\mathrm{Zn^{2+}}] = 0.1$ M: $E = E^{o} - 0.0296 \\log 0.1 = E^{o} + 0.0296$ V. The emf increases by 0.0296 V.\nFinal Answer: (C) increase by 0.0296 V\nQuick Tip: Lowering the product-ion concentration (anode ion) pushes the reaction forward and raises the emf.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "increase by 0.0592 V"
+    },
+    {
+     "key": "B",
+     "text": "decrease by 0.0592 V"
+    },
+    {
+     "key": "C",
+     "text": "increase by 0.0296 V"
+    },
+    {
+     "key": "D",
+     "text": "decrease by 0.0296 V"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 91,
+   "topic": "Alcohols Phenols And Ethers",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the product ' B ' in the following series of reactions.\nChlorobenzene $\\xrightarrow[\\text{ii) } \\mathrm{H_3O^+}]{\\text{i) } \\mathrm{NaOH, 623\\ K/150\\ atm}}$ A $\\xrightarrow{\\mathrm{Br_2}\\ \\text{water}}$ B",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Dow's process: $\\mathrm{C_6H_5Cl + NaOH \\xrightarrow{623\\ K,\\ 150\\ atm} C_6H_5ONa \\xrightarrow{H_3O^+} C_6H_5OH}$. So A is phenol.\nStep 2: The -OH group strongly activates the ring; with bromine water (polar solvent) all ortho and para positions are brominated: $\\mathrm{C_6H_5OH + 3Br_2 \\rightarrow C_6H_2Br_3OH + 3HBr}$ (white precipitate).\nFinal Answer: (D) 2,4,6-tribromophenol\nQuick Tip: $\\mathrm{Br_2}$ water gives the tribromo product; $\\mathrm{Br_2}$ in $\\mathrm{CS_2}$/$\\mathrm{CHCl_3}$ at low temperature gives mono-bromophenols.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Phenol"
+    },
+    {
+     "key": "B",
+     "text": "o-Bromophenol"
+    },
+    {
+     "key": "C",
+     "text": "p-Bromophenol"
+    },
+    {
+     "key": "D",
+     "text": "2,4,6-tribromophenol"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 92,
+   "topic": "Solid State",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following statements is NOT correct regarding voids in lattice structure?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: In a close-packed structure of N spheres there are 2N tetrahedral voids and N octahedral voids, i.e. two tetrahedral voids and one octahedral void per atom.\nStep 2: A tetrahedral void is formed by 4 spheres and an octahedral void by 6 spheres, so (A), (B), (C) are correct. (D) says one octahedral void per two atoms, which is wrong (it is one per atom).\nFinal Answer: (D) There is one octahedral void associated with two atoms.\nQuick Tip: Octahedral voids = N, tetrahedral voids = 2N.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Four spheres are involved in the formation of a tetrahedral void."
+    },
+    {
+     "key": "B",
+     "text": "The octahedral void is surrounded by six spheres."
+    },
+    {
+     "key": "C",
+     "text": "There are two tetrahedral voids associated with each atom."
+    },
+    {
+     "key": "D",
+     "text": "There is one octahedral void associated with two atoms."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 93,
+   "topic": "Coordination Compounds",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify pair of complexes that exhibits solvate isomerism.",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Solvate (hydrate) isomers differ in whether solvent (water) molecules are coordinated ligands or lattice molecules outside the sphere.\nStep 2: In (A), one $\\mathrm{H_2O}$ moves from the coordination sphere to the lattice while one $\\mathrm{Cl^-}$ moves inside: these are hydrate isomers. (B) shows ionisation isomerism, (C) coordination isomerism and (D) linkage isomerism.\nFinal Answer: (A) $\\mathrm{[Cr(H_2O)_6]Cl_3}$ and $\\mathrm{[Cr(H_2O)_5Cl]Cl_2 \\cdot H_2O}$\nQuick Tip: Exchange of water between sphere and lattice = hydrate/solvate isomerism.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{[Cr(H_2O)_6]Cl_3}$ and $\\mathrm{[Cr(H_2O)_5Cl]Cl_2 \\cdot H_2O}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{[Co(NH_3)_5SO_4]Br}$ and $\\mathrm{[Co(NH_3)_5Br]SO_4}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{[Co(NH_3)_6][Cr(CN)_6]}$ and $\\mathrm{[Cr(NH_3)_6][Co(CN)_6]}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{[Fe(H_2O)_5SCN]^+}$ and $\\mathrm{[Fe(H_2O)_5NCS]^+}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 94,
+   "topic": "d And f Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Identify the element from following such that the last electron is placed in $\\mathrm{(n-1)d}$ orbital.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The last (differentiating) electron enters the $(n-1)d$ orbital in d-block (transition) elements, and the $(n-2)f$ orbital in f-block elements.\nStep 2: Ag ($[\\mathrm{Kr}]4d^{10}5s^{1}$, group 11) is a d-block element, so its differentiating electron is in the $4d$ $(n-1)d$ orbital. Dy is a lanthanoid and Pu, Pa are actinoids, so they are f-block elements.\nFinal Answer: (B) Ag\nQuick Tip: d-block: $(n-1)d$; f-block: $(n-2)f$; s/p-block: $ns$/$np$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Dy"
+    },
+    {
+     "key": "B",
+     "text": "Ag"
+    },
+    {
+     "key": "C",
+     "text": "Pu"
+    },
+    {
+     "key": "D",
+     "text": "Pa"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 95,
+   "topic": "d And f Block Elements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which transition series includes elements Co and Mo respectively?",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Co ($Z = 27$, period 4) is $[\\mathrm{Ar}]3d^{7}4s^{2}$, a 3d (first) transition series element.\nStep 2: Mo ($Z = 42$, period 5) is $[\\mathrm{Kr}]4d^{5}5s^{1}$, a 4d (second) transition series element.\nFinal Answer: (C) 3d and 4d\nQuick Tip: 3d series: Sc-Zn; 4d series: Y-Cd; 5d series: La, Hf-Hg.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "4d and 5d"
+    },
+    {
+     "key": "B",
+     "text": "5d and 6d"
+    },
+    {
+     "key": "C",
+     "text": "3d and 4d"
+    },
+    {
+     "key": "D",
+     "text": "3d and 6d"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 96,
+   "topic": "Chemical Kinetics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Rate law for the reaction,\n$\\mathrm{C_2H_5I_{(g)} \\longrightarrow C_2H_{4(g)} + HI_{(g)}}$ is $\\mathrm{r = k[C_2H_5I]}$\nWhat is the order and molecularity of this reaction?",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Order = sum of exponents in the rate law. $r = k[\\mathrm{C_2H_5I}]^{1}$, so order = 1.\nStep 2: Molecularity = number of reacting species in the elementary step. Only one $\\mathrm{C_2H_5I}$ molecule decomposes, so molecularity = 1 (unimolecular).\nFinal Answer: (A) order and molecularity both are 1\nQuick Tip: For an elementary reaction, order equals molecularity.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "order and molecularity both are 1"
+    },
+    {
+     "key": "B",
+     "text": "order is 1 and molecularity is 2"
+    },
+    {
+     "key": "C",
+     "text": "order and molecularity both are 2"
+    },
+    {
+     "key": "D",
+     "text": "order is 2 and molecularity is 1"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 97,
+   "topic": "Some Basic Concepts Of Chemistry",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Find the mass of potassium chlorate required to liberate $5.6\\ \\mathrm{dm^3}$ of oxygen gas at STP? (molar mass of $\\mathrm{KClO_3} = 122.5\\ \\mathrm{g/mol}$ )",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\mathrm{2KClO_3 \\rightarrow 2KCl + 3O_2}$\nStep 2: Moles of $\\mathrm{O_2} = \\frac{5.6}{22.4} = 0.25$ mol, so moles of $\\mathrm{KClO_3} = 0.25 \\times \\frac{2}{3} = 0.1667$ mol.\nStep 3: Mass $= 0.1667 \\times 122.5 = 20.42 \\approx 20.40$ g.\nFinal Answer: (C) 20.40 g\nQuick Tip: 2 mol $\\mathrm{KClO_3}$ (245 g) gives $3 \\times 22.4 = 67.2\\ \\mathrm{dm^3}$ $\\mathrm{O_2}$ at STP; scale from there.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "12.25 g"
+    },
+    {
+     "key": "B",
+     "text": "15.32 g"
+    },
+    {
+     "key": "C",
+     "text": "20.40 g"
+    },
+    {
+     "key": "D",
+     "text": "49.00 g"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 98,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Which of the following reactions exhibits decrease in entropy?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Entropy decreases when the number of moles of gas decreases (or gas turns into liquid/solid).\nStep 2: (A), (B), (C) produce more gas than they consume, so entropy increases. In (D), 3 mol of gas form 2 mol of liquid ($\\Delta n_g = -3$), so entropy decreases.\nFinal Answer: (D) $\\mathrm{2H_{2(g)} + O_{2(g)} \\longrightarrow 2H_2O_{(l)}}$\nQuick Tip: Look at $\\Delta n_{gas}$: negative means $\\Delta S < 0$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{2H_2O_{2(l)} \\longrightarrow 2H_2O_{(l)} + O_{2(g)}}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{H_{2(g)} \\longrightarrow 2H_{(g)}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{CaCO_{3(s)} \\xrightarrow{\\Delta} CaO_{(s)} + CO_{2(g)}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\mathrm{2H_{2(g)} + O_{2(g)} \\longrightarrow 2H_2O_{(l)}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 99,
+   "topic": "Structure Of Atom",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "What is the wavenumber of the photon emitted during transition from the orbit $\\mathrm{n} = 5$ to that of $\\mathrm{n} = 2$ in hydrogen atom? $\\left[\\mathrm{R_H = 109677\\ cm^{-1}}\\right]$",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\bar{\\nu} = R_H\\left(\\frac{1}{n_1^{2}} - \\frac{1}{n_2^{2}}\\right)$ with $n_1 = 2$, $n_2 = 5$.\nStep 2: $\\bar{\\nu} = 109677\\left(\\frac{1}{4} - \\frac{1}{25}\\right) = 109677 \\times \\frac{21}{100} = 109677 \\times 0.21$\nStep 3: $\\bar{\\nu} = 23032\\ \\mathrm{cm^{-1}}$\nFinal Answer: (A) $23032\\ \\mathrm{cm^{-1}}$\nQuick Tip: Transitions ending at $n = 2$ belong to the Balmer series (visible region).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$23032\\ \\mathrm{cm^{-1}}$"
+    },
+    {
+     "key": "B",
+     "text": "$46064\\ \\mathrm{cm^{-1}}$"
+    },
+    {
+     "key": "C",
+     "text": "$69096\\ \\mathrm{cm^{-1}}$"
+    },
+    {
+     "key": "D",
+     "text": "$92128\\ \\mathrm{cm^{-1}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 100,
+   "topic": "Ionic Equilibria",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If pH of solution changes from 4 to 5 , then the $\\mathrm{H_3O^+}$ ion concentration of solution",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $[\\mathrm{H_3O^+}] = 10^{-\\mathrm{pH}}$. At pH 4, $[\\mathrm{H_3O^+}] = 10^{-4}$ M; at pH 5, $[\\mathrm{H_3O^+}] = 10^{-5}$ M.\nStep 2: $\\frac{10^{-4}}{10^{-5}} = 10$, so the concentration decreases by 10 times.\nFinal Answer: (D) decrease by 10 times\nQuick Tip: Each unit rise in pH means a tenfold fall in $[\\mathrm{H_3O^+}]$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "decreases by one times"
+    },
+    {
+     "key": "B",
+     "text": "increase by one times"
+    },
+    {
+     "key": "C",
+     "text": "increase by 10 times"
+    },
+    {
+     "key": "D",
+     "text": "decrease by 10 times"
     }
    ],
    "stem_figure": null,

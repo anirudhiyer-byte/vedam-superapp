@@ -1,0 +1,1867 @@
+{
+ "paper": {
+  "exam": "MHT-CET",
+  "subject": "Physics",
+  "year": 2025,
+  "set_label": "22 April · Shift 1",
+  "title": "MHT-CET 2025 · Physics · 22 April Shift 1",
+  "marks_correct": 1,
+  "marks_wrong": 0,
+  "marking_note": "+1 correct · no negative marking",
+  "sort_order": 10,
+  "duration_mins": 60,
+  "source_file_id": null
+ },
+ "questions": [
+  {
+   "q_no": 1,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A vehicle is moving with uniform speed along 3 different shaped roads as horizontal, concave and convex. The surface of road on which, the normal reaction on vehicle is maximum is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: At the lowest point of a concave road the centripetal force acts upward: $N - mg = \\frac{mv^{2}}{r} \\Rightarrow N = mg + \\frac{mv^{2}}{r}$.\nStep 2: On a horizontal road $N = mg$; at the top of a convex road $N = mg - \\frac{mv^{2}}{r}$. So $N$ is largest on the concave road.\nFinal Answer: (B) concave\nQuick Tip: Concave (dip) $\\Rightarrow$ you feel heavier; convex (hump) $\\Rightarrow$ you feel lighter.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "convex"
+    },
+    {
+     "key": "B",
+     "text": "concave"
+    },
+    {
+     "key": "C",
+     "text": "horizontal"
+    },
+    {
+     "key": "D",
+     "text": "same on all the 3 surface"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 2,
+   "topic": "Nuclei",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "${}_{88}\\mathrm{R}_{\\mathrm{a}}^{226}$ is converted into ${}_{82}\\mathrm{P}_{\\mathrm{b}}^{206}$ by emission of alpha ( $\\alpha$ ) and beta ( $\\beta$ ) particles. The number of alpha and beta particles emitted are respectively",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Only $\\alpha$ decay changes the mass number (by 4 each): number of $\\alpha = \\frac{226 - 206}{4} = 5$.\nStep 2: 5 $\\alpha$ particles lower $Z$ by $10$: $88 - 10 = 78$. Each $\\beta^{-}$ raises $Z$ by 1, so $\\beta$ particles $= 82 - 78 = 4$.\nFinal Answer: (A) 5, 4\nQuick Tip: Fix the $\\alpha$ count from the mass numbers first, then balance the charge with $\\beta$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "5, 4"
+    },
+    {
+     "key": "B",
+     "text": "4, 5"
+    },
+    {
+     "key": "C",
+     "text": "6, 4"
+    },
+    {
+     "key": "D",
+     "text": "4, 6"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 3,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a Young's double slit experiment wavelength of light used is $6000\\ \\mathrm{\\mathring{A}}$. The first order maxima and tenth order maxima fall at 14.50 mm and 16.75 mm from the particular reference point in the interference pattern respectively. If the wavelength is changed to $5500\\ \\mathrm{\\mathring{A}}$ then the position of zero order and tenth order maxima are respectively\n[The other arrangements remaining same]",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: From 1st to 10th maximum there are 9 fringe widths: $9\\beta = 16.75 - 14.50 = 2.25\\ \\mathrm{mm} \\Rightarrow \\beta = 0.25\\ \\mathrm{mm}$.\nStep 2: Zero order lies one fringe before the first: $14.50 - 0.25 = 14.25\\ \\mathrm{mm}$. Its position does not depend on $\\lambda$.\nStep 3: $\\beta \\propto \\lambda$: $\\beta' = 0.25 \\times \\frac{5500}{6000} = 0.229\\ \\mathrm{mm}$. Tenth maximum: $14.25 + 10 \\times 0.229 = 16.54 \\approx 16.55\\ \\mathrm{mm}$.\nFinal Answer: (A) $14.25\\ \\mathrm{mm}, 16.55\\ \\mathrm{mm}$\nQuick Tip: The central (zero-order) maximum never shifts when only $\\lambda$ changes.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$14.25\\ \\mathrm{mm}, 16.55\\ \\mathrm{mm}$"
+    },
+    {
+     "key": "B",
+     "text": "$12.25\\ \\mathrm{mm}, 14.55\\ \\mathrm{mm}$"
+    },
+    {
+     "key": "C",
+     "text": "$10.25\\ \\mathrm{mm}, 12.55\\ \\mathrm{mm}$"
+    },
+    {
+     "key": "D",
+     "text": "$16.25\\ \\mathrm{mm}, 18.55\\ \\mathrm{mm}\\ \\mathrm{\\mathring{A}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 4,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a pure silicon crystal electron-hole concentration is $10^{16}$ per $\\mathrm{m^{3}}$ at 301 K . Now $10^{21}$ atoms of phosphorus are added per cubic metre. The new hole concentration in silicon is (in per $\\mathrm{m^{3}}$ )",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Phosphorus is a donor, so $n_e \\approx N_D = 10^{21}\\ \\mathrm{m^{-3}}$; mass-action law $n_e n_h = n_i^{2}$.\nStep 2: $n_h = \\frac{n_i^{2}}{n_e} = \\frac{(10^{16})^{2}}{10^{21}} = \\frac{10^{32}}{10^{21}} = 10^{11}\\ \\mathrm{m^{-3}}$.\nFinal Answer: (B) $10^{11}$\nQuick Tip: Doping raises the majority carriers and lowers the minority carriers so that $n_e n_h$ stays $n_i^{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$10^{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$10^{11}$"
+    },
+    {
+     "key": "C",
+     "text": "$10^{19}$"
+    },
+    {
+     "key": "D",
+     "text": "$10^{21}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 5,
+   "topic": "Motion in a Plane",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A vehicle is moving with a constant speed of $10\\ \\mathrm{m/s}$ in a circular horizontal track of radius 20 m . A bob is suspended from the roof of a vehicle by a massless string. The angle made by the string with the vertical will be (acceleration due to gravity, $\\mathrm{g} = 10\\ \\mathrm{m/s^{2}}$ )",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: In the vehicle frame the bob feels $mg$ down and $\\frac{mv^{2}}{r}$ outward; the string lies along their resultant: $\\tan\\theta = \\frac{v^{2}}{rg}$.\nStep 2: $\\tan\\theta = \\frac{10^{2}}{20 \\times 10} = \\frac{100}{200} = 0.5$.\nFinal Answer: (A) $\\tan^{-1}(0.5)$\nQuick Tip: Same formula as the banking angle: $\\tan\\theta = \\frac{v^{2}}{rg}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\tan^{-1}(0.5)$"
+    },
+    {
+     "key": "B",
+     "text": "$\\tan^{-1}(0.6)$"
+    },
+    {
+     "key": "C",
+     "text": "$\\tan^{-1}(0.7)$"
+    },
+    {
+     "key": "D",
+     "text": "$\\tan^{-1}(0.8)$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 6,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Assuming human pupil to have radius of 0.25 cm and comfortable viewing distance of 25 cm , the minimum separation between the two objects that human eye can resolve at 500 nm wavelength is nearly",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Limit of resolution of the eye: $\\Delta\\theta = \\frac{1.22\\lambda}{d}$ with pupil diameter $d = 2 \\times 0.25 = 0.5\\ \\mathrm{cm} = 5 \\times 10^{-3}\\ \\mathrm{m}$.\nStep 2: $\\Delta\\theta = \\frac{1.22 \\times 500 \\times 10^{-9}}{5 \\times 10^{-3}} = 1.22 \\times 10^{-4}\\ \\mathrm{rad}$.\nStep 3: Separation $= D\\,\\Delta\\theta = 0.25 \\times 1.22 \\times 10^{-4} = 3.05 \\times 10^{-5}\\ \\mathrm{m} \\approx 30\\ \\mu\\mathrm{m}$.\nFinal Answer: (B) $30\\ \\mu\\mathrm{m}$\nQuick Tip: Use the diameter (not the radius) in $\\frac{1.22\\lambda}{d}$, or equivalently $\\frac{0.61\\lambda}{a}$ with radius $a$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$330\\ \\mu\\mathrm{m}$"
+    },
+    {
+     "key": "B",
+     "text": "$30\\ \\mu\\mathrm{m}$"
+    },
+    {
+     "key": "C",
+     "text": "$1\\ \\mu\\mathrm{m}$"
+    },
+    {
+     "key": "D",
+     "text": "$100\\ \\mu\\mathrm{m}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 7,
+   "topic": "Electric Charges and Fields",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Four charges $2\\mu\\mathrm{C}, -3\\mu\\mathrm{C}, 4\\mu\\mathrm{C}, -4\\mu\\mathrm{C}$ and $-1\\mu\\mathrm{C}$ are enclosed by the Gaussian surface of radius 2 m . Net outward flux through the Gaussian surface is (in $\\mu\\mathrm{V} - \\mathrm{m}$ ) [ $\\varepsilon_0 =$ permittivity of free space]",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Gauss's law: $\\phi = \\frac{q_{\\mathrm{enc}}}{\\varepsilon_0}$, independent of the radius of the surface.\nStep 2: $q_{\\mathrm{enc}} = 2 - 3 + 4 - 4 - 1 = -2\\ \\mu\\mathrm{C}$.\nStep 3: $\\phi = \\frac{-2}{\\varepsilon_0}\\ \\mu\\mathrm{V\\,m}$; its magnitude is $\\frac{2}{\\varepsilon_0}$ (the negative sign means the net flux is inward).\nFinal Answer: (A) $\\frac{2}{\\varepsilon_0}$\nQuick Tip: Only the algebraic sum of enclosed charges matters; the 2 m radius is a distractor.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{2}{\\varepsilon_0}$"
+    },
+    {
+     "key": "B",
+     "text": "zero"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{6}{\\varepsilon_0}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{5}{\\varepsilon_0}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 8,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A solid sphere of mass ' $m$ ' and radius ' $R$ ' is rotating about its diameter. A solid cylinder of the same mass and same radius is also rotating about its geometrical axis with angular speed twice that of sphere. The ratio of kinetic energy of sphere to kinetic energy of cylinder will be",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $K = \\frac{1}{2}I\\omega^{2}$; $I_{\\mathrm{sphere}} = \\frac{2}{5}mR^{2}$, $I_{\\mathrm{cyl}} = \\frac{1}{2}mR^{2}$.\nStep 2: Sphere: $K_s = \\frac{1}{2} \\cdot \\frac{2}{5}mR^{2}\\omega^{2} = \\frac{1}{5}mR^{2}\\omega^{2}$. Cylinder ($2\\omega$): $K_c = \\frac{1}{2} \\cdot \\frac{1}{2}mR^{2}(2\\omega)^{2} = mR^{2}\\omega^{2}$.\nStep 3: $K_s : K_c = \\frac{1}{5} : 1 = 1 : 5$.\nFinal Answer: (B) $1 : 5$\nQuick Tip: Doubling $\\omega$ multiplies rotational KE by 4.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2 : 3$"
+    },
+    {
+     "key": "B",
+     "text": "$1 : 5$"
+    },
+    {
+     "key": "C",
+     "text": "$3 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$1 : 4$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 9,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A person standing between two parallel cliffs fires a gun and hears two echoes, first echo after 1 second and the second echo after 3 second. The distance between the two cliffs is (Velocity of sound $= 340\\ \\mathrm{m/s}$ )",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: An echo travels to the cliff and back: $d = \\frac{vt}{2}$.\nStep 2: Nearer cliff: $d_1 = \\frac{340 \\times 1}{2} = 170\\ \\mathrm{m}$. Farther cliff: $d_2 = \\frac{340 \\times 3}{2} = 510\\ \\mathrm{m}$.\nStep 3: Distance between cliffs $= 170 + 510 = 680\\ \\mathrm{m}$.\nFinal Answer: (B) 680 m\nQuick Tip: Shortcut: $d = \\frac{v(t_1 + t_2)}{2} = \\frac{340 \\times 4}{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "340 m"
+    },
+    {
+     "key": "B",
+     "text": "680 m"
+    },
+    {
+     "key": "C",
+     "text": "1020 m"
+    },
+    {
+     "key": "D",
+     "text": "1360 m"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 10,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A series combination of 10 capacitors, each of value ' $\\mathrm{C_1}$ ' is charged by a source of potential difference ' 4 V '. When another parallel combination of 8 capacitors, each of value ' $\\mathrm{C_2}$ ' is charged by a source of potential difference ' V ', it has the same total energy stored in it as in the first combination. The value of ' $\\mathrm{C_2}$ ' is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Here ' 4 V ' means four times the potential V. Series: $C_s = \\frac{C_1}{10}$; parallel: $C_p = 8C_2$.\nStep 2: $U_1 = \\frac{1}{2} \\cdot \\frac{C_1}{10}(4V)^{2} = \\frac{16C_1V^{2}}{20} = 0.8\\,C_1V^{2}$; $U_2 = \\frac{1}{2}(8C_2)V^{2} = 4C_2V^{2}$.\nStep 3: $4C_2V^{2} = 0.8\\,C_1V^{2} \\Rightarrow C_2 = \\frac{C_1}{5}$.\nFinal Answer: (A) $\\frac{\\mathrm{C_1}}{5}$\nQuick Tip: n equal capacitors: series $\\frac{C}{n}$, parallel $nC$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\mathrm{C_1}}{5}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{8}{5}\\mathrm{C_1}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{64}{5}C_1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\mathrm{C_1}}{40}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 11,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A solid sphere and thin walled hollow sphere have same mass and same material. Which of them have greater moment of inertia about their diameter?\n[ $\\mathrm{I_h} =$ moment of inertia of hollow sphere about an axis coinciding with its diameter, $\\mathrm{I_s} =$ moment of inertia of solid sphere about an axis coinciding with its diameter]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $I_s = \\frac{2}{5}MR_s^{2}$, $I_h = \\frac{2}{3}MR_h^{2}$.\nStep 2: Same mass of the same material spread as a thin shell needs a larger radius, so $R_h > R_s$; also $\\frac{2}{3} > \\frac{2}{5}$. Hence $I_h > I_s$ (strictly).\nFinal Answer: (C) $\\mathrm{I_h} > \\mathrm{I_s}$\nQuick Tip: Mass placed farther from the axis gives a larger moment of inertia.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{I_s} > \\mathrm{I_h}$"
+    },
+    {
+     "key": "B",
+     "text": "$I_h \\geqslant I_s$"
+    },
+    {
+     "key": "C",
+     "text": "$\\mathrm{I_h} > \\mathrm{I_s}$"
+    },
+    {
+     "key": "D",
+     "text": "$I_h = I_s$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 12,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The total charge induced in a conducting loop when it is moved in a uniform magnetic field depends on",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $I = \\frac{e}{R} = \\frac{1}{R}\\frac{d\\phi}{dt}$, so $q = \\int I\\,dt = \\frac{\\Delta\\phi}{R}$.\nStep 2: The charge depends on the total change in flux (and $R$), not on how fast it changes.\nFinal Answer: (C) the total change in magnetic flux.\nQuick Tip: Induced emf/current depend on the rate; induced charge depends only on $\\Delta\\phi$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "initial magnetic flux only."
+    },
+    {
+     "key": "B",
+     "text": "final magnetic flux only."
+    },
+    {
+     "key": "C",
+     "text": "the total change in magnetic flux."
+    },
+    {
+     "key": "D",
+     "text": "the rate of change of magnetic flux."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 13,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A rectangular film of liquid is expanded from $(5\\ \\mathrm{cm} \\times 4\\ \\mathrm{cm})$ to $(7\\ \\mathrm{cm} \\times 8\\ \\mathrm{cm})$. If the work done is $3 \\times 10^{-4}\\ \\mathrm{J}$, the surface tension of the liquid is (nearly)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: A film has two surfaces: $W = T \\times 2\\Delta A$.\nStep 2: $\\Delta A = 56 - 20 = 36\\ \\mathrm{cm^{2}} = 36 \\times 10^{-4}\\ \\mathrm{m^{2}}$, so $2\\Delta A = 72 \\times 10^{-4}\\ \\mathrm{m^{2}}$.\nStep 3: $T = \\frac{3 \\times 10^{-4}}{72 \\times 10^{-4}} = 0.0417 \\approx 0.04\\ \\mathrm{N/m}$.\nFinal Answer: (B) $0.04\\ \\mathrm{N/m}$\nQuick Tip: Do not forget the factor 2 for a liquid film.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.4\\ \\mathrm{N/m}$"
+    },
+    {
+     "key": "B",
+     "text": "$0.04\\ \\mathrm{N/m}$"
+    },
+    {
+     "key": "C",
+     "text": "0.4 dyne $/\\mathrm{cm}$"
+    },
+    {
+     "key": "D",
+     "text": "$4.0\\ \\mathrm{N/m}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 14,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The temperature of a body on Kelvin scale is ' $x$ ' $K$. When it is measured by a Fahrenheit thermometer, it is found to be ' x ' $^\\circ\\mathrm{F}$. The value of ' $x$ ' is (nearly)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\frac{F - 32}{9} = \\frac{K - 273}{5}$ (taking 273).\nStep 2: With $F = K = x$: $5x - 160 = 9x - 2457 \\Rightarrow 4x = 2297$.\nStep 3: $x = 574.25 \\approx 574$.\nFinal Answer: (C) 574\nQuick Tip: Using 273.15 gives 574.6, still nearest to 574.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "40"
+    },
+    {
+     "key": "B",
+     "text": "313"
+    },
+    {
+     "key": "C",
+     "text": "574"
+    },
+    {
+     "key": "D",
+     "text": "301"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 15,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A capillary tube is taken from earth's surface to moon's surface. The rise of liquid column on the moon's surface is (acceleration due to gravity on the earth's surface is six times that of moon's surface)",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Capillary rise $h = \\frac{2T\\cos\\theta}{r\\rho g}$, so $h \\propto \\frac{1}{g}$.\nStep 2: $g_{\\mathrm{moon}} = \\frac{g}{6} \\Rightarrow h_{\\mathrm{moon}} = 6h$.\nFinal Answer: (B) six times that on the earth's surface.\nQuick Tip: Weaker gravity, higher rise (provided the tube is long enough).",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "zero."
+    },
+    {
+     "key": "B",
+     "text": "six times that on the earth's surface."
+    },
+    {
+     "key": "C",
+     "text": "equal to that on the earth's surface."
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{1}{6}\\right)^{\\mathrm{th}}$ that on the earth's surface."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 16,
+   "topic": "Ray Optics and Optical Instruments",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two thin lenses having $\\mathrm{R_1}, \\mathrm{R_2}$ as the radii of curved surfaces are kept coaxially together. Their power is proportional to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Each thin lens (one curved surface of radius $R$) has power $P = \\frac{\\mu - 1}{R}$.\nStep 2: Lenses in contact: $P = P_1 + P_2 = (\\mu - 1)\\left(\\frac{1}{R_1} + \\frac{1}{R_2}\\right) = (\\mu - 1)\\frac{R_1 + R_2}{R_1R_2}$.\nFinal Answer: (D) $\\frac{R_1 + R_2}{R_1R_2}$\nQuick Tip: Powers of thin lenses in contact simply add.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{R_1} + \\mathrm{R_2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{R_1} - \\mathrm{R_2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\mathrm{R_1R_2}}{\\mathrm{R_1} + \\mathrm{R_2}}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{R_1 + R_2}{R_1R_2}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 17,
+   "topic": "Kinetic Theory",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For a gas at a particular temperature on an average, the quantity which remains same for all molecules is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Kinetic theory: average translational KE per molecule $= \\frac{3}{2}kT$, which depends only on temperature.\nStep 2: Velocity and momentum are vectors that average to zero and differ with mass; only the average KE is the same for all molecules at a given $T$.\nFinal Answer: (C) kinetic energy\nQuick Tip: Temperature is a measure of the average kinetic energy of molecules.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "velocity"
+    },
+    {
+     "key": "B",
+     "text": "momentum"
+    },
+    {
+     "key": "C",
+     "text": "kinetic energy"
+    },
+    {
+     "key": "D",
+     "text": "angular momentum"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 18,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a common emitter transistor amplifier, the output voltage and input voltage have a phase difference of",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: In CE mode an increase in base (input) voltage increases $I_C$, so the drop $I_CR_L$ rises and $V_{CE} = V_{CC} - I_CR_L$ falls.\nStep 2: Output therefore falls when input rises: they are $180^\\circ$, i.e. $\\pi$ radian, out of phase.\nFinal Answer: (D) $\\pi^{c}$\nQuick Tip: CE amplifier inverts the signal; CB and CC give no phase reversal.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0^{c}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\pi^{c}}{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{3\\pi^{\\circ}}{4}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\pi^{c}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 19,
+   "topic": "Laws of Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A body of mass 100 gram is tied to a spring of spring constant $8\\ \\mathrm{N/m}$, while the other end of a spring is fixed. If the body moves in a circular path on smooth horizontal surface with constant angular speed $8\\ \\mathrm{rad/s}$ then the ratio of extension in the spring to its natured length will be",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Spring force supplies the centripetal force: $kx = m\\omega^{2}(L + x)$.\nStep 2: $8x = 0.1 \\times 64 \\times (L + x) = 6.4L + 6.4x \\Rightarrow 1.6x = 6.4L$.\nStep 3: $\\frac{x}{L} = 4 \\Rightarrow 4 : 1$.\nFinal Answer: (D) $4 : 1$\nQuick Tip: The radius of the circle is the stretched length $L + x$, not $L$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 : 1$"
+    },
+    {
+     "key": "B",
+     "text": "$8 : 1$"
+    },
+    {
+     "key": "C",
+     "text": "$2 : 1$"
+    },
+    {
+     "key": "D",
+     "text": "$4 : 1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 20,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The voltmeter has range 10 V and its internal resistance is $50\\Omega$. To increase the range of voltmeter to 15 V , the resistance which is to be connected is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The range of a voltmeter is increased by a series resistance $R = G\\left(\\frac{V'}{V} - 1\\right)$.\nStep 2: $R = 50\\left(\\frac{15}{10} - 1\\right) = 50 \\times 0.5 = 25\\ \\Omega$ in series.\nFinal Answer: (D) $25\\Omega$ resistance in series\nQuick Tip: Full-scale current $= \\frac{10}{50} = 0.2\\ \\mathrm{A}$; extra 5 V needs $\\frac{5}{0.2} = 25\\ \\Omega$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$125\\Omega$ resistance in parallel"
+    },
+    {
+     "key": "B",
+     "text": "$125\\Omega$ resistance in series"
+    },
+    {
+     "key": "C",
+     "text": "$25\\Omega$ resistance in parallel"
+    },
+    {
+     "key": "D",
+     "text": "$25\\Omega$ resistance in series"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 21,
+   "topic": "Thermal Properties of Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If 120 J of thermal energy is incident on area $3\\ \\mathrm{m^{2}}$, the amount of heat transmitted is 12 J , coefficient of absorption is 0.6 , then the amount of heat reflected is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Incident energy = absorbed + reflected + transmitted.\nStep 2: Absorbed $= 0.6 \\times 120 = 72\\ \\mathrm{J}$; transmitted $= 12\\ \\mathrm{J}$.\nStep 3: Reflected $= 120 - 72 - 12 = 36\\ \\mathrm{J}$.\nFinal Answer: (C) 36 J\nQuick Tip: $a + r + t = 1$; the area given is not needed.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "24 J"
+    },
+    {
+     "key": "B",
+     "text": "30 J"
+    },
+    {
+     "key": "C",
+     "text": "36 J"
+    },
+    {
+     "key": "D",
+     "text": "40 J"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 22,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A circular coil of wire consisting of ' $n$ ' turns each of radius 8 cm carries a current of 0.4 A . The magnitude of the magnetic field at the centre of coil is $3.14 \\times 10^{-4}\\ \\mathrm{T}$. The value of ' $n$ ' is\n[Take $\\mu_0 = 12.56 \\times 10^{-7}$ SI unit]",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Field at the centre: $B = \\frac{\\mu_0 nI}{2r} \\Rightarrow n = \\frac{2rB}{\\mu_0 I}$.\nStep 2: $n = \\frac{2 \\times 0.08 \\times 3.14 \\times 10^{-4}}{12.56 \\times 10^{-7} \\times 0.4} = \\frac{5.024 \\times 10^{-5}}{5.024 \\times 10^{-7}}$.\nStep 3: $n = 100$.\nFinal Answer: (C) 100\nQuick Tip: Convert the radius to metres (8 cm = 0.08 m) before substituting.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1"
+    },
+    {
+     "key": "B",
+     "text": "10"
+    },
+    {
+     "key": "C",
+     "text": "100"
+    },
+    {
+     "key": "D",
+     "text": "1000"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 23,
+   "topic": "Mechanical Properties of Fluids",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "There are two identical small holes on the opposite side of a tank containing full of a liquid. The tank is open at the top. The difference in height between the two holes is ' $h$ '. As the liquid comes out of the two holes, the tank will experience a net horizontal force proportional to",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Efflux speed from a hole at depth $y$: $v = \\sqrt{2gy}$. Reaction force of the jet: $F = \\rho a v^{2} = 2\\rho a g y$.\nStep 2: The two jets push the tank in opposite directions, so $F_{\\mathrm{net}} = 2\\rho a g(y_2 - y_1) = 2\\rho a g h$.\nStep 3: Hence $F_{\\mathrm{net}} \\propto h$.\nFinal Answer: (D) h\nQuick Tip: Jet thrust $\\rho a v^{2}$ is proportional to depth, so the net force depends only on the height difference.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{h}^{3/2}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{h}^{2}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\sqrt{\\mathrm{h}}$"
+    },
+    {
+     "key": "D",
+     "text": "h"
+    }
+   ],
+   "stem_figure": "m25-22apr-s1-q23.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 24,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The graph shows the variation of voltage (v) across the plates of two parallel plate capacitos $A$ and $B$ versus increase of charge $Q$ stored in them. Then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $V = \\frac{Q}{C}$, so the slope of the $V$–$Q$ graph is $\\frac{1}{C}$.\nStep 2: For the same $Q$, $V_A < V_B$ (line A is less steep), so $C_A = \\frac{Q}{V_A} > C_B = \\frac{Q}{V_B}$.\nFinal Answer: (B) capacity of $A$ is higher than $B$.\nQuick Tip: On a $V$ vs $Q$ graph, the flatter line has the larger capacitance.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "capacity of both capacitors is same."
+    },
+    {
+     "key": "B",
+     "text": "capacity of $A$ is higher than $B$."
+    },
+    {
+     "key": "C",
+     "text": "capacity of $B$ is higher than $A$."
+    },
+    {
+     "key": "D",
+     "text": "capacity of both is zero."
+    }
+   ],
+   "stem_figure": "m25-22apr-s1-q24.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 25,
+   "topic": "System of Particles and Rotational Motion",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If force $\\vec{F} = -3\\hat{i} + \\hat{j} + 5\\hat{k}$ acts along $\\vec{r} = 7\\hat{i} + 3\\hat{j} + \\hat{k}$ then the torque acting at that point is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\vec{\\tau} = \\vec{r} \\times \\vec{F} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 7 & 3 & 1 \\\\ -3 & 1 & 5 \\end{vmatrix}$.\nStep 2: $\\hat{i}(3 \\times 5 - 1 \\times 1) - \\hat{j}(7 \\times 5 - 1 \\times (-3)) + \\hat{k}(7 \\times 1 - 3 \\times (-3))$.\nStep 3: $= 14\\hat{i} - 38\\hat{j} + 16\\hat{k}$.\nFinal Answer: (A) $(14\\hat{i} - 38\\hat{j} + 16\\hat{k})$\nQuick Tip: Order matters: $\\vec{\\tau} = \\vec{r} \\times \\vec{F}$, not $\\vec{F} \\times \\vec{r}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$(14\\hat{i} - 38\\hat{j} + 16\\hat{k})$"
+    },
+    {
+     "key": "B",
+     "text": "$(-14\\hat{i} + 34\\hat{j} - 16\\hat{k})$"
+    },
+    {
+     "key": "C",
+     "text": "$(21\\hat{i} + 4\\hat{j} + 4\\hat{k})$"
+    },
+    {
+     "key": "D",
+     "text": "$(4\\hat{i} + 4\\hat{j} + 6\\hat{k})$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 26,
+   "topic": "Magnetism and Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Susceptibility of a paramagnetic substance is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Paramagnetic materials are weakly magnetised along the applied field, so $\\chi > 0$.\nStep 2: The magnetisation is weak (thermal agitation opposes alignment), so $\\chi$ is small (about $10^{-5}$ to $10^{-3}$).\nFinal Answer: (D) positive and small.\nQuick Tip: Diamagnetic: small negative; paramagnetic: small positive; ferromagnetic: large positive.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "negative and large."
+    },
+    {
+     "key": "B",
+     "text": "negative and small."
+    },
+    {
+     "key": "C",
+     "text": "positive and large."
+    },
+    {
+     "key": "D",
+     "text": "positive and small."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 27,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When an ideal gas $\\left(\\gamma = \\frac{5}{3}\\right)$ is heated under constant pressure, then what percentage of given heat energy will be utilised in doing external work?",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: At constant pressure $Q = nC_p\\Delta T$ and $W = nR\\Delta T$, so $\\frac{W}{Q} = \\frac{R}{C_p} = 1 - \\frac{1}{\\gamma}$.\nStep 2: $\\frac{W}{Q} = 1 - \\frac{3}{5} = \\frac{2}{5} = 0.4$.\nFinal Answer: (D) $40\\%$\nQuick Tip: The other $\\frac{1}{\\gamma} = 60\\%$ goes into internal energy.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$60\\%$"
+    },
+    {
+     "key": "B",
+     "text": "$20\\%$"
+    },
+    {
+     "key": "C",
+     "text": "$30\\%$"
+    },
+    {
+     "key": "D",
+     "text": "$40\\%$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 28,
+   "topic": "Current Electricity",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In the given electrical network, the value of resistance ' $R$ ' when the current in the galvanometer will be zero, is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: With no current in the galvanometer branch, the 6 V cell carries no current, so the potential difference across $R$ (in parallel with that branch) equals $6\\ \\mathrm{V}$.\nStep 2: The 10 V cell then drives current $I$ through $4\\ \\Omega$ and $R$ in series: $10 - 4I = 6 \\Rightarrow I = 1\\ \\mathrm{A}$.\nStep 3: $R = \\frac{6\\ \\mathrm{V}}{1\\ \\mathrm{A}} = 6\\ \\Omega$.\nFinal Answer: (B) $6\\Omega$\nQuick Tip: Zero galvanometer current means that branch's emf equals the voltage across the element it is parallel to.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\Omega$"
+    },
+    {
+     "key": "B",
+     "text": "$6\\Omega$"
+    },
+    {
+     "key": "C",
+     "text": "$7\\Omega$"
+    },
+    {
+     "key": "D",
+     "text": "$10\\Omega$"
+    }
+   ],
+   "stem_figure": "m25-22apr-s1-q28.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 29,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When a photosensitive metal surface is illuminated with radiation of wavelength ' $\\lambda_1$ ', the stopping potential is ' $\\mathrm{V_1}$ '. If the same surface is illuminated with radiation of wavelength ' $3\\lambda_1$ ', the stopping potential is $\\frac{\\mathrm{V_1}}{6}$. The threshold wavelength for the photosensitive metal surface is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $eV_1 = \\frac{hc}{\\lambda_1} - \\phi$ and $\\frac{eV_1}{6} = \\frac{hc}{3\\lambda_1} - \\phi$.\nStep 2: Multiply the second by 6: $eV_1 = \\frac{2hc}{\\lambda_1} - 6\\phi$. Equate: $\\frac{hc}{\\lambda_1} - \\phi = \\frac{2hc}{\\lambda_1} - 6\\phi \\Rightarrow 5\\phi = \\frac{hc}{\\lambda_1}$.\nStep 3: $\\lambda_0 = \\frac{hc}{\\phi} = 5\\lambda_1$.\nFinal Answer: (C) $5\\lambda_1$\nQuick Tip: Eliminate $V_1$ between the two Einstein equations to get $\\phi$ in terms of $\\lambda_1$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{3}{2}\\lambda_1$"
+    },
+    {
+     "key": "B",
+     "text": "$2\\lambda_1$"
+    },
+    {
+     "key": "C",
+     "text": "$5\\lambda_1$"
+    },
+    {
+     "key": "D",
+     "text": "$6\\lambda_1$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 30,
+   "topic": "Kinetic Theory",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The mean kinetic energy of the molecules of an ideal gas at $399^\\circ\\mathrm{C}$ is ' E '. The temperature at which the mean kinetic energy of its molecules will be ' $\\mathrm{E}/2$ ', is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Mean KE $\\propto T$ (kelvin). $T_1 = 399 + 273 = 672\\ \\mathrm{K}$.\nStep 2: Half the energy: $T_2 = \\frac{672}{2} = 336\\ \\mathrm{K}$.\nStep 3: $336 - 273 = 63^\\circ\\mathrm{C}$.\nFinal Answer: (D) $63^\\circ\\mathrm{C}$\nQuick Tip: Always convert to kelvin before scaling; $336^\\circ\\mathrm{C}$ is the trap.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$336^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "B",
+     "text": "$276^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "C",
+     "text": "$123^\\circ\\mathrm{C}$"
+    },
+    {
+     "key": "D",
+     "text": "$63^\\circ\\mathrm{C}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 31,
+   "topic": "Electrostatic Potential and Capacitance",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Three capacitors each of capacitance ' C ' and breakdown voltage ' $V$ ' are connected in series. The capacitance and breakdown voltage of the series combination will be respectively",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Series: $\\frac{1}{C_s} = \\frac{3}{C} \\Rightarrow C_s = \\frac{C}{3}$.\nStep 2: Identical capacitors in series share the applied voltage equally, so each can take $V$ and the combination can take $3V$.\nFinal Answer: (D) $\\frac{\\mathrm{C}}{3}, 3\\ \\mathrm{V}$\nQuick Tip: Series lowers capacitance but raises the voltage rating.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$3\\mathrm{C}, 3\\ \\mathrm{V}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\mathrm{C}}{3}, \\frac{\\mathrm{V}}{3}$"
+    },
+    {
+     "key": "C",
+     "text": "$3\\mathrm{C}, \\frac{\\mathrm{V}}{3}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\mathrm{C}}{3}, 3\\ \\mathrm{V}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 32,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "When alternating current is passed through $\\mathrm{L} - \\mathrm{R}$ series circuit, the power factor is $\\frac{\\sqrt{3}}{2}$ and $\\mathrm{R} = 50\\Omega$, then the value of L is\n$\\left[\\cos\\frac{\\pi}{6} = \\frac{\\sqrt{3}}{2}, \\sin\\frac{\\pi}{6} = \\frac{1}{2}, \\tan\\frac{\\pi}{6} = \\frac{1}{\\sqrt{3}}\\right]$",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $\\cos\\phi = \\frac{\\sqrt{3}}{2} \\Rightarrow \\phi = \\frac{\\pi}{6}$, and $\\tan\\phi = \\frac{X_L}{R} = \\frac{1}{\\sqrt{3}} \\Rightarrow X_L = \\frac{50}{\\sqrt{3}}\\ \\Omega$.\nStep 2: Taking the usual mains frequency $f = 50\\ \\mathrm{Hz}$: $L = \\frac{X_L}{2\\pi f} = \\frac{50}{\\sqrt{3} \\times 100\\pi}$.\nStep 3: $L = \\frac{1}{2\\sqrt{3}\\pi}\\ \\mathrm{H}$.\nFinal Answer: (C) $\\frac{1}{2\\sqrt{3}\\pi}$\nQuick Tip: In an L-R circuit $\\tan\\phi = \\frac{\\omega L}{R}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{1}{2}\\pi$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\sqrt{3}}{2}\\pi$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{1}{2\\sqrt{3}\\pi}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{1}{\\sqrt{3}\\pi}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 33,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Time period of a simple pendulum on earth's surface is ' T '. It time period becomes ' xT ' when taken to a height ' $2R$ ' above earth's surface. The value of $x$ will be ( $R =$ radius of earth)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $g_h = \\frac{g}{(1 + h/R)^{2}} = \\frac{g}{(1 + 2)^{2}} = \\frac{g}{9}$.\nStep 2: $T \\propto \\frac{1}{\\sqrt{g}} \\Rightarrow T' = T\\sqrt{9} = 3T$.\nFinal Answer: (D) 3\nQuick Tip: At height $h$, $\\frac{T'}{T} = 1 + \\frac{h}{R}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2"
+    },
+    {
+     "key": "B",
+     "text": "4"
+    },
+    {
+     "key": "C",
+     "text": "1"
+    },
+    {
+     "key": "D",
+     "text": "3"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 34,
+   "topic": "Moving Charges and Magnetism",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The wire loop PQRSP formed by joining two semicircular wire of radii $R_1$ and $R_2$ carries a current $I$ as shown. The magnitude of the magnetic field at the centre ' O ' is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The straight parts PQ and RS pass through O (their lines go through the centre), so they give no field at O. A semicircle gives $B = \\frac{\\mu_0 I}{4R}$ at its centre.\nStep 2: Current goes Q to R along the outer arc (clockwise, into the page) and S to P along the inner arc (anticlockwise, out of the page): the two fields oppose.\nStep 3: $B = \\frac{\\mu_0 I}{4R_2} - \\frac{\\mu_0 I}{4R_1} = \\frac{\\mu_0 I}{4}\\left[\\frac{1}{R_2} - \\frac{1}{R_1}\\right]$, positive since $R_2 < R_1$.\nFinal Answer: (B) $\\frac{\\mu_0 \\mathrm{I}}{4}\\left[\\frac{1}{\\mathrm{R_2}} - \\frac{1}{\\mathrm{R_1}}\\right]$\nQuick Tip: The magnitude must be positive, so write the smaller radius term first.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\frac{\\mu_0 I}{4}\\left[\\frac{1}{R_1} - \\frac{1}{R_2}\\right]$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{\\mu_0 \\mathrm{I}}{4}\\left[\\frac{1}{\\mathrm{R_2}} - \\frac{1}{\\mathrm{R_1}}\\right]$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\mu_0 I}{2\\pi}\\left[\\frac{1}{R_1} - \\frac{1}{R_2}\\right]$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\mu_0 \\mathrm{I}}{2\\pi}\\left[\\frac{1}{\\mathrm{R_2}} - \\frac{1}{\\mathrm{R_1}}\\right]$"
+    }
+   ],
+   "stem_figure": "m25-22apr-s1-q34.png",
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 35,
+   "topic": "Work, Energy and Power",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A body of mass 1 kg begins to move under the action of a time dependent force $\\vec{\\mathrm{F}} = \\left(t\\hat{\\mathrm{i}} + 2t^{2}\\hat{\\mathrm{j}}\\right)\\mathrm{N}$, where $\\hat{i}$ and $\\hat{j}$ are unit vectors along $x$ and $y$ axis. The power developed by above force at time $\\mathrm{t} = 3$ second will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $m = 1\\ \\mathrm{kg}$, so $\\vec{a} = t\\hat{i} + 2t^{2}\\hat{j}$; starting from rest, $\\vec{v} = \\frac{t^{2}}{2}\\hat{i} + \\frac{2t^{3}}{3}\\hat{j}$.\nStep 2: At $t = 3\\ \\mathrm{s}$: $\\vec{F} = 3\\hat{i} + 18\\hat{j}$, $\\vec{v} = 4.5\\hat{i} + 18\\hat{j}$.\nStep 3: $P = \\vec{F} \\cdot \\vec{v} = 3 \\times 4.5 + 18 \\times 18 = 13.5 + 324 = 337.5\\ \\mathrm{W}$.\nFinal Answer: (A) 337.5 W\nQuick Tip: Integrate $\\vec{a}$ to get $\\vec{v}$ first; instantaneous power is $\\vec{F} \\cdot \\vec{v}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "337.5 W"
+    },
+    {
+     "key": "B",
+     "text": "228.5 W"
+    },
+    {
+     "key": "C",
+     "text": "422.5 W"
+    },
+    {
+     "key": "D",
+     "text": "126.5 W"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 36,
+   "topic": "Units and Measurements",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The period of oscillating simple pendulum is $\\mathrm{T} = 2\\pi\\sqrt{\\frac{l}{\\mathrm{g}}}$ where length ' $l$ ' is 100 cm with error 1 mm . Period is 2 second. The time of 100 oscillations is measured by a stopwatch of least count 0.1s. The percentage error in gravitational acceleration ' g ' is",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $g = \\frac{4\\pi^{2}l}{T^{2}} \\Rightarrow \\frac{\\Delta g}{g} = \\frac{\\Delta l}{l} + 2\\frac{\\Delta T}{T}$.\nStep 2: $\\frac{\\Delta l}{l} = \\frac{0.1}{100} = 0.1\\%$. Time of 100 oscillations $= 200\\ \\mathrm{s}$, so $\\frac{\\Delta T}{T} = \\frac{0.1}{200} = 0.05\\%$.\nStep 3: $\\frac{\\Delta g}{g} = 0.1\\% + 2 \\times 0.05\\% = 0.2\\%$.\nFinal Answer: (A) $0.2\\%$\nQuick Tip: Timing many oscillations divides the stopwatch error over the total time.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$0.2\\%$"
+    },
+    {
+     "key": "B",
+     "text": "$0.1\\%$"
+    },
+    {
+     "key": "C",
+     "text": "$1\\%$"
+    },
+    {
+     "key": "D",
+     "text": "$2\\%$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 37,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If a centre tap transformer is used with two p-n junction diodes for full wave rectification then output voltage of rectifier with respect to each diode is (secondary voltage of transformer $= \\mathrm{V_s}$ )",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The centre tap splits the secondary into two equal halves; each diode conducts only from its own half.\nStep 2: So the voltage delivered through each diode is half the secondary voltage, $\\frac{V_s}{2}$.\nFinal Answer: (C) $\\left(\\frac{1}{2}\\right)\\mathrm{V_s}$\nQuick Tip: Centre-tap rectifier: each half-cycle uses only half the secondary winding.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\ \\mathrm{V_s}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\left(\\frac{2}{3}\\right)\\mathrm{V_s}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\left(\\frac{1}{2}\\right)\\mathrm{V_s}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\left(\\frac{3}{2}\\right)\\mathrm{V_s}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 38,
+   "topic": "Atoms",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Out of the following transitions in hydrogen atom, identify the transition which emits photons of highest frequency.",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Emission happens only for a downward jump, so (A) and (C) (absorption) are ruled out.\nStep 2: $E_{2 \\to 1} = 13.6\\left(1 - \\frac{1}{4}\\right) = 10.2\\ \\mathrm{eV}$; $E_{6 \\to 2} = 13.6\\left(\\frac{1}{4} - \\frac{1}{36}\\right) = 3.02\\ \\mathrm{eV}$.\nStep 3: Larger energy means higher frequency, so $n = 2$ to $n = 1$.\nFinal Answer: (B) $\\mathrm{n} = 2$ to $\\mathrm{n} = 1$\nQuick Tip: Gaps between levels shrink as $n$ increases; transitions to $n = 1$ carry the most energy.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$\\mathrm{n} = 1$ to $\\mathrm{n} = 2$"
+    },
+    {
+     "key": "B",
+     "text": "$\\mathrm{n} = 2$ to $\\mathrm{n} = 1$"
+    },
+    {
+     "key": "C",
+     "text": "$n = 2$ to $n = 6$"
+    },
+    {
+     "key": "D",
+     "text": "$n = 6$ to $n = 2$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 39,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An organ pipe has fundamental frequency 80 Hz . If its one end is closed, the frequencies produced will be (in Hz ) (Neglect end correction)",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Open pipe: $f = \\frac{v}{2L} = 80\\ \\mathrm{Hz}$. Closing one end: $f' = \\frac{v}{4L} = 40\\ \\mathrm{Hz}$.\nStep 2: A closed pipe gives only odd harmonics: $40, 3 \\times 40, 5 \\times 40, 7 \\times 40 = 40, 120, 200, 280\\ \\mathrm{Hz}$.\nFinal Answer: (C) $40, 120, 200, 280$\nQuick Tip: Closed pipe: fundamental halves and even harmonics vanish.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$40, 80, 120, 160$"
+    },
+    {
+     "key": "B",
+     "text": "$40, 80, 160, 240$"
+    },
+    {
+     "key": "C",
+     "text": "$40, 120, 200, 280$"
+    },
+    {
+     "key": "D",
+     "text": "$80, 160, 240, 320$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 40,
+   "topic": "Alternating Current",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "An a.c. e.m.f. of peak value 230 V and frequency 50 Hz is connected to a circuit with $\\mathrm{R} = 11.5\\Omega$, $\\mathrm{L} = 2.5\\mathrm{H}$ and a capacitor all in series. The value of capacitance is ' $C$ ' for the current in the circuit to be maximum. The value of ' $C$ ' and maximum current are respectively ( $\\pi^{2} = 10$ )",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Current is maximum at resonance: $C = \\frac{1}{4\\pi^{2}f^{2}L}$.\nStep 2: $C = \\frac{1}{4 \\times 10 \\times 2500 \\times 2.5} = \\frac{1}{2.5 \\times 10^{5}} = 4 \\times 10^{-6}\\ \\mathrm{F} = 4\\ \\mu\\mathrm{F}$.\nStep 3: At resonance $Z = R$: $I_{\\max} = \\frac{230}{11.5} = 20\\ \\mathrm{A}$ (peak).\nFinal Answer: (A) $4\\mu\\mathrm{F}, 20\\ \\mathrm{A}$\nQuick Tip: At resonance $X_L = X_C$, so the circuit is purely resistive.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$4\\mu\\mathrm{F}, 20\\ \\mathrm{A}$"
+    },
+    {
+     "key": "B",
+     "text": "$5\\mu\\mathrm{F}, 10\\ \\mathrm{A}$"
+    },
+    {
+     "key": "C",
+     "text": "$2\\mu\\mathrm{F}, 20\\ \\mathrm{A}$"
+    },
+    {
+     "key": "D",
+     "text": "$8\\mu\\mathrm{F}, 12\\ \\mathrm{A}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 41,
+   "topic": "Thermodynamics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A gas undergoes a change in which its pressure ' P ' and volume ' V ' are related as $\\mathrm{PV^{n}} =$ constant, where n is a constant. If the specific heat of the gas in this change is zero, then the value of $n$ is ( $\\gamma =$ adiabatic ratio)",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Molar heat capacity of a polytropic process: $C = C_v + \\frac{R}{1 - n}$.\nStep 2: $C = 0$ means no heat exchange, i.e. an adiabatic process: $\\frac{R}{n - 1} = C_v = \\frac{R}{\\gamma - 1} \\Rightarrow n = \\gamma$.\nFinal Answer: (D) $\\gamma$\nQuick Tip: Zero specific heat $\\Leftrightarrow$ adiabatic $\\Leftrightarrow PV^{\\gamma} = $ constant.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$1 - \\gamma$"
+    },
+    {
+     "key": "B",
+     "text": "$\\gamma + 1$"
+    },
+    {
+     "key": "C",
+     "text": "$\\gamma - 1$"
+    },
+    {
+     "key": "D",
+     "text": "$\\gamma$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 42,
+   "topic": "Dual Nature of Radiation and Matter",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "From photoelectric effect experiment, select the correct statement.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Wave theory fails to explain the effect; $K_{\\max} = h\\nu - \\phi$ depends on frequency, not intensity; stopping potential depends on both $\\nu$ and $\\phi$. So (A), (B), (C) are wrong.\nStep 2: Greater intensity means more photons per second, hence more photoelectrons and a larger saturation current.\nFinal Answer: (D) The saturation current increases as the intensity of incident light increases.\nQuick Tip: Intensity controls the number of electrons; frequency controls their energy.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "Photoelectric effect can be explained using wave theory of light."
+    },
+    {
+     "key": "B",
+     "text": "The maximum kinetic energy of a photoelectron depends on the intensity of incident light."
+    },
+    {
+     "key": "C",
+     "text": "The stopping potential depends only on the work function of the metal."
+    },
+    {
+     "key": "D",
+     "text": "The saturation current increases as the intensity of incident light increases."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 43,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "The equation of wave is $y = 60\\sin(1200t - 6x)$, where ' $y$ ' is in micron, ' $t$ ' is in second and ' $x$ ' is in metre. The ratio of maximum particle velocity to the wave velocity of wave propagation is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $A = 60\\ \\mu\\mathrm{m} = 6 \\times 10^{-5}\\ \\mathrm{m}$, $\\omega = 1200\\ \\mathrm{rad\\,s^{-1}}$, $k = 6\\ \\mathrm{m^{-1}}$.\nStep 2: $v_{\\max} = A\\omega = 6 \\times 10^{-5} \\times 1200 = 0.072\\ \\mathrm{m/s}$; wave speed $v = \\frac{\\omega}{k} = 200\\ \\mathrm{m/s}$.\nStep 3: Ratio $= \\frac{0.072}{200} = 3.6 \\times 10^{-4}$ (equivalently $Ak$).\nFinal Answer: (C) $3.6 \\times 10^{-4}$\nQuick Tip: $\\frac{v_{\\max}}{v} = Ak$; remember 1 micron $= 10^{-6}\\ \\mathrm{m}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "36"
+    },
+    {
+     "key": "B",
+     "text": "$3.6 \\times 10^{-5}$"
+    },
+    {
+     "key": "C",
+     "text": "$3.6 \\times 10^{-4}$"
+    },
+    {
+     "key": "D",
+     "text": "$3.6 \\times 10^{-6}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 44,
+   "topic": "Gravitation",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two satellites P and Q go round a planet in circular orbits having radii ' $3R$ ' and ' $R$ ' respectively. If the speed of satellite $P$ is ' $2V$ ', the speed of the satellite $Q$ will be",
+   "correct_key": "A",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Orbital speed $v = \\sqrt{\\frac{GM}{r}} \\Rightarrow v \\propto \\frac{1}{\\sqrt{r}}$.\nStep 2: $\\frac{v_Q}{v_P} = \\sqrt{\\frac{3R}{R}} = \\sqrt{3} \\Rightarrow v_Q = 2V\\sqrt{3} = 2\\sqrt{3}\\,V$.\nFinal Answer: (A) $2\\sqrt{3}\\ \\mathrm{V}$\nQuick Tip: The inner satellite always moves faster.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "$2\\sqrt{3}\\ \\mathrm{V}$"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{2\\ \\mathrm{V}}{\\sqrt{3}}$"
+    },
+    {
+     "key": "C",
+     "text": "$\\frac{\\mathrm{V}}{2}$"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{\\mathrm{V}}{\\sqrt{3}}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 45,
+   "topic": "Oscillations",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "For a particle performing S.H.M.; the total energy is ' $n$ ' times the kinetic energy, when the displacement of a particle from mean position is $\\frac{\\sqrt{3}}{2}\\ \\mathrm{A}$, where A is the amplitude of S.H.M. The value of ' $n$ ' is",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: $E = \\frac{1}{2}kA^{2}$ and $K = \\frac{1}{2}k(A^{2} - x^{2})$.\nStep 2: $x^{2} = \\frac{3}{4}A^{2} \\Rightarrow K = \\frac{1}{2}k \\cdot \\frac{A^{2}}{4} = \\frac{E}{4}$.\nStep 3: $n = \\frac{E}{K} = 4$.\nFinal Answer: (C) 4\nQuick Tip: $\\frac{K}{E} = 1 - \\frac{x^{2}}{A^{2}}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "2"
+    },
+    {
+     "key": "B",
+     "text": "3"
+    },
+    {
+     "key": "C",
+     "text": "4"
+    },
+    {
+     "key": "D",
+     "text": "6"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 46,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A copper ring is held horizontally and a bar magnet is dropped through the ring with its length along the axis of the ring. The acceleration of the falling magnet while it is passing through the ring is",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The changing flux induces a current in the ring; by Lenz's law it opposes the relative motion of the magnet.\nStep 2: The ring therefore exerts an upward force on the falling magnet, so its acceleration is less than $g$.\nFinal Answer: (B) less than acceleration due to gravity.\nQuick Tip: Lenz's law always opposes the cause, so the magnet is slowed both approaching and leaving the ring.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "more than acceleration due to gravity."
+    },
+    {
+     "key": "B",
+     "text": "less than acceleration due to gravity."
+    },
+    {
+     "key": "C",
+     "text": "depends on the diameter of ring and length of magnet."
+    },
+    {
+     "key": "D",
+     "text": "depends on pole strength of magnet."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 47,
+   "topic": "Wave Optics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "In a single slit diffraction pattern, identify the incorrect statement from the following.",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: In single-slit diffraction the central maximum is twice as wide as the others, so the fringes are not all of equal width.\nStep 2: The intensity falls sharply for successive secondary maxima (about $4.5\\%$, $1.6\\%$ of the central one), so the fringes have unequal intensity. Hence the statement of equal width and equal intensity is incorrect.\nFinal Answer: (D) The fringes have equal width and equal intensity.\nQuick Tip: Equal width and equal intensity is a feature of ideal double-slit interference, not diffraction.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "The fringes have unequal width."
+    },
+    {
+     "key": "B",
+     "text": "The fringes have unequal intensity."
+    },
+    {
+     "key": "C",
+     "text": "The fringes have unequal width and unequal intensity."
+    },
+    {
+     "key": "D",
+     "text": "The fringes have equal width and equal intensity."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 48,
+   "topic": "Semiconductor Electronics",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "If an alternating voltage is applied across a p-n junction diode in series with a load then",
+   "correct_key": "B",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The diode conducts only when forward biased, i.e. in one half of each cycle (half-wave rectification).\nStep 2: The load therefore gets unidirectional but pulsating voltage (no filter is used).\nFinal Answer: (B) a pulsating voltage appears across load.\nQuick Tip: A filter capacitor is needed to smooth the pulsating d.c.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "no voltage appears across load."
+    },
+    {
+     "key": "B",
+     "text": "a pulsating voltage appears across load."
+    },
+    {
+     "key": "C",
+     "text": "an a.c. voltage appears across load."
+    },
+    {
+     "key": "D",
+     "text": "a d.c. voltage appears across load which is not pulsating."
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 49,
+   "topic": "Waves",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "Two waves of same frequency ( n ) are approaching each other with same velocity $12\\ \\mathrm{m/s}$ along the same linear path and interfere. The distance between two consecutive nodes is",
+   "correct_key": "D",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: The waves form a stationary wave; wavelength $\\lambda = \\frac{v}{n} = \\frac{12}{n}$.\nStep 2: Consecutive nodes are $\\frac{\\lambda}{2}$ apart: $\\frac{12}{2n} = \\frac{6}{n}$.\nFinal Answer: (D) $\\frac{6}{n}$\nQuick Tip: Node-to-node (or antinode-to-antinode) distance is $\\frac{\\lambda}{2}$.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "12 n"
+    },
+    {
+     "key": "B",
+     "text": "$\\frac{12}{n}$"
+    },
+    {
+     "key": "C",
+     "text": "6 n"
+    },
+    {
+     "key": "D",
+     "text": "$\\frac{6}{n}$"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  },
+  {
+   "q_no": 50,
+   "topic": "Electromagnetic Induction",
+   "qtype": "mcq",
+   "section": null,
+   "stem": "A coil of resistance $400\\Omega$ is placed in a magnetic field. If the magnetic flux ' $\\phi$ ' ( Wb ) linked with the coil varies with time ' $t$ ' ( $s$ ) is $\\phi = 50\\mathrm{t}^{2} + 4$, the current in the coil at $\\mathrm{t} = 2\\ \\mathrm{s}$ will be",
+   "correct_key": "C",
+   "correct_value": null,
+   "correct_keys": null,
+   "solution": "Step 1: Induced emf $e = \\frac{d\\phi}{dt} = 100t$; at $t = 2\\ \\mathrm{s}$, $e = 200\\ \\mathrm{V}$.\nStep 2: $I = \\frac{e}{R} = \\frac{200}{400} = 0.5\\ \\mathrm{A}$.\nFinal Answer: (C) 0.5 A\nQuick Tip: The constant term in $\\phi$ does not induce any emf.",
+   "marks_correct": 1,
+   "marks_wrong": 0,
+   "or_stem": null,
+   "or_solution": null,
+   "options": [
+    {
+     "key": "A",
+     "text": "1 A"
+    },
+    {
+     "key": "B",
+     "text": "2 A"
+    },
+    {
+     "key": "C",
+     "text": "0.5 A"
+    },
+    {
+     "key": "D",
+     "text": "0.1 A"
+    }
+   ],
+   "stem_figure": null,
+   "solution_figure": null,
+   "or_stem_figure": null,
+   "or_solution_figure": null
+  }
+ ]
+}
