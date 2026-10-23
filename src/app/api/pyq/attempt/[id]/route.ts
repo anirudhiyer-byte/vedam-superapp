@@ -3,6 +3,7 @@ import { svc, requireUser, grade, isScored, PAPER_COLS, QUESTION_COLS } from "@/
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
 /** GET /api/pyq/attempt/[id]
  *  Owner-only. Returns a submitted attempt's stored summary + topic breakdown,
@@ -19,6 +20,9 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
     .select("id, user_id, paper_id, status, started_at, submitted_at, duration_secs, score, max_score, correct, wrong, unattempted, accuracy, topic_breakdown")
     .eq("id", id).maybeSingle();
   if (!att || att.user_id !== gate.userId) return NextResponse.json({ error: "Attempt not found" }, { status: 404 });
+  // The review carries every correct answer + solution, so it is only ever served
+  // once the attempt is submitted — never while it is still in progress.
+  if (att.status !== "submitted") return NextResponse.json({ error: "Submit the paper to see your result" }, { status: 409 });
 
   const { data: paper } = await db
     .from("pyq_papers")

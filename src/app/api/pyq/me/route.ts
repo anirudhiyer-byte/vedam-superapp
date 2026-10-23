@@ -3,6 +3,7 @@ import { svc, requireUser } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
 const PAPER_EMBED = "paper:pyq_papers(id, exam, subject, year, set_label, title, marks_correct, marks_wrong, marking_note, total_questions, theory_questions)";
 

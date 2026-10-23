@@ -7,6 +7,7 @@ import { PyqApp } from "@/components/pyq/pyq-app";
 import "@/components/pyq/pyq.css";
 
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 export const metadata: Metadata = {
   title: "PYQ Practice — Vedam",
   description: "Attempt real previous-year papers (CBSE Boards, JEE Main, WBJEE, MH-CET) online, free — with instant solutions and topic-wise analysis.",

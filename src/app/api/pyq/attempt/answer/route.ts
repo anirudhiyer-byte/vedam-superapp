@@ -3,6 +3,7 @@ import { svc, requireUser, grade, revealOf, parseValue, normKeys, sameKeys, isSc
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
 /** POST /api/pyq/attempt/answer
  *  { attempt_id, question_id, selected_key?, selected_value?, selected_keys?, marked_for_later?, reveal? }
@@ -18,25 +19,37 @@ export const dynamic = "force-dynamic";
  *    gets 409, so a candidate can't peek at the solution and then switch.
  *  `marked_for_later` can be sent on its own. */
 export async function POST(req: Request) {
-  const gate = await requireUser();
-  if (!gate.ok) return gate.res;
   const b = await req.json().catch(() => ({}));
   const attemptId = b.attempt_id as string | undefined;
   const questionId = b.question_id as string | undefined;
-  if (!attemptId || !questionId) return NextResponse.json({ error: "attempt_id and question_id are required" }, { status: 400 });
+  if (!attemptId || !questionId) {
+    const g = await requireUser();
+    return g.ok ? NextResponse.json({ error: "attempt_id and question_id are required" }, { status: 400 }) : g.res;
+  }
 
   const db = svc();
 
+  // One round trip instead of five: the sign-in check and the three reads run together.
+  // Nothing read here is used until the sign-in + ownership checks below have passed.
+  const [gate, attRes, qRes, priorRes] = await Promise.all([
+    requireUser(),
+    db.from("pyq_attempts").select("id, user_id, status, paper_id").eq("id", attemptId).maybeSingle(),
+    db.from("pyq_questions")
+      .select("id, paper_id, qtype, options, correct_key, correct_value, correct_keys, solution, solution_figure_url, marks_correct, marks_wrong")
+      .eq("id", questionId).maybeSingle(),
+    db.from("pyq_answers")
+      .select("selected_key, selected_value, selected_keys, marked_for_later, revealed")
+      .eq("attempt_id", attemptId).eq("question_id", questionId).maybeSingle(),
+  ]);
+  if (!gate.ok) return gate.res;
+
   // Ownership + state check.
-  const { data: att } = await db.from("pyq_attempts").select("id, user_id, status, paper_id").eq("id", attemptId).maybeSingle();
+  const att = attRes.data;
   if (!att || att.user_id !== gate.userId) return NextResponse.json({ error: "Attempt not found" }, { status: 404 });
   if (att.status !== "in_progress") return NextResponse.json({ error: "Attempt already submitted" }, { status: 409 });
 
   // The question must belong to this attempt's paper.
-  const { data: q } = await db
-    .from("pyq_questions")
-    .select("id, paper_id, qtype, options, correct_key, correct_value, correct_keys, solution, solution_figure_url, marks_correct, marks_wrong")
-    .eq("id", questionId).maybeSingle();
+  const q = qRes.data;
   if (!q) return NextResponse.json({ error: "Question not found" }, { status: 404 });
   if (att.paper_id !== q.paper_id) return NextResponse.json({ error: "Question not in this paper" }, { status: 400 });
   // Board theory questions are read-only (their answer is shown with the question, never graded).
@@ -59,10 +72,7 @@ export async function POST(req: Request) {
   }
 
   // Preserve prior values when a field isn't being changed this call.
-  const { data: prior } = await db
-    .from("pyq_answers")
-    .select("selected_key, selected_value, selected_keys, marked_for_later, revealed")
-    .eq("attempt_id", attemptId).eq("question_id", questionId).maybeSingle();
+  const prior = priorRes.data;
 
   const priorKey = (prior?.selected_key ?? null) as string | null;
   const priorValue = prior?.selected_value == null ? null : Number(prior.selected_value);

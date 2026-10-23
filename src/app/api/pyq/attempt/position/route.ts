@@ -3,6 +3,7 @@ import { svc, requireUser } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
 /** POST /api/pyq/attempt/position  { attempt_id, question_id }
  *  Remembers the question the candidate is on, so leaving the paper (Back) and

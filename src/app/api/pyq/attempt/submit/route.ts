@@ -3,6 +3,7 @@ import { svc, requireUser, grade, isScored, QUESTION_COLS } from "@/lib/pyq/api"
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
 type TopicStat = { topic: string; correct: number; attempted: number; total: number; pct: number };
 

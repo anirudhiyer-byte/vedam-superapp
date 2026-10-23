@@ -1,14 +1,41 @@
 import { NextResponse } from "next/server";
+import { unstable_cache } from "next/cache";
 import { createClient as createServer } from "@/lib/supabase/server";
-import { svc, PAPER_COLS, type PaperRow } from "@/lib/pyq/api";
+import { svc, type PaperRow } from "@/lib/pyq/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
 type MyStatus = {
   in_progress_id: string | null;
   last: { attempt_id: string; score: number; max_score: number; submitted_at: string } | null;
 };
+
+/** Catalogue columns. The long board-paper `instructions` and `sections` are left out:
+ *  the picker and landing never show them (the attempt screen gets them from
+ *  /attempt/start), and they made this payload ~10x bigger. */
+const CATALOGUE_COLS =
+  "id, exam, subject, year, set_label, title, marks_correct, marks_wrong, marking_note, total_questions, is_published, sort_order, duration_mins, max_marks, theory_questions";
+
+/** The published catalogue is the same for everyone and changes only when papers are
+ *  loaded, so it is cached for 2 minutes instead of being read from the DB on every visit. */
+const getCatalogue = unstable_cache(
+  async (): Promise<PaperRow[]> => {
+    const { data, error } = await svc()
+      .from("pyq_papers")
+      .select(CATALOGUE_COLS)
+      .eq("is_published", true)
+      .gt("total_questions", 0)
+      .order("exam", { ascending: true })
+      .order("sort_order", { ascending: true })
+      .order("year", { ascending: false });
+    if (error) throw new Error(error.message);
+    return (data ?? []) as unknown as PaperRow[];
+  },
+  ["pyq-catalogue-v1"],
+  { revalidate: 120, tags: ["pyq-catalogue"] },
+);
 
 /** GET /api/pyq/papers
  *  The published paper catalogue (metadata only — never questions or answers).
@@ -17,23 +44,20 @@ type MyStatus = {
  *  (for "Resume") and their latest submitted score (for "Score x/y · Re-attempt"). */
 export async function GET() {
   const sb = await createServer();
-  const { data: { user } } = await sb.auth.getUser();
-  const db = svc();
-
-  const { data, error } = await db
-    .from("pyq_papers")
-    .select(PAPER_COLS)
-    .eq("is_published", true)
-    .gt("total_questions", 0)
-    .order("exam", { ascending: true })
-    .order("sort_order", { ascending: true })
-    .order("year", { ascending: false });
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  const papers = (data ?? []) as PaperRow[];
+  // Sign-in check and the (cached) catalogue run together.
+  let papers: PaperRow[];
+  let user;
+  try {
+    const [auth, cat] = await Promise.all([sb.auth.getUser(), getCatalogue()]);
+    user = auth.data.user;
+    papers = cat;
+  } catch (e) {
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
+  }
 
   const my = new Map<string, MyStatus>();
   if (user) {
-    const { data: atts } = await db
+    const { data: atts } = await svc()
       .from("pyq_attempts")
       .select("id, paper_id, status, score, max_score, submitted_at, created_at")
       .eq("user_id", user.id)

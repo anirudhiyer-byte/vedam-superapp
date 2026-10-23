@@ -3,6 +3,7 @@ import { svc, requireUser, sanitizeQuestion, revealOf, PAPER_COLS, QUESTION_COLS
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
 /** POST /api/pyq/attempt/start  { paper_id }
  *  Resumes the user's open attempt for this paper, or creates a new one.
