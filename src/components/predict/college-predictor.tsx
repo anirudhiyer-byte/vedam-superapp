@@ -10,7 +10,8 @@ type Form = { mode: "rank" | "marks"; rank: string; marks: string; category: str
 type Grouped = { institute: string; institute_id: number; rows: Row[] };
 
 const blank: Form = { mode: "rank", rank: "", marks: "", category: "OPEN", gender: "Gender Neutral", stream: "PCM", year: "2026", stateId: "" };
-function sid() { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.randomUUID(); localStorage.setItem("cp_sid", s); } return s; }
+let _cpSidFallback = "";
+function sid() { try { let s = localStorage.getItem("cp_sid"); if (!s) { s = crypto.randomUUID(); localStorage.setItem("cp_sid", s); } return s; } catch { return (_cpSidFallback ||= (crypto.randomUUID?.() ?? String(Math.random()).slice(2))); } }
 
 /* ---------- exact Figma tokens ---------- */
 const SUBMIT_GRAD = "linear-gradient(93.15deg, #7629FC 5.87%, #8A18FF 88.28%)";
@@ -170,8 +171,10 @@ export function CollegePredictor() {
       if (isAuth) {
         const { data: p } = await supabase.from("profiles").select("state").eq("id", session!.user.id).maybeSingle();
         const sidState = stateNameToId(p?.state); if (sidState) setF((x) => ({ ...x, stateId: String(sidState) }));
-        const pend = localStorage.getItem("cp_pending");
-        if (pend) { try { const pf = JSON.parse(pend) as Form; setF(pf); localStorage.removeItem("cp_pending"); setTimeout(() => runPrediction(pf, true), 60); } catch { /* */ } }
+        try {
+          const pend = localStorage.getItem("cp_pending");
+          if (pend) { const pf = JSON.parse(pend) as Form; setF(pf); localStorage.removeItem("cp_pending"); setTimeout(() => runPrediction(pf, true), 60); }
+        } catch { /* storage blocked or bad json - skip resume */ }
       }
     })();
     // eslint-disable-next-line
@@ -181,7 +184,7 @@ export function CollegePredictor() {
     const hasInput = f.mode === "rank" ? !!f.rank : !!f.marks;
     if (!hasInput || !f.stateId || !f.category || !f.gender) { setErr("Please fill your rank/marks, category, seat pool and domicile state."); return; }
     log("predict_clicked", { mode: f.mode, category: f.category, gender: f.gender, stateId: f.stateId });
-    localStorage.setItem("cp_pending", JSON.stringify(f));   // so the prediction runs on return
+    try { localStorage.setItem("cp_pending", JSON.stringify(f)); } catch { /* storage blocked - resume-after-auth skipped */ }   // so the prediction runs on return
     gate({ kind: "predict" }, () => runPrediction(f), "Create your free account to see your predicted colleges.");
   }
 
