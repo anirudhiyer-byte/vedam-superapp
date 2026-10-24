@@ -37,8 +37,10 @@ export function UtmCapture() {
         }
       }
       if (!label) return;
-      if (sessionStorage.getItem("vedam_utm_last") === label) return;
-      sessionStorage.setItem("vedam_utm_last", label);
+      try {
+        if (sessionStorage.getItem("vedam_utm_last") === label) return;
+        sessionStorage.setItem("vedam_utm_last", label);
+      } catch { /* storage blocked - skip dedupe, still capture below */ }
       try { await supabase.rpc("capture_utm", { p_label: label, p_source: src, p_medium: med, p_campaign: camp }); } catch { /* best effort */ }
     })();
   }, []);
