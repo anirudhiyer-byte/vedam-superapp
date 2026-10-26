@@ -29,6 +29,7 @@ import { MathText } from "./math-text";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { RegisterForm } from "@/components/register-form";
+import { trackPyq, pyqSid } from "@/lib/pyq/track";
 
 /* ------------------------------------------------------------------ types */
 type QOption = { key: string; text: string };
@@ -207,6 +208,24 @@ export function PyqApp({ signedIn, firstName }: { signedIn: boolean; firstName: 
     return () => window.removeEventListener("popstate", sync);
   }, [sync]);
 
+  // Analytics: one screen_view per screen change (logged-out visitors included). `sync` builds a
+  // fresh route object on every URL change, so de-duplicate on what the screen actually is.
+  const lastView = useRef("");
+  useEffect(() => {
+    if (!route) return;
+    const key = `${route.s}|${"exam" in route ? route.exam ?? "" : ""}|${"paperId" in route ? route.paperId : ""}|${"attemptId" in route ? route.attemptId : ""}`;
+    if (key === lastView.current) return;
+    lastView.current = key;
+    trackPyq({
+      event_type: "screen_view", screen: route.s,
+      exam: route.s === "picker" ? route.exam : undefined,
+      paper_id: route.s === "test" ? route.paperId : undefined,
+      attempt_id: route.s === "result" ? route.attemptId : undefined,
+      // A logged-out visitor on the register screen: remember where they were headed (exam / paper).
+      meta: route.s === "register" ? { next: new URLSearchParams(window.location.search).get("next") ?? "" } : undefined,
+    });
+  }, [route]);
+
   // Catalogue: needed by S1 (tile counts) and S4. Re-pulled on entering those
   // screens so per-paper status (Resume / Score) is always fresh.
   const loadPapers = useCallback(async () => {
@@ -348,7 +367,8 @@ function HeroDemo() {
 function Landing({ papers, go, signedIn, firstName }: { papers: Paper[] | null; go: (u: string) => void; signedIn: boolean; firstName: string }) {
   // Signed-in visitors skip signup: tiles and CTAs go straight to the papers / their dashboard.
   const toPapers = (exam?: string) => {
-    const url = exam ? `/pyq?view=papers&exam=${encodeURIComponent(exam)}` : "/pyq?view=papers";
+    if (exam) trackPyq({ event_type: "exam_select", screen: "landing", exam });
+    const url =exam ? `/pyq?view=papers&exam=${encodeURIComponent(exam)}` : "/pyq?view=papers";
     go(signedIn ? url : registerUrl(url));
   };
   const counts = useMemo(() => {
@@ -516,11 +536,12 @@ function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null;
     .sort((a, b) => b.year - a.year);
 
   function pickExam(e: string) {
+    trackPyq({ event_type: "exam_select", screen: "picker", exam: e });
     setExam(e); setSubject(""); setYear(""); setSetLabel("");
     window.history.replaceState(null, "", `/pyq?view=papers&exam=${encodeURIComponent(e)}`);
   }
   // Logged-out visitors are routed through S2 and come straight back to the paper.
-  const open = (paperId: string) => go(signedIn ? `/pyq?paper=${paperId}` : registerUrl(`/pyq?paper=${paperId}`));
+  const open = (paperId: string) => { trackPyq({ event_type: "paper_select", screen: "picker", exam, paper_id: paperId }); go(signedIn ? `/pyq?paper=${paperId}` : registerUrl(`/pyq?paper=${paperId}`)); };
   const word = SET_WORD[exam] ?? "Set";
 
   return (
@@ -614,7 +635,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
             correct_key: string | null; correct_value: number | null; correct_keys: string[] | null; solution: string | null; solution_figure_url: string | null;
             is_correct: boolean | null; awarded: number | null;
           }>;
-        }>("/api/pyq/attempt/start", { paper_id: paperId });
+        }>("/api/pyq/attempt/start", { paper_id: paperId, session_id: pyqSid() });
         if (!on) return;
         const amap: Record<string, AnswerState> = {};
         for (const a of j.answers ?? []) {

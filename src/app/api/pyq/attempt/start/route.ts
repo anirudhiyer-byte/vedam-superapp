@@ -5,7 +5,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const preferredRegion = "bom1"; // same region as the staging database (ap-south-1)
 
-/** POST /api/pyq/attempt/start  { paper_id }
+/** POST /api/pyq/attempt/start  { paper_id, session_id? }  (session_id links the attempt to the visitor's browser session)
  *  Resumes the user's open attempt for this paper, or creates a new one.
  *  Returns the paper, the sanitised questions (no answers), and — for a
  *  resumed attempt — the saved answer state. Only for questions whose result the
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
   if (!attemptId) {
     const { data: created, error: cErr } = await db
       .from("pyq_attempts")
-      .insert({ user_id: gate.userId, paper_id: paperId, status: "in_progress" })
+      .insert({ user_id: gate.userId, paper_id: paperId, status: "in_progress", session_id: typeof body.session_id === "string" ? body.session_id.slice(0, 64) : null })
       .select("id, started_at").single();
     if (cErr) return NextResponse.json({ error: cErr.message }, { status: 500 });
     attemptId = created.id; startedAt = created.started_at;
