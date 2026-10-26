@@ -38,9 +38,15 @@ export async function POST(req: Request) {
   // Resume an in-progress attempt, else create one.
   const { data: open } = await db
     .from("pyq_attempts")
-    .select("id, started_at, last_question_id")
+    .select("id, started_at, last_question_id, session_id")
     .eq("user_id", gate.userId).eq("paper_id", paperId).eq("status", "in_progress")
     .order("started_at", { ascending: false }).limit(1).maybeSingle();
+  // An attempt opened before session tracking existed has no browser id yet: fill it in on resume
+  // (never overwrite one that is already set).
+  const sessionId = typeof body.session_id === "string" ? body.session_id.slice(0, 64) : null;
+  if (open && !open.session_id && sessionId) {
+    await db.from("pyq_attempts").update({ session_id: sessionId }).eq("id", open.id).is("session_id", null);
+  }
 
   let attemptId = open?.id as string | undefined;
   let startedAt = open?.started_at as string | undefined;
