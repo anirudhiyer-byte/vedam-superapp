@@ -37,12 +37,20 @@ export async function POST(req: Request) {
       }
     }
 
-    const sb = await createServer();
-    const { data: { user } } = await sb.auth.getUser();
+    // Who is it? If the sign-in check fails for any reason (stale cookie right after a logout, etc.),
+    // still save the event as a logged-out visit instead of dropping it.
+    let userId: string | null = null;
+    try {
+      const sb = await createServer();
+      const { data } = await sb.auth.getUser();
+      userId = data?.user?.id ?? null;
+    } catch (e) {
+      console.error("[pyq/event] auth check failed, saving as logged-out:", (e as Error).message);
+    }
 
-    await svc().from("pyq_events").insert({
+    const { error } = await svc().from("pyq_events").insert({
       session_id: str(b.session_id, 64),
-      user_id: user?.id ?? null,
+      user_id: userId,
       event_type: eventType,
       screen,
       exam,
@@ -53,6 +61,7 @@ export async function POST(req: Request) {
       utm_medium: str(b.utm_medium, 100),
       utm_campaign: str(b.utm_campaign, 150),
     });
-  } catch { /* best effort */ }
+    if (error) console.error("[pyq/event] insert failed:", error.message);
+  } catch (e) { console.error("[pyq/event] failed:", (e as Error).message); }
   return new NextResponse(null, { status: 204 });
 }
