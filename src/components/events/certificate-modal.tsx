@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 
 import { downloadNodePng } from "@/lib/download-node";
 import { linkedInShareUrl, defaultShareText, type CertKind } from "@/lib/events";
-import { isValidLinkedInPostUrl } from "@/lib/linkedin-url";
+import { prepareLinkedInPostUrl } from "@/lib/linkedin-submit-url";
 
 type Cert = { full_name: string; event_name: string; issued_on: string; kind: CertKind; position: string | null; source: string; module_id: string | null };
 
@@ -70,17 +70,20 @@ export function CertificateModal({ certId, onClose }: { certId: string; onClose:
   async function submitLink() {
     if (!url.trim() || busy) return;
     setErr(null);
-    // Early client-side check (same rule as the server): real linkedin.com host + a post path.
-    if (!isValidLinkedInPostUrl(url)) { setErr("Paste the full LinkedIn post link (https://www.linkedin.com/posts/…). Short links are not accepted."); return; }
     setBusy(true);
+    // Full post link -> canonical form; lnkd.in (phone app) -> resolved on our server.
+    // The server still validates the final URL (same rule).
+    const prep = await prepareLinkedInPostUrl(url);
+    if ("error" in prep) { setErr(prep.error); setBusy(false); return; }
+    const postUrl = prep.url;
     try {
       if (data?.source === "codesprint") {
-        const { data: res } = await supabase.rpc("cs_submit_linkedin", { p_cert_id: certId, p_url: url.trim() });
+        const { data: res } = await supabase.rpc("cs_submit_linkedin", { p_cert_id: certId, p_url: postUrl });
         const r = res as { ok?: boolean; already?: boolean; error?: string; points?: number };
         if (r?.error) { setErr(r.error); setBusy(false); return; }
         setSubmitted(r?.already ? -1 : Number(r?.points) || 0);
       } else if (regId) {
-        const { data: res } = await supabase.rpc("submit_linkedin_post", { p_registration_id: regId, p_url: url.trim() });
+        const { data: res } = await supabase.rpc("submit_linkedin_post", { p_registration_id: regId, p_url: postUrl });
         const r = res as { ok?: boolean; already?: boolean; error?: string; points?: number };
         if (r?.error) { setErr(r.error); setBusy(false); return; }
         setSubmitted(r?.already ? -1 : Number(r?.points) || 0);
@@ -140,7 +143,7 @@ export function CertificateModal({ certId, onClose }: { certId: string; onClose:
                     <h4 className="font-display text-sm font-extrabold text-heading">Earn +{sharePts} points</h4>
                     <p className="mt-0.5 font-body text-xs text-muted">Shared it? Paste your LinkedIn <b>post link</b> to claim the points. One submission per event.</p>
                     <div className="mt-2.5 flex gap-2">
-                      <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://www.linkedin.com/posts/…" className="flex-1 rounded-lg border border-border-strong bg-background px-3 py-2 font-mono text-xs text-foreground outline-none" />
+                      <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://www.linkedin.com/posts/… or https://lnkd.in/…" className="flex-1 rounded-lg border border-border-strong bg-background px-3 py-2 font-mono text-xs text-foreground outline-none" />
                       <button onClick={submitLink} disabled={busy || !url.trim()} className="rounded-lg bg-brand-gradient px-4 text-sm font-bold text-white disabled:opacity-60">{busy ? "…" : "Submit"}</button>
                     </div>
                     {err && <p className="mt-1.5 font-body text-xs text-red-500">{err}</p>}
