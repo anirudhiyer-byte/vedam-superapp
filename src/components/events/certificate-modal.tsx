@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 
 import { downloadNodePng } from "@/lib/download-node";
 import { linkedInShareUrl, defaultShareText, type CertKind } from "@/lib/events";
+import { isValidLinkedInPostUrl } from "@/lib/linkedin-url";
 
 type Cert = { full_name: string; event_name: string; issued_on: string; kind: CertKind; position: string | null; source: string; module_id: string | null };
 
@@ -68,7 +69,10 @@ export function CertificateModal({ certId, onClose }: { certId: string; onClose:
 
   async function submitLink() {
     if (!url.trim() || busy) return;
-    setBusy(true); setErr(null);
+    setErr(null);
+    // Early client-side check (same rule as the server): real linkedin.com host + a post path.
+    if (!isValidLinkedInPostUrl(url)) { setErr("Paste the full LinkedIn post link (https://www.linkedin.com/posts/…). Short links are not accepted."); return; }
+    setBusy(true);
     try {
       if (data?.source === "codesprint") {
         const { data: res } = await supabase.rpc("cs_submit_linkedin", { p_cert_id: certId, p_url: url.trim() });

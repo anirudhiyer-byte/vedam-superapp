@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { isValidLinkedInPostUrl } from "@/lib/linkedin-url";
 
 function Box({ registrationId, kind, points, already, label }: { registrationId: string; kind: "participation" | "podium"; points: number; already: string | null; label: string }) {
   const [supabase] = useState(() => createClient());
   const [url, setUrl] = useState(""); const [done, setDone] = useState(!!already); const [err, setErr] = useState<string | null>(null); const [busy, setBusy] = useState(false);
   async function submit() {
     setErr(null);
-    if (!/linkedin\.com\//i.test(url)) return setErr("Enter a valid LinkedIn post URL.");
+    // Hostname-based check (same rule as the server) — a text match on "linkedin.com/" is not enough.
+    if (!isValidLinkedInPostUrl(url)) return setErr("Paste the full LinkedIn post link (https://www.linkedin.com/posts/…). Short links are not accepted.");
     setBusy(true);
     const { data } = await supabase.rpc("submit_linkedin_kind", { p_registration_id: registrationId, p_url: url.trim(), p_kind: kind });
     setBusy(false);
