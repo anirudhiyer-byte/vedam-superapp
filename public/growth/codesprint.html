@@ -779,6 +779,8 @@ const CostListing=makeGrid({
     target.leads = lo!=null?lo:(target.leads_auto!=null?target.leads_auto:0);
     target.mql   = mo!=null?mo:(target.mql_auto!=null?target.mql_auto:0);
     target.cpl   = co!=null?co:(target.leads>0?Math.round(target.cpl_spend/target.leads*100)/100:null);
+    // Telegram influencer rows: CPL is the input; cost auto = CPL x leads (matches the DB view)
+    if(/^telegram/i.test(String(target.platform||""))){ const c=co||0; target.cpl=co; target.cpl_spend=Math.round(c*target.leads*100)/100; target.total_cost=Math.round(c*target.leads*100)/100; }
   },
   actionsColumn:true,
   refreshLabel:"Refresh leads & cost",
