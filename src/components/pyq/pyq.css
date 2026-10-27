@@ -1,0 +1,291 @@
+/* PYQ module — ported 1:1 from the approved "PYQ Exam Prototype" design.
+   Everything is scoped under .pyq so nothing leaks into the rest of Vedam One.
+   Element-level resets use :where() (zero specificity) so the embedded real
+   signup form (Tailwind utilities) is never overridden. */
+
+.pyq{
+  --bg:#0b0618; --bg2:#120a24; --panel:#17102b; --panel2:#1e1636;
+  --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.18);
+  --ink:#f1edfb; --muted:#a79fc4; --faint:#766f93;
+  --orange:#F97D03; --violet:#8A18FF; --pink:#E80074; --cyan:#00CFE5;
+  --ok:#28c76f; --bad:#ff5b6a; --mark:#b78bff;
+  --grad:linear-gradient(93deg,#8A18FF,#E80074);
+  color-scheme:dark;
+  position:relative;
+  /* extend the background up under the (transparent, sticky) Vedam One header */
+  margin-top:-72px; padding:72px 16px 0;
+  min-height:100vh;
+  background:
+    radial-gradient(900px 500px at 88% -8%, rgba(138,24,255,.22), transparent 60%),
+    radial-gradient(760px 480px at -6% 108%, rgba(249,125,3,.14), transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font:15px/1.5 var(--font-pyq),"Plus Jakarta Sans",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.pyq .wrap{max-width:1120px;margin:0 auto}
+:where(.pyq) :is(h1,h2,h3){margin:0;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+:where(.pyq) button{cursor:pointer}
+.pyq .native :is(h1,h2,h3){letter-spacing:normal}
+.pyq .num{font-variant-numeric:tabular-nums}
+
+/* buttons */
+.pyq .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:11px;padding:10px 16px;font-weight:600;font-size:14px;color:var(--ink);background:rgba(255,255,255,.04);transition:.15s}
+.pyq .btn:hover{background:rgba(255,255,255,.09)}
+.pyq .btn.primary{border:0;background:var(--grad);color:#fff;box-shadow:0 8px 22px rgba(138,24,255,.35)}
+.pyq .btn.orange{border:0;background:linear-gradient(93deg,#F97D03,#ff9d3d);color:#1a0c00}
+.pyq .btn.ghost{background:transparent}
+.pyq .btn.sm{padding:7px 12px;font-size:13px;border-radius:9px}
+.pyq .btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* generic */
+.pyq .screen{padding:28px 0 56px}
+.pyq .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:var(--cyan)}
+.pyq .panel{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:18px}
+.pyq .muted{color:var(--muted)}
+.pyq .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#1e1636;border:1px solid var(--line2);border-radius:12px;padding:11px 16px;font-size:13.5px;opacity:0;transition:.25s;z-index:50;box-shadow:0 12px 30px rgba(0,0,0,.5);pointer-events:none}
+.pyq .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.pyq .empty{font-size:13.5px;color:var(--muted);padding:14px 2px 4px}
+.pyq .loading{color:var(--muted);padding:60px 0;text-align:center}
+
+/* S1 landing */
+.pyq .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:30px 0 20px}
+@media(max-width:780px){.pyq .hero{grid-template-columns:1fr}}
+.pyq .hero h1{font-size:clamp(30px,6vw,52px);line-height:1.02}
+.pyq .hero .k{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pyq .hero p{color:var(--muted);font-size:17px;max-width:44ch;margin:16px 0 22px}
+.pyq .cta{display:flex;gap:12px;flex-wrap:wrap}
+.pyq .heroart{aspect-ratio:4/3;max-width:100%;border-radius:18px;border:1px solid var(--line);background:
+  radial-gradient(400px 300px at 70% 20%,rgba(0,207,229,.18),transparent 60%),
+  linear-gradient(160deg,rgba(138,24,255,.25),rgba(249,125,3,.12));display:grid;place-items:center;color:var(--muted);font-weight:700;padding:22px}
+.pyq .mini{position:relative;width:100%;max-width:330px;padding:16px;border-radius:15px;background:rgba(11,6,24,.72);border:1px solid var(--line2);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.pyq .mini .mtop{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.pyq .mini .mq{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:10px}
+.pyq .mini .mo{display:flex;align-items:center;gap:9px;border:1px solid var(--line2);border-radius:9px;padding:7px 9px;font-size:12px;font-weight:600;color:var(--ink);margin-top:6px}
+.pyq .mini .mo i{font-style:normal;width:20px;height:20px;border-radius:6px;border:1px solid var(--line2);display:grid;place-items:center;font-size:11px;flex:none}
+.pyq .mini .mo.ok{border-color:var(--ok);background:rgba(40,199,111,.14)}
+.pyq .mini .mo.ok i{background:var(--ok);border-color:var(--ok);color:#06240f}
+.pyq .mini .mo .t{margin-left:auto;color:var(--ok);font-size:11px;font-weight:800;white-space:nowrap}
+.pyq .exam-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px}
+@media(max-width:620px){.pyq .exam-tiles{grid-template-columns:repeat(2,1fr)}}
+.pyq .tile{padding:18px 16px;border-radius:15px;text-align:left;transition:.15s;color:var(--ink)}
+.pyq .tile:hover{transform:translateY(-3px);border-color:var(--line2)}
+.pyq .tile .big{font-size:19px;font-weight:800}
+.pyq .tile .sm{font-size:12.5px;color:var(--muted);margin-top:4px}
+.pyq .tile .cnt{font-size:11px;color:var(--cyan);margin-top:10px;font-weight:700}
+.pyq .how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+@media(max-width:620px){.pyq .how{grid-template-columns:1fr}}
+.pyq .how .c{padding:18px;border-radius:15px}
+.pyq .how .n{width:30px;height:30px;border-radius:9px;background:rgba(138,24,255,.2);color:#d9c6ff;display:grid;place-items:center;font-weight:800;margin-bottom:10px}
+
+/* S2 register (wraps the real Vedam One signup form) */
+.pyq .regwrap{max-width:430px;margin:8px auto}
+.pyq .regwrap .eyebrow{text-align:center;margin-bottom:12px}
+
+/* S3 dashboard */
+.pyq .dgrid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;margin-top:18px}
+@media(max-width:780px){.pyq .dgrid{grid-template-columns:1fr}}
+.pyq .resume{padding:20px;border-radius:16px;border:1px solid rgba(0,207,229,.3);background:linear-gradient(120deg,rgba(0,207,229,.10),rgba(138,24,255,.08))}
+.pyq .resume .tag{font-size:12.5px;color:var(--cyan);font-weight:700;letter-spacing:.06em}
+.pyq .pbar{height:8px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;margin:10px 0 14px}
+.pyq .pbar i{display:block;height:100%;background:var(--grad)}
+.pyq .attempt{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:12px;border:1px solid var(--line);margin-top:10px;width:100%;text-align:left;color:var(--ink)}
+.pyq button.attempt:hover{border-color:var(--line2)}
+.pyq .attempt .sc{margin-left:auto;font-weight:800;color:var(--ok);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pyq .statcol{display:flex;flex-direction:column;gap:12px}
+.pyq .stat{padding:16px;border-radius:14px}
+.pyq .stat b{font-size:26px;font-weight:800;display:block}
+.pyq .stat span{font-size:12.5px;color:var(--muted)}
+
+/* S4 picker */
+.pyq .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.pyq .tab{padding:9px 15px;border-radius:11px;border:1px solid var(--line);color:var(--muted);font-weight:700;font-size:14px}
+.pyq .tab.on{color:#fff;background:var(--grad);border-color:transparent}
+.pyq .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.pyq .sel{background:rgba(0,0,0,.25);border:1px solid var(--line2);border-radius:10px;padding:9px 12px;color:var(--ink);font:inherit;font-size:13.5px}
+.pyq .sel option{background:#160a30;color:var(--ink)}
+.pyq .papers{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+@media(max-width:680px){.pyq .papers{grid-template-columns:1fr}}
+.pyq .paper{padding:18px;border-radius:15px;display:flex;flex-direction:column;gap:6px}
+.pyq .paper .pm{font-size:12.5px;color:var(--muted)}
+.pyq .paper .foot{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.pyq .paper .foot .push{margin-left:auto;display:flex;gap:8px}
+.pyq .badge{font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px}
+.pyq .badge.done{color:var(--ok);border:1px solid rgba(40,199,111,.4)}
+.pyq .badge.new{color:var(--cyan);border:1px solid rgba(0,207,229,.4)}
+.pyq .badge.prog{color:var(--orange);border:1px solid rgba(249,125,3,.45)}
+
+/* S5 test */
+.pyq .examhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 0}
+.pyq .examhead .nm{font-weight:800}
+.pyq .examhead .push{margin-left:auto}
+.pyq .exam{display:grid;grid-template-columns:1fr 240px;gap:16px;align-items:start}
+@media(max-width:780px){.pyq .exam{grid-template-columns:1fr}}
+.pyq .qcard{padding:22px}
+.pyq .qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.pyq .qno{font-weight:800;font-size:18px}
+.pyq .marks{font-size:12px;color:var(--faint);font-weight:600}
+.pyq .markbtn{border:1px solid var(--mark);color:var(--mark);border-radius:10px;padding:7px 12px;font-weight:700;font-size:13px;display:inline-flex;gap:7px;align-items:center}
+.pyq .markbtn.on{background:var(--mark);color:#1a0b33}
+.pyq .topicpill{font-size:11px;font-weight:700;color:var(--cyan);border:1px solid rgba(0,207,229,.35);border-radius:999px;padding:2px 9px}
+.pyq .stem{font-size:17px;line-height:1.5;margin:4px 0 16px;white-space:pre-wrap}
+.pyq .opts{display:flex;flex-direction:column;gap:11px}
+.pyq .opt{display:flex;align-items:center;gap:13px;border:1px solid var(--line2);border-radius:13px;padding:13px 15px;text-align:left;width:100%;transition:.12s;color:var(--ink)}
+.pyq .opt:hover{border-color:var(--violet);background:rgba(138,24,255,.08)}
+.pyq .opt .k{width:30px;height:30px;border-radius:9px;border:1px solid var(--line2);display:grid;place-items:center;font-weight:800;flex:none}
+.pyq .opt.sel{border-color:var(--violet);background:rgba(138,24,255,.14)}
+.pyq .opt.sel .k{background:var(--violet);color:#fff;border-color:var(--violet)}
+.pyq .opt.correct{border-color:var(--ok);background:rgba(40,199,111,.14)}
+.pyq .opt.correct .k{background:var(--ok);color:#06240f;border-color:var(--ok)}
+.pyq .opt.wrong{border-color:var(--bad);background:rgba(255,91,106,.12)}
+.pyq .opt.wrong .k{background:var(--bad);color:#2a0608;border-color:var(--bad)}
+.pyq .opt .tick{margin-left:auto;font-size:12px;font-weight:800;white-space:nowrap}
+.pyq .locknote{font-size:12px;color:var(--faint);margin-top:12px;display:flex;align-items:center;gap:6px}
+.pyq .resultbox{margin-top:14px;border:1px solid rgba(40,199,111,.35);border-radius:13px;padding:14px 16px;background:rgba(40,199,111,.07)}
+.pyq .resultbox .hd{font-weight:800;color:var(--ok);font-size:14px}
+.pyq .resultbox .sol{color:var(--muted);font-size:13.5px;margin-top:6px;white-space:pre-wrap}
+.pyq .qactions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.pyq .qactions .sp{flex:1}
+
+.pyq .palette{padding:16px;position:sticky;top:88px}
+.pyq .palette h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800}
+.pyq .legend{display:grid;grid-template-columns:1fr 1fr;gap:7px 8px;font-size:11.5px;color:var(--muted);margin:12px 0 14px}
+.pyq .legend span{display:inline-flex;align-items:center;gap:7px}
+.pyq .lg{width:13px;height:13px;border-radius:4px;flex:none;border:1px solid var(--line2)}
+.pyq .lg.a{background:var(--ok);border-color:var(--ok)}
+.pyq .lg.m{border:1.5px solid var(--mark)}
+.pyq .lg.c{border:2px solid var(--cyan)}
+.pyq .cells{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.pyq .cell{aspect-ratio:1;border-radius:9px;border:1px solid var(--line2);display:grid;place-items:center;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink);background:rgba(255,255,255,.03)}
+.pyq .cell.a{background:var(--ok);border-color:var(--ok);color:#06240f}
+.pyq .cell.m{border:1.5px solid var(--mark);color:var(--mark)}
+.pyq .cell.c{outline:2px solid var(--cyan);outline-offset:1px}
+.pyq .countline{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
+.pyq .countline b{color:var(--ink)}
+
+/* S6 result */
+.pyq .scorehero{padding:26px;border-radius:18px;text-align:center;background:
+  radial-gradient(500px 240px at 50% -10%,rgba(138,24,255,.25),transparent 60%);border:1px solid var(--line)}
+.pyq .scorehero .big{font-size:52px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-top:10px}
+.pyq .scorehero .big span{font-size:22px;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.pyq .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+@media(max-width:560px){.pyq .kpis{grid-template-columns:repeat(2,1fr)}}
+.pyq .kpi{padding:15px;border-radius:13px;text-align:center}
+.pyq .kpi b{font-size:24px;font-weight:800;display:block}
+.pyq .kpi span{font-size:12px;color:var(--muted)}
+.pyq .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:780px){.pyq .twocol{grid-template-columns:1fr}}
+.pyq .tbars{padding:18px}
+.pyq .tbar{margin-top:12px}
+.pyq .tbar .lab{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
+.pyq .track{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.pyq .track i{display:block;height:100%}
+.pyq .review{padding:18px;max-height:420px;overflow:auto}
+.pyq .rev{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-top:10px}
+.pyq .rev .q{font-size:14px;font-weight:600;white-space:pre-wrap}
+.pyq .rev .ans{font-size:12.5px;margin-top:7px;display:flex;flex-wrap:wrap;gap:12px}
+.pyq .rev .ans .y.ok{color:var(--ok)}
+.pyq .rev .ans .y.no{color:var(--bad)}
+.pyq .rev .ans .y.part{color:var(--orange)}
+.pyq .rev .sol{font-size:12.5px;color:var(--muted);margin-top:7px;border-top:1px dashed var(--line2);padding-top:7px;white-space:pre-wrap}
+.pyq .rev .tp{font-size:11px;color:var(--cyan);font-weight:700}
+.pyq .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+
+/* Long formulas: grid/flex children may shrink below their content, and anything
+   wider than the card scrolls inside its own box instead of widening the page. */
+.pyq .exam>*{min-width:0}
+.pyq .stem,.pyq .resultbox .sol,.pyq .resultbox .hd,.pyq .rev .q,.pyq .rev .sol,.pyq .opt .otxt{min-width:0;max-width:100%;overflow-x:auto;overflow-y:hidden;padding-bottom:2px}
+.pyq .katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+
+/* Figures (scanned diagrams on white) */
+.pyq .qfig{display:block;max-width:min(100%,560px);height:auto;margin:0 0 16px;border-radius:10px;background:#fff;padding:6px}
+.pyq .resultbox .qfig,.pyq .rev .qfig{margin:10px 0 2px;max-width:min(100%,480px)}
+.pyq .opt .otxt{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.pyq .ofig{display:block;max-width:100%;max-height:150px;height:auto;border-radius:8px;background:#fff;padding:4px}
+.pyq .ofig.sm{display:inline-block;max-height:56px;vertical-align:middle;margin-left:6px}
+.pyq .opt:disabled{cursor:default}
+.pyq .opt:disabled:not(.sel):not(.correct):not(.wrong):hover{border-color:var(--line2);background:transparent}
+
+/* Numeric (integer-type) answers */
+.pyq .numans{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:2px}
+.pyq .numans label{font-size:13px;font-weight:700;color:var(--muted)}
+.pyq .numans input{width:180px;max-width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:11px;padding:10px 13px;color:var(--ink);font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+.pyq .numans input:focus{outline:2px solid var(--violet);outline-offset:1px}
+.pyq .numans input:disabled{opacity:.75}
+.pyq .numans input[aria-invalid=true]{border-color:var(--bad)}
+.pyq .numans .err{font-size:12px;color:var(--bad)}
+.pyq .verdict{font-size:13.5px;font-weight:800;margin-bottom:6px}
+.pyq .verdict.ok{color:var(--ok)}
+.pyq .verdict.no{color:var(--bad)}
+.pyq .verdict.part{color:var(--orange)}
+
+/* Multi-answer (one or more options correct) */
+.pyq .multinote{font-size:12.5px;font-weight:700;color:var(--cyan);margin:0 0 10px}
+
+/* Submit confirmation */
+.pyq .modal-bg{position:fixed;inset:0;z-index:60;background:rgba(5,2,14,.72);display:grid;place-items:center;padding:16px}
+.pyq .modal{width:100%;max-width:420px;padding:22px;background:var(--panel);box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.pyq .modal h3{font-size:18px}
+.pyq .modal p{font-size:14px;line-height:1.5;margin:8px 0 18px}
+.pyq .modal .mact{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+
+/* Back button, instructions, board-paper sections and read-only theory questions */
+.pyq .examhead .backbtn{flex:none}
+.pyq .instr{padding:18px 20px;margin-bottom:16px}
+.pyq .instr h3{font-size:15px;margin-bottom:8px}
+.pyq .instr-body{color:var(--muted);font-size:13.5px;line-height:1.6;white-space:pre-line;margin-bottom:14px;overflow-x:auto}
+.pyq .secbanner{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:-6px -6px 14px;padding:10px 12px;border-radius:11px;background:rgba(138,24,255,.10);border:1px solid rgba(138,24,255,.28)}
+.pyq .secbanner b{font-size:14px;letter-spacing:.02em}
+.pyq .secbanner span{font-size:12.5px;color:var(--muted)}
+.pyq .secpill{font-size:11px;font-weight:800;color:#d9c6ff;border:1px solid rgba(138,24,255,.45);border-radius:999px;padding:2px 9px}
+.pyq .ordiv{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--muted);font-weight:800;font-size:12.5px;letter-spacing:.12em}
+.pyq .ordiv::before,.pyq .ordiv::after{content:"";flex:1;height:1px;background:var(--line2)}
+.pyq .resultbox.theory{border-color:rgba(0,207,229,.35);background:rgba(0,207,229,.06)}
+.pyq .resultbox.theory .hd{color:var(--cyan)}
+.pyq .palsec{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:12px 0 7px}
+.pyq .cell.t{border-style:dashed;color:var(--muted);background:transparent}
+.pyq .cell.t.m{border-color:var(--mark);color:var(--mark)}
+.pyq .lg.t{border-style:dashed}
+.pyq .why{padding:20px 22px;margin-top:18px;border-radius:15px}
+.pyq .why p{font-size:14px;margin:8px 0 0;max-width:72ch}
+
+/* Hero demo animation */
+.pyq .mini .mbody{transition:opacity .45s}
+.pyq .mini .mbody.fade{opacity:0}
+.pyq .mini .mo{transition:border-color .2s,background .2s}
+.pyq .mini .mo.hov{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.06)}
+.pyq .mini .mo.bad{border-color:var(--bad);background:rgba(255,91,106,.12);animation:heroShake .35s}
+.pyq .mini .mo.bad i{background:var(--bad);border-color:var(--bad);color:#2a0608}
+.pyq .mini .mo .t.bad{color:var(--bad)}
+.pyq .mini .mo.ok{animation:heroPop .35s}
+.pyq .mini .cur{position:absolute;left:0;top:0;z-index:2;pointer-events:none;opacity:0;transition:transform .9s cubic-bezier(.45,0,.2,1),opacity .3s;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5))}
+.pyq .mini .cur.on{opacity:1}
+.pyq .mini .cur svg{display:block;transition:transform .12s;transform-origin:4px 2px}
+.pyq .mini .cur.press svg{transform:scale(.82)}
+@keyframes heroShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}60%{transform:translateX(4px)}}
+@keyframes heroPop{0%{transform:scale(.98)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.pyq .mini .mo.bad,.pyq .mini .mo.ok{animation:none}}
+
+/* Hero demo — select / Show result / solution box (mirrors the real attempt screen) */
+.pyq .mini .mo.sel{border-color:var(--mark);background:rgba(183,139,255,.14)}
+.pyq .mini .mo.sel i{background:var(--mark);border-color:var(--mark);color:#1a0b33}
+.pyq .mini .mshowrow{margin-top:10px}
+.pyq .mini .mshow{display:inline-block;font-size:11.5px;font-weight:800;padding:6px 12px;border-radius:9px;border:1px solid var(--line2);color:var(--faint);opacity:.55;transition:.2s}
+.pyq .mini .mshow.on{opacity:1;color:#fff;background:var(--grad);border-color:transparent}
+.pyq .mini .mshow.hov{filter:brightness(1.25)}
+.pyq .mini .mres{margin-top:10px;min-height:84px;border:1px solid rgba(40,199,111,.35);border-radius:11px;padding:9px 11px;background:rgba(40,199,111,.07);opacity:0;transform:translateY(6px);transition:opacity .45s,transform .45s}
+.pyq .mini .mres.on{opacity:1;transform:none}
+.pyq .mini .mres .hd{font-weight:800;color:var(--ok);font-size:11.5px;line-height:1.35}
+.pyq .mini .mres .sol{color:var(--muted);font-size:11.5px;font-weight:500;margin-top:4px;line-height:1.45}
+.pyq .heroart{aspect-ratio:auto;min-height:440px}
+
+/* Hero demo — neon edge on the outer .heroart box: brand gradient border + soft halo; turns green / red once the result shows */
+.pyq .heroart{position:relative;border-color:transparent;box-shadow:0 0 28px rgba(138,24,255,.32),0 0 56px rgba(249,125,3,.12);transition:box-shadow .5s}
+.pyq .heroart::before,.pyq .heroart::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;pointer-events:none;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.pyq .heroart::before{background:linear-gradient(135deg,#8a18ff,#00cfe5 55%,#f97d03)}
+.pyq .heroart::after{opacity:0;transition:opacity .5s}
+.pyq .heroart.res-ok::after{opacity:1;background:linear-gradient(135deg,#28c76f,#7dffb0)}
+.pyq .heroart.res-bad::after{opacity:1;background:linear-gradient(135deg,#ff5b6a,#ff9a6a)}
+.pyq .heroart.res-ok{box-shadow:0 0 30px rgba(40,199,111,.4),0 0 60px rgba(40,199,111,.14)}
+.pyq .heroart.res-bad{box-shadow:0 0 30px rgba(255,91,106,.4),0 0 60px rgba(255,91,106,.14)}
