@@ -88,11 +88,21 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  // already logged in -> no need to sit on login/register
+  // already logged in -> no need to sit on login/register. Send them where they were heading
+  // (e.g. a PYQ paper) if `next` is a safe same-site path; otherwise home.
   if (user && isAuthPage) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
-    url.search = "";
+    const next = request.nextUrl.searchParams.get("next") ?? "";
+    const safeNext = next.startsWith("/") && !next.startsWith("//") && !next.startsWith("/\\")
+      && !AUTH_PAGES.some((p) => next === p || next.startsWith(p + "/") || next.startsWith(p + "?"));
+    if (safeNext) {
+      const target = new URL(next, request.nextUrl.origin);
+      url.pathname = target.pathname;
+      url.search = target.search;
+    } else {
+      url.pathname = "/";
+      url.search = "";
+    }
     return redirectWithCookies(url, supabaseResponse);
   }
 

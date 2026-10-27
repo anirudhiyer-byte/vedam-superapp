@@ -173,7 +173,7 @@ export function LoginForm() {
 
         <p className="text-center font-body text-sm text-white/55">
           New to Vedam?{" "}
-          <Link href="/register" className="font-semibold text-accent">Create an account</Link>
+          <Link href={next && next !== "/" ? `/register?next=${encodeURIComponent(next)}` : "/register"} className="font-semibold text-accent">Create an account</Link>
         </p>
       </div>
     </div>
