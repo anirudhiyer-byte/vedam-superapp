@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { unstable_cache } from "next/cache";
 import { createClient as createServer } from "@/lib/supabase/server";
 import { svc, type PaperRow } from "@/lib/pyq/api";
+import { canUsePyq } from "@/lib/pyq/access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,6 +55,8 @@ export async function GET() {
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message }, { status: 500 });
   }
+  // Pre-launch lock: on production the catalogue is for admins only (see lib/pyq/access).
+  if (!(await canUsePyq(sb, user))) return NextResponse.json({ error: "PYQ is not available yet" }, { status: 403 });
 
   const my = new Map<string, MyStatus>();
   if (user) {

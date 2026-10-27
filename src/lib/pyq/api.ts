@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient as createServer } from "@/lib/supabase/server";
 import { createClient as createSvc } from "@supabase/supabase-js";
+import { canUsePyq } from "@/lib/pyq/access";
 
 /** Service-role Supabase client — bypasses RLS; server-only.
  *  Every PYQ read/write goes through this: pyq_questions holds the correct
@@ -21,6 +22,8 @@ export async function requireUser(): Promise<
   const sb = await createServer();
   const { data: { user } } = await sb.auth.getUser();
   if (!user) return { ok: false, res: NextResponse.json({ error: "Not signed in" }, { status: 401 }) };
+  // Pre-launch lock: on production only admins may use any PYQ API (see lib/pyq/access).
+  if (!(await canUsePyq(sb, user))) return { ok: false, res: NextResponse.json({ error: "PYQ is not available yet" }, { status: 403 }) };
   return { ok: true, userId: user.id, email: (user.email ?? "").toLowerCase() };
 }
 

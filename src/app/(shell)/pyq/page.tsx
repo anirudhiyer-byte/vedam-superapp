@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { createClient } from "@/lib/supabase/server";
 import { PyqApp } from "@/components/pyq/pyq-app";
+import { canUsePyq } from "@/lib/pyq/access";
 import "@/components/pyq/pyq.css";
 
 export const dynamic = "force-dynamic";
@@ -26,15 +27,8 @@ async function gate(): Promise<{ signedIn: boolean; firstName: string }> {
   const sb = await createClient();
   const { data: { user } } = await sb.auth.getUser();
 
-  if (process.env.VERCEL_ENV === "production") {
-    let isAdmin = false;
-    if (user) {
-      const email = (user.email ?? "").toLowerCase();
-      isAdmin = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
-      if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
-    }
-    if (!isAdmin) redirect("/");
-  }
+  // Same rule as every PYQ API (lib/pyq/access): production is admin-only.
+  if (!(await canUsePyq(sb, user))) redirect("/");
 
   let firstName = "";
   if (user) {

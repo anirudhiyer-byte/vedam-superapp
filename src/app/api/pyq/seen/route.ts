@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient as createServer } from "@/lib/supabase/server";
 import { svc } from "@/lib/pyq/api";
+import { PYQ_ADMIN_ONLY, isPyqAdmin } from "@/lib/pyq/access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -56,13 +57,17 @@ export async function POST(req: Request) {
     // Who is it? If the sign-in check fails for any reason (stale cookie right after a logout, etc.),
     // still save the events as a logged-out visit instead of dropping them.
     let userId: string | null = null;
+    let allowed = !PYQ_ADMIN_ONLY;
     try {
       const sb = await createServer();
       const { data } = await sb.auth.getUser();
       userId = data?.user?.id ?? null;
+      // Pre-launch lock: on production only admins' PYQ events are recorded (see lib/pyq/access).
+      if (PYQ_ADMIN_ONLY) allowed = await isPyqAdmin(sb, data?.user ?? null);
     } catch (e) {
       console.error("[pyq/seen] auth check failed, saving as logged-out:", (e as Error).message);
     }
+    if (!allowed) return new NextResponse(null, { status: 204 });
 
     const rows = [];
     for (const raw of incoming) {
