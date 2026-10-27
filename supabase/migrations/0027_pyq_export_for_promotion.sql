@@ -21,12 +21,15 @@ language sql stable
 set search_path = public
 as $$
   select coalesce(jsonb_agg(jsonb_build_object(
+    -- `sections` is the only jsonb paper field: leave the key out when it is SQL NULL, so the
+    -- importer stores SQL NULL (a JSON null value would be stored as JSON 'null').
     'paper', jsonb_build_object(
       'exam', p.exam, 'subject', p.subject, 'year', p.year, 'set_label', p.set_label, 'title', p.title,
       'marks_correct', p.marks_correct, 'marks_wrong', p.marks_wrong, 'marking_note', p.marking_note,
-      'instructions', p.instructions, 'sections', p.sections, 'duration_mins', p.duration_mins,
+      'instructions', p.instructions, 'duration_mins', p.duration_mins,
       'max_marks', p.max_marks, 'sort_order', p.sort_order, 'source_file_id', p.source_file_id,
-      'is_published', p.is_published),
+      'is_published', p.is_published)
+      || case when p.sections is null then '{}'::jsonb else jsonb_build_object('sections', p.sections) end,
     'questions', (
       select coalesce(jsonb_agg(jsonb_build_object(
         'q_no', q.q_no, 'topic', q.topic, 'qtype', q.qtype, 'section', q.section, 'stem', q.stem,
