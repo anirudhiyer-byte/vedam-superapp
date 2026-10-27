@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { safeNext } from "@/lib/safe-next";
 
 type CookieToSet = { name: string; value: string; options?: CookieOptions };
 
@@ -88,11 +89,19 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  // already logged in -> no need to sit on login/register
+  // already logged in -> no need to sit on login/register. Send them where they were heading
+  // (e.g. a PYQ paper) if `next` is a safe same-site path; otherwise home.
   if (user && isAuthPage) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
-    url.search = "";
+    const next = safeNext(request.nextUrl.searchParams.get("next"), "");
+    const target = next ? new URL(next, request.nextUrl.origin) : null;
+    if (target && !AUTH_PAGES.some((p) => target.pathname === p || target.pathname.startsWith(p + "/"))) {
+      url.pathname = target.pathname;
+      url.search = target.search;
+    } else {
+      url.pathname = "/";
+      url.search = "";
+    }
     return redirectWithCookies(url, supabaseResponse);
   }
 

@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
 import { otpAllowed } from "@/lib/otp-allowed";
 import { Turnstile } from "@/components/turnstile";
+import { safeNext } from "@/lib/safe-next";
 
 type Mode = "phone" | "email";
 
@@ -15,7 +16,7 @@ export function LoginForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const params = useSearchParams();
-  const next = decodeURIComponent(params.get("next") || "/");
+  const next = safeNext(params.get("next"));
 
   const [mode, setMode] = useState<Mode>("phone");
   const [sent, setSent] = useState(false);
@@ -173,7 +174,7 @@ export function LoginForm() {
 
         <p className="text-center font-body text-sm text-white/55">
           New to Vedam?{" "}
-          <Link href="/register" className="font-semibold text-accent">Create an account</Link>
+          <Link href={next && next !== "/" ? `/register?next=${encodeURIComponent(next)}` : "/register"} className="font-semibold text-accent">Create an account</Link>
         </p>
       </div>
     </div>
