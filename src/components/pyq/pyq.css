@@ -289,3 +289,6 @@
 .pyq .heroart.res-bad::after{opacity:1;background:linear-gradient(135deg,#ff5b6a,#ff9a6a)}
 .pyq .heroart.res-ok{box-shadow:0 0 30px rgba(40,199,111,.4),0 0 60px rgba(40,199,111,.14)}
 .pyq .heroart.res-bad{box-shadow:0 0 30px rgba(255,91,106,.4),0 0 60px rgba(255,91,106,.14)}
+
+/* centred "OR" between alternative answers in a solution */
+.pyq .pyq-or{display:block;text-align:center;font-weight:700;letter-spacing:.06em;margin:14px 0 10px}

@@ -1,6 +1,6 @@
 "use client";
 
-import { MathText } from "./math-text";
+import { MathText, SolutionText } from "./math-text";
 
 /* PYQ module — replicates the approved "PYQ Exam Prototype" + "PYQ Workflow
    Wireframe" journey inside the Vedam One shell.
@@ -868,12 +868,12 @@ function Test({ paperId, go, toast, onSubmitted }: {
               {ansOpen && (
                 <div className="resultbox theory">
                   <div className="hd">Answer (marking scheme)</div>
-                  {q.solution ? <div className="sol"><MathText text={q.solution} /></div> : <div className="sol">No answer printed in the marking scheme.</div>}
+                  {q.solution ? <div className="sol"><SolutionText text={q.solution} /></div> : <div className="sol">No answer printed in the marking scheme.</div>}
                   <Fig src={q.solution_figure_url} alt={`Answer figure for question ${q.q_no}`} />
                   {q.or_stem && (q.or_solution || q.or_solution_figure_url) && (
                     <>
                       <div className="hd" style={{ marginTop: 12 }}>Answer to the OR question</div>
-                      {q.or_solution && <div className="sol"><MathText text={q.or_solution} /></div>}
+                      {q.or_solution && <div className="sol"><SolutionText text={q.or_solution} /></div>}
                       <Fig src={q.or_solution_figure_url} alt={`Answer figure for the OR question ${q.q_no}`} />
                     </>
                   )}
@@ -938,7 +938,7 @@ function Test({ paperId, go, toast, onSubmitted }: {
                   })
                   : <>{correctKey}{correctOpt?.text ? <>. <MathText text={correctOpt.text} /></> : null}</>}
               </div>
-              {a.reveal.solution && <div className="sol"><MathText text={a.reveal.solution} /></div>}
+              {a.reveal.solution && <div className="sol"><SolutionText text={a.reveal.solution} /></div>}
               <Fig src={a.reveal.solution_figure_url} alt={`Solution figure for question ${q.q_no}`} />
             </div>
           )}
@@ -1104,7 +1104,7 @@ function Result({ attemptId, cached, go, toast }: { attemptId: string; cached?: 
                   </span>
                   <span style={{ color: "var(--ok)" }}>Correct: {numeric ? fmtVal(r.correct_value) : multi ? keysLabel(r.correct_keys) : alts && alts.length > 1 ? keysLabel(alts, " or ") : optLabel(r.correct_key)}</span>
                 </div>
-                {r.solution && <div className="sol"><MathText text={r.solution} /></div>}
+                {r.solution && <div className="sol"><SolutionText text={r.solution} /></div>}
                 <Fig src={r.solution_figure_url} alt={`Solution figure for question ${r.q_no}`} />
               </div>
             );
