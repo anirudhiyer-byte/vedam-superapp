@@ -53,7 +53,8 @@ export async function GET() {
     user = auth.data.user;
     papers = cat;
   } catch (e) {
-    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
+    console.error("[pyq/papers] catalogue failed:", (e as Error).message);
+    return NextResponse.json({ error: "Could not load papers" }, { status: 500 });
   }
   // Pre-launch lock: on production the catalogue is for admins only (see lib/pyq/access).
   if (!(await canUsePyq(sb, user))) return NextResponse.json({ error: "PYQ is not available yet" }, { status: 403 });
