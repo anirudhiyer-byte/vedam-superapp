@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { safeNext } from "@/lib/safe-next";
 
 type CookieToSet = { name: string; value: string; options?: CookieOptions };
 
@@ -92,11 +93,9 @@ export async function updateSession(request: NextRequest) {
   // (e.g. a PYQ paper) if `next` is a safe same-site path; otherwise home.
   if (user && isAuthPage) {
     const url = request.nextUrl.clone();
-    const next = request.nextUrl.searchParams.get("next") ?? "";
-    const safeNext = next.startsWith("/") && !next.startsWith("//") && !next.startsWith("/\\")
-      && !AUTH_PAGES.some((p) => next === p || next.startsWith(p + "/") || next.startsWith(p + "?"));
-    if (safeNext) {
-      const target = new URL(next, request.nextUrl.origin);
+    const next = safeNext(request.nextUrl.searchParams.get("next"), "");
+    const target = next ? new URL(next, request.nextUrl.origin) : null;
+    if (target && !AUTH_PAGES.some((p) => target.pathname === p || target.pathname.startsWith(p + "/"))) {
       url.pathname = target.pathname;
       url.search = target.search;
     } else {

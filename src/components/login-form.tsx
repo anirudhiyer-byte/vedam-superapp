@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
 import { otpAllowed } from "@/lib/otp-allowed";
 import { Turnstile } from "@/components/turnstile";
+import { safeNext } from "@/lib/safe-next";
 
 type Mode = "phone" | "email";
 
@@ -15,7 +16,7 @@ export function LoginForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const params = useSearchParams();
-  const next = decodeURIComponent(params.get("next") || "/");
+  const next = safeNext(params.get("next"));
 
   const [mode, setMode] = useState<Mode>("phone");
   const [sent, setSent] = useState(false);

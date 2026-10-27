@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { saveProfile } from "@/lib/supabase/profile-write";
 import { readUtm } from "@/lib/utm";
+import { safeNext } from "@/lib/safe-next";
 import { otpAllowed } from "@/lib/otp-allowed";
 import { track } from "@/lib/analytics/track";
 import { Turnstile } from "@/components/turnstile";
@@ -23,7 +24,7 @@ export function RegisterForm() {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const searchParams = useSearchParams();
-  const nextUrl = decodeURIComponent(searchParams.get("next") || "/");
+  const nextUrl = safeNext(searchParams.get("next"));
   // if we're inside the VSAT flow, part-2 copy leads with the VSAT confirmation
   const isVsat = nextUrl.startsWith("/apply");
 
