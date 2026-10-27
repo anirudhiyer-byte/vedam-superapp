@@ -14,6 +14,25 @@ function render(tex: string, display: boolean): string {
   return katex.renderToString(tex, { displayMode: display, throwOnError: false, output: "html", strict: "ignore" });
 }
 
+/* A line holding only "OR" (marking-scheme alternative answers). */
+const OR_LINE = /\n[ \t]*or[ \t]*(?=\n|$)/gi;
+
+/* Answer text: each alternative answer on its own, with a centred "OR" between them. */
+export function SolutionText({ text }: { text: string }) {
+  const parts = ("\n" + text).split(OR_LINE).map((t) => t.replace(/^\s*\n/, "").replace(/\n\s*$/, "")).filter((t) => t.trim() !== "");
+  if (parts.length < 2) return <MathText text={text} />;
+  return (
+    <>
+      {parts.map((t, i) => (
+        <span key={i} style={{ display: "block" }}>
+          {i > 0 && <span className="pyq-or">OR</span>}
+          <MathText text={t} />
+        </span>
+      ))}
+    </>
+  );
+}
+
 export function MathText({ text, className }: { text: string; className?: string }) {
   const nodes: React.ReactNode[] = [];
   let last = 0;
