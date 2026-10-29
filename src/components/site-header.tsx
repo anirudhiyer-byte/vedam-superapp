@@ -13,7 +13,7 @@ const NAV: { label: string; href: string; soon?: boolean }[] = [
   { label: "Bootcamps", href: "/events" },
   { label: "Codesprint", href: "/codesprint" },
   { label: "College Predictor", href: "/predict", soon: true },
-  { label: "PYQ", href: "/pyq", soon: true },
+  { label: "PYQ", href: "/pyq" },
   { label: "PeerPath", href: "/peerpath", soon: true },
 ];
 

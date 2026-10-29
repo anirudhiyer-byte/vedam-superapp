@@ -1,11 +1,10 @@
 import type { SupabaseClient, User } from "@supabase/supabase-js";
 
-/** Pre-launch lock for the PYQ module.
- *  - Production: admins only. Everyone else (logged out, or a logged-in non-admin)
- *    is kept out of the page AND every PYQ API — same posture as the College Predictor.
- *  - Staging / preview / local: open to everyone, so the full new-user journey can be tested.
- *  To launch PYQ publicly, make this `false` (one line) and redeploy. */
-export const PYQ_ADMIN_ONLY = process.env.VERCEL_ENV === "production";
+/** PYQ is now public (launched 29 Oct 2026). Everyone — logged out or logged in —
+ *  may use the page and the PYQ APIs. A completed profile is still required before
+ *  starting a test (see /api/pyq/attempt/start); admins (@vedam.org) stay exempt.
+ *  To re-lock to admins only, set this back to `process.env.VERCEL_ENV === "production"`. */
+export const PYQ_ADMIN_ONLY = false;
 
 /** Same admin rule as the College Predictor gate: a confirmed @vedam.org email, or the
  *  `admin` role. `sb` must be the signed-in user's server client (not the service role),
