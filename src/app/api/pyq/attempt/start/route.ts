@@ -21,6 +21,19 @@ export async function POST(req: Request) {
 
   const db = svc();
 
+  // Profile-complete gate: a student must finish their profile before starting a
+  // test. Admins (@vedam.org) are exempt so they can keep testing pre-launch.
+  if (!gate.email.endsWith("@vedam.org")) {
+    const { data: prof } = await db
+      .from("profiles").select("profile_completed").eq("id", gate.userId).maybeSingle();
+    if (!prof?.profile_completed) {
+      return NextResponse.json(
+        { error: "Please complete your profile to start a test.", code: "profile_incomplete" },
+        { status: 403 },
+      );
+    }
+  }
+
   const { data: paper, error: pErr } = await db
     .from("pyq_papers")
     .select(PAPER_COLS)
