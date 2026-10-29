@@ -4,11 +4,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type Product = "codesprint" | "bootcamp";
+type Product = "codesprint" | "bootcamp" | "pyq";
 function productFor(path: string | null): Product | null {
   if (!path) return null;
   if (path.startsWith("/codesprint")) return "codesprint";
   if (path.startsWith("/events") || path.startsWith("/e/")) return "bootcamp";
+  if (path.startsWith("/pyq")) return "pyq";
   return null;
 }
 
