@@ -189,7 +189,7 @@ function EventCard({ event, registered, onRegister }: { event: EventRow; registe
           {/* eslint-disable-next-line @next/next/no-img-element */}
           {event.banner_url ? <div className="h-full w-full" style={{ backgroundImage: `url(${event.banner_url})`, backgroundSize: event.banner_fit === "contain" ? "contain" : (event.banner_zoom ? `${event.banner_zoom}%` : "cover"), backgroundPosition: `${event.banner_x ?? 50}% ${event.banner_y ?? 50}%`, backgroundRepeat: "no-repeat" }} /> : <div className="h-full w-full" style={{ background: "linear-gradient(135deg,#4a4a55,#2b2b33)" }} />}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-[58%] sm:h-[50%]" style={{ background: "linear-gradient(115deg,#00cfe5 0%,#6f2ff2 48%,#c200db 100%)", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
+        <div className="absolute inset-x-0 bottom-0 h-[58%] sm:h-[50%]" style={{ background: "#1E1E1E", clipPath: "polygon(0 0, 44% 0, 54% 22%, 100% 22%, 100% 100%, 0 100%)" }} />
         <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[13px]" style={{ background: "linear-gradient(120deg,rgba(255,255,255,.14) 0%,transparent 22%,transparent 80%,rgba(255,255,255,.08) 100%)" }} />
         <span aria-hidden className="bc-shine pointer-events-none absolute left-[-40%] top-0 h-full w-[35%] -skew-x-[16deg]" style={{ background: "linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent)" }} />
         <div className="absolute inset-x-0 bottom-0 z-10 flex h-[58%] flex-col gap-2 px-4 pb-3 pt-3 text-white sm:hidden">
