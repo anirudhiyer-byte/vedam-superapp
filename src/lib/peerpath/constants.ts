@@ -84,7 +84,26 @@ export const BOOKING_RULES = {
   groupCapacity: 8,
 } as const;
 
-export const ADMISSIONS_URL = process.env.NEXT_PUBLIC_ADMISSIONS_URL || "https://www.vedam.org";
+/**
+ * Meet automation rules. A chat counts as done when at least two people were in
+ * the Meet together for `minOverlapMinutes`. Anything less is flagged for the
+ * senior/admin to mark; a senior no-show is never set automatically.
+ */
+export const MEET_RULES = {
+  minOverlapMinutes: 5,
+  /** people in the call for less than this are ignored (a wrong click, a quick test) */
+  minPresenceMinutes: 1,
+  /** wait this long after a chat ends before reading attendance */
+  checkAfterMinutes: 10,
+  /** if Meet has no record at all this long after the end, flag it */
+  noRecordFlagHours: 2,
+  /** stop trying to create a calendar event after this many failures */
+  maxSyncAttempts: 5,
+  /** stop reading attendance after this many failed tries */
+  maxCheckAttempts: 12,
+} as const;
+
+export const ADMISSIONS_URL =process.env.NEXT_PUBLIC_ADMISSIONS_URL || "https://www.vedam.org";
 
 /** Where Talk to a Senior lives inside the superapp. */
 export const TTS = "/peerpath/talk-to-senior";

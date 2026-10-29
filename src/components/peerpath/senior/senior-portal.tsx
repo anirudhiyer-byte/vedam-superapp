@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { BookingStatus, PortalBooking, SeniorPortal as Portal } from "@/lib/peerpath/types";
 import { markBooking } from "@/lib/peerpath/client";
+import { MARK_HINT } from "@/lib/peerpath/attendance";
 import { ttsPath } from "@/lib/peerpath/constants";
 import { fmtDay, fmtTime } from "@/lib/peerpath/slots";
 import { EmptyState, yearLabel } from "@/components/peerpath/ui";
@@ -120,8 +121,8 @@ export function SeniorPortal({ token, portal }: { token: string; portal: Portal 
                       {Math.round((new Date(b.end).getTime() - new Date(b.start).getTime()) / 60000)} min
                     </p>
                   </div>
-                  {s.meetLink && (
-                    <a href={s.meetLink} target="_blank" rel="noreferrer" className="pp-btn-secondary min-h-[40px] px-3">
+                  {(b.meetUrl ?? s.meetLink) && (
+                    <a href={(b.meetUrl ?? s.meetLink)!} target="_blank" rel="noreferrer" className="pp-btn-secondary min-h-[40px] px-3">
                       <IconVideo className="h-4 w-4" /> Join
                     </a>
                   )}
@@ -152,6 +153,9 @@ export function SeniorPortal({ token, portal }: { token: string; portal: Portal 
                       </span>
                     ) : null}
                   </p>
+                  {b.needsMarking && (
+                    <p className="mt-1 text-[13px] text-pp-orange-700">{MARK_HINT[b.markHint ?? "no_record"]}</p>
+                  )}
                 </div>
                 <MarkButtons token={token} b={b} />
               </li>

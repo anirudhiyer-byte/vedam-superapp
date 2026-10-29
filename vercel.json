@@ -7,6 +7,10 @@
     {
       "path": "/api/cron/comms-journeys",
       "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/cron/peerpath-meet",
+      "schedule": "*/15 * * * *"
     }
   ]
 }

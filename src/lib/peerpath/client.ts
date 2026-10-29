@@ -51,15 +51,25 @@ export function book(p: {
   question: string | null;
   rescheduleOf?: string | null;
 }) {
-  return call<{ id: string }>("pp_book", { p });
+  // through our server: trusted per-IP limit + calendar invite created server-side
+  return post<{ id: string }>("/api/peerpath/book", p);
 }
 
-// cancel / feedback send the device's ownership proof (email + phone) so the
-// database can confirm this is the applicant's own booking.
-export const cancelBooking = (id: string) => {
-  const pr = getProofClient();
-  return call("pp_cancel", { p_id: id, p_email: pr?.email ?? "", p_phone: pr?.phone ?? "" });
-};
+// cancel goes through our server too; it reads this device's ownership proof
+// (email + phone) from the proof cookie and the database checks it.
+export const cancelBooking = (id: string) => post("/api/peerpath/cancel", { id });
+
+/** POST to one of our PeerPath API routes; same { ok, error, message } shape as call(). */
+async function post<T extends object>(url: string, body: unknown): Promise<Result<T>> {
+  try {
+    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const data = (await res.json().catch(() => null)) as ({ ok?: boolean; error?: string } & T) | null;
+    if (!data) return fail("server");
+    return data.ok ? ({ ok: true, ...data } as { ok: true } & T) : fail(String(data.error ?? "server"));
+  } catch {
+    return fail("offline");
+  }
+}
 
 export const giveFeedback = (id: string, rating: number, recommend: boolean, promise: boolean, note: string | null) => {
   const pr = getProofClient();

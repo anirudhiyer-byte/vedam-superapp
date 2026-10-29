@@ -97,7 +97,16 @@ function BookingTable({ d, rows }: { d: AdminData; rows: AdminBooking[] }) {
                   {b.question && <p className="mt-1 max-w-[320px] text-[12px] text-pp-muted">“{b.question}”</p>}
                 </td>
                 <td className="px-4 py-3">{b.type}</td>
-                <td className="px-4 py-3">{BOOKING_LABEL[b.status]}</td>
+                <td className="px-4 py-3">
+                  {BOOKING_LABEL[b.status]}
+                  {b.autoResult === "completed" && b.status === "completed" && <p className="text-[12px] text-pp-muted">auto, from Meet</p>}
+                  {b.autoResult === "needs_marking" && b.status === "confirmed" && (
+                    <p className="text-[12px] font-semibold text-[#FF7A6E]">Needs marking</p>
+                  )}
+                  {b.meetSync === "failed" && b.status === "confirmed" && (
+                    <p className="text-[12px] text-[#FF7A6E]" title={b.meetError ?? undefined}>Invite not sent yet</p>
+                  )}
+                </td>
                 <td className="px-4 py-3">
                   {f ? (
                     <span className={f.promiseMade || f.rating <= 2 ? "font-semibold text-[#FF7A6E]" : ""}>

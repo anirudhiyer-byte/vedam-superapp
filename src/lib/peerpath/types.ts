@@ -1,4 +1,5 @@
 import type { Campus, Duration, Residence, SessionType, Topic, Year } from "@/lib/peerpath/constants";
+import type { MarkReason } from "@/lib/peerpath/attendance";
 
 export type SeniorStatus = "pending" | "active" | "paused";
 
@@ -93,6 +94,11 @@ export type PortalBooking = {
   question: string | null;
   status: BookingStatus;
   rating: number | null;
+  /** this booking's own Meet link (falls back to the senior's link) */
+  meetUrl?: string | null;
+  /** Meet attendance couldn't confirm the chat; the senior should mark it */
+  needsMarking?: boolean;
+  markHint?: MarkReason | null;
 };
 
 /** Private senior fields, shown only to that senior and to admins. */
@@ -146,6 +152,11 @@ export type AdminBooking = {
   movedFrom: string | null;
   movedTo: string | null;
   createdAt: string;
+  /** Google Calendar/Meet sync state (0030) */
+  meetSync?: "none" | "syncing" | "pending" | "ok" | "failed" | "moved" | "removed" | "legacy";
+  meetError?: string | null;
+  autoResult?: "completed" | "needs_marking" | null;
+  attendance?: { people: number; overlapMin: number; reason: MarkReason | null } | null;
 };
 
 export type Feedback = {
