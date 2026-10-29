@@ -4,7 +4,9 @@
  * DEFINER, so the pp_* tables stay locked behind RLS). The admin read runs with
  * the signed-in user's session, so pp_is_admin() can check who is asking.
  */
+import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
+import { PROOF_COOKIE, decodeProof } from "./proof";
 import { buildSlots, type BusyRange } from "./slots";
 import type { AdminData, AvailabilityRule, Booking, DateBlock, Senior, SeniorPortal, SeniorSettings, SeniorWithSlots } from "./types";
 
@@ -50,12 +52,24 @@ export async function loadSenior(id: string): Promise<SeniorWithSlots | null> {
   return seniors.find((s) => s.id === id) ?? null;
 }
 
+/**
+ * One booking, returned ONLY if the caller proves they own it (the email + phone
+ * they booked with, read from the per-device proof cookie) or is an admin. A bare
+ * UUID is no longer enough. Returns null for "not found" and "not yours" alike, so
+ * nothing about a booking leaks to someone who only has its link.
+ */
 export async function loadBooking(id: string): Promise<Booking | null> {
   if (!isUuid(id)) return null;
+  const jar = await cookies();
+  const proof = decodeProof(jar.get(PROOF_COOKIE)?.value);
   const sb = await createClient();
-  const { data, error } = await sb.rpc("pp_bookings_by_ids", { p_ids: [id] });
-  if (error || !Array.isArray(data)) return null;
-  return (data[0] as Booking) ?? null;
+  const { data, error } = await sb.rpc("pp_booking_by_id", {
+    p_id: id,
+    p_email: proof?.email ?? "",
+    p_phone: proof?.phone ?? "",
+  });
+  if (error || !data) return null;
+  return (data as Booking) ?? null;
 }
 
 export async function loadPortal(token: string): Promise<SeniorPortal | null> {

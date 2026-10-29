@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { cancelBooking, rememberBooking } from "@/lib/peerpath/client";
+import { useState } from "react";
+import { cancelBooking } from "@/lib/peerpath/client";
 import { ttsPath } from "@/lib/peerpath/constants";
 
 export function CancelBooking({ bookingId, seniorId, canCancel }: { bookingId: string; seniorId: string; canCancel: boolean }) {
@@ -57,10 +57,3 @@ export function CancelBooking({ bookingId, seniorId, canCancel }: { bookingId: s
   );
 }
 
-/** Keeps this booking in "My bookings" on this device. */
-export function RememberBooking({ id }: { id: string }) {
-  useEffect(() => {
-    rememberBooking(id);
-  }, [id]);
-  return null;
-}

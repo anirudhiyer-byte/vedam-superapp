@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { TtsNav } from "@/components/peerpath/tts-nav";
-import { CancelBooking, RememberBooking } from "@/components/peerpath/booking-actions";
+import { CancelBooking } from "@/components/peerpath/booking-actions";
+import { ConfirmItsYou } from "@/components/peerpath/confirm-its-you";
 import { AdmissionsNote, Avatar, yearLabel } from "@/components/peerpath/ui";
 import { IconCalendar, IconCheck, IconVideo } from "@/components/peerpath/icons";
 import { BOOKING_RULES, ttsPath } from "@/lib/peerpath/constants";
@@ -29,7 +29,7 @@ export default async function BookedPage({ params }: { params: Promise<{ id: str
   await guardPeerPath();
   const { id } = await params;
   const b = await loadBooking(id);
-  if (!b) notFound();
+  if (!b) return (<><TtsNav /><ConfirmItsYou /></>);
 
   const minutes = Math.round((new Date(b.end).getTime() - new Date(b.start).getTime()) / 60000);
   const startsIn = new Date(b.start).getTime() - Date.now();
@@ -53,7 +53,6 @@ export default async function BookedPage({ params }: { params: Promise<{ id: str
   return (
     <>
       <TtsNav />
-      <RememberBooking id={b.id} />
       <div className="mx-auto flex max-w-[640px] flex-col gap-6 px-4 py-8 sm:px-6 lg:py-12">
         <div className="flex flex-col items-center gap-3 text-center">
           <div aria-hidden className={`grid h-16 w-16 place-items-center rounded-full ${head.ok ? "bg-[#0f2e1c] text-[#4ADE80]" : "bg-pp-soft text-pp-muted"}`}>

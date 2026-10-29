@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { bookingsByIds, findBookings, rememberBooking, rememberedBookings } from "@/lib/peerpath/client";
+import { findBookings } from "@/lib/peerpath/client";
+import { getProofClient, setProofCookie } from "@/lib/peerpath/proof";
 import { TTS, ttsPath } from "@/lib/peerpath/constants";
 import { fmtDay, fmtTime } from "@/lib/peerpath/slots";
 import type { Booking, BookingStatus } from "@/lib/peerpath/types";
@@ -60,7 +61,10 @@ export function MyBookings() {
   const [msg, setMsg] = useState<string | null>(null);
 
   useEffect(() => {
-    bookingsByIds(rememberedBookings()).then(setList);
+    // this device already knows the owner (set when they booked / last looked up)
+    const pr = getProofClient();
+    if (pr) findBookings(pr.email, pr.phone).then((f) => setList(f ?? []));
+    else setList([]);
   }, []);
 
   async function lookUp(e: React.FormEvent) {
@@ -75,7 +79,8 @@ export function MyBookings() {
     setBusy(false);
     if (found === null) return setMsg("You seem to be offline. Please try again.");
     if (!found.length) return setMsg("No bookings found for these details.");
-    found.forEach((b) => rememberBooking(b.id));
+    // remember this owner on the device so their booking pages open without asking again
+    setProofCookie(email.trim(), phone);
     setList((cur) => {
       const m = new Map((cur ?? []).map((b) => [b.id, b]));
       found.forEach((b) => m.set(b.id, b));

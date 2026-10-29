@@ -4,6 +4,7 @@
  * functions. Each returns { ok, error?, ... } and never throws.
  */
 import { createClient } from "@/lib/supabase/client";
+import { getProofClient } from "./proof";
 import type { AvailabilityRule, Booking, DateBlock, SeniorProfileInput, SeniorSettings } from "./types";
 
 type Result<T = object> = ({ ok: true } & T) | { ok: false; error: string; message: string };
@@ -21,6 +22,7 @@ const MESSAGES: Record<string, string> = {
   busy: "Too many sign-ups right now. Please try again in a while.",
   forbidden: "Only Vedam admins can do this. Please sign in with your @vedam.org account.",
   offline: "You seem to be offline. Please check your internet and try again.",
+  rate_limited: "Too many tries. Please wait a few minutes and try again.",
 };
 const fail = (error: string): { ok: false; error: string; message: string } => ({ ok: false, error, message: MESSAGES[error] ?? "Something went wrong. Please try again." });
 
@@ -52,20 +54,17 @@ export function book(p: {
   return call<{ id: string }>("pp_book", { p });
 }
 
-export const cancelBooking = (id: string) => call("pp_cancel", { p_id: id });
+// cancel / feedback send the device's ownership proof (email + phone) so the
+// database can confirm this is the applicant's own booking.
+export const cancelBooking = (id: string) => {
+  const pr = getProofClient();
+  return call("pp_cancel", { p_id: id, p_email: pr?.email ?? "", p_phone: pr?.phone ?? "" });
+};
 
-export const giveFeedback = (id: string, rating: number, recommend: boolean, promise: boolean, note: string | null) =>
-  call("pp_give_feedback", { p_id: id, p_rating: rating, p_recommend: recommend, p_promise: promise, p_note: note });
-
-export async function bookingsByIds(ids: string[]): Promise<Booking[]> {
-  if (!ids.length) return [];
-  try {
-    const { data } = await createClient().rpc("pp_bookings_by_ids", { p_ids: ids.slice(0, 50) });
-    return Array.isArray(data) ? (data as Booking[]) : [];
-  } catch {
-    return [];
-  }
-}
+export const giveFeedback = (id: string, rating: number, recommend: boolean, promise: boolean, note: string | null) => {
+  const pr = getProofClient();
+  return call("pp_give_feedback", { p_id: id, p_email: pr?.email ?? "", p_phone: pr?.phone ?? "", p_rating: rating, p_recommend: recommend, p_promise: promise, p_note: note });
+};
 
 export async function findBookings(email: string, phone: string): Promise<Booking[] | null> {
   try {
@@ -85,22 +84,3 @@ export const markBooking = (token: string, booking: string, status: "completed" 
   call("pp_senior_mark", { p_token: token, p_booking: booking, p_status: status });
 export const adminSetStatus = (senior: string, status: "pending" | "active" | "paused") =>
   call("pp_admin_set_status", { p_senior: senior, p_status: status });
-
-/** Bookings made on this device, so "My bookings" works without an account. */
-const KEY = "pp_my_bookings";
-export function rememberBooking(id: string) {
-  try {
-    const list = JSON.parse(localStorage.getItem(KEY) || "[]") as string[];
-    localStorage.setItem(KEY, JSON.stringify([id, ...list.filter((x) => x !== id)].slice(0, 50)));
-  } catch {
-    /* storage off: My bookings can still look up by email + phone */
-  }
-}
-export function rememberedBookings(): string[] {
-  try {
-    const v = JSON.parse(localStorage.getItem(KEY) || "[]");
-    return Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
-  } catch {
-    return [];
-  }
-}

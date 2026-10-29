@@ -62,7 +62,7 @@ export type SeniorSettings = {
 
 export type BookingStatus = "confirmed" | "completed" | "cancelled" | "rescheduled" | "no_show_applicant";
 
-/** A booking as the applicant sees it (from pp_bookings_by_ids / pp_find_bookings). */
+/** A booking as the applicant sees it (from pp_booking_by_id / pp_find_bookings). */
 export type Booking = {
   id: string;
   seniorId: string;

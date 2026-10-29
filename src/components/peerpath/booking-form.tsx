@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { book, rememberBooking } from "@/lib/peerpath/client";
+import { book } from "@/lib/peerpath/client";
+import { setProofCookie } from "@/lib/peerpath/proof";
 import { ttsPath } from "@/lib/peerpath/constants";
 
 type Props = { seniorId: string; start: string; type: string; duration: number; rescheduleOf?: string | null; defaults?: { name: string; email: string; phone: string } };
@@ -46,7 +47,9 @@ export function BookingForm(p: Props) {
         setBusy(false);
         return;
       }
-      rememberBooking(res.id);
+      // remember who owns this booking on this device, so the confirmation and
+      // feedback pages can prove ownership without asking again.
+      setProofCookie(body.email, body.phone);
       router.push(ttsPath.booked(res.id));
       router.refresh();
     } catch {

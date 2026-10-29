@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
 import { TtsNav } from "@/components/peerpath/tts-nav";
 import type { Metadata } from "next";
 import { FeedbackForm } from "@/components/peerpath/feedback-form";
+import { ConfirmItsYou } from "@/components/peerpath/confirm-its-you";
 import { EmptyState } from "@/components/peerpath/ui";
 import { guardPeerPath } from "@/lib/peerpath/gate";
 import { loadBooking } from "@/lib/peerpath/server";
@@ -13,7 +13,7 @@ export default async function FeedbackPage({ params }: { params: Promise<{ id: s
   await guardPeerPath();
   const { id } = await params;
   const b = await loadBooking(id);
-  if (!b) notFound();
+  if (!b) return (<><TtsNav /><ConfirmItsYou /></>);
   const started = new Date(b.start).getTime() < Date.now();
   const open = (b.status === "completed" || (b.status === "confirmed" && started)) && !b.feedbackGiven;
 
