@@ -85,6 +85,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
   const sendRows = useMemo(() => (overrideRecipients && overrideRecipients.length)
     ? overrideRecipients.map((r) => ({ id: r.user_id, name: r.full_name || "", email: r.email, phone: r.phone, state: null, city: null, points: 0, events_reg: 0, events_attended: 0, cs_enrolled: false, cs_modules: 0, cs_total: 0, cp_used: false } as Row))
     : selRows, [overrideRecipients, selRows]);
+  const ov = Boolean(overrideRecipients && overrideRecipients.length);
 
   async function send() {
     if (!templateRef || sendRows.length === 0) return;
@@ -146,7 +147,8 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
         )}
       </div>
 
-      {/* filter bar */}
+      {/* filter bar — hidden when recipients come from an external selector (e.g. Product Users) */}
+      {!ov && (
       <div className="flex flex-wrap items-end gap-2 rounded-xl border border-border bg-surface-warm/40 p-3">
         <label className="flex flex-col text-[11px] font-semibold text-muted">Signup<select value={dateCond} onChange={(e) => setDateCond(e.target.value as DateCond)} className={field + " mt-1"}><option value="any">Any time</option><option value="after">After</option><option value="before">Before</option><option value="between">Between</option></select></label>
         {dateCond !== "any" && <input type="date" value={d1} onChange={(e) => setD1(e.target.value)} className={field} />}
@@ -156,9 +158,11 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
         <label className="flex flex-col text-[11px] font-semibold text-muted">CodeSprint<select value={csState} onChange={(e) => setCsState(e.target.value as typeof csState)} className={field + " mt-1"}><option value="">Any</option><option value="enrolled">Enrolled</option><option value="notenrolled">Not enrolled</option><option value="all_done">Completed all</option><option value="partial">Completed 1–2</option><option value="none_done">Enrolled, 0 done</option></select></label>
         <label className="flex flex-col text-[11px] font-semibold text-muted">CP<select value={cpUsed} onChange={(e) => setCpUsed(e.target.value as "" | "yes" | "no")} className={field + " mt-1"}><option value="">Any</option><option value="yes">Used</option><option value="no">Not used</option></select></label>
       </div>
+      )}
 
       <div className="grid gap-4 lg:grid-cols-[1fr_290px] lg:items-start">
         <div>
+          {ov ? (<div className="mb-2 rounded-lg border border-border bg-surface-warm/40 px-3 py-2 text-xs text-muted">Sending to <b className="text-heading">{sendRows.length}</b> recipient{sendRows.length === 1 ? "" : "s"} selected in Product Users.</div>) : (<>
           <div className="mb-2 flex items-center gap-2"><button onClick={selAll} className="rounded-lg border border-border-strong px-2.5 py-1 font-mono text-[11px] text-muted">Select all filtered ({filtered.length})</button><button onClick={() => setSelected(new Set())} className="rounded-lg border border-border-strong px-2.5 py-1 font-mono text-[11px] text-muted">Clear</button><span className="ml-auto font-mono text-[11px] font-bold text-heading">{selected.size} selected</span></div>
           <div className="max-h-[360px] overflow-auto rounded-xl border border-border">
             <table className="w-full border-collapse whitespace-nowrap text-xs">
@@ -179,10 +183,11 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
               </tbody>
             </table>
           </div>
+          </>)}
           {result && <p className="mt-3 font-body text-sm text-foreground">{result}</p>}
           <label className="mt-3 block"><span className="mb-1 block font-body text-xs font-semibold text-heading">Campaign name (for the report)</span>
             <input value={campaignName} onChange={(e) => setCampaignName(e.target.value)} placeholder="e.g. Bootcamp reminder — Spotify build" className="w-full max-w-md rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground outline-none [color-scheme:dark]" /></label>
-          <button onClick={send} disabled={sending || !templateRef || selected.size === 0} className="mt-3 rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-60">{sending ? "Sending…" : `Send to ${selected.size} →`}</button>
+          <button onClick={send} disabled={sending || !templateRef || sendRows.length === 0} className="mt-3 rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-60">{sending ? "Sending…" : `Send to ${sendRows.length} →`}</button>
         </div>
 
         {/* live preview */}
