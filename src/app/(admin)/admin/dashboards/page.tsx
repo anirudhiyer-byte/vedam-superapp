@@ -28,6 +28,7 @@ export default function Page() {
           <div className="grid gap-6 lg:grid-cols-2">
             <ActiveUsers product="bootcamp" title="Bootcamp" />
             <ActiveUsers product="codesprint" title="CodeSprint" />
+            <ActiveUsers product="pyq" title="PYQ" />
           </div>
           <div className="mt-6">
             <ActiveUsers product="site" title="Entire Vedam One" />

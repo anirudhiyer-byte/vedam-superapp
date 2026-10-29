@@ -30,6 +30,8 @@ import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "rea
 import { useSearchParams } from "next/navigation";
 import { RegisterForm } from "@/components/register-form";
 import { trackPyq, pyqSid } from "@/lib/pyq/track";
+import { createClient } from "@/lib/supabase/client";
+import { ProfileGateModal } from "@/components/profile/profile-gate-modal";
 
 /* ------------------------------------------------------------------ types */
 type QOption = { key: string; text: string };
@@ -526,6 +528,8 @@ function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null;
   const [subject, setSubject] = useState("");
   const [year, setYear] = useState("");
   const [setLabel, setSetLabel] = useState("");
+  const [sb] = useState(() => createClient());
+  const [gatePaper, setGatePaper] = useState<string | null>(null);
 
   const ofExam = useMemo(() => (papers ?? []).filter((p) => p.exam === exam), [papers, exam]);
   const subjects = useMemo(() => Array.from(new Set(ofExam.map((p) => p.subject))), [ofExam]);
@@ -541,7 +545,18 @@ function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null;
     window.history.replaceState(null, "", `/pyq?view=papers&exam=${encodeURIComponent(e)}`);
   }
   // Logged-out visitors are routed through S2 and come straight back to the paper.
-  const open = (paperId: string) => { trackPyq({ event_type: "paper_select", screen: "picker", exam, paper_id: paperId }); go(signedIn ? `/pyq?paper=${paperId}` : registerUrl(`/pyq?paper=${paperId}`)); };
+  // Signed-in visitors must have a completed profile before starting a test
+  // (admins excepted, matching the server gate in /api/pyq/attempt/start);
+  // otherwise we show the profile-completion modal and resume into the paper.
+  const open = async (paperId: string) => {
+    trackPyq({ event_type: "paper_select", screen: "picker", exam, paper_id: paperId });
+    if (!signedIn) { go(registerUrl(`/pyq?paper=${paperId}`)); return; }
+    const { data: complete } = await sb.rpc("is_profile_complete");
+    if (complete) { go(`/pyq?paper=${paperId}`); return; }
+    const { data: { user } } = await sb.auth.getUser();
+    if ((user?.email ?? "").toLowerCase().endsWith("@vedam.org")) { go(`/pyq?paper=${paperId}`); return; }
+    setGatePaper(paperId);
+  };
   const word = SET_WORD[exam] ?? "Set";
 
   return (
@@ -601,6 +616,12 @@ function Picker({ papers, initialExam, signedIn, go }: { papers: Paper[] | null;
           })}
         </div>
       )}
+      <ProfileGateModal
+        open={!!gatePaper}
+        onClose={() => setGatePaper(null)}
+        onComplete={() => { const pid = gatePaper; setGatePaper(null); if (pid) go(`/pyq?paper=${pid}`); }}
+        reason="Complete your profile to start practising."
+      />
     </section>
   );
 }
