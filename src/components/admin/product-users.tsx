@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 
@@ -70,14 +70,27 @@ const istDate = (v: unknown) => v ? new Date(String(v)).toLocaleDateString("en-I
 const str = (v: unknown) => Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v);
 const initials = (name: unknown) => String(name ?? "").trim().split(/\s+/).slice(0, 2).map((s) => s[0] || "").join("").toUpperCase() || "–";
 
+/* ── crisp line icons (no emoji) ───────────────────────────── */
+const Svg = (p: { children: ReactNode; className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={p.className || "h-4 w-4"}>{p.children}</svg>
+);
+const IconSearch = () => <Svg><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></Svg>;
+const IconColumns = () => <Svg><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18M15 3v18" /></Svg>;
+const IconDownload = () => <Svg><path d="M12 15V3M8 7l4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></Svg>;
+const IconSend = () => <Svg><path d="m22 2-7 20-4-9-9-4z" /><path d="M22 2 11 13" /></Svg>;
+const IconMail = () => <Svg><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></Svg>;
+const IconChat = () => <Svg><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.5L3 21l2-5.4A8.5 8.5 0 1 1 21 11.5z" /></Svg>;
+const IconClose = () => <Svg><path d="M18 6 6 18M6 6l12 12" /></Svg>;
+const IconInbox = () => <Svg className="mx-auto h-8 w-8"><path d="M22 12h-6l-2 3h-4l-2-3H2" /><path d="M5.5 5h13l3.5 7v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z" /></Svg>;
+
 function Pill({ kind, text }: { kind: "good" | "warn" | "bad" | "flat"; text: string }) {
   const m = {
-    good: "bg-emerald-500/15 text-emerald-400 ring-emerald-500/25",
-    warn: "bg-amber-500/15 text-amber-400 ring-amber-500/25",
-    bad: "bg-rose-500/15 text-rose-400 ring-rose-500/25",
-    flat: "bg-white/5 text-white/55 ring-white/10",
+    good: "bg-emerald-400/10 text-emerald-300 ring-emerald-400/20",
+    warn: "bg-amber-400/10 text-amber-300 ring-amber-400/20",
+    bad: "bg-rose-400/10 text-rose-300 ring-rose-400/20",
+    flat: "bg-white/5 text-white/50 ring-white/10",
   }[kind];
-  return <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${m}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{text}</span>;
+  return <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium ring-1 ring-inset ${m}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{text}</span>;
 }
 function statusCell(c: Col, v: unknown) {
   if (c.key === "registered") return v ? <Pill kind="good" text="Registered" /> : <Pill kind="flat" text="Not registered" />;
@@ -160,116 +173,114 @@ export function ProductUsers() {
   function renderCell(r: Row, c: Col) {
     const v = getVal(r, c);
     if (c.type === "status") return statusCell(c, v);
-    if (c.type === "date") return <span className="tabular-nums text-muted">{istDate(v)}</span>;
-    if (c.type === "id") return <span className="rounded bg-white/5 px-1.5 py-0.5 font-mono text-[11px] text-muted">{str(v) || "—"}</span>;
-    if (c.type === "tags") return <span className="flex flex-wrap gap-1">{(Array.isArray(v) ? v : []).map((t, i) => <span key={i} className="rounded-md bg-[color:rgb(var(--accent))]/10 px-1.5 py-0.5 text-[10px] font-medium text-accent">{String(t)}</span>)}</span>;
-    if (c.type === "pct") { const n = v == null ? null : Number(v); return <span className="inline-flex items-center gap-2"><span className="h-1.5 w-20 overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-[color:rgb(var(--accent))] transition-all" style={{ width: `${Math.max(3, n ?? 0)}%` }} /></span><span className="w-9 text-xs tabular-nums text-foreground">{n == null ? "—" : n + "%"}</span></span>; }
-    if (c.type === "num") return <span className="tabular-nums text-foreground">{v == null ? "—" : str(v)}</span>;
+    if (c.type === "date") return <span className="tabular-nums text-white/55">{istDate(v)}</span>;
+    if (c.type === "id") return <span className="rounded bg-white/[0.06] px-1.5 py-0.5 font-mono text-[11px] text-white/55">{str(v) || "—"}</span>;
+    if (c.type === "tags") return <span className="flex flex-wrap gap-1">{(Array.isArray(v) ? v : []).map((t, i) => <span key={i} className="rounded-md bg-[color:rgb(var(--accent))]/15 px-1.5 py-0.5 text-[10px] font-medium text-[color:rgb(var(--accent))]">{String(t)}</span>)}</span>;
+    if (c.type === "pct") { const n = v == null ? null : Number(v); return <span className="inline-flex items-center gap-2"><span className="h-1.5 w-20 overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-[color:rgb(var(--accent))] transition-all" style={{ width: `${Math.max(3, n ?? 0)}%` }} /></span><span className="w-9 text-xs tabular-nums text-white/80">{n == null ? "—" : n + "%"}</span></span>; }
+    if (c.type === "num") return <span className="tabular-nums text-white/85">{v == null ? "—" : str(v)}</span>;
     if (c.key === "full_name") return (
       <span className="flex items-center gap-2.5">
-        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[color:rgb(var(--accent))]/15 text-[11px] font-bold text-accent">{initials(v)}</span>
-        <span className="font-semibold text-foreground">{str(v) || "—"}</span>
+        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-white/10 text-[11px] font-semibold text-white/75">{initials(v)}</span>
+        <span className="font-semibold text-white">{str(v) || "—"}</span>
       </span>
     );
-    if (c.key === "email") return <span className="text-muted">{str(v) || "—"}</span>;
-    if (c.key === "phone") return <span className="font-mono text-[12px] text-muted">{str(v) || "—"}</span>;
-    return <span>{str(v) || "—"}</span>;
+    if (c.key === "email") return <span className="text-white/55">{str(v) || "—"}</span>;
+    if (c.key === "phone") return <span className="font-mono text-[12px] text-white/55">{str(v) || "—"}</span>;
+    return <span className="text-white/75">{str(v) || "—"}</span>;
   }
 
-  const iconBtn = "inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2 text-sm font-semibold text-foreground transition-colors hover:border-[color:rgb(var(--accent))] hover:text-accent";
+  // shared field/button shells — one uniform dark style across search, Columns, Export
+  const shell = "inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3.5 text-sm font-medium text-white/85 transition-colors hover:border-white/25 hover:bg-white/[0.08]";
+  const stickyBg = "bg-[#16161a]";
+  const fieldInput = "w-full rounded-lg border border-white/10 bg-white/[0.05] px-2 py-1 font-mono text-[11px] text-white outline-none transition-colors focus:border-[color:rgb(var(--accent))] [color-scheme:dark]";
 
   return (
-    <div className="mx-auto max-w-[1600px] px-6 py-8">
+    <div className="mx-auto max-w-[1600px] px-6 py-8 text-white">
       {/* ── header ───────────────────────────────── */}
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="grid h-11 w-11 place-items-center rounded-2xl bg-[color:rgb(var(--accent))]/15 text-lg">👥</div>
-          <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">Admin · Vedam One</div>
-            <h1 className="font-display text-2xl font-bold text-heading">Product Users</h1>
-          </div>
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">Admin · Vedam One</div>
+          <h1 className="mt-1 text-[26px] font-bold leading-tight tracking-tight text-white">Product Users</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 transition-colors focus-within:border-[color:rgb(var(--accent))]">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="text-muted"><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" /><path d="m21 21-4.3-4.3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, email, Vedam ID…" className="w-48 bg-transparent text-sm text-foreground outline-none placeholder:text-muted" />
+          <div className="flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 transition-colors focus-within:border-[color:rgb(var(--accent))]">
+            <span className="text-white/40"><IconSearch /></span>
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, email, Vedam ID" className="w-52 bg-transparent text-sm text-white outline-none placeholder:text-white/35" />
           </div>
-          <button onClick={() => setShowCols(true)} className={iconBtn}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.8" /><path d="M9 3v18M15 3v18" stroke="currentColor" strokeWidth="1.8" /></svg>
-            Columns{addedProfileCount > 0 && <span className="rounded-full bg-[color:rgb(var(--accent))] px-1.5 text-[10px] font-bold text-white">{addedProfileCount}</span>}
+          <button onClick={() => setShowCols(true)} className={shell}>
+            <IconColumns /> Columns
+            {addedProfileCount > 0 && <span className="rounded-full bg-[color:rgb(var(--accent))] px-1.5 text-[10px] font-bold text-white">{addedProfileCount}</span>}
           </button>
-          <button onClick={exportCsv} disabled={!targets.length} className="inline-flex items-center gap-2 rounded-xl bg-brand-gradient px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 15V3M8 7l4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            Export CSV
+          <button onClick={exportCsv} disabled={!targets.length} className={shell + " disabled:opacity-40"}>
+            <span className="text-[color:rgb(var(--accent))]"><IconDownload /></span> Export CSV
           </button>
         </div>
       </div>
 
       {/* ── product tabs ─────────────────────────── */}
-      <div className="mb-4 flex gap-1 overflow-x-auto rounded-2xl border border-border bg-surface p-1">
+      <div className="mb-5 inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.04] p-1">
         {PRODUCTS.map((p) => (
           <button key={p.key} onClick={() => setTab(p.key)}
-            className={["flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-colors", p.key === tab ? "bg-brand-gradient text-white shadow-sm" : "text-muted hover:bg-surface-warm hover:text-foreground"].join(" ")}>
+            className={["flex items-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold transition-colors", p.key === tab ? "bg-white/[0.1] text-white shadow-sm" : "text-white/45 hover:bg-white/5 hover:text-white/80"].join(" ")}>
             {p.label}
-            {p.key === tab && <span className="rounded-full bg-white/25 px-2 text-[11px] font-bold tabular-nums">{rows.length}</span>}
+            {p.key === tab && <span className="rounded-full bg-[color:rgb(var(--accent))]/25 px-2 text-[11px] font-bold tabular-nums text-[color:rgb(var(--accent))]">{rows.length}</span>}
           </button>
         ))}
       </div>
 
       {/* ── stat / filter bar ────────────────────── */}
       <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-        <span className="text-muted"><b className="text-foreground tabular-nums">{filtered.length}</b> of <span className="tabular-nums">{rows.length}</span> users</span>
-        <span className="font-mono text-[11px] text-muted">base: {product.base}</span>
-        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-muted"><span className="inline-block h-2.5 w-2.5 rounded-sm bg-[color:rgb(var(--accent))]/25 ring-1 ring-inset ring-[color:rgb(var(--accent))]/40" /> profile column</span>
-        {anyFilter && <button onClick={clearFilters} className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 text-xs font-semibold text-muted transition-colors hover:border-[color:rgb(var(--accent))] hover:text-accent">✕ Clear filters</button>}
+        <span className="text-white/55"><b className="font-semibold text-white tabular-nums">{filtered.length}</b> of <span className="tabular-nums">{rows.length}</span> users</span>
+        <span className="font-mono text-[11px] text-white/35">base: {product.base}</span>
+        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-white/35"><span className="inline-block h-2.5 w-2.5 rounded-sm bg-[color:rgb(var(--accent))]/25 ring-1 ring-inset ring-[color:rgb(var(--accent))]/40" /> profile column</span>
+        {anyFilter && <button onClick={clearFilters} className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-2.5 py-1 text-xs font-medium text-white/60 transition-colors hover:border-white/25 hover:text-white">Clear filters</button>}
       </div>
 
       {/* ── selection bar ────────────────────────── */}
       {selected.size > 0 && (
-        <div className="mb-3 flex flex-wrap items-center gap-3 rounded-2xl bg-brand-gradient px-4 py-2.5 text-white shadow-sm">
-          <span className="inline-flex items-center gap-2 font-semibold"><span className="grid h-6 w-6 place-items-center rounded-full bg-white/20 text-xs tabular-nums">{selected.size}</span> selected</span>
+        <div className="mb-3 flex flex-wrap items-center gap-3 rounded-xl border border-[color:rgb(var(--accent))]/30 bg-[color:rgb(var(--accent))]/[0.1] px-4 py-2.5">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-white"><span className="grid h-6 min-w-[1.5rem] place-items-center rounded-full bg-[color:rgb(var(--accent))] px-1 text-xs font-bold tabular-nums text-white">{selected.size}</span> selected</span>
           <span className="flex-1" />
-          <button onClick={exportCsv} className="inline-flex items-center gap-1.5 rounded-lg border border-white/40 bg-white/10 px-3 py-1.5 text-sm font-semibold transition-colors hover:bg-white/20">⭳ Export</button>
-          <button onClick={() => setComm("email")} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-sm font-bold text-[color:rgb(var(--accent))] transition-transform hover:scale-[1.02]">➤ Send Communication</button>
-          <button onClick={() => setSelected(new Set())} className="rounded-lg border border-white/40 bg-white/10 px-3 py-1.5 text-sm font-semibold transition-colors hover:bg-white/20">Clear</button>
+          <button onClick={exportCsv} className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.06] px-3 py-1.5 text-sm font-medium text-white/85 transition-colors hover:bg-white/10"><IconDownload /> Export</button>
+          <button onClick={() => setComm("email")} className="inline-flex items-center gap-1.5 rounded-lg bg-[color:rgb(var(--accent))] px-3.5 py-1.5 text-sm font-semibold text-white transition-[filter] hover:brightness-110"><IconSend /> Send Communication</button>
+          <button onClick={() => setSelected(new Set())} className="rounded-lg border border-white/15 bg-white/[0.06] px-3 py-1.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/10">Clear</button>
         </div>
       )}
 
       {/* ── table ────────────────────────────────── */}
       {loading ? (
-        <div className="space-y-2 rounded-2xl border border-border bg-surface p-4">
-          {Array.from({ length: 8 }).map((_, i) => <div key={i} className="h-10 animate-pulse rounded-lg bg-surface-warm" style={{ opacity: 1 - i * 0.09 }} />)}
+        <div className="space-y-2 rounded-2xl border border-white/10 bg-white/[0.02] p-4">
+          {Array.from({ length: 8 }).map((_, i) => <div key={i} className="h-11 animate-pulse rounded-lg bg-white/[0.05]" style={{ opacity: 1 - i * 0.1 }} />)}
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
           <div className="max-h-[70vh] overflow-auto">
             <table className="w-full border-collapse text-left text-sm">
               <thead className="sticky top-0 z-10">
-                <tr className="bg-surface-warm">
-                  <th className="sticky left-0 z-20 bg-surface-warm px-4 py-3"><input type="checkbox" checked={allSel} onChange={toggleAll} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></th>
+                <tr>
+                  <th className={`sticky left-0 z-20 px-4 py-3 ${stickyBg}`}><input type="checkbox" checked={allSel} onChange={toggleAll} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></th>
                   {shownCols.map((c) => (
-                    <th key={c.key} className={["whitespace-nowrap px-3 py-3 font-mono text-[10px] font-bold uppercase tracking-wider", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/10 text-accent" : "text-muted"].join(" ")}>{c.label}</th>
+                    <th key={c.key} className={["whitespace-nowrap px-3 py-3 font-mono text-[10px] font-semibold uppercase tracking-wider", stickyBg, c.group === "profile" ? "text-[color:rgb(var(--accent))]/80" : "text-white/40"].join(" ")}>{c.label}</th>
                   ))}
                 </tr>
-                <tr className="bg-surface-warm/70 backdrop-blur">
-                  <th className="sticky left-0 z-20 bg-surface-warm/70 px-4 py-1.5" />
+                <tr>
+                  <th className={`sticky left-0 z-20 px-4 py-1.5 ${stickyBg}`} />
                   {shownCols.map((c) => (
-                    <th key={c.key} className="px-2 py-1.5 align-top">
+                    <th key={c.key} className={`px-2 py-1.5 align-top ${stickyBg}`}>
                       {c.type === "enum" ? (
-                        <select value={(enumF[c.key] || [])[0] || ""} onChange={(e) => setEnumF((f) => ({ ...f, [c.key]: e.target.value ? [e.target.value] : [] }))}
-                          className="w-full min-w-[84px] rounded-lg border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]">
+                        <select value={(enumF[c.key] || [])[0] || ""} onChange={(e) => setEnumF((f) => ({ ...f, [c.key]: e.target.value ? [e.target.value] : [] }))} className={fieldInput + " min-w-[84px]"}>
                           <option value="">All</option>
                           {(enumOptions[c.key] || []).map((o) => <option key={o} value={o}>{o}</option>)}
                         </select>
                       ) : (c.type === "num" || c.type === "pct") ? (
                         <div className="flex gap-1">
-                          <select value={(numF[c.key]?.op) || ">="} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: e.target.value, value: f[c.key]?.value || "" } }))} className="rounded-lg border border-border bg-background px-1 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]">
+                          <select value={(numF[c.key]?.op) || ">="} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: e.target.value, value: f[c.key]?.value || "" } }))} className={fieldInput + " w-auto"}>
                             <option value=">=">≥</option><option value="<=">≤</option><option value=">">&gt;</option><option value="<">&lt;</option><option value="=">=</option>
                           </select>
-                          <input value={numF[c.key]?.value || ""} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: f[c.key]?.op || ">=", value: e.target.value } }))} inputMode="numeric" placeholder="#" className="w-full min-w-[42px] rounded-lg border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+                          <input value={numF[c.key]?.value || ""} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: f[c.key]?.op || ">=", value: e.target.value } }))} inputMode="numeric" placeholder="#" className={fieldInput + " min-w-[42px]"} />
                         </div>
                       ) : (c.type === "text" || c.type === "name" || c.type === "id") ? (
-                        <input value={textF[c.key] || ""} onChange={(e) => setTextF((f) => ({ ...f, [c.key]: e.target.value }))} placeholder="filter" className="w-full min-w-[70px] rounded-lg border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+                        <input value={textF[c.key] || ""} onChange={(e) => setTextF((f) => ({ ...f, [c.key]: e.target.value }))} placeholder="filter" className={fieldInput + " min-w-[70px]"} />
                       ) : null}
                     </th>
                   ))}
@@ -277,18 +288,18 @@ export function ProductUsers() {
               </thead>
               <tbody>
                 {filtered.length === 0 ? (
-                  <tr><td colSpan={shownCols.length + 1} className="px-3 py-16 text-center">
-                    <div className="text-3xl">🔍</div>
-                    <p className="mt-2 font-semibold text-foreground">No users match</p>
-                    <p className="text-sm text-muted">{anyFilter ? "Try clearing filters." : "This product has no users yet."}</p>
+                  <tr><td colSpan={shownCols.length + 1} className="px-3 py-16 text-center text-white/45">
+                    <IconInbox />
+                    <p className="mt-3 font-semibold text-white/75">No users match</p>
+                    <p className="text-sm text-white/40">{anyFilter ? "Try clearing the filters." : "This product has no users yet."}</p>
                   </td></tr>
                 ) : filtered.map((r) => {
                   const on = selected.has(r.user_id);
                   return (
-                    <tr key={r.user_id} className={["border-t border-border/70 transition-colors", on ? "bg-[color:rgb(var(--accent))]/8" : "hover:bg-surface-warm/50"].join(" ")}>
-                      <td className={["sticky left-0 z-[1] px-4 py-2.5", on ? "bg-[color:rgb(var(--accent))]/8" : "bg-surface"].join(" ")}><input type="checkbox" checked={on} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></td>
+                    <tr key={r.user_id} className={["border-t border-white/[0.06] transition-colors", on ? "bg-[color:rgb(var(--accent))]/10" : "hover:bg-white/[0.035]"].join(" ")}>
+                      <td className={["sticky left-0 z-[1] px-4 py-3", on ? "bg-[#1a1626]" : "bg-[#0b0b0d]"].join(" ")}><input type="checkbox" checked={on} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></td>
                       {shownCols.map((c) => (
-                        <td key={c.key} className={["whitespace-nowrap px-3 py-2.5", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/[0.04]" : ""].join(" ")}>{renderCell(r, c)}</td>
+                        <td key={c.key} className={["whitespace-nowrap px-3 py-3", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/[0.05]" : ""].join(" ")}>{renderCell(r, c)}</td>
                       ))}
                     </tr>
                   );
@@ -299,44 +310,44 @@ export function ProductUsers() {
         </div>
       )}
 
-      <p className="mt-3 font-mono text-[11px] text-muted">Actions apply to {selected.size ? `${selected.size} selected` : `${filtered.length} shown`} · joined to vedam_one_profiles</p>
+      <p className="mt-3 font-mono text-[11px] text-white/35">Actions apply to {selected.size ? `${selected.size} selected` : `${filtered.length} shown`} · joined to vedam_one_profiles</p>
 
       {/* ── Customize columns drawer ─────────────── */}
       {showCols && (
         <>
-          <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setShowCols(false)} />
-          <div className="fixed right-0 top-0 z-50 flex h-full w-[min(430px,100%)] flex-col border-l border-border bg-surface shadow-2xl">
-            <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <div><h2 className="font-display text-base font-bold text-heading">Customize columns</h2><p className="text-xs text-muted">Product columns show by default.</p></div>
-              <button onClick={() => setShowCols(false)} className="grid h-8 w-8 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground">✕</button>
+          <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setShowCols(false)} />
+          <div className="fixed right-0 top-0 z-50 flex h-full w-[min(430px,100%)] flex-col border-l border-white/10 bg-[#0c0c0f] text-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <div><h2 className="text-base font-bold text-white">Customize columns</h2><p className="text-xs text-white/45">Product columns show by default.</p></div>
+              <button onClick={() => setShowCols(false)} className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 transition-colors hover:text-white"><IconClose /></button>
             </div>
             <div className="flex-1 overflow-y-auto px-5 py-4">
-              <input value={colSearch} onChange={(e) => setColSearch(e.target.value)} placeholder="Search columns…" className="mb-4 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
-              <div className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted"><span className="h-2 w-2 rounded-sm bg-muted" /> Product · {product.base}</div>
+              <input value={colSearch} onChange={(e) => setColSearch(e.target.value)} placeholder="Search columns" className="mb-4 w-full rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2 text-sm text-white outline-none transition-colors focus:border-[color:rgb(var(--accent))] placeholder:text-white/35" />
+              <div className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-white/40"><span className="h-2 w-2 rounded-sm bg-white/40" /> Product · {product.base}</div>
               {product.cols.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => {
                 const on = visible[tab].has(c.key);
                 return (
-                  <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 transition-colors hover:bg-surface-warm">
+                  <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 transition-colors hover:bg-white/5">
                     <input type="checkbox" checked={on} onChange={() => toggleCol(c.key)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" />
-                    <span className={["text-sm", on ? "font-medium text-foreground" : "text-muted"].join(" ")}>{c.label}</span>
+                    <span className={["text-sm", on ? "font-medium text-white" : "text-white/50"].join(" ")}>{c.label}</span>
                   </label>
                 );
               })}
-              <div className="mb-2 mt-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-accent"><span className="h-2 w-2 rounded-sm bg-[color:rgb(var(--accent))]" /> Profile · vedam_one_profiles</div>
+              <div className="mb-2 mt-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-[color:rgb(var(--accent))]"><span className="h-2 w-2 rounded-sm bg-[color:rgb(var(--accent))]" /> Profile · vedam_one_profiles</div>
               {PROFILE_COLS.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => {
                 const on = visible[tab].has(c.key);
                 return (
-                  <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 transition-colors hover:bg-surface-warm">
+                  <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 transition-colors hover:bg-white/5">
                     <input type="checkbox" checked={on} onChange={() => toggleCol(c.key)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" />
-                    <span className={["text-sm", on ? "font-medium text-accent" : "text-muted"].join(" ")}>{c.label}</span>
+                    <span className={["text-sm", on ? "font-medium text-[color:rgb(var(--accent))]" : "text-white/50"].join(" ")}>{c.label}</span>
                   </label>
                 );
               })}
             </div>
-            <div className="flex items-center gap-2 border-t border-border px-5 py-4">
-              <span className="mr-auto font-mono text-[11px] text-muted">{shownCols.length} shown</span>
-              <button onClick={resetCols} className="rounded-xl border border-border px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:border-[color:rgb(var(--accent))]">Reset</button>
-              <button onClick={() => setShowCols(false)} className="rounded-xl bg-brand-gradient px-5 py-2 text-sm font-semibold text-white">Done</button>
+            <div className="flex items-center gap-2 border-t border-white/10 px-5 py-4">
+              <span className="mr-auto font-mono text-[11px] text-white/40">{shownCols.length} shown</span>
+              <button onClick={resetCols} className="rounded-xl border border-white/10 px-3 py-2 text-sm font-medium text-white/85 transition-colors hover:border-white/25">Reset</button>
+              <button onClick={() => setShowCols(false)} className="rounded-xl bg-[color:rgb(var(--accent))] px-5 py-2 text-sm font-semibold text-white transition-[filter] hover:brightness-110">Done</button>
             </div>
           </div>
         </>
@@ -345,20 +356,20 @@ export function ProductUsers() {
       {/* ── Send Communication modal (reuses CommsBroadcast) ── */}
       {comm && (
         <>
-          <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm" onClick={() => setComm(null)} />
-          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
-            <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <h2 className="font-display text-base font-bold text-heading">Send Communication <span className="ml-1 rounded-full bg-[color:rgb(var(--accent))]/15 px-2.5 py-0.5 text-xs font-semibold text-accent">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
-              <button onClick={() => setComm(null)} className="grid h-8 w-8 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground">✕</button>
+          <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setComm(null)} />
+          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c0f] text-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <h2 className="flex items-center gap-2.5 text-base font-bold text-white">Send Communication <span className="rounded-full bg-[color:rgb(var(--accent))]/15 px-2.5 py-0.5 text-xs font-semibold text-[color:rgb(var(--accent))]">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
+              <button onClick={() => setComm(null)} className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 transition-colors hover:text-white"><IconClose /></button>
             </div>
             <div className="flex gap-1 px-5 pt-3">
               {(["email", "whatsapp"] as const).map((ch) => (
-                <button key={ch} onClick={() => setComm(ch)} className={["rounded-t-xl border border-b-0 px-4 py-2 text-sm font-semibold transition-colors", comm === ch ? "border-border bg-background text-accent" : "border-transparent text-muted hover:text-foreground"].join(" ")}>
-                  {ch === "email" ? "✉ Email" : "⬤ WhatsApp"}
+                <button key={ch} onClick={() => setComm(ch)} className={["inline-flex items-center gap-2 rounded-t-xl border border-b-0 px-4 py-2 text-sm font-semibold transition-colors", comm === ch ? "border-white/10 bg-white/[0.04] text-white" : "border-transparent text-white/45 hover:text-white/80"].join(" ")}>
+                  {ch === "email" ? <IconMail /> : <IconChat />}{ch === "email" ? "Email" : "WhatsApp"}
                 </button>
               ))}
             </div>
-            <div className="max-h-[74vh] overflow-y-auto border-t border-border px-1 py-1">
+            <div className="max-h-[74vh] overflow-y-auto border-t border-white/10 px-1 py-1">
               <CommsBroadcast channel={comm} product="all" overrideRecipients={recipients} />
             </div>
           </div>
