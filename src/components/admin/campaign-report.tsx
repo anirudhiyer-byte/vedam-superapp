@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 type Row = { id: string; name: string; channel: string; kind: string; product: string | null; audience_desc: string | null; recipient_count: number; created_at: string; status: string; sent: number; delivered: number; opened: number; clicked: number; bounced: number; failed: number; cost: number; delivery_pct: number | null; open_pct: number | null; click_pct: number | null; bounce_pct: number | null };
 type Summary = { campaigns: number; total_recipients: number; total_sent: number; total_delivered: number; total_opened: number; total_clicked: number; total_bounced: number; total_failed: number; total_cost: number; avg_delivery_pct: number | null; avg_open_pct: number | null; avg_click_pct: number | null; avg_bounce_pct: number | null };
+type Recipient = { channel: string; contact: string; status: string; sent_at: string | null; delivered_at: string | null; opened_at: string | null; clicked_at: string | null; failed: boolean; detail: string | null };
 
 const PRODUCTS = ["", "bootcamp", "codesprint", "vsat", "global"];
 const CHANNELS = ["", "email", "whatsapp"];
@@ -17,6 +18,26 @@ export function CampaignReport() {
   const [from, setFrom] = useState(""); const [to, setTo] = useState(""); const [month, setMonth] = useState("");
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState<string | null>(null);
+  const [recips, setRecips] = useState<Record<string, Recipient[]>>({});
+  const [recipLoading, setRecipLoading] = useState<string | null>(null);
+
+  const toggleRow = async (id: string) => {
+    const next = open === id ? null : id;
+    setOpen(next);
+    if (next && !recips[id]) {
+      setRecipLoading(id);
+      const { data } = await supabase.rpc("campaign_recipients", { p_campaign: id });
+      setRecips((m) => ({ ...m, [id]: (data as Recipient[]) ?? [] }));
+      setRecipLoading(null);
+    }
+  };
+
+  // highest status reached, for a compact per-recipient chip
+  const statusOf = (r: Recipient) => r.failed ? { label: "Failed", cls: "text-red-500" }
+    : r.clicked_at ? { label: "Clicked", cls: "text-emerald-600" }
+    : r.opened_at ? { label: "Opened", cls: "text-emerald-500" }
+    : r.delivered_at ? { label: "Delivered", cls: "text-sky-500" }
+    : { label: "Sent", cls: "text-muted" };
 
   const range = useMemo(() => {
     if (month) { const [y, m] = month.split("-").map(Number); const f = new Date(y, m - 1, 1); const t = new Date(y, m, 1); return { p_from: f.toISOString(), p_to: t.toISOString() }; }
@@ -68,8 +89,9 @@ export function CampaignReport() {
             {loading ? <tr><td colSpan={11} className="p-6 text-center text-muted">Loading…</td></tr>
             : rows.length === 0 ? <tr><td colSpan={11} className="p-6 text-center text-muted">No campaigns match these filters.</td></tr>
             : rows.map((r) => (
-              <tr key={r.id} className="cursor-pointer border-t border-border hover:bg-surface-warm/40" onClick={() => setOpen(open === r.id ? null : r.id)}>
-                <td className="p-3"><div className="font-semibold text-heading">{r.name}</div>{open === r.id && r.audience_desc && <div className="mt-0.5 font-mono text-[10px] text-muted">{r.audience_desc}</div>}</td>
+              <Fragment key={r.id}>
+              <tr className="cursor-pointer border-t border-border hover:bg-surface-warm/40" onClick={() => toggleRow(r.id)}>
+                <td className="p-3"><div className="flex items-center gap-1.5 font-semibold text-heading"><span className={"inline-block transition-transform " + (open === r.id ? "rotate-90" : "")}>›</span>{r.name}</div>{open === r.id && r.audience_desc && <div className="mt-0.5 font-mono text-[10px] text-muted">{r.audience_desc}</div>}</td>
                 <td className="p-3 capitalize text-muted">{r.channel === "whatsapp" ? "WhatsApp" : "Email"}</td>
                 <td className="p-3 capitalize text-muted">{r.product || "—"}</td>
                 <td className="p-3 capitalize text-muted">{r.kind}</td>
@@ -81,6 +103,34 @@ export function CampaignReport() {
                 <td className="p-3">{pct(r.bounce_pct)}</td>
                 <td className="p-3">₹{Number(r.cost).toFixed(2)}</td>
               </tr>
+              {open === r.id && (
+                <tr className="border-t border-border bg-surface-warm/20">
+                  <td colSpan={11} className="p-3">
+                    {recipLoading === r.id ? <div className="py-3 text-center text-xs text-muted">Loading recipients…</div>
+                    : (recips[r.id] ?? []).length === 0 ? <div className="py-3 text-center text-xs text-muted">No recipient records yet for this campaign.</div>
+                    : (
+                      <div className="max-h-72 overflow-auto rounded-lg border border-border">
+                        <table className="w-full text-left text-xs">
+                          <thead className="sticky top-0 bg-surface text-muted"><tr>{["Recipient", "Status", "Sent", "Delivered", "Opened", "Clicked"].map((h) => <th key={h} className="whitespace-nowrap px-3 py-2 font-semibold">{h}</th>)}</tr></thead>
+                          <tbody>
+                            {(recips[r.id] ?? []).map((p, i) => { const s = statusOf(p); const t = (v: string | null) => v ? new Date(v).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—"; return (
+                              <tr key={p.contact + i} className="border-t border-border">
+                                <td className="px-3 py-1.5 font-mono text-[11px] text-heading">{p.contact}</td>
+                                <td className={"px-3 py-1.5 font-semibold " + s.cls}>{s.label}{p.failed && p.detail ? ` · ${p.detail}` : ""}</td>
+                                <td className="px-3 py-1.5 text-muted">{t(p.sent_at)}</td>
+                                <td className="px-3 py-1.5 text-muted">{t(p.delivered_at)}</td>
+                                <td className="px-3 py-1.5 text-muted">{p.channel === "whatsapp" ? "—" : t(p.opened_at)}</td>
+                                <td className="px-3 py-1.5 text-muted">{p.channel === "whatsapp" ? "—" : t(p.clicked_at)}</td>
+                              </tr>
+                            ); })}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              )}
+              </Fragment>
             ))}
           </tbody>
         </table>
