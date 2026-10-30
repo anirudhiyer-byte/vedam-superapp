@@ -120,22 +120,22 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
     setSending(false);
   }
 
-  const field = "rounded-lg border border-border-strong bg-background px-2.5 py-1.5 text-sm text-foreground outline-none";
+  const field = "rounded-lg border border-white/15 bg-white/[0.06] px-2.5 py-1.5 text-sm text-white outline-none transition-colors [color-scheme:dark] focus:border-[color:rgb(var(--accent))]";
   const yn = (b: boolean) => <span className={["rounded-full px-2 py-0.5 font-mono text-[9px] font-bold", b ? "bg-[#eafaf0] text-[#12703f]" : "bg-[#fdeded] text-[#a3271d]"].join(" ")}>{b ? "Yes" : "No"}</span>;
 
-  if (loading) return <div className="mt-6 h-40 animate-pulse rounded-2xl border border-border bg-surface" />;
+  if (loading) return <div className="mt-6 h-40 animate-pulse rounded-2xl border border-white/10 bg-white/[0.03]" />;
 
   return (
-    <div className="mt-5 space-y-4">
+    <div className="mt-5 space-y-4 font-[family-name:var(--font-inter)] text-white">
       {/* template */}
-      <div><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Template ({product === "all" ? "all products" : product})</span>
+      <div><span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Template ({product === "all" ? "all products" : product})</span>
         <select value={templateRef} onChange={(e) => setTemplateRef(e.target.value)} className={field + " w-full max-w-md"}>
           <option value="">Select…</option>{templates.map((t) => <option key={t.ref} value={t.ref}>{t.label}{t.vars ? ` · ${t.vars} var` : ""}</option>)}
         </select>
         {channel === "whatsapp" && <select value={messageType} onChange={(e) => setMessageType(e.target.value)} className={field + " ml-2"}><option>media</option><option>text</option><option>text_var</option><option>media_var</option></select>}
         {selVarCount > 0 && (
-          <div className="mt-2 rounded-xl border border-dashed border-border-strong p-3">
-            <span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Map {"{{n}}"} variables</span>
+          <div className="mt-2 rounded-xl border border-dashed border-white/15 p-3">
+            <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Map {"{{n}}"} variables</span>
             {varMaps.map((m, i) => (
               <div key={i} className="mt-1.5 flex items-center gap-2">
                 <span className="w-10 font-mono text-xs text-muted">{`{{${i + 1}}}`}</span>
@@ -162,7 +162,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
 
       <div className="grid gap-4 lg:grid-cols-[1fr_290px] lg:items-start">
         <div>
-          {ov ? (<div className="mb-2 rounded-lg border border-border bg-surface-warm/40 px-3 py-2 text-xs text-muted">Sending to <b className="text-heading">{sendRows.length}</b> recipient{sendRows.length === 1 ? "" : "s"} selected in Product Users.</div>) : (<>
+          {ov ? (<div className="mb-2 rounded-lg border border-white/10 bg-white/[0.05] px-3 py-2.5 text-[13px] text-white/70">Sending to <b className="font-semibold text-white">{sendRows.length}</b> recipient{sendRows.length === 1 ? "" : "s"} selected in Product Users.</div>) : (<>
           <div className="mb-2 flex items-center gap-2"><button onClick={selAll} className="rounded-lg border border-border-strong px-2.5 py-1 font-mono text-[11px] text-muted">Select all filtered ({filtered.length})</button><button onClick={() => setSelected(new Set())} className="rounded-lg border border-border-strong px-2.5 py-1 font-mono text-[11px] text-muted">Clear</button><span className="ml-auto font-mono text-[11px] font-bold text-heading">{selected.size} selected</span></div>
           <div className="max-h-[360px] overflow-auto rounded-xl border border-border">
             <table className="w-full border-collapse whitespace-nowrap text-xs">
@@ -184,24 +184,24 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
             </table>
           </div>
           </>)}
-          {result && <p className="mt-3 font-body text-sm text-foreground">{result}</p>}
-          <label className="mt-3 block"><span className="mb-1 block font-body text-xs font-semibold text-heading">Campaign name (for the report)</span>
-            <input value={campaignName} onChange={(e) => setCampaignName(e.target.value)} placeholder="e.g. Bootcamp reminder — Spotify build" className="w-full max-w-md rounded-lg border border-border-strong bg-background px-3 py-2 text-sm text-foreground outline-none [color-scheme:dark]" /></label>
-          <button onClick={send} disabled={sending || !templateRef || sendRows.length === 0} className="mt-3 rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-60">{sending ? "Sending…" : `Send to ${sendRows.length} →`}</button>
+          {result && <p className="mt-3 text-sm text-white/85">{result}</p>}
+          <label className="mt-3 block"><span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Campaign name (for the report)</span>
+            <input value={campaignName} onChange={(e) => setCampaignName(e.target.value)} placeholder="e.g. Bootcamp reminder — Spotify build" className="w-full max-w-md rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2 text-sm text-white outline-none transition-colors [color-scheme:dark] placeholder:text-white/35 focus:border-[color:rgb(var(--accent))]" /></label>
+          <button onClick={send} disabled={sending || !templateRef || sendRows.length === 0} className="mt-3 rounded-xl bg-[color:rgb(var(--accent))] px-6 py-3 text-sm font-semibold text-white transition-[filter] hover:brightness-110 disabled:opacity-50">{sending ? "Sending…" : `Send to ${sendRows.length} →`}</button>
         </div>
 
         {/* live preview */}
         <div className="lg:sticky lg:top-20">
-          <span className="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wide text-muted">Live preview</span>
-          <div className="mb-2 inline-flex rounded-full border border-border bg-surface p-0.5">
-            <button onClick={() => setPvChannel("whatsapp")} className={["rounded-full px-3 py-1 font-mono text-[10px] font-bold", pvChannel === "whatsapp" ? "bg-heading text-white" : "text-muted"].join(" ")} style={pvChannel === "whatsapp" ? { background: "rgb(var(--heading))" } : undefined}>💬</button>
-            <button onClick={() => setPvChannel("email")} className={["rounded-full px-3 py-1 font-mono text-[10px] font-bold", pvChannel === "email" ? "bg-heading text-white" : "text-muted"].join(" ")} style={pvChannel === "email" ? { background: "rgb(var(--heading))" } : undefined}>✉️</button>
+          <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/45">Live preview</span>
+          <div className="mb-2 inline-flex rounded-full border border-white/10 bg-white/[0.05] p-0.5">
+            <button onClick={() => setPvChannel("whatsapp")} aria-label="WhatsApp preview" className={["grid h-6 w-8 place-items-center rounded-full transition-colors", pvChannel === "whatsapp" ? "bg-[color:rgb(var(--accent))] text-white" : "text-white/50 hover:text-white/80"].join(" ")}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.5L3 21l2-5.4A8.5 8.5 0 1 1 21 11.5z" /></svg></button>
+            <button onClick={() => setPvChannel("email")} aria-label="Email preview" className={["grid h-6 w-8 place-items-center rounded-full transition-colors", pvChannel === "email" ? "bg-[color:rgb(var(--accent))] text-white" : "text-white/50 hover:text-white/80"].join(" ")}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg></button>
           </div>
           {pvChannel === "whatsapp" ? (
             <div className="rounded-2xl bg-[#E5DDD5] p-3"><div className="overflow-hidden rounded-xl bg-white shadow-sm">
-              <div className="grid h-20 place-items-center bg-brand-gradient text-[11px] font-bold text-white">🖼️ header</div>
+              <div className="grid h-20 place-items-center bg-brand-gradient text-[11px] font-bold text-white">Header image</div>
               <div className="px-3 py-2 text-[12.5px] leading-relaxed">{templateRef ? `Preview of “${templates.find((t) => t.ref === templateRef)?.label}” with a sample recipient's variables.` : "Select a template to preview."}</div>
-              <div className="border-t border-[#eee] py-2 text-center text-[12px] font-bold text-[#0a8]">🔗 Button</div>
+              <div className="border-t border-[#eee] py-2 text-center text-[12px] font-bold text-[#0a8]">Button</div>
             </div></div>
           ) : (
             channel === "email" && templateRef && emTpls.find((t) => t.id === templateRef) ? (
@@ -212,7 +212,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
               <div className="p-3 text-[12.5px] leading-relaxed">Select an email template to preview.</div>
             </div></div>)
           )}
-          <p className="mt-2 font-body text-[11px] text-muted">Preview reflects the selected template. Toggle channel to preview each.</p>
+          <p className="mt-2 text-[11px] text-white/40">Preview reflects the selected template. Toggle channel to preview each.</p>
         </div>
       </div>
     </div>

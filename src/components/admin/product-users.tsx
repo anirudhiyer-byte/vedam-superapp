@@ -195,7 +195,7 @@ export function ProductUsers() {
   const fieldInput = "w-full rounded-lg border border-white/10 bg-white/[0.05] px-2 py-1 font-mono text-[11px] text-white outline-none transition-colors focus:border-[color:rgb(var(--accent))] [color-scheme:dark]";
 
   return (
-    <div className="mx-auto max-w-[1600px] px-6 py-8 text-white">
+    <div className="mx-auto max-w-[1600px] px-6 py-8 font-[family-name:var(--font-inter)] text-white">
       {/* ── header ───────────────────────────────── */}
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
