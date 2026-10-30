@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { renderEmailTemplateHtml } from "@/lib/email/render";
+import { DarkSelect } from "@/components/admin/dark-select";
 
 type Row = { id: string; name: string; phone: string | null; email: string | null; state: string | null; city: string | null; signup: string;
   events_reg: number; events_attended: number; cs_enrolled: boolean; cs_modules: number; cs_total: number; cp_used: boolean; points: number };
@@ -129,17 +130,17 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
     <div className="mt-5 space-y-4 font-[family-name:var(--font-inter)] text-white">
       {/* template */}
       <div><span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Template ({product === "all" ? "all products" : product})</span>
-        <select value={templateRef} onChange={(e) => setTemplateRef(e.target.value)} className={field + " w-full max-w-md"}>
-          <option value="">Select…</option>{templates.map((t) => <option key={t.ref} value={t.ref}>{t.label}{t.vars ? ` · ${t.vars} var` : ""}</option>)}
-        </select>
-        {channel === "whatsapp" && <select value={messageType} onChange={(e) => setMessageType(e.target.value)} className={field + " ml-2"}><option>media</option><option>text</option><option>text_var</option><option>media_var</option></select>}
+        <div className="flex flex-wrap items-center gap-2">
+          <DarkSelect className="w-full max-w-md" value={templateRef} placeholder="Select a template" onChange={setTemplateRef} options={templates.map((t) => ({ value: t.ref, label: `${t.label}${t.vars ? ` · ${t.vars} var` : ""}` }))} />
+          {channel === "whatsapp" && <DarkSelect className="w-40" value={messageType} onChange={setMessageType} options={["media", "text", "text_var", "media_var"].map((v) => ({ value: v, label: v }))} />}
+        </div>
         {selVarCount > 0 && (
           <div className="mt-2 rounded-xl border border-dashed border-white/15 p-3">
             <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Map {"{{n}}"} variables</span>
             {varMaps.map((m, i) => (
               <div key={i} className="mt-1.5 flex items-center gap-2">
                 <span className="w-10 font-mono text-xs text-muted">{`{{${i + 1}}}`}</span>
-                <select value={m.source} onChange={(e) => setVarMaps((v) => v.map((x, j) => j === i ? { ...x, source: e.target.value } : x))} className={field + " w-32"}><option value="static">Static text</option><option value="name">Recipient name</option><option value="state">State</option><option value="city">City</option><option value="points">Points</option></select>
+                <DarkSelect className="w-40" value={m.source} onChange={(val) => setVarMaps((v) => v.map((x, j) => j === i ? { ...x, source: val } : x))} options={[{ value: "static", label: "Static text" }, { value: "name", label: "Recipient name" }, { value: "state", label: "State" }, { value: "city", label: "City" }, { value: "points", label: "Points" }]} />
                 {m.source === "static" && <input value={m.value} onChange={(e) => setVarMaps((v) => v.map((x, j) => j === i ? { ...x, value: e.target.value } : x))} placeholder="value" className={field + " flex-1"} />}
               </div>
             ))}
