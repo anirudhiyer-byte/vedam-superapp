@@ -73,9 +73,11 @@ export function CommsHub() {
   const pill = (p: string) => { const t = TAGS.find((x) => x.key === p); return t ? `${t.icon} ${t.label}` : p; };
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
-      <span className="font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">// comms hub</span>
-      <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-heading">Communications</h1>
+    <div className="relative min-h-screen" style={{ background: "#070a16", color: "#f2f5ff" }}>
+      <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(760px 440px at 85% -6%, rgba(139,92,246,.14), transparent 60%), radial-gradient(620px 420px at -6% 108%, rgba(34,211,238,.09), transparent 60%)" }} />
+      <div className="relative mx-auto max-w-5xl px-6 py-10">
+      <span className="font-mono text-xs font-semibold lowercase tracking-[0.12em]" style={{ color: "#a78bfa" }}>// comms hub</span>
+      <h1 className="mt-2 text-4xl font-bold tracking-tight" style={{ fontFamily: "var(--font-outfit), system-ui, sans-serif", background: "linear-gradient(92deg,#8b5cf6,#c4b5fd 85%)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", filter: "drop-shadow(0 0 26px rgba(139,92,246,.25))" }}>Communications</h1>
 
       {/* channel toggle */}
       <div className="mt-4 inline-flex rounded-full border border-border bg-surface p-1">
@@ -169,6 +171,7 @@ export function CommsHub() {
           <p className="mt-1 font-body text-sm text-muted">This section is being built next.</p>
         </div>
       )}
+      </div>
     </div>
   );
 }
