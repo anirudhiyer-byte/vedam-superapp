@@ -1,10 +1,13 @@
+import { redirect } from "next/navigation";
 import { TtsNav } from "@/components/peerpath/tts-nav";
 import type { Metadata } from "next";
 import { FeedbackForm } from "@/components/peerpath/feedback-form";
-import { ConfirmItsYou } from "@/components/peerpath/confirm-its-you";
+import { BookingNotFound } from "@/components/peerpath/booking-not-found";
 import { EmptyState } from "@/components/peerpath/ui";
 import { guardPeerPath } from "@/lib/peerpath/gate";
-import { loadBooking } from "@/lib/peerpath/server";
+import { getSessionUser, loadBooking } from "@/lib/peerpath/server";
+import { PEERPATH_LINKS, ttsPath } from "@/lib/peerpath/constants";
+import { withReturn } from "@/lib/peerpath/booking-codes";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Feedback — Talk to a Senior · Vedam", robots: { index: false } };
@@ -12,8 +15,9 @@ export const metadata: Metadata = { title: "Feedback — Talk to a Senior · Ved
 export default async function FeedbackPage({ params }: { params: Promise<{ id: string }> }) {
   await guardPeerPath();
   const { id } = await params;
+  if (!(await getSessionUser())) redirect(withReturn(PEERPATH_LINKS.login, ttsPath.feedback(id)));
   const b = await loadBooking(id);
-  if (!b) return (<><TtsNav /><ConfirmItsYou /></>);
+  if (!b) return (<><TtsNav /><BookingNotFound /></>);
   const started = new Date(b.start).getTime() < Date.now();
   const open = (b.status === "completed" || (b.status === "confirmed" && started)) && !b.feedbackGiven;
 

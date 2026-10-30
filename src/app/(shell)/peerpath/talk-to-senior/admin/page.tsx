@@ -92,7 +92,7 @@ function BookingTable({ d, rows }: { d: AdminData; rows: AdminBooking[] }) {
                 <td className="px-4 py-3">
                   <p>{b.name}</p>
                   <p className="text-[12px] text-pp-muted">
-                    {b.email} · {b.phone}
+                    {b.email} · {b.phone ?? "—"}
                   </p>
                   {b.question && <p className="mt-1 max-w-[320px] text-[12px] text-pp-muted">“{b.question}”</p>}
                 </td>

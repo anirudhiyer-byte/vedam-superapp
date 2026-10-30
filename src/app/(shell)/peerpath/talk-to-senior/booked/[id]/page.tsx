@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { TtsNav } from "@/components/peerpath/tts-nav";
 import { CancelBooking } from "@/components/peerpath/booking-actions";
-import { ConfirmItsYou } from "@/components/peerpath/confirm-its-you";
+import { BookingNotFound } from "@/components/peerpath/booking-not-found";
 import { AdmissionsNote, Avatar, yearLabel } from "@/components/peerpath/ui";
 import { IconCalendar, IconCheck, IconVideo } from "@/components/peerpath/icons";
-import { BOOKING_RULES, ttsPath } from "@/lib/peerpath/constants";
+import { BOOKING_RULES, PEERPATH_LINKS, ttsPath } from "@/lib/peerpath/constants";
+import { withReturn } from "@/lib/peerpath/booking-codes";
 import { guardPeerPath } from "@/lib/peerpath/gate";
-import { loadBooking } from "@/lib/peerpath/server";
+import { getSessionUser, loadBooking } from "@/lib/peerpath/server";
 import { fmtDay, fmtTime } from "@/lib/peerpath/slots";
 import type { Booking } from "@/lib/peerpath/types";
 
@@ -28,8 +30,9 @@ function googleCalendarLink(b: Booking) {
 export default async function BookedPage({ params }: { params: Promise<{ id: string }> }) {
   await guardPeerPath();
   const { id } = await params;
+  if (!(await getSessionUser())) redirect(withReturn(PEERPATH_LINKS.login, ttsPath.booked(id)));
   const b = await loadBooking(id);
-  if (!b) return (<><TtsNav /><ConfirmItsYou /></>);
+  if (!b) return (<><TtsNav /><BookingNotFound /></>);
 
   const minutes = Math.round((new Date(b.end).getTime() - new Date(b.start).getTime()) / 60000);
   const startsIn = new Date(b.start).getTime() - Date.now();

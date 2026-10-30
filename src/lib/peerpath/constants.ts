@@ -119,3 +119,14 @@ export const ttsPath = {
   portal: (token: string) => `${TTS}/senior/${token}`,
   admin: `${TTS}/admin`,
 };
+
+/**
+ * Where the booking popups send people. Each link gets ?next=<the booking page>
+ * so they come back to the same senior and time.
+ * December: when the VSAT payment page exists, change `completePayment` (one line).
+ */
+export const PEERPATH_LINKS = {
+  completePayment: "/apply",
+  register: "/apply",
+  login: "/login",
+} as const;

@@ -2,120 +2,178 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { book } from "@/lib/peerpath/client";
-import { setProofCookie } from "@/lib/peerpath/proof";
+import { popupFor, type BookFailCode, type Popup } from "@/lib/peerpath/booking-codes";
 import { ttsPath } from "@/lib/peerpath/constants";
+import { VerifyEmailStep } from "./verify-email-step";
 
-type Props = { seniorId: string; start: string; type: string; duration: number; rescheduleOf?: string | null; defaults?: { name: string; email: string; phone: string } };
+type Contact = { name: string; email: string | null; phone: string | null; complete: boolean };
+type Props = {
+  seniorId: string;
+  start: string;
+  type: string;
+  duration: number;
+  rescheduleOf?: string | null;
+  /** read-only details from the database (pp_my_contact); the same values pp_book stores */
+  contact: Contact | null;
+  /** this booking page, so popups can bring the user back to the same senior and time */
+  returnTo: string;
+  /** the senior's free times */
+  seniorPath: string;
+};
 
 export function BookingForm(p: Props) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [agreeError, setAgreeError] = useState(false);
+  const [popup, setPopup] = useState<Popup | null>(null);
+  const [verified, setVerified] = useState(false);
+  const sending = useRef(false); // stops a double-click before React re-renders
+  const ctx = { returnTo: p.returnTo, seniorPath: p.seniorPath };
+
+  function emailVerified() {
+    setPopup(null);
+    setVerified(true);
+    router.refresh(); // re-reads pp_my_contact on the server, so "Your details" shows the verified email
+  }
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (sending.current) return;
     const form = new FormData(e.currentTarget);
-    const body = {
+    if (form.get("agree") !== "on") {
+      setAgreeError(true);
+      return;
+    }
+    setAgreeError(false);
+    sending.current = true;
+    setBusy(true);
+    const res = await book({
       seniorId: p.seniorId,
       start: p.start,
       type: p.type,
       duration: p.duration,
-      name: String(form.get("name") ?? "").trim(),
-      phone: String(form.get("phone") ?? "").trim(),
-      email: String(form.get("email") ?? "").trim(),
       question: String(form.get("question") ?? "").trim() || null,
-      agree: form.get("agree") === "on",
-    };
-
-    const errs: Record<string, string> = {};
-    if (body.name.length < 2) errs.name = "Please enter your name.";
-    if (!/^\+?[0-9\s-]{10,15}$/.test(body.phone)) errs.phone = "Please enter a valid WhatsApp number.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) errs.email = "Please enter a valid email.";
-    if (!body.agree) errs.agree = "Please agree to the session guidelines.";
-    setFieldErrors(errs);
-    if (Object.keys(errs).length) return;
-
-    setBusy(true);
-    setError(null);
-    try {
-      const res = await book({ ...body, rescheduleOf: p.rescheduleOf ?? null });
-      if (!res.ok) {
-        setError(res.message);
-        setBusy(false);
-        return;
-      }
-      // remember who owns this booking on this device, so the confirmation and
-      // feedback pages can prove ownership without asking again.
-      setProofCookie(body.email, body.phone);
+      rescheduleOf: p.rescheduleOf ?? null,
+    });
+    if (res.ok) {
       router.push(ttsPath.booked(res.id));
       router.refresh();
-    } catch {
-      setError("You seem to be offline. Please check your internet and try again.");
-      setBusy(false);
+      return; // keep the button disabled while we leave the page
     }
+    sending.current = false;
+    setBusy(false);
+    setPopup(popupFor(res.code as BookFailCode, ctx));
   }
 
-  const err = (k: string) =>
-    fieldErrors[k] ? (
-      <p id={`${k}-err`} className="text-[13px] font-medium text-[#FF7A6E]">
-        {fieldErrors[k]}
-      </p>
-    ) : null;
-
   return (
-    <form onSubmit={submit} noValidate className="flex flex-col gap-5">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5 sm:col-span-2">
-          <label htmlFor="name" className="pp-label">Your name</label>
-          <input id="name" name="name" autoComplete="name" className="pp-field" placeholder="Full name" defaultValue={p.defaults?.name} aria-invalid={!!fieldErrors.name} aria-describedby="name-err" />
-          {err("name")}
-        </div>
+    <>
+      <form onSubmit={submit} noValidate className="flex flex-col gap-5">
+        <section aria-labelledby="your-details" className="flex flex-col gap-3 rounded-xl border border-pp-line p-4">
+          <div className="flex items-center justify-between gap-3">
+            <h2 id="your-details" className="text-[15px] font-semibold text-pp-heading">Your details</h2>
+            <span className="text-[12px] text-pp-muted">From your Vedam account</span>
+          </div>
+          <dl className="grid gap-3 sm:grid-cols-3">
+            <Detail label="Name" value={p.contact?.name ?? null} />
+            <Detail label="Email" value={p.contact?.email ?? null} missing="Not verified yet" />
+            <Detail label="Phone (optional)" value={p.contact?.phone ?? null} missing="Not added" optional />
+          </dl>
+          {!p.contact?.email && (
+            <button type="button" className="pp-btn-secondary self-start px-5" onClick={() => setPopup(popupFor("EMAIL_NOT_VERIFIED", ctx))}>
+              Verify my email
+            </button>
+          )}
+          {verified && p.contact?.email && (
+            <p role="status" className="text-[13px] font-medium text-pp-heading">Email verified. You can confirm your booking now.</p>
+          )}
+          <p className="text-[13px] text-pp-muted">
+            The Google Meet invite goes to this email. Email and phone come from your login; the name from your VSAT application.
+          </p>
+        </section>
+
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="phone" className="pp-label">WhatsApp number</label>
-          <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" className="pp-field" placeholder="+91 98765 43210" defaultValue={p.defaults?.phone} aria-invalid={!!fieldErrors.phone} aria-describedby="phone-hint phone-err" />
-          <p id="phone-hint" className="text-[13px] text-pp-muted">For reminders only.</p>
-          {err("phone")}
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="pp-label">Email</label>
-          <input id="email" name="email" type="email" autoComplete="email" className="pp-field" placeholder="you@email.com" defaultValue={p.defaults?.email} aria-invalid={!!fieldErrors.email} aria-describedby="email-hint email-err" />
-          <p id="email-hint" className="text-[13px] text-pp-muted">Your booking details and Meet link are linked to this.</p>
-          {err("email")}
-        </div>
-        <div className="flex flex-col gap-1.5 sm:col-span-2">
           <label htmlFor="question" className="pp-label">
             What do you want to ask? <span className="font-normal text-pp-muted">(optional)</span>
           </label>
           <textarea id="question" name="question" rows={3} maxLength={500} className="pp-field py-3" placeholder="e.g. How did you prepare for the VSAT interview?" />
         </div>
-      </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label className="flex items-start gap-3 text-[15px] leading-snug text-pp-ink">
-          <input type="checkbox" name="agree" className="mt-0.5 h-5 w-5 flex-none accent-pp-violet-500" aria-describedby="agree-err" />
-          <span>
-            I agree to the{" "}
-            <Link href={ttsPath.guidelines} target="_blank" className="font-semibold text-pp-violet-600 underline underline-offset-2">
-              session guidelines
+        <div className="flex flex-col gap-1.5">
+          <label className="flex items-start gap-3 text-[15px] leading-snug text-pp-ink">
+            <input type="checkbox" name="agree" className="mt-0.5 h-5 w-5 flex-none accent-pp-violet-500" aria-describedby="agree-err" aria-invalid={agreeError} />
+            <span>
+              I agree to the{" "}
+              <Link href={ttsPath.guidelines} target="_blank" className="font-semibold text-pp-violet-600 underline underline-offset-2">
+                session guidelines
+              </Link>
+              .
+            </span>
+          </label>
+          {agreeError && (
+            <p id="agree-err" className="text-[13px] font-medium text-[#FF7A6E]">
+              Please agree to the session guidelines.
+            </p>
+          )}
+        </div>
+
+        <button type="submit" className="pp-btn-primary w-full sm:w-auto sm:self-start sm:px-10" disabled={busy} aria-busy={busy}>
+          {busy ? (p.rescheduleOf ? "Moving…" : "Booking…") : p.rescheduleOf ? "Move my chat here" : "Confirm booking"}
+        </button>
+      </form>
+
+      {popup && <BookingPopup popup={popup} onClose={() => setPopup(null)} onEmailVerified={emailVerified} />}
+    </>
+  );
+}
+
+function Detail({ label, value, missing = "Not added yet", optional = false }: { label: string; value: string | null; missing?: string; optional?: boolean }) {
+  return (
+    <div className="min-w-0">
+      <dt className="text-[12px] text-pp-muted">{label}</dt>
+      <dd className={`truncate text-[15px] ${value ? "font-semibold text-pp-heading" : optional ? "text-pp-muted" : "text-[#FF7A6E]"}`}>{value ?? missing}</dd>
+    </div>
+  );
+}
+
+/** Accessible popup: focus moves into it, Esc or the button closes it. Text only — never a raw error. */
+function BookingPopup({ popup, onClose, onEmailVerified }: { popup: Popup; onClose: () => void; onEmailVerified: () => void }) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!popup.verifyEmail) closeRef.current?.focus(); // the email step focuses its own field
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose, popup.verifyEmail]);
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }} onClick={onClose}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pp-popup-title"
+        aria-describedby="pp-popup-body"
+        className="pp-card w-full max-w-md p-6"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 id="pp-popup-title" className="text-[20px] font-bold text-pp-heading">{popup.title}</h2>
+        <p id="pp-popup-body" className="mt-2 text-[15px] leading-relaxed text-pp-muted">{popup.body}</p>
+        {popup.verifyEmail ? (
+          <VerifyEmailStep onDone={onEmailVerified} onCancel={onClose} />
+        ) : (
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row-reverse">
+          {popup.action && (
+            <Link href={popup.action.href} className="pp-btn-primary flex-1">
+              {popup.action.label}
             </Link>
-            .
-          </span>
-        </label>
-        {err("agree")}
+          )}
+          <button ref={closeRef} type="button" className="pp-btn-secondary flex-1" onClick={onClose}>
+            {popup.action ? "Not now" : "OK"}
+          </button>
+        </div>
+        )}
       </div>
-
-      {error && (
-        <p role="alert" className="rounded-xl border border-[#7f2a24] bg-[#2a1212] px-4 py-3 text-[14px] text-[#FF7A6E]">
-          {error}
-        </p>
-      )}
-
-      <button type="submit" className="pp-btn-primary w-full sm:w-auto sm:self-start sm:px-10" disabled={busy}>
-        {busy ? (p.rescheduleOf ? "Moving…" : "Booking…") : p.rescheduleOf ? "Move my chat here" : "Confirm booking"}
-      </button>
-    </form>
+    </div>
   );
 }
