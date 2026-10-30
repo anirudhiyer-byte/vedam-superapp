@@ -68,10 +68,16 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
 const getVal = (r: Row, c: Col): unknown => c.group === "profile" ? (r.profile as Record<string, unknown> | null)?.[c.key] : r[c.key];
 const istDate = (v: unknown) => v ? new Date(String(v)).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "2-digit", timeZone: "Asia/Kolkata" }) : "—";
 const str = (v: unknown) => Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v);
+const initials = (name: unknown) => String(name ?? "").trim().split(/\s+/).slice(0, 2).map((s) => s[0] || "").join("").toUpperCase() || "–";
 
 function Pill({ kind, text }: { kind: "good" | "warn" | "bad" | "flat"; text: string }) {
-  const m = { good: "bg-emerald-500/15 text-emerald-400", warn: "bg-amber-500/15 text-amber-400", bad: "bg-rose-500/15 text-rose-400", flat: "bg-white/10 text-white/60" }[kind];
-  return <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${m}`}>{text}</span>;
+  const m = {
+    good: "bg-emerald-500/15 text-emerald-400 ring-emerald-500/25",
+    warn: "bg-amber-500/15 text-amber-400 ring-amber-500/25",
+    bad: "bg-rose-500/15 text-rose-400 ring-rose-500/25",
+    flat: "bg-white/5 text-white/55 ring-white/10",
+  }[kind];
+  return <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${m}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{text}</span>;
 }
 function statusCell(c: Col, v: unknown) {
   if (c.key === "registered") return v ? <Pill kind="good" text="Registered" /> : <Pill kind="flat" text="Not registered" />;
@@ -99,6 +105,7 @@ export function ProductUsers() {
   const product = PRODUCTS.find((p) => p.key === tab)!;
   const allCols = useMemo(() => [...product.cols, ...PROFILE_COLS], [product]);
   const shownCols = allCols.filter((c) => visible[tab].has(c.key));
+  const addedProfileCount = [...visible[tab]].filter((k) => PROFILE_COLS.some((c) => c.key === k)).length;
 
   useEffect(() => {
     let on = true;
@@ -117,6 +124,9 @@ export function ProductUsers() {
     });
     return o;
   }, [rows, shownCols]);
+
+  const anyFilter = q.trim() !== "" || Object.values(textF).some(Boolean) || Object.values(numF).some((f) => f?.value) || Object.values(enumF).some((a) => a?.length);
+  function clearFilters() { setQ(""); setTextF({}); setNumF({}); setEnumF({}); }
 
   const filtered = useMemo(() => rows.filter((r) => {
     if (q.trim()) { const hay = [r.full_name, r.email, r.phone, r.public_id].map((x) => String(x ?? "").toLowerCase()).join(" "); if (!hay.includes(q.trim().toLowerCase())) return false; }
@@ -150,157 +160,205 @@ export function ProductUsers() {
   function renderCell(r: Row, c: Col) {
     const v = getVal(r, c);
     if (c.type === "status") return statusCell(c, v);
-    if (c.type === "date") return <span className="text-muted">{istDate(v)}</span>;
-    if (c.type === "id") return <span className="font-mono text-xs text-muted">{str(v) || "—"}</span>;
-    if (c.type === "tags") return <span className="flex flex-wrap gap-1">{(Array.isArray(v) ? v : []).map((t, i) => <span key={i} className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] text-white/70">{String(t)}</span>)}</span>;
-    if (c.type === "pct") { const n = v == null ? null : Number(v); return <span className="inline-flex items-center gap-2"><span className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-[color:rgb(var(--accent))]" style={{ width: `${Math.max(3, n ?? 0)}%` }} /></span><span className="text-xs tabular-nums">{n == null ? "—" : n + "%"}</span></span>; }
-    if (c.type === "num") return <span className="tabular-nums">{v == null ? "—" : str(v)}</span>;
-    if (c.key === "full_name") return <span className="font-semibold text-foreground">{str(v) || "—"}</span>;
+    if (c.type === "date") return <span className="tabular-nums text-muted">{istDate(v)}</span>;
+    if (c.type === "id") return <span className="rounded bg-white/5 px-1.5 py-0.5 font-mono text-[11px] text-muted">{str(v) || "—"}</span>;
+    if (c.type === "tags") return <span className="flex flex-wrap gap-1">{(Array.isArray(v) ? v : []).map((t, i) => <span key={i} className="rounded-md bg-[color:rgb(var(--accent))]/10 px-1.5 py-0.5 text-[10px] font-medium text-accent">{String(t)}</span>)}</span>;
+    if (c.type === "pct") { const n = v == null ? null : Number(v); return <span className="inline-flex items-center gap-2"><span className="h-1.5 w-20 overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-[color:rgb(var(--accent))] transition-all" style={{ width: `${Math.max(3, n ?? 0)}%` }} /></span><span className="w-9 text-xs tabular-nums text-foreground">{n == null ? "—" : n + "%"}</span></span>; }
+    if (c.type === "num") return <span className="tabular-nums text-foreground">{v == null ? "—" : str(v)}</span>;
+    if (c.key === "full_name") return (
+      <span className="flex items-center gap-2.5">
+        <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[color:rgb(var(--accent))]/15 text-[11px] font-bold text-accent">{initials(v)}</span>
+        <span className="font-semibold text-foreground">{str(v) || "—"}</span>
+      </span>
+    );
+    if (c.key === "email") return <span className="text-muted">{str(v) || "—"}</span>;
+    if (c.key === "phone") return <span className="font-mono text-[12px] text-muted">{str(v) || "—"}</span>;
     return <span>{str(v) || "—"}</span>;
   }
 
-  const btn = "rounded-lg border border-border px-3 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm disabled:opacity-50";
+  const iconBtn = "inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2 text-sm font-semibold text-foreground transition-colors hover:border-[color:rgb(var(--accent))] hover:text-accent";
 
   return (
     <div className="mx-auto max-w-[1600px] px-6 py-8">
-      {/* header */}
-      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <div className="font-mono text-[11px] uppercase tracking-wide text-muted">Admin · Vedam One</div>
-          <h1 className="font-display text-xl font-bold text-heading">Product Users</h1>
+      {/* ── header ───────────────────────────────── */}
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="grid h-11 w-11 place-items-center rounded-2xl bg-[color:rgb(var(--accent))]/15 text-lg">👥</div>
+          <div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">Admin · Vedam One</div>
+            <h1 className="font-display text-2xl font-bold text-heading">Product Users</h1>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, email, Vedam ID…"
-            className="rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
-          <button onClick={() => setShowCols((s) => !s)} className={btn}>▥ Columns</button>
-          <button onClick={exportCsv} disabled={!targets.length} className="rounded-lg bg-brand-gradient px-3.5 py-2 text-sm font-semibold text-white disabled:opacity-50">⭳ Export CSV</button>
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 transition-colors focus-within:border-[color:rgb(var(--accent))]">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="text-muted"><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" /><path d="m21 21-4.3-4.3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, email, Vedam ID…" className="w-48 bg-transparent text-sm text-foreground outline-none placeholder:text-muted" />
+          </div>
+          <button onClick={() => setShowCols(true)} className={iconBtn}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.8" /><path d="M9 3v18M15 3v18" stroke="currentColor" strokeWidth="1.8" /></svg>
+            Columns{addedProfileCount > 0 && <span className="rounded-full bg-[color:rgb(var(--accent))] px-1.5 text-[10px] font-bold text-white">{addedProfileCount}</span>}
+          </button>
+          <button onClick={exportCsv} disabled={!targets.length} className="inline-flex items-center gap-2 rounded-xl bg-brand-gradient px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 15V3M8 7l4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            Export CSV
+          </button>
         </div>
       </div>
 
-      {/* product tabs */}
-      <div className="mb-4 flex gap-1 overflow-x-auto border-b border-border">
+      {/* ── product tabs ─────────────────────────── */}
+      <div className="mb-4 flex gap-1 overflow-x-auto rounded-2xl border border-border bg-surface p-1">
         {PRODUCTS.map((p) => (
           <button key={p.key} onClick={() => setTab(p.key)}
-            className={["whitespace-nowrap border-b-2 px-4 py-2.5 text-sm font-semibold", p.key === tab ? "border-[color:rgb(var(--accent))] text-accent" : "border-transparent text-muted hover:text-foreground"].join(" ")}>
-            {p.label}{p.key === tab ? ` · ${rows.length}` : ""}
+            className={["flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-colors", p.key === tab ? "bg-brand-gradient text-white shadow-sm" : "text-muted hover:bg-surface-warm hover:text-foreground"].join(" ")}>
+            {p.label}
+            {p.key === tab && <span className="rounded-full bg-white/25 px-2 text-[11px] font-bold tabular-nums">{rows.length}</span>}
           </button>
         ))}
       </div>
 
-      {/* selection bar */}
+      {/* ── stat / filter bar ────────────────────── */}
+      <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+        <span className="text-muted"><b className="text-foreground tabular-nums">{filtered.length}</b> of <span className="tabular-nums">{rows.length}</span> users</span>
+        <span className="font-mono text-[11px] text-muted">base: {product.base}</span>
+        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-muted"><span className="inline-block h-2.5 w-2.5 rounded-sm bg-[color:rgb(var(--accent))]/25 ring-1 ring-inset ring-[color:rgb(var(--accent))]/40" /> profile column</span>
+        {anyFilter && <button onClick={clearFilters} className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 text-xs font-semibold text-muted transition-colors hover:border-[color:rgb(var(--accent))] hover:text-accent">✕ Clear filters</button>}
+      </div>
+
+      {/* ── selection bar ────────────────────────── */}
       {selected.size > 0 && (
-        <div className="mb-3 flex flex-wrap items-center gap-3 rounded-xl bg-[color:rgb(var(--accent))] px-4 py-2.5 text-white">
-          <b>{selected.size}</b> selected
+        <div className="mb-3 flex flex-wrap items-center gap-3 rounded-2xl bg-brand-gradient px-4 py-2.5 text-white shadow-sm">
+          <span className="inline-flex items-center gap-2 font-semibold"><span className="grid h-6 w-6 place-items-center rounded-full bg-white/20 text-xs tabular-nums">{selected.size}</span> selected</span>
           <span className="flex-1" />
-          <button onClick={exportCsv} className="rounded-lg border border-white/50 bg-white/10 px-3 py-1.5 text-sm font-semibold hover:bg-white/20">⭳ Export CSV</button>
-          <button onClick={() => setComm("email")} className="rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-[color:rgb(var(--accent))] hover:bg-white/90">➤ Send Communication</button>
-          <button onClick={() => setSelected(new Set())} className="rounded-lg border border-white/50 bg-white/10 px-3 py-1.5 text-sm font-semibold hover:bg-white/20">Clear</button>
+          <button onClick={exportCsv} className="inline-flex items-center gap-1.5 rounded-lg border border-white/40 bg-white/10 px-3 py-1.5 text-sm font-semibold transition-colors hover:bg-white/20">⭳ Export</button>
+          <button onClick={() => setComm("email")} className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-sm font-bold text-[color:rgb(var(--accent))] transition-transform hover:scale-[1.02]">➤ Send Communication</button>
+          <button onClick={() => setSelected(new Set())} className="rounded-lg border border-white/40 bg-white/10 px-3 py-1.5 text-sm font-semibold transition-colors hover:bg-white/20">Clear</button>
         </div>
       )}
 
-      {/* table */}
+      {/* ── table ────────────────────────────────── */}
       {loading ? (
-        <div className="h-72 animate-pulse rounded-2xl border border-border bg-surface" />
+        <div className="space-y-2 rounded-2xl border border-border bg-surface p-4">
+          {Array.from({ length: 8 }).map((_, i) => <div key={i} className="h-10 animate-pulse rounded-lg bg-surface-warm" style={{ opacity: 1 - i * 0.09 }} />)}
+        </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-border">
-          <table className="w-full border-collapse text-left text-sm">
-            <thead className="bg-surface-warm">
-              <tr>
-                <th className="px-3 py-2.5"><input type="checkbox" checked={allSel} onChange={toggleAll} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></th>
-                {shownCols.map((c) => (
-                  <th key={c.key} className={["whitespace-nowrap px-3 py-2.5 font-body text-xs font-semibold", c.group === "profile" ? "text-accent" : "text-foreground"].join(" ")}>{c.label}</th>
-                ))}
-              </tr>
-              <tr className="border-t border-border">
-                <th className="px-3 py-1.5" />
-                {shownCols.map((c) => (
-                  <th key={c.key} className="px-2 py-1.5 align-top">
-                    {c.type === "enum" ? (
-                      <select multiple={false} value={(enumF[c.key] || [])[0] || ""} onChange={(e) => setEnumF((f) => ({ ...f, [c.key]: e.target.value ? [e.target.value] : [] }))}
-                        className="w-full min-w-[80px] rounded border border-border bg-background px-1 py-1 font-mono text-[11px] text-foreground outline-none">
-                        <option value="">All</option>
-                        {(enumOptions[c.key] || []).map((o) => <option key={o} value={o}>{o}</option>)}
-                      </select>
-                    ) : (c.type === "num" || c.type === "pct") ? (
-                      <div className="flex gap-1">
-                        <select value={(numF[c.key]?.op) || ">="} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: e.target.value, value: f[c.key]?.value || "" } }))} className="rounded border border-border bg-background px-1 py-1 font-mono text-[11px] text-foreground outline-none">
-                          <option value=">=">≥</option><option value="<=">≤</option><option value=">">&gt;</option><option value="<">&lt;</option><option value="=">=</option>
-                        </select>
-                        <input value={numF[c.key]?.value || ""} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: f[c.key]?.op || ">=", value: e.target.value } }))} inputMode="numeric" placeholder="#" className="w-full min-w-[44px] rounded border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none" />
-                      </div>
-                    ) : (c.type === "text" || c.type === "name" || c.type === "id") ? (
-                      <input value={textF[c.key] || ""} onChange={(e) => setTextF((f) => ({ ...f, [c.key]: e.target.value }))} placeholder="filter" className="w-full min-w-[70px] rounded border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none" />
-                    ) : null}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.length === 0 ? (
-                <tr><td colSpan={shownCols.length + 1} className="px-3 py-10 text-center text-muted">No users match.</td></tr>
-              ) : filtered.map((r) => (
-                <tr key={r.user_id} className={["border-t border-border", selected.has(r.user_id) ? "bg-surface-warm/50" : ""].join(" ")}>
-                  <td className="px-3 py-2"><input type="checkbox" checked={selected.has(r.user_id)} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></td>
+        <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+          <div className="max-h-[70vh] overflow-auto">
+            <table className="w-full border-collapse text-left text-sm">
+              <thead className="sticky top-0 z-10">
+                <tr className="bg-surface-warm">
+                  <th className="sticky left-0 z-20 bg-surface-warm px-4 py-3"><input type="checkbox" checked={allSel} onChange={toggleAll} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></th>
                   {shownCols.map((c) => (
-                    <td key={c.key} className={["whitespace-nowrap px-3 py-2", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/5" : "", c.key === "full_name" ? "text-foreground" : "text-muted"].join(" ")}>{renderCell(r, c)}</td>
+                    <th key={c.key} className={["whitespace-nowrap px-3 py-3 font-mono text-[10px] font-bold uppercase tracking-wider", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/10 text-accent" : "text-muted"].join(" ")}>{c.label}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+                <tr className="bg-surface-warm/70 backdrop-blur">
+                  <th className="sticky left-0 z-20 bg-surface-warm/70 px-4 py-1.5" />
+                  {shownCols.map((c) => (
+                    <th key={c.key} className="px-2 py-1.5 align-top">
+                      {c.type === "enum" ? (
+                        <select value={(enumF[c.key] || [])[0] || ""} onChange={(e) => setEnumF((f) => ({ ...f, [c.key]: e.target.value ? [e.target.value] : [] }))}
+                          className="w-full min-w-[84px] rounded-lg border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]">
+                          <option value="">All</option>
+                          {(enumOptions[c.key] || []).map((o) => <option key={o} value={o}>{o}</option>)}
+                        </select>
+                      ) : (c.type === "num" || c.type === "pct") ? (
+                        <div className="flex gap-1">
+                          <select value={(numF[c.key]?.op) || ">="} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: e.target.value, value: f[c.key]?.value || "" } }))} className="rounded-lg border border-border bg-background px-1 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]">
+                            <option value=">=">≥</option><option value="<=">≤</option><option value=">">&gt;</option><option value="<">&lt;</option><option value="=">=</option>
+                          </select>
+                          <input value={numF[c.key]?.value || ""} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: f[c.key]?.op || ">=", value: e.target.value } }))} inputMode="numeric" placeholder="#" className="w-full min-w-[42px] rounded-lg border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+                        </div>
+                      ) : (c.type === "text" || c.type === "name" || c.type === "id") ? (
+                        <input value={textF[c.key] || ""} onChange={(e) => setTextF((f) => ({ ...f, [c.key]: e.target.value }))} placeholder="filter" className="w-full min-w-[70px] rounded-lg border border-border bg-background px-2 py-1 font-mono text-[11px] text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+                      ) : null}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.length === 0 ? (
+                  <tr><td colSpan={shownCols.length + 1} className="px-3 py-16 text-center">
+                    <div className="text-3xl">🔍</div>
+                    <p className="mt-2 font-semibold text-foreground">No users match</p>
+                    <p className="text-sm text-muted">{anyFilter ? "Try clearing filters." : "This product has no users yet."}</p>
+                  </td></tr>
+                ) : filtered.map((r) => {
+                  const on = selected.has(r.user_id);
+                  return (
+                    <tr key={r.user_id} className={["border-t border-border/70 transition-colors", on ? "bg-[color:rgb(var(--accent))]/8" : "hover:bg-surface-warm/50"].join(" ")}>
+                      <td className={["sticky left-0 z-[1] px-4 py-2.5", on ? "bg-[color:rgb(var(--accent))]/8" : "bg-surface"].join(" ")}><input type="checkbox" checked={on} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></td>
+                      {shownCols.map((c) => (
+                        <td key={c.key} className={["whitespace-nowrap px-3 py-2.5", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/[0.04]" : ""].join(" ")}>{renderCell(r, c)}</td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
-      <p className="mt-3 font-mono text-xs text-muted">{filtered.length} user{filtered.length === 1 ? "" : "s"} · base: {product.base} + vedam_one_profiles · actions apply to {selected.size ? `${selected.size} selected` : `${filtered.length} shown`}</p>
+      <p className="mt-3 font-mono text-[11px] text-muted">Actions apply to {selected.size ? `${selected.size} selected` : `${filtered.length} shown`} · joined to vedam_one_profiles</p>
 
-      {/* Customize columns panel */}
+      {/* ── Customize columns drawer ─────────────── */}
       {showCols && (
         <>
-          <div className="fixed inset-0 z-40 bg-black/50" onClick={() => setShowCols(false)} />
-          <div className="fixed right-0 top-0 z-50 flex h-full w-[min(420px,100%)] flex-col border-l border-border bg-surface">
+          <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setShowCols(false)} />
+          <div className="fixed right-0 top-0 z-50 flex h-full w-[min(430px,100%)] flex-col border-l border-border bg-surface shadow-2xl">
             <div className="flex items-center justify-between border-b border-border px-5 py-4">
               <div><h2 className="font-display text-base font-bold text-heading">Customize columns</h2><p className="text-xs text-muted">Product columns show by default.</p></div>
-              <button onClick={() => setShowCols(false)} className="rounded border border-border px-2 py-1 text-muted">✕</button>
+              <button onClick={() => setShowCols(false)} className="grid h-8 w-8 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground">✕</button>
             </div>
             <div className="flex-1 overflow-y-auto px-5 py-4">
-              <input value={colSearch} onChange={(e) => setColSearch(e.target.value)} placeholder="Search columns…" className="mb-3 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none" />
-              <div className="mb-2 mt-1 font-mono text-[10px] uppercase tracking-wide text-muted">Product columns · {product.base}</div>
-              {product.cols.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => (
-                <label key={c.key} className="flex items-center gap-3 rounded px-2 py-1.5 hover:bg-surface-warm">
-                  <input type="checkbox" checked={visible[tab].has(c.key)} onChange={() => toggleCol(c.key)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" />
-                  <span className="text-sm text-foreground">{c.label}</span>
-                </label>
-              ))}
-              <div className="mb-2 mt-4 font-mono text-[10px] uppercase tracking-wide text-muted">Profile columns · vedam_one_profiles</div>
-              {PROFILE_COLS.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => (
-                <label key={c.key} className="flex items-center gap-3 rounded px-2 py-1.5 hover:bg-surface-warm">
-                  <input type="checkbox" checked={visible[tab].has(c.key)} onChange={() => toggleCol(c.key)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" />
-                  <span className="text-sm text-foreground">{c.label}</span>
-                </label>
-              ))}
+              <input value={colSearch} onChange={(e) => setColSearch(e.target.value)} placeholder="Search columns…" className="mb-4 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-[color:rgb(var(--accent))]" />
+              <div className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted"><span className="h-2 w-2 rounded-sm bg-muted" /> Product · {product.base}</div>
+              {product.cols.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => {
+                const on = visible[tab].has(c.key);
+                return (
+                  <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 transition-colors hover:bg-surface-warm">
+                    <input type="checkbox" checked={on} onChange={() => toggleCol(c.key)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" />
+                    <span className={["text-sm", on ? "font-medium text-foreground" : "text-muted"].join(" ")}>{c.label}</span>
+                  </label>
+                );
+              })}
+              <div className="mb-2 mt-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-accent"><span className="h-2 w-2 rounded-sm bg-[color:rgb(var(--accent))]" /> Profile · vedam_one_profiles</div>
+              {PROFILE_COLS.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => {
+                const on = visible[tab].has(c.key);
+                return (
+                  <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 transition-colors hover:bg-surface-warm">
+                    <input type="checkbox" checked={on} onChange={() => toggleCol(c.key)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" />
+                    <span className={["text-sm", on ? "font-medium text-accent" : "text-muted"].join(" ")}>{c.label}</span>
+                  </label>
+                );
+              })}
             </div>
-            <div className="flex gap-2 border-t border-border px-5 py-4">
-              <button onClick={resetCols} className={btn}>Reset to default</button>
-              <button onClick={() => setShowCols(false)} className="flex-1 rounded-lg bg-brand-gradient px-3 py-2 text-sm font-semibold text-white">Apply</button>
+            <div className="flex items-center gap-2 border-t border-border px-5 py-4">
+              <span className="mr-auto font-mono text-[11px] text-muted">{shownCols.length} shown</span>
+              <button onClick={resetCols} className="rounded-xl border border-border px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:border-[color:rgb(var(--accent))]">Reset</button>
+              <button onClick={() => setShowCols(false)} className="rounded-xl bg-brand-gradient px-5 py-2 text-sm font-semibold text-white">Done</button>
             </div>
           </div>
         </>
       )}
 
-      {/* Send Communication modal — reuses the existing CommsBroadcast */}
+      {/* ── Send Communication modal (reuses CommsBroadcast) ── */}
       {comm && (
         <>
-          <div className="fixed inset-0 z-40 bg-black/50" onClick={() => setComm(null)} />
-          <div className="fixed left-1/2 top-8 z-50 w-[min(760px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-surface">
-            <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
-              <h2 className="font-display text-base font-bold text-heading">Send Communication · <span className="text-accent">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
-              <button onClick={() => setComm(null)} className="rounded border border-border px-2 py-1 text-muted">✕</button>
+          <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm" onClick={() => setComm(null)} />
+          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
+            <div className="flex items-center justify-between border-b border-border px-5 py-4">
+              <h2 className="font-display text-base font-bold text-heading">Send Communication <span className="ml-1 rounded-full bg-[color:rgb(var(--accent))]/15 px-2.5 py-0.5 text-xs font-semibold text-accent">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
+              <button onClick={() => setComm(null)} className="grid h-8 w-8 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground">✕</button>
             </div>
             <div className="flex gap-1 px-5 pt-3">
-              <button onClick={() => setComm("email")} className={["rounded-t-lg border border-b-0 px-4 py-2 text-sm font-semibold", comm === "email" ? "border-border bg-background text-accent" : "border-transparent text-muted"].join(" ")}>✉ Email</button>
-              <button onClick={() => setComm("whatsapp")} className={["rounded-t-lg border border-b-0 px-4 py-2 text-sm font-semibold", comm === "whatsapp" ? "border-border bg-background text-accent" : "border-transparent text-muted"].join(" ")}>⬤ WhatsApp</button>
+              {(["email", "whatsapp"] as const).map((ch) => (
+                <button key={ch} onClick={() => setComm(ch)} className={["rounded-t-xl border border-b-0 px-4 py-2 text-sm font-semibold transition-colors", comm === ch ? "border-border bg-background text-accent" : "border-transparent text-muted hover:text-foreground"].join(" ")}>
+                  {ch === "email" ? "✉ Email" : "⬤ WhatsApp"}
+                </button>
+              ))}
             </div>
-            <div className="max-h-[72vh] overflow-y-auto border-t border-border px-1 py-1">
+            <div className="max-h-[74vh] overflow-y-auto border-t border-border px-1 py-1">
               <CommsBroadcast channel={comm} product="all" overrideRecipients={recipients} />
             </div>
           </div>
