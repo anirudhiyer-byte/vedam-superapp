@@ -11,6 +11,9 @@ type EmTpl = { id: string; name: string; subject: string | null; product: string
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
 type DateCond = "any" | "after" | "before" | "between";
 
+// module-level cache so reopening the modal shows templates instantly (refreshed in background)
+let _waTplCache: WaTpl[] | null = null;
+
 export function CommsBroadcast({ channel, product, overrideRecipients }: { channel: "whatsapp" | "email"; product: Product; overrideRecipients?: { user_id: string; email: string | null; phone: string | null; full_name: string | null }[] | null }) {
   const [supabase] = useState(() => createClient());
   const [rows, setRows] = useState<Row[]>([]);
@@ -45,10 +48,12 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
       if (channel === "whatsapp") {
         const { data: tg } = await supabase.from("comms_template_tags").select("template_ref, product").eq("channel", "whatsapp");
         const m: Record<string, string> = {}; (tg as { template_ref: string; product: string }[] ?? []).forEach((t) => m[t.template_ref] = t.product); setTags(m);
-        setTplLoading(true);
+        // show cached templates instantly; only show the loader on a cold first load
+        if (_waTplCache) setWaTpls(_waTplCache); else setTplLoading(true);
         try { const r = await fetch("/api/whatsapp/templates"); const j = await r.json(); const raw = j?.data;
           const list = Array.isArray(raw) ? raw : Array.isArray(raw?.templates) ? raw.templates : Array.isArray(raw?.data) ? raw.data : [];
-          setWaTpls((list as WaTpl[]).filter((t) => (t.status || "APPROVED").toUpperCase() === "APPROVED")); } catch { /* */ } finally { setTplLoading(false); }
+          const approved = (list as WaTpl[]).filter((t) => (t.status || "APPROVED").toUpperCase() === "APPROVED");
+          _waTplCache = approved; setWaTpls(approved); } catch { /* */ } finally { setTplLoading(false); }
       } else {
         const { data: em } = await supabase.from("email_templates").select("id, name, subject, product, message, template_style, image, buttons").order("created_at", { ascending: false });
         setEmTpls((em as EmTpl[]) ?? []);

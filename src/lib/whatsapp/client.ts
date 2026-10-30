@@ -73,19 +73,27 @@ export async function waCreateTemplate(payload: Record<string, unknown>, baseUrl
   return call(url, { method: "POST", headers: { "Content-Type": "application/json", accept: "*/*" }, body: JSON.stringify(body) });
 }
 
+// short-lived cache so repeated opens don't re-hit TrustSignal (templates rarely change)
+let _tplCache: { at: number; data: Result } | null = null;
+const TPL_TTL_MS = 5 * 60_000;
+
 /** List ALL approved+pending templates across every WABA on the account.
- *  TrustSignal paginates at 100/page, so walk pages up to `totalrecords` (capped). */
+ *  Requests a large page size (one round-trip when honoured); if TrustSignal
+ *  caps the page, remaining pages are fetched in parallel. Cached for TTL_MS. */
 export async function waListTemplates(baseUrl?: string): Promise<Result> {
+  if (_tplCache && Date.now() - _tplCache.at < TPL_TTL_MS) return _tplCache.data;
   const base = (baseUrl || DEFAULT_BASE).replace(/\/$/, "");
-  const pageUrl = (p: number) => `${base}/v1/template?api_key=${encodeURIComponent(key())}&page=${p}&limit=100`;
+  const LIMIT = 1000; // ask for everything at once; API may cap (we adapt below)
+  const pageUrl = (p: number) => `${base}/v1/template?api_key=${encodeURIComponent(key())}&page=${p}&limit=${LIMIT}`;
   const first = await call(pageUrl(1), { method: "GET" });
   const d0 = first.data as { templates?: unknown[]; totalrecords?: number } | undefined;
-  if (!first.ok || !Array.isArray(d0?.templates)) return first;
-  const total = Number(d0?.totalrecords ?? d0!.templates!.length);
-  const pages = Math.min(Math.ceil(total / 100), 12); // safety cap: 12 pages = 1200 templates
+  if (!first.ok || !Array.isArray(d0?.templates)) return first; // don't cache failures
+  const pageSize = d0!.templates!.length || LIMIT; // actual page size the API returned
+  const total = Number(d0?.totalrecords ?? pageSize);
+  const pages = Math.min(Math.ceil(total / Math.max(pageSize, 1)), 12); // safety cap
   const all: unknown[] = [...d0!.templates!];
   if (pages >= 2) {
-    // fetch the remaining pages in parallel (sequential was slow — ~7 round-trips)
+    // fetch the remaining pages in parallel (sequential was slow)
     const rest = await Promise.all(
       Array.from({ length: pages - 1 }, (_, i) => call(pageUrl(i + 2), { method: "GET" })),
     );
@@ -94,5 +102,7 @@ export async function waListTemplates(baseUrl?: string): Promise<Result> {
       if (r.ok && Array.isArray(dd?.templates)) all.push(...dd.templates);
     }
   }
-  return { ok: true, status: 200, url: first.url, data: { ...d0, templates: all, page: 1, limit: all.length, totalrecords: total } };
+  const out: Result = { ok: true, status: 200, url: first.url, data: { ...d0, templates: all, page: 1, limit: all.length, totalrecords: total } };
+  _tplCache = { at: Date.now(), data: out };
+  return out;
 }
