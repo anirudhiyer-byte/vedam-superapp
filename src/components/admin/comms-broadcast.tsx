@@ -6,7 +6,7 @@ import { DarkSelect } from "@/components/admin/dark-select";
 
 type Row = { id: string; name: string; phone: string | null; email: string | null; state: string | null; city: string | null; signup: string;
   events_reg: number; events_attended: number; cs_enrolled: boolean; cs_modules: number; cs_total: number; cp_used: boolean; points: number };
-type WaTpl = { id?: string; name?: string; status?: string; placeholder?: { bodyvar?: number } };
+type WaTpl = { id?: string; name?: string; status?: string; waba_id?: string; sender?: string | null; sender_label?: string | null; placeholder?: { bodyvar?: number } };
 type EmTpl = { id: string; name: string; subject: string | null; product: string; message: string | null; template_style: string | null; image: string | null; buttons: { label: string; url: string }[] | null };
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
 type DateCond = "any" | "after" | "before" | "between";
@@ -57,8 +57,8 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
   const selVarCount = useMemo(() => channel === "whatsapp" ? (waTpls.find((t) => (t.name || t.id) === templateRef)?.placeholder?.bodyvar || 0) : 0, [channel, waTpls, templateRef]);
   useEffect(() => { setVarMaps((v) => Array.from({ length: selVarCount }, (_, i) => v[i] || { source: "static", value: "" })); }, [selVarCount]);
   const templates = useMemo(() => {
-    if (channel === "whatsapp") return waTpls.filter((t) => product === "all" || (tags[t.name || t.id || ""] || "general") === product).map((t) => ({ ref: t.name || t.id || "", label: t.name || "", vars: t.placeholder?.bodyvar || 0 }));
-    return emTpls.filter((t) => product === "all" || (t.product || "general") === product).map((t) => ({ ref: t.id, label: t.name, vars: 0 }));
+    if (channel === "whatsapp") return waTpls.filter((t) => product === "all" || (tags[t.name || t.id || ""] || "general") === product).map((t) => ({ ref: t.name || t.id || "", label: t.name || "", vars: t.placeholder?.bodyvar || 0, from: t.sender_label || t.sender || "" }));
+    return emTpls.filter((t) => product === "all" || (t.product || "general") === product).map((t) => ({ ref: t.id, label: t.name, vars: 0, from: "" }));
   }, [channel, product, waTpls, emTpls, tags]);
 
   const filtered = useMemo(() => rows.filter((r) => {
@@ -100,11 +100,13 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
     try { const { data: cid } = await supabase.rpc("campaign_create", { p_name: campaignName || `${channel} · ${new Date().toLocaleDateString()}`, p_channel: channel, p_kind: "campaign", p_product: product === "all" ? "global" : product, p_sub_ref: null, p_template: templateRef, p_source: overrideRecipients ? "advanced" : "simple", p_desc: audDesc, p_count: sendRows.length }); campaignId = (cid as string) || null; } catch { /* */ }
     if (channel === "whatsapp") {
       const F: Record<string, (r: Row) => string> = { name: (r) => r.name, state: (r) => r.state || "", city: (r) => r.city || "", points: (r) => String(r.points) };
+      // send from the number that owns the selected template's WABA
+      const wabaId = waTpls.find((t) => (t.name || t.id) === templateRef)?.waba_id;
       const recips = sendRows.filter((r) => r.phone).map((r) => ({ to: r.phone as string, sample: varMaps.length ? { bodyvar: varMaps.map((m) => m.source === "static" ? m.value : (F[m.source]?.(r) ?? "")) } : undefined }));
       let sent = 0, failed = 0;
       for (let i = 0; i < recips.length; i += 40) {
         const batch = recips.slice(i, i + 40);
-        try { const res = await fetch("/api/whatsapp/broadcast", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ templateId: templateRef, messageType, recipients: batch, campaignId, campaignName }) });
+        try { const res = await fetch("/api/whatsapp/broadcast", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ templateId: templateRef, messageType, wabaId, recipients: batch, campaignId, campaignName }) });
           const j = await res.json(); if (j.ok) { sent += j.sent || 0; failed += j.failed || 0; } else failed += batch.length; } catch { failed += batch.length; }
       }
       setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`); if (sent > 0 && failed === 0) setDone(true);
@@ -136,7 +138,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
       {/* template */}
       <div><span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Template ({product === "all" ? "all products" : product})</span>
         <div className="flex flex-wrap items-center gap-2">
-          <DarkSelect className="w-full max-w-md" value={templateRef} placeholder="Select a template" onChange={setTemplateRef} options={templates.map((t) => ({ value: t.ref, label: `${t.label}${t.vars ? ` · ${t.vars} var` : ""}` }))} />
+          <DarkSelect className="w-full max-w-md" value={templateRef} placeholder="Select a template" onChange={setTemplateRef} options={templates.map((t) => ({ value: t.ref, label: `${t.label}${t.vars ? ` · ${t.vars} var` : ""}${t.from ? ` · from ${t.from}` : ""}` }))} />
           {channel === "whatsapp" && <DarkSelect className="w-40" value={messageType} onChange={setMessageType} options={["media", "text", "text_var", "media_var"].map((v) => ({ value: v, label: v }))} />}
         </div>
         {selVarCount > 0 && (

@@ -6,6 +6,39 @@ const sender = () => process.env.TRUSTSIGNAL_SENDER || "";
 
 type Result = { ok: boolean; status: number; url: string; data: unknown };
 export type WaSample = { header?: string; bodyvar?: string[]; button?: string[] };
+export type SenderInfo = { number: string; label?: string };
+
+/** Map of waba_id -> sender number (+ optional label), from env TRUSTSIGNAL_SENDERS (JSON).
+ *  Value may be a plain number string or { number, label }. */
+function sendersMap(): Record<string, SenderInfo> {
+  const raw = (process.env.TRUSTSIGNAL_SENDERS || "").trim();
+  if (!raw) return {};
+  try {
+    const o = JSON.parse(raw) as Record<string, string | SenderInfo>;
+    const out: Record<string, SenderInfo> = {};
+    for (const [k, v] of Object.entries(o)) out[k] = typeof v === "string" ? { number: v } : v;
+    return out;
+  } catch { return {}; }
+}
+
+/** Resolve which sender (WhatsApp number) a template's WABA should send from.
+ *  Lookup order:
+ *   1) a simple per-WABA var  TRUSTSIGNAL_SENDER_<wabaId> = "<number>"
+ *   2) the optional JSON map  TRUSTSIGNAL_SENDERS
+ *   3) the default single     TRUSTSIGNAL_SENDER
+ */
+export function senderInfoForWaba(wabaId?: string | null): SenderInfo {
+  if (wabaId) {
+    const perWaba = (process.env[`TRUSTSIGNAL_SENDER_${wabaId}`] || "").trim();
+    if (perWaba) return { number: perWaba };
+    const m = sendersMap();
+    if (m[wabaId]) return m[wabaId];
+  }
+  return { number: sender() };
+}
+export function senderForWaba(wabaId?: string | null): string {
+  return senderInfoForWaba(wabaId).number || sender();
+}
 
 async function call(url: string, init?: RequestInit): Promise<Result> {
   let res: Response;
@@ -17,14 +50,15 @@ async function call(url: string, init?: RequestInit): Promise<Result> {
 }
 
 export async function waSendSingle(opts: {
-  to: string; templateId: string; messageType?: string; sender?: string; sample?: WaSample; baseUrl?: string; path?: string;
+  to: string; templateId: string; messageType?: string; sender?: string; wabaId?: string | null; sample?: WaSample; baseUrl?: string; path?: string;
 }): Promise<Result> {
   const base = (opts.baseUrl || DEFAULT_BASE).replace(/\/$/, "");
   const path = opts.path || "/v1/whatsapp/single";
   const url = `${base}${path}?api_key=${encodeURIComponent(key())}`;
   const body: Record<string, unknown> = {
     message_type: opts.messageType || "text",
-    sender: opts.sender || sender(),
+    // explicit sender wins; otherwise resolve from the template's WABA; finally the default sender
+    sender: opts.sender || senderForWaba(opts.wabaId),
     to: opts.to,
     template_id: opts.templateId,
   };
@@ -39,8 +73,22 @@ export async function waCreateTemplate(payload: Record<string, unknown>, baseUrl
   return call(url, { method: "POST", headers: { "Content-Type": "application/json", accept: "*/*" }, body: JSON.stringify(body) });
 }
 
+/** List ALL approved+pending templates across every WABA on the account.
+ *  TrustSignal paginates at 100/page, so walk pages up to `totalrecords` (capped). */
 export async function waListTemplates(baseUrl?: string): Promise<Result> {
   const base = (baseUrl || DEFAULT_BASE).replace(/\/$/, "");
-  const url = `${base}/v1/template?api_key=${encodeURIComponent(key())}&page=1&limit=100`;
-  return call(url, { method: "GET" });
+  const pageUrl = (p: number) => `${base}/v1/template?api_key=${encodeURIComponent(key())}&page=${p}&limit=100`;
+  const first = await call(pageUrl(1), { method: "GET" });
+  const d0 = first.data as { templates?: unknown[]; totalrecords?: number } | undefined;
+  if (!first.ok || !Array.isArray(d0?.templates)) return first;
+  const total = Number(d0?.totalrecords ?? d0!.templates!.length);
+  const pages = Math.min(Math.ceil(total / 100), 12); // safety cap: 12 pages = 1200 templates
+  const all: unknown[] = [...d0!.templates!];
+  for (let p = 2; p <= pages; p++) {
+    const r = await call(pageUrl(p), { method: "GET" });
+    const dd = r.data as { templates?: unknown[] } | undefined;
+    if (r.ok && Array.isArray(dd?.templates) && dd!.templates!.length) all.push(...dd!.templates!);
+    else break;
+  }
+  return { ok: true, status: 200, url: first.url, data: { ...d0, templates: all, page: 1, limit: all.length, totalrecords: total } };
 }
