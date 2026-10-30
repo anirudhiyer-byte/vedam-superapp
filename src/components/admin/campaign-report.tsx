@@ -107,10 +107,10 @@ export function CampaignReport() {
       {sum && (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {cards.map((c) => (
-            <div key={c.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <div className="flex items-start justify-between gap-2">
-                <span className={lbl}>{c.label}</span>
+            <div key={c.label} className="rounded-2xl border border-white/10 bg-white/[0.055] p-4">
+              <div className="flex items-center gap-2">
                 <span className={"grid h-7 w-7 shrink-0 place-items-center rounded-lg border " + c.tint}><Ico d={c.icon} /></span>
+                <span className={lbl + " truncate"}>{c.label}</span>
               </div>
               <div className="mt-3 text-2xl font-extrabold tracking-tight text-white tabular-nums">{c.value}</div>
               {c.sub && <div className="mt-0.5 font-mono text-[11px] text-white/40">{c.sub}</div>}
