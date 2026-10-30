@@ -216,16 +216,18 @@ export function ProductUsers() {
 
   // shared field/button shells — one uniform dark style across search, Columns, Export
   const shell = "inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3.5 text-sm font-medium text-white/85 transition-colors hover:border-white/25 hover:bg-white/[0.08]";
-  const stickyBg = "bg-[#16161a]";
+  const stickyBg = "bg-[#0c1226]";
   const fieldInput = "w-full rounded-lg border border-white/10 bg-white/[0.05] px-2 py-1 font-mono text-[11px] text-white outline-none transition-colors focus:border-[color:rgb(var(--accent))] [color-scheme:dark]";
 
   return (
-    <div className="mx-auto max-w-[1600px] px-6 py-8 font-[family-name:var(--font-inter)] text-white">
+    <div className="neural-glass relative min-h-screen" style={{ background: "#070a16", color: "#f2f5ff" }}>
+      <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(760px 440px at 85% -6%, rgba(139,92,246,.14), transparent 60%), radial-gradient(620px 420px at -6% 108%, rgba(34,211,238,.09), transparent 60%)" }} />
+      <div className="relative mx-auto max-w-[1600px] px-6 py-8 font-[family-name:var(--font-inter)] text-white">
       {/* ── header ───────────────────────────────── */}
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">Admin · Vedam One</div>
-          <h1 className="mt-1 text-[26px] font-bold leading-tight tracking-tight text-white">Product Users</h1>
+          <div className="font-mono text-[11px] font-semibold lowercase tracking-[0.12em]" style={{ color: "#a78bfa" }}>// product users</div>
+          <h1 className="mt-1 text-4xl font-bold tracking-tight" style={{ fontFamily: "var(--font-outfit), system-ui, sans-serif", background: "linear-gradient(92deg,#8b5cf6,#c4b5fd 85%)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", filter: "drop-shadow(0 0 26px rgba(139,92,246,.25))" }}>Product Users</h1>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 transition-colors focus-within:border-[color:rgb(var(--accent))]">
@@ -334,7 +336,7 @@ export function ProductUsers() {
                         toggleRow(r.user_id);
                       }}
                       className={["cursor-pointer border-t border-white/[0.06] transition-colors", on ? "bg-[color:rgb(var(--accent))]/10" : "hover:bg-white/[0.035]"].join(" ")}>
-                      <td onClick={(e) => e.stopPropagation()} className={["sticky left-0 z-[1] px-4 py-3", on ? "bg-[#1a1626]" : "bg-[#0b0b0d]"].join(" ")}><input type="checkbox" checked={on} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 cursor-pointer accent-[color:rgb(var(--accent))]" /></td>
+                      <td onClick={(e) => e.stopPropagation()} className={["sticky left-0 z-[1] px-4 py-3", on ? "bg-[#161038]" : "bg-[#070a16]"].join(" ")}><input type="checkbox" checked={on} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 cursor-pointer accent-[color:rgb(var(--accent))]" /></td>
                       {shownCols.map((c) => (
                         <td key={c.key} className={["whitespace-nowrap px-3 py-3", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/[0.05]" : ""].join(" ")}>{renderCell(r, c)}</td>
                       ))}
@@ -376,7 +378,7 @@ export function ProductUsers() {
       {showCols && (
         <>
           <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setShowCols(false)} />
-          <div className="fixed right-0 top-0 z-50 flex h-full w-[min(430px,100%)] flex-col border-l border-white/10 bg-[#0c0c0f] text-white shadow-2xl">
+          <div className="fixed right-0 top-0 z-50 flex h-full w-[min(430px,100%)] flex-col border-l border-white/10 bg-[#0d1430] text-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
               <div><h2 className="text-base font-bold text-white">Customize columns</h2><p className="text-xs text-white/45">Product columns show by default.</p></div>
               <button onClick={() => setShowCols(false)} className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 transition-colors hover:text-white"><IconClose /></button>
@@ -417,7 +419,7 @@ export function ProductUsers() {
       {comm && (
         <>
           <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setComm(null)} />
-          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c0f] text-white shadow-2xl">
+          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-[#0d1430] text-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
               <h2 className="flex items-center gap-2.5 text-base font-bold text-white">Send Communication <span className="rounded-full bg-[color:rgb(var(--accent))]/15 px-2.5 py-0.5 text-xs font-semibold text-[color:rgb(var(--accent))]">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
               <button onClick={() => setComm(null)} className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 transition-colors hover:text-white"><IconClose /></button>
@@ -435,6 +437,7 @@ export function ProductUsers() {
           </div>
         </>
       )}
+      </div>
     </div>
   );
 }
