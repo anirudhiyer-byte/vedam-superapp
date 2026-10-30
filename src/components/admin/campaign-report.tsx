@@ -10,6 +10,20 @@ const PRODUCTS = ["", "bootcamp", "codesprint", "vsat", "global"];
 const CHANNELS = ["", "email", "whatsapp"];
 const KINDS = ["", "campaign", "reminder", "automation"];
 
+// ── "Neural Glass" design system (shared with the Growth dashboards) ──────────
+const P = { panel: "rgba(20,26,54,0.55)", brd: "rgba(130,150,255,0.14)", ink: "#f2f5ff", mut: "#aeb8e0", mut2: "#7681b2", line: "rgba(130,150,255,0.10)", menu: "#141a38" };
+const DISPLAY = "var(--font-outfit), system-ui, sans-serif";
+const MONO = "var(--font-jetbrains), ui-monospace, monospace";
+type Variant = { bar: string; num: string; glow: string };
+const V: Record<string, Variant> = {
+  violet: { bar: "linear-gradient(90deg,#8b5cf6,#c4b5fd)", num: "#a78bfa", glow: "rgba(139,92,246,.45)" },
+  cyan: { bar: "linear-gradient(90deg,#22d3ee,#a5f3fc)", num: "#22d3ee", glow: "rgba(34,211,238,.4)" },
+  green: { bar: "linear-gradient(90deg,#34e2b0,#9af7df)", num: "#34e2b0", glow: "rgba(52,226,176,.4)" },
+  blue: { bar: "linear-gradient(90deg,#5b8cff,#a9c2ff)", num: "#5b8cff", glow: "rgba(91,140,255,.4)" },
+  amber: { bar: "linear-gradient(90deg,#ffb13d,#ffd89b)", num: "#ffb13d", glow: "rgba(255,177,61,.4)" },
+  pink: { bar: "linear-gradient(90deg,#ff3d9a,#ffa6d4)", num: "#ff3d9a", glow: "rgba(255,61,154,.4)" },
+};
+
 const ICON = {
   campaigns: '<rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/>',
   sent: '<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
@@ -19,9 +33,8 @@ const ICON = {
   bounced: '<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
   spend: '<rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/>',
 };
-
-function Ico({ d }: { d: string }) {
-  return <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: d }} />;
+function Ico({ d, size = 16 }: { d: string; size?: number }) {
+  return <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: d }} />;
 }
 
 export function CampaignReport() {
@@ -47,11 +60,11 @@ export function CampaignReport() {
   };
 
   // highest status reached, for a compact per-recipient chip
-  const statusOf = (r: Recipient) => r.failed ? { label: "Failed", cls: "border-red-400/25 bg-red-400/10 text-red-300" }
-    : r.clicked_at ? { label: "Clicked", cls: "border-violet-400/25 bg-violet-400/10 text-violet-300" }
-    : r.opened_at ? { label: "Opened", cls: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" }
-    : r.delivered_at ? { label: "Delivered", cls: "border-sky-400/25 bg-sky-400/10 text-sky-300" }
-    : { label: "Sent", cls: "border-white/15 bg-white/[0.06] text-white/60" };
+  const statusOf = (r: Recipient) => r.failed ? { label: "Failed", color: "#ff3d9a" }
+    : r.clicked_at ? { label: "Clicked", color: "#a78bfa" }
+    : r.opened_at ? { label: "Opened", color: "#34e2b0" }
+    : r.delivered_at ? { label: "Delivered", color: "#22d3ee" }
+    : { label: "Sent", color: P.mut2 };
 
   const range = useMemo(() => {
     if (month) { const [y, m] = month.split("-").map(Number); const f = new Date(y, m - 1, 1); const t = new Date(y, m, 1); return { p_from: f.toISOString(), p_to: t.toISOString() }; }
@@ -70,139 +83,154 @@ export function CampaignReport() {
     })();
   }, [supabase, product, channel, kind, range]);
 
-  const sel = "rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2 text-sm text-white outline-none [color-scheme:dark] focus:border-[color:rgb(var(--accent))]";
-  const lbl = "font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white/45";
   const pct = (v: number | null) => v == null ? "—" : `${v}%`;
   const dirty = Boolean(product || channel || kind || from || to || month);
+  const panelStyle = { background: P.panel, borderColor: P.brd, backdropFilter: "blur(16px)" as const };
+  const fieldStyle = { background: "rgba(11,16,36,0.6)", borderColor: P.brd, color: P.ink, fontFamily: "var(--font-inter)" };
+  const field = "rounded-[13px] border px-3.5 py-2.5 text-[13.5px] outline-none [color-scheme:dark]";
+  const lbl = "text-[11px] font-medium uppercase tracking-[1.3px]";
 
-  const cards: { label: string; value: string | number; sub?: string; icon: string; tint: string }[] = sum ? [
-    { label: "Campaigns", value: sum.campaigns, icon: ICON.campaigns, tint: "border-white/15 bg-white/[0.06] text-white/70" },
-    { label: "Sent", value: sum.total_sent, sub: `${sum.total_recipients} targeted`, icon: ICON.sent, tint: "border-sky-400/25 bg-sky-400/10 text-sky-300" },
-    { label: "Delivered", value: sum.total_delivered, sub: pct(sum.avg_delivery_pct), icon: ICON.delivered, tint: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" },
-    { label: "Opened", value: sum.total_opened, sub: pct(sum.avg_open_pct), icon: ICON.opened, tint: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" },
-    { label: "Clicked", value: sum.total_clicked, sub: pct(sum.avg_click_pct), icon: ICON.clicked, tint: "border-violet-400/25 bg-violet-400/10 text-violet-300" },
-    { label: "Bounced", value: sum.total_bounced, sub: pct(sum.avg_bounce_pct), icon: ICON.bounced, tint: "border-amber-400/25 bg-amber-400/10 text-amber-300" },
-    { label: "Spend", value: `₹${Number(sum.total_cost).toFixed(2)}`, sub: "all channels", icon: ICON.spend, tint: "border-[color:rgb(var(--accent))]/30 bg-[color:rgb(var(--accent))]/12 text-[color:rgb(var(--accent))]" },
+  const cards: { label: string; value: string | number; sub?: string; icon: string; v: Variant }[] = sum ? [
+    { label: "Campaigns", value: sum.campaigns, sub: `${sum.total_recipients} recipients`, icon: ICON.campaigns, v: V.violet },
+    { label: "Sent", value: sum.total_sent, sub: "messages pushed", icon: ICON.sent, v: V.cyan },
+    { label: "Delivered", value: sum.total_delivered, sub: `${pct(sum.avg_delivery_pct)} delivery rate`, icon: ICON.delivered, v: V.green },
+    { label: "Opened", value: sum.total_opened, sub: `${pct(sum.avg_open_pct)} open rate`, icon: ICON.opened, v: V.blue },
+    { label: "Clicked", value: sum.total_clicked, sub: `${pct(sum.avg_click_pct)} click rate`, icon: ICON.clicked, v: V.violet },
+    { label: "Bounced", value: sum.total_bounced, sub: `${pct(sum.avg_bounce_pct)} bounce rate`, icon: ICON.bounced, v: V.amber },
+    { label: "Spend", value: `₹${Number(sum.total_cost).toFixed(2)}`, sub: "all channels", icon: ICON.spend, v: V.pink },
   ] : [];
 
+  const th = "whitespace-nowrap px-3 py-3 text-left text-[10px] font-semibold uppercase tracking-[1.2px]";
+
   return (
-    <div className="space-y-5 font-[family-name:var(--font-inter)]">
-      {/* filters */}
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <span className={lbl}>Filters</span>
-          {dirty && <button onClick={() => { setProduct(""); setChannel(""); setKind(""); setFrom(""); setTo(""); setMonth(""); }} className="rounded-lg border border-white/15 px-2.5 py-1 text-[11px] font-semibold text-white/70 hover:border-white/30 hover:text-white">Clear all</button>}
-        </div>
-        <div className="flex flex-wrap items-end gap-3">
-          <label className="flex flex-col gap-1"><span className={lbl}>Product</span><select value={product} onChange={(e) => setProduct(e.target.value)} className={sel}>{PRODUCTS.map((p) => <option key={p} value={p}>{p || "All products"}</option>)}</select></label>
-          <label className="flex flex-col gap-1"><span className={lbl}>Channel</span><select value={channel} onChange={(e) => setChannel(e.target.value)} className={sel}>{CHANNELS.map((c) => <option key={c} value={c}>{c || "All channels"}</option>)}</select></label>
-          <label className="flex flex-col gap-1"><span className={lbl}>Type</span><select value={kind} onChange={(e) => setKind(e.target.value)} className={sel}>{KINDS.map((k) => <option key={k} value={k}>{k || "All types"}</option>)}</select></label>
-          <label className="flex flex-col gap-1"><span className={lbl}>Month</span><input type="month" value={month} onChange={(e) => { setMonth(e.target.value); setFrom(""); setTo(""); }} className={sel} /></label>
-          <label className="flex flex-col gap-1"><span className={lbl}>From</span><input type="date" value={from} onChange={(e) => { setFrom(e.target.value); setMonth(""); }} className={sel} /></label>
-          <label className="flex flex-col gap-1"><span className={lbl}>To</span><input type="date" value={to} onChange={(e) => { setTo(e.target.value); setMonth(""); }} className={sel} /></label>
-        </div>
-      </div>
+    <div className="relative" style={{ fontFamily: "var(--font-inter)", color: P.ink }}>
+      {/* static ambient glow (no animation) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" style={{ background: "radial-gradient(620px 360px at 85% -10%, rgba(139,92,246,.12), transparent 60%), radial-gradient(520px 340px at -5% 110%, rgba(34,211,238,.08), transparent 60%)" }} />
 
-      {/* summary cards */}
-      {sum && (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-          {cards.map((c) => (
-            <div key={c.label} className="rounded-2xl border border-white/10 bg-white/[0.055] p-4">
-              <div className="flex items-center gap-2">
-                <span className={"grid h-7 w-7 shrink-0 place-items-center rounded-lg border " + c.tint}><Ico d={c.icon} /></span>
-                <span className={lbl + " truncate"}>{c.label}</span>
+      <div className="space-y-5">
+        {/* filters */}
+        <div className="rounded-[18px] border p-4" style={panelStyle}>
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <span className={lbl} style={{ color: P.mut2, fontFamily: MONO }}>Filters</span>
+            {dirty && <button onClick={() => { setProduct(""); setChannel(""); setKind(""); setFrom(""); setTo(""); setMonth(""); }} className="rounded-[10px] border px-2.5 py-1 text-[11px] font-semibold" style={{ borderColor: P.brd, color: "#a78bfa" }}>Clear all</button>}
+          </div>
+          <div className="flex flex-wrap items-end gap-3">
+            {[
+              { l: "Product", val: product, set: setProduct, opts: PRODUCTS, all: "All products" },
+              { l: "Channel", val: channel, set: setChannel, opts: CHANNELS, all: "All channels" },
+              { l: "Type", val: kind, set: setKind, opts: KINDS, all: "All types" },
+            ].map((f) => (
+              <label key={f.l} className="flex flex-col gap-1.5">
+                <span className={lbl} style={{ color: P.mut2, fontFamily: MONO }}>{f.l}</span>
+                <select value={f.val} onChange={(e) => f.set(e.target.value)} className={field} style={fieldStyle}>
+                  {f.opts.map((o) => <option key={o} value={o} style={{ background: P.menu }}>{o || f.all}</option>)}
+                </select>
+              </label>
+            ))}
+            <label className="flex flex-col gap-1.5"><span className={lbl} style={{ color: P.mut2, fontFamily: MONO }}>Month</span><input type="month" value={month} onChange={(e) => { setMonth(e.target.value); setFrom(""); setTo(""); }} className={field} style={fieldStyle} /></label>
+            <label className="flex flex-col gap-1.5"><span className={lbl} style={{ color: P.mut2, fontFamily: MONO }}>From</span><input type="date" value={from} onChange={(e) => { setFrom(e.target.value); setMonth(""); }} className={field} style={fieldStyle} /></label>
+            <label className="flex flex-col gap-1.5"><span className={lbl} style={{ color: P.mut2, fontFamily: MONO }}>To</span><input type="date" value={to} onChange={(e) => { setTo(e.target.value); setMonth(""); }} className={field} style={fieldStyle} /></label>
+          </div>
+        </div>
+
+        {/* summary cards */}
+        {sum && (
+          <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+            {cards.map((c) => (
+              <div key={c.label} className="relative overflow-hidden rounded-[18px] border px-5 pb-5 pt-[18px]" style={panelStyle}>
+                <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: c.v.bar }} />
+                <div className="flex items-center justify-between" style={{ color: P.mut }}>
+                  <span className="text-[12px] font-medium uppercase tracking-[1.5px]" style={{ fontFamily: MONO }}>{c.label}</span>
+                  <span className="opacity-80"><Ico d={c.icon} /></span>
+                </div>
+                <div className="mt-3 text-[30px] font-bold leading-none tracking-tight tabular-nums" style={{ fontFamily: DISPLAY, color: c.v.num, textShadow: `0 0 22px ${c.v.glow}` }}>{c.value}</div>
+                {c.sub && <div className="mt-[11px] text-[11.5px] leading-snug" style={{ color: P.mut2 }}>{c.sub}</div>}
               </div>
-              <div className="mt-3 text-2xl font-extrabold tracking-tight text-white tabular-nums">{c.value}</div>
-              {c.sub && <div className="mt-0.5 font-mono text-[11px] text-white/40">{c.sub}</div>}
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {/* table */}
-      <div className="overflow-hidden rounded-2xl border border-white/10">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-white/[0.05] text-white/50">
-              <tr>{["Campaign", "Channel", "Product", "Type", "When", "Sent", "Deliv %", "Open %", "Click %", "Bounce %", "Cost"].map((h) => (
-                <th key={h} className="whitespace-nowrap px-3 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.12em]">{h}</th>
-              ))}</tr>
-            </thead>
-            <tbody>
-              {loading ? <tr><td colSpan={11} className="px-3 py-14 text-center text-white/45">Loading…</td></tr>
-              : rows.length === 0 ? <tr><td colSpan={11} className="px-3 py-14 text-center text-white/45">No campaigns match these filters.</td></tr>
-              : rows.map((r) => {
-                const on = open === r.id;
-                return (
-                <Fragment key={r.id}>
-                <tr onClick={() => toggleRow(r.id)} className={["cursor-pointer border-t border-white/[0.06]", on ? "bg-[color:rgb(var(--accent))]/10" : "hover:bg-white/[0.035]"].join(" ")}>
-                  <td className="px-3 py-3">
-                    <div className="flex items-center gap-2 font-semibold text-white">
-                      <span className="text-white/40">{on ? "▾" : "▸"}</span>{r.name}
-                    </div>
-                    {on && r.audience_desc && <div className="mt-1 pl-5 font-mono text-[10px] text-white/40">{r.audience_desc}</div>}
-                  </td>
-                  <td className="px-3 py-3">
-                    <span className={["inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold", r.channel === "whatsapp" ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" : "border-sky-400/25 bg-sky-400/10 text-sky-300"].join(" ")}>
-                      {r.channel === "whatsapp" ? "WhatsApp" : "Email"}
-                    </span>
-                  </td>
-                  <td className="px-3 py-3 capitalize text-white/60">{r.product || "—"}</td>
-                  <td className="px-3 py-3 capitalize text-white/60">{r.kind}</td>
-                  <td className="whitespace-nowrap px-3 py-3 font-mono text-xs text-white/50">{new Date(r.created_at).toLocaleDateString()}</td>
-                  <td className="px-3 py-3 tabular-nums text-white">{r.sent}<span className="text-white/35"> / {r.recipient_count}</span></td>
-                  <td className={"px-3 py-3 tabular-nums " + (r.delivery_pct ? "text-emerald-300" : "text-white/45")}>{pct(r.delivery_pct)}</td>
-                  <td className={"px-3 py-3 tabular-nums " + (r.open_pct ? "text-emerald-300" : "text-white/45")}>{pct(r.open_pct)}</td>
-                  <td className={"px-3 py-3 tabular-nums " + (r.click_pct ? "text-violet-300" : "text-white/45")}>{pct(r.click_pct)}</td>
-                  <td className={"px-3 py-3 tabular-nums " + (r.bounce_pct ? "text-amber-300" : "text-white/45")}>{pct(r.bounce_pct)}</td>
-                  <td className="whitespace-nowrap px-3 py-3 font-mono text-xs tabular-nums text-white">₹{Number(r.cost).toFixed(2)}</td>
-                </tr>
-                {on && (
-                  <tr className="border-t border-white/[0.06] bg-black/20">
-                    <td colSpan={11} className="px-3 py-3">
-                      {recipLoading === r.id ? <div className="py-4 text-center text-xs text-white/45">Loading recipients…</div>
-                      : (recips[r.id] ?? []).length === 0 ? <div className="py-4 text-center text-xs text-white/45">No recipient records yet for this campaign.</div>
-                      : (
-                        <div className="max-h-72 overflow-auto rounded-xl border border-white/10">
-                          <table className="w-full text-left text-xs">
-                            <thead className="sticky top-0 bg-[#16161b] text-white/45">
-                              <tr>{["Recipient", "Status", "Sent", "Delivered", "Opened", "Clicked"].map((h) => (
-                                <th key={h} className="whitespace-nowrap px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em]">{h}</th>
-                              ))}</tr>
-                            </thead>
-                            <tbody>
-                              {(recips[r.id] ?? []).map((p, i) => {
-                                const s = statusOf(p);
-                                const t = (v: string | null) => v ? new Date(v).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—";
-                                return (
-                                  <tr key={p.contact + i} className="border-t border-white/[0.06]">
-                                    <td className="px-3 py-2 font-mono text-[11px] text-white/85">{p.contact}</td>
-                                    <td className="px-3 py-2">
-                                      <span className={"inline-flex rounded-full border px-2 py-0.5 text-[10px] font-semibold " + s.cls}>{s.label}</span>
-                                      {p.failed && p.detail && <span className="ml-1.5 text-[10px] text-white/40">{p.detail}</span>}
-                                    </td>
-                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{t(p.sent_at)}</td>
-                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{t(p.delivered_at)}</td>
-                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{p.channel === "whatsapp" ? "—" : t(p.opened_at)}</td>
-                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{p.channel === "whatsapp" ? "—" : t(p.clicked_at)}</td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
-                      )}
+        {/* table */}
+        <div className="overflow-hidden rounded-[18px] border" style={panelStyle}>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead style={{ color: P.mut2, fontFamily: MONO, borderBottom: `1px solid ${P.line}` }}>
+                <tr>{["Campaign", "Channel", "Product", "Type", "When", "Sent", "Deliv %", "Open %", "Click %", "Bounce %", "Cost"].map((h) => <th key={h} className={th}>{h}</th>)}</tr>
+              </thead>
+              <tbody>
+                {loading ? <tr><td colSpan={11} className="px-3 py-16 text-center" style={{ color: P.mut2 }}>Loading…</td></tr>
+                : rows.length === 0 ? <tr><td colSpan={11} className="px-3 py-16 text-center" style={{ color: P.mut2 }}>No campaigns match these filters.</td></tr>
+                : rows.map((r) => {
+                  const on = open === r.id;
+                  return (
+                  <Fragment key={r.id}>
+                  <tr onClick={() => toggleRow(r.id)} className="cursor-pointer" style={{ borderTop: `1px solid ${P.line}`, background: on ? "rgba(139,92,246,.10)" : "transparent" }}>
+                    <td className="px-3 py-3">
+                      <div className="flex items-center gap-2 font-semibold" style={{ color: P.ink }}>
+                        <span style={{ color: P.mut2 }}>{on ? "▾" : "▸"}</span>{r.name}
+                      </div>
+                      {on && r.audience_desc && <div className="mt-1 pl-5 text-[10px]" style={{ color: P.mut2, fontFamily: MONO }}>{r.audience_desc}</div>}
                     </td>
+                    <td className="px-3 py-3">
+                      <span className="inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-semibold" style={r.channel === "whatsapp" ? { background: "rgba(52,226,176,.12)", color: "#34e2b0" } : { background: "rgba(91,140,255,.12)", color: "#5b8cff" }}>
+                        {r.channel === "whatsapp" ? "WhatsApp" : "Email"}
+                      </span>
+                    </td>
+                    <td className="px-3 py-3 capitalize" style={{ color: P.mut }}>{r.product || "—"}</td>
+                    <td className="px-3 py-3 capitalize" style={{ color: P.mut }}>{r.kind}</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-xs" style={{ color: P.mut2, fontFamily: MONO }}>{new Date(r.created_at).toLocaleDateString()}</td>
+                    <td className="px-3 py-3 tabular-nums" style={{ color: P.ink }}>{r.sent}<span style={{ color: P.mut2 }}> / {r.recipient_count}</span></td>
+                    <td className="px-3 py-3 tabular-nums" style={{ color: r.delivery_pct ? "#34e2b0" : P.mut2 }}>{pct(r.delivery_pct)}</td>
+                    <td className="px-3 py-3 tabular-nums" style={{ color: r.open_pct ? "#5b8cff" : P.mut2 }}>{pct(r.open_pct)}</td>
+                    <td className="px-3 py-3 tabular-nums" style={{ color: r.click_pct ? "#a78bfa" : P.mut2 }}>{pct(r.click_pct)}</td>
+                    <td className="px-3 py-3 tabular-nums" style={{ color: r.bounce_pct ? "#ffb13d" : P.mut2 }}>{pct(r.bounce_pct)}</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-xs tabular-nums" style={{ color: P.ink, fontFamily: MONO }}>₹{Number(r.cost).toFixed(2)}</td>
                   </tr>
-                )}
-                </Fragment>
-              ); })}
-            </tbody>
-          </table>
+                  {on && (
+                    <tr style={{ borderTop: `1px solid ${P.line}`, background: "rgba(7,10,22,.5)" }}>
+                      <td colSpan={11} className="px-3 py-3">
+                        {recipLoading === r.id ? <div className="py-4 text-center text-xs" style={{ color: P.mut2 }}>Loading recipients…</div>
+                        : (recips[r.id] ?? []).length === 0 ? <div className="py-4 text-center text-xs" style={{ color: P.mut2 }}>No recipient records yet for this campaign.</div>
+                        : (
+                          <div className="max-h-72 overflow-auto rounded-[14px] border" style={{ borderColor: P.brd }}>
+                            <table className="w-full text-xs">
+                              <thead className="sticky top-0" style={{ background: P.menu, color: P.mut2, fontFamily: MONO }}>
+                                <tr>{["Recipient", "Status", "Sent", "Delivered", "Opened", "Clicked"].map((h) => <th key={h} className={th}>{h}</th>)}</tr>
+                              </thead>
+                              <tbody>
+                                {(recips[r.id] ?? []).map((p, i) => {
+                                  const s = statusOf(p);
+                                  const t = (v: string | null) => v ? new Date(v).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—";
+                                  return (
+                                    <tr key={p.contact + i} style={{ borderTop: `1px solid ${P.line}` }}>
+                                      <td className="px-3 py-2 text-[11px]" style={{ color: P.ink, fontFamily: MONO }}>{p.contact}</td>
+                                      <td className="px-3 py-2">
+                                        <span className="inline-flex rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{ background: s.color + "22", color: s.color }}>{s.label}</span>
+                                        {p.failed && p.detail && <span className="ml-1.5 text-[10px]" style={{ color: P.mut2 }}>{p.detail}</span>}
+                                      </td>
+                                      <td className="whitespace-nowrap px-3 py-2" style={{ color: P.mut2 }}>{t(p.sent_at)}</td>
+                                      <td className="whitespace-nowrap px-3 py-2" style={{ color: P.mut2 }}>{t(p.delivered_at)}</td>
+                                      <td className="whitespace-nowrap px-3 py-2" style={{ color: P.mut2 }}>{p.channel === "whatsapp" ? "—" : t(p.opened_at)}</td>
+                                      <td className="whitespace-nowrap px-3 py-2" style={{ color: P.mut2 }}>{p.channel === "whatsapp" ? "—" : t(p.clicked_at)}</td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  )}
+                  </Fragment>
+                ); })}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <p className="font-mono text-[11px] text-white/35">Click a campaign to see who it went to · WhatsApp has no open/click tracking</p>
+        <p className="text-[11px]" style={{ color: P.mut2, fontFamily: MONO }}>Click a campaign to see who it went to · WhatsApp has no open/click tracking</p>
+      </div>
     </div>
   );
 }
