@@ -108,12 +108,13 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
       const tpl = emTpls.find((t) => t.id === templateRef);
       const emails = sendRows.filter((r) => r.email).map((r) => r.email as string);
       const { data: s } = await supabase.auth.getSession();
-      const bodyInner = tpl ? renderEmailTemplateHtml(tpl).replace(/^[\s\S]*<body[^>]*>|<\/body>[\s\S]*$/g, "") : "";
       let sent = 0, failed = 0;
       for (let i = 0; i < emails.length; i += 40) {
         const batch = emails.slice(i, i + 40);
+        // Pass templateId so the server renders the saved template once (single header).
+        // Rendering on the client and passing the full card as `body` double-wrapped it in campaignShell.
         try { const res = await fetch("/api/events/send-campaign", { method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ subject: tpl?.subject || "Vedam", body: bodyInner || "<p>&nbsp;</p>", recipients: batch, template: (tpl?.template_style || "brand"), accessToken: s.session?.access_token , campaignId, kind: "campaign", refName: campaignName}) });
+          body: JSON.stringify({ subject: tpl?.subject || "Vedam", body: tpl?.message || "<p>&nbsp;</p>", templateId: templateRef, recipients: batch, template: (tpl?.template_style || "brand"), accessToken: s.session?.access_token , campaignId, kind: "campaign", refName: campaignName}) });
           const j = await res.json(); if (j.ok) { sent += j.sent || 0; failed += j.failed || 0; } else failed += batch.length; } catch { failed += batch.length; }
       }
       setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`);
