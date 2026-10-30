@@ -73,7 +73,7 @@ export function CommsHub() {
   const pill = (p: string) => { const t = TAGS.find((x) => x.key === p); return t ? `${t.icon} ${t.label}` : p; };
 
   return (
-    <div className="relative min-h-screen" style={{ background: "#070a16", color: "#f2f5ff" }}>
+    <div className="neural-glass relative min-h-screen" style={{ background: "#070a16", color: "#f2f5ff" }}>
       <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(760px 440px at 85% -6%, rgba(139,92,246,.14), transparent 60%), radial-gradient(620px 420px at -6% 108%, rgba(34,211,238,.09), transparent 60%)" }} />
       <div className="relative mx-auto max-w-5xl px-6 py-10">
       <span className="font-mono text-xs font-semibold lowercase tracking-[0.12em]" style={{ color: "#a78bfa" }}>// comms hub</span>
@@ -81,8 +81,13 @@ export function CommsHub() {
 
       {/* channel toggle */}
       <div className="mt-4 inline-flex rounded-full border border-border bg-surface p-1">
-        <button onClick={() => setChannel("whatsapp")} className={["rounded-full px-4 py-1.5 font-mono text-xs font-bold", channel === "whatsapp" ? "bg-heading text-white" : "text-muted"].join(" ")} style={channel === "whatsapp" ? { background: "rgb(var(--heading))" } : undefined}>💬 WhatsApp</button>
-        <button onClick={() => setChannel("email")} className={["rounded-full px-4 py-1.5 font-mono text-xs font-bold", channel === "email" ? "bg-heading text-white" : "text-muted"].join(" ")} style={channel === "email" ? { background: "rgb(var(--heading))" } : undefined}>✉️ Email</button>
+        {(["whatsapp", "email"] as const).map((c) => (
+          <button key={c} onClick={() => setChannel(c)}
+            className="rounded-full px-5 py-1.5 font-mono text-xs font-bold transition-colors"
+            style={channel === c ? { background: "linear-gradient(90deg,#8b5cf6,#6d4bd6)", color: "#fff", boxShadow: "0 8px 22px -12px rgba(139,92,246,.8)" } : { color: "#aeb8e0" }}>
+            {c === "whatsapp" ? "WhatsApp" : "Email"}
+          </button>
+        ))}
       </div>
 
       {/* product switcher */}
@@ -93,9 +98,11 @@ export function CommsHub() {
       </div>
 
       {/* sub-tabs */}
-      <div className="mt-4 inline-flex gap-1 rounded-lg bg-surface-warm p-1">
+      <div className="mt-4 inline-flex gap-1 rounded-lg border border-border bg-surface p-1">
         {(["campaigns","automations","reminders","report","templates"] as const).map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={["rounded-md px-3 py-1.5 text-xs font-bold capitalize", tab === t ? "bg-surface text-foreground shadow-sm" : "text-muted"].join(" ")}>{t}</button>
+          <button key={t} onClick={() => setTab(t)}
+            className="rounded-md px-3.5 py-1.5 text-xs font-bold capitalize transition-colors"
+            style={tab === t ? { background: "rgba(139,92,246,.18)", color: "#f2f5ff", boxShadow: "inset 0 0 0 1px rgba(139,92,246,.35)" } : { color: "#aeb8e0" }}>{t}</button>
         ))}
       </div>
 
