@@ -37,6 +37,20 @@ function Ico({ d, size = 16 }: { d: string; size?: number }) {
   return <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: d }} />;
 }
 
+/** Count-up roll (ease-out cubic, 1.3s) — same effect as the Growth dashboards. */
+function Count({ to, money }: { to: number; money?: boolean }) {
+  const [v, setV] = useState(to);
+  useEffect(() => {
+    if (typeof window === "undefined" || !isFinite(to)) { setV(to); return; }
+    if (window.matchMedia?.("(prefers-reduced-motion:reduce)")?.matches) { setV(to); return; }
+    let raf = 0; const t0 = performance.now(), d = 1300;
+    const tick = (t: number) => { const k = Math.min((t - t0) / d, 1); const e = 1 - Math.pow(1 - k, 3); setV(to * e); if (k < 1) raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [to]);
+  return <>{money ? `₹${v.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : Math.round(v).toLocaleString("en-IN")}</>;
+}
+
 export function CampaignReport() {
   const [supabase] = useState(() => createClient());
   const [rows, setRows] = useState<Row[]>([]);
@@ -90,14 +104,14 @@ export function CampaignReport() {
   const field = "rounded-[13px] border px-3.5 py-2.5 text-[13.5px] outline-none [color-scheme:dark]";
   const lbl = "text-[11px] font-medium uppercase tracking-[1.3px]";
 
-  const cards: { label: string; value: string | number; sub?: string; icon: string; v: Variant }[] = sum ? [
-    { label: "Campaigns", value: sum.campaigns, sub: `${sum.total_recipients} recipients`, icon: ICON.campaigns, v: V.violet },
-    { label: "Sent", value: sum.total_sent, sub: "messages pushed", icon: ICON.sent, v: V.cyan },
-    { label: "Delivered", value: sum.total_delivered, sub: `${pct(sum.avg_delivery_pct)} delivery rate`, icon: ICON.delivered, v: V.green },
-    { label: "Opened", value: sum.total_opened, sub: `${pct(sum.avg_open_pct)} open rate`, icon: ICON.opened, v: V.blue },
-    { label: "Clicked", value: sum.total_clicked, sub: `${pct(sum.avg_click_pct)} click rate`, icon: ICON.clicked, v: V.violet },
-    { label: "Bounced", value: sum.total_bounced, sub: `${pct(sum.avg_bounce_pct)} bounce rate`, icon: ICON.bounced, v: V.amber },
-    { label: "Spend", value: `₹${Number(sum.total_cost).toFixed(2)}`, sub: "all channels", icon: ICON.spend, v: V.pink },
+  const cards: { label: string; to: number; money?: boolean; sub?: string; icon: string; v: Variant }[] = sum ? [
+    { label: "Campaigns", to: sum.campaigns, sub: `${sum.total_recipients} recipients`, icon: ICON.campaigns, v: V.violet },
+    { label: "Sent", to: sum.total_sent, sub: "messages pushed", icon: ICON.sent, v: V.cyan },
+    { label: "Delivered", to: sum.total_delivered, sub: `${pct(sum.avg_delivery_pct)} delivery rate`, icon: ICON.delivered, v: V.green },
+    { label: "Opened", to: sum.total_opened, sub: `${pct(sum.avg_open_pct)} open rate`, icon: ICON.opened, v: V.blue },
+    { label: "Clicked", to: sum.total_clicked, sub: `${pct(sum.avg_click_pct)} click rate`, icon: ICON.clicked, v: V.violet },
+    { label: "Bounced", to: sum.total_bounced, sub: `${pct(sum.avg_bounce_pct)} bounce rate`, icon: ICON.bounced, v: V.amber },
+    { label: "Spend", to: Number(sum.total_cost), money: true, sub: "all channels", icon: ICON.spend, v: V.pink },
   ] : [];
 
   const th = "whitespace-nowrap px-3 py-3 text-left text-[10px] font-semibold uppercase tracking-[1.2px]";
@@ -143,7 +157,7 @@ export function CampaignReport() {
                   <span className="text-[12px] font-medium uppercase tracking-[1.5px]" style={{ fontFamily: MONO }}>{c.label}</span>
                   <span className="opacity-80"><Ico d={c.icon} /></span>
                 </div>
-                <div className="mt-3 text-[30px] font-bold leading-none tracking-tight tabular-nums" style={{ fontFamily: DISPLAY, color: c.v.num, textShadow: `0 0 22px ${c.v.glow}` }}>{c.value}</div>
+                <div className="mt-3 text-[30px] font-bold leading-none tracking-tight tabular-nums" style={{ fontFamily: DISPLAY, color: c.v.num, textShadow: `0 0 22px ${c.v.glow}` }}><Count to={c.to} money={c.money} /></div>
                 {c.sub && <div className="mt-[11px] text-[11.5px] leading-snug" style={{ color: P.mut2 }}>{c.sub}</div>}
               </div>
             ))}
