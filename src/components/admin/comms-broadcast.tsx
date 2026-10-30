@@ -33,6 +33,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
   const [varMaps, setVarMaps] = useState<{ source: string; value: string }[]>([]);
   const [pvChannel, setPvChannel] = useState<"whatsapp" | "email">(channel);
   const [sending, setSending] = useState(false); const [result, setResult] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
   const [campaignName, setCampaignName] = useState("");
 
   useEffect(() => { setPvChannel(channel); }, [channel]);
@@ -88,9 +89,12 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
     : selRows, [overrideRecipients, selRows]);
   const ov = Boolean(overrideRecipients && overrideRecipients.length);
 
+  // re-arm the Send button when the template, channel, or recipient set changes
+  useEffect(() => { setDone(false); setResult(null); }, [templateRef, channel, sendRows.length]);
+
   async function send() {
-    if (!templateRef || sendRows.length === 0) return;
-    setSending(true); setResult(null);
+    if (!templateRef || sendRows.length === 0 || done) return;
+    setSending(true); setResult(null); setDone(false);
     const audDesc = overrideRecipients ? "advanced audience" : [state && `state=${state}`, attend, csState, cpUsed && `cp=${cpUsed}`].filter(Boolean).join(", ");
     let campaignId: string | null = null;
     try { const { data: cid } = await supabase.rpc("campaign_create", { p_name: campaignName || `${channel} · ${new Date().toLocaleDateString()}`, p_channel: channel, p_kind: "campaign", p_product: product === "all" ? "global" : product, p_sub_ref: null, p_template: templateRef, p_source: overrideRecipients ? "advanced" : "simple", p_desc: audDesc, p_count: sendRows.length }); campaignId = (cid as string) || null; } catch { /* */ }
@@ -103,7 +107,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
         try { const res = await fetch("/api/whatsapp/broadcast", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ templateId: templateRef, messageType, recipients: batch, campaignId, campaignName }) });
           const j = await res.json(); if (j.ok) { sent += j.sent || 0; failed += j.failed || 0; } else failed += batch.length; } catch { failed += batch.length; }
       }
-      setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`);
+      setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`); if (sent > 0 && failed === 0) setDone(true);
     } else {
       const tpl = emTpls.find((t) => t.id === templateRef);
       const emails = sendRows.filter((r) => r.email).map((r) => r.email as string);
@@ -117,7 +121,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
           body: JSON.stringify({ subject: tpl?.subject || "Vedam", body: tpl?.message || "<p>&nbsp;</p>", templateId: templateRef, recipients: batch, template: (tpl?.template_style || "brand"), accessToken: s.session?.access_token , campaignId, kind: "campaign", refName: campaignName}) });
           const j = await res.json(); if (j.ok) { sent += j.sent || 0; failed += j.failed || 0; } else failed += batch.length; } catch { failed += batch.length; }
       }
-      setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`);
+      setResult(`Done — ${sent} sent${failed ? `, ${failed} failed` : ""}.`); if (sent > 0 && failed === 0) setDone(true);
     }
     setSending(false);
   }
@@ -189,7 +193,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
           {result && <p className="mt-3 text-sm text-white/85">{result}</p>}
           <label className="mt-3 block"><span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Campaign name (for the report)</span>
             <input value={campaignName} onChange={(e) => setCampaignName(e.target.value)} placeholder="e.g. Bootcamp reminder — Spotify build" className="w-full max-w-md rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2 text-sm text-white outline-none transition-colors [color-scheme:dark] placeholder:text-white/35 focus:border-[color:rgb(var(--accent))]" /></label>
-          <button onClick={send} disabled={sending || !templateRef || sendRows.length === 0} className="mt-3 rounded-xl bg-[color:rgb(var(--accent))] px-6 py-3 text-sm font-semibold text-white transition-[filter] hover:brightness-110 disabled:opacity-50">{sending ? "Sending…" : `Send to ${sendRows.length} →`}</button>
+          <button onClick={send} disabled={sending || done || !templateRef || sendRows.length === 0} className={["mt-3 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-[filter] disabled:opacity-60", done ? "bg-emerald-600" : "bg-[color:rgb(var(--accent))] hover:brightness-110 disabled:opacity-50"].join(" ")}>{sending ? "Sending…" : done ? "Sent ✓" : `Send to ${sendRows.length} →`}</button>
         </div>
 
         {/* live preview */}
