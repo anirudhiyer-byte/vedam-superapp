@@ -84,11 +84,15 @@ export async function waListTemplates(baseUrl?: string): Promise<Result> {
   const total = Number(d0?.totalrecords ?? d0!.templates!.length);
   const pages = Math.min(Math.ceil(total / 100), 12); // safety cap: 12 pages = 1200 templates
   const all: unknown[] = [...d0!.templates!];
-  for (let p = 2; p <= pages; p++) {
-    const r = await call(pageUrl(p), { method: "GET" });
-    const dd = r.data as { templates?: unknown[] } | undefined;
-    if (r.ok && Array.isArray(dd?.templates) && dd!.templates!.length) all.push(...dd!.templates!);
-    else break;
+  if (pages >= 2) {
+    // fetch the remaining pages in parallel (sequential was slow — ~7 round-trips)
+    const rest = await Promise.all(
+      Array.from({ length: pages - 1 }, (_, i) => call(pageUrl(i + 2), { method: "GET" })),
+    );
+    for (const r of rest) {
+      const dd = r.data as { templates?: unknown[] } | undefined;
+      if (r.ok && Array.isArray(dd?.templates)) all.push(...dd.templates);
+    }
   }
   return { ok: true, status: 200, url: first.url, data: { ...d0, templates: all, page: 1, limit: all.length, totalrecords: total } };
 }

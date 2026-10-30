@@ -34,6 +34,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
   const [pvChannel, setPvChannel] = useState<"whatsapp" | "email">(channel);
   const [sending, setSending] = useState(false); const [result, setResult] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const [tplLoading, setTplLoading] = useState(false);
   const [campaignName, setCampaignName] = useState("");
 
   useEffect(() => { setPvChannel(channel); }, [channel]);
@@ -44,9 +45,10 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
       if (channel === "whatsapp") {
         const { data: tg } = await supabase.from("comms_template_tags").select("template_ref, product").eq("channel", "whatsapp");
         const m: Record<string, string> = {}; (tg as { template_ref: string; product: string }[] ?? []).forEach((t) => m[t.template_ref] = t.product); setTags(m);
+        setTplLoading(true);
         try { const r = await fetch("/api/whatsapp/templates"); const j = await r.json(); const raw = j?.data;
           const list = Array.isArray(raw) ? raw : Array.isArray(raw?.templates) ? raw.templates : Array.isArray(raw?.data) ? raw.data : [];
-          setWaTpls((list as WaTpl[]).filter((t) => (t.status || "APPROVED").toUpperCase() === "APPROVED")); } catch { /* */ }
+          setWaTpls((list as WaTpl[]).filter((t) => (t.status || "APPROVED").toUpperCase() === "APPROVED")); } catch { /* */ } finally { setTplLoading(false); }
       } else {
         const { data: em } = await supabase.from("email_templates").select("id, name, subject, product, message, template_style, image, buttons").order("created_at", { ascending: false });
         setEmTpls((em as EmTpl[]) ?? []);
@@ -138,7 +140,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
       {/* template */}
       <div><span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Template ({product === "all" ? "all products" : product})</span>
         <div className="flex flex-wrap items-center gap-2">
-          <DarkSelect className="w-full max-w-md" value={templateRef} placeholder="Select a template" onChange={setTemplateRef} options={templates.map((t) => ({ value: t.ref, label: `${t.label}${t.vars ? ` · ${t.vars} var` : ""}${t.from ? ` · from ${t.from}` : ""}` }))} />
+          <DarkSelect className="w-full max-w-md" value={templateRef} placeholder={tplLoading ? "Loading templates…" : "Select a template"} onChange={setTemplateRef} options={templates.map((t) => ({ value: t.ref, label: `${t.label}${t.vars ? ` · ${t.vars} var` : ""}${t.from ? ` · from ${t.from}` : ""}` }))} />
           {channel === "whatsapp" && <DarkSelect className="w-40" value={messageType} onChange={setMessageType} options={["media", "text", "text_var", "media_var"].map((v) => ({ value: v, label: v }))} />}
         </div>
         {selVarCount > 0 && (
