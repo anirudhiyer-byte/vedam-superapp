@@ -296,8 +296,15 @@ export function ProductUsers() {
                 ) : filtered.map((r) => {
                   const on = selected.has(r.user_id);
                   return (
-                    <tr key={r.user_id} className={["border-t border-white/[0.06] transition-colors", on ? "bg-[color:rgb(var(--accent))]/10" : "hover:bg-white/[0.035]"].join(" ")}>
-                      <td className={["sticky left-0 z-[1] px-4 py-3", on ? "bg-[#1a1626]" : "bg-[#0b0b0d]"].join(" ")}><input type="checkbox" checked={on} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 accent-[color:rgb(var(--accent))]" /></td>
+                    <tr key={r.user_id}
+                      onClick={(e) => {
+                        // ignore clicks on links/buttons and when the user is selecting text
+                        if ((e.target as HTMLElement).closest("a,button")) return;
+                        if (window.getSelection()?.toString()) return;
+                        toggleRow(r.user_id);
+                      }}
+                      className={["cursor-pointer border-t border-white/[0.06] transition-colors", on ? "bg-[color:rgb(var(--accent))]/10" : "hover:bg-white/[0.035]"].join(" ")}>
+                      <td onClick={(e) => e.stopPropagation()} className={["sticky left-0 z-[1] px-4 py-3", on ? "bg-[#1a1626]" : "bg-[#0b0b0d]"].join(" ")}><input type="checkbox" checked={on} onChange={() => toggleRow(r.user_id)} className="h-4 w-4 cursor-pointer accent-[color:rgb(var(--accent))]" /></td>
                       {shownCols.map((c) => (
                         <td key={c.key} className={["whitespace-nowrap px-3 py-3", c.group === "profile" ? "bg-[color:rgb(var(--accent))]/[0.05]" : ""].join(" ")}>{renderCell(r, c)}</td>
                       ))}
