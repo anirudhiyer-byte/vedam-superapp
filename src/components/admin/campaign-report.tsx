@@ -10,6 +10,20 @@ const PRODUCTS = ["", "bootcamp", "codesprint", "vsat", "global"];
 const CHANNELS = ["", "email", "whatsapp"];
 const KINDS = ["", "campaign", "reminder", "automation"];
 
+const ICON = {
+  campaigns: '<rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/>',
+  sent: '<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
+  delivered: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/>',
+  opened: '<path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 9.5l9 6 9-6"/>',
+  clicked: '<path d="M7 4l10 7-4.2 1.3L15 18l-2.4 1-2.2-5.6L7 16z"/>',
+  bounced: '<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
+  spend: '<rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/>',
+};
+
+function Ico({ d }: { d: string }) {
+  return <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: d }} />;
+}
+
 export function CampaignReport() {
   const [supabase] = useState(() => createClient());
   const [rows, setRows] = useState<Row[]>([]);
@@ -33,11 +47,11 @@ export function CampaignReport() {
   };
 
   // highest status reached, for a compact per-recipient chip
-  const statusOf = (r: Recipient) => r.failed ? { label: "Failed", cls: "text-red-500" }
-    : r.clicked_at ? { label: "Clicked", cls: "text-emerald-600" }
-    : r.opened_at ? { label: "Opened", cls: "text-emerald-500" }
-    : r.delivered_at ? { label: "Delivered", cls: "text-sky-500" }
-    : { label: "Sent", cls: "text-muted" };
+  const statusOf = (r: Recipient) => r.failed ? { label: "Failed", cls: "border-red-400/25 bg-red-400/10 text-red-300" }
+    : r.clicked_at ? { label: "Clicked", cls: "border-violet-400/25 bg-violet-400/10 text-violet-300" }
+    : r.opened_at ? { label: "Opened", cls: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" }
+    : r.delivered_at ? { label: "Delivered", cls: "border-sky-400/25 bg-sky-400/10 text-sky-300" }
+    : { label: "Sent", cls: "border-white/15 bg-white/[0.06] text-white/60" };
 
   const range = useMemo(() => {
     if (month) { const [y, m] = month.split("-").map(Number); const f = new Date(y, m - 1, 1); const t = new Date(y, m, 1); return { p_from: f.toISOString(), p_to: t.toISOString() }; }
@@ -56,85 +70,139 @@ export function CampaignReport() {
     })();
   }, [supabase, product, channel, kind, range]);
 
-  const sel = "rounded-lg border border-border-strong bg-background px-2.5 py-1.5 text-sm text-foreground outline-none [color-scheme:dark]";
+  const sel = "rounded-lg border border-white/15 bg-white/[0.06] px-3 py-2 text-sm text-white outline-none [color-scheme:dark] focus:border-[color:rgb(var(--accent))]";
+  const lbl = "font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white/45";
   const pct = (v: number | null) => v == null ? "—" : `${v}%`;
+  const dirty = Boolean(product || channel || kind || from || to || month);
+
+  const cards: { label: string; value: string | number; sub?: string; icon: string; tint: string }[] = sum ? [
+    { label: "Campaigns", value: sum.campaigns, icon: ICON.campaigns, tint: "border-white/15 bg-white/[0.06] text-white/70" },
+    { label: "Sent", value: sum.total_sent, sub: `${sum.total_recipients} targeted`, icon: ICON.sent, tint: "border-sky-400/25 bg-sky-400/10 text-sky-300" },
+    { label: "Delivered", value: sum.total_delivered, sub: pct(sum.avg_delivery_pct), icon: ICON.delivered, tint: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" },
+    { label: "Opened", value: sum.total_opened, sub: pct(sum.avg_open_pct), icon: ICON.opened, tint: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" },
+    { label: "Clicked", value: sum.total_clicked, sub: pct(sum.avg_click_pct), icon: ICON.clicked, tint: "border-violet-400/25 bg-violet-400/10 text-violet-300" },
+    { label: "Bounced", value: sum.total_bounced, sub: pct(sum.avg_bounce_pct), icon: ICON.bounced, tint: "border-amber-400/25 bg-amber-400/10 text-amber-300" },
+    { label: "Spend", value: `₹${Number(sum.total_cost).toFixed(2)}`, sub: "all channels", icon: ICON.spend, tint: "border-[color:rgb(var(--accent))]/30 bg-[color:rgb(var(--accent))]/12 text-[color:rgb(var(--accent))]" },
+  ] : [];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5 font-[family-name:var(--font-inter)]">
       {/* filters */}
-      <div className="flex flex-wrap items-end gap-3">
-        <label className="flex flex-col text-[11px] font-semibold text-muted">Product<select value={product} onChange={(e) => setProduct(e.target.value)} className={sel + " mt-1"}>{PRODUCTS.map((p) => <option key={p} value={p}>{p || "All products"}</option>)}</select></label>
-        <label className="flex flex-col text-[11px] font-semibold text-muted">Channel<select value={channel} onChange={(e) => setChannel(e.target.value)} className={sel + " mt-1"}>{CHANNELS.map((c) => <option key={c} value={c}>{c || "All channels"}</option>)}</select></label>
-        <label className="flex flex-col text-[11px] font-semibold text-muted">Type<select value={kind} onChange={(e) => setKind(e.target.value)} className={sel + " mt-1"}>{KINDS.map((k) => <option key={k} value={k}>{k || "All types"}</option>)}</select></label>
-        <label className="flex flex-col text-[11px] font-semibold text-muted">Month<input type="month" value={month} onChange={(e) => { setMonth(e.target.value); setFrom(""); setTo(""); }} className={sel + " mt-1"} /></label>
-        <label className="flex flex-col text-[11px] font-semibold text-muted">From<input type="date" value={from} onChange={(e) => { setFrom(e.target.value); setMonth(""); }} className={sel + " mt-1"} /></label>
-        <label className="flex flex-col text-[11px] font-semibold text-muted">To<input type="date" value={to} onChange={(e) => { setTo(e.target.value); setMonth(""); }} className={sel + " mt-1"} /></label>
-        {(product || channel || kind || from || to || month) && <button onClick={() => { setProduct(""); setChannel(""); setKind(""); setFrom(""); setTo(""); setMonth(""); }} className="text-xs font-semibold text-accent">clear</button>}
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span className={lbl}>Filters</span>
+          {dirty && <button onClick={() => { setProduct(""); setChannel(""); setKind(""); setFrom(""); setTo(""); setMonth(""); }} className="rounded-lg border border-white/15 px-2.5 py-1 text-[11px] font-semibold text-white/70 hover:border-white/30 hover:text-white">Clear all</button>}
+        </div>
+        <div className="flex flex-wrap items-end gap-3">
+          <label className="flex flex-col gap-1"><span className={lbl}>Product</span><select value={product} onChange={(e) => setProduct(e.target.value)} className={sel}>{PRODUCTS.map((p) => <option key={p} value={p}>{p || "All products"}</option>)}</select></label>
+          <label className="flex flex-col gap-1"><span className={lbl}>Channel</span><select value={channel} onChange={(e) => setChannel(e.target.value)} className={sel}>{CHANNELS.map((c) => <option key={c} value={c}>{c || "All channels"}</option>)}</select></label>
+          <label className="flex flex-col gap-1"><span className={lbl}>Type</span><select value={kind} onChange={(e) => setKind(e.target.value)} className={sel}>{KINDS.map((k) => <option key={k} value={k}>{k || "All types"}</option>)}</select></label>
+          <label className="flex flex-col gap-1"><span className={lbl}>Month</span><input type="month" value={month} onChange={(e) => { setMonth(e.target.value); setFrom(""); setTo(""); }} className={sel} /></label>
+          <label className="flex flex-col gap-1"><span className={lbl}>From</span><input type="date" value={from} onChange={(e) => { setFrom(e.target.value); setMonth(""); }} className={sel} /></label>
+          <label className="flex flex-col gap-1"><span className={lbl}>To</span><input type="date" value={to} onChange={(e) => { setTo(e.target.value); setMonth(""); }} className={sel} /></label>
+        </div>
       </div>
 
       {/* summary cards */}
       {sum && (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-          {[["Campaigns", sum.campaigns], ["Sent", sum.total_sent], ["Delivered", `${sum.total_delivered} · ${pct(sum.avg_delivery_pct)}`], ["Opened", `${sum.total_opened} · ${pct(sum.avg_open_pct)}`], ["Clicked", `${sum.total_clicked} · ${pct(sum.avg_click_pct)}`], ["Bounced", `${sum.total_bounced} · ${pct(sum.avg_bounce_pct)}`], ["Spend", `₹${Number(sum.total_cost).toFixed(2)}`]].map(([l, v]) => (
-            <div key={l as string} className="rounded-xl border border-border bg-surface p-3"><div className="font-mono text-[10px] uppercase tracking-wide text-muted">{l}</div><div className="mt-0.5 font-display text-sm font-bold text-heading">{v}</div></div>
+          {cards.map((c) => (
+            <div key={c.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <div className="flex items-start justify-between gap-2">
+                <span className={lbl}>{c.label}</span>
+                <span className={"grid h-7 w-7 shrink-0 place-items-center rounded-lg border " + c.tint}><Ico d={c.icon} /></span>
+              </div>
+              <div className="mt-3 text-2xl font-extrabold tracking-tight text-white tabular-nums">{c.value}</div>
+              {c.sub && <div className="mt-0.5 font-mono text-[11px] text-white/40">{c.sub}</div>}
+            </div>
           ))}
         </div>
       )}
 
       {/* table */}
-      <div className="overflow-x-auto rounded-2xl border border-border">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-surface text-muted"><tr>{["Campaign", "Channel", "Product", "Type", "When", "Sent", "Deliv %", "Open %", "Click %", "Bounce %", "Cost"].map((h) => <th key={h} className="whitespace-nowrap p-3 font-semibold">{h}</th>)}</tr></thead>
-          <tbody>
-            {loading ? <tr><td colSpan={11} className="p-6 text-center text-muted">Loading…</td></tr>
-            : rows.length === 0 ? <tr><td colSpan={11} className="p-6 text-center text-muted">No campaigns match these filters.</td></tr>
-            : rows.map((r) => (
-              <Fragment key={r.id}>
-              <tr className="cursor-pointer border-t border-border hover:bg-surface-warm/40" onClick={() => toggleRow(r.id)}>
-                <td className="p-3"><div className="flex items-center gap-1.5 font-semibold text-heading"><span className={"inline-block transition-transform " + (open === r.id ? "rotate-90" : "")}>›</span>{r.name}</div>{open === r.id && r.audience_desc && <div className="mt-0.5 font-mono text-[10px] text-muted">{r.audience_desc}</div>}</td>
-                <td className="p-3 capitalize text-muted">{r.channel === "whatsapp" ? "WhatsApp" : "Email"}</td>
-                <td className="p-3 capitalize text-muted">{r.product || "—"}</td>
-                <td className="p-3 capitalize text-muted">{r.kind}</td>
-                <td className="whitespace-nowrap p-3 font-mono text-xs text-muted">{new Date(r.created_at).toLocaleDateString()}</td>
-                <td className="p-3">{r.sent}<span className="text-muted"> / {r.recipient_count}</span></td>
-                <td className="p-3">{pct(r.delivery_pct)}</td>
-                <td className="p-3">{pct(r.open_pct)}</td>
-                <td className="p-3">{pct(r.click_pct)}</td>
-                <td className="p-3">{pct(r.bounce_pct)}</td>
-                <td className="p-3">₹{Number(r.cost).toFixed(2)}</td>
-              </tr>
-              {open === r.id && (
-                <tr className="border-t border-border bg-surface-warm/20">
-                  <td colSpan={11} className="p-3">
-                    {recipLoading === r.id ? <div className="py-3 text-center text-xs text-muted">Loading recipients…</div>
-                    : (recips[r.id] ?? []).length === 0 ? <div className="py-3 text-center text-xs text-muted">No recipient records yet for this campaign.</div>
-                    : (
-                      <div className="max-h-72 overflow-auto rounded-lg border border-border">
-                        <table className="w-full text-left text-xs">
-                          <thead className="sticky top-0 bg-surface text-muted"><tr>{["Recipient", "Status", "Sent", "Delivered", "Opened", "Clicked"].map((h) => <th key={h} className="whitespace-nowrap px-3 py-2 font-semibold">{h}</th>)}</tr></thead>
-                          <tbody>
-                            {(recips[r.id] ?? []).map((p, i) => { const s = statusOf(p); const t = (v: string | null) => v ? new Date(v).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—"; return (
-                              <tr key={p.contact + i} className="border-t border-border">
-                                <td className="px-3 py-1.5 font-mono text-[11px] text-heading">{p.contact}</td>
-                                <td className={"px-3 py-1.5 font-semibold " + s.cls}>{s.label}{p.failed && p.detail ? ` · ${p.detail}` : ""}</td>
-                                <td className="px-3 py-1.5 text-muted">{t(p.sent_at)}</td>
-                                <td className="px-3 py-1.5 text-muted">{t(p.delivered_at)}</td>
-                                <td className="px-3 py-1.5 text-muted">{p.channel === "whatsapp" ? "—" : t(p.opened_at)}</td>
-                                <td className="px-3 py-1.5 text-muted">{p.channel === "whatsapp" ? "—" : t(p.clicked_at)}</td>
-                              </tr>
-                            ); })}
-                          </tbody>
-                        </table>
-                      </div>
-                    )}
+      <div className="overflow-hidden rounded-2xl border border-white/10">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-white/[0.05] text-white/50">
+              <tr>{["Campaign", "Channel", "Product", "Type", "When", "Sent", "Deliv %", "Open %", "Click %", "Bounce %", "Cost"].map((h) => (
+                <th key={h} className="whitespace-nowrap px-3 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.12em]">{h}</th>
+              ))}</tr>
+            </thead>
+            <tbody>
+              {loading ? <tr><td colSpan={11} className="px-3 py-14 text-center text-white/45">Loading…</td></tr>
+              : rows.length === 0 ? <tr><td colSpan={11} className="px-3 py-14 text-center text-white/45">No campaigns match these filters.</td></tr>
+              : rows.map((r) => {
+                const on = open === r.id;
+                return (
+                <Fragment key={r.id}>
+                <tr onClick={() => toggleRow(r.id)} className={["cursor-pointer border-t border-white/[0.06]", on ? "bg-[color:rgb(var(--accent))]/10" : "hover:bg-white/[0.035]"].join(" ")}>
+                  <td className="px-3 py-3">
+                    <div className="flex items-center gap-2 font-semibold text-white">
+                      <span className="text-white/40">{on ? "▾" : "▸"}</span>{r.name}
+                    </div>
+                    {on && r.audience_desc && <div className="mt-1 pl-5 font-mono text-[10px] text-white/40">{r.audience_desc}</div>}
                   </td>
+                  <td className="px-3 py-3">
+                    <span className={["inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold", r.channel === "whatsapp" ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" : "border-sky-400/25 bg-sky-400/10 text-sky-300"].join(" ")}>
+                      {r.channel === "whatsapp" ? "WhatsApp" : "Email"}
+                    </span>
+                  </td>
+                  <td className="px-3 py-3 capitalize text-white/60">{r.product || "—"}</td>
+                  <td className="px-3 py-3 capitalize text-white/60">{r.kind}</td>
+                  <td className="whitespace-nowrap px-3 py-3 font-mono text-xs text-white/50">{new Date(r.created_at).toLocaleDateString()}</td>
+                  <td className="px-3 py-3 tabular-nums text-white">{r.sent}<span className="text-white/35"> / {r.recipient_count}</span></td>
+                  <td className={"px-3 py-3 tabular-nums " + (r.delivery_pct ? "text-emerald-300" : "text-white/45")}>{pct(r.delivery_pct)}</td>
+                  <td className={"px-3 py-3 tabular-nums " + (r.open_pct ? "text-emerald-300" : "text-white/45")}>{pct(r.open_pct)}</td>
+                  <td className={"px-3 py-3 tabular-nums " + (r.click_pct ? "text-violet-300" : "text-white/45")}>{pct(r.click_pct)}</td>
+                  <td className={"px-3 py-3 tabular-nums " + (r.bounce_pct ? "text-amber-300" : "text-white/45")}>{pct(r.bounce_pct)}</td>
+                  <td className="whitespace-nowrap px-3 py-3 font-mono text-xs tabular-nums text-white">₹{Number(r.cost).toFixed(2)}</td>
                 </tr>
-              )}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
+                {on && (
+                  <tr className="border-t border-white/[0.06] bg-black/20">
+                    <td colSpan={11} className="px-3 py-3">
+                      {recipLoading === r.id ? <div className="py-4 text-center text-xs text-white/45">Loading recipients…</div>
+                      : (recips[r.id] ?? []).length === 0 ? <div className="py-4 text-center text-xs text-white/45">No recipient records yet for this campaign.</div>
+                      : (
+                        <div className="max-h-72 overflow-auto rounded-xl border border-white/10">
+                          <table className="w-full text-left text-xs">
+                            <thead className="sticky top-0 bg-[#16161b] text-white/45">
+                              <tr>{["Recipient", "Status", "Sent", "Delivered", "Opened", "Clicked"].map((h) => (
+                                <th key={h} className="whitespace-nowrap px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em]">{h}</th>
+                              ))}</tr>
+                            </thead>
+                            <tbody>
+                              {(recips[r.id] ?? []).map((p, i) => {
+                                const s = statusOf(p);
+                                const t = (v: string | null) => v ? new Date(v).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—";
+                                return (
+                                  <tr key={p.contact + i} className="border-t border-white/[0.06]">
+                                    <td className="px-3 py-2 font-mono text-[11px] text-white/85">{p.contact}</td>
+                                    <td className="px-3 py-2">
+                                      <span className={"inline-flex rounded-full border px-2 py-0.5 text-[10px] font-semibold " + s.cls}>{s.label}</span>
+                                      {p.failed && p.detail && <span className="ml-1.5 text-[10px] text-white/40">{p.detail}</span>}
+                                    </td>
+                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{t(p.sent_at)}</td>
+                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{t(p.delivered_at)}</td>
+                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{p.channel === "whatsapp" ? "—" : t(p.opened_at)}</td>
+                                    <td className="whitespace-nowrap px-3 py-2 text-white/50">{p.channel === "whatsapp" ? "—" : t(p.clicked_at)}</td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                )}
+                </Fragment>
+              ); })}
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <p className="font-mono text-[11px] text-white/35">Click a campaign to see who it went to · WhatsApp has no open/click tracking</p>
     </div>
   );
 }

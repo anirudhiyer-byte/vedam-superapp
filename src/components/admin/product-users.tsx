@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
+import { DarkSelect } from "@/components/admin/dark-select";
 
 /** Product Users — NPF-style per-product user manager (admin).
  *  Each product tab pulls an admin-gated RPC that returns the product's own
@@ -105,6 +106,9 @@ export function ProductUsers() {
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
   const [q, setQ] = useState("");
+  const [qCol, setQCol] = useState("");        // "" = default fields; else search only this column
+  const [perPage, setPerPage] = useState(10);  // 0 = show all
+  const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [visible, setVisible] = useState<Record<string, Set<string>>>(() =>
     Object.fromEntries(PRODUCTS.map((p) => [p.key, new Set(p.cols.filter((c) => c.def !== false).map((c) => c.key))])));
@@ -141,15 +145,36 @@ export function ProductUsers() {
   const anyFilter = q.trim() !== "" || Object.values(textF).some(Boolean) || Object.values(numF).some((f) => f?.value) || Object.values(enumF).some((a) => a?.length);
   function clearFilters() { setQ(""); setTextF({}); setNumF({}); setEnumF({}); }
 
-  const filtered = useMemo(() => rows.filter((r) => {
-    if (q.trim()) { const hay = [r.full_name, r.email, r.phone, r.public_id].map((x) => String(x ?? "").toLowerCase()).join(" "); if (!hay.includes(q.trim().toLowerCase())) return false; }
-    for (const c of shownCols) {
-      if (c.type === "enum") { const sel = enumF[c.key]; if (sel?.length && !sel.includes(str(getVal(r, c)))) return false; }
-      else if (c.type === "num" || c.type === "pct") { const f = numF[c.key]; if (f?.value) { const n = Number(getVal(r, c)); const v = Number(f.value); const ok = f.op === ">=" ? n >= v : f.op === "<=" ? n <= v : f.op === ">" ? n > v : f.op === "<" ? n < v : n === v; if (!ok) return false; } }
-      else if (c.type === "text" || c.type === "name" || c.type === "id") { const t = textF[c.key]; if (t && !str(getVal(r, c)).toLowerCase().includes(t.toLowerCase())) return false; }
-    }
-    return true;
-  }), [rows, q, shownCols, enumF, numF, textF]);
+  // split on comma / slash / newline → multiple values match as OR ("anil, arjit")
+  const splitTerms = (s: string) => s.split(/[,/\n]/).map((x) => x.trim().toLowerCase()).filter(Boolean);
+
+  const filtered = useMemo(() => {
+    const qTerms = splitTerms(q);
+    const qColDef = qCol ? allCols.find((c) => c.key === qCol) : null;
+    return rows.filter((r) => {
+      if (qTerms.length) {
+        const hay = qColDef
+          ? str(getVal(r, qColDef)).toLowerCase()
+          : [r.full_name, r.email, r.phone, r.public_id].map((x) => String(x ?? "").toLowerCase()).join(" ");
+        if (!qTerms.some((t) => hay.includes(t))) return false;
+      }
+      for (const c of shownCols) {
+        if (c.type === "enum") { const sel = enumF[c.key]; if (sel?.length && !sel.includes(str(getVal(r, c)))) return false; }
+        else if (c.type === "num" || c.type === "pct") { const f = numF[c.key]; if (f?.value) { const n = Number(getVal(r, c)); const v = Number(f.value); const ok = f.op === ">=" ? n >= v : f.op === "<=" ? n <= v : f.op === ">" ? n > v : f.op === "<" ? n < v : n === v; if (!ok) return false; } }
+        else if (c.type === "text" || c.type === "name" || c.type === "id") {
+          const terms = splitTerms(textF[c.key] || "");
+          if (terms.length) { const hay = str(getVal(r, c)).toLowerCase(); if (!terms.some((t) => hay.includes(t))) return false; }
+        }
+      }
+      return true;
+    });
+  }, [rows, q, qCol, allCols, shownCols, enumF, numF, textF]);
+
+  // paging (selection, export and comms still apply to the whole filtered set)
+  const totalPages = perPage ? Math.max(1, Math.ceil(filtered.length / perPage)) : 1;
+  const curPage = Math.min(page, totalPages);
+  const paged = perPage ? filtered.slice((curPage - 1) * perPage, curPage * perPage) : filtered;
+  useEffect(() => { setPage(1); }, [tab, q, qCol, perPage, textF, numF, enumF]);
 
   const targets = selected.size ? filtered.filter((r) => selected.has(r.user_id)) : filtered;
   const allSel = filtered.length > 0 && filtered.every((r) => selected.has(r.user_id));
@@ -205,8 +230,13 @@ export function ProductUsers() {
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 transition-colors focus-within:border-[color:rgb(var(--accent))]">
             <span className="text-white/40"><IconSearch /></span>
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, email, Vedam ID" className="w-52 bg-transparent text-sm text-white outline-none placeholder:text-white/35" />
+            <input value={q} onChange={(e) => setQ(e.target.value)}
+              placeholder={qCol ? `Paste ${(allCols.find((c) => c.key === qCol)?.label || "values")}, comma separated` : "Search name, email, Vedam ID"}
+              className="w-64 bg-transparent text-sm text-white outline-none placeholder:text-white/35" />
+            {q && <button onClick={() => setQ("")} className="text-white/35 hover:text-white/70">✕</button>}
           </div>
+          <DarkSelect className="w-44" value={qCol} onChange={setQCol} placeholder="All fields"
+            options={[{ value: "", label: "All fields" }, ...allCols.map((c) => ({ value: c.key, label: c.label }))]} />
           <button onClick={() => setShowCols(true)} className={shell}>
             <IconColumns /> Columns
             {addedProfileCount > 0 && <span className="rounded-full bg-[color:rgb(var(--accent))] px-1.5 text-[10px] font-bold text-white">{addedProfileCount}</span>}
@@ -293,7 +323,7 @@ export function ProductUsers() {
                     <p className="mt-3 font-semibold text-white/75">No users match</p>
                     <p className="text-sm text-white/40">{anyFilter ? "Try clearing the filters." : "This product has no users yet."}</p>
                   </td></tr>
-                ) : filtered.map((r) => {
+                ) : paged.map((r) => {
                   const on = selected.has(r.user_id);
                   return (
                     <tr key={r.user_id}
@@ -317,7 +347,30 @@ export function ProductUsers() {
         </div>
       )}
 
-      <p className="mt-3 font-mono text-[11px] text-white/35">Actions apply to {selected.size ? `${selected.size} selected` : `${filtered.length} shown`} · joined to vedam_one_profiles</p>
+      {/* ── pagination ───────────────────────────── */}
+      {!loading && filtered.length > 0 && (
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <span className="text-sm text-white/55">
+            Showing <b className="font-semibold text-white tabular-nums">{perPage ? (curPage - 1) * perPage + 1 : 1}–{perPage ? Math.min(curPage * perPage, filtered.length) : filtered.length}</b> of <span className="tabular-nums">{filtered.length}</span>
+          </span>
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-white/35">Per page</span>
+            <DarkSelect className="w-28" value={String(perPage)} onChange={(v) => setPerPage(Number(v))}
+              options={[10, 25, 50, 100, 500, 1000].map((n) => ({ value: String(n), label: String(n) })).concat([{ value: "0", label: "All" }])} />
+          </div>
+          {perPage > 0 && totalPages > 1 && (
+            <div className="ml-auto flex items-center gap-2">
+              <button onClick={() => setPage(Math.max(1, curPage - 1))} disabled={curPage <= 1}
+                className="rounded-lg border border-white/15 bg-white/[0.06] px-3 py-1.5 text-sm font-medium text-white/80 hover:bg-white/10 disabled:opacity-35">Prev</button>
+              <span className="font-mono text-xs tabular-nums text-white/55">Page {curPage} / {totalPages}</span>
+              <button onClick={() => setPage(Math.min(totalPages, curPage + 1))} disabled={curPage >= totalPages}
+                className="rounded-lg border border-white/15 bg-white/[0.06] px-3 py-1.5 text-sm font-medium text-white/80 hover:bg-white/10 disabled:opacity-35">Next</button>
+            </div>
+          )}
+        </div>
+      )}
+
+      <p className="mt-3 font-mono text-[11px] text-white/35">Actions apply to {selected.size ? `${selected.size} selected` : `${filtered.length} filtered`} (all pages) · tip: comma-separate values in any filter · joined to vedam_one_profiles</p>
 
       {/* ── Customize columns drawer ─────────────── */}
       {showCols && (
