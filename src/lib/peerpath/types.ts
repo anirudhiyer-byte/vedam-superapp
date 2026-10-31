@@ -63,7 +63,7 @@ export type SeniorSettings = {
 
 export type BookingStatus = "confirmed" | "completed" | "cancelled" | "rescheduled" | "no_show_applicant";
 
-/** A booking as the applicant sees it (from pp_booking_by_id / pp_find_bookings). */
+/** A booking as the applicant sees it (from pp_booking_by_id / pp_my_bookings). */
 export type Booking = {
   id: string;
   seniorId: string;
@@ -72,13 +72,16 @@ export type Booking = {
   type: SessionType;
   name: string;
   email: string;
-  phone: string;
+  /** null when the login had no OTP-verified phone (phone is optional since 0035) */
+  phone: string | null;
   question: string | null;
   status: BookingStatus;
   meetUrl: string | null;
   movedFrom: string | null;
   movedTo: string | null;
   createdAt: string;
+  /** Google invite state (0036): none / syncing / pending = still being made; ok / failed / … = settled */
+  meetSync?: string | null;
   feedbackGiven: boolean;
   senior: { id: string; firstName: string; campus: Campus; year: Year; status: SeniorStatus };
 };
@@ -145,7 +148,8 @@ export type AdminBooking = {
   type: SessionType;
   name: string;
   email: string;
-  phone: string;
+  /** null when the login had no OTP-verified phone (phone is optional since 0035) */
+  phone: string | null;
   question: string | null;
   status: BookingStatus;
   meetUrl: string | null;

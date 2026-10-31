@@ -68,8 +68,10 @@ const INVITES_PER_EMAIL_PER_DAY = 3;
 
 /**
  * Service-role client. `clientIp` (from Vercel's trusted header) is passed to the
- * database as x-pp-client-ip; pp_request_ip() trusts it only on service-role calls,
- * so per-IP limits inside pp_book / pp_cancel use the real visitor IP.
+ * database as x-pp-client-ip; pp_request_ip() trusts it only on service-role calls.
+ * The per-IP limits themselves run in the API routes (allowIp, trusted Vercel IP).
+ * pp_book / pp_cancel are called AS THE USER, so the ip they log (pp_book_attempts
+ * source='db') is not the visitor's IP; route-logged rows (source='route') are.
  */
 export function adminDb(clientIp?: string | null): SupabaseClient {
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
@@ -89,10 +91,14 @@ export function trustedIp(req: Request): string | null {
   return ip || null;
 }
 
-/** Per-IP limit checked on the server with the trusted IP. Fails closed if the DB says no. */
+/**
+ * Per-IP limit checked on the server with the trusted IP, on PeerPath's private
+ * limiter (pp_rate_hit: service role only, so nobody can fill up someone else's
+ * bucket). Fails closed if the DB says no or errors.
+ */
 export async function allowIp(db: SupabaseClient, key: string, ip: string | null, max: number, windowSec: number): Promise<boolean> {
-  if (!ip) return true; // local dev only: on Vercel the header is always set
-  const { data, error } = await db.rpc("rate_limit_hit", { p_key: `${key}:${ip}`, p_max: max, p_window: windowSec });
+  if (!ip) return !process.env.VERCEL; // local dev only; on Vercel the header is always set, so a missing IP fails closed
+  const { data, error } = await db.rpc("pp_rate_hit", { p_key: `${key}:ip:${ip}`, p_max: max, p_window: windowSec });
   if (error) return false;
   return data !== false;
 }

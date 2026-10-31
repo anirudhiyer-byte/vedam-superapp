@@ -10,6 +10,7 @@ import { googleConfigured } from "@/lib/peerpath/google";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
+export const preferredRegion = "bom1"; // same region as the Supabase database (ap-south-1, Mumbai)
 
 export async function GET(req: Request) {
   // fail closed: no secret set, or mismatch → reject

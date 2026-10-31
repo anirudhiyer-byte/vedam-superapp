@@ -1,43 +1,54 @@
 /**
  * PeerPath · cancel a chat, then take it off both calendars.
  *
- * Ownership is still proven inside pp_cancel (applicant email + phone, read here
- * from the device's proof cookie — the browser can't pass someone else's).
- * The per-IP limit uses Vercel's trusted visitor IP.
+ * Ownership is checked inside pp_cancel from the login (auth.uid()); this route
+ * calls it as the user. CSRF guard on cookie requests, per-IP limit with the
+ * trusted visitor IP, and no database error text ever reaches the browser.
  */
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { createClient as createTokenClient } from "@supabase/supabase-js";
+import { createClient as createCookieClient } from "@/lib/supabase/server";
 import { adminDb, allowIp, syncBooking, trustedIp } from "@/lib/peerpath/meet-sync";
-import { PROOF_COOKIE, decodeProof } from "@/lib/peerpath/proof";
+import { bearerToken, readJsonObject, sameOrigin } from "@/lib/peerpath/book-request";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
+export const preferredRegion = "bom1"; // same region as the Supabase database (ap-south-1, Mumbai)
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const CANCELS_PER_IP_PER_15MIN = 20;
 const SYNC_WAIT_MS = 4000;
 
+const json = (body: unknown, status = 200) => NextResponse.json(body, { status });
+
 export async function POST(req: Request) {
-  let id: unknown;
-  try {
-    ({ id } = (await req.json()) as { id?: unknown });
-  } catch {
-    return NextResponse.json({ ok: false, error: "invalid" }, { status: 400 });
-  }
-  if (typeof id !== "string" || !UUID.test(id)) return NextResponse.json({ ok: false, error: "invalid" }, { status: 400 });
+  const token = bearerToken(req);
+  if (!token && !sameOrigin(req)) return json({ ok: false, error: "forbidden" }, 403);
+  const raw = await readJsonObject(req);
+  const id = raw?.id;
+  if (typeof id !== "string" || !UUID.test(id)) return json({ ok: false, error: "invalid" }, 400);
 
-  const proof = decodeProof((await cookies()).get(PROOF_COOKIE)?.value);
+  // per-IP limit before the login check (junk tokens never reach Supabase Auth)
   const ip = trustedIp(req);
-  const db = adminDb(ip);
-  if (!(await allowIp(db, "pp_cancel_route", ip, CANCELS_PER_IP_PER_15MIN, 900))) {
-    return NextResponse.json({ ok: false, error: "rate_limited" });
+  const admin = adminDb(ip);
+  if (!(await allowIp(admin, "pp_cancel", ip, CANCELS_PER_IP_PER_15MIN, 900))) {
+    return json({ ok: false, error: "rate_limited" });
   }
 
-  const { data, error } = await db.rpc("pp_cancel", { p_id: id, p_email: proof?.email ?? "", p_phone: proof?.phone ?? "" });
-  if (error || !data) return NextResponse.json({ ok: false, error: "server" });
-  const res = data as { ok: boolean; error?: string };
-  if (!res.ok) return NextResponse.json({ ok: false, error: res.error ?? "server" });
+  const sb = token
+    ? createTokenClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+        auth: { persistSession: false, autoRefreshToken: false },
+        global: { headers: { Authorization: `Bearer ${token}` } },
+      })
+    : await createCookieClient();
+  const { data: auth } = token ? await sb.auth.getUser(token) : await sb.auth.getUser();
+  if (!auth?.user) return json({ ok: false, error: "not_logged_in" }, 401);
 
-  await Promise.race([syncBooking(db, id).catch(() => {}), new Promise((r) => setTimeout(r, SYNC_WAIT_MS))]);
-  return NextResponse.json({ ok: true });
+  const { data, error } = await sb.rpc("pp_cancel", { p_id: id });
+  if (error || !data || typeof data !== "object") return json({ ok: false, error: "server" });
+  const res = data as { ok?: unknown; error?: unknown };
+  if (res.ok !== true) return json({ ok: false, error: typeof res.error === "string" ? res.error : "server" });
+
+  await Promise.race([syncBooking(admin, id).catch(() => {}), new Promise((r) => setTimeout(r, SYNC_WAIT_MS))]);
+  return json({ ok: true });
 }

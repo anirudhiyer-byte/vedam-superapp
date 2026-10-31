@@ -4,9 +4,8 @@
  * DEFINER, so the pp_* tables stay locked behind RLS). The admin read runs with
  * the signed-in user's session, so pp_is_admin() can check who is asking.
  */
-import { cookies } from "next/headers";
+import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
-import { PROOF_COOKIE, decodeProof } from "./proof";
 import { buildSlots, type BusyRange } from "./slots";
 import type { AdminData, AvailabilityRule, Booking, DateBlock, Senior, SeniorPortal, SeniorSettings, SeniorWithSlots } from "./types";
 
@@ -52,24 +51,41 @@ export async function loadSenior(id: string): Promise<SeniorWithSlots | null> {
   return seniors.find((s) => s.id === id) ?? null;
 }
 
+/** The logged-in user (verified with Supabase Auth), or null. */
+export async function getSessionUser(): Promise<User | null> {
+  const sb = await createClient();
+  const { data } = await sb.auth.getUser();
+  return data?.user ?? null;
+}
+
 /**
- * One booking, returned ONLY if the caller proves they own it (the email + phone
- * they booked with, read from the per-device proof cookie) or is an admin. A bare
- * UUID is no longer enough. Returns null for "not found" and "not yours" alike, so
- * nothing about a booking leaks to someone who only has its link.
+ * One booking, returned ONLY to the login that made it (or an admin) — checked in
+ * pp_booking_by_id from auth.uid(). Returns null for "not found" and "not yours"
+ * alike, so a booking link alone reveals nothing.
  */
 export async function loadBooking(id: string): Promise<Booking | null> {
   if (!isUuid(id)) return null;
-  const jar = await cookies();
-  const proof = decodeProof(jar.get(PROOF_COOKIE)?.value);
   const sb = await createClient();
-  const { data, error } = await sb.rpc("pp_booking_by_id", {
-    p_id: id,
-    p_email: proof?.email ?? "",
-    p_phone: proof?.phone ?? "",
-  });
+  const { data, error } = await sb.rpc("pp_booking_by_id", { p_id: id });
   if (error || !data) return null;
   return (data as Booking) ?? null;
+}
+
+/** The logged-in user's own bookings (newest first, max 50). */
+export async function loadMyBookings(): Promise<Booking[] | null> {
+  const sb = await createClient();
+  const { data, error } = await sb.rpc("pp_my_bookings");
+  if (error) return null;
+  return Array.isArray(data) ? (data as Booking[]) : [];
+}
+
+/** Name / email / phone exactly as pp_book will store them (read-only on the booking page). */
+export type MyContact = { name: string; email: string | null; phone: string | null; complete: boolean };
+export async function loadMyContact(): Promise<MyContact | null> {
+  const sb = await createClient();
+  const { data, error } = await sb.rpc("pp_my_contact");
+  if (error || !data || typeof data !== "object") return null;
+  return data as MyContact;
 }
 
 export async function loadPortal(token: string): Promise<SeniorPortal | null> {

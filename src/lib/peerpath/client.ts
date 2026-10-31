@@ -4,8 +4,8 @@
  * functions. Each returns { ok, error?, ... } and never throws.
  */
 import { createClient } from "@/lib/supabase/client";
-import { getProofClient } from "./proof";
-import type { AvailabilityRule, Booking, DateBlock, SeniorProfileInput, SeniorSettings } from "./types";
+import { parseBookResult, type BookResult } from "./booking-codes";
+import type { AvailabilityRule, DateBlock, SeniorProfileInput, SeniorSettings } from "./types";
 
 type Result<T = object> = ({ ok: true } & T) | { ok: false; error: string; message: string };
 
@@ -23,6 +23,7 @@ const MESSAGES: Record<string, string> = {
   forbidden: "Only Vedam admins can do this. Please sign in with your @vedam.org account.",
   offline: "You seem to be offline. Please check your internet and try again.",
   rate_limited: "Too many tries. Please wait a few minutes and try again.",
+  not_logged_in: "Please log in again to change this chat.",
 };
 const fail = (error: string): { ok: false; error: string; message: string } => ({ ok: false, error, message: MESSAGES[error] ?? "Something went wrong. Please try again." });
 
@@ -40,23 +41,33 @@ async function call<T extends object>(fn: string, args: Record<string, unknown>)
   }
 }
 
-export function book(p: {
+/**
+ * Book (or move) a chat. Only the senior, time, type, duration, question and the
+ * old booking id are sent: who is booking comes from the login, and the contact
+ * details come from the database. The answer is a code the UI turns into a popup.
+ */
+export async function book(p: {
   seniorId: string;
   start: string;
   type: string;
   duration: number;
-  name: string;
-  email: string;
-  phone: string;
   question: string | null;
   rescheduleOf?: string | null;
-}) {
-  // through our server: trusted per-IP limit + calendar invite created server-side
-  return post<{ id: string }>("/api/peerpath/book", p);
+}): Promise<BookResult> {
+  try {
+    const res = await fetch("/api/peerpath/book", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ seniorId: p.seniorId, start: p.start, type: p.type, duration: p.duration, question: p.question, rescheduleOf: p.rescheduleOf ?? null }),
+    });
+    return parseBookResult(await res.json().catch(() => null));
+  } catch {
+    return { ok: false, code: "SERVER" };
+  }
 }
 
-// cancel goes through our server too; it reads this device's ownership proof
-// (email + phone) from the proof cookie and the database checks it.
+// cancel goes through our server too (it removes the Google invite); pp_cancel checks the login.
 export const cancelBooking = (id: string) => post("/api/peerpath/cancel", { id });
 
 /** POST to one of our PeerPath API routes; same { ok, error, message } shape as call(). */
@@ -71,20 +82,8 @@ async function post<T extends object>(url: string, body: unknown): Promise<Resul
   }
 }
 
-export const giveFeedback = (id: string, rating: number, recommend: boolean, promise: boolean, note: string | null) => {
-  const pr = getProofClient();
-  return call("pp_give_feedback", { p_id: id, p_email: pr?.email ?? "", p_phone: pr?.phone ?? "", p_rating: rating, p_recommend: recommend, p_promise: promise, p_note: note });
-};
-
-export async function findBookings(email: string, phone: string): Promise<Booking[] | null> {
-  try {
-    const { data, error } = await createClient().rpc("pp_find_bookings", { p_email: email, p_phone: phone });
-    if (error) return null;
-    return Array.isArray(data) ? (data as Booking[]) : [];
-  } catch {
-    return null;
-  }
-}
+export const giveFeedback = (id: string, rating: number, recommend: boolean, promise: boolean, note: string | null) =>
+  call("pp_give_feedback", { p_id: id, p_rating: rating, p_recommend: recommend, p_promise: promise, p_note: note });
 
 export const createSenior = (p: SeniorProfileInput) => call<{ id: string; token: string }>("pp_senior_create", { p });
 export const saveProfile = (token: string, p: SeniorProfileInput) => call("pp_senior_save_profile", { p_token: token, p });
