@@ -80,6 +80,8 @@ export type Booking = {
   movedFrom: string | null;
   movedTo: string | null;
   createdAt: string;
+  /** Google invite state (0036): none / syncing / pending = still being made; ok / failed / … = settled */
+  meetSync?: string | null;
   feedbackGiven: boolean;
   senior: { id: string; firstName: string; campus: Campus; year: Year; status: SeniorStatus };
 };

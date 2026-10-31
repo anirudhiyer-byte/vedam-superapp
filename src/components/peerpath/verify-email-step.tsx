@@ -1,9 +1,9 @@
 "use client";
 
 /**
- * Verify the login email inside the booking popup (code EMAIL_NOT_VERIFIED).
- * Email → "Send code" → 6-digit code → Supabase marks the login email verified
- * (auth.users.email_confirmed_at), which is the only email pp_book trusts.
+ * Add the login email inside the booking popup (code EMAIL_MISSING: no email on the
+ * user's own VSAT application). Email → "Send code" → 6-digit code → Supabase marks the
+ * login email verified (auth.users.email_confirmed_at), which pp_book then uses.
  * Same Supabase calls the site already uses on /apply and in the profile form.
  */
 import { useEffect, useState } from "react";

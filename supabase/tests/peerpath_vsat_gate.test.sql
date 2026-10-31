@@ -1,4 +1,4 @@
--- PeerPath VSAT gate · database tests (migrations 0031–0033)
+-- PeerPath VSAT gate · database tests (migrations 0031–0036)
 --
 -- How to run (STAGING ONLY): paste this whole file into the staging SQL editor,
 -- or run it through the Supabase MCP / psql. The last statement returns one row
@@ -296,8 +296,9 @@ begin
         into n, s, id1, mode from public.pp_bookings where applicant_user_id = u;
       t_name := t_name || text 'B case 1 registered + paid -> OK, one row owned by uid'; t_det := t_det || (r::text || ' rows=' || n);
       t_pass := t_pass || (r->>'code' = 'OK' and (r->>'ok')::boolean and n = 1 and r->>'id' is not null);
-      t_name := t_name || text 'B email + phone come from the VERIFIED login (application values ignored), name from the application'; t_det := t_det || (s || ' ' || id1 || ' ' || mode);
-      t_pass := t_pass || (s = 'b-paid-login@example.invalid' and id1 = '+919100000003' and mode = 'Paid Applicant');
+      -- 0036 (owner, 31 Oct): email from the user's OWN application; phone only from the verified login
+      t_name := t_name || text 'B email from own application, phone from the VERIFIED login (application mobile ignored), name from the application'; t_det := t_det || (s || ' ' || id1 || ' ' || mode);
+      t_pass := t_pass || (s = 'b-paid-app@example.invalid' and id1 = '+919100000003' and mode = 'Paid Applicant');
 
       select count(*) into n from public.pp_book_attempts where user_id = u;
       t_name := t_name || text 'B attempt logged for allowed booking'; t_det := t_det || (n || ' log rows'); t_pass := t_pass || (n = 1);
@@ -342,14 +343,16 @@ begin
       perform pg_temp.mk_paid(u);
       r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '14:30'))));
       select count(*) into n from public.pp_bookings where applicant_user_id = u;
-      t_name := t_name || text 'B no email anywhere -> EMAIL_NOT_VERIFIED, no row'; t_det := t_det || (r::text || ' rows=' || n); t_pass := t_pass || (r->>'code' = 'EMAIL_NOT_VERIFIED' and n = 0);
+      t_name := t_name || text 'B no email anywhere -> EMAIL_MISSING, no row'; t_det := t_det || (r::text || ' rows=' || n); t_pass := t_pass || (r->>'code' = 'EMAIL_MISSING' and n = 0);
 
-      -- verified-only contact details (security review, 30 Oct): typed values are never used
+      -- 0036: a phone-OTP login (email not verified) books with the email from its own application
       u := pg_temp.mk_user('b-emailunv@example.invalid', '+919100000008', false, true);
       perform pg_temp.mk_app(u, 'Email Unverified', 'b-emailunv@example.invalid', '+919100000008');
       perform pg_temp.mk_paid(u);
       r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '15:00'))));
-      t_name := t_name || text 'B login email not verified (phone verified) -> EMAIL_NOT_VERIFIED'; t_det := t_det || r::text; t_pass := t_pass || (r->>'code' = 'EMAIL_NOT_VERIFIED');
+      select max(applicant_email), max(applicant_phone) into s, id1 from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'B phone-OTP login (email not verified) -> OK, email from own application, verified phone stored'; t_det := t_det || (r::text || ' ' || coalesce(s, 'null') || ' ' || coalesce(id1, 'null'));
+      t_pass := t_pass || (r->>'code' = 'OK' and s = 'b-emailunv@example.invalid' and id1 = '+919100000008');
 
       u := pg_temp.mk_user('b-phoneunv@example.invalid', '+919100000009', true, false);
       perform pg_temp.mk_app(u, 'Phone Unverified', 'b-phoneunv@example.invalid', '+919100000009');
@@ -370,10 +373,10 @@ begin
 
       u := pg_temp.mk_user('b-profemail@example.invalid', null, false);
       update public.profiles set email_verified = true where id = u;
-      perform pg_temp.mk_app(u, 'Profile Email Flag', 'b-profemail@example.invalid', null);
+      perform pg_temp.mk_app(u, 'Profile Email Flag', null, null);   -- no application email, so only the flag could help
       perform pg_temp.mk_paid(u);
       r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '17:00'))));
-      t_name := t_name || text 'B profile email_verified flag (user-editable) not trusted -> EMAIL_NOT_VERIFIED'; t_det := t_det || r::text; t_pass := t_pass || (r->>'code' = 'EMAIL_NOT_VERIFIED');
+      t_name := t_name || text 'B profile email_verified flag (user-editable) not trusted -> EMAIL_MISSING'; t_det := t_det || r::text; t_pass := t_pass || (r->>'code' = 'EMAIL_MISSING');
 
       u := pg_temp.mk_user('b-noplus@example.invalid', '919100000012');
       perform pg_temp.mk_app(u, 'No Plus', 'b-noplus@example.invalid', null);
@@ -381,6 +384,41 @@ begin
       r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '16:30'))));
       select max(applicant_phone) into s from public.pp_bookings where applicant_user_id = u;
       t_name := t_name || text 'B login phone stored in E.164 (+ added)'; t_det := t_det || (r::text || ' ' || coalesce(s, 'null')); t_pass := t_pass || (r->>'code' = 'OK' and s = '+919100000012');
+
+      -- 0036: where the email comes from
+      u := pg_temp.mk_user('b-login2@example.invalid', '+919100000013');
+      perform pg_temp.mk_app(u, 'Two Emails', ' B-App2@Example.invalid ', null);
+      perform pg_temp.mk_paid(u);
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '09:00'))));
+      select max(applicant_email) into s from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'B application email wins over a verified login email (trimmed, lower-cased)'; t_det := t_det || (r::text || ' ' || coalesce(s, 'null'));
+      t_pass := t_pass || (r->>'code' = 'OK' and s = 'b-app2@example.invalid');
+
+      u := pg_temp.mk_user('b-loginonly@example.invalid', '+919100000014');
+      perform pg_temp.mk_app(u, 'Login Only', null, null);
+      perform pg_temp.mk_paid(u);
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '10:00'))));
+      select max(applicant_email) into s from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'B no application email -> the OTP-verified login email is used'; t_det := t_det || (r::text || ' ' || coalesce(s, 'null'));
+      t_pass := t_pass || (r->>'code' = 'OK' and s = 'b-loginonly@example.invalid');
+
+      u := pg_temp.mk_user(null, '+919100000015');
+      perform pg_temp.mk_app(u, 'Bad Email', 'not-an-email', null);
+      perform pg_temp.mk_paid(u);
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '21:00'))));
+      select count(*) into n from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'B invalid application email is ignored (phone-only login) -> EMAIL_MISSING, no row'; t_det := t_det || (r::text || ' rows=' || n);
+      t_pass := t_pass || (r->>'code' = 'EMAIL_MISSING' and n = 0);
+
+      u2 := pg_temp.mk_user('b-other@example.invalid', '+919100000016');
+      perform pg_temp.mk_app(u2, 'Other Applicant', 'b-other-app@example.invalid', null);
+      u := pg_temp.mk_user(null, '+919100000017');
+      perform pg_temp.mk_app(u, 'Mine', null, null);
+      perform pg_temp.mk_paid(u);
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(3, '21:30'))));
+      select count(*) into n from public.pp_bookings where applicant_user_id = u or applicant_email = 'b-other-app@example.invalid';
+      t_name := t_name || text 'B another user''s application email is never used -> EMAIL_MISSING, no row'; t_det := t_det || (r::text || ' rows=' || n);
+      t_pass := t_pass || (r->>'code' = 'EMAIL_MISSING' and n = 0);
       raise exception using errcode = 'ZUNDO';
     exception when sqlstate 'ZUNDO' then null;
     end;
@@ -522,6 +560,8 @@ begin
 
       r := pg_temp.call_as(u, format('select public.pp_booking_by_id(%L::uuid)', id1));
       t_name := t_name || text 'O owner can view own booking'; t_det := t_det || left(r::text, 120); t_pass := t_pass || (r->>'id' = id1);
+      t_name := t_name || text 'O booking view includes meetSync (booked page "preparing your Meet link")'; t_det := t_det || coalesce(r->>'meetSync', 'missing');
+      t_pass := t_pass || (r ? 'meetSync' and r->>'meetSync' = 'none');
       r := pg_temp.call_as(u2, format('select public.pp_booking_by_id(%L::uuid)', id1));
       t_name := t_name || text 'O another user gets nothing (same as not found)'; t_det := t_det || r::text; t_pass := t_pass || (r = 'null'::jsonb);
       r := pg_temp.call_as(adm, format('select public.pp_booking_by_id(%L::uuid)', id1));
@@ -638,9 +678,9 @@ begin
       r2 := pg_temp.book_as(u, jsonb_build_object('seniorId', sen, 'start', pg_temp.slot(9, '10:00'), 'type', '1:1', 'duration', 30));
       select jsonb_build_object('name', applicant_name, 'email', applicant_email, 'phone', applicant_phone) into body
         from public.pp_bookings where id = (r2->>'id')::uuid;
-      t_name := t_name || text 'C contact shown = contact stored (verified login email/phone, application name)'; t_det := t_det || (r::text || ' vs ' || coalesce(body::text, 'no booking'));
+      t_name := t_name || text 'C contact shown = contact stored (application email, verified login phone, application name)'; t_det := t_det || (r::text || ' vs ' || coalesce(body::text, 'no booking'));
       t_pass := t_pass || (r->>'name' = body->>'name' and r->>'email' = body->>'email' and r->>'phone' = body->>'phone' and (r->>'complete')::boolean
-                           and r->>'email' = 'c-login@example.invalid' and r->>'phone' = '+919100000050' and r->>'name' = 'Contact App Name');
+                           and r->>'email' = 'c-app@example.invalid' and r->>'phone' = '+919100000050' and r->>'name' = 'Contact App Name');
 
       r := pg_temp.call_as(u2, 'select public.pp_my_contact()');
       r2 := pg_temp.book_as(u2, jsonb_build_object('seniorId', sen, 'start', pg_temp.slot(9, '11:00'), 'type', '1:1', 'duration', 30));
@@ -658,6 +698,12 @@ begin
       r := pg_temp.call_as(adm, 'select public.pp_my_contact()');
       t_name := t_name || text 'C email not verified -> complete = false, email hidden, verified phone shown'; t_det := t_det || r::text;
       t_pass := t_pass || (r->>'complete' = 'false' and r->>'email' is null and r->>'phone' = '+919100000053');
+
+      adm := pg_temp.mk_user(null, '+919100000054');
+      perform pg_temp.mk_app(adm, 'Phone User', 'c-phoneapp@example.invalid', null);
+      r := pg_temp.call_as(adm, 'select public.pp_my_contact()');
+      t_name := t_name || text 'C phone-OTP login -> application email + verified phone, complete = true'; t_det := t_det || r::text;
+      t_pass := t_pass || (r->>'complete' = 'true' and r->>'email' = 'c-phoneapp@example.invalid' and r->>'phone' = '+919100000054');
 
       r := pg_temp.call_as(null, 'select public.pp_my_contact()', true);
       t_name := t_name || text 'C anon cannot run pp_my_contact'; t_det := t_det || r::text; t_pass := t_pass || (r->>'sqlstate' = '42501');

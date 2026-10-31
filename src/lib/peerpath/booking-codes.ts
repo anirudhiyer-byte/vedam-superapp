@@ -15,7 +15,8 @@ export const BOOK_CODES = [
   "BOOKING_CLOSED",
   "NOT_REGISTERED",
   "PAYMENT_PENDING",
-  "EMAIL_NOT_VERIFIED",
+  "EMAIL_MISSING", // 0036: no email on the user's own application and no verified login email
+  "EMAIL_NOT_VERIFIED", // answered by the 0035 database only (kept so a rollback still shows the right popup)
   "SLOT_UNAVAILABLE",
   "RESCHEDULE_CLOSED",
   "LIMIT_REACHED",
@@ -80,6 +81,12 @@ export function popupFor(code: BookFailCode, ctx: { returnTo: string; seniorPath
         title: "Not registered for VSAT",
         body: "Chats with seniors are for VSAT applicants. Register for VSAT, then come back to book this time.",
         action: { label: "Register now", href: withReturn(PEERPATH_LINKS.register, ctx.returnTo) },
+      };
+    case "EMAIL_MISSING":
+      return {
+        title: "Add your email",
+        body: "We send the Google Meet invite by email, and we couldn't find one on your VSAT application. Add your email here with a one-time code, then confirm your booking.",
+        verifyEmail: true,
       };
     case "EMAIL_NOT_VERIFIED":
       return {

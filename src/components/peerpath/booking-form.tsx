@@ -77,19 +77,19 @@ export function BookingForm(p: Props) {
           </div>
           <dl className="grid gap-3 sm:grid-cols-3">
             <Detail label="Name" value={p.contact?.name ?? null} />
-            <Detail label="Email" value={p.contact?.email ?? null} missing="Not verified yet" />
+            <Detail label="Email" value={p.contact?.email ?? null} missing="Not on your application" />
             <Detail label="Phone (optional)" value={p.contact?.phone ?? null} missing="Not added" optional />
           </dl>
           {!p.contact?.email && (
-            <button type="button" className="pp-btn-secondary self-start px-5" onClick={() => setPopup(popupFor("EMAIL_NOT_VERIFIED", ctx))}>
-              Verify my email
+            <button type="button" className="pp-btn-secondary self-start px-5" onClick={() => setPopup(popupFor("EMAIL_MISSING", ctx))}>
+              Add my email
             </button>
           )}
           {verified && p.contact?.email && (
-            <p role="status" className="text-[13px] font-medium text-pp-heading">Email verified. You can confirm your booking now.</p>
+            <p role="status" className="text-[13px] font-medium text-pp-heading">Email added. You can confirm your booking now.</p>
           )}
           <p className="text-[13px] text-pp-muted">
-            The Google Meet invite goes to this email. Email and phone come from your login; the name from your VSAT application.
+            The Google Meet invite goes to this email. Name and email come from your VSAT application; phone from your login.
           </p>
         </section>
 

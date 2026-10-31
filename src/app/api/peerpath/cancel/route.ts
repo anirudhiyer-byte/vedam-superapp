@@ -13,6 +13,7 @@ import { bearerToken, readJsonObject, sameOrigin } from "@/lib/peerpath/book-req
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
+export const preferredRegion = "bom1"; // same region as the Supabase database (ap-south-1, Mumbai)
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const CANCELS_PER_IP_PER_15MIN = 20;

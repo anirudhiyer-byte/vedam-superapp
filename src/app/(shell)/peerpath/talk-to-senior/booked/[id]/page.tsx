@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { TtsNav } from "@/components/peerpath/tts-nav";
 import { CancelBooking } from "@/components/peerpath/booking-actions";
 import { BookingNotFound } from "@/components/peerpath/booking-not-found";
+import { MeetLinkPending } from "@/components/peerpath/meet-link-pending";
+import { googleConfigured } from "@/lib/peerpath/google";
 import { AdmissionsNote, Avatar, yearLabel } from "@/components/peerpath/ui";
 import { IconCalendar, IconCheck, IconVideo } from "@/components/peerpath/icons";
 import { BOOKING_RULES, PEERPATH_LINKS, ttsPath } from "@/lib/peerpath/constants";
@@ -15,6 +17,9 @@ import type { Booking } from "@/lib/peerpath/types";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Your chat — Talk to a Senior · Vedam", robots: { index: false } };
+
+/** How long after booking the page may say "preparing your Meet link" (the cron takes over after). */
+const PREPARING_MEET_MS = 2 * 60_000;
 
 function googleCalendarLink(b: Booking) {
   const f = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
@@ -39,6 +44,13 @@ export default async function BookedPage({ params }: { params: Promise<{ id: str
   const started = startsIn <= 0;
   const live = b.status === "confirmed" && !started;
   const canGiveFeedback = (b.status === "completed" || (b.status === "confirmed" && started)) && !b.feedbackGiven;
+  // the Google invite is made right after booking (after the answer): for the first couple of
+  // minutes show "preparing" instead of a link that is about to change
+  const preparingMeet =
+    live &&
+    googleConfigured() &&
+    ["none", "syncing", "pending"].includes(b.meetSync ?? "") &&
+    Date.now() - new Date(b.createdAt).getTime() < PREPARING_MEET_MS;
 
   const head =
     b.status === "cancelled"
@@ -93,7 +105,9 @@ export default async function BookedPage({ params }: { params: Promise<{ id: str
 
           {b.status === "confirmed" && (
             <div className="flex flex-col gap-3 sm:flex-row">
-              {b.meetUrl ? (
+              {preparingMeet ? (
+                <MeetLinkPending />
+              ) : b.meetUrl ? (
                 <a href={b.meetUrl} target="_blank" rel="noreferrer" className="pp-btn-primary flex-1">
                   <IconVideo /> Join Google Meet
                 </a>

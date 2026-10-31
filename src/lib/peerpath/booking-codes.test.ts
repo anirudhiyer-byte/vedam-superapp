@@ -67,6 +67,17 @@ describe("popupFor — every failure code has a plain message and no raw error",
     expect(p.verifyEmail).toBe(true);
     expect(p.action).toBeUndefined();
   });
+  it("EMAIL_MISSING (0036: no email on the application) -> add an email inside the popup, never 'Verify your email'", () => {
+    expect((BOOK_CODES as readonly string[]).includes("EMAIL_MISSING")).toBe(true);
+    const p = popupFor("EMAIL_MISSING", ctx);
+    expect(p.title).toBe("Add your email");
+    expect(p.title).not.toMatch(/verify/i);
+    expect(p.verifyEmail).toBe(true);
+    expect(p.action).toBeUndefined();
+  });
+  it("EMAIL_MISSING from the database reaches the UI (not turned into SERVER)", () => {
+    expect(parseBookResult({ ok: false, code: "EMAIL_MISSING" })).toEqual({ ok: false, code: "EMAIL_MISSING" });
+  });
   it("PHONE_MISSING is gone (phone is optional since 0035)", () => {
     expect((BOOK_CODES as readonly string[]).includes("PHONE_MISSING")).toBe(false);
   });

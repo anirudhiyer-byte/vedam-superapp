@@ -7,8 +7,10 @@
  * the database by pp_book, never from this request.
  *
  * Order: CSRF (cookie requests) → JSON → per-IP limit → login → pp_book (as the
- * user) → Google invite. pp_book itself does the per-user limit, the VSAT gate,
- * the slot re-check and logs every attempt.
+ * user) → answer → Google invite AFTER the answer (Next.js after()). pp_book itself
+ * does the per-user limit, the VSAT gate, the slot re-check and logs every attempt.
+ * The booked page shows "preparing your Meet link" until the invite is made; the
+ * cron (every 15 min) finishes anything left over.
  *
  * API clients may call with `Authorization: Bearer <access token>` instead of the
  * cookie; they get exactly the same answers. A logged-in user can also call pp_book
@@ -19,15 +21,16 @@ import { NextResponse } from "next/server";
 import { createClient as createTokenClient } from "@supabase/supabase-js";
 import { createClient as createCookieClient } from "@/lib/supabase/server";
 import { adminDb, allowIp, syncBooking, trustedIp } from "@/lib/peerpath/meet-sync";
+import { afterResponse } from "@/lib/peerpath/after-response";
 import { bearerToken, pickBookFields, readJsonObject, sameOrigin } from "@/lib/peerpath/book-request";
 import { parseBookResult } from "@/lib/peerpath/booking-codes";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
+export const preferredRegion = "bom1"; // same region as the Supabase database (ap-south-1, Mumbai)
 
 /** Booking attempts per visitor IP per hour (shared Wi-Fi in a school or hostel is many students). */
 const BOOKINGS_PER_IP_PER_HOUR = 60;
-const SYNC_WAIT_MS = 6000;
 
 const json = (body: unknown, status = 200) => NextResponse.json(body, { status });
 
@@ -68,12 +71,12 @@ export async function POST(req: Request) {
   const res = parseBookResult(data);
   if (!res.ok) return json(res);
 
-  // Meet invite now; if Google is slow the cron finishes it within 15 minutes
-  const done = syncBooking(admin, res.id).catch(() => {});
-  if (typeof body.rescheduleOf === "string" && body.rescheduleOf) {
-    const oldId = body.rescheduleOf;
-    void done.then(() => syncBooking(admin, oldId).catch(() => {}));
-  }
-  await Promise.race([done, new Promise((r) => setTimeout(r, SYNC_WAIT_MS))]);
+  // The booking is saved: answer now. Meet invite (and, for a move, the old chat's
+  // cleanup) run after the response; the cron finishes anything left over.
+  const oldId = typeof body.rescheduleOf === "string" && body.rescheduleOf ? body.rescheduleOf : null;
+  afterResponse(async () => {
+    await syncBooking(admin, res.id).catch(() => {});
+    if (oldId) await syncBooking(admin, oldId).catch(() => {});
+  });
   return json(res);
 }

@@ -1,7 +1,9 @@
 /**
- * PeerPath · verify the login email in place (booking popup, code EMAIL_NOT_VERIFIED).
+ * PeerPath · add / verify the login email in place (booking popup, code EMAIL_MISSING;
+ * EMAIL_NOT_VERIFIED on the 0035 database).
  *
- * pp_book only trusts auth.users.email_confirmed_at, which Supabase sets when the user
+ * Used only when the user's own VSAT application has no email (0036). pp_book then falls
+ * back to the login email, and only trusts auth.users.email_confirmed_at, which Supabase sets when the user
  * enters the email-change OTP (`updateUser({ email })` → `verifyOtp({ type: "email_change" })`,
  * the same pattern /apply and the profile form already use). These helpers are pure so they
  * are unit-tested; they turn Supabase errors into plain messages and never show the raw text.

@@ -31,9 +31,12 @@ export default async function BookPage({ searchParams }: { searchParams: SP }) {
   // booking needs a login: who books is taken from the account, never typed in
   if (!(await getSessionUser())) redirect(withReturn(PEERPATH_LINKS.login, returnTo));
 
-  const contact = await loadMyContact();
-  const senior = sp.senior ? await loadSenior(sp.senior) : null;
-  const old = isUuid(sp.r) ? await loadBooking(sp.r) : null;
+  // three independent reads: run them together, not one after another
+  const [contact, senior, old] = await Promise.all([
+    loadMyContact(),
+    sp.senior ? loadSenior(sp.senior) : Promise.resolve(null),
+    isUuid(sp.r) ? loadBooking(sp.r) : Promise.resolve(null),
+  ]);
   const moving = old && old.status === "confirmed" ? old : null;
   const slot = senior?.slots.find((s) => s.start === sp.start && s.type === sp.type);
   const duration = slot?.type === "Group" ? 30 : Number(sp.duration) === 15 && senior?.durations.includes(15) ? 15 : 30;
