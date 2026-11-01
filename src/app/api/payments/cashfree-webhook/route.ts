@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { verifyWebhookSignature } from "@/lib/payments/cashfree";
 import { confirmPayment } from "@/lib/payments/confirm";
 import { confirmVsatPayment } from "@/lib/payments/vsat-confirm";
+import { confirmEnrollment } from "@/lib/payments/enroll-confirm";
 import { safeBaseUrl } from "@/lib/payments/base-url";
 
 export const runtime = "nodejs";
@@ -20,9 +21,10 @@ export async function GET() {
 /**
  * Shared Cashfree payment webhook for BOTH event registrations and the VSAT fee.
  * One URL is registered in the Cashfree dashboard; we dispatch by the order-id
- * prefix: VSAT orders are "VSATPAY_…" (→ confirmVsatPayment), event orders are
- * "VEDPAY_…" (→ confirmPayment). Both confirmers re-verify PAID with Cashfree and
- * are idempotent. Verifies the signature against the RAW body first (bad/missing
+ * prefix: VSAT fee orders are "VSATPAY_…" (→ confirmVsatPayment), enrollment
+ * orders are "ENROLLPAY_…" (→ confirmEnrollment), event orders are "VEDPAY_…"
+ * (→ confirmPayment). All confirmers re-verify PAID with Cashfree and are
+ * idempotent. Verifies the signature against the RAW body first (bad/missing
  * → 401); everything else → 200 so Cashfree does not hammer retries.
  */
 export async function POST(req: Request) {
@@ -46,6 +48,8 @@ export async function POST(req: Request) {
       if (orderId.startsWith("VSATPAY_")) {
         const eventId = payload?.data?.payment?.cf_payment_id != null ? String(payload.data.payment.cf_payment_id) : null;
         await confirmVsatPayment(svc, orderId, eventId);
+      } else if (orderId.startsWith("ENROLLPAY_")) {
+        await confirmEnrollment(svc, orderId);
       } else {
         await confirmPayment(svc, orderId, safeBaseUrl(req));
       }
