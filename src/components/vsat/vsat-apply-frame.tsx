@@ -24,7 +24,7 @@ type SubmitData = {
  * The iframe src carries ?v=<deploy> so the CDN-cached static file is refreshed
  * on every deploy (otherwise a stale apply.html with no wiring gets served).
  */
-export function VsatApplyFrame({ profile, version }: { profile: VsatPrefill; version: string }) {
+export function VsatApplyFrame({ profile, version, hasApplication = false }: { profile: VsatPrefill; version: string; hasApplication?: boolean }) {
   const ref = useRef<HTMLIFrameElement>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [errMsg, setErrMsg] = useState("");
@@ -90,8 +90,14 @@ export function VsatApplyFrame({ profile, version }: { profile: VsatPrefill; ver
 
   return (
     <>
+      {hasApplication && (
+        <div className="fixed inset-x-0 top-0 z-40 flex flex-wrap items-center justify-center gap-3 bg-[#160a30] px-4 py-2.5 text-sm text-white">
+          <span>You&apos;ve already started your VSAT application.</span>
+          <a href="/vsat/dashboard" className="rounded-lg bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-4 py-1.5 font-semibold text-white">Continue to dashboard →</a>
+        </div>
+      )}
       <iframe ref={ref} title="Vedam One — Application" src={src}
-        className="fixed inset-0 block h-screen w-screen border-0 bg-white" />
+        className={`fixed inset-x-0 bottom-0 block w-screen border-0 bg-white ${hasApplication ? "top-11 h-[calc(100vh-2.75rem)]" : "top-0 h-screen"}`} />
       {status !== "idle" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 text-white">
           <div className="max-w-sm rounded-xl bg-[#160a30] px-6 py-5 text-sm">

@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   const L = b.lead ?? {};
   const { data: prof } = await admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle();
-  const { data: existing } = await admin.from("lead_manager").select("primary_utm").eq("lead_id", user.id).maybeSingle();
+  const { data: existing } = await admin.from("lead_manager").select("primary_utm, lead_stage, user_registration_date").eq("lead_id", user.id).maybeSingle();
   // build source/medium/campaign from the three parts (not just the campaign)
   const s = (L.utm_source as string) || "", m = (L.utm_medium as string) || "", c = (L.utm_campaign as string) || "";
   const triple = (s || m || c) ? [s, m, c].join("/") : ((L.full_utm as string) ?? null);
@@ -37,8 +37,10 @@ export async function POST(req: Request) {
     mobile_verification_status: "verified",
     lead_verification_date: new Date().toISOString(),
     primary_utm: primaryUtm,  // write-once first-touch (self-heals a stale campaign-only value)
-    lead_stage: "lead",
-    user_registration_date: new Date().toISOString(),
+    // preserve progress on a revisit: never downgrade lead_stage, keep the original
+    // registration time (write-once).
+    lead_stage: (existing?.lead_stage as string) ?? "lead",
+    user_registration_date: (existing?.user_registration_date as string) ?? new Date().toISOString(),
   };
   const { error } = await admin.from("lead_manager").upsert(row, { onConflict: "lead_id" });
   if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
