@@ -51,8 +51,10 @@ export function VsatApplyFrame({ profile, version }: { profile: VsatPrefill; ver
         } catch { /* non-blocking */ }
 
         const utm = readUtm();
+        // NOTE: the lead schema fields are .optional() (undefined), NOT nullable —
+        // sending null fails validation ("bad request"). Omit instead of null.
         const triple = (utm.utm_source || utm.utm_medium || utm.utm_campaign)
-          ? `${utm.utm_source ?? ""}/${utm.utm_medium ?? ""}/${utm.utm_campaign ?? ""}` : null;
+          ? `${utm.utm_source ?? ""}/${utm.utm_medium ?? ""}/${utm.utm_campaign ?? ""}` : undefined;
 
         const leadRes = await fetch("/api/vsat/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
           accessToken: token,
