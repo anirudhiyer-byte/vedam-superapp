@@ -1,14 +1,89 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { SearchableSelect } from "@/components/ui/searchable-select";
+import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
 
-type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "file";
+type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "file" | "school" | "state" | "city";
 type Question = { key: string; label: string; type: QType; required?: boolean; options?: string[]; exception?: { key: string; label: string } };
 type Category = { key: string; title: string; questions: Question[] };
 type Schema = { categories: Category[] };
 
 const input = "w-full rounded-lg border border-[#d9d2ec] bg-white px-3 py-2 text-sm text-[#1b1430] focus:border-[#7b2ff7] focus:outline-none";
 const grad = "rounded-xl bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-6 py-2.5 text-sm font-semibold text-white disabled:opacity-50";
+
+type SchoolHit = { code?: string; name: string; district?: string; state?: string };
+const schoolLabel = (h: SchoolHit) => [h.name, [h.district, h.state].filter(Boolean).join(", ")].filter(Boolean).join(" — ");
+
+/**
+ * Dataset-backed school picker: type-ahead against vsat_school_search (the
+ * school_database holds lakhs of UDISE schools, so this never ships the list to
+ * the browser). The stored answer is the human-readable "Name — District, State".
+ */
+function SchoolSelect({ value, disabled, invalid, onChange }:
+  { value: string; disabled?: boolean; invalid?: boolean; onChange: (v: string) => void }) {
+  const [supabase] = useState(() => createClient());
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const [hits, setHits] = useState<SchoolHit[]>([]);
+  const [searching, setSearching] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const seq = useRef(0);
+
+  useEffect(() => {
+    function onClick(e: MouseEvent) { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); }
+    if (open) document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [open]);
+
+  useEffect(() => {
+    const t = q.trim();
+    if (t.length < 2) { setHits([]); setSearching(false); return; }
+    setSearching(true);
+    const mine = ++seq.current;
+    const id = setTimeout(async () => {
+      const { data } = await supabase.rpc("vsat_school_search", { p: { q: t } });
+      if (mine !== seq.current) return; // a newer keystroke won
+      setHits(data?.ok ? ((data.schools as SchoolHit[]) ?? []) : []);
+      setSearching(false);
+    }, 280); // debounce
+    return () => clearTimeout(id);
+  }, [q, supabase]);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button type="button" disabled={disabled} onClick={() => setOpen((v) => !v)}
+        className={`${input} flex items-center justify-between text-left ${invalid ? "border-[#d14343]" : ""} ${disabled ? "opacity-40" : ""}`}>
+        <span className={`truncate ${value ? "text-[#1b1430]" : "text-[#9a93ad]"}`}>{value || "Search your school…"}</span>
+        <span className="ml-2 text-[#9a93ad]">▾</span>
+      </button>
+      {open && !disabled && (
+        <div className="absolute z-20 mt-1 max-h-72 w-full overflow-hidden rounded-xl border border-[#ece8f6] bg-white shadow-[0_18px_40px_-18px_rgba(43,19,92,0.4)]">
+          <div className="p-2">
+            <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Type school name (min 2 letters)…" className={input} />
+          </div>
+          <ul className="max-h-56 overflow-y-auto pb-1">
+            {q.trim().length < 2 && <li className="px-3 py-3 text-center text-sm text-[#9a93ad]">Type at least 2 letters</li>}
+            {q.trim().length >= 2 && searching && <li className="px-3 py-3 text-center text-sm text-[#9a93ad]">Searching…</li>}
+            {q.trim().length >= 2 && !searching && hits.length === 0 && <li className="px-3 py-3 text-center text-sm text-[#9a93ad]">No schools found</li>}
+            {hits.map((h, i) => {
+              const lbl = schoolLabel(h);
+              return (
+                <li key={(h.code ?? "") + i}>
+                  <button type="button" onClick={() => { onChange(lbl); setOpen(false); setQ(""); setHits([]); }}
+                    className="block w-full px-3 py-2 text-left text-sm text-[#1b1430] hover:bg-[#f6f2fe]">
+                    <span className="font-medium">{h.name}</span>
+                    {(h.district || h.state) && <span className="block text-xs text-[#9a93ad]">{[h.district, h.state].filter(Boolean).join(", ")}</span>}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
 
 /**
  * Renders the active VSAT form for a paid applicant, one category at a time
@@ -67,6 +142,17 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
   const catAns = answers[cat.key] ?? {};
 
   const setVal = (qk: string, v: string) => setAnswers((a) => ({ ...a, [cat.key]: { ...(a[cat.key] ?? {}), [qk]: v } }));
+  // Selecting a State clears City answers in the same category (they cascade off it).
+  const setStateVal = (qk: string, v: string) => setAnswers((a) => {
+    const c: Record<string, string> = { ...(a[cat.key] ?? {}), [qk]: v };
+    for (const qq of cat.questions) if (qq.type === "city") c[qq.key] = "";
+    return { ...a, [cat.key]: c };
+  });
+  // The State a City question cascades off = nearest preceding State question's answer.
+  const stateValueBefore = (qi: number) => {
+    for (let i = qi - 1; i >= 0; i--) if (cat.questions[i].type === "state") return catAns[cat.questions[i].key] ?? "";
+    return "";
+  };
 
   async function saveNext() {
     setBusy(true); setErr(""); setMissing([]);
@@ -100,7 +186,7 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
       <div className="mt-2 h-1.5 w-full rounded-full bg-[#f0edf8]"><div className="h-full rounded-full bg-gradient-to-r from-[#00cfe5] to-[#c200db]" style={{ width: `${pct}%` }} /></div>
 
       <div className="mt-5 space-y-4">
-        {cat.questions.map((q) => {
+        {cat.questions.map((q, qi) => {
           const skipped = !!(q.exception && exc[q.key]);
           const isMissing = missing.includes(q.key);
           return (
@@ -113,6 +199,14 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
                   <option value="">Select…</option>
                   {(q.options ?? []).map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
+              ) : q.type === "school" ? (
+                <SchoolSelect value={catAns[q.key] ?? ""} disabled={skipped} invalid={isMissing} onChange={(v) => setVal(q.key, v)} />
+              ) : q.type === "state" ? (
+                <SearchableSelect options={INDIA_STATES} value={catAns[q.key] ?? ""} disabled={skipped} onChange={(v) => setStateVal(q.key, v)} placeholder="Select state…" />
+              ) : q.type === "city" ? (
+                (() => { const st = stateValueBefore(qi); return (
+                  <SearchableSelect options={st ? (STATE_CITIES[st] ?? []) : []} value={catAns[q.key] ?? ""} disabled={skipped || !st} onChange={(v) => setVal(q.key, v)} placeholder={st ? "Select city…" : "Pick a state first"} />
+                ); })()
               ) : (
                 <input type={q.type === "number" ? "number" : q.type === "date" ? "date" : q.type === "file" ? "text" : "text"}
                   value={catAns[q.key] ?? ""} onChange={(e) => setVal(q.key, e.target.value)} disabled={skipped}

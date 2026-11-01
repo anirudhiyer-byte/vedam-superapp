@@ -2,13 +2,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "file";
+type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "file" | "school" | "state" | "city";
 type Question = { label: string; type: QType; required: boolean; options?: string; hasException?: boolean; exceptionLabel?: string };
 type Category = { title: string; questions: Question[] };
 type FormDraft = { id?: string; name: string; categories: Category[] };
 type FormRow = { id: string; name: string; status: string; version: number; categories: number; updatedAt: string };
 
-const QTYPES: QType[] = ["text", "textarea", "number", "date", "dropdown", "file"];
+// school/state/city are DATASET-backed, searchable dropdowns (no manual options):
+//  - school → searches the school_database (lakhs of UDISE schools)
+//  - state  → Indian states/UTs; city → cascades off the nearest preceding State answer
+const QTYPES: QType[] = ["text", "textarea", "number", "date", "dropdown", "file", "school", "state", "city"];
+const DATASET_HINTS: Partial<Record<QType, string>> = {
+  school: "Searchable from the school database (name · district · state).",
+  state: "Indian states/UTs — searchable dropdown.",
+  city: "Cascades off the nearest State question above it — add a State question first.",
+};
 
 function slug(s: string, fallback: string): string {
   const v = (s || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
@@ -177,6 +185,9 @@ export function VsatFormBuilder() {
                   </div>
                   {q.type === "dropdown" && (
                     <input value={q.options ?? ""} onChange={(e) => up((d) => { d.categories[ci].questions[qi].options = e.target.value; return d; })} placeholder="Options, comma-separated (e.g. CSE, AI/ML, ECE)" className={`${input} mt-2`} />
+                  )}
+                  {DATASET_HINTS[q.type] && (
+                    <p className="mt-2 text-xs text-white/40">{DATASET_HINTS[q.type]}</p>
                   )}
                   <label className="mt-2 flex items-center gap-2 text-xs text-white/50">
                     <input type="checkbox" checked={!!q.hasException} onChange={(e) => up((d) => { d.categories[ci].questions[qi].hasException = e.target.checked; return d; })} />

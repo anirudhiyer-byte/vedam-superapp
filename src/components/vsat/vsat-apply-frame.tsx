@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
+import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
 import { VsatAuthOverlay, type VsatFirst, type VsatVerifiedProfile } from "@/components/vsat/vsat-auth-overlay";
 import { VsatEmailOverlay } from "@/components/vsat/vsat-email-overlay";
 import { VsatLoginOverlay } from "@/components/vsat/vsat-login-overlay";
@@ -167,10 +168,15 @@ export function VsatApplyFrame({
     return () => window.removeEventListener("message", onMsg);
   }, []);
 
-  // Returning lead (part 1 done, no application yet): jump straight to pane 2.
   function onIframeLoad() {
+    const win = ref.current?.contentWindow;
+    if (!win) return;
+    // Feed the State/City dataset so apply.html can render them as cascading
+    // dropdowns (same lists as the profile registration form).
+    try { win.postMessage({ type: "vsat-geo", states: INDIA_STATES, cities: STATE_CITIES }, window.location.origin); } catch { /* ignore */ }
+    // Returning lead (part 1 done, no application yet): jump straight to pane 2.
     if (loggedIn && hasLead && !hasApplication) {
-      try { ref.current?.contentWindow?.postMessage({ type: "vsat-advance", profile }, window.location.origin); } catch { /* ignore */ }
+      try { win.postMessage({ type: "vsat-advance", profile }, window.location.origin); } catch { /* ignore */ }
     }
   }
 
