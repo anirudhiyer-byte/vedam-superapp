@@ -1423,44 +1423,41 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
 })();
 </script>
 
-<!-- VSAT prefill: fills the apply form from the signed-in profile. Added without
-     touching the design — parent (/vsat) posts the profile in; we fill both the
-     light-DOM (desktop) form and the shadow-DOM (mobile) form. -->
+<!-- VSAT prefill: fills the apply form from the signed-in profile WITHOUT touching
+     the design. The parent (/vsat) puts the profile in the iframe URL hash
+     (#vsatpf=<encoded json>); we fill both the desktop (light DOM) form and the
+     mobile (shadow DOM) form, retrying a few ticks so the shadow form is mounted. -->
 <script>
 (function(){
-  function setField(root, f, val){
-    if(val===undefined||val===null||val==="") return;
+  function getProfile(){
+    try{ var m=(location.hash||"").match(/vsatpf=([^&]+)/); if(m) return JSON.parse(decodeURIComponent(m[1])); }catch(e){}
+    return null;
+  }
+  function setField(root,f,val){
+    if(val===undefined||val===null||String(val)==="") return;
     var wrap=root.querySelector('[data-f="'+f+'"]'); if(!wrap) return;
     var el=wrap.querySelector('input,select'); if(!el) return;
     if(el.tagName==="SELECT"){
       var v=String(val).trim().toLowerCase();
-      for(var i=0;i<el.options.length;i++){
-        var o=el.options[i];
-        if(o.text.trim().toLowerCase()===v || (o.value||"").trim().toLowerCase()===v){ el.selectedIndex=i; el.classList.remove("empty"); return; }
-      }
+      for(var i=0;i<el.options.length;i++){ var o=el.options[i];
+        if(o.text.trim().toLowerCase()===v || (o.value||"").trim().toLowerCase()===v){ el.selectedIndex=i; el.classList.remove("empty"); return; } }
     } else { el.value=val; }
   }
-  function fill(root, p){
+  function fill(root,p){
     if(!root) return;
-    setField(root,"fullName",p.full_name);
-    setField(root,"email",p.email);
-    setField(root,"phone",p.phone);
-    setField(root,"passYear",p.grad_year);
-    setField(root,"stream",p.stream);
-    setField(root,"state",p.state);
-    setField(root,"city",p.city);
-    // campus + "where did you hear" are not on the profile -> left blank on purpose
+    setField(root,"fullName",p.full_name); setField(root,"email",p.email); setField(root,"phone",p.phone);
+    setField(root,"passYear",p.grad_year); setField(root,"stream",p.stream);
+    setField(root,"state",p.state); setField(root,"city",p.city);
   }
-  function prefill(p){
-    try{ fill(document, p); }catch(e){}
-    try{ var h=document.getElementById("mhost"); if(h&&h.shadowRoot) fill(h.shadowRoot, p); }catch(e){}
+  function prefill(p){ if(!p) return;
+    try{ fill(document,p); }catch(e){}
+    try{ var h=document.getElementById("mhost"); if(h&&h.shadowRoot) fill(h.shadowRoot,p); }catch(e){}
   }
-  window.addEventListener("message", function(ev){
-    if(ev.origin!==location.origin) return;
-    var d=ev.data; if(!d||d.type!=="vsat-prefill"||!d.profile) return;
-    prefill(d.profile);
-    setTimeout(function(){ prefill(d.profile); }, 300); // shadow DOM may mount a tick later
-  });
-  try{ parent.postMessage({type:"vsat-frame-ready"}, location.origin); }catch(e){}
+  var P=getProfile();
+  function run(){ prefill(P); }
+  if(document.readyState!=="loading") run(); else document.addEventListener("DOMContentLoaded",run);
+  window.addEventListener("load",run);
+  [100,300,700,1500].forEach(function(t){ setTimeout(run,t); });
+  window.addEventListener("message",function(ev){ if(ev.origin!==location.origin) return; var d=ev.data; if(d&&d.type==="vsat-prefill"&&d.profile){ P=d.profile; run(); } });
 })();
 </script>
