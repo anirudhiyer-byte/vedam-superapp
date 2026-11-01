@@ -1446,6 +1446,21 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
     setField(root,"passYear",p.grad_year); setField(root,"stream",p.stream); setField(root,"state",p.state); setField(root,"city",p.city);
   }
   function val(root,f){ var w=root.querySelector('[data-f="'+f+'"]'); if(!w) return ""; var e=w.querySelector('input,select'); return e? e.value : ""; }
+  function hasApp(){ return /(?:#|&)vsatapp=1(?:&|$)/.test(location.hash||""); }
+  function firstName(p){ return (p&&p.full_name)? String(p.full_name).trim().split(/\s+/)[0] : ""; }
+  /* Already-registered: show a greeting + "Continue to dashboard" at the TOP of the
+     form card (right-side form area), instead of forcing the applicant to refill. */
+  function injectContinue(root,p){
+    if(!root) return; var form=root.querySelector('#applyForm'); if(!form) return;
+    if(form.querySelector('#vsatContinue')) return;
+    var fn=firstName(p);
+    var box=document.createElement('div'); box.id='vsatContinue';
+    box.setAttribute('style','margin:0 0 16px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(0,207,229,.12),rgba(194,0,219,.12));border:1px solid rgba(123,47,247,.25)');
+    box.innerHTML='<div style="font-weight:700;color:#160a30;font-size:15px">'+(fn?('Hi '+fn+','):'Welcome back,')+'</div>'+
+      '<div style="color:#4b5563;font-size:13px;margin-top:3px">You have already started your application.</div>'+
+      '<a href="/vsat/dashboard" style="display:inline-block;margin-top:11px;padding:9px 16px;border-radius:10px;background:linear-gradient(135deg,#00cfe5,#c200db);color:#fff;font-weight:600;font-size:13px;text-decoration:none">Continue to your VSAT Dashboard &rarr;</a>';
+    form.insertBefore(box, form.firstChild);
+  }
   function wireSubmit(root){
     var form=root.querySelector('#applyForm'); if(!form||form.__vsatSub) return; form.__vsatSub=true;
     form.addEventListener("submit", function(){
@@ -1463,6 +1478,10 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
     try{ var h=document.getElementById("mhost"); if(h&&h.shadowRoot) fill(h.shadowRoot,P); }catch(e){}
     try{ wireSubmit(document); }catch(e){}
     try{ var h2=document.getElementById("mhost"); if(h2&&h2.shadowRoot) wireSubmit(h2.shadowRoot); }catch(e){}
+    if(hasApp()){
+      try{ injectContinue(document,P); }catch(e){}
+      try{ var h3=document.getElementById("mhost"); if(h3&&h3.shadowRoot) injectContinue(h3.shadowRoot,P); }catch(e){}
+    }
   }
   if(document.readyState!=="loading") run(); else document.addEventListener("DOMContentLoaded",run);
   window.addEventListener("load",run);
