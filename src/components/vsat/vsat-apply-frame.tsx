@@ -79,10 +79,32 @@ export function VsatApplyFrame({ profile, version, hasApplication = false }: { p
       }
     }
 
+    // First half "Save and next" -> become a VSAT lead right away (for a signed-in
+    // user). Best-effort + silent: it must not block the mockup advancing to pane 2.
+    // A logged-out first-time user has no session here; the OTP overlay (next chunk)
+    // creates the account + lead before this path is relevant.
+    async function onFirst(d: SubmitData) {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        const token = session?.access_token;
+        if (!token) return; // logged-out new user -> handled by the OTP overlay
+        const utm = readUtm();
+        const triple = (utm.utm_source || utm.utm_medium || utm.utm_campaign)
+          ? `${utm.utm_source ?? ""}/${utm.utm_medium ?? ""}/${utm.utm_campaign ?? ""}` : undefined;
+        await fetch("/api/vsat/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+          accessToken: token,
+          lead: { name: d.fullName, email: d.email, phone: d.phone,
+            utm_source: utm.utm_source, utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign,
+            full_utm: triple, lead_source: utm.utm_source },
+        }) });
+      } catch { /* non-blocking: the lead will also be (re)created on Start application */ }
+    }
+
     function onMsg(ev: MessageEvent) {
       if (ev.origin !== window.location.origin) return;
       const data = ev.data as { type?: string; data?: SubmitData };
       if (data?.type === "vsat-submit" && data.data) void onSubmit(data.data);
+      if (data?.type === "vsat-first" && data.data) void onFirst(data.data);
     }
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
