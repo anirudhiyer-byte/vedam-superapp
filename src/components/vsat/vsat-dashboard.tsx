@@ -4,9 +4,26 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 
-const VSAT_FEE = 1000; // placeholder — real amount comes from the VSAT campaign
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
+type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null } | null;
+
+type CashfreeCheckout = { checkout: (o: { paymentSessionId: string; redirectTarget?: string }) => void };
+declare global { interface Window { Cashfree?: (opts: { mode: string }) => CashfreeCheckout } }
+
+/** Lazy-load the Cashfree v3 web SDK and return an initialised checkout instance. */
+function loadCashfree(mode: string): Promise<CashfreeCheckout> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === "undefined") return reject(new Error("no window"));
+    if (window.Cashfree) return resolve(window.Cashfree({ mode }));
+    const s = document.createElement("script");
+    s.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
+    s.async = true;
+    s.onload = () => (window.Cashfree ? resolve(window.Cashfree({ mode })) : reject(new Error("Cashfree SDK unavailable")));
+    s.onerror = () => reject(new Error("Could not load the payment SDK"));
+    document.head.appendChild(s);
+  });
+}
 
 const MILESTONES = [
   { key: "started", label: "Application started" },
@@ -34,16 +51,16 @@ function activeIndex(app: App): number {
   return 1; // applicant, unpaid -> next action is pay
 }
 
-/** Live HH:MM:SS left until `deadline` (ms epoch); null once elapsed. Ticks every second. */
-function useCountdown(deadline: number): string | null {
+/** Live HH:MM:SS left until `endsAt` (ISO); null once elapsed. Ticks every second. */
+function useCountdown(endsAt: string | null): string | null {
   const [, tick] = useState(0);
   useEffect(() => {
-    if (!deadline) return;
+    if (!endsAt) return;
     const id = setInterval(() => tick((n) => n + 1), 1000);
     return () => clearInterval(id);
-  }, [deadline]);
-  if (!deadline) return null;
-  const ms = deadline - Date.now();
+  }, [endsAt]);
+  if (!endsAt) return null;
+  const ms = new Date(endsAt).getTime() - Date.now();
   if (ms <= 0) return null;
   const h = Math.floor(ms / 3_600_000), m = Math.floor((ms % 3_600_000) / 60_000), s = Math.floor((ms % 60_000) / 1000);
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
@@ -57,9 +74,11 @@ export function VsatDashboard() {
   const [supabase] = useState(() => createClient());
   const [app, setApp] = useState<App>(null);
   const [lead, setLead] = useState<Lead>(null);
+  const [quote, setQuote] = useState<Quote>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [note, setNote] = useState("");
 
   const load = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -67,14 +86,34 @@ export function VsatDashboard() {
     const res = await fetch("/api/vsat/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
     const j = await res.json();
     if (j.ok) { setApp(j.app); setLead(j.lead); }
+    // fee quote (server-authoritative) drives the 24h banner + the exact pay amount
+    try {
+      const q = await fetch("/api/payments/vsat-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
+      const qj = await q.json();
+      if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt });
+    } catch { /* banner is best-effort */ }
     setLoading(false);
   }, [supabase]);
-  useEffect(() => { void load(); }, [load]);
 
-  const a0 = (app ?? {}) as Record<string, string>;
-  const created0 = a0.created_at ? new Date(a0.created_at).getTime() : 0;
-  const deadline = created0 ? created0 + 24 * 3600 * 1000 : 0;
-  const countdown = useCountdown(deadline); // live for everyone while the 24h window is open
+  // On the Cashfree return (?pay=return&order=…), confirm server-side then clean the URL.
+  useEffect(() => {
+    (async () => {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get("pay") !== "return") { void load(); return; }
+      const orderId = url.searchParams.get("order");
+      const { data: { session } } = await supabase.auth.getSession();
+      if (orderId && session) {
+        setNote("Confirming your payment…");
+        try {
+          const res = await fetch("/api/payments/vsat-status", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, orderId }) });
+          const j = await res.json();
+          setNote(j.ok && j.status === "paid" ? "Payment successful 🎉" : j.status === "already_paid" ? "" : "Payment not completed. You can try again.");
+        } catch { setNote("Could not confirm payment. Refresh in a moment."); }
+      }
+      window.history.replaceState({}, "", "/vsat/dashboard");
+      void load();
+    })();
+  }, [supabase, load]);
 
   async function patch(updates: Record<string, unknown>) {
     setBusy(true); setErr("");
@@ -84,6 +123,27 @@ export function VsatDashboard() {
     if (!j.ok) return setErr(j.error || "Update failed.");
     await load();
   }
+
+  async function startPayment() {
+    setBusy(true); setErr("");
+    track("vsat_pay_click");
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const res = await fetch("/api/payments/vsat-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
+      const j = await res.json();
+      if (!j.ok) { setBusy(false); return setErr(j.error === "already_paid" ? "You've already paid." : j.error || "Could not start payment."); }
+      const cashfree = await loadCashfree(j.mode || "sandbox");
+      cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
+      // browser now navigates to Cashfree; on return the effect above confirms.
+    } catch (e) {
+      setBusy(false);
+      setErr(String((e as Error)?.message || "Payment could not start."));
+    }
+  }
+
+  // live 24h countdown, shown for everyone while the early-bird window is open
+  // (hook must run before any early return)
+  const countdown = useCountdown(quote?.within24h ? quote?.windowEndsAt ?? null : null);
 
   const BackBar = (
     <div className="flex items-center justify-between px-6 py-4 lg:px-10">
@@ -98,6 +158,8 @@ export function VsatDashboard() {
   const pay = a.payment_stage_1, appl = a.application_stage_1;
   const paid = pay === "payment_approved";
   const idx = activeIndex(app);
+  const payAmount = quote?.net ?? 1000;
+  const showDiscount = !!quote && quote.discount > 0 && quote.within24h && !paid;
 
   const quickLinks = [
     { label: "📘 Download brochure", free: true },
@@ -129,17 +191,24 @@ export function VsatDashboard() {
 
         {/* MIDDLE 50% — contextual action */}
         <main className="px-6 pb-12 lg:px-10">
+          {note && <div className="mb-4 rounded-xl border border-[#c200db]/25 bg-[#faf1ff] p-3 text-sm text-[#7b2ff7]">{note}</div>}
           {countdown && (
             <div className="mb-6 rounded-2xl border border-[#f5a623]/40 bg-[#fff7e8] p-4 text-sm text-[#8a5a00]">
-              ⏳ <b>{countdown}</b> left on your 24-hour early-bird window{!paid ? " — pay now to save ₹200 on your VSAT fee." : "."}
+              ⏳ <b>{countdown}</b> left on your 24-hour early-bird window{showDiscount ? ` — pay now to save ₹${quote?.discount}.` : "."}
             </div>
           )}
           {!paid && (
             <div className={card}>
               <h2 className="font-display text-2xl font-bold">Pay your VSAT fee</h2>
-              <p className="mt-2 text-[#6b647e]">Pay ₹{VSAT_FEE} to unlock your exam slot, mock tests and the application form.</p>
-              <button onClick={() => { track("vsat_pay_click"); setErr("Payments open here soon."); }} disabled={busy} className={`mt-5 ${gradBtn}`}>Pay ₹{VSAT_FEE}</button>
-              {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#b8860b]">Payment initiated — complete it on the gateway.</p>}
+              <p className="mt-2 text-[#6b647e]">Pay to unlock your exam slot, mock tests and the application form.</p>
+              <div className="mt-4 flex items-baseline gap-2">
+                <span className="text-3xl font-bold">₹{payAmount}</span>
+                {showDiscount && <span className="text-lg text-[#b4adc4] line-through">₹{quote?.base}</span>}
+                {showDiscount && <span className="rounded-full bg-[#16a34a]/10 px-2 py-0.5 text-xs font-semibold text-[#16a34a]">₹{quote?.discount} off</span>}
+              </div>
+              <button onClick={startPayment} disabled={busy} className={`mt-5 ${gradBtn}`}>{busy ? "Starting…" : `Pay ₹${payAmount}`}</button>
+              {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#b8860b]">Payment initiated — if you didn&apos;t complete it, click Pay to try again.</p>}
+              {pay === "payment_failed" && <p className="mt-3 text-xs text-[#d14343]">Last payment failed. You can try again.</p>}
             </div>
           )}
           {paid && appl !== "slot_selected" && !["vsat_cleared","vsat_not_cleared","interview_selected","counselling_done","offer_released","enrolled"].includes(appl) && (
