@@ -1,4 +1,4 @@
--- PeerPath VSAT gate · database tests (migrations 0031–0036)
+-- PeerPath VSAT gate · database tests (migrations 0031–0036, 0039)
 --
 -- How to run (STAGING ONLY): paste this whole file into the staging SQL editor,
 -- or run it through the Supabase MCP / psql. The last statement returns one row
@@ -50,6 +50,13 @@ $$;
 create or replace function pg_temp.mk_admin(p_uid uuid)
 returns void language sql as $$
   insert into public.user_roles (user_id, role) values (p_uid, 'admin');
+$$;
+
+-- a /apply registration ("Register now" → record_vsat_interest writes this row for auth.uid())
+create or replace function pg_temp.mk_vsatreg(p_uid uuid, p_email text, p_registered boolean default true)
+returns void language sql as $$
+  insert into public.vsat_registrations (user_id, full_name, email, registered, registered_at, signup_at)
+  values (p_uid, 'VSAT Apply', p_email, p_registered, case when p_registered then now() end, now());
 $$;
 
 -- an active test senior who is free every day 00:00–23:30 (1:1 and Group, 15/30 min)
@@ -709,6 +716,76 @@ begin
       t_name := t_name || text 'C anon cannot run pp_my_contact'; t_det := t_det || r::text; t_pass := t_pass || (r->>'sqlstate' = '42501');
       r := pg_temp.call_as(null, 'select public.pp_my_contact()');
       t_name := t_name || text 'C no login -> nothing'; t_det := t_det || r::text; t_pass := t_pass || (r = 'null'::jsonb);
+      raise exception using errcode = 'ZUNDO';
+    exception when sqlstate 'ZUNDO' then null;
+    end;
+
+    -- ════ 0039: a /apply registration (vsat_registrations) counts as registered — no "Register now" loop ════
+    begin
+      perform pg_temp.set_mode('registered');
+      u := pg_temp.mk_user(null, '+919100000070');                 -- phone-OTP login, registered only via /apply
+      perform pg_temp.mk_vsatreg(u, 'v-apply@example.invalid');
+      r := to_jsonb(public.pp_vsat_eligible(u));
+      t_name := t_name || text 'V /apply only (own vsat_registrations row), mode registered -> OK'; t_det := t_det || r::text; t_pass := t_pass || (r #>> '{}' = 'OK');
+
+      body := jsonb_build_object('seniorId', sen, 'start', pg_temp.slot(11, '10:00'), 'type', '1:1', 'duration', 30);
+      r := pg_temp.book_as(u, body);
+      select max(applicant_email), max(applicant_phone) into s, id1 from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'V /apply user books: email from own vsat_registrations row, verified login phone'; t_det := t_det || (r::text || ' ' || coalesce(s, 'null') || ' ' || coalesce(id1, 'null'));
+      t_pass := t_pass || (r->>'code' = 'OK' and s = 'v-apply@example.invalid' and id1 = '+919100000070');
+
+      r := pg_temp.call_as(u, 'select public.pp_my_contact()');
+      t_name := t_name || text 'V booking page shows the same /apply email (complete = true)'; t_det := t_det || r::text;
+      t_pass := t_pass || (r->>'email' = 'v-apply@example.invalid' and (r->>'complete')::boolean);
+
+      perform pg_temp.set_mode('paid');
+      r := to_jsonb(public.pp_vsat_eligible(u));
+      t_name := t_name || text 'V /apply only, mode paid, not paid -> PAYMENT_PENDING'; t_det := t_det || r::text; t_pass := t_pass || (r #>> '{}' = 'PAYMENT_PENDING');
+      perform pg_temp.mk_paid(u);
+      r := to_jsonb(public.pp_vsat_eligible(u));
+      t_name := t_name || text 'V /apply only, mode paid, paid -> OK'; t_det := t_det || r::text; t_pass := t_pass || (r #>> '{}' = 'OK');
+
+      perform pg_temp.set_mode('registered');
+      u := pg_temp.mk_user(null, '+919100000071');
+      perform pg_temp.mk_vsatreg(u, 'v-notreg@example.invalid', false);
+      r := to_jsonb(public.pp_vsat_eligible(u));
+      t_name := t_name || text 'V vsat_registrations row with registered = false -> NOT_REGISTERED'; t_det := t_det || r::text; t_pass := t_pass || (r #>> '{}' = 'NOT_REGISTERED');
+
+      u := pg_temp.mk_user('v-victim@example.invalid', '+919100000072');
+      u2 := pg_temp.mk_user(null, '+919100000073');
+      perform pg_temp.mk_vsatreg(u2, 'v-victim@example.invalid');   -- someone else's row carrying this user's email
+      r := to_jsonb(public.pp_vsat_eligible(u));
+      t_name := t_name || text 'V someone else''s /apply row (even with my email) never counts -> NOT_REGISTERED'; t_det := t_det || r::text; t_pass := t_pass || (r #>> '{}' = 'NOT_REGISTERED');
+
+      u := pg_temp.mk_user(null, '+919100000074');
+      perform pg_temp.mk_vsatreg(u, null);
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(11, '11:00'))));
+      select count(*) into n from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'V /apply row without email, phone-only login -> EMAIL_MISSING, no row'; t_det := t_det || (r::text || ' rows=' || n);
+      t_pass := t_pass || (r->>'code' = 'EMAIL_MISSING' and n = 0);
+
+      u := pg_temp.mk_user('v-login@example.invalid', '+919100000075');
+      perform pg_temp.mk_vsatreg(u, null);
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(11, '12:00'))));
+      select max(applicant_email) into s from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'V /apply row without email -> OTP-verified login email (what the EMAIL_MISSING popup sets)'; t_det := t_det || (r::text || ' ' || coalesce(s, 'null'));
+      t_pass := t_pass || (r->>'code' = 'OK' and s = 'v-login@example.invalid');
+
+      u := pg_temp.mk_user(null, '+919100000076');
+      perform pg_temp.mk_app(u, 'App And Apply', 'v-app@example.invalid', null);
+      perform pg_temp.mk_vsatreg(u, 'v-apply2@example.invalid');
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(11, '13:00'))));
+      select max(applicant_email) into s from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'V application + /apply: application email wins'; t_det := t_det || (r::text || ' ' || coalesce(s, 'null'));
+      t_pass := t_pass || (r->>'code' = 'OK' and s = 'v-app@example.invalid');
+
+      u := pg_temp.mk_user(null, '+919100000077');
+      perform pg_temp.mk_app(u, 'App No Email', null, null);
+      perform pg_temp.mk_vsatreg(u, 'v-apply3@example.invalid');
+      r := pg_temp.book_as(u, jsonb_set(body, '{start}', to_jsonb(pg_temp.slot(11, '14:00'))));
+      select count(*) into n from public.pp_bookings where applicant_user_id = u;
+      t_name := t_name || text 'V has an application (no email): /apply email is NOT used -> EMAIL_MISSING'; t_det := t_det || (r::text || ' rows=' || n);
+      t_pass := t_pass || (r->>'code' = 'EMAIL_MISSING' and n = 0);
       raise exception using errcode = 'ZUNDO';
     exception when sqlstate 'ZUNDO' then null;
     end;
