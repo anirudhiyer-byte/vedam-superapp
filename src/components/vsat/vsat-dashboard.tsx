@@ -3,9 +3,26 @@ import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 
-const VSAT_FEE = 1000; // placeholder — real amount comes from the VSAT campaign
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
+type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null } | null;
+
+type CashfreeCheckout = { checkout: (o: { paymentSessionId: string; redirectTarget?: string }) => void };
+declare global { interface Window { Cashfree?: (opts: { mode: string }) => CashfreeCheckout } }
+
+/** Lazy-load the Cashfree v3 web SDK and return an initialised checkout instance. */
+function loadCashfree(mode: string): Promise<CashfreeCheckout> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === "undefined") return reject(new Error("no window"));
+    if (window.Cashfree) return resolve(window.Cashfree({ mode }));
+    const s = document.createElement("script");
+    s.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
+    s.async = true;
+    s.onload = () => (window.Cashfree ? resolve(window.Cashfree({ mode })) : reject(new Error("Cashfree SDK unavailable")));
+    s.onerror = () => reject(new Error("Could not load the payment SDK"));
+    document.head.appendChild(s);
+  });
+}
 
 const MILESTONES = [
   { key: "started", label: "Application started" },
@@ -33,13 +50,29 @@ function activeIndex(app: App): number {
   return 1; // applicant, unpaid -> next action is pay
 }
 
+function useCountdown(endsAt: string | null): string | null {
+  const [, tick] = useState(0);
+  useEffect(() => {
+    if (!endsAt) return;
+    const id = setInterval(() => tick((n) => n + 1), 1000);
+    return () => clearInterval(id);
+  }, [endsAt]);
+  if (!endsAt) return null;
+  const ms = new Date(endsAt).getTime() - Date.now();
+  if (ms <= 0) return null;
+  const h = Math.floor(ms / 3_600_000), m = Math.floor((ms % 3_600_000) / 60_000), s = Math.floor((ms % 60_000) / 1000);
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
 export function VsatDashboard() {
   const [supabase] = useState(() => createClient());
   const [app, setApp] = useState<App>(null);
   const [lead, setLead] = useState<Lead>(null);
+  const [quote, setQuote] = useState<Quote>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [note, setNote] = useState("");
 
   const load = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -47,9 +80,34 @@ export function VsatDashboard() {
     const res = await fetch("/api/vsat/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
     const j = await res.json();
     if (j.ok) { setApp(j.app); setLead(j.lead); }
+    // fee quote (server-authoritative) for the banner + the exact pay amount
+    try {
+      const q = await fetch("/api/payments/vsat-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
+      const qj = await q.json();
+      if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt });
+    } catch { /* banner is best-effort */ }
     setLoading(false);
   }, [supabase]);
-  useEffect(() => { void load(); }, [load]);
+
+  // On the Cashfree return (?pay=return&order=…), confirm server-side then clean the URL.
+  useEffect(() => {
+    (async () => {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get("pay") !== "return") { void load(); return; }
+      const orderId = url.searchParams.get("order");
+      const { data: { session } } = await supabase.auth.getSession();
+      if (orderId && session) {
+        setNote("Confirming your payment…");
+        try {
+          const res = await fetch("/api/payments/vsat-status", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, orderId }) });
+          const j = await res.json();
+          setNote(j.ok && j.status === "paid" ? "Payment successful 🎉" : j.status === "already_paid" ? "" : "Payment not completed. You can try again.");
+        } catch { setNote("Could not confirm payment. Refresh in a moment."); }
+      }
+      window.history.replaceState({}, "", "/vsat/dashboard");
+      void load();
+    })();
+  }, [supabase, load]);
 
   async function patch(updates: Record<string, unknown>) {
     setBusy(true); setErr("");
@@ -60,6 +118,25 @@ export function VsatDashboard() {
     await load();
   }
 
+  async function startPayment() {
+    setBusy(true); setErr("");
+    track("vsat_pay_click");
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const res = await fetch("/api/payments/vsat-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
+      const j = await res.json();
+      if (!j.ok) { setBusy(false); return setErr(j.error === "already_paid" ? "You've already paid." : j.error || "Could not start payment."); }
+      const cashfree = await loadCashfree(j.mode || "sandbox");
+      cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
+      // browser now navigates to Cashfree; on return the effect above confirms.
+    } catch (e) {
+      setBusy(false);
+      setErr(String((e as Error)?.message || "Payment could not start."));
+    }
+  }
+
+  const countdown = useCountdown(quote?.within24h ? quote?.windowEndsAt ?? null : null);
+
   if (loading) return <div className="p-10 text-white/50">Loading your dashboard…</div>;
   if (!app) return <div className="p-10 text-white/60">No VSAT application found. <a href="/vsat" className="text-[#00cfe5] underline">Start one →</a></div>;
 
@@ -67,10 +144,8 @@ export function VsatDashboard() {
   const pay = a.payment_stage_1, appl = a.application_stage_1;
   const paid = pay === "payment_approved";
   const idx = activeIndex(app);
-
-  // 24h urgency coupon window
-  const created = a.created_at ? new Date(a.created_at).getTime() : 0;
-  const within24h = created && Date.now() - created < 24 * 3600 * 1000;
+  const payAmount = quote?.net ?? 1000;
+  const showDiscount = !!quote && quote.discount > 0 && quote.within24h && !paid;
 
   return (
     <div className="min-h-screen bg-[#0b0618] text-white lg:grid lg:grid-cols-[25%_50%_25%]">
@@ -93,21 +168,37 @@ export function VsatDashboard() {
 
       {/* MIDDLE 50% — contextual action */}
       <main className="p-6 lg:p-10">
-        {within24h && !paid && (
-          <div className="mb-6 rounded-2xl border border-[#f5a623]/40 bg-[#f5a623]/10 p-4 text-sm">
-            ⏳ <b>Pay within 24 hours</b> to unlock an early-bird discount on your VSAT fee.
+        {note && <div className="mb-6 rounded-2xl border border-white/15 bg-white/[0.05] p-4 text-sm">{note}</div>}
+
+        {showDiscount && (
+          <div className="mb-6 overflow-hidden rounded-2xl border border-[#22e06a]/40 bg-gradient-to-r from-[#22e06a]/15 to-[#00cfe5]/10 p-5">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="font-display text-xl font-bold text-[#22e06a]">₹{quote!.discount} off — pay just ₹{quote!.net}</p>
+                <p className="mt-1 text-sm text-white/70">Early-bird offer on your VSAT fee. Pay now and save.</p>
+              </div>
+              {countdown && <div className="shrink-0 text-right"><p className="text-[10px] uppercase tracking-wide text-white/50">Ends in</p><p className="font-mono text-lg font-bold text-white">{countdown}</p></div>}
+            </div>
           </div>
         )}
+
         {!paid && (
           <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6">
             <h2 className="font-display text-2xl font-bold">Pay your VSAT fee</h2>
-            <p className="mt-2 text-white/60">Pay ₹{VSAT_FEE} to unlock your exam slot, mock tests and the application form.</p>
-            <button onClick={() => { track("vsat_pay_click"); void patch({ payment_stage_1: "payment_initiated", payment_stage_1_at: new Date().toISOString() }); }} disabled={busy}
-              className="mt-5 rounded-xl bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-6 py-3 text-sm font-semibold disabled:opacity-50">Pay ₹{VSAT_FEE}</button>
-            {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#f5a623]">Payment initiated — complete it on the gateway. (Cashfree wiring is the next integration.)</p>}
-            <p className="mt-4 text-[11px] text-white/35">Admin test: <button onClick={() => patch({ payment_stage_1: "payment_approved", application_stage_1: "payment_approved" })} className="underline">simulate approval →</button></p>
+            <p className="mt-2 text-white/60">Unlock your exam slot, mock tests and the application form.</p>
+            <div className="mt-4 flex items-baseline gap-2">
+              <span className="font-display text-3xl font-bold">₹{payAmount}</span>
+              {showDiscount && <span className="text-sm text-white/40 line-through">₹{quote!.base}</span>}
+            </div>
+            <button onClick={startPayment} disabled={busy}
+              className="mt-5 rounded-xl bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-6 py-3 text-sm font-semibold disabled:opacity-50">
+              {busy ? "Starting…" : `Pay ₹${payAmount}`}
+            </button>
+            {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#f5a623]">A payment was started but not completed — tap Pay to try again.</p>}
+            {pay === "payment_failed" && <p className="mt-3 text-xs text-[#ff9db0]">Your last payment failed. Please try again.</p>}
           </div>
         )}
+
         {paid && appl !== "slot_selected" && !["vsat_cleared","vsat_not_cleared","interview_selected","counselling_done","offer_released","enrolled"].includes(appl) && (
           <div className="space-y-4">
             <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6">
