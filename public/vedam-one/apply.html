@@ -881,6 +881,8 @@ document.getElementById("annLink").addEventListener("click",jumpToForm);
   document.getElementById("back2").addEventListener("click",function(){ show(1); });
   document.getElementById("again").addEventListener("click",function(){ location.reload(); });
 
+  // expose the step-advance so the auth overlay can move to pane 2 after OTP verify
+  window.__vsatFormShow = show;
   show(1);
 })();
 </script>
@@ -1417,6 +1419,8 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
   });
   R.getElementById("back2").addEventListener("click",function(){ show(1); });
   R.getElementById("again").addEventListener("click",function(){ location.reload(); });
+  // expose the mobile step-advance so the auth overlay can move to pane 2 after OTP verify
+  window.__vsatFormShowM = show;
   show(1);
 })();
 
@@ -1447,6 +1451,9 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
   }
   function val(root,f){ var w=root.querySelector('[data-f="'+f+'"]'); if(!w) return ""; var e=w.querySelector('input,select'); return e? e.value : ""; }
   function hasApp(){ return /(?:#|&)vsatapp=1(?:&|$)/.test(location.hash||""); }
+  // A session exists (parent sets vsatli=1). A logged-OUT user must verify phone by
+  // OTP before the form may advance past the first half; the parent runs that overlay.
+  function hasLogin(){ return window.__vsatLoggedIn===true || /(?:#|&)vsatli=1(?:&|$)/.test(location.hash||""); }
   function firstName(p){ return (p&&p.full_name)? String(p.full_name).trim().split(/\s+/)[0] : ""; }
   /* Already-registered: show a greeting + "Continue to dashboard" at the TOP of the
      form card (right-side form area), instead of forcing the applicant to refill. */
@@ -1461,16 +1468,42 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
       '<a href="/vsat/dashboard" style="display:inline-block;margin-top:11px;padding:9px 16px;border-radius:10px;background:linear-gradient(135deg,#00cfe5,#c200db);color:#fff;font-weight:600;font-size:13px;text-decoration:none">Continue to your VSAT Dashboard &rarr;</a>';
     form.insertBefore(box, form.firstChild);
   }
+  /* "Already started? Login" link at the bottom of pane 1 — only for logged-out
+     users. Opens the parent's phone-OTP login overlay (never touches the design). */
+  function injectLogin(root){
+    if(!root) return; if(hasLogin()) return;
+    var pane1=root.querySelector('#pane1'); if(!pane1) return;
+    if(pane1.querySelector('#vsatLoginLink')) return;
+    var p=document.createElement('p'); p.id='vsatLoginLink';
+    p.setAttribute('style','margin:14px 0 0;text-align:center;font-size:13px;color:#4b5563');
+    p.innerHTML='Already started your VSAT application? <a href="#" style="color:#c200db;font-weight:600;text-decoration:none">Log in to your dashboard</a>';
+    p.querySelector('a').addEventListener('click',function(ev){ ev.preventDefault(); try{ parent.postMessage({type:"vsat-login"}, location.origin); }catch(e){} });
+    pane1.appendChild(p);
+  }
   function wireSubmit(root){
     var form=root.querySelector('#applyForm'); if(!form||form.__vsatSub) return; form.__vsatSub=true;
-    form.addEventListener("submit", function(){
+    form.addEventListener("submit", function(ev){
       var p2=root.querySelector('#pane2');
       if(!p2 || p2.hasAttribute("hidden")){
-        // pane 1 "Save and next": become a VSAT lead on the first half (name/email/phone).
-        // The parent creates/updates the lead for a signed-in user; a logged-out
-        // first-time user is handled by the OTP overlay (parent) before this fires.
-        try{ parent.postMessage({type:"vsat-first", data:{ fullName:val(root,"fullName"), email:val(root,"email"), phone:val(root,"phone") }}, location.origin); }catch(e){}
-        return;   // let the mockup advance to pane 2
+        var first={ fullName:val(root,"fullName"), email:val(root,"email"), phone:val(root,"phone") };
+        if(!hasLogin()){
+          // Logged-out first-time user: HOLD at pane 1 and ask the parent to run the
+          // phone-OTP + Turnstile overlay. stopImmediatePropagation blocks the mockup's
+          // own submit handler (which would otherwise advance to pane 2 unverified).
+          // Minimal client-side guard so we don't fire OTP on blank/garbage input; the
+          // parent re-validates and the real check is server-side on verify.
+          var okName=(first.fullName||"").trim().length>0;
+          var okEmail=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((first.email||"").trim());
+          var okPhone=((first.phone||"").replace(/\D/g,"").length>=10);
+          if(!(okName&&okEmail&&okPhone)) return;   // let the mockup show its own field errors
+          try{ ev.preventDefault(); ev.stopImmediatePropagation(); }catch(e){}
+          try{ parent.postMessage({type:"vsat-first-new", data:first}, location.origin); }catch(e){}
+          return;
+        }
+        // Signed-in user: become a VSAT lead on the first half (name/email/phone) and
+        // let the mockup advance to pane 2.
+        try{ parent.postMessage({type:"vsat-first", data:first}, location.origin); }catch(e){}
+        return;
       }
       var data={ fullName:val(root,"fullName"), email:val(root,"email"), phone:val(root,"phone"),
         passYear:val(root,"passYear"), stream:val(root,"stream"), state:val(root,"state"),
@@ -1478,12 +1511,19 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
       try{ parent.postMessage({type:"vsat-submit", data:data}, location.origin); }catch(e){}
     }, true);   // <-- capture phase: runs BEFORE the mockup hides pane2
   }
+  // Parent → iframe: OTP verified, advance the form to pane 2 (desktop + mobile copies).
+  function advanceToPane2(){
+    try{ if(typeof window.__vsatFormShow==="function") window.__vsatFormShow(2); }catch(e){}
+    try{ if(typeof window.__vsatFormShowM==="function") window.__vsatFormShowM(2); }catch(e){}
+  }
   function run(){
     var P=window.__vsatP || (window.__vsatP=getProfile());
     try{ fill(document,P); }catch(e){}
     try{ var h=document.getElementById("mhost"); if(h&&h.shadowRoot) fill(h.shadowRoot,P); }catch(e){}
     try{ wireSubmit(document); }catch(e){}
     try{ var h2=document.getElementById("mhost"); if(h2&&h2.shadowRoot) wireSubmit(h2.shadowRoot); }catch(e){}
+    try{ injectLogin(document); }catch(e){}
+    try{ var h4=document.getElementById("mhost"); if(h4&&h4.shadowRoot) injectLogin(h4.shadowRoot); }catch(e){}
     if(hasApp()){
       try{ injectContinue(document,P); }catch(e){}
       try{ var h3=document.getElementById("mhost"); if(h3&&h3.shadowRoot) injectContinue(h3.shadowRoot,P); }catch(e){}
@@ -1492,6 +1532,9 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
   if(document.readyState!=="loading") run(); else document.addEventListener("DOMContentLoaded",run);
   window.addEventListener("load",run);
   [100,300,700,1500].forEach(function(t){ setTimeout(run,t); });
-  window.addEventListener("message",function(ev){ if(ev.origin!==location.origin) return; var d=ev.data; if(d&&d.type==="vsat-prefill"&&d.profile){ window.__vsatP=d.profile; run(); } });
+  window.addEventListener("message",function(ev){ if(ev.origin!==location.origin) return; var d=ev.data; if(!d) return;
+    if(d.type==="vsat-prefill"&&d.profile){ window.__vsatP=d.profile; run(); }
+    if(d.type==="vsat-advance"){ window.__vsatLoggedIn=true; if(d.profile){ window.__vsatP=d.profile; try{ fill(document,d.profile); }catch(e){} try{ var hh=document.getElementById("mhost"); if(hh&&hh.shadowRoot) fill(hh.shadowRoot,d.profile); }catch(e){} } advanceToPane2(); }
+  });
 })();
 </script>
