@@ -1459,13 +1459,19 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
      form card (right-side form area), instead of forcing the applicant to refill. */
   function injectContinue(root,p){
     if(!root) return; var form=root.querySelector('#applyForm'); if(!form) return;
+    // Existing applicant: replace the start-application form (progress, heading, the
+    // name/email/phone fields) with a "you've already started → continue" card. Only
+    // reaches here when the parent set vsatapp=1 (an application row exists).
+    var prog=form.querySelector('.prog'); if(prog) prog.hidden=true;
+    var head=form.querySelector('#formHead'); if(head) head.hidden=true;
+    var p1=form.querySelector('#pane1'); if(p1) p1.hidden=true;
     if(form.querySelector('#vsatContinue')) return;
     var fn=firstName(p);
     var box=document.createElement('div'); box.id='vsatContinue';
-    box.setAttribute('style','margin:0 0 16px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(0,207,229,.12),rgba(194,0,219,.12));border:1px solid rgba(123,47,247,.25)');
-    box.innerHTML='<div style="font-weight:700;color:#160a30;font-size:15px">'+(fn?('Hi '+fn+','):'Welcome back,')+'</div>'+
-      '<div style="color:#4b5563;font-size:13px;margin-top:3px">You have already started your application.</div>'+
-      '<a href="/vsat/dashboard" style="display:inline-block;margin-top:11px;padding:9px 16px;border-radius:10px;background:linear-gradient(135deg,#00cfe5,#c200db);color:#fff;font-weight:600;font-size:13px;text-decoration:none">Continue to your VSAT Dashboard &rarr;</a>';
+    box.setAttribute('style','padding:22px 20px;border-radius:16px;background:#fff;border:1px solid #ece7f6;box-shadow:0 18px 40px -28px rgba(43,19,92,.4)');
+    box.innerHTML='<div style="font-weight:800;color:#1c1030;font-size:20px;letter-spacing:-.01em">'+(fn?('Hi '+fn+','):'Welcome back,')+'</div>'+
+      '<div style="color:#6c6485;font-size:14px;margin-top:6px">You have already started your VSAT application. Pick up right where you left off.</div>'+
+      '<a href="/vsat/dashboard" style="display:inline-block;margin-top:16px;padding:11px 20px;border-radius:12px;background:linear-gradient(100deg,#f97d03,#c200db 55%,#8a18ff);color:#fff;font-weight:700;font-size:14px;text-decoration:none">Continue to your VSAT Dashboard &rarr;</a>';
     form.insertBefore(box, form.firstChild);
   }
   /* State/City cascading dropdowns. The designed markup ships them as plain text

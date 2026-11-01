@@ -17,8 +17,7 @@ export const metadata: Metadata = { title: "VSAT Registration (internal)" };
  *
  * Sits OUTSIDE the (shell) route group so the SiteHeader/Footer don't frame it.
  */
-export default async function Page({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const sp = await searchParams;
+export default async function Page() {
   const sb = await createClient();
   const { data: { user } } = await sb.auth.getUser();
   let isAdmin = false;
@@ -47,10 +46,6 @@ export default async function Page({ searchParams }: { searchParams: Promise<Rec
     }
   }
   if (!isAdmin && !isStaging) redirect("/apply");
-
-  // Already an applicant → send them to the designed VSAT dashboard, NOT the
-  // start-application form. Admins can still preview the apply form with ?apply=1.
-  if (user && hasApplication && !(isAdmin && sp.apply === "1")) redirect("/vsat/dashboard");
 
   if (user) {
     const { data: p } = await sb.from("profiles")
