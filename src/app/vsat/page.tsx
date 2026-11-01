@@ -36,5 +36,8 @@ export default async function Page() {
     if (p) profile = p as VsatPrefill;
   }
 
-  return <VsatApplyFrame profile={profile} />;
+  // cache-buster so the CDN never serves a stale apply.html (which would have no wiring)
+  const version = process.env.VERCEL_GIT_COMMIT_SHA || "dev";
+
+  return <VsatApplyFrame profile={profile} version={version} />;
 }
