@@ -16,9 +16,29 @@ export async function POST(req: Request) {
   const A = b.app ?? {};
   const { data: prof } = await admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle();
 
-  // one application per lead: reuse if exists
+  // one application per lead. CRITICAL: if the applicant already exists, NEVER
+  // reset their stages / created_at / attempt — a revisit to /vsat must not wipe
+  // payment/application/form progress. Only refresh the contact fields that were
+  // actually provided.
   const { data: existing } = await admin.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
-  const application_id = existing?.application_id ?? appId();
+
+  if (existing?.application_id) {
+    const upd: Record<string, unknown> = { last_updated_date: new Date().toISOString() };
+    if (A.name) upd.registered_name = A.name;
+    if (A.email) upd.registered_email = A.email;
+    if (A.phone) upd.registered_mobile = A.phone;
+    if (A.campusPref) upd.campus_applied = A.campusPref;
+    if (A.stream) upd.class_12_stream = A.stream;
+    if (A.gradYear) upd.class12_year = A.gradYear;
+    if (A.state) upd.state = A.state;
+    if (A.city) upd.city = A.city;
+    const { error } = await admin.from("application_manager").update(upd).eq("application_id", existing.application_id);
+    if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
+    return Response.json({ ok: true, application_id: existing.application_id, existing: true });
+  }
+
+  // brand-new applicant → insert with the initial stages
+  const application_id = appId();
   const row = {
     application_id,
     lead_id: user.id,
@@ -35,7 +55,7 @@ export async function POST(req: Request) {
     current_attempt: 1,
     created_at: new Date().toISOString(),
   };
-  const { error } = await admin.from("application_manager").upsert(row, { onConflict: "application_id" });
+  const { error } = await admin.from("application_manager").insert(row);
   if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
   await admin.from("lead_manager").update({ lead_stage: "applicant_unpaid", application_submitted: true }).eq("lead_id", user.id);
   await admin.from("crm_activity_log").insert({ entity_type: "application", application_id, lead_id: user.id, action: "stage_change", stage_type: "application", to_value: "applicant", actor: "applicant", path: "/apply" });

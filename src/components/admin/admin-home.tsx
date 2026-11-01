@@ -48,7 +48,7 @@ export function AdminHome() {
 
       <div className="mx-auto max-w-6xl px-6 py-12">
         <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: "0 0 0 3px rgba(249,125,3,.22)" }} />// command center
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: "0 0 0 3px rgba(249,125,3,.22)" }} />{"// command center"}
         </span>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
           <h1 className="font-display text-4xl font-extrabold tracking-tight text-heading">Welcome back.</h1>
@@ -60,6 +60,13 @@ export function AdminHome() {
             <Link href="/admin/comms" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Communications</Link>
             <Link href="/admin/dropoffs" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Drop-offs</Link>
             <Link href="/admin/automations" className="rounded-xl border border-border-strong px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-surface-warm">Automations</Link>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted">VSAT</span>
+            <Link href="/vsat" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">🎓 Registration (internal)</Link>
+            <Link href="/vsat/dashboard" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">Applicant dashboard</Link>
+            <Link href="/admin/vsat-forms" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">Form builder</Link>
+            <Link href="/admin/vsat-exam-dates" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">Exam dates</Link>
           </div>
         </div>
 

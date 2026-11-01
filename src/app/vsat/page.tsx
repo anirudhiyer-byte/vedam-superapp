@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createClient as createSvc } from "@supabase/supabase-js";
 import { VsatApplyFrame, type VsatPrefill } from "@/components/vsat/vsat-apply-frame";
 
 export const dynamic = "force-dynamic";
@@ -29,15 +30,24 @@ export default async function Page() {
   if (!isAdmin) redirect("/apply");
 
   let profile: VsatPrefill = {};
+  let hasApplication = false;
   if (user) {
     const { data: p } = await sb.from("profiles")
       .select("full_name,email,phone,grad_year,stream,state,city")
       .eq("id", user.id).maybeSingle();
     if (p) profile = p as VsatPrefill;
+    // already registered? -> offer "Continue to dashboard" instead of forcing the form.
+    // application_manager is RLS-locked (no browser access), so read via the service role.
+    const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (svcUrl && svcKey) {
+      const svc = createSvc(svcUrl, svcKey);
+      const { data: appRow } = await svc.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
+      hasApplication = !!appRow;
+    }
   }
 
   // cache-buster so the CDN never serves a stale apply.html (which would have no wiring)
   const version = process.env.VERCEL_GIT_COMMIT_SHA || "dev";
 
-  return <VsatApplyFrame profile={profile} version={version} />;
+  return <VsatApplyFrame profile={profile} version={version} hasApplication={hasApplication} />;
 }
