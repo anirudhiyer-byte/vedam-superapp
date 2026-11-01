@@ -4,6 +4,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
+import { offerPayable, type EnrollApp } from "@/lib/payments/enroll-fee";
 
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
@@ -97,17 +98,21 @@ export function VsatDashboard() {
     setLoading(false);
   }, [supabase]);
 
-  // On the Cashfree return (?pay=return&order=…), confirm server-side then clean the URL.
+  // On a Cashfree return, confirm server-side then clean the URL. Two flows:
+  //   ?pay=return         -> VSAT fee        (/api/payments/vsat-status)
+  //   ?pay=enroll_return  -> enrollment fee  (/api/payments/enroll-status)
   useEffect(() => {
     (async () => {
       const url = new URL(window.location.href);
-      if (url.searchParams.get("pay") !== "return") { void load(); return; }
+      const flow = url.searchParams.get("pay");
+      if (flow !== "return" && flow !== "enroll_return") { void load(); return; }
       const orderId = url.searchParams.get("order");
+      const endpoint = flow === "enroll_return" ? "/api/payments/enroll-status" : "/api/payments/vsat-status";
       const { data: { session } } = await supabase.auth.getSession();
       if (orderId && session) {
         setNote("Confirming your payment…");
         try {
-          const res = await fetch("/api/payments/vsat-status", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, orderId }) });
+          const res = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, orderId }) });
           const j = await res.json();
           setNote(j.ok && j.status === "paid" ? "Payment successful 🎉" : j.status === "already_paid" ? "" : "Payment not completed. You can try again.");
         } catch { setNote("Could not confirm payment. Refresh in a moment."); }
@@ -143,6 +148,22 @@ export function VsatDashboard() {
     }
   }
 
+  async function startEnrollment() {
+    setBusy(true); setErr("");
+    track("vsat_enroll_click");
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const res = await fetch("/api/payments/enroll-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
+      const j = await res.json();
+      if (!j.ok) { setBusy(false); return setErr(j.error === "already_enrolled" ? "You're already enrolled." : j.error === "offer_expired" ? "Your offer has expired — please contact the admissions team." : j.error || "Could not start enrollment."); }
+      const cashfree = await loadCashfree(j.mode || "sandbox");
+      cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
+    } catch (e) {
+      setBusy(false);
+      setErr(String((e as Error)?.message || "Enrollment could not start."));
+    }
+  }
+
   // live 24h countdown, shown for everyone while the early-bird window is open
   // (hook must run before any early return)
   const countdown = useCountdown(quote?.within24h ? quote?.windowEndsAt ?? null : null);
@@ -162,6 +183,20 @@ export function VsatDashboard() {
   const idx = activeIndex(app);
   const payAmount = quote?.net ?? 1000;
   const showDiscount = !!quote && quote.discount > 0 && quote.within24h && !paid;
+
+  // enrollment / offer gate (same rule as the server's offerPayable)
+  const ao = app as Record<string, unknown>;
+  const enrollApp: EnrollApp = {
+    enrollment_stage: (ao.enrollment_stage as string) ?? null,
+    application_stage_1: appl,
+    scholarship_percentage: ao.scholarship_percentage != null ? Number(ao.scholarship_percentage) : null,
+    offer_released_at: (ao.offer_released_at as string) ?? null,
+    offer_expires_at: (ao.offer_expires_at as string) ?? null,
+    offer_cancelled: ao.offer_cancelled === true,
+  };
+  const enrolled = appl === "enrolled" || ao.enrollment_stage === "approved";
+  const canEnroll = offerPayable(enrollApp).ok;
+  const offerIssued = ao.scholarship_percentage != null && !!ao.offer_released_at;
 
   const quickLinks = [
     { label: "📘 Download brochure", free: true },
@@ -241,12 +276,33 @@ export function VsatDashboard() {
               <button disabled className="mt-4 cursor-not-allowed rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4]">🔒 Take test (locked until slot)</button>
             </div>
           )}
-          {["vsat_cleared","interview_selected","counselling_done","offer_released","enrolled"].includes(appl) && (
+          {enrolled ? (
+            <div className="rounded-2xl border border-[#16a34a]/30 bg-[#16a34a]/5 p-6">
+              <h2 className="font-display text-xl font-bold text-[#16a34a]">You&apos;re enrolled 🎉</h2>
+              <p className="mt-2 text-sm text-[#4b5563]">Welcome to Vedam! Our team will reach out with your joining details.</p>
+            </div>
+          ) : canEnroll ? (
+            <div className={card}>
+              <h2 className="font-display text-2xl font-bold">Congratulations — you&apos;re offered admission 🎉</h2>
+              <p className="mt-2 text-[#6b647e]">
+                Scholarship: <b>{String(ao.scholarship_percentage)}%</b>. Block your seat with the enrollment fee.
+                {ao.offer_expires_at ? <> Offer valid till <b>{new Date(String(ao.offer_expires_at)).toLocaleString()}</b>.</> : null}
+              </p>
+              <button onClick={startEnrollment} disabled={busy} className={`mt-5 ${gradBtn}`}>{busy ? "Starting…" : `Enroll — pay ₹${Number(ao.enrollment_amount ?? 50000)}`}</button>
+              {ao.enrollment_stage === "initiated" && <p className="mt-3 text-xs text-[#b8860b]">Enrollment payment initiated — click Enroll to complete it.</p>}
+              {ao.enrollment_stage === "failed" && <p className="mt-3 text-xs text-[#d14343]">Last enrollment payment failed. You can try again.</p>}
+            </div>
+          ) : offerIssued ? (
+            <div className="rounded-2xl border border-[#f5a623]/40 bg-[#fff7e8] p-6">
+              <h2 className="font-display text-xl font-bold text-[#8a5a00]">Your offer is no longer active</h2>
+              <p className="mt-2 text-sm text-[#8a5a00]">The enrollment window for your offer has closed. Please contact the admissions team if you still wish to enroll.</p>
+            </div>
+          ) : ["vsat_cleared","interview_selected","counselling_done","offer_released"].includes(appl) ? (
             <div className="rounded-2xl border border-[#16a34a]/30 bg-[#16a34a]/5 p-6">
               <h2 className="font-display text-xl font-bold text-[#16a34a]">Stage: {appl.replace(/_/g, " ")}</h2>
               <p className="mt-2 text-sm text-[#4b5563]">You&apos;re progressing through the admissions funnel. Watch your email/WhatsApp for the next step.</p>
             </div>
-          )}
+          ) : null}
           {err && <p className="mt-4 text-xs text-[#d14343]">{err}</p>}
         </main>
 
