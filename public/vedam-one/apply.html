@@ -1465,7 +1465,13 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
     var form=root.querySelector('#applyForm'); if(!form||form.__vsatSub) return; form.__vsatSub=true;
     form.addEventListener("submit", function(){
       var p2=root.querySelector('#pane2');
-      if(!p2 || p2.hasAttribute("hidden")) return;   // pane 1 submit -> let the mockup advance
+      if(!p2 || p2.hasAttribute("hidden")){
+        // pane 1 "Save and next": become a VSAT lead on the first half (name/email/phone).
+        // The parent creates/updates the lead for a signed-in user; a logged-out
+        // first-time user is handled by the OTP overlay (parent) before this fires.
+        try{ parent.postMessage({type:"vsat-first", data:{ fullName:val(root,"fullName"), email:val(root,"email"), phone:val(root,"phone") }}, location.origin); }catch(e){}
+        return;   // let the mockup advance to pane 2
+      }
       var data={ fullName:val(root,"fullName"), email:val(root,"email"), phone:val(root,"phone"),
         passYear:val(root,"passYear"), stream:val(root,"stream"), state:val(root,"state"),
         city:val(root,"city"), campus:val(root,"campus"), hear:val(root,"hear") };

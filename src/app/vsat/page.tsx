@@ -18,7 +18,6 @@ export const metadata: Metadata = { title: "VSAT Registration (internal)" };
  * Sits OUTSIDE the (shell) route group so the SiteHeader/Footer don't frame it.
  */
 export default async function Page() {
-  // ADMIN-ONLY for now. Everyone else -> the live early-registration page at /apply.
   const sb = await createClient();
   const { data: { user } } = await sb.auth.getUser();
   let isAdmin = false;
@@ -27,23 +26,29 @@ export default async function Page() {
     isAdmin = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
     if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
   }
-  if (!isAdmin) redirect("/apply");
 
-  let profile: VsatPrefill = {};
+  // GATE: public on staging (so we can test the open registration flow), admin-only
+  // on production until explicitly opened. environment comes from app_flags.
+  const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  let isStaging = false;
   let hasApplication = false;
+  let profile: VsatPrefill = {};
+  if (svcUrl && svcKey) {
+    const svc = createSvc(svcUrl, svcKey);
+    const { data: envRow } = await svc.from("app_flags").select("value").eq("key", "environment").maybeSingle();
+    isStaging = ((envRow as { value?: string } | null)?.value ?? "").toLowerCase() === "staging";
+    if (user) {
+      const { data: appRow } = await svc.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
+      hasApplication = !!appRow;
+    }
+  }
+  if (!isAdmin && !isStaging) redirect("/apply");
+
   if (user) {
     const { data: p } = await sb.from("profiles")
       .select("full_name,email,phone,grad_year,stream,state,city")
       .eq("id", user.id).maybeSingle();
     if (p) profile = p as VsatPrefill;
-    // already registered? -> offer "Continue to dashboard" instead of forcing the form.
-    // application_manager is RLS-locked (no browser access), so read via the service role.
-    const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (svcUrl && svcKey) {
-      const svc = createSvc(svcUrl, svcKey);
-      const { data: appRow } = await svc.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
-      hasApplication = !!appRow;
-    }
   }
 
   // cache-buster so the CDN never serves a stale apply.html (which would have no wiring)
