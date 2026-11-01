@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
+import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
 
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
@@ -79,6 +80,7 @@ export function VsatDashboard() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [note, setNote] = useState("");
+  const [fillOpen, setFillOpen] = useState(false);
 
   const load = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -212,6 +214,9 @@ export function VsatDashboard() {
             </div>
           )}
           {paid && appl !== "slot_selected" && !["vsat_cleared","vsat_not_cleared","interview_selected","counselling_done","offer_released","enrolled"].includes(appl) && (
+            fillOpen || a.form_status === "in_progress" ? (
+              <VsatFormFill onDone={() => { setFillOpen(false); void load(); }} />
+            ) : (
             <div className="space-y-4">
               <div className={card}>
                 <h2 className="font-display text-xl font-bold">Select your exam slot</h2>
@@ -220,10 +225,14 @@ export function VsatDashboard() {
               </div>
               <div className={card}>
                 <h2 className="font-display text-xl font-bold">Fill application form</h2>
-                <p className="mt-2 text-sm text-[#6b647e]">Basic details, academics, parents, documents, consent. Required before the enrollment fee.</p>
-                <button onClick={() => patch({ form_stage_1: "form_initiated" })} disabled={busy} className="mt-4 rounded-xl border border-[#d9d2ec] px-5 py-2.5 text-sm font-semibold text-[#1b1430] disabled:opacity-50">Start form</button>
+                <p className="mt-2 text-sm text-[#6b647e]">Basic details, academics, parents, documents, consent. Required before you can take VSAT.</p>
+                <button onClick={() => setFillOpen(true)} disabled={busy} className="mt-4 rounded-xl border border-[#d9d2ec] px-5 py-2.5 text-sm font-semibold text-[#1b1430] disabled:opacity-50">{a.form_status === "completed" ? "Review form" : "Start form"}</button>
               </div>
             </div>
+            )
+          )}
+          {paid && a.form_status === "completed" && appl !== "slot_selected" && (
+            <p className="mt-3 text-xs text-[#16a34a]">Application form submitted ✓</p>
           )}
           {appl === "slot_selected" && (
             <div className={card}>
