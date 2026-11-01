@@ -32,6 +32,7 @@ export default async function Page() {
   const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   let isStaging = false;
   let hasApplication = false;
+  let hasLead = false;
   let profile: VsatPrefill = {};
   if (svcUrl && svcKey) {
     const svc = createSvc(svcUrl, svcKey);
@@ -40,6 +41,8 @@ export default async function Page() {
     if (user) {
       const { data: appRow } = await svc.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
       hasApplication = !!appRow;
+      const { data: leadRow } = await svc.from("lead_manager").select("lead_id").eq("lead_id", user.id).maybeSingle();
+      hasLead = !!leadRow;
     }
   }
   if (!isAdmin && !isStaging) redirect("/apply");
@@ -54,5 +57,5 @@ export default async function Page() {
   // cache-buster so the CDN never serves a stale apply.html (which would have no wiring)
   const version = process.env.VERCEL_GIT_COMMIT_SHA || "dev";
 
-  return <VsatApplyFrame profile={profile} version={version} hasApplication={hasApplication} />;
+  return <VsatApplyFrame profile={profile} version={version} hasApplication={hasApplication} hasLead={hasLead} loggedIn={!!user} />;
 }
