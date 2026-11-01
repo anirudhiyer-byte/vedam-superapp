@@ -87,7 +87,7 @@ export async function confirmVsatPayment(
   await svc.from("application_manager").update({
     [`payment_stage_${sfx}`]: "payment_approved",
     [`payment_stage_${sfx}_at`]: paidAt,
-    application_stage_1: "payment_approved",
+    application_stage_1: "mock_enabled", // paid -> mock exam unlocked (student picks exam date next)
     payment_status: "approved",
     payment_approved_date: paidAt,
     payment_end_date: paidAt,

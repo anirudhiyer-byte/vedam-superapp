@@ -4,7 +4,10 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
+import { VsatExamBlock } from "@/components/vsat/vsat-exam-block";
 import { offerPayable, type EnrollApp } from "@/lib/payments/enroll-fee";
+
+const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"];
 
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
@@ -122,14 +125,6 @@ export function VsatDashboard() {
     })();
   }, [supabase, load]);
 
-  async function patch(updates: Record<string, unknown>) {
-    setBusy(true); setErr("");
-    const { data: { session } } = await supabase.auth.getSession();
-    const res = await fetch("/api/vsat/stage", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token, updates }) });
-    const j = await res.json(); setBusy(false);
-    if (!j.ok) return setErr(j.error || "Update failed.");
-    await load();
-  }
 
   async function startPayment() {
     setBusy(true); setErr("");
@@ -197,6 +192,9 @@ export function VsatDashboard() {
   const enrolled = appl === "enrolled" || ao.enrollment_stage === "approved";
   const canEnroll = offerPayable(enrollApp).ok;
   const offerIssued = ao.scholarship_percentage != null && !!ao.offer_released_at;
+  // exam phase = paid but not yet into a result/offer/enroll stage
+  const inExamPhase = paid && !RESULT_STAGES.includes(appl);
+  const vps = ao.vps_score != null ? Number(ao.vps_score) : null;
 
   const quickLinks = [
     { label: "📘 Download brochure", free: true },
@@ -248,32 +246,22 @@ export function VsatDashboard() {
               {pay === "payment_failed" && <p className="mt-3 text-xs text-[#d14343]">Last payment failed. You can try again.</p>}
             </div>
           )}
-          {paid && appl !== "slot_selected" && !["vsat_cleared","vsat_not_cleared","interview_selected","counselling_done","offer_released","enrolled"].includes(appl) && (
-            fillOpen || a.form_status === "in_progress" ? (
-              <VsatFormFill onDone={() => { setFillOpen(false); void load(); }} />
-            ) : (
+          {inExamPhase && (
             <div className="space-y-4">
-              <div className={card}>
-                <h2 className="font-display text-xl font-bold">Select your exam slot</h2>
-                <p className="mt-2 text-sm text-[#6b647e]">Pick your VSAT date &amp; time. You can fill the application form in parallel.</p>
-                <button onClick={() => patch({ application_stage_1: "slot_selected", vsat_slot_datetime_1: new Date(Date.now()+7*864e5).toISOString() })} disabled={busy} className={`mt-4 ${gradBtn}`}>Choose slot</button>
-              </div>
-              <div className={card}>
-                <h2 className="font-display text-xl font-bold">Fill application form</h2>
-                <p className="mt-2 text-sm text-[#6b647e]">Basic details, academics, parents, documents, consent. Required before you can take VSAT.</p>
-                <button onClick={() => setFillOpen(true)} disabled={busy} className="mt-4 rounded-xl border border-[#d9d2ec] px-5 py-2.5 text-sm font-semibold text-[#1b1430] disabled:opacity-50">{a.form_status === "completed" ? "Review form" : "Start form"}</button>
-              </div>
-            </div>
-            )
-          )}
-          {paid && a.form_status === "completed" && appl !== "slot_selected" && (
-            <p className="mt-3 text-xs text-[#16a34a]">Application form submitted ✓</p>
-          )}
-          {appl === "slot_selected" && (
-            <div className={card}>
-              <h2 className="font-display text-xl font-bold">Your slot is booked ✅</h2>
-              <p className="mt-2 text-sm text-[#6b647e]">Exam: {a.vsat_slot_datetime_1 ? new Date(a.vsat_slot_datetime_1).toLocaleString() : "—"}. The Take-Test button unlocks at your slot time.</p>
-              <button disabled className="mt-4 cursor-not-allowed rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4]">🔒 Take test (locked until slot)</button>
+              {/* mock + exam-date selection + window-gated Start-exam */}
+              <VsatExamBlock app={app as Record<string, unknown>} onChange={load} />
+              {/* application form, in parallel */}
+              {a.form_status === "completed" ? (
+                <p className="text-xs text-[#16a34a]">Application form submitted ✓</p>
+              ) : fillOpen || a.form_status === "in_progress" ? (
+                <VsatFormFill onDone={() => { setFillOpen(false); void load(); }} />
+              ) : (
+                <div className={card}>
+                  <h2 className="font-display text-xl font-bold">Fill application form</h2>
+                  <p className="mt-2 text-sm text-[#6b647e]">Basic details, academics, parents, documents, consent. Required before you can take VSAT.</p>
+                  <button onClick={() => setFillOpen(true)} disabled={busy} className="mt-4 rounded-xl border border-[#d9d2ec] px-5 py-2.5 text-sm font-semibold text-[#1b1430] disabled:opacity-50">Start form</button>
+                </div>
+              )}
             </div>
           )}
           {enrolled ? (
@@ -297,9 +285,18 @@ export function VsatDashboard() {
               <h2 className="font-display text-xl font-bold text-[#8a5a00]">Your offer is no longer active</h2>
               <p className="mt-2 text-sm text-[#8a5a00]">The enrollment window for your offer has closed. Please contact the admissions team if you still wish to enroll.</p>
             </div>
+          ) : appl === "vsat_not_cleared" || appl === "interview_rejected" ? (
+            <div className="rounded-2xl border border-[#ece8f6] bg-white p-6">
+              <h2 className="font-display text-xl font-bold">{appl === "vsat_not_cleared" ? "VSAT result" : "Interview result"}</h2>
+              {vps != null && appl === "vsat_not_cleared" && <p className="mt-2 text-sm text-[#6b647e]">Your VSAT Performance Score: <b>{vps}/10</b></p>}
+              <p className="mt-2 text-sm text-[#6b647e]">Thank you for appearing. You weren&apos;t selected to proceed this time. The admissions team will share details and any next options.</p>
+            </div>
           ) : ["vsat_cleared","interview_selected","counselling_done","offer_released"].includes(appl) ? (
             <div className="rounded-2xl border border-[#16a34a]/30 bg-[#16a34a]/5 p-6">
-              <h2 className="font-display text-xl font-bold text-[#16a34a]">Stage: {appl.replace(/_/g, " ")}</h2>
+              <h2 className="font-display text-xl font-bold text-[#16a34a]">
+                {appl === "vsat_cleared" ? "You've cleared VSAT 🎉" : appl === "interview_selected" ? "Interview cleared 🎉" : appl === "counselling_done" ? "Counselling done" : "Offer released"}
+              </h2>
+              {vps != null && <p className="mt-2 text-sm text-[#16a34a]">Your VSAT Performance Score: <b>{vps}/10</b></p>}
               <p className="mt-2 text-sm text-[#4b5563]">You&apos;re progressing through the admissions funnel. Watch your email/WhatsApp for the next step.</p>
             </div>
           ) : null}
