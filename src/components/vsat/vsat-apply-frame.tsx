@@ -28,7 +28,7 @@ export function VsatApplyFrame({ profile, version, hasApplication = false }: { p
   const ref = useRef<HTMLIFrameElement>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [errMsg, setErrMsg] = useState("");
-  const src = `/vedam-one/apply.html?v=${encodeURIComponent(version)}#vsatpf=${encodeURIComponent(JSON.stringify(profile ?? {}))}`;
+  const src = `/vedam-one/apply.html?v=${encodeURIComponent(version)}#vsatpf=${encodeURIComponent(JSON.stringify(profile ?? {}))}${hasApplication ? "&vsatapp=1" : ""}`;
 
   useEffect(() => {
     const supabase = createClient();
@@ -90,14 +90,10 @@ export function VsatApplyFrame({ profile, version, hasApplication = false }: { p
 
   return (
     <>
-      {hasApplication && (
-        <div className="fixed inset-x-0 top-0 z-40 flex flex-wrap items-center justify-center gap-3 bg-[#160a30] px-4 py-2.5 text-sm text-white">
-          <span>You&apos;ve already started your VSAT application.</span>
-          <a href="/vsat/dashboard" className="rounded-lg bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-4 py-1.5 font-semibold text-white">Continue to dashboard →</a>
-        </div>
-      )}
+      {/* The "already started → continue to dashboard" greeting is injected INSIDE the
+          form area by the apply.html script (via #vsatapp=1), not as a sticky header. */}
       <iframe ref={ref} title="Vedam One — Application" src={src}
-        className={`fixed inset-x-0 bottom-0 block w-screen border-0 bg-white ${hasApplication ? "top-11 h-[calc(100vh-2.75rem)]" : "top-0 h-screen"}`} />
+        className="fixed inset-0 block h-screen w-screen border-0 bg-white" />
       {status !== "idle" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 text-white">
           <div className="max-w-sm rounded-xl bg-[#160a30] px-6 py-5 text-sm">
