@@ -6,7 +6,7 @@ import { DarkSelect } from "@/components/admin/dark-select";
 
 type Row = { id: string; name: string; phone: string | null; email: string | null; state: string | null; city: string | null; signup: string;
   events_reg: number; events_attended: number; cs_enrolled: boolean; cs_modules: number; cs_total: number; cp_used: boolean; points: number };
-type WaTpl = { id?: string; name?: string; status?: string; waba_id?: string; sender?: string | null; sender_label?: string | null; placeholder?: { bodyvar?: number } };
+type WaTpl = { id?: string; name?: string; status?: string; waba_id?: string; sender?: string | null; sender_label?: string | null; placeholder?: { bodyvar?: number }; jsonstruct?: string };
 type EmTpl = { id: string; name: string; subject: string | null; product: string; message: string | null; template_style: string | null; image: string | null; buttons: { label: string; url: string }[] | null };
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
 type DateCond = "any" | "after" | "before" | "between";
@@ -67,6 +67,24 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
     if (channel === "whatsapp") return waTpls.filter((t) => product === "all" || (tags[t.name || t.id || ""] || "general") === product).map((t) => ({ ref: t.name || t.id || "", label: t.name || "", vars: t.placeholder?.bodyvar || 0, from: t.sender_label || t.sender || "" }));
     return emTpls.filter((t) => product === "all" || (t.product || "general") === product).map((t) => ({ ref: t.id, label: t.name, vars: 0, from: "" }));
   }, [channel, product, waTpls, emTpls, tags]);
+
+  // parse the selected WhatsApp template's structure for the live preview (real header/body/footer/buttons)
+  const waPreview = useMemo(() => {
+    if (channel !== "whatsapp" || !templateRef) return null;
+    const t = waTpls.find((x) => (x.name || x.id) === templateRef);
+    if (!t) return null;
+    let j: { header?: { format?: string; text?: string }; body?: { text?: string }; footer?: { text?: string }; buttons?: { buttons?: { type?: string; text?: string }[] } } = {};
+    try { j = JSON.parse(t.jsonstruct || "{}"); } catch { /* */ }
+    const fmt = (j.header?.format || "").toUpperCase();
+    const header = fmt === "TEXT" ? { kind: "text" as const, text: j.header?.text || "" }
+      : (fmt === "IMAGE" || fmt === "VIDEO" || fmt === "DOCUMENT") ? { kind: "media" as const, label: fmt.toLowerCase() }
+      : null;
+    const body = (j.body?.text || "").replace(/\{\{(\d+)\}\}/g, (_, n) => {
+      const m = varMaps[Number(n) - 1];
+      return m && m.source === "static" && m.value ? m.value : `{{${n}}}`;
+    });
+    return { header, body, footer: j.footer?.text || "", buttons: (j.buttons?.buttons || []).map((b) => b.text || "Button") };
+  }, [channel, templateRef, waTpls, varMaps]);
 
   const filtered = useMemo(() => rows.filter((r) => {
     if (channel === "whatsapp" ? !r.phone : !r.email) return false;
@@ -213,10 +231,18 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
             <button onClick={() => setPvChannel("email")} aria-label="Email preview" className={["grid h-6 w-8 place-items-center rounded-full transition-colors", pvChannel === "email" ? "bg-[color:rgb(var(--accent))] text-white" : "text-white/50 hover:text-white/80"].join(" ")}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg></button>
           </div>
           {pvChannel === "whatsapp" ? (
-            <div className="rounded-2xl bg-[#E5DDD5] p-3"><div className="overflow-hidden rounded-xl bg-white shadow-sm">
-              <div className="grid h-20 place-items-center bg-brand-gradient text-[11px] font-bold text-white">Header image</div>
-              <div className="px-3 py-2 text-[12.5px] leading-relaxed">{templateRef ? `Preview of “${templates.find((t) => t.ref === templateRef)?.label}” with a sample recipient's variables.` : "Select a template to preview."}</div>
-              <div className="border-t border-[#eee] py-2 text-center text-[12px] font-bold text-[#0a8]">Button</div>
+            <div className="rounded-2xl bg-[#E5DDD5] p-3"><div className="overflow-hidden rounded-xl bg-white text-[#111] shadow-sm">
+              {!templateRef ? (
+                <div className="px-3 py-6 text-center text-[12.5px] text-[#667]">Select a template to preview.</div>
+              ) : !waPreview ? (
+                <div className="px-3 py-6 text-center text-[12.5px] text-[#667]">Loading preview…</div>
+              ) : (<>
+                {waPreview.header?.kind === "media" && <div className="grid h-20 place-items-center bg-brand-gradient text-[11px] font-bold text-white">{waPreview.header.label} header</div>}
+                {waPreview.header?.kind === "text" && waPreview.header.text && <div className="px-3 pt-2.5 text-[13px] font-extrabold text-[#111]">{waPreview.header.text}</div>}
+                <div className="whitespace-pre-wrap px-3 py-2 text-[12.5px] leading-relaxed text-[#111]">{waPreview.body || <span className="text-[#888]">(no body text)</span>}</div>
+                {waPreview.footer && <div className="px-3 pb-2 text-[11px] text-[#888]">{waPreview.footer}</div>}
+                {waPreview.buttons.length > 0 && <div className="border-t border-[#eee]">{waPreview.buttons.map((b, i) => <div key={i} className="border-t border-[#f0f0f0] py-2 text-center text-[12px] font-bold text-[#0a8] first:border-t-0">{b}</div>)}</div>}
+              </>)}
             </div></div>
           ) : (
             channel === "email" && templateRef && emTpls.find((t) => t.id === templateRef) ? (
