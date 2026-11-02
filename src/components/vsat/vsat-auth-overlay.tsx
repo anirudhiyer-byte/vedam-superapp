@@ -46,22 +46,32 @@ export function VsatAuthOverlay({
   const firstRender = useRef(true);
   useEffect(() => { firstRender.current = false; }, []);
 
-  async function makeLead() {
+  async function makeLead(verifiedToken?: string) {
     const utm = readUtm();
     const triple = (utm.utm_source || utm.utm_medium || utm.utm_campaign)
       ? `${utm.utm_source ?? ""}/${utm.utm_medium ?? ""}/${utm.utm_campaign ?? ""}` : null;
-    const { data: { session } } = await supabase.auth.getSession();
-    await fetch("/api/vsat/lead", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        accessToken: session?.access_token,
-        lead: {
-          name: fullName, email, phone: e164(phone),
-          utm_source: utm.utm_source, utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign,
-          full_utm: triple, lead_source: utm.utm_source,
-        },
-      }),
+    // Prefer the token returned straight from verifyOtp: right after verify, a
+    // re-fetched session can carry a token the server rejects (timing race), which
+    // used to 401 the lead route and silently drop the lead.
+    let token = verifiedToken;
+    if (!token) { const { data: { session } } = await supabase.auth.getSession(); token = session?.access_token; }
+    const body = JSON.stringify({
+      accessToken: token,
+      lead: {
+        name: fullName, email, phone: e164(phone),
+        utm_source: utm.utm_source, utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign,
+        full_utm: triple, lead_source: utm.utm_source,
+      },
     });
+    // The lead must land; retry a couple of times on a transient failure.
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        const res = await fetch("/api/vsat/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body });
+        if (res.ok) return;
+      } catch { /* network blip — retry */ }
+      if (attempt < 2) await new Promise((r) => setTimeout(r, 600));
+    }
+    console.warn("[vsat] lead creation did not confirm after retries");
   }
 
   async function sendOtp() {
@@ -104,7 +114,7 @@ export function VsatAuthOverlay({
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null, utm_campaign: utm.utm_campaign ?? null,
     });
     if (vErr) console.warn("[vsat] verify profile write did not confirm:", vErr);
-    await makeLead();                     // <-- VSAT lead created on OTP verify
+    await makeLead(data.session?.access_token);   // <-- VSAT lead on OTP verify (use the just-minted token)
     setLoading(false);
     onVerified({ full_name: fullName, email, phone: e164(phone) });
   }
