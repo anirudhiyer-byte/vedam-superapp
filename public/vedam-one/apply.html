@@ -513,7 +513,6 @@ ul,ol{padding:0;list-style:none}
           <div class="fld" data-f="hear"><label for="hear">Where did you hear about us?</label>
             <select id="hear" class="empty"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Friend or family</option><option>School or teacher</option><option>Education consultant</option><option>Event or webinar</option><option>Other</option></select></div>
           <button type="submit" class="submit grad-cta">Start application</button>
-          <button type="button" class="ghost" id="back2">← Back</button>
         </div>
 
         <!-- INTERSTITIAL -->
@@ -847,10 +846,13 @@ document.getElementById("annLink").addEventListener("click",jumpToForm);
     var h=HEADS[s];
     if(h&&h[0]){ head.hidden=false; head.querySelector("h2").textContent=h[0]; head.querySelector("p").textContent=h[1]; }
     else head.hidden=true;
-    var pct={1:50,2:90,h:100,d:100}[s]||0;
+    var pct={1:50,2:100,h:100,d:100}[s]||0;
     bar.style.width=pct+"%";
-    var txt={1:"Step 1 of 2",2:"Step 2 of 2",h:"Almost there",d:"Done"}[s];
+    var txt={1:"Step 1 of 2",2:"2 of 2",h:"Almost there",d:"Done"}[s];
     lbl.textContent=txt;
+    // Hide the whole progress row on the first half; show it (complete) from step 2 on.
+    var progEl=lbl.closest?lbl.closest(".prog"):null;
+    if(progEl) progEl.style.display=(String(s)==="1")?"none":"";
     var pane=panes[s], first=pane&&pane.querySelector("input,select");
     if(first) setTimeout(function(){first.focus({preventScroll:true});},60);
   }
@@ -878,7 +880,7 @@ document.getElementById("annLink").addEventListener("click",jumpToForm);
     }
   });
 
-  document.getElementById("back2").addEventListener("click",function(){ show(1); });
+  var __b2=document.getElementById("back2"); if(__b2) __b2.addEventListener("click",function(){ show(1); });
   document.getElementById("again").addEventListener("click",function(){ location.reload(); });
 
   // expose the step-advance so the auth overlay can move to pane 2 after OTP verify
@@ -1120,7 +1122,6 @@ img{display:block}
         <div class="fld" data-f="hear"><label for="hear">Where did you hear about us?</label>
           <select id="hear" class="empty"><option value="">Select</option><option>Instagram</option><option>YouTube</option><option>Google Search</option><option>Friend or family</option><option>School or teacher</option><option>Education consultant</option><option>Other</option></select></div>
         <button type="submit" class="submit">Start application</button>
-        <button type="button" class="ghost" id="back2">← Back</button>
       </div>
 
       <div class="pane" id="paneHurray" hidden>
@@ -1417,7 +1418,7 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
       show("h"); setTimeout(function(){ show("d"); },4000);
     }
   });
-  R.getElementById("back2").addEventListener("click",function(){ show(1); });
+  var __b2m=R.getElementById("back2"); if(__b2m) __b2m.addEventListener("click",function(){ show(1); });
   R.getElementById("again").addEventListener("click",function(){ location.reload(); });
   // expose the mobile step-advance so the auth overlay can move to pane 2 after OTP verify
   window.__vsatFormShowM = show;
