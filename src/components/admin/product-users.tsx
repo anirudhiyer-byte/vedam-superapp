@@ -70,14 +70,16 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
     P("pyq_papers_attempted", "PYQ Papers", "num"), P("cs_current_module", "CS Module", "enum"),
     P("vsat_campus_preference", "VSAT Campus", "enum", false), P("vsat_year_passing_10th", "VSAT 10th Year", "enum", false),
     P("vsat_gender", "VSAT Gender", "enum", false), P("vsat_registered_at", "VSAT Registered On", "date", false),
+    P("vsat_utm_source", "VSAT UTM Source", "enum", false),
     P("cp_marks", "CP Marks", "num", false), P("cp_category", "CP Category", "enum", false),
     P("cp_stream", "CP Stream", "enum", false), P("cp_result_count", "CP Colleges", "num", false),
     P("cp_passout_year", "CP Passout Year", "enum", false), P("cp_used_on", "CP Used On", "date", false),
     P("cs_certs_count", "CS Certificates", "num", false), P("cs_modules_completed", "CS Modules Done", "num", false),
     P("cs_registered_at", "CS Registered On", "date", false), P("cs_last_used_at", "CS Last Active", "date", false),
+    P("cs_avg_quiz_score", "CS Avg Quiz", "num", false),
     P("pyq_attempts_started", "PYQ Started", "num", false), P("pyq_attempts_submitted", "PYQ Submitted", "num", false),
     P("pyq_avg_accuracy", "PYQ Avg Accuracy", "pct", false), P("pyq_last_exam", "PYQ Last Exam", "enum", false),
-    P("pyq_last_used", "PYQ Last Attempt", "date", false),
+    P("pyq_last_used", "PYQ Last Attempt", "date", false), P("pyq_first_used", "PYQ First Attempt", "date", false),
   ]},
 ];
 
