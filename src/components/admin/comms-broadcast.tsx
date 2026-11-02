@@ -73,12 +73,12 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
     if (channel !== "whatsapp" || !templateRef) return null;
     const t = waTpls.find((x) => (x.name || x.id) === templateRef);
     if (!t) return null;
-    let j: { header?: { format?: string; text?: string }; body?: { text?: string }; footer?: { text?: string }; buttons?: { buttons?: { type?: string; text?: string }[] } } = {};
+    let j: { header?: { format?: string; text?: string; url?: string; example?: { header_handle?: string[] } }; body?: { text?: string }; footer?: { text?: string }; buttons?: { buttons?: { type?: string; text?: string }[] } } = {};
     try { j = JSON.parse(t.jsonstruct || "{}"); } catch { /* */ }
     const fmt = (j.header?.format || "").toUpperCase();
+    const mediaUrl = j.header?.url || j.header?.example?.header_handle?.[0] || "";
     const header = fmt === "TEXT" ? { kind: "text" as const, text: j.header?.text || "" }
-      : (fmt === "IMAGE" || fmt === "VIDEO" || fmt === "DOCUMENT") ? { kind: "media" as const, label: fmt.toLowerCase() }
-      : null;
+      : (fmt === "IMAGE" || fmt === "VIDEO" || fmt === "DOCUMENT") ? { kind: "media" as const, label: fmt.toLowerCase(), url: mediaUrl } : null;
     const body = (j.body?.text || "").replace(/\{\{(\d+)\}\}/g, (_, n) => {
       const m = varMaps[Number(n) - 1];
       return m && m.source === "static" && m.value ? m.value : `{{${n}}}`;
@@ -237,7 +237,10 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
               ) : !waPreview ? (
                 <div className="px-3 py-6 text-center text-[12.5px] text-[#667]">Loading preview…</div>
               ) : (<>
-                {waPreview.header?.kind === "media" && <div className="grid h-20 place-items-center bg-brand-gradient text-[11px] font-bold text-white">{waPreview.header.label} header</div>}
+                {waPreview.header?.kind === "media" && (waPreview.header.url && waPreview.header.label === "image"
+                  // eslint-disable-next-line @next/next/no-img-element
+                  ? <img src={waPreview.header.url} alt="header" className="h-36 w-full object-cover" />
+                  : <div className="grid h-20 place-items-center bg-brand-gradient text-[11px] font-bold text-white">{waPreview.header.label} header</div>)}
                 {waPreview.header?.kind === "text" && waPreview.header.text && <div className="px-3 pt-2.5 text-[13px] font-extrabold text-[#111]">{waPreview.header.text}</div>}
                 <div className="whitespace-pre-wrap px-3 py-2 text-[12.5px] leading-relaxed text-[#111]">{waPreview.body || <span className="text-[#888]">(no body text)</span>}</div>
                 {waPreview.footer && <div className="px-3 pb-2 text-[11px] text-[#888]">{waPreview.footer}</div>}
