@@ -64,6 +64,16 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
     P("last_exam", "Last Exam", "enum"), P("last_used", "Last Attempt", "date"),
     P("first_used", "First Attempt", "date", false),
   ]},
+  { key: "bootcamp", label: "Bootcamp", rpc: "pu_bootcamp", base: "bootcamp_participation (aggregate)", cols: [
+    P("full_name", "Name", "name"), P("email", "Email", "text"), P("phone", "Mobile", "text"),
+    P("bc_registered", "Registered", "num"), P("bc_attended", "Attended", "num"),
+    P("bc_avg_watch", "Avg Watch %", "pct"), P("bc_last_event", "Last Event", "text"),
+    P("bc_winner", "Winner", "status"),
+    P("bc_total_minutes", "Total Minutes", "num", false), P("bc_points", "Points Earned", "num", false),
+    P("bc_github_count", "GitHub Shared", "num", false), P("bc_linkedin_count", "LinkedIn Shared", "num", false),
+    P("bc_last_registered", "Last Registered On", "date", false), P("bc_first_registered", "First Registered On", "date", false),
+    P("bc_dropped_off", "Dropped Off", "status", false), P("bc_utm_source", "UTM Source", "enum", false),
+  ]},
   { key: "all", label: "All Users", rpc: "pu_all_users", base: "vedam_one_profiles + all products", cols: [
     P("full_name", "Name", "name"), P("email", "Email", "text"), P("phone", "Mobile", "text"),
     P("vsat_registered", "VSAT Status", "status"), P("cp_rank", "CP Rank", "num"),
@@ -80,6 +90,8 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
     P("pyq_attempts_started", "PYQ Started", "num", false), P("pyq_attempts_submitted", "PYQ Submitted", "num", false),
     P("pyq_avg_accuracy", "PYQ Avg Accuracy", "pct", false), P("pyq_last_exam", "PYQ Last Exam", "enum", false),
     P("pyq_last_used", "PYQ Last Attempt", "date", false), P("pyq_first_used", "PYQ First Attempt", "date", false),
+    P("bc_registered", "BC Registered", "num", false), P("bc_attended", "BC Attended", "num", false),
+    P("bc_avg_watch", "BC Avg Watch %", "pct", false), P("bc_winner", "BC Winner", "status", false),
   ]},
 ];
 
