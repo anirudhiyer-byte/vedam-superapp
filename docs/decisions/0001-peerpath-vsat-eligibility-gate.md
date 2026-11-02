@@ -18,8 +18,8 @@ PeerPath ("Talk to a Senior") let anyone book a chat with no login. Ownership of
    | Mode | Who can book |
    |---|---|
    | `off` | Nobody — bookings closed (kill switch; also what happens if the flag is missing) |
-   | `registered` | Users with an `application_manager` row |
-   | `paid` | Users with an `application_manager` row **and** a `vsat_payments` row |
+   | `registered` | Users with their own `application_manager` row (`lead_id = auth.uid()`) **or** their own `vsat_registrations` row with `registered = true` (`user_id = auth.uid()`; written by `/apply` → `record_vsat_interest`) — 0043 |
+   | `paid` | Registered (as above) **and** a `vsat_payments` row |
 
    Admins (same rule as `pp_is_admin`) skip the VSAT part, but not `off`.
 4. **"Paid" = a row in `vsat_payments`.** One row per user, write-once (trigger blocks update/delete/truncate), written only by the future payment webhook with the service key. RLS on, no policies, no browser access. `payment_stage_*` no longer means paid anywhere in PeerPath.
@@ -43,7 +43,8 @@ Staging first. Production only with explicit approval. On a database where 0031 
 - Applicants must log in to book; the booking page shows their details read-only.
 - Popup links (`Complete payment`, `Register now`) go to `/apply` with `?next=<booking page>`; `/apply` sends the user back there after registering (or shows a "Continue where you left off" button). December: change `PEERPATH_LINKS.completePayment` in `src/lib/peerpath/constants.ts` (one line).
 - `EMAIL_MISSING` has no link: the popup adds an email in place (email OTP, `updateUser` + `verifyOtp('email_change')`); the verified login email is then used. (Same mechanism `EMAIL_NOT_VERIFIED` used before 0036.)
-- A paid user without an `application_manager` row is treated as not registered (strict definition).
+- A paid user with neither an `application_manager` row nor a registered `vsat_registrations` row is treated as not registered.
+- **"Register now" loop (fixed in 0043, 1 Nov 2026):** the NOT_REGISTERED popup links to `/apply`, which writes only `vsat_registrations`. Before 0043 such users came back and saw "Not registered" again (4 of 7 `/apply` registrants on staging). Now that row counts — matched only by `auth.uid()` (users cannot write the table: RLS select-own; rows come from `record_vsat_interest`). For a user with no `application_manager` row, the booking email comes from their own `vsat_registrations` row (not OTP-verified — same accepted risk as the application email); a user who has an application keeps the application email.
 - Phone-OTP users book with the email on their own VSAT application and never see an email step. Only when there is no email anywhere do they get `EMAIL_MISSING`. A missing phone never blocks a booking; the admin list shows "—".
 - `application_stage_*` and the slot field are still user-writable through `/api/vsat/stage` (left as-is by decision; does not affect PeerPath, which only trusts `vsat_payments`).
 
