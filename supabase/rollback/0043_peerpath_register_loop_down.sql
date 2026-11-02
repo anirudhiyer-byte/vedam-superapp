@@ -1,4 +1,4 @@
--- Rollback of 0039 · exact restore of pp_vsat_eligible (0033) and pp_contact_for (0036).
+-- Rollback of 0043 · exact restore of pp_vsat_eligible (0033) and pp_contact_for (0036).
 -- Effect: users registered only through /apply get NOT_REGISTERED again (the loop returns).
 
 create or replace function public.pp_vsat_eligible(p_uid uuid)

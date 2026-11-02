@@ -1,4 +1,4 @@
--- 0039 · PeerPath: end the "Register now" loop (1 Nov 2026)
+-- 0043 · PeerPath: end the "Register now" loop (1 Nov 2026)
 --
 -- Problem: the NOT_REGISTERED popup sends users to /apply ("Register now"). /apply calls
 -- record_vsat_interest(), which writes ONLY public.vsat_registrations (user_id = auth.uid(),
@@ -19,9 +19,11 @@
 -- Accepted risk (same as 0036): vsat_registrations.email is copied from the profile at
 -- registration and is not OTP-verified; meet-sync caps invites at 3 per email per day.
 --
--- Number: 0039 (0037/0038 were taken by teammates on staging). On the staging DB it was applied
--- on 1 Nov 2026 under the name "0037_peerpath_register_loop" (schema_migrations), same SQL.
--- Rollback: supabase/rollback/0039_peerpath_register_loop_down.sql
+-- Number: 0043 (0037–0042 were taken by teammates on staging). On the staging DB it was applied
+-- on 1 Nov 2026 under the name "0037_peerpath_register_loop" (schema_migrations). The comments
+-- inside the two functions still say "0037" on purpose: this file then recreates the live staging
+-- functions byte for byte (same md5).
+-- Rollback: supabase/rollback/0043_peerpath_register_loop_down.sql
 
 create or replace function public.pp_vsat_eligible(p_uid uuid)
 returns text language plpgsql stable security definer set search_path to '' as $fn$
@@ -43,7 +45,7 @@ begin
 
   -- registered = the user's OWN VSAT application (application_manager.lead_id = this login)
   -- or their OWN /apply registration (vsat_registrations.user_id = this login, registered = true).
-  -- 0039: "Register now" (/apply → record_vsat_interest) writes only vsat_registrations.
+  -- 0037: "Register now" (/apply → record_vsat_interest) writes only vsat_registrations.
   if not exists (select 1 from public.application_manager am where am.lead_id = p_uid)
      and not exists (select 1 from public.vsat_registrations vr where vr.user_id = p_uid and vr.registered is true) then
     return 'NOT_REGISTERED';
@@ -75,7 +77,7 @@ begin
      and char_length(btrim(am.registered_email)) <= 254
    order by am.created_at desc nulls last limit 1;
   has_app := exists (select 1 from public.application_manager am where am.lead_id = p_uid);
-  -- 0039: a user who registered only through /apply (no application_manager row) → the email on
+  -- 0037: a user who registered only through /apply (no application_manager row) → the email on
   -- their OWN vsat_registrations row (user_id = this login, written by record_vsat_interest)
   if not has_app then
     select lower(btrim(vr.email)) into vr_email

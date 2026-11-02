@@ -1,4 +1,4 @@
--- PeerPath VSAT gate · database tests (migrations 0031–0036, 0039)
+-- PeerPath VSAT gate · database tests (migrations 0031–0036, 0043)
 --
 -- How to run (STAGING ONLY): paste this whole file into the staging SQL editor,
 -- or run it through the Supabase MCP / psql. The last statement returns one row
@@ -720,7 +720,7 @@ begin
     exception when sqlstate 'ZUNDO' then null;
     end;
 
-    -- ════ 0039: a /apply registration (vsat_registrations) counts as registered — no "Register now" loop ════
+    -- ════ 0043: a /apply registration (vsat_registrations) counts as registered — no "Register now" loop ════
     begin
       perform pg_temp.set_mode('registered');
       u := pg_temp.mk_user(null, '+919100000070');                 -- phone-OTP login, registered only via /apply
