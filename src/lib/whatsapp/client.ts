@@ -69,10 +69,15 @@ export async function waSendSingle(opts: {
 export async function waCreateTemplate(payload: Record<string, unknown>, baseUrl?: string): Promise<Result> {
   const base = (baseUrl || DEFAULT_BASE).replace(/\/$/, "");
   const url = `${base}/v1/template?api_key=${encodeURIComponent(key())}`;
-  // waba_id from the request (the number the admin picked) wins; env is only a fallback.
+  // waba_id resolution:
+  //  - if the request explicitly includes waba_id (even ""), respect it — "" means
+  //    "omit the field" so TrustSignal falls back to the account's default WABA.
+  //  - if the request doesn't include it at all, use the env var.
+  const hasWaba = Object.prototype.hasOwnProperty.call(payload, "waba_id");
   const { waba_id: pWaba, ...rest } = payload;
-  const waba = (typeof pWaba === "string" && pWaba.trim()) ? pWaba.trim() : (process.env.TRUSTSIGNAL_WABA_ID || "");
-  const body = { waba_id: waba, shortlink: "1", ...rest };
+  const chosen = (hasWaba ? String(pWaba ?? "") : (process.env.TRUSTSIGNAL_WABA_ID || "")).trim();
+  const body: Record<string, unknown> = { shortlink: "1", ...rest };
+  if (chosen) body.waba_id = chosen;   // omitted entirely when empty → account default
   return call(url, { method: "POST", headers: { "Content-Type": "application/json", accept: "*/*" }, body: JSON.stringify(body) });
 }
 

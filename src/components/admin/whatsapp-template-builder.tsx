@@ -54,7 +54,7 @@ export function WhatsAppTemplateBuilder() {
     tpls.forEach((t) => { if (t.waba_id && !m.has(t.waba_id)) m.set(t.waba_id, t.sender_label || t.sender || t.waba_id); });
     return [...m.entries()].map(([id, label]) => ({ id, label }));
   }, [tpls]);
-  useEffect(() => { if (!wabaId && wabas.length) setWabaId(wabas[0].id); }, [wabas, wabaId]);
+  // default stays "" = account default (TrustSignal picks); admin can pick a specific number.
 
   async function loadTpls() {
     try { const r = await fetch("/api/whatsapp/templates"); const j = await r.json(); const raw = j?.data;
@@ -109,7 +109,8 @@ export function WhatsAppTemplateBuilder() {
     if (buttons.length) components.push({ type: "BUTTONS", buttons: buttons.map((b) => b.type === "URL" ? { type: "URL", text: b.text, url: b.url } : { type: "QUICK_REPLY", text: b.text }) });
     const payload: Record<string, unknown> = { name: name.trim(), lang, category, components };
     if (headerType === "image" || headerType === "document") payload.media = { header: mediaUrl };
-    if (wabaId) payload.waba_id = wabaId;
+    // always send the choice: a real WABA id, or "" to tell the server to omit it (account default)
+    payload.waba_id = wabaId;
     return payload;
   }
 
@@ -156,9 +157,10 @@ export function WhatsAppTemplateBuilder() {
             {wabas.length > 0 && (
               <label className="mt-3 block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Create under number <span className="font-normal text-muted">(WABA)</span></span>
                 <select value={wabaId} onChange={(e) => setWabaId(e.target.value)} className={field}>
+                  <option value="">(account default — let TrustSignal pick)</option>
                   {wabas.map((w) => <option key={w.id} value={w.id}>{w.label} · {w.id}</option>)}
                 </select>
-                <span className="mt-1 block font-body text-xs text-muted">The template is created under this WhatsApp number. Pick the one you want it to send from.</span>
+                <span className="mt-1 block font-body text-xs text-muted">The template is created under this WhatsApp number. If a specific number gives INVALID_WABA, try <b>account default</b>.</span>
               </label>
             )}
           </div>
