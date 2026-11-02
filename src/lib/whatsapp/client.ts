@@ -69,7 +69,10 @@ export async function waSendSingle(opts: {
 export async function waCreateTemplate(payload: Record<string, unknown>, baseUrl?: string): Promise<Result> {
   const base = (baseUrl || DEFAULT_BASE).replace(/\/$/, "");
   const url = `${base}/v1/template?api_key=${encodeURIComponent(key())}`;
-  const body = { waba_id: process.env.TRUSTSIGNAL_WABA_ID || "", shortlink: "1", ...payload };
+  // waba_id from the request (the number the admin picked) wins; env is only a fallback.
+  const { waba_id: pWaba, ...rest } = payload;
+  const waba = (typeof pWaba === "string" && pWaba.trim()) ? pWaba.trim() : (process.env.TRUSTSIGNAL_WABA_ID || "");
+  const body = { waba_id: waba, shortlink: "1", ...rest };
   return call(url, { method: "POST", headers: { "Content-Type": "application/json", accept: "*/*" }, body: JSON.stringify(body) });
 }
 

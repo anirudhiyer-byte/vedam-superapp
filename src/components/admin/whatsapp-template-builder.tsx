@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 
 type Btn = { type: "URL" | "QUICK_REPLY"; text: string; url?: string };
 type HeaderType = "none" | "text" | "image" | "document";
-type Tpl = { id?: string; name?: string; status?: string; temp_error?: string; jsonstruct?: string; placeholder?: { bodyvar?: number } };
+type Tpl = { id?: string; name?: string; status?: string; temp_error?: string; jsonstruct?: string; placeholder?: { bodyvar?: number }; waba_id?: string; sender?: string | null; sender_label?: string | null };
 
 const LANGS = [["en", "English"], ["en_US", "English (US)"], ["hi", "Hindi"]];
 const CATS = ["MARKETING", "UTILITY", "AUTHENTICATION"];
@@ -46,6 +46,15 @@ export function WhatsAppTemplateBuilder() {
   const [buttons, setButtons] = useState<Btn[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [resp, setResp] = useState<string | null>(null);
+  const [wabaId, setWabaId] = useState("");  // which number/WABA to create the template under
+
+  // distinct WABAs (numbers) seen on the account's templates — the admin picks one
+  const wabas = useMemo(() => {
+    const m = new Map<string, string>();
+    tpls.forEach((t) => { if (t.waba_id && !m.has(t.waba_id)) m.set(t.waba_id, t.sender_label || t.sender || t.waba_id); });
+    return [...m.entries()].map(([id, label]) => ({ id, label }));
+  }, [tpls]);
+  useEffect(() => { if (!wabaId && wabas.length) setWabaId(wabas[0].id); }, [wabas, wabaId]);
 
   async function loadTpls() {
     try { const r = await fetch("/api/whatsapp/templates"); const j = await r.json(); const raw = j?.data;
@@ -100,6 +109,7 @@ export function WhatsAppTemplateBuilder() {
     if (buttons.length) components.push({ type: "BUTTONS", buttons: buttons.map((b) => b.type === "URL" ? { type: "URL", text: b.text, url: b.url } : { type: "QUICK_REPLY", text: b.text }) });
     const payload: Record<string, unknown> = { name: name.trim(), lang, category, components };
     if (headerType === "image" || headerType === "document") payload.media = { header: mediaUrl };
+    if (wabaId) payload.waba_id = wabaId;
     return payload;
   }
 
@@ -143,6 +153,14 @@ export function WhatsAppTemplateBuilder() {
               <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Language</span><select value={lang} onChange={(e) => setLang(e.target.value)} className={field}>{LANGS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}</select></label>
               <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Category</span><select value={category} onChange={(e) => setCategory(e.target.value)} className={field}>{CATS.map((c) => <option key={c}>{c}</option>)}</select></label>
             </div>
+            {wabas.length > 0 && (
+              <label className="mt-3 block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Create under number <span className="font-normal text-muted">(WABA)</span></span>
+                <select value={wabaId} onChange={(e) => setWabaId(e.target.value)} className={field}>
+                  {wabas.map((w) => <option key={w.id} value={w.id}>{w.label} · {w.id}</option>)}
+                </select>
+                <span className="mt-1 block font-body text-xs text-muted">The template is created under this WhatsApp number. Pick the one you want it to send from.</span>
+              </label>
+            )}
           </div>
 
           {/* header */}
@@ -217,6 +235,11 @@ export function WhatsAppTemplateBuilder() {
               {buttons.length > 0 && <div className="border-t border-[#eee]">{buttons.map((b, i) => <div key={i} className="border-t border-[#f0f0f0] py-2 text-center text-[13px] font-bold text-[#0a8] first:border-t-0">{b.type === "URL" ? "🔗 " : "💬 "}{b.text || "Button"}</div>)}</div>}
             </div>
           </div>
+          {resp && /INVALID_WABA|1014/i.test(resp) && (
+            <div className="mt-3 rounded-xl border border-amber-300 bg-amber-50 p-2.5 font-body text-xs text-amber-700">
+              This WhatsApp number (WABA) was rejected for template creation. Try picking the other number in <b>Create under number</b> above, then submit again.
+            </div>
+          )}
           {resp && <pre className="mt-3 max-h-48 overflow-auto rounded-xl border border-border bg-[#0e0a1c] p-3 font-mono text-xs text-[#c7f0d8]">{resp}</pre>}
           <button onClick={submit} disabled={!canSubmit || submitting} className="mt-3 w-full rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-50">{submitting ? "Submitting…" : "Submit for approval"}</button>
           <p className="mt-2 font-body text-xs text-muted">Goes to WhatsApp for approval. Track status below once submitted.</p>
