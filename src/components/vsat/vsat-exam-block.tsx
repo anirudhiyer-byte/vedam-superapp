@@ -42,6 +42,40 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
     onChange();
   }
 
+  const launchMsg: Record<string, string> = {
+    NOT_PAID: "Complete your payment first to unlock the exam.",
+    NO_SLOT: "Select your exam date first.",
+    NOT_IN_WINDOW: "Your exam hasn't opened yet — try again closer to your slot.",
+    WINDOW_CLOSED: "Your exam window has closed.",
+    MOCK_NOT_CONFIGURED: "The mock test isn't set up yet — check back soon.",
+    MOCK_ALREADY_DONE: "You've already completed your mock test.",
+    WHEEBOX_NOT_CONFIGURED: "The exam platform isn't connected yet — check back soon.",
+  };
+
+  async function launch(kind: "mock" | "exam") {
+    setBusy(true); setErr(""); setNote("");
+    try {
+      const res = await fetch("/api/vsat/exam/launch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ kind }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data?.ok && typeof data.url === "string") {
+        window.open(data.url, "_blank", "noopener,noreferrer");
+        setNote("Your test is opening in a new tab. Keep this page open — your result shows here once you finish.");
+        onChange();
+      } else {
+        setErr(launchMsg[data?.code] || "Couldn't open the test right now. Please try again in a moment.");
+      }
+    } catch {
+      setErr("Couldn't reach the exam platform. Check your connection and try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   const mockGiven = app.mock_given === true;
   const mockResult = (app.mock_result as Record<string, unknown> | null) ?? null;
 
@@ -73,7 +107,7 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
         ) : (
           <>
             <p className="mt-2 text-sm text-[#6b647e]">Practice once before the real VSAT. Available once per applicant.</p>
-            <button onClick={() => setNote("Your mock test will open right here. (The exam platform connection is being finalised.)")} disabled={busy} className={`mt-4 ${grad}`}>Start mock test</button>
+            <button onClick={() => launch("mock")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start mock test"}</button>
           </>
         )}
       </div>
@@ -100,7 +134,7 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
           {windowClosed ? (
             <p className="mt-4 text-sm text-[#d14343]">Your exam window has closed.</p>
           ) : inWindow ? (
-            <button onClick={() => setNote("Your exam will open right here. (The exam platform connection is being finalised.)")} disabled={busy} className={`mt-4 ${grad}`}>Start exam →</button>
+            <button onClick={() => launch("exam")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start exam →"}</button>
           ) : (
             <button disabled className="mt-4 cursor-not-allowed rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4]">🔒 Unlocks at {istFull(clickableFromMs)}</button>
           )}

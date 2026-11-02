@@ -84,7 +84,7 @@ const iconTint = "grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-[#f
 
 const firstName = (s: string) => (s || "").trim().split(/\s+/)[0] || "";
 
-export function VsatDashboard() {
+export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const [supabase] = useState(() => createClient());
   const [app, setApp] = useState<App>(null);
   const [lead, setLead] = useState<Lead>(null);
@@ -186,7 +186,8 @@ export function VsatDashboard() {
   const ao = app as Record<string, unknown>;
   const l = (lead as Record<string, string>) ?? {};
   const pay = a.payment_stage_1, appl = a.application_stage_1;
-  const paid = pay === "payment_approved";
+  // Admins/staff bypass payment so they can walk the full exam demo without paying.
+  const paid = pay === "payment_approved" || isAdmin;
   const idx = activeIndex(app);
   const pct = Math.round((idx / (MILESTONES.length - 1)) * 100);
   const payAmount = quote?.net ?? 1000;
