@@ -24,5 +24,5 @@ export default async function Page() {
     if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
   }
   if (!isAdmin) redirect("/apply");
-  return <VsatDashboard />;
+  return <VsatDashboard isAdmin={isAdmin} />;
 }
