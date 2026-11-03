@@ -132,8 +132,7 @@ export function WhatsAppTemplateBuilder() {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
-      <span className="font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">// whatsapp · template builder</span>
-      <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-heading">Create WhatsApp template</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-heading">Create WhatsApp template</h1>
 
       {/* duplicate */}
       <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-[rgba(130,150,255,0.22)] bg-[#0d1430] p-4">
