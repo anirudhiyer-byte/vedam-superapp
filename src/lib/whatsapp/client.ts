@@ -40,13 +40,16 @@ export function senderForWaba(wabaId?: string | null): string {
   return senderInfoForWaba(wabaId).number || sender();
 }
 
+// never echo the API key back to the browser in the reported url
+const maskKey = (u: string) => u.replace(/([?&]api_key=)[^&]*/i, "$1***");
+
 async function call(url: string, init?: RequestInit): Promise<Result> {
   let res: Response;
   try { res = await fetch(url, init); }
-  catch (e) { return { ok: false, status: 0, url, data: { error: String(e) } }; }
+  catch (e) { return { ok: false, status: 0, url: maskKey(url), data: { error: String(e) } }; }
   const text = await res.text();
   let data: unknown; try { data = JSON.parse(text); } catch { data = { raw: text }; }
-  return { ok: res.ok, status: res.status, url, data };
+  return { ok: res.ok, status: res.status, url: maskKey(url), data };
 }
 
 export async function waSendSingle(opts: {
