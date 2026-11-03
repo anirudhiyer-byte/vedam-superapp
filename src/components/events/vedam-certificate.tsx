@@ -29,10 +29,18 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
   const grad = isCS ? "linear-gradient(162deg,#FFB41F 2%,#FD5300 86%)" : "linear-gradient(174deg,#00CFE5 5%,#C200DB 96%)";
   const frameGrad = isCS ? "linear-gradient(118deg,#FFB41F 26%,#FD5300 129%)" : "linear-gradient(118deg,#00CFE5 26%,#C200DB 129%)";
   const accent = isCS ? "#FD7B03" : "#7b5cff";
-  const title2 = isCS ? "COMPLETION" : "PARTICIPATION";
+  const title2 = isCS ? "COMPLETION" : winner ? "EXCELLENCE" : "PARTICIPATION";
   const course = (bootcampName || "").replace(/\s+in CodeSprint$/i, "") || "Name of Course";
+  // winner: the placement reads in a thin, glassy gold (renders flat on PNG exports)
+  const goldPlace: CSSProperties = { fontWeight: 600,
+    backgroundImage: "linear-gradient(180deg,#F6E6A6 0%,#E9C867 26%,#D4A836 48%,#BE8E1E 54%,#E4C25F 74%,#F3E2A0 100%)",
+    WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" as CSSProperties["WebkitTextFillColor"] };
   const bodyLine = isCS
     ? (<>for successfully Completing&nbsp;<b style={{ fontWeight: 700, color: "#2b2b2b" }}>{course}</b></>)
+    : winner
+    ? (position
+        ? (<>for securing&nbsp;<span style={{ ...goldPlace, fontSize: 23 }}>{position} place</span>&nbsp;in&nbsp;<b style={{ fontWeight: 700, color: "#2b2b2b" }}>{course}</b></>)
+        : (<>for outstanding achievement in&nbsp;<b style={{ fontWeight: 700, color: "#2b2b2b" }}>{course}</b></>))
     : (<>for successfully participating in&nbsp;<b style={{ fontWeight: 700, color: "#2b2b2b" }}>{course}</b></>);
 
   // heading/logo centre over the area to the RIGHT of the ribbon
@@ -93,7 +101,6 @@ const VedamCertificate = forwardRef<HTMLDivElement, Props>(function VedamCertifi
             : <div style={{ marginTop: 8, fontWeight: 300, fontSize: 20, color: "#2b2b2b" }}>conducted by Vedam School of Technology</div>}
         </div>
 
-        {winner && <div style={{ position: "absolute", right: 40, top: 300, fontWeight: 800, fontSize: 14, color: accent }}>{position === "1st" ? "🥇 1ST" : position === "2nd" ? "🥈 2ND" : position === "3rd" ? "🥉 3RD" : "🏆 WINNER"}</div>}
 
         {/* signature — bottom left, right of ribbon */}
         <div style={{ position: "absolute", left: CARD_L + 20, bottom: 44 }}>
