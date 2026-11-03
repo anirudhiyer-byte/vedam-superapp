@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { rpcAll } from "@/lib/supabase/rpc-all";
 import { renderEmailTemplateHtml } from "@/lib/email/render";
 import { DarkSelect } from "@/components/admin/dark-select";
 
@@ -44,7 +45,8 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
 
   useEffect(() => {
     (async () => {
-      const { data } = await supabase.rpc("comms_audience"); setRows((data as Row[]) ?? []); setLoading(false);
+      // every page, not just the first 1000 (see rpcAll)
+      const { data } = await rpcAll<Row>(supabase, "comms_audience"); setRows(data); setLoading(false);
       if (channel === "whatsapp") {
         const { data: tg } = await supabase.from("comms_template_tags").select("template_ref, product").eq("channel", "whatsapp");
         const m: Record<string, string> = {}; (tg as { template_ref: string; product: string }[] ?? []).forEach((t) => m[t.template_ref] = t.product); setTags(m);
