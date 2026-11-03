@@ -8,8 +8,8 @@ type Recipient = { to: string; sample?: WaSample };
 export async function POST(req: Request) {
   const { user, supabase } = await requireAdmin();
   if (!user) return Response.json({ ok: false, error: "forbidden" }, { status: 403 });
-  const { templateId, messageType, sender, recipients, campaignId, campaignName } = await req.json() as {
-    templateId: string; messageType?: string; sender?: string; recipients: Recipient[]; campaignId?: string; campaignName?: string;
+  const { templateId, messageType, sender, wabaId, recipients, campaignId, campaignName } = await req.json() as {
+    templateId: string; messageType?: string; sender?: string; wabaId?: string; recipients: Recipient[]; campaignId?: string; campaignName?: string;
   };
   if (!templateId || !Array.isArray(recipients) || recipients.length === 0)
     return Response.json({ ok: false, error: "templateId + recipients required" }, { status: 400 });
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   let sent = 0, failed = 0;
   const rows: Record<string, unknown>[] = [];
   for (const r of recipients) {
-    const result = await waSendSingle({ to: r.to, templateId, messageType, sender, sample: r.sample });
+    const result = await waSendSingle({ to: r.to, templateId, messageType, sender, wabaId, sample: r.sample });
     const d = result.data as { results?: { transaction_id?: string; cost?: number }[] } | undefined;
     const first = d?.results?.[0];
     if (result.ok) sent++; else failed++;
