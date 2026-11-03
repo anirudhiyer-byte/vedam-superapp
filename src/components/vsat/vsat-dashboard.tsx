@@ -95,6 +95,16 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const [note, setNote] = useState("");
   const [fillOpen, setFillOpen] = useState(false);
   const [perfAtt, setPerfAtt] = useState(1);
+  // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
+  // Not a bypass of the pay screen — the admin still sees "Pay", with a Simulate
+  // button below it. Persisted per browser so a refresh keeps them past the gate.
+  const [simPaid, setSimPaid] = useState(false);
+  useEffect(() => { try { if (isAdmin && localStorage.getItem("vsat_admin_sim_paid") === "1") setSimPaid(true); } catch { /* ignore */ } }, [isAdmin]);
+  function simulatePayment() {
+    try { localStorage.setItem("vsat_admin_sim_paid", "1"); } catch { /* ignore */ }
+    setSimPaid(true);
+    setNote("Simulated payment (admin) — the exam/application flow is unlocked. This does not create a real payment.");
+  }
 
   const load = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -187,7 +197,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const l = (lead as Record<string, string>) ?? {};
   const pay = a.payment_stage_1, appl = a.application_stage_1;
   // Admins/staff bypass payment so they can walk the full exam demo without paying.
-  const paid = pay === "payment_approved" || isAdmin;
+  const paid = pay === "payment_approved" || (isAdmin && simPaid);
   const idx = activeIndex(app);
   const pct = Math.round((idx / (MILESTONES.length - 1)) * 100);
   const payAmount = quote?.net ?? 1000;
@@ -319,6 +329,12 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                 <button onClick={startPayment} disabled={busy} className={`${btn} mt-4`}>{busy ? "Starting…" : `Pay ₹${payAmount}`}</button>
                 {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#b26a00]">Payment initiated — if you didn&apos;t complete it, click Pay to try again.</p>}
                 {pay === "payment_failed" && <p className="mt-3 text-xs text-[#d14343]">Last payment failed. You can try again.</p>}
+                {isAdmin && (
+                  <div className="mt-4 border-t border-dashed border-[#d9d2ef] pt-3">
+                    <button onClick={simulatePayment} className="w-full rounded-xl border border-[#8a18ff]/35 bg-[#f6f0ff] px-4 py-2.5 text-sm font-semibold text-[#7312e0] transition hover:bg-[#efe6ff]">⚡ Simulate payment &amp; continue (admin)</button>
+                    <p className="mt-1.5 text-[11px] text-[#9a93ad]">Admin-only. Skips the real payment to walk the next screens — no real payment is created.</p>
+                  </div>
+                )}
               </div>
             ) : inExamPhase ? (
               <div className="mb-4">
