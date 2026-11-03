@@ -1,4 +1,4 @@
--- 0048_pu_all_users_bootcamp_cols_down.sql — restore pu_all_users to its 0046 form
+-- 0051_pu_all_users_bootcamp_cols_down.sql (was 0048) — restore pu_all_users to its 0046 form
 -- (drops the four bootcamp summary columns).
 
 create or replace function public.pu_all_users()

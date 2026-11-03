@@ -1,4 +1,4 @@
--- 0047_pu_bootcamp.sql
+-- 0050_pu_bootcamp.sql (renumbered from 0047 to avoid a clash with 0047_vsat_exam_admin_bypass)
 -- Product Users → "Bootcamp" tab: one row per student, aggregated across all
 -- bootcamps they registered for (bootcamp_participation). Admin-only, same
 -- SECURITY DEFINER / is_admin() pattern as the other pu_* RPCs.

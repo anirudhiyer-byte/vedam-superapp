@@ -1,4 +1,4 @@
--- 0048_pu_all_users_bootcamp_cols.sql
+-- 0051_pu_all_users_bootcamp_cols.sql (renumbered from 0048 to avoid a clash with 0048_vsat_admin_rpcs_staff)
 -- Add bootcamp summary columns (bc_registered, bc_attended, bc_avg_watch,
 -- bc_winner) to the "All Users" RPC so it stays a full superset now that a
 -- dedicated Bootcamp tab exists.

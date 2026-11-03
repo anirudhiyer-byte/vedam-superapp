@@ -110,6 +110,8 @@ const STATUS_LABELS: Record<string, [string, string]> = {
   bc_winner: ["Winner", "No"], bc_dropped_off: ["Dropped off", "No"],
 };
 const statusLabels = (key: string): [string, string] => STATUS_LABELS[key] || ["Yes", "No"];
+// product columns that only exist where their source table exists (see migration 0052)
+const OPTIONAL_KEYS = new Set(["paid", "paid_at"]);
 
 /* ── crisp line icons (no emoji) ───────────────────────────── */
 const Svg = (p: { children: ReactNode; className?: string }) => (
@@ -200,21 +202,41 @@ export function ProductUsers() {
   const [enumF, setEnumF] = useState<Record<string, string[]>>({});
   const [dateF, setDateF] = useState<Record<string, { from: string; to: string }>>({});
   const [statusF, setStatusF] = useState<Record<string, "" | "yes" | "no">>({});
+  const [loadErr, setLoadErr] = useState<string | null>(null);
 
   const product = PRODUCTS.find((p) => p.key === tab)!;
   // a profile column whose key is already a product column (e.g. public_id on VSAT,
   // cs_completion_rate on CodeSprint) would render twice — the product column wins
   const profileCols = useMemo(() => PROFILE_COLS.filter((pc) => !product.cols.some((c) => c.key === pc.key)), [product]);
-  const allCols = useMemo(() => [...product.cols, ...profileCols], [product, profileCols]);
+  // columns whose source may not exist on every database (VSAT payments): hide them
+  // when the RPC didn't return the key at all, rather than showing everyone as "Not paid"
+  const allCols = useMemo(() => {
+    const missing = (k: string) => OPTIONAL_KEYS.has(k) && rows.length > 0 && !rows.some((r) => k in r);
+    return [...product.cols.filter((c) => !missing(c.key)), ...profileCols];
+  }, [product, profileCols, rows]);
   const shownCols = allCols.filter((c) => visible[tab].has(c.key));
   const addedProfileCount = [...visible[tab]].filter((k) => profileCols.some((c) => c.key === k)).length;
 
   useEffect(() => {
     let on = true;
     setLoading(true); setSelected(new Set()); setTextF({}); setNumF({}); setEnumF({}); setDateF({}); setStatusF({});
+    setLoadErr(null);
     (async () => {
-      const { data } = await supabase.rpc(product.rpc);
-      if (on) { setRows((data as Row[]) ?? []); setLoading(false); }
+      // The Supabase API caps each response (~1000 rows), so read the RPC page by page
+      // until a page comes back empty. The RPCs order by a unique user_id tie-breaker,
+      // so pages don't overlap; the Map is a second guard against duplicates.
+      const PAGE = 1000;
+      const byId = new Map<string, Row>();
+      let err: string | null = null;
+      for (let from = 0, guard = 0; guard < 500; guard++) {
+        const { data, error } = await supabase.rpc(product.rpc).range(from, from + PAGE - 1);
+        if (error) { err = error.message; break; }
+        const chunk = (data as Row[]) ?? [];
+        if (!chunk.length) break;
+        for (const r of chunk) byId.set(r.user_id, r);
+        from += chunk.length;
+      }
+      if (on) { setRows([...byId.values()]); setLoadErr(err); setLoading(false); }
     })();
     return () => { on = false; };
   }, [supabase, product.rpc, tab]);
@@ -361,6 +383,7 @@ export function ProductUsers() {
         <span className="text-white/55"><b className="font-semibold text-white tabular-nums">{filtered.length}</b> of <span className="tabular-nums">{rows.length}</span> users</span>
         <span className="font-mono text-[11px] text-white/35">base: {product.base}</span>
         <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-white/35"><span className="inline-block h-2.5 w-2.5 rounded-sm bg-[color:rgb(var(--accent))]/25 ring-1 ring-inset ring-[color:rgb(var(--accent))]/40" /> profile column</span>
+        {loadErr && rows.length > 0 && <span className="rounded-md bg-amber-400/10 px-2 py-0.5 text-xs text-amber-300 ring-1 ring-inset ring-amber-400/25">Only part of the list loaded — refresh to retry ({loadErr})</span>}
         {anyFilter && <button onClick={clearFilters} className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-2.5 py-1 text-xs font-medium text-white/60 transition-colors hover:border-white/25 hover:text-white">Clear filters</button>}
       </div>
 
@@ -429,8 +452,8 @@ export function ProductUsers() {
                 {filtered.length === 0 ? (
                   <tr><td colSpan={shownCols.length + 1} className="px-3 py-16 text-center text-white/45">
                     <IconInbox />
-                    <p className="mt-3 font-semibold text-white/75">No users match</p>
-                    <p className="text-sm text-white/40">{anyFilter ? "Try clearing the filters." : "This product has no users yet."}</p>
+                    <p className="mt-3 font-semibold text-white/75">{loadErr ? "Couldn't load users" : "No users match"}</p>
+                    <p className="text-sm text-white/40">{loadErr ? loadErr : anyFilter ? "Try clearing the filters." : "This product has no users yet."}</p>
                   </td></tr>
                 ) : paged.map((r) => {
                   const on = selected.has(r.user_id);
