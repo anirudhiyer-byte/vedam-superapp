@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 
 type Btn = { type: "URL" | "QUICK_REPLY"; text: string; url?: string };
 type HeaderType = "none" | "text" | "image" | "document";
-type Tpl = { id?: string; name?: string; status?: string; temp_error?: string; jsonstruct?: string; placeholder?: { bodyvar?: number } };
+type Tpl = { id?: string; name?: string; status?: string; temp_error?: string; jsonstruct?: string; placeholder?: { bodyvar?: number }; waba_id?: string; sender?: string | null; sender_label?: string | null };
 
 const LANGS = [["en", "English"], ["en_US", "English (US)"], ["hi", "Hindi"]];
 const CATS = ["MARKETING", "UTILITY", "AUTHENTICATION"];
@@ -46,6 +46,15 @@ export function WhatsAppTemplateBuilder() {
   const [buttons, setButtons] = useState<Btn[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [resp, setResp] = useState<string | null>(null);
+  const [wabaId, setWabaId] = useState("");  // which number/WABA to create the template under
+
+  // distinct WABAs (numbers) seen on the account's templates — the admin picks one
+  const wabas = useMemo(() => {
+    const m = new Map<string, string>();
+    tpls.forEach((t) => { if (t.waba_id && !m.has(t.waba_id)) m.set(t.waba_id, t.sender_label || t.sender || t.waba_id); });
+    return [...m.entries()].map(([id, label]) => ({ id, label }));
+  }, [tpls]);
+  // "" = default number (server env TRUSTSIGNAL_WABA_ID); admin can pick a specific number.
 
   async function loadTpls() {
     try { const r = await fetch("/api/whatsapp/templates"); const j = await r.json(); const raw = j?.data;
@@ -100,6 +109,8 @@ export function WhatsAppTemplateBuilder() {
     if (buttons.length) components.push({ type: "BUTTONS", buttons: buttons.map((b) => b.type === "URL" ? { type: "URL", text: b.text, url: b.url } : { type: "QUICK_REPLY", text: b.text }) });
     const payload: Record<string, unknown> = { name: name.trim(), lang, category, components };
     if (headerType === "image" || headerType === "document") payload.media = { header: mediaUrl };
+    // always send the choice: a real WABA id, or "" = server default (TRUSTSIGNAL_WABA_ID)
+    payload.waba_id = wabaId;
     return payload;
   }
 
@@ -121,14 +132,13 @@ export function WhatsAppTemplateBuilder() {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
-      <span className="font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">// whatsapp · template builder</span>
-      <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-heading">Create WhatsApp template</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-heading">Create WhatsApp template</h1>
 
       {/* duplicate */}
-      <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-border-strong bg-[linear-gradient(120deg,#fdf3ec,#f3ecfb)] p-4">
-        <span className="text-xl">📋</span>
-        <div className="flex-1"><div className="font-display text-sm font-extrabold text-heading">Duplicate an existing template</div>
-          <div className="font-body text-xs text-muted">Copies header, body, footer, buttons &amp; variables — then rename &amp; tweak.</div></div>
+      <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-[rgba(130,150,255,0.22)] bg-[#0d1430] p-4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><rect x="8" y="2" width="8" height="4" rx="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /><path d="M9 12h6M9 16h4" /></svg>
+        <div className="flex-1"><div className="font-display text-sm font-extrabold text-[#f2f5ff]">Duplicate an existing template</div>
+          <div className="font-body text-xs text-[#aeb8e0]">Copies header, body, footer, buttons &amp; variables — then rename &amp; tweak.</div></div>
         <select onChange={(e) => { const t = tpls.find((x) => (x.name || x.id) === e.target.value); if (t) duplicate(t); }} defaultValue="" className={field + " max-w-xs"}>
           <option value="">Pick a template…</option>
           {tpls.filter((t) => t.jsonstruct).map((t, i) => <option key={i} value={t.name || t.id}>{t.name}{t.status ? ` · ${t.status}` : ""}</option>)}
@@ -143,6 +153,15 @@ export function WhatsAppTemplateBuilder() {
               <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Language</span><select value={lang} onChange={(e) => setLang(e.target.value)} className={field}>{LANGS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}</select></label>
               <label className="block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Category</span><select value={category} onChange={(e) => setCategory(e.target.value)} className={field}>{CATS.map((c) => <option key={c}>{c}</option>)}</select></label>
             </div>
+            {wabas.length > 0 && (
+              <label className="mt-3 block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Create under number <span className="font-normal text-muted">(WABA)</span></span>
+                <select value={wabaId} onChange={(e) => setWabaId(e.target.value)} className={field}>
+                  <option value="">Default number (server setting)</option>
+                  {wabas.map((w) => <option key={w.id} value={w.id}>{w.label} · {w.id}</option>)}
+                </select>
+                <span className="mt-1 block font-body text-xs text-muted">The template is created under this WhatsApp number.</span>
+              </label>
+            )}
           </div>
 
           {/* header */}
@@ -210,13 +229,21 @@ export function WhatsAppTemplateBuilder() {
           <span className="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wide text-muted">Live preview</span>
           <div className="rounded-2xl border border-border bg-[#E5DDD5] p-3">
             <div className="overflow-hidden rounded-xl bg-white shadow-sm">
-              {headerType === "image" && <div className="grid h-28 place-items-center bg-brand-gradient text-xs font-bold text-white">{mediaUrl ? "🖼️ image header" : "image header"}</div>}
+              {headerType === "image" && (mediaUrl
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={mediaUrl} alt="header" className="h-32 w-full object-cover" />
+                : <div className="grid h-28 place-items-center bg-brand-gradient text-xs font-bold text-white">image header</div>)}
               {headerType === "text" && headerText && <div className="px-3 pt-2.5 font-display text-sm font-extrabold text-heading">{headerText}</div>}
               <div className="whitespace-pre-wrap px-3 py-2 text-[13.5px] leading-relaxed text-[#111]">{previewBody || <span className="text-muted">Your message preview…</span>}</div>
               {footer && <div className="px-3 pb-2 text-[11px] text-[#888]">{footer}</div>}
               {buttons.length > 0 && <div className="border-t border-[#eee]">{buttons.map((b, i) => <div key={i} className="border-t border-[#f0f0f0] py-2 text-center text-[13px] font-bold text-[#0a8] first:border-t-0">{b.type === "URL" ? "🔗 " : "💬 "}{b.text || "Button"}</div>)}</div>}
             </div>
           </div>
+          {resp && /INVALID_WABA|1014/i.test(resp) && (
+            <div className="mt-3 rounded-xl border border-amber-300 bg-amber-50 p-2.5 font-body text-xs text-amber-700">
+              TrustSignal rejected the WhatsApp number (WABA) for template creation. Check that the number is still linked to the TrustSignal account, or pick the other number in <b>Create under number</b> above.
+            </div>
+          )}
           {resp && <pre className="mt-3 max-h-48 overflow-auto rounded-xl border border-border bg-[#0e0a1c] p-3 font-mono text-xs text-[#c7f0d8]">{resp}</pre>}
           <button onClick={submit} disabled={!canSubmit || submitting} className="mt-3 w-full rounded-xl bg-brand-gradient px-6 py-3 text-sm font-semibold text-white disabled:opacity-50">{submitting ? "Submitting…" : "Submit for approval"}</button>
           <p className="mt-2 font-body text-xs text-muted">Goes to WhatsApp for approval. Track status below once submitted.</p>
