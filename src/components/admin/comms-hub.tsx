@@ -13,13 +13,17 @@ import { EmailTemplateComposer } from "@/components/admin/email-template-compose
 type Channel = "whatsapp" | "email";
 type Product = "all" | "events" | "codesprint" | "college_predictor" | "general";
 const PRODUCTS: { key: Product; label: string; icon: string }[] = [
-  { key: "all", label: "All", icon: "📚" },
-  { key: "events", label: "Events", icon: "📅" },
-  { key: "codesprint", label: "CodeSprint", icon: "🚀" },
-  { key: "college_predictor", label: "College Predictor", icon: "🎓" },
-  { key: "general", label: "General", icon: "🌐" },
+  { key: "all", label: "All", icon: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>' },
+  { key: "events", label: "Events", icon: '<rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/>' },
+  { key: "codesprint", label: "CodeSprint", icon: '<path d="M9 8l-5 4 5 4M15 8l5 4-5 4"/>' },
+  { key: "college_predictor", label: "College Predictor", icon: '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v4c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-4"/>' },
+  { key: "general", label: "General", icon: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/>' },
 ];
 const TAGS = PRODUCTS.filter((p) => p.key !== "all");
+
+function Svg({ inner }: { inner: string }) {
+  return <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: inner }} />;
+}
 
 type WaTpl = { id?: string; name?: string; status?: string; placeholder?: { bodyvar?: number } };
 type EmTpl = { id: string; name: string; product: string };
@@ -70,30 +74,38 @@ export function CommsHub() {
   const emFiltered = useMemo(() => emTpls.filter((t) => product === "all" || (t.product || "general") === product), [emTpls, product]);
 
   const field = "rounded-lg border border-border-strong bg-background px-2.5 py-1.5 text-sm text-foreground outline-none";
-  const pill = (p: string) => { const t = TAGS.find((x) => x.key === p); return t ? `${t.icon} ${t.label}` : p; };
+  const pill = (p: string) => { const t = TAGS.find((x) => x.key === p); return t ? t.label : p; };
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
-      <span className="font-mono text-xs font-semibold lowercase tracking-[0.12em] text-accent">// comms hub</span>
-      <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-heading">Communications</h1>
+    <div className="neural-glass relative min-h-screen" style={{ background: "#070a16", color: "#f2f5ff" }}>
+      <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(760px 440px at 85% -6%, rgba(139,92,246,.14), transparent 60%), radial-gradient(620px 420px at -6% 108%, rgba(34,211,238,.09), transparent 60%)" }} />
+      <div className="relative mx-auto max-w-5xl px-6 py-10">
+      <h1 className="text-4xl font-bold tracking-tight" style={{ fontFamily: "var(--font-outfit), system-ui, sans-serif", background: "linear-gradient(92deg,#8b5cf6,#c4b5fd 85%)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", filter: "drop-shadow(0 0 26px rgba(139,92,246,.25))" }}>Communications</h1>
 
       {/* channel toggle */}
       <div className="mt-4 inline-flex rounded-full border border-border bg-surface p-1">
-        <button onClick={() => setChannel("whatsapp")} className={["rounded-full px-4 py-1.5 font-mono text-xs font-bold", channel === "whatsapp" ? "bg-heading text-white" : "text-muted"].join(" ")} style={channel === "whatsapp" ? { background: "rgb(var(--heading))" } : undefined}>💬 WhatsApp</button>
-        <button onClick={() => setChannel("email")} className={["rounded-full px-4 py-1.5 font-mono text-xs font-bold", channel === "email" ? "bg-heading text-white" : "text-muted"].join(" ")} style={channel === "email" ? { background: "rgb(var(--heading))" } : undefined}>✉️ Email</button>
+        {(["whatsapp", "email"] as const).map((c) => (
+          <button key={c} onClick={() => setChannel(c)}
+            className="rounded-full px-5 py-1.5 font-mono text-xs font-bold transition-colors"
+            style={channel === c ? { background: "linear-gradient(90deg,#8b5cf6,#6d4bd6)", color: "#fff", boxShadow: "0 8px 22px -12px rgba(139,92,246,.8)" } : { color: "#aeb8e0" }}>
+            {c === "whatsapp" ? "WhatsApp" : "Email"}
+          </button>
+        ))}
       </div>
 
       {/* product switcher */}
       <div className="mt-3 flex flex-wrap gap-2">
         {PRODUCTS.map((p) => (
-          <button key={p.key} onClick={() => setProduct(p.key)} className={["rounded-xl border px-3.5 py-2 text-xs font-extrabold", product === p.key ? "border-[color:rgb(var(--accent))] bg-surface-warm text-foreground" : "border-border-strong bg-surface text-muted"].join(" ")}>{p.icon} {p.label}</button>
+          <button key={p.key} onClick={() => setProduct(p.key)} className={["inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-xs font-extrabold", product === p.key ? "border-[color:rgb(var(--accent))] bg-surface-warm text-foreground" : "border-border-strong bg-surface text-muted"].join(" ")}><Svg inner={p.icon} /> {p.label}</button>
         ))}
       </div>
 
       {/* sub-tabs */}
-      <div className="mt-4 inline-flex gap-1 rounded-lg bg-surface-warm p-1">
+      <div className="mt-4 inline-flex gap-1 rounded-lg border border-border bg-surface p-1">
         {(["campaigns","automations","reminders","report","templates"] as const).map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={["rounded-md px-3 py-1.5 text-xs font-bold capitalize", tab === t ? "bg-surface text-foreground shadow-sm" : "text-muted"].join(" ")}>{t}</button>
+          <button key={t} onClick={() => setTab(t)}
+            className="rounded-md px-3.5 py-1.5 text-xs font-bold capitalize transition-colors"
+            style={tab === t ? { background: "rgba(139,92,246,.18)", color: "#f2f5ff", boxShadow: "inset 0 0 0 1px rgba(139,92,246,.35)" } : { color: "#aeb8e0" }}>{t}</button>
         ))}
       </div>
 
@@ -117,7 +129,7 @@ export function CommsHub() {
                   <div key={i} className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface px-4 py-2.5">
                     <span className="flex-1 font-body text-sm font-semibold text-heading">{t.name}{t.placeholder?.bodyvar ? <span className="ml-2 font-mono text-[11px] text-muted">{t.placeholder.bodyvar} var</span> : null}</span>
                     {t.status && <span className={["rounded-full px-2 py-0.5 font-mono text-[10px] font-bold", t.status.toUpperCase() === "APPROVED" ? "bg-[#eafaf0] text-[#12703f]" : "bg-[#fff6ec] text-[#7a5a2a]"].join(" ")}>{t.status.toUpperCase()}</span>}
-                    <select value={tags[ref] || "general"} onChange={(e) => tagWa(ref, e.target.value)} className={field}>{TAGS.map((p) => <option key={p.key} value={p.key}>{p.icon} {p.label}</option>)}</select>
+                    <select value={tags[ref] || "general"} onChange={(e) => tagWa(ref, e.target.value)} className={field}>{TAGS.map((p) => <option key={p.key} value={p.key}>{p.label}</option>)}</select>
                   </div>
                 );
               })
@@ -126,7 +138,7 @@ export function CommsHub() {
               emFiltered.map((t) => (
                 <div key={t.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface px-4 py-2.5">
                   <span className="flex-1 font-body text-sm font-semibold text-heading">{t.name}</span>
-                  <select value={t.product || "general"} onChange={(e) => tagEm(t.id, e.target.value)} className={field}>{TAGS.map((p) => <option key={p.key} value={p.key}>{p.icon} {p.label}</option>)}</select>
+                  <select value={t.product || "general"} onChange={(e) => tagEm(t.id, e.target.value)} className={field}>{TAGS.map((p) => <option key={p.key} value={p.key}>{p.label}</option>)}</select>
                 </div>
               ))
             )}
@@ -169,6 +181,7 @@ export function CommsHub() {
           <p className="mt-1 font-body text-sm text-muted">This section is being built next.</p>
         </div>
       )}
+      </div>
     </div>
   );
 }

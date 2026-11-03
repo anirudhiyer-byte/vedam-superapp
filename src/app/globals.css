@@ -159,6 +159,30 @@ body::after {
 /* premium heading font */
 .vd-dark .font-display { font-family: var(--font-inter), system-ui, sans-serif; }
 
+/* ===== Neural Glass scope (Comms hub — matches the Growth dashboards) ===== */
+.neural-glass {
+  --background: 7 10 22;            /* #070a16 */
+  --surface: 20 26 54;             /* navy panel */
+  --surface-warm: 26 33 68;
+  --foreground: 234 238 255;
+  --heading: 242 245 255;          /* ink */
+  --muted: 174 184 224;            /* #aeb8e0 */
+  --border: 130 150 255;           /* used via /alpha for hairlines */
+  --accent: 139 92 246;            /* #8b5cf6 */
+  --border-strong: rgba(130,150,255,0.30);
+  color: rgb(var(--foreground));
+  color-scheme: dark;
+}
+.neural-glass .bg-surface { background: rgba(20,26,54,0.55) !important; backdrop-filter: blur(14px); }
+.neural-glass .bg-background { background: rgba(11,16,36,0.6) !important; }
+.neural-glass .bg-surface-warm { background: rgba(130,150,255,0.07) !important; }
+.neural-glass .bg-surface-warm\/40 { background: rgba(130,150,255,0.06) !important; }
+.neural-glass .border-border { border-color: rgba(130,150,255,0.14) !important; }
+.neural-glass .border-border-strong { border-color: rgba(130,150,255,0.26) !important; }
+.neural-glass .divide-border > :not([hidden]) ~ :not([hidden]) { border-color: rgba(130,150,255,0.10) !important; }
+.neural-glass .hover\:bg-surface-warm:hover { background: rgba(130,150,255,0.10) !important; }
+.neural-glass select option { background: #141a38; color: #f2f5ff; }
+
 /* College Predictor hero (/predict) — two scale variables so the whole frame
    always lands inside one screen. 1px of --u / --v === 1px of the design frame:
    --u drives the hero column, --v the white form card. */
