@@ -14,7 +14,7 @@ type DateCond = "any" | "after" | "before" | "between";
 // module-level cache so reopening the modal shows templates instantly (refreshed in background)
 let _waTplCache: WaTpl[] | null = null;
 
-export function CommsBroadcast({ channel, product, overrideRecipients }: { channel: "whatsapp" | "email"; product: Product; overrideRecipients?: { user_id: string; email: string | null; phone: string | null; full_name: string | null }[] | null }) {
+export function CommsBroadcast({ channel, product, overrideRecipients }: { channel: "whatsapp" | "email"; product: Product; overrideRecipients?: { user_id: string; email: string | null; phone: string | null; full_name: string | null; state?: string | null; city?: string | null; points?: number | null }[] | null }) {
   const [supabase] = useState(() => createClient());
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
@@ -110,7 +110,7 @@ export function CommsBroadcast({ channel, product, overrideRecipients }: { chann
   const selAll = () => setSelected((s) => { const n = new Set(s); filtered.forEach((r) => n.add(r.id)); return n; });
   const selRows = useMemo(() => rows.filter((r) => selected.has(r.id)), [rows, selected]);
   const sendRows = useMemo(() => (overrideRecipients && overrideRecipients.length)
-    ? overrideRecipients.map((r) => ({ id: r.user_id, name: r.full_name || "", email: r.email, phone: r.phone, state: null, city: null, points: 0, events_reg: 0, events_attended: 0, cs_enrolled: false, cs_modules: 0, cs_total: 0, cp_used: false } as Row))
+    ? overrideRecipients.map((r) => ({ id: r.user_id, name: r.full_name || "", email: r.email, phone: r.phone, state: r.state ?? null, city: r.city ?? null, points: r.points ?? 0, events_reg: 0, events_attended: 0, cs_enrolled: false, cs_modules: 0, cs_total: 0, cp_used: false } as Row))
     : selRows, [overrideRecipients, selRows]);
   const ov = Boolean(overrideRecipients && overrideRecipients.length);
 

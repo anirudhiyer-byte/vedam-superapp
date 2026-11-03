@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { DarkSelect } from "@/components/admin/dark-select";
@@ -41,6 +41,7 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
     P("email", "Email", "text"), P("phone", "Mobile", "text"),
     P("campus_preference", "Campus Pref", "enum"), P("year_passing_10th", "10th Passing", "enum"),
     P("registered", "Status", "status"), P("registered_at", "Registered On", "date"),
+    P("paid", "Paid", "status"), P("paid_at", "Paid On", "date"),
     P("gender", "Gender", "enum", false), P("utm_source", "UTM Source", "enum", false),
   ]},
   { key: "codesprint", label: "CodeSprint", rpc: "pu_codesprint", base: "vedam_one_profiles.cs_*", cols: [
@@ -99,6 +100,16 @@ const getVal = (r: Row, c: Col): unknown => c.group === "profile" ? (r.profile a
 const istDate = (v: unknown) => v ? new Date(String(v)).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "2-digit", timeZone: "Asia/Kolkata" }) : "—";
 const str = (v: unknown) => Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v);
 const initials = (name: unknown) => String(name ?? "").trim().split(/\s+/).slice(0, 2).map((s) => s[0] || "").join("").toUpperCase() || "–";
+// status columns are booleans (or null); treat common truthy spellings the same way
+const truthy = (v: unknown) => v === true || (typeof v === "number" && v > 0) || ["true", "yes", "y", "1"].includes(String(v ?? "").toLowerCase());
+// calendar day in IST as YYYY-MM-DD, so date filters compare by the day the admin sees
+const istYmd = (v: unknown) => v ? new Date(String(v)).toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }) : "";
+const STATUS_LABELS: Record<string, [string, string]> = {
+  registered: ["Registered", "Not registered"], vsat_registered: ["Registered", "Not registered"],
+  paid: ["Paid", "Not paid"], is_dormant: ["Dormant", "Active"], vsat_early_registered: ["Early reg", "No"],
+  bc_winner: ["Winner", "No"], bc_dropped_off: ["Dropped off", "No"],
+};
+const statusLabels = (key: string): [string, string] => STATUS_LABELS[key] || ["Yes", "No"];
 
 /* ── crisp line icons (no emoji) ───────────────────────────── */
 const Svg = (p: { children: ReactNode; className?: string }) => (
@@ -123,10 +134,50 @@ function Pill({ kind, text }: { kind: "good" | "warn" | "bad" | "flat"; text: st
   return <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-medium ring-1 ring-inset ${m}`}><span className="h-1.5 w-1.5 rounded-full bg-current" />{text}</span>;
 }
 function statusCell(c: Col, v: unknown) {
-  if (c.key === "registered") return v ? <Pill kind="good" text="Registered" /> : <Pill kind="flat" text="Not registered" />;
   if (c.key === "is_dormant") return v ? <Pill kind="bad" text="Dormant" /> : <Pill kind="good" text="Active" />;
   if (c.key === "vsat_early_registered") return v ? <Pill kind="good" text="Early reg" /> : <Pill kind="flat" text="—" />;
+  if (v == null || typeof v === "boolean") { const [yes, no] = statusLabels(c.key); return truthy(v) ? <Pill kind="good" text={yes} /> : <Pill kind="flat" text={no} />; }
   return <Pill kind="flat" text={str(v) || "—"} />;
+}
+
+/** Compact multi-select for a header filter. The list is position:fixed so the
+ *  table's scroll container can't clip it. */
+function MultiPick({ options, value, onChange, className }: { options: string[]; value: string[]; onChange: (v: string[]) => void; className: string }) {
+  const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
+  const btn = useRef<HTMLButtonElement>(null);
+  const box = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: MouseEvent) => { if (!box.current?.contains(e.target as Node) && !btn.current?.contains(e.target as Node)) setOpen(false); };
+    const esc = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    const off = () => setOpen(false);
+    document.addEventListener("mousedown", close); document.addEventListener("keydown", esc);
+    window.addEventListener("scroll", off, true); window.addEventListener("resize", off);
+    return () => { document.removeEventListener("mousedown", close); document.removeEventListener("keydown", esc); window.removeEventListener("scroll", off, true); window.removeEventListener("resize", off); };
+  }, [open]);
+  const toggle = (o: string) => onChange(value.includes(o) ? value.filter((x) => x !== o) : [...value, o]);
+  return (
+    <>
+      <button ref={btn} type="button"
+        onClick={() => { const r = btn.current?.getBoundingClientRect(); if (r) setPos({ left: r.left, top: r.bottom + 4 }); setOpen((o) => !o); }}
+        className={className + " flex items-center justify-between gap-1 text-left"}>
+        <span className={["truncate", value.length ? "text-white" : "text-white/45"].join(" ")}>{value.length === 0 ? "All" : value.length === 1 ? value[0] : `${value.length} selected`}</span>
+        <span className="text-white/40">▾</span>
+      </button>
+      {open && pos && (
+        <div ref={box} style={{ left: pos.left, top: pos.top }} className="fixed z-50 max-h-64 min-w-[180px] overflow-auto rounded-xl border border-white/10 bg-[#16161b] p-1 font-sans text-sm normal-case tracking-normal shadow-[0_16px_40px_-12px_rgba(0,0,0,0.7)]">
+          {options.length === 0 && <div className="px-3 py-2 text-white/40">No values</div>}
+          {options.map((o) => (
+            <label key={o} className="flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-white/85 hover:bg-white/[0.07]">
+              <input type="checkbox" checked={value.includes(o)} onChange={() => toggle(o)} className="h-3.5 w-3.5 accent-[color:rgb(var(--accent))]" />{o}
+            </label>
+          ))}
+          {value.length > 0 && <button type="button" onClick={() => onChange([])} className="mt-1 w-full rounded-lg border-t border-white/10 px-2.5 py-1.5 text-left text-xs text-white/55 hover:text-white">Clear</button>}
+        </div>
+      )}
+    </>
+  );
 }
 
 export function ProductUsers() {
@@ -147,15 +198,20 @@ export function ProductUsers() {
   const [textF, setTextF] = useState<Record<string, string>>({});
   const [numF, setNumF] = useState<Record<string, { op: string; value: string }>>({});
   const [enumF, setEnumF] = useState<Record<string, string[]>>({});
+  const [dateF, setDateF] = useState<Record<string, { from: string; to: string }>>({});
+  const [statusF, setStatusF] = useState<Record<string, "" | "yes" | "no">>({});
 
   const product = PRODUCTS.find((p) => p.key === tab)!;
-  const allCols = useMemo(() => [...product.cols, ...PROFILE_COLS], [product]);
+  // a profile column whose key is already a product column (e.g. public_id on VSAT,
+  // cs_completion_rate on CodeSprint) would render twice — the product column wins
+  const profileCols = useMemo(() => PROFILE_COLS.filter((pc) => !product.cols.some((c) => c.key === pc.key)), [product]);
+  const allCols = useMemo(() => [...product.cols, ...profileCols], [product, profileCols]);
   const shownCols = allCols.filter((c) => visible[tab].has(c.key));
-  const addedProfileCount = [...visible[tab]].filter((k) => PROFILE_COLS.some((c) => c.key === k)).length;
+  const addedProfileCount = [...visible[tab]].filter((k) => profileCols.some((c) => c.key === k)).length;
 
   useEffect(() => {
     let on = true;
-    setLoading(true); setSelected(new Set()); setTextF({}); setNumF({}); setEnumF({});
+    setLoading(true); setSelected(new Set()); setTextF({}); setNumF({}); setEnumF({}); setDateF({}); setStatusF({});
     (async () => {
       const { data } = await supabase.rpc(product.rpc);
       if (on) { setRows((data as Row[]) ?? []); setLoading(false); }
@@ -165,14 +221,16 @@ export function ProductUsers() {
 
   const enumOptions = useMemo(() => {
     const o: Record<string, string[]> = {};
-    shownCols.filter((c) => c.type === "enum").forEach((c) => {
-      o[c.key] = Array.from(new Set(rows.map((r) => str(getVal(r, c))))).filter(Boolean).sort();
+    shownCols.filter((c) => c.type === "enum" || c.type === "tags").forEach((c) => {
+      const vals = c.type === "tags" ? rows.flatMap((r) => { const v = getVal(r, c); return Array.isArray(v) ? v.map(String) : []; }) : rows.map((r) => str(getVal(r, c)));
+      o[c.key] = Array.from(new Set(vals)).filter(Boolean).sort();
     });
     return o;
   }, [rows, shownCols]);
 
-  const anyFilter = q.trim() !== "" || Object.values(textF).some(Boolean) || Object.values(numF).some((f) => f?.value) || Object.values(enumF).some((a) => a?.length);
-  function clearFilters() { setQ(""); setTextF({}); setNumF({}); setEnumF({}); }
+  const anyFilter = q.trim() !== "" || Object.values(textF).some(Boolean) || Object.values(numF).some((f) => f?.value) || Object.values(enumF).some((a) => a?.length)
+    || Object.values(dateF).some((d) => d?.from || d?.to) || Object.values(statusF).some(Boolean);
+  function clearFilters() { setQ(""); setTextF({}); setNumF({}); setEnumF({}); setDateF({}); setStatusF({}); }
 
   // split on comma / slash / newline → multiple values match as OR ("anil, arjit")
   const splitTerms = (s: string) => s.split(/[,/\n]/).map((x) => x.trim().toLowerCase()).filter(Boolean);
@@ -189,6 +247,9 @@ export function ProductUsers() {
       }
       for (const c of shownCols) {
         if (c.type === "enum") { const sel = enumF[c.key]; if (sel?.length && !sel.includes(str(getVal(r, c)))) return false; }
+        else if (c.type === "tags") { const sel = enumF[c.key]; if (sel?.length) { const v = getVal(r, c); const have = Array.isArray(v) ? v.map(String) : []; if (!sel.some((s) => have.includes(s))) return false; } }
+        else if (c.type === "status") { const s = statusF[c.key]; if (s && (s === "yes") !== truthy(getVal(r, c))) return false; }
+        else if (c.type === "date") { const d = dateF[c.key]; if (d?.from || d?.to) { const day = istYmd(getVal(r, c)); if (!day) return false; if (d.from && day < d.from) return false; if (d.to && day > d.to) return false; } }
         else if (c.type === "num" || c.type === "pct") { const f = numF[c.key]; if (f?.value) { const n = Number(getVal(r, c)); const v = Number(f.value); const ok = f.op === ">=" ? n >= v : f.op === "<=" ? n <= v : f.op === ">" ? n > v : f.op === "<" ? n < v : n === v; if (!ok) return false; } }
         else if (c.type === "text" || c.type === "name" || c.type === "id") {
           const terms = splitTerms(textF[c.key] || "");
@@ -197,19 +258,26 @@ export function ProductUsers() {
       }
       return true;
     });
-  }, [rows, q, qCol, allCols, shownCols, enumF, numF, textF]);
+  }, [rows, q, qCol, allCols, shownCols, enumF, numF, textF, dateF, statusF]);
 
   // paging (selection, export and comms still apply to the whole filtered set)
   const totalPages = perPage ? Math.max(1, Math.ceil(filtered.length / perPage)) : 1;
   const curPage = Math.min(page, totalPages);
   const paged = perPage ? filtered.slice((curPage - 1) * perPage, curPage * perPage) : filtered;
-  useEffect(() => { setPage(1); }, [tab, q, qCol, perPage, textF, numF, enumF]);
+  useEffect(() => { setPage(1); }, [tab, q, qCol, perPage, textF, numF, enumF, dateF, statusF]);
 
   const targets = selected.size ? filtered.filter((r) => selected.has(r.user_id)) : filtered;
   const allSel = filtered.length > 0 && filtered.every((r) => selected.has(r.user_id));
   const toggleAll = () => setSelected((prev) => { const n = new Set(prev); allSel ? filtered.forEach((r) => n.delete(r.user_id)) : filtered.forEach((r) => n.add(r.user_id)); return n; });
   const toggleRow = (id: string) => setSelected((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const recipients = targets.map((r) => ({ user_id: r.user_id, email: (r.email as string) ?? null, phone: (r.phone as string) ?? null, full_name: (r.full_name as string) ?? null }));
+  // state / city / points come from the joined profile so WhatsApp {{n}} variables mapped to them aren't blank
+  const recipients = targets.map((r) => {
+    const pf = (r.profile ?? {}) as Record<string, unknown>;
+    return {
+      user_id: r.user_id, email: (r.email as string) ?? null, phone: (r.phone as string) ?? null, full_name: (r.full_name as string) ?? null,
+      state: (pf.state as string) ?? null, city: (pf.city as string) ?? null, points: Number(pf.total_points ?? 0) || 0,
+    };
+  });
 
   function toggleCol(key: string) { setVisible((v) => { const s = new Set(v[tab]); s.has(key) ? s.delete(key) : s.add(key); return { ...v, [tab]: s }; }); }
   function resetCols() { setVisible((v) => ({ ...v, [tab]: new Set(product.cols.filter((c) => c.def !== false).map((c) => c.key)) })); }
@@ -327,11 +395,22 @@ export function ProductUsers() {
                   <th className={`sticky left-0 z-20 px-4 py-1.5 ${stickyBg}`} />
                   {shownCols.map((c) => (
                     <th key={c.key} className={`px-2 py-1.5 align-top ${stickyBg}`}>
-                      {c.type === "enum" ? (
-                        <select value={(enumF[c.key] || [])[0] || ""} onChange={(e) => setEnumF((f) => ({ ...f, [c.key]: e.target.value ? [e.target.value] : [] }))} className={fieldInput + " min-w-[84px]"}>
+                      {(c.type === "enum" || c.type === "tags") ? (
+                        <MultiPick options={enumOptions[c.key] || []} value={enumF[c.key] || []}
+                          onChange={(v) => setEnumF((f) => ({ ...f, [c.key]: v }))} className={fieldInput + " min-w-[96px]"} />
+                      ) : c.type === "status" ? (
+                        <select value={statusF[c.key] || ""} onChange={(e) => setStatusF((f) => ({ ...f, [c.key]: e.target.value as "" | "yes" | "no" }))} className={fieldInput + " min-w-[96px]"}>
                           <option value="">All</option>
-                          {(enumOptions[c.key] || []).map((o) => <option key={o} value={o}>{o}</option>)}
+                          <option value="yes">{statusLabels(c.key)[0]}</option>
+                          <option value="no">{statusLabels(c.key)[1]}</option>
                         </select>
+                      ) : c.type === "date" ? (
+                        <div className="flex min-w-[118px] flex-col gap-1">
+                          <input type="date" aria-label={`${c.label} from`} title="From" value={dateF[c.key]?.from || ""}
+                            onChange={(e) => setDateF((f) => ({ ...f, [c.key]: { from: e.target.value, to: f[c.key]?.to || "" } }))} className={fieldInput} />
+                          <input type="date" aria-label={`${c.label} to`} title="To" value={dateF[c.key]?.to || ""} min={dateF[c.key]?.from || undefined}
+                            onChange={(e) => setDateF((f) => ({ ...f, [c.key]: { from: f[c.key]?.from || "", to: e.target.value } }))} className={fieldInput} />
+                        </div>
                       ) : (c.type === "num" || c.type === "pct") ? (
                         <div className="flex gap-1">
                           <select value={(numF[c.key]?.op) || ">="} onChange={(e) => setNumF((f) => ({ ...f, [c.key]: { op: e.target.value, value: f[c.key]?.value || "" } }))} className={fieldInput + " w-auto"}>
@@ -424,7 +503,7 @@ export function ProductUsers() {
                 );
               })}
               <div className="mb-2 mt-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-[color:rgb(var(--accent))]"><span className="h-2 w-2 rounded-sm bg-[color:rgb(var(--accent))]" /> Profile · vedam_one_profiles</div>
-              {PROFILE_COLS.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => {
+              {profileCols.filter((c) => c.label.toLowerCase().includes(colSearch.toLowerCase())).map((c) => {
                 const on = visible[tab].has(c.key);
                 return (
                   <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 transition-colors hover:bg-white/5">
