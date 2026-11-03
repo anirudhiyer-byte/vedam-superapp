@@ -54,7 +54,7 @@ export function WhatsAppTemplateBuilder() {
     tpls.forEach((t) => { if (t.waba_id && !m.has(t.waba_id)) m.set(t.waba_id, t.sender_label || t.sender || t.waba_id); });
     return [...m.entries()].map(([id, label]) => ({ id, label }));
   }, [tpls]);
-  // default stays "" = account default (TrustSignal picks); admin can pick a specific number.
+  // "" = default number (server env TRUSTSIGNAL_WABA_ID); admin can pick a specific number.
 
   async function loadTpls() {
     try { const r = await fetch("/api/whatsapp/templates"); const j = await r.json(); const raw = j?.data;
@@ -109,7 +109,7 @@ export function WhatsAppTemplateBuilder() {
     if (buttons.length) components.push({ type: "BUTTONS", buttons: buttons.map((b) => b.type === "URL" ? { type: "URL", text: b.text, url: b.url } : { type: "QUICK_REPLY", text: b.text }) });
     const payload: Record<string, unknown> = { name: name.trim(), lang, category, components };
     if (headerType === "image" || headerType === "document") payload.media = { header: mediaUrl };
-    // always send the choice: a real WABA id, or "" to tell the server to omit it (account default)
+    // always send the choice: a real WABA id, or "" = server default (TRUSTSIGNAL_WABA_ID)
     payload.waba_id = wabaId;
     return payload;
   }
@@ -156,10 +156,10 @@ export function WhatsAppTemplateBuilder() {
             {wabas.length > 0 && (
               <label className="mt-3 block"><span className="mb-1.5 block font-body text-xs font-semibold text-foreground">Create under number <span className="font-normal text-muted">(WABA)</span></span>
                 <select value={wabaId} onChange={(e) => setWabaId(e.target.value)} className={field}>
-                  <option value="">(account default — let TrustSignal pick)</option>
+                  <option value="">Default number (server setting)</option>
                   {wabas.map((w) => <option key={w.id} value={w.id}>{w.label} · {w.id}</option>)}
                 </select>
-                <span className="mt-1 block font-body text-xs text-muted">The template is created under this WhatsApp number. If a specific number gives INVALID_WABA, try <b>account default</b>.</span>
+                <span className="mt-1 block font-body text-xs text-muted">The template is created under this WhatsApp number.</span>
               </label>
             )}
           </div>
@@ -241,7 +241,7 @@ export function WhatsAppTemplateBuilder() {
           </div>
           {resp && /INVALID_WABA|1014/i.test(resp) && (
             <div className="mt-3 rounded-xl border border-amber-300 bg-amber-50 p-2.5 font-body text-xs text-amber-700">
-              This WhatsApp number (WABA) was rejected for template creation. Try picking the other number in <b>Create under number</b> above, then submit again.
+              TrustSignal rejected the WhatsApp number (WABA) for template creation. Check that the number is still linked to the TrustSignal account, or pick the other number in <b>Create under number</b> above.
             </div>
           )}
           {resp && <pre className="mt-3 max-h-48 overflow-auto rounded-xl border border-border bg-[#0e0a1c] p-3 font-mono text-xs text-[#c7f0d8]">{resp}</pre>}
