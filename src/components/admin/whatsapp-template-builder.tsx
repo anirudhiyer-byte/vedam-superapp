@@ -230,7 +230,10 @@ export function WhatsAppTemplateBuilder() {
           <span className="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wide text-muted">Live preview</span>
           <div className="rounded-2xl border border-border bg-[#E5DDD5] p-3">
             <div className="overflow-hidden rounded-xl bg-white shadow-sm">
-              {headerType === "image" && <div className="grid h-28 place-items-center bg-brand-gradient text-xs font-bold text-white">{mediaUrl ? "🖼️ image header" : "image header"}</div>}
+              {headerType === "image" && (mediaUrl
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={mediaUrl} alt="header" className="h-32 w-full object-cover" />
+                : <div className="grid h-28 place-items-center bg-brand-gradient text-xs font-bold text-white">image header</div>)}
               {headerType === "text" && headerText && <div className="px-3 pt-2.5 font-display text-sm font-extrabold text-heading">{headerText}</div>}
               <div className="whitespace-pre-wrap px-3 py-2 text-[13.5px] leading-relaxed text-[#111]">{previewBody || <span className="text-muted">Your message preview…</span>}</div>
               {footer && <div className="px-3 pb-2 text-[11px] text-[#888]">{footer}</div>}
