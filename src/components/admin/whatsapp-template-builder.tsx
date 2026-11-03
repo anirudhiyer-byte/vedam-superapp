@@ -136,10 +136,10 @@ export function WhatsAppTemplateBuilder() {
       <h1 className="mt-2 font-display text-3xl font-extrabold tracking-tight text-heading">Create WhatsApp template</h1>
 
       {/* duplicate */}
-      <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-border-strong bg-[linear-gradient(120deg,#fdf3ec,#f3ecfb)] p-4">
-        <span className="text-xl">📋</span>
-        <div className="flex-1"><div className="font-display text-sm font-extrabold text-heading">Duplicate an existing template</div>
-          <div className="font-body text-xs text-muted">Copies header, body, footer, buttons &amp; variables — then rename &amp; tweak.</div></div>
+      <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-[rgba(130,150,255,0.22)] bg-[#0d1430] p-4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><rect x="8" y="2" width="8" height="4" rx="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /><path d="M9 12h6M9 16h4" /></svg>
+        <div className="flex-1"><div className="font-display text-sm font-extrabold text-[#f2f5ff]">Duplicate an existing template</div>
+          <div className="font-body text-xs text-[#aeb8e0]">Copies header, body, footer, buttons &amp; variables — then rename &amp; tweak.</div></div>
         <select onChange={(e) => { const t = tpls.find((x) => (x.name || x.id) === e.target.value); if (t) duplicate(t); }} defaultValue="" className={field + " max-w-xs"}>
           <option value="">Pick a template…</option>
           {tpls.filter((t) => t.jsonstruct).map((t, i) => <option key={i} value={t.name || t.id}>{t.name}{t.status ? ` · ${t.status}` : ""}</option>)}
