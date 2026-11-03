@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { rpcAll } from "@/lib/supabase/rpc-all";
 
 const SOURCES = [
   { key: "vedam_one_profiles", label: "All users (rollup) — cross-product" },
@@ -42,10 +43,11 @@ export function AdvancedAudience({ onResolved }: { onResolved: (recips: Rec[]) =
   async function resolve() {
     setBusy(true); setErr("");
     const conditions = conds.filter((c) => c.col).map((c) => ({ col: c.col, op: c.op, value: c.value, join: c.join }));
-    const { data, error } = await supabase.rpc("campaign_audience", { p_source: source, p_conditions: conditions });
+    // every page, not just the first 1000 (see rpcAll)
+    const { data, error } = await rpcAll<Rec>(supabase, "campaign_audience", { p_source: source, p_conditions: conditions });
     setBusy(false);
-    if (error) { setErr(error.message); return; }
-    const r = (data as Rec[]) ?? [];
+    if (error) { setErr(error); return; }
+    const r = data;
     setRecips(r); onResolved(r);
   }
 

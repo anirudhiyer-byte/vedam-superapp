@@ -1,6 +1,7 @@
 "use client";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { rpcAll } from "@/lib/supabase/rpc-all";
 
 type Row = { id: string; name: string; channel: string; kind: string; product: string | null; audience_desc: string | null; recipient_count: number; created_at: string; status: string; sent: number; delivered: number; opened: number; clicked: number; bounced: number; failed: number; cost: number; delivery_pct: number | null; open_pct: number | null; click_pct: number | null; bounce_pct: number | null };
 type Summary = { campaigns: number; total_recipients: number; total_sent: number; total_delivered: number; total_opened: number; total_clicked: number; total_bounced: number; total_failed: number; total_cost: number; avg_delivery_pct: number | null; avg_open_pct: number | null; avg_click_pct: number | null; avg_bounce_pct: number | null };
@@ -67,8 +68,9 @@ export function CampaignReport() {
     setOpen(next);
     if (next && !recips[id]) {
       setRecipLoading(id);
-      const { data } = await supabase.rpc("campaign_recipients", { p_campaign: id });
-      setRecips((m) => ({ ...m, [id]: (data as Recipient[]) ?? [] }));
+      // every page, not just the first 1000 (see rpcAll)
+      const { data } = await rpcAll<Recipient>(supabase, "campaign_recipients", { p_campaign: id });
+      setRecips((m) => ({ ...m, [id]: data }));
       setRecipLoading(null);
     }
   };
