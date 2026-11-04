@@ -21,6 +21,7 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [note, setNote] = useState("");
+  const [showDates, setShowDates] = useState(false);
   const [, tick] = useState(0);
   useEffect(() => { const id = setInterval(() => tick((n) => n + 1), 30000); return () => clearInterval(id); }, []);
 
@@ -89,60 +90,66 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
   const windowClosed = slotSelected && endMs > 0 && now > endMs;
 
   return (
-    <div className="space-y-4">
+    <div className={card}>
       {/* MOCK */}
-      <div className={card}>
-        <h2 className="font-display text-xl font-bold">Mock test</h2>
-        {mockGiven ? (
-          <div className="mt-2">
-            <p className="text-sm text-[#16a34a]">Mock completed ✓</p>
-            {mockResult && (
-              <div className="mt-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
-                {Object.entries(mockResult).map(([k, v]) => (
-                  <div key={k} className="rounded-lg bg-[#f6f3fd] px-3 py-2"><span className="text-[#6b647e]">{k}</span>: <b>{String(v)}</b></div>
+      <h2 className="font-display text-xl font-bold">Mock test</h2>
+      {mockGiven ? (
+        <div className="mt-2">
+          <p className="text-sm text-[#16a34a]">Mock completed ✓</p>
+          {mockResult && (
+            <div className="mt-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
+              {Object.entries(mockResult).map(([k, v]) => (
+                <div key={k} className="rounded-lg bg-[#f6f3fd] px-3 py-2"><span className="text-[#6b647e]">{k}</span>: <b>{String(v)}</b></div>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          <p className="mt-2 text-sm text-[#6b647e]">Practice once before the real VSAT. Available once per applicant.</p>
+          <button onClick={() => launch("mock")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start mock test"}</button>
+        </>
+      )}
+
+      {/* EXAM DATE — #2: a button in the same box as the mock test; opens the dates to confirm */}
+      <div className="mt-5 border-t border-[#ece8f6] pt-5">
+        {!slotSelected ? (
+          <>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="font-display text-base font-bold">Exam date</h3>
+              <button onClick={() => setShowDates((v) => !v)} disabled={busy} className={grad}>📅 {showDates ? "Hide dates" : "Select exam date"}</button>
+            </div>
+            {showDates ? (
+              <div className="mt-3 space-y-2">
+                {dates.length === 0 && <p className="text-sm text-[#9a93ad]">No exam dates are open yet — check back soon.</p>}
+                {dates.map((d) => (
+                  <button key={d.id} onClick={() => selectDate(d.id)} disabled={busy} className="flex w-full items-center justify-between rounded-xl border border-[#e0dbee] bg-white px-4 py-3 text-left text-sm transition hover:bg-[#f6f3fd] disabled:opacity-50">
+                    <span><b>{d.label}</b><br /><span className="text-xs text-[#6b647e]">{istFull(d.startAt)} – {istTime(d.endAt)}</span></span>
+                    <span className="font-semibold text-[#7b2ff7]">Confirm →</span>
+                  </button>
                 ))}
               </div>
+            ) : (
+              <p className="mt-2 text-sm text-[#6b647e]">Pick your VSAT date — the Start-exam button goes live a few minutes before it.</p>
             )}
-          </div>
+          </>
         ) : (
           <>
-            <p className="mt-2 text-sm text-[#6b647e]">Practice once before the real VSAT. Available once per applicant.</p>
-            <button onClick={() => launch("mock")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start mock test"}</button>
+            <h3 className="font-display text-base font-bold">Your exam slot</h3>
+            <p className="mt-2 text-sm text-[#6b647e]">{sel ? sel.label + " · " : ""}{istFull(startMs)}</p>
+            {windowClosed ? (
+              <p className="mt-4 text-sm text-[#d14343]">Your exam window has closed.</p>
+            ) : inWindow ? (
+              <button onClick={() => launch("exam")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start exam →"}</button>
+            ) : (
+              <button disabled className="mt-4 cursor-not-allowed rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4]">🔒 Unlocks at {istFull(clickableFromMs)}</button>
+            )}
           </>
         )}
       </div>
 
-      {/* EXAM DATE / START */}
-      {!slotSelected ? (
-        <div className={card}>
-          <h2 className="font-display text-xl font-bold">Select your exam date</h2>
-          <p className="mt-2 text-sm text-[#6b647e]">Pick a VSAT slot. The Start-exam button goes live a few minutes before your slot.</p>
-          <div className="mt-4 space-y-2">
-            {dates.length === 0 && <p className="text-sm text-[#9a93ad]">No exam dates are open yet — check back soon.</p>}
-            {dates.map((d) => (
-              <button key={d.id} onClick={() => selectDate(d.id)} disabled={busy} className="flex w-full items-center justify-between rounded-xl border border-[#e0dbee] bg-white px-4 py-3 text-left text-sm transition hover:bg-[#f6f3fd] disabled:opacity-50">
-                <span><b>{d.label}</b><br /><span className="text-xs text-[#6b647e]">{istFull(d.startAt)} – {istTime(d.endAt)}</span></span>
-                <span className="font-semibold text-[#7b2ff7]">Select →</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className={card}>
-          <h2 className="font-display text-xl font-bold">Your exam slot</h2>
-          <p className="mt-2 text-sm text-[#6b647e]">{sel ? sel.label + " · " : ""}{istFull(startMs)}</p>
-          {windowClosed ? (
-            <p className="mt-4 text-sm text-[#d14343]">Your exam window has closed.</p>
-          ) : inWindow ? (
-            <button onClick={() => launch("exam")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start exam →"}</button>
-          ) : (
-            <button disabled className="mt-4 cursor-not-allowed rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4]">🔒 Unlocks at {istFull(clickableFromMs)}</button>
-          )}
-        </div>
-      )}
-
-      {note && <p className="text-xs text-[#7b2ff7]">{note}</p>}
-      {err && <p className="text-xs text-[#d14343]">{err}</p>}
+      {note && <p className="mt-3 text-xs text-[#7b2ff7]">{note}</p>}
+      {err && <p className="mt-3 text-xs text-[#d14343]">{err}</p>}
     </div>
   );
 }

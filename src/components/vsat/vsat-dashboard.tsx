@@ -31,11 +31,11 @@ function loadCashfree(mode: string): Promise<CashfreeCheckout> {
   });
 }
 
+// #11: pay + date-selection + form fill run in parallel, so they collapse into one
+// "Apply" step; then Give VSAT (flipped by the Wheebox result callback), then the rest.
 const MILESTONES = [
   { key: "started", label: "Application started" },
-  { key: "paid", label: "VSAT fee paid" },
-  { key: "form", label: "Application form" },
-  { key: "slot", label: "Select exam slot" },
+  { key: "apply", label: "Pay · Select date · Fill form" },
   { key: "exam", label: "Give VSAT" },
   { key: "result", label: "VSAT result" },
   { key: "interview", label: "Interview" },
@@ -43,18 +43,16 @@ const MILESTONES = [
   { key: "enrolled", label: "Enroll" },
 ];
 
-function activeIndex(app: App): number {
-  if (!app) return 0;
-  const a = app as Record<string, string>;
-  const pay = a.payment_stage_1, appl = a.application_stage_1;
-  if (appl === "enrolled") return 8;
-  if (appl === "offer_released" || appl === "counselling_done") return 7;
-  if (appl === "interview_selected" || appl === "interview_rejected") return 6;
-  if (appl === "vsat_cleared" || appl === "vsat_not_cleared") return 5;
-  if (appl === "slot_selected") return 4;
-  if (pay === "payment_approved") return 2;
-  if (pay === "payment_initiated") return 1;
-  return 1; // applicant, unpaid -> next action is pay
+// Campus is asked AFTER VSAT is cleared (not in the /vsat form). Same options as the form.
+const CAMPUSES = ["Ajeenkya DY Patil University — Pune", "Sushant University — Gurugram", "No preference"];
+
+function activeIndex(appl: string | undefined): number {
+  if (appl === "enrolled") return 6;
+  if (appl === "offer_released" || appl === "counselling_done" || appl === "offer_cancelled") return 5;
+  if (appl === "interview_selected" || appl === "interview_rejected") return 4;
+  if (appl === "vsat_cleared" || appl === "vsat_not_cleared") return 3;
+  if (appl === "slot_selected") return 2;
+  return 1; // applicant → Apply phase (pay / date / form)
 }
 
 /** Live HH:MM:SS left until `endsAt` (ISO); null once elapsed. Ticks every second. */
@@ -68,8 +66,9 @@ function useCountdown(endsAt: string | null): string | null {
   if (!endsAt) return null;
   const ms = new Date(endsAt).getTime() - Date.now();
   if (ms <= 0) return null;
-  const h = Math.floor(ms / 3_600_000), m = Math.floor((ms % 3_600_000) / 60_000), s = Math.floor((ms % 60_000) / 1000);
-  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  const totalH = Math.floor(ms / 3_600_000), d = Math.floor(totalH / 24), h = totalH % 24;
+  const m = Math.floor((ms % 3_600_000) / 60_000), s = Math.floor((ms % 60_000) / 1000);
+  return `${d > 0 ? `${d}d ` : ""}${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
 // ── brand tokens (light, restrained: gradient only on the hero) ──────────────
@@ -178,9 +177,22 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
     }
   }
 
+  // Applicant-side stage save (campus choice post-VSAT-cleared) — /api/vsat/stage
+  // whitelists campus_applied; payment fields stay server-only.
+  const saveStage = useCallback(async (updates: Record<string, unknown>) => {
+    setBusy(true); setErr("");
+    const { data: { session } } = await supabase.auth.getSession();
+    const res = await fetch("/api/vsat/stage", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token, updates }) });
+    const j = await res.json(); setBusy(false);
+    if (!j.ok) return setErr(j.error || "Couldn't save. Try again.");
+    await load();
+  }, [supabase, load]);
+
   // live 24h countdown, shown for everyone while the early-bird window is open
   // (hook must run before any early return)
   const countdown = useCountdown(quote?.within24h ? quote?.windowEndsAt ?? null : null);
+  // #3 live countdown to the booked exam slot (null until a date is picked / after it passes)
+  const examLeft = useCountdown(app ? ((app as Record<string, string>).vsat_slot_datetime_1 || null) : null);
 
   const BackBar = (
     <div className="mb-4 flex items-center justify-between">
@@ -198,7 +210,11 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const pay = a.payment_stage_1, appl = a.application_stage_1;
   // Admins/staff bypass payment so they can walk the full exam demo without paying.
   const paid = pay === "payment_approved" || (isAdmin && simPaid);
-  const idx = activeIndex(app);
+  // #4: the Attempt 1/2 pills (left rail) pick which attempt's journey + results show;
+  // the live action panel below always stays on the current attempt.
+  const attempt2Unlocked = !!a.payment_stage_2 && a.payment_stage_2 !== "payment_not_initiated";
+  const viewAppl = a[`application_stage_${perfAtt}`] || (perfAtt === 1 ? appl : "");
+  const idx = activeIndex(viewAppl);
   const pct = Math.round((idx / (MILESTONES.length - 1)) * 100);
   const payAmount = quote?.net ?? 1000;
   const showDiscount = !!quote && quote.discount > 0 && quote.within24h && !paid;
@@ -223,7 +239,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   // personalisation
   const name = firstName(l.registered_name || "");
   const appId = l.public_id || a.application_no || a.application_id || "—";
-  const campus = l.campus_preference || (a.campus_preference as string) || (a.campus as string) || "";
+  const campus = (a.campus_applied as string) || l.campus_preference || (a.campus_preference as string) || (a.campus as string) || "";
   const stream = (a.stream as string) || "";
 
   // quick links — offer letter appears only once an offer is live, drops if cancelled
@@ -235,23 +251,27 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   ];
   if (offerActive) quickLinks.push({ label: "Offer letter", icon: "📜", open: true });
 
-  // ── performance rows (attempt 1), student-facing only (raw marks stay admin-only) ──
-  const reachedInterview = ["interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"].includes(appl);
-  const perfRows: { icon: string; title: string; desc: string; value: ReactNode }[] = [];
-  if (hasResults) {
-    const vsatCleared = appl !== "vsat_not_cleared";
-    perfRows.push({
-      icon: "🎯", title: `VSAT · ${vsatCleared ? "cleared" : "not cleared"}`, desc: "VSAT Performance Score",
-      value: vps != null ? <span className="tabular-nums">{vps}<small className="text-xs font-semibold text-[#6c6485]">/10</small></span> : <span className="text-[#a79fbd]">—</span>,
+  // ── performance rows per attempt (student-facing; raw marks stay admin-only) ──
+  const buildRows = (att: number) => {
+    const applN = att === 1 ? appl : (a[`application_stage_${att}`] || "");
+    const vpsRaw = a[`vps_score_${att}`];
+    const vpsN = vpsRaw != null && vpsRaw !== "" ? Number(vpsRaw) : att === 1 ? vps : null;
+    const schRaw = a[`scholarship_pct_${att}`] ?? (att === 1 ? (ao.scholarship_percentage as string | number | null) : null);
+    const has = vpsN != null || RESULT_STAGES.includes(applN);
+    const rows: { icon: string; title: string; desc: string; value: ReactNode }[] = [];
+    if (!has) return { has, rows };
+    rows.push({
+      icon: "🎯", title: `VSAT · ${applN === "vsat_not_cleared" ? "not cleared" : "cleared"}`, desc: "VSAT Performance Score",
+      value: vpsN != null ? <span className="tabular-nums">{vpsN}<small className="text-xs font-semibold text-[#6c6485]">/10</small></span> : <span className="text-[#a79fbd]">—</span>,
     });
-    if (reachedInterview) {
-      const sel = appl !== "interview_rejected";
-      perfRows.push({ icon: "🗣️", title: "Interview", desc: "Admissions panel", value: <span className={sel ? pillGood : "inline-flex items-center rounded-md bg-[#fdeaea] px-2.5 py-1 text-xs font-bold text-[#d14343]"}>{sel ? "Selected" : "Not selected"}</span> });
+    if (["interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"].includes(applN)) {
+      const sel = applN !== "interview_rejected";
+      rows.push({ icon: "🗣️", title: "Interview", desc: "Admissions panel", value: <span className={sel ? pillGood : "inline-flex items-center rounded-md bg-[#fdeaea] px-2.5 py-1 text-xs font-bold text-[#d14343]"}>{sel ? "Selected" : "Not selected"}</span> });
     }
-    if (offerIssued) {
-      perfRows.push({ icon: "🎓", title: "Counselling", desc: "Scholarship offered", value: <span className="tabular-nums">{String(ao.scholarship_percentage)}%</span> });
-    }
-  }
+    if (schRaw != null && schRaw !== "") rows.push({ icon: "🎓", title: "Counselling", desc: "Scholarship offered", value: <span className="tabular-nums">{String(schRaw)}%</span> });
+    return { has, rows };
+  };
+  const perf = buildRows(perfAtt);
 
   return (
     <div className="min-h-screen bg-[#f6f4fa] text-[#1b1030]">
@@ -289,7 +309,18 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
           {/* LEFT · journey rail */}
           <aside className={card}>
             <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">Your journey</p>
-            <p className="mb-4 mt-1 font-display text-sm font-bold tabular-nums">{appId}</p>
+            <p className="mt-1 font-display text-sm font-bold tabular-nums">{appId}</p>
+            <div className="mb-4 mt-3 flex gap-2">
+              {[1, 2].map((n) => {
+                const locked = n === 2 && !attempt2Unlocked;
+                return (
+                  <button key={n} disabled={locked} onClick={() => setPerfAtt(n)}
+                    className={`rounded-full border px-3 py-1 text-xs font-bold transition ${perfAtt === n ? "border-[#8a18ff] bg-[#8a18ff] text-white" : locked ? "cursor-not-allowed border-[#e9e4f2] text-[#c4bdd6]" : "border-[#e9e4f2] text-[#6c6485] hover:border-[#8a18ff]"}`}>
+                    Attempt {n}{locked ? " 🔒" : ""}
+                  </button>
+                );
+              })}
+            </div>
             <ol>
               {MILESTONES.map((m, i) => (
                 <li key={m.key} className="flex items-start gap-3">
@@ -311,6 +342,12 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
             {countdown && (
               <div className="mb-4 flex items-center gap-2 rounded-xl border border-[#f3d79a] bg-[#fff6e6] px-3.5 py-2.5 text-[13px] font-semibold text-[#b26a00]">
                 ⏳ <span><b className="tabular-nums text-sm">{countdown}</b> left on your early-bird window{showDiscount ? ` — pay now to save ₹${quote?.discount}.` : "."}</span>
+              </div>
+            )}
+            {/* #3 exam countdown — appears once a date is booked and still upcoming */}
+            {examLeft && (
+              <div className="mb-4 flex items-start gap-2 rounded-xl border border-[#9fd9e0] bg-[#eafafc] px-3.5 py-2.5 text-[13px] font-semibold text-[#0b7285]">
+                ⏱️ <span>Your VSAT begins in <b className="tabular-nums text-sm">{examLeft}</b>. <span className="font-normal text-[#2b135c]/70">Fill out the VSAT form fully to be able to give the test — it&apos;s forfeited if the form isn&apos;t filled.</span></span>
               </div>
             )}
 
@@ -370,10 +407,38 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                 <h2 className="font-display text-[19px] font-extrabold">{appl === "vsat_not_cleared" ? "VSAT result" : "Interview result"}</h2>
                 <p className="mt-2 text-sm text-[#6c6485]">Thank you for appearing. You weren&apos;t selected to proceed this time. The admissions team will share details and any next options.</p>
               </div>
+            ) : appl === "vsat_cleared" && !campus ? (
+              // #1: campus is chosen here (post-VSAT-cleared), not in the /vsat form
+              <div className={`${leadCard} mb-4`}>
+                <h2 className="font-display text-[19px] font-extrabold">You&apos;ve cleared VSAT 🎉 — choose your campus</h2>
+                <p className="mt-1.5 text-sm text-[#6c6485]">Select your preferred campus to move ahead to the interview.</p>
+                <div className="mt-4 space-y-2">
+                  {CAMPUSES.map((c) => (
+                    <button key={c} onClick={() => saveStage({ campus_applied: c })} disabled={busy} className="block w-full rounded-xl border border-[#e9e4f2] bg-white px-4 py-3 text-left text-sm font-semibold transition hover:border-[#8a18ff] disabled:opacity-50">{c}</button>
+                  ))}
+                </div>
+              </div>
+            ) : appl === "interview_selected" ? (
+              // #1: "Join interview" only clickable once a campus is selected
+              <div className={`${leadCard} mb-4`}>
+                <h2 className="font-display text-[19px] font-extrabold">Interview {campus ? "aligned 🎉" : "— select your campus first"}</h2>
+                <p className="mt-1.5 text-sm text-[#6c6485]">{campus ? `Campus: ${campus}. Your interview is aligned — join below.` : "Choose your campus to unlock the Join Interview button."}</p>
+                {!campus && (
+                  <div className="mt-4 space-y-2">
+                    {CAMPUSES.map((c) => (
+                      <button key={c} onClick={() => saveStage({ campus_applied: c })} disabled={busy} className="block w-full rounded-xl border border-[#e9e4f2] bg-white px-4 py-3 text-left text-sm font-semibold transition hover:border-[#8a18ff] disabled:opacity-50">{c}</button>
+                    ))}
+                  </div>
+                )}
+                <button disabled={!campus || busy} onClick={() => track("vsat_join_interview")}
+                  className={`mt-4 ${campus ? btn : "inline-flex items-center justify-center rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4] cursor-not-allowed"}`}>
+                  {campus ? "Join interview" : "🔒 Join interview (select campus)"}
+                </button>
+              </div>
             ) : hasResults ? (
               <div className={`${card} mb-4 border-[#1f9d57]/30 bg-[#f1fbf5]`}>
                 <h2 className="font-display text-[19px] font-extrabold text-[#1f9d57]">
-                  {appl === "vsat_cleared" ? "You've cleared VSAT 🎉" : appl === "interview_selected" ? "Interview cleared 🎉" : appl === "counselling_done" ? "Counselling done" : "Offer released"}
+                  {appl === "vsat_cleared" ? "You've cleared VSAT 🎉" : appl === "counselling_done" ? "Counselling done" : "Offer released"}
                 </h2>
                 <p className="mt-2 text-sm text-[#2b135c]/70">You&apos;re progressing through the admissions funnel. Watch your email/WhatsApp for the next step.</p>
               </div>
@@ -394,20 +459,13 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                   <button onClick={() => setFillOpen(true)} disabled={busy} className={`${btnGhost} mt-4`}>Start form →</button>
                 </div>
               )
-            ) : hasResults && perfRows.length > 0 ? (
+            ) : hasResults ? (
               <div className={card}>
-                <div className="flex flex-wrap items-center justify-between gap-2.5">
-                  <h3 className="font-display text-[15.5px] font-bold">Your performance</h3>
-                  <div className="inline-flex gap-1.5 rounded-[10px] bg-[#f4f0fa] p-1">
-                    {[1, 2].map((n) => (
-                      <button key={n} onClick={() => setPerfAtt(n)} className={`rounded-md px-3 py-[5px] font-display text-[12.5px] font-bold transition ${perfAtt === n ? "bg-white text-[#7312e0] shadow-[0_1px_3px_rgba(43,19,92,0.14)]" : "text-[#6c6485]"}`}>Attempt {n}</button>
-                    ))}
-                  </div>
-                </div>
+                <h3 className="font-display text-[15.5px] font-bold">Your performance <span className="font-semibold text-[#a79fbd]">· Attempt {perfAtt}</span></h3>
                 <div className="mt-3">
-                  {perfAtt === 1 ? (
+                  {perf.has ? (
                     <div className="flex flex-col gap-2.5">
-                      {perfRows.map((r, i) => (
+                      {perf.rows.map((r, i) => (
                         <div key={i} className="flex items-center gap-3 rounded-xl border border-[#e9e4f2] p-3">
                           <span className={iconTint}>{r.icon}</span>
                           <div className="min-w-0 flex-1"><div className="font-display text-[13.5px] font-bold">{r.title}</div><div className="text-xs text-[#6c6485]">{r.desc}</div></div>
@@ -416,7 +474,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                       ))}
                     </div>
                   ) : (
-                    <div className="rounded-xl border border-dashed border-[#e9e4f2] px-3.5 py-6 text-center text-[13px] text-[#a79fbd]">No second attempt yet. If a re-attempt is granted, Attempt 2 will appear here.</div>
+                    <div className="rounded-xl border border-dashed border-[#e9e4f2] px-3.5 py-6 text-center text-[13px] text-[#a79fbd]">No Attempt {perfAtt} results yet.{perfAtt === 2 ? " If a re-attempt is granted, it will appear here." : ""}</div>
                   )}
                 </div>
               </div>

@@ -5,6 +5,13 @@ describe("validateStageUpdates (H-01: users can no longer write payment fields)"
   it("accepts the fields users may still change, with valid values", () => {
     expect(validateStageUpdates({ form_stage_1: "form_initiated" })).toEqual({ ok: true, updates: { form_stage_1: "form_initiated" } });
     expect(validateStageUpdates({ application_stage_1: "slot_selected", vsat_slot_datetime_1: "2026-11-06T10:00:00.000Z" }).ok).toBe(true);
+    expect(validateStageUpdates({ exam_date_id: "11111111-2222-3333-4444-555555555555", vsat_slot_datetime_1: "2026-11-06T10:00:00Z" }).ok).toBe(true);
+    expect(validateStageUpdates({ campus_applied: "Sushant University — Gurugram" }).ok).toBe(true);
+    expect(validateStageUpdates({ vsat_slot_datetime_2: "2026-12-01T10:00:00Z" }).ok).toBe(true);
+  });
+  it("rejects bad values for the new fields", () => {
+    expect(validateStageUpdates({ exam_date_id: "not-a-uuid" })).toEqual({ ok: false, error: "invalid_value", field: "exam_date_id" });
+    expect(validateStageUpdates({ campus_applied: "Hogwarts" })).toEqual({ ok: false, error: "invalid_value", field: "campus_applied" });
   });
   it("rejects every payment field (the self-approval hole)", () => {
     for (const k of ["payment_stage_1", "payment_stage_2", "payment_stage_1_at", "payment_stage_2_at", "payment_status",
