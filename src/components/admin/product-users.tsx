@@ -46,6 +46,7 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
   ]},
   { key: "codesprint", label: "CodeSprint", rpc: "pu_codesprint", base: "vedam_one_profiles.cs_*", cols: [
     P("full_name", "Name", "name"), P("email", "Email", "text"), P("phone", "Mobile", "text"),
+    P("cs_stage", "Stage", "enum"),
     P("cs_current_module", "Module", "enum"), P("cs_completion_rate", "% Complete", "pct"),
     P("cs_certs_count", "Certificates", "num"), P("cs_registered_at", "Registered On", "date"),
     P("cs_last_used_at", "Last Active", "date"),
