@@ -20,6 +20,7 @@ export default function Page() {
           <div className="space-y-6">
             <ProductLeads product="bootcamp" title="Bootcamp" />
             <ProductLeads product="codesprint" title="CodeSprint" />
+            <ProductLeads product="pyq" title="PYQs" />
           </div>
         </div>
 
