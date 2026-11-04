@@ -21,6 +21,7 @@ type Range = { from: Date; to: Date };
 const asRpc = (r: Range) => ({ p_from: toUtc(r.from), p_to: toUtc(r.to) });
 const fmt = (n: number | null | undefined) => (n == null ? "—" : Number(n).toLocaleString("en-IN"));
 const cpl = (d: Lead) => (d.leads > 0 ? `₹${(d.spend / d.leads).toLocaleString("en-IN", { maximumFractionDigits: 0 })}` : "—");
+const pctStr = (num: number, den: number) => (den > 0 ? `${((num / den) * 100).toFixed(1)}%` : "—");
 
 // label for "leads" is product-specific ("{title} Registrations"); filled in the component.
 const ROWS: { key: "total_leads" | "leads" | "mql"; label: string }[] = [
@@ -40,9 +41,10 @@ type Col =
   | { id: string; label: string; sublabel?: string; type: "period"; data: Lead; prevData?: Lead; prevTag?: string; clickable?: () => void; open?: boolean; isYtd?: boolean }
   | { id: string; label: string; type: "manual"; year: string };
 
-export function ProductLeads({ product, title }: { product: "codesprint" | "bootcamp"; title: string }) {
+export function ProductLeads({ product, title }: { product: "codesprint" | "bootcamp" | "pyq"; title: string }) {
   const [supabase] = useState(() => createClient());
   const [loading, setLoading] = useState(true);
+  const [hideYears, setHideYears] = useState(false);
   const [base, setBase] = useState<{ ftd: Lead; wtd: Lead; mtd: Lead; all: Lead; lw: Lead; lm: Lead }>({ ftd: ZERO, wtd: ZERO, mtd: ZERO, all: ZERO, lw: ZERO, lm: ZERO });
   const [prevWeeks, setPrevWeeks] = useState<{ label: string; data: Lead }[] | null>(null);
   const [prevMonths, setPrevMonths] = useState<{ label: string; data: Lead }[] | null>(null);
@@ -88,7 +90,7 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
     if (weeksOpen) { setWeeksOpen(false); return; }
     if (!prevWeeks) {
       const now = istNow(); const cur = sow(now); const out: { label: string; data: Lead }[] = [];
-      for (let i = 1; i <= 4; i++) { const from = addD(cur, -7 * i); const to = addD(cur, -7 * (i - 1)); /* eslint-disable-next-line no-await-in-loop */ out.push({ label: `${shortD(from)}–${shortD(addD(to, -1))}`, data: await fetchOne({ from, to }) }); }
+      for (let i = 1; i <= 4; i++) { const from = addD(cur, -7 * i); const to = addD(cur, -7 * (i - 1)); out.push({ label: `${shortD(from)}–${shortD(addD(to, -1))}`, data: await fetchOne({ from, to }) }); }
       setPrevWeeks(out);
     }
     setWeeksOpen(true);
@@ -98,7 +100,7 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
     if (monthsOpen) { setMonthsOpen(false); return; }
     if (!prevMonths) {
       const now = istNow(); const cur = som(now); const out: { label: string; data: Lead }[] = [];
-      for (let i = 1; i <= 4; i++) { const from = addM(cur, -i); const to = addM(cur, -(i - 1)); /* eslint-disable-next-line no-await-in-loop */ out.push({ label: monLbl(from), data: await fetchOne({ from, to }) }); }
+      for (let i = 1; i <= 4; i++) { const from = addM(cur, -i); const to = addM(cur, -(i - 1)); out.push({ label: monLbl(from), data: await fetchOne({ from, to }) }); }
       setPrevMonths(out);
     }
     setMonthsOpen(true);
@@ -120,10 +122,12 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
     cols.push({ id: "mtd", label: "MTD ⤢", type: "period", data: base.mtd, prevData: base.lm, prevTag: "mo", clickable: toggleMonths, open: monthsOpen });
     if (monthsOpen && prevMonths) prevMonths.forEach((m, i) => cols.push({ id: `m${i}`, label: m.label, type: "period", data: m.data, prevData: prevMonths[i + 1]?.data, prevTag: "vs prev mo" }));
     cols.push({ id: "all", label: "YTD", sublabel: "all-time", type: "period", data: base.all, isYtd: true });
-    cols.push({ id: "2026", label: "2026", type: "manual", year: "2026" });
-    cols.push({ id: "2025", label: "2025", type: "manual", year: "2025" });
+    if (!hideYears) {
+      cols.push({ id: "2026", label: "2026", type: "manual", year: "2026" });
+      cols.push({ id: "2025", label: "2025", type: "manual", year: "2025" });
+    }
     return cols;
-  }, [base, prevWeeks, prevMonths, weeksOpen, monthsOpen, todayLabel, toggleWeeks, toggleMonths]);
+  }, [base, prevWeeks, prevMonths, weeksOpen, monthsOpen, todayLabel, toggleWeeks, toggleMonths, hideYears]);
 
   const head = "px-3 py-2 text-center font-[family-name:var(--font-inter)] text-[12px] font-bold uppercase tracking-wide";
   const cell = "px-3 py-3 text-center font-[family-name:var(--font-inter)] text-[15px] tabular-nums";
@@ -132,7 +136,10 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
     <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="font-[family-name:var(--font-inter)] text-lg font-bold text-white">{title} — Registrations</h2>
-        <span className="font-[family-name:var(--font-inter)] text-[12px] text-white/40">CPR only under YTD · 2026/2025 editable</span>
+        <button onClick={() => setHideYears((v) => !v)}
+          className="rounded-md border border-white/15 bg-white/[0.05] px-2.5 py-1 font-[family-name:var(--font-inter)] text-[12px] text-white/60 hover:text-white">
+          {hideYears ? "Show 2025/2026" : "Hide 2025/2026"}
+        </button>
       </div>
       {loading ? (
         <div className="h-56 animate-pulse rounded-xl border border-white/10 bg-white/[0.04]" />
@@ -171,6 +178,19 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
                   })}
                 </tr>
               ))}
+              {/* MQR % = MQR ÷ Registrations */}
+              <tr className="border-b border-white/[0.06] bg-white/[0.015] hover:bg-white/[0.02]">
+                <td className="px-3 py-3 text-left font-[family-name:var(--font-inter)] text-[15px] font-medium text-white/70">
+                  MQR %<span className="ml-2 font-[family-name:var(--font-inter)] text-[12px] text-white/40">% of {title} Registrations</span>
+                </td>
+                {columns.map((c) => {
+                  if (c.type === "manual") {
+                    const num = manual[`mql:${c.year}`]; const den = manual[`leads:${c.year}`];
+                    return <td key={c.id} className={cell + " text-white/70"}>{num != null && den != null ? pctStr(num, den) : "—"}</td>;
+                  }
+                  return <td key={c.id} className={cell + " font-semibold text-[#8fe9f5]"}>{pctStr(c.data.mql, c.data.leads)}</td>;
+                })}
+              </tr>
               {/* CPL row — only meaningful under YTD (all-time) */}
               <tr className="border-b border-white/[0.06] hover:bg-white/[0.02]">
                 <td className="px-3 py-3 text-left font-[family-name:var(--font-inter)] text-[15px] font-medium text-white">CPR<span className="ml-2 font-[family-name:var(--font-inter)] text-[12px] text-white/40">spend / registrations</span></td>
@@ -183,7 +203,7 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
             </tbody>
           </table>
           <p className="mt-3 font-[family-name:var(--font-inter)] text-[12px] leading-relaxed text-white/45">
-            Product Registration = all platform signups in the period. {title} Registrations = signed up via {title}&apos;s Growth-panel UTM <b>or</b> registered/enrolled {title} (cross-counted by action, auto-extends with new UTMs). MQR = PCM/PCMB &amp; class-12 year 2026/2027. CPR = all-time {title} spend ÷ all-time {title} Registrations (shown only under YTD). Click WTD/MTD to unfurl previous weeks/months.
+            Product Registration = all platform signups in the period. {title} Registrations = the same people shown in Product Users for {title} (bootcamp = bootcamp participants, CodeSprint = enrolled + signed-up-via-CodeSprint, PYQ = attempted) — joined or not. MQR = registrations with PCM/PCMB &amp; class-12 year 2026/2027; MQR % = MQR ÷ {title} Registrations. CPR = all-time {title} spend ÷ all-time {title} Registrations (shown only under YTD). Click WTD/MTD to unfurl previous weeks/months.
           </p>
         </div>
       )}
