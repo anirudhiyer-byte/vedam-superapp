@@ -61,20 +61,38 @@ as $function$
 begin
   if not public.is_admin() then return query select 0::bigint,0::bigint,0::bigint,0::numeric; return; end if;
   return query
-  with action_users as (
-    select distinct user_id from public.bootcamp_participation
-      where p_product='bootcamp' and registered_at >= p_from and registered_at < p_to
+  with reg_users as (
+    -- Bootcamp = Product Users' pu_bootcamp source (bootcamp_participation)
+    select distinct b.user_id from public.bootcamp_participation b
+      where p_product='bootcamp' and b.registered_at >= p_from and b.registered_at < p_to
     union
-    select distinct user_id from public.cs_enrollments
-      where p_product='codesprint' and enrolled_at >= p_from and enrolled_at < p_to
+    -- CodeSprint = Product Users' pu_codesprint source: enrolled ∪ cs_registered rollup
+    -- ∪ came-via-CodeSprint signup metadata. reg_at = earliest of enrolment / rollup
+    -- date / account creation, used to place a person in the period.
+    select cp.user_id from (
+      select u.id as user_id,
+             least(coalesce(en.enrolled_at, 'infinity'::timestamptz),
+                   coalesce(vp.cs_registered_at, 'infinity'::timestamptz),
+                   u.created_at) as reg_at
+      from auth.users u
+      left join (select user_id, min(enrolled_at) as enrolled_at from public.cs_enrollments group by user_id) en on en.user_id = u.id
+      left join public.vedam_one_profiles vp on vp.user_id = u.id
+      where en.user_id is not null
+         or vp.cs_registered is true
+         or coalesce(u.raw_user_meta_data->>'landing_path','') ilike '%codesprint%'
+         or coalesce(u.raw_user_meta_data->>'utm_source','')   ilike '%sprint%'
+         or coalesce(u.raw_user_meta_data->>'utm_campaign','') ilike '%sprint%'
+    ) cp
+      where p_product='codesprint' and cp.reg_at >= p_from and cp.reg_at < p_to
     union
-    select distinct user_id from public.pyq_attempts
-      where p_product='pyq' and created_at >= p_from and created_at < p_to
+    -- PYQ = pyq_attempts
+    select distinct a.user_id from public.pyq_attempts a
+      where p_product='pyq' and a.created_at >= p_from and a.created_at < p_to
   )
   select
     (select count(*) from public.profiles where created_at >= p_from and created_at < p_to),
-    (select count(*) from action_users),
-    (select count(*) from action_users au join public.profiles pr on pr.id = au.user_id
+    (select count(*) from reg_users),
+    (select count(*) from reg_users ru join public.profiles pr on pr.id = ru.user_id
         where pr.stream in ('PCM','PCMB') and pr.grad_year in (2026,2027)),
     (case when p_product='codesprint'
        then (select coalesce(sum(total_cost),0) from public.growth_cs_cost_rows where not coalesce(is_trashed,false))

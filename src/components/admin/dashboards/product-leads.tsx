@@ -203,7 +203,7 @@ export function ProductLeads({ product, title }: { product: "codesprint" | "boot
             </tbody>
           </table>
           <p className="mt-3 font-[family-name:var(--font-inter)] text-[12px] leading-relaxed text-white/45">
-            Product Registration = all platform signups in the period. {title} Registrations = people who actually registered for {title} (bootcamp = event registrations, CodeSprint = enrolments, PYQ = attempts) — joined or not; viewers / UTM-only traffic are not counted. MQR = registrations with PCM/PCMB &amp; class-12 year 2026/2027; MQR % = MQR ÷ {title} Registrations. CPR = all-time {title} spend ÷ all-time {title} Registrations (shown only under YTD). Click WTD/MTD to unfurl previous weeks/months.
+            Product Registration = all platform signups in the period. {title} Registrations = the same people shown in Product Users for {title} (bootcamp = bootcamp participants, CodeSprint = enrolled + signed-up-via-CodeSprint, PYQ = attempted) — joined or not. MQR = registrations with PCM/PCMB &amp; class-12 year 2026/2027; MQR % = MQR ÷ {title} Registrations. CPR = all-time {title} spend ÷ all-time {title} Registrations (shown only under YTD). Click WTD/MTD to unfurl previous weeks/months.
           </p>
         </div>
       )}
