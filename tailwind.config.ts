@@ -20,6 +20,8 @@ const config: Config = {
         border: "rgb(var(--border) / <alpha-value>)",
         primary: "rgb(var(--primary) / <alpha-value>)",
         accent: "rgb(var(--accent) / <alpha-value>)",
+        // Communication module: lighter violet for focus rings / links (same in both themes)
+        "accent-soft": "#B47BFF",
         "violet-deep": "rgb(var(--violet-deep) / <alpha-value>)",
         // PeerPath (Talk to a Senior) — values live on the .pp wrapper in peerpath.css
         pp: {

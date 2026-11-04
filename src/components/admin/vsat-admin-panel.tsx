@@ -4,6 +4,7 @@ import Image from "next/image";
 import { VsatFormBuilder } from "@/components/admin/vsat-form-builder";
 import { VsatExamCenter, type WheeboxStatus } from "@/components/admin/vsat-exam-center";
 import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
+import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
 
 /**
  * VSAT Admin Panel — wears the same "Neural" shell as the Growth panel
@@ -16,7 +17,7 @@ import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
  */
 
 type Sub = { label: string; page: string };
-type Item = { id: string; label: string; icon: string; live?: boolean; file?: string; sub?: Sub[] };
+type Item = { id: string; label: string; icon: string; live?: boolean; file?: string; sub?: Sub[]; cm?: boolean };
 type Group = { g: string; items: Item[] };
 
 const ICON: Record<string, string> = {
@@ -54,7 +55,11 @@ const VSAT: Group[] = [
     { id: "center", label: "Exam Center", icon: ICON.center, live: true },
   ] },
   { g: "VSAT Communications", items: [
-    { id: "comms", label: "Communications", icon: ICON.comms },
+    // Communication module (sample data). Names + page keys come from the module itself.
+    ...CM_GROUPS.map((g) => ({
+      id: `cm-${g.label.toLowerCase().replace(/\s+/g, "-")}`, label: g.label, icon: ICON.comms, live: true, cm: true,
+      sub: g.items.map((i) => ({ label: i.label, page: i.key })),
+    })),
   ] },
 ];
 
@@ -93,7 +98,7 @@ function Svg({ inner, cls }: { inner: string; cls?: string }) {
 
 export function VsatAdminPanel({ wheebox }: { wheebox: WheeboxStatus }) {
   const [panel, setPanel] = useState<"vsat" | "growth">("vsat");
-  const [active, setActive] = useState<{ id: string; file?: string; page?: string; title: string }>({ id: "form", title: "Form Builder" });
+  const [active, setActive] = useState<{ id: string; file?: string; page?: string; cm?: boolean; title: string }>({ id: "form", title: "Form Builder" });
   const [open, setOpen] = useState<string | null>(null); // open parent id
 
   const model = panel === "vsat" ? VSAT : GROWTH;
@@ -104,11 +109,22 @@ export function VsatAdminPanel({ wheebox }: { wheebox: WheeboxStatus }) {
     else setActive({ id: "pred", file: "predictor.html", page: "cost-listing", title: "College Predictor · Cost & CPL Listing" });
   }
 
+  // a Communication page asking to open another one (e.g. Manage List → Upload Raw Data)
+  function goCm(k: CmPage) {
+    const g = CM_GROUPS.find((x) => x.items.some((i) => i.key === k));
+    const i = g?.items.find((x) => x.key === k);
+    if (!g || !i) return;
+    const id = `cm-${g.label.toLowerCase().replace(/\s+/g, "-")}`;
+    setOpen(id);
+    setActive({ id, page: k, cm: true, title: `${g.label} · ${i.label}` });
+  }
+
   function Content() {
     if (panel === "growth") {
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
     }
+    if (active.cm && active.page) return <div className="vp-scroll"><CommunicationManager key={active.page} page={active.page as CmPage} onNavigate={goCm} /></div>;
     if (active.id === "form") return <div className="vp-scroll"><VsatFormBuilder /></div>;
     if (active.id === "center") return <div className="vp-scroll"><VsatExamCenter wheebox={wheebox} /><VsatExamDates /></div>;
     return <Placeholder title={active.title} kind="vsat" />;
@@ -142,7 +158,7 @@ export function VsatAdminPanel({ wheebox }: { wheebox: WheeboxStatus }) {
                             {it.sub.map((s) => {
                               const on = active.id === it.id && active.page === s.page;
                               return (
-                                <a key={s.page} className={on ? "on" : ""} onClick={() => setActive({ id: it.id, file: it.file, page: s.page, title: `${it.label} · ${s.label}` })}>
+                                <a key={s.page} className={on ? "on" : ""} onClick={() => setActive({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
                                   <Svg inner='<circle cx="12" cy="12" r="2.5"/>' /><span className="vp-lbl">{s.label}</span>
                                 </a>
                               );
@@ -184,7 +200,7 @@ function Placeholder({ title, kind }: { title: string; kind: "vsat" | "growth" }
         <h2>{title}</h2>
         <p>{kind === "growth"
           ? "This Growth module isn’t wired in yet — it opens here once it goes live."
-          : "This section is next in the admin-level build-out — Leads & Applications (like Product Users), the Process actions, and Communications."}</p>
+          : "This section is next in the admin-level build-out — Leads & Applications (like Product Users) and the Process actions."}</p>
         <span className="vp-phtag">Coming next</span>
       </div>
     </div>
