@@ -35,8 +35,8 @@ const ROWS: RowDef[] = [
   { key: "attempted", label: "Attempted Registration", num: (d) => d.attempted, manualKey: "attempted" },
   { key: "registered", label: "Registered (partial + full)", num: (d) => d.registered, manualKey: "registered" },
   { key: "reg_pct", label: "Registration %", note: "% of Attempted Registration", pct: true, num: (d) => d.registered, den: (d) => d.attempted, numManual: "registered", denManual: "attempted" },
-  { key: "mql", label: "MQL", num: (d) => d.mql, manualKey: "mql" },
-  { key: "mql_pct", label: "MQL %", note: "% of Registered (full)", pct: true, num: (d) => d.mql, den: (d) => d.registered_full, numManual: "mql", denManual: "registered_full" },
+  { key: "mql", label: "MQR", num: (d) => d.mql, manualKey: "mql" },
+  { key: "mql_pct", label: "MQR %", note: "% of Registered (full)", pct: true, num: (d) => d.mql, den: (d) => d.registered_full, numManual: "mql", denManual: "registered_full" },
 ];
 const pctStr = (num: number, den: number) => (den > 0 ? `${((num / den) * 100).toFixed(1)}%` : "—");
 
@@ -109,7 +109,7 @@ export function RegistrationFunnel() {
       if (active) setLoading(false);
     })();
     return () => { active = false; };
-  }, [fetchOne]);
+  }, [fetchOne, supabase]);
 
   // WTD → previous full weeks (most-recent first)
   const toggleWeeks = useCallback(async () => {
@@ -121,8 +121,7 @@ export function RegistrationFunnel() {
       for (let i = 1; i <= 4; i++) {
         const from = addDays(curStart, -7 * i);
         const to = addDays(curStart, -7 * (i - 1));
-        // eslint-disable-next-line no-await-in-loop
-        out.push({ label: `${shortDate(from)}–${shortDate(addDays(to, -1))}`, data: await fetchOne({ from, to }) });
+          out.push({ label: `${shortDate(from)}–${shortDate(addDays(to, -1))}`, data: await fetchOne({ from, to }) });
       }
       setPrevWeeks(out);
     }
@@ -139,8 +138,7 @@ export function RegistrationFunnel() {
       for (let i = 1; i <= 4; i++) {
         const from = addMonths(curStart, -i);
         const to = addMonths(curStart, -(i - 1));
-        // eslint-disable-next-line no-await-in-loop
-        out.push({ label: monthLabel(from), data: await fetchOne({ from, to }) });
+          out.push({ label: monthLabel(from), data: await fetchOne({ from, to }) });
       }
       setPrevMonths(out);
     }
@@ -188,7 +186,7 @@ export function RegistrationFunnel() {
   return (
     <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
       <div className="mb-3 flex items-center justify-between">
-        <h2 className="font-[family-name:var(--font-inter)] text-lg font-bold text-white">Registration Funnel</h2>
+        <h2 className="font-[family-name:var(--font-inter)] text-lg font-bold text-white">Vedam One Overall Registration Funnel</h2>
         <span className="font-[family-name:var(--font-inter)] text-[12px] text-white/40">live · all auto except 2026/2025</span>
       </div>
 
@@ -263,7 +261,7 @@ export function RegistrationFunnel() {
             FTD = today · WTD = week-to-date (Mon) · MTD = month-to-date (IST) · YTD = all data on record.
             True funnel, all scoped to the visitor population: New Visitors = tracked front-end sessions (beacon live since 30 Sep 2026);
             Attempted = those who opened /register; Registered = those visitor sessions that actually completed a signup (so Registered ⊆ Visitors);
-            Registration % = Registered ÷ Attempted; MQL = registered with PCM/PCMB &amp; class-12 year 2026/2027; MQL % = MQL ÷ Registered (full).
+            Registration % = Registered ÷ Attempted; MQR = registered with PCM/PCMB &amp; class-12 year 2026/2027; MQR % = MQR ÷ Registered (full).
             ▲▼ = WTD vs last week / MTD vs last month (same days-to-date). Click <b>WTD</b> to unfurl previous weeks, <b>MTD</b> for previous months (each vs the one before it). 2026/2025 are editable hard-data for pre-tracking history.
           </p>
         </div>
