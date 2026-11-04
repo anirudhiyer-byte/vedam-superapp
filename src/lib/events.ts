@@ -85,8 +85,18 @@ export const DEFAULT_OFFLINE_REG: EventField[] = [
 export const isOffline = (e: Pick<EventRow, "mode">) => e.mode === "offline";
 
 export function eventSchema(e: EventRow): EventField[] {
-  if (e.registration_schema && e.registration_schema.length) return e.registration_schema;
-  return isOffline(e) ? DEFAULT_OFFLINE_REG : DEFAULT_ONLINE_REG;
+  // The default profile fields (whatsapp / passout_year / stream, + city/state when
+  // offline) are ALWAYS part of the schema: they are auto-filled from the user's Vedam
+  // One profile and never shown as questions. Any admin-authored custom fields are
+  // APPENDED — they must never replace the profile fields, otherwise the registration
+  // silently stops carrying the profile's stream/passout onto event_registrations
+  // (which is exactly what broke MQL once an event got a custom question).
+  const base = isOffline(e) ? DEFAULT_OFFLINE_REG : DEFAULT_ONLINE_REG;
+  const custom = (e.registration_schema ?? []).filter(Boolean);
+  if (!custom.length) return base;
+  const baseKeys = new Set(base.map((f) => f.key));
+  const extra = custom.filter((f) => !baseKeys.has(f.key));
+  return [...base, ...extra];
 }
 
 /** Accent colour per category (used when an event has no banner image). */
