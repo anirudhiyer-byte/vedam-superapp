@@ -55,17 +55,24 @@ function Delta({ cur, prev }: { cur: number; prev: number }) {
   );
 }
 
-/* A rendered column: either a live period or an editable manual year */
+/* A rendered column: a live period, or a calendar-year column whose Registered/MQR
+ * auto-compute from the DB while New Visitors / Attempted stay manually editable. */
 type Col =
   | { id: string; label: string; sublabel?: string; type: "period"; data: Funnel; prevData?: Funnel; prevTag?: string; clickable?: () => void; open?: boolean }
-  | { id: string; label: string; type: "manual"; year: string };
+  | { id: string; label: string; type: "year"; year: string; data: Funnel };
+
+// Metrics the year columns pull live from the DB (the rest — new_visitors/attempted — stay manual, no historical tracking).
+const AUTO_YEAR_METRICS = new Set(["registered", "registered_partial", "registered_full", "mql"]);
+const yearMetricVal = (metric: string, yd: Funnel, man: Record<string, number>, year: string): number | null =>
+  AUTO_YEAR_METRICS.has(metric) ? ((yd as unknown as Record<string, number>)[metric] ?? 0) : (man[`${metric}:${year}`] ?? null);
 
 export function RegistrationFunnel() {
   const [supabase] = useState(() => createClient());
   const [loading, setLoading] = useState(true);
-  const [base, setBase] = useState<{ ftd: Funnel; wtd: Funnel; mtd: Funnel; all: Funnel; lastWeek: Funnel; lastMonth: Funnel }>({
-    ftd: ZERO, wtd: ZERO, mtd: ZERO, all: ZERO, lastWeek: ZERO, lastMonth: ZERO,
+  const [base, setBase] = useState<{ ftd: Funnel; wtd: Funnel; mtd: Funnel; all: Funnel; lastWeek: Funnel; lastMonth: Funnel; y2026: Funnel; y2025: Funnel }>({
+    ftd: ZERO, wtd: ZERO, mtd: ZERO, all: ZERO, lastWeek: ZERO, lastMonth: ZERO, y2026: ZERO, y2025: ZERO,
   });
+  const [hideYears, setHideYears] = useState(false);
   const [prevWeeks, setPrevWeeks] = useState<{ label: string; data: Funnel }[] | null>(null);
   const [prevMonths, setPrevMonths] = useState<{ label: string; data: Funnel }[] | null>(null);
   const [weeksOpen, setWeeksOpen] = useState(false);
@@ -93,12 +100,15 @@ export function RegistrationFunnel() {
       const all: Range = { from: EPOCH, to: now };
       const lastWeek: Range = { from: addDays(wtd.from, -7), to: addDays(now, -7) };
       const lastMonth: Range = { from: addMonths(mtd.from, -1), to: addMonths(now, -1) };
+      // calendar-year ranges (IST) — auto-compute Registered/MQR for the 2026/2025 columns
+      const y2026: Range = { from: new Date(Date.UTC(2026, 0, 1)), to: new Date(Date.UTC(2027, 0, 1)) };
+      const y2025: Range = { from: new Date(Date.UTC(2025, 0, 1)), to: new Date(Date.UTC(2026, 0, 1)) };
 
-      const [a, b, c, d, e, f] = await Promise.all([
-        fetchOne(ftd), fetchOne(wtd), fetchOne(mtd), fetchOne(all), fetchOne(lastWeek), fetchOne(lastMonth),
+      const [a, b, c, d, e, f, g, h] = await Promise.all([
+        fetchOne(ftd), fetchOne(wtd), fetchOne(mtd), fetchOne(all), fetchOne(lastWeek), fetchOne(lastMonth), fetchOne(y2026), fetchOne(y2025),
       ]);
       if (!active) return;
-      setBase({ ftd: a, wtd: b, mtd: c, all: d, lastWeek: e, lastMonth: f });
+      setBase({ ftd: a, wtd: b, mtd: c, all: d, lastWeek: e, lastMonth: f, y2026: g, y2025: h });
 
       const { data: man } = await supabase.from("dash_manual").select("metric, period, value").eq("dashboard", "reg_funnel");
       if (active && man) {
@@ -175,10 +185,12 @@ export function RegistrationFunnel() {
       }));
     }
     cols.push({ id: "all", label: "YTD", sublabel: "all-time", type: "period", data: base.all });
-    cols.push({ id: "2026", label: "2026", type: "manual", year: "2026" });
-    cols.push({ id: "2025", label: "2025", type: "manual", year: "2025" });
+    if (!hideYears) {
+      cols.push({ id: "2026", label: "2026", type: "year", year: "2026", data: base.y2026 });
+      cols.push({ id: "2025", label: "2025", type: "year", year: "2025", data: base.y2025 });
+    }
     return cols;
-  }, [base, prevWeeks, prevMonths, weeksOpen, monthsOpen, todayLabel, toggleWeeks, toggleMonths]);
+  }, [base, prevWeeks, prevMonths, weeksOpen, monthsOpen, todayLabel, toggleWeeks, toggleMonths, hideYears]);
 
   const headBase = "px-3 py-2 text-center font-[family-name:var(--font-inter)] text-[12px] font-bold uppercase tracking-wide";
   const cellBase = "px-3 py-3 text-center font-[family-name:var(--font-inter)] text-[15px] tabular-nums";
@@ -187,7 +199,10 @@ export function RegistrationFunnel() {
     <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="font-[family-name:var(--font-inter)] text-lg font-bold text-white">Vedam One Overall Registration Funnel</h2>
-        <span className="font-[family-name:var(--font-inter)] text-[12px] text-white/40">live · all auto except 2026/2025</span>
+        <button onClick={() => setHideYears((v) => !v)}
+          className="rounded-md border border-white/15 bg-white/[0.05] px-2.5 py-1 font-[family-name:var(--font-inter)] text-[12px] text-white/60 hover:text-white">
+          {hideYears ? "Show 2025/2026" : "Hide 2025/2026"}
+        </button>
       </div>
 
       {loading ? (
@@ -222,17 +237,22 @@ export function RegistrationFunnel() {
                     )}
                   </td>
                   {columns.map((c) => {
-                    if (c.type === "manual") {
+                    if (c.type === "year") {
                       if (r.pct) {
-                        const num = manual[`${r.numManual}:${c.year}`];
-                        const den = manual[`${r.denManual}:${c.year}`];
+                        const num = yearMetricVal(r.numManual!, c.data, manual, c.year);
+                        const den = yearMetricVal(r.denManual!, c.data, manual, c.year);
                         return <td key={c.id} className={cellBase + " text-white/70"}>{num != null && den != null ? pctStr(num, den) : "—"}</td>;
+                      }
+                      const metric = r.manualKey!;
+                      // Registered / MQR auto-compute from the DB; New Visitors / Attempted stay manual (no pre-beacon tracking).
+                      if (AUTO_YEAR_METRICS.has(metric)) {
+                        return <td key={c.id} className={cellBase + " text-white"}>{fmt(yearMetricVal(metric, c.data, manual, c.year))}</td>;
                       }
                       return (
                         <td key={c.id} className={cellBase}>
                           <input
-                            defaultValue={manual[`${r.manualKey}:${c.year}`] ?? ""}
-                            onBlur={(e) => saveManual(r.manualKey!, c.year, e.target.value)}
+                            defaultValue={manual[`${metric}:${c.year}`] ?? ""}
+                            onBlur={(e) => saveManual(metric, c.year, e.target.value)}
                             inputMode="numeric"
                             className="w-20 rounded-md border border-white/15 bg-white/[0.05] px-2 py-1 text-center font-[family-name:var(--font-inter)] text-[15px] text-white outline-none focus:border-[#8A18FF]"
                             placeholder="—"
@@ -259,10 +279,10 @@ export function RegistrationFunnel() {
           </table>
           <p className="mt-3 font-[family-name:var(--font-inter)] text-[12px] leading-relaxed text-white/45">
             FTD = today · WTD = week-to-date (Mon) · MTD = month-to-date (IST) · YTD = all data on record.
-            True funnel, all scoped to the visitor population: New Visitors = tracked front-end sessions (beacon live since 30 Sep 2026);
-            Attempted = those who opened /register; Registered = those visitor sessions that actually completed a signup (so Registered ⊆ Visitors);
+            New Visitors = tracked front-end sessions (beacon live since 30 Sep 2026); Attempted = those who opened /register (both are the visitor funnel);
+            Registered = all platform signups in the period (same population as Product Registration on the product dashboards);
             Registration % = Registered ÷ Attempted; MQR = registered with PCM/PCMB &amp; class-12 year 2026/2027; MQR % = MQR ÷ Registered (full).
-            ▲▼ = WTD vs last week / MTD vs last month (same days-to-date). Click <b>WTD</b> to unfurl previous weeks, <b>MTD</b> for previous months (each vs the one before it). 2026/2025 are editable hard-data for pre-tracking history.
+            ▲▼ = WTD vs last week / MTD vs last month (same days-to-date). Click <b>WTD</b> to unfurl previous weeks, <b>MTD</b> for previous months (each vs the one before it). 2026/2025 columns auto-compute Registered &amp; MQR from the DB; New Visitors &amp; Attempted stay editable (no pre-beacon tracking).
           </p>
         </div>
       )}
