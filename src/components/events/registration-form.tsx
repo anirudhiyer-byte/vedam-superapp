@@ -68,7 +68,6 @@ export function RegistrationForm({
 }) {
   const [supabase] = useState(() => createClient());
   const [gateOpen, setGateOpen] = useState(false);
-  const [emailOverride, setEmailOverride] = useState<string | null>(null);
   const schema = eventSchema(event);
 
   // Split into fields the profile already answers (auto) vs. ones we must ask (extra).
@@ -108,7 +107,9 @@ export function RegistrationForm({
     return String(v ?? "").trim().length > 0;
   };
   const valid = extraFields.every(fieldOk);
-  useEffect(() => { if (autoRegister && extraFields.length === 0) void submit(); /* eslint-disable-next-line */ }, [autoRegister]);
+  // Fire the one-tap auto-register once when the flag flips; submit/extraFields are deliberately not deps.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { if (autoRegister && extraFields.length === 0) void submit(); }, [autoRegister]);
 
   const pick = (re: RegExp, typ?: EventField["type"]) => {
     const merged: Record<string, unknown> = { ...autoVals, ...vals };
@@ -119,22 +120,44 @@ export function RegistrationForm({
     return String(Array.isArray(v) ? v.join(", ") : v);
   };
 
-  async function onGateComplete() {
-    setGateOpen(false);
-    const { data: pr } = await supabase.from("profiles").select("email").eq("id", userId).maybeSingle();
-    const { data: { session } } = await supabase.auth.getSession();
-    const em = (pr as { email?: string } | null)?.email || session?.user?.email || null;
-    if (em) { setEmailOverride(em); void submit(em); }
-  }
+  // Popup finished saving the second half of the profile -> it's now complete;
+  // resume registration, which re-reads the profile and captures stream/year/email.
+  function onGateComplete() { setGateOpen(false); void submit(); }
+  // Popup dismissed without completing -> HARD gate: do not register. A complete
+  // profile is required; they can register once they finish it.
+  function onGateDismiss() { setGateOpen(false); setSubmitting(false); }
 
-  async function submit(overrideEmail?: string) {
+  async function submit() {
     if (!valid || submitting) return;
-    const regEmail = (typeof overrideEmail === "string" ? overrideEmail : null) || emailOverride || profile.email;
-    if (!regEmail) { setGateOpen(true); return; }   // profile incomplete -> ask for details first
+    // The `profile` prop is a mount-time snapshot, so after the completion popup
+    // saves stream/year/email we must re-read the profile to capture them.
+    const { data: freshRaw } = await supabase.from("profiles")
+      .select("email, phone, grad_year, stream").eq("id", userId).maybeSingle();
+    const p = (freshRaw as Profile | null) ?? profile;
+
+    // Profile-completion gate (HARD) — the same rule every Vedam One product uses
+    // (is_profile_complete = grad_year + stream + state + city + verified email).
+    // A complete profile is REQUIRED to register: if incomplete, show the popup to
+    // fill the second half and stop here. Registration proceeds only once complete.
+    const { data: complete } = await supabase.rpc("is_profile_complete");
+    if (!complete) { setGateOpen(true); return; }
+
+    const regEmail = p.email || profile.email;
+    if (!regEmail) { setGateOpen(true); return; }   // no email at all -> popup to add one
     setSubmitting(true);
     setError(null);
     const utm = readUtm();
-    const answers = { ...autoVals, ...vals };
+    // Profile fields are auto-fetched from the profile (never asked as questions),
+    // with the schema pick() as a fallback for any legacy custom field.
+    const profStream = (p.stream ?? "").trim() || pick(/stream/);
+    const profPassout = p.grad_year ? String(p.grad_year) : pick(/pass\s*out|passing|year of pass|graduat/);
+    const profPhone = (p.phone ?? "").trim() || pick(/whats\s*app|phone|mobile|contact/, "phone");
+    const answers = {
+      ...autoVals, ...vals,
+      ...(profStream ? { stream: profStream } : {}),
+      ...(profPassout ? { passout_year: profPassout } : {}),
+      ...(profPhone ? { whatsapp: profPhone } : {}),
+    };
 
     // PAID EVENT: no registration is created here — collect the snapshot, create a
     // Cashfree order server-side (amount from the DB), and send the user to checkout.
@@ -142,9 +165,9 @@ export function RegistrationForm({
     if (event.is_paid && Number(event.price_amount) > 0) {
       const reg = {
         event_code: event.event_code, user_email: regEmail, full_name: profile.full_name,
-        whatsapp: pick(/whats\s*app|phone|mobile|contact/, "phone"),
-        passout_year: pick(/pass\s*out|passing|year of pass|graduat/),
-        stream: pick(/stream/),
+        whatsapp: profPhone,
+        passout_year: profPassout,
+        stream: profStream,
         answers,
         utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null,
         utm_campaign: utm.utm_campaign ?? null, referrer: utm.referrer ?? null, landing_path: utm.landing_path ?? null,
@@ -174,9 +197,9 @@ export function RegistrationForm({
     const { error } = await supabase.from("event_registrations").insert({
       event_id: event.id, event_code: event.event_code, user_id: userId,
       user_email: regEmail, full_name: profile.full_name,
-      whatsapp: pick(/whats\s*app|phone|mobile|contact/, "phone"),
-      passout_year: pick(/pass\s*out|passing|year of pass|graduat/),
-      stream: pick(/stream/),
+      whatsapp: profPhone,
+      passout_year: profPassout,
+      stream: profStream,
       answers,
       utm_source: utm.utm_source ?? null, utm_medium: utm.utm_medium ?? null,
       utm_campaign: utm.utm_campaign ?? null, referrer: utm.referrer ?? null, landing_path: utm.landing_path ?? null,
@@ -241,7 +264,7 @@ export function RegistrationForm({
 
   return (
     <div className="space-y-4">
-      <ProfileGateModal open={gateOpen} onClose={() => { setGateOpen(false); setSubmitting(false); }} onComplete={onGateComplete} reason="Complete your profile to register for this event." />
+      <ProfileGateModal open={gateOpen} onClose={onGateDismiss} onComplete={onGateComplete} reason="Complete your profile to register for this event." />
       {/* Confirm-your-details review card */}
       <div className="rounded-xl border border-border bg-background p-4">
         <div className="mb-2 flex items-center justify-between">
