@@ -15,9 +15,13 @@ const APP_STAGES = [
   "interview_selected", "interview_rejected", "counselling_done", "offer_released", "enrolled", "offer_cancelled",
 ] as const;
 
+// Campus choice is captured post-VSAT-cleared (before interview); same options as the /vsat form.
+const CAMPUSES = ["Ajeenkya DY Patil University — Pune", "Sushant University — Gurugram", "No preference"] as const;
+
 const oneOf = (list: readonly string[]) => (v: unknown) => typeof v === "string" && list.includes(v);
 const isoDateTime = (v: unknown) =>
   typeof v === "string" && v.length <= 40 && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,6})?)?(Z|[+-]\d{2}:?\d{2})$/.test(v) && !Number.isNaN(Date.parse(v));
+const isUuid = (v: unknown) => typeof v === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v);
 
 const ALLOWED: Record<string, (v: unknown) => boolean> = {
   form_stage_1: oneOf(FORM_STAGES),
@@ -25,6 +29,9 @@ const ALLOWED: Record<string, (v: unknown) => boolean> = {
   application_stage_1: oneOf(APP_STAGES),
   application_stage_2: oneOf(APP_STAGES),
   vsat_slot_datetime_1: isoDateTime,
+  vsat_slot_datetime_2: isoDateTime,
+  exam_date_id: isUuid,
+  campus_applied: oneOf(CAMPUSES),
 };
 
 export type StageCheck =
