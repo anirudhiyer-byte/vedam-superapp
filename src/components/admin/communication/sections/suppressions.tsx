@@ -16,6 +16,7 @@ import type { SuppressionRow } from "../lib/types";
 import { canWriteLive } from "../lib/live-config";
 import { NOTE_MAX, ONE_AT_A_TIME_ADD, ONE_AT_A_TIME_REMOVE, isValidEmail, isValidMobile } from "../lib/live-suppressions";
 import { RemoveReasonDialog } from "./suppressions-remove-dialog";
+import { refreshAfterWrite } from "../lib/suppressions-refresh";
 
 type Reason = SuppressionRow["reason"];
 const REASONS: Reason[] = ["Unsubscribe", "Bounce", "Block", "Spam", "Invalid"];
@@ -46,6 +47,7 @@ export function Suppressions() {
   const [date, setDate] = useState("");
   const [dateOpen, setDateOpen] = useState(false);
   const [counts, setCounts] = useState<Record<string, number> | null>(null);
+  const [writes, setWrites] = useState(0); // bumped after every successful add/remove so the tab counts are fetched again
 
   const [addOpen, setAddOpen] = useState(false);
   const [draft, setDraft] = useState({ text: "", reason: "Unsubscribe" as Reason, note: "" });
@@ -76,7 +78,7 @@ export function Suppressions() {
     let live = true;
     suppressionsApi.counts(channel, t.search, date || undefined).then((c) => live && setCounts(c)).catch(() => live && setCounts(null));
     return () => { live = false; };
-  }, [channel, t.search, date, t.refreshedAt]);
+  }, [channel, t.search, date, t.refreshedAt, writes]);
 
   const filtered = !!t.search || !!date;
   const clearAll = () => { t.setSearch(""); setDate(""); };
@@ -99,7 +101,8 @@ export function Suppressions() {
     try {
       const r = await suppressionsApi.add(channel, items, isEmail ? draft.reason : "Unsubscribe", liveWrite ? draft.note : undefined);
       setAddOpen(false);
-      if (isEmail && draft.reason !== reason) setReason(draft.reason); else t.reload();
+      refreshAfterWrite({ reload: t.reload, bumpCounts: () => setWrites((n) => n + 1),
+        switchTab: isEmail && draft.reason !== reason ? () => setReason(draft.reason) : undefined });
       toast(`${r.added} added${r.duplicates ? ` · ${r.duplicates} already on the list` : ""}`);
     } catch (e) {
       setAddError(e instanceof Error && e.message ? e.message : "Could not add. Try again.");
@@ -116,7 +119,8 @@ export function Suppressions() {
     setRemoving(true); setRemoveError(null);
     try {
       const r = await suppressionsApi.remove(confirm.ids, why);
-      setConfirm(null); t.setSelected([]); t.reload();
+      setConfirm(null); t.setSelected([]);
+      refreshAfterWrite({ reload: t.reload, bumpCounts: () => setWrites((n) => n + 1) });
       toast(`Removed ${r.removed} ${r.removed === 1 ? "entry" : "entries"}`);
       requestAnimationFrame(() => listRef.current?.focus());
     } catch (e) {
