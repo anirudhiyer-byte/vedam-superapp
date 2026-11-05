@@ -157,6 +157,7 @@ export function SiteHeader() {
                           <Link href="/codesprint?admin=1" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage CodeSprint</Link>
                           <Link href="/admin/comms" className="block px-4 py-2 text-white/85 hover:bg-white/5">Communications</Link>
                           <Link href="/admin/daily" className="block px-4 py-2 text-white/85 hover:bg-white/5">📊 Daily Dashboard</Link>
+                          <Link href="/admin/insights" className="block px-4 py-2 text-white/85 hover:bg-white/5">🔎 Insights</Link>
                           <Link href="/peerpath/talk-to-senior/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎓 PeerPath admin</Link>
                         </>
                       )}

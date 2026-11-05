@@ -3,15 +3,9 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { productFor, type ActiveProduct } from "@/lib/active-product";
 
-type Product = "codesprint" | "bootcamp" | "pyq";
-function productFor(path: string | null): Product | null {
-  if (!path) return null;
-  if (path.startsWith("/codesprint")) return "codesprint";
-  if (path.startsWith("/events") || path.startsWith("/e/")) return "bootcamp";
-  if (path.startsWith("/pyq")) return "pyq";
-  return null;
-}
+type Product = ActiveProduct;
 
 /**
  * Lightweight active-time heartbeat. While the tab is visible it accumulates seconds and
@@ -66,15 +60,16 @@ export function ActiveHeartbeat() {
         if (productRef.current) { prodSecs.current += 1; prodBucket.current = productRef.current; }
       }
     }, 1000);
-    const flushTimer = setInterval(() => { void flush.current(); }, 60000);
-    const onHide = () => { if (document.visibilityState === "hidden") void flush.current(); };
+    const doFlush = flush.current; // the same function for the component's whole life
+    const flushTimer = setInterval(() => { void doFlush(); }, 60000);
+    const onHide = () => { if (document.visibilityState === "hidden") void doFlush(); };
     document.addEventListener("visibilitychange", onHide);
     window.addEventListener("pagehide", onHide);
     return () => {
       clearInterval(tick); clearInterval(flushTimer);
       document.removeEventListener("visibilitychange", onHide);
       window.removeEventListener("pagehide", onHide);
-      void flush.current();
+      void doFlush();
     };
   }, []);
 
