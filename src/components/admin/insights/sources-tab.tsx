@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { costPer, fmt, inr, pct, productLabel, ratio, sourceLabel, type PeriodKey } from "./lib";
 import { useRpc, type PeopleFilter, type SourceRow, type StateRow } from "./data";
 import { BLUE, BarRow, Card, Empty, ErrorNote, Insight, Loading, Segmented } from "./ui";
+import { StateMap, type MapMetric } from "./state-map";
 
 type Range = { p_from: string | null; p_to: string | null };
 type ProductFilter = "all" | "codesprint" | "bootcamp" | "pyq" | "cp" | "vsat";
@@ -123,9 +124,16 @@ export function SourcesTab({ range, period, openPeople }: { range: Range; period
   );
 }
 
+const MAP_METRICS: { key: MapMetric; label: string }[] = [
+  { key: "users", label: "Users" },
+  { key: "mqr", label: "MQR %" },
+  { key: "vsat", label: "VSAT early %" },
+];
+
 export function StatesTab({ range, openPeople }: { range: Range; openPeople: (f: PeopleFilter) => void }) {
   const [product, setProduct] = useState<ProductFilter>("all");
   const [showAll, setShowAll] = useState(false);
+  const [mapMetric, setMapMetric] = useState<MapMetric>("users");
   const args = useMemo(() => ({ ...range, p_product: product }), [range, product]);
   const res = useRpc<StateRow[]>("ins_states", args);
 
@@ -133,11 +141,12 @@ export function StatesTab({ range, openPeople }: { range: Range; openPeople: (f:
   const known = rows.filter((r) => r.state !== "Unknown");
   const unknown = rows.find((r) => r.state === "Unknown");
   const total = rows.reduce((s, r) => s + r.users, 0);
-  const max = Math.max(1, ...rows.map((r) => r.users));
+  const max = Math.max(1, ...known.map((r) => r.users));
   const fair = known.filter((r) => r.users >= MIN_N);
   const bestVsat = [...fair].sort((a, b) => ratio(b.vsat_early, b.users) - ratio(a.vsat_early, a.users))[0];
   const bestMqr = [...fair].sort((a, b) => ratio(b.mqr, b.users) - ratio(a.mqr, a.users))[0];
-  const shown = showAll ? rows : [...known.slice(0, 12), ...(unknown ? [unknown] : [])];
+  const shown = showAll ? known : known.slice(0, 12);
+  const pickState = (state: string) => openPeople(peopleFor(product, range, { p_state: state }, state === "Unknown" ? "State unknown" : `In ${state}`));
 
   return (
     <div className="space-y-5">
@@ -150,15 +159,24 @@ export function StatesTab({ range, openPeople }: { range: Range; openPeople: (f:
             {bestVsat && <Insight>Highest VSAT early-registration rate: {bestVsat.state}, {pct(bestVsat.vsat_early, bestVsat.users)}.</Insight>}
             {unknown && unknown.users > 0 && <Insight>State is missing for {fmt(unknown.users)} people ({pct(unknown.users, total)}), mostly people who have not finished their profile.</Insight>}
           </div>
-          <Card title="Where people are" sub={`${known.length} states and union territories. Click a state to see the people.`}
-            right={rows.length > 13 && <button type="button" onClick={() => setShowAll((v) => !v)} className="rounded-lg border border-white/15 px-3 py-1.5 text-[13px] text-white/80 hover:bg-white/[0.06]">{showAll ? "Show top 12" : `Show all ${rows.length}`}</button>}>
-            <div className="grid gap-x-6 sm:grid-cols-2">
-              {shown.map((r) => (
-                <BarRow key={r.state} name={r.state} value={r.users} max={max} color={r.state === "Unknown" ? "rgba(255,255,255,0.25)" : BLUE}
-                  right={<span>{fmt(r.users)} <span className="text-[12px] font-normal text-white/45">· {pct(r.users, total)}</span></span>}
-                  note={`${pct(r.mqr, r.users)} MQR · ${pct(r.vsat_early, r.users)} VSAT early`}
-                  onClick={() => openPeople(peopleFor(product, range, { p_state: r.state }, `In ${r.state}`))} />
-              ))}
+          <Card title="Where people are" sub={`${known.length} states and union territories. The map is coloured by the chosen metric; click a state (on the map or the list) to see the people.`}
+            right={<Segmented value={mapMetric} onChange={setMapMetric} options={MAP_METRICS} />}>
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+              <StateMap rows={known} metric={mapMetric} onPick={pickState} unknown={unknown} total={total} />
+              <div>
+                <div className="mb-1 flex items-center justify-between">
+                  <span className="text-[12px] font-semibold uppercase tracking-wide text-white/45">Top states</span>
+                  {known.length > 12 && <button type="button" onClick={() => setShowAll((v) => !v)} className="rounded-lg border border-white/15 px-2.5 py-1 text-[12px] text-white/80 hover:bg-white/[0.06]">{showAll ? "Top 12" : `All ${known.length}`}</button>}
+                </div>
+                <div className={showAll ? "max-h-[520px] overflow-y-auto pr-1 [scrollbar-width:thin]" : ""}>
+                  {shown.map((r) => (
+                    <BarRow key={r.state} name={r.state} value={r.users} max={max} color={BLUE}
+                      right={<span>{fmt(r.users)} <span className="text-[12px] font-normal text-white/45">· {pct(r.users, total)}</span></span>}
+                      note={`${pct(r.mqr, r.users)} MQR · ${pct(r.vsat_early, r.users)} VSAT early`}
+                      onClick={() => pickState(r.state)} />
+                  ))}
+                </div>
+              </div>
             </div>
           </Card>
         </>
