@@ -49,9 +49,11 @@ export function StateMap({ rows, metric, onPick, unknown, total }: {
     : `${r.state}: ${metric === "mqr" ? pct(r.mqr, r.users) : pct(r.vsat_early, r.users)} ${METRIC_LABEL[metric]} (${fmt(r.users)} users)`;
 
   return (
-    <div>
+    // centre the whole block (map + legend + Unknown chip) in the column so the map lines up with them
+    <div className="mx-auto w-full max-w-[400px]">
       <style>{`.insMap path{transition:fill .15s,stroke .15s}.insMap path[data-has="1"]{cursor:pointer}.insMap path[data-has="1"]:hover{stroke:#fff;stroke-width:1.4}`}</style>
-      <svg className="insMap" viewBox={INDIA_VIEWBOX} role="img" aria-label={`India map coloured by ${METRIC_LABEL[metric]} per state`} style={{ width: "100%", height: "auto", display: "block" }}>
+      {/* height-capped so the whole States tab fits one screen; the map keeps its aspect ratio and centres */}
+      <svg className="insMap" viewBox={INDIA_VIEWBOX} preserveAspectRatio="xMidYMid meet" role="img" aria-label={`India map coloured by ${METRIC_LABEL[metric]} per state`} style={{ width: "100%", height: "clamp(220px, 34vh, 330px)", display: "block" }}>
         {INDIA_STATES.map((s) => {
           const r = byName.get(norm(s.name));
           const fill = r ? ramp(scale(valueOf(metric, r))) : NO_DATA;
@@ -71,9 +73,9 @@ export function StateMap({ rows, metric, onPick, unknown, total }: {
       </div>
       {unknown && unknown.users > 0 && (
         <button type="button" onClick={() => onPick("Unknown")}
-          className="mt-3 inline-flex items-center gap-2 rounded-xl border border-dashed border-white/20 px-3 py-2 text-left text-[13px] text-white/70 transition-colors hover:bg-white/[0.05]">
+          className="mt-3 flex w-full items-center gap-2 rounded-xl border border-dashed border-white/20 px-3 py-2 text-left text-[12.5px] text-white/70 transition-colors hover:bg-white/[0.05]">
           <span aria-hidden>🚩</span>
-          <span><b className="text-white">Unknown: {fmt(unknown.users)}</b> ({pct(unknown.users, total)}) — no state on their profile, so not on the map. Click to see them.</span>
+          <span><b className="text-white">Unknown: {fmt(unknown.users)}</b> ({pct(unknown.users, total)}) — no state on profile; click to see them.</span>
         </button>
       )}
     </div>

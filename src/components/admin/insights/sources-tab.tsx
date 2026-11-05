@@ -132,7 +132,6 @@ const MAP_METRICS: { key: MapMetric; label: string }[] = [
 
 export function StatesTab({ range, openPeople }: { range: Range; openPeople: (f: PeopleFilter) => void }) {
   const [product, setProduct] = useState<ProductFilter>("all");
-  const [showAll, setShowAll] = useState(false);
   const [mapMetric, setMapMetric] = useState<MapMetric>("users");
   const args = useMemo(() => ({ ...range, p_product: product }), [range, product]);
   const res = useRpc<StateRow[]>("ins_states", args);
@@ -145,31 +144,28 @@ export function StatesTab({ range, openPeople }: { range: Range; openPeople: (f:
   const fair = known.filter((r) => r.users >= MIN_N);
   const bestVsat = [...fair].sort((a, b) => ratio(b.vsat_early, b.users) - ratio(a.vsat_early, a.users))[0];
   const bestMqr = [...fair].sort((a, b) => ratio(b.mqr, b.users) - ratio(a.mqr, a.users))[0];
-  const shown = showAll ? known : known.slice(0, 12);
   const pickState = (state: string) => openPeople(peopleFor(product, range, { p_state: state }, state === "Unknown" ? "State unknown" : `In ${state}`));
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
       <Segmented value={product} onChange={setProduct} options={PRODUCT_FILTERS} />
       {res.error ? <ErrorNote message={res.error} /> : !res.data ? <Loading h={420} /> : rows.length === 0 ? <Empty>No sign-ups in this period.</Empty> : (
         <>
-          <div className="space-y-2">
+          <div className="grid gap-2 lg:grid-cols-2">
             {known.length > 0 && <Insight>Top states: {known.slice(0, 3).map((r) => `${r.state} (${pct(r.users, total)})`).join(", ")}.</Insight>}
             {bestMqr && <Insight>Highest MQR share: {bestMqr.state}, {pct(bestMqr.mqr, bestMqr.users)} (states with {MIN_N}+ people).</Insight>}
             {bestVsat && <Insight>Highest VSAT early-registration rate: {bestVsat.state}, {pct(bestVsat.vsat_early, bestVsat.users)}.</Insight>}
             {unknown && unknown.users > 0 && <Insight>State is missing for {fmt(unknown.users)} people ({pct(unknown.users, total)}), mostly people who have not finished their profile.</Insight>}
           </div>
-          <Card title="Where people are" sub={`${known.length} states and union territories. The map is coloured by the chosen metric; click a state (on the map or the list) to see the people.`}
+          <Card title="Where people are" sub={`${known.length} states and union territories. Map is coloured by the chosen metric; click a state (map or list) to see the people.`}
             right={<Segmented value={mapMetric} onChange={setMapMetric} options={MAP_METRICS} />}>
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
               <StateMap rows={known} metric={mapMetric} onPick={pickState} unknown={unknown} total={total} />
-              <div>
-                <div className="mb-1 flex items-center justify-between">
-                  <span className="text-[12px] font-semibold uppercase tracking-wide text-white/45">Top states</span>
-                  {known.length > 12 && <button type="button" onClick={() => setShowAll((v) => !v)} className="rounded-lg border border-white/15 px-2.5 py-1 text-[12px] text-white/80 hover:bg-white/[0.06]">{showAll ? "Top 12" : `All ${known.length}`}</button>}
-                </div>
-                <div className={showAll ? "max-h-[520px] overflow-y-auto pr-1 [scrollbar-width:thin]" : ""}>
-                  {shown.map((r) => (
+              <div className="min-w-0">
+                <div className="mb-1 text-[12px] font-semibold uppercase tracking-wide text-white/45">All states ({known.length})</div>
+                {/* the list scrolls inside the map's height so the row never gets taller than the map */}
+                <div className="max-h-[clamp(240px,38vh,360px)] overflow-y-auto pr-1 [scrollbar-width:thin]">
+                  {known.map((r) => (
                     <BarRow key={r.state} name={r.state} value={r.users} max={max} color={BLUE}
                       right={<span>{fmt(r.users)} <span className="text-[12px] font-normal text-white/45">· {pct(r.users, total)}</span></span>}
                       note={`${pct(r.mqr, r.users)} MQR · ${pct(r.vsat_early, r.users)} VSAT early`}
