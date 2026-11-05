@@ -57,7 +57,7 @@ function Body({ mode, list, onClose, onSaved }: { mode: BuilderMode; list: ListR
     if (filterError) return;
     const mine = ++ticket.current;
     setPreview({ status: "loading" });
-    listBuilderApi.preview(buildConditions(form))
+    (list?.static ? listBuilderApi.count(list.id) : listBuilderApi.preview(buildConditions(form)))   // Slice 3b: static = its members
       .then((data) => { if (mine === ticket.current) setPreview({ status: "ready", data }); })
       .catch((e) => { if (mine === ticket.current) setPreview({ status: "error", message: errText(e, "Could not count this audience.") }); });
   };

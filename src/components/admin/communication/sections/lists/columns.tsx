@@ -3,6 +3,7 @@
 import { Icon, LinkText, Dash, FOCUS_RING } from "../../ui/primitives";
 import type { Column } from "../../ui/data-table";
 import type { ListRow } from "../../lib/types";
+import { StaticBadge } from "./static-badge";
 
 /** Table columns for Manage List. `onTags` opens the Add Tag drawer; `onCount` is the "View Count" link. */
 export function listColumns({ onTags, onCount }: { onTags: (r: ListRow) => void; onCount: (r: ListRow) => void }): Column<ListRow>[] {
@@ -15,6 +16,7 @@ export function listColumns({ onTags, onCount }: { onTags: (r: ListRow) => void;
       cell: (r) => (
         <span className="inline-flex items-center gap-0.5">
           <span className="font-semibold text-heading">{r.name}</span>
+          {r.static && <StaticBadge />}
           {r.id !== "-" && !r.live && (
             <button type="button" onClick={() => onTags(r)}
               aria-label={`Tags for ${r.name}: ${r.tags?.length ?? 0}. Add or remove tags`} title={r.tagged ? `${r.tags?.length ?? 0} tag(s)` : "Add tag"}

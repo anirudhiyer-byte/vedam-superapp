@@ -9,11 +9,13 @@ import { CommunicationLogs } from "./sections/communication-logs";
 import { ManageAutomation } from "./sections/manage-automation";
 import { Suppressions } from "./sections/suppressions";
 import { UploadRawData } from "./sections/upload-raw-data";
+import { StaticListImport } from "./sections/upload/static-list-import";
 import { CommunicationPerformance } from "./sections/communication-performance";
 import {
   DocumentTemplates, LandingTemplates,
 } from "./sections/template-manager";
 import { isLivePage, liveNote } from "./lib/live-config";
+import { uploadView } from "./lib/live-import";
 
 /**
  * Communication Manager — shell.
@@ -206,7 +208,7 @@ function Section({ active, go }: { active: Key; go: (k: Key) => void }) {
     case "commLogs": return <CommunicationLogs />;
     case "automation": return <ManageAutomation />;
     case "suppressions": return <Suppressions />;
-    case "upload": return <UploadRawData />;
+    case "upload": return uploadView() === "static-import" ? <StaticListImport onOpenLists={() => go("lists")} /> : <UploadRawData />;
     case "performance": return <CommunicationPerformance />;
     case "docTemplates": return <DocumentTemplates />;
     case "landingPages": return <LandingTemplates />;

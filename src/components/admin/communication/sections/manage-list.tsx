@@ -122,7 +122,8 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
   const act = {
     importContact: (r: ListRow) => { returnTo.current = r.id; setView({ kind: "import", list: r }); },
     communicate: (r: ListRow) => setCommLists([r]),
-    edit: (r: ListRow) => { returnTo.current = r.id; if (live && r.live) setBuilder({ mode: "edit", list: r }); else setView({ kind: "edit", list: r }); },
+    // static lists (Slice 3b) have no filters to edit: they open the old Edit page (rename only)
+    edit: (r: ListRow) => { returnTo.current = r.id; if (live && r.live && !r.static) setBuilder({ mode: "edit", list: r }); else setView({ kind: "edit", list: r }); },
     changeOwner: setOwnerList,
     createSegment: (r: ListRow) => toast(`Create segment from ${r.name}`),
     remove: (r: ListRow) => askDelete([r.id], r.name),

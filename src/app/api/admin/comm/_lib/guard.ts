@@ -101,6 +101,7 @@ export async function commGet<S extends z.ZodTypeAny>(
   if (error) {
     if (error.code === "42501") return fail(403, "FORBIDDEN");
     if (error.code === "22023") return fail(400, error.message === "range_too_long" ? "RANGE_TOO_LONG" : "INVALID");
+    if (error.code === "P0002") return fail(404, "NOT_FOUND");   // Slice 3b: comm_list_count of an unknown / deleted list
     console.error(`[comm] ${p.fn} failed (code ${String(error.code ?? "unknown")})`);
     return fail(500, "SERVER");
   }

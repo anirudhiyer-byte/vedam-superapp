@@ -23,7 +23,11 @@ export type WritePlan = { ok: true; fn: string; args: Record<string, unknown> } 
 
 export async function commWrite<S extends z.ZodTypeAny>(
   req: Request,
-  opts: { action: "comm_write" | "comm_preview" | "comm_suppress"; perUser: number; perIp: number; body: S | null },
+  opts: {
+    action: "comm_write" | "comm_preview" | "comm_suppress" | "comm_import"; perUser: number; perIp: number; body: S | null;
+    /** Slice 3b: a bigger body limit for one route (default 8 KB); a larger Content-Length is refused before reading */
+    maxBytes?: number;
+  },
   plan: (body: z.infer<S>) => WritePlan,
 ): Promise<Response> {
   if ((req.headers.get("sec-fetch-site") ?? "").toLowerCase() === "cross-site") return fail(403, "FORBIDDEN");
@@ -56,7 +60,8 @@ export async function commWrite<S extends z.ZodTypeAny>(
 
   let body: unknown = undefined;
   if (opts.body) {
-    const raw = await readJsonObject(req);
+    if (opts.maxBytes && Number(req.headers.get("content-length") ?? 0) > opts.maxBytes) return fail(400, "INVALID");
+    const raw = opts.maxBytes ? await readJsonObject(req, opts.maxBytes) : await readJsonObject(req);
     if (!raw) return fail(400, "INVALID");
     const parsed = opts.body.safeParse(raw);
     if (!parsed.success) return fail(400, "INVALID");

@@ -45,6 +45,8 @@ export type ListRow = {
   tags?: string[];
   /** Slice 3a · a saved filter on live VSAT data (counts on demand; no tags, no sending yet) */
   live?: boolean;
+  /** Slice 3b · a static list from a CSV upload (fixed members = user ids; counts still live) */
+  static?: boolean;
   conditions?: Record<string, unknown>;
 };
 
