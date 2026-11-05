@@ -13,6 +13,7 @@ import { CommunicationPerformance } from "./sections/communication-performance";
 import {
   DocumentTemplates, LandingTemplates,
 } from "./sections/template-manager";
+import { isLivePage } from "./lib/live-config";
 
 /**
  * Communication Manager — shell.
@@ -72,8 +73,17 @@ export function CommunicationManager({ page, onNavigate }: { page?: CmPage; onNa
     <div className="dark min-h-full bg-background text-foreground">
       <div role="note" className="border-b border-border bg-surface px-4 py-2 sm:px-6 lg:px-8">
         <span className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-muted">
-          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary" />Sample data
-          <span className="font-body text-xs font-normal normal-case tracking-normal">— this page is not connected to live data yet.</span>
+          {isLivePage(page) ? (
+            <>
+              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[#4ade80]" />Live data
+              <span className="font-body text-xs font-normal normal-case tracking-normal">— read-only for now.</span>
+            </>
+          ) : (
+            <>
+              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary" />Sample data
+              <span className="font-body text-xs font-normal normal-case tracking-normal">— this page is not connected to live data yet.</span>
+            </>
+          )}
         </span>
       </div>
       <main className="mx-auto w-full max-w-[1500px] px-4 py-6 sm:px-6 lg:px-8">
