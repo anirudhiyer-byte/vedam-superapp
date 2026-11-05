@@ -2,7 +2,7 @@
  * Live client for the 3 Slice-1 pages: talks to /api/admin/comm/* with fetch (faked here).
  * Full flow (request built → rows in the shapes the screens use) + failure paths.
  */
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, onTestFinished, vi } from "vitest";
 import { liveCommLogsApi, livePerformanceApi, liveSuppressionsApi } from "./live-api";
 
 const ID = "5011eb15-74e9-4f7b-8b5d-192ff8f14aef";
@@ -93,6 +93,11 @@ describe("suppressions (live)", () => {
     expect(Object.fromEntries(calledUrl(1).searchParams)).toEqual({ channel: "Email", search: "a", from: "2026-09-01", to: "2026-09-30" });
   });
   it("add / remove are not available on live data (read-only slice)", async () => {
+    // setup for this test only: LIVE_WRITES.suppressions forced OFF (same way as live-suppressions.test.ts), restored when the test ends
+    vi.resetModules();
+    vi.doMock("./live-config", async (orig) => ({ ...(await orig<typeof import("./live-config")>()), LIVE_WRITES: { suppressions: false } }));
+    onTestFinished(() => { vi.doUnmock("./live-config"); vi.resetModules(); });
+    const { liveSuppressionsApi } = await import("./live-api");
     await expect(liveSuppressionsApi.add("Email", ["a@example.com"], "Block")).rejects.toThrow(/not available/i);
     await expect(liveSuppressionsApi.remove(["s1"])).rejects.toThrow(/not available/i);
     expect(fetchMock).not.toHaveBeenCalled();

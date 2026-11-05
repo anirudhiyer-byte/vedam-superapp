@@ -23,7 +23,7 @@ import { parseQuery, type RangeResult } from "./params";
 export const PER_IP_PER_MIN = 300;
 export const PER_USER_PER_MIN = 120;
 
-type Code = "FORBIDDEN" | "NOT_LOGGED_IN" | "RATE_LIMITED" | "INVALID" | "RANGE_TOO_LONG" | "NOT_FOUND" | "SERVER" | "UNAVAILABLE";
+type Code = "FORBIDDEN" | "NOT_LOGGED_IN" | "RATE_LIMITED" | "INVALID" | "RANGE_TOO_LONG" | "NOT_FOUND" | "SERVER" | "UNAVAILABLE" | "LOCKED";
 
 const HEADERS = { "Cache-Control": "no-store, max-age=0", "X-Content-Type-Options": "nosniff" };
 export const fail = (status: number, code: Code) => NextResponse.json({ ok: false, code }, { status, headers: HEADERS });

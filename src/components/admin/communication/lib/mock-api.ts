@@ -868,7 +868,8 @@ const mockSuppressionsApi = {
     return wait({ Unsubscribe: by("Unsubscribe"), Bounce: by("Bounce"), Block: by("Block"), Spam: by("Spam"), Invalid: by("Invalid") });
   },
   /** v2 · adds up to 10 contacts at once. Checks every one again here (the screen checks first, the server must too). Already-listed ones are skipped. */
-  add: async (channel: "Email" | "WhatsApp", contacts: string[], reason: SuppressionRow["reason"]) => {
+  add: async (channel: "Email" | "WhatsApp", contacts: string[], reason: SuppressionRow["reason"], note?: string) => {
+    void note; // the live version stores it; sample data does not
     const list = contacts.map((c) => c.trim()).filter(Boolean);
     if (list.length === 0) throw new Error("Enter at least one contact.");
     if (list.length > 10) throw new Error("You can add up to 10 at a time.");
@@ -887,7 +888,8 @@ const mockSuppressionsApi = {
     }
     return wait({ ok: true, added, duplicates });
   },
-  remove: async (ids: string[]) => {
+  remove: async (ids: string[], reason?: string) => {
+    void reason; // the live version needs it; sample data does not
     let removed = 0;
     ids.forEach((id) => { const i = SUPPRESSIONS.findIndex((r) => r.id === id); if (i >= 0) { SUPPRESSIONS.splice(i, 1); removed++; } });
     return wait({ ok: true, removed });

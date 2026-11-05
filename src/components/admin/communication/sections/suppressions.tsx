@@ -13,6 +13,9 @@ import { tabId, tabPanelProps } from "../ui/tabs";
 import { rangeLabel } from "../ui/date-range-field";
 import { suppressionsApi, downloadCsv } from "../lib/mock-api";
 import type { SuppressionRow } from "../lib/types";
+import { canWriteLive } from "../lib/live-config";
+import { NOTE_MAX, ONE_AT_A_TIME_ADD, ONE_AT_A_TIME_REMOVE, isValidEmail, isValidMobile } from "../lib/live-suppressions";
+import { RemoveReasonDialog } from "./suppressions-remove-dialog";
 
 type Reason = SuppressionRow["reason"];
 const REASONS: Reason[] = ["Unsubscribe", "Bounce", "Block", "Spam", "Invalid"];
@@ -45,7 +48,7 @@ export function Suppressions() {
   const [counts, setCounts] = useState<Record<string, number> | null>(null);
 
   const [addOpen, setAddOpen] = useState(false);
-  const [draft, setDraft] = useState({ text: "", reason: "Unsubscribe" as Reason });
+  const [draft, setDraft] = useState({ text: "", reason: "Unsubscribe" as Reason, note: "" });
   const [tried, setTried] = useState(false);
   const [adding, setAdding] = useState(false);
   const [addError, setAddError] = useState<string | null>(null);
@@ -56,6 +59,8 @@ export function Suppressions() {
   const listRef = useRef<HTMLDivElement>(null);
 
   const isEmail = channel === "Email";
+  /** Slice 2: live Add / Remove (one at a time, reason on remove) — only when LIVE_WRITES.suppressions is on */
+  const liveWrite = canWriteLive("suppressions");
   const reasons = isEmail ? REASONS : (["Unsubscribe"] as Reason[]);
   const reasonName = (r: Reason) => (isEmail ? r : "Opt-Out");
 
@@ -78,20 +83,21 @@ export function Suppressions() {
 
   // ---- add: inline checks ----
   const items = useMemo(() => parse(draft.text), [draft.text]);
-  const bad = useMemo(() => items.filter((x) => (isEmail ? !EMAIL.test(x) : !validNumber(x))), [items, isEmail]);
+  const bad = useMemo(() => items.filter((x) => (liveWrite ? (isEmail ? !isValidEmail(x) : !isValidMobile(x)) : isEmail ? !EMAIL.test(x) : !validNumber(x))), [items, isEmail, liveWrite]);
   const addIssue =
     items.length === 0 ? (isEmail ? "Enter at least one email address." : "Enter at least one mobile number.")
+      : liveWrite && items.length > 1 ? ONE_AT_A_TIME_ADD
       : items.length > MAX_AT_ONCE ? `You can add up to ${MAX_AT_ONCE} at a time. You entered ${items.length}.`
         : bad.length > 0 ? `${isEmail ? "Not a valid email address" : "Not a valid mobile number"}: ${bad.slice(0, 3).join(", ")}${bad.length > 3 ? ` and ${bad.length - 3} more` : ""}.`
           : null;
 
-  const openAdd = () => { setDraft({ text: "", reason }); setTried(false); setAddError(null); setAddOpen(true); };
+  const openAdd = () => { setDraft({ text: "", reason, note: "" }); setTried(false); setAddError(null); setAddOpen(true); };
   const submitAdd = async () => {
     setTried(true);
     if (addIssue) return;
     setAdding(true); setAddError(null);
     try {
-      const r = await suppressionsApi.add(channel, items, isEmail ? draft.reason : "Unsubscribe");
+      const r = await suppressionsApi.add(channel, items, isEmail ? draft.reason : "Unsubscribe", liveWrite ? draft.note : undefined);
       setAddOpen(false);
       if (isEmail && draft.reason !== reason) setReason(draft.reason); else t.reload();
       toast(`${r.added} added${r.duplicates ? ` · ${r.duplicates} already on the list` : ""}`);
@@ -101,12 +107,15 @@ export function Suppressions() {
   };
 
   // ---- remove ----
-  const askRemove = (ids: string[], label: string) => { setRemoveError(null); setConfirm({ ids, label }); };
-  const doRemove = async () => {
+  const askRemove = (ids: string[], label: string) => {
+    if (liveWrite && ids.length > 1) { toast(ONE_AT_A_TIME_REMOVE); return; }
+    setRemoveError(null); setConfirm({ ids, label });
+  };
+  const doRemove = async (why?: string) => {
     if (!confirm) return;
     setRemoving(true); setRemoveError(null);
     try {
-      const r = await suppressionsApi.remove(confirm.ids);
+      const r = await suppressionsApi.remove(confirm.ids, why);
       setConfirm(null); t.setSelected([]); t.reload();
       toast(`Removed ${r.removed} ${r.removed === 1 ? "entry" : "entries"}`);
       requestAnimationFrame(() => listRef.current?.focus());
@@ -269,10 +278,10 @@ export function Suppressions() {
           </>
         }>
         <Field id="sup-contacts" stacked required
-          label={isEmail ? "Email addresses" : "Mobile numbers with country code"}
-          hint={`(up to ${MAX_AT_ONCE}, separated by commas)`}
+          label={liveWrite ? (isEmail ? "Email address" : "Mobile number") : isEmail ? "Email addresses" : "Mobile numbers with country code"}
+          hint={liveWrite ? "(one at a time)" : `(up to ${MAX_AT_ONCE}, separated by commas)`}
           error={tried && addIssue ? addIssue : undefined}>
-          <TextArea id="sup-contacts" touch rows={4} placeholder={isEmail ? "name@example.com, other@example.com" : "+91 90000 00001, +91 90000 00002"}
+          <TextArea id="sup-contacts" touch rows={liveWrite ? 1 : 4} placeholder={liveWrite ? (isEmail ? "name@example.com" : "+91 90000 00001") : isEmail ? "name@example.com, other@example.com" : "+91 90000 00001, +91 90000 00002"}
             value={draft.text} onChange={(v) => setDraft({ ...draft, text: v })} disabled={adding}
             invalid={tried && !!addIssue} describedBy={tried && addIssue ? "sup-contacts-error" : "sup-contacts-note"} />
         </Field>
@@ -282,17 +291,30 @@ export function Suppressions() {
               options={REASONS.map((r) => ({ value: r, label: r }))} value={draft.reason} onChange={(v) => setDraft({ ...draft, reason: v as Reason })} />
           </Field>
         )}
+        {liveWrite && (
+          <Field id="sup-note" stacked label="Note" hint={`(optional, up to ${NOTE_MAX} characters)`}>
+            <TextArea id="sup-note" touch rows={2} maxLength={NOTE_MAX} placeholder="e.g. Asked on a call to stop e-mails" disabled={adding}
+              value={draft.note} onChange={(v) => setDraft({ ...draft, note: v.replace(/[\r\n]+/g, " ") })} />
+          </Field>
+        )}
         {addError && <p role="alert" className="flex items-start gap-2 font-body text-xs font-semibold text-[#f87171]"><Icon name="alert" className="mt-0.5 h-3.5 w-3.5 shrink-0" />{addError}</p>}
         <p id="sup-contacts-note" className="flex items-start gap-2 font-body text-xs text-muted">
           <Icon name="info" className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-          Suppressed contacts are skipped by every campaign and automation on this channel. Contacts already on the list are skipped.
+          {liveWrite && !isEmail
+            ? "Recorded in the opt-out list; WhatsApp sends do not check it yet. Contacts already on the list are skipped."
+            : "Suppressed contacts are skipped by every campaign and automation on this channel. Contacts already on the list are skipped."}
         </p>
       </Drawer>
 
-      <ConfirmDialog accessible open={!!confirm} title="Remove from suppression list?"
-        body={`${confirm?.label ?? ""} will start receiving ${channel} communication again.`}
-        confirmLabel="Remove" pending={removing} error={removeError}
-        onCancel={() => { if (!removing) setConfirm(null); }} onConfirm={doRemove} />
+      {liveWrite ? (
+        <RemoveReasonDialog open={!!confirm} label={confirm?.label ?? ""} channel={channel} pending={removing} error={removeError}
+          onCancel={() => { if (!removing) setConfirm(null); }} onConfirm={(why) => doRemove(why)} />
+      ) : (
+        <ConfirmDialog accessible open={!!confirm} title="Remove from suppression list?"
+          body={`${confirm?.label ?? ""} will start receiving ${channel} communication again.`}
+          confirmLabel="Remove" pending={removing} error={removeError}
+          onCancel={() => { if (!removing) setConfirm(null); }} onConfirm={() => doRemove()} />
+      )}
 
       {toastNode}
     </>
