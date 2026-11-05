@@ -24,6 +24,13 @@ export const LIVE_NOTES: Record<string, string> = {
   lists: "counts and masked samples only, nothing is sent.",
 };
 
+/** the note when that page can also write (its LIVE_WRITES flag is on) */
+export const LIVE_WRITE_NOTES: Record<string, string> = {
+  suppressions: "add and remove enabled (one contact at a time).",
+};
+
 export const isLivePage = (page: string): boolean => (LIVE_PAGES as Record<string, boolean>)[page] === true;
-export const liveNote = (page: string): string => LIVE_NOTES[page] ?? "read-only for now.";
-export const canWriteLive = (page: string): boolean => isLivePage(page) && (LIVE_WRITES as Record<string, boolean>)[page] === true;
+/** `writes` is only passed by tests; the app always uses LIVE_WRITES */
+export const canWriteLive = (page: string, writes: Record<string, boolean> = LIVE_WRITES): boolean => isLivePage(page) && writes[page] === true;
+export const liveNote = (page: string, writes: Record<string, boolean> = LIVE_WRITES): string =>
+  (canWriteLive(page, writes) ? LIVE_WRITE_NOTES[page] : undefined) ?? LIVE_NOTES[page] ?? "read-only for now.";
