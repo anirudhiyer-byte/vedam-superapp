@@ -159,12 +159,12 @@ export function StatesTab({ range, openPeople }: { range: Range; openPeople: (f:
           </div>
           <Card title="Where people are" sub={`${known.length} states and union territories. Map is coloured by the chosen metric; click a state (map or list) to see the people.`}
             right={<Segmented value={mapMetric} onChange={setMapMetric} options={MAP_METRICS} />}>
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,480px)_minmax(0,1fr)]">
               <StateMap rows={known} metric={mapMetric} onPick={pickState} unknown={unknown} total={total} />
               <div className="min-w-0">
                 <div className="mb-1 text-[12px] font-semibold uppercase tracking-wide text-white/45">All states ({known.length})</div>
                 {/* the list scrolls inside the map's height so the row never gets taller than the map */}
-                <div className="max-h-[clamp(240px,38vh,360px)] overflow-y-auto pr-1 [scrollbar-width:thin]">
+                <div className="max-h-[540px] overflow-y-auto pr-1 [scrollbar-width:thin]">
                   {known.map((r) => (
                     <BarRow key={r.state} name={r.state} value={r.users} max={max} color={BLUE}
                       right={<span>{fmt(r.users)} <span className="text-[12px] font-normal text-white/45">· {pct(r.users, total)}</span></span>}
