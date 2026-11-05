@@ -75,9 +75,10 @@ const fmtCreated = (iso: string) => {
 
 export function toListRow(l: LiveList): ListRow {
   const who = l.owner_is_me ? "You" : "Another admin";
+  const isStatic = l.kind === "static";   // Slice 3b · from a CSV upload
   return {
-    id: l.id, name: l.name, tagged: false, tags: [], origin: "Saved filter (VSAT)", totalLeads: null, uniqueEmail: null, uniqueMobile: null,
-    createdOn: fmtCreated(l.created_at), createdBy: who, owner: who, live: true, conditions: l.conditions,
+    id: l.id, name: l.name, tagged: false, tags: [], origin: isStatic ? "Static list (CSV)" : "Saved filter (VSAT)", totalLeads: null, uniqueEmail: null, uniqueMobile: null,
+    createdOn: fmtCreated(l.created_at), createdBy: who, owner: who, live: true, conditions: l.conditions, ...(isStatic ? { static: true } : {}),
   };
 }
 
@@ -127,6 +128,12 @@ export const listBuilderApi = {
   preview: async (conditions: ListConditions): Promise<AudiencePreview> => {
     const r = await apiSend<{ total: number; with_phone: number; with_email: number; consented: number; sample: AudiencePreview["sample"] }>(
       "POST", "lists/preview", { conditions }, LIST_MESSAGES);
+    return { total: r.total, withPhone: r.with_phone, withEmail: r.with_email, consented: r.consented, sample: r.sample ?? [] };
+  },
+  /** Slice 3b · live counts + masked sample of one saved list (static: its members; dynamic: its filters) */
+  count: async (id: string): Promise<AudiencePreview> => {
+    const r = await apiGet<{ total: number; with_phone: number; with_email: number; consented: number; sample: AudiencePreview["sample"] }>(
+      `lists/${encodeURIComponent(id)}/count`);
     return { total: r.total, withPhone: r.with_phone, withEmail: r.with_email, consented: r.consented, sample: r.sample ?? [] };
   },
   filterOptions: async (): Promise<ListFilterOptions> => {

@@ -4,11 +4,18 @@
  * false = the page shows the built-in sample data from mock-api.ts (the fallback).
  * Every page not listed here stays on sample data.
  */
+/**
+ * Slice 3b · Upload Raw Data creates a STATIC list from a CSV (match-only: user ids of existing VSAT users).
+ * Off = the page is the old sample-data upload wizard, exactly as before. Needs migration 0065.
+ */
+export const STATIC_LIST_IMPORT = true;
+
 export const LIVE_PAGES = {
   commLogs: true,      // Slice 1 · read-only
   performance: true,   // Slice 1 · read-only
   suppressions: true,  // Slice 1 · read-only
   lists: true,         // Slice 3a · saved filters on VSAT data: counts + masked sample, no sending
+  upload: STATIC_LIST_IMPORT, // Slice 3b · CSV → static list (behind the flag above)
 } as const;
 
 /**
@@ -22,6 +29,7 @@ export const LIVE_WRITES = {
 /** the short note next to "Live data" in the banner */
 export const LIVE_NOTES: Record<string, string> = {
   lists: "counts and masked samples only, nothing is sent.",
+  upload: "CSV → static list: only users already in VSAT are saved (user ids only).",
 };
 
 /** the note when that page can also write (its LIVE_WRITES flag is on) */

@@ -2,6 +2,7 @@
 
 import { Icon, LinkText, FOCUS_RING } from "../../ui/primitives";
 import type { ListRow } from "../../lib/types";
+import { StaticBadge } from "./static-badge";
 
 /** Phone view of one list: the same facts as the table row, stacked. */
 export function ListCard({ row, onTags, onCount }: { row: ListRow; onTags: (r: ListRow) => void; onCount: (r: ListRow) => void }) {
@@ -17,6 +18,7 @@ export function ListCard({ row, onTags, onCount }: { row: ListRow; onTags: (r: L
     <>
       <div className="flex items-center gap-1">
         <h2 className="min-w-0 truncate font-display text-base font-bold text-heading">{row.name}</h2>
+        {row.static && <StaticBadge />}
         {row.id !== "-" && !row.live && (
           <button type="button" onClick={() => onTags(row)}
             aria-label={`Tags for ${row.name}: ${row.tags?.length ?? 0}. Add or remove tags`}
