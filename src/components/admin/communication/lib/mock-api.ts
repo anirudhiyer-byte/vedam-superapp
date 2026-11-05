@@ -4,6 +4,8 @@ import type {
   DocFieldStage, DocStatus, DocTemplateForm, DocTemplateRow, LandingBasics, LandingTemplateRow, PerformanceSummary, Query,
   SuppressionRow,
 } from "./types";
+import { LIVE_PAGES } from "./live-config";
+import { liveCommLogsApi, livePerformanceApi, liveSuppressionsApi } from "./live-api";
 
 /**
  * Mock API for Communication Manager.
@@ -463,7 +465,7 @@ function buildDetail(r: CommLogRow): CommDetailRow[] {
   }));
 }
 
-export const commLogsApi = {
+const mockCommLogsApi = {
   list: (q: Query) =>
     wait(runQuery(COMM_LOGS, q, {
       searchKeys: ["jobId", "template", "preview", "previewNote"],
@@ -551,6 +553,9 @@ export const commLogsApi = {
     return wait({ ...r });
   },
 };
+
+/** Live (read-only, /api/admin/comm/*) or the sample data above — switch in lib/live-config.ts. */
+export const commLogsApi: typeof mockCommLogsApi = LIVE_PAGES.commLogs ? liveCommLogsApi : mockCommLogsApi;
 
 /* ══════════════════════════════════════════════════════
    EXPORT / DOWNLOAD
@@ -788,7 +793,7 @@ export const automationsApi = {
     return wait({ ...row });
   },
   /** View Performance: the communication jobs this automation has sent. */
-  logs: (id: string, q: Query) => commLogsApi.list({ ...q, filters: { ...(q.filters ?? {}), automationId: id } }),
+  logs: (id: string, q: Query) => mockCommLogsApi.list({ ...q, filters: { ...(q.filters ?? {}), automationId: id } }),
 };
 export const automationActionCount = countActions;
 
@@ -847,7 +852,7 @@ const SUP_FILTERS = {
 };
 const SUP_EMAIL = /^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]{2,}$/;
 
-export const suppressionsApi = {
+const mockSuppressionsApi = {
   list: (q: Query) =>
     wait(runQuery(SUPPRESSIONS, q, { searchKeys: ["contact", "source", "keyword"], filterMap: SUP_FILTERS })),
   /** Tab counts for the active channel (follows the search and the date range). */
@@ -885,10 +890,13 @@ export const suppressionsApi = {
   },
 };
 
+/** Live (read-only, /api/admin/comm/*) or the sample data above — switch in lib/live-config.ts. */
+export const suppressionsApi: typeof mockSuppressionsApi = LIVE_PAGES.suppressions ? liveSuppressionsApi : mockSuppressionsApi;
+
 /* ══════════════════════════════════════════════════════
    COMMUNICATION PERFORMANCE
    ══════════════════════════════════════════════════════ */
-export const performanceApi = {
+const mockPerformanceApi = {
   /**
    * v2 · built only from the jobs in Manage Communication Logs (COMM_LOGS), so both screens always agree.
    * A job is counted when it has finished sending and has a Delivered number: Completed / Closed / Failed / Undelivered, not Amplify.
@@ -946,6 +954,9 @@ export const performanceApi = {
       commFor: ["Registered Leads", "Opportunity", "Raw Data", "Automation"].map((v) => ({ value: v, label: v })),
     }),
 };
+
+/** Live (read-only, /api/admin/comm/*) or the sample data above — switch in lib/live-config.ts. */
+export const performanceApi: typeof mockPerformanceApi = LIVE_PAGES.performance ? livePerformanceApi : mockPerformanceApi;
 
 /* ══════════════════════════════════════════════════════
    UPLOAD RAW DATA — wizard backing calls
