@@ -11,7 +11,7 @@
  *   6. per-user limit for this action → 429
  *   7. body: one JSON object, at most 8 KB, strict schema (unknown keys refused) → 400
  *   8. the comm_* function runs AS THE USER and checks admin itself:
- *      42501 → 403, 22023 → 400, P0002 → 404, anything else → 500 (DB message never returned or logged)
+ *      42501 → 403, 22023 → 400, P0002 → 404, 55000 → 409 LOCKED, anything else → 500 (DB message never returned or logged)
  */
 import { createClient as createSupabase, type SupabaseClient } from "@supabase/supabase-js";
 import type { z } from "zod";
@@ -23,7 +23,7 @@ export type WritePlan = { ok: true; fn: string; args: Record<string, unknown> } 
 
 export async function commWrite<S extends z.ZodTypeAny>(
   req: Request,
-  opts: { action: "comm_write" | "comm_preview"; perUser: number; perIp: number; body: S | null },
+  opts: { action: "comm_write" | "comm_preview" | "comm_suppress"; perUser: number; perIp: number; body: S | null },
   plan: (body: z.infer<S>) => WritePlan,
 ): Promise<Response> {
   if ((req.headers.get("sec-fetch-site") ?? "").toLowerCase() === "cross-site") return fail(403, "FORBIDDEN");
@@ -70,6 +70,7 @@ export async function commWrite<S extends z.ZodTypeAny>(
     if (error.code === "42501") return fail(403, "FORBIDDEN");
     if (error.code === "22023") return fail(400, "INVALID");
     if (error.code === "P0002") return fail(404, "NOT_FOUND");
+    if (error.code === "55000") return fail(409, "LOCKED");   // Slice 2: suppression not added in the admin panel
     console.error(`[comm] ${p.fn} failed (code ${String(error.code ?? "unknown")})`);
     return fail(500, "SERVER");
   }

@@ -4,13 +4,16 @@
  *
  * Same method names and return shapes as the sample-data APIs in mock-api.ts, so no screen changes.
  * Talks only to /api/admin/comm/* (admin-only GET routes); never to Supabase directly.
- * Writes (close a job, add/remove a suppression) are not part of this slice and say so clearly.
+ * Writes say so clearly when they are not live: close a job is not live; suppression add/remove (Slice 2)
+ * only works when LIVE_WRITES.suppressions is on in live-config.ts.
  */
 import type { CommDetailRow, CommLogRow, CommPreview, CommStats, Option, Page, PerformanceSummary, Query, StatusDetailRow, SuppressionRow } from "./types";
 import {
   fmtNow, logsParams, performanceParams, recipientParams, suppressionParams, toCommLogRow, toDetailRow, toPerformance, toStats,
   toStatusDetail, toSuppressionRow, type LiveFailure, type LiveJob, type LivePerformance, type LiveRecipient, type LiveSuppression,
 } from "./live-map";
+import { LIVE_WRITES } from "./live-config";
+import { ONE_AT_A_TIME_ADD, ONE_AT_A_TIME_REMOVE, SUP_ADD_MESSAGES, SUP_REMOVE_MESSAGES, reasonIssue } from "./live-suppressions";
 
 const BASE = "/api/admin/comm";
 /** Export ("all rows") pages through the server 100 at a time, at most this many rows. */
@@ -162,9 +165,21 @@ export const liveSuppressionsApi = {
     const p = suppressionParams({ search, filters: { channel, ...(addedDate ? { addedDate } : {}) } }, indiaToday());
     return get<Record<SuppressionRow["reason"], number>>("suppressions/counts", p);
   },
-  add: async (channel: "Email" | "WhatsApp", contacts: string[], reason: SuppressionRow["reason"]): Promise<{ ok: boolean; added: number; duplicates: number }> => {
-    void channel; void contacts; void reason;
-    throw new Error(NOT_LIVE_YET);
+  /** Slice 2 (behind LIVE_WRITES.suppressions): ONE contact per call; the database cleans it and skips duplicates. */
+  add: async (channel: "Email" | "WhatsApp", contacts: string[], reason: SuppressionRow["reason"], note?: string): Promise<{ ok: boolean; added: number; duplicates: number }> => {
+    if (!LIVE_WRITES.suppressions) { void channel; void contacts; void reason; void note; throw new Error(NOT_LIVE_YET); }
+    if (contacts.length !== 1) throw new Error(ONE_AT_A_TIME_ADD);
+    const r = await apiSend<{ id: string; status: "added" | "already" }>("POST", "suppressions/manual",
+      { channel, contact: contacts[0], category: reason, ...(note?.trim() ? { note: note.trim() } : {}) }, SUP_ADD_MESSAGES);
+    return { ok: true, added: r.status === "added" ? 1 : 0, duplicates: r.status === "already" ? 1 : 0 };
   },
-  remove: async (ids: string[]): Promise<{ ok: boolean; removed: number }> => { void ids; throw new Error(NOT_LIVE_YET); },
+  /** Slice 2 (behind LIVE_WRITES.suppressions): ONE manual entry per call, with a reason (10–200 characters). */
+  remove: async (ids: string[], reason?: string): Promise<{ ok: boolean; removed: number }> => {
+    if (!LIVE_WRITES.suppressions) { void ids; void reason; throw new Error(NOT_LIVE_YET); }
+    if (ids.length !== 1) throw new Error(ONE_AT_A_TIME_REMOVE);
+    const issue = reasonIssue(reason ?? "");
+    if (issue) throw new Error(issue);
+    await apiSend("DELETE", `suppressions/manual/${encodeURIComponent(ids[0])}`, { reason: (reason ?? "").trim() }, SUP_REMOVE_MESSAGES);
+    return { ok: true, removed: 1 };
+  },
 };
