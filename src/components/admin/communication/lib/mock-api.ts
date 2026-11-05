@@ -6,6 +6,7 @@ import type {
 } from "./types";
 import { LIVE_PAGES } from "./live-config";
 import { liveCommLogsApi, livePerformanceApi, liveSuppressionsApi } from "./live-api";
+import { liveListsApi } from "./live-lists";
 
 /**
  * Mock API for Communication Manager.
@@ -89,7 +90,7 @@ const LISTS: ListRow[] = [
 /** "30/09/2026 17:34 PM" → "2026-09-30" (the list's created-on day, for date filters). */
 const dayOf = (s: string) => { const m = /^(\d{2})\/(\d{2})\/(\d{4})/.exec(s); return m ? `${m[3]}-${m[2]}-${m[1]}` : ""; };
 
-export const listsApi = {
+const mockListsApi = {
   list: (q: Query) =>
     wait(runQuery(LISTS, q, {
       searchKeys: ["name", "origin", "createdBy", "owner", "id"],
@@ -155,6 +156,9 @@ export const listsApi = {
   communicate: (payload: { listIds: string[]; channel: string; template: string; sender: string; when: string }) =>
     wait({ ok: true, campaignId: `C${Date.now().toString().slice(-6)}`, ...payload }),
 };
+
+/** Live (saved filters on VSAT data, /api/admin/comm/lists) or the sample lists above — switch in lib/live-config.ts. */
+export const listsApi: typeof mockListsApi = LIVE_PAGES.lists ? liveListsApi : mockListsApi;
 
 /* ══════════════════════════════════════════════════════
    WHATSAPP FLOW

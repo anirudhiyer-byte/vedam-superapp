@@ -144,9 +144,14 @@ begin
     loop
       t_name := t_name || ('B private helper not callable by anon/authenticated: ' || f); t_det := t_det || ok::text; t_pass := t_pass || ok;
     end loop;
-    select count(*) into n from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
-     where ns.nspname = 'public' and p.proname like 'comm\_%';
-    t_name := t_name || text 'B exactly 13 comm functions exist (8 page + 5 helpers)'; t_det := t_det || n::text; t_pass := t_pass || (n = 13);
+    -- every function 0060 creates exists, checked by name (later slices may add more comm_* functions)
+    select count(*) into n
+      from unnest(array['comm_logs_list', 'comm_logs_options', 'comm_log_get', 'comm_log_recipients', 'comm_log_failures',
+                        'comm_performance', 'comm_suppressions_list', 'comm_suppressions_counts',
+                        'comm__guard', 'comm__like', 'comm__messages', 'comm__jobs', 'comm__optouts']) as want(fn)
+     where exists (select 1 from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
+                    where ns.nspname = 'public' and p.proname = want.fn);
+    t_name := t_name || text 'B all 13 functions from 0060 exist, checked by name (8 page + 5 helpers)'; t_det := t_det || n::text; t_pass := t_pass || (n = 13);
 
     -- ════ C. Communication Logs list ════
     r := pg_temp.call_as(adm, format('select public.comm_logs_list(%s, %s, null, null, null, null, null, %L, ''targeted'', ''asc'', 1, 10)', fr, tt, 'ZZTEST'));

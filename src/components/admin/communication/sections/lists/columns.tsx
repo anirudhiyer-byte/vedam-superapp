@@ -9,13 +9,13 @@ export function listColumns({ onTags, onCount }: { onTags: (r: ListRow) => void;
   const count = (r: ListRow, n: number | null) =>
     n === null ? <LinkText touch onClick={() => onCount(r)}>View Count</LinkText> : <span className="tabular-nums">{n.toLocaleString("en-IN")}</span>;
   return [
-    { id: "id", header: "ID", sortable: true, width: 90, cell: (r) => (r.id === "-" ? <Dash /> : <span className="font-mono text-xs">{r.id}</span>) },
+    { id: "id", header: "ID", sortable: true, width: 90, cell: (r) => (r.id === "-" ? <Dash /> : <span className="font-mono text-xs" title={r.id}>{r.live ? r.id.slice(0, 8) : r.id}</span>) },
     {
       id: "name", header: "List Name", sortable: true, sticky: true, width: 200,
       cell: (r) => (
         <span className="inline-flex items-center gap-0.5">
           <span className="font-semibold text-heading">{r.name}</span>
-          {r.id !== "-" && (
+          {r.id !== "-" && !r.live && (
             <button type="button" onClick={() => onTags(r)}
               aria-label={`Tags for ${r.name}: ${r.tags?.length ?? 0}. Add or remove tags`} title={r.tagged ? `${r.tags?.length ?? 0} tag(s)` : "Add tag"}
               className={`grid h-11 w-11 place-items-center rounded-lg hover:bg-surface-warm sm:h-8 sm:w-8 ${FOCUS_RING} ${r.tagged ? "text-accent-soft" : "text-muted"}`}>

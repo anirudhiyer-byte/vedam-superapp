@@ -13,7 +13,7 @@ import { CommunicationPerformance } from "./sections/communication-performance";
 import {
   DocumentTemplates, LandingTemplates,
 } from "./sections/template-manager";
-import { isLivePage } from "./lib/live-config";
+import { isLivePage, liveNote } from "./lib/live-config";
 
 /**
  * Communication Manager — shell.
@@ -76,7 +76,7 @@ export function CommunicationManager({ page, onNavigate }: { page?: CmPage; onNa
           {isLivePage(page) ? (
             <>
               <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[#4ade80]" />Live data
-              <span className="font-body text-xs font-normal normal-case tracking-normal">— read-only for now.</span>
+              <span className="font-body text-xs font-normal normal-case tracking-normal">— {liveNote(page)}</span>
             </>
           ) : (
             <>

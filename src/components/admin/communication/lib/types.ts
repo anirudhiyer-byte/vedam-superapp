@@ -43,6 +43,9 @@ export type ListRow = {
   form?: string;               // "application" | "enquiry"
   description?: string;
   tags?: string[];
+  /** Slice 3a · a saved filter on live VSAT data (counts on demand; no tags, no sending yet) */
+  live?: boolean;
+  conditions?: Record<string, unknown>;
 };
 
 // ── WhatsApp Flow ──────────────────────────────────────

@@ -28,6 +28,8 @@ type Code = "FORBIDDEN" | "NOT_LOGGED_IN" | "RATE_LIMITED" | "INVALID" | "RANGE_
 const HEADERS = { "Cache-Control": "no-store, max-age=0", "X-Content-Type-Options": "nosniff" };
 export const fail = (status: number, code: Code) => NextResponse.json({ ok: false, code }, { status, headers: HEADERS });
 const done = (data: unknown) => NextResponse.json({ ok: true, data }, { status: 200, headers: HEADERS });
+/** success answer, shared with the write guard (write.ts) */
+export const ok = done;
 
 /** Visitor IP as Vercel sets it (cannot be faked by the browser on Vercel). */
 export function trustedIp(req: Request): string | null {
@@ -37,7 +39,8 @@ export function trustedIp(req: Request): string | null {
 }
 
 type Hit = "ok" | "limited" | "error";
-async function hit(key: string, max: number): Promise<Hit> {
+/** one hit on the private limiter pp_rate_hit (60-second window). Shared with write.ts. */
+export async function hit(key: string, max: number): Promise<Hit> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const service = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !service) return "error";
