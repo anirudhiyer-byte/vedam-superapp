@@ -13,17 +13,19 @@ export type RowActions = {
   performance: (r: ListRow) => void;
 };
 
-/** The gear menu on each row. The LMS row is a system list, so edit / import / owner / delete are switched off for it. */
+/** The gear menu on each row. The LMS row is a system list, so edit / import / owner / delete are switched off for it.
+ *  Live saved filters (Slice 3a): import, communicate, owner change and segments are not available yet. */
 export function RowMenu({ row, act }: { row: ListRow; act: RowActions }) {
   const system = row.id === "-";
+  const live = !!row.live;
   return (
     <Menu align="right" touch
       items={[
-        { label: "Import Contact", icon: "upload", disabled: system, onClick: () => act.importContact(row) },
-        { label: "Communicate", icon: "send", onClick: () => act.communicate(row) },
+        { label: "Import Contact", icon: "upload", disabled: system || live, onClick: () => act.importContact(row) },
+        { label: "Communicate", icon: "send", disabled: live, onClick: () => act.communicate(row) },
         { label: "Edit List", icon: "pencil", disabled: system, onClick: () => act.edit(row) },
-        { label: "Change List Owner", icon: "userSwap", disabled: system, onClick: () => act.changeOwner(row) },
-        { label: "Create Segment", icon: "segment", onClick: () => act.createSegment(row) },
+        { label: "Change List Owner", icon: "userSwap", disabled: system || live, onClick: () => act.changeOwner(row) },
+        { label: "Create Segment", icon: "segment", disabled: live, onClick: () => act.createSegment(row) },
         { label: "Delete", icon: "trash", danger: true, disabled: system, onClick: () => act.remove(row) },
         { label: "Communication Performance", icon: "chart", onClick: () => act.performance(row) },
       ]}

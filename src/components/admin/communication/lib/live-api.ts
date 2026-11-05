@@ -60,6 +60,33 @@ async function paged<T>(path: string, params: Record<string, string | number>, q
   return { total, rows: all.slice(0, EXPORT_MAX_ROWS) };
 }
 
+/**
+ * JSON write (POST / PATCH / DELETE) to this site. The browser adds the Origin header itself,
+ * which the server's CSRF check requires. `messages` overrides the text for a code (e.g. NOT_FOUND).
+ */
+export async function apiSend<T>(method: "POST" | "PATCH" | "DELETE", path: string, body?: unknown, messages: Record<string, string> = {}): Promise<T> {
+  let res: Response;
+  let out: { ok?: boolean; code?: string; data?: unknown } | null = null;
+  try {
+    res = await fetch(`${BASE}/${path}`, {
+      method, credentials: "same-origin", cache: "no-store",
+      headers: body === undefined ? { accept: "application/json" } : { accept: "application/json", "content-type": "application/json" },
+      body: body === undefined ? undefined : JSON.stringify(body),
+    });
+  } catch {
+    throw new Error("Could not save. Check your connection and try again.");
+  }
+  try { out = await res.json(); } catch { out = null; }
+  if (!res.ok || !out?.ok) {
+    const code = out?.code ?? "";
+    throw new Error(messages[code] || MESSAGES[code] || "Could not save. Try again.");
+  }
+  return out.data as T;
+}
+
+/** shared with the other live clients (live-lists.ts) */
+export { get as apiGet, paged as apiPaged };
+
 // one job is needed by the preview, list name and detailed report; keep it for a minute
 const jobCache = new Map<string, { at: number; job: LiveJob; subject: string | null }>();
 async function getJob(id: string, fresh = false) {

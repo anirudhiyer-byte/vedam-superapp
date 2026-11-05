@@ -17,6 +17,8 @@ import { listColumns } from "./lists/columns";
 import { ListCard } from "./lists/list-card";
 import { useListOptions } from "./lists/use-options";
 import { listsApi, downloadCsv } from "../lib/mock-api";
+import { isLivePage } from "../lib/live-config";
+import { ListBuilder, type BuilderMode } from "./lists/list-builder";
 import type { ListRow } from "../lib/types";
 
 /** Where Manage List can send you inside the module. The shell turns these into section switches. */
@@ -30,7 +32,9 @@ type View = { kind: "list" } | { kind: "import"; list: ListRow } | { kind: "edit
  * breadcrumb + Back; Communicate and Add Tag are drawers; Change List Owner is a modal.
  * Search, filters and the page you were on are kept when you come back.
  *
- * Data comes from `listsApi` (lib/mock-api.ts) — swap that for the real endpoint.
+ * Data comes from `listsApi` (lib/mock-api.ts). LIVE mode (Slice 3a, lib/live-config.ts): lists are saved filters on
+ * VSAT data — "New list", "Edit List" and "View Count" open the ListBuilder drawer (counts + masked sample only).
+ * Sending, upload/import, owner change, tags and the old filter panel are not available on live lists yet.
  */
 export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) => void }) {
   const t = useTableQuery<ListRow>({ fetcher: listsApi.list, pageSize: 10 });
@@ -45,6 +49,8 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
   const [tagList, setTagList] = useState<ListRow | null>(null);
   const [ownerList, setOwnerList] = useState<ListRow | null>(null);
   const [commLists, setCommLists] = useState<ListRow[]>([]);
+  const live = isLivePage("lists");
+  const [builder, setBuilder] = useState<{ mode: BuilderMode; list: ListRow | null } | null>(null);
 
   // after a drill-down, put keyboard focus back on the row's gear button
   const returnTo = useRef<string | null>(null);
@@ -75,7 +81,7 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
       rows.map((r) => [r.id, r.name, r.origin, r.totalLeads, r.uniqueEmail, r.uniqueMobile, r.createdOn, r.createdBy, r.owner]),
     );
 
-  const onCount = () => toast("Opening count breakdown…");
+  const onCount = (r: ListRow) => (live && r.live ? setBuilder({ mode: "view", list: r }) : toast("Opening count breakdown…"));
   const columns = listColumns({ onTags: setTagList, onCount });
 
   const confirmDelete = async () => {
@@ -116,7 +122,7 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
   const act = {
     importContact: (r: ListRow) => { returnTo.current = r.id; setView({ kind: "import", list: r }); },
     communicate: (r: ListRow) => setCommLists([r]),
-    edit: (r: ListRow) => { returnTo.current = r.id; setView({ kind: "edit", list: r }); },
+    edit: (r: ListRow) => { returnTo.current = r.id; if (live && r.live) setBuilder({ mode: "edit", list: r }); else setView({ kind: "edit", list: r }); },
     changeOwner: setOwnerList,
     createSegment: (r: ListRow) => toast(`Create segment from ${r.name}`),
     remove: (r: ListRow) => askDelete([r.id], r.name),
@@ -130,25 +136,29 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
         count={t.loading ? null : t.total}
         meta={
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <p className="font-body text-xs text-muted">
-              Need a new list?{" "}
-              <button type="button" onClick={() => onNavigate?.("upload")}
-                className={`inline-flex min-h-[44px] items-center rounded font-semibold text-accent hover:underline sm:min-h-0 ${FOCUS_RING}`}>
-                Upload Raw Data
-              </button>
-            </p>
+            {!live && (
+              <p className="font-body text-xs text-muted">
+                Need a new list?{" "}
+                <button type="button" onClick={() => onNavigate?.("upload")}
+                  className={`inline-flex min-h-[44px] items-center rounded font-semibold text-accent hover:underline sm:min-h-0 ${FOCUS_RING}`}>
+                  Upload Raw Data
+                </button>
+              </p>
+            )}
             <RefreshStamp touch at={t.refreshedAt} onRefresh={t.refresh} busy={t.loading} />
           </div>
         }
         actions={
           <>
             <div className="w-full sm:w-auto"><SearchBox touch placeholder="Search by" value={t.search} onChange={t.setSearch} /></div>
-            <IconButton touch icon="filter" label="Filter" active={t.activeFilters.length > 0} onClick={() => setFilterOpen(true)} />
+            {live
+              ? <Button touch variant="solid" icon="plus" onClick={() => setBuilder({ mode: "create", list: null })}>New list</Button>
+              : <IconButton touch icon="filter" label="Filter" active={t.activeFilters.length > 0} onClick={() => setFilterOpen(true)} />}
             <Menu align="right" touch
               items={[
                 { label: "Download all as CSV", icon: "download", onClick: () => { exportRows(t.rows); toast("Download started"); } },
                 { label: "Download selected", icon: "download", disabled: !t.selected.length, onClick: () => { exportRows(selectedRows); toast(`Downloading ${t.selected.length} list(s)`); } },
-                { label: "Import contact", icon: "upload", onClick: () => onNavigate?.("upload") },
+                { label: "Import contact", icon: "upload", disabled: live, onClick: () => onNavigate?.("upload") },
                 { label: "Delete selected", icon: "trash", danger: true, disabled: !t.selected.length || selectionHasSystem, onClick: () => askDelete(t.selected, `${t.selected.length} list(s)`) },
               ]}
               trigger={(open, toggle) => (
@@ -162,7 +172,7 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
       <FilterChips touch chips={toChips(t.filters, fields)} onRemove={t.removeFilter} onClear={t.clearFilters} />
 
       <BulkBar touch count={t.selected.length} onClear={() => t.setSelected([])}>
-        <Button size="sm" touch icon="send" onClick={() => setCommLists(selectedRows)}>Communicate</Button>
+        <Button size="sm" touch icon="send" disabled={live} title={live ? "Sending to lists is not available yet" : undefined} onClick={() => setCommLists(selectedRows)}>Communicate</Button>
         <Button size="sm" touch icon="download" onClick={() => { exportRows(selectedRows); toast("Download started"); }}>Download</Button>
         <Button size="sm" touch variant="danger" icon="trash" disabled={selectionHasSystem}
           title={selectionHasSystem ? "The LMS list is a system list and can’t be deleted" : undefined}
@@ -189,8 +199,11 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
         empty={filtered
           ? <EmptyState icon="search" title="No lists match" body="Nothing fits your search and filters. Clear them to see every list."
               action={{ label: "Clear search and filters", icon: "refresh", onClick: () => { t.setSearch(""); t.clearFilters(); } }} />
-          : <EmptyState icon="users" title="No lists yet" body="Upload a CSV of contacts to create your first list."
-              action={{ label: "Upload Raw Data", icon: "upload", onClick: () => onNavigate?.("upload") }} />}
+          : live
+            ? <EmptyState icon="users" title="No saved lists yet" body="Create a list from VSAT filters to see how many people match."
+                action={{ label: "New list", icon: "plus", onClick: () => setBuilder({ mode: "create", list: null }) }} />
+            : <EmptyState icon="users" title="No lists yet" body="Upload a CSV of contacts to create your first list."
+                action={{ label: "Upload Raw Data", icon: "upload", onClick: () => onNavigate?.("upload") }} />}
         rowActions={(r) => <RowMenu row={r} act={act} />}
       />
 
@@ -200,7 +213,8 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
 
       <TagDrawer list={tagList} onClose={() => setTagList(null)} onSaved={(m) => { toast(m); t.reload(); }} />
       <OwnerModal list={ownerList} options={opts.state} onRetryOptions={opts.reload} onClose={() => setOwnerList(null)} onSaved={(m) => { toast(m); t.reload(); }} />
-      <CommunicateDrawer lists={commLists} onClose={() => setCommLists([])} onSent={(m) => { toast(m); t.setSelected([]); }} />
+      {!live && <CommunicateDrawer lists={commLists} onClose={() => setCommLists([])} onSent={(m) => { toast(m); t.setSelected([]); }} />}
+      <ListBuilder open={!!builder} mode={builder?.mode ?? "create"} list={builder?.list ?? null} onClose={() => setBuilder(null)} onSaved={(m) => { toast(m); t.reload(); }} />
 
       <ConfirmDialog
         accessible
@@ -208,7 +222,7 @@ export function ManageList({ onNavigate }: { onNavigate?: (to: ListNavTarget) =>
         pending={deleting}
         error={deleteError}
         title="Delete list?"
-        body={`${confirm?.label ?? ""} will be removed. Leads inside the list are not deleted.`}
+        body={live ? `${confirm?.label ?? ""} will be removed. It is only a saved filter; no person or VSAT record is deleted.` : `${confirm?.label ?? ""} will be removed. Leads inside the list are not deleted.`}
         onCancel={() => { if (!deleting) setConfirm(null); }}
         onConfirm={confirmDelete}
       />

@@ -17,7 +17,7 @@ export function ListCard({ row, onTags, onCount }: { row: ListRow; onTags: (r: L
     <>
       <div className="flex items-center gap-1">
         <h2 className="min-w-0 truncate font-display text-base font-bold text-heading">{row.name}</h2>
-        {row.id !== "-" && (
+        {row.id !== "-" && !row.live && (
           <button type="button" onClick={() => onTags(row)}
             aria-label={`Tags for ${row.name}: ${row.tags?.length ?? 0}. Add or remove tags`}
             className={`-my-1.5 grid h-11 w-11 shrink-0 place-items-center rounded-lg hover:bg-surface-warm ${FOCUS_RING} ${row.tagged ? "text-accent-soft" : "text-muted"}`}>
@@ -25,7 +25,7 @@ export function ListCard({ row, onTags, onCount }: { row: ListRow; onTags: (r: L
           </button>
         )}
       </div>
-      <p className="font-mono text-[11px] text-muted">{row.id === "-" ? "System list" : `ID ${row.id}`} · {row.origin}</p>
+      <p className="font-mono text-[11px] text-muted">{row.id === "-" ? "System list" : `ID ${row.live ? row.id.slice(0, 8) : row.id}`} · {row.origin}</p>
       <dl className="mt-3 grid grid-cols-3 gap-2">
         {stat("Leads", row.totalLeads)}
         {stat("Emails", row.uniqueEmail)}
