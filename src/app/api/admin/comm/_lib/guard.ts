@@ -26,7 +26,9 @@ export const PER_USER_PER_MIN = 120;
 type Code = "FORBIDDEN" | "NOT_LOGGED_IN" | "RATE_LIMITED" | "INVALID" | "RANGE_TOO_LONG" | "NOT_FOUND" | "SERVER" | "UNAVAILABLE" | "LOCKED";
 
 const HEADERS = { "Cache-Control": "no-store, max-age=0", "X-Content-Type-Options": "nosniff" };
-export const fail = (status: number, code: Code) => NextResponse.json({ ok: false, code }, { status, headers: HEADERS });
+/** Slice 4: an optional short `reason` code (fixed words only, never the user's text or a database message) */
+export const fail = (status: number, code: Code, reason?: string) =>
+  NextResponse.json(reason ? { ok: false, code, reason } : { ok: false, code }, { status, headers: HEADERS });
 const done = (data: unknown) => NextResponse.json({ ok: true, data }, { status: 200, headers: HEADERS });
 /** success answer, shared with the write guard (write.ts) */
 export const ok = done;
