@@ -146,6 +146,8 @@ export type AutomationRow = {
   status: "Active" | "Draft" | "Pause" | "Completed" | "Stopped";
   /** v2 */
   tags?: string[];
+  /** Slice 8 · live data only: when it last ran and what happened ("05/11/2026 04:14 PM · 3 sent, 2 failed" / "Never") */
+  lastRun?: string;
 };
 
 /** v2 · one box on the Edit Automation canvas. An IF/ELSE ("condition") node carries a Yes and a No branch. */

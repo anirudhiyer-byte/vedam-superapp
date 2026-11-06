@@ -15,6 +15,8 @@ import { AutomationCard } from "./automation/automation-card";
 import { automationColumns } from "./automation/columns";
 import { useAutomationOptions } from "./automation/use-options";
 import { automationsApi, downloadCsv } from "../lib/mock-api";
+import { canWriteLive } from "../lib/live-config";
+import { AUTOMATION_NOT_LIVE, forgetLiveAutomations } from "../lib/live-automation";
 import type { AutomationRow } from "../lib/types";
 
 type Counts = { Active: number; Draft: number; Pause: number; Completed: number; Stopped: number; total: number; used: number; quota: number };
@@ -40,12 +42,23 @@ const errText = (e: unknown, fallback: string) => (e instanceof Error && e.messa
  * (Category, Trigger, Conditions, Review) and opens the new Draft's workflow page. Edit Automation and View
  * Performance drill into pages in the same module (breadcrumb + Back). Search, filters and page are kept on return.
  *
- * Data comes from `automationsApi` (lib/mock-api.ts) — swap that for the real endpoint.
+ * Data comes from `automationsApi` (lib/mock-api.ts).
+ * Slice 8 (AUTOMATION_LIVE on): live, READ-ONLY rows of the two existing engines. Every action (create, edit,
+ * performance, pause / activate / de-activate / delete, copy) only says "not available on live data yet" and never
+ * opens the editor or the performance page; there is no quota on live data, so the quota pill is hidden.
+ * Flag off: the page is exactly the sample-data page.
  */
-export function ManageAutomation() {
+export function ManageAutomation({ live = false }: { live?: boolean } = {}) {
   const t = useTableQuery<AutomationRow>({ fetcher: automationsApi.list, pageSize: 10 });
   const { toast, toastNode } = useToast({ safe: true });
   const opts = useAutomationOptions();
+  /** live data is read-only unless a LIVE_WRITES flag says otherwise (none exists for this page) */
+  const blocked = live && !canWriteLive("automation");
+  const notLive = () => toast(AUTOMATION_NOT_LIVE);
+  /** live: Refresh / Try again ask the server again (the answer is otherwise kept for a minute). Rows, tiles and
+   *  filter options come from the same single GET, so every retry reloads both (still one request). */
+  const refresh = () => { if (live) { forgetLiveAutomations(); opts.reload(); } t.refresh(); };
+  const reloadOptions = live ? refresh : opts.reload;
 
   const [view, setView] = useState<View>({ kind: "list" });
   const [filterOpen, setFilterOpen] = useState(false);
@@ -88,7 +101,7 @@ export function ManageAutomation() {
   const status = t.filters.status ?? "";
   const pickStatus = (s: string) => t.setFilters({ ...t.filters, status: status === s ? "" : s });
   const selectedRows = t.rows.filter((r) => t.selected.includes(r.id));
-  const full = !!counts && counts.used >= counts.quota;
+  const full = !live && !!counts && counts.used >= counts.quota;
 
   const exportRows = (rows: AutomationRow[]) =>
     downloadCsv(`automations-${Date.now()}.csv`,
@@ -96,6 +109,7 @@ export function ManageAutomation() {
       rows.map((r) => [r.id, r.name, r.module, r.list, r.trigger, r.status, r.createdOn, r.createdBy, r.startDate, r.endDate, (r.tags ?? []).join("; ")]));
 
   const runStatus = async (ids: string[], to: "Active" | "Pause" | "Stopped", done: string) => {
+    if (blocked) { notLive(); return; }
     try {
       const r = await automationsApi.setStatus(ids, to);
       toast(r.changed === 0 ? "Nothing to change for the selected automations" : `${done}${r.skipped ? ` (${r.skipped} skipped)` : ""}`);
@@ -103,7 +117,9 @@ export function ManageAutomation() {
     } catch (e) { toast(errText(e, "We could not change the status.")); }
   };
 
-  const act: AutomationActions = {
+  const act: AutomationActions = blocked ? {
+    edit: notLive, performance: notLive, copy: notLive, pause: notLive, resume: notLive, deactivate: notLive, remove: notLive,
+  } : {
     edit: (r) => { returnTo.current = r.id; setView({ kind: "edit", id: r.id, name: r.name }); },
     performance: (r) => { returnTo.current = r.id; setView({ kind: "perf", id: r.id, name: r.name, from: "list" }); },
     copy: async (r) => {
@@ -166,7 +182,8 @@ export function ManageAutomation() {
     );
   }
 
-  const columns = automationColumns({ onOpen: act.edit });
+  const columns = automationColumns({ onOpen: act.edit, lastRun: live });
+  const openCreate = () => { if (blocked) notLive(); else setCreateOpen(true); };
   const filtered = !!t.search || t.activeFilters.length > 0;
   const hasActive = selectedRows.some((r) => r.status === "Active");
 
@@ -178,13 +195,13 @@ export function ManageAutomation() {
         countLabel={t.total === 1 ? "Automation" : "Automations"}
         meta={
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            {counts && (
+            {counts && !live && (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-surface-warm px-2.5 py-1 font-mono text-[11px] text-foreground">
                 <span aria-hidden className={`h-1.5 w-1.5 rounded-full ${full ? "bg-[#f87171]" : "bg-accent"}`} />
                 Total automation — {counts.used}/{counts.quota}{full ? " · limit reached" : ""}
               </span>
             )}
-            <RefreshStamp touch at={t.refreshedAt} onRefresh={t.refresh} busy={t.loading} />
+            <RefreshStamp touch at={t.refreshedAt} onRefresh={refresh} busy={t.loading} />
           </div>
         }
         actions={
@@ -195,11 +212,11 @@ export function ManageAutomation() {
               items={[
                 { label: "Download all as CSV", icon: "download", onClick: () => { exportRows(t.rows); toast("Download started"); } },
                 { label: "Download selected", icon: "download", disabled: !t.selected.length, onClick: () => { exportRows(selectedRows); toast("Download started"); } },
-                { label: "Refresh", icon: "refresh", onClick: () => { t.refresh(); toast("Refreshed"); } },
+                { label: "Refresh", icon: "refresh", onClick: () => { refresh(); toast("Refreshed"); } },
               ]}
               trigger={(open, toggle) => <Button touch popup expanded={open} iconRight="chevronDown" active={open} onClick={toggle}>Action</Button>} />
             <Button touch variant="solid" icon="plus" disabled={full} title={full ? "You have used all 40 automations. Delete one to create another." : undefined}
-              onClick={() => setCreateOpen(true)}>Create automation</Button>
+              onClick={openCreate}>Create automation</Button>
           </>
         }
       />
@@ -207,7 +224,7 @@ export function ManageAutomation() {
       {opts.state.status === "error" && (
         <div className="mb-3 flex flex-wrap items-center gap-2 rounded-lg border border-border p-3">
           <InlineError>{opts.state.message}</InlineError>
-          <Button size="sm" touch icon="refresh" onClick={opts.reload}>Try again</Button>
+          <Button size="sm" touch icon="refresh" onClick={reloadOptions}>Try again</Button>
         </div>
       )}
 
@@ -239,7 +256,7 @@ export function ManageAutomation() {
         <Button size="sm" touch icon="clock" onClick={() => runStatus(t.selected, "Pause", `Paused`)}>Pause</Button>
         <Button size="sm" touch variant="danger" icon="trash" disabled={hasActive}
           title={hasActive ? "Active automations can’t be deleted. De-activate them first." : undefined}
-          onClick={() => { setConfirmError(null); setConfirm({ kind: "delete", ids: t.selected, label: `${t.selected.length} automation(s)` }); }}>Delete</Button>
+          onClick={() => { if (blocked) { notLive(); return; } setConfirmError(null); setConfirm({ kind: "delete", ids: t.selected, label: `${t.selected.length} automation(s)` }); }}>Delete</Button>
       </BulkBar>
 
       <DataTable
@@ -252,7 +269,7 @@ export function ManageAutomation() {
         rows={t.rows}
         loading={t.loading}
         error={t.error}
-        onRetry={t.refresh}
+        onRetry={refresh}
         minWidth={1500}
         selectable
         selected={t.selected}
@@ -263,7 +280,7 @@ export function ManageAutomation() {
           ? <EmptyState icon="search" title="No automations match" body="Nothing fits your search and filters. Clear them to see every automation."
               action={{ label: "Clear search and filters", icon: "refresh", onClick: () => { t.setSearch(""); t.clearFilters(); } }} />
           : <EmptyState icon="flow" title="No automations yet" body="Create your first automation to send messages without doing it by hand."
-              action={{ label: "Create automation", icon: "plus", onClick: () => setCreateOpen(true) }} />}
+              action={{ label: "Create automation", icon: "plus", onClick: openCreate }} />}
         rowActions={(r) => <RowMenu row={r} act={act} />}
       />
 
