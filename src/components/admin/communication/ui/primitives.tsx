@@ -1,8 +1,9 @@
 "use client";
 
 import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { useDialog } from "./use-dialog";
-import { clipBox, opensUp } from "./menu-placement";
+import { clipBox, fixedMenuPosition, opensUp } from "./menu-placement";
 
 /* ══════════════════════════════════════════════════════
    ICONS — inline SVG, no dependency (repo has no icon lib)
@@ -182,32 +183,58 @@ export type MenuItem = {
   onClick: () => void;
 };
 
-export function Menu({ items, align = "right", trigger, touch, flip }: {
+export function Menu({ items, align = "right", trigger, touch, flip, portal }: {
   items: MenuItem[]; align?: "left" | "right"; trigger: (open: boolean, toggle: () => void) => ReactNode;
   /** v2: menu semantics + arrow keys, focus returns to the trigger, 44px items on phones. */
   touch?: boolean;
-  /** opens upward when it would be cut off at the bottom of a scrolling table (Manage List rows) */
+  /** opens upward when it would be cut off at the bottom of a scrolling table */
   flip?: boolean;
+  /**
+   * Row menus inside scrolling tables (Manage List, Document Templates): the menu is rendered in a portal with
+   * position: fixed, placed from the trigger's rect and kept inside the window (flips up when needed), so no
+   * table can clip it. It closes on scroll, resize, Escape and a click outside. Menus without it are unchanged.
+   */
+  portal?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [up, setUp] = useState(false);
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
-    if (!flip) return;   // every other menu: unchanged
+    if (!flip || portal) return;   // every other menu: unchanged
     if (!open || !ref.current || !menuRef.current) { setUp(false); return; }
     const r = ref.current.getBoundingClientRect();
     setUp(opensUp({ top: r.top, bottom: r.bottom }, clipBox(ref.current), menuRef.current.offsetHeight));
-  }, [open, flip]);
+  }, [open, flip, portal]);
+  useLayoutEffect(() => {
+    if (!portal) return;
+    if (!open || !ref.current || !menuRef.current) { setPos(null); setUp(false); return; }
+    const r = ref.current.getBoundingClientRect();
+    const p = fixedMenuPosition({ top: r.top, bottom: r.bottom, left: r.left, right: r.right },
+      { width: menuRef.current.offsetWidth, height: menuRef.current.offsetHeight }, { width: window.innerWidth, height: window.innerHeight }, align);
+    setPos({ top: p.top, left: p.left });
+    setUp(p.up);
+  }, [open, portal, align]);
+  useEffect(() => {
+    if (!portal || !open) return;
+    const close = () => setOpen(false);
+    window.addEventListener("scroll", close, true);   // any scrolling container, not just the page
+    window.addEventListener("resize", close);
+    return () => { window.removeEventListener("scroll", close, true); window.removeEventListener("resize", close); };
+  }, [portal, open]);
   const triggerEl = () => ref.current?.querySelector<HTMLElement>("button");
-  const menuItems = () => Array.from(ref.current?.querySelectorAll<HTMLElement>('[role="menuitem"]:not([disabled])') ?? []);
+  const menuItems = () => Array.from((portal ? menuRef.current : ref.current)?.querySelectorAll<HTMLElement>('[role="menuitem"]:not([disabled])') ?? []);
   useEffect(() => {
     if (!open) return;
-    const close = (e: MouseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false); };
+    const close = (e: MouseEvent) => {
+      const t = e.target as Node;
+      if (!ref.current?.contains(t) && !(portal && menuRef.current?.contains(t))) setOpen(false);
+    };
     const esc = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(false); if (touch) triggerEl()?.focus(); } };
     document.addEventListener("mousedown", close);
     document.addEventListener("keydown", esc);
-    if (touch) menuItems()[0]?.focus();
+    if (touch) { if (portal) menuItems()[0]?.focus({ preventScroll: true }); else menuItems()[0]?.focus(); }
     return () => { document.removeEventListener("mousedown", close); document.removeEventListener("keydown", esc); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
@@ -223,12 +250,14 @@ export function Menu({ items, align = "right", trigger, touch, flip }: {
     else if (e.key === "Tab") setOpen(false);
   };
 
-  return (
-    <div ref={ref} className="relative">
-      {trigger(open, () => setOpen((v) => !v))}
-      {open && (
-        <div ref={menuRef} role={touch ? "menu" : undefined} onKeyDown={onMenuKey} data-menu-up={flip ? String(up) : undefined}
-          className={`absolute z-40 ${up ? "bottom-full mb-1.5" : "mt-1.5"} min-w-[13rem] overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-2xl ${align === "right" ? "right-0" : "left-0"}`}>
+  // portal: inside the nearest themed (.dark) wrapper so the colours stay the same; position: fixed escapes any overflow
+  const portalTarget = portal && open && typeof document !== "undefined" ? ((ref.current?.closest(".dark") as HTMLElement | null) ?? document.body) : null;
+  const menuNode = open && (
+        <div ref={menuRef} role={touch ? "menu" : undefined} onKeyDown={onMenuKey} data-menu-up={flip || portal ? String(up) : undefined}
+          style={portal ? { position: "fixed", top: pos?.top ?? 0, left: pos?.left ?? 0, visibility: pos ? "visible" : "hidden" } : undefined}
+          className={portal
+            ? "z-40 min-w-[13rem] overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-2xl"
+            : `absolute z-40 ${up ? "bottom-full mb-1.5" : "mt-1.5"} min-w-[13rem] overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-2xl ${align === "right" ? "right-0" : "left-0"}`}>
           {items.map((it, i) => (
             <Fragment key={it.label}>
               {touch && it.group && it.group !== items[i - 1]?.group && (
@@ -249,7 +278,12 @@ export function Menu({ items, align = "right", trigger, touch, flip }: {
             </Fragment>
           ))}
         </div>
-      )}
+  );
+
+  return (
+    <div ref={ref} className="relative">
+      {trigger(open, () => setOpen((v) => !v))}
+      {portalTarget ? createPortal(menuNode, portalTarget) : !portal && menuNode}
     </div>
   );
 }
