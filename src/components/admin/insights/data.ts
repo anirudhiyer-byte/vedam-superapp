@@ -7,6 +7,8 @@ import { createClient } from "@/lib/supabase/client";
 
 export type Overview = {
   visitors: number; attempted: number; registered: number; partial: number; full: number; mqr: number;
+  /** MQRs who also have a full profile (0068); missing on a database without 0068 */
+  mqr_full?: number;
   used_product: number; vsat_early: number; vsat_early_mqr: number; vsat_early_in_period: number;
   vsat_paid_in_period: number | null;
 };

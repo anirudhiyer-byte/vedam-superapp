@@ -36,7 +36,7 @@ export function OverviewTab({ period, active, openPeople }: { period: PeriodKey;
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         <Stat label="Visitors" value={fmt(o.visitors)} sub="browser sessions that opened any page" />
         <Stat label="Registrations" value={fmt(o.registered)} sub={`${fmt(o.partial)} partial · ${fmt(o.full)} full profile`} />
-        <Stat label="MQR" accent value={fmt(o.mqr)} sub={`${pct(o.mqr, o.registered)} of registrations · ${pct(o.mqr, o.full)} of full`} />
+        <Stat label="MQR" accent value={fmt(o.mqr)} sub={`${pct(o.mqr, o.registered)} of registrations · ${o.mqr_full == null ? "—" : pct(o.mqr_full, o.full)} of full profiles`} />
         <Stat label="VSAT early registrations" value={fmt(o.vsat_early_in_period)}
           sub={period === "all" ? "everyone who has early-registered" : `${fmt(o.vsat_early)} of ${label}'s sign-ups have early-registered`} />
         <Stat label="Active users (30 days)" value={site ? fmt(site.mau) : "—"} sub={site ? `${fmt(site.dau)} today · ${fmt(site.wau)} in 7 days` : "loading…"} />
@@ -47,12 +47,14 @@ export function OverviewTab({ period, active, openPeople }: { period: PeriodKey;
         <Funnel steps={[
           { label: "Visitors", value: o.visitors },
           { label: "Attempted registration", value: o.attempted, note: "sessions that opened the sign-up page" },
-          { label: "Registered (partial + full)", value: o.registered, onClick: () => openPeople({ title: "Registered", sub: `Signed up ${label}`, p_from: r.p_from, p_to: r.p_to }) },
-          { label: "Full profile", value: o.full },
-          { label: "MQR", value: o.mqr, note: "PCM / PCMB and passing year 2026 or 2027" },
+          { label: "Registered (partial + full)", value: o.registered, note: `${fmt(o.partial)} partial · ${fmt(o.full)} full profile`,
+            overNote: "more than the step above (people also sign up from other pages)",
+            onClick: () => openPeople({ title: "Registered", sub: `Signed up ${label}`, p_from: r.p_from, p_to: r.p_to }) },
+          { label: "MQR", value: o.mqr, note: `PCM / PCMB and passing year 2026 or 2027 · ${o.mqr_full == null ? "—" : fmt(o.mqr_full)} of them have a full profile` },
           { label: "VSAT early registration", value: o.vsat_early_mqr, note: `MQRs who also early-registered for VSAT · all registrations: ${fmt(o.vsat_early)} (${pct(o.vsat_early, o.registered)})`,
             onClick: () => openPeople({ title: "Registered and VSAT early-registered", sub: `Signed up ${label}`, p_from: r.p_from, p_to: r.p_to, p_vsat: true }) },
-          { label: "VSAT fee paid", value: o.vsat_paid_in_period, muted: o.vsat_paid_in_period == null, note: "Shows here once VSAT payments go live" },
+          { label: "VSAT fee paid", value: o.vsat_paid_in_period, muted: o.vsat_paid_in_period == null,
+            note: o.vsat_paid_in_period == null ? "Shows here once VSAT payments go live" : `everyone who paid the VSAT fee ${label}` },
         ]} />
         {o.registered > 0 && (
           <div className="mt-4 space-y-2">
@@ -83,7 +85,7 @@ export function OverviewTab({ period, active, openPeople }: { period: PeriodKey;
                 ["   Full profile", (x: Overview) => fmt(x.full)],
                 ["MQR", (x: Overview) => fmt(x.mqr)],
                 ["MQR % of registrations", (x: Overview) => pct(x.mqr, x.registered)],
-                ["MQR % of full profiles", (x: Overview) => pct(x.mqr, x.full)],
+                ["MQR % of full profiles", (x: Overview) => (x.mqr_full == null ? "—" : pct(x.mqr_full, x.full))],
                 ["VSAT early registrations", (x: Overview) => fmt(x.vsat_early_in_period)],
                 ["   of them MQR from this period", (x: Overview) => fmt(x.vsat_early_mqr)],
               ] as [string, (x: Overview) => string][]).map(([name, get]) => (
