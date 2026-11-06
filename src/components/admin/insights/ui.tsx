@@ -66,8 +66,9 @@ export function BarRow({ name, value, max, right, note, onClick, color }: {
   );
 }
 
-/** Funnel: each step's bar is sized against the first step; the % between steps is the step-to-step conversion. */
-export function Funnel({ steps }: { steps: { label: string; value: number | null; note?: string; onClick?: () => void; muted?: boolean }[] }) {
+/** Funnel: each step's bar is sized against the first step; the % between steps is the step-to-step conversion.
+ *  overNote = what to say when a step is bigger than the one above it (otherwise a neutral line). */
+export function Funnel({ steps }: { steps: { label: string; value: number | null; note?: string; overNote?: string; onClick?: () => void; muted?: boolean }[] }) {
   const first = steps.find((s) => s.value != null)?.value ?? 0;
   return (
     <div className="space-y-1">
@@ -90,7 +91,7 @@ export function Funnel({ steps }: { steps: { label: string; value: number | null
               <div className="flex items-center gap-2 py-0.5 pl-2 text-[11.5px] text-white/40">
                 <span aria-hidden>↓</span>
                 {conv == null ? <span>&nbsp;</span>
-                  : conv > 100 ? <span>more than the step above (people also sign up from other pages)</span>
+                  : conv > 100 ? <span>{s.overNote ?? "more than the step above"}</span>
                   : <span>{conv}% of the step above</span>}
               </div>
             )}

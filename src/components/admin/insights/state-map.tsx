@@ -10,6 +10,15 @@ export type MapMetric = "users" | "mqr" | "vsat";
 // DB state name -> map shape. Normalise both sides (lowercase, & -> and, drop non-letters).
 const norm = (s: string) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z]/g, "");
 
+// The sign-up form uses today's names; this (older) map draws the merged UT as its two old parts,
+// so both parts take the merged UT's colour.
+const SHAPE_ALIAS: Record<string, string> = {
+  dadraandnagarhaveli: "dadraandnagarhavelianddamananddiu",
+  damananddiu: "dadraandnagarhavelianddamananddiu",
+};
+// every DB name the map can colour; anything else (e.g. Ladakh, drawn inside J&K's outline) is listed under the map
+const DRAWN = new Set([...INDIA_STATES.map((s) => norm(s.name)), ...Object.values(SHAPE_ALIAS)]);
+
 /** The value a state is coloured by, and the label shown in its tooltip. */
 function valueOf(metric: MapMetric, r: StateRow): number {
   if (metric === "mqr") return ratio(r.mqr, r.users) * 100;
@@ -41,6 +50,7 @@ export function StateMap({ rows, metric, onPick, unknown, total }: {
     return m;
   }, [rows]);
 
+  const offMap = useMemo(() => rows.filter((r) => r.state !== "Unknown" && r.users > 0 && !DRAWN.has(norm(r.state))), [rows]);
   const max = useMemo(() => Math.max(1, ...rows.filter((r) => r.state !== "Unknown").map((r) => valueOf(metric, r))), [rows, metric]);
   // sqrt spread for counts (one big state would wash the rest out); linear for percentages
   const scale = (v: number) => (metric === "users" ? Math.sqrt(v / max) : v / max);
@@ -55,7 +65,7 @@ export function StateMap({ rows, metric, onPick, unknown, total }: {
           the legend and the Unknown chip all share the same width and left edge */}
       <svg className="insMap" viewBox={INDIA_VIEWBOX} role="img" aria-label={`India map coloured by ${METRIC_LABEL[metric]} per state`} style={{ width: "100%", height: "auto", display: "block" }}>
         {INDIA_STATES.map((s) => {
-          const r = byName.get(norm(s.name));
+          const r = byName.get(norm(s.name)) ?? byName.get(SHAPE_ALIAS[norm(s.name)] ?? "");
           const fill = r ? ramp(scale(valueOf(metric, r))) : NO_DATA;
           return (
             <path key={s.id} d={s.path} fill={fill} stroke="#0a0c14" strokeWidth={0.8}
@@ -71,6 +81,18 @@ export function StateMap({ rows, metric, onPick, unknown, total }: {
         <span>More</span>
         <span className="text-white/35">· grey = no sign-ups · hover a state for its number</span>
       </div>
+      {offMap.length > 0 && (
+        <div className="mt-2 text-[12px] text-white/55">
+          Not drawn on this map:{" "}
+          {offMap.map((r, i) => (
+            <span key={r.state}>{i > 0 && ", "}
+              <button type="button" onClick={() => onPick(r.state)} className="underline decoration-white/25 underline-offset-2 hover:text-white">
+                {r.state} ({fmt(r.users)})
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
       {unknown && unknown.users > 0 && (
         <button type="button" onClick={() => onPick("Unknown")}
           className="mt-3 flex w-full items-center gap-2 rounded-xl border border-dashed border-white/20 px-3 py-2 text-left text-[12.5px] text-white/70 transition-colors hover:bg-white/[0.05]">
