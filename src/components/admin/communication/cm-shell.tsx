@@ -12,7 +12,7 @@ import { UploadRawData } from "./sections/upload-raw-data";
 import { StaticListImport } from "./sections/upload/static-list-import";
 import { CommunicationPerformance } from "./sections/communication-performance";
 import {
-  DocumentTemplates, LandingTemplates,
+  DocumentTemplates,
 } from "./sections/template-manager";
 import { isLivePage, liveNote } from "./lib/live-config";
 import { uploadView } from "./lib/live-import";
@@ -31,7 +31,7 @@ import { automationView } from "./lib/live-automation";
 export type CmPage =
   | "upload" | "lists" | "whatsappFlow" | "automation" | "callLogs"
   | "performance" | "suppressions" | "commLogs"
-  | "docTemplates" | "landingPages";
+  | "docTemplates";
 
 type Key = CmPage;
 
@@ -54,7 +54,6 @@ const MARKETING: Item[] = [
 
 const TEMPLATES: Item[] = [
   { key: "docTemplates",   label: "Manage Document Templates", icon: "doc" },
-  { key: "landingPages",   label: "Manage Landing Pages", icon: "grid" },
 ];
 
 /** Page keys + labels, grouped. The VSAT admin panel builds its rail from this: one source of names. */
@@ -214,7 +213,6 @@ function Section({ active, go }: { active: Key; go: (k: Key) => void }) {
     case "upload": return uploadView() === "static-import" ? <StaticListImport onOpenLists={() => go("lists")} /> : <UploadRawData />;
     case "performance": return <CommunicationPerformance />;
     case "docTemplates": return docTemplatesView() === "live" ? <LiveDocTemplates /> : <DocumentTemplates />;
-    case "landingPages": return <LandingTemplates />;
   }
 }
 
