@@ -11,7 +11,8 @@
  *   6. per-user limit for this action → 429
  *   7. body: one JSON object, at most 8 KB, strict schema (unknown keys refused) → 400
  *   8. the comm_* function runs AS THE USER and checks admin itself:
- *      42501 → 403, 22023 → 400, P0002 → 404, 55000 → 409 LOCKED, anything else → 500 (DB message never returned or logged)
+ *      42501 → 403, 22023 → 400, P0002 → 404, 55000 → 409 LOCKED, 23505 → 409 CONFLICT (Slice 6: flow name taken),
+ *      anything else → 500 (DB message never returned or logged)
  */
 import { createClient as createSupabase, type SupabaseClient } from "@supabase/supabase-js";
 import type { z } from "zod";
@@ -31,7 +32,7 @@ export type WritePlan =
 export async function commWrite<S extends z.ZodTypeAny>(
   req: Request,
   opts: {
-    action: "comm_write" | "comm_preview" | "comm_suppress" | "comm_import" | "comm_doctpl"; perUser: number; perIp: number; body: S | null;
+    action: "comm_write" | "comm_preview" | "comm_suppress" | "comm_import" | "comm_doctpl" | "comm_flow"; perUser: number; perIp: number; body: S | null;
     /** Slice 3b: a bigger body limit for one route (default 8 KB); a larger Content-Length is refused before reading */
     maxBytes?: number;
   },
@@ -83,6 +84,7 @@ export async function commWrite<S extends z.ZodTypeAny>(
     if (error.code === "22023") return fail(400, "INVALID");
     if (error.code === "P0002") return fail(404, "NOT_FOUND");
     if (error.code === "55000") return fail(409, "LOCKED");   // Slice 2: suppression not added in the admin panel
+    if (error.code === "23505") return fail(409, "CONFLICT"); // Slice 6: a live flow already has this name
     console.error(`[comm] ${p.fn} failed (code ${String(error.code ?? "unknown")})`);
     return fail(500, "SERVER");
   }

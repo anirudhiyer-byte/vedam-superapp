@@ -23,7 +23,7 @@ import { parseQuery, type RangeResult } from "./params";
 export const PER_IP_PER_MIN = 300;
 export const PER_USER_PER_MIN = 120;
 
-type Code = "FORBIDDEN" | "NOT_LOGGED_IN" | "RATE_LIMITED" | "INVALID" | "RANGE_TOO_LONG" | "NOT_FOUND" | "SERVER" | "UNAVAILABLE" | "LOCKED";
+type Code = "FORBIDDEN" | "NOT_LOGGED_IN" | "RATE_LIMITED" | "INVALID" | "RANGE_TOO_LONG" | "NOT_FOUND" | "SERVER" | "UNAVAILABLE" | "LOCKED" | "CONFLICT";
 
 const HEADERS = { "Cache-Control": "no-store, max-age=0", "X-Content-Type-Options": "nosniff" };
 /** Slice 4: an optional short `reason` code (fixed words only, never the user's text or a database message) */
