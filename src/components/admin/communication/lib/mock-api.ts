@@ -8,6 +8,7 @@ import { LIVE_PAGES } from "./live-config";
 import { liveCommLogsApi, livePerformanceApi, liveSuppressionsApi } from "./live-api";
 import { liveAutomationsApi } from "./live-automation";
 import { liveFlowsApi } from "./live-flows";
+import { csvText } from "./csv-export";
 import { DEFAULT_FLOW_CATEGORIES, RECOMMENDED_FLOWS, SCREEN_DETAILS, copyScreens } from "./flow-recommended";
 import { liveListsApi } from "./live-lists";
 
@@ -559,12 +560,9 @@ export const commLogsApi: typeof mockCommLogsApi = LIVE_PAGES.commLogs ? liveCom
    ══════════════════════════════════════════════════════ */
 /** Builds a CSV client-side and triggers a download. Replace with a
  *  signed-URL export endpoint when the backend can generate files. */
+/** Cells go through csvCell (lib/csv-export.ts): formula-injection guard + CSV quoting. */
 export function downloadCsv(filename: string, headers: string[], rows: (string | number | null)[][]) {
-  const esc = (v: string | number | null) => {
-    const s = v == null ? "" : String(v);
-    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-  };
-  const csv = [headers.map(esc).join(","), ...rows.map((r) => r.map(esc).join(","))].join("\n");
+  const csv = csvText(headers, rows);
   const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
   const a = document.createElement("a");
   a.href = url;

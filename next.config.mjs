@@ -1,4 +1,5 @@
 import { withSentryConfig } from "@sentry/nextjs/config";
+import { securityHeaderRoutes } from "./security-headers.mjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -17,6 +18,10 @@ const nextConfig = {
   generateBuildId: async () => process.env.VERCEL_GIT_COMMIT_SHA || null,
   async redirects() {
     return [];
+  },
+  // Admin pages only: no framing by other sites + nosniff (list in security-headers.mjs). Nothing global.
+  async headers() {
+    return securityHeaderRoutes();
   },
 };
 
