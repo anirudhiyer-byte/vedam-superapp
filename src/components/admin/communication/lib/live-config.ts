@@ -10,12 +10,19 @@
  */
 export const STATIC_LIST_IMPORT = true;
 
+/**
+ * Slice 4 · Manage Document Templates on live data: create / edit / delete templates (safe HTML subset,
+ * cleaned on the server). Off = the page is the old sample-data page, exactly as before. Needs migration 0066.
+ */
+export const DOC_TEMPLATES_LIVE = true;
+
 export const LIVE_PAGES = {
   commLogs: true,      // Slice 1 · read-only
   performance: true,   // Slice 1 · read-only
   suppressions: true,  // Slice 1 · read-only
   lists: true,         // Slice 3a · saved filters on VSAT data: counts + masked sample, no sending
   upload: STATIC_LIST_IMPORT, // Slice 3b · CSV → static list (behind the flag above)
+  docTemplates: DOC_TEMPLATES_LIVE, // Slice 4 · document templates (behind the flag above)
 } as const;
 
 /**
@@ -30,6 +37,7 @@ export const LIVE_WRITES = {
 export const LIVE_NOTES: Record<string, string> = {
   lists: "counts and masked samples only, nothing is sent.",
   upload: "CSV → static list: only users already in VSAT are saved (user ids only).",
+  docTemplates: "templates are cleaned on the server; the preview uses fake sample data only.",
 };
 
 /** the note when that page can also write (its LIVE_WRITES flag is on) */

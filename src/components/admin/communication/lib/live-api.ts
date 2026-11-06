@@ -69,7 +69,7 @@ async function paged<T>(path: string, params: Record<string, string | number>, q
  */
 export async function apiSend<T>(method: "POST" | "PATCH" | "DELETE", path: string, body?: unknown, messages: Record<string, string> = {}): Promise<T> {
   let res: Response;
-  let out: { ok?: boolean; code?: string; data?: unknown } | null = null;
+  let out: { ok?: boolean; code?: string; reason?: string; data?: unknown } | null = null;
   try {
     res = await fetch(`${BASE}/${path}`, {
       method, credentials: "same-origin", cache: "no-store",
@@ -82,7 +82,9 @@ export async function apiSend<T>(method: "POST" | "PATCH" | "DELETE", path: stri
   try { out = await res.json(); } catch { out = null; }
   if (!res.ok || !out?.ok) {
     const code = out?.code ?? "";
-    throw new Error(messages[code] || MESSAGES[code] || "Could not save. Try again.");
+    // Slice 4: a fixed reason code from the server (e.g. "unknown_merge_field") picks a more exact message, if the caller has one
+    const reason = typeof out?.reason === "string" ? messages[`reason:${out.reason}`] : undefined;
+    throw new Error(reason || messages[code] || MESSAGES[code] || "Could not save. Try again.");
   }
   return out.data as T;
 }

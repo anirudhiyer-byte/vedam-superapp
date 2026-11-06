@@ -1,7 +1,8 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { useDialog } from "./use-dialog";
+import { clipBox, opensUp } from "./menu-placement";
 
 /* ══════════════════════════════════════════════════════
    ICONS — inline SVG, no dependency (repo has no icon lib)
@@ -181,13 +182,23 @@ export type MenuItem = {
   onClick: () => void;
 };
 
-export function Menu({ items, align = "right", trigger, touch }: {
+export function Menu({ items, align = "right", trigger, touch, flip }: {
   items: MenuItem[]; align?: "left" | "right"; trigger: (open: boolean, toggle: () => void) => ReactNode;
   /** v2: menu semantics + arrow keys, focus returns to the trigger, 44px items on phones. */
   touch?: boolean;
+  /** opens upward when it would be cut off at the bottom of a scrolling table (Manage List rows) */
+  flip?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const [up, setUp] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (!flip) return;   // every other menu: unchanged
+    if (!open || !ref.current || !menuRef.current) { setUp(false); return; }
+    const r = ref.current.getBoundingClientRect();
+    setUp(opensUp({ top: r.top, bottom: r.bottom }, clipBox(ref.current), menuRef.current.offsetHeight));
+  }, [open, flip]);
   const triggerEl = () => ref.current?.querySelector<HTMLElement>("button");
   const menuItems = () => Array.from(ref.current?.querySelectorAll<HTMLElement>('[role="menuitem"]:not([disabled])') ?? []);
   useEffect(() => {
@@ -216,8 +227,8 @@ export function Menu({ items, align = "right", trigger, touch }: {
     <div ref={ref} className="relative">
       {trigger(open, () => setOpen((v) => !v))}
       {open && (
-        <div role={touch ? "menu" : undefined} onKeyDown={onMenuKey}
-          className={`absolute z-40 mt-1.5 min-w-[13rem] overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-2xl ${align === "right" ? "right-0" : "left-0"}`}>
+        <div ref={menuRef} role={touch ? "menu" : undefined} onKeyDown={onMenuKey} data-menu-up={flip ? String(up) : undefined}
+          className={`absolute z-40 ${up ? "bottom-full mb-1.5" : "mt-1.5"} min-w-[13rem] overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-2xl ${align === "right" ? "right-0" : "left-0"}`}>
           {items.map((it, i) => (
             <Fragment key={it.label}>
               {touch && it.group && it.group !== items[i - 1]?.group && (

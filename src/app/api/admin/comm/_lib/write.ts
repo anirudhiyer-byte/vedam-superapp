@@ -19,12 +19,19 @@ import { createClient as createCookieClient } from "@/lib/supabase/server";
 import { bearerToken, readJsonObject, sameOrigin } from "@/lib/peerpath/book-request";
 import { fail, hit, ok, trustedIp } from "./guard";
 
-export type WritePlan = { ok: true; fn: string; args: Record<string, unknown> } | { ok: false; code: "INVALID" };
+/**
+ * Slice 4 additions (both optional, nothing changes for the other routes):
+ *   extra  – fields added to the success answer next to the database result (e.g. the cleaned HTML + removed counts)
+ *   reason – a fixed reason code sent with a 400 (e.g. "unknown_merge_field"); never the user's text
+ */
+export type WritePlan =
+  | { ok: true; fn: string; args: Record<string, unknown>; extra?: Record<string, unknown> }
+  | { ok: false; code: "INVALID"; reason?: string };
 
 export async function commWrite<S extends z.ZodTypeAny>(
   req: Request,
   opts: {
-    action: "comm_write" | "comm_preview" | "comm_suppress" | "comm_import"; perUser: number; perIp: number; body: S | null;
+    action: "comm_write" | "comm_preview" | "comm_suppress" | "comm_import" | "comm_doctpl"; perUser: number; perIp: number; body: S | null;
     /** Slice 3b: a bigger body limit for one route (default 8 KB); a larger Content-Length is refused before reading */
     maxBytes?: number;
   },
@@ -68,7 +75,7 @@ export async function commWrite<S extends z.ZodTypeAny>(
     body = parsed.data;
   }
   const p = plan(body as z.infer<S>);
-  if (!p.ok) return fail(400, p.code);
+  if (!p.ok) return fail(400, p.code, p.reason);
 
   const { data, error } = await sb.rpc(p.fn, p.args);
   if (error) {
@@ -79,5 +86,5 @@ export async function commWrite<S extends z.ZodTypeAny>(
     console.error(`[comm] ${p.fn} failed (code ${String(error.code ?? "unknown")})`);
     return fail(500, "SERVER");
   }
-  return ok(data);
+  return ok(p.extra && data && typeof data === "object" && !Array.isArray(data) ? { ...(data as Record<string, unknown>), ...p.extra } : data);
 }

@@ -19,7 +19,7 @@ export function RowMenu({ row, act }: { row: ListRow; act: RowActions }) {
   const system = row.id === "-";
   const live = !!row.live;
   return (
-    <Menu align="right" touch
+    <Menu align="right" touch flip
       items={[
         { label: "Import Contact", icon: "upload", disabled: system || live, onClick: () => act.importContact(row) },
         { label: "Communicate", icon: "send", disabled: live, onClick: () => act.communicate(row) },
