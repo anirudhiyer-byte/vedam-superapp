@@ -7,6 +7,8 @@ import type {
 import { LIVE_PAGES } from "./live-config";
 import { liveCommLogsApi, livePerformanceApi, liveSuppressionsApi } from "./live-api";
 import { liveAutomationsApi } from "./live-automation";
+import { liveFlowsApi } from "./live-flows";
+import { DEFAULT_FLOW_CATEGORIES, RECOMMENDED_FLOWS, SCREEN_DETAILS, copyScreens } from "./flow-recommended";
 import { liveListsApi } from "./live-lists";
 
 /**
@@ -164,22 +166,9 @@ export const listsApi: typeof mockListsApi = LIVE_PAGES.lists ? liveListsApi : m
 /* ══════════════════════════════════════════════════════
    WHATSAPP FLOW
    ══════════════════════════════════════════════════════ */
-const SCREEN_DETAILS: FlowScreen = {
-  id: "screen_one", title: "Candidate Details", cta: "Continue",
-  fields: [
-    { label: "Full name", kind: "text", placeholder: "Your name" },
-    { label: "Mobile number", kind: "text", placeholder: "10-digit number" },
-    { label: "Email", kind: "text", placeholder: "you@example.com" },
-  ],
-};
+/** f1 / f2 (Recommended), the default screen and categories are shared with the live client: lib/flow-recommended.ts */
 const FLOWS: FlowRow[] = [
-  { id: "f1", name: "Lead from Raw Data", description: "testing", tag: "Raw Data", category: "Lead Nurturing", scope: "recommended", createdOn: "18/09/2025, 12:48 PM", status: "Active", module: "Raw Data", screens: [SCREEN_DETAILS] },
-  { id: "f2", name: "Miss Call Data Flow", description: "data collection for missed calls", tag: "Leads", category: "Lead Nurturing", scope: "recommended", createdOn: "09/09/2025, 12:48 PM", status: "Active", module: "Leads",
-    screens: [{ id: "screen_one", title: "Candidate Details", cta: "Continue", fields: [
-      { label: "Full name", kind: "text", placeholder: "Your name" },
-      { label: "Mobile number", kind: "text", placeholder: "10-digit number" },
-      { label: "Best time to call", kind: "select", placeholder: "Select a time" },
-    ] }] },
+  ...RECOMMENDED_FLOWS.map((f) => ({ ...f, screens: copyScreens(f.screens) })),
   { id: "f3", name: "VSAT Slot Booking", description: "book a VSAT slot over WhatsApp", tag: "Leads", category: "Admissions", scope: "mine", createdOn: "02/09/2026, 10:12 AM", status: "Draft", module: "Leads",
     screens: [
       { id: "screen_one", title: "Pick a slot", cta: "Next", fields: [
@@ -204,12 +193,12 @@ const FLOWS: FlowRow[] = [
 ];
 /** "03/11/2026, 02:12 PM" — same look as the seeded dates */
 const flowDate = () => now().replace(" ", ", ").replace(/ (am|pm)$/i, (m) => m.toUpperCase());
-let FLOW_CATEGORIES = ["Lead Nurturing", "Admissions"];
+let FLOW_CATEGORIES = [...DEFAULT_FLOW_CATEGORIES];
 let flowSeq = 100;
 
 export type NewFlow = { name: string; module: "Leads" | "Raw Data"; category: string; description: string; fromId?: string };
 
-export const flowsApi = {
+const mockFlowsApi = {
   /** Without a `scope` filter the Recommended list is returned. */
   list: (q: Query) => {
     const filters = { scope: "recommended", ...(q.filters ?? {}) };
@@ -283,6 +272,9 @@ export const flowsApi = {
     return wait(row);
   },
 };
+
+/** Live (Slice 6: drafts in the database, /api/admin/comm/flows) or the sample flows above — switch in lib/live-config.ts. */
+export const flowsApi: typeof mockFlowsApi = LIVE_PAGES.whatsappFlow ? liveFlowsApi : mockFlowsApi;
 
 /* ══════════════════════════════════════════════════════
    IN-APP CALL LOGS

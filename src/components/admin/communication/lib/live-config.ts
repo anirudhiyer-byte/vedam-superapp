@@ -23,6 +23,13 @@ export const DOC_TEMPLATES_LIVE = true;
  */
 export const AUTOMATION_LIVE = true;
 
+/**
+ * Slice 6 · WhatsApp Flow on live data: create / duplicate / delete / preview DRAFT flows (page + writes together).
+ * Nothing is sent and nothing is published to Meta / WhatsApp; Activate / Deactivate say "not available on live data yet".
+ * The two Recommended flows stay in the app's code. Off = the page is the old sample-data page, exactly as before. Needs migration 0069.
+ */
+export const FLOWS_LIVE = true;
+
 export const LIVE_PAGES = {
   commLogs: true,      // Slice 1 · read-only
   performance: true,   // Slice 1 · read-only
@@ -31,6 +38,7 @@ export const LIVE_PAGES = {
   upload: STATIC_LIST_IMPORT, // Slice 3b · CSV → static list (behind the flag above)
   docTemplates: DOC_TEMPLATES_LIVE, // Slice 4 · document templates (behind the flag above)
   automation: AUTOMATION_LIVE, // Slice 8 · read-only list of the existing automations (behind the flag above)
+  whatsappFlow: FLOWS_LIVE,    // Slice 6 · flow drafts saved in the database (behind the flag above)
 } as const;
 
 /**
@@ -47,6 +55,7 @@ export const LIVE_NOTES: Record<string, string> = {
   upload: "CSV → static list: only users already in VSAT are saved (user ids only).",
   docTemplates: "templates are cleaned on the server; the preview uses fake sample data only.",
   automation: "read-only: create, edit, pause and delete are not available yet.",
+  whatsappFlow: "saved as drafts only, nothing is sent or published.",
 };
 
 /** the note when that page can also write (its LIVE_WRITES flag is on) */
