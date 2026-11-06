@@ -14,7 +14,7 @@ export function AutomationCard({ row, onOpen }: { row: AutomationRow; onOpen: (r
   );
   return (
     <>
-      <h2 className="min-w-0 font-display text-base font-bold text-heading"><LinkText touch onClick={() => onOpen(row)}>{row.name}</LinkText></h2>
+      <h2 className="min-w-0 font-display text-base font-bold text-heading"><LinkText touch onClick={() => onOpen(row)}><span className="[overflow-wrap:anywhere]">{row.name}</span></LinkText></h2>
       <p className="font-mono text-[11px] text-muted">ID {row.id} · {row.module} · {row.list}</p>
       <div className="mt-2 flex flex-wrap items-center gap-2">
         <StatusPill status={row.status} />
@@ -25,6 +25,7 @@ export function AutomationCard({ row, onOpen }: { row: AutomationRow; onOpen: (r
         {fact("Created by", row.createdBy)}
         {fact("Starts", row.startDate)}
         {fact("Ends", row.endDate)}
+        {row.lastRun !== undefined && <div className="col-span-2">{fact("Last run", row.lastRun)}</div>}
       </dl>
       {!!row.tags?.length && <div className="mt-3"><TagChips tags={row.tags} /></div>}
     </>

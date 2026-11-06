@@ -16,6 +16,13 @@ export const STATIC_LIST_IMPORT = true;
  */
 export const DOC_TEMPLATES_LIVE = true;
 
+/**
+ * Slice 8 · Manage Automation on live data, READ-ONLY: the automations of the two existing engines
+ * (WhatsApp automations + journeys). Create / edit / pause / delete say "not available on live data yet".
+ * Off = the page is the old sample-data page, exactly as before. Needs migration 0067.
+ */
+export const AUTOMATION_LIVE = true;
+
 export const LIVE_PAGES = {
   commLogs: true,      // Slice 1 · read-only
   performance: true,   // Slice 1 · read-only
@@ -23,6 +30,7 @@ export const LIVE_PAGES = {
   lists: true,         // Slice 3a · saved filters on VSAT data: counts + masked sample, no sending
   upload: STATIC_LIST_IMPORT, // Slice 3b · CSV → static list (behind the flag above)
   docTemplates: DOC_TEMPLATES_LIVE, // Slice 4 · document templates (behind the flag above)
+  automation: AUTOMATION_LIVE, // Slice 8 · read-only list of the existing automations (behind the flag above)
 } as const;
 
 /**
@@ -38,6 +46,7 @@ export const LIVE_NOTES: Record<string, string> = {
   lists: "counts and masked samples only, nothing is sent.",
   upload: "CSV → static list: only users already in VSAT are saved (user ids only).",
   docTemplates: "templates are cleaned on the server; the preview uses fake sample data only.",
+  automation: "read-only: create, edit, pause and delete are not available yet.",
 };
 
 /** the note when that page can also write (its LIVE_WRITES flag is on) */

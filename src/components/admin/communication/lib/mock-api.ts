@@ -6,6 +6,7 @@ import type {
 } from "./types";
 import { LIVE_PAGES } from "./live-config";
 import { liveCommLogsApi, livePerformanceApi, liveSuppressionsApi } from "./live-api";
+import { liveAutomationsApi } from "./live-automation";
 import { liveListsApi } from "./live-lists";
 
 /**
@@ -703,7 +704,7 @@ const autoNameTaken = (name: string, exceptId?: string) =>
 
 export const AUTOMATION_QUOTA_MAX = AUTOMATION_QUOTA;
 
-export const automationsApi = {
+const mockAutomationsApi = {
   list: (q: Query) => wait(runQuery(AUTOMATIONS, q, { searchKeys: AUTO_SEARCH, filterMap: AUTO_FILTER_MAP })),
   /** Status tiles. They follow the search and every filter except Status, so the tiles still show what each status would give. */
   counts: async (q: Query) => {
@@ -799,6 +800,8 @@ export const automationsApi = {
   /** View Performance: the communication jobs this automation has sent. */
   logs: (id: string, q: Query) => mockCommLogsApi.list({ ...q, filters: { ...(q.filters ?? {}), automationId: id } }),
 };
+/** Live (Slice 8, read-only: /api/admin/comm/automation) or the sample data above — switch in lib/live-config.ts. */
+export const automationsApi: typeof mockAutomationsApi = LIVE_PAGES.automation ? liveAutomationsApi : mockAutomationsApi;
 export const automationActionCount = countActions;
 
 /* ══════════════════════════════════════════════════════

@@ -18,6 +18,7 @@ import { isLivePage, liveNote } from "./lib/live-config";
 import { uploadView } from "./lib/live-import";
 import { LiveDocTemplates } from "./sections/doctemplates/live-doc-templates";
 import { docTemplatesView } from "./lib/live-doc-templates";
+import { automationView } from "./lib/live-automation";
 
 /**
  * Communication Manager — shell.
@@ -208,7 +209,7 @@ function Section({ active, go }: { active: Key; go: (k: Key) => void }) {
     case "whatsappFlow": return <WhatsappFlow />;
     case "callLogs": return <CallLogs />;
     case "commLogs": return <CommunicationLogs />;
-    case "automation": return <ManageAutomation />;
+    case "automation": return <ManageAutomation live={automationView() === "live"} />;
     case "suppressions": return <Suppressions />;
     case "upload": return uploadView() === "static-import" ? <StaticListImport onOpenLists={() => go("lists")} /> : <UploadRawData />;
     case "performance": return <CommunicationPerformance />;
