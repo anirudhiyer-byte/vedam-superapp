@@ -77,7 +77,7 @@ export function LiveDocTemplates() {
           </div>
         )}
         rowActions={(r) => (
-          <Menu align="right" touch
+          <Menu align="right" touch portal
             items={[
               { label: "Edit Template", icon: "pencil", onClick: () => setEditor({ id: r.id }) },
               { label: "Delete", icon: "trash", danger: true, onClick: () => { setRemoveError(null); setRemoving(r); } },
