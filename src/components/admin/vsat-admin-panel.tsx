@@ -76,6 +76,7 @@ const GROWTH: Group[] = [
     { id: "calling", label: "Calling", icon: ICON.call, live: true, sub: [
       { label: "Calling Data", page: "data" }, { label: "Dashboards", page: "dash" },
       { label: "UTM Listing", page: "utm" }, { label: "Callers", page: "callers" },
+      { label: "Elevate", page: "elevate" },
     ] },
     { id: "infl", label: "Influencers", icon: ICON.infl },
     { id: "tele", label: "Telegram Channel", icon: ICON.tele },

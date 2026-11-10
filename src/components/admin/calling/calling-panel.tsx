@@ -22,7 +22,7 @@ import { DarkSelect } from "@/components/admin/dark-select";
  *             → VSAT paid → application → enrolled).
  */
 
-export type CallingPage = "data" | "dash" | "utm" | "callers";
+export type CallingPage = "data" | "dash" | "utm" | "callers" | "elevate";
 type Client = ReturnType<typeof createClient>;
 type Json = Record<string, unknown>;
 
@@ -51,6 +51,7 @@ export function CallingPanel({ page }: { page: CallingPage }) {
       {page === "dash" && <CallingDash supabase={supabase} />}
       {page === "utm" && <CallingUtm supabase={supabase} />}
       {page === "callers" && <CallersManage supabase={supabase} />}
+      {page === "elevate" && <ElevatePanel />}
     </div>
   );
 }
@@ -556,6 +557,94 @@ function CallersManage({ supabase }: { supabase: Client }) {
   );
 }
 
+/* ------------------------------------------------------------- Elevate */
+function ElevatePanel() {
+  const [status, setStatus] = useState<Json | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [testing, setTesting] = useState(false);
+  const [testRes, setTestRes] = useState<Json | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+
+  const loadStatus = useCallback(async () => {
+    setLoading(true); setErr(null);
+    try {
+      const r = await fetch("/api/admin/elevate/status");
+      const d = (await r.json()) as Json;
+      if (!d.ok) setErr(str(d.error) || "Couldn't load status");
+      setStatus(d);
+    } catch (e) { setErr(e instanceof Error ? e.message : "Couldn't load status"); }
+    setLoading(false);
+  }, []);
+  useEffect(() => { void loadStatus(); }, [loadStatus]);
+
+  async function runTest() {
+    setTesting(true); setTestRes(null); setErr(null);
+    try {
+      const r = await fetch("/api/admin/elevate/test", { method: "POST" });
+      setTestRes((await r.json()) as Json);
+    } catch (e) { setErr(e instanceof Error ? e.message : "Test failed"); }
+    setTesting(false);
+    void loadStatus();
+  }
+
+  const stats = (status?.stats as Json) ?? {};
+  const flag = str(stats.flag) || "off";
+  const configured = status?.configured === true;
+  const byState = (stats.by_state as Record<string, number>) ?? {};
+  const problems = (stats.recent_problems as Json[]) ?? [];
+  const live = flag === "on";
+
+  return (
+    <div className="cl-page">
+      {err && <div className="cl-err" onClick={() => setErr(null)}>{err} · dismiss</div>}
+      <div className="cl-callhead">
+        <div>
+          <h3 className="cl-h3">Elevate outbound webhook</h3>
+          <p className="cl-sub2">Sends partner-credited lead events (UTM-medium leads) to Elevate down the funnel. Fires only when the flag is <b>on</b> and the secret is set. Rejections and dropouts are not sent.</p>
+        </div>
+        <button className="cl-add" disabled={testing || !configured} onClick={runTest} title={configured ? "" : "Set ELEVATE_WEBHOOK_URL / ELEVATE_WEBHOOK_SECRET first"}>
+          {testing ? "Testing…" : "Test connection"}
+        </button>
+      </div>
+
+      <div className="cl-cards">
+        <div className={`cl-card${live ? " cl-card-a" : ""}`}><div className="cl-cv" style={{ fontSize: 18 }}>{live ? "LIVE" : "OFF"}</div><div className="cl-cl">Webhook flag</div><div className="cl-cs">app_flags.elevate_webhook</div></div>
+        <div className={`cl-card${configured ? "" : ""}`}><div className="cl-cv" style={{ fontSize: 18 }}>{configured ? "Set" : "Missing"}</div><div className="cl-cl">Secret / URL env</div></div>
+        <div className="cl-card"><div className="cl-cv">{str(stats.total) || "0"}</div><div className="cl-cl">Total events</div></div>
+        <div className="cl-card"><div className="cl-cv">{byState.pending ?? 0}</div><div className="cl-cl">Pending</div></div>
+        <div className="cl-card"><div className="cl-cv">{byState.sent ?? 0}</div><div className="cl-cl">Sent</div></div>
+        <div className="cl-card"><div className="cl-cv">{(byState.held ?? 0) + (byState.rejected ?? 0) + (byState.dead ?? 0)}</div><div className="cl-cl">Held / rejected</div></div>
+      </div>
+
+      {testRes && (
+        <div className={testRes.ok ? "cl-ok-banner" : "cl-err"} onClick={() => setTestRes(null)}>
+          Test → HTTP {str(testRes.httpStatus) || "—"} {Array.isArray(testRes.results) && (testRes.results as Json[])[0] ? `· outcome: ${str((testRes.results as Json[])[0].outcome)}` : ""} {str(testRes.error) ? `· ${str(testRes.error)}` : ""} · dismiss
+        </div>
+      )}
+
+      {!live && (
+        <div className="cl-note">
+          <b>To go live:</b> set <code>ELEVATE_WEBHOOK_URL</code> + <code>ELEVATE_WEBHOOK_SECRET</code> in the environment, run <b>Test connection</b> until it passes, then flip the flag:
+          <pre>update public.app_flags set value=&apos;on&apos; where key=&apos;elevate_webhook&apos;;</pre>
+        </div>
+      )}
+
+      <div className="cl-tablewrap">
+        <table className="cl-table">
+          <thead><tr><th>Recent problems</th><th>State</th><th>Error</th><th>When</th></tr></thead>
+          <tbody>
+            {loading && <tr><td colSpan={4} className="cl-mid">Loading…</td></tr>}
+            {!loading && problems.length === 0 && <tr><td colSpan={4} className="cl-mid">No held / rejected events.</td></tr>}
+            {problems.map((p, i) => (
+              <tr key={i}><td className="cl-name">{str(p.status)}</td><td>{str(p.state)}</td><td className="cl-muted">{str(p.error) || "—"}</td><td>{fmtDate(p.at)}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 /* --------------------------------------------------------------------- CSS */
 const CSS = `
 .cl-wrap{--accent:52 226 176;--font-inter:'Inter',system-ui,sans-serif;height:100%;overflow:auto;color:var(--ink);font-family:var(--font)}
@@ -639,5 +728,8 @@ const CSS = `
 .cl-addcaller{display:flex;gap:8px}
 .cl-addcaller input{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:10px;color:var(--ink);font-size:13px;padding:9px 12px;outline:none;min-width:220px}
 .cl-addcaller input:focus{border-color:rgba(52,226,176,.4)}
+.cl-note{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-size:12.5px;color:var(--mut);line-height:1.6}
+.cl-note code{font-family:var(--mono);font-size:11px;color:var(--ink);background:rgba(130,150,255,.1);padding:1px 5px;border-radius:5px}
+.cl-note pre{margin:8px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--green);background:rgba(4,8,20,.5);border:1px solid var(--line);border-radius:8px;padding:9px 11px;overflow:auto}
 @media(max-width:720px){.cl-search{max-width:none}}
 `;

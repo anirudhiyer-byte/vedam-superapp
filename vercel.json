@@ -11,6 +11,10 @@
     {
       "path": "/api/cron/peerpath-meet",
       "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/elevate-drain",
+      "schedule": "*/5 * * * *"
     }
   ]
 }
