@@ -5,6 +5,7 @@ import { VsatFormBuilder } from "@/components/admin/vsat-form-builder";
 import { VsatExamCenter, type WheeboxStatus } from "@/components/admin/vsat-exam-center";
 import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
 import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
+import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
 
 /**
  * VSAT Admin Panel — wears the same "Neural" shell as the Growth panel
@@ -71,10 +72,11 @@ const GROWTH: Group[] = [
     { id: "cohort", label: "Payment Cohort", icon: ICON.cohort },
     { id: "vcamp", label: "VSAT Campaign Report", icon: ICON.exam },
   ] },
-  { g: "Operations", items: [
-    { id: "calling", label: "Calling Log", icon: ICON.call },
-  ] },
   { g: "Marketing Channels", items: [
+    { id: "calling", label: "Calling", icon: ICON.call, live: true, sub: [
+      { label: "Calling Data", page: "data" }, { label: "Dashboards", page: "dash" },
+      { label: "UTM Listing", page: "utm" }, { label: "Callers", page: "callers" },
+    ] },
     { id: "infl", label: "Influencers", icon: ICON.infl },
     { id: "tele", label: "Telegram Channel", icon: ICON.tele },
     { id: "cons", label: "Consultants Channel", icon: ICON.cons },
@@ -121,6 +123,7 @@ export function VsatAdminPanel({ wheebox }: { wheebox: WheeboxStatus }) {
 
   function Content() {
     if (panel === "growth") {
+      if (active.id === "calling") return <div className="vp-scroll"><CallingPanel page={(active.page ?? "data") as CallingPage} /></div>;
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
     }
