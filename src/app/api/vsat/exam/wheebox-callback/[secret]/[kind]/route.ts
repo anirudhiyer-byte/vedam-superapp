@@ -19,7 +19,7 @@
  * vps_score (set later at the Cleared / Not-Cleared stage).
  */
 import { NextResponse } from "next/server";
-import { adminDb } from "@/lib/peerpath/meet-sync";
+import { adminDb } from "@/lib/supabase/service";
 import { wheeboxCreds, wheeboxDecrypt } from "@/lib/wheebox/crypto";
 import { parseWheeboxResult, studentMockResult } from "@/lib/wheebox/exam";
 
