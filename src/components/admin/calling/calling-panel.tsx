@@ -427,53 +427,102 @@ function Breakdown({ title, data, labelMap }: { title: string; data: Record<stri
 
 /* ------------------------------------------------------------ UTM Listing */
 function CallingUtm({ supabase }: { supabase: Client }) {
+  const callers = useCallers(supabase);
   const [d, setD] = useState<{ rows: Json[]; totals: Json } | null>(null);
-  const [search, setSearch] = useState("");
-  const [q, setQ] = useState("");
   const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState<string | null>(null);
+  const [msg, setMsg] = useState<string | null>(null);
+  const [adding, setAdding] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
+  const BLANK = { label: "", caller_id: "", utm_source: "calling", utm_medium: "", utm_campaign: "", target_url: "https://one.vedam.org" };
+  const [form, setForm] = useState(BLANK);
 
-  useEffect(() => {
-    let on = true; setLoading(true);
-    (async () => {
-      const { data } = await supabase.rpc("calling_utm_listing", { p: q ? { search: q } : {} });
-      if (on) { setD((data ?? { rows: [], totals: {} }) as { rows: Json[]; totals: Json }); setLoading(false); }
-    })();
-    return () => { on = false; };
-  }, [supabase, q]);
+  const load = useCallback(async () => {
+    setLoading(true);
+    const { data, error } = await supabase.rpc("calling_utm_listing", { p: {} });
+    if (error) setErr(error.message);
+    setD((data ?? { rows: [], totals: {} }) as { rows: Json[]; totals: Json });
+    setLoading(false);
+  }, [supabase]);
+  useEffect(() => { void load(); }, [load]);
 
-  const cols: { k: string; label: string }[] = [
-    { k: "leads", label: "Leads" }, { k: "shared", label: "Link shared" }, { k: "registered", label: "Registered" },
-    { k: "vsat_paid", label: "VSAT paid" }, { k: "applications", label: "Application" }, { k: "enrolled", label: "Enrolled" },
-  ];
+  async function add() {
+    setErr(null); setMsg(null);
+    const { data, error } = await supabase.rpc("calling_utm_create", { p: { ...form, caller_id: form.caller_id || undefined } });
+    if (error || !(data as Json)?.ok) {
+      const e = str((data as Json)?.error);
+      setErr(error?.message ?? (e === "duplicate_utm" ? "That UTM combo already exists." : e === "missing_required" ? "Label, source and medium are required." : `Couldn't add: ${e}`));
+      return;
+    }
+    setMsg("UTM link added."); setAdding(false); setForm(BLANK); await load();
+  }
+  async function del(id: string, label: string) {
+    if (!window.confirm(`Remove UTM link "${label}"? The profiles it tracked are unaffected.`)) return;
+    const { data, error } = await supabase.rpc("calling_utm_delete", { p: { id } });
+    if (error || !(data as Json)?.ok) { setErr(error?.message ?? "Delete failed"); return; }
+    await load();
+  }
+  async function copy(url: string, id: string) {
+    try { await navigator.clipboard.writeText(url); setCopied(id); setTimeout(() => setCopied(null), 1500); }
+    catch { setErr("Copy failed — open the link column and copy manually."); }
+  }
+
   const t = d?.totals ?? {};
+  const totals = [
+    { k: "links", label: "UTM links" }, { k: "profiles", label: "Profiles" }, { k: "registered", label: "VSAT registered" },
+    { k: "vsat_paid", label: "VSAT paid" }, { k: "applications", label: "Applications" }, { k: "enrolled", label: "Enrolled" },
+  ];
 
   return (
     <div className="cl-page">
-      <div className="cl-bar">
-        <form className="cl-search" onSubmit={(e) => { e.preventDefault(); setQ(search); }}>
-          <input placeholder="Filter by UTM source / medium / campaign…" value={search} onChange={(e) => setSearch(e.target.value)} />
-          <button type="submit">Filter</button>
-        </form>
-        {loading && <span className="cl-muted">Loading…</span>}
+      {err && <div className="cl-err" onClick={() => setErr(null)}>{err} · dismiss</div>}
+      {msg && <div className="cl-ok-banner" onClick={() => setMsg(null)}>{msg} · dismiss</div>}
+      <div className="cl-callhead">
+        <div>
+          <h3 className="cl-h3">Caller UTM links</h3>
+          <p className="cl-sub2">Register the UTM link each caller shares with students. We match Vedam One profiles created with that UTM and track them down the funnel — profiles → VSAT registered → paid → application → enrolled.</p>
+        </div>
+        <button className="cl-add" onClick={() => setAdding((a) => !a)}>{adding ? "Close" : "+ Add UTM link"}</button>
       </div>
+
+      {adding && (
+        <div className="cl-utmform">
+          <input placeholder="Label (e.g. Rahul · Nov School Connect)" value={form.label} onChange={(e) => setForm({ ...form, label: e.target.value })} />
+          <div className="cl-filt cl-w180"><DarkSelect value={form.caller_id} placeholder="Caller (optional)" onChange={(v) => setForm({ ...form, caller_id: v })} options={[{ value: "", label: "No caller" }, ...callers.map((c) => ({ value: c.id, label: c.email }))]} /></div>
+          <input placeholder="utm_source" value={form.utm_source} onChange={(e) => setForm({ ...form, utm_source: e.target.value })} />
+          <input placeholder="utm_medium" value={form.utm_medium} onChange={(e) => setForm({ ...form, utm_medium: e.target.value })} />
+          <input placeholder="utm_campaign (optional)" value={form.utm_campaign} onChange={(e) => setForm({ ...form, utm_campaign: e.target.value })} />
+          <input placeholder="target URL" value={form.target_url} onChange={(e) => setForm({ ...form, target_url: e.target.value })} />
+          <button className="cl-add" onClick={add}>Save</button>
+        </div>
+      )}
+
       <div className="cl-cards cl-cards-sm">
-        {cols.map((c) => <div key={c.k} className="cl-card"><div className="cl-cv">{Number((t[c.k] as number) ?? 0).toLocaleString("en-IN")}</div><div className="cl-cl">{c.label}</div></div>)}
+        {totals.map((c) => <div key={c.k} className="cl-card"><div className="cl-cv">{Number((t[c.k] as number) ?? 0).toLocaleString("en-IN")}</div><div className="cl-cl">{c.label}</div></div>)}
       </div>
+
       <div className="cl-tablewrap">
         <table className="cl-table">
-          <thead>
-            <tr><th>UTM source</th><th>Medium</th><th>Campaign</th>{cols.map((c) => <th key={c.k} className="cl-c">{c.label}</th>)}</tr>
-          </thead>
+          <thead><tr><th>Label / Caller</th><th>UTM</th><th>Link</th><th className="cl-c">Profiles</th><th className="cl-c">Registered</th><th className="cl-c">VSAT paid</th><th className="cl-c">Application</th><th className="cl-c">Enrolled</th><th></th></tr></thead>
           <tbody>
-            {!loading && (d?.rows.length ?? 0) === 0 && <tr><td colSpan={9} className="cl-mid">No UTM-tagged calling leads yet.</td></tr>}
-            {d?.rows.map((r, i) => (
-              <tr key={i}>
-                <td className="cl-mono">{str(r.utm_source)}</td>
-                <td className="cl-mono">{str(r.utm_medium)}</td>
-                <td>{str(r.utm_campaign)}</td>
-                {cols.map((c) => <td key={c.k} className="cl-c">{str(r[c.k]) || "0"}</td>)}
-              </tr>
-            ))}
+            {loading && <tr><td colSpan={9} className="cl-mid">Loading…</td></tr>}
+            {!loading && (d?.rows.length ?? 0) === 0 && <tr><td colSpan={9} className="cl-mid">No UTM links yet. Add one above.</td></tr>}
+            {d?.rows.map((r) => {
+              const id = str(r.id);
+              return (
+                <tr key={id}>
+                  <td className="cl-name">{str(r.label)}{str(r.caller) && <span className="cl-sub">{str(r.caller)}</span>}</td>
+                  <td className="cl-mono" style={{ fontSize: 11 }}>{str(r.utm_source)}/{str(r.utm_medium)}{str(r.utm_campaign) ? `/${str(r.utm_campaign)}` : ""}</td>
+                  <td><button className="cl-link" onClick={() => copy(str(r.share_url), id)}>{copied === id ? "copied ✓" : "copy link"}</button></td>
+                  <td className="cl-c">{str(r.profiles) || "0"}</td>
+                  <td className="cl-c">{str(r.registered) || "0"}</td>
+                  <td className="cl-c">{str(r.vsat_paid) || "0"}</td>
+                  <td className="cl-c">{str(r.applications) || "0"}</td>
+                  <td className="cl-c">{str(r.enrolled) || "0"}</td>
+                  <td className="cl-c"><button className="cl-link cl-del" onClick={() => del(id, str(r.label))}>remove</button></td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -731,5 +780,8 @@ const CSS = `
 .cl-note{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-size:12.5px;color:var(--mut);line-height:1.6}
 .cl-note code{font-family:var(--mono);font-size:11px;color:var(--ink);background:rgba(130,150,255,.1);padding:1px 5px;border-radius:5px}
 .cl-note pre{margin:8px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--green);background:rgba(4,8,20,.5);border:1px solid var(--line);border-radius:8px;padding:9px 11px;overflow:auto}
+.cl-utmform{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:rgba(130,150,255,.05);border:1px solid var(--line);border-radius:12px;padding:12px}
+.cl-utmform input{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-size:12.5px;padding:8px 11px;outline:none;min-width:150px;flex:1}
+.cl-utmform input:focus{border-color:rgba(52,226,176,.4)}
 @media(max-width:720px){.cl-search{max-width:none}}
 `;
