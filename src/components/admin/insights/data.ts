@@ -37,6 +37,10 @@ export type PeopleFilter = {
   p_from: string | null; p_to: string | null;
   p_products?: string[] | null; p_min_products?: number | null; p_level?: string | null;
   p_source?: string | null; p_state?: string | null; p_vsat?: boolean | null;
+  /** 0074: MQRs only (true) / non-MQRs only (false) */
+  p_mqr?: boolean | null;
+  /** 0074: the period is when this product was used, not when the person signed up */
+  p_used?: string | null;
 };
 
 let client: ReturnType<typeof createClient> | null = null;

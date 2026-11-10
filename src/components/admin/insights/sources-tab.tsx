@@ -18,11 +18,13 @@ const PRODUCT_FILTERS: { key: ProductFilter; label: string }[] = [
 ];
 const MIN_N = 20; // findings only compare groups with at least this many people
 
-/** People for a source/state row: sign-ups in the period, or (with a product filter) everyone who used that product. */
+/** People for a source/state row: sign-ups in the period, or (with a product filter) the same people the row
+ *  counts — those who used that product in the period (ins_people p_used, 0074). */
 function peopleFor(product: ProductFilter, range: Range, extra: Partial<PeopleFilter>, title: string): PeopleFilter {
   if (product === "all") return { title, sub: "Signed up in this period", ...range, ...extra };
-  if (product === "vsat") return { title, sub: "VSAT early registrations, all time", p_from: null, p_to: null, p_vsat: true, ...extra };
-  return { title, sub: `${productLabel(product)} users, all time`, p_from: null, p_to: null, p_products: [product], ...extra };
+  const when = range.p_from ? "in this period" : "all time";
+  const sub = product === "vsat" ? `Early-registered for VSAT ${when}` : `Used ${productLabel(product)} ${when}`;
+  return { title, sub, ...range, p_used: product, ...extra };
 }
 
 export function SourcesTab({ range, period, openPeople }: { range: Range; period: PeriodKey; openPeople: (f: PeopleFilter) => void }) {

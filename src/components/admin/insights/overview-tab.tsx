@@ -50,9 +50,10 @@ export function OverviewTab({ period, active, openPeople }: { period: PeriodKey;
           { label: "Registered (partial + full)", value: o.registered, note: `${fmt(o.partial)} partial · ${fmt(o.full)} full profile`,
             overNote: "more than the step above (people also sign up from other pages)",
             onClick: () => openPeople({ title: "Registered", sub: `Signed up ${label}`, p_from: r.p_from, p_to: r.p_to }) },
-          { label: "MQR", value: o.mqr, note: `PCM / PCMB and passing year 2026 or 2027 · ${o.mqr_full == null ? "—" : fmt(o.mqr_full)} of them have a full profile` },
+          { label: "MQR", value: o.mqr, note: `PCM / PCMB and passing year 2026 or 2027 · ${o.mqr_full == null ? "—" : fmt(o.mqr_full)} of them have a full profile`,
+            onClick: () => openPeople({ title: "MQRs", sub: `Signed up ${label}`, p_from: r.p_from, p_to: r.p_to, p_mqr: true }) },
           { label: "VSAT early registration", value: o.vsat_early_mqr, note: `MQRs who also early-registered for VSAT · all registrations: ${fmt(o.vsat_early)} (${pct(o.vsat_early, o.registered)})`,
-            onClick: () => openPeople({ title: "Registered and VSAT early-registered", sub: `Signed up ${label}`, p_from: r.p_from, p_to: r.p_to, p_vsat: true }) },
+            onClick: () => openPeople({ title: "MQRs who early-registered for VSAT", sub: `Signed up ${label}`, p_from: r.p_from, p_to: r.p_to, p_mqr: true, p_vsat: true }) },
           { label: "VSAT fee paid", value: o.vsat_paid_in_period, muted: o.vsat_paid_in_period == null,
             note: o.vsat_paid_in_period == null ? "Shows here once VSAT payments go live" : `everyone who paid the VSAT fee ${label}` },
         ]} />
