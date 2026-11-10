@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { rpcAll } from "@/lib/supabase/rpc-all";
 import { LEVEL_LABEL, fmt, personStatus, productLabel, shortDate, sourceLabel, type Person } from "./lib";
 import { sb, type PeopleFilter } from "./data";
+import { loadPages } from "./paging";
 import { ErrorNote, Loading, Pill } from "./ui";
 
 const PAGE = 100;
@@ -12,18 +12,26 @@ const PAGE = 100;
 export function PeopleDrawer({ filter, onClose }: { filter: PeopleFilter; onClose: () => void }) {
   const [rows, setRows] = useState<Person[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [more, setMore] = useState(false); // true while later pages are still loading in the background
   const [q, setQ] = useState("");
   const [limit, setLimit] = useState(PAGE);
 
   useEffect(() => {
     let live = true;
     (async () => {
-      setRows(null); setError(null); setLimit(PAGE);
+      setRows(null); setError(null); setLimit(PAGE); setMore(true);
       const { title: _t, sub: _s, ...args } = filter;
       void _t; void _s;
-      const { data, error: err } = await rpcAll<Person>(sb(), "ins_people", args);
-      if (!live) return;
-      if (err) setError(err); else setRows(data);
+      // show the first 1,000 people as soon as they arrive; the rest are added page by page (D4)
+      const res = await loadPages<Person>(
+        (from, to) => sb().rpc("ins_people", args).range(from, to) as PromiseLike<{ data: Person[] | null; error: { message: string } | null }>,
+        (page) => setRows((prev) => [...(prev ?? []), ...page]),
+        () => live,
+      );
+      if (!live || res.stopped) return;
+      setMore(false);
+      if (res.error) setError(res.error);
+      else setRows((prev) => prev ?? []);
     })();
     return () => { live = false; };
   }, [filter]);
@@ -48,7 +56,10 @@ export function PeopleDrawer({ filter, onClose }: { filter: PeopleFilter; onClos
         <div className="flex items-start justify-between gap-3 border-b border-white/10 p-4 sm:p-5">
           <div>
             <h2 className="text-lg font-bold text-white">{filter.title}</h2>
-            <p className="text-[13px] text-white/50">{filter.sub ?? ""}{rows ? ` · ${fmt(rows.length)} people` : ""}</p>
+            <p className="text-[13px] text-white/50">
+              {filter.sub ?? ""}{rows ? ` · ${fmt(rows.length)}${more ? "+" : ""} people` : ""}
+              {rows && more && <span className="ml-1.5 text-white/35">(loading the rest…)</span>}
+            </p>
           </div>
           <button type="button" onClick={onClose} className="rounded-lg border border-white/15 px-3 py-1.5 text-[13px] text-white/80 hover:bg-white/[0.06]">Close</button>
         </div>
@@ -57,8 +68,10 @@ export function PeopleDrawer({ filter, onClose }: { filter: PeopleFilter; onClos
             className="w-full rounded-xl border border-white/15 bg-white/[0.05] px-3 py-2 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-[#8A18FF]" />
         </div>
         <div className="flex-1 space-y-2 overflow-y-auto p-3 sm:px-5">
-          {error ? <ErrorNote message={error} /> : !rows ? <><Loading h={90} /><Loading h={90} /><Loading h={90} /></> :
-            shown.length === 0 ? <p className="py-8 text-center text-[13px] text-white/45">No one matches.</p> : (
+          {error && <ErrorNote message={rows?.length ? `${error} (showing the ${fmt(rows.length)} people loaded before the error)` : error} />}
+          {q.trim() && more && rows && <p className="text-[12px] text-white/40">Searching the {fmt(rows.length)} people loaded so far; more are still loading.</p>}
+          {error && !rows?.length ? null : !rows ? <><Loading h={90} /><Loading h={90} /><Loading h={90} /></> :
+            shown.length === 0 ? <p className="py-8 text-center text-[13px] text-white/45">{more ? "No one matches yet — still loading…" : "No one matches."}</p> : (
               <>
                 {shown.slice(0, limit).map((p) => <PersonCard key={p.user_id} p={p} />)}
                 {shown.length > limit && (
