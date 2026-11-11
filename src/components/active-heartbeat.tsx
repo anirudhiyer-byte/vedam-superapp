@@ -13,7 +13,7 @@ type Product = ActiveProduct;
  * toward the whole-site bucket ("site"); seconds spent on a product surface
  * (CodeSprint / Bootcamp) additionally count toward that product. One write/user/~minute
  * per bucket keeps it scalable; the server rolls it into product_active_daily for
- * DAU/WAU/MAU (≥5 min/day).
+ * DAU/WAU/MAU (≥5 min/day; Bootcamp ≥2 min/day).
  */
 export function ActiveHeartbeat() {
   const path = usePathname();
