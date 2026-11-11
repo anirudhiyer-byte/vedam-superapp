@@ -1,7 +1,7 @@
 /**
  * Which product a page belongs to, for the active-time heartbeat (components/active-heartbeat.tsx).
  * Seconds spent on these pages count toward that product in product_active_daily
- * (DAU/WAU/MAU = 5+ minutes a day). Every visible second also counts toward "site".
+ * (DAU/WAU/MAU = 5+ minutes a day; Bootcamp = 2+ minutes, migration 0078). Every visible second also counts toward "site".
  * The server only accepts the products listed here (track_active_ping, migration 0063).
  */
 export type ActiveProduct = "codesprint" | "bootcamp" | "pyq" | "cp" | "vsat" | "peerpath";
