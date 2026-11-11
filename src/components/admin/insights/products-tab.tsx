@@ -49,7 +49,7 @@ export function ProductsTab({ range, period, active, openPeople }: { range: Rang
                 <th className="px-2 py-2 text-right font-semibold">VSAT early</th>
                 <th className="px-2 py-2 text-right font-semibold">VSAT %</th>
                 <th className="px-2 py-2 text-right font-semibold">On 2+ products</th>
-                <th className="px-2 py-2 text-right font-semibold" title="5+ minutes in the last 30 days">Active (30d)</th>
+                <th className="px-2 py-2 text-right font-semibold" title="5+ minutes on the product (Bootcamp: 2+ minutes on its pages) on any day in the last 30 days">Active (30d)</th>
                 <th className="px-2 py-2 text-right font-semibold">Spend*</th>
                 <th className="px-2 py-2 text-right font-semibold">Cost / user*</th>
                 <th className="px-2 py-2 text-right font-semibold">Cost / MQR*</th>

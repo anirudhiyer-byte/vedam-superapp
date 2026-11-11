@@ -53,7 +53,7 @@ export function ActiveUsers({ product, title }: { product: "codesprint" | "bootc
     <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="font-[family-name:var(--font-inter)] text-lg font-bold text-white">{title} — Active Users</h2>
-        <span className="font-[family-name:var(--font-inter)] text-[12px] text-white/40">active = ≥5 min/day · Target editable</span>
+        <span className="font-[family-name:var(--font-inter)] text-[12px] text-white/40">active = ≥{product === "bootcamp" ? 2 : 5} min/day · Target editable</span>
       </div>
       {loading ? (
         <div className="h-40 animate-pulse rounded-xl border border-white/10 bg-white/[0.04]" />
@@ -83,7 +83,7 @@ export function ActiveUsers({ product, title }: { product: "codesprint" | "bootc
             </tbody>
           </table>
           <p className="mt-3 font-[family-name:var(--font-inter)] text-[12px] leading-relaxed text-white/45">
-            A user is active on {title} for a day if they spend ≥5 minutes on it (tracked via heartbeat). DAU = today · WAU = active on any day in the last 7 · MAU = last 30. Trend compares today vs yesterday, this week vs last, this month vs last.
+            A user is active on {title} for a day if they spend ≥{product === "bootcamp" ? "2 minutes on its pages" : "5 minutes on it"} (tracked via heartbeat). DAU = today · WAU = active on any day in the last 7 · MAU = last 30. Trend compares today vs yesterday, this week vs last, this month vs last.
           </p>
         </div>
       )}
