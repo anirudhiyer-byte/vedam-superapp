@@ -107,7 +107,7 @@ export function OverviewTab({ period, active, openPeople }: { period: PeriodKey;
   );
 }
 
-/** Active users per product (5+ minutes a day; Bootcamp = 5+ minutes in the live Zoom) and a 30-day trend for the whole site. */
+/** Active users per product (5+ minutes a day; Bootcamp = 2+ minutes on its pages) and a 30-day trend for the whole site. */
 export function ActiveCard({ active }: { active: { data: Active | null; error: string | null } }) {
   if (active.error) return <ErrorNote message={active.error} />;
   if (!active.data) return <Loading h={300} />;
@@ -121,7 +121,7 @@ export function ActiveCard({ active }: { active: { data: Active | null; error: s
   const peakDay = days[vals.indexOf(Math.max(...vals))];
 
   return (
-    <Card title="Active users" sub="Active = 5+ minutes on the product that day (Bootcamp: 5+ minutes in the live Zoom session). Week = last 7 days, month = last 30 days, compared with the 7 / 30 days before.">
+    <Card title="Active users" sub="Active = 5+ minutes on the product that day (Bootcamp: 2+ minutes on its pages). Week = last 7 days, month = last 30 days, compared with the 7 / 30 days before.">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[620px] border-collapse text-[13.5px]">
           <thead>
