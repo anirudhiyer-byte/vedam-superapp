@@ -6,14 +6,12 @@
  * written only by the payment webhook (server side). Values are checked against
  * the database enums so a bad value is a clean 400, not a DB error.
  *
- * Left as before on purpose (owner's decision, 30 Oct 2026): application_stage_*
- * and the slot field stay user-writable until that flow is reworked.
+ * VSAT pipeline (owner's decision, 12 Nov 2026): application_stage_1/2 are no longer
+ * user-writable. Stages are moved by staff through the database stage engine (0080)
+ * and by server code; the dashboard only ever sent campus_applied. The slot fields
+ * stay user-writable as before.
  */
 const FORM_STAGES = ["not_started", "form_initiated", "basic_details", "academic_details", "parent_details", "documents_uploaded", "form_submitted"] as const;
-const APP_STAGES = [
-  "payment_not_initiated", "payment_approved", "slot_selected", "exam_not_given", "vsat_cleared", "vsat_not_cleared",
-  "interview_selected", "interview_rejected", "counselling_done", "offer_released", "enrolled", "offer_cancelled",
-] as const;
 
 // Campus choice is captured post-VSAT-cleared (before interview); same options as the /vsat form.
 const CAMPUSES = ["Ajeenkya DY Patil University — Pune", "Sushant University — Gurugram", "No preference"] as const;
@@ -26,8 +24,6 @@ const isUuid = (v: unknown) => typeof v === "string" && /^[0-9a-f]{8}-[0-9a-f]{4
 const ALLOWED: Record<string, (v: unknown) => boolean> = {
   form_stage_1: oneOf(FORM_STAGES),
   form_stage_2: oneOf(FORM_STAGES),
-  application_stage_1: oneOf(APP_STAGES),
-  application_stage_2: oneOf(APP_STAGES),
   vsat_slot_datetime_1: isoDateTime,
   vsat_slot_datetime_2: isoDateTime,
   exam_date_id: isUuid,
