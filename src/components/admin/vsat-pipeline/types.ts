@@ -61,4 +61,6 @@ export type Preview = {
   case: string; score: number; category: number | null; min_award: number | null; max_award: number | null;
   award_steps: number[]; jee_floor: number | null; missing: string[]; inputs: Record<string, number | null>;
   campus: string; jee_floor_enabled: boolean; programme_fee: number;
+  /** Interview "Achievements & extracurriculars" score (1–5), sheet column BQ. 5 → +10% when 30% or less. Set by the database (0082). */
+  special_rating: number | null;
 };

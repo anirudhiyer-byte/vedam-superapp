@@ -443,7 +443,6 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
   const [supabase] = useState(() => createClient());
   const [pre, setPre] = useState<Preview | null>(null);
   const [step, setStep] = useState<number | null>(null);
-  const [rating, setRating] = useState("");
   const [actual, setActual] = useState("");
   const [reason, setReason] = useState("");
   const [remarks, setRemarks] = useState("");
@@ -456,11 +455,12 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
     });
   }, [supabase, applicationId]);
 
-  // what the database will calculate (shown for guidance; the database calculates it again)
+  // what the database will calculate (shown for guidance; the database calculates it again).
+  // The +10% rating is the interview's achievements score — the counsellor can't change it.
   const calc = step === null ? null : Math.min(100, (() => {
     const floor = pre?.jee_floor_enabled ? (pre.jee_floor ?? 0) : 0;
     const m = Math.max(step, floor);
-    return rating === "5" && m <= 30 ? m + 10 : m;
+    return pre?.special_rating === 5 && m <= 30 ? m + 10 : m;
   })());
   const differs = actual.trim() !== "" && calc !== null && Number(actual) !== calc;
 
@@ -470,7 +470,6 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
     if (differs && reason.trim().length < 3) return setMsg("The actual % differs from the calculated one — please add a reason.");
     setBusy(true); setMsg("");
     const p: Record<string, unknown> = { application_id: applicationId, chosen_step: step };
-    if (rating) p.special_rating = Number(rating);
     if (actual.trim() !== "") p.actual_pct = Number(actual);
     if (differs) p.actual_reason = reason.trim();
     if (remarks.trim()) p.remarks = remarks.trim();
@@ -491,6 +490,7 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
         ["Range", pre.min_award === null ? "—" : `${pre.min_award}%–${pre.max_award}%`],
         ["JEE floor", pre.jee_floor === null ? "—" : `${pre.jee_floor}% (${pre.jee_floor_enabled ? "on" : "off for this campus"})`],
         ["Programme fee", `₹${Number(pre.programme_fee).toLocaleString("en-IN")}`],
+        ["Achievements (interview)", pre.special_rating === null ? "—" : `${pre.special_rating}/5${pre.special_rating === 5 ? " · +10% if 30% or less" : ""}`],
       ]} />
       {pre.missing.length > 0 && <p className="text-xs text-amber-200">Missing (counted as 0, like the sheet): {pre.missing.join(", ").replace(/_/g, " ")}</p>}
       <div>
@@ -503,12 +503,7 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
           ))}
         </div>
       </div>
-      <div className="grid gap-2 sm:grid-cols-3">
-        <label className="block text-xs text-white/50">Special rating 1–5 (5 adds +10% when 30% or less)
-          <select className={input} value={rating} onChange={(e) => setRating(e.target.value)}>
-            <option value="">—</option>{[1, 2, 3, 4, 5].map((n) => <option key={n} value={n}>{n}</option>)}
-          </select>
-        </label>
+      <div className="grid gap-2 sm:grid-cols-2">
         <label className="block text-xs text-white/50">Actual % (leave empty to use {calc === null ? "the calculated %" : `${calc}%`})
           <input className={input} type="number" min={0} max={100} step="0.5" value={actual} onChange={(e) => setActual(e.target.value)} />
         </label>
