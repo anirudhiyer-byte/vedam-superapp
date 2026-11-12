@@ -1,6 +1,7 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { safeNext } from "@/lib/safe-next";
+import { hasVsatRole, isVsatTeamPath } from "@/lib/vsat/pipeline";
 
 type CookieToSet = { name: string; value: string; options?: CookieOptions };
 
@@ -23,6 +24,7 @@ function redirectWithCookies(url: URL, from: NextResponse) {
 /**
  * Refreshes the Supabase session on every request AND enforces route access:
  *  - /admin        -> must be logged in AND have the admin role
+ *                    (exception: exactly /admin/vsat also opens for active VSAT team members)
  *  - AUTH_REQUIRED -> must be logged in
  *  - logged-out hits on gated routes bounce to /login?next=<path> (deeplink return)
  *  - logged-in hits on /login|/register bounce home
@@ -80,6 +82,12 @@ export async function updateSession(request: NextRequest) {
     if (!isAdmin) {
       const { data } = await supabase.rpc("is_admin");
       isAdmin = !!data;
+    }
+    // VSAT pipeline: active VSAT team members (e.g. an outside interviewer or counsellor) may open
+    // exactly /admin/vsat — the page shows them only their panels and every call is checked in the DB.
+    if (!isAdmin && isVsatTeamPath(path)) {
+      const { data } = await supabase.rpc("vsat_my_roles");
+      isAdmin = hasVsatRole(data);
     }
     if (!isAdmin) {
       const url = request.nextUrl.clone();
