@@ -6,6 +6,8 @@ import { VsatExamCenter, type WheeboxStatus } from "@/components/admin/vsat-exam
 import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
 import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
+import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
+import { visiblePanels, type PanelKey, type VsatRoles } from "@/lib/vsat/pipeline";
 
 /**
  * VSAT Admin Panel — wears the same "Neural" shell as the Growth panel
@@ -14,6 +16,9 @@ import { CallingPanel, type CallingPage } from "@/components/admin/calling/calli
  *
  * - VSAT tools (Form Builder, Exam Center + Dates) mount as React in the content
  *   area. Unbuilt items are "coming next" placeholders.
+ * - VSAT pipeline panels (Applications, Exam, Interview, Counselling) show by VSAT role.
+ *   People who are only on the VSAT team (not Vedam staff / admin) see just their panels —
+ *   no settings, communications or Growth. The database checks every call again.
  * - Growth loads the existing Growth modules in a frame, unchanged.
  */
 
@@ -99,12 +104,25 @@ function Svg({ inner, cls }: { inner: string; cls?: string }) {
   return <svg viewBox="0 0 24 24" className={cls} dangerouslySetInnerHTML={{ __html: inner }} />;
 }
 
-export function VsatAdminPanel({ wheebox }: { wheebox: WheeboxStatus }) {
+const PIPELINE: PanelKey[] = ["apps", "exam", "intv", "couns"];
+const isPanelKey = (id: string): id is PanelKey => (PIPELINE as string[]).includes(id);
+
+export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: WheeboxStatus; staff: boolean; vsatRoles: VsatRoles }) {
+  const allowed = visiblePanels(vsatRoles);
+  const first = allowed[0];
+  const firstTitle = VSAT.flatMap((g) => g.items).find((i) => i.id === first)?.label ?? "";
   const [panel, setPanel] = useState<"vsat" | "growth">("vsat");
-  const [active, setActive] = useState<{ id: string; file?: string; page?: string; cm?: boolean; title: string }>({ id: "form", title: "Form Builder" });
+  const [active, setActive] = useState<{ id: string; file?: string; page?: string; cm?: boolean; title: string }>(
+    staff ? { id: "form", title: "Form Builder" } : { id: first ?? "none", title: firstTitle });
   const [open, setOpen] = useState<string | null>(null); // open parent id
 
-  const model = panel === "vsat" ? VSAT : GROWTH;
+  // pipeline items go live by role; non-staff team members see only their pipeline panels
+  const vsatModel: Group[] = VSAT
+    .map((g) => ({ ...g, items: g.items
+      .filter((it) => staff || (isPanelKey(it.id) && allowed.includes(it.id)))
+      .map((it) => (isPanelKey(it.id) ? { ...it, live: allowed.includes(it.id) } : it)) }))
+    .filter((g) => g.items.length > 0);
+  const model = panel === "vsat" ? vsatModel : GROWTH;
 
   function switchPanel(p: "vsat" | "growth") {
     setPanel(p); setOpen(null);
@@ -131,6 +149,7 @@ export function VsatAdminPanel({ wheebox }: { wheebox: WheeboxStatus }) {
     if (active.cm && active.page) return <div className="vp-scroll"><CommunicationManager key={active.page} page={active.page as CmPage} onNavigate={goCm} /></div>;
     if (active.id === "form") return <div className="vp-scroll"><VsatFormBuilder /></div>;
     if (active.id === "center") return <div className="vp-scroll"><VsatExamCenter wheebox={wheebox} /><VsatExamDates /></div>;
+    if (isPanelKey(active.id) && allowed.includes(active.id)) return <div className="vp-scroll"><PipelinePanel key={active.id} panel={active.id} roles={vsatRoles} /></div>;
     return <Placeholder title={active.title} kind="vsat" />;
   }
 
@@ -140,10 +159,12 @@ export function VsatAdminPanel({ wheebox }: { wheebox: WheeboxStatus }) {
       <div className="vp-app">
         <aside className="vp-rail">
           <div className="vp-brand"><Image src="/vedam-logo-dark.png" alt="Vedam School of Technology" width={118} height={42} className="vp-logo" priority /></div>
-          <div className="vp-pills">
-            <button className={panel === "vsat" ? "on" : ""} onClick={() => switchPanel("vsat")}>VSAT</button>
-            <button className={panel === "growth" ? "on" : ""} onClick={() => switchPanel("growth")}>Growth</button>
-          </div>
+          {staff && (
+            <div className="vp-pills">
+              <button className={panel === "vsat" ? "on" : ""} onClick={() => switchPanel("vsat")}>VSAT</button>
+              <button className={panel === "growth" ? "on" : ""} onClick={() => switchPanel("growth")}>Growth</button>
+            </div>
+          )}
           <nav className="vp-nav">
             {model.map((group) => (
               <div className="vp-grp" key={group.g}>
