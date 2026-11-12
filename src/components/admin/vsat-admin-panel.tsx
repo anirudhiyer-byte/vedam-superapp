@@ -236,6 +236,10 @@ const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 .vsat-shell{--bg:#070a16;--bg2:#0b1024;--panel:rgba(20,26,54,.55);--ink:#f2f5ff;--mut:#aeb8e0;--mut2:#7681b2;--green:#34e2b0;--cyan:#22d3ee;--violet:#8b5cf6;--line:rgba(130,150,255,.10);--rail:rgba(12,16,38,.72);--display:'Sora',system-ui,sans-serif;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;color-scheme:dark}
 .vsat-shell{color:var(--ink);font-family:var(--font)}
+.vsat-shell select,.vsat-shell input[type=date],.vsat-shell input[type=time],.vsat-shell input[type=datetime-local]{color-scheme:dark}
+.vsat-shell select option,.vsat-shell select optgroup{background:#141a38;color:#f2f5ff}
+.vsat-shell select option:checked{background:#34e2b0;color:#04101a}
+.vsat-shell select option:disabled{color:#7681b2}
 .vp-app{display:grid;grid-template-columns:248px 1fr;height:100vh;height:100dvh;background:radial-gradient(1100px 700px at 82% -8%,rgba(139,92,246,.16),transparent 60%),radial-gradient(900px 620px at -6% 108%,rgba(34,211,238,.13),transparent 58%),linear-gradient(180deg,var(--bg),var(--bg2))}
 .vp-rail{background:var(--rail);backdrop-filter:blur(14px);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:16px 12px;gap:2px;overflow:auto}
 .vp-brand{display:flex;align-items:center;padding:4px 8px 12px;border-bottom:1px solid var(--line)}
