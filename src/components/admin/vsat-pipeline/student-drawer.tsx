@@ -430,7 +430,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
         ["Counsellor", show(c.counsellor)], ["Slot (IST)", fmtIst(c.slot_datetime)],
         ["Meeting", c.zoom_link ? <a key="m" className="text-[#22d3ee] underline" href={c.zoom_link} target="_blank" rel="noopener noreferrer">Open link</a> : "—"],
         ["Attendance", show(c.attendance)], ["Scholarship score", show(c.calc_score)], ["Category", show(c.calc_category ?? c.scholarship_category)],
-        ["Chosen step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Actual %", show(c.actual_pct ?? c.scholarship_pct, "%")],
+        ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
       ]} />}
       {c?.actual_reason && <p className="text-xs text-white/60">Reason for actual %: “{c.actual_reason}”</p>}
       {canAssign && <AssignForm kind="counsellor" team={team} applicationId={s.profile.application_id} onDone={onDone} />}
@@ -442,9 +442,6 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
 function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
   const [pre, setPre] = useState<Preview | null>(null);
-  const [step, setStep] = useState<number | null>(null);
-  const [actual, setActual] = useState("");
-  const [reason, setReason] = useState("");
   const [remarks, setRemarks] = useState("");
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
@@ -455,29 +452,25 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
     });
   }, [supabase, applicationId]);
 
-  // what the database will calculate (shown for guidance; the database calculates it again).
-  // The +10% rating is the interview's achievements score — the counsellor can't change it.
+  // Formula only (0083): the step is the sheet's BK formula, the +10% rating is the interview's
+  // achievements score. Shown for guidance; the database calculates both again on save.
+  const step = pre?.auto_step ?? null;
   const calc = step === null ? null : Math.min(100, (() => {
     const floor = pre?.jee_floor_enabled ? (pre.jee_floor ?? 0) : 0;
     const m = Math.max(step, floor);
     return pre?.special_rating === 5 && m <= 30 ? m + 10 : m;
   })());
-  const differs = actual.trim() !== "" && calc !== null && Number(actual) !== calc;
 
   async function submit() {
-    if (step === null) return setMsg("Pick a scholarship step.");
-    if (actual.trim() !== "") { const n = Number(actual); if (!Number.isFinite(n) || n < 0 || n > 100) return setMsg("Actual % must be between 0 and 100."); }
-    if (differs && reason.trim().length < 3) return setMsg("The actual % differs from the calculated one — please add a reason.");
+    if (step === null) return setMsg(errorText("NO_BAND"));
     setBusy(true); setMsg("");
-    const p: Record<string, unknown> = { application_id: applicationId, chosen_step: step };
-    if (actual.trim() !== "") p.actual_pct = Number(actual);
-    if (differs) p.actual_reason = reason.trim();
+    const p: Record<string, unknown> = { application_id: applicationId };
     if (remarks.trim()) p.remarks = remarks.trim();
     const { data, error } = await supabase.rpc("vsat_submit_counselling", { p });
     setBusy(false);
     if (error) return setMsg(errorText(error.message));
-    const d = data as { actual_pct: number; calculated_pct: number };
-    setMsg(`Saved ✓ Scholarship ${d.actual_pct}% (calculated ${d.calculated_pct}%) → Counselled ✓`);
+    const d = data as { actual_pct: number };
+    setMsg(`Saved ✓ Scholarship ${d.actual_pct}% → Counselled ✓`);
     onDone();
   }
 
@@ -488,31 +481,16 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
       <Grid items={[
         ["Case", pre.case.replace(/_/g, " ")], ["Score", String(pre.score)], ["Category", show(pre.category)],
         ["Range", pre.min_award === null ? "—" : `${pre.min_award}%–${pre.max_award}%`],
+        ["Step (from the score)", step === null ? "—" : `${step}%`],
         ["JEE floor", pre.jee_floor === null ? "—" : `${pre.jee_floor}% (${pre.jee_floor_enabled ? "on" : "off for this campus"})`],
-        ["Programme fee", `₹${Number(pre.programme_fee).toLocaleString("en-IN")}`],
         ["Achievements (interview)", pre.special_rating === null ? "—" : `${pre.special_rating}/5${pre.special_rating === 5 ? " · +10% if 30% or less" : ""}`],
+        ["Final scholarship", calc === null ? "—" : `${calc}%`],
+        ["Programme fee", `₹${Number(pre.programme_fee).toLocaleString("en-IN")}`],
       ]} />
       {pre.missing.length > 0 && <p className="text-xs text-amber-200">Missing (counted as 0, like the sheet): {pre.missing.join(", ").replace(/_/g, " ")}</p>}
-      <div>
-        <p className="mb-1 text-sm">Scholarship step</p>
-        <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Scholarship step">
-          {pre.award_steps.map((x) => (
-            <button key={x} type="button" role="radio" aria-checked={step === x}
-              className={`rounded-lg border px-3 py-1.5 text-sm font-semibold ${step === x ? "border-[#34e2b0] bg-[#34e2b0] text-[#04101a]" : "border-white/15 bg-white/5"}`}
-              onClick={() => setStep(x)}>{x}%</button>
-          ))}
-        </div>
-      </div>
-      <div className="grid gap-2 sm:grid-cols-2">
-        <label className="block text-xs text-white/50">Actual % (leave empty to use {calc === null ? "the calculated %" : `${calc}%`})
-          <input className={input} type="number" min={0} max={100} step="0.5" value={actual} onChange={(e) => setActual(e.target.value)} />
-        </label>
-        {differs && <label className="block text-xs text-white/50">Reason (required)
-          <input className={input} maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} />
-        </label>}
-      </div>
+      {step === null && <p className="text-xs text-amber-200">{errorText("NO_BAND")}</p>}
       <textarea className={input} rows={2} maxLength={2000} placeholder="Counsellor remarks (optional)" value={remarks} onChange={(e) => setRemarks(e.target.value)} aria-label="Counsellor remarks" />
-      <button className={primary} disabled={busy} onClick={submit}>{busy ? "Saving…" : "Save counselling"}</button>
+      <button className={primary} disabled={busy || step === null} onClick={submit}>{busy ? "Saving…" : "Save counselling"}</button>
       <Msg text={msg} />
     </div>
   );

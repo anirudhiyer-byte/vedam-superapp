@@ -187,14 +187,15 @@ begin
                          and r->'missing' ? 'jee_maths_pct' and (r->>'jee_floor')::numeric = 30);
     r := pg_temp.call_as(int1, format('select public.vsat_scholarship_preview(%L)', a2));
     t_name := t_name || text 'E interviewer of another student cannot preview'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'FORBIDDEN');
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1, 'chosen_step', 37)));
-    t_name := t_name || text 'E a step outside the category steps is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: chosen_step');
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1, 'chosen_step', 20, 'actual_pct', 50)));
-    t_name := t_name || text 'E an actual % different from the calculated one needs a reason'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REASON_REQUIRED');
+    -- 0083: the step and the final % come only from the formulas; nothing can be typed in
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1, 'chosen_step', 25)));
+    t_name := t_name || text 'E a typed step is refused (UNKNOWN_KEY)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1, 'actual_pct', 50, 'actual_reason', 'zz test')));
+    t_name := t_name || text 'E a typed actual % is refused (UNKNOWN_KEY)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
     -- 0082: the +10% rating comes from the interview's achievements score (3 for a1), not the request.
     -- The bonus itself is tested in vsat_achievements_bonus.test.sql.
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1, 'chosen_step', 20)));
-    t_name := t_name || text 'E step 20, interview achievements 3 → 20% (no bonus), JEE floor off → counselled';
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1)));
+    t_name := t_name || text 'E formula step 20 (score 68 in 65–70), interview achievements 3 → 20% (no bonus), JEE floor off → counselled';
     t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 20 and (r->>'actual_pct')::numeric = 20 and not (r->>'bonus_applied')::boolean
                          and not (r->>'jee_floor_applied')::boolean and r->>'stage' = 'counselled');

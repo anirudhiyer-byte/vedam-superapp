@@ -100,6 +100,7 @@ const ERRORS: Record<string, string> = {
   SLOT_TAKEN: "That person already has another student at this time.",
   CAMPUS_MISSING: "The student has no campus yet, so the scholarship can't be calculated.",
   NO_OVERRIDE: "There's no override to remove.",
+  NO_BAND: "This score doesn't fall in any scholarship band. Check the scholarship settings.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",

@@ -63,4 +63,6 @@ export type Preview = {
   campus: string; jee_floor_enabled: boolean; programme_fee: number;
   /** Interview "Achievements & extracurriculars" score (1–5), sheet column BQ. 5 → +10% when 30% or less. Set by the database (0082). */
   special_rating: number | null;
+  /** Step from the score (sheet column BK), null when the score is in no band. Set by the database (0083). */
+  auto_step: number | null;
 };

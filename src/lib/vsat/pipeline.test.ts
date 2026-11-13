@@ -57,6 +57,7 @@ describe("errorText", () => {
     expect(errorText("REASON_REQUIRED")).toMatch(/reason/i);
     expect(errorText("SLOT_TAKEN")).toMatch(/another student/);
     expect(errorText("BAD_VALUE: logic")).toBe('Please check "Logical reasoning".');
+    expect(errorText("NO_BAND")).toMatch(/scholarship band/);
   });
   it("never shows raw database text", () => {
     expect(errorText('duplicate key value violates unique constraint "x"')).toBe("Something went wrong. Please try again.");
