@@ -96,17 +96,17 @@ begin
   begin perform public.vsat_calc_scholarship('{}', 'delhi', null); e := 'ACCEPTED'; exception when others then e := sqlstate || ' ' || sqlerrm; end;
   t_name := t_name || text 'Scholarship: unknown campus is refused'; t_pass := t_pass || (e like '22023%'); t_det := t_det || e;
 
-  -- 5. Final scholarship % (JEE floor off by default = what the sheets actually did)
+  -- 5. Final scholarship % (JEE floor ON for both campuses since 0084, decision Q9)
   r := public.vsat_calc_final_scholarship(25, 60, null, 'pune');
-  t_name := t_name || text 'Final %: JEE floor OFF (default) → weightage kept (sheet: JEE 98.4, 25% stayed 25%)'; t_pass := t_pass || ((r->>'pct')::numeric = 25 and not (r->>'jee_floor_applied')::boolean); t_det := t_det || r::text;
+  t_name := t_name || text 'Final %: JEE floor ON (since 0084) → 25% raised to the floor 60 (Pune)'; t_pass := t_pass || ((r->>'pct')::numeric = 60 and (r->>'jee_floor_applied')::boolean); t_det := t_det || r::text;
   r := public.vsat_calc_final_scholarship(25, null, 5, 'gurugram');
   t_name := t_name || text 'Final %: special rating 5 and ≤30% → +10'; t_pass := t_pass || ((r->>'pct')::numeric = 35 and (r->>'bonus_applied')::boolean); t_det := t_det || r::text;
   r := public.vsat_calc_final_scholarship(35, null, 5, 'gurugram');
   t_name := t_name || text 'Final %: special rating 5 but above 30% → no bonus'; t_pass := t_pass || ((r->>'pct')::numeric = 35 and not (r->>'bonus_applied')::boolean); t_det := t_det || r::text;
   begin
-    update public.vsat_campus_settings set jee_floor_enabled = true where campus = 'pune';
+    update public.vsat_campus_settings set jee_floor_enabled = false where campus = 'pune';
     r := public.vsat_calc_final_scholarship(25, 60, null, 'pune');
-    t_name := t_name || text 'Final %: JEE floor ON → raised to 60'; t_pass := t_pass || ((r->>'pct')::numeric = 60 and (r->>'jee_floor_applied')::boolean); t_det := t_det || r::text;
+    t_name := t_name || text 'Final %: JEE floor switched OFF → weightage kept (25)'; t_pass := t_pass || ((r->>'pct')::numeric = 25 and not (r->>'jee_floor_applied')::boolean); t_det := t_det || r::text;
     raise exception using errcode = 'ZDONE';
   exception when sqlstate 'ZDONE' then null;
   end;

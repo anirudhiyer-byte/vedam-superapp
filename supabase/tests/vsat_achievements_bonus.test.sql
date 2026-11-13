@@ -109,7 +109,7 @@ begin
     -- ── A. preview shows the rating from the interview ──
     pre := pg_temp.call_as(cou1, format('select public.vsat_scholarship_preview(%L)', b1));
     t_name := t_name || text 'A preview: special_rating = interview achievements (5)'; t_det := t_det || left(pre::text, 200);
-    t_pass := t_pass || ((pre->>'special_rating')::int = 5 and (pre->>'auto_step')::numeric = 30 and not (pre->>'jee_floor_enabled')::boolean);
+    t_pass := t_pass || ((pre->>'special_rating')::int = 5 and (pre->>'auto_step')::numeric = 30 and pre->'jee_floor' = 'null'::jsonb);  -- no JEE → no floor
     r := pg_temp.call_as(cou1, format('select public.vsat_scholarship_preview(%L)', b2));
     t_name := t_name || text 'A preview: achievements 4 → special_rating 4'; t_det := t_det || coalesce(r->>'special_rating', 'null');
     t_pass := t_pass || ((r->>'special_rating')::int = 4);
@@ -127,7 +127,7 @@ begin
     t_pass := t_pass || (s = 'counselling_scheduled');
 
     -- ── C. bonus applied from the interview ──
-    m := step;  -- JEE floor is off for Pune (checked in A)
+    m := step;  -- no JEE score, so no floor (checked in A)
     r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b1)));
     t_name := t_name || text 'C achievements 5, step 30 → 40% and bonus_applied'; t_det := t_det || (r::text || ' step=' || step || ' m=' || m);
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 40 and (r->>'bonus_applied')::boolean

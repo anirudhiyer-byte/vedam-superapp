@@ -195,20 +195,20 @@ begin
     -- 0082: the +10% rating comes from the interview's achievements score (3 for a1), not the request.
     -- The bonus itself is tested in vsat_achievements_bonus.test.sql.
     r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1)));
-    t_name := t_name || text 'E formula step 20 (score 68 in 65–70), interview achievements 3 → 20% (no bonus), JEE floor off → counselled';
+    t_name := t_name || text 'E formula step 20 (score 68 in 65–70), JEE 91.5 → floor 30 (on since 0084) → 30%, achievements 3 → no bonus → counselled';
     t_det := t_det || r::text;
-    t_pass := t_pass || ((r->>'calculated_pct')::numeric = 20 and (r->>'actual_pct')::numeric = 20 and not (r->>'bonus_applied')::boolean
-                         and not (r->>'jee_floor_applied')::boolean and r->>'stage' = 'counselled');
+    t_pass := t_pass || ((r->>'calculated_pct')::numeric = 30 and (r->>'actual_pct')::numeric = 30 and not (r->>'bonus_applied')::boolean
+                         and (r->>'jee_floor_applied')::boolean and r->>'stage' = 'counselled');
     t_name := t_name || text 'E saved on counselling + application; old field counselling_done';
     select format('%s|%s|%s|%s|%s', ca.calc_category, ca.chosen_step, ca.scholarship_pct, am.scholarship_percentage, am.application_stage_1)
       into s from public.counselling_assignments ca join public.application_manager am using (application_id) where ca.application_id = a1;
-    t_det := t_det || s; t_pass := t_pass || (s = '7|20|20|20|counselling_done');
+    t_det := t_det || s; t_pass := t_pass || (s = '7|20|30|30|counselling_done');
 
     -- ════ F. list summary + access ════
     r := pg_temp.call_as(adm, 'select public.vsat_pipeline_list(''{"q":"ZZT-PNL","stage":"counselled"}''::jsonb)');
     t_name := t_name || text 'F list rows carry the interview and counselling summary';
     t_det := t_det || left(r::text, 300);
-    t_pass := t_pass || ((r->'rows'->0->'interview'->>'score')::numeric = 3.65 and (r->'rows'->0->'counselling'->>'pct')::numeric = 20);  -- 20 since 0082 (see E)
+    t_pass := t_pass || ((r->'rows'->0->'interview'->>'score')::numeric = 3.65 and (r->'rows'->0->'counselling'->>'pct')::numeric = 30);  -- 30 since 0084 (see E)
     t_name := t_name || text 'F new RPCs: authenticated only, security definer, empty search_path; helpers private';
     select string_agg(p.proname, ',') into s from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
      where ns.nspname = 'public' and p.proname in ('vsat_team_list','vsat_batches','vsat_student','vsat_assign_interview','vsat_submit_interview',
