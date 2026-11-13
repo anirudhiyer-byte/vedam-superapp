@@ -164,19 +164,20 @@ begin
     update public.vsat_profile_runs set created_at = now() - interval '2 hours' where user_id = adm;
     r := pg_temp.call_as(adm, format('select public.vsat_profile_start(%L)', b3));
     t_name := t_name || text 'C older runs do not count; admissions may start'; t_det := t_det || left(r::text, 120); t_pass := t_pass || (r ? 'run_id');
+    update public.vsat_profile_runs set status = 'failed' where id = (r->>'run_id')::uuid;  -- close it, so section E can start a new run
 
     -- ── D. save: service role only ──
     r := pg_temp.call_as(cou1, format('select public.vsat_profile_save(%L, %L, %L)', run, 'typed by hand', 'x'));
     t_name := t_name || text 'D a signed-in user cannot save text (server only)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'sqlstate' = '42501');
-    r := pg_temp.call_as(cou1, format('select public.vsat_profile_fail(%L, %L)', run, 'x'));
+    r := pg_temp.call_as(cou1, format('select jsonb_build_object(''ok'', true) from (select public.vsat_profile_fail(%L, %L)) x', run, 'x'));
     t_name := t_name || text 'D a signed-in user cannot call fail either'; t_det := t_det || r::text; t_pass := t_pass || (r->>'sqlstate' = '42501');
     r := pg_temp.call_svc(format('select public.vsat_profile_save(%L, %L, %L)', run, '   ', 'm'));
     t_name := t_name || text 'D empty text refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: text');
     r := pg_temp.call_svc(format('select public.vsat_profile_save(%L, %L, %L)', run, '• **Fit for Vedam** – moderate', 'claude-sonnet-5-5'));
     t_name := t_name || text 'D server saves the briefing'; t_det := t_det || r::text; t_pass := t_pass || (r->>'model' = 'claude-sonnet-5-5');
     t_name := t_name || text 'D saved on the counselling record with who (the run user), when, model; run done';
-    select format('%s|%s|%s|%s|%s', ca.profile_analysis, ca.profile_generated_by = cou1, ca.profile_generated_at is not null, ca.profile_model,
-                  (select pr.status from public.vsat_profile_runs pr where pr.id = run))
+    select format('%s|%s|%s|%s|%s', ca.profile_analysis->>'text', ca.profile_analysis->>'generated_by' = cou1::text, ca.profile_analysis ? 'generated_at',
+                  ca.profile_analysis->>'model', (select pr.status from public.vsat_profile_runs pr where pr.id = run))
       into s from public.counselling_assignments ca where ca.application_id = b1;
     t_det := t_det || s; t_pass := t_pass || (s = '• **Fit for Vedam** – moderate|t|t|claude-sonnet-5-5|done');
     r := pg_temp.call_svc(format('select public.vsat_profile_save(%L, %L, %L)', run, 'again', 'm'));
@@ -185,12 +186,12 @@ begin
     t_name := t_name || text 'D unknown run refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'NO_RUN');
     r := pg_temp.call_as(cou1, format('select public.vsat_student(%L)', b1));
     t_name := t_name || text 'D the student page shows the saved briefing'; t_det := t_det || left((r->'counselling')::text, 200);
-    t_pass := t_pass || (r->'counselling'->>'profile_analysis' = '• **Fit for Vedam** – moderate');
+    t_pass := t_pass || (r->'counselling'->'profile_analysis'->>'text' = '• **Fit for Vedam** – moderate');
 
     -- ── E. fail / expiry ──
     r := pg_temp.call_as(cou1, format('select public.vsat_profile_start(%L)', b3));
     run := (r->>'run_id')::uuid;
-    r := pg_temp.call_svc(format('select public.vsat_profile_fail(%L, %L)', run, 'AI_ERROR'));
+    r := pg_temp.call_svc(format('select jsonb_build_object(''ok'', true) from (select public.vsat_profile_fail(%L, %L)) x', run, 'AI_ERROR'));  -- fail returns void, so it is wrapped
     t_name := t_name || text 'E fail closes the run with its code'; select format('%s|%s', pr.status, pr.error_code) into s from public.vsat_profile_runs pr where pr.id = run;
     t_det := t_det || s; t_pass := t_pass || (s = 'failed|AI_ERROR');
     r := pg_temp.call_svc(format('select public.vsat_profile_save(%L, %L, %L)', run, 'late', 'm'));

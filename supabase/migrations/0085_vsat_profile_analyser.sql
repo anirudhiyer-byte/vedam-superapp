@@ -12,7 +12,8 @@
 --   2. the route sends the fixed prompt + fields to the AI service with the server's key.
 --   3. vsat_profile_save(run_id, text, model) / vsat_profile_fail(run_id, code) — SERVICE ROLE ONLY,
 --      so the saved briefing can only ever be what the AI returned, not text typed into the API.
---      The briefing is saved on the counselling record with when, by whom (the run's user) and model.
+--      The briefing is saved in the existing counselling_assignments.profile_analysis (jsonb, empty
+--      until now) as {text, model, generated_at, generated_by (the run's user)}.
 --
 -- Security: vsat_profile_runs has RLS on, no policies, no browser grants. start is SECURITY DEFINER,
 -- search_path '', authenticated only. save / fail are service_role only. Only the selected
@@ -34,12 +35,6 @@ create index if not exists vsat_profile_runs_user_time on public.vsat_profile_ru
 create index if not exists vsat_profile_runs_app_time on public.vsat_profile_runs (application_id, created_at desc);
 alter table public.vsat_profile_runs enable row level security;
 revoke all on table public.vsat_profile_runs from public, anon, authenticated;
-
-alter table public.counselling_assignments
-  add column if not exists profile_analysis      text,
-  add column if not exists profile_generated_at  timestamptz,
-  add column if not exists profile_generated_by  uuid references auth.users (id) on delete set null,
-  add column if not exists profile_model         text;
 
 -- 1 · start (as the user)
 create or replace function public.vsat_profile_start(p_application_id text)
@@ -75,7 +70,8 @@ begin
   select coalesce(p.full_name, p.email) into iv_name from public.profiles p where p.id = ia.interviewer_id;
   vsat_pct := case when am.exam_max_marks > 0 then round(am.exam_obtained_marks / am.exam_max_marks * 100, 2) end;
 
-  -- the sheet's 48 fields (labels as in the sheet, scales added where the sheet notes them); empty ones are skipped
+  -- the sheet's fields (first + last name as one, country left out: not stored; labels as in the sheet, scales added
+  -- where the sheet notes them); empty ones are skipped. No email, phone or address.
   select coalesce(jsonb_agg(jsonb_build_array(x.label, x.val) order by x.n), '[]'::jsonb) into f
     from (values
       (1,  'Name', am.registered_name),
@@ -97,7 +93,7 @@ begin
       (15, 'When Did You Appear For JEE Mains', am.jee_appeared_when::text),
       (16, 'JEE Mains Percentile', coalesce(ia.jee_pct, case when am.jee_registered then am.entrance_percentile end)::text),
       (17, 'JEE Mains Maths Percentile', coalesce(ia.jee_maths_pct, case when am.jee_registered then am.jee_main_maths_percentile end)::text),
-      (18, 'Studied Computer Science', am.studied_cs::text),
+      (18, 'Studied Computer Science', case am.studied_cs when true then 'Yes' when false then 'No' end),
       (19, 'Computer Science Experience', am.cs_experience::text),
       (20, 'VPS (out of 10)', am.vps_score::text),
       (21, 'VSAT Obtained Score (correct answers out of 50)', am.exam_obtained_marks::text),
@@ -147,8 +143,8 @@ begin
   select c.id into ca_id from public.counselling_assignments c
    where c.application_id = r.application_id and c.attempt_no = r.attempt_no order by c.created_at desc limit 1;
   if ca_id is null then raise exception 'NEEDS_COUNSELLOR' using errcode = '22023'; end if;
-  update public.counselling_assignments c set profile_analysis = btrim(p_text), profile_generated_at = now(),
-         profile_generated_by = r.user_id, profile_model = p_model
+  update public.counselling_assignments c
+     set profile_analysis = jsonb_build_object('text', btrim(p_text), 'model', p_model, 'generated_at', now(), 'generated_by', r.user_id)
    where c.id = ca_id;
   update public.vsat_profile_runs set status = 'done', model = p_model, finished_at = now() where id = r.id;
   return jsonb_build_object('generated_at', now(), 'model', p_model);

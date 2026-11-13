@@ -434,8 +434,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
         ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
       ]} />}
       {c?.actual_reason && <p className="text-xs text-white/60">Reason for actual %: “{c.actual_reason}”</p>}
-      {c && <ProfileBox applicationId={s.profile.application_id} saved={c.profile_analysis ?? null} savedAt={c.profile_generated_at ?? null}
-        canGenerate={s.can_manage || isCounsellor} />}
+      {c && <ProfileBox applicationId={s.profile.application_id} {...savedProfile(c.profile_analysis)} canGenerate={s.can_manage || isCounsellor} />}
       {canAssign && <AssignForm kind="counsellor" team={team} applicationId={s.profile.application_id} onDone={onDone} />}
       {canForm && c && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
     </Section>
@@ -452,6 +451,12 @@ function BriefingText({ text }: { text: string }) {
       ))}
     </div>
   );
+}
+
+/** profile_analysis (jsonb) → the saved briefing, if it has the shape vsat_profile_save writes. */
+function savedProfile(p: unknown): { saved: string | null; savedAt: string | null } {
+  const o = p && typeof p === "object" ? (p as Record<string, unknown>) : {};
+  return { saved: typeof o.text === "string" && o.text ? o.text : null, savedAt: typeof o.generated_at === "string" ? o.generated_at : null };
 }
 
 /** Profile analyser (step 6): the AI briefing for the counsellor. Generated on the server (/api/vsat/profile). */
