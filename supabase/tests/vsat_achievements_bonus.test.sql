@@ -2,7 +2,7 @@
 --
 -- How to run: paste this whole file into the staging SQL editor, or run it through the
 -- Supabase MCP. The last statement returns one row per test: test | pass | detail.
--- The formula itself (5 and ≤30% → +10, max 100) is tested in vsat_pipeline_scoring.test.sql;
+-- 0083: no chosen_step any more, the step is the formula's. The formula itself (5 and ≤30% → +10, max 100) is tested in vsat_pipeline_scoring.test.sql;
 -- this file checks where the rating comes from and that nobody can type it in.
 --
 -- Nothing is left behind: all test data is created inside a block that is rolled back with a
@@ -19,7 +19,8 @@ begin
   return v;
 end $$;
 
--- applicant at "vsat_cleared", Pune, VSAT p_marks/50 (25 → 50% → category 6, steps 30/35; 40 → 80% → category 5, steps 35/45)
+-- applicant at "vsat_cleared", Pune, VSAT p_marks/50 (since 0083 the step comes from the formula:
+-- 21 → 42% → score ~70.9, category 6, step 30; 40 → 80% → score ~78.6, category 5, step 45)
 create or replace function pg_temp.mk_app(p_id text, p_date uuid, p_marks numeric)
 returns text language plpgsql as $$
 declare u uuid := pg_temp.mk_user(lower(p_id) || '@example.invalid');
@@ -87,9 +88,9 @@ begin
     insert into public.vsat_team (user_id, role) values (adm, 'admissions'), (int1, 'interviewer'), (cou1, 'counsellor');
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at)
     values ('ZZTEST bonus batch', 'zz-bon', current_date, now(), now() + interval '2 hours') returning id into d;
-    b1 := pg_temp.mk_app('ZZT-BON-1', d, 25);
-    b2 := pg_temp.mk_app('ZZT-BON-2', d, 25);
-    b3 := pg_temp.mk_app('ZZT-BON-3', d, 25);
+    b1 := pg_temp.mk_app('ZZT-BON-1', d, 21);
+    b2 := pg_temp.mk_app('ZZT-BON-2', d, 21);
+    b3 := pg_temp.mk_app('ZZT-BON-3', d, 21);
     b4 := pg_temp.mk_app('ZZT-BON-4', d, 40);
 
     r := pg_temp.to_counselling(b1, 5, 1, adm, int1, cou1);
@@ -108,17 +109,17 @@ begin
     -- ── A. preview shows the rating from the interview ──
     pre := pg_temp.call_as(cou1, format('select public.vsat_scholarship_preview(%L)', b1));
     t_name := t_name || text 'A preview: special_rating = interview achievements (5)'; t_det := t_det || left(pre::text, 200);
-    t_pass := t_pass || ((pre->>'special_rating')::int = 5 and pre->'award_steps' @> '[30]'::jsonb and not (pre->>'jee_floor_enabled')::boolean);
+    t_pass := t_pass || ((pre->>'special_rating')::int = 5 and (pre->>'auto_step')::numeric = 30 and not (pre->>'jee_floor_enabled')::boolean);
     r := pg_temp.call_as(cou1, format('select public.vsat_scholarship_preview(%L)', b2));
     t_name := t_name || text 'A preview: achievements 4 → special_rating 4'; t_det := t_det || coalesce(r->>'special_rating', 'null');
     t_pass := t_pass || ((r->>'special_rating')::int = 4);
 
     -- ── B. nobody can type the rating in ──
     step := 30;
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b2, 'chosen_step', step, 'special_rating', 5)));
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b2, 'special_rating', 5)));
     t_name := t_name || text 'B counsellor sending special_rating is refused (UNKNOWN_KEY)'; t_det := t_det || r::text;
     t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
-    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b2, 'chosen_step', step, 'special_rating', 5)));
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b2, 'special_rating', 5)));
     t_name := t_name || text 'B admissions sending special_rating is refused too'; t_det := t_det || r::text;
     t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
     t_name := t_name || text 'B refused calls saved nothing (still counselling_scheduled)';
@@ -127,7 +128,7 @@ begin
 
     -- ── C. bonus applied from the interview ──
     m := step;  -- JEE floor is off for Pune (checked in A)
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b1, 'chosen_step', step)));
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b1)));
     t_name := t_name || text 'C achievements 5, step 30 → 40% and bonus_applied'; t_det := t_det || (r::text || ' step=' || step || ' m=' || m);
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 40 and (r->>'bonus_applied')::boolean
                          and (r->>'special_rating')::int = 5 and r->>'stage' = 'counselled');
@@ -136,12 +137,12 @@ begin
       into s from public.counselling_assignments ca join public.application_manager am using (application_id) where ca.application_id = b1;
     t_det := t_det || s; t_pass := t_pass || (s = '5|t|t');
 
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b2, 'chosen_step', step)));
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b2)));
     t_name := t_name || text 'C achievements 4 → no bonus'; t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 30 and not (r->>'bonus_applied')::boolean and (r->>'special_rating')::int = 4);
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b4, 'chosen_step', 35)));
-    t_name := t_name || text 'C achievements 5 but award 35% (above 30%) → no bonus'; t_det := t_det || r::text;
-    t_pass := t_pass || ((r->>'calculated_pct')::numeric = 35 and not (r->>'bonus_applied')::boolean and (r->>'special_rating')::int = 5);
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b4)));
+    t_name := t_name || text 'C achievements 5 but award 45% (above 30%) → no bonus'; t_det := t_det || r::text;
+    t_pass := t_pass || ((r->>'calculated_pct')::numeric = 45 and not (r->>'bonus_applied')::boolean and (r->>'special_rating')::int = 5);
 
     -- ── D. no usable interview score → no bonus ──
     update public.interview_assignments a set rubric_achievements = 4.5 where a.application_id = b3;
@@ -149,7 +150,7 @@ begin
     t_name := t_name || text 'D a non-whole score (4.5, old data) → special_rating null'; t_det := t_det || r::text;
     t_pass := t_pass || (r ? 'special_rating' and r->'special_rating' = 'null'::jsonb);
     update public.interview_assignments a set rubric_achievements = null where a.application_id = b3;
-    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b3, 'chosen_step', step)));
+    r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b3)));
     t_name := t_name || text 'D no achievements score → no bonus, still counselled'; t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 30 and not (r->>'bonus_applied')::boolean and r->'special_rating' = 'null'::jsonb
                          and r->>'stage' = 'counselled');
