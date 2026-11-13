@@ -52,6 +52,8 @@ export type Student = {
     calc_score: number | null; calc_category: number | null; chosen_step: number | null; calculated_pct: number | null;
     actual_pct: number | null; actual_reason: string | null; special_rating: number | null; bonus_applied: boolean | null;
     scholarship_pct: number | null; scholarship_category: number | null;
+    /** Profile analyser (0085): AI briefing for the counsellor, saved by the server only. */
+    profile_analysis?: string | null; profile_generated_at?: string | null; profile_model?: string | null;
   });
   overrides: { field: string; value: unknown; calculated: unknown; reason: string; set_at: string; by: string | null; cleared_at: string | null }[];
   history: HistoryRow[];

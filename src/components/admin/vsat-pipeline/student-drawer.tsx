@@ -7,6 +7,7 @@ import {
 } from "@/lib/vsat/pipeline";
 import { StageBadge } from "./pipeline-panel";
 import type { Preview, Student, TeamMember } from "./types";
+import { profileErrorText } from "@/lib/vsat/profile-prompt";
 
 /**
  * One student across all stages. Everything comes from vsat_student / vsat_scholarship_preview and
@@ -433,9 +434,61 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
         ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
       ]} />}
       {c?.actual_reason && <p className="text-xs text-white/60">Reason for actual %: “{c.actual_reason}”</p>}
+      {c && <ProfileBox applicationId={s.profile.application_id} saved={c.profile_analysis ?? null} savedAt={c.profile_generated_at ?? null}
+        canGenerate={s.can_manage || isCounsellor} />}
       {canAssign && <AssignForm kind="counsellor" team={team} applicationId={s.profile.application_id} onDone={onDone} />}
       {canForm && c && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
     </Section>
+  );
+}
+
+/** "**bold**" → <strong>; everything else stays plain text (no HTML from the AI is ever rendered). */
+function BriefingText({ text }: { text: string }) {
+  return (
+    <div className="space-y-1 whitespace-pre-wrap text-sm leading-relaxed text-white/85">
+      {text.split("\n").map((line, i) => (
+        <p key={i}>{line.split(/(\*\*[^*]+\*\*)/g).map((part, j) =>
+          /^\*\*[^*]+\*\*$/.test(part) ? <strong key={j} className="text-white">{part.slice(2, -2)}</strong> : <span key={j}>{part}</span>)}</p>
+      ))}
+    </div>
+  );
+}
+
+/** Profile analyser (step 6): the AI briefing for the counsellor. Generated on the server (/api/vsat/profile). */
+function ProfileBox({ applicationId, saved, savedAt, canGenerate }: { applicationId: string; saved: string | null; savedAt: string | null; canGenerate: boolean }) {
+  const [text, setText] = useState(saved);
+  const [at, setAt] = useState(savedAt);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  async function generate() {
+    setBusy(true); setMsg("");
+    try {
+      const r = await fetch("/api/vsat/profile", {
+        method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ application_id: applicationId }),
+      });
+      const d = (await r.json().catch(() => ({}))) as { ok?: boolean; code?: string; text?: string; generated_at?: string | null };
+      if (d.ok && d.text) { setText(d.text); setAt(d.generated_at ?? new Date().toISOString()); }
+      else setMsg(profileErrorText(d.code));
+    } catch {
+      setMsg(profileErrorText(null));
+    }
+    setBusy(false);
+  }
+
+  if (!text && !canGenerate) return null;
+  return (
+    <div className="space-y-2 rounded-lg border border-white/10 p-3">
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-[#22d3ee]">Profile analysis</p>
+        {canGenerate && <button className={primary} disabled={busy} onClick={generate}>{busy ? "Generating… (up to a minute)" : text ? "Regenerate profile" : "Generate profile"}</button>}
+      </div>
+      {text ? <>
+        <BriefingText text={text} />
+        <p className="text-xs text-white/40">Written by AI from this student&apos;s data{at ? ` on ${fmtIst(at)}` : ""}. Check it against the scores before you rely on it.</p>
+      </> : <p className="text-xs text-white/50">No profile yet. It reads this student&apos;s application, VSAT and interview data and writes a short briefing for the counselling call.</p>}
+      <Msg text={msg} />
+    </div>
   );
 }
 
