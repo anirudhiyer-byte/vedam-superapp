@@ -245,7 +245,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   // quick links — offer letter appears only once an offer is live, drops if cancelled
   const quickLinks: { label: string; icon: string; open: boolean }[] = [
     { label: "Download brochure", icon: "📘", open: true },
-    { label: "Mock papers", icon: "📄", open: paid },
+    { label: "Sample papers", icon: "📄", open: paid },
     { label: "Start a mock test", icon: "📝", open: paid },
     { label: "Syllabus & pattern", icon: "🎯", open: paid },
   ];
@@ -495,7 +495,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                 </button>
               ))}
             </div>
-            {!paid && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Mock papers, mock test &amp; syllabus unlock after you pay the VSAT fee. The brochure is free.</p>}
+            {!paid && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Sample papers, mock test &amp; syllabus unlock after you pay the VSAT fee. The brochure is free.</p>}
             {paid && !offerActive && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Your offer letter will appear here once admission is offered.</p>}
           </aside>
         </div>
