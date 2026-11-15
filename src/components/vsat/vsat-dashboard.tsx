@@ -186,6 +186,12 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
     } catch { setCouponMsg({ ok: false, text: "Couldn't check that code." }); }
   }
 
+  async function downloadApplicationPdf() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    window.open(`/api/vsat/application-pdf?token=${encodeURIComponent(session.access_token)}`, "_blank", "noopener");
+  }
+
   async function startEnrollment() {
     setBusy(true); setErr("");
     track("vsat_enroll_click");
@@ -274,13 +280,15 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const SB = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
   const brochureFile = /gurugram|sushant/i.test(campus) ? "sushant-gurugram-brochure.pdf" : "adypu-pune-brochure.pdf";
   const brochureHref = SB ? `${SB}/storage/v1/object/public/vsat-docs/${brochureFile}` : undefined;
-  const quickLinks: { label: string; icon: string; open: boolean; href?: string; soon?: boolean }[] = [
+  const formSubmitted = !!((a.form_data as { _meta?: { submitted?: boolean } } | undefined)?._meta?.submitted);
+  const quickLinks: { label: string; icon: string; open: boolean; href?: string; soon?: boolean; onClick?: () => void }[] = [
     { label: "Download brochure", icon: "📘", open: true, href: brochureHref },
     { label: "Sample papers", icon: "📄", open: paid, href: `${DOCS}/vsat-sample-paper.pdf` },
     { label: "Prep kit", icon: "📚", open: paid, href: `${DOCS}/vsat-prep-kit.pdf` },
     { label: "Mock test", icon: "📝", open: false, soon: true },
     { label: "Syllabus & pattern", icon: "🎯", open: paid },
   ];
+  if (formSubmitted) quickLinks.push({ label: "Application PDF", icon: "🧾", open: true, onClick: downloadApplicationPdf });
   if (offerActive) quickLinks.push({ label: "Offer letter", icon: "📜", open: true });
 
   // ── performance rows per attempt (student-facing; raw marks stay admin-only) ──
@@ -537,9 +545,9 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                     {q.soon ? <span className="rounded-md bg-[#f2ebfd] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a18ff]">Soon</span> : !q.open && <span className="text-xs">🔒</span>}
                   </>
                 );
-                return q.open && q.href
-                  ? <a key={q.label} href={q.href} target="_blank" rel="noopener" className={cls}>{inner}</a>
-                  : <button key={q.label} disabled={!q.open} className={cls}>{inner}</button>;
+                if (q.open && q.onClick) return <button key={q.label} onClick={q.onClick} className={cls}>{inner}</button>;
+                if (q.open && q.href) return <a key={q.label} href={q.href} target="_blank" rel="noopener" className={cls}>{inner}</a>;
+                return <button key={q.label} disabled={!q.open} className={cls}>{inner}</button>;
               })}
             </div>
             {!paid && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Sample papers, prep kit &amp; syllabus unlock after you pay the VSAT fee. The brochure is free; the mock test is coming soon.</p>}
