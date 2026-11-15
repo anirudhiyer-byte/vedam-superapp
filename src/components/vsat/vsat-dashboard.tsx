@@ -13,6 +13,8 @@ const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected",
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
 type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null; couponCode?: string | null; couponDiscount?: number } | null;
+type PayItem = { order_id: string; kind: string; attempt: number; base_amount: number; discount: number; coupon: string | null; amount: number; currency: string; payment_id: string | null; method: string | null; paid_at: string };
+type CommItem = { id: string; channel: "email" | "whatsapp"; title: string; kind: string | null; status: string | null; at: string; has_body: boolean };
 
 type CashfreeCheckout = { checkout: (o: { paymentSessionId: string; redirectTarget?: string }) => void };
 declare global { interface Window { Cashfree?: (opts: { mode: string }) => CashfreeCheckout } }
@@ -97,6 +99,9 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const [note, setNote] = useState("");
   const [fillOpen, setFillOpen] = useState(false);
   const [perfAtt, setPerfAtt] = useState(1);
+  const [pays, setPays] = useState<PayItem[]>([]);
+  const [comms, setComms] = useState<CommItem[]>([]);
+  const [emailBody, setEmailBody] = useState<{ subject: string; html: string } | null>(null);
   // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
   // Not a bypass of the pay screen — the admin still sees "Pay", with a Simulate
   // button below it. Persisted per browser so a refresh keeps them past the gate.
@@ -120,6 +125,15 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
       const qj = await q.json();
       if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt });
     } catch { /* banner is best-effort */ }
+    // my payments + my communications (owner-scoped RPCs; best-effort)
+    try {
+      const [{ data: pj }, { data: cj }] = await Promise.all([
+        supabase.rpc("vsat_my_payments"),
+        supabase.rpc("vsat_my_communications", { p_limit: 50 }),
+      ]);
+      if (pj?.ok) setPays((pj.payments as PayItem[]) ?? []);
+      if (cj?.ok) setComms((cj.items as CommItem[]) ?? []);
+    } catch { /* best-effort */ }
     setLoading(false);
   }, [supabase]);
 
@@ -190,6 +204,17 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return;
     window.open(`/api/vsat/application-pdf?token=${encodeURIComponent(session.access_token)}`, "_blank", "noopener");
+  }
+
+  async function openReceipt(orderId: string) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    window.open(`/api/payments/vsat-receipt?order=${encodeURIComponent(orderId)}&token=${encodeURIComponent(session.access_token)}`, "_blank", "noopener");
+  }
+
+  async function openEmail(id: string) {
+    const { data } = await supabase.rpc("vsat_my_email_body", { p_id: id });
+    if (data?.ok) setEmailBody({ subject: data.subject || "Email", html: data.html || "" });
   }
 
   async function startEnrollment() {
@@ -551,7 +576,73 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
             {paid && !offerActive && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Your offer letter will appear here once admission is offered.</p>}
           </aside>
         </div>
+
+        {/* ── My payments + My communications (full-width, below the grid) ── */}
+        <div className="mt-[18px] grid items-start gap-[18px] lg:grid-cols-2">
+          {/* My payments */}
+          <section className={card}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">My payments</p>
+            <div className="mt-3 flex flex-col gap-2.5">
+              {pays.length === 0 ? (
+                <div className="rounded-xl border border-dashed border-[#e9e4f2] px-3.5 py-6 text-center text-[13px] text-[#a79fbd]">No payments yet. Your VSAT and enrollment receipts will show up here.</div>
+              ) : pays.map((p) => {
+                const label = p.kind === "enrollment" ? "Enrollment fee" : `VSAT registration${p.attempt > 1 ? ` · Attempt ${p.attempt}` : ""}`;
+                const sym = p.currency === "INR" || !p.currency ? "₹" : `${p.currency} `;
+                const dt = new Date(p.paid_at).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+                return (
+                  <div key={p.order_id} className="flex items-center gap-3 rounded-xl border border-[#e9e4f2] p-3">
+                    <span className={iconTint}>🧾</span>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-display text-[13.5px] font-bold">{label}</div>
+                      <div className="text-xs text-[#6c6485]">{dt}{p.coupon ? ` · ${p.coupon}` : ""}{p.method ? ` · ${p.method}` : ""}</div>
+                    </div>
+                    <div className="shrink-0 text-right">
+                      <div className="font-display text-[15px] font-extrabold tabular-nums">{sym}{Number(p.amount).toFixed(0)}</div>
+                      <button onClick={() => openReceipt(p.order_id)} className="mt-0.5 text-[12px] font-semibold text-[#8a18ff] underline">View receipt</button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* My communications */}
+          <section className={card}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">My communications</p>
+            <div className="mt-3 flex flex-col gap-2.5">
+              {comms.length === 0 ? (
+                <div className="rounded-xl border border-dashed border-[#e9e4f2] px-3.5 py-6 text-center text-[13px] text-[#a79fbd]">No communications yet. Emails and WhatsApp messages we send you will show up here.</div>
+              ) : comms.map((c) => {
+                const dt = new Date(c.at).toLocaleString("en-IN", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+                return (
+                  <div key={`${c.channel}-${c.id}`} className="flex items-center gap-3 rounded-xl border border-[#e9e4f2] p-3">
+                    <span className={iconTint}>{c.channel === "email" ? "✉️" : "💬"}</span>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate font-display text-[13.5px] font-bold">{c.title}</div>
+                      <div className="text-xs text-[#6c6485]">{c.channel === "email" ? "Email" : "WhatsApp"} · {dt}{c.status ? ` · ${c.status}` : ""}</div>
+                    </div>
+                    {c.channel === "email" && c.has_body && (
+                      <button onClick={() => openEmail(c.id)} className="shrink-0 rounded-lg border border-[#e9e4f2] px-2.5 py-1 text-[12px] font-semibold text-[#8a18ff] transition hover:border-[#8a18ff]">View</button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        </div>
       </div>
+
+      {emailBody && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4" onClick={() => setEmailBody(null)}>
+          <div className="flex max-h-[85vh] w-full max-w-[640px] flex-col overflow-hidden rounded-2xl bg-white shadow-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between gap-3 border-b border-[#e9e4f2] px-4 py-3">
+              <h3 className="truncate font-display text-sm font-bold">{emailBody.subject}</h3>
+              <button onClick={() => setEmailBody(null)} aria-label="Close" className="shrink-0 text-lg leading-none text-[#6c6485] hover:text-[#1b1030]">✕</button>
+            </div>
+            <iframe title="Email" sandbox="" srcDoc={emailBody.html} className="h-[70vh] w-full border-0 bg-white" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
