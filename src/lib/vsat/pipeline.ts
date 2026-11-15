@@ -7,6 +7,7 @@
  */
 
 export const STAGES = [
+  "applied",
   "booked", "eligible", "exam_taken", "vsat_cleared", "interview_scheduled", "interviewed", "pi_cleared",
   "counselling_scheduled", "counselled", "offer_sent", "seat_blocked", "offer_lapsed", "offer_cancelled",
 ] as const;
@@ -16,6 +17,7 @@ export const STATUSES = ["active", "not_selected", "absent", "on_hold"] as const
 export type Status = (typeof STATUSES)[number];
 
 export const STAGE_LABEL: Record<Stage, string> = {
+  applied: "Applied",
   booked: "Booked", eligible: "Eligible", exam_taken: "Exam taken", vsat_cleared: "VSAT cleared",
   interview_scheduled: "Interview scheduled", interviewed: "Interviewed", pi_cleared: "PI cleared",
   counselling_scheduled: "Counselling scheduled", counselled: "Counselled", offer_sent: "Offer sent",
@@ -36,6 +38,7 @@ export const PANEL_STAGES: Record<PanelKey, readonly Stage[]> = {
 };
 
 export const STAGE_ORDER: Record<Stage, number> = {
+  applied: 0,
   booked: 1, eligible: 2, exam_taken: 3, vsat_cleared: 4, interview_scheduled: 5, interviewed: 6, pi_cleared: 7,
   counselling_scheduled: 8, counselled: 9, offer_sent: 10, seat_blocked: 11, offer_lapsed: 11, offer_cancelled: 11,
 };
