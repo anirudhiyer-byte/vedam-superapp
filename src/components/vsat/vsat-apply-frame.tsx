@@ -191,7 +191,12 @@ export function VsatApplyFrame({
         <VsatAuthOverlay
           initial={authInitial}
           onClose={() => setAuthOpen(false)}
-          onVerified={(p: VsatVerifiedProfile) => {
+          onVerified={async (p: VsatVerifiedProfile) => {
+            // Create the VSAT lead right away on OTP verify (what /api/vsat/lead is for:
+            // "Fired on phone-OTP verify"). Without this, a reload after OTP but before
+            // "Start application" has no lead -> the page can't resume to pane 2 and drops
+            // the user back to pane 1. Idempotent upsert; pane 2 just updates it later.
+            await onFirst({ fullName: authInitial.fullName, email: authInitial.email, phone: authInitial.phone });
             try { ref.current?.contentWindow?.postMessage({ type: "vsat-advance", profile: p }, window.location.origin); } catch { /* ignore */ }
             setAuthOpen(false);
           }}
