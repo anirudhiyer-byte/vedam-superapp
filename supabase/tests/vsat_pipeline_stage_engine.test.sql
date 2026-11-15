@@ -92,9 +92,12 @@ begin
     t_det := t_det || format('%s/%s; history %s', st, stt, (select string_agg(h.source || ':' || h.to_stage, ',') from public.vsat_stage_history h where h.application_id = a1));
     t_pass := t_pass || (st = 'booked' and stt = 'active'
                          and exists (select 1 from public.vsat_stage_history h where h.application_id = a1 and h.source = 'system' and h.to_stage = 'booked'));
-    t_name := t_name || text 'A no exam date → not in the pipeline';
-    t_det := t_det || text '';
-    t_pass := t_pass || not exists (select 1 from public.vsat_pipeline vp where vp.application_id = a3);
+    -- 0094: every application is enrolled at creation; no exam date → stage 'applied'
+    select vp.stage, vp.status into st, stt from public.vsat_pipeline vp where vp.application_id = a3;
+    t_name := t_name || text 'A no exam date → pipeline row "applied"';
+    t_det := t_det || format('%s/%s', st, stt);
+    t_pass := t_pass || (st = 'applied' and stt = 'active'
+                         and exists (select 1 from public.vsat_stage_history h where h.application_id = a3 and h.source = 'system' and h.to_stage = 'applied'));
     update public.application_manager set exam_given = true where application_id in (a1, a2);
     t_name := t_name || text 'A exam_given → both move to "exam_taken" automatically';
     t_det := t_det || (select string_agg(vp.application_id || ':' || vp.stage, ',') from public.vsat_pipeline vp where vp.application_id in (a1, a2));
@@ -157,9 +160,11 @@ begin
     r := pg_temp.call_as(adm_pune, pg_temp.mv(a2, 'vsat_cleared', null, 'zz reopen'));
     t_name := t_name || text 'D Pune admissions cannot move a Gurugram student'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'FORBIDDEN');
     r := pg_temp.call_as(adm_pune, 'select public.vsat_pipeline_list(''{"q":"ZZTEST ZZT-ENG"}''::jsonb)');
-    t_name := t_name || text 'D Pune admissions list shows Pune student only';
+    -- a1 (Pune) and a3 (no campus → visible to all) show; a2 (Gurugram) never does
+    t_name := t_name || text 'D Pune admissions: sees Pune + no-campus students, never the Gurugram student';
     t_det := t_det || left(r::text, 300);
-    t_pass := t_pass || ((r->>'total')::int = 1 and r->'rows'->0->>'application_id' = a1);
+    t_pass := t_pass || (exists (select 1 from jsonb_array_elements(r->'rows') e where e->>'application_id' = a1)
+                         and not exists (select 1 from jsonb_array_elements(r->'rows') e where e->>'application_id' = a2));
 
     -- ════ E. scheduling needs an assignment; interviewer rights ════
     r := pg_temp.call_as(adm_all, pg_temp.mv(a1, 'interview_scheduled'));
