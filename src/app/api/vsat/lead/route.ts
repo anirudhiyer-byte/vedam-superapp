@@ -16,13 +16,16 @@ export async function POST(req: Request) {
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   const L = b.lead ?? {};
   const { data: prof } = await admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle();
-  const { data: existing } = await admin.from("lead_manager").select("primary_utm, lead_stage, user_registration_date").eq("lead_id", user.id).maybeSingle();
-  // build source/medium/campaign from the three parts (not just the campaign)
-  const s = (L.utm_source as string) || "", m = (L.utm_medium as string) || "", c = (L.utm_campaign as string) || "";
-  const triple = (s || m || c) ? [s, m, c].join("/") : ((L.full_utm as string) ?? null);
-  const priorPrimary = existing?.primary_utm as string | undefined;
-  // keep the real first-touch, but self-heal a stale campaign-only value (no "/")
-  const primaryUtm = (priorPrimary && priorPrimary.includes("/")) ? priorPrimary : triple;
+  const { data: existing } = await admin.from("lead_manager").select("lead_stage, user_registration_date").eq("lead_id", user.id).maybeSingle();
+  // Supply the raw source/medium/campaign parts for this touch (falling back to a
+  // combined full_utm split by "/"). The full attribution chain — primary / secondary /
+  // tertiary / latest + the primary breakout — is maintained by the DB trigger
+  // trg_vsat_lead_attribution (migration 0092), so the route never computes it.
+  let us = (L.utm_source as string) || "", um = (L.utm_medium as string) || "", uc = (L.utm_campaign as string) || "";
+  if (!us && !um && !uc && L.full_utm) {
+    const parts = String(L.full_utm).split("/");
+    us = parts[0] ?? ""; um = parts[1] ?? ""; uc = parts[2] ?? "";
+  }
   const row = {
     lead_id: user.id,
     public_id: prof?.public_id ?? null,
@@ -31,13 +34,11 @@ export async function POST(req: Request) {
     registered_mobile: L.phone ?? null,
     source_hearabout: L.hearAbout ?? null,
     campus_preference: L.campusPref ?? null,
-    utm_source: L.utm_source ?? null, utm_medium: L.utm_medium ?? null, utm_campaign: L.utm_campaign ?? null,
+    utm_source: us || null, utm_medium: um || null, utm_campaign: uc || null,
     utm_content: L.utm_content ?? null, utm_term: L.utm_term ?? null,
-    latest_utm: triple,   // always the newest source/medium/campaign
     lead_source: L.lead_source ?? null,
     mobile_verification_status: "verified",
     lead_verification_date: new Date().toISOString(),
-    primary_utm: primaryUtm,  // write-once first-touch (self-heals a stale campaign-only value)
     // preserve progress on a revisit: never downgrade lead_stage, keep the original
     // registration time (write-once).
     lead_stage: (existing?.lead_stage as string) ?? "lead",
