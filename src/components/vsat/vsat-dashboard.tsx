@@ -12,7 +12,7 @@ const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected",
 
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
-type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null } | null;
+type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null; couponCode?: string | null; couponDiscount?: number } | null;
 
 type CashfreeCheckout = { checkout: (o: { paymentSessionId: string; redirectTarget?: string }) => void };
 declare global { interface Window { Cashfree?: (opts: { mode: string }) => CashfreeCheckout } }
@@ -88,6 +88,9 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const [app, setApp] = useState<App>(null);
   const [lead, setLead] = useState<Lead>(null);
   const [quote, setQuote] = useState<Quote>(null);
+  const [coupon, setCoupon] = useState("");
+  const [appliedCode, setAppliedCode] = useState<string | undefined>(undefined);
+  const [couponMsg, setCouponMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
@@ -149,7 +152,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
     track("vsat_pay_click");
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      const res = await fetch("/api/payments/vsat-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
+      const res = await fetch("/api/payments/vsat-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token, code: appliedCode }) });
       const j = await res.json();
       if (!j.ok) { setBusy(false); return setErr(j.error === "already_paid" ? "You've already paid." : j.error || "Could not start payment."); }
       const cashfree = await loadCashfree(j.mode || "sandbox");
@@ -159,6 +162,28 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
       setBusy(false);
       setErr(String((e as Error)?.message || "Payment could not start."));
     }
+  }
+
+  async function applyCoupon() {
+    const code = coupon.trim();
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    try {
+      const q = await fetch("/api/payments/vsat-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, code }) });
+      const qj = await q.json();
+      if (!qj.ok) { setCouponMsg({ ok: false, text: "Couldn't check that code." }); return; }
+      setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, couponCode: qj.coupon?.code ?? null, couponDiscount: qj.couponDiscount });
+      const c = qj.coupon;
+      if (!code) { setAppliedCode(undefined); setCouponMsg(null); return; }
+      if (c?.accepted) {
+        setAppliedCode(c.code);
+        setCouponMsg({ ok: true, text: c.extraOff > 0 ? `Coupon applied — ₹${c.extraOff} extra off` : "Valid, but your early-bird discount is already higher." });
+      } else {
+        setAppliedCode(undefined);
+        const map: Record<string, string> = { not_found: "Invalid code.", expired: "This code has expired.", inactive: "This code isn't active.", exhausted: "This code has been fully used.", not_started: "This code isn't active yet." };
+        setCouponMsg({ ok: false, text: map[c?.error] || "Invalid code." });
+      }
+    } catch { setCouponMsg({ ok: false, text: "Couldn't check that code." }); }
   }
 
   async function startEnrollment() {
@@ -217,7 +242,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const idx = activeIndex(viewAppl);
   const pct = Math.round((idx / (MILESTONES.length - 1)) * 100);
   const payAmount = quote?.net ?? 1000;
-  const showDiscount = !!quote && quote.discount > 0 && quote.within24h && !paid;
+  const showDiscount = !!quote && quote.discount > 0 && !paid;
 
   // enrollment / offer gate (same rule as the server's offerPayable)
   const enrollApp: EnrollApp = {
@@ -242,11 +267,18 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const campus = (a.campus_applied as string) || l.campus_preference || (a.campus_preference as string) || (a.campus as string) || "";
   const stream = (a.stream as string) || "";
 
-  // quick links — offer letter appears only once an offer is live, drops if cancelled
-  const quickLinks: { label: string; icon: string; open: boolean }[] = [
-    { label: "Download brochure", icon: "📘", open: true },
-    { label: "Sample papers", icon: "📄", open: paid },
-    { label: "Start a mock test", icon: "📝", open: paid },
+  // quick links — offer letter appears only once an offer is live, drops if cancelled.
+  // Mock test is "coming soon" (locked for everyone) until the Wheebox callback is live.
+  const DOCS = "/vedam-one/docs";
+  // brochure is campus-specific, served from the public Supabase 'vsat-docs' bucket
+  const SB = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const brochureFile = /gurugram|sushant/i.test(campus) ? "sushant-gurugram-brochure.pdf" : "adypu-pune-brochure.pdf";
+  const brochureHref = SB ? `${SB}/storage/v1/object/public/vsat-docs/${brochureFile}` : undefined;
+  const quickLinks: { label: string; icon: string; open: boolean; href?: string; soon?: boolean }[] = [
+    { label: "Download brochure", icon: "📘", open: true, href: brochureHref },
+    { label: "Sample papers", icon: "📄", open: paid, href: `${DOCS}/vsat-sample-paper.pdf` },
+    { label: "Prep kit", icon: "📚", open: paid, href: `${DOCS}/vsat-prep-kit.pdf` },
+    { label: "Mock test", icon: "📝", open: false, soon: true },
     { label: "Syllabus & pattern", icon: "🎯", open: paid },
   ];
   if (offerActive) quickLinks.push({ label: "Offer letter", icon: "📜", open: true });
@@ -362,6 +394,15 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                   <span className="font-display text-[27px] font-extrabold tabular-nums">₹{payAmount}</span>
                   {showDiscount && <span className="text-base text-[#a79fbd] line-through tabular-nums">₹{quote?.base}</span>}
                   {showDiscount && <span className={pillOrange}>₹{quote?.discount} off</span>}
+                </div>
+                {/* manual coupon — codes are never shown here; the student types one in if they have it */}
+                <div className="mt-3">
+                  <div className="flex gap-2">
+                    <input value={coupon} onChange={(e) => setCoupon(e.target.value.toUpperCase())} placeholder="Have a coupon code?"
+                      className="min-w-0 flex-1 rounded-xl border border-[#e3ddf0] bg-white px-3 py-2 text-sm font-semibold uppercase tracking-wide placeholder:font-normal placeholder:normal-case placeholder:tracking-normal placeholder:text-[#a79fbd] focus:border-[#8a18ff] focus:outline-none" />
+                    <button onClick={applyCoupon} type="button" className="shrink-0 rounded-xl border border-[#8a18ff]/35 bg-[#f6f0ff] px-4 py-2 text-sm font-bold text-[#7312e0] transition hover:bg-[#efe6ff]">Apply</button>
+                  </div>
+                  {couponMsg && <p className={`mt-1.5 text-xs font-semibold ${couponMsg.ok ? "text-[#1f9d57]" : "text-[#d14343]"}`}>{couponMsg.text}</p>}
                 </div>
                 <button onClick={startPayment} disabled={busy} className={`${btn} mt-4`}>{busy ? "Starting…" : `Pay ₹${payAmount}`}</button>
                 {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#b26a00]">Payment initiated — if you didn&apos;t complete it, click Pay to try again.</p>}
@@ -487,15 +528,21 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
           <aside className={card}>
             <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">Quick links</p>
             <div className="mt-3 flex flex-col gap-2.5">
-              {quickLinks.map((q) => (
-                <button key={q.label} disabled={!q.open} className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left text-[13px] font-semibold transition ${q.open ? "border-[#e9e4f2] bg-white text-[#1b1030] hover:border-[#8a18ff]" : "cursor-not-allowed border-[#e9e4f2] bg-[#f4f0fa] text-[#a79fbd]"}`}>
-                  <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg text-sm ${q.open ? "bg-[#f2ebfd]" : "bg-[#f7f4fb]"}`}>{q.icon}</span>
-                  <span className="min-w-0 flex-1">{q.label}</span>
-                  {!q.open && <span className="text-xs">🔒</span>}
-                </button>
-              ))}
+              {quickLinks.map((q) => {
+                const cls = `flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left text-[13px] font-semibold transition ${q.open ? "border-[#e9e4f2] bg-white text-[#1b1030] hover:border-[#8a18ff]" : "cursor-not-allowed border-[#e9e4f2] bg-[#f4f0fa] text-[#a79fbd]"}`;
+                const inner = (
+                  <>
+                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg text-sm ${q.open ? "bg-[#f2ebfd]" : "bg-[#f7f4fb]"}`}>{q.icon}</span>
+                    <span className="min-w-0 flex-1">{q.label}</span>
+                    {q.soon ? <span className="rounded-md bg-[#f2ebfd] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a18ff]">Soon</span> : !q.open && <span className="text-xs">🔒</span>}
+                  </>
+                );
+                return q.open && q.href
+                  ? <a key={q.label} href={q.href} target="_blank" rel="noopener" className={cls}>{inner}</a>
+                  : <button key={q.label} disabled={!q.open} className={cls}>{inner}</button>;
+              })}
             </div>
-            {!paid && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Sample papers, mock test &amp; syllabus unlock after you pay the VSAT fee. The brochure is free.</p>}
+            {!paid && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Sample papers, prep kit &amp; syllabus unlock after you pay the VSAT fee. The brochure is free; the mock test is coming soon.</p>}
             {paid && !offerActive && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Your offer letter will appear here once admission is offered.</p>}
           </aside>
         </div>

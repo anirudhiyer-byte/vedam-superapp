@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { getOrder, getSuccessfulPayment } from "@/lib/payments/cashfree";
+import { VSAT_24H_COUPON } from "@/lib/payments/vsat-fee";
 
 type Order = {
   cf_order_id: string; lead_id: string; attempt: number | null;
@@ -78,10 +79,17 @@ export async function confirmVsatPayment(
   // NOTE: a duplicate (retried webhook, or a 2nd attempt for an already-paid user)
   // is silently ignored by the DB's unique/PK constraints — that is intended.
 
-  // 5) settle the ledger
-  await svc.from("vsat_payment_orders").update({
+  // 5) settle the ledger — guarded so only the FIRST confirmation transitions it
+  const { data: settled } = await svc.from("vsat_payment_orders").update({
     status: "paid", cf_payment_id: paymentId, cf_payment_method: method, raw: ord.raw,
-  }).eq("cf_order_id", cfOrderId);
+  }).eq("cf_order_id", cfOrderId).neq("status", "paid").select("cf_order_id");
+  const firstSettle = Array.isArray(settled) && settled.length === 1;
+
+  // 5b) count the coupon redemption exactly once (manual coupons only — the auto 24h
+  // name is not in the catalog, so the increment no-ops on it anyway).
+  if (firstSettle && o.discount_coupon && o.discount_coupon !== VSAT_24H_COUPON) {
+    try { await svc.rpc("vsat_coupon_increment_use", { p_code: o.discount_coupon }); } catch { /* best-effort; never fail a confirmed payment */ }
+  }
 
   // 6) reflect onto the application for admin/CRM display (access is still decided by vsat_payments, not this)
   await svc.from("application_manager").update({

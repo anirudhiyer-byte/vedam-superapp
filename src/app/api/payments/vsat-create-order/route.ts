@@ -2,7 +2,7 @@ import crypto from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { createOrder, cashfreeConfigured } from "@/lib/payments/cashfree";
 import { safeBaseUrl } from "@/lib/payments/base-url";
-import { readVsatMoneyFlags, computeVsatFee } from "@/lib/payments/vsat-fee";
+import { readVsatMoneyFlags, computeVsatFee, fetchValidCoupon } from "@/lib/payments/vsat-fee";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL, anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!url || !anon || !svcKey) return Response.json({ ok: false, error: "not configured" }, { status: 500 });
 
-    const body = (await req.json().catch(() => ({}))) as { accessToken?: string };
+    const body = (await req.json().catch(() => ({}))) as { accessToken?: string; code?: string };
     if (!body.accessToken) return Response.json({ ok: false, error: "Not authorized" }, { status: 401 });
 
     const asUser = createClient(url, anon);
@@ -53,9 +53,19 @@ export async function POST(req: Request) {
     } | null;
     if (!app) return Response.json({ ok: false, error: "not_an_applicant" }, { status: 409 });
 
-    // server-authoritative amount + 24h early-bird discount
+    // optional manual coupon — validated server-side against the catalog. If a code was
+    // typed but isn't usable, reject rather than silently charging a different amount.
+    const typedCode = (body.code ?? "").trim();
+    let couponInput = null;
+    if (typedCode) {
+      const look = await fetchValidCoupon(svc, typedCode);
+      if (!look.ok) return Response.json({ ok: false, error: "invalid_coupon", reason: look.reason }, { status: 400 });
+      couponInput = look.coupon;
+    }
+
+    // server-authoritative amount: 24h early-bird discount merged (not stacked) with the coupon
     const flags = await readVsatMoneyFlags(svc);
-    const fee = computeVsatFee({ fee: flags.fee, discount24h: flags.discount24h, applicantCreatedAt: app.created_at });
+    const fee = computeVsatFee({ fee: flags.fee, discount24h: flags.discount24h, applicantCreatedAt: app.created_at, coupon: couponInput });
 
     const attempt = app.current_attempt ?? 1;
     const cfOrderId = "VSATPAY_" + crypto.randomUUID().replace(/-/g, "").slice(0, 20);
@@ -110,6 +120,7 @@ export async function POST(req: Request) {
     return Response.json({
       ok: true, paymentSessionId: order.paymentSessionId, orderId: cfOrderId,
       amount: fee.net, base: fee.base, discount: fee.discount, within24h: fee.within24h,
+      couponDiscount: fee.couponDiscount, couponCode: fee.couponCode,
       mode: (process.env.CASHFREE_ENV || "sandbox").toLowerCase(),
     });
   } catch (e) {

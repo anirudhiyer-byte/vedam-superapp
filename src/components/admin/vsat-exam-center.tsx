@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { VsatCouponMaker } from "@/components/admin/vsat-coupon-maker";
 
 /** Server-computed presence of the Wheebox env credentials (booleans only — the
  *  secret values never leave the server). */
@@ -167,6 +168,8 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
           </div>
         )}
       </section>
+
+      <VsatCouponMaker />
     </div>
   );
 }

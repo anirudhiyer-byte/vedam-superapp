@@ -48,3 +48,46 @@ describe("computeVsatFee — 24h early-bird discount", () => {
     expect(f.within24h).toBe(false);
   });
 });
+
+describe("computeVsatFee — manual coupon merge (never stacks on the 24h)", () => {
+  const within = { fee: 1000, discount24h: 200, applicantCreatedAt: new Date(T0).toISOString(), now: T0 + 3_600_000 }; // +1h
+  const after = { fee: 1000, discount24h: 200, applicantCreatedAt: new Date(T0).toISOString(), now: T0 + 25 * 3_600_000 }; // +25h
+
+  it("₹750 coupon INSIDE 24h → total 750 (200 auto + 550 coupon), net 250", () => {
+    const f = computeVsatFee({ ...within, coupon: { code: "SAVE750", amount: 750, discount_type: "flat" } });
+    expect(f.discount).toBe(750);
+    expect(f.net).toBe(250);
+    expect(f.autoDiscount).toBe(200);
+    expect(f.couponDiscount).toBe(550);
+    expect(f.couponCode).toBe("SAVE750");
+    expect(f.coupon).toBe("SAVE750");
+  });
+
+  it("₹750 coupon AFTER 24h → full 750 off, net 250", () => {
+    const f = computeVsatFee({ ...after, coupon: { code: "SAVE750", amount: 750, discount_type: "flat" } });
+    expect(f.discount).toBe(750);
+    expect(f.net).toBe(250);
+    expect(f.autoDiscount).toBe(0);
+    expect(f.couponDiscount).toBe(750);
+  });
+
+  it("coupon worth LESS than the active auto-discount adds nothing extra", () => {
+    const f = computeVsatFee({ ...within, coupon: { code: "SMALL100", amount: 100, discount_type: "flat" } });
+    expect(f.discount).toBe(200); // auto wins
+    expect(f.net).toBe(800);
+    expect(f.couponDiscount).toBe(0);
+  });
+
+  it("percent coupon is computed off the base fee, then merged", () => {
+    const f = computeVsatFee({ ...within, coupon: { code: "HALF", amount: 50, discount_type: "percent" } });
+    expect(f.discount).toBe(500); // max(200 auto, 500 coupon)
+    expect(f.net).toBe(500);
+    expect(f.couponDiscount).toBe(300);
+  });
+
+  it("coupon never drops net below zero", () => {
+    const f = computeVsatFee({ ...after, coupon: { code: "HUGE", amount: 5000, discount_type: "flat" } });
+    expect(f.discount).toBe(1000);
+    expect(f.net).toBe(0);
+  });
+});
