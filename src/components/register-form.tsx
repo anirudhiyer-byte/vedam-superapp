@@ -11,7 +11,8 @@ import { otpAllowed } from "@/lib/otp-allowed";
 import { track } from "@/lib/analytics/track";
 import { Turnstile } from "@/components/turnstile";
 import { SearchableSelect } from "@/components/ui/searchable-select";
-import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
+import { CitySelect } from "@/components/ui/city-select";
+import { INDIA_STATES } from "@/lib/india-cities";
 
 const GRAD_YEARS = [2024, 2025, 2026, 2027, 2028];
 const STREAMS = ["PCM", "PCMB", "PCB", "Others"] as const;
@@ -255,10 +256,10 @@ export function RegisterForm() {
               <Field label="Class 12 grad year"><select className={inputCls} value={gradYear} onChange={(e) => setGradYear(e.target.value ? Number(e.target.value) : "")}><option value="" className="bg-[#160a30] text-white">Select</option>{GRAD_YEARS.map((y) => <option key={y} value={y} className="bg-[#160a30] text-white">{y}</option>)}</select></Field>
               <Field label="Stream"><select className={inputCls} value={stream} onChange={(e) => setStream(e.target.value as typeof stream)}><option value="" className="bg-[#160a30] text-white">Select</option>{STREAMS.map((s) => <option key={s} value={s} className="bg-[#160a30] text-white">{s}</option>)}</select></Field>
             </div>
-            {stream === "Others" && <Field label="Your stream"><input className={inputCls} value={streamOther} onChange={(e) => setStreamOther(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") completePart2(); }} placeholder="e.g. Commerce" /></Field>}
+            {stream === "Others" && <Field label="Your stream"><input className={inputCls} value={streamOther} onChange={(e) => setStreamOther(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") completePart2(); }} placeholder="e.g. PCB" /></Field>}
             <div className="grid grid-cols-2 gap-3">
               <Field label="State / UT"><SearchableSelect options={INDIA_STATES} value={state} onChange={(v) => { setState(v); setCity(""); }} placeholder="Select state…" /></Field>
-              <Field label="City"><SearchableSelect options={state ? (STATE_CITIES[state] ?? []) : []} value={city} onChange={setCity} placeholder={state ? "Select city…" : "Pick a state first"} disabled={!state} /></Field>
+              <Field label="City"><CitySelect state={state} value={city} onChange={setCity} disabled={!state} /></Field>
             </div>
             <Field label="Your email — edit here if it's wrong">
               <div className="flex gap-2">
