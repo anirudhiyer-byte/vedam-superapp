@@ -22,6 +22,6 @@ export async function POST(req: Request) {
   const updates: Record<string, unknown> = { ...check.updates, last_updated_date: new Date().toISOString() };
   const { error } = await admin.from("application_manager").update(updates).eq("application_id", app.application_id);
   if (error) return Response.json({ ok: false, error: "update_failed" }, { status: 500 });
-  await admin.from("crm_activity_log").insert({ entity_type: "application", application_id: app.application_id, lead_id: user.id, action: "stage_change", metadata: check.updates, actor: "applicant", path: "/vsat/dashboard" });
+  await admin.from("crm_activity_log").insert({ entity_type: "application", application_id: app.application_id, lead_id: user.id, action: "stage_change", metadata: check.updates, actor: "applicant", path: "/apply/dashboard" });
   return Response.json({ ok: true });
 }

@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 /**
  * Synchronous confirmation for the Cashfree return URL. After checkout the student
- * lands back on /vsat/dashboard?pay=return&order=… and the dashboard calls this to
+ * lands back on /apply/dashboard?pay=return&order=… and the dashboard calls this to
  * settle immediately instead of waiting for the webhook. Same idempotent, server-
  * authoritative confirmVsatPayment the webhook uses — the order must belong to the
  * logged-in user.

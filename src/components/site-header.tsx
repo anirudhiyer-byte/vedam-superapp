@@ -150,7 +150,7 @@ export function SiteHeader() {
                           <Link href="/admin/product-users" className="flex items-center gap-2 px-4 py-2 text-white/85 hover:bg-white/5"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 opacity-80"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>Product Users</Link>
                           <Link href="/admin/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">🗂️ VSAT Admin Panel</Link>
                           <Link href="/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎯 VSAT registration (internal)</Link>
-                          <Link href="/vsat/dashboard" className="block px-4 py-2 text-white/85 hover:bg-white/5">🧭 VSAT applicant dashboard</Link>
+                          <Link href="/apply/dashboard" className="block px-4 py-2 text-white/85 hover:bg-white/5">🧭 VSAT applicant dashboard</Link>
                           <Link href="/admin/vsat-early" className="block px-4 py-2 text-white/85 hover:bg-white/5">📈 VSAT Early-Reg Analytics</Link>
                           <Link href="/events?admin=manage" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage Events</Link>
                           <Link href="/events?admin=analytics" className="block px-4 py-2 text-white/85 hover:bg-white/5">Events Analytics</Link>

@@ -64,7 +64,7 @@ export function AdminHome() {
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-wide text-muted">VSAT</span>
             <Link href="/vsat" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">🎓 Registration (internal)</Link>
-            <Link href="/vsat/dashboard" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">Applicant dashboard</Link>
+            <Link href="/apply/dashboard" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">Applicant dashboard</Link>
             <Link href="/admin/vsat-forms" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">Form builder</Link>
             <Link href="/admin/vsat-exam-dates" className="rounded-xl border border-border-strong px-4 py-2 text-sm font-semibold text-foreground hover:bg-surface-warm">Exam dates</Link>
           </div>

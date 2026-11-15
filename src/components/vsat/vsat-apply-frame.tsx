@@ -23,7 +23,7 @@ type SubmitData = {
  *   fills the form on load.
  * - Submit: on the final "Start application", apply.html posts the form data here;
  *   we verify the email (overlay) if needed, create the VSAT lead + application for
- *   the signed-in user, and route to the designed /vsat/dashboard.
+ *   the signed-in user, and route to the designed /apply/dashboard.
  * - New logged-out user: the OTP + Turnstile overlay creates the account + lead,
  *   then advances the iframe to pane 2.
  * - Returning lead (part 1 done, no application): auto-advance to pane 2 on load.
@@ -91,7 +91,7 @@ export function VsatApplyFrame({
       const appJson = await appRes.json().catch(() => ({ ok: false, error: "application request failed" }));
       if (!appJson.ok) { setStatus("error"); setErrMsg("Couldn't start your application: " + (appJson.error || appRes.status)); busyRef.current = false; return; }
 
-      window.location.href = "/vsat/dashboard";
+      window.location.href = "/apply/dashboard";
     } catch (e) {
       setStatus("error"); setErrMsg(String((e as Error)?.message || e)); busyRef.current = false;
     }
@@ -140,7 +140,7 @@ export function VsatApplyFrame({
       const { data: { session } } = await supabase.auth.getSession();
       const res = await fetch("/api/vsat/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
       const j = await res.json().catch(() => ({ ok: false }));
-      if (j.ok && j.app) { window.location.href = "/vsat/dashboard"; return; }
+      if (j.ok && j.app) { window.location.href = "/apply/dashboard"; return; }
       // Lead (or brand-new) -> reload so SSR re-renders signed-in and auto-resumes to pane 2.
       window.location.reload();
     } catch {

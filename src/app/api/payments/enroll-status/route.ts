@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 /**
  * Synchronous confirmation for the Cashfree return URL after the enrollment
- * payment. The dashboard lands on /vsat/dashboard?pay=enroll_return&order=… and
+ * payment. The dashboard lands on /apply/dashboard?pay=enroll_return&order=… and
  * calls this to settle immediately. Idempotent; the order must belong to the user.
  */
 export async function POST(req: Request) {

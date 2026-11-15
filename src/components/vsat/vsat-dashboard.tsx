@@ -142,7 +142,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
           setNote(j.ok && j.status === "paid" ? "Payment successful 🎉" : j.status === "already_paid" ? "" : "Payment not completed. You can try again.");
         } catch { setNote("Could not confirm payment. Refresh in a moment."); }
       }
-      window.history.replaceState({}, "", "/vsat/dashboard");
+      window.history.replaceState({}, "", "/apply/dashboard");
       void load();
     })();
   }, [supabase, load]);
@@ -228,12 +228,12 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const BackBar = (
     <div className="mb-4 flex items-center justify-between">
       <Image src="/vedam-logo.png" alt="Vedam School of Technology" width={200} height={70} className="h-8 w-auto" priority />
-      <Link href="/vsat" className="inline-flex items-center gap-2 rounded-[10px] border border-[#e9e4f2] bg-white px-3.5 py-2 text-sm font-semibold text-[#1b1030] transition hover:border-[#8a18ff]">← Back</Link>
+      <Link href="/apply" className="inline-flex items-center gap-2 rounded-[10px] border border-[#e9e4f2] bg-white px-3.5 py-2 text-sm font-semibold text-[#1b1030] transition hover:border-[#8a18ff]">← Back</Link>
     </div>
   );
 
   if (loading) return <div className="min-h-screen bg-[#f6f4fa]"><div className="mx-auto max-w-[1200px] px-4 py-5">{BackBar}<div className="py-10 text-[#6c6485]">Loading your dashboard…</div></div></div>;
-  if (!app) return <div className="min-h-screen bg-[#f6f4fa]"><div className="mx-auto max-w-[1200px] px-4 py-5">{BackBar}<div className="py-10 text-[#1b1030]">No VSAT application found. <a href="/vsat" className="font-semibold text-[#8a18ff] underline">Start one →</a></div></div></div>;
+  if (!app) return <div className="min-h-screen bg-[#f6f4fa]"><div className="mx-auto max-w-[1200px] px-4 py-5">{BackBar}<div className="py-10 text-[#1b1030]">No VSAT application found. <a href="/apply" className="font-semibold text-[#8a18ff] underline">Start one →</a></div></div></div>;
 
   const a = app as Record<string, string>;
   const ao = app as Record<string, unknown>;

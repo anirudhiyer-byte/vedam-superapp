@@ -68,7 +68,7 @@ export function VsatApplyForm() {
       try {
         const res = await fetch("/api/vsat/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
         const j = await res.json();
-        if (j.ok && j.app) { router.push("/vsat/dashboard"); return; }
+        if (j.ok && j.app) { router.push("/apply/dashboard"); return; }
         if (j.ok && j.lead) setStep("part2");
       } catch { /* stay on part1 */ }
     })();
@@ -158,7 +158,7 @@ export function VsatApplyForm() {
     if (!j.ok) return setError(j.error || "Couldn't start application.");
     track("vsat_application_started");
     setStep("done");
-    setTimeout(() => router.push("/vsat/dashboard"), 900);   // applicant dashboard (next build)
+    setTimeout(() => router.push("/apply/dashboard"), 900);   // applicant dashboard (next build)
   }
 
   async function sendEmailCode() {
@@ -224,7 +224,7 @@ export function VsatApplyForm() {
 
       {step === "done" && (<div className="py-8 text-center">
         <div className="text-4xl">🎉</div>
-        <h1 className="mt-3 font-display text-2xl font-bold" style={headGrad}>You're an applicant!</h1>
+        <h1 className="mt-3 font-display text-2xl font-bold" style={headGrad}>You&apos;re an applicant!</h1>
         <p className="mt-2 text-sm text-white/55">Taking you to your dashboard…</p>
       </div>)}
     </div>

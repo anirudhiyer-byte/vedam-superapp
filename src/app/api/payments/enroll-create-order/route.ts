@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     const order = await createOrder({
       orderId: cfOrderId, amount: fee, currency: "INR", customerId: userId,
       customerEmail: app!.registered_email, customerPhone: app!.registered_mobile, customerName: app!.registered_name,
-      returnUrl: `${SITE}/vsat/dashboard?pay=enroll_return&order={order_id}`,
+      returnUrl: `${SITE}/apply/dashboard?pay=enroll_return&order={order_id}`,
       notifyUrl: `${SITE}/api/payments/cashfree-webhook`,
       note: "VSAT enrollment fee",
     });
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
     await svc.from("crm_activity_log").insert({
       entity_type: "application", application_id: app!.application_id, lead_id: userId,
       action: "stage_change", stage_type: "enrollment", to_value: "initiated",
-      metadata: { order_id: cfOrderId, amount: fee }, actor: "applicant", path: "/vsat/dashboard",
+      metadata: { order_id: cfOrderId, amount: fee }, actor: "applicant", path: "/apply/dashboard",
     });
 
     return Response.json({
