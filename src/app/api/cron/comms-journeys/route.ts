@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { waSendSingle } from "@/lib/whatsapp/client";
 import { sendEmailServer } from "@/lib/email/cron-send";
 import { renderEmailTemplateHtml, type EmailTpl } from "@/lib/email/render";
+import { sendVsatStepComms } from "@/lib/vsat/comms";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
@@ -78,5 +79,30 @@ export async function GET(req: Request) {
     }
     await sb.from("comms_journeys").update({ last_run_at: new Date().toISOString() }).eq("id", j.id);
   }
-  return Response.json({ ok: true, fired });
+
+  // VSAT early-bird reminder — unpaid applicants ~20h in. Piggybacks on this cron (no new
+  // cron job / cost). Idempotent via vsat_comm_sends, so each applicant is reminded once;
+  // the 20–30h window just bounds the scan. sendVsatStepComms self-gates on the admin config.
+  let vsatReminders = 0;
+  try {
+    const nowMs = Date.now();
+    const from = new Date(nowMs - 30 * 3600_000).toISOString();
+    const to = new Date(nowMs - 20 * 3600_000).toISOString();
+    const { data: apps } = await sb.from("application_manager")
+      .select("lead_id, registered_name, registered_email, registered_mobile, created_at, payment_stage_1")
+      .gte("created_at", from).lte("created_at", to)
+      .neq("payment_stage_1", "payment_approved");
+    const { data: fflags } = await sb.from("app_flags").select("key, value").in("key", ["vsat_fee", "vsat_discount_24h"]);
+    const fee = Number(fflags?.find((f) => f.key === "vsat_fee")?.value ?? 1000);
+    const disc = Number(fflags?.find((f) => f.key === "vsat_discount_24h")?.value ?? 200);
+    for (const ap of (apps ?? []) as { lead_id: string; registered_name: string | null; registered_email: string | null; registered_mobile: string | null }[]) {
+      await sendVsatStepComms("payment_reminder_24h", {
+        leadId: ap.lead_id, name: ap.registered_name, email: ap.registered_email, phone: ap.registered_mobile,
+        amount: Math.max(0, fee - disc),
+      });
+      vsatReminders++;
+    }
+  } catch { /* best-effort; never fail the cron */ }
+
+  return Response.json({ ok: true, fired, vsatReminders });
 }

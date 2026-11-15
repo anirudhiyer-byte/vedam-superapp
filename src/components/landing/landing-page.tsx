@@ -13,6 +13,8 @@ const CARDS = [
   { key: "bootcamps", title: "Bootcamps", href: "/events", live: true, glow: "232,0,116", desc: "Build real world projects with AI and attend live sessions before college even starts", ill: "ill-bootcamps.webp" },
   { key: "codesprint", title: "Codesprint", href: "/codesprint", live: true, glow: "0,207,229", desc: "Learn Coding from basics by Top engineers before college even starts", ill: "ill-codesprint.webp" },
   { key: "predict", title: "College Predictor", href: "/predict", soon: true, desc: "Explore the best colleges you can get based on your JEE rank or marks", ill: "ill-college-predictor.webp" },
+  // ill: card art pending from design — swap in "ill-peerpath.webp" (440×500) when it lands; until then a text card shows.
+  { key: "peerpath", title: "PeerPath", href: "/peerpath", soon: true, desc: "Talk to a current Vedam student about VSAT, classes and campus life", ill: "" },
   { key: "vedamxp", title: "Vedam Xp", href: "/vedam-xp", locked: true, desc: "Learn, Compete and Earn", ill: "ill-vedam-xp.webp" },
 ];
 
@@ -122,12 +124,19 @@ export function LandingPage() {
         <div className="mx-auto max-w-[1800px] rounded-[20px] border border-[#7a7a7a] bg-[#171717] p-5 sm:rounded-[30px] sm:p-11" >
           <h2 className="whitespace-nowrap font-medium tracking-tight" style={{ fontSize: "clamp(24px,4.1vw,55px)" }}><span className="ld-silver">Explore Vedam </span><span className="ld-silver font-[family-name:var(--font-playfair)] italic">One</span></h2>
           <p className="mt-6 max-w-[1360px] font-light leading-relaxed tracking-tight text-[#b5b5b5]" style={{ fontSize: "clamp(12px,1.4vw,23px)" }}>Start coding early, build real products with AI, compete in hackathons, join live tech sessions and learn from people working across MAANG and top tech companies.</p>
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-5">
             {CARDS.map((c) => {
               const cls = "group relative block overflow-hidden rounded-[25px] border border-white/15 bg-white/[0.06] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5" + (c.locked ? " cursor-default" : "");
               const body = (
                 <>
-                  <Image src={`/landing/${c.ill}`} alt={c.title} width={440} height={500} className="h-auto w-full" />
+                  {c.ill ? (
+                    <Image src={`/landing/${c.ill}`} alt={c.title} width={440} height={500} className="h-auto w-full" />
+                  ) : (
+                    <div className="flex aspect-[440/500] w-full flex-col justify-end gap-2 p-4 sm:p-6" style={{ background: "radial-gradient(120% 90% at 70% 15%, rgba(118,41,252,0.45), transparent 60%)" }}>
+                      <span className="font-medium tracking-tight text-white" style={{ fontSize: "clamp(18px,2vw,30px)" }}>{c.title}</span>
+                      <span className="font-light leading-snug text-[#b5b5b5]" style={{ fontSize: "clamp(11px,1vw,15px)" }}>{c.desc}</span>
+                    </div>
+                  )}
                   {c.live && <span aria-hidden className="pointer-events-none absolute inset-0 z-[3]" style={{ background: "linear-gradient(125deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 18%, transparent 40%, transparent 66%, rgba(255,255,255,0.12) 100%)" }} />}
                   {c.live && <span aria-hidden className="ld-shine pointer-events-none absolute inset-y-0 -left-full z-[4] w-2/3 -skew-x-[20deg]" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.10) 70%, transparent)" }} />}
                 </>

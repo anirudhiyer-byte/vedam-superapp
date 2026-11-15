@@ -9,5 +9,10 @@ export async function POST(req: Request) {
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   const { data: app } = await admin.from("application_manager").select("*").eq("lead_id", user.id).maybeSingle();
   const { data: lead } = await admin.from("lead_manager").select("lead_stage,registered_name,public_id,campus_preference").eq("lead_id", user.id).maybeSingle();
-  return Response.json({ ok: true, app, lead });
+  // Enabled, not-yet-finished exam dates for the student date picker (no Wheebox test id exposed).
+  const { data: dates } = await admin.from("vsat_exam_dates")
+    .select("id,label,exam_date,start_at,end_at")
+    .eq("enabled", true).gte("end_at", new Date().toISOString())
+    .order("start_at", { ascending: true });
+  return Response.json({ ok: true, app, lead, dates: dates ?? [] });
 }

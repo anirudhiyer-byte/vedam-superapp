@@ -29,6 +29,7 @@ export async function deliverEmail(opts: {
   refName?: string | null;
   campaignId?: string | null;
   fromName?: string;
+  attachments?: { filename: string; content: string; mimetype: string }[]; // content = base64
 }): Promise<DeliverResult> {
   const svc = svcClient();
   if (!svc) return { ok: false, error: "service_role_key_missing" };
@@ -64,7 +65,7 @@ export async function deliverEmail(opts: {
   let provider: "smtp2go" | "gmail";
   if (smtp2goConfigured()) {
     provider = "smtp2go";
-    sent = await smtp2goSend({ to: opts.to, subject: opts.subject, html, ics: opts.ics, fromName: opts.fromName });
+    sent = await smtp2goSend({ to: opts.to, subject: opts.subject, html, ics: opts.ics, attachments: opts.attachments, fromName: opts.fromName });
   } else {
     provider = "gmail";
     const creds = await gmailAccessToken();

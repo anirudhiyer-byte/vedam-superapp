@@ -22,6 +22,7 @@ export async function smtp2goSend(opts: {
   subject: string;
   html: string;
   ics?: string;              // optional .ics calendar invite (raw text)
+  attachments?: Attachment[]; // optional files (content = base64)
   fromName?: string;
 }): Promise<{ ok: boolean; messageId?: string; error?: string }> {
   const apiKey = process.env.SMTP2GO_API_KEY;
@@ -35,13 +36,14 @@ export async function smtp2goSend(opts: {
     subject: opts.subject,
     html_body: opts.html,
   };
+  const files: { filename: string; fileblob: string; mimetype: string }[] = [];
   if (opts.ics) {
-    body.attachments = [{
-      filename: "invite.ics",
-      fileblob: Buffer.from(opts.ics, "utf-8").toString("base64"),
-      mimetype: "text/calendar; method=REQUEST",
-    } satisfies { filename: string; fileblob: string; mimetype: string }];
+    files.push({ filename: "invite.ics", fileblob: Buffer.from(opts.ics, "utf-8").toString("base64"), mimetype: "text/calendar; method=REQUEST" });
   }
+  for (const a of opts.attachments ?? []) {
+    files.push({ filename: a.filename, fileblob: a.content, mimetype: a.mimetype });
+  }
+  if (files.length) body.attachments = files;
 
   try {
     const res = await fetchResilient("https://api.smtp2go.com/v3/email/send", {
