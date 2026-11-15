@@ -282,8 +282,8 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const bHref = (f: string) => (SB ? `${SB}/storage/v1/object/public/vsat-docs/${f}` : undefined);
   const formSubmitted = !!((a.form_data as { _meta?: { submitted?: boolean } } | undefined)?._meta?.submitted);
   const quickLinks: { label: string; icon: string; open: boolean; href?: string; soon?: boolean; onClick?: () => void }[] = [
-    { label: "Pune brochure (ADYPU)", icon: "📘", open: true, href: bHref("adypu-pune-brochure.pdf") },
-    { label: "Gurugram brochure (Sushant)", icon: "📘", open: true, href: bHref("sushant-gurugram-brochure.pdf") },
+    { label: "Pune campus brochure", icon: "📘", open: true, href: bHref("adypu-pune-brochure.pdf") },
+    { label: "Gurugram campus brochure", icon: "📘", open: true, href: bHref("sushant-gurugram-brochure.pdf") },
     { label: "Sample papers", icon: "📄", open: paid, href: `${DOCS}/vsat-sample-paper.pdf` },
     { label: "Prep kit", icon: "📚", open: paid, href: `${DOCS}/vsat-prep-kit.pdf` },
     { label: "Mock test", icon: "📝", open: false, soon: true },
