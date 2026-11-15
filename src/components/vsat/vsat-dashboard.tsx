@@ -286,7 +286,6 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
     { label: "Sample papers", icon: "📄", open: paid, href: `${DOCS}/vsat-sample-paper.pdf` },
     { label: "Prep kit", icon: "📚", open: paid, href: `${DOCS}/vsat-prep-kit.pdf` },
     { label: "Mock test", icon: "📝", open: false, soon: true },
-    { label: "Syllabus & pattern", icon: "🎯", open: paid },
   ];
   if (formSubmitted) quickLinks.push({ label: "Application PDF", icon: "🧾", open: true, onClick: downloadApplicationPdf });
   if (offerActive) quickLinks.push({ label: "Offer letter", icon: "📜", open: true });
@@ -351,15 +350,12 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
             <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">Your journey</p>
             <p className="mt-1 font-display text-sm font-bold tabular-nums">{appId}</p>
             <div className="mb-4 mt-3 flex gap-2">
-              {[1, 2].map((n) => {
-                const locked = n === 2 && !attempt2Unlocked;
-                return (
-                  <button key={n} disabled={locked} onClick={() => setPerfAtt(n)}
-                    className={`rounded-full border px-3 py-1 text-xs font-bold transition ${perfAtt === n ? "border-[#8a18ff] bg-[#8a18ff] text-white" : locked ? "cursor-not-allowed border-[#e9e4f2] text-[#c4bdd6]" : "border-[#e9e4f2] text-[#6c6485] hover:border-[#8a18ff]"}`}>
-                    Attempt {n}{locked ? " 🔒" : ""}
-                  </button>
-                );
-              })}
+              {(attempt2Unlocked ? [1, 2] : [1]).map((n) => (
+                <button key={n} onClick={() => setPerfAtt(n)}
+                  className={`rounded-full border px-3 py-1 text-xs font-bold transition ${perfAtt === n ? "border-[#8a18ff] bg-[#8a18ff] text-white" : "border-[#e9e4f2] text-[#6c6485] hover:border-[#8a18ff]"}`}>
+                  Attempt {n}
+                </button>
+              ))}
             </div>
             <ol>
               {MILESTONES.map((m, i) => (

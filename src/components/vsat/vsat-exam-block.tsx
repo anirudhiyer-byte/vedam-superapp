@@ -107,7 +107,7 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
       ) : (
         <>
           <p className="mt-2 text-sm text-[#6b647e]">Practice once before the real VSAT. Available once per applicant.</p>
-          <button onClick={() => launch("mock")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start mock test"}</button>
+          <button disabled className={`mt-4 ${grad} cursor-not-allowed opacity-60`} title="Coming soon">🔒 Coming soon</button>
         </>
       )}
 
