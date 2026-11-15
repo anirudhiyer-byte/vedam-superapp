@@ -391,7 +391,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
           {/* MIDDLE · action box + form-progress / performance slot */}
           <main className="min-w-0">
             {note && <div className="mb-4 rounded-xl border border-[#8a18ff]/25 bg-[#f6f0ff] p-3 text-sm font-medium text-[#7312e0]">{note}</div>}
-            {countdown && (
+            {countdown && !paid && (
               <div className="mb-4 flex items-center gap-2 rounded-xl border border-[#f3d79a] bg-[#fff6e6] px-3.5 py-2.5 text-[13px] font-semibold text-[#b26a00]">
                 ⏳ <span><b className="tabular-nums text-sm">{countdown}</b> left on your early-bird window{showDiscount ? ` — pay now to save ₹${quote?.discount}.` : "."}</span>
               </div>
