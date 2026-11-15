@@ -7,6 +7,8 @@ import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
 import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
+import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
+import { VsatApplicationsPanel } from "@/components/admin/vsat-applications-panel";
 import { visiblePanels, type PanelKey, type VsatRoles } from "@/lib/vsat/pipeline";
 
 /**
@@ -48,7 +50,7 @@ const ICON: Record<string, string> = {
 
 const VSAT: Group[] = [
   { g: "Leads & Applications", items: [
-    { id: "leads", label: "VSAT Leads", icon: ICON.leads },
+    { id: "leads", label: "VSAT Leads", icon: ICON.leads, live: true },
     { id: "apps", label: "VSAT Applications", icon: ICON.apps },
   ] },
   { g: "VSAT Process", items: [
@@ -149,6 +151,10 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     if (active.cm && active.page) return <div className="vp-scroll"><CommunicationManager key={active.page} page={active.page as CmPage} onNavigate={goCm} /></div>;
     if (active.id === "form") return <div className="vp-scroll"><VsatFormBuilder /></div>;
     if (active.id === "center") return <div className="vp-scroll"><VsatExamCenter wheebox={wheebox} /><VsatExamDates /></div>;
+    // Leads & Applications read straight from lead_manager / application_manager (every
+    // row, not the exam pipeline). Exam / Interview / Counselling stay on the pipeline.
+    if (active.id === "leads") return <div className="vp-scroll"><VsatLeadsPanel /></div>;
+    if (active.id === "apps") return <div className="vp-scroll"><VsatApplicationsPanel /></div>;
     if (isPanelKey(active.id) && allowed.includes(active.id)) return <div className="vp-scroll"><PipelinePanel key={active.id} panel={active.id} roles={vsatRoles} /></div>;
     return <Placeholder title={active.title} kind="vsat" />;
   }
