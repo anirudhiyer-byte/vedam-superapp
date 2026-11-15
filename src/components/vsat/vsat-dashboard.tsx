@@ -1,17 +1,41 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
+import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
+import { VsatExamBlock } from "@/components/vsat/vsat-exam-block";
+import { offerPayable, type EnrollApp } from "@/lib/payments/enroll-fee";
 
-const VSAT_FEE = 1000; // placeholder — real amount comes from the VSAT campaign
+const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"];
+
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
+type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null; couponCode?: string | null; couponDiscount?: number } | null;
 
+type CashfreeCheckout = { checkout: (o: { paymentSessionId: string; redirectTarget?: string }) => void };
+declare global { interface Window { Cashfree?: (opts: { mode: string }) => CashfreeCheckout } }
+
+/** Lazy-load the Cashfree v3 web SDK and return an initialised checkout instance. */
+function loadCashfree(mode: string): Promise<CashfreeCheckout> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === "undefined") return reject(new Error("no window"));
+    if (window.Cashfree) return resolve(window.Cashfree({ mode }));
+    const s = document.createElement("script");
+    s.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
+    s.async = true;
+    s.onload = () => (window.Cashfree ? resolve(window.Cashfree({ mode })) : reject(new Error("Cashfree SDK unavailable")));
+    s.onerror = () => reject(new Error("Could not load the payment SDK"));
+    document.head.appendChild(s);
+  });
+}
+
+// #11: pay + date-selection + form fill run in parallel, so they collapse into one
+// "Apply" step; then Give VSAT (flipped by the Wheebox result callback), then the rest.
 const MILESTONES = [
   { key: "started", label: "Application started" },
-  { key: "paid", label: "Pay VSAT fee" },
-  { key: "form", label: "Fill application form" },
-  { key: "slot", label: "Select exam slot" },
+  { key: "apply", label: "Pay · Select date · Fill form" },
   { key: "exam", label: "Give VSAT" },
   { key: "result", label: "VSAT result" },
   { key: "interview", label: "Interview" },
@@ -19,27 +43,71 @@ const MILESTONES = [
   { key: "enrolled", label: "Enroll" },
 ];
 
-function activeIndex(app: App): number {
-  if (!app) return 0;
-  const a = app as Record<string, string>;
-  const pay = a.payment_stage_1, appl = a.application_stage_1;
-  if (appl === "enrolled") return 8;
-  if (appl === "offer_released" || appl === "counselling_done") return 7;
-  if (appl === "interview_selected" || appl === "interview_rejected") return 6;
-  if (appl === "vsat_cleared" || appl === "vsat_not_cleared") return 5;
-  if (appl === "slot_selected") return 4;
-  if (pay === "payment_approved") return 2;
-  if (pay === "payment_initiated") return 1;
-  return 1; // applicant, unpaid -> next action is pay
+// Campus is asked AFTER VSAT is cleared (not in the /vsat form). Same options as the form.
+const CAMPUSES = ["Ajeenkya DY Patil University — Pune", "Sushant University — Gurugram", "No preference"];
+
+function activeIndex(appl: string | undefined): number {
+  if (appl === "enrolled") return 6;
+  if (appl === "offer_released" || appl === "counselling_done" || appl === "offer_cancelled") return 5;
+  if (appl === "interview_selected" || appl === "interview_rejected") return 4;
+  if (appl === "vsat_cleared" || appl === "vsat_not_cleared") return 3;
+  if (appl === "slot_selected") return 2;
+  return 1; // applicant → Apply phase (pay / date / form)
 }
 
-export function VsatDashboard() {
+/** Live HH:MM:SS left until `endsAt` (ISO); null once elapsed. Ticks every second. */
+function useCountdown(endsAt: string | null): string | null {
+  const [, tick] = useState(0);
+  useEffect(() => {
+    if (!endsAt) return;
+    const id = setInterval(() => tick((n) => n + 1), 1000);
+    return () => clearInterval(id);
+  }, [endsAt]);
+  if (!endsAt) return null;
+  const ms = new Date(endsAt).getTime() - Date.now();
+  if (ms <= 0) return null;
+  const totalH = Math.floor(ms / 3_600_000), d = Math.floor(totalH / 24), h = totalH % 24;
+  const m = Math.floor((ms % 3_600_000) / 60_000), s = Math.floor((ms % 60_000) / 1000);
+  return `${d > 0 ? `${d}d ` : ""}${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+// ── brand tokens (light, restrained: gradient only on the hero) ──────────────
+const HERO_GRAD = "linear-gradient(104deg,#f97d03 0%,#c200db 52%,#8a18ff 100%)";
+const card = "rounded-2xl border border-[#e9e4f2] bg-white p-5 shadow-[0_10px_30px_-22px_rgba(43,19,92,0.38)]";
+const leadCard = `${card} border-t-[3px] border-t-[#8a18ff]`;
+const btn = "inline-flex items-center justify-center gap-2 rounded-xl bg-[#8a18ff] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#7312e0] disabled:opacity-50";
+const btnGhost = "inline-flex items-center justify-center gap-2 rounded-xl border border-[#e9e4f2] bg-white px-4 py-2 text-sm font-semibold text-[#1b1030] transition hover:border-[#8a18ff] disabled:opacity-50";
+const pillGood = "inline-flex items-center gap-1.5 rounded-md bg-[#eafaf1] px-2.5 py-1 text-xs font-bold text-[#1f9d57]";
+const pillOrange = "inline-flex items-center gap-1.5 rounded-md bg-[#fff3e6] px-2.5 py-1 text-xs font-bold text-[#f97d03]";
+const iconTint = "grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-[#f2ebfd] text-base";
+const linkBox = "flex items-center gap-3 rounded-2xl border border-[#e9e4f2] bg-white p-3.5 shadow-[0_10px_30px_-22px_rgba(43,19,92,0.38)] transition hover:border-[#8a18ff]";
+
+const firstName = (s: string) => (s || "").trim().split(/\s+/)[0] || "";
+
+export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const [supabase] = useState(() => createClient());
   const [app, setApp] = useState<App>(null);
   const [lead, setLead] = useState<Lead>(null);
+  const [quote, setQuote] = useState<Quote>(null);
+  const [coupon, setCoupon] = useState("");
+  const [appliedCode, setAppliedCode] = useState<string | undefined>(undefined);
+  const [couponMsg, setCouponMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const [note, setNote] = useState("");
+  const [fillOpen, setFillOpen] = useState(false);
+  const [perfAtt, setPerfAtt] = useState(1);
+  // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
+  // Not a bypass of the pay screen — the admin still sees "Pay", with a Simulate
+  // button below it. Persisted per browser so a refresh keeps them past the gate.
+  const [simPaid, setSimPaid] = useState(false);
+  useEffect(() => { try { if (isAdmin && localStorage.getItem("vsat_admin_sim_paid") === "1") setSimPaid(true); } catch { /* ignore */ } }, [isAdmin]);
+  function simulatePayment() {
+    try { localStorage.setItem("vsat_admin_sim_paid", "1"); } catch { /* ignore */ }
+    setSimPaid(true);
+    setNote("Simulated payment (admin) — the exam/application flow is unlocked. This does not create a real payment.");
+  }
 
   const load = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -47,114 +115,458 @@ export function VsatDashboard() {
     const res = await fetch("/api/vsat/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
     const j = await res.json();
     if (j.ok) { setApp(j.app); setLead(j.lead); }
+    // fee quote (server-authoritative) drives the 24h banner + the exact pay amount
+    try {
+      const q = await fetch("/api/payments/vsat-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
+      const qj = await q.json();
+      if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt });
+    } catch { /* banner is best-effort */ }
     setLoading(false);
   }, [supabase]);
-  useEffect(() => { void load(); }, [load]);
 
-  async function patch(updates: Record<string, unknown>) {
+  // On a Cashfree return, confirm server-side then clean the URL. Two flows:
+  //   ?pay=return         -> VSAT fee        (/api/payments/vsat-status)
+  //   ?pay=enroll_return  -> enrollment fee  (/api/payments/enroll-status)
+  useEffect(() => {
+    (async () => {
+      const url = new URL(window.location.href);
+      const flow = url.searchParams.get("pay");
+      if (flow !== "return" && flow !== "enroll_return") { void load(); return; }
+      const orderId = url.searchParams.get("order");
+      const endpoint = flow === "enroll_return" ? "/api/payments/enroll-status" : "/api/payments/vsat-status";
+      const { data: { session } } = await supabase.auth.getSession();
+      if (orderId && session) {
+        setNote("Confirming your payment…");
+        try {
+          const res = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, orderId }) });
+          const j = await res.json();
+          setNote(j.ok && j.status === "paid" ? "Payment successful 🎉" : j.status === "already_paid" ? "" : "Payment not completed. You can try again.");
+        } catch { setNote("Could not confirm payment. Refresh in a moment."); }
+      }
+      window.history.replaceState({}, "", "/apply/dashboard");
+      void load();
+    })();
+  }, [supabase, load]);
+
+  async function startPayment() {
+    setBusy(true); setErr("");
+    track("vsat_pay_click");
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const res = await fetch("/api/payments/vsat-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token, code: appliedCode }) });
+      const j = await res.json();
+      if (!j.ok) { setBusy(false); return setErr(j.error === "already_paid" ? "You've already paid." : j.error || "Could not start payment."); }
+      const cashfree = await loadCashfree(j.mode || "sandbox");
+      cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
+      // browser now navigates to Cashfree; on return the effect above confirms.
+    } catch (e) {
+      setBusy(false);
+      setErr(String((e as Error)?.message || "Payment could not start."));
+    }
+  }
+
+  async function applyCoupon() {
+    const code = coupon.trim();
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    try {
+      const q = await fetch("/api/payments/vsat-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, code }) });
+      const qj = await q.json();
+      if (!qj.ok) { setCouponMsg({ ok: false, text: "Couldn't check that code." }); return; }
+      setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, couponCode: qj.coupon?.code ?? null, couponDiscount: qj.couponDiscount });
+      const c = qj.coupon;
+      if (!code) { setAppliedCode(undefined); setCouponMsg(null); return; }
+      if (c?.accepted) {
+        setAppliedCode(c.code);
+        setCouponMsg({ ok: true, text: c.extraOff > 0 ? `Coupon applied — ₹${c.extraOff} extra off` : "Valid, but your early-bird discount is already higher." });
+      } else {
+        setAppliedCode(undefined);
+        const map: Record<string, string> = { not_found: "Invalid code.", expired: "This code has expired.", inactive: "This code isn't active.", exhausted: "This code has been fully used.", not_started: "This code isn't active yet." };
+        setCouponMsg({ ok: false, text: map[c?.error] || "Invalid code." });
+      }
+    } catch { setCouponMsg({ ok: false, text: "Couldn't check that code." }); }
+  }
+
+  async function downloadApplicationPdf() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    window.open(`/api/vsat/application-pdf?token=${encodeURIComponent(session.access_token)}`, "_blank", "noopener");
+  }
+
+  async function startEnrollment() {
+    setBusy(true); setErr("");
+    track("vsat_enroll_click");
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const res = await fetch("/api/payments/enroll-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
+      const j = await res.json();
+      if (!j.ok) { setBusy(false); return setErr(j.error === "already_enrolled" ? "You're already enrolled." : j.error === "offer_expired" ? "Your offer has expired — please contact the admissions team." : j.error || "Could not start enrollment."); }
+      const cashfree = await loadCashfree(j.mode || "sandbox");
+      cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
+    } catch (e) {
+      setBusy(false);
+      setErr(String((e as Error)?.message || "Enrollment could not start."));
+    }
+  }
+
+  // Applicant-side stage save (campus choice post-VSAT-cleared) — /api/vsat/stage
+  // whitelists campus_applied; payment fields stay server-only.
+  const saveStage = useCallback(async (updates: Record<string, unknown>) => {
     setBusy(true); setErr("");
     const { data: { session } } = await supabase.auth.getSession();
     const res = await fetch("/api/vsat/stage", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token, updates }) });
     const j = await res.json(); setBusy(false);
-    if (!j.ok) return setErr(j.error || "Update failed.");
+    if (!j.ok) return setErr(j.error || "Couldn't save. Try again.");
     await load();
-  }
+  }, [supabase, load]);
 
-  if (loading) return <div className="p-10 text-white/50">Loading your dashboard…</div>;
-  if (!app) return <div className="p-10 text-white/60">No VSAT application found. <a href="/vsat" className="text-[#00cfe5] underline">Start one →</a></div>;
+  // live 24h countdown, shown for everyone while the early-bird window is open
+  // (hook must run before any early return)
+  const countdown = useCountdown(quote?.within24h ? quote?.windowEndsAt ?? null : null);
+  // #3 live countdown to the booked exam slot (null until a date is picked / after it passes)
+  const examLeft = useCountdown(app ? ((app as Record<string, string>).vsat_slot_datetime_1 || null) : null);
+
+  const BackBar = (
+    <div className="mb-4 flex items-center justify-between">
+      <Image src="/vedam-logo.png" alt="Vedam School of Technology" width={200} height={70} className="h-8 w-auto" priority />
+      <Link href="/apply" className="inline-flex items-center gap-2 rounded-[10px] border border-[#e9e4f2] bg-white px-3.5 py-2 text-sm font-semibold text-[#1b1030] transition hover:border-[#8a18ff]">← Back</Link>
+    </div>
+  );
+
+  if (loading) return <div className="min-h-screen bg-[#f6f4fa]"><div className="mx-auto max-w-[1200px] px-4 py-5">{BackBar}<div className="py-10 text-[#6c6485]">Loading your dashboard…</div></div></div>;
+  if (!app) return <div className="min-h-screen bg-[#f6f4fa]"><div className="mx-auto max-w-[1200px] px-4 py-5">{BackBar}<div className="py-10 text-[#1b1030]">No VSAT application found. <a href="/apply" className="font-semibold text-[#8a18ff] underline">Start one →</a></div></div></div>;
 
   const a = app as Record<string, string>;
+  const ao = app as Record<string, unknown>;
+  const l = (lead as Record<string, string>) ?? {};
   const pay = a.payment_stage_1, appl = a.application_stage_1;
-  const paid = pay === "payment_approved";
-  const idx = activeIndex(app);
+  // Admins/staff bypass payment so they can walk the full exam demo without paying.
+  const paid = pay === "payment_approved" || (isAdmin && simPaid);
+  // #4: the Attempt 1/2 pills (left rail) pick which attempt's journey + results show;
+  // the live action panel below always stays on the current attempt.
+  const attempt2Unlocked = !!a.payment_stage_2 && a.payment_stage_2 !== "payment_not_initiated";
+  const viewAppl = a[`application_stage_${perfAtt}`] || (perfAtt === 1 ? appl : "");
+  const idx = activeIndex(viewAppl);
+  const pct = Math.round((idx / (MILESTONES.length - 1)) * 100);
+  const payAmount = quote?.net ?? 1000;
+  const showDiscount = !!quote && quote.discount > 0 && !paid;
 
-  // 24h urgency coupon window
-  const created = a.created_at ? new Date(a.created_at).getTime() : 0;
-  const within24h = created && Date.now() - created < 24 * 3600 * 1000;
+  // enrollment / offer gate (same rule as the server's offerPayable)
+  const enrollApp: EnrollApp = {
+    enrollment_stage: (ao.enrollment_stage as string) ?? null,
+    application_stage_1: appl,
+    scholarship_percentage: ao.scholarship_percentage != null ? Number(ao.scholarship_percentage) : null,
+    offer_released_at: (ao.offer_released_at as string) ?? null,
+    offer_expires_at: (ao.offer_expires_at as string) ?? null,
+    offer_cancelled: ao.offer_cancelled === true,
+  };
+  const enrolled = appl === "enrolled" || ao.enrollment_stage === "approved";
+  const canEnroll = offerPayable(enrollApp).ok;
+  const offerIssued = ao.scholarship_percentage != null && !!ao.offer_released_at;
+  const offerActive = offerIssued && ao.offer_cancelled !== true;
+  const inExamPhase = paid && !RESULT_STAGES.includes(appl);
+  const vps = ao.vps_score != null ? Number(ao.vps_score) : null;
+  const hasResults = vps != null || RESULT_STAGES.includes(appl);
+
+  // personalisation
+  const name = firstName(l.registered_name || "");
+  const appId = l.public_id || a.application_no || a.application_id || "—";
+  const campus = (a.campus_applied as string) || l.campus_preference || (a.campus_preference as string) || (a.campus as string) || "";
+  const stream = (a.stream as string) || "";
+
+  // quick links — offer letter appears only once an offer is live, drops if cancelled.
+  // Mock test is "coming soon" (locked for everyone) until the Wheebox callback is live.
+  const DOCS = "/vedam-one/docs";
+  // brochures served from the public Supabase 'vsat-docs' bucket — one link per campus
+  // (campus isn't chosen at signup, so both are offered)
+  const SB = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const bHref = (f: string) => (SB ? `${SB}/storage/v1/object/public/vsat-docs/${f}` : undefined);
+  const formSubmitted = !!((a.form_data as { _meta?: { submitted?: boolean } } | undefined)?._meta?.submitted);
+  const quickLinks: { label: string; icon: string; open: boolean; href?: string; soon?: boolean; onClick?: () => void }[] = [
+    { label: "Pune campus brochure", icon: "📘", open: true, href: bHref("adypu-pune-brochure.pdf") },
+    { label: "Gurugram campus brochure", icon: "📘", open: true, href: bHref("sushant-gurugram-brochure.pdf") },
+    { label: "Sample papers", icon: "📄", open: paid, href: `${DOCS}/vsat-sample-paper.pdf` },
+    { label: "Prep kit", icon: "📚", open: paid, href: `${DOCS}/vsat-prep-kit.pdf` },
+    { label: "Mock test", icon: "📝", open: false, soon: true },
+  ];
+  if (formSubmitted) quickLinks.push({ label: "Application PDF", icon: "🧾", open: true, onClick: downloadApplicationPdf });
+  if (offerActive) quickLinks.push({ label: "Offer letter", icon: "📜", open: true });
+
+  // ── performance rows per attempt (student-facing; raw marks stay admin-only) ──
+  const buildRows = (att: number) => {
+    const applN = att === 1 ? appl : (a[`application_stage_${att}`] || "");
+    const vpsRaw = a[`vps_score_${att}`];
+    const vpsN = vpsRaw != null && vpsRaw !== "" ? Number(vpsRaw) : att === 1 ? vps : null;
+    const schRaw = a[`scholarship_pct_${att}`] ?? (att === 1 ? (ao.scholarship_percentage as string | number | null) : null);
+    const has = vpsN != null || RESULT_STAGES.includes(applN);
+    const rows: { icon: string; title: string; desc: string; value: ReactNode }[] = [];
+    if (!has) return { has, rows };
+    rows.push({
+      icon: "🎯", title: `VSAT · ${applN === "vsat_not_cleared" ? "not cleared" : "cleared"}`, desc: "VSAT Performance Score",
+      value: vpsN != null ? <span className="tabular-nums">{vpsN}<small className="text-xs font-semibold text-[#6c6485]">/10</small></span> : <span className="text-[#a79fbd]">—</span>,
+    });
+    if (["interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"].includes(applN)) {
+      const sel = applN !== "interview_rejected";
+      rows.push({ icon: "🗣️", title: "Interview", desc: "Admissions panel", value: <span className={sel ? pillGood : "inline-flex items-center rounded-md bg-[#fdeaea] px-2.5 py-1 text-xs font-bold text-[#d14343]"}>{sel ? "Selected" : "Not selected"}</span> });
+    }
+    if (schRaw != null && schRaw !== "") rows.push({ icon: "🎓", title: "Counselling", desc: "Scholarship offered", value: <span className="tabular-nums">{String(schRaw)}%</span> });
+    return { has, rows };
+  };
+  const perf = buildRows(perfAtt);
 
   return (
-    <div className="min-h-screen bg-[#0b0618] text-white lg:grid lg:grid-cols-[25%_50%_25%]">
-      {/* LEFT 25% — journey rail */}
-      <aside className="border-white/10 p-6 lg:border-r">
-        <p className="text-xs uppercase tracking-wide text-white/40">Your journey</p>
-        <p className="mt-1 text-sm font-semibold">{(lead as Record<string,string>)?.public_id ?? a.application_no}</p>
-        <ol className="mt-6 space-y-1">
-          {MILESTONES.map((m, i) => (
-            <li key={m.key} className="flex items-start gap-3">
-              <div className="flex flex-col items-center">
-                <span className={`flex h-6 w-6 items-center justify-center rounded-full border text-[11px] ${i < idx ? "border-[#22e06a] bg-[#22e06a]/20 text-[#22e06a]" : i === idx ? "border-[#00cfe5] bg-[#00cfe5]/20 text-[#00cfe5]" : "border-white/15 text-white/35"}`}>{i < idx ? "✓" : i + 1}</span>
-                {i < MILESTONES.length - 1 && <span className={`my-0.5 h-5 w-px ${i < idx ? "bg-[#22e06a]/40" : "bg-white/10"}`} />}
+    <div className="min-h-screen bg-[#f6f4fa] text-[#1b1030]">
+      <div className="mx-auto max-w-[1200px] px-4 py-5">
+        {BackBar}
+
+        {/* ── personalised hero (the single gradient moment) ── */}
+        <section className="relative overflow-hidden rounded-[20px] p-6 text-white" style={{ background: HERO_GRAD }}>
+          <div className="flex flex-wrap items-center gap-5">
+            <div className="min-w-0 flex-1 basis-80">
+              <span className="text-[13px] font-semibold opacity-90">Welcome back,</span>
+              <h1 className="font-display text-[clamp(22px,4.2vw,30px)] font-extrabold leading-tight tracking-tight text-balance">
+                {name ? `${name}, ` : ""}your VSAT journey is on track.
+              </h1>
+              <div className="mt-3.5 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/25 bg-white/[0.15] px-2.5 py-1 text-xs font-semibold"><span className="opacity-75">App ID</span> <span className="tabular-nums">{appId}</span></span>
+                {campus && <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/25 bg-white/[0.15] px-2.5 py-1 text-xs font-semibold"><span className="opacity-75">Campus</span> {campus}</span>}
+                {stream && <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/25 bg-white/[0.15] px-2.5 py-1 text-xs font-semibold"><span className="opacity-75">Stream</span> {stream}</span>}
               </div>
-              <span className={`pt-0.5 text-sm ${i === idx ? "font-semibold text-white" : i < idx ? "text-white/60" : "text-white/35"}`}>{m.label}</span>
-            </li>
-          ))}
-        </ol>
-      </aside>
-
-      {/* MIDDLE 50% — contextual action */}
-      <main className="p-6 lg:p-10">
-        {within24h && !paid && (
-          <div className="mb-6 rounded-2xl border border-[#f5a623]/40 bg-[#f5a623]/10 p-4 text-sm">
-            ⏳ <b>Pay within 24 hours</b> to unlock an early-bird discount on your VSAT fee.
-          </div>
-        )}
-        {!paid && (
-          <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6">
-            <h2 className="font-display text-2xl font-bold">Pay your VSAT fee</h2>
-            <p className="mt-2 text-white/60">Pay ₹{VSAT_FEE} to unlock your exam slot, mock tests and the application form.</p>
-            <button onClick={() => { track("vsat_pay_click"); void patch({ payment_stage_1: "payment_initiated", payment_stage_1_at: new Date().toISOString() }); }} disabled={busy}
-              className="mt-5 rounded-xl bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-6 py-3 text-sm font-semibold disabled:opacity-50">Pay ₹{VSAT_FEE}</button>
-            {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#f5a623]">Payment initiated — complete it on the gateway. (Cashfree wiring is the next integration.)</p>}
-            <p className="mt-4 text-[11px] text-white/35">Admin test: <button onClick={() => patch({ payment_stage_1: "payment_approved", application_stage_1: "payment_approved" })} className="underline">simulate approval →</button></p>
-          </div>
-        )}
-        {paid && appl !== "slot_selected" && !["vsat_cleared","vsat_not_cleared","interview_selected","counselling_done","offer_released","enrolled"].includes(appl) && (
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6">
-              <h2 className="font-display text-xl font-bold">Select your exam slot</h2>
-              <p className="mt-2 text-sm text-white/60">Pick your VSAT date & time. You can fill the application form in parallel.</p>
-              <button onClick={() => patch({ application_stage_1: "slot_selected", vsat_slot_datetime_1: new Date(Date.now()+7*864e5).toISOString() })} disabled={busy} className="mt-4 rounded-xl bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-5 py-2.5 text-sm font-semibold disabled:opacity-50">Choose slot</button>
             </div>
-            <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6">
-              <h2 className="font-display text-xl font-bold">Fill application form</h2>
-              <p className="mt-2 text-sm text-white/60">Basic details, academics, parents, documents, consent. Required before the enrollment fee.</p>
-              <button onClick={() => patch({ form_stage_1: "form_initiated" })} disabled={busy} className="mt-4 rounded-xl border border-white/20 px-5 py-2.5 text-sm font-semibold disabled:opacity-50">Start form</button>
+            <div className="relative grid h-[110px] w-[110px] shrink-0 place-items-center">
+              <svg viewBox="0 0 120 120" width="110" height="110" className="absolute inset-0 -rotate-90">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.26)" strokeWidth="10" />
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#fff" strokeWidth="10" strokeLinecap="round" strokeDasharray="326.7" strokeDashoffset={326.7 * (1 - pct / 100)} />
+              </svg>
+              <div className="text-center">
+                <div className="font-display text-[25px] font-extrabold leading-none tabular-nums">{pct}%</div>
+                <div className="mt-0.5 text-[10px] uppercase tracking-wide opacity-85">Step {idx + 1} / {MILESTONES.length}</div>
+              </div>
             </div>
           </div>
-        )}
-        {appl === "slot_selected" && (
-          <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-6">
-            <h2 className="font-display text-xl font-bold">Your slot is booked ✅</h2>
-            <p className="mt-2 text-sm text-white/60">Exam: {a.vsat_slot_datetime_1 ? new Date(a.vsat_slot_datetime_1).toLocaleString() : "—"}. The Take-Test button unlocks at your slot time.</p>
-            <button disabled className="mt-4 cursor-not-allowed rounded-xl bg-white/10 px-5 py-2.5 text-sm font-semibold text-white/40">🔒 Take test (locked until slot)</button>
-          </div>
-        )}
-        {["vsat_cleared","interview_selected","counselling_done","offer_released","enrolled"].includes(appl) && (
-          <div className="rounded-2xl border border-[#22e06a]/30 bg-[#22e06a]/10 p-6">
-            <h2 className="font-display text-xl font-bold text-[#22e06a]">Stage: {appl.replace(/_/g, " ")}</h2>
-            <p className="mt-2 text-sm text-white/70">You&apos;re progressing through the admissions funnel. Watch your email/WhatsApp for the next step.</p>
-          </div>
-        )}
-        {err && <p className="mt-4 text-xs text-[#ff9db0]">{err}</p>}
-      </main>
+        </section>
 
-      {/* RIGHT 25% — quick links (locked until paid) */}
-      <aside className="border-white/10 p-6 lg:border-l">
-        <p className="text-xs uppercase tracking-wide text-white/40">Quick links</p>
-        <div className="mt-4 space-y-3">
-          {[
-            { label: "📄 Download mock papers" },
-            { label: "📝 Start a mock test" },
-            { label: "📘 Download brochure" },
-            { label: "🎯 VSAT syllabus & pattern" },
-          ].map((q) => (
-            <button key={q.label} disabled={!paid} className={`block w-full rounded-xl border px-4 py-3 text-left text-sm ${paid ? "border-white/15 bg-white/[0.04] hover:bg-white/[0.08]" : "cursor-not-allowed border-white/8 bg-white/[0.02] text-white/30"}`}>
-              {q.label}{!paid && " 🔒"}
-            </button>
-          ))}
+        <div className="mt-5 grid items-start gap-[18px] lg:grid-cols-[252px_minmax(0,1fr)_252px]">
+          {/* LEFT · journey rail + quick entries (payments / communications pages) */}
+          <div className="flex flex-col gap-[18px]">
+          <aside className={card}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">Your journey</p>
+            <p className="mt-1 font-display text-sm font-bold tabular-nums">{appId}</p>
+            <div className="mb-4 mt-3 flex gap-2">
+              {(attempt2Unlocked ? [1, 2] : [1]).map((n) => (
+                <button key={n} onClick={() => setPerfAtt(n)}
+                  className={`rounded-full border px-3 py-1 text-xs font-bold transition ${perfAtt === n ? "border-[#8a18ff] bg-[#8a18ff] text-white" : "border-[#e9e4f2] text-[#6c6485] hover:border-[#8a18ff]"}`}>
+                  Attempt {n}
+                </button>
+              ))}
+            </div>
+            <ol>
+              {MILESTONES.map((m, i) => (
+                <li key={m.key} className="flex items-start gap-3">
+                  <div className="flex flex-col items-center">
+                    <span className={`grid h-[25px] w-[25px] place-items-center rounded-full border-[1.5px] font-display text-[11px] font-bold ${i < idx ? "border-[#1f9d57] bg-[#1f9d57] text-white" : i === idx ? "border-[#8a18ff] bg-[#8a18ff] text-white shadow-[0_0_0_4px_#f2ebfd]" : "border-[#e9e4f2] bg-white text-[#a79fbd]"}`}>{i < idx ? "✓" : i + 1}</span>
+                    {i < MILESTONES.length - 1 && <span className={`my-[3px] w-0.5 flex-1 ${i < idx ? "bg-[#1f9d57]" : "bg-[#e9e4f2]"}`} style={{ minHeight: 19 }} />}
+                  </div>
+                  <span className={`pb-3 pt-[3px] text-[13.5px] ${i === idx ? "font-bold text-[#1b1030]" : i < idx ? "text-[#6c6485]" : "text-[#a79fbd]"}`}>
+                    {m.label}{i === idx && <small className="mt-0.5 block text-[11.5px] font-semibold text-[#8a18ff]">You&apos;re here</small>}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </aside>
+          <nav className="flex flex-col gap-2.5">
+            <Link href="/apply/dashboard/payments" className={linkBox}>
+              <span className={iconTint}>🧾</span>
+              <span className="min-w-0 flex-1 font-display text-[13.5px] font-bold">My payments</span>
+              <span className="text-[#a79fbd]">→</span>
+            </Link>
+            <Link href="/apply/dashboard/communications" className={linkBox}>
+              <span className={iconTint}>✉️</span>
+              <span className="min-w-0 flex-1 font-display text-[13.5px] font-bold">My communications</span>
+              <span className="text-[#a79fbd]">→</span>
+            </Link>
+          </nav>
+          </div>
+
+          {/* MIDDLE · action box + form-progress / performance slot */}
+          <main className="min-w-0">
+            {note && <div className="mb-4 rounded-xl border border-[#8a18ff]/25 bg-[#f6f0ff] p-3 text-sm font-medium text-[#7312e0]">{note}</div>}
+            {countdown && !paid && (
+              <div className="mb-4 flex items-center gap-2 rounded-xl border border-[#f3d79a] bg-[#fff6e6] px-3.5 py-2.5 text-[13px] font-semibold text-[#b26a00]">
+                ⏳ <span><b className="tabular-nums text-sm">{countdown}</b> left on your early-bird window{showDiscount ? ` — pay now to save ₹${quote?.discount}.` : "."}</span>
+              </div>
+            )}
+            {/* #3 exam countdown — appears once a date is booked and still upcoming */}
+            {examLeft && (
+              <div className="mb-4 flex items-start gap-2 rounded-xl border border-[#9fd9e0] bg-[#eafafc] px-3.5 py-2.5 text-[13px] font-semibold text-[#0b7285]">
+                ⏱️ <span>Your VSAT begins in <b className="tabular-nums text-sm">{examLeft}</b>. <span className="font-normal text-[#2b135c]/70">Fill out the VSAT form fully to be able to give the test — it&apos;s forfeited if the form isn&apos;t filled.</span></span>
+              </div>
+            )}
+
+            {/* action box */}
+            {!paid ? (
+              <div className={`${leadCard} mb-4`}>
+                <div className="flex flex-wrap items-center justify-between gap-2.5">
+                  <h2 className="font-display text-[19px] font-extrabold">Pay your VSAT fee</h2>
+                </div>
+                <p className="mt-1.5 text-sm text-[#6c6485]">Unlocks your exam slot, mock tests and the application form.</p>
+                <div className="mt-3 flex items-baseline gap-2.5">
+                  <span className="font-display text-[27px] font-extrabold tabular-nums">₹{payAmount}</span>
+                  {showDiscount && <span className="text-base text-[#a79fbd] line-through tabular-nums">₹{quote?.base}</span>}
+                  {showDiscount && <span className={pillOrange}>₹{quote?.discount} off</span>}
+                </div>
+                {/* manual coupon — codes are never shown here; the student types one in if they have it */}
+                <div className="mt-3">
+                  <div className="flex gap-2">
+                    <input value={coupon} onChange={(e) => setCoupon(e.target.value.toUpperCase())} placeholder="Have a coupon code?"
+                      className="min-w-0 flex-1 rounded-xl border border-[#e3ddf0] bg-white px-3 py-2 text-sm font-semibold uppercase tracking-wide placeholder:font-normal placeholder:normal-case placeholder:tracking-normal placeholder:text-[#a79fbd] focus:border-[#8a18ff] focus:outline-none" />
+                    <button onClick={applyCoupon} type="button" className="shrink-0 rounded-xl border border-[#8a18ff]/35 bg-[#f6f0ff] px-4 py-2 text-sm font-bold text-[#7312e0] transition hover:bg-[#efe6ff]">Apply</button>
+                  </div>
+                  {couponMsg && <p className={`mt-1.5 text-xs font-semibold ${couponMsg.ok ? "text-[#1f9d57]" : "text-[#d14343]"}`}>{couponMsg.text}</p>}
+                </div>
+                <button onClick={startPayment} disabled={busy} className={`${btn} mt-4`}>{busy ? "Starting…" : `Pay ₹${payAmount}`}</button>
+                {pay === "payment_initiated" && <p className="mt-3 text-xs text-[#b26a00]">Payment initiated — if you didn&apos;t complete it, click Pay to try again.</p>}
+                {pay === "payment_failed" && <p className="mt-3 text-xs text-[#d14343]">Last payment failed. You can try again.</p>}
+                {isAdmin && (
+                  <div className="mt-4 border-t border-dashed border-[#d9d2ef] pt-3">
+                    <button onClick={simulatePayment} className="w-full rounded-xl border border-[#8a18ff]/35 bg-[#f6f0ff] px-4 py-2.5 text-sm font-semibold text-[#7312e0] transition hover:bg-[#efe6ff]">⚡ Simulate payment &amp; continue (admin)</button>
+                    <p className="mt-1.5 text-[11px] text-[#9a93ad]">Admin-only. Skips the real payment to walk the next screens — no real payment is created.</p>
+                  </div>
+                )}
+              </div>
+            ) : inExamPhase ? (
+              <div className="mb-4">
+                <div className="mb-2 flex items-center justify-between gap-2.5">
+                  <h2 className="font-display text-[19px] font-extrabold">Your VSAT exam</h2>
+                  <span className={pillGood}>● Fee paid</span>
+                </div>
+                <VsatExamBlock app={app as Record<string, unknown>} onChange={load} />
+              </div>
+            ) : enrolled ? (
+              <div className={`${card} mb-4 border-[#1f9d57]/30 bg-[#f1fbf5]`}>
+                <h2 className="font-display text-[19px] font-extrabold text-[#1f9d57]">You&apos;re enrolled 🎉</h2>
+                <p className="mt-2 text-sm text-[#2b135c]/70">Welcome to Vedam! Our team will reach out with your joining details.</p>
+              </div>
+            ) : canEnroll ? (
+              <div className={`${leadCard} mb-4`}>
+                <h2 className="font-display text-[19px] font-extrabold">You&apos;re offered admission 🎉</h2>
+                <p className="mt-1.5 text-sm text-[#6c6485]">
+                  Scholarship <b className="text-[#1b1030]">{String(ao.scholarship_percentage)}%</b>. Block your seat with the enrollment fee.
+                  {ao.offer_expires_at ? <> Offer valid till <b className="text-[#1b1030]">{new Date(String(ao.offer_expires_at)).toLocaleString()}</b>.</> : null}
+                </p>
+                <button onClick={startEnrollment} disabled={busy} className={`${btn} mt-4`}>{busy ? "Starting…" : `Enroll · pay ₹${Number(ao.enrollment_amount ?? 50000)}`}</button>
+                {ao.enrollment_stage === "initiated" && <p className="mt-3 text-xs text-[#b26a00]">Enrollment payment initiated — click Enroll to complete it.</p>}
+                {ao.enrollment_stage === "failed" && <p className="mt-3 text-xs text-[#d14343]">Last enrollment payment failed. You can try again.</p>}
+              </div>
+            ) : offerIssued ? (
+              <div className={`${card} mb-4 border-[#f3d79a] bg-[#fff6e6]`}>
+                <h2 className="font-display text-[19px] font-extrabold text-[#b26a00]">Your offer is no longer active</h2>
+                <p className="mt-2 text-sm text-[#b26a00]">The enrollment window for your offer has closed. Please contact the admissions team if you still wish to enroll.</p>
+              </div>
+            ) : appl === "vsat_not_cleared" || appl === "interview_rejected" ? (
+              <div className={`${card} mb-4`}>
+                <h2 className="font-display text-[19px] font-extrabold">{appl === "vsat_not_cleared" ? "VSAT result" : "Interview result"}</h2>
+                <p className="mt-2 text-sm text-[#6c6485]">Thank you for appearing. You weren&apos;t selected to proceed this time. The admissions team will share details and any next options.</p>
+              </div>
+            ) : appl === "vsat_cleared" && !campus ? (
+              // #1: campus is chosen here (post-VSAT-cleared), not in the /vsat form
+              <div className={`${leadCard} mb-4`}>
+                <h2 className="font-display text-[19px] font-extrabold">You&apos;ve cleared VSAT 🎉 — choose your campus</h2>
+                <p className="mt-1.5 text-sm text-[#6c6485]">Select your preferred campus to move ahead to the interview.</p>
+                <div className="mt-4 space-y-2">
+                  {CAMPUSES.map((c) => (
+                    <button key={c} onClick={() => saveStage({ campus_applied: c })} disabled={busy} className="block w-full rounded-xl border border-[#e9e4f2] bg-white px-4 py-3 text-left text-sm font-semibold transition hover:border-[#8a18ff] disabled:opacity-50">{c}</button>
+                  ))}
+                </div>
+              </div>
+            ) : appl === "interview_selected" ? (
+              // #1: "Join interview" only clickable once a campus is selected
+              <div className={`${leadCard} mb-4`}>
+                <h2 className="font-display text-[19px] font-extrabold">Interview {campus ? "aligned 🎉" : "— select your campus first"}</h2>
+                <p className="mt-1.5 text-sm text-[#6c6485]">{campus ? `Campus: ${campus}. Your interview is aligned — join below.` : "Choose your campus to unlock the Join Interview button."}</p>
+                {!campus && (
+                  <div className="mt-4 space-y-2">
+                    {CAMPUSES.map((c) => (
+                      <button key={c} onClick={() => saveStage({ campus_applied: c })} disabled={busy} className="block w-full rounded-xl border border-[#e9e4f2] bg-white px-4 py-3 text-left text-sm font-semibold transition hover:border-[#8a18ff] disabled:opacity-50">{c}</button>
+                    ))}
+                  </div>
+                )}
+                <button disabled={!campus || busy} onClick={() => track("vsat_join_interview")}
+                  className={`mt-4 ${campus ? btn : "inline-flex items-center justify-center rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4] cursor-not-allowed"}`}>
+                  {campus ? "Join interview" : "🔒 Join interview (select campus)"}
+                </button>
+              </div>
+            ) : hasResults ? (
+              <div className={`${card} mb-4 border-[#1f9d57]/30 bg-[#f1fbf5]`}>
+                <h2 className="font-display text-[19px] font-extrabold text-[#1f9d57]">
+                  {appl === "vsat_cleared" ? "You've cleared VSAT 🎉" : appl === "counselling_done" ? "Counselling done" : "Offer released"}
+                </h2>
+                <p className="mt-2 text-sm text-[#2b135c]/70">You&apos;re progressing through the admissions funnel. Watch your email/WhatsApp for the next step.</p>
+              </div>
+            ) : null}
+
+            {/* secondary slot: application form in exam phase → performance summary after results */}
+            {inExamPhase ? (
+              a.form_status === "completed" ? (
+                <div className={card}><p className="flex items-center gap-2 text-sm font-semibold text-[#1f9d57]"><span className={pillGood}>✓ Submitted</span> Application form</p></div>
+              ) : fillOpen || a.form_status === "in_progress" ? (
+                <VsatFormFill onDone={() => { setFillOpen(false); void load(); }} />
+              ) : (
+                <div className={card}>
+                  <div className="flex flex-wrap items-center justify-between gap-2.5">
+                    <h3 className="font-display text-[15.5px] font-bold">Application form</h3>
+                  </div>
+                  <p className="mt-1.5 text-sm text-[#6c6485]">Basic details, academics, parents, documents, consent. Required before you can take VSAT.</p>
+                  <button onClick={() => setFillOpen(true)} disabled={busy} className={`${btnGhost} mt-4`}>Start form →</button>
+                </div>
+              )
+            ) : hasResults ? (
+              <div className={card}>
+                <h3 className="font-display text-[15.5px] font-bold">Your performance <span className="font-semibold text-[#a79fbd]">· Attempt {perfAtt}</span></h3>
+                <div className="mt-3">
+                  {perf.has ? (
+                    <div className="flex flex-col gap-2.5">
+                      {perf.rows.map((r, i) => (
+                        <div key={i} className="flex items-center gap-3 rounded-xl border border-[#e9e4f2] p-3">
+                          <span className={iconTint}>{r.icon}</span>
+                          <div className="min-w-0 flex-1"><div className="font-display text-[13.5px] font-bold">{r.title}</div><div className="text-xs text-[#6c6485]">{r.desc}</div></div>
+                          <div className="font-display text-[15px] font-extrabold">{r.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="rounded-xl border border-dashed border-[#e9e4f2] px-3.5 py-6 text-center text-[13px] text-[#a79fbd]">No Attempt {perfAtt} results yet.{perfAtt === 2 ? " If a re-attempt is granted, it will appear here." : ""}</div>
+                  )}
+                </div>
+              </div>
+            ) : null}
+
+            {err && <p className="mt-4 text-xs text-[#d14343]">{err}</p>}
+          </main>
+
+          {/* RIGHT · quick links */}
+          <aside className={card}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">Quick links</p>
+            <div className="mt-3 flex flex-col gap-2.5">
+              {quickLinks.map((q) => {
+                const cls = `flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left text-[13px] font-semibold transition ${q.open ? "border-[#e9e4f2] bg-white text-[#1b1030] hover:border-[#8a18ff]" : "cursor-not-allowed border-[#e9e4f2] bg-[#f4f0fa] text-[#a79fbd]"}`;
+                const inner = (
+                  <>
+                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg text-sm ${q.open ? "bg-[#f2ebfd]" : "bg-[#f7f4fb]"}`}>{q.icon}</span>
+                    <span className="min-w-0 flex-1">{q.label}</span>
+                    {q.soon ? <span className="rounded-md bg-[#f2ebfd] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#8a18ff]">Soon</span> : !q.open && <span className="text-xs">🔒</span>}
+                  </>
+                );
+                if (q.open && q.onClick) return <button key={q.label} onClick={q.onClick} className={cls}>{inner}</button>;
+                if (q.open && q.href) return <a key={q.label} href={q.href} target="_blank" rel="noopener" className={cls}>{inner}</a>;
+                return <button key={q.label} disabled={!q.open} className={cls}>{inner}</button>;
+              })}
+            </div>
+            {!paid && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Sample papers, prep kit &amp; syllabus unlock after you pay the VSAT fee. The brochure is free; the mock test is coming soon.</p>}
+            {paid && !offerActive && <p className="mt-2.5 text-[11.5px] text-[#a79fbd]">Your offer letter will appear here once admission is offered.</p>}
+          </aside>
         </div>
-        {!paid && <p className="mt-3 text-[11px] text-white/35">Unlocks after you pay the VSAT fee.</p>}
-      </aside>
+      </div>
     </div>
   );
 }

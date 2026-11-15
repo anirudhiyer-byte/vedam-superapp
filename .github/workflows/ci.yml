@@ -1,12 +1,12 @@
 name: CI
 
-# The test-gate. Runs on every PR into main and on pushes to main.
+# The test-gate. Runs on every PR into main or staging and on pushes to main.
 # A red run blocks the merge once this check is marked required in
 # GitHub → Settings → Rules (branch protection).
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, staging]
   push:
     branches: [main]
 
@@ -30,6 +30,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Unit tests. Not "pnpm test": its test:node part needs Node 22 (--experimental-strip-types); CI runs Node 20.
+      - name: Unit tests (vitest)
+        run: pnpm exec vitest run
+
       - name: Build
         # Placeholder Supabase values so the production build can prerender
         # pages that construct a Supabase client. These are NOT secrets and
@@ -39,3 +43,14 @@ jobs:
           NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key-not-a-real-key
           SUPABASE_SERVICE_ROLE_KEY: placeholder-service-key-not-a-real-key
         run: pnpm build
+
+      # After the build (next-env.d.ts is written by it). The 13 known errors in event-editor / events-page /
+      # vsat-apply-form are allowed; any other "error TS" fails the job.
+      - name: Typecheck (no new errors)
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key-not-a-real-key
+          SUPABASE_SERVICE_ROLE_KEY: placeholder-service-key-not-a-real-key
+        run: |
+          pnpm typecheck > tsc.log 2>&1 || true
+          if grep "error TS" tsc.log | grep -vE "event-editor|events-page|vsat-apply-form"; then echo "New type errors"; exit 1; fi

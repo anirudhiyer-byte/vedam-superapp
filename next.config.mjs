@@ -1,4 +1,5 @@
 import { withSentryConfig } from "@sentry/nextjs/config";
+import { securityHeaderRoutes } from "./security-headers.mjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -15,8 +16,18 @@ const nextConfig = {
   // Tie the build ID to the git commit so every deploy ships uniquely-hashed
   // bundles — prevents Vercel from ever serving a stale compiled build.
   generateBuildId: async () => process.env.VERCEL_GIT_COMMIT_SHA || null,
+  // Ship pdfkit's standard-font metrics (.afm) with the payment functions that build
+  // the VSAT receipt PDF — Next's tracer can miss these runtime-read files otherwise.
+  outputFileTracingIncludes: {
+    "/api/payments/**": ["./node_modules/pdfkit/js/data/*.afm"],
+    "/api/cron/**": ["./node_modules/pdfkit/js/data/*.afm"],
+  },
   async redirects() {
     return [];
+  },
+  // Admin pages only: no framing by other sites + nosniff (list in security-headers.mjs). Nothing global.
+  async headers() {
+    return securityHeaderRoutes();
   },
 };
 

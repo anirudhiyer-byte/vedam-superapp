@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useProductGate } from "@/components/funnel/use-product-gate";
@@ -13,7 +14,8 @@ const BENEFITS = [
 const grad = "linear-gradient(172deg,#00cfe5 26%,#794ede 70%,#c200db 129%)";
 const headGrad = { background: "linear-gradient(138deg,#00cfe5 5%,#c200db 97%)", WebkitBackgroundClip: "text" as const, backgroundClip: "text" as const, WebkitTextFillColor: "transparent" as const, color: "transparent" };
 
-export function VsatForm() {
+/** `next` = a same-site page to return to after registering (already checked by the page with safeNext). */
+export function VsatForm({ next = null }: { next?: string | null } = {}) {
   const [supabase] = useState(() => createClient());
   const router = useRouter();
   const [done, setDone] = useState(false);
@@ -33,6 +35,7 @@ export function VsatForm() {
       void fetch("/api/vsat/confirm", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
     }
     setSaving(false); setDone(true);
+    if (next) setTimeout(() => router.push(next), 1200);   // back to where they came from (e.g. PeerPath booking)
   }
 
   // logged-in with a complete-enough account -> register; else the gate routes them
@@ -86,6 +89,11 @@ export function VsatForm() {
                 <h2 className="text-2xl font-bold">Your VSAT Interest Form registration is successful.</h2>
                 <p className="mx-auto mt-3 max-w-md text-white/70">Stay tuned for more updates.</p>
                 <p className="mt-4 text-sm text-[#8fe9f5]">A confirmation mail has been sent to you.</p>
+                {next && (
+                  <Link href={next} className="mt-6 inline-flex h-[48px] items-center justify-center rounded-md px-6 text-[16px] font-semibold text-white" style={{ background: grad }}>
+                    Continue where you left off →
+                  </Link>
+                )}
               </div>
             ) : (
               <>

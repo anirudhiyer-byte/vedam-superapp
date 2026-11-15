@@ -1,0 +1,139 @@
+"use client";
+import { useCallback, useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
+
+const input = "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#00cfe5] focus:outline-none";
+const label = "mb-1 block text-xs font-semibold text-white/60";
+const card = "rounded-2xl border border-white/10 bg-white/[0.03] p-5";
+const btn = "rounded-lg bg-[#00cfe5] px-4 py-2 text-sm font-semibold text-[#06242a] disabled:opacity-50";
+const btnGhost = "rounded-lg border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/80 hover:border-[#00cfe5] disabled:opacity-50";
+
+type Step = {
+  step_key: string; title: string; enabled: boolean; test_mode: boolean;
+  email_enabled: boolean; email_subject: string; email_body: string;
+  wa_enabled: boolean; wa_template_id: string | null;
+};
+type Settings = { master: boolean; test_email: string; test_phone: string };
+
+function Toggle({ on, onClick, text }: { on: boolean; onClick: () => void; text: string }) {
+  return (
+    <button type="button" onClick={onClick}
+      className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${on ? "bg-[#16a34a]/20 text-[#5ee9a0]" : "bg-white/10 text-white/50"}`}>
+      <span className={`h-2 w-2 rounded-full ${on ? "bg-[#5ee9a0]" : "bg-white/40"}`} />{text}: {on ? "ON" : "OFF"}
+    </button>
+  );
+}
+
+export function VsatCommsPanel() {
+  const [supabase] = useState(() => createClient());
+  const [steps, setSteps] = useState<Step[]>([]);
+  const [settings, setSettings] = useState<Settings>({ master: false, test_email: "", test_phone: "" });
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  const load = useCallback(async () => {
+    const { data } = await supabase.rpc("vsat_comm_steps_get");
+    if (data?.ok) {
+      setSteps((data.steps as Step[]) ?? []);
+      const s = data.settings as Settings | null;
+      if (s) setSettings({ master: !!s.master, test_email: s.test_email || "", test_phone: s.test_phone || "" });
+    }
+    setLoading(false);
+  }, [supabase]);
+  useEffect(() => { void load(); }, [load]);
+
+  function patch(i: number, p: Partial<Step>) {
+    setSteps((arr) => arr.map((s, n) => (n === i ? { ...s, ...p } : s)));
+  }
+
+  async function saveStep(s: Step) {
+    setBusy(true); setMsg("");
+    const { data } = await supabase.rpc("vsat_comm_step_update", { p: {
+      step_key: s.step_key, enabled: s.enabled, test_mode: s.test_mode, email_enabled: s.email_enabled,
+      email_subject: s.email_subject, email_body: s.email_body, wa_enabled: s.wa_enabled, wa_template_id: s.wa_template_id ?? "",
+    } });
+    setBusy(false);
+    setMsg(data?.ok ? `Saved “${s.title}”.` : "Couldn't save — admin only.");
+  }
+
+  async function saveSettings() {
+    setBusy(true); setMsg("");
+    const { data } = await supabase.rpc("vsat_comm_step_update", { p: { master: settings.master, test_email: settings.test_email, test_phone: settings.test_phone } });
+    setBusy(false);
+    setMsg(data?.ok ? "Settings saved." : "Couldn't save settings.");
+  }
+
+  async function submitTemplates() {
+    setBusy(true); setMsg("Submitting WhatsApp templates for approval…");
+    const { data: { session } } = await supabase.auth.getSession();
+    try {
+      const res = await fetch("/api/admin/vsat-comm/submit-templates", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
+      const j = await res.json();
+      setMsg(j.ok ? "Templates submitted to TrustSignal — they'll show here once approved. Then turn each step's WhatsApp ON." : `Submit issue: ${JSON.stringify(j.results ?? j.error).slice(0, 200)}`);
+      await load();
+    } catch { setMsg("Couldn't reach the submit endpoint."); }
+    setBusy(false);
+  }
+
+  return (
+    <section className={`${card} mt-5`}>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 className="font-display text-lg font-semibold">Stage communications (email + WhatsApp)</h2>
+          <p className="mt-1 text-sm text-white/55">Automatic emails + WhatsApp at each VSAT stage. Edit the email copy; WhatsApp uses approved utility templates.</p>
+        </div>
+        <Toggle on={settings.master} onClick={() => setSettings((s) => ({ ...s, master: !s.master }))} text="Master" />
+      </div>
+
+      {loading ? <p className="mt-4 text-sm text-white/50">Loading…</p> : (
+        <>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div><label className={label}>Test email (used while a step is in test mode)</label>
+              <input className={input} value={settings.test_email} onChange={(e) => setSettings((s) => ({ ...s, test_email: e.target.value }))} placeholder="you@vedam.org" /></div>
+            <div><label className={label}>Test phone (digits, e.g. 9198…)</label>
+              <input className={input} value={settings.test_phone} onChange={(e) => setSettings((s) => ({ ...s, test_phone: e.target.value }))} placeholder="9198XXXXXXXX" /></div>
+          </div>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <button onClick={saveSettings} disabled={busy} className={btn}>Save settings</button>
+            <button onClick={submitTemplates} disabled={busy} className={btnGhost}>Submit WhatsApp templates for approval</button>
+            <span className="text-xs text-white/50">Master OFF = nothing sends. A step in test mode sends only to the test email/phone above.</span>
+          </div>
+
+          <div className="mt-5 space-y-4">
+            {steps.map((s, i) => (
+              <div key={s.step_key} className="rounded-xl border border-white/10 bg-black/20 p-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="font-display text-sm font-bold">{s.title}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <Toggle on={s.enabled} onClick={() => patch(i, { enabled: !s.enabled })} text="Step" />
+                    <Toggle on={s.test_mode} onClick={() => patch(i, { test_mode: !s.test_mode })} text="Test mode" />
+                  </div>
+                </div>
+
+                <div className="mt-3 grid gap-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <label className={`${label} mb-0`}>Email</label>
+                    <Toggle on={s.email_enabled} onClick={() => patch(i, { email_enabled: !s.email_enabled })} text="Email" />
+                  </div>
+                  <input className={input} value={s.email_subject} onChange={(e) => patch(i, { email_subject: e.target.value })} placeholder="Email subject" />
+                  <textarea className={`${input} min-h-[120px] font-mono text-[12px]`} value={s.email_body} onChange={(e) => patch(i, { email_body: e.target.value })} placeholder="Email body (HTML). Placeholders: {{name}} {{amount}} {{apply_link}} {{dashboard_link}} {{receipt_link}}" />
+
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Toggle on={s.wa_enabled} onClick={() => patch(i, { wa_enabled: !s.wa_enabled })} text="WhatsApp" />
+                    <input className={`${input} max-w-xs`} value={s.wa_template_id ?? ""} onChange={(e) => patch(i, { wa_template_id: e.target.value })} placeholder="WhatsApp template id (set after approval)" />
+                  </div>
+                </div>
+
+                <div className="mt-3"><button onClick={() => saveStep(s)} disabled={busy} className={btn}>Save step</button></div>
+              </div>
+            ))}
+          </div>
+
+          {msg && <p className="mt-4 text-sm text-[#5ee9a0]">{msg}</p>}
+          <p className="mt-3 text-[11px] text-white/40">Placeholders: <code>{"{{name}}"}</code>, <code>{"{{amount}}"}</code>, <code>{"{{apply_link}}"}</code>, <code>{"{{dashboard_link}}"}</code>, <code>{"{{receipt_link}}"}</code>. WhatsApp copy is fixed by the approved template; the email is fully editable.</p>
+        </>
+      )}
+    </section>
+  );
+}

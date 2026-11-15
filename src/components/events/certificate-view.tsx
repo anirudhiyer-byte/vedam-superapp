@@ -13,14 +13,12 @@ export function CertificateView() {
   const certId = params.get("c") || "";
   const [supabase] = useState(() => createClient());
   const [data, setData] = useState<{ full_name: string; event_name: string; issued_on: string; kind: CertKind; position: string | null; source: string; module_id: string | null } | null>(null);
-  const [eventId, setEventId] = useState<string | null>(null);
   const [qr, setQr] = useState("");
   const [loading, setLoading] = useState(true);
   const [scale, setScale] = useState(0.6);
   const [shareText, setShareText] = useState("");
   const [copied, setCopied] = useState(false);
   const [sharePts, setSharePts] = useState(0);
-  const [awarded, setAwarded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,7 +42,6 @@ export function CertificateView() {
         } else {
           const { data: cert } = await supabase.from("certificates").select("event_id").eq("id", certId).maybeSingle();
           if (cert?.event_id && active) {
-            setEventId(cert.event_id);
             const { data: ev } = await supabase.from("events").select("points_config").eq("id", cert.event_id).maybeSingle();
             const pc = ev?.points_config as Record<string, number> | null;
             if (active) setSharePts(Number(pc?.share_linkedin || 0));
@@ -60,14 +57,11 @@ export function CertificateView() {
     try { await navigator.clipboard.writeText(shareText); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* ignore */ }
   }
 
-  async function share() {
+  function share() {
+    // Opens the LinkedIn composer only. Share points are awarded solely after the
+    // user submits their post link, which the server validates (SEC-08 / CS-02).
     const certUrl = `${window.location.origin}/certificate?c=${certId}`;
     window.open(linkedInShareUrl(certUrl), "_blank", "noopener");
-    if (!awarded && data?.source === "codesprint" && data.module_id) {
-      try { await supabase.rpc("cs_award_share", { p_module_id: data.module_id }); setAwarded(true); } catch { /* best effort */ }
-    } else if (eventId && !awarded) {
-      try { await supabase.rpc("award_event_points", { p_event_id: eventId, p_action: "share_linkedin" }); setAwarded(true); } catch { /* best effort */ }
-    }
   }
 
   if (loading) return <div className="flex min-h-screen items-center justify-center"><div className="h-48 w-80 animate-pulse rounded-xl border border-border bg-surface" /></div>;
@@ -83,9 +77,12 @@ export function CertificateView() {
         <button onClick={() => ref.current && downloadNodePng(ref.current, `vedam-certificate-${certId.slice(0, 8)}.png`)}
           className="rounded-xl bg-[#2B135C] px-6 py-3 text-sm font-semibold text-white hover:bg-[#3a1a75]">Download PNG</button>
         <button onClick={share} className="rounded-xl bg-[#0A66C2] px-6 py-3 text-sm font-semibold text-white">
-          Share on LinkedIn{sharePts > 0 ? ` · +${sharePts} pts` : ""}
+          Share on LinkedIn
         </button>
       </div>
+      {sharePts > 0 && (
+        <p className="-mt-3 font-body text-xs text-muted">Earn +{sharePts} pts by submitting your LinkedIn post link after sharing.</p>
+      )}
 
       {/* editable share text (LinkedIn's dialog only takes the link, so we let them copy the caption) */}
       <div className="w-full max-w-xl rounded-2xl border border-border bg-surface p-5">

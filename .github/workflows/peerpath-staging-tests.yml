@@ -1,0 +1,194 @@
+name: PeerPath staging tests (HTTP + load)
+
+# STAGING ONLY. Runs after Vercel finishes a *Preview* deployment (Preview deployments use the
+# staging Supabase project kyhakenhbgcissmaacws). Never runs for Production deployments, only
+# for deployments created by Vercel, and every script refuses to run unless the URL / database
+# is the staging project.
+#
+# Nothing runs until the owner turns it on (repository Settings → Secrets and variables → Actions):
+#   Variables:  PP_HTTP_TESTS = on       → integration + break-it over HTTP
+#               PP_LOAD_TEST  = armed    → ALSO the ramped 1,000-user load test (tell the team first)
+#   Secrets:    STAGING_SUPABASE_URL, STAGING_SUPABASE_ANON_KEY, STAGING_SUPABASE_SERVICE_ROLE_KEY,
+#               STAGING_SUPABASE_JWT_SECRET, STAGING_DB_URL, VERCEL_AUTOMATION_BYPASS_SECRET
+# To run again: Actions → this workflow → the latest run → "Re-run all jobs".
+#
+# Each run creates the pp-load-* test users, runs the tests, and ALWAYS deletes the test users
+# again at the end (even if a step fails; the cleanup step fails the job if anything is left).
+# Secrets are given only to the steps that need them (never job-wide, never to third-party
+# actions) and are never printed.
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: peerpath-staging-tests
+  cancel-in-progress: false
+
+jobs:
+  staging-tests:
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment.environment == 'Preview' &&
+      github.event.deployment.creator.login == 'vercel[bot]' &&
+      vars.PP_HTTP_TESTS == 'on'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      BASE_URL: ${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check secrets, preview URL and staging-only guard
+        env:
+          STAGING_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+          STAGING_DB_URL: ${{ secrets.STAGING_DB_URL }}
+          HAS_ANON: ${{ secrets.STAGING_SUPABASE_ANON_KEY != '' }}
+          HAS_SERVICE: ${{ secrets.STAGING_SUPABASE_SERVICE_ROLE_KEY != '' }}
+          HAS_JWT: ${{ secrets.STAGING_SUPABASE_JWT_SECRET != '' }}
+          HAS_BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET != '' }}
+        run: |
+          missing=""
+          [ -n "$STAGING_SUPABASE_URL" ] || missing="$missing STAGING_SUPABASE_URL"
+          [ -n "$STAGING_DB_URL" ] || missing="$missing STAGING_DB_URL"
+          [ "$HAS_ANON" = "true" ] || missing="$missing STAGING_SUPABASE_ANON_KEY"
+          [ "$HAS_SERVICE" = "true" ] || missing="$missing STAGING_SUPABASE_SERVICE_ROLE_KEY"
+          [ "$HAS_JWT" = "true" ] || missing="$missing STAGING_SUPABASE_JWT_SECRET"
+          [ "$HAS_BYPASS" = "true" ] || missing="$missing VERCEL_AUTOMATION_BYPASS_SECRET"
+          if [ -n "$missing" ]; then echo "::error::Missing secret(s):$missing"; exit 1; fi
+          # the bypass secret and test tokens are only ever sent to a Vercel preview URL
+          if ! [[ "$BASE_URL" =~ ^https://[a-z0-9-]+\.vercel\.app/?$ ]]; then echo "::error::Unexpected preview URL: $BASE_URL"; exit 1; fi
+          case "$STAGING_SUPABASE_URL" in *kyhakenhbgcissmaacws*) ;; *) echo "::error::STAGING_SUPABASE_URL is not the staging project"; exit 1;; esac
+          case "$STAGING_DB_URL" in *kyhakenhbgcissmaacws*) ;; *) echo "::error::STAGING_DB_URL is not the staging project"; exit 1;; esac
+          case "$STAGING_SUPABASE_URL$STAGING_DB_URL" in *obtzrqgoiqemnalmehdx*) echo "::error::production reference found"; exit 1;; esac
+          # the runner context is not available in job-level env, so set these here
+          echo "TOKENS_FILE=$RUNNER_TEMP/pp-load-tokens.json" >> "$GITHUB_ENV"
+          echo "OUT=$RUNNER_TEMP/pp-out" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/pp-out"
+          echo "Preview under test: $BASE_URL"
+
+      - name: Create test users (staging DB)
+        env:
+          STAGING_DB_URL: ${{ secrets.STAGING_DB_URL }}
+        run: psql "$STAGING_DB_URL" -v ON_ERROR_STOP=1 -q -1 -f scripts/staging/peerpath-load/create-test-users.sql
+
+      - name: Mark pp-load-0010 as paid (simulated, staging only)
+        env:
+          STAGING_DB_URL: ${{ secrets.STAGING_DB_URL }}
+        run: |
+          sed "s/REPLACE_WITH_TEST_ACCOUNT_EMAIL/pp-load-0010@example.invalid/" scripts/staging/simulate-vsat-payment.sql \
+            | psql "$STAGING_DB_URL" -v ON_ERROR_STOP=1 -q
+
+      - name: Mint short-lived test tokens
+        env:
+          STAGING_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+          STAGING_JWT_SECRET: ${{ secrets.STAGING_SUPABASE_JWT_SECRET }}
+        run: |
+          USERS=1000 node scripts/staging/peerpath-load/mint-tokens.mjs > "$TOKENS_FILE"
+          echo "SENIOR_ID=$(node -e "const h=require('crypto').createHash('md5').update('pp-load-senior').digest('hex');console.log(h.slice(0,8)+'-'+h.slice(8,12)+'-4'+h.slice(13,16)+'-8'+h.slice(17,20)+'-'+h.slice(20,32))")" >> "$GITHUB_ENV"
+
+      - name: Integration + break-it over HTTP
+        env:
+          STAGING_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+          ANON_KEY: ${{ secrets.STAGING_SUPABASE_ANON_KEY }}
+          SERVICE_ROLE_KEY: ${{ secrets.STAGING_SUPABASE_SERVICE_ROLE_KEY }}
+          BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: |
+          set -o pipefail
+          node scripts/staging/peerpath-load/integration.mjs 2>&1 | tee "$OUT/integration.txt"
+
+      - name: Install k6
+        if: vars.PP_LOAD_TEST == 'armed'
+        uses: grafana/setup-k6-action@v1
+
+      - name: Load test — database path (ramped to 1,000 users)
+        if: vars.PP_LOAD_TEST == 'armed'
+        env:
+          STAGING_DB_URL: ${{ secrets.STAGING_DB_URL }}
+          STAGING_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
+          ANON_KEY: ${{ secrets.STAGING_SUPABASE_ANON_KEY }}
+        run: |
+          # sample the database every 5 s while k6 runs: connections, lock waits, top wait event
+          ( while true; do
+              psql "$STAGING_DB_URL" -At -F, -c "select to_char(now(),'HH24:MI:SS'),
+                count(*) filter (where state = 'active'),
+                count(*) filter (where wait_event_type = 'Lock'),
+                count(*) filter (where wait_event = 'advisory'),
+                count(*),
+                (select wait_event_type || ':' || wait_event from pg_stat_activity where wait_event is not null and state = 'active'
+                  group by 1 order by count(*) desc limit 1)
+                from pg_stat_activity where datname = current_database()" >> "$OUT/db-samples.csv" 2>/dev/null || true
+              sleep 5
+            done ) & echo $! > "$OUT/sampler.pid"
+          k6 run --quiet --summary-export "$OUT/k6-db.json" \
+            -e MODE=db -e SUPABASE_URL="$STAGING_SUPABASE_URL" -e ANON_KEY="$ANON_KEY" \
+            -e TOKENS_FILE="$TOKENS_FILE" -e SENIOR_ID="$SENIOR_ID" \
+            scripts/staging/peerpath-load/k6-book.js 2>&1 | tee "$OUT/k6-db.txt" || true
+          kill "$(cat "$OUT/sampler.pid")" 2>/dev/null || true
+
+      - name: Load test — server route (one machine = one IP, so most answers are 429 by design)
+        if: vars.PP_LOAD_TEST == 'armed'
+        env:
+          BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: |
+          k6 run --quiet --summary-export "$OUT/k6-route.json" \
+            -e MODE=route -e BASE_URL="$BASE_URL" -e BYPASS="$BYPASS" \
+            -e TOKENS_FILE="$TOKENS_FILE" -e SENIOR_ID="$SENIOR_ID" \
+            scripts/staging/peerpath-load/k6-book.js 2>&1 | tee "$OUT/k6-route.txt" || true
+
+      - name: Clean up test users (always; fails the job if anything is left)
+        if: always()
+        env:
+          STAGING_DB_URL: ${{ secrets.STAGING_DB_URL }}
+        run: |
+          rm -f "$TOKENS_FILE"
+          if [ -n "$STAGING_DB_URL" ]; then
+            set -o pipefail
+            psql "$STAGING_DB_URL" -v ON_ERROR_STOP=1 -f scripts/staging/peerpath-load/cleanup-test-users.sql 2>&1 | tee "$OUT/cleanup.txt"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## PeerPath staging tests"
+            echo "Preview: $BASE_URL"
+            echo '### Integration + break-it over HTTP'
+            echo '```'; cat "$OUT/integration.txt" 2>/dev/null || echo "(not run)"; echo '```'
+            for m in db route; do
+              if [ -f "$OUT/k6-$m.json" ]; then
+                echo "### Load test ($m)"
+                node -e '
+                  const s = require(process.argv[1]).metrics; const d = s.http_req_duration || {};
+                  const f = (x) => x === undefined ? "-" : Math.round(x) + " ms";
+                  const tag = (t) => s[`http_req_duration{load:${t}}`] || {};
+                  console.log("| | p50 | p95 | p99 | max |\n|---|---|---|---|---|");
+                  console.log(`| all | ${f(d.med)} | ${f(d["p(95)"])} | ${f(d["p(99)"])} | ${f(d.max)} |`);
+                  for (const t of ["ramp100","ramp500","peak"]) console.log(`| ${t} | ${f(tag(t).med)} | ${f(tag(t)["p(95)"])} | - | ${f(tag(t).max)} |`);
+                  const fail = s["http_req_failed{expected:yes}"] || s.http_req_failed || {};
+                  console.log(`\nrequests: ${s.http_reqs?.count ?? "-"} · error rate: ${((fail.value ?? fail.rate ?? 0) * 100).toFixed(2)}% · dropped: ${s.pp_dropped_requests?.count ?? 0}`);
+                ' "$OUT/k6-$m.json"
+                echo '```'; grep -E "pp_result_codes|checks|http_req_failed" "$OUT/k6-$m.txt" | head -20; echo '```'
+              fi
+            done
+            if [ -f "$OUT/db-samples.csv" ]; then
+              echo '### Database during the load test (time, active, lock waits, advisory waits, connections, top wait)'
+              echo '```'; cat "$OUT/db-samples.csv"; echo '```'
+            fi
+            echo '### Cleanup'
+            echo '```'; tail -8 "$OUT/cleanup.txt" 2>/dev/null || echo "(not run)"; echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the outputs (no tokens, no keys)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: peerpath-staging-test-output
+          path: ${{ runner.temp }}/pp-out
+          retention-days: 14
