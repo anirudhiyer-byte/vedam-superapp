@@ -503,7 +503,6 @@ ul,ol{padding:0;list-style:none}
           <div class="fld" data-f="email"><label for="email">Email</label><input id="email" type="email" placeholder="you@email.com" autocomplete="email"></div>
           <div class="fld" data-f="phone"><label for="phone">Phone</label><input id="phone" type="tel" placeholder="+91" autocomplete="tel"></div>
           <button type="submit" class="submit grad-cta">Save &amp; Next</button>
-          <a class="ftrack" href="#">Strong JEE / coding profile? Fast-track available →</a>
         </div>
 
         <!-- STEP 2 — the rest, nothing repeated from step 1 -->
@@ -1126,7 +1125,6 @@ img{display:block}
         <div class="fld" data-f="email"><label for="email">Email</label><input id="email" type="email" placeholder="you@email.com" autocomplete="email"></div>
         <div class="fld" data-f="phone"><label for="phone">Phone</label><input id="phone" type="tel" placeholder="+91" autocomplete="tel"></div>
         <button type="submit" class="submit">Save &amp; Next</button>
-        <a class="ftrack" href="#">Strong JEE / coding profile? Fast-track available →</a>
       </div>
 
       <div class="pane" id="pane2" hidden>
@@ -1379,7 +1377,6 @@ function jumpToForm(ev){
 }
 R.getElementById("applyNow").addEventListener("click",jumpToForm);
 R.getElementById("annLink").addEventListener("click",jumpToForm);
-R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault();});
 
 /* multi-step form (same flow as the desktop page) */
 (function(){
@@ -1580,6 +1577,13 @@ R.querySelector(".ftrack").addEventListener("click",function(e){e.preventDefault
       var data={ fullName:val(root,"fullName"), email:val(root,"email"), phone:val(root,"phone"),
         passYear:val(root,"passYear"), stream:val(root,"stream"), state:val(root,"state"),
         city:val(root,"city"), campus:val(root,"campus"), hear:val(root,"hear") };
+      // Only proceed if the second-half required fields are filled; otherwise let the
+      // mockup run its own validation and show the field errors.
+      if(!(data.passYear && data.stream && data.state && data.city && data.hear)) return;
+      // Block the mockup's own submit handler (which shows the static "Application
+      // submitted" screen). The parent owns the rest: verify email if needed -> create
+      // the lead + application -> redirect to /apply/dashboard.
+      try{ ev.preventDefault(); ev.stopImmediatePropagation(); }catch(e){}
       try{ parent.postMessage({type:"vsat-submit", data:data}, location.origin); }catch(e){}
     }, true);   // <-- capture phase: runs BEFORE the mockup hides pane2
   }
