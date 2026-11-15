@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { VsatDashboard } from "@/components/vsat/vsat-dashboard";
+import { readVsatGate } from "@/lib/vsat/public-gate";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "VSAT — Applicant Dashboard" };
@@ -23,6 +24,9 @@ export default async function Page() {
     isAdmin = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
     if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
   }
-  if (!isAdmin) redirect("/apply");
+  if (!user) redirect("/apply");
+  // admins always; everyone else once VSAT is live (staging, or vsat_public = 'on')
+  const { vsatLive } = await readVsatGate();
+  if (!isAdmin && !vsatLive) redirect("/apply");
   return <VsatDashboard isAdmin={isAdmin} />;
 }

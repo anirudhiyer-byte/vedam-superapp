@@ -185,7 +185,7 @@ export function VsatApplyFrame({
       {/* The "already started → continue to dashboard" greeting and the "Already
           started? Login" link are injected INSIDE the form area by apply.html. */}
       <iframe ref={ref} title="Vedam One — Application" src={src} onLoad={onIframeLoad}
-        className="fixed inset-0 block h-screen w-screen border-0 bg-white" />
+        className="fixed inset-0 z-50 block h-screen w-screen border-0 bg-white" />
 
       {authOpen && (
         <VsatAuthOverlay
@@ -215,7 +215,7 @@ export function VsatApplyFrame({
       )}
 
       {status !== "idle" && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 text-white">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 text-white">
           <div className="max-w-sm rounded-xl bg-[#160a30] px-6 py-5 text-sm">
             {status === "submitting"
               ? "Starting your application…"

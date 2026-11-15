@@ -1,21 +1,17 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { createClient as createSvc } from "@supabase/supabase-js";
-import { VsatApplyFrame, type VsatPrefill } from "@/components/vsat/vsat-apply-frame";
+import { VsatForm } from "@/components/vsat/vsat-form";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "VSAT Registration (internal)" };
+export const metadata: Metadata = { title: "VSAT Early Registration (archived)", robots: { index: false, follow: false } };
 
 /**
- * VSAT Registration (internal).
+ * /vsat — the OLD early-registration form, now ADMIN-ONLY (archived).
  *
- * Renders the designed /public/vedam-one/apply.html page UNCHANGED in an iframe
- * (via VsatApplyFrame). The signed-in profile is fetched here and passed to the
- * frame so the form prefills; on "Start application" the frame creates the lead +
- * application and sends the user to the designed /vsat/dashboard.
- *
- * Sits OUTSIDE the (shell) route group so the SiteHeader/Footer don't frame it.
+ * Students sign up at /apply. This URL keeps the original early-reg form reachable to
+ * admins, and its vsat_registrations data stays intact. Non-admins are redirected to
+ * /apply. (The student dashboard remains at /vsat/dashboard with its own gate.)
  */
 export default async function Page() {
   const sb = await createClient();
@@ -26,36 +22,6 @@ export default async function Page() {
     isAdmin = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
     if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
   }
-
-  // GATE: public on staging (so we can test the open registration flow), admin-only
-  // on production until explicitly opened. environment comes from app_flags.
-  const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  let isStaging = false;
-  let hasApplication = false;
-  let hasLead = false;
-  let profile: VsatPrefill = {};
-  if (svcUrl && svcKey) {
-    const svc = createSvc(svcUrl, svcKey);
-    const { data: envRow } = await svc.from("app_flags").select("value").eq("key", "environment").maybeSingle();
-    isStaging = ((envRow as { value?: string } | null)?.value ?? "").toLowerCase() === "staging";
-    if (user) {
-      const { data: appRow } = await svc.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
-      hasApplication = !!appRow;
-      const { data: leadRow } = await svc.from("lead_manager").select("lead_id").eq("lead_id", user.id).maybeSingle();
-      hasLead = !!leadRow;
-    }
-  }
-  if (!isAdmin && !isStaging) redirect("/apply");
-
-  if (user) {
-    const { data: p } = await sb.from("profiles")
-      .select("full_name,email,phone,grad_year,stream,state,city")
-      .eq("id", user.id).maybeSingle();
-    if (p) profile = p as VsatPrefill;
-  }
-
-  // cache-buster so the CDN never serves a stale apply.html (which would have no wiring)
-  const version = process.env.VERCEL_GIT_COMMIT_SHA || "dev";
-
-  return <VsatApplyFrame profile={profile} version={version} hasApplication={hasApplication} hasLead={hasLead} loggedIn={!!user} />;
+  if (!isAdmin) redirect("/apply");
+  return <VsatForm />;
 }
