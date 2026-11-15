@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { sendVsatStepComms } from "@/lib/vsat/comms";
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
@@ -59,5 +60,10 @@ export async function POST(req: Request) {
   if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
   await admin.from("lead_manager").update({ lead_stage: "applicant_unpaid", application_submitted: true }).eq("lead_id", user.id);
   await admin.from("crm_activity_log").insert({ entity_type: "application", application_id, lead_id: user.id, action: "stage_change", stage_type: "application", to_value: "applicant", actor: "applicant", path: "/apply" });
+  // stage comm: application started → pay the fee (early-bird amount). Fires once, best-effort.
+  const { data: fflags } = await admin.from("app_flags").select("key, value").in("key", ["vsat_fee", "vsat_discount_24h"]);
+  const fee = Number(fflags?.find((f) => f.key === "vsat_fee")?.value ?? 1000);
+  const disc = Number(fflags?.find((f) => f.key === "vsat_discount_24h")?.value ?? 200);
+  await sendVsatStepComms("application_started", { leadId: user.id, name: (A.name as string) ?? null, email: (A.email as string) ?? null, phone: (A.phone as string) ?? null, amount: Math.max(0, fee - disc) });
   return Response.json({ ok: true, application_id });
 }

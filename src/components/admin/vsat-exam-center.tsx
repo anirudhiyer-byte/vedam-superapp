@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import { VsatCouponMaker } from "@/components/admin/vsat-coupon-maker";
 import { VsatDocUploader } from "@/components/admin/vsat-doc-uploader";
 import { VsatLandingToggles } from "@/components/admin/vsat-landing-toggles";
+import { VsatCommsPanel } from "@/components/admin/vsat-comms-panel";
 
 /** Server-computed presence of the Wheebox env credentials (booleans only — the
  *  secret values never leave the server). */
@@ -172,6 +173,7 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
       </section>
 
       <VsatLandingToggles />
+      <VsatCommsPanel />
       <VsatCouponMaker />
       <VsatDocUploader />
     </div>
