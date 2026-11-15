@@ -8,7 +8,6 @@ import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
-import { VsatApplicationsPanel } from "@/components/admin/vsat-applications-panel";
 import { visiblePanels, type PanelKey, type VsatRoles } from "@/lib/vsat/pipeline";
 
 /**
@@ -154,7 +153,9 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     // Leads & Applications read straight from lead_manager / application_manager (every
     // row, not the exam pipeline). Exam / Interview / Counselling stay on the pipeline.
     if (active.id === "leads") return <div className="vp-scroll"><VsatLeadsPanel /></div>;
-    if (active.id === "apps") return <div className="vp-scroll"><VsatApplicationsPanel /></div>;
+    // "apps" renders the full pipeline Applications panel (stage moves, comments, bulk,
+    // assignments) — same as Exam/Interview/Counselling. (Showing pre-booking applicants
+    // here too is handled by enrolling them into the pipeline, built separately.)
     if (isPanelKey(active.id) && allowed.includes(active.id)) return <div className="vp-scroll"><PipelinePanel key={active.id} panel={active.id} roles={vsatRoles} /></div>;
     return <Placeholder title={active.title} kind="vsat" />;
   }
