@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { SearchableSelect } from "@/components/ui/searchable-select";
-import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
+import { CitySelect } from "@/components/ui/city-select";
+import { INDIA_STATES } from "@/lib/india-cities";
 
 /**
  * Hard, inescapable profile gate. If a signed-in user is missing state OR city,
@@ -74,7 +75,7 @@ export function ProfileGate() {
           </div>
           <div>
             <label className="mb-1.5 block font-body text-xs font-semibold text-foreground">City</label>
-            <SearchableSelect options={state ? (STATE_CITIES[state] ?? []) : []} value={city} onChange={setCity} placeholder={state ? "Search city…" : "Pick a state first"} disabled={!state} />
+            <CitySelect state={state} value={city} onChange={setCity} disabled={!state} />
           </div>
         </div>
         {err && <p className="mt-3 font-body text-sm text-red-500">{err}</p>}
