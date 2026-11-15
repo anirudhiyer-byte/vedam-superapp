@@ -276,13 +276,14 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   // quick links — offer letter appears only once an offer is live, drops if cancelled.
   // Mock test is "coming soon" (locked for everyone) until the Wheebox callback is live.
   const DOCS = "/vedam-one/docs";
-  // brochure is campus-specific, served from the public Supabase 'vsat-docs' bucket
+  // brochures served from the public Supabase 'vsat-docs' bucket — one link per campus
+  // (campus isn't chosen at signup, so both are offered)
   const SB = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-  const brochureFile = /gurugram|sushant/i.test(campus) ? "sushant-gurugram-brochure.pdf" : "adypu-pune-brochure.pdf";
-  const brochureHref = SB ? `${SB}/storage/v1/object/public/vsat-docs/${brochureFile}` : undefined;
+  const bHref = (f: string) => (SB ? `${SB}/storage/v1/object/public/vsat-docs/${f}` : undefined);
   const formSubmitted = !!((a.form_data as { _meta?: { submitted?: boolean } } | undefined)?._meta?.submitted);
   const quickLinks: { label: string; icon: string; open: boolean; href?: string; soon?: boolean; onClick?: () => void }[] = [
-    { label: "Download brochure", icon: "📘", open: true, href: brochureHref },
+    { label: "Pune brochure (ADYPU)", icon: "📘", open: true, href: bHref("adypu-pune-brochure.pdf") },
+    { label: "Gurugram brochure (Sushant)", icon: "📘", open: true, href: bHref("sushant-gurugram-brochure.pdf") },
     { label: "Sample papers", icon: "📄", open: paid, href: `${DOCS}/vsat-sample-paper.pdf` },
     { label: "Prep kit", icon: "📚", open: paid, href: `${DOCS}/vsat-prep-kit.pdf` },
     { label: "Mock test", icon: "📝", open: false, soon: true },
