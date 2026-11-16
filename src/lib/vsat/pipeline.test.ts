@@ -64,6 +64,14 @@ describe("errorText", () => {
     expect(errorText(undefined)).toBe("Something went wrong. Please try again.");
     expect(errorText("UNKNOWN_KEY: role")).toMatch(/unexpected/);
   });
+  it("shows the settings rule the database gave, and only that kind of text", () => {
+    expect(errorText("BAD_BANDS: category 2 must end where category 1 starts")).toBe("Category 2 must end where category 1 starts.");
+    expect(errorText("BAD_ANCHORS: 2 to 10 points")).toBe("2 to 10 points.");
+    expect(errorText("BAD_BANDS: <script>alert(1)</script>")).toBe("Something went wrong. Please try again.");
+    expect(errorText("PAST_DATE")).toMatch(/from tomorrow/);
+    expect(errorText("NO_ACCOUNT")).toMatch(/sign up/);
+    expect(errorText("FORBIDDEN_COLUMN: family_income")).toMatch(/family income/);
+  });
 });
 
 describe("interview form checks", () => {
