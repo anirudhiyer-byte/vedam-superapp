@@ -1,22 +1,35 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import {
-  NEEDS_ASSIGNMENT, PANEL_STAGES, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst, needsReason,
+  NEEDS_ASSIGNMENT, PANEL_STAGES, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, isStage, isStatus, needsReason,
   type PanelKey, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
+import {
+  DEFAULT_COLUMNS, GROUP_ORDER, columnLabel, formatValue, panelScope, parseSearchValues, pickSummary, requestColumns, sanitizeColumns, toCsv,
+  type GridColumn, type GridColumnsResult, type GridResult, type GridRow, type GridSearch,
+} from "@/lib/vsat/grid";
+import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { StudentDrawer } from "./student-drawer";
-import type { Batch, ListResult, ListRow } from "./types";
+import type { Batch } from "./types";
 
 /**
- * One list panel for Applications / VSAT Exam / Interview / Counselling. Data comes only from
- * vsat_pipeline_list (the database applies role, campus and assignment scope). Trickle-down:
- * each panel shows only its own stages as tabs.
+ * One grid for Applications / VSAT Exam / Interview / Counselling (Product Users style, 0097).
+ *
+ * - Stage / Status / VSAT / Campus are dropdowns; each option shows its count given the other
+ *   dropdowns, so the team mixes and matches and reads the numbers off the dropdowns.
+ * - "Columns" adds any column of application_manager the database allows this person.
+ * - Search: pick a column, paste many values (comma / new line) → one row each.
+ * - Export CSV and Send Communication act on the selection, or on the whole filtered set.
+ * Data comes only from vsat_grid_list / vsat_grid_export: the database applies role, campus,
+ * assignment and column rules on every call. Stage moves use the same engine as before.
  */
 
 const PAGE = 50;
 const input = "rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#22d3ee] focus:outline-none";
 const btn = "rounded-lg px-3 py-2 text-sm font-semibold disabled:opacity-40";
+const ghost = `${btn} border border-white/10 bg-white/5 text-white/80 hover:bg-white/10`;
+const STICKY_BG = "bg-[#0c1226]";
 
 export const STATUS_TONE: Record<Status, string> = {
   active: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
@@ -33,120 +46,283 @@ export function StageBadge({ stage, status }: { stage: Stage; status: Status }) 
   );
 }
 
-const yesNo = (v: boolean | null | undefined) => (v === true ? "Yes" : v === false ? "No" : "—");
-const num = (v: number | null | undefined, d = 2) => (v === null || v === undefined ? "—" : Number(v).toFixed(d).replace(/\.?0+$/, ""));
+const Svg = (p: { children: ReactNode; className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={p.className || "h-4 w-4"}>{p.children}</svg>
+);
+const IconColumns = () => <Svg><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18M15 3v18" /></Svg>;
+const IconDownload = () => <Svg><path d="M12 15V3M8 7l4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></Svg>;
+const IconSend = () => <Svg><path d="m22 2-7 20-4-9-9-4z" /><path d="M22 2 11 13" /></Svg>;
+const IconMail = () => <Svg><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></Svg>;
+const IconChat = () => <Svg><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.5L3 21l2-5.4A8.5 8.5 0 1 1 21 11.5z" /></Svg>;
+const IconClose = () => <Svg><path d="M18 6 6 18M6 6l12 12" /></Svg>;
+
+const colsKey = (panel: PanelKey) => `vsat-grid-cols:v1:${panel}`;
+// per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
+function loadCols(panel: PanelKey): unknown { try { const s = localStorage.getItem(colsKey(panel)); return s ? JSON.parse(s) : null; } catch { return null; } }
+function saveCols(panel: PanelKey, cols: string[]) { try { localStorage.setItem(colsKey(panel), JSON.stringify(cols)); } catch { /* ignore */ } }
+
+type Opt = { value: string; label: string; count: number | null };
+
+/** Dropdown with checkboxes and a count per option. The list is position:fixed so nothing clips it. */
+function FacetPick({ title, options, value, onChange }: { title: string; options: Opt[]; value: string[]; onChange: (v: string[]) => void }) {
+  const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const box = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: MouseEvent) => { if (!box.current?.contains(e.target as Node) && !btnRef.current?.contains(e.target as Node)) setOpen(false); };
+    const esc = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    const off = () => setOpen(false);
+    document.addEventListener("mousedown", close); document.addEventListener("keydown", esc);
+    window.addEventListener("scroll", off, true); window.addEventListener("resize", off);
+    return () => { document.removeEventListener("mousedown", close); document.removeEventListener("keydown", esc); window.removeEventListener("scroll", off, true); window.removeEventListener("resize", off); };
+  }, [open]);
+  const labelOf = (v: string) => options.find((o) => o.value === v)?.label ?? v;
+  const toggle = (v: string) => onChange(value.includes(v) ? value.filter((x) => x !== v) : [...value, v]);
+  return (
+    <>
+      <button ref={btnRef} type="button" aria-label={title} aria-expanded={open}
+        onClick={() => { const r = btnRef.current?.getBoundingClientRect(); if (r) setPos({ left: r.left, top: r.bottom + 4 }); setOpen((o) => !o); }}
+        className={`${input} flex min-w-[150px] items-center justify-between gap-2 text-left ${value.length ? "border-[#34e2b0]/50" : ""}`}>
+        <span className="truncate"><span className="text-white/45">{title}: </span>{pickSummary(value, labelOf)}</span>
+        <span className="text-white/40">▾</span>
+      </button>
+      {open && pos && (
+        <div ref={box} style={{ left: pos.left, top: pos.top }} className="fixed z-50 max-h-80 min-w-[240px] overflow-auto rounded-xl border border-white/10 bg-[#141a38] p-1 text-sm shadow-[0_16px_40px_-12px_rgba(0,0,0,0.7)]">
+          {options.length === 0 && <div className="px-3 py-2 text-white/40">Nothing here</div>}
+          {options.map((o) => (
+            <label key={o.value} className="flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-white/85 hover:bg-white/[0.07]">
+              <input type="checkbox" checked={value.includes(o.value)} onChange={() => toggle(o.value)} className="h-3.5 w-3.5 accent-[#34e2b0]" />
+              <span className={`flex-1 ${o.count === 0 ? "text-white/40" : ""}`}>{o.label}</span>
+              {o.count !== null && <span className={`rounded-full px-1.5 text-[11px] tabular-nums ${o.count ? "bg-white/10 text-white/80" : "text-white/30"}`}>{o.count}</span>}
+            </label>
+          ))}
+          {value.length > 0 && <button type="button" onClick={() => onChange([])} className="mt-1 w-full rounded-lg border-t border-white/10 px-2.5 py-1.5 text-left text-xs text-white/55 hover:text-white">Clear</button>}
+        </div>
+      )}
+    </>
+  );
+}
 
 export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRoles }) {
   const [supabase] = useState(() => createClient());
-  const stages = PANEL_STAGES[panel];
+  const scope = useMemo(() => panelScope(panel), [panel]);
   const manager = canManage(roles);
-  const [tab, setTab] = useState<Stage | null>(panel === "apps" ? null : stages[0]);
-  const [status, setStatus] = useState<Status | "">("");
-  const [batch, setBatch] = useState("");
-  const [campus, setCampus] = useState<"" | "pune" | "gurugram">("");
-  const [qInput, setQInput] = useState("");
-  const [q, setQ] = useState("");
+
+  const [catalog, setCatalog] = useState<GridColumn[]>([]);
+  const [vsats, setVsats] = useState<Batch[]>([]);
+  const [stages, setStages] = useState<string[]>([]);
+  const [statuses, setStatuses] = useState<string[]>([]);
+  const [vsatIds, setVsatIds] = useState<string[]>([]);
+  const [campuses, setCampuses] = useState<string[]>([]);
+  const [searchCol, setSearchCol] = useState("_any");
+  const [searchText, setSearchText] = useState("");
+  const [search, setSearch] = useState<GridSearch | null>(null);
+  const [cols, setCols] = useState<string[]>(DEFAULT_COLUMNS[panel]);
   const [offset, setOffset] = useState(0);
-  const [data, setData] = useState<ListResult | null>(null);
-  const [batches, setBatches] = useState<Batch[]>([]);
+  const [data, setData] = useState<GridResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
   const [sel, setSel] = useState<Set<string>>(new Set());
   const [openId, setOpenId] = useState<string | null>(null);
   const [reload, setReload] = useState(0);
+  const [showCols, setShowCols] = useState(false);
+  const [busy, setBusy] = useState<"" | "csv" | "comms">("");
+  const [comm, setComm] = useState<null | "email" | "whatsapp">(null);
+  const [recipients, setRecipients] = useState<{ user_id: string; email: string | null; phone: string | null; full_name: string | null; state: string | null; city: string | null }[]>([]);
+  const [notice, setNotice] = useState("");
 
-  // search: wait until typing stops; 1 letter is not enough (the database refuses it)
+  // catalogue (what this person may show) + VSAT list; saved column choice is checked against the catalogue
   useEffect(() => {
-    const t = setTimeout(() => { setQ(qInput.trim().length >= 2 ? qInput.trim() : ""); setOffset(0); }, 350);
+    let on = true;
+    void supabase.rpc("vsat_grid_columns").then(({ data: d, error }) => {
+      if (!on) return;
+      if (error || !d) { setErr(errorText(error?.message)); setLoading(false); return; }
+      const res = d as GridColumnsResult;
+      setCatalog(res.columns);
+      setCols(sanitizeColumns(loadCols(panel), res.columns, DEFAULT_COLUMNS[panel]));
+    });
+    void supabase.rpc("vsat_batches").then(({ data: d }) => { if (on) setVsats(Array.isArray(d) ? (d as Batch[]) : []); });
+    return () => { on = false; };
+  }, [supabase, panel]);
+
+  // search: wait until typing stops; values under 2 characters are dropped (the database refuses them)
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const values = parseSearchValues(searchText);
+      setSearch(values.length ? { column: searchCol, values } : null);
+      setOffset(0);
+    }, 350);
     return () => clearTimeout(t);
-  }, [qInput]);
+  }, [searchText, searchCol]);
 
-  useEffect(() => {
-    void supabase.rpc("vsat_batches").then(({ data: d }) => setBatches(Array.isArray(d) ? (d as Batch[]) : []));
-  }, [supabase]);
+  const byKey = useMemo(() => new Map(catalog.map((c) => [c.key, c])), [catalog]);
+  const shownCols = useMemo(() => cols.map((k) => byKey.get(k)).filter((c): c is GridColumn => !!c), [cols, byKey]);
+
+  const filters = useCallback((): Record<string, unknown> => {
+    const p: Record<string, unknown> = {};
+    if (scope) p.scope = scope;
+    if (stages.length) p.stages = stages;
+    if (statuses.length) p.statuses = statuses;
+    if (vsatIds.length) p.exam_date_ids = vsatIds;
+    if (campuses.length) p.campuses = campuses;
+    if (search) p.search = search;
+    return p;
+  }, [scope, stages, statuses, vsatIds, campuses, search]);
 
   const load = useCallback(async () => {
+    if (!catalog.length) return;
     setLoading(true); setErr("");
-    const p: Record<string, unknown> = { limit: PAGE, offset };
-    if (tab) p.stage = tab;
-    if (status) p.status = status;
-    if (batch) p.exam_date_id = batch;
-    if (campus) p.campus = campus;
-    if (q) p.q = q;
-    const { data: d, error } = await supabase.rpc("vsat_pipeline_list", { p });
-    if (error) { setErr(errorText(error.message)); setData(null); } else setData(d as ListResult);
+    const p = { ...filters(), columns: requestColumns(cols), limit: PAGE, offset };
+    const { data: d, error } = await supabase.rpc("vsat_grid_list", { p });
+    if (error) { setErr(errorText(error.message)); setData(null); } else setData(d as GridResult);
     setSel(new Set());
     setLoading(false);
-  }, [supabase, tab, status, batch, campus, q, offset]);
+  }, [supabase, catalog.length, filters, cols, offset]);
   useEffect(() => { void load(); }, [load, reload]);
 
-  const rows = data?.rows ?? [];
-  const panelTotal = useMemo(() => stages.reduce((n, s) => n + (data?.counts?.[s] ?? 0), 0), [data, stages]);
+  const rows = useMemo(() => data?.rows ?? [], [data]);
+  const facets = data?.facets ?? null;
+  const anyFilter = stages.length > 0 || statuses.length > 0 || vsatIds.length > 0 || campuses.length > 0 || !!search;
   const allOnPage = rows.length > 0 && rows.every((r) => sel.has(r.application_id));
+  // the stage every selected row is at — the bulk move checks the database still agrees
+  const selStage = useMemo<Stage | null>(() => {
+    const st = new Set(rows.filter((r) => sel.has(r.application_id)).map((r) => r.stage));
+    return st.size === 1 ? [...st][0] : null;
+  }, [rows, sel]);
 
-  function toggle(id: string) {
-    setSel((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; });
+  const stageOpts: Opt[] = (scope ?? STAGES).map((s) => ({ value: s, label: STAGE_LABEL[s], count: facets ? facets.stage[s] ?? 0 : null }));
+  const statusOpts: Opt[] = STATUSES.map((s) => ({ value: s, label: STATUS_LABEL[s], count: facets ? facets.status[s] ?? 0 : null }));
+  const vsatOpts: Opt[] = vsats.map((b) => ({ value: b.id, label: b.label, count: facets ? facets.vsat[b.id] ?? 0 : null }));
+  const campusOpts: Opt[] = [
+    { value: "pune", label: "Pune", count: facets ? facets.campus.pune ?? 0 : null },
+    { value: "gurugram", label: "Gurugram", count: facets ? facets.campus.gurugram ?? 0 : null },
+  ];
+  const searchable = useMemo(() => catalog.filter((c) => !c.virtual && ["text", "num", "date", "ts"].includes(c.type))
+    .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
+
+  function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setSearchText(""); setOffset(0); }
+  function toggle(id: string) { setSel((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; }); }
+  function setColumns(next: string[]) { setCols(next); saveCols(panel, next); setOffset(0); }
+
+  // whole filtered set (or the selection) from the database — admin / admissions only, audited there
+  async function pull(purpose: "csv" | "comms") {
+    setBusy(purpose); setNotice("");
+    const p: Record<string, unknown> = { ...filters(), purpose };
+    if (sel.size) p.application_ids = [...sel];
+    if (purpose === "csv") p.columns = requestColumns(cols);
+    const { data: d, error } = await supabase.rpc("vsat_grid_export", { p });
+    setBusy("");
+    if (error) { setNotice(errorText(error.message)); return null; }
+    return d as { total: number; rows: GridRow[] };
+  }
+  async function exportCsv() {
+    const d = await pull("csv");
+    if (!d) return;
+    const csv = toCsv(d.rows, shownCols.map((c) => ({ key: c.key, type: c.type })));
+    const blob = new Blob([csv], { type: "text/csv" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = `vsat-${panel}-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(a.href);
+    setNotice(`Exported ${d.total} student${d.total === 1 ? "" : "s"}.`);
+  }
+  async function openComms() {
+    const d = await pull("comms");
+    if (!d) return;
+    setRecipients(d.rows.map((r) => ({
+      user_id: r.application_id, email: (r.registered_email as string | null) ?? null, phone: (r.registered_mobile as string | null) ?? null,
+      full_name: (r.registered_name as string | null) ?? null, state: (r.state as string | null) ?? null, city: (r.city as string | null) ?? null,
+    })));
+    setComm("email");
   }
 
+  const total = data?.total ?? 0;
   return (
     <div className="space-y-4 p-5 text-white">
-      {/* stage tabs (trickle-down) */}
-      <div className="flex flex-wrap gap-2">
-        {panel === "apps" && (
-          <button className={`${btn} ${tab === null ? "bg-[#34e2b0] text-[#04101a]" : "bg-white/5 text-white/70"}`} onClick={() => { setTab(null); setOffset(0); }}>
-            All <span className="opacity-70">{Object.values(data?.counts ?? {}).reduce((a, b) => a + (b ?? 0), 0)}</span>
+      {/* ── filters ───────────────────────────────── */}
+      <div className="flex flex-wrap items-start gap-2">
+        <div className="flex items-stretch overflow-hidden rounded-lg border border-white/15 bg-white/5 focus-within:border-[#22d3ee]">
+          <select className="border-r border-white/10 bg-transparent px-2 py-2 text-sm text-white/80 focus:outline-none" value={searchCol}
+            onChange={(e) => setSearchCol(e.target.value)} aria-label="Search column">
+            <option value="_any">{manager ? "Name, email, mobile, app no." : "Name or app no."}</option>
+            {searchable.map((c) => <option key={c.key} value={c.key}>{columnLabel(c.key)}</option>)}
+          </select>
+          <textarea className="w-72 resize-none bg-transparent px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none" rows={1}
+            placeholder={searchCol === "_any" ? "Search…" : `Paste ${columnLabel(searchCol).toLowerCase()} values, one per line or comma-separated`}
+            value={searchText} onChange={(e) => setSearchText(e.target.value)} maxLength={20000} aria-label="Search values" />
+        </div>
+        <FacetPick title="Stage" options={stageOpts} value={stages} onChange={(v) => { setStages(v); setOffset(0); }} />
+        <FacetPick title="Status" options={statusOpts} value={statuses} onChange={(v) => { setStatuses(v); setOffset(0); }} />
+        <FacetPick title="VSAT" options={vsatOpts} value={vsatIds} onChange={(v) => { setVsatIds(v); setOffset(0); }} />
+        <FacetPick title="Campus" options={campusOpts} value={campuses} onChange={(v) => { setCampuses(v); setOffset(0); }} />
+        <span className="flex-1" />
+        <button className={`${ghost} inline-flex items-center gap-2`} onClick={() => setShowCols(true)} disabled={!catalog.length}>
+          <IconColumns /> Columns <span className="rounded-full bg-white/10 px-1.5 text-[11px] tabular-nums">{shownCols.length}</span>
+        </button>
+        {manager && (
+          <button className={`${ghost} inline-flex items-center gap-2`} onClick={exportCsv} disabled={busy !== "" || loading || total === 0}>
+            <IconDownload /> {busy === "csv" ? "Exporting…" : sel.size ? `Export ${sel.size}` : "Export CSV"}
           </button>
         )}
-        {stages.map((s) => (
-          <button key={s} className={`${btn} ${tab === s ? "bg-[#34e2b0] text-[#04101a]" : "bg-white/5 text-white/70"}`} onClick={() => { setTab(s); setOffset(0); }}>
-            {STAGE_LABEL[s]} <span className="opacity-70">{data?.counts?.[s] ?? 0}</span>
-          </button>
-        ))}
-        {panel !== "apps" && <span className="self-center text-xs text-white/40">{panelTotal} in this panel</span>}
+        <button className={ghost} onClick={() => setReload((n) => n + 1)}>Refresh</button>
       </div>
 
-      {/* filters */}
-      <div className="flex flex-wrap items-center gap-2">
-        <input className={`${input} w-64`} placeholder={manager ? "Search name, email, mobile or app no." : "Search name or app no."}
-          value={qInput} onChange={(e) => setQInput(e.target.value)} maxLength={100} aria-label="Search" />
-        <select className={input} value={status} onChange={(e) => { setStatus(e.target.value as Status | ""); setOffset(0); }} aria-label="Status">
-          <option value="">All statuses</option>
-          {STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABEL[s]}</option>)}
-        </select>
-        <select className={input} value={batch} onChange={(e) => { setBatch(e.target.value); setOffset(0); }} aria-label="Batch">
-          <option value="">All batches</option>
-          {batches.map((b) => <option key={b.id} value={b.id}>{b.label}</option>)}
-        </select>
-        <select className={input} value={campus} onChange={(e) => { setCampus(e.target.value as "" | "pune" | "gurugram"); setOffset(0); }} aria-label="Campus">
-          <option value="">Both campuses</option><option value="pune">Pune</option><option value="gurugram">Gurugram</option>
-        </select>
-        <button className={`${btn} bg-white/5 text-white/80`} onClick={() => setReload((n) => n + 1)}>Refresh</button>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/60">
+        <span><b className="font-semibold text-white tabular-nums">{loading && !data ? "…" : total}</b> student{total === 1 ? "" : "s"}{anyFilter ? " match" : ""}</span>
+        {search && <span className="text-xs text-white/40">{search.values.length} search value{search.values.length === 1 ? "" : "s"} on {searchCol === "_any" ? "all fields" : columnLabel(searchCol)}</span>}
+        {anyFilter && <button className="text-xs text-white/60 underline-offset-2 hover:text-white hover:underline" onClick={clearFilters}>Clear filters</button>}
+        {notice && <span className="text-xs text-white/70">{notice}</span>}
       </div>
 
+      {/* ── selection bar ─────────────────────────── */}
       {manager && sel.size > 0 && (
-        <BulkBar ids={[...sel]} current={tab} panel={panel} onDone={() => setReload((n) => n + 1)} />
+        <div className="space-y-2 rounded-xl border border-[#34e2b0]/30 bg-[#34e2b0]/5 p-3 text-sm">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-semibold">{sel.size} selected</span>
+            <span className="flex-1" />
+            <button className={`${ghost} inline-flex items-center gap-1.5`} onClick={openComms} disabled={busy !== ""}><IconSend /> {busy === "comms" ? "Loading…" : "Send Communication"}</button>
+            <button className={`${ghost} inline-flex items-center gap-1.5`} onClick={exportCsv} disabled={busy !== ""}><IconDownload /> Export</button>
+            <button className={ghost} onClick={() => setSel(new Set())}>Clear</button>
+          </div>
+          <BulkBar ids={[...sel]} current={selStage} panel={panel} onDone={() => setReload((n) => n + 1)} />
+        </div>
+      )}
+      {manager && sel.size === 0 && total > 0 && !loading && (
+        <div className="flex flex-wrap items-center gap-2 text-xs text-white/50">
+          <span>No selection → actions apply to all {total} matching student{total === 1 ? "" : "s"}:</span>
+          <button className="inline-flex items-center gap-1 rounded-md border border-white/10 px-2 py-1 text-white/75 hover:bg-white/5 disabled:opacity-40" onClick={openComms} disabled={busy !== ""}><IconSend /> Send Communication</button>
+        </div>
       )}
 
       {err && <p className="rounded-lg border border-rose-400/30 bg-rose-400/10 px-3 py-2 text-sm text-rose-200">{err}</p>}
 
+      {/* ── table ─────────────────────────────────── */}
       <div className="overflow-auto rounded-xl border border-white/10">
-        <table className="w-full min-w-[860px] text-left text-sm">
-          <thead className="bg-white/5 text-xs uppercase tracking-wide text-white/50">
+        <table className="w-full text-left text-sm">
+          <thead className="sticky top-0 z-10 bg-white/5 text-xs uppercase tracking-wide text-white/50">
             <tr>
-              {manager && <th className="w-8 px-3 py-2"><input type="checkbox" aria-label="Select all on this page" checked={allOnPage}
+              {manager && <th className={`sticky left-0 z-20 w-8 px-3 py-2 ${STICKY_BG}`}><input type="checkbox" aria-label="Select all on this page" checked={allOnPage}
                 onChange={() => setSel(allOnPage ? new Set() : new Set(rows.map((r) => r.application_id)))} /></th>}
-              <th className="px-3 py-2">Student</th><th className="px-3 py-2">Campus</th><th className="px-3 py-2">Batch</th><th className="px-3 py-2">Stage</th>
-              {(panel === "apps" || panel === "exam") && <><th className="px-3 py-2">Percentile</th><th className="px-3 py-2">VPS</th><th className="px-3 py-2">Eligible</th></>}
-              {panel === "intv" && <><th className="px-3 py-2">Interviewer</th><th className="px-3 py-2">Slot (IST)</th><th className="px-3 py-2">Score</th><th className="px-3 py-2">Verdict (calc / interviewer)</th></>}
-              {panel === "couns" && <><th className="px-3 py-2">Counsellor</th><th className="px-3 py-2">Slot (IST)</th><th className="px-3 py-2">Category</th><th className="px-3 py-2">Scholarship</th></>}
-              <th className="px-3 py-2">Updated</th>
+              {shownCols.map((c, i) => (
+                <th key={c.key} className={`whitespace-nowrap px-3 py-2 ${i === 0 ? `sticky z-20 ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : STICKY_BG} ${c.restricted ? "text-amber-200/70" : ""}`}
+                  title={c.restricted ? "Admin / admissions only" : c.group}>{columnLabel(c.key)}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {loading && <tr><td colSpan={10} className="px-3 py-6 text-center text-white/50">Loading…</td></tr>}
-            {!loading && rows.length === 0 && <tr><td colSpan={10} className="px-3 py-6 text-center text-white/50">No students here.</td></tr>}
-            {!loading && rows.map((r) => <Row key={r.application_id} r={r} panel={panel} manager={manager}
-              checked={sel.has(r.application_id)} onCheck={() => toggle(r.application_id)} onOpen={() => setOpenId(r.application_id)} />)}
+            {loading && <tr><td colSpan={shownCols.length + 1} className="px-3 py-6 text-center text-white/50">Loading…</td></tr>}
+            {!loading && rows.length === 0 && <tr><td colSpan={shownCols.length + 1} className="px-3 py-6 text-center text-white/50">{anyFilter ? "No students match these filters." : "No students here."}</td></tr>}
+            {!loading && rows.map((r) => (
+              <tr key={r.application_id} className={`cursor-pointer border-t border-white/5 hover:bg-white/5 ${sel.has(r.application_id) ? "bg-[#34e2b0]/5" : ""}`} onClick={() => setOpenId(r.application_id)}>
+                {manager && <td className={`sticky left-0 z-[1] px-3 py-2 ${STICKY_BG}`} onClick={(e) => e.stopPropagation()}>
+                  <input type="checkbox" aria-label={`Select ${String(r.registered_name ?? r.application_id)}`} checked={sel.has(r.application_id)} onChange={() => toggle(r.application_id)} /></td>}
+                {shownCols.map((c, i) => (
+                  <td key={c.key} className={`whitespace-nowrap px-3 py-2 ${i === 0 ? `sticky z-[1] ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : ""}`}>
+                    <Cell col={c} row={r} />
+                  </td>
+                ))}
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -160,39 +336,104 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       )}
 
       {openId && <StudentDrawer id={openId} roles={roles} onClose={() => setOpenId(null)} onChanged={() => setReload((n) => n + 1)} />}
+
+      {showCols && <ColumnsDrawer catalog={catalog} cols={cols} panel={panel} onChange={setColumns} onClose={() => setShowCols(false)} />}
+
+      {comm && (
+        <>
+          <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setComm(null)} />
+          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-[#0d1430] text-white shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <h2 className="flex items-center gap-2.5 text-base font-bold">Send Communication
+                <span className="rounded-full bg-[#34e2b0]/15 px-2.5 py-0.5 text-xs font-semibold text-[#34e2b0]">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
+              <button onClick={() => setComm(null)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 hover:text-white"><IconClose /></button>
+            </div>
+            <div className="flex gap-1 px-5 pt-3">
+              {(["email", "whatsapp"] as const).map((ch) => (
+                <button key={ch} onClick={() => setComm(ch)} className={["inline-flex items-center gap-2 rounded-t-xl border border-b-0 px-4 py-2 text-sm font-semibold", comm === ch ? "border-white/10 bg-white/[0.04] text-white" : "border-transparent text-white/45 hover:text-white/80"].join(" ")}>
+                  {ch === "email" ? <IconMail /> : <IconChat />}{ch === "email" ? "Email" : "WhatsApp"}
+                </button>
+              ))}
+            </div>
+            <div className="max-h-[74vh] overflow-y-auto border-t border-white/10 px-1 py-1">
+              <CommsBroadcast channel={comm} product="all" overrideRecipients={recipients} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
 
-function Row({ r, panel, manager, checked, onCheck, onOpen }:
-  { r: ListRow; panel: PanelKey; manager: boolean; checked: boolean; onCheck: () => void; onOpen: () => void }) {
-  const vps = r.effective?.vps; const el = r.effective?.eligible;
+/** One cell: the student column carries the app no.; stage shows the badge; VPS / eligible mark an override. */
+function Cell({ col, row }: { col: GridColumn; row: GridRow }) {
+  const v = row[col.key];
+  if (col.key === "registered_name") {
+    return <><div className="font-medium">{v ? String(v) : "—"}</div><div className="text-xs text-white/40">{String(row.application_no ?? row.application_id)}</div></>;
+  }
+  if (col.key === "stage") return isStage(row.stage) && isStatus(row.status) ? <StageBadge stage={row.stage} status={row.status} /> : <>{String(v ?? "—")}</>;
+  if (col.key === "vps_effective" || col.key === "eligible_effective") {
+    const ov = row[col.key === "vps_effective" ? "vps_override" : "eligible_override"];
+    return <>{formatValue(col.type, col.key, v)}{ov !== null && ov !== undefined && <span className="ml-1 text-xs text-amber-300">override</span>}</>;
+  }
+  if (col.key === "campus") return <span className="capitalize">{formatValue(col.type, col.key, v)}</span>;
+  if (col.type === "ts" || col.type === "date") return <span className="text-xs text-white/60">{formatValue(col.type, col.key, v)}</span>;
+  if (col.type === "bool") { const s = formatValue(col.type, col.key, v); return <span className={s === "Yes" ? "text-emerald-300" : s === "No" ? "text-white/50" : ""}>{s}</span>; }
+  const s = formatValue(col.type, col.key, v);
+  return <span className={s.length > 48 ? "block max-w-[320px] truncate" : ""} title={s.length > 48 ? s : undefined}>{s}</span>;
+}
+
+/** Pick which columns to show, grouped as the database groups them. "Student" is always on. */
+function ColumnsDrawer({ catalog, cols, panel, onChange, onClose }: { catalog: GridColumn[]; cols: string[]; panel: PanelKey; onChange: (c: string[]) => void; onClose: () => void }) {
+  const [q, setQ] = useState("");
+  const on = new Set(cols);
+  const groups = useMemo(() => {
+    const m = new Map<string, GridColumn[]>();
+    for (const c of catalog) { if (c.key === "registered_name") continue; const l = m.get(c.group) ?? []; l.push(c); m.set(c.group, l); }
+    const order = (g: string) => { const i = GROUP_ORDER.indexOf(g); return i === -1 ? 999 : i; };
+    return [...m.entries()].sort((a, b) => order(a[0]) - order(b[0]) || a[0].localeCompare(b[0]))
+      .map(([g, list]) => [g, list.sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key)))] as const);
+  }, [catalog]);
+  const needle = q.trim().toLowerCase();
+  const match = (c: GridColumn) => !needle || columnLabel(c.key).toLowerCase().includes(needle) || c.key.includes(needle);
+  function toggle(key: string) { onChange(on.has(key) ? cols.filter((k) => k !== key) : [...cols, key]); }
   return (
-    <tr className="cursor-pointer border-t border-white/5 hover:bg-white/5" onClick={onOpen}>
-      {manager && <td className="px-3 py-2" onClick={(e) => e.stopPropagation()}><input type="checkbox" aria-label={`Select ${r.name ?? r.application_id}`} checked={checked} onChange={onCheck} /></td>}
-      <td className="px-3 py-2"><div className="font-medium">{r.name ?? "—"}</div><div className="text-xs text-white/40">{r.application_no ?? r.application_id}</div></td>
-      <td className="px-3 py-2 capitalize">{r.campus ?? "—"}</td>
-      <td className="px-3 py-2">{r.batch ?? "—"}</td>
-      <td className="px-3 py-2"><StageBadge stage={r.stage} status={r.status} /></td>
-      {(panel === "apps" || panel === "exam") && <>
-        <td className="px-3 py-2">{num(r.exam_percentile, 0)}</td>
-        <td className="px-3 py-2">{num(vps?.value)}{vps?.override !== null && vps?.override !== undefined && <span title={`Calculated ${num(vps.calculated)}`} className="ml-1 text-xs text-amber-300">override</span>}</td>
-        <td className="px-3 py-2">{yesNo(el?.value)}{el?.override !== null && el?.override !== undefined && <span className="ml-1 text-xs text-amber-300">override</span>}</td>
-      </>}
-      {panel === "intv" && <>
-        <td className="px-3 py-2">{r.interview?.interviewer ?? "—"}</td>
-        <td className="px-3 py-2">{fmtIst(r.interview?.slot)}</td>
-        <td className="px-3 py-2">{num(r.interview?.score)}</td>
-        <td className="px-3 py-2">{r.interview?.submitted ? `${r.interview.calc_verdict ?? "—"} / ${r.interview.interviewer_verdict ?? "—"}${r.interview.cheating_seen ? " · cheating" : ""}` : "—"}</td>
-      </>}
-      {panel === "couns" && <>
-        <td className="px-3 py-2">{r.counselling?.counsellor ?? "—"}</td>
-        <td className="px-3 py-2">{fmtIst(r.counselling?.slot)}</td>
-        <td className="px-3 py-2">{r.counselling?.category ?? "—"}</td>
-        <td className="px-3 py-2">{r.counselling?.pct !== null && r.counselling?.pct !== undefined ? `${num(r.counselling.pct)}%` : "—"}</td>
-      </>}
-      <td className="px-3 py-2 text-xs text-white/50">{fmtIst(r.stage_changed_at)}</td>
-    </tr>
+    <>
+      <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="fixed right-0 top-0 z-50 flex h-full w-[min(440px,100%)] flex-col border-l border-white/10 bg-[#0d1430] text-white shadow-2xl">
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <div><h2 className="text-base font-bold">Columns</h2><p className="text-xs text-white/45">Tick what you want to see. Amber = admin / admissions only. Your choice is remembered on this device.</p></div>
+          <button onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 hover:text-white"><IconClose /></button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-5 py-4">
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search columns" aria-label="Search columns"
+            className={`${input} mb-3 w-full`} />
+          {groups.map(([g, list]) => {
+            const vis = list.filter(match);
+            if (!vis.length) return null;
+            return (
+              <div key={g} className="mb-4">
+                <div className="mb-1 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-white/40">
+                  <span>{g}</span><span>{list.filter((c) => on.has(c.key)).length}/{list.length}</span>
+                </div>
+                {vis.map((c) => (
+                  <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 hover:bg-white/5">
+                    <input type="checkbox" checked={on.has(c.key)} onChange={() => toggle(c.key)} className="h-4 w-4 accent-[#34e2b0]" />
+                    <span className={`text-sm ${on.has(c.key) ? "font-medium text-white" : "text-white/60"} ${c.restricted ? "text-amber-200/80" : ""}`}>{columnLabel(c.key)}</span>
+                    <span className="ml-auto font-mono text-[10px] text-white/30">{c.key}</span>
+                  </label>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex items-center gap-2 border-t border-white/10 px-5 py-4">
+          <span className="mr-auto font-mono text-[11px] text-white/40">{cols.length} shown</span>
+          <button onClick={() => onChange(sanitizeColumns(null, catalog, DEFAULT_COLUMNS[panel]))} className={ghost}>Reset</button>
+          <button onClick={onClose} className={`${btn} bg-[#34e2b0] text-[#04101a]`}>Done</button>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -222,8 +463,8 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[#34e2b0]/30 bg-[#34e2b0]/5 p-3 text-sm">
-      <span className="font-semibold">{ids.length} selected → move to</span>
+    <div className="flex flex-wrap items-center gap-2 text-sm">
+      <span className="text-white/70">Move to</span>
       <select className={input} value={to} onChange={(e) => setTo(e.target.value as Stage)} aria-label="Move to stage">
         {targets.map((s) => <option key={s} value={s}>{STAGE_LABEL[s]}</option>)}
       </select>
@@ -233,7 +474,7 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
       <input className={`${input} w-64`} placeholder={reasonNeeded ? "Reason (required)" : "Reason (optional)"} value={reason}
         onChange={(e) => setReason(e.target.value)} maxLength={500} aria-label="Reason" />
       <button className={`${btn} bg-[#34e2b0] text-[#04101a]`} disabled={busy} onClick={apply}>{busy ? "Moving…" : "Move"}</button>
-      <span className="text-xs text-white/50">Scheduling an interview or counselling is done from the student page (it needs a person and a slot).</span>
+      <span className="text-xs text-white/50">Scheduling an interview or counselling is done from the student page (it needs a person and a slot).{current ? "" : " Mixed stages selected: a reason is required."}</span>
       {msg && <p className="w-full text-white/80">{msg}</p>}
     </div>
   );

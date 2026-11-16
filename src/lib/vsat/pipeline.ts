@@ -104,12 +104,16 @@ const ERRORS: Record<string, string> = {
   CAMPUS_MISSING: "The student has no campus yet, so the scholarship can't be calculated.",
   NO_OVERRIDE: "There's no override to remove.",
   NO_BAND: "This score doesn't fall in any scholarship band. Check the scholarship settings.",
+  TOO_MANY_ROWS: "More than 5,000 students match. Narrow the filters and try again.",
+  BAD_REQUEST: "The app sent something unexpected. Refresh the page and try again.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
   why_program: "Why this program", cheating_seen: "Cheating seen", interviewer_verdict: "Your verdict",
   slot_datetime: "Slot", meet_link: "Meeting link", meeting_link: "Meeting link", chosen_step: "Scholarship step",
   actual_pct: "Actual %", special_rating: "Special rating", value: "Value", q: "Search",
+  columns: "Columns", column: "Search column", values: "Search values", stages: "Stage", statuses: "Status",
+  exam_date_ids: "VSAT", campuses: "Campus", filters: "Filters", purpose: "Purpose", application_ids: "Selection",
 };
 
 export function errorText(raw: string | null | undefined): string {
@@ -117,6 +121,8 @@ export function errorText(raw: string | null | undefined): string {
   if (ERRORS[m]) return ERRORS[m];
   const bad = /^BAD_VALUE: ([a-z_0-9]+)$/.exec(m);
   if (bad) return `Please check "${FIELD_LABEL[bad[1]] ?? bad[1].replace(/_/g, " ")}".`;
+  const col = /^FORBIDDEN_COLUMN: ([a-z_0-9]+)$/.exec(m);
+  if (col) return `You don't have access to the column "${col[1].replace(/_/g, " ")}".`;
   if (/^UNKNOWN_KEY/.test(m)) return "The app sent something unexpected. Refresh the page and try again.";
   return "Something went wrong. Please try again.";
 }
