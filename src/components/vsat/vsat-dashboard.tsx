@@ -98,6 +98,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const [note, setNote] = useState("");
   const [fillOpen, setFillOpen] = useState(false);
   const [perfAtt, setPerfAtt] = useState(1);
+  const [journeyOpen, setJourneyOpen] = useState(false); // mobile: journey timeline collapsed by default
   // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
   // Not a bypass of the pay screen — the admin still sees "Pay", with a Simulate
   // button below it. Persisted per browser so a refresh keeps them past the gate.
@@ -112,14 +113,19 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const load = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) { setLoading(false); return; }
-    const res = await fetch("/api/vsat/me", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
-    const j = await res.json();
-    if (j.ok) { setApp(j.app); setLead(j.lead); }
-    // fee quote (server-authoritative) drives the 24h banner + the exact pay amount
+    const opts = { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) };
+    // Fire both calls together — the quote only feeds the early-bird banner / pay amount,
+    // so it must not block the main dashboard data. This roughly halves the load wait
+    // (noticeable on the form→dashboard hand-off).
+    const [meR, qR] = await Promise.allSettled([
+      fetch("/api/vsat/me", opts),
+      fetch("/api/payments/vsat-quote", opts),
+    ]);
     try {
-      const q = await fetch("/api/payments/vsat-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token }) });
-      const qj = await q.json();
-      if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt });
+      if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); } }
+    } catch { /* ignore */ }
+    try {
+      if (qR.status === "fulfilled") { const qj = await qR.value.json(); if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt }); }
     } catch { /* banner is best-effort */ }
     setLoading(false);
   }, [supabase]);
@@ -320,7 +326,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
         {BackBar}
 
         {/* ── personalised hero (the single gradient moment) ── */}
-        <section className="relative overflow-hidden rounded-[20px] p-6 text-white" style={{ background: HERO_GRAD }}>
+        <section className="relative hidden overflow-hidden rounded-[20px] p-6 text-white lg:block" style={{ background: HERO_GRAD }}>
           <div className="flex flex-wrap items-center gap-5">
             <div className="min-w-0 flex-1 basis-80">
               <span className="text-[13px] font-semibold opacity-90">Welcome back,</span>
@@ -346,9 +352,18 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
           </div>
         </section>
 
+        {/* mobile-only compact progress (variation C) — desktop keeps the gradient hero above */}
+        <div className="lg:hidden">
+          <div className="rounded-2xl border border-[#e9e4f2] bg-white p-4 shadow-[0_10px_30px_-22px_rgba(43,19,92,0.38)]">
+            <h1 className="font-display text-[17px] font-extrabold leading-tight">{name ? `${name}, ` : ""}you&apos;re on track 🎯</h1>
+            <p className="mt-1 text-[12.5px] font-semibold tabular-nums text-[#6c6485]">{appId} · Step {idx + 1} of {MILESTONES.length} · {pct}%</p>
+            <div className="mt-2.5 h-[7px] w-full overflow-hidden rounded-full bg-[#e8e2f3]"><div className="h-full rounded-full" style={{ width: `${pct}%`, background: HERO_GRAD }} /></div>
+          </div>
+        </div>
+
         <div className="mt-5 grid items-start gap-[18px] lg:grid-cols-[252px_minmax(0,1fr)_252px]">
           {/* LEFT · journey rail + quick entries (payments / communications pages) */}
-          <div className="flex flex-col gap-[18px]">
+          <div className="order-2 flex flex-col gap-[18px] lg:order-1">
           <aside className={card}>
             <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">Your journey</p>
             <p className="mt-1 font-display text-sm font-bold tabular-nums">{appId}</p>
@@ -360,7 +375,20 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                 </button>
               ))}
             </div>
-            <ol>
+            {/* mobile: collapse the journey to the current step (variation C); desktop shows it all */}
+            {!journeyOpen && (
+              <div className="lg:hidden">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-[25px] w-[25px] shrink-0 place-items-center rounded-full border-[1.5px] border-[#8a18ff] bg-[#8a18ff] font-display text-[11px] font-bold text-white shadow-[0_0_0_4px_#f2ebfd]">{idx + 1}</span>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#a79fbd]">You&apos;re here · Step {idx + 1} of {MILESTONES.length}</div>
+                    <div className="font-display text-[13.5px] font-bold">{MILESTONES[idx].label}</div>
+                  </div>
+                </div>
+                <button onClick={() => setJourneyOpen(true)} className="mt-3 w-full rounded-lg border border-[#e9e4f2] py-2 text-xs font-bold text-[#8a18ff] transition hover:border-[#8a18ff]">View all {MILESTONES.length} steps ⌄</button>
+              </div>
+            )}
+            <ol className={`${journeyOpen ? "block" : "hidden"} lg:block`}>
               {MILESTONES.map((m, i) => (
                 <li key={m.key} className="flex items-start gap-3">
                   <div className="flex flex-col items-center">
@@ -373,6 +401,9 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
                 </li>
               ))}
             </ol>
+            {journeyOpen && (
+              <button onClick={() => setJourneyOpen(false)} className="mt-1 w-full rounded-lg py-1.5 text-xs font-bold text-[#a79fbd] lg:hidden">Show less ⌃</button>
+            )}
           </aside>
           <nav className="flex flex-col gap-2.5">
             <Link href="/apply/dashboard/payments" className={linkBox}>
@@ -389,7 +420,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
           </div>
 
           {/* MIDDLE · action box + form-progress / performance slot */}
-          <main className="min-w-0">
+          <main className="order-1 min-w-0 lg:order-2">
             {note && <div className="mb-4 rounded-xl border border-[#8a18ff]/25 bg-[#f6f0ff] p-3 text-sm font-medium text-[#7312e0]">{note}</div>}
             {countdown && !paid && (
               <div className="mb-4 flex items-center gap-2 rounded-xl border border-[#f3d79a] bg-[#fff6e6] px-3.5 py-2.5 text-[13px] font-semibold text-[#b26a00]">
@@ -545,7 +576,7 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
           </main>
 
           {/* RIGHT · quick links */}
-          <aside className={card}>
+          <aside className={`${card} order-3`}>
             <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-[#a79fbd]">Quick links</p>
             <div className="mt-3 flex flex-col gap-2.5">
               {quickLinks.map((q) => {
