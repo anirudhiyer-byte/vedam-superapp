@@ -82,7 +82,7 @@ export async function POST(req: Request) {
     const order = await createOrder({
       orderId: cfOrderId, amount: fee.net, currency: fee.currency, customerId: userId,
       customerEmail: app.registered_email, customerPhone: app.registered_mobile, customerName: app.registered_name,
-      returnUrl: `${SITE}/apply/dashboard?pay=return&order={order_id}`,
+      returnUrl: `${SITE}/apply/payment-success?order={order_id}`,
       // shared webhook already registered in Cashfree (events/bootcamps); it dispatches
       // VSATPAY_ orders to confirmVsatPayment. The /api/payments/vsat-webhook route also
       // exists and works if ever registered separately.

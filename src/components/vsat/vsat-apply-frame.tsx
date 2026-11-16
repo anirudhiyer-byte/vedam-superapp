@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { readUtm } from "@/lib/utm";
+import { gtmEvent } from "@/lib/analytics/gtm";
 import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
 import { VsatAuthOverlay, type VsatFirst, type VsatVerifiedProfile } from "@/components/vsat/vsat-auth-overlay";
 import { VsatEmailOverlay } from "@/components/vsat/vsat-email-overlay";
@@ -82,6 +83,16 @@ export function VsatApplyFrame({
       }) });
       const leadJson = await leadRes.json().catch(() => ({ ok: false, error: "lead request failed" }));
       if (!leadJson.ok) { setStatus("error"); setErrMsg("Couldn't update your lead: " + (leadJson.error || leadRes.status)); busyRef.current = false; return; }
+
+      // #2 — student completed the second half of the form → fire the GTM "VSAT Lead" event.
+      gtmEvent("VSAT Lead", {
+        lead_source: utm.utm_source || undefined,
+        utm_source: utm.utm_source || undefined,
+        utm_medium: utm.utm_medium || undefined,
+        utm_campaign: utm.utm_campaign || undefined,
+        campus_pref: d.campus || undefined,
+        stream: d.stream || undefined,
+      });
 
       const appRes = await fetch("/api/vsat/application", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
         accessToken: token,
