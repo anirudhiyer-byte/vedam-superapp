@@ -8,6 +8,8 @@ import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
+import { VsatSettings } from "@/components/admin/vsat-settings";
+import { VsatTeam } from "@/components/admin/vsat-team";
 import { visiblePanels, type PanelKey, type VsatRoles } from "@/lib/vsat/pipeline";
 
 /**
@@ -45,6 +47,8 @@ const ICON: Record<string, string> = {
   pred: '<circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-4 1 2-5z"/>',
   sprint: '<path d="M9 8l-5 4 5 4M15 8l5 4-5 4"/>',
   event: '<rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 3v3M16 3v3"/>',
+  scoring: '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',
+  team: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
 };
 
 const VSAT: Group[] = [
@@ -60,6 +64,8 @@ const VSAT: Group[] = [
   { g: "VSAT Settings", items: [
     { id: "form", label: "Form Builder", icon: ICON.form, live: true },
     { id: "center", label: "Exam Center", icon: ICON.center, live: true },
+    { id: "scoring", label: "Scholarship & Scoring", icon: ICON.scoring, live: true },
+    { id: "team", label: "Team", icon: ICON.team, live: true },
   ] },
   { g: "VSAT Communications", items: [
     // Communication module (sample data). Names + page keys come from the module itself.
@@ -150,6 +156,9 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     if (active.cm && active.page) return <div className="vp-scroll"><CommunicationManager key={active.page} page={active.page as CmPage} onNavigate={goCm} /></div>;
     if (active.id === "form") return <div className="vp-scroll"><VsatFormBuilder /></div>;
     if (active.id === "center") return <div className="vp-scroll"><VsatExamCenter wheebox={wheebox} /><VsatExamDates /></div>;
+    // admin only: the database refuses everyone else and the screen says so
+    if (active.id === "scoring") return <div className="vp-scroll"><VsatSettings /></div>;
+    if (active.id === "team") return <div className="vp-scroll"><VsatTeam /></div>;
     // Leads & Applications read straight from lead_manager / application_manager (every
     // row, not the exam pipeline). Exam / Interview / Counselling stay on the pipeline.
     if (active.id === "leads") return <div className="vp-scroll"><VsatLeadsPanel /></div>;
