@@ -289,8 +289,12 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
   const bHref = (f: string) => (SB ? `${SB}/storage/v1/object/public/vsat-docs/${f}` : undefined);
   const formSubmitted = !!((a.form_data as { _meta?: { submitted?: boolean } } | undefined)?._meta?.submitted);
   const quickLinks: { label: string; icon: string; open: boolean; href?: string; soon?: boolean; onClick?: () => void }[] = [
-    { label: "Pune campus brochure", icon: "📘", open: true, href: bHref("adypu-pune-brochure.pdf") },
-    { label: "Gurugram campus brochure", icon: "📘", open: true, href: bHref("sushant-gurugram-brochure.pdf") },
+    // NOTE: the brochure objects in the vsat-docs bucket are stored with a doubled
+    // ".pdf.pdf" extension (uploaded manually that way). Point at the real object
+    // names so the links resolve. If they're ever re-uploaded with clean names via
+    // the admin Documents panel, drop the extra ".pdf" here.
+    { label: "Pune campus brochure", icon: "📘", open: true, href: bHref("adypu-pune-brochure.pdf.pdf") },
+    { label: "Gurugram campus brochure", icon: "📘", open: true, href: bHref("sushant-gurugram-brochure.pdf.pdf") },
     { label: "Sample papers", icon: "📄", open: paid, href: `${DOCS}/vsat-sample-paper.pdf` },
     { label: "Prep kit", icon: "📚", open: paid, href: `${DOCS}/vsat-prep-kit.pdf` },
     { label: "Mock test", icon: "📝", open: false, soon: true },

@@ -93,7 +93,7 @@ ul,ol{padding:0;list-style:none}
 .navs{display:flex;gap:8px;flex:none}
 
 /* ---------- rails ---------- */
-.rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.rail{display:flex;overflow-x:auto;scroll-snap-type:x proximity;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none;padding-bottom:4px}
 .rail::-webkit-scrollbar{display:none}
 .rail>*{scroll-snap-align:start;flex:none}
 .navbtn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--hairline);background:var(--surface);color:var(--label)}
@@ -620,7 +620,7 @@ var YEARS=[
         {img:"y2-hotstar", bg:GRAD_PV,              t:"Build Hotstar like Feed with Search & Categories"},
         {img:"y2-gsoc",    bg:GRAD_OR,  k:"soft big", t:"Participate in competitions like SIH, GSoC, & ICPC"}]},
  {stage:"Expertise",no:"03",label:"Year 3 AI Expertise & Advanced Builds",title:"AI Expertise & Advanced Builds",
-  desc:"Accelerated core - what used to run in semesters 6 and 7 is now taught across Year 3, so you build advanced AI and systems a full year sooner.",
+  desc:"Build AI based applications and master your journey with Specialisation tracks that will be in-demand jobs of the time!",
   skills:["Compiler Design","Computer Networks","Entrepreneur Skills","Foundation in Robotics","Advanced Robotics","Foundation in DevOps","Advance DevOps","Deep Learning","NLP","Foundation in Blockchain","Advance Blockchain","Computer Architecture","AI Ethics"],
   outs:[{img:"y3-netflix",   bg:"linear-gradient(180deg,#101828 0%,#e60f17 100%)", t:"Build a Movie Recommendation System"},
         {img:"y3-gdocs",     bg:"#3376f6", k:"big",   t:"Create a Google Doc-like documentation Platform"},
@@ -803,6 +803,21 @@ function jumpToForm(ev){
 }
 document.getElementById("applyNow").addEventListener("click",jumpToForm);
 document.getElementById("annLink").addEventListener("click",jumpToForm);
+
+/* Horizontal carousels (.rail) must never swallow a vertical scroll. When the wheel
+   gesture is vertical-dominant, forward it to the page so scrolling never "sticks"
+   for a notch over the Scholarships / news rows. Horizontal-dominant gestures still
+   scroll the rail. (Touch is handled by touch-action:pan-x in CSS.) */
+(function(){
+  document.querySelectorAll(".rail").forEach(function(el){
+    el.addEventListener("wheel",function(e){
+      if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+        window.scrollBy(0, e.deltaY);
+        e.preventDefault();
+      }
+    }, {passive:false});
+  });
+})();
 
 /* ---------------- multi-step form ---------------- */
 (function(){
@@ -1244,7 +1259,7 @@ img{display:block}
   </div>
   <div class="rail" id="newsRail"></div>
 </section>
-<footer class="foot" style="padding:22px 16px 28px;border-top:1px solid #e6e8ec;font-size:11px;line-height:1.5;color:#98a2b3">
+<footer class="foot" style="padding:22px 16px calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid #e6e8ec;font-size:11px;line-height:1.5;color:#98a2b3">
   <div style="font-weight:600;color:#475467">&copy; 2026 SET Education Technology Pvt. Ltd.. All rights reserved.</div>
   <div style="margin-top:6px">Vedam School of Technology is a programme of SET Education Technology Pvt. Ltd.. The B.Tech degree is awarded by Ajeenkya DY Patil University, Pune or Sushant University, Gurugram (both UGC-recognised). Past record is no guarantee of future prospects.</div>
 </footer>
@@ -1314,7 +1329,7 @@ var YEARS=[
         {img:"y2-hotstar",bg:GRAD_PV,t:"Build Hotstar like Feed with Search & Categories"},
         {img:"y2-gsoc",bg:GRAD_OR,k:"soft big",t:"Participate in competitions like SIH, GSoC, & ICPC"}]},
  {label:"Year 3 AI Expertise & Advanced Builds",title:"AI Expertise & Advanced Builds",
-  desc:"Accelerated core - what used to run in semesters 6 and 7 is now taught across Year 3, so you build advanced AI and systems a full year sooner.",
+  desc:"Build AI based applications and master your journey with Specialisation tracks that will be in-demand jobs of the time!",
   skills:["Compiler Design","Computer Networks","Entrepreneur Skills","Foundation in Robotics","Advanced Robotics","Foundation in DevOps","Advance DevOps","Deep Learning","NLP","Foundation in Blockchain","Advance Blockchain","Computer Architecture","AI Ethics"],
   outs:[{img:"y3-netflix",bg:"linear-gradient(180deg,#101828 0%,#e60f17 100%)",t:"Build a Movie Recommendation System"},
         {img:"y3-gdocs",bg:"#3376f6",k:"big",t:"Create a Google Doc-like documentation Platform"},
