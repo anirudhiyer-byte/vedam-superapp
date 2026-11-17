@@ -1,0 +1,45 @@
+/**
+ * Indian school examination boards — national + international + every state/UT board,
+ * for the "board" question type in the VSAT form builder. Common names first (what a
+ * student recognises), with the abbreviation in brackets. "Other" lets anything through.
+ */
+export const INDIA_BOARDS: string[] = [
+  // National / international
+  "CBSE — Central Board of Secondary Education",
+  "CISCE — ICSE / ISC (Council for the Indian School Certificate Examinations)",
+  "NIOS — National Institute of Open Schooling",
+  "IB — International Baccalaureate",
+  "Cambridge — CAIE / IGCSE",
+  // State & UT boards
+  "Andhra Pradesh — BSEAP / BIEAP",
+  "Arunachal Pradesh — Board of Secondary Education",
+  "Assam — SEBA / AHSEC",
+  "Bihar — BSEB",
+  "Chhattisgarh — CGBSE",
+  "Goa — GBSHSE",
+  "Gujarat — GSEB",
+  "Haryana — BSEH",
+  "Himachal Pradesh — HPBOSE",
+  "Jammu & Kashmir — JKBOSE",
+  "Jharkhand — JAC",
+  "Karnataka — KSEAB (SSLC / PUC)",
+  "Kerala — KBPE / DHSE",
+  "Madhya Pradesh — MPBSE",
+  "Maharashtra — MSBSHSE",
+  "Manipur — BSEM / COHSEM",
+  "Meghalaya — MBOSE",
+  "Mizoram — MBSE",
+  "Nagaland — NBSE",
+  "Odisha — BSE / CHSE",
+  "Punjab — PSEB",
+  "Rajasthan — RBSE (BSER)",
+  "Sikkim — Board of Secondary Education",
+  "Tamil Nadu — DGE (State Board)",
+  "Telangana — BSE / TSBIE",
+  "Tripura — TBSE",
+  "Uttar Pradesh — UPMSP (UP Board)",
+  "Uttarakhand — UBSE",
+  "West Bengal — WBBSE / WBCHSE",
+  "Delhi — Delhi Board of School Education (DBSE)",
+  "Other",
+];
