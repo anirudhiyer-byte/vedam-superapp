@@ -15,8 +15,11 @@ export async function POST(req: Request) {
   const { data: { user } } = await admin.auth.getUser(b.accessToken || "");
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   const L = b.lead ?? {};
-  const { data: prof } = await admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle();
-  const { data: existing } = await admin.from("lead_manager").select("lead_stage, user_registration_date").eq("lead_id", user.id).maybeSingle();
+  // Independent lookups — run together to shave a round-trip off the apply path.
+  const [{ data: prof }, { data: existing }] = await Promise.all([
+    admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle(),
+    admin.from("lead_manager").select("lead_stage, user_registration_date").eq("lead_id", user.id).maybeSingle(),
+  ]);
   // Supply the raw source/medium/campaign parts for this touch (falling back to a
   // combined full_utm split by "/"). The full attribution chain — primary / secondary /
   // tertiary / latest + the primary breakout — is maintained by the DB trigger
