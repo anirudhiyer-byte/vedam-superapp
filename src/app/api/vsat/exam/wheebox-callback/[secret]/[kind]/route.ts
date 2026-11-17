@@ -81,13 +81,30 @@ async function handle(req: Request, { params }: Params): Promise<NextResponse> {
   }
 
   const payload = testresult ? decodeResult(testresult) : (Object.keys(bodyObj).length ? bodyObj : null);
-  if (!payload) return json({ ok: false, code: "NO_RESULT" }, 400);
+  if (!payload) {
+    return json({ ok: false, code: "NO_RESULT", hint: "Send the result as ?testresult=<json> (query), a JSON body with a `testresult` field, or the result JSON as the POST body.", receivedKeys: Object.keys(bodyObj) }, 400);
+  }
 
   const overall = (payload.OVERALL && typeof payload.OVERALL === "object" ? payload.OVERALL : payload) as Record<string, unknown>;
-  const emailId = str(overall, ["emailId", "email_id", "loginId", "login_id", "regNO", "applicationId"]);
-  const testName = str(overall, ["testName", "test_name"]);
-  const testId = str(overall, ["testId", "testNo", "test_id"]);
-  if (!emailId) return json({ ok: false, code: "NO_EMAIL_ID" }, 400);
+  // The candidate identifier may sit inside OVERALL or at the payload root, under
+  // any of Wheebox's id key names — accept all and look in both places.
+  const idKeys = ["emailId", "email_id", "email", "candidateEmail", "candidate_email",
+    "loginId", "login_id", "loginid", "userName", "username", "userId", "user_id",
+    "regNO", "regNo", "registrationNo", "rollNo", "rollNumber", "enrollmentNo",
+    "candidateId", "applicationId", "application_id"];
+  const emailId = str(overall, idKeys) ?? str(payload, idKeys);
+  const testName = str(overall, ["testName", "test_name"]) ?? str(payload, ["testName", "test_name"]);
+  const testId = str(overall, ["testId", "testNo", "test_id"]) ?? str(payload, ["testId", "testNo", "test_id"]);
+  if (!emailId) {
+    // Secret-guarded endpoint — echo the key NAMES we received (never values) so the
+    // integrator can see which identifier field is missing/misnamed.
+    return json({
+      ok: false, code: "NO_EMAIL_ID",
+      hint: "No candidate identifier found. Include the applicant's Wheebox loginId (= our application_id) or registered email as `emailId` inside the OVERALL object (or at the payload root).",
+      receivedKeys: Object.keys(payload),
+      overallKeys: payload.OVERALL && typeof payload.OVERALL === "object" ? Object.keys(payload.OVERALL as object) : null,
+    }, 400);
+  }
 
   const admin = adminDb();
 
@@ -95,7 +112,9 @@ async function handle(req: Request, { params }: Params): Promise<NextResponse> {
   // or the registered email. Three safe equality lookups.
   let app: { lead_id: string | null; application_id: string } | null = null;
   for (const col of ["wheebox_login_id", "application_id", "registered_email"] as const) {
-    const r = await admin.from("application_manager").select("lead_id, application_id").eq(col, emailId).maybeSingle();
+    const q = admin.from("application_manager").select("lead_id, application_id");
+    // registered_email is matched case-insensitively; ids are exact.
+    const r = await (col === "registered_email" ? q.ilike(col, emailId) : q.eq(col, emailId)).maybeSingle();
     if (r.data) { app = r.data; break; }
   }
 
