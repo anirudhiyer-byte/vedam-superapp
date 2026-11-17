@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "Vedam VSAT – Wheebox Result Push",
+    "description": "Push a candidate's mock/main test result to Vedam. Auth = the <secret> in the URL path (NOT a header). Set the collection variables first.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "host", "value": "vedam-superapp-git-staging-anirudh-iyer-s-projects.vercel.app", "type": "string" },
+    { "key": "secret", "value": "REPLACE_WITH_SHARED_CALLBACK_SECRET", "type": "string" },
+    { "key": "bypass", "value": "REPLACE_WITH_VERCEL_BYPASS_TOKEN", "type": "string" },
+    { "key": "loginId", "value": "VSAT-2027-000123", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Push result – MOCK (JSON body)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-vercel-protection-bypass", "value": "{{bypass}}", "description": "Staging only" }
+        ],
+        "url": {
+          "raw": "https://{{host}}/api/vsat/exam/wheebox-callback/{{secret}}/mock",
+          "protocol": "https",
+          "host": ["{{host}}"],
+          "path": ["api", "vsat", "exam", "wheebox-callback", "{{secret}}", "mock"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"OVERALL\": {\n    \"emailId\": \"{{loginId}}\",\n    \"testName\": \"VSAT Mock 1\",\n    \"testId\": \"12345\",\n    \"result\": \"Pass\",\n    \"obtainMark\": \"28\",\n    \"maximumMark\": \"40\"\n  },\n  \"SECTIONWISE\": [\n    { \"sectionName\": \"Quantitative Aptitude\", \"markObtainInSection\": \"10\" },\n    { \"sectionName\": \"Logical Reasoning\", \"markObtainInSection\": \"9\" },\n    { \"sectionName\": \"Computer Science\", \"markObtainInSection\": \"9\" }\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Push result – EXAM (JSON body)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "x-vercel-protection-bypass", "value": "{{bypass}}", "description": "Staging only" }
+        ],
+        "url": {
+          "raw": "https://{{host}}/api/vsat/exam/wheebox-callback/{{secret}}/exam",
+          "protocol": "https",
+          "host": ["{{host}}"],
+          "path": ["api", "vsat", "exam", "wheebox-callback", "{{secret}}", "exam"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"OVERALL\": {\n    \"emailId\": \"{{loginId}}\",\n    \"testName\": \"VSAT 1\",\n    \"testId\": \"67890\",\n    \"result\": \"Pass\",\n    \"obtainMark\": \"72\",\n    \"maximumMark\": \"100\"\n  },\n  \"SECTIONWISE\": [\n    { \"sectionName\": \"Quantitative Aptitude\", \"markObtainInSection\": \"24\" },\n    { \"sectionName\": \"Logical Reasoning\", \"markObtainInSection\": \"24\" },\n    { \"sectionName\": \"Computer Science\", \"markObtainInSection\": \"24\" }\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Push result – MOCK (testresult query, native form)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "x-vercel-protection-bypass", "value": "{{bypass}}", "description": "Staging only" }
+        ],
+        "url": {
+          "raw": "https://{{host}}/api/vsat/exam/wheebox-callback/{{secret}}/mock?testresult={\"OVERALL\":{\"emailId\":\"{{loginId}}\",\"testName\":\"VSAT Mock 1\",\"result\":\"Pass\",\"obtainMark\":\"28\",\"maximumMark\":\"40\"}}",
+          "protocol": "https",
+          "host": ["{{host}}"],
+          "path": ["api", "vsat", "exam", "wheebox-callback", "{{secret}}", "mock"],
+          "query": [
+            { "key": "testresult", "value": "{\"OVERALL\":{\"emailId\":\"{{loginId}}\",\"testName\":\"VSAT Mock 1\",\"result\":\"Pass\",\"obtainMark\":\"28\",\"maximumMark\":\"40\"}}" }
+          ]
+        }
+      }
+    }
+  ]
+}
