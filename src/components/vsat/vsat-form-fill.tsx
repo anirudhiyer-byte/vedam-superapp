@@ -6,13 +6,16 @@ import { CitySelect } from "@/components/ui/city-select";
 import { INDIA_STATES } from "@/lib/india-cities";
 
 type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city";
+type Cond = { q: string; op: "eq" | "neq" | "includes"; value: string };
+type Route = { value: string; to: string };
 type Question = {
   key: string; label: string; type: QType; required?: boolean;
   options?: string[]; help?: string; accept?: string[]; maxSizeMb?: number; multiple?: boolean;
   exception?: { key: string; label: string };
+  showIf?: Cond; routes?: Route[];
 };
 type SubCategory = { key: string; title: string; questions: Question[] };
-type Category = { key: string; title: string; questions: Question[]; subcategories?: SubCategory[] };
+type Category = { key: string; title: string; questions: Question[]; subcategories?: SubCategory[]; next?: string };
 type Schema = { categories: Category[] };
 type FileRef = { path: string; name: string; size: number; type?: string };
 
@@ -223,6 +226,35 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
     return "";
   };
 
+  // ── conditional logic (mirrors vsat__ans_match / vsat__q_visible in migration 0099) ──
+  const flat: Record<string, unknown> = {};
+  for (const c of schema.categories) { const a = answers[c.key]; if (a) for (const k in a) flat[k] = a[k]; }
+  const ansMatch = (ans: unknown, op: string, val: string): boolean => {
+    if (ans == null) return false;
+    const isStr = typeof ans === "string";
+    if (isStr && (ans as string).trim() === "") return false;
+    if (op === "neq") return !(isStr && ans === val);
+    if (op === "includes") return (Array.isArray(ans) && (ans as string[]).includes(val)) || (isStr && ans === val);
+    return isStr && ans === val; // eq
+  };
+  const visible = (q: Question): boolean => (!q.showIf || !q.showIf.q) ? true : ansMatch(flat[q.showIf.q], q.showIf.op || "eq", q.showIf.value ?? "");
+
+  // where "Save & next" will go: last matching route wins, else category.next, else next in order; null = submit
+  const resolveNext = (): string | null => {
+    let route: string | null = null;
+    for (const q of allQs) {
+      if ((q.type === "dropdown" || q.type === "radio") && Array.isArray(q.routes)) {
+        const v = catAns[q.key];
+        if (typeof v === "string") for (const r of q.routes) if (r.value === v) route = r.to;
+      }
+    }
+    if (route == null) route = cat.next ?? null;
+    if (route === "__submit__") return null;
+    if (route && route !== "__next__" && schema.categories.some((c) => c.key === route)) return route;
+    return idx + 1 < schema.categories.length ? schema.categories[idx + 1].key : null;
+  };
+  const willSubmit = resolveNext() === null;
+
   async function saveNext() {
     setBusy(true); setErr(""); setMissing([]);
     const exceptions = allQs.filter((q) => q.exception && exc[q.key]).map((q) => q.exception!.key);
@@ -236,6 +268,12 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
     const nextCompleted = completed.includes(cat.key) ? completed : [...completed, cat.key];
     setCompleted(nextCompleted);
     if (data.submitted) { setDone(true); onDone?.(); return; }
+    // follow the server's branch decision; fall back to the next incomplete section in order
+    const nextKey = (data.next as string | null) ?? null;
+    if (nextKey) {
+      const ni = schema!.categories.findIndex((c) => c.key === nextKey);
+      if (ni >= 0) { setIdx(ni); return; }
+    }
     const next = schema!.categories.findIndex((c, i) => i > idx && !nextCompleted.includes(c.key));
     setIdx(next < 0 ? Math.min(idx + 1, schema!.categories.length - 1) : next);
   }
@@ -244,6 +282,7 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
 
   // one question renderer (used at category level and inside subcategories)
   const renderQuestion = (q: Question) => {
+    if (!visible(q)) return null;
     const skipped = !!(q.exception && exc[q.key]);
     const isMissing = missing.includes(q.key);
     return (
@@ -326,7 +365,7 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
       {err && <p className="mt-4 text-xs text-[#d14343]">{err}</p>}
       <div className="mt-6 flex items-center justify-between">
         <button onClick={() => setIdx((i) => Math.max(0, i - 1))} disabled={idx === 0 || busy} className="rounded-xl border border-[#d9d2ec] px-5 py-2.5 text-sm font-semibold text-[#1b1430] disabled:opacity-40">Back</button>
-        <button onClick={saveNext} disabled={busy} className={grad}>{busy ? "Saving…" : idx === schema.categories.length - 1 ? "Submit application" : "Save & next"}</button>
+        <button onClick={saveNext} disabled={busy} className={grad}>{busy ? "Saving…" : willSubmit ? "Submit application" : "Save & next"}</button>
       </div>
     </div>
   );
