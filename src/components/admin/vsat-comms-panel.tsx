@@ -31,6 +31,7 @@ export function VsatCommsPanel() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
+  const [open, setOpen] = useState<Record<string, boolean>>({}); // steps collapsed by default
 
   const load = useCallback(async () => {
     const { data } = await supabase.rpc("vsat_comm_steps_get");
@@ -100,34 +101,62 @@ export function VsatCommsPanel() {
             <span className="text-xs text-white/50">Master OFF = nothing sends. A step in test mode sends only to the test email/phone above.</span>
           </div>
 
-          <div className="mt-5 space-y-4">
-            {steps.map((s, i) => (
-              <div key={s.step_key} className="rounded-xl border border-white/10 bg-black/20 p-4">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="font-display text-sm font-bold">{s.title}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <Toggle on={s.enabled} onClick={() => patch(i, { enabled: !s.enabled })} text="Step" />
-                    <Toggle on={s.test_mode} onClick={() => patch(i, { test_mode: !s.test_mode })} text="Test mode" />
-                  </div>
+          <div className="mt-5 flex items-center justify-between">
+            <p className="text-xs text-white/40">{steps.length} automated step{steps.length === 1 ? "" : "s"} — tap to expand &amp; edit.</p>
+            <div className="flex gap-2 text-[11px]">
+              <button type="button" onClick={() => setOpen(Object.fromEntries(steps.map((s) => [s.step_key, true])))} className="text-white/50 hover:text-white">Expand all</button>
+              <button type="button" onClick={() => setOpen({})} className="text-white/50 hover:text-white">Collapse all</button>
+            </div>
+          </div>
+          <div className="mt-2 space-y-2.5">
+            {steps.map((s, i) => {
+              const isOpen = !!open[s.step_key];
+              const chips = [s.enabled ? "On" : "Off", s.email_enabled && "Email", s.wa_enabled && "WhatsApp", s.test_mode && "Test mode"].filter(Boolean).join(" · ");
+              return (
+                <div key={s.step_key} className="rounded-xl border border-white/10 bg-black/20">
+                  {/* collapsed header — tap to expand */}
+                  <button type="button" onClick={() => setOpen((o) => ({ ...o, [s.step_key]: !o[s.step_key] }))}
+                    className="flex w-full items-center justify-between gap-3 p-4 text-left">
+                    <div className="min-w-0">
+                      <h3 className="font-display text-sm font-bold">{s.title}</h3>
+                      <p className="mt-0.5 truncate text-[11px] text-white/40">{chips}</p>
+                    </div>
+                    <span aria-hidden className="shrink-0 text-white/40">{isOpen ? "▾" : "▸"}</span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="border-t border-white/10 p-4 pt-3">
+                      <div className="flex flex-wrap gap-2">
+                        <Toggle on={s.enabled} onClick={() => patch(i, { enabled: !s.enabled })} text="Step" />
+                        <Toggle on={s.test_mode} onClick={() => patch(i, { test_mode: !s.test_mode })} text="Test mode" />
+                      </div>
+
+                      {/* ── Email channel (its own content) ── */}
+                      <div className="mt-3 rounded-lg border border-white/10 bg-white/[0.02] p-3">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-xs font-semibold text-white/70">✉️ Email</span>
+                          <Toggle on={s.email_enabled} onClick={() => patch(i, { email_enabled: !s.email_enabled })} text="Email" />
+                        </div>
+                        <input className={`${input} mt-2`} value={s.email_subject} onChange={(e) => patch(i, { email_subject: e.target.value })} placeholder="Email subject" />
+                        <textarea className={`${input} mt-2 min-h-[120px] font-mono text-[12px]`} value={s.email_body} onChange={(e) => patch(i, { email_body: e.target.value })} placeholder="Email body (HTML). Placeholders: {{name}} {{amount}} {{apply_link}} {{dashboard_link}} {{receipt_link}}" />
+                      </div>
+
+                      {/* ── WhatsApp channel (separate — copy comes from the approved template) ── */}
+                      <div className="mt-3 rounded-lg border border-white/10 bg-white/[0.02] p-3">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-xs font-semibold text-white/70">💬 WhatsApp</span>
+                          <Toggle on={s.wa_enabled} onClick={() => patch(i, { wa_enabled: !s.wa_enabled })} text="WhatsApp" />
+                        </div>
+                        <input className={`${input} mt-2`} value={s.wa_template_id ?? ""} onChange={(e) => patch(i, { wa_template_id: e.target.value })} placeholder="WhatsApp template id (set after approval)" />
+                        <p className="mt-1.5 text-[11px] text-white/35">WhatsApp copy is set by the approved template — kept separate from the email content above.</p>
+                      </div>
+
+                      <div className="mt-3"><button onClick={() => saveStep(s)} disabled={busy} className={btn}>Save step</button></div>
+                    </div>
+                  )}
                 </div>
-
-                <div className="mt-3 grid gap-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <label className={`${label} mb-0`}>Email</label>
-                    <Toggle on={s.email_enabled} onClick={() => patch(i, { email_enabled: !s.email_enabled })} text="Email" />
-                  </div>
-                  <input className={input} value={s.email_subject} onChange={(e) => patch(i, { email_subject: e.target.value })} placeholder="Email subject" />
-                  <textarea className={`${input} min-h-[120px] font-mono text-[12px]`} value={s.email_body} onChange={(e) => patch(i, { email_body: e.target.value })} placeholder="Email body (HTML). Placeholders: {{name}} {{amount}} {{apply_link}} {{dashboard_link}} {{receipt_link}}" />
-
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Toggle on={s.wa_enabled} onClick={() => patch(i, { wa_enabled: !s.wa_enabled })} text="WhatsApp" />
-                    <input className={`${input} max-w-xs`} value={s.wa_template_id ?? ""} onChange={(e) => patch(i, { wa_template_id: e.target.value })} placeholder="WhatsApp template id (set after approval)" />
-                  </div>
-                </div>
-
-                <div className="mt-3"><button onClick={() => saveStep(s)} disabled={busy} className={btn}>Save step</button></div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {msg && <p className="mt-4 text-sm text-[#5ee9a0]">{msg}</p>}
