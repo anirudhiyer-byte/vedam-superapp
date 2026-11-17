@@ -111,6 +111,13 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
     setSimPaid(true);
     setNote("Simulated payment (admin) — the exam/application flow is unlocked. This does not create a real payment.");
   }
+  // Clears the admin simulation (browser-only flag — no DB payment exists) so you drop
+  // back to the real unpaid state and can pay for real.
+  function resetSimulation() {
+    try { localStorage.removeItem("vsat_admin_sim_paid"); } catch { /* ignore */ }
+    setSimPaid(false);
+    setNote("Simulated payment cleared — back to unpaid. You can now pay for real.");
+  }
 
   const load = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -427,6 +434,12 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
 
           {/* MIDDLE · action box + form-progress / performance slot */}
           <main className="order-1 min-w-0 lg:order-2">
+            {isAdmin && simPaid && (
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800">
+                <span>⚡ Admin: a <b>simulated</b> payment is active (not a real payment).</span>
+                <button onClick={resetSimulation} className="rounded-lg border border-amber-400 bg-white px-3 py-1.5 text-xs font-semibold text-amber-800 hover:bg-amber-100">Reset simulation → pay for real</button>
+              </div>
+            )}
             {note && <div className="mb-4 rounded-xl border border-[#8a18ff]/25 bg-[#f6f0ff] p-3 text-sm font-medium text-[#7312e0]">{note}</div>}
             {countdown && !paid && (
               <div className="mb-4 flex items-center gap-2 rounded-xl border border-[#f3d79a] bg-[#fff6e6] px-3.5 py-2.5 text-[13px] font-semibold text-[#b26a00]">
