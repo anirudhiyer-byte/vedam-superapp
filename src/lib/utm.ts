@@ -48,3 +48,27 @@ export function readUtm(): Utm {
     return {};
   }
 }
+
+const SEARCH = /(^|\.)(google|bing|yahoo|duckduckgo|ecosia|yandex|baidu|brave|ask)\./i;
+const SOCIAL = /(^|\.)(facebook|fb|instagram|twitter|linkedin|youtube|youtu|reddit|pinterest|telegram|snapchat|tiktok|threads)\./i;
+const SELF = /(^|\.)(vedam\.org|vercel\.app)$/i;
+
+function refHost(referrer?: string): string {
+  if (!referrer) return "";
+  try { return new URL(referrer).hostname.replace(/^www\./, ""); } catch { return ""; }
+}
+
+/**
+ * The source/medium/campaign to record for a lead. A real UTM always wins; otherwise
+ * the first-touch referrer is classified so direct / organic / social / referral
+ * traffic is never blank — so people who land on the VSAT / Vedam One page directly or
+ * organically can still be segmented in dashboards. Pure (no storage/DOM access).
+ */
+export function utmForLead(u: Utm): { utm_source: string; utm_medium: string; utm_campaign?: string } {
+  if (u.utm_source) return { utm_source: u.utm_source, utm_medium: u.utm_medium ?? "", utm_campaign: u.utm_campaign };
+  const h = refHost(u.referrer);
+  if (!h || SELF.test(h)) return { utm_source: "direct", utm_medium: "none" };
+  const se = h.match(SEARCH); if (se) return { utm_source: se[2].toLowerCase(), utm_medium: "organic" };
+  const so = h.match(SOCIAL); if (so) return { utm_source: so[2].toLowerCase(), utm_medium: "social" };
+  return { utm_source: h, utm_medium: "referral" };
+}

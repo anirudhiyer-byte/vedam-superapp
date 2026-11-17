@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { readUtm } from "@/lib/utm";
+import { readUtm, utmForLead } from "@/lib/utm";
 import { gtmEvent } from "@/lib/analytics/gtm";
 import { INDIA_STATES, STATE_CITIES } from "@/lib/india-cities";
 import { VsatAuthOverlay, type VsatFirst, type VsatVerifiedProfile } from "@/components/vsat/vsat-auth-overlay";
@@ -71,25 +71,27 @@ export function VsatApplyFrame({
       } catch { /* non-blocking */ }
 
       const utm = readUtm();
+      // Real UTM wins; direct / organic / social / referral is derived from the
+      // first-touch referrer so a lead's source is never blank (dashboards can segment it).
+      const lu = utmForLead(utm);
       // lead schema fields are .optional() (undefined), NOT nullable — omit, don't send null.
-      const triple = (utm.utm_source || utm.utm_medium || utm.utm_campaign)
-        ? `${utm.utm_source ?? ""}/${utm.utm_medium ?? ""}/${utm.utm_campaign ?? ""}` : undefined;
+      const triple = `${lu.utm_source}/${lu.utm_medium}/${lu.utm_campaign ?? ""}`;
 
       const leadRes = await fetch("/api/vsat/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
         accessToken: token,
         lead: { name: d.fullName, email: finalEmail, phone: d.phone, hearAbout: d.hear, campusPref: d.campus,
-          utm_source: utm.utm_source, utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign,
-          full_utm: triple, lead_source: utm.utm_source },
+          utm_source: lu.utm_source, utm_medium: lu.utm_medium, utm_campaign: lu.utm_campaign,
+          full_utm: triple, lead_source: lu.utm_source },
       }) });
       const leadJson = await leadRes.json().catch(() => ({ ok: false, error: "lead request failed" }));
       if (!leadJson.ok) { setStatus("error"); setErrMsg("Couldn't update your lead: " + (leadJson.error || leadRes.status)); busyRef.current = false; return; }
 
       // #2 — student completed the second half of the form → fire the GTM "VSAT Lead" event.
       gtmEvent("VSAT Lead", {
-        lead_source: utm.utm_source || undefined,
-        utm_source: utm.utm_source || undefined,
-        utm_medium: utm.utm_medium || undefined,
-        utm_campaign: utm.utm_campaign || undefined,
+        lead_source: lu.utm_source,
+        utm_source: lu.utm_source,
+        utm_medium: lu.utm_medium || undefined,
+        utm_campaign: lu.utm_campaign || undefined,
         campus_pref: d.campus || undefined,
         stream: d.stream || undefined,
       });
@@ -133,14 +135,13 @@ export function VsatApplyFrame({
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
       if (!token) return;
-      const utm = readUtm();
-      const triple = (utm.utm_source || utm.utm_medium || utm.utm_campaign)
-        ? `${utm.utm_source ?? ""}/${utm.utm_medium ?? ""}/${utm.utm_campaign ?? ""}` : undefined;
+      const lu = utmForLead(readUtm());
+      const triple = `${lu.utm_source}/${lu.utm_medium}/${lu.utm_campaign ?? ""}`;
       await fetch("/api/vsat/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
         accessToken: token,
         lead: { name: d.fullName, email: d.email, phone: d.phone,
-          utm_source: utm.utm_source, utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign,
-          full_utm: triple, lead_source: utm.utm_source },
+          utm_source: lu.utm_source, utm_medium: lu.utm_medium, utm_campaign: lu.utm_campaign,
+          full_utm: triple, lead_source: lu.utm_source },
       }) });
     } catch { /* non-blocking: lead is also (re)created on Start application */ }
   }
