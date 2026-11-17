@@ -428,9 +428,15 @@ export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
               </div>
             )}
             {/* #3 exam countdown — appears once a date is booked and still upcoming */}
-            {examLeft && (
-              <div className="mb-4 flex items-start gap-2 rounded-xl border border-[#9fd9e0] bg-[#eafafc] px-3.5 py-2.5 text-[13px] font-semibold text-[#0b7285]">
-                ⏱️ <span>Your VSAT begins in <b className="tabular-nums text-sm">{examLeft}</b>. <span className="font-normal text-[#2b135c]/70">Fill out the VSAT form fully to be able to give the test — it&apos;s forfeited if the form isn&apos;t filled.</span></span>
+            {examLeft && !formSubmitted && (
+              <div className="mb-4 rounded-xl border border-[#f3c89a] bg-[#fff6e6] px-3.5 py-3">
+                <p className="flex items-start gap-2 text-[13px] font-semibold text-[#b26a00]">
+                  ⏱️ <span>Your VSAT is in <b className="tabular-nums text-sm">{examLeft}</b> — finish your application form now, or you can&apos;t sit the test.</span>
+                </p>
+                <button onClick={() => setFillOpen(true)}
+                  className="mt-2.5 inline-flex items-center gap-1 rounded-lg bg-[#b26a00] px-4 py-2 text-[13px] font-bold text-white transition hover:bg-[#8a5200]">
+                  {a.form_status === "in_progress" ? "Continue the form" : "Fill the form"} →
+                </button>
               </div>
             )}
 
