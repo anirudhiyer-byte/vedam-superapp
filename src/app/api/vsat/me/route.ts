@@ -7,12 +7,16 @@ export async function POST(req: Request) {
   const admin = createClient(url, svc);
   const { data: { user } } = await admin.auth.getUser(b.accessToken || "");
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
-  const { data: app } = await admin.from("application_manager").select("*").eq("lead_id", user.id).maybeSingle();
-  const { data: lead } = await admin.from("lead_manager").select("lead_stage,registered_name,public_id,campus_preference").eq("lead_id", user.id).maybeSingle();
-  // Enabled, not-yet-finished exam dates for the student date picker (no Wheebox test id exposed).
-  const { data: dates } = await admin.from("vsat_exam_dates")
-    .select("id,label,exam_date,start_at,end_at")
-    .eq("enabled", true).gte("end_at", new Date().toISOString())
-    .order("start_at", { ascending: true });
+  // These three only depend on user.id — run them in parallel instead of serially
+  // (saves two DB round-trips on every dashboard load).
+  const [{ data: app }, { data: lead }, { data: dates }] = await Promise.all([
+    admin.from("application_manager").select("*").eq("lead_id", user.id).maybeSingle(),
+    admin.from("lead_manager").select("lead_stage,registered_name,public_id,campus_preference").eq("lead_id", user.id).maybeSingle(),
+    // Enabled, not-yet-finished exam dates for the student date picker (no Wheebox test id exposed).
+    admin.from("vsat_exam_dates")
+      .select("id,label,exam_date,start_at,end_at")
+      .eq("enabled", true).gte("end_at", new Date().toISOString())
+      .order("start_at", { ascending: true }),
+  ]);
   return Response.json({ ok: true, app, lead, dates: dates ?? [] });
 }
