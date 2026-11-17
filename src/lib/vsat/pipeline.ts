@@ -104,12 +104,24 @@ const ERRORS: Record<string, string> = {
   CAMPUS_MISSING: "The student has no campus yet, so the scholarship can't be calculated.",
   NO_OVERRIDE: "There's no override to remove.",
   NO_BAND: "This score doesn't fall in any scholarship band. Check the scholarship settings.",
+  TOO_MANY_ROWS: "More than 5,000 students match. Narrow the filters and try again.",
+  PAST_DATE: "Weights can only be added or changed from tomorrow onwards, so interviews already done keep their weights.",
+  BAD_WEIGHTS: "The weights must add up to between 50% and 100%.",
+  NO_ACCOUNT: "No Vedam One account uses this email. Ask the person to sign up first, then add them.",
+  NOT_FOUND: "That item no longer exists. Refresh and try again.",
+  BAD_REQUEST: "The app sent something unexpected. Refresh the page and try again.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
   why_program: "Why this program", cheating_seen: "Cheating seen", interviewer_verdict: "Your verdict",
   slot_datetime: "Slot", meet_link: "Meeting link", meeting_link: "Meeting link", chosen_step: "Scholarship step",
   actual_pct: "Actual %", special_rating: "Special rating", value: "Value", q: "Search",
+  columns: "Columns", column: "Search column", values: "Search values", stages: "Stage", statuses: "Status",
+  exam_date_ids: "VSAT", campuses: "Campus", filters: "Filters", purpose: "Purpose", application_ids: "Selection",
+  programme_fee: "Programme fee", offer_days: "Days to pay", jee_floor_enabled: "JEE floor", effective_from: "Start date",
+  w_communication: "Communication", w_logic: "Logical reasoning", w_passion: "Passion for CS", w_achievements: "Achievements",
+  w_why_program: "Why this program", note: "Note", vps: "VPS", percentile: "Percentile", cleared_vps_cutoff: "Cut-off",
+  email: "Email", role: "Role", campus: "Campus", exam_date_id: "VSAT", bands: "Bands",
 };
 
 export function errorText(raw: string | null | undefined): string {
@@ -117,6 +129,11 @@ export function errorText(raw: string | null | undefined): string {
   if (ERRORS[m]) return ERRORS[m];
   const bad = /^BAD_VALUE: ([a-z_0-9]+)$/.exec(m);
   if (bad) return `Please check "${FIELD_LABEL[bad[1]] ?? bad[1].replace(/_/g, " ")}".`;
+  // band / curve checks carry their own plain-English reason (fixed text written in the database)
+  const rule = /^BAD_(BANDS|ANCHORS): ([A-Za-z0-9 %,.'-]{1,120})$/.exec(m);
+  if (rule) return `${rule[2].charAt(0).toUpperCase()}${rule[2].slice(1)}.`;
+  const col = /^FORBIDDEN_COLUMN: ([a-z_0-9]+)$/.exec(m);
+  if (col) return `You don't have access to the column "${col[1].replace(/_/g, " ")}".`;
   if (/^UNKNOWN_KEY/.test(m)) return "The app sent something unexpected. Refresh the page and try again.";
   return "Something went wrong. Please try again.";
 }

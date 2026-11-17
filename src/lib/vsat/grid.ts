@@ -1,0 +1,145 @@
+/**
+ * VSAT pipeline grid · column catalogue helpers (migration 0097).
+ *
+ * The database decides which columns exist and who may see them (vsat_grid_columns /
+ * vsat_grid_list). These helpers only give the columns readable names, pick the default set
+ * for each panel, format cell values and turn pasted search text into values.
+ */
+import { PANEL_STAGES, STAGE_LABEL, STATUS_LABEL, isStage, isStatus, fmtIst, type PanelKey, type Stage } from "@/lib/vsat/pipeline";
+
+export type GridColType = "text" | "num" | "bool" | "date" | "ts" | "stage" | "status" | "json" | "uuid";
+export type GridColumn = { key: string; group: string; type: GridColType; virtual: boolean; restricted: boolean };
+export type GridColumnsResult = { can_manage: boolean; columns: GridColumn[] };
+
+export type GridRow = Record<string, unknown> & { application_id: string; stage: Stage; status: string; attempt_no: number };
+export type GridFacets = { stage: Record<string, number>; status: Record<string, number>; vsat: Record<string, number>; campus: Record<string, number> };
+export type GridResult = { total: number; facets: GridFacets | null; rows: GridRow[]; limit: number; offset: number; can_manage: boolean };
+export type GridSearch = { column: string; values: string[] };
+
+/** Order the groups appear in the "Columns" drawer. Unknown groups go last, alphabetically. */
+export const GROUP_ORDER = [
+  "Pipeline", "Personal", "Academics", "JEE & entrance", "Olympiads", "Coding exams", "Parents", "Application",
+  "Exam", "Interview", "Counselling", "Offer", "Payment", "Documents", "Marketing",
+];
+
+/** Readable names where the column name alone would not do. Everything else is humanised. */
+const LABELS: Record<string, string> = {
+  registered_name: "Student", application_no: "App no.", registered_email: "Email", registered_mobile: "Mobile",
+  campus: "Campus", campus_applied: "Campus applied (as typed)", vsat: "VSAT", stage: "Stage", status: "Status",
+  stage_changed_at: "Updated", attempt_no: "Attempt", current_attempt: "Attempt (old field)",
+  exam_percentile: "Percentile", exam_given: "Exam given", exam_obtained_marks: "Exam marks", exam_max_marks: "Exam max marks",
+  exam_overall: "Exam overall", exam_assigned: "Exam assigned", vps_score: "VPS (calculated)",
+  vps_effective: "VPS", vps_override: "VPS override", eligible_effective: "Eligible", eligible_override: "Eligible override",
+  interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview attendance",
+  interview_score: "Interview score", interview_calc_verdict: "Verdict (calculated)", interviewer_verdict: "Verdict (interviewer)",
+  cheating_seen: "Cheating seen",
+  counsellor: "Counsellor", counselling_slot: "Counselling slot (IST)", counselling_attendance: "Counselling attendance",
+  counselling_category: "Scholarship category", counselling_pct: "Scholarship %", counselling_calculated_pct: "Calculated %",
+  class10_percentage: "Class 10 %", class12_percentage: "Class 12 %", class10_maths_percentage: "Class 10 maths %",
+  class12_maths_percentage: "Class 12 maths %", class10_year: "Class 10 year", class12_year: "Class 12 year",
+  class10_board: "Class 10 board", class12_board: "Class 12 board", class10_school: "Class 10 school", class12_school: "Class 12 school",
+  class10_score: "Class 10 score", class12_score: "Class 12 score", class10_maths_score: "Class 10 maths score", class12_maths_score: "Class 12 maths score",
+  class10_marking_scheme: "Class 10 marking scheme", class12_marking_scheme: "Class 12 marking scheme",
+  marks_physics_12: "Physics (12)", marks_chemistry_12: "Chemistry (12)", marks_maths_12: "Maths (12)",
+  studied_pcm: "Studied PCM", studied_cs: "Studied CS", cs_experience: "CS experience", pcm_eligible: "PCM eligible",
+  jee_registered: "JEE registered", jee_appeared_when: "JEE appeared", jee_score: "JEE score",
+  entrance_percentile: "JEE percentile", jee_main_maths_percentile: "JEE maths percentile", entrance_rank: "JEE rank",
+  date_of_birth: "Date of birth", residing_city: "Residing city", class_12_stream: "Class 12 stream",
+  preferred_engineering_specialization: "Preferred specialisation", current_education_level: "Education level",
+  family_income: "Family income", father_name: "Father's name", father_mobile: "Father's mobile", father_email: "Father's email",
+  father_occupation: "Father's occupation", father_title: "Father's title", mother_name: "Mother's name", mother_mobile: "Mother's mobile",
+  mother_email: "Mother's email", mother_occupation: "Mother's occupation", mother_title: "Mother's title",
+  guardian_mobile_number: "Guardian's mobile", guardian_name: "Guardian's name", guardian_contact: "Guardian's contact",
+  guardian_relationship: "Guardian's relationship", guardian_title: "Guardian's title",
+  primary_utm: "UTM (first)", secondary_utm: "UTM (second)", tertiary_utm: "UTM (third)", latest_utm: "UTM (latest)",
+  primary_utm_source: "UTM source (first)", primary_utm_medium: "UTM medium (first)", primary_utm_campaign: "UTM campaign (first)",
+  wheebox_login_id: "Wheebox login", wheebox_registered: "Wheebox registered", form_completion_percentage: "Form completion %",
+  offer_pay_timeline_days: "Days to pay", scholarship_percentage: "Scholarship % (final)", scholarship_amount: "Scholarship amount",
+  transferred_to_erp: "Transferred to ERP", doc_verification_status: "Documents verified", verification_level1_status: "Verification level 1",
+};
+
+const WORDS: Record<string, string> = {
+  jee: "JEE", vsat: "VSAT", vps: "VPS", utm: "UTM", id: "ID", pcm: "PCM", cs: "CS", url: "URL", erp: "ERP", pct: "%",
+  intl: "intl.", lr: "LR", class10: "Class 10", class12: "Class 12", dob: "DOB", pan: "PAN", aadhaar: "Aadhaar",
+};
+
+/** "class12_maths_percentage" → "Class 12 maths percentage". */
+export function columnLabel(key: string): string {
+  if (LABELS[key]) return LABELS[key];
+  const words = key.split("_").filter(Boolean).map((w) => WORDS[w] ?? w);
+  const s = words.join(" ");
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/** Default columns per panel — the ones the old panels showed. "registered_name" is always first and cannot be removed. */
+export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
+  apps: ["registered_name", "campus", "vsat", "stage", "exam_percentile", "vps_effective", "eligible_effective", "stage_changed_at"],
+  exam: ["registered_name", "campus", "vsat", "stage", "exam_percentile", "vps_effective", "eligible_effective", "stage_changed_at"],
+  intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_score", "interview_calc_verdict", "interviewer_verdict", "stage_changed_at"],
+  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_category", "counselling_pct", "stage_changed_at"],
+};
+
+/** Columns the request must carry for the shown ones to render (the override markers, the app no. under the name). */
+export function requestColumns(shown: string[]): string[] {
+  const out = new Set(shown);
+  out.add("registered_name"); out.add("application_no");
+  if (out.has("vps_effective")) out.add("vps_override");
+  if (out.has("eligible_effective")) out.add("eligible_override");
+  return [...out];
+}
+
+/** Keep only columns the catalogue offers this person (a saved choice may include one they can no longer see). */
+export function sanitizeColumns(saved: unknown, catalog: GridColumn[], fallback: string[]): string[] {
+  const allowed = new Set(catalog.map((c) => c.key));
+  const list = Array.isArray(saved) ? saved.filter((k): k is string => typeof k === "string" && allowed.has(k)) : [];
+  const base = list.length ? list : fallback.filter((k) => allowed.has(k));
+  return ["registered_name", ...base.filter((k) => k !== "registered_name")];
+}
+
+/** Pasted search text → distinct values (comma, semicolon, slash, tab or new line separated; 2–100 chars each; max 200). */
+export function parseSearchValues(text: string): string[] {
+  const seen = new Set<string>();
+  for (const raw of text.split(/[,;\t\n\r/]+/)) {
+    const v = raw.trim();
+    if (v.length >= 2 && v.length <= 100) seen.add(v);
+    if (seen.size >= 200) break;
+  }
+  return [...seen];
+}
+
+/** Panel scope sent to the database (the Applications panel has none: every stage). */
+export const panelScope = (panel: PanelKey): Stage[] | undefined => (panel === "apps" ? undefined : [...PANEL_STAGES[panel]]);
+
+const istDate = (v: unknown) => (v ? new Date(String(v)).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata" }) : "—");
+const num = (v: unknown) => (v === null || v === undefined || v === "" ? "—" : Number(v).toFixed(2).replace(/\.?0+$/, ""));
+
+/** Plain-text value for a cell or a CSV field. */
+export function formatValue(type: GridColType, key: string, v: unknown): string {
+  if (v === null || v === undefined || v === "") return "—";
+  if (type === "stage") return isStage(v) ? STAGE_LABEL[v] : String(v);
+  if (type === "status") return isStatus(v) ? STATUS_LABEL[v] : String(v);
+  if (type === "bool") return v === true ? "Yes" : v === false ? "No" : String(v);
+  if (type === "ts") return fmtIst(String(v));
+  if (type === "date") return istDate(v);
+  if (type === "num") return /_(pct|percentage)$/.test(key) ? `${num(v)}%` : num(v);
+  if (Array.isArray(v)) return v.map(String).join(", ");
+  if (typeof v === "object") return JSON.stringify(v);
+  return String(v);
+}
+
+/** Rows → CSV text (labels as the header, every value quoted). */
+export function toCsv(rows: GridRow[], cols: { key: string; type: GridColType }[]): string {
+  const head = ["App no.", ...cols.filter((c) => c.key !== "application_no").map((c) => columnLabel(c.key))];
+  const body = rows.map((r) => [
+    String(r.application_no ?? r.application_id),
+    ...cols.filter((c) => c.key !== "application_no").map((c) => { const s = formatValue(c.type, c.key, r[c.key]); return s === "—" ? "" : s; }),
+  ]);
+  return [head, ...body].map((line) => line.map((f) => `"${String(f ?? "").replace(/"/g, '""')}"`).join(",")).join("\n");
+}
+
+/** Facet dropdown summary: "All" / the one label / "3 selected". */
+export function pickSummary(selected: string[], labelOf: (v: string) => string): string {
+  if (selected.length === 0) return "All";
+  if (selected.length === 1) return labelOf(selected[0]);
+  return `${selected.length} selected`;
+}
