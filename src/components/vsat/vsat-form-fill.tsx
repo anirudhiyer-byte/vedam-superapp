@@ -4,8 +4,9 @@ import { createClient } from "@/lib/supabase/client";
 import { SearchableSelect } from "@/components/ui/searchable-select";
 import { CitySelect } from "@/components/ui/city-select";
 import { INDIA_STATES } from "@/lib/india-cities";
+import { INDIA_BOARDS } from "@/lib/india-boards";
 
-type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city";
+type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city" | "board" | "dob";
 type Cond = { q: string; op: "eq" | "neq" | "includes"; value: string };
 type Route = { value: string; to: string };
 type Question = {
@@ -153,6 +154,21 @@ function FileField({ catKey, q, token, value, disabled, invalid, onChange }:
     </div>
   );
 }
+
+/** Date-of-birth field — auto-formats digits into DD/MM/YYYY as the student types. */
+function DobField({ value, disabled, invalid, onChange }:
+  { value: string; disabled?: boolean; invalid?: boolean; onChange: (v: string) => void }) {
+  const fmt = (raw: string) => {
+    const d = raw.replace(/\D/g, "").slice(0, 8);
+    return [d.slice(0, 2), d.slice(2, 4), d.slice(4, 8)].filter(Boolean).join("/");
+  };
+  return (
+    <input inputMode="numeric" placeholder="DD/MM/YYYY" maxLength={10} disabled={disabled}
+      value={asStrSafe(value)} onChange={(e) => onChange(fmt(e.target.value))}
+      className={`${input} ${invalid ? "border-[#d14343]" : ""} ${disabled ? "opacity-40" : ""}`} />
+  );
+}
+const asStrSafe = (v: unknown) => (typeof v === "string" ? v : "");
 
 export function VsatFormFill({ onDone }: { onDone?: () => void }) {
   const [supabase] = useState(() => createClient());
@@ -339,6 +355,10 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
           <FileField catKey={cat.key} q={q} token={token} value={asFiles(catAns[q.key])} disabled={skipped} invalid={isMissing} onChange={(v) => setVal(q.key, v)} />
         ) : q.type === "school" ? (
           <SchoolSelect value={asStr(catAns[q.key])} disabled={skipped} invalid={isMissing} onChange={(v) => setVal(q.key, v)} />
+        ) : q.type === "board" ? (
+          <SearchableSelect options={INDIA_BOARDS} value={asStr(catAns[q.key])} disabled={skipped} onChange={(v) => setVal(q.key, v)} placeholder="Select your board…" />
+        ) : q.type === "dob" ? (
+          <DobField value={asStr(catAns[q.key])} disabled={skipped} invalid={isMissing} onChange={(v) => setVal(q.key, v)} />
         ) : q.type === "state" ? (
           <SearchableSelect options={INDIA_STATES} value={asStr(catAns[q.key])} disabled={skipped} onChange={(v) => setStateVal(q.key, v)} placeholder="Select state…" />
         ) : q.type === "city" ? (
