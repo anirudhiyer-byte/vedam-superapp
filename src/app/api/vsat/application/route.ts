@@ -15,13 +15,15 @@ export async function POST(req: Request) {
   const { data: { user } } = await admin.auth.getUser(b.accessToken || "");
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   const A = b.app ?? {};
-  const { data: prof } = await admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle();
-
+  // prof + existing are independent (both keyed by the user) — fetch together.
   // one application per lead. CRITICAL: if the applicant already exists, NEVER
   // reset their stages / created_at / attempt — a revisit to /vsat must not wipe
   // payment/application/form progress. Only refresh the contact fields that were
   // actually provided.
-  const { data: existing } = await admin.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
+  const [{ data: prof }, { data: existing }] = await Promise.all([
+    admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle(),
+    admin.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle(),
+  ]);
 
   if (existing?.application_id) {
     const upd: Record<string, unknown> = { last_updated_date: new Date().toISOString() };
@@ -58,10 +60,13 @@ export async function POST(req: Request) {
   };
   const { error } = await admin.from("application_manager").insert(row);
   if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
-  await admin.from("lead_manager").update({ lead_stage: "applicant_unpaid", application_submitted: true }).eq("lead_id", user.id);
-  await admin.from("crm_activity_log").insert({ entity_type: "application", application_id, lead_id: user.id, action: "stage_change", stage_type: "application", to_value: "applicant", actor: "applicant", path: "/apply" });
-  // stage comm: application started → pay the fee (early-bird amount). Fires once, best-effort.
-  const { data: fflags } = await admin.from("app_flags").select("key, value").in("key", ["vsat_fee", "vsat_discount_24h"]);
+  // These follow-ups are independent of each other — run them together instead of serially.
+  const [, , { data: fflags }] = await Promise.all([
+    admin.from("lead_manager").update({ lead_stage: "applicant_unpaid", application_submitted: true }).eq("lead_id", user.id),
+    admin.from("crm_activity_log").insert({ entity_type: "application", application_id, lead_id: user.id, action: "stage_change", stage_type: "application", to_value: "applicant", actor: "applicant", path: "/apply" }),
+    // stage comm fee (early-bird amount). Fires once, best-effort.
+    admin.from("app_flags").select("key, value").in("key", ["vsat_fee", "vsat_discount_24h"]),
+  ]);
   const fee = Number(fflags?.find((f) => f.key === "vsat_fee")?.value ?? 1000);
   const disc = Number(fflags?.find((f) => f.key === "vsat_discount_24h")?.value ?? 200);
   await sendVsatStepComms("application_started", { leadId: user.id, name: (A.name as string) ?? null, email: (A.email as string) ?? null, phone: (A.phone as string) ?? null, amount: Math.max(0, fee - disc) });
