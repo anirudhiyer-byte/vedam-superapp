@@ -928,7 +928,7 @@ ul,ol{padding:0;list-style:none}
 img{display:block}
 .gt{background-image:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .sec{padding:20px}
-.rail{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding:0 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding:0 20px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x}
 .rail::-webkit-scrollbar{display:none}
 
 /* top strip — Figma: 20px high */
@@ -1031,7 +1031,7 @@ img{display:block}
 .chip{display:flex;align-items:center;gap:6px;background:#f2f4f7;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:500;line-height:1.2;color:#101828}
 .ohd{display:flex;align-items:center;justify-content:space-between}
 .navbtn:disabled{opacity:.35;cursor:default}
-.outs{display:flex;gap:8px;margin-top:16px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y;padding:0 0 8px;margin-bottom:-8px}
+.outs{display:flex;gap:8px;margin-top:16px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x;padding:0 0 8px;margin-bottom:-8px}
 .outs::-webkit-scrollbar{display:none}
 .out{flex:none;width:calc((100% - 8px)/2);scroll-snap-align:start;border:.6px solid #e3eaf5;border-radius:9.5px;background:#fff;overflow:hidden;padding-bottom:10.7px;box-shadow:0 4.75px 13px -3px rgba(28,76,143,.07)}
 .out .prev{height:88px;display:grid;place-items:center;position:relative;overflow:hidden}
