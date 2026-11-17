@@ -84,15 +84,17 @@ const linkBox = "flex items-center gap-3 rounded-2xl border border-[#e9e4f2] bg-
 
 const firstName = (s: string) => (s || "").trim().split(/\s+/)[0] || "";
 
-export function VsatDashboard({ isAdmin = false }: { isAdmin?: boolean } = {}) {
+export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead = null }: { isAdmin?: boolean; initialApp?: App; initialLead?: Lead } = {}) {
   const [supabase] = useState(() => createClient());
-  const [app, setApp] = useState<App>(null);
-  const [lead, setLead] = useState<Lead>(null);
+  const [app, setApp] = useState<App>(initialApp);
+  const [lead, setLead] = useState<Lead>(initialLead);
   const [quote, setQuote] = useState<Quote>(null);
   const [coupon, setCoupon] = useState("");
   const [appliedCode, setAppliedCode] = useState<string | undefined>(undefined);
   const [couponMsg, setCouponMsg] = useState<{ ok: boolean; text: string } | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Prefilled from the server? Then render populated immediately; load() still runs to
+  // refresh and fetch the (best-effort) quote, but it no longer blocks first paint.
+  const [loading, setLoading] = useState(initialApp === null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [note, setNote] = useState("");

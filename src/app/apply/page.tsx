@@ -20,29 +20,28 @@ export const metadata: Metadata = { title: "VSAT Registration — Vedam School o
 export default async function Page() {
   const sb = await createClient();
   const { data: { user } } = await sb.auth.getUser();
-  let isAdmin = false;
-  if (user) {
-    const email = (user.email ?? "").toLowerCase();
-    isAdmin = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
-    if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
-  }
-  const { applyPublic, legacyPublic } = await readVsatGate();
+
+  const email = (user?.email ?? "").toLowerCase();
+  const emailAdmin = !!user && email.endsWith("@vedam.org") && !!user.email_confirmed_at;
+  const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const svc = user && svcUrl && svcKey ? createSvc(svcUrl, svcKey) : null;
+
+  // Everything after getUser is independent — run it all at once instead of serially
+  // (was ~5 sequential DB round-trips on every landing load).
+  const [gate, isAdminRpc, appRow, leadRow, prof] = await Promise.all([
+    readVsatGate(),
+    user && !emailAdmin ? sb.rpc("is_admin").then((r) => !!r.data) : Promise.resolve(false),
+    svc ? svc.from("application_manager").select("application_id").eq("lead_id", user!.id).maybeSingle().then((r) => r.data) : Promise.resolve(null),
+    svc ? svc.from("lead_manager").select("lead_id").eq("lead_id", user!.id).maybeSingle().then((r) => r.data) : Promise.resolve(null),
+    user ? sb.from("profiles").select("full_name,email,phone,grad_year,stream,state,city").eq("id", user.id).maybeSingle().then((r) => r.data) : Promise.resolve(null),
+  ]);
+
+  const isAdmin = emailAdmin || isAdminRpc;
+  const { applyPublic, legacyPublic } = gate;
   if (!applyPublic && !isAdmin) redirect(legacyPublic ? "/vsat" : "/");
 
-  let hasApplication = false, hasLead = false;
-  let profile: VsatPrefill = {};
-  const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (user && svcUrl && svcKey) {
-    const svc = createSvc(svcUrl, svcKey);
-    const { data: appRow } = await svc.from("application_manager").select("application_id").eq("lead_id", user.id).maybeSingle();
-    hasApplication = !!appRow;
-    const { data: leadRow } = await svc.from("lead_manager").select("lead_id").eq("lead_id", user.id).maybeSingle();
-    hasLead = !!leadRow;
-  }
-  if (user) {
-    const { data: p } = await sb.from("profiles").select("full_name,email,phone,grad_year,stream,state,city").eq("id", user.id).maybeSingle();
-    if (p) profile = p as VsatPrefill;
-  }
+  const hasApplication = !!appRow, hasLead = !!leadRow;
+  const profile: VsatPrefill = (prof as VsatPrefill) ?? {};
   const version = process.env.VERCEL_GIT_COMMIT_SHA || "dev";
   return <VsatApplyFrame profile={profile} version={version} hasApplication={hasApplication} hasLead={hasLead} loggedIn={!!user} />;
 }
