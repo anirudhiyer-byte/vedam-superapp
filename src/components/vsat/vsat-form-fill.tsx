@@ -192,6 +192,23 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
   }, [supabase]);
   useEffect(() => { void load(); }, [load]);
 
+  // Mid-stage autosave: once the applicant has edited anything, debounce-persist the
+  // current stage's answers so a refresh/abandon mid-stage never loses them. Uses the
+  // partial-save RPC (no required-check, never marks the stage complete/submitted);
+  // on reload vsat_form_active_for_fill returns these answers and the stage resumes.
+  const userEdited = useRef(false);
+  useEffect(() => {
+    if (!userEdited.current || !formId || done || !schema) return;
+    const c = schema.categories[idx];
+    if (!c) return;
+    const catKey = c.key;
+    const payload = answers[catKey] ?? {};
+    const t = setTimeout(() => {
+      supabase.rpc("vsat_form_autosave_category", { p: { formId, category: catKey, answers: payload } }).then(() => {}, () => {});
+    }, 900);
+    return () => clearTimeout(t);
+  }, [answers, idx, formId, done, schema, supabase]);
+
   if (loading) return <div className={"rounded-2xl border border-[#ece8f6] bg-white p-6 text-sm text-[#6b647e]"}>Loading your form…</div>;
   if (code === "NO_ACTIVE_FORM") return <div className="rounded-2xl border border-[#ece8f6] bg-white p-6 text-sm text-[#6b647e]">The application form isn&apos;t open yet. We&apos;ll notify you when it is.</div>;
   if (code === "NOT_PAID") return <div className="rounded-2xl border border-[#ece8f6] bg-white p-6 text-sm text-[#6b647e]">Pay the VSAT fee to unlock the application form.</div>;
@@ -212,13 +229,13 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
   const asArr = (v: unknown): string[] => (Array.isArray(v) ? (v as string[]) : []);
   const asFiles = (v: unknown): FileRef[] => (Array.isArray(v) ? (v as FileRef[]) : []);
 
-  const setVal = (qk: string, v: unknown) => setAnswers((a) => ({ ...a, [cat.key]: { ...(a[cat.key] ?? {}), [qk]: v } }));
+  const setVal = (qk: string, v: unknown) => { userEdited.current = true; setAnswers((a) => ({ ...a, [cat.key]: { ...(a[cat.key] ?? {}), [qk]: v } })); };
   // Selecting a State clears every City answer in the same category (they cascade off it).
-  const setStateVal = (qk: string, v: string) => setAnswers((a) => {
+  const setStateVal = (qk: string, v: string) => { userEdited.current = true; setAnswers((a) => {
     const c: Record<string, unknown> = { ...(a[cat.key] ?? {}), [qk]: v };
     for (const qq of allQs) if (qq.type === "city") c[qq.key] = "";
     return { ...a, [cat.key]: c };
-  });
+  }); };
   // nearest preceding State answer in the flattened render order
   const stateBefore = (q: Question) => {
     const at = allQs.findIndex((x) => x.key === q.key);
