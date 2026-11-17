@@ -3,21 +3,25 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city";
+type Cond = { q: string; op: "eq" | "neq" | "includes"; value: string };
+type Route = { value: string; to: string }; // to = category key | "__next__" | "__submit__"
 type Question = {
+  key: string;          // stable identifier (so conditions survive label edits)
   label: string; type: QType; required: boolean;
   options?: string;     // dropdown / checkbox / radio — comma separated
   help?: string;        // guidance text shown under the label (any type)
-  accept?: string;      // file — comma separated types/extensions (e.g. "application/pdf, .jpg")
+  accept?: string;      // file — comma separated types/extensions
   maxSizeMb?: string;   // file — max size per file in MB
   multiple?: boolean;   // file — allow more than one
   hasException?: boolean; exceptionLabel?: string;
+  showIf?: Cond;        // conditional visibility
+  routes?: Route[];     // dropdown/radio — per-answer section branching
 };
-type SubCategory = { title: string; questions: Question[] };
-type Category = { title: string; questions: Question[]; subcategories: SubCategory[]; collapsed?: boolean };
+type SubCategory = { key: string; title: string; questions: Question[] };
+type Category = { key: string; title: string; questions: Question[]; subcategories: SubCategory[]; collapsed?: boolean; next?: string };
 type FormDraft = { id?: string; name: string; categories: Category[] };
 type FormRow = { id: string; name: string; status: string; version: number; categories: number; updatedAt: string };
 
-// school/state/city are DATASET-backed searchable dropdowns (no manual options).
 const QTYPES: QType[] = ["text", "textarea", "number", "date", "dropdown", "checkbox", "radio", "file", "school", "state", "city"];
 const TYPE_LABEL: Record<QType, string> = {
   text: "Short text", textarea: "Paragraph", number: "Number", date: "Date",
@@ -25,60 +29,61 @@ const TYPE_LABEL: Record<QType, string> = {
   file: "File upload", school: "School (searchable)", state: "State / UT", city: "City",
 };
 const HAS_OPTIONS = (t: QType) => t === "dropdown" || t === "checkbox" || t === "radio";
+const CAN_ROUTE = (t: QType) => t === "dropdown" || t === "radio"; // single-choice can branch
 const DATASET_HINTS: Partial<Record<QType, string>> = {
   school: "Searchable from the school database (name · district · state).",
   state: "Indian states/UTs — searchable dropdown.",
   city: "Cascades off the nearest State question above it — add a State question first.",
 };
+const NEXT = "__next__", SUBMIT = "__submit__";
 
-function slug(s: string, fallback: string): string {
-  const v = (s || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-  return v || fallback;
-}
+const uid = () => Math.random().toString(36).slice(2, 9);
+const opts = (s?: string) => (s || "").split(",").map((o) => o.trim()).filter(Boolean);
 
-// ── draft <-> server schema ──
-function qToSchema(q: Question, qi: number, used: Set<string>): Record<string, unknown> {
-  let qk = slug(q.label, `q_${qi + 1}`);
-  while (used.has(qk)) qk = qk + "_" + (qi + 1);
+// ── draft -> server schema (keys are already stable; just de-dupe defensively) ──
+function qToSchema(q: Question, used: Set<string>, catKeys: Set<string>): Record<string, unknown> {
+  let qk = q.key || "q_" + uid();
+  while (used.has(qk)) qk = qk + "_" + uid();
   used.add(qk);
-  const out: Record<string, unknown> = { key: qk, label: q.label.trim() || `Question ${qi + 1}`, type: q.type, required: !!q.required };
-  if (HAS_OPTIONS(q.type)) out.options = (q.options || "").split(",").map((o) => o.trim()).filter(Boolean);
+  const out: Record<string, unknown> = { key: qk, label: q.label.trim() || "Question", type: q.type, required: !!q.required };
+  if (HAS_OPTIONS(q.type)) out.options = opts(q.options);
   if (q.type === "file") {
-    const accept = (q.accept || "").split(",").map((o) => o.trim()).filter(Boolean);
-    if (accept.length) out.accept = accept;
-    const mb = Number(q.maxSizeMb);
-    if (Number.isFinite(mb) && mb > 0) out.maxSizeMb = mb;
+    const acc = opts(q.accept); if (acc.length) out.accept = acc;
+    const mb = Number(q.maxSizeMb); if (Number.isFinite(mb) && mb > 0) out.maxSizeMb = mb;
     if (q.multiple) out.multiple = true;
   }
   if ((q.help || "").trim()) out.help = q.help!.trim();
   if (q.hasException) out.exception = { key: qk + "_exc", label: (q.exceptionLabel || "Not applicable").trim() };
+  if (q.showIf && q.showIf.q) out.showIf = { q: q.showIf.q, op: q.showIf.op || "eq", value: q.showIf.value ?? "" };
+  if (CAN_ROUTE(q.type) && q.routes && q.routes.length) {
+    const routes = q.routes.filter((r) => r.value && r.to && r.to !== NEXT && (r.to === SUBMIT || catKeys.has(r.to)));
+    if (routes.length) out.routes = routes;
+  }
   return out;
 }
 
 function toSchema(d: FormDraft) {
+  const catKeys = new Set(d.categories.map((c) => c.key));
   const usedC = new Set<string>();
-  const categories = d.categories.map((c, ci) => {
-    let ck = slug(c.title, `cat_${ci + 1}`);
-    while (usedC.has(ck)) ck = ck + "_" + (ci + 1);
-    usedC.add(ck);
-    const usedQ = new Set<string>(); // keys unique across the whole category (direct + subcategories share one answer namespace)
-    const questions = c.questions.map((q, qi) => qToSchema(q, qi, usedQ));
-    const usedS = new Set<string>();
-    const subcategories = (c.subcategories || []).map((s, si) => {
-      let sk = slug(s.title, `sub_${si + 1}`);
-      while (usedS.has(sk)) sk = sk + "_" + (si + 1);
-      usedS.add(sk);
-      return { key: sk, title: s.title.trim() || `Section ${si + 1}`, questions: s.questions.map((q, qi) => qToSchema(q, qi, usedQ)) };
-    });
-    const out: Record<string, unknown> = { key: ck, title: c.title.trim() || `Category ${ci + 1}`, questions };
+  const categories = d.categories.map((c) => {
+    let ck = c.key; while (usedC.has(ck)) ck = ck + "_" + uid(); usedC.add(ck);
+    const usedQ = new Set<string>();
+    const questions = c.questions.map((q) => qToSchema(q, usedQ, catKeys));
+    const subcategories = (c.subcategories || []).map((s) => ({
+      key: s.key, title: s.title.trim() || "Section", questions: s.questions.map((q) => qToSchema(q, usedQ, catKeys)),
+    }));
+    const out: Record<string, unknown> = { key: ck, title: c.title.trim() || "Category", questions };
     if (subcategories.length) out.subcategories = subcategories;
+    if (c.next && c.next !== NEXT && (c.next === SUBMIT || catKeys.has(c.next))) out.next = c.next;
     return out;
   });
   return { categories };
 }
 
 function qFromSchema(q: Record<string, unknown>): Question {
+  const si = q.showIf as { q?: string; op?: string; value?: string } | undefined;
   return {
+    key: typeof q.key === "string" && q.key ? q.key : "q_" + uid(),
     label: String(q.label ?? ""),
     type: (QTYPES.includes(q.type as QType) ? q.type : "text") as QType,
     required: !!q.required,
@@ -89,14 +94,19 @@ function qFromSchema(q: Record<string, unknown>): Question {
     multiple: !!q.multiple,
     hasException: !!q.exception,
     exceptionLabel: (q.exception as { label?: string } | undefined)?.label ?? "",
+    showIf: si && si.q ? { q: si.q, op: (si.op as Cond["op"]) || "eq", value: si.value ?? "" } : undefined,
+    routes: Array.isArray(q.routes) ? (q.routes as Route[]).map((r) => ({ value: r.value, to: r.to })) : undefined,
   };
 }
 
 function fromSchema(id: string, name: string, schema: { categories?: Array<Record<string, unknown>> }): FormDraft {
   const categories = (schema.categories ?? []).map((c) => ({
+    key: typeof c.key === "string" && c.key ? c.key : "c_" + uid(),
     title: String(c.title ?? ""),
+    next: typeof c.next === "string" ? c.next : undefined,
     questions: ((c.questions as Array<Record<string, unknown>>) ?? []).map(qFromSchema),
     subcategories: ((c.subcategories as Array<Record<string, unknown>>) ?? []).map((s) => ({
+      key: typeof s.key === "string" && s.key ? s.key : "s_" + uid(),
       title: String(s.title ?? ""),
       questions: ((s.questions as Array<Record<string, unknown>>) ?? []).map(qFromSchema),
     })),
@@ -105,9 +115,10 @@ function fromSchema(id: string, name: string, schema: { categories?: Array<Recor
   return { id, name, categories };
 }
 
-const newQuestion = (): Question => ({ label: "", type: "text", required: false });
+const newQuestion = (): Question => ({ key: "q_" + uid(), label: "", type: "text", required: false });
 
 const input = "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#00cfe5] focus:outline-none";
+const mini = "rounded-md border border-white/15 bg-white/5 px-2 py-1.5 text-xs text-white focus:border-[#00cfe5] focus:outline-none";
 const btn = "rounded-lg px-4 py-2 text-sm font-semibold";
 const chip = "rounded-lg border border-white/15 px-2.5 py-1 text-xs text-white/70 hover:text-white hover:border-white/30";
 
@@ -119,7 +130,6 @@ export function VsatFormBuilder() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
 
-  // drag state: a list id ("cat", `cat-${ci}`, `cat-${ci}-sub-${si}`) + the dragged index
   const drag = useRef<{ list: string; index: number } | null>(null);
 
   const loadList = useCallback(async () => {
@@ -164,20 +174,27 @@ export function VsatFormBuilder() {
 
   // ── draft editing ──
   const up = (fn: (d: FormDraft) => FormDraft) => setDraft((d) => (d ? fn(structuredClone(d)) : d));
-  const addCategory = () => up((d) => { d.categories.push({ title: "", questions: [], subcategories: [], collapsed: false }); return d; });
-  const dupCategory = (ci: number) => up((d) => { const c = structuredClone(d.categories[ci]); c.title = c.title ? c.title + " (copy)" : ""; d.categories.splice(ci + 1, 0, c); return d; });
+  const addCategory = () => up((d) => { d.categories.push({ key: "c_" + uid(), title: "", questions: [], subcategories: [], collapsed: false }); return d; });
+  const dupCategory = (ci: number) => up((d) => { const c = structuredClone(d.categories[ci]); c.key = "c_" + uid(); c.title = c.title ? c.title + " (copy)" : ""; d.categories.splice(ci + 1, 0, c); return d; });
   const addQuestion = (ci: number, si: number | null) => up((d) => { (si == null ? d.categories[ci].questions : d.categories[ci].subcategories[si].questions).push(newQuestion()); return d; });
-  const addSub = (ci: number) => up((d) => { d.categories[ci].subcategories.push({ title: "", questions: [] }); return d; });
+  const addSub = (ci: number) => up((d) => { d.categories[ci].subcategories.push({ key: "s_" + uid(), title: "", questions: [] }); return d; });
 
   const qListOf = (d: FormDraft, ci: number, si: number | null) => (si == null ? d.categories[ci].questions : d.categories[ci].subcategories[si].questions);
   const editQ = (ci: number, si: number | null, qi: number, patch: Partial<Question>) =>
     up((d) => { const list = qListOf(d, ci, si); list[qi] = { ...list[qi], ...patch }; return d; });
   const dupQ = (ci: number, si: number | null, qi: number) =>
-    up((d) => { const list = qListOf(d, ci, si); list.splice(qi + 1, 0, structuredClone(list[qi])); return d; });
+    up((d) => { const list = qListOf(d, ci, si); const c = structuredClone(list[qi]); c.key = "q_" + uid(); list.splice(qi + 1, 0, c); return d; });
   const delQ = (ci: number, si: number | null, qi: number) =>
     up((d) => { qListOf(d, ci, si).splice(qi, 1); return d; });
+  const setRoute = (ci: number, si: number | null, qi: number, value: string, to: string) =>
+    up((d) => {
+      const q = qListOf(d, ci, si)[qi];
+      const routes = (q.routes ?? []).filter((r) => r.value !== value);
+      if (to && to !== NEXT) routes.push({ value, to });
+      q.routes = routes;
+      return d;
+    });
 
-  // drag reorder within the same list id
   function move<T>(arr: T[], from: number, to: number) { const [x] = arr.splice(from, 1); arr.splice(to, 0, x); }
   const onDrop = (list: string, to: number) => up((d) => {
     const from = drag.current && drag.current.list === list ? drag.current.index : -1;
@@ -226,52 +243,114 @@ export function VsatFormBuilder() {
     );
   }
 
-  // ── a single question editor (shared by category-level and subcategory questions) ──
-  const questionCard = (q: Question, ci: number, si: number | null, qi: number, list: string) => (
-    <div
-      key={qi}
-      draggable
-      onDragStart={() => { drag.current = { list, index: qi }; }}
-      onDragOver={(e) => e.preventDefault()}
-      onDrop={() => onDrop(list, qi)}
-      className="rounded-lg border border-white/10 bg-black/20 p-3"
-    >
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="cursor-grab select-none px-1 text-white/30" title="Drag to reorder">⠿</span>
-        <input value={q.label} onChange={(e) => editQ(ci, si, qi, { label: e.target.value })} placeholder="Question label" className={`${input} flex-1 min-w-[160px]`} />
-        <select value={q.type} onChange={(e) => editQ(ci, si, qi, { type: e.target.value as QType })} className={`${input} w-44`}>
-          {QTYPES.map((t) => <option key={t} value={t} className="bg-[#160a30]">{TYPE_LABEL[t]}</option>)}
-        </select>
-        <label className="flex items-center gap-1 text-xs text-white/60"><input type="checkbox" checked={q.required} onChange={(e) => editQ(ci, si, qi, { required: e.target.checked })} /> required</label>
-        <button onClick={() => dupQ(ci, si, qi)} className="rounded px-2 py-1 text-xs text-white/40 hover:text-white" title="Duplicate">⧉</button>
-        <button onClick={() => delQ(ci, si, qi)} className="rounded px-2 py-1 text-xs text-white/40 hover:text-[#ff9db0]" title="Remove">✕</button>
-      </div>
-
-      {HAS_OPTIONS(q.type) && (
-        <input value={q.options ?? ""} onChange={(e) => editQ(ci, si, qi, { options: e.target.value })} placeholder="Options, comma-separated (e.g. CSE, AI/ML, ECE)" className={`${input} mt-2`} />
-      )}
-
-      {q.type === "file" && (
-        <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
-          <input value={q.accept ?? ""} onChange={(e) => editQ(ci, si, qi, { accept: e.target.value })} placeholder="Allowed types (e.g. application/pdf, .jpg, image/*)" className={`${input} sm:col-span-2`} />
-          <input type="number" min={1} value={q.maxSizeMb ?? ""} onChange={(e) => editQ(ci, si, qi, { maxSizeMb: e.target.value })} placeholder="Max MB" className={input} />
-          <label className="flex items-center gap-2 text-xs text-white/60 sm:col-span-3"><input type="checkbox" checked={!!q.multiple} onChange={(e) => editQ(ci, si, qi, { multiple: e.target.checked })} /> allow multiple files</label>
-        </div>
-      )}
-
-      {DATASET_HINTS[q.type] && <p className="mt-2 text-xs text-white/40">{DATASET_HINTS[q.type]}</p>}
-
-      <input value={q.help ?? ""} onChange={(e) => editQ(ci, si, qi, { help: e.target.value })} placeholder="Guidance text (optional — shown under the question to help students)" className={`${input} mt-2 text-xs`} />
-
-      <label className="mt-2 flex items-center gap-2 text-xs text-white/50">
-        <input type="checkbox" checked={!!q.hasException} onChange={(e) => editQ(ci, si, qi, { hasException: e.target.checked })} />
-        allow a skip-exception
-      </label>
-      {q.hasException && (
-        <input value={q.exceptionLabel ?? ""} onChange={(e) => editQ(ci, si, qi, { exceptionLabel: e.target.value })} placeholder='Exception label (e.g. "12th results not out yet")' className={`${input} mt-2`} />
-      )}
-    </div>
+  // references for the logic selectors
+  const catOpts = draft.categories.map((c) => ({ key: c.key, title: c.title || "(untitled section)" }));
+  const allQs = draft.categories.flatMap((c) => [
+    ...c.questions.map((q) => ({ key: q.key, label: q.label || "(untitled)", cat: c.title || "section" })),
+    ...c.subcategories.flatMap((s) => s.questions.map((q) => ({ key: q.key, label: q.label || "(untitled)", cat: c.title || "section" }))),
+  ]);
+  const routeTargets = (ci: number) => (
+    <>
+      <option value={NEXT} className="bg-[#160a30]">Continue to next section</option>
+      {catOpts.map((c, i) => i !== ci && <option key={c.key} value={c.key} className="bg-[#160a30]">Go to: {c.title}</option>)}
+      <option value={SUBMIT} className="bg-[#160a30]">Submit the form</option>
+    </>
   );
+
+  // ── a single question editor ──
+  const questionCard = (q: Question, ci: number, si: number | null, qi: number, list: string) => {
+    const refs = allQs.filter((x) => x.key !== q.key);
+    const refQ = q.showIf ? allQs.find((x) => x.key === q.showIf!.q) : undefined;
+    return (
+      <div key={q.key} draggable
+        onDragStart={() => { drag.current = { list, index: qi }; }}
+        onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop(list, qi)}
+        className="rounded-lg border border-white/10 bg-black/20 p-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="cursor-grab select-none px-1 text-white/30" title="Drag to reorder">⠿</span>
+          <input value={q.label} onChange={(e) => editQ(ci, si, qi, { label: e.target.value })} placeholder="Question label" className={`${input} flex-1 min-w-[160px]`} />
+          <select value={q.type} onChange={(e) => editQ(ci, si, qi, { type: e.target.value as QType })} className={`${input} w-44`}>
+            {QTYPES.map((t) => <option key={t} value={t} className="bg-[#160a30]">{TYPE_LABEL[t]}</option>)}
+          </select>
+          <label className="flex items-center gap-1 text-xs text-white/60"><input type="checkbox" checked={q.required} onChange={(e) => editQ(ci, si, qi, { required: e.target.checked })} /> required</label>
+          <button onClick={() => dupQ(ci, si, qi)} className="rounded px-2 py-1 text-xs text-white/40 hover:text-white" title="Duplicate">⧉</button>
+          <button onClick={() => delQ(ci, si, qi)} className="rounded px-2 py-1 text-xs text-white/40 hover:text-[#ff9db0]" title="Remove">✕</button>
+        </div>
+
+        {HAS_OPTIONS(q.type) && (
+          <input value={q.options ?? ""} onChange={(e) => editQ(ci, si, qi, { options: e.target.value })} placeholder="Options, comma-separated (e.g. CSE, AI/ML, ECE)" className={`${input} mt-2`} />
+        )}
+
+        {q.type === "file" && (
+          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+            <input value={q.accept ?? ""} onChange={(e) => editQ(ci, si, qi, { accept: e.target.value })} placeholder="Allowed types (e.g. application/pdf, .jpg, image/*)" className={`${input} sm:col-span-2`} />
+            <input type="number" min={1} value={q.maxSizeMb ?? ""} onChange={(e) => editQ(ci, si, qi, { maxSizeMb: e.target.value })} placeholder="Max MB" className={input} />
+            <label className="flex items-center gap-2 text-xs text-white/60 sm:col-span-3"><input type="checkbox" checked={!!q.multiple} onChange={(e) => editQ(ci, si, qi, { multiple: e.target.checked })} /> allow multiple files</label>
+          </div>
+        )}
+
+        {DATASET_HINTS[q.type] && <p className="mt-2 text-xs text-white/40">{DATASET_HINTS[q.type]}</p>}
+
+        <input value={q.help ?? ""} onChange={(e) => editQ(ci, si, qi, { help: e.target.value })} placeholder="Guidance text (optional — shown under the question)" className={`${input} mt-2 text-xs`} />
+
+        {/* conditional: branch by answer (single-choice only) */}
+        {CAN_ROUTE(q.type) && opts(q.options).length > 0 && (
+          <div className="mt-2 rounded-md border border-[#00cfe5]/25 bg-[#00cfe5]/[0.06] p-2">
+            <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#6fe3ef]">Branch by answer</p>
+            <div className="space-y-1.5">
+              {opts(q.options).map((o) => (
+                <div key={o} className="flex items-center gap-2">
+                  <span className="min-w-[90px] shrink-0 truncate text-xs text-white/70">If “{o}” →</span>
+                  <select value={(q.routes ?? []).find((r) => r.value === o)?.to ?? NEXT} onChange={(e) => setRoute(ci, si, qi, o, e.target.value)} className={`${mini} flex-1`}>
+                    {routeTargets(ci)}
+                  </select>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* conditional: show only if */}
+        <label className="mt-2 flex items-center gap-2 text-xs text-white/50">
+          <input type="checkbox" checked={!!q.showIf}
+            onChange={(e) => editQ(ci, si, qi, { showIf: e.target.checked ? { q: refs[0]?.key ?? "", op: "eq", value: "" } : undefined })} />
+          show this question only if…
+        </label>
+        {q.showIf && (
+          <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+            <select value={q.showIf.q} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, q: e.target.value } })} className={`${mini} max-w-[180px]`}>
+              {refs.length === 0 && <option value="">(add another question first)</option>}
+              {refs.map((x) => <option key={x.key} value={x.key} className="bg-[#160a30]">{x.label}</option>)}
+            </select>
+            <select value={q.showIf.op} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, op: e.target.value as Cond["op"] } })} className={mini}>
+              <option value="eq" className="bg-[#160a30]">is</option>
+              <option value="neq" className="bg-[#160a30]">is not</option>
+              <option value="includes" className="bg-[#160a30]">includes</option>
+            </select>
+            {(() => {
+              const refOpts = refQ ? opts(draft.categories.flatMap((c) => [...c.questions, ...c.subcategories.flatMap((s) => s.questions)]).find((qq) => qq.key === refQ.key)?.options) : [];
+              return refOpts.length > 0 ? (
+                <select value={q.showIf.value} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, value: e.target.value } })} className={mini}>
+                  <option value="" className="bg-[#160a30]">(pick a value)</option>
+                  {refOpts.map((o) => <option key={o} value={o} className="bg-[#160a30]">{o}</option>)}
+                </select>
+              ) : (
+                <input value={q.showIf.value} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, value: e.target.value } })} placeholder="value" className={`${mini} w-28`} />
+              );
+            })()}
+          </div>
+        )}
+
+        <label className="mt-2 flex items-center gap-2 text-xs text-white/50">
+          <input type="checkbox" checked={!!q.hasException} onChange={(e) => editQ(ci, si, qi, { hasException: e.target.checked })} />
+          allow a skip-exception
+        </label>
+        {q.hasException && (
+          <input value={q.exceptionLabel ?? ""} onChange={(e) => editQ(ci, si, qi, { exceptionLabel: e.target.value })} placeholder='Exception label (e.g. "12th results not out yet")' className={`${input} mt-2`} />
+        )}
+      </div>
+    );
+  };
 
   // ── EDIT VIEW ──
   return (
@@ -293,15 +372,10 @@ export function VsatFormBuilder() {
         {draft.categories.map((c, ci) => {
           const qCount = c.questions.length + c.subcategories.reduce((n, s) => n + s.questions.length, 0);
           return (
-            <div
-              key={ci}
-              draggable
+            <div key={c.key} draggable
               onDragStart={(e) => { if (e.target === e.currentTarget || (e.target as HTMLElement).dataset.draghandle) { drag.current = { list: "cat", index: ci }; } }}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={() => onDrop("cat", ci)}
-              className="rounded-xl border border-white/10 bg-white/5"
-            >
-              {/* category header (click to collapse) */}
+              onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop("cat", ci)}
+              className="rounded-xl border border-white/10 bg-white/5">
               <div className="flex items-center gap-2 p-4">
                 <span data-draghandle className="cursor-grab select-none px-1 text-white/30" title="Drag to reorder">⠿</span>
                 <button onClick={() => up((d) => { d.categories[ci].collapsed = !d.categories[ci].collapsed; return d; })} className="shrink-0 text-white/50 hover:text-white" title={c.collapsed ? "Expand" : "Collapse"}>{c.collapsed ? "▸" : "▾"}</button>
@@ -313,13 +387,11 @@ export function VsatFormBuilder() {
 
               {!c.collapsed && (
                 <div className="space-y-3 px-4 pb-4">
-                  {/* category-level questions */}
                   {c.questions.map((q, qi) => questionCard(q, ci, null, qi, `cat-${ci}`))}
                   <button onClick={() => addQuestion(ci, null)} className="rounded-lg border border-dashed border-white/20 px-3 py-2 text-xs text-white/60 hover:text-white">+ Add question</button>
 
-                  {/* subcategories */}
                   {c.subcategories.map((s, si) => (
-                    <div key={si} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                    <div key={s.key} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
                       <div className="flex items-center gap-2">
                         <span className="text-white/30">↳</span>
                         <input value={s.title} onChange={(e) => up((d) => { d.categories[ci].subcategories[si].title = e.target.value; return d; })} placeholder={`Sub-category ${si + 1} title (e.g. Class 12 marks)`} className={`${input} font-medium`} />
@@ -332,6 +404,14 @@ export function VsatFormBuilder() {
                     </div>
                   ))}
                   <button onClick={() => addSub(ci)} className="rounded-lg border border-dashed border-white/15 px-3 py-2 text-xs text-white/40 hover:text-white">+ Add sub-category</button>
+
+                  {/* after this section → (default routing; a question's own branch overrides this) */}
+                  <div className="flex items-center gap-2 border-t border-white/10 pt-3">
+                    <span className="text-xs text-white/50">After this section →</span>
+                    <select value={c.next ?? NEXT} onChange={(e) => up((d) => { d.categories[ci].next = e.target.value; return d; })} className={`${mini} max-w-[220px]`}>
+                      {routeTargets(ci)}
+                    </select>
+                  </div>
                 </div>
               )}
             </div>
