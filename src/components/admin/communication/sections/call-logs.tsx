@@ -19,7 +19,7 @@ import type { CallRow } from "../lib/types";
  * Search matches the applicant's name or mobile number. Download asks first, then writes a CSV of the current query.
  * The applicant name belongs to the Leads module, so here it only shows a toast (no lead profile in this preview).
  *
- * Data comes from `callsApi` (lib/mock-api.ts) — swap that for the real endpoint.
+ * Data comes from `callsApi` (lib/mock-api.ts), which has no rows until in-app calling is connected — swap it for the real endpoint.
  */
 export function CallLogs() {
   const t = useTableQuery<CallRow>({ fetcher: callsApi.list, pageSize: 10 });
@@ -137,7 +137,7 @@ export function CallLogs() {
         empty={filtered
           ? <EmptyState icon="search" title="No call logs found" body="No call matches this search and these filters. Clear them to see every call."
               action={{ label: "Clear search and filters", icon: "refresh", onClick: () => { t.setSearch(""); t.clearFilters(); } }} />
-          : <EmptyState icon="phone" title="No calls yet" body="Calls made or received in the app will show up here."
+          : <EmptyState icon="phone" title="No calls yet" body="In-app calling is not connected yet. Calls made or received in the app will show up here once it is."
               action={{ label: "Refresh", icon: "refresh", onClick: t.refresh }} />}
       />
 
