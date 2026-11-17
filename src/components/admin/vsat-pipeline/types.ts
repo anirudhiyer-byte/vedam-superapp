@@ -59,6 +59,24 @@ export type Student = {
   history: HistoryRow[];
 };
 
+/** Documents + communication history (0103 vsat_student_comms). Managers only; others get empty lists. */
+export type StudentDoc = { key: string; label: string; url: string };
+export type StudentComm = {
+  channel: "email" | "whatsapp";
+  title: string;
+  status: string | null;
+  at: string | null;
+  kind?: string | null;
+  template?: string | null;
+  to?: string | null;
+  by?: string | null;
+  delivered_at?: string | null;
+  opened_at?: string | null;
+  read_at?: string | null;
+  failed_reason?: string | null;
+};
+export type StudentExtras = { can_manage: boolean; documents: StudentDoc[]; comms: StudentComm[] };
+
 export type Preview = {
   case: string; score: number; category: number | null; min_award: number | null; max_award: number | null;
   award_steps: number[]; jee_floor: number | null; missing: string[]; inputs: Record<string, number | null>;
