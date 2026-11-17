@@ -280,46 +280,11 @@ export const flowsApi: typeof mockFlowsApi = LIVE_PAGES.whatsappFlow ? liveFlows
 /* ══════════════════════════════════════════════════════
    IN-APP CALL LOGS
    ══════════════════════════════════════════════════════ */
-const CALLS: CallRow[] = [
-  { id: "c1", applicant: "Test Student 01", mobile: "9000000001", callingType: "Incoming", user: "Admin User", callStatus: "Answered", leadStatus: "Verified Leads", startTime: "23/07/2026, 05:47 PM", endTime: "23/07/2026, 05:48 PM", durationSec: 16 },
-  { id: "c2", applicant: "Test Student 01", mobile: "9000000001", callingType: "Incoming", user: "Admin User", callStatus: "Answered", leadStatus: "Verified Leads", startTime: "23/07/2026, 05:48 PM", endTime: "23/07/2026, 05:50 PM", durationSec: 138 },
-  { id: "c3", applicant: "Test Student 02", mobile: "9000000002", callingType: "Incoming", user: "Admin User", callStatus: "Missed", leadStatus: "Verified Leads", startTime: "23/07/2026, 05:26 PM", endTime: "23/07/2026, 05:26 PM", durationSec: 0 },
-  { id: "c4", applicant: "Test Student 02", mobile: "9000000002", callingType: "Outgoing", user: "Admin User", callStatus: "Answered", leadStatus: "Verified Leads", startTime: "23/07/2026, 05:26 PM", endTime: "23/07/2026, 05:33 PM", durationSec: 400 },
-  { id: "c5", applicant: "Test Student 02", mobile: "9000000002", callingType: "Incoming", user: "Admin User", callStatus: "Missed", leadStatus: "Verified Leads", startTime: "23/07/2026, 05:26 PM", endTime: "23/07/2026, 05:26 PM", durationSec: 0 },
-  { id: "c6", applicant: "", mobile: "9000000003", callingType: "Outgoing", user: "Admin User", callStatus: "Missed", leadStatus: "", startTime: "23/07/2026, 04:21 PM", endTime: "23/07/2026, 04:21 PM", durationSec: 0 },
-  { id: "c7", applicant: "", mobile: "9000000003", callingType: "Outgoing", user: "Admin User", callStatus: "Missed", leadStatus: "", startTime: "23/07/2026, 04:21 PM", endTime: "23/07/2026, 04:21 PM", durationSec: 0 },
-  { id: "c8", applicant: "Test Student 03", mobile: "9000000004", callingType: "Outgoing", user: "Admin User", callStatus: "Answered", leadStatus: "Verified Leads", startTime: "23/07/2026, 04:18 PM", endTime: "23/07/2026, 04:19 PM", durationSec: 52 },
-  { id: "c9", applicant: "Test Student 03", mobile: "9000000004", callingType: "Outgoing", user: "Admin User", callStatus: "Missed", leadStatus: "Verified Leads", startTime: "23/07/2026, 04:18 PM", endTime: "23/07/2026, 04:18 PM", durationSec: 0 },
-  { id: "c10", applicant: "Test Student 03", mobile: "9000000004", callingType: "Outgoing", user: "Admin User", callStatus: "Answered", leadStatus: "Verified Leads", startTime: "23/07/2026, 03:33 PM", endTime: "23/07/2026, 03:34 PM", durationSec: 46 },
-  { id: "c11", applicant: "Test Student 04", mobile: "9000000005", callingType: "Incoming", user: "Staff User 01", callStatus: "Answered", leadStatus: "Verified Leads", startTime: "22/07/2026, 06:02 PM", endTime: "22/07/2026, 06:05 PM", durationSec: 183 },
-  { id: "c12", applicant: "Test Student 05", mobile: "9000000006", callingType: "Outgoing", user: "Staff User 01", callStatus: "Missed", leadStatus: "Unverified Leads", startTime: "22/07/2026, 05:40 PM", endTime: "22/07/2026, 05:40 PM", durationSec: 0 },
-];
-
-/** v2 · pads the seed to 38 records (Meritto shows 38). Deterministic, July 2026, newest first. */
-(() => {
-  const users = ["Staff User 01", "Admin User", "Staff User 03", "Staff User 04", "Staff User 05", "Staff User 06", "Staff User 07", "Staff User 08"];
-  const people: [string, string, string][] = [
-    ["Test Student 04", "9000000005", "Verified Leads"], ["Test Student 05", "9000000006", "Unverified Leads"], ["Test Student 06", "9000000007", "Verified Leads"],
-    ["", "9000000008", ""], ["Test Student 07", "9000000009", "Verified Leads"], ["Test Student 08", "9000000010", "Verified Leads"], ["", "9000000011", ""],
-  ];
-  const two = (n: number) => String(n).padStart(2, "0");
-  const stamp = (day: number, mins: number) => {                   // mins since midnight
-    const h24 = Math.floor(mins / 60), m = mins % 60, h12 = h24 % 12 === 0 ? 12 : h24 % 12;
-    return `${two(day)}/07/2026, ${two(h12)}:${two(m)} ${h24 >= 12 ? "PM" : "AM"}`;
-  };
-  let day = 22, mins = 17 * 60 + 20;
-  for (let i = 0; CALLS.length < 38; i++) {
-    const [applicant, mobile, leadStatus] = people[i % people.length];
-    const answered = i % 3 !== 1, dur = answered ? 20 + ((i * 37) % 340) : 0;
-    const startMin = mins, endMin = mins + Math.ceil(dur / 60);
-    CALLS.push({
-      id: `c${CALLS.length + 1}`, applicant, mobile, callingType: i % 2 ? "Outgoing" : "Incoming", user: users[i % users.length],
-      callStatus: answered ? "Answered" : "Missed", leadStatus, startTime: stamp(day, startMin), endTime: stamp(day, endMin), durationSec: dur,
-    });
-    mins -= 47 + ((i * 13) % 61);
-    if (mins < 10 * 60) { day -= 1; mins = 18 * 60 - ((i * 11) % 90); }
-  }
-})();
+/**
+ * No sample calls: in-app calling is not connected to any phone system yet, so the page shows an
+ * empty state on every environment. Swap `callsApi` for the real endpoint when calling goes live.
+ */
+const CALLS: CallRow[] = [];
 
 export const callsApi = {
   list: (q: Query) =>
@@ -342,7 +307,7 @@ export const callsApi = {
   options: async (): Promise<Record<string, Option[]>> =>
     wait({
       institute: [{ value: "vedam", label: "Vedam School of Technology" }],
-      user: ["Staff User 01", "Staff User 03", "Staff User 04", "Staff User 05", "Staff User 06", "Staff User 07", "Staff User 08", "Admin User"].map((n) => ({ value: n, label: n })),
+      user: [], // filled from the real calling users once calling is live
       callingType: [
         { value: "Incoming", label: "Incoming" },
         { value: "Outgoing", label: "Outgoing" },
