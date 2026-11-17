@@ -15,7 +15,26 @@ export async function POST(req: Request) {
   const { data: { user } } = await admin.auth.getUser(b.accessToken || "");
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   const L = b.lead ?? {};
+  // Self-heal the FK parent before writing the lead: lead_manager.lead_id -> profiles.id.
+  // handle_new_user seeds profiles on signup, but an ORPHANED auth user (profile deleted
+  // during re-testing, or a one-off trigger miss) would otherwise make every lead write
+  // fail with foreign_key_violation (lead_manager_lead_id_fkey) — which hard-stops the whole
+  // apply flow. Ensure the row exists first. ON CONFLICT DO NOTHING (ignoreDuplicates) never
+  // touches an existing profile's data; the user has already OTP-verified by this point, so
+  // mobile_verified is true for a freshly-seeded row.
+  const { error: profErr } = await admin.from("profiles").upsert(
+    {
+      id: user.id,
+      email: (L.email as string) || user.email || null,
+      phone: (L.phone as string) || user.phone || null,
+      full_name: (L.name as string) || null,
+      mobile_verified: true,
+    },
+    { onConflict: "id", ignoreDuplicates: true },
+  );
+  if (profErr) return Response.json({ ok: false, error: profErr.message }, { status: 500 });
   // Independent lookups — run together to shave a round-trip off the apply path.
+  // profiles is guaranteed to exist now, so public_id resolves for brand-new leads too.
   const [{ data: prof }, { data: existing }] = await Promise.all([
     admin.from("profiles").select("public_id").eq("id", user.id).maybeSingle(),
     admin.from("lead_manager").select("lead_stage, user_registration_date").eq("lead_id", user.id).maybeSingle(),
