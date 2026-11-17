@@ -16,6 +16,8 @@ type Question = {
   hasException?: boolean; exceptionLabel?: string;
   showIf?: Cond;        // conditional visibility
   routes?: Route[];     // dropdown/radio — per-answer section branching
+  column?: string;      // application_manager column this answer syncs into (set in the DB mapping; preserved here so a builder save never wipes it)
+  cast?: string;        // how the answer is cast for that column: text | number | year | bool | date
 };
 type SubCategory = { key: string; title: string; questions: Question[] };
 type Category = { key: string; title: string; questions: Question[]; subcategories: SubCategory[]; collapsed?: boolean; next?: string };
@@ -61,6 +63,9 @@ function qToSchema(q: Question, used: Set<string>, catKeys: Set<string>): Record
     const routes = q.routes.filter((r) => r.value && r.to && r.to !== NEXT && (r.to === SUBMIT || catKeys.has(r.to)));
     if (routes.length) out.routes = routes;
   }
+  // Preserve the column-sync mapping (set in the DB) so editing a form in the builder never strips it.
+  if (typeof q.column === "string" && q.column) out.column = q.column;
+  if (typeof q.cast === "string" && q.cast) out.cast = q.cast;
   return out;
 }
 
@@ -98,6 +103,8 @@ function qFromSchema(q: Record<string, unknown>): Question {
     exceptionLabel: (q.exception as { label?: string } | undefined)?.label ?? "",
     showIf: si && si.q ? { q: si.q, op: (si.op as Cond["op"]) || "eq", value: si.value ?? "" } : undefined,
     routes: Array.isArray(q.routes) ? (q.routes as Route[]).map((r) => ({ value: r.value, to: r.to })) : undefined,
+    column: typeof q.column === "string" ? q.column : undefined,
+    cast: typeof q.cast === "string" ? q.cast : undefined,
   };
 }
 
