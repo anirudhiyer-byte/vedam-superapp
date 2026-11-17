@@ -17,9 +17,11 @@ export default async function Page() {
   const { data: { user } } = await sb.auth.getUser();
   if (!user) redirect("/apply");
   const email = (user.email ?? "").toLowerCase();
+  // start the gate read now so it overlaps the admin-role check instead of running after it
+  const gateP = readVsatGate();
   let isAdmin = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
   if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
-  const { applyPublic } = await readVsatGate();
+  const { applyPublic } = await gateP;
   if (!isAdmin && !applyPublic) redirect("/apply");
   return <VsatDashboard isAdmin={isAdmin} />;
 }
