@@ -37,6 +37,7 @@ values (
               {"key":"q_pcm","label":"PCM","type":"radio","column":"studied_pcm","cast":"bool"},
               {"key":"q_c10p","label":"10th percentage (exact)","type":"number","column":"class10_percentage","cast":"number"},
               {"key":"q_c10s","label":"10th score slab","type":"dropdown","column":"class10_score","cast":"text"},
+              {"key":"q_c10s2","label":"10th score slab (2nd, same column)","type":"dropdown","column":"class10_score","cast":"text"},
               {"key":"q_oly","label":"Olympiad year","type":"number","column":"olympiad1_year","cast":"year"},
               {"key":"q_jee","label":"JEE Mains percentile","type":"number","column":"jee_percentile","cast":"number"},
               {"key":"q_bad","label":"Bad number","type":"text","column":"marks_physics_12","cast":"number"}
@@ -70,7 +71,8 @@ select public.vsat_form_save_category(jsonb_build_object(
     'q_dob','15/08/2006',
     'q_pcm','Yes',
     'q_c10p','92.5',
-    'q_c10s','90-100%',
+    'q_c10s','80-90%',
+    'q_c10s2','90-100%',
     'q_oly','2023',
     'q_jee','98.7',
     'q_bad','ninety'
@@ -87,7 +89,9 @@ select 'bool_yes_true', (studied_pcm is true), coalesce(studied_pcm::text,'<null
 union all
 select 'exact_percentage', (class10_percentage = 92.5), coalesce(class10_percentage::text,'<null>') from public.application_manager where lead_id = current_setting('vedam.test_lead')::uuid
 union all
-select 'slab_text_distinct_from_pct', (class10_score = '90-100%'), coalesce(class10_score,'<null>') from public.application_manager where lead_id = current_setting('vedam.test_lead')::uuid
+-- two questions map to class10_score (the real form has CGPA/percentage/grade slabs):
+-- last one wins and the sync must NOT fail; class10_score stays distinct from class10_percentage.
+select 'slab_dedup_last_wins_distinct_from_pct', (class10_score = '90-100%'), coalesce(class10_score,'<null>') from public.application_manager where lead_id = current_setting('vedam.test_lead')::uuid
 union all
 select 'year_as_int', (olympiad1_year = 2023), coalesce(olympiad1_year::text,'<null>') from public.application_manager where lead_id = current_setting('vedam.test_lead')::uuid
 union all

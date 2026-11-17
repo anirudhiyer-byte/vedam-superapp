@@ -137,7 +137,8 @@ begin
 
   -- ── sync mapped answers into real columns (schema-driven, allowlisted, best-effort) ──
   declare
-    v_mq jsonb; v_col text; v_cast text; v_raw jsonb; v_txt text; v_sets text[] := '{}'; v_iso text;
+    v_mq jsonb; v_col text; v_cast text; v_raw jsonb; v_txt text; v_iso text; v_lit text; v_set text;
+    v_vals jsonb := '{}'::jsonb;  -- column -> SQL literal; a jsonb object, so a duplicate target column (e.g. two 10th score slabs) can't build an invalid multi-assignment UPDATE — last write wins
     c_allow constant text[] := array[
       'gender','date_of_birth','guardian_mobile_number','residing_city','country','state','city',
       'class_12_stream','preferred_engineering_specialization',
@@ -166,23 +167,27 @@ begin
         else v_raw::text end;
       if v_txt is null or btrim(v_txt) = '' then continue; end if;
       v_cast := coalesce(v_mq->>'cast', 'text');
+      v_lit := null;
       if v_cast = 'number' then
-        if v_txt ~ '^-?[0-9]+(\.[0-9]+)?$' then v_sets := v_sets || format('%I = %s', v_col, v_txt); end if;
+        if v_txt ~ '^-?[0-9]+(\.[0-9]+)?$' then v_lit := v_txt; end if;
       elsif v_cast = 'year' then
-        if v_txt ~ '^[0-9]{4}$' then v_sets := v_sets || format('%I = %s', v_col, v_txt); end if;
+        if v_txt ~ '^[0-9]{4}$' then v_lit := v_txt; end if;
       elsif v_cast = 'bool' then
-        v_sets := v_sets || format('%I = %L', v_col, (lower(btrim(v_txt)) in ('yes','true','agree','i agree','y','1')));
+        v_lit := case when lower(btrim(v_txt)) in ('yes','true','agree','i agree','y','1') then 'true' else 'false' end;
       elsif v_cast = 'date' then
         if v_txt ~ '^[0-9]{2}/[0-9]{2}/[0-9]{4}$' then
           v_iso := split_part(v_txt,'/',3) || '-' || split_part(v_txt,'/',2) || '-' || split_part(v_txt,'/',1);
-          begin perform v_iso::date; v_sets := v_sets || format('%I = %L', v_col, v_iso); exception when others then null; end;
+          begin perform v_iso::date; v_lit := quote_literal(v_iso); exception when others then null; end;
         end if;
       else
-        v_sets := v_sets || format('%I = %L', v_col, v_txt);
+        v_lit := quote_literal(v_txt);
       end if;
+      -- last value wins per column, so a question mapped to an already-set column can't break the UPDATE
+      if v_lit is not null then v_vals := v_vals || jsonb_build_object(v_col, v_lit); end if;
     end loop;
-    if array_length(v_sets, 1) is not null then
-      execute format('update public.application_manager set %s where lead_id = %L', array_to_string(v_sets, ', '), u);
+    if v_vals <> '{}'::jsonb then
+      select string_agg(format('%I = %s', mk, mv), ', ') into v_set from jsonb_each_text(v_vals) as e(mk, mv);
+      execute format('update public.application_manager set %s where lead_id = %L', v_set, u);
     end if;
   exception when others then null;  -- column sync is best-effort; form_data stays source of truth
   end;
