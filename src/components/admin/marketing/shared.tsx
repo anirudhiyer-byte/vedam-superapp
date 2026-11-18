@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { errorText, type Channel, type CustomColumn, type Meta, type Week } from "@/lib/growth/marketing";
+import { countTicks, errorText, labelIndexes, type Channel, type CustomColumn, type Meta, type Week } from "@/lib/growth/marketing";
 
 /**
  * Growth → Ads + Influencers · shared plumbing for the listing and performance screens.
@@ -140,8 +140,11 @@ const SERIES = ["#a78bfa", "#fb923c"]; // side A, side B
 /**
  * Small multiples: one panel per metric (leads / payments / enrollments), each with its own scale so a
  * small payment count is still readable next to thousands of leads. Two lines per panel (side A, side B).
+ * Moving the pointer (mouse or touch) over any panel shows a marker on the same week in all three panels:
+ * a vertical line, a dot on each line and a box with that week's A and B numbers.
  */
 export function WeeklyCompare({ a, b, labels }: { a: Week[]; b: Week[]; labels: [string, string] }) {
+  const [hover, setHover] = useState<number | null>(null);
   const weeks = [...new Set([...a, ...b].map((w) => w.week))].sort();
   if (weeks.length === 0) return <p className="mk-mid">No leads, payments or enrollments in these weeks yet.</p>;
   const pick = (ws: Week[], k: keyof Omit<Week, "week">) => { const m = new Map(ws.map((w) => [w.week, w[k]])); return weeks.map((w) => m.get(w) ?? 0); };
@@ -150,8 +153,20 @@ export function WeeklyCompare({ a, b, labels }: { a: Week[]; b: Week[]; labels: 
   ];
   const W = 420, H = 180, P = { l: 40, r: 14, t: 12, b: 24 };
   const x = (i: number) => P.l + (weeks.length === 1 ? (W - P.l - P.r) / 2 : (i * (W - P.l - P.r)) / (weeks.length - 1));
+  const xs = weeks.map((_, i) => x(i));
   const fmtW = (w: string) => new Date(`${w}T00:00:00Z`).toLocaleDateString("en-IN", { day: "2-digit", month: "short", timeZone: "UTC" });
-  const tickEvery = Math.max(1, Math.ceil(weeks.length / 5));
+  const fmtWy = (w: string) => new Date(`${w}T00:00:00Z`).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" });
+  const xLabels = new Set(labelIndexes(xs, 62));
+  const anchor = (i: number) => (weeks.length > 1 && i === 0 ? "start" : weeks.length > 1 && i === weeks.length - 1 ? "end" : "middle");
+  // pointer x (screen) → nearest week
+  const onMove = (e: ReactPointerEvent<SVGSVGElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    if (!r.width) return;
+    const vx = ((e.clientX - r.left) / r.width) * W;
+    let best = 0;
+    for (let i = 1; i < xs.length; i++) if (Math.abs(xs[i] - vx) < Math.abs(xs[best] - vx)) best = i;
+    setHover(best);
+  };
   return (
     <div className="mk-mult">
       <div className="mk-legend">
@@ -161,28 +176,38 @@ export function WeeklyCompare({ a, b, labels }: { a: Week[]; b: Week[]; labels: 
       <div className="mk-mult-row">
       {panels.map((p) => {
         const sa = pick(a, p.k), sb = pick(b, p.k);
-        const max = Math.max(1, ...sa, ...sb);
-        const y = (v: number) => H - P.b - (v / max) * (H - P.t - P.b);
+        const { top, ticks } = countTicks(Math.max(...sa, ...sb));
+        const y = (v: number) => H - P.b - (v / top) * (H - P.t - P.b);
         const path = (s: number[]) => s.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+        const h = hover != null && hover < weeks.length ? hover : null;
+        // tooltip box: right of the marker, or left of it near the right edge
+        const boxW = 118, boxH = 46;
+        const bx = h == null ? 0 : xs[h] + 8 + boxW > W - P.r ? xs[h] - 8 - boxW : xs[h] + 8;
         return (
           <figure key={p.k} className="mk-panel">
             <figcaption>{p.label} <span>per week · A {sa.reduce((t, v) => t + v, 0).toLocaleString("en-IN")} · B {sb.reduce((t, v) => t + v, 0).toLocaleString("en-IN")}</span></figcaption>
-            <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${p.label} per week, A versus B`}>
-              {[0, 0.5, 1].map((f) => (
-                <g key={f}>
-                  <line x1={P.l} x2={W - P.r} y1={y(max * f)} y2={y(max * f)} className="mk-grid" />
-                  <text x={P.l - 6} y={y(max * f) + 3} className="mk-ax" textAnchor="end">{Math.round(max * f).toLocaleString("en-IN")}</text>
+            <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${p.label} per week, A versus B`} className="mk-chart"
+                 onPointerMove={onMove} onPointerDown={onMove} onPointerLeave={() => setHover(null)}>
+              {ticks.map((v) => (
+                <g key={v}>
+                  <line x1={P.l} x2={W - P.r} y1={y(v)} y2={y(v)} className="mk-grid" />
+                  <text x={P.l - 6} y={y(v) + 3} className="mk-ax" textAnchor="end">{v.toLocaleString("en-IN")}</text>
                 </g>
               ))}
-              {weeks.map((w, i) => ((i % tickEvery === 0 && (weeks.length - 1 - i >= tickEvery / 2 || i === 0)) || i === weeks.length - 1 ? <text key={w} x={x(i)} y={H - 6} className="mk-ax" textAnchor={weeks.length > 1 && i === 0 ? "start" : weeks.length > 1 && i === weeks.length - 1 ? "end" : "middle"}>{fmtW(w)}</text> : null))}
+              {weeks.map((w, i) => (xLabels.has(i) ? <text key={w} x={x(i)} y={H - 6} className="mk-ax" textAnchor={anchor(i)}>{fmtW(w)}</text> : null))}
               <path d={path(sa)} fill="none" stroke={SERIES[0]} strokeWidth="2" />
               <path d={path(sb)} fill="none" stroke={SERIES[1]} strokeWidth="2" strokeDasharray="5 3" />
-              {weeks.map((w, i) => (
-                <g key={`t${w}`}>
-                  <title>{`Week of ${fmtW(w)}: A ${sa[i]}, B ${sb[i]}`}</title>
-                  <rect x={x(i) - 6} y={P.t} width="12" height={H - P.t - P.b} fill="transparent" />
+              {h != null && (
+                <g className="mk-hover" pointerEvents="none">
+                  <line x1={xs[h]} x2={xs[h]} y1={P.t} y2={H - P.b} className="mk-cross" />
+                  <circle cx={xs[h]} cy={y(sb[h])} r="4" fill={SERIES[1]} className="mk-dot" />
+                  <circle cx={xs[h]} cy={y(sa[h])} r="4" fill={SERIES[0]} className="mk-dot" />
+                  <rect x={bx} y={P.t} width={boxW} height={boxH} rx="6" className="mk-tip" />
+                  <text x={bx + 8} y={P.t + 14} className="mk-tip-h">Week of {fmtWy(weeks[h])}</text>
+                  <text x={bx + 8} y={P.t + 27} className="mk-tip-v"><tspan fill={SERIES[0]}>●</tspan> A  {sa[h].toLocaleString("en-IN")}</text>
+                  <text x={bx + 8} y={P.t + 39} className="mk-tip-v"><tspan fill={SERIES[1]}>●</tspan> B  {sb[h].toLocaleString("en-IN")}</text>
                 </g>
-              ))}
+              )}
             </svg>
           </figure>
         );
@@ -295,6 +320,14 @@ export const CSS = `
 .mk-panel svg{width:100%;height:auto;display:block}
 .mk-grid{stroke:rgba(130,150,255,.12);stroke-width:1}
 .mk-ax{fill:var(--mut2);font-size:9.5px;font-family:var(--mono)}
+.mk-chart{touch-action:pan-y;cursor:crosshair}
+.mk-notice{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:10px 14px;font-size:12.5px;color:var(--ink)}
+.mk-notice p{margin:0}.mk-notice p+p{margin-top:4px}
+.mk-cross{stroke:var(--mut);stroke-width:1;stroke-dasharray:3 3;opacity:.7}
+.mk-dot{stroke:var(--panel);stroke-width:2}
+.mk-tip{fill:var(--bg2);stroke:var(--line);stroke-width:1;opacity:.96}
+.mk-tip-h{fill:var(--mut);font-size:9.5px;font-family:var(--mono)}
+.mk-tip-v{fill:var(--ink);font-size:10.5px;font-family:var(--mono);white-space:pre}
 .mk-cmp td.v{font-family:var(--mono);color:var(--ink);text-align:right}
 .mk-top{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .mk-topc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px 15px}
