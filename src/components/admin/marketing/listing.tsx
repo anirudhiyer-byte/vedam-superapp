@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import {
-  AD_PLATFORMS, INFL_PLATFORMS, adCards, fmtCompact, fmtDate, fmtDateTime, fmtInr, fmtInt, inRange, inflCards, isYouTube, matchesTerms,
+  AD_PLATFORMS, INFL_PLATFORMS, adCards, parseAmount, fmtCompact, fmtDate, fmtDateTime, fmtInr, fmtInt, inRange, inflCards, isYouTube, matchesTerms,
   splitTerms, type AdRow, type Channel, type CustomColumn, type Meta, type PostRow,
 } from "@/lib/growth/marketing";
 import { AD_FIELDS, CampaignsDialog, ColumnsDialog, CsvDialog, INFL_FIELDS, RowDialog } from "./dialogs";
@@ -158,12 +158,12 @@ export function AdsListing({ sb, meta, reloadMeta }: { sb: Client; meta: Meta; r
 
   const filtered = useMemo(() => {
     const terms = splitTerms(q);
-    const lo = smin.trim() ? Number(smin) : null, hi = smax.trim() ? Number(smax) : null;
+    const lo = parseAmount(smin), hi = parseAmount(smax);   // accepts 1,00,000 / ₹50,000
     return sortRows((rows ?? []).filter((r) =>
       matchesTerms([r.ad_name, r.utm_link, r.platform, r.campaign_status, r.campaign, r.notes, r.serial_no, ...Object.values(r.extra ?? {})], terms)
       && (!camp || r.campaign_id === camp) && (!plat || r.platform === plat) && (!status || r.campaign_status === status)
       && inRange(r.live_date, from, to)
-      && (lo === null || !Number.isFinite(lo) || Number(r.spend) >= lo) && (hi === null || !Number.isFinite(hi) || Number(r.spend) <= hi)),
+      && (lo === null || Number(r.spend) >= lo) && (hi === null || Number(r.spend) <= hi)),
     sort, (r, k) => (k.startsWith("x_") ? r.extra?.[k] ?? null : (r as unknown as Record<string, unknown>)[k]));
   }, [rows, q, camp, plat, status, from, to, smin, smax, sort]);
   useEffect(() => setPage(0), [q, camp, plat, status, from, to, smin, smax, view]);

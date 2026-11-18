@@ -70,6 +70,14 @@ export function matchesTerms(fields: (string | number | null | undefined)[], ter
 }
 
 /** A YYYY-MM-DD value inside [from, to] (both optional, inclusive). Missing value → false when a bound is set. */
+/** A money amount typed by a person: "1,00,000", "₹50,000", " 2500 " → number; empty or not a number → null. */
+export function parseAmount(s: string): number | null {
+  const t = s.replace(/[₹,\s]/g, "");
+  if (!t) return null;
+  const v = Number(t);
+  return Number.isFinite(v) ? v : null;
+}
+
 export function inRange(d: string | null, from: string, to: string): boolean {
   if (!from && !to) return true;
   if (!d) return false;
