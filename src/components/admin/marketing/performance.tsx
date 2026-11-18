@@ -382,7 +382,7 @@ function InflPlatform({ rows, perCamp }: { rows: PerfRow[]; perCamp: boolean }) 
     <>
       <div className="mk-bar">{(["YouTube", "Instagram"] as const).map((x) => <button key={x} className={x === p ? "mk-pri" : "mk-btn"} onClick={() => setP(x)}>{x}</button>)}</div>
       <InflCards rows={sub} perCamp={perCamp} only={p} />
-      <h4 style={{ margin: "4px 0 0", fontFamily: "var(--display)", fontSize: 14 }}>Top performers · {p}</h4>
+      <h4 className="mk-subh">Top performers on {p}</h4>
       <div className="mk-top">
         <TopCard title="Lowest CPP" best={lowestCpp(sub)} value={(b) => fmtInr(b.m.cpp)} who={postLabel} link={(b) => b.row.live_link} />
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(sub)} value={(b) => fmtPct(b.m.l2p)} who={postLabel} link={(b) => b.row.live_link} />
