@@ -7,6 +7,7 @@ import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
 import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
 import { MarketingPanel, type MarketingPage } from "@/components/admin/marketing/marketing-panel";
+import { CampaignsPanel } from "@/components/admin/marketing/campaigns-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
 import { VsatSettings } from "@/components/admin/vsat-settings";
@@ -39,6 +40,7 @@ const ICON: Record<string, string> = {
   form: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
   center: '<circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.9 7.9 0 0 0 0-2l2-1.5-2-3.4-2.3 1a8 8 0 0 0-1.7-1L15 3.5h-4l-.4 2.6a8 8 0 0 0-1.7 1l-2.3-1-2 3.4L6.6 11a7.9 7.9 0 0 0 0 2l-2 1.5 2 3.4 2.3-1a8 8 0 0 0 1.7 1l.4 2.6h4l.4-2.6a8 8 0 0 0 1.7-1l2.3 1 2-3.4z"/>',
   comms: '<path d="M4 4h16v12H5.2L4 17.2z"/>',
+  campaign: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
   season: '<path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>',
   cohort: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
   call: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7l.7 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5l2.7.7A2 2 0 0 1 22 16.9z"/>',
@@ -85,6 +87,7 @@ const GROWTH: Group[] = [
     { id: "season", label: "Season Dashboard", icon: ICON.season },
     { id: "cohort", label: "Payment Cohort", icon: ICON.cohort },
     { id: "vcamp", label: "VSAT Campaign Report", icon: ICON.exam },
+    { id: "campaigns", label: "Campaigns", icon: ICON.campaign, live: true },
   ] },
   { g: "Marketing Channels", items: [
     { id: "calling", label: "Calling", icon: ICON.call, live: true, sub: [
@@ -156,6 +159,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
 
   function Content() {
     if (panel === "growth") {
+      if (active.id === "campaigns") return <div className="vp-scroll"><CampaignsPanel /></div>;
       if (active.id === "calling") return <div className="vp-scroll"><CallingPanel page={(active.page ?? "data") as CallingPage} /></div>;
       if (active.id === "ads" || active.id === "infl") {
         const ch = active.id === "ads" ? "ads" : "influencers";
