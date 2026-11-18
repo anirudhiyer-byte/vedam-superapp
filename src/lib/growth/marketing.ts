@@ -16,6 +16,10 @@ export type Campaign = {
   id: string; name: string; campaign_start: string | null; campaign_end: string | null; exam_date: string | null;
   budget: number | null; application_target: number | null; used: number;
 };
+/** A row of the Campaigns page (growth_campaigns_list). */
+export type CampaignFull = Campaign & {
+  last_date_to_apply: string | null; planned_l2p: number | null; planned_cpp: number | null; metadata: Record<string, unknown> | null;
+};
 export type CustomColumn = { channel: Channel; key: string; label: string; type: ColType; required: boolean; options: string[] | null };
 export type Influencer = { id: string; name: string; channel_link: string | null };
 export type Meta = {
@@ -362,7 +366,8 @@ const FIELD: Record<string, string> = {
   spend: "Spend", utm_link: "UTM link", notes: "Notes", serial_no: "Serial no.", influencer: "Influencer", live_link: "Live link",
   expected_views: "Expected views", actual_views: "Actual views", cost: "Cost", live_status: "Live status",
   name: "Name", campaign_start: "Campaign start", campaign_end: "Campaign end", exam_date: "Exam date", budget: "Budget",
-  application_target: "Application target", label: "Column name", type: "Column type", options: "Options", channel_link: "Channel link",
+  application_target: "Application target", last_date_to_apply: "Last date to apply", planned_l2p: "Planned L2P (0–100)",
+  planned_cpp: "Planned CPP", metadata: "Custom fields", label: "Column name", type: "Column type", options: "Options", channel_link: "Channel link",
   from: "From date", to: "To date", campaign_ids: "Campaign", ids: "Selection", rows: "File",
 };
 
