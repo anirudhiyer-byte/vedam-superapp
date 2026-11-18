@@ -6,6 +6,7 @@ import { VsatExamCenter, type WheeboxStatus } from "@/components/admin/vsat-exam
 import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
 import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
+import { MarketingPanel, type MarketingPage } from "@/components/admin/marketing/marketing-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
 import { VsatSettings } from "@/components/admin/vsat-settings";
@@ -41,6 +42,7 @@ const ICON: Record<string, string> = {
   season: '<path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>',
   cohort: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
   call: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7l.7 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5l2.7.7A2 2 0 0 1 22 16.9z"/>',
+  ads: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>',
   infl: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 5a3 3 0 0 1 0 6"/>',
   tele: '<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
   cons: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
@@ -77,7 +79,7 @@ const VSAT: Group[] = [
 ];
 
 // Growth modules (served from /public/growth/<file>). Mirrors the Growth shell:
-// only pred/sprint/event are navigable; the rest render as "soon".
+// only calling/ads/infl/pred/sprint/event are navigable; the rest render as "soon".
 const GROWTH: Group[] = [
   { g: "Overview", items: [
     { id: "season", label: "Season Dashboard", icon: ICON.season },
@@ -90,7 +92,12 @@ const GROWTH: Group[] = [
       { label: "UTM Listing", page: "utm" }, { label: "Callers", page: "callers" },
       { label: "Elevate", page: "elevate" },
     ] },
-    { id: "infl", label: "Influencers", icon: ICON.infl },
+    { id: "ads", label: "Ads", icon: ICON.ads, live: true, sub: [
+      { label: "Ads Listing", page: "listing" }, { label: "Ad Performance", page: "perf" },
+    ] },
+    { id: "infl", label: "Influencers", icon: ICON.infl, live: true, sub: [
+      { label: "Influencer Listing", page: "listing" }, { label: "Influencer Performance", page: "perf" },
+    ] },
     { id: "tele", label: "Telegram Channel", icon: ICON.tele },
     { id: "cons", label: "Consultants Channel", icon: ICON.cons },
     { id: "pred", label: "College Predictor", icon: ICON.pred, live: true, file: "predictor.html", sub: [
@@ -150,6 +157,10 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
   function Content() {
     if (panel === "growth") {
       if (active.id === "calling") return <div className="vp-scroll"><CallingPanel page={(active.page ?? "data") as CallingPage} /></div>;
+      if (active.id === "ads" || active.id === "infl") {
+        const ch = active.id === "ads" ? "ads" : "influencers";
+        return <div className="vp-scroll"><MarketingPanel key={`${ch}-${active.page}`} channel={ch} page={(active.page ?? "listing") as MarketingPage} /></div>;
+      }
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
     }
