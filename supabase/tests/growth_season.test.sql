@@ -1,4 +1,4 @@
--- Growth → Season Dashboard · tests for migration 0108 (STAGING ONLY)
+-- Growth → Season Dashboard · tests for migrations 0108–0110 (STAGING ONLY; 0110 = the CRM's list columns)
 --
 -- How to run: apply 0108 on staging first, then paste this whole file into the staging SQL editor
 -- or run it through the Supabase MCP. The last statement returns one row per test: test | pass | detail.
@@ -63,13 +63,15 @@ begin
     l5 := pg_temp.mk_user('zztest-season-l5@example.invalid'); l6 := pg_temp.mk_user('zztest-season-l6@example.invalid');
     delete from public.lead_manager where lead_id in (l1, l2, l3, l4, l5, l6);   -- in case a signup trigger already made empty rows
     -- IST dates: l1 Jan 5 · l2 Jan 10 · l3 Jan 20 · l6 Jan 1 00:00 IST (UTC date is Dec 31) · l4 Feb 15 · l5 Feb 1 00:30 IST (UTC date is Jan 31)
-    insert into public.lead_manager (lead_id, registered_name, registered_email, city, state, passing_year, utm_source, created_at) values
-      (l1, 'ZZTEST Asha',   'zz1@example.invalid', 'Pune',  'MH', 2026, 'zzmeta',   '2090-01-05 12:00:00+05:30'),
-      (l2, 'ZZTEST Ravi',   'zz2@example.invalid', 'Delhi', 'DL', 2025, 'zzgoogle', '2090-01-10 12:00:00+05:30'),
-      (l3, 'ZZTEST Meena',  'zz3@example.invalid', 'Pune',  'MH', 2027, 'zzmeta',   '2090-01-20 12:00:00+05:30'),
-      (l6, 'ZZTEST Zoya',   'zz6@example.invalid', 'Agra',  'UP', null, 'zzgoogle', '2090-01-01 00:00:00+05:30'),
-      (l4, 'ZZTEST Outside','zz4@example.invalid', 'Pune',  'MH', 2026, 'zzmeta',   '2090-02-15 12:00:00+05:30'),
-      (l5, 'ZZTEST Late',   'zz5@example.invalid', 'Pune',  'MH', 2026, 'zzmeta',   '2090-02-01 00:30:00+05:30');
+    insert into public.lead_manager (lead_id, registered_name, registered_email, city, state, campus_preference, passing_year, utm_source, created_at) values
+      (l1, 'ZZTEST Asha',   'zz1@example.invalid', 'Pune',  'MH', 'Pune',  2026, 'zzmeta',   '2090-01-05 12:00:00+05:30'),
+      (l2, 'ZZTEST Ravi',   'zz2@example.invalid', 'Delhi', 'DL', 'Delhi', 2025, 'zzgoogle', '2090-01-10 12:00:00+05:30'),
+      (l3, 'ZZTEST Meena',  'zz3@example.invalid', 'Pune',  'MH', 'Pune',  2027, 'zzmeta',   '2090-01-20 12:00:00+05:30'),
+      (l6, 'ZZTEST Zoya',   'zz6@example.invalid', 'Agra',  'UP', 'Agra',  null, 'zzgoogle', '2090-01-01 00:00:00+05:30'),
+      (l4, 'ZZTEST Outside','zz4@example.invalid', 'Pune',  'MH', 'Pune',  null, 'zzmeta',   '2090-02-15 12:00:00+05:30'),
+      (l5, 'ZZTEST Late',   'zz5@example.invalid', 'Pune',  'MH', 'Pune',  2026, 'zzmeta',   '2090-02-01 00:30:00+05:30');
+    -- like real rows (both default to now() on sign-up): the sign-up time shown in the list equals created_at
+    update public.lead_manager set user_registration_date = created_at where lead_id in (l1, l2, l3, l4, l5, l6);
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at) values
       ('ZZTEST E1', 'ZZTEST-1', '2090-03-01', '2090-03-01 10:00:00+05:30', '2090-03-01 12:00:00+05:30') returning id into e1;
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at) values
@@ -168,11 +170,11 @@ begin
     r2 := pg_temp.call_as(adm, pg_temp.rpc('growth_season_counts', jan));
     t_name := t_name || text 'E leads: list total = card, 4 rows'; t_det := t_det || left(r::text, 120);
     t_pass := t_pass || ((r->>'total')::int = (r2->>'leads')::int and jsonb_array_length(r->'rows') = 4);
-    t_name := t_name || text 'E leads rows carry exactly the 20 agreed columns';
+    t_name := t_name || text 'E leads rows carry exactly the 22 CRM columns';
     t_det := t_det || (select string_agg(k, ',') from jsonb_object_keys(r->'rows'->0) k);
     t_pass := t_pass || ((select array_agg(k order by k) from jsonb_object_keys(r->'rows'->0) k) = (select array_agg(c order by c) from unnest(public.growth__season_cols('leads')) c));
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"paid"}'));
-    t_name := t_name || text 'E paid: list total = card (3); rows carry exactly the 33 application columns'; t_det := t_det || left(r::text, 120);
+    t_name := t_name || text 'E paid: list total = card (3); rows carry exactly the 41 CRM columns'; t_det := t_det || left(r::text, 120);
     t_pass := t_pass || ((r->>'total')::int = (r2->>'paid')::int and jsonb_array_length(r->'rows') = 3
                          and (select array_agg(k order by k) from jsonb_object_keys(r->'rows'->0) k) = (select array_agg(c order by c) from unnest(public.growth__season_cols('paid')) c));
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"enrolled"}'));
@@ -184,14 +186,14 @@ begin
     t_pass := t_pass || ((r->>'total')::int = (r2->>'paid')::int and (r->>'total')::int = 2);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"paid"}'));
     t_name := t_name || text 'E a paid row has the payment, the exam date and the enrolment (IST times)';
-    t_det := t_det || (select x::text from jsonb_array_elements(r->'rows') x where x->>'email' = 'zz1@example.invalid');
+    t_det := t_det || (select x::text from jsonb_array_elements(r->'rows') x where x->>'registered_email' = 'zz1@example.invalid');
     t_pass := t_pass || (exists (select 1 from jsonb_array_elements(r->'rows') x
-                          where x->>'email' = 'zz1@example.invalid' and x->>'paid_at' like '2090-01-12 12:00' and x->>'exam_date' = '2090-03-01'
-                            and x->>'enrollment_stage' = 'approved' and x->>'enrolled_at' like '2090-01-28 12:00' and (x->>'paid_amount')::numeric = 500
+                          where x->>'registered_email' = 'zz1@example.invalid' and x->>'payment_approved_date' = '2090-01-12T12:00:00' and x->>'exam_date' = '2090-03-01'
+                            and x->>'exam_slot' = '10:00–12:00' and x->>'seat_booking_amount_date' = '2090-01-28T12:00:00' and (x->>'payment_amount')::numeric = 500
                             and x->>'application_no' = 'ZZAPP1'));
     t_name := t_name || text 'E a paid lead with no application still shows (name and email from the lead)';
-    t_det := t_det || (select x::text from jsonb_array_elements(r->'rows') x where x->>'email' = 'zz4@example.invalid');
-    t_pass := t_pass || (exists (select 1 from jsonb_array_elements(r->'rows') x where x->>'email' = 'zz4@example.invalid' and x->>'name' = 'ZZTEST Outside' and x->>'application_no' is null));
+    t_det := t_det || (select x::text from jsonb_array_elements(r->'rows') x where x->>'registered_email' = 'zz4@example.invalid');
+    t_pass := t_pass || (exists (select 1 from jsonb_array_elements(r->'rows') x where x->>'registered_email' = 'zz4@example.invalid' and x->>'registered_name' = 'ZZTEST Outside' and x->>'application_no' is null));
 
     -- ════ F. search: comma = many, ! = exclude, text is only ever a value ════
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","search":"pune"}'));
@@ -215,54 +217,54 @@ begin
     t_name := t_name || text 'F a search over 600 characters is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: search');
 
     -- ════ G. column filters ════
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"city":"pune"}}'));
-    t_name := t_name || text 'G filter city "pune" → 2'; t_det := t_det || (r->>'total'); t_pass := t_pass || ((r->>'total')::int = 2);
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"city":"pune","name":"asha"}}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"campus_preference":"pune"}}'));
+    t_name := t_name || text 'G filter campus_preference "pune" → 2'; t_det := t_det || (r->>'total'); t_pass := t_pass || ((r->>'total')::int = 2);
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"campus_preference":"pune","registered_name":"asha"}}'));
     t_name := t_name || text 'G two filters must both match → 1'; t_det := t_det || (r->>'total'); t_pass := t_pass || ((r->>'total')::int = 1);
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","search":"zztest","filters":{"utm_source":"zzmeta"}}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","search":"zztest","filters":{"campaign_source":"zzmeta"}}'));
     t_name := t_name || text 'G search and filter work together → 2'; t_det := t_det || (r->>'total'); t_pass := t_pass || ((r->>'total')::int = 2);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"password":"x"}}'));
     t_name := t_name || text 'G a column that is not in the list is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"paid_at":"x"}}'));
-    t_name := t_name || text 'G a column of another kind is refused (paid_at is not a leads column)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"city":5}}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"payment_amount":"x"}}'));
+    t_name := t_name || text 'G a column of another kind is refused (payment_amount is not a leads column)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":{"campus_preference":5}}'));
     t_name := t_name || text 'G a filter value that is not text is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || jsonb_build_object('kind', 'leads', 'filters', jsonb_build_object('city', repeat('a', 101)))));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || jsonb_build_object('kind', 'leads', 'filters', jsonb_build_object('campus_preference', repeat('a', 101)))));
     t_name := t_name || text 'G a filter value over 100 characters is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","filters":[1]}'));
     t_name := t_name || text 'G filters that are not an object are refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
 
     -- ════ H. sort ════
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"name","dir":"asc"}}'));
-    t_name := t_name || text 'H name ascending starts with Asha'; t_det := t_det || (r->'rows'->0->>'name'); t_pass := t_pass || (r->'rows'->0->>'name' = 'ZZTEST Asha');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"name","dir":"desc"}}'));
-    t_name := t_name || text 'H name descending starts with Zoya'; t_det := t_det || (r->'rows'->0->>'name'); t_pass := t_pass || (r->'rows'->0->>'name' = 'ZZTEST Zoya');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"passing_year","dir":"desc"}}'));
-    t_name := t_name || text 'H numbers sort as numbers (2027 first) and an empty value goes last';
-    t_det := t_det || (coalesce(r->'rows'->0->>'passing_year', 'null') || ' / ' || coalesce(r->'rows'->3->>'passing_year', 'null'));
-    t_pass := t_pass || ((r->'rows'->0->>'passing_year') = '2027' and (r->'rows'->3->>'passing_year') is null);
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"passing_year","dir":"asc"}}'));
-    t_name := t_name || text 'H ascending: 2025 first, the empty value still last'; t_det := t_det || (r->'rows'->0->>'passing_year');
-    t_pass := t_pass || ((r->'rows'->0->>'passing_year') = '2025' and (r->'rows'->3->>'passing_year') is null);
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"registered_name","dir":"asc"}}'));
+    t_name := t_name || text 'H name ascending starts with Asha'; t_det := t_det || (r->'rows'->0->>'registered_name'); t_pass := t_pass || (r->'rows'->0->>'registered_name' = 'ZZTEST Asha');
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"registered_name","dir":"desc"}}'));
+    t_name := t_name || text 'H name descending starts with Zoya'; t_det := t_det || (r->'rows'->0->>'registered_name'); t_pass := t_pass || (r->'rows'->0->>'registered_name' = 'ZZTEST Zoya');
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"paid","sort":{"col":"year_of_passing_class_12th","dir":"desc"}}'));
+    t_name := t_name || text 'H numbers sort as numbers (2026 first) and an empty value goes last (paid list, year_of_passing_class_12th)';
+    t_det := t_det || (coalesce(r->'rows'->0->>'year_of_passing_class_12th', 'null') || ' / ' || coalesce(r->'rows'->2->>'year_of_passing_class_12th', 'null'));
+    t_pass := t_pass || ((r->'rows'->0->>'year_of_passing_class_12th') = '2026' and jsonb_typeof(r->'rows'->0->'year_of_passing_class_12th') = 'number' and (r->'rows'->2->>'year_of_passing_class_12th') is null);
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"paid","sort":{"col":"year_of_passing_class_12th","dir":"asc"}}'));
+    t_name := t_name || text 'H ascending: 2025 first, the empty value still last'; t_det := t_det || (r->'rows'->0->>'year_of_passing_class_12th');
+    t_pass := t_pass || ((r->'rows'->0->>'year_of_passing_class_12th') = '2025' and (r->'rows'->2->>'year_of_passing_class_12th') is null);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads"}'));
-    t_name := t_name || text 'H default order is newest lead first (Jan 20 before Jan 1)'; t_det := t_det || (r->'rows'->0->>'created');
-    t_pass := t_pass || ((r->'rows'->0->>'created') like '2090-01-20%' and (r->'rows'->3->>'created') like '2090-01-01%');
+    t_name := t_name || text 'H default order is newest lead first by user_registration_date (Jan 20 before Jan 1)'; t_det := t_det || (r->'rows'->0->>'user_registration_date');
+    t_pass := t_pass || ((r->'rows'->0->>'user_registration_date') = '2090-01-20T12:00:00' and (r->'rows'->3->>'user_registration_date') = '2090-01-01T00:00:00');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"password","dir":"asc"}}'));
     t_name := t_name || text 'H a sort column that is not in the list is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: sort');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"name","dir":"sideways"}}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"registered_name","dir":"sideways"}}'));
     t_name := t_name || text 'H a sort direction that is not asc/desc is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: sort');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"name","dir":"asc","x":1}}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":{"col":"registered_name","dir":"asc","x":1}}'));
     t_name := t_name || text 'H an extra key inside sort is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: sort');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":"name"}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","sort":"registered_name"}'));
     t_name := t_name || text 'H sort that is not an object is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: sort');
 
     -- ════ I. paging and export ════
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","page":1,"page_size":2,"sort":{"col":"name","dir":"asc"}}'));
-    r2 := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","page":2,"page_size":2,"sort":{"col":"name","dir":"asc"}}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","page":1,"page_size":2,"sort":{"col":"registered_name","dir":"asc"}}'));
+    r2 := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","page":2,"page_size":2,"sort":{"col":"registered_name","dir":"asc"}}'));
     t_name := t_name || text 'I page 1 and page 2 (2 per page) are different rows, total stays 4';
     t_det := t_det || (coalesce(r->>'total', r::text) || '/' || coalesce(r2->>'total', r2::text));
     t_pass := t_pass || ((r->>'total')::int = 4 and (r2->>'total')::int = 4 and jsonb_array_length(r->'rows') = 2 and jsonb_array_length(r2->'rows') = 2
-                         and (select count(distinct x->>'email') from (select jsonb_array_elements(r->'rows') x union all select jsonb_array_elements(r2->'rows')) q) = 4);
+                         and (select count(distinct x->>'registered_email') from (select jsonb_array_elements(r->'rows') x union all select jsonb_array_elements(r2->'rows')) q) = 4);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","page":3,"page_size":2}'));
     t_name := t_name || text 'I a page past the end is empty but the total is still 4'; t_det := t_det || (r->>'total'); t_pass := t_pass || ((r->>'total')::int = 4 and jsonb_array_length(r->'rows') = 0);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"leads","page_size":101}'));

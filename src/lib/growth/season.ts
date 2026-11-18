@@ -89,28 +89,26 @@ export function toCsv(cols: Col[], rows: Record<string, unknown>[]): string {
 
 // ───────────────────────────── columns (same keys the database returns) ─────────────────────────────
 
-const LEAD_COLUMNS: Col[] = [
-  { key: "public_id", label: "Lead ID" }, { key: "name", label: "Name" }, { key: "email", label: "Email" }, { key: "phone", label: "Phone" },
-  { key: "city", label: "City" }, { key: "state", label: "State" }, { key: "campus", label: "Campus preference" },
-  { key: "education", label: "Education level" }, { key: "stream", label: "Class 12 stream" }, { key: "passing_year", label: "Passing year" },
-  { key: "school", label: "School" }, { key: "source", label: "Lead source" }, { key: "utm_source", label: "UTM source" },
-  { key: "utm_medium", label: "UTM medium" }, { key: "utm_campaign", label: "UTM campaign" }, { key: "channel", label: "Channel" },
-  { key: "stage", label: "Lead stage" }, { key: "status", label: "Lead status" }, { key: "owner", label: "Lead owner" }, { key: "created", label: "Created (IST)" },
-];
-
-const APP_COLUMNS: Col[] = [
-  { key: "public_id", label: "Lead ID" }, { key: "application_no", label: "Application no." }, { key: "name", label: "Name" },
-  { key: "email", label: "Email" }, { key: "phone", label: "Phone" }, { key: "gender", label: "Gender" }, { key: "city", label: "City" },
-  { key: "state", label: "State" }, { key: "campus", label: "Campus applied" }, { key: "program", label: "Program" },
-  { key: "education", label: "Education level" }, { key: "stream", label: "Class 12 stream" }, { key: "class12_pct", label: "Class 12 %" },
-  { key: "jee_percentile", label: "JEE percentile" }, { key: "form_status", label: "Form status" }, { key: "vsat_registered", label: "VSAT registered" },
-  { key: "exam_date", label: "Exam date" }, { key: "exam_given", label: "Exam given" }, { key: "exam_percentile", label: "Exam percentile" },
-  { key: "vps_score", label: "VPS score" }, { key: "scholarship_pct", label: "Scholarship %" }, { key: "offer_status", label: "Offer status" },
-  { key: "paid_at", label: "Paid on (IST)" }, { key: "paid_amount", label: "Paid amount" }, { key: "payment_ref", label: "Payment ref" },
-  { key: "enrollment_stage", label: "Enrolment stage" }, { key: "enrolled_at", label: "Enrolled on (IST)" }, { key: "enrollment_amount", label: "Enrolment amount" },
-  { key: "utm_source", label: "UTM source" }, { key: "utm_medium", label: "UTM medium" }, { key: "utm_campaign", label: "UTM campaign" },
-  { key: "owner", label: "Application owner" }, { key: "created", label: "Lead created (IST)" },
-];
+// The CRM Season Dashboard shows the raw column names of its tables, in this order. Header = key (shown in capitals),
+// and the CSV uses the same names. Since migration 0110.
+const LEAD_KEYS = [
+  "lead_id", "user_id", "lead_stage", "updated_at", "campaign_name", "publisher_name", "campaign_medium", "campaign_source",
+  "registered_name", "registered_email", "campus_preference", "conversion_status", "registered_mobile", "latest_traffic_channel",
+  "lead_verification_date", "user_registration_date", "primary_traffic_channel", "latest_registration_date",
+  "email_verification_status", "mobile_verification_status", "latest_registration_campaign", "primary_registration_campaign",
+] as const;
+const APP_KEYS = [
+  "application_no", "lead_id", "registered_name", "registered_email", "registered_mobile", "registration_channel",
+  "user_registration_date", "email_verification_status", "lead_status", "lead_stage", "enrolment_status", "conversion_status",
+  "application_submitted", "form_status", "application_stage", "form_stage", "current_stage", "campus_preference",
+  "year_of_passing_class_12th", "class_12th_stream", "class_12th_year_of_passing_form", "where_did_you_get_to_know_about_vedam",
+  "exam_date", "exam_slot", "correspondence_country", "correspondence_state", "correspondence_city", "traffic_channel",
+  "publisher_name", "campaign_source", "campaign_medium", "campaign_name", "latest_registration_campaign",
+  "latest_registration_date", "sem_created_on", "payment_amount", "payment_status", "payment_approved_date",
+  "seat_booking_amount", "seat_booking_amount_date", "updated_at",
+] as const;
+const LEAD_COLUMNS: Col[] = LEAD_KEYS.map((key) => ({ key, label: key }));
+const APP_COLUMNS: Col[] = APP_KEYS.map((key) => ({ key, label: key }));
 
 export const columnsFor = (k: DrillKind): Col[] => (k === "leads" ? LEAD_COLUMNS : APP_COLUMNS);
 
