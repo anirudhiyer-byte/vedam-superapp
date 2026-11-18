@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
-  adCards, bestV2l, csvToRows, errorText, fillWeeks, fmtCompact, groupTotals, highestL2p, importErrors, inRange, inflCards,
-  lowestCpp, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
+  adCards, bestV2l, countTicks, csvToRows, errorText, fillWeeks, fmtCompact, groupTotals, highestL2p, importErrors, inRange, inflCards,
+  labelIndexes, lowestCpp, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
   type AdRow, type CustomColumn, type PerfRow, type PostRow,
 } from "./marketing";
 
@@ -94,6 +94,32 @@ describe("weeks", () => {
     // 1 May 2026 is a Friday and 12 May a Tuesday: the weeks of 27 Apr, 4 May and 11 May
     expect(fillWeeks([], "2026-05-01", "2026-05-12").map((x) => x.week)).toEqual(["2026-04-27", "2026-05-04", "2026-05-11"]);
     expect(fillWeeks([])).toEqual([]);
+  });
+
+  it("y ticks are whole numbers with no repeats", () => {
+    expect(countTicks(0)).toEqual({ top: 1, ticks: [0, 1] });
+    expect(countTicks(1)).toEqual({ top: 1, ticks: [0, 1] });
+    expect(countTicks(3)).toEqual({ top: 4, ticks: [0, 2, 4] });
+    expect(countTicks(7)).toEqual({ top: 10, ticks: [0, 5, 10] });
+    expect(countTicks(16)).toEqual({ top: 20, ticks: [0, 10, 20] });
+    expect(countTicks(950)).toEqual({ top: 1000, ticks: [0, 500, 1000] });
+    for (const m of [0, 1, 2, 3, 4, 5, 9, 11, 37, 101, 2500]) {
+      const { top, ticks } = countTicks(m);
+      expect(top).toBeGreaterThanOrEqual(m);
+      expect(new Set(ticks).size).toBe(ticks.length);
+      expect(ticks.every((v) => Number.isInteger(v))).toBe(true);
+    }
+  });
+
+  it("x labels never closer than the gap; first and last always shown", () => {
+    const xs = Array.from({ length: 30 }, (_, i) => 40 + i * 12);   // 30 weeks, 12px apart
+    const idx = labelIndexes(xs, 60);
+    expect(idx[0]).toBe(0);
+    expect(idx[idx.length - 1]).toBe(29);
+    for (let i = 1; i < idx.length; i++) expect(xs[idx[i]] - xs[idx[i - 1]]).toBeGreaterThanOrEqual(60);
+    expect(labelIndexes([100], 60)).toEqual([0]);
+    expect(labelIndexes([40, 380], 60)).toEqual([0, 1]);
+    expect(labelIndexes([40, 70], 60)).toEqual([0, 1]);                 // two points: both labelled (start / end anchored)
   });
 });
 

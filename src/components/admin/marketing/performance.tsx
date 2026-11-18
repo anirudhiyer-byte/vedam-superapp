@@ -484,6 +484,14 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
   const span = (w: Week[]) => w.map((x) => x.week).sort();
   const allWeeks = [...span(A.weeks), ...span(B.weeks)].sort();
   const from = allWeeks[0], to = allWeeks[allWeeks.length - 1];
+  // a side with no posts (or no activity) says so in words instead of showing only a flat line
+  const kind = f.live === "live" ? "live " : f.live === "planned" ? "planned " : "";
+  const where = (c: string) => (c ? `in ${meta.campaigns.find((x) => x.id === c)?.name ?? "this campaign"}` : "in these dates");
+  const empty = (tag: "A" | "B", side: typeof A, i: string, c: string) =>
+    side.rows.length === 0 ? `${tag} · ${meta.influencers.find((x) => x.id === i)?.name ?? "—"} has no ${kind}posts ${where(c)}.`
+    : side.weeks.length === 0 ? `${tag} · ${meta.influencers.find((x) => x.id === i)?.name ?? "—"} has no leads, payments or enrollments yet ${where(c)}.`
+    : null;
+  const notes = ready && !A.loading && !B.loading ? [empty("A", A, ai, ac), empty("B", B, bi, bc)].filter((x): x is string => !!x) : [];
   return (
     <>
       <p className="mk-note">Pick an influencer on each side. Pick the same influencer with two different campaigns to see how they did in two VSATs.</p>
@@ -491,6 +499,7 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
       <Err msg={A.err || B.err} />
       {!ready ? <p className="mk-mid">Pick both sides to compare.</p> : (A.loading || B.loading) ? <p className="mk-mid">Loading…</p> : (
         <>
+          {notes.length > 0 && <div className="mk-notice">{notes.map((n) => <p key={n}>{n}</p>)}</div>}
           <div className="mk-box">
             <table className="mk-table mk-cmp">
               <thead><tr><th /><th className="r">A · {name(ai, ac)}</th><th className="r">B · {name(bi, bc)}</th></tr></thead>

@@ -228,6 +228,37 @@ export function fillWeeks(weeks: Week[], from?: string | null, to?: string | nul
   return out;
 }
 
+/**
+ * Y-axis ticks for a count chart: whole numbers only, no repeats (a max of 1 gives 0 and 1, never 0 / 1 / 1).
+ * The top is rounded up to a 1-2-5 step so the labels stay clean.
+ */
+export function countTicks(max: number): { top: number; ticks: number[] } {
+  const m = Math.max(1, Math.ceil(Number.isFinite(max) ? max : 1));
+  const raw = m / 2;
+  const pow = 10 ** Math.floor(Math.log10(raw));
+  const step = Math.max(1, [1, 2, 5, 10].map((k) => k * pow).find((v) => v >= raw) ?? 10 * pow);
+  const top = step * Math.ceil(m / step);
+  const ticks: number[] = [];
+  for (let v = 0; v <= top; v += step) ticks.push(v);
+  return { top, ticks };
+}
+
+/**
+ * Which x labels to draw so they never overlap: positions are pixel x of each point, `gap` the minimum
+ * distance between two labels. The first and the last point always get a label.
+ */
+export function labelIndexes(xs: number[], gap: number): number[] {
+  if (xs.length <= 1) return xs.map((_, i) => i);
+  const last = xs.length - 1;
+  const out = [0];
+  for (let i = 1; i < last; i++) {
+    if (xs[i] - xs[out[out.length - 1]] >= gap && xs[last] - xs[i] >= gap) out.push(i);
+  }
+  if (xs[last] - xs[out[out.length - 1]] >= gap || out.length === 1) out.push(last);
+  else out[out.length - 1] = last;
+  return [...new Set(out)];
+}
+
 // ───────────────────────────── CSV import ─────────────────────────────
 
 const STD_HEADERS: Record<Channel, Record<string, string>> = {
