@@ -10,6 +10,8 @@ export type Col = { key: string; label: string };
 
 /** Largest page the database serves (it also refuses anything above 100). */
 export const DRILL_PAGE_SIZE = 50;
+/** The Total Leads list pages 100 at a time (same as the CRM); the database allows up to 100. */
+export const DRILL_PAGE_SIZE_LEADS = 100;
 export const EXPORT_MAX_ROWS = 5000;
 
 const ISO = /^(\d{4})-(\d{2})-(\d{2})$/;
@@ -124,6 +126,8 @@ export function buildCountsPayload(a: CountsArgs): Record<string, unknown> {
 export type DrillArgs = {
   kind: DrillKind; from: string; to: string; campaignId: string; search: string; filters: Record<string, string>;
   sort: SortState; page: number; pageSize: number; exportAll?: boolean;
+  /** Largest page size this call may ask for. Default DRILL_PAGE_SIZE; the Leads list passes DRILL_PAGE_SIZE_LEADS. */
+  maxPageSize?: number;
 };
 
 export function buildDrillPayload(a: DrillArgs): Record<string, unknown> {
@@ -140,7 +144,8 @@ export function buildDrillPayload(a: DrillArgs): Record<string, unknown> {
   const page = Math.floor(a.page);
   p.page = Number.isFinite(page) && page >= 1 ? page : 1;
   const size = Math.floor(a.pageSize);
-  p.page_size = Number.isFinite(size) ? Math.min(Math.max(1, size), DRILL_PAGE_SIZE) : DRILL_PAGE_SIZE;
+  const cap = Math.min(Math.max(1, Math.floor(a.maxPageSize ?? DRILL_PAGE_SIZE)), 100);
+  p.page_size = Number.isFinite(size) ? Math.min(Math.max(1, size), cap) : Math.min(DRILL_PAGE_SIZE, cap);
   if (a.exportAll) p.export = true;
   return p;
 }

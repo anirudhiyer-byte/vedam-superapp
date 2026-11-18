@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   academicYearStart, validateRange, parseSearch, nextSort, pageCount, clampPage, toCsv, seasonError,
-  buildCountsPayload, buildDrillPayload, columnsFor, DRILL_PAGE_SIZE, EXPORT_MAX_ROWS, type DrillKind,
+  buildCountsPayload, buildDrillPayload, columnsFor, DRILL_PAGE_SIZE, DRILL_PAGE_SIZE_LEADS, EXPORT_MAX_ROWS, type DrillKind,
 } from "./season";
 
 describe("academicYearStart", () => {
@@ -122,6 +122,13 @@ describe("payload builders", () => {
   it("drill: campaign replaces the dates; export flag is explicit", () => {
     const p = buildDrillPayload({ kind: "paid", from: "x", to: "y", campaignId: "c-1", search: "", filters: {}, sort: null, page: 2, pageSize: 25, exportAll: true });
     expect(p).toEqual({ kind: "paid", campaign_id: "c-1", page: 2, page_size: 25, export: true });
+  });
+  it("drill: the Leads list may ask for 100 per page (CRM size), never more than the database allows", () => {
+    const base = { kind: "leads" as const, from: "2026-01-01", to: "2026-02-01", campaignId: "", search: "", filters: {}, sort: null, page: 1 };
+    expect(buildDrillPayload({ ...base, pageSize: 100, maxPageSize: DRILL_PAGE_SIZE_LEADS }).page_size).toBe(100);
+    expect(buildDrillPayload({ ...base, pageSize: 9999, maxPageSize: DRILL_PAGE_SIZE_LEADS }).page_size).toBe(100);
+    expect(buildDrillPayload({ ...base, pageSize: 9999, maxPageSize: 100000 }).page_size).toBe(100);
+    expect(buildDrillPayload({ ...base, pageSize: 100 }).page_size).toBe(DRILL_PAGE_SIZE);
   });
   it("EXPORT_MAX_ROWS is a sane cap", () => {
     expect(EXPORT_MAX_ROWS).toBeGreaterThanOrEqual(1000);
