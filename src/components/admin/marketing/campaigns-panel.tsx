@@ -72,33 +72,33 @@ export function CampaignsPanel() {
     <div className="mk-wrap">
       <style>{CSS}</style>
       <style>{CP_CSS}</style>
-      <div className="cp-page">
-        <div className="cp-head cp-fade">
+      <div className="cmp-page">
+        <div className="cmp-head cmp-fade">
           <h1>Campaigns</h1>
           <p>Manage VSAT rounds and custom campaign windows</p>
         </div>
 
-        {err && <div className="mk-err cp-error" role="alert">Error loading campaigns: {err}</div>}
+        {err && <div className="mk-err cmp-error" role="alert">Error loading campaigns: {err}</div>}
 
-        <div className="cp-fade" style={{ animationDelay: "80ms" }}>
-          <div className="cp-addrow">
-            <button className="mk-pri cp-add" onClick={() => setAdding(true)}><Icon name="plus" /> Add Campaign</button>
+        <div className="cmp-fade" style={{ animationDelay: "80ms" }}>
+          <div className="cmp-addrow">
+            <button className="mk-pri cmp-add" onClick={() => setAdding(true)}><Icon name="plus" /> Add Campaign</button>
           </div>
 
           {rows === null ? (
             !err && <p className="mk-mid">Loading…</p>
           ) : rows.length === 0 ? (
-            <div className="cp-empty">
-              <div className="cp-empty-t">No campaigns yet</div>
-              <div className="cp-empty-s">Click <span>Add Campaign</span> to create your first one.</div>
+            <div className="cmp-empty">
+              <div className="cmp-empty-t">No campaigns yet</div>
+              <div className="cmp-empty-s">Click <span>Add Campaign</span> to create your first one.</div>
             </div>
           ) : (
-            <div className="cp-list">
+            <div className="cmp-list">
               {rows.map((c) => (
-                <div key={c.id} className="cp-card">
-                  <div className="cp-main">
-                    <div className="cp-name">{c.name}</div>
-                    <div className="cp-meta">
+                <div key={c.id} className="cmp-card">
+                  <div className="cmp-main">
+                    <div className="cmp-name">{c.name}</div>
+                    <div className="cmp-meta">
                       <div><Icon name="calendar" color={ACCENT.calendar} /><span>{c.campaign_start} → {c.campaign_end}</span></div>
                       {c.last_date_to_apply && <div><Icon name="clock" color={ACCENT.clock} /><span>Apply by {c.last_date_to_apply}</span></div>}
                       <div><Icon name="target" color={ACCENT.target} /><span>Target: <b>{fmtNum(c.application_target)}</b></span></div>
@@ -107,15 +107,15 @@ export function CampaignsPanel() {
                       {c.planned_cpp != null && c.planned_cpp > 0 && <div><Icon name="wallet" color={ACCENT.wallet} /><span>Planned CPP: <b>₹{fmtNum(c.planned_cpp)}</b></span></div>}
                     </div>
                     {c.metadata && Object.keys(c.metadata).length > 0 && (
-                      <details className="cp-details">
+                      <details className="cmp-details">
                         <summary>Custom fields</summary>
                         <pre>{JSON.stringify(c.metadata, null, 2)}</pre>
                       </details>
                     )}
                   </div>
-                  <div className="cp-acts">
-                    <button className="cp-ib" onClick={() => setEditing(c)} aria-label={`Edit ${c.name}`} title="Edit"><Icon name="edit" /></button>
-                    <button className="cp-ib cp-del" onClick={() => void remove(c)} aria-label={`Delete ${c.name}`} title="Delete"><Icon name="trash" /></button>
+                  <div className="cmp-acts">
+                    <button className="cmp-ib" onClick={() => setEditing(c)} aria-label={`Edit ${c.name}`} title="Edit"><Icon name="edit" /></button>
+                    <button className="cmp-ib cmp-del" onClick={() => void remove(c)} aria-label={`Delete ${c.name}`} title="Delete"><Icon name="trash" /></button>
                   </div>
                 </div>
               ))}
@@ -126,7 +126,7 @@ export function CampaignsPanel() {
 
       {adding && <CampaignDialog sb={sb} say={say} onClose={() => setAdding(false)} onSaved={() => { setAdding(false); void load(); }} />}
       {editing && <CampaignDialog sb={sb} say={say} campaign={editing} onClose={() => setEditing(null)} onSaved={() => { setEditing(null); void load(); }} />}
-      {toast && <div className={`cp-toast ${toast.kind === "ok" ? "mk-ok" : "mk-err"}`} role="status" onClick={() => setToast(null)}>{toast.text}</div>}
+      {toast && <div className={`cmp-toast ${toast.kind === "ok" ? "mk-ok" : "mk-err"}`} role="status" onClick={() => setToast(null)}>{toast.text}</div>}
     </div>
   );
 }
@@ -157,13 +157,13 @@ function CampaignDialog({ sb, say, campaign, onClose, onSaved }: {
   }
 
   return (
-    <div className="cp-dlg">
+    <div className="cmp-dlg">
       <Modal title={isEdit ? "Edit Campaign" : "Add Campaign"} onClose={onClose}>
-        <form onSubmit={(e) => void submit(e)} className="cp-form">
+        <form onSubmit={(e) => void submit(e)} className="cmp-form">
           <Field label="Name" required>
-            <input className="mk-in" name="name" placeholder="e.g. VSAT-12" defaultValue={campaign?.name ?? ""} required maxLength={60} />
+            <input className="mk-in" name="name" autoFocus placeholder="e.g. VSAT-12" defaultValue={campaign?.name ?? ""} required maxLength={60} />
           </Field>
-          <div className="cp-g2">
+          <div className="cmp-g2">
             <Field label="Start" required>
               <input className="mk-in" type="date" name="campaign_start" defaultValue={campaign?.campaign_start ?? ""} required />
             </Field>
@@ -177,7 +177,7 @@ function CampaignDialog({ sb, say, campaign, onClose, onSaved }: {
           <Field label="Exam date" required>
             <input className="mk-in" type="date" name="exam_date" defaultValue={campaign?.exam_date ?? ""} required />
           </Field>
-          <div className="cp-g2">
+          <div className="cmp-g2">
             <Field label="Target apps">
               <input className="mk-in" type="number" name="application_target" min="0" step="1" defaultValue={campaign?.application_target || 0} />
             </Field>
@@ -185,7 +185,7 @@ function CampaignDialog({ sb, say, campaign, onClose, onSaved }: {
               <input className="mk-in" type="number" name="budget" min="0" step="0.01" defaultValue={campaign?.budget || 0} />
             </Field>
           </div>
-          <div className="cp-g2">
+          <div className="cmp-g2">
             <Field label="Planned L2P (%)">
               <input className="mk-in" type="number" name="planned_l2p" min="0" max="100" step="0.01" placeholder="e.g. 12.5" defaultValue={campaign?.planned_l2p ?? ""} />
             </Field>
@@ -195,14 +195,14 @@ function CampaignDialog({ sb, say, campaign, onClose, onSaved }: {
           </div>
           <Field label="Custom fields / filters (JSON)" hint="Define filters that scope this campaign. Reports for this campaign apply these on top of the date range.">
             <textarea
-              className="mk-in cp-json" name="metadata" rows={5}
+              className="mk-in cmp-json" name="metadata" rows={5}
               defaultValue={campaign?.metadata ? JSON.stringify(campaign.metadata, null, 2) : "{}"}
               placeholder='{"filters": {"campus_preference": "ADYPU Pune"}}'
             />
           </Field>
-          <div className="cp-foot">
-            <button type="button" className="mk-btn cp-sm" onClick={onClose}>Cancel</button>
-            <button type="submit" className="mk-pri cp-sm" disabled={busy}>{isEdit ? "Update" : "Create"}</button>
+          <div className="cmp-foot">
+            <button type="button" className="mk-btn cmp-sm" onClick={onClose}>Cancel</button>
+            <button type="submit" className="mk-pri cmp-sm" disabled={busy}>{isEdit ? "Update" : "Create"}</button>
           </div>
         </form>
       </Modal>
@@ -212,50 +212,52 @@ function CampaignDialog({ sb, say, campaign, onClose, onSaved }: {
 
 // Sizes, spacing, radius and motion follow the CRM page; colours and fonts come from the staging tokens.
 const CP_CSS = `
-@keyframes cpFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.cp-fade{animation:cpFadeUp .6s cubic-bezier(.16,1,.3,1) backwards}
-.cp-page{padding:28px 32px 64px}
-.cp-head{margin-bottom:32px}
-.cp-head h1{font-family:var(--mk-head);font-size:48px;line-height:1;font-weight:700;letter-spacing:-.025em;margin:0 0 8px;background:linear-gradient(135deg,var(--ink),var(--mut));-webkit-background-clip:text;background-clip:text;color:transparent}
-.cp-head p{margin:0;font-size:16px;line-height:24px;color:var(--mut2)}
-.cp-error{margin-bottom:16px;cursor:default}
-.cp-addrow{display:flex;justify-content:flex-end;margin-bottom:24px}
-.cp-add{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:0 12px;font-size:14px;font-weight:500;border-radius:8px;box-shadow:0 10px 24px -8px rgba(52,226,176,.45);transition:transform .2s,box-shadow .2s}
-.cp-add:hover{transform:translateY(-2px)}
-.cp-list{display:grid;gap:16px}
-.cp-list>*{opacity:0;animation:cpFadeUp .7s cubic-bezier(.16,1,.3,1) forwards}
-.cp-list>*:nth-child(2){animation-delay:70ms}.cp-list>*:nth-child(3){animation-delay:140ms}.cp-list>*:nth-child(4){animation-delay:210ms}.cp-list>*:nth-child(5){animation-delay:280ms}.cp-list>*:nth-child(6){animation-delay:350ms}
-.cp-card{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;transition:border-color .3s,background .3s}
-.cp-card:hover{border-color:rgba(130,150,255,.28);background:rgba(130,150,255,.07)}
-.cp-main{flex:1;min-width:0}
-.cp-name{font-family:var(--mk-head);font-weight:700;font-size:24px;line-height:32px;letter-spacing:-.025em;color:var(--ink);margin-bottom:12px;overflow-wrap:anywhere}
-.cp-meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;line-height:20px;color:var(--mk-soft)}
-.cp-meta>div{display:flex;align-items:center;gap:8px}
-.cp-meta b{font-weight:500;color:var(--ink)}
-.cp-details{margin-top:12px;font-size:12px;line-height:16px}
-.cp-details summary{cursor:pointer;color:var(--mut2)}
-.cp-details summary:hover{color:var(--ink)}
-.cp-details pre{margin:8px 0 0;padding:12px;background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:8px;font-family:var(--mk-code);font-size:11px;line-height:1.5;overflow-x:auto;color:var(--mk-soft)}
-.cp-acts{display:flex;gap:8px;flex-shrink:0;opacity:.6;transition:opacity .2s}
-.cp-card:hover .cp-acts,.cp-acts:focus-within{opacity:1}
-.cp-ib{display:grid;place-items:center;height:28px;padding:0 10px;border-radius:8px;border:1px solid rgba(130,150,255,.14);background:rgba(130,150,255,.06);color:var(--ink);cursor:pointer}
-.cp-ib:hover{background:rgba(130,150,255,.12)}
-.cp-del:hover{background:rgba(255,90,120,.2);border-color:rgba(255,90,120,.3)}
-.cp-empty{padding:64px 20px;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:16px}
-.cp-empty-t{font-size:18px;line-height:28px;margin-bottom:4px;color:var(--mk-soft)}
-.cp-empty-s{font-size:14px;line-height:20px;color:var(--mut2)}
-.cp-empty-s span{color:var(--ink);font-weight:500}
-.cp-toast{position:fixed;right:20px;bottom:20px;z-index:80;max-width:min(420px,calc(100vw - 40px));box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.cp-dlg .mk-sheet{width:min(448px,100%)}
-.cp-dlg .mk-sheet h3{font-family:var(--mk-head);font-size:24px;line-height:32px;font-weight:600;letter-spacing:-.025em;margin:0}
-.cp-form{display:flex;flex-direction:column;gap:16px;margin-top:8px}
-.cp-g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cp-dlg .mk-field{gap:6px;min-width:0}
-.cp-dlg .mk-flabel{font-size:12px;line-height:16px;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--mk-soft)}
-.cp-dlg .mk-fhint{font-size:12px;line-height:16px}
-.cp-dlg .mk-in{width:100%;box-sizing:border-box;min-width:0;min-height:32px;padding:4px 10px;font-size:14px;border-radius:8px}
-.cp-dlg .cp-json{padding:8px 12px;border-radius:6px;font-family:var(--mk-code);font-size:14px;resize:vertical}
-.cp-foot{display:flex;justify-content:flex-end;gap:8px;padding-top:8px}
-.cp-sm{min-height:32px;padding:0 12px;font-size:14px;border-radius:8px}
-@media (max-width:600px){.cp-page{padding:18px 16px 40px}.cp-head h1{font-size:34px}.cp-card{padding:18px;flex-direction:column}.cp-acts{opacity:1}.cp-g2{grid-template-columns:1fr}}
+@keyframes cmpFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.cmp-fade{animation:cmpFadeUp .6s cubic-bezier(.16,1,.3,1) backwards}
+.cmp-page{padding:28px 32px 64px}
+.cmp-head{margin-bottom:32px}
+.cmp-head h1{font-family:var(--mk-head);font-size:48px;line-height:1;font-weight:700;letter-spacing:-.025em;margin:0 0 8px;background:linear-gradient(135deg,var(--ink),var(--mut));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cmp-head p{margin:0;font-size:16px;line-height:24px;color:var(--mut2)}
+.cmp-error{margin-bottom:16px;cursor:default}
+.cmp-addrow{display:flex;justify-content:flex-end;margin-bottom:24px}
+.cmp-add{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:0 12px;font-size:14px;font-weight:500;border-radius:10px;box-shadow:0 10px 24px -8px rgba(52,226,176,.45);transition:transform .2s,box-shadow .2s}
+.cmp-add:hover{transform:translateY(-2px)}
+.cmp-list{display:grid;gap:16px}
+.cmp-list>*{opacity:0;animation:cmpFadeUp .7s cubic-bezier(.16,1,.3,1) forwards}
+.cmp-list>*:nth-child(2){animation-delay:70ms}.cmp-list>*:nth-child(3){animation-delay:140ms}.cmp-list>*:nth-child(4){animation-delay:210ms}.cmp-list>*:nth-child(5){animation-delay:280ms}.cmp-list>*:nth-child(6){animation-delay:350ms}
+.cmp-card{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;transition:border-color .3s,background .3s}
+.cmp-card:hover{border-color:rgba(130,150,255,.28);background:rgba(130,150,255,.07)}
+.cmp-main{flex:1;min-width:0}
+.cmp-name{font-family:var(--mk-head);font-weight:700;font-size:24px;line-height:32px;letter-spacing:-.025em;color:var(--ink);margin-bottom:12px;overflow-wrap:anywhere}
+.cmp-meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;line-height:20px;color:var(--mk-soft)}
+.cmp-meta>div{display:flex;align-items:center;gap:8px}
+.cmp-meta b{font-weight:500;color:var(--ink)}
+.cmp-details{margin-top:12px;font-size:12px;line-height:16px}
+.cmp-details summary{cursor:pointer;color:var(--mut2)}
+.cmp-details summary:hover{color:var(--ink)}
+.cmp-details pre{margin:8px 0 0;padding:12px;background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:8px;font-family:var(--mk-code);font-size:11px;line-height:1.5;overflow-x:auto;color:var(--mk-soft)}
+.cmp-acts{display:flex;gap:8px;flex-shrink:0;opacity:.6;transition:opacity .2s}
+.cmp-card:hover .cmp-acts,.cmp-acts:focus-within{opacity:1}
+.cmp-ib{display:grid;place-items:center;width:36px;height:28px;padding:0;box-sizing:border-box;border-radius:8px;border:1px solid rgba(130,150,255,.14);background:rgba(130,150,255,.06);color:var(--ink);cursor:pointer}
+.cmp-ib:hover{background:rgba(130,150,255,.12)}
+.cmp-del:hover{background:rgba(255,90,120,.2);border-color:rgba(255,90,120,.3)}
+.cmp-empty{padding:64px 20px;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.cmp-empty-t{font-size:18px;line-height:28px;margin-bottom:4px;color:var(--mk-soft)}
+.cmp-empty-s{font-size:14px;line-height:20px;color:var(--mut2)}
+.cmp-empty-s span{color:var(--ink);font-weight:500}
+.cmp-toast{position:fixed;right:20px;bottom:20px;z-index:80;max-width:min(420px,calc(100vw - 40px));box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.cmp-dlg .mk-sheet{width:min(384px,100%);padding:16px;border-radius:14px;position:relative}
+.cmp-dlg .mk-sheethead{margin-bottom:16px;gap:0}
+.cmp-dlg .mk-x{position:absolute;top:8px;right:16px;width:28px;height:28px;display:grid;place-items:center;padding:0;font-size:20px}
+.cmp-dlg .mk-sheet h3{font-family:var(--mk-head);font-size:24px;line-height:32px;font-weight:500;letter-spacing:-.025em;margin:0}
+.cmp-form{display:flex;flex-direction:column;gap:16px}
+.cmp-g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cmp-dlg .mk-field{gap:6px;min-width:0}
+.cmp-dlg .mk-flabel{font-size:12px;line-height:16px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--mk-soft)}
+.cmp-dlg .mk-fhint{font-size:12px;line-height:16px}
+.cmp-dlg .mk-in{width:100%;box-sizing:border-box;min-width:0;min-height:32px;padding:4px 10px;font-size:14px;border-radius:10px}
+.cmp-dlg .cmp-json{padding:8px 12px;border-radius:8px;font-family:var(--mk-code);font-size:14px;resize:vertical}
+.cmp-foot{display:flex;justify-content:flex-end;gap:8px;padding-top:8px}
+.cmp-sm{min-height:32px;padding:0 10px;font-size:14px;font-weight:500;border-radius:10px}
+@media (max-width:600px){.cmp-page{padding:18px 16px 40px}.cmp-head h1{font-size:34px}.cmp-card{padding:18px;flex-direction:column}.cmp-acts{opacity:1}.cmp-g2{grid-template-columns:1fr}}
 `;
