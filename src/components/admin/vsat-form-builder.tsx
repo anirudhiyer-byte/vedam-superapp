@@ -22,7 +22,7 @@ type Question = {
 type SubCategory = { key: string; title: string; questions: Question[] };
 type Category = { key: string; title: string; questions: Question[]; subcategories: SubCategory[]; collapsed?: boolean; next?: string };
 type FormDraft = { id?: string; name: string; categories: Category[] };
-type FormRow = { id: string; name: string; status: string; version: number; categories: number; updatedAt: string };
+type FormRow = { id: string; name: string; status: string; version: number; categories: number; updatedAt: string; admin_only?: boolean };
 
 const QTYPES: QType[] = ["text", "textarea", "number", "date", "dob", "dropdown", "checkbox", "radio", "file", "school", "state", "city", "board"];
 const TYPE_LABEL: Record<QType, string> = {
@@ -172,12 +172,16 @@ export function VsatFormBuilder() {
     void loadList();
   }
 
-  async function setStatus(id: string, status: "active" | "draft" | "archived") {
+  async function setStatus(id: string, status: "active" | "draft" | "archived", adminOnly?: boolean) {
     setBusy(true); setMsg("");
-    const { data } = await supabase.rpc("vsat_form_set_status", { p: { id, status } });
+    const p: Record<string, unknown> = { id, status };
+    if (adminOnly !== undefined) p.admin_only = adminOnly;
+    const { data } = await supabase.rpc("vsat_form_set_status", { p });
     setBusy(false);
     if (!data?.ok) return setMsg(data?.code || "Couldn't change status.");
-    setMsg(status === "active" ? "This form is now live for all paid applicants." : `Form set to ${status}.`);
+    setMsg(status !== "active" ? `Form set to ${status}.`
+      : data.admin_only ? "Live for Vedam staff only (vedam.org) — safe to test. Public can't see it."
+                        : "Live for all paid applicants.");
     void loadList();
   }
 
@@ -236,14 +240,29 @@ export function VsatFormBuilder() {
           {forms.map((f) => (
             <div key={f.id} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
               <div>
-                <p className="font-semibold">{f.name} {f.status === "active" && <span className="ml-2 rounded-full bg-[#16a34a]/20 px-2 py-0.5 text-xs text-[#4ade80]">LIVE</span>}{f.status === "archived" && <span className="ml-2 text-xs text-white/30">archived</span>}</p>
-                <p className="text-xs text-white/40">{f.categories} categor{f.categories === 1 ? "y" : "ies"} · v{f.version}</p>
+                <p className="font-semibold">{f.name}
+                  {f.status === "active" && (f.admin_only
+                    ? <span className="ml-2 rounded-full bg-amber-400/15 px-2 py-0.5 text-xs font-semibold text-amber-300">LIVE · STAFF ONLY</span>
+                    : <span className="ml-2 rounded-full bg-[#16a34a]/20 px-2 py-0.5 text-xs text-[#4ade80]">LIVE</span>)}
+                  {f.status === "archived" && <span className="ml-2 text-xs text-white/30">archived</span>}</p>
+                <p className="text-xs text-white/40">{f.categories} categor{f.categories === 1 ? "y" : "ies"} · v{f.version}
+                  {f.status === "active" && f.admin_only && <span className="text-amber-300/70"> · only vedam.org can see & fill it</span>}</p>
               </div>
               <div className="flex items-center gap-2">
                 <button onClick={() => editForm(f.id)} disabled={busy} className={`${btn} border border-white/15 text-white`}>Edit</button>
-                {f.status !== "active"
-                  ? <button onClick={() => setStatus(f.id, "active")} disabled={busy} className={`${btn} bg-[#16a34a] text-white`}>Enable</button>
-                  : <button onClick={() => setStatus(f.id, "draft")} disabled={busy} className={`${btn} border border-white/15 text-white`}>Disable</button>}
+                {f.status !== "active" ? (
+                  <>
+                    <button onClick={() => setStatus(f.id, "active", true)} disabled={busy} className={`${btn} bg-amber-500/90 text-black`} title="Enable for Vedam staff only — test it before going public">Enable (staff only)</button>
+                    <button onClick={() => setStatus(f.id, "active", false)} disabled={busy} className={`${btn} bg-[#16a34a] text-white`}>Enable (public)</button>
+                  </>
+                ) : (
+                  <>
+                    {f.admin_only
+                      ? <button onClick={() => setStatus(f.id, "active", false)} disabled={busy} className={`${btn} bg-[#16a34a] text-white`}>Make public</button>
+                      : <button onClick={() => setStatus(f.id, "active", true)} disabled={busy} className={`${btn} bg-amber-500/90 text-black`}>Switch to staff-only</button>}
+                    <button onClick={() => setStatus(f.id, "draft")} disabled={busy} className={`${btn} border border-white/15 text-white`}>Disable</button>
+                  </>
+                )}
               </div>
             </div>
           ))}
