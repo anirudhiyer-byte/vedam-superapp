@@ -6,7 +6,7 @@ import {
   splitTerms, type AdRow, type Channel, type CustomColumn, type Meta, type PostRow,
 } from "@/lib/growth/marketing";
 import { AD_FIELDS, CampaignsDialog, ColumnsDialog, CsvDialog, INFL_FIELDS, RowDialog } from "./dialogs";
-import { Card, Err, ExtLink, SplitCard, colsOf, rpc, type Client } from "./shared";
+import { Card, Err, ExtLink, SearchSelect, SplitCard, colsOf, rpc, type Client } from "./shared";
 
 /**
  * Ads Channel Listing + Influencer Listing (Growth → Marketing Channels). Admin only.
@@ -402,7 +402,7 @@ export function InfluencerListing({ sb, meta, reloadMeta }: { sb: Client; meta: 
 
       <div className="mk-bar">
         <input className="mk-in mk-search" placeholder="Search influencer, link, UTM, campaign… (comma for multiple)" value={q} onChange={(e) => setQ(e.target.value)} maxLength={500} aria-label="Search" />
-        <select className="mk-sel" value={infl} onChange={(e) => setInfl(e.target.value)} aria-label="Influencer"><option value="">All influencers</option>{meta.influencers.map((i) => <option key={i.id} value={i.id}>{i.name}</option>)}</select>
+        <SearchSelect options={meta.influencers.map((i) => ({ value: i.id, label: i.name }))} value={infl} onChange={setInfl} allLabel="All influencers" ariaLabel="Influencer" />
         <select className="mk-sel" value={plat} onChange={(e) => setPlat(e.target.value)} aria-label="Platform"><option value="">All platforms</option>{INFL_PLATFORMS.map((p) => <option key={p}>{p}</option>)}</select>
         <select className="mk-sel" value={camp} onChange={(e) => setCamp(e.target.value)} aria-label="Campaign"><option value="">All campaigns</option>{meta.campaigns.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select>
         <select className="mk-sel" value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Live status"><option value="">All statuses</option><option>Live</option><option>Planned</option></select>

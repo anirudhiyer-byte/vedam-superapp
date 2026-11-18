@@ -135,6 +135,46 @@ export function Funnel({ steps }: { steps: { label: string; value: number }[] })
   );
 }
 
+/**
+ * A filter dropdown you can type in: the list narrows to the options that contain the typed text.
+ * Empty value = the "all" option. Arrow keys + Enter pick, Esc closes and keeps the current choice.
+ */
+export function SearchSelect({ options, value, onChange, allLabel, ariaLabel, width = 190 }: {
+  options: { value: string; label: string }[]; value: string; onChange: (v: string) => void; allLabel: string; ariaLabel: string; width?: number;
+}) {
+  const cur = options.find((o) => o.value === value);
+  const [q, setQ] = useState("");
+  const [open, setOpen] = useState(false);
+  const [hi, setHi] = useState(0);
+  const t = q.trim().toLowerCase();
+  const shown = [{ value: "", label: allLabel }, ...(t ? options.filter((o) => o.label.toLowerCase().includes(t)) : options)].slice(0, 80);
+  const pick = (v: string) => { onChange(v); setQ(""); setOpen(false); };
+  const listId = `mk-ss-${ariaLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  return (
+    <div className="mk-combo" style={{ width }}>
+      <input className="mk-in mk-ss" style={{ width: "100%" }} value={open ? q : cur?.label ?? ""} placeholder={open ? "Type to search…" : allLabel}
+        onFocus={() => { setOpen(true); setQ(""); setHi(Math.max(0, [{ value: "" }, ...options].findIndex((o) => o.value === value))); }} onBlur={() => setTimeout(() => { setOpen(false); setQ(""); }, 150)}
+        onChange={(e) => { setQ(e.target.value); setOpen(true); setHi(e.target.value.trim() ? 1 : 0); }}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") { e.preventDefault(); setOpen(true); setHi((h) => Math.min(h + 1, shown.length - 1)); }
+          else if (e.key === "ArrowUp") { e.preventDefault(); setHi((h) => Math.max(h - 1, 0)); }
+          else if (e.key === "Enter" && open) { e.preventDefault(); const o = shown[Math.min(hi, shown.length - 1)]; if (o) pick(o.value); (e.target as HTMLInputElement).blur(); }
+          else if (e.key === "Escape") { setOpen(false); setQ(""); (e.target as HTMLInputElement).blur(); }
+        }}
+        role="combobox" aria-expanded={open} aria-controls={listId} aria-label={ariaLabel} maxLength={120} />
+      {open && (
+        <div className="mk-combo-list" role="listbox" id={listId}>
+          {shown.map((o, i) => (
+            <button type="button" key={o.value || "__all"} role="option" aria-selected={o.value === value}
+              className={i === hi ? "on" : ""} onMouseEnter={() => setHi(i)} onMouseDown={(e) => e.preventDefault()} onClick={() => pick(o.value)}>{o.label}</button>
+          ))}
+          {shown.length === 1 && t && <div className="mk-note" style={{ padding: 8 }}>No influencer matches “{q.trim()}”.</div>}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const SERIES = ["#a78bfa", "#fb923c"]; // side A, side B
 
 /**
@@ -295,6 +335,7 @@ export const CSS = `
 .mk-fhint{font-size:11px;color:var(--mut2)}
 .mk-foot{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
 .mk-combo{position:relative}
+.mk-ss{cursor:pointer}.mk-ss:focus{cursor:text}
 .mk-combo-list{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:#14172b;border:1px solid var(--line);border-radius:10px;max-height:240px;overflow:auto;z-index:5;padding:4px}
 .mk-combo-list button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--mut);padding:7px 9px;border-radius:7px;font-size:12.5px;cursor:pointer;font-family:inherit}
 .mk-combo-list button:hover,.mk-combo-list button.on{background:rgba(52,226,176,.12);color:var(--ink)}
