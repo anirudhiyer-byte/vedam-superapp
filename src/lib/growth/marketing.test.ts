@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   adCards, bestV2l, countTicks, csvToRows, errorText, fillWeeks, fmtCompact, groupTotals, highestL2p, importErrors, inRange, inflCards,
-  labelIndexes, lowestCpp, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
+  labelIndexes, lowestCpp, parseAmount, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
   type AdRow, type CustomColumn, type PerfRow, type PostRow,
 } from "./marketing";
 
@@ -94,6 +94,15 @@ describe("weeks", () => {
     // 1 May 2026 is a Friday and 12 May a Tuesday: the weeks of 27 Apr, 4 May and 11 May
     expect(fillWeeks([], "2026-05-01", "2026-05-12").map((x) => x.week)).toEqual(["2026-04-27", "2026-05-04", "2026-05-11"]);
     expect(fillWeeks([])).toEqual([]);
+  });
+
+  it("money typed with Indian commas or ₹ is read as a number", () => {
+    expect(parseAmount("1,00,000")).toBe(100000);
+    expect(parseAmount("₹50,000")).toBe(50000);
+    expect(parseAmount(" 2500 ")).toBe(2500);
+    expect(parseAmount("12.5")).toBe(12.5);
+    expect(parseAmount("")).toBeNull();
+    expect(parseAmount("abc")).toBeNull();
   });
 
   it("y ticks are whole numbers with no repeats", () => {
