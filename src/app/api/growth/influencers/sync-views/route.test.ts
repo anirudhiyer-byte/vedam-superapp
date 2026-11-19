@@ -1,8 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const m = vi.hoisted(() => ({ rpc: vi.fn(), getUser: vi.fn(), fetch: vi.fn() }));
+const m = vi.hoisted(() => ({ rpc: vi.fn(), getUser: vi.fn(), fetch: vi.fn(), allowIp: vi.fn() }));
 
 vi.mock("@/lib/supabase/server", () => ({ createClient: async () => ({ auth: { getUser: m.getUser }, rpc: m.rpc }) }));
+vi.mock("@/lib/growth/api", () => ({ svc: () => ({}) }));
+vi.mock("@/lib/peerpath/meet-sync", () => ({ allowIp: (...a: unknown[]) => m.allowIp(...a), trustedIp: () => "203.0.113.7" }));
 
 import { POST } from "./route";
 
@@ -24,6 +26,7 @@ beforeEach(() => {
   vi.stubEnv("YOUTUBE_API_KEY", KEY);
   vi.stubGlobal("fetch", m.fetch);
   m.getUser.mockResolvedValue({ data: { user: { id: "u-admin" } }, error: null });
+  m.allowIp.mockResolvedValue(true);
   targets = [
     { id: "post-1", live_link: `https://www.youtube.com/watch?v=${V1}` },
     { id: "post-2", live_link: `https://youtube.com/shorts/${V2}` },
@@ -66,8 +69,21 @@ describe("POST /api/growth/influencers/sync-views", () => {
     expect(m.rpc).not.toHaveBeenCalledWith("growth_infl_views_set", expect.anything());
   });
 
+  it("limits syncs per IP (10 per 10 minutes) before anything else runs", async () => {
+    await POST(req());
+    expect(m.allowIp).toHaveBeenCalledWith(expect.anything(), "growth_yt_sync", "203.0.113.7", 10, 600);
+    vi.clearAllMocks();
+    m.allowIp.mockResolvedValue(false);
+    const res = await POST(req());
+    expect(res.status).toBe(429);
+    expect(m.getUser).not.toHaveBeenCalled();
+    expect(m.rpc).not.toHaveBeenCalled();
+    expect(m.fetch).not.toHaveBeenCalled();
+  });
+
   it("refuses a cross-site request before doing anything", async () => {
     expect((await POST(req({ origin: "https://evil.example" }))).status).toBe(403);
+    expect(m.allowIp).not.toHaveBeenCalled();
     expect(m.rpc).not.toHaveBeenCalled();
     expect(m.fetch).not.toHaveBeenCalled();
   });
