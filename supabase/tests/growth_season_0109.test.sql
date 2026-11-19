@@ -58,6 +58,9 @@ begin
     insert into public.lead_manager (lead_id, registered_name, registered_email, created_at) values
       (l1, 'ZZTEST S109 One', 'zzs1@example.invalid', '2090-01-05 12:00:00+05:30'),
       (l2, 'ZZTEST S109 Two', 'zzs2@example.invalid', '2090-01-06 12:00:00+05:30');
+    -- like real rows (both default to now() on sign-up): the registration date equals created_at.
+    -- Needed since 0121: leads are counted by their registration day.
+    update public.lead_manager set user_registration_date = created_at where lead_id in (l1, l2);
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at) values
       ('ZZTEST S109 E1', 'ZZTEST-S109-1', '2090-03-01', '2090-03-01 10:00:00+05:30', '2090-03-01 12:00:00+05:30') returning id into e1;
     insert into public.vsat_campaigns (name, campaign_start, campaign_end, exam_date) values ('ZZTEST S109 C', '2090-01-01', '2090-01-31', '2090-03-01') returning id into camp;
