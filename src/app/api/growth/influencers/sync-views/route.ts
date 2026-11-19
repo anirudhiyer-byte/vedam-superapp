@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { sameOrigin } from "@/lib/peerpath/book-request";
+import { allowIp, trustedIp } from "@/lib/peerpath/meet-sync";
+import { svc } from "@/lib/growth/api";
 import { youTubeId } from "@/lib/growth/marketing";
 
 export const dynamic = "force-dynamic";
@@ -13,15 +15,21 @@ export const dynamic = "force-dynamic";
  * check the admin role in the database, so a non-admin gets FORBIDDEN from there.
  * Instagram views stay manual (no public API for them).
  * Needs YOUTUBE_API_KEY (server-only env var, YouTube Data API v3).
+ * Limited per IP (trusted Vercel IP, private pp_rate_hit limiter) so repeated clicks cannot burn the
+ * YouTube quota: SYNCS_PER_IP per 10 minutes.
  */
 
 const BATCH = 50;          // YouTube allows up to 50 ids per videos.list call
 const MAX_POSTS = 2000;    // 40 calls at most per sync
+const SYNCS_PER_IP = 10;   // per 10 minutes
 
 type Target = { id: string; live_link: string | null };
 
 export async function POST(req: Request) {
   if (!sameOrigin(req)) return NextResponse.json({ error: "Bad origin." }, { status: 403 });
+  if (!(await allowIp(svc(), "growth_yt_sync", trustedIp(req), SYNCS_PER_IP, 600))) {
+    return NextResponse.json({ error: "Too many syncs from here. Try again in a few minutes." }, { status: 429 });
+  }
 
   const key = process.env.YOUTUBE_API_KEY;
   if (!key) return NextResponse.json({ error: "YouTube sync is not set up yet (YOUTUBE_API_KEY is missing on the server)." }, { status: 400 });
