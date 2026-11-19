@@ -272,6 +272,54 @@ export function labelIndexes(xs: number[], gap: number): number[] {
   return [...new Set(out)];
 }
 
+/** Running total of a series (cumulative view). */
+export function cumulative(xs: number[]): number[] {
+  let t = 0;
+  return xs.map((v) => (t += v));
+}
+
+/** First and last index with any activity in A or B (padded by `pad` on each side, kept in range); null when all are 0. */
+export function activeSpan(a: number[], b: number[], pad = 1): [number, number] | null {
+  const n = Math.max(a.length, b.length);
+  let lo = -1, hi = -1;
+  for (let i = 0; i < n; i++) if ((a[i] || 0) + (b[i] || 0) > 0) { if (lo < 0) lo = i; hi = i; }
+  if (lo < 0) return null;
+  return [Math.max(0, lo - pad), Math.min(n - 1, hi + pad)];
+}
+
+/** Index of the value in a sorted list closest to v (ties go to the earlier one). */
+export function nearestIndex(xs: number[], v: number): number {
+  let best = 0;
+  for (let i = 1; i < xs.length; i++) if (Math.abs(xs[i] - v) < Math.abs(xs[best] - v)) best = i;
+  return best;
+}
+
+/** A "nice" number at or above v on the 1-2-5 scale (1, 2, 5, 10, 20, 50 …). */
+export function niceCeil(v: number): number {
+  if (!(v > 0)) return 1;
+  const pow = 10 ** Math.floor(Math.log10(v));
+  return ([1, 2, 5, 10].map((k) => k * pow).find((x) => x >= v - 1e-9) ?? 10 * pow);
+}
+
+/**
+ * Three cost-per-lead guide lines for a cost vs leads chart: the median CPL of the posts rounded to a
+ * 1-2-5 step, half of it and double it. Posts without cost or leads are left out. Empty when none qualify.
+ */
+export function cplGuides(points: { cost: number; leads: number }[]): number[] {
+  const cpl = points.filter((p) => p.cost > 0 && p.leads > 0).map((p) => p.cost / p.leads).sort((x, y) => x - y);
+  if (!cpl.length) return [];
+  const mid = cpl.length % 2 ? cpl[(cpl.length - 1) / 2] : (cpl[cpl.length / 2 - 1] + cpl[cpl.length / 2]) / 2;
+  const base = niceCeil(mid);
+  return [...new Set([niceCeil(base / 2), base, niceCeil(base * 2)])];
+}
+
+/** Short post type for chart labels: "Instagram Reel" → "Reel", "YouTube - Dedicated" → "YT Dedicated". */
+export function shortPlatform(p: string): string {
+  if (p.startsWith("Instagram ")) return p.slice(10);
+  if (p === "YouTube Shorts") return "Shorts";
+  return p.replace(/^YouTube - /, "YT ");
+}
+
 // ───────────────────────────── CSV import ─────────────────────────────
 
 const STD_HEADERS: Record<Channel, Record<string, string>> = {

@@ -5,7 +5,8 @@ import {
   AD_PLATFORMS, INFL_PLATFORMS, MIN_LEADS, bestV2l, fillWeeks, fmtCompact, fmtDate, fmtInr, fmtInt, fmtPct, groupTotals, highestL2p,
   isYouTube, lowestCpp, metrics, shareBar, totals, type Best, type Campaign, type Channel, type Meta, type Metrics, type PerfRow, type Week,
 } from "@/lib/growth/marketing";
-import { Err, ExtLink, Funnel, FunnelPanel, Tabs, WeeklyCompare, rpc, type Client } from "./shared";
+import { Err, ExtLink, Funnel, FunnelPanel, Tabs, rpc, type Client } from "./shared";
+import { CompareActivity, EfficiencyCompare, PostScatter, type Pin } from "./compare-charts";
 
 /**
  * Ad Performance + Influencer Performance. Numbers come from growth_perf (migration 0105):
@@ -488,10 +489,18 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
   const line = (label: string, fn: (m: Metrics, n: number) => string) => (
     <tr key={label}><td>{label}</td><td className="v">{fn(A.m, A.rows.length)}</td><td className="v">{fn(B.m, B.rows.length)}</td></tr>
   );
-  // the weekly charts span both sides' weeks so the two lines line up
-  const span = (w: Week[]) => w.map((x) => x.week).sort();
-  const allWeeks = [...span(A.weeks), ...span(B.weeks)].sort();
-  const from = allWeeks[0], to = allWeeks[allWeeks.length - 1];
+  // the weekly chart's overview: both sides' weeks, the From / To dates of a side in date view (To empty =
+  // today) and the campaign dates of a side with a campaign, so the slider covers the whole period asked for
+  const today = new Date().toISOString().slice(0, 10);
+  const bounds = [...A.weeks, ...B.weeks].map((x) => x.week.slice(0, 10));
+  for (const c of [ac, bc]) {
+    const camp = meta.campaigns.find((x) => x.id === c);
+    if (camp) bounds.push(...[camp.campaign_start, camp.campaign_end].filter((d): d is string => !!d));
+    else bounds.push(...[f.from, f.to || today].filter(Boolean));
+  }
+  bounds.sort();
+  const overview = fillWeeks([], bounds[0], bounds[bounds.length - 1]).map((w) => w.week);
+  const pins: Pin[] = [A, B].flatMap((side, s) => side.rows.filter((r) => r.live_date).map((r) => ({ side: s as 0 | 1, date: r.live_date as string, platform: r.platform, label: r.influencer ?? r.label })));
   // a side with no posts (or no activity) says so in words instead of showing only a flat line
   const kind = f.live === "live" ? "live " : f.live === "planned" ? "planned " : "";
   const where = (c: string) => (c ? `in ${meta.campaigns.find((x) => x.id === c)?.name ?? "this campaign"}` : "in these dates");
@@ -527,7 +536,18 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
             </table>
           </div>
           <div className="mk-box"><h4>Weekly activity</h4>
-            <WeeklyCompare a={fillWeeks(A.weeks, from, to)} b={fillWeeks(B.weeks, from, to)} labels={[`A · ${name(ai, ac)}`, `B · ${name(bi, bc)}`]} />
+            <p className="mk-note mk-sub">Zoomed to the weeks with activity. Diamonds under the axis are posts going live.</p>
+            <CompareActivity weeks={overview} a={A.weeks} b={B.weeks} labels={[name(ai, ac), name(bi, bc)]} pins={pins} />
+          </div>
+          <div className="mk-grid2">
+            <div className="mk-box"><h4>Who is more efficient</h4>
+              <p className="mk-note mk-sub">Cost per result and conversion, side by side.</p>
+              <EfficiencyCompare a={A.m} b={B.m} />
+            </div>
+            <div className="mk-box"><h4>Each post: cost vs leads</h4>
+              <p className="mk-note mk-sub">Dot size = payments. Dashed lines = cost per lead. Hover a dot for its numbers.</p>
+              <PostScatter a={A.rows} b={B.rows} />
+            </div>
           </div>
         </>
       )}

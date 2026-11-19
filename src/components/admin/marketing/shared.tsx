@@ -1,8 +1,8 @@
 "use client";
 
-import { Fragment, useCallback, useEffect, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { countTicks, errorText, labelIndexes, type Channel, type CustomColumn, type Meta, type Week } from "@/lib/growth/marketing";
+import { errorText, type Channel, type CustomColumn, type Meta } from "@/lib/growth/marketing";
 
 /**
  * Growth → Ads + Influencers · shared plumbing for the listing and performance screens.
@@ -199,88 +199,6 @@ export function SearchSelect({ options, value, onChange, allLabel, ariaLabel, wi
   );
 }
 
-const SERIES = ["#a78bfa", "#fb923c"]; // side A, side B
-
-/**
- * Small multiples: one panel per metric (leads / payments / enrollments), each with its own scale so a
- * small payment count is still readable next to thousands of leads. Two lines per panel (side A, side B).
- * Moving the pointer (mouse or touch) over any panel shows a marker on the same week in all three panels:
- * a vertical line, a dot on each line and a box with that week's A and B numbers.
- */
-export function WeeklyCompare({ a, b, labels }: { a: Week[]; b: Week[]; labels: [string, string] }) {
-  const [hover, setHover] = useState<number | null>(null);
-  const weeks = [...new Set([...a, ...b].map((w) => w.week))].sort();
-  if (weeks.length === 0) return <p className="mk-mid">No leads, payments or enrollments in these weeks yet.</p>;
-  const pick = (ws: Week[], k: keyof Omit<Week, "week">) => { const m = new Map(ws.map((w) => [w.week, w[k]])); return weeks.map((w) => m.get(w) ?? 0); };
-  const panels: { k: keyof Omit<Week, "week">; label: string }[] = [
-    { k: "leads", label: "Leads" }, { k: "payments", label: "Payments" }, { k: "enrollments", label: "Enrollments" },
-  ];
-  const W = 420, H = 180, P = { l: 40, r: 14, t: 12, b: 24 };
-  const x = (i: number) => P.l + (weeks.length === 1 ? (W - P.l - P.r) / 2 : (i * (W - P.l - P.r)) / (weeks.length - 1));
-  const xs = weeks.map((_, i) => x(i));
-  const fmtW = (w: string) => new Date(`${w}T00:00:00Z`).toLocaleDateString("en-IN", { day: "2-digit", month: "short", timeZone: "UTC" });
-  const fmtWy = (w: string) => new Date(`${w}T00:00:00Z`).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" });
-  const xLabels = new Set(labelIndexes(xs, 62));
-  const anchor = (i: number) => (weeks.length > 1 && i === 0 ? "start" : weeks.length > 1 && i === weeks.length - 1 ? "end" : "middle");
-  // pointer x (screen) → nearest week
-  const onMove = (e: ReactPointerEvent<SVGSVGElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    if (!r.width) return;
-    const vx = ((e.clientX - r.left) / r.width) * W;
-    let best = 0;
-    for (let i = 1; i < xs.length; i++) if (Math.abs(xs[i] - vx) < Math.abs(xs[best] - vx)) best = i;
-    setHover(best);
-  };
-  return (
-    <div className="mk-mult">
-      <div className="mk-legend">
-        <span><i style={{ background: SERIES[0] }} />{labels[0]}</span>
-        <span><i style={{ background: SERIES[1] }} />{labels[1]}</span>
-      </div>
-      <div className="mk-mult-row">
-      {panels.map((p) => {
-        const sa = pick(a, p.k), sb = pick(b, p.k);
-        const { top, ticks } = countTicks(Math.max(...sa, ...sb));
-        const y = (v: number) => H - P.b - (v / top) * (H - P.t - P.b);
-        const path = (s: number[]) => s.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
-        const h = hover != null && hover < weeks.length ? hover : null;
-        // tooltip box: right of the marker, or left of it near the right edge
-        const boxW = 118, boxH = 46;
-        const bx = h == null ? 0 : xs[h] + 8 + boxW > W - P.r ? xs[h] - 8 - boxW : xs[h] + 8;
-        return (
-          <figure key={p.k} className="mk-panel">
-            <figcaption>{p.label} <span>per week · A {sa.reduce((t, v) => t + v, 0).toLocaleString("en-IN")} · B {sb.reduce((t, v) => t + v, 0).toLocaleString("en-IN")}</span></figcaption>
-            <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${p.label} per week, A versus B`} className="mk-chart"
-                 onPointerMove={onMove} onPointerDown={onMove} onPointerLeave={() => setHover(null)}>
-              {ticks.map((v) => (
-                <g key={v}>
-                  <line x1={P.l} x2={W - P.r} y1={y(v)} y2={y(v)} className="mk-grid" />
-                  <text x={P.l - 6} y={y(v) + 3} className="mk-ax" textAnchor="end">{v.toLocaleString("en-IN")}</text>
-                </g>
-              ))}
-              {weeks.map((w, i) => (xLabels.has(i) ? <text key={w} x={x(i)} y={H - 6} className="mk-ax" textAnchor={anchor(i)}>{fmtW(w)}</text> : null))}
-              <path d={path(sa)} fill="none" stroke={SERIES[0]} strokeWidth="2" />
-              <path d={path(sb)} fill="none" stroke={SERIES[1]} strokeWidth="2" strokeDasharray="5 3" />
-              {h != null && (
-                <g className="mk-hover" pointerEvents="none">
-                  <line x1={xs[h]} x2={xs[h]} y1={P.t} y2={H - P.b} className="mk-cross" />
-                  <circle cx={xs[h]} cy={y(sb[h])} r="4" fill={SERIES[1]} className="mk-dot" />
-                  <circle cx={xs[h]} cy={y(sa[h])} r="4" fill={SERIES[0]} className="mk-dot" />
-                  <rect x={bx} y={P.t} width={boxW} height={boxH} rx="6" className="mk-tip" />
-                  <text x={bx + 8} y={P.t + 14} className="mk-tip-h">Week of {fmtWy(weeks[h])}</text>
-                  <text x={bx + 8} y={P.t + 27} className="mk-tip-v"><tspan fill={SERIES[0]}>●</tspan> A  {sa[h].toLocaleString("en-IN")}</text>
-                  <text x={bx + 8} y={P.t + 39} className="mk-tip-v"><tspan fill={SERIES[1]}>●</tspan> B  {sb[h].toLocaleString("en-IN")}</text>
-                </g>
-              )}
-            </svg>
-          </figure>
-        );
-      })}
-      </div>
-    </div>
-  );
-}
-
 // ───────────────────────────── CSS ─────────────────────────────
 
 /*
@@ -417,25 +335,65 @@ export const CSS = `
 .mk-fbar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,rgba(52,226,176,.55),rgba(34,211,238,.42));border-radius:8px}
 .mk-fbar b{position:relative;padding-left:12px;line-height:30px;color:var(--ink);font-weight:600;font-size:13px;font-variant-numeric:tabular-nums}
 .mk-fp{color:var(--mut);font-size:12.5px}
-.mk-mult{display:flex;flex-direction:column;gap:14px}
-.mk-mult-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-@media (max-width:1000px){.mk-mult-row{grid-template-columns:1fr}.mk-panel svg{max-width:560px}}
-.mk-legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px;color:var(--mk-soft)}
-.mk-legend i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:8px;vertical-align:middle}
-.mk-panel{margin:0;background:rgba(12,16,38,.42);border:1px solid var(--line);border-radius:14px;padding:12px 14px 8px}
-.mk-panel figcaption{font-family:var(--mk-head);font-size:14.5px;color:var(--ink);font-weight:600;margin-bottom:6px;letter-spacing:-.005em}
-.mk-panel figcaption span{font-family:var(--mk-ui);color:var(--mut);font-weight:400;font-size:12.5px;margin-left:8px;letter-spacing:0}
-.mk-panel svg{width:100%;height:auto;display:block}
 .mk-grid{stroke:rgba(130,150,255,.12);stroke-width:1}
 .mk-ax{fill:var(--mut2);font-size:10.5px;font-family:var(--mk-ui);font-variant-numeric:tabular-nums}
 .mk-chart{touch-action:pan-y;cursor:crosshair}
+.mk-sub{margin:-8px 0 14px}
+.mk-ca{display:flex;flex-direction:column;gap:12px}
+.mk-ca-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+.mk-seg{display:inline-flex;flex-wrap:wrap;background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+.mk-seg button{background:none;border:0;font:inherit;font-size:13px;color:var(--mut);padding:7px 12px;border-radius:9px;cursor:pointer;display:inline-flex;gap:8px;align-items:baseline;transition:background .15s,color .15s}
+.mk-seg button b{font-family:var(--mk-head);font-weight:500;font-size:13.5px;font-variant-numeric:tabular-nums}
+.mk-seg button:hover:not(:disabled){color:var(--ink)}
+.mk-seg button.on{background:rgba(130,150,255,.16);color:var(--ink)}
+.mk-seg button:disabled{opacity:.4;cursor:not-allowed}
+.mk-ca-plot{position:relative;width:100%;min-width:0}
+.mk-ca-plot svg{display:block;max-width:100%}
+.mk-ca-band{fill:rgba(130,150,255,.09)}
+.mk-ca-axis{stroke:rgba(130,150,255,.25);stroke-width:1}
+.mk-ca-pin{font-size:11px;font-family:var(--mk-ui);font-weight:500}
+.mk-ca-draw rect{transform-box:fill-box;transform-origin:50% 100%;animation:mk-grow .45s cubic-bezier(.2,.7,.2,1)}
+.mk-ca-draw path{animation:mk-fade .45s ease-out}
+@keyframes mk-grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes mk-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.mk-ca-draw rect,.mk-ca-draw path{animation:none}}
+.mk-ca-tip{position:absolute;top:8px;width:270px;max-width:calc(100% - 8px);background:var(--bg2);border:1px solid rgba(130,150,255,.22);border-radius:12px;padding:11px 13px;font-size:12.5px;color:var(--mut);box-shadow:0 12px 30px rgba(0,0,0,.45);pointer-events:none;z-index:3}
+.mk-ca-tip-below{position:static;width:auto;max-width:none;margin-top:8px;box-shadow:none}
+.mk-ca-tip h5{margin:0 0 7px;font-family:var(--mk-head);font-size:13.5px;font-weight:600;color:var(--ink)}
+.mk-ca-tip hr{border:0;border-top:1px solid var(--line);margin:7px 0}
+.mk-ca-tr{display:flex;justify-content:space-between;gap:10px;margin:3px 0}
+.mk-ca-tr span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.mk-ca-tr b{color:var(--ink);font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mk-ca-so{margin-top:6px}
+.mk-ca-side{display:flex;flex-direction:column;gap:1px;margin:5px 0}.mk-ca-side span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mk-ca-side b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.mk-ca-slider{display:block;max-width:100%;touch-action:none;cursor:grab;user-select:none}
+.mk-ca-sl-bg{fill:rgba(130,150,255,.05);stroke:rgba(130,150,255,.12)}
+.mk-ca-sl-v{fill:rgba(174,184,224,.42)}
+.mk-ca-sl-dim{fill:rgba(7,10,22,.5)}
+.mk-ca-sl-win{fill:none;stroke:rgba(167,139,250,.75);stroke-width:1.5}
+.mk-ca-sl-h{fill:#c4b5fd;cursor:ew-resize}
+.mk-ca-sl-h:focus-visible{outline:none;stroke:#34e2b0;stroke-width:2}
+.mk-ca-foot{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px;color:var(--mk-soft);align-items:center}
+.mk-ca-foot i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+.mk-ca-hint{margin-left:auto;color:var(--mut2);font-size:12.5px}
+.mk-eff{display:flex;flex-direction:column;gap:16px}
+.mk-eff-r{display:grid;grid-template-columns:minmax(96px,30%) 1fr;gap:12px;align-items:center}
+.mk-eff-k{font-size:13.5px;font-weight:500;color:var(--ink)}
+.mk-eff-k small{display:block;font-size:11.5px;font-weight:400;color:var(--mut2);margin-top:2px}
+.mk-eff-bars{display:flex;flex-direction:column;gap:6px;min-width:0}
+.mk-eff-b{display:grid;grid-template-columns:76px minmax(0,1fr) 56px;gap:10px;align-items:center}
+.mk-eff-b b{font-family:var(--mk-head);font-weight:500;font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mk-eff-track{height:9px;border-radius:5px;background:rgba(130,150,255,.07);overflow:hidden}
+.mk-eff-track span{display:block;height:100%;border-radius:5px;transition:width .4s ease}
+.mk-eff-win{font-size:10.5px;font-weight:600;color:var(--green);border:1px solid rgba(52,226,176,.35);border-radius:999px;padding:1px 6px;text-align:center}
+.mk-eff-none{visibility:hidden}
+.mk-sc-guide{stroke:rgba(174,184,224,.3);stroke-dasharray:4 4}
+.mk-sc-l{font-size:10.5px;font-family:var(--mk-ui);font-weight:500}
+.mk-sc-pt{cursor:pointer;outline:none}.mk-sc-pt circle{transition:fill-opacity .15s}
+.mk-sc-pt:focus-visible circle{stroke:#34e2b0}
 .mk-notice{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:12px 16px;font-size:13.5px;color:var(--ink)}
 .mk-notice p{margin:0}.mk-notice p+p{margin-top:4px}
-.mk-cross{stroke:var(--mut);stroke-width:1;stroke-dasharray:3 3;opacity:.7}
 .mk-dot{stroke:var(--panel);stroke-width:2}
-.mk-tip{fill:var(--bg2);stroke:rgba(130,150,255,.2);stroke-width:1;opacity:.97}
-.mk-tip-h{fill:var(--mut);font-size:10px;font-weight:500;font-family:var(--mk-ui)}
-.mk-tip-v{fill:var(--ink);font-size:11px;font-weight:500;font-family:var(--mk-ui);font-variant-numeric:tabular-nums;white-space:pre}
 .mk-cmp td.v{color:var(--ink);text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
 .mk-top{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 .mk-topc{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px 18px}

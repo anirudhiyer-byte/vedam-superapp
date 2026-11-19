@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  adCards, bestV2l, countTicks, csvToRows, errorText, fillWeeks, fmtCompact, groupTotals, highestL2p, importErrors, inRange, inflCards,
+  activeSpan, adCards, bestV2l, countTicks, cplGuides, cumulative, nearestIndex, niceCeil, shortPlatform, csvToRows, errorText, fillWeeks, fmtCompact, groupTotals, highestL2p, importErrors, inRange, inflCards,
   labelIndexes, lowestCpp, parseAmount, shareBar, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
   type AdRow, type CustomColumn, type PerfRow, type PostRow,
 } from "./marketing";
@@ -181,5 +181,37 @@ describe("errors + format", () => {
     expect(youTubeId("https://youtube.com/shorts/dQw4w9WgXcQ")).toBe("dQw4w9WgXcQ");
     expect(youTubeId("https://www.instagram.com/reel/abc")).toBeNull();
     expect(youTubeId("javascript:alert(1)")).toBeNull();
+  });
+});
+
+describe("compare charts helpers", () => {
+  it("cumulative: running total", () => {
+    expect(cumulative([0, 7, 0, 2, 1])).toEqual([0, 7, 7, 9, 10]);
+    expect(cumulative([])).toEqual([]);
+  });
+  it("activeSpan: first to last week with activity on either side, padded, kept in range", () => {
+    expect(activeSpan([0, 0, 0, 3, 0, 0, 0], [0, 0, 1, 0, 0, 2, 0])).toEqual([1, 6]);
+    expect(activeSpan([5, 0], [0, 0])).toEqual([0, 1]);
+    expect(activeSpan([0, 0, 4], [0, 0, 0], 0)).toEqual([2, 2]);
+    expect(activeSpan([0, 0], [0, 0])).toBeNull();
+  });
+  it("nearestIndex: closest point, ties to the earlier one", () => {
+    expect(nearestIndex([10, 20, 30], 24)).toBe(1);
+    expect(nearestIndex([10, 20, 30], 25)).toBe(1);
+    expect(nearestIndex([10, 20, 30], 99)).toBe(2);
+    expect(nearestIndex([10], -5)).toBe(0);
+  });
+  it("niceCeil: 1-2-5 steps", () => {
+    expect([niceCeil(0.7), niceCeil(1), niceCeil(1.2), niceCeil(3), niceCeil(1688), niceCeil(35000), niceCeil(0)]).toEqual([1, 1, 2, 5, 2000, 50000, 1]);
+  });
+  it("cplGuides: median CPL rounded, half and double; posts without cost or leads skipped", () => {
+    // CPLs 2000, 1500, 1563, 2143 → median 1781 → 2000; guides 1000 / 2000 / 5000
+    expect(cplGuides([{ cost: 12000, leads: 6 }, { cost: 15000, leads: 10 }, { cost: 25000, leads: 16 }, { cost: 30000, leads: 14 }, { cost: 0, leads: 5 }, { cost: 9000, leads: 0 }]))
+      .toEqual([1000, 2000, 5000]);
+    expect(cplGuides([{ cost: 0, leads: 3 }])).toEqual([]);
+  });
+  it("shortPlatform: short labels for pins and dots", () => {
+    expect(["Instagram Reel", "Instagram Story", "YouTube Shorts", "YouTube - Dedicated", "YouTube - Semi-Dedicated"].map(shortPlatform))
+      .toEqual(["Reel", "Story", "Shorts", "YT Dedicated", "YT Semi-Dedicated"]);
   });
 });
