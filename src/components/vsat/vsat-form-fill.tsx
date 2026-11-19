@@ -71,7 +71,7 @@ function SchoolSelect({ value, disabled, invalid, onChange }:
           <ul className="max-h-56 overflow-y-auto pb-1">
             {q.trim().length < 2 && <li className="px-3 py-3 text-center text-sm text-[#9a93ad]">Type at least 2 letters</li>}
             {q.trim().length >= 2 && searching && <li className="px-3 py-3 text-center text-sm text-[#9a93ad]">Searching…</li>}
-            {q.trim().length >= 2 && !searching && hits.length === 0 && <li className="px-3 py-3 text-center text-sm text-[#9a93ad]">No schools found</li>}
+            {q.trim().length >= 2 && !searching && hits.length === 0 && <li className="px-3 py-3 text-center text-sm text-[#9a93ad]">No schools found in the list</li>}
             {hits.map((h, i) => {
               const lbl = schoolLabel(h);
               return (
@@ -84,6 +84,14 @@ function SchoolSelect({ value, disabled, invalid, onChange }:
                 </li>
               );
             })}
+            {q.trim().length >= 2 && !searching && (
+              <li className="border-t border-[#ece8f6]">
+                <button type="button" onClick={() => { onChange(q.trim()); setOpen(false); setQ(""); setHits([]); }}
+                  className="block w-full px-3 py-2 text-left text-sm text-[#6b3ff7] hover:bg-[#f6f2fe]">
+                  ➕ Use “{q.trim()}” — my school isn’t listed
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       )}
@@ -356,7 +364,7 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
         ) : q.type === "school" ? (
           <SchoolSelect value={asStr(catAns[q.key])} disabled={skipped} invalid={isMissing} onChange={(v) => setVal(q.key, v)} />
         ) : q.type === "board" ? (
-          <SearchableSelect options={INDIA_BOARDS} value={asStr(catAns[q.key])} disabled={skipped} onChange={(v) => setVal(q.key, v)} placeholder="Select your board…" />
+          <SearchableSelect options={INDIA_BOARDS} value={asStr(catAns[q.key])} disabled={skipped} onChange={(v) => setVal(q.key, v)} placeholder="Select your board…" allowCustom />
         ) : q.type === "dob" ? (
           <DobField value={asStr(catAns[q.key])} disabled={skipped} invalid={isMissing} onChange={(v) => setVal(q.key, v)} />
         ) : q.type === "state" ? (

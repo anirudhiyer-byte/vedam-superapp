@@ -44,6 +44,18 @@ const NEXT = "__next__", SUBMIT = "__submit__";
 const uid = () => Math.random().toString(36).slice(2, 9);
 const opts = (s?: string) => (s || "").split(",").map((o) => o.trim()).filter(Boolean);
 
+// File-upload type presets — the only way to set allowed types (no free text, so an
+// admin can never type a label the matcher won't understand). Each stores canonical
+// extensions that the upload route matches on.
+const FILE_PRESETS: { label: string; ext: string[] }[] = [
+  { label: "PDF", ext: [".pdf"] },
+  { label: "JPG", ext: [".jpg", ".jpeg"] },
+  { label: "PNG", ext: [".png"] },
+  { label: "WEBP", ext: [".webp"] },
+  { label: "DOC", ext: [".doc"] },
+  { label: "DOCX", ext: [".docx"] },
+];
+
 // ── draft -> server schema (keys are already stable; just de-dupe defensively) ──
 function qToSchema(q: Question, used: Set<string>, catKeys: Set<string>): Record<string, unknown> {
   let qk = q.key || "q_" + uid();
@@ -310,10 +322,29 @@ export function VsatFormBuilder() {
         )}
 
         {q.type === "file" && (
-          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
-            <input value={q.accept ?? ""} onChange={(e) => editQ(ci, si, qi, { accept: e.target.value })} placeholder="Allowed types (e.g. application/pdf, .jpg, image/*)" className={`${input} sm:col-span-2`} />
-            <input type="number" min={1} value={q.maxSizeMb ?? ""} onChange={(e) => editQ(ci, si, qi, { maxSizeMb: e.target.value })} placeholder="Max MB" className={input} />
-            <label className="flex items-center gap-2 text-xs text-white/60 sm:col-span-3"><input type="checkbox" checked={!!q.multiple} onChange={(e) => editQ(ci, si, qi, { multiple: e.target.checked })} /> allow multiple files</label>
+          <div className="mt-2 space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs text-white/50">Allowed file types:</span>
+              {FILE_PRESETS.map((p) => {
+                const on = p.ext.some((e) => opts(q.accept).includes(e));
+                return (
+                  <label key={p.label} className={`cursor-pointer select-none rounded-md border px-2.5 py-1 text-xs ${on ? "border-[#00cfe5] bg-[#00cfe5]/15 text-white" : "border-white/15 text-white/60 hover:border-white/30"}`}>
+                    <input type="checkbox" className="sr-only" checked={on}
+                      onChange={() => {
+                        const s = new Set(opts(q.accept));
+                        if (on) p.ext.forEach((e) => s.delete(e)); else p.ext.forEach((e) => s.add(e));
+                        editQ(ci, si, qi, { accept: [...s].join(", ") });
+                      }} />
+                    {p.label}
+                  </label>
+                );
+              })}
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <input type="number" min={1} value={q.maxSizeMb ?? ""} onChange={(e) => editQ(ci, si, qi, { maxSizeMb: e.target.value })} placeholder="Max MB" className={`${input} w-28`} />
+              <label className="flex items-center gap-2 text-xs text-white/60"><input type="checkbox" checked={!!q.multiple} onChange={(e) => editQ(ci, si, qi, { multiple: e.target.checked })} /> allow multiple files</label>
+            </div>
+            {opts(q.accept).length === 0 && <p className="text-xs text-amber-300/70">Pick at least one type — otherwise every file type is allowed.</p>}
           </div>
         )}
 
