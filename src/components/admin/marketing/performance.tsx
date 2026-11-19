@@ -67,6 +67,7 @@ const Note = ({ campaign }: { campaign: boolean }) => (
     {campaign
       ? "Campaign view: only the leads that arrived inside the campaign dates, and their payments and enrollments (whenever they happened). The From / To dates narrow those leads further."
       : "Date view: leads by the day they arrived, payments by the day they paid and enrollments by the day they enrolled, whatever VSAT they belong to. Rows that went live in the dates or had activity in them are included."}
+    {" When two rows share a UTM link, each lead counts for one of them only: the row whose campaign dates it arrived in, else the row that went live most recently before it. So a row can show fewer leads here than its all-time count in the listing."}
     {` Best L2P / V2L need at least ${MIN_LEADS} leads.`}
   </p>
 );
