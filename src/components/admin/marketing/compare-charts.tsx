@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from "react";
 import {
   activeSpan, countTicks, cplGuides, cumulative, fmtCompact, fmtDate, fmtInr, fmtInt, fmtPct, labelIndexes, nearestIndex, niceCeil,
-  shortPlatform, type Metrics, type PerfRow, type Week,
+  shortPlatform, TIMING_PARTS, timingParts, type LeadTiming, type Metrics, type PerfRow, type Week,
 } from "@/lib/growth/marketing";
 
 /**
@@ -12,25 +12,26 @@ import {
  *                      cumulative view, pins for the posts going live, a hover box and a range slider
  *   EfficiencyCompare  CPL / CPP / L2P / V2L of A and B side by side, the better one tagged
  *   PostScatter        every post as a dot: cost (x) vs leads (y), size = payments, cost-per-lead guide lines
- * Everything comes from data the page already loads (growth_perf rows + growth_weekly weeks).
+ *   LeadTimingCompare  each side's leads split by the days after the post went live (growth_lead_timing, 0118)
+ * The first three use data the page already loads (growth_perf rows + growth_weekly weeks).
  */
 
 export const SIDE = ["#a78bfa", "#fb923c"] as const; // A, B
 
 /** Width of an element in px, kept up to date (charts draw in real pixels so text stays crisp at any width). */
-function useWidth<T extends HTMLElement>(fallback: number) {
+function useWidth<T extends HTMLElement>(fallback: number, min = 260) {
   const ref = useRef<T>(null);
   const [w, setW] = useState(fallback);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const set = () => setW(Math.max(260, Math.round(el.getBoundingClientRect().width)));
+    const set = () => setW(Math.max(min, Math.round(el.getBoundingClientRect().width)));
     set();
     if (typeof ResizeObserver === "undefined") return;
     const ro = new ResizeObserver(set);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [min]);
   return [ref, w] as const;
 }
 
@@ -369,6 +370,49 @@ export function PostScatter({ a, b }: { a: PerfRow[]; b: PerfRow[] }) {
           <div className="mk-ca-tr"><span>CPL · CPP</span><b>{fmtInr(hp.leads ? hp.cost / hp.leads : null)} · {fmtInr(hp.pay ? hp.cost / hp.pay : null)}</b></div>
         </div>
       )}
+    </div>
+  );
+}
+
+const pctTxt = (p: number) => `${p > 0 && p < 1 ? "<1" : Math.round(p)}%`;
+
+/** Each side's leads as one bar split by the days after the post went live; a part's numbers sit inside it when it is wide enough (else on hover). */
+export function LeadTimingCompare({ a, b, labels }: { a: LeadTiming | null; b: LeadTiming | null; labels: [string, string] }) {
+  const sides = [timingParts(a), timingParts(b)];
+  const used = new Set(sides.flatMap((s) => s.parts.map((p) => p.k)));
+  return (
+    <div className="mk-lt">
+      {sides.map(({ total, parts }, s) => (
+        <div key={s} className="mk-lt-r">
+          <div className="mk-lt-n" style={{ color: SIDE[s] }} title={labels[s]}>{s ? "B" : "A"} · {labels[s]}</div>
+          {total === 0 ? <div className="mk-lt-bar mk-lt-none">{[a, b][s] === null ? "Loading…" : "No leads yet"}</div> : (
+            <TimingBar parts={parts} label={`${s ? "B" : "A"} · ${labels[s]}`} />
+          )}
+          <div className="mk-lt-t">{[a, b][s] === null ? "" : `${fmtInt(total)} leads`}</div>
+        </div>
+      ))}
+      <div className="mk-lt-legend">
+        {TIMING_PARTS.filter((p) => p.k !== "no_live" || used.has("no_live")).map((p) => <span key={p.k}><i className={`mk-lt-${p.k}`} />{p.label}</span>)}
+      </div>
+    </div>
+  );
+}
+
+/** One side's bar. A part shows its numbers only when they fit inside it (measured in real pixels); otherwise they are on hover. */
+function TimingBar({ parts, label }: { parts: ReturnType<typeof timingParts>["parts"]; label: string }) {
+  const [ref, w] = useWidth<HTMLDivElement>(600, 0);
+  const free = w - 2 * (parts.length - 1); // 2px gaps
+  return (
+    <div className="mk-lt-bar" ref={ref} role="img" aria-label={`${label}: ${parts.map((p) => `${p.label} ${p.n} (${pctTxt(p.pct)})`).join(", ")}`}>
+      {parts.map((p) => {
+        const text = `${fmtInt(p.n)} · ${pctTxt(p.pct)}`;
+        const fits = (p.pct / 100) * free >= text.length * 7.2 + 20;
+        return (
+          <span key={p.k} className={`mk-lt-s mk-lt-${p.k}`} style={{ flexGrow: p.n }} title={`${p.label}: ${fmtInt(p.n)} leads (${pctTxt(p.pct)})`}>
+            {fits && <b>{text}</b>}
+          </span>
+        );
+      })}
     </div>
   );
 }

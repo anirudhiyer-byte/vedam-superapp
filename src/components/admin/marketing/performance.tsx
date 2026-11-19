@@ -3,10 +3,10 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   AD_PLATFORMS, INFL_PLATFORMS, MIN_LEADS, bestV2l, fillWeeks, fmtCompact, fmtDate, fmtInr, fmtInt, fmtPct, groupTotals, highestL2p,
-  isYouTube, lowestCpp, metrics, shareBar, totals, type Best, type Campaign, type Channel, type Meta, type Metrics, type PerfRow, type Week,
+  isYouTube, lowestCpp, metrics, shareBar, totals, type Best, type Campaign, type Channel, type LeadTiming, type Meta, type Metrics, type PerfRow, type Week,
 } from "@/lib/growth/marketing";
-import { Err, ExtLink, Funnel, FunnelPanel, Tabs, rpc, type Client } from "./shared";
-import { CompareActivity, EfficiencyCompare, PostScatter, type Pin } from "./compare-charts";
+import { Err, ExtLink, FunnelPanel, Tabs, rpc, type Client } from "./shared";
+import { CompareActivity, EfficiencyCompare, LeadTimingCompare, PostScatter, type Pin } from "./compare-charts";
 
 /**
  * Ad Performance + Influencer Performance. Numbers come from growth_perf (migration 0105):
@@ -173,7 +173,6 @@ function AdSeason({ rows, meta }: { rows: PerfRow[]; meta: Meta }) {
         <TopCard title="Lowest CPP" best={lowestCpp(rows)} value={(b) => fmtInr(b.m.cpp)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(rows)} value={(b) => fmtPct(b.m.l2p)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
       </div>
-      <div className="mk-box"><h4>Funnel</h4><Funnel steps={[{ label: "Leads", value: m.leads }, { label: "Payments", value: m.payments }, { label: "Enrollments", value: m.enrollments }]} /></div>
       <GroupTable title="By campaign" groups={groupTotals(rows, (r) => r.campaign_id ?? "-")} label={campName(meta)} />
       <GroupTable title="By platform" groups={groupTotals(rows, (r) => r.platform)} label={(k) => k} />
     </>
@@ -192,7 +191,6 @@ function AdPlatform({ rows, meta }: { rows: PerfRow[]; meta: Meta }) {
         <TopCard title="Lowest CPP" best={lowestCpp(sub)} value={(b) => fmtInr(b.m.cpp)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(sub)} value={(b) => fmtPct(b.m.l2p)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
       </div>
-      <div className="mk-box"><h4>Funnel · {p}</h4><Funnel steps={[{ label: "Leads", value: m.leads }, { label: "Payments", value: m.payments }, { label: "Enrollments", value: m.enrollments }]} /></div>
       <GroupTable title="By campaign" groups={groupTotals(sub, (r) => r.campaign_id ?? "-")} label={campName(meta)} />
     </>
   );
@@ -317,7 +315,6 @@ function InflCards({ rows, only }: { rows: PerfRow[]; only?: "YouTube" | "Instag
   const yt = rows.filter((r) => isYouTube(r.platform)), ig = rows.filter((r) => !isYouTube(r.platform));
   const views = (rs: PerfRow[]) => rs.reduce((a, r) => a + (Number(r.views) || 0), 0);
   return (
-    <>
       <FunnelPanel aria="Cost and funnel" spendLabel={only ? `${only} cost` : "Total cost"} spend={fmtInr(m.spend)}
         meta={[
           { label: "Influencers", value: fmtInt(new Set(rows.map((r) => r.influencer_id)).size) },
@@ -339,10 +336,6 @@ function InflCards({ rows, only }: { rows: PerfRow[]; only?: "YouTube" | "Instag
           { value: fmtPct(m.l2p, 2), name: "L2P", title: "Leads that paid" },
           { value: fmtPct(m.p2e), name: "P2E", title: "Payments that enrolled" },
         ]} />
-      <div className="mk-box"><h4>Attribution funnel</h4>
-        <Funnel steps={[{ label: "Views", value: m.views }, { label: "Leads", value: m.leads }, { label: "Payments", value: m.payments }, { label: "Enrollments", value: m.enrollments }]} />
-      </div>
-    </>
   );
 }
 
@@ -468,7 +461,21 @@ function useSide(sb: Client, f: Filters, infl: string, camp: string) {
     });
     return () => { on = false; };
   }, [sb, infl, camp, ids]);
-  return { rows: mine, loading: !!infl && rows === null, err: err || wErr, weeks, m: totals(mine) };
+  // the same leads split by days after each post's live date (0118); same campaign / dates as the table
+  const [timing, setTiming] = useState<LeadTiming | null>(null);
+  const [tErr, setTErr] = useState("");
+  useEffect(() => {
+    if (!infl || !ids) { setTiming({ before: 0, d0_7: 0, d8_30: 0, d31p: 0, no_live: 0 }); return; }
+    let on = true;
+    setTiming(null); // null = loading
+    const p: Record<string, unknown> = camp ? { channel: "influencers", ids: ids.split(","), campaign_id: camp } : { channel: "influencers", ids: ids.split(","), from: f.from || null, to: f.to || null };
+    void rpc<LeadTiming>(sb, "growth_lead_timing", p).then((r) => {
+      if (!on) return;
+      if (r.error) setTErr(r.error); else { setTErr(""); setTiming(r.data ?? null); }
+    });
+    return () => { on = false; };
+  }, [sb, infl, camp, ids, f.from, f.to]);
+  return { rows: mine, loading: !!infl && rows === null, err: err || wErr || tErr, weeks, timing, m: totals(mine) };
 }
 
 function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
@@ -511,6 +518,13 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
     : side.weeks.length === 0 ? `${tag} · ${meta.influencers.find((x) => x.id === i)?.name ?? "—"} has no leads, payments or enrollments yet ${where(c)}.`
     : null;
   const notes = ready && !A.loading && !B.loading ? [empty("A", A, ai, ac), empty("B", B, bi, bc)].filter((x): x is string => !!x) : [];
+  // leads that arrived before the post's live date usually mean a wrong live date or a reused UTM link
+  const early = ([[A, "A", ai, ac], [B, "B", bi, bc]] as const).flatMap(([side, tag, i, c]) => {
+    const t = side.timing, who = `${tag} · ${name(i, c)}`, out: string[] = [];
+    if (t?.before) out.push(`${who}: ${fmtInt(t.before)} ${t.before === 1 ? "lead" : "leads"} arrived before the post's live date. Check the live date or the UTM link.`);
+    if (t?.no_live) out.push(`${who}: ${fmtInt(t.no_live)} ${t.no_live === 1 ? "lead is" : "leads are"} on a post with no live date yet.`);
+    return out;
+  });
   // how each side's numbers are counted: a side with a campaign is that campaign's cohort, a side
   // without one follows the From / To dates of the filter bar
   const how = (tag: "A" | "B", c: string) => {
@@ -550,6 +564,11 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
               <p className="mk-note mk-sub">Dot size = payments. Dashed lines = cost per lead. Hover a dot for its numbers.</p>
               <PostScatter a={A.rows} b={B.rows} />
             </div>
+          </div>
+          <div className="mk-box"><h4>When leads arrive after a post goes live</h4>
+            <p className="mk-note mk-sub">Each side&apos;s leads by days after the post&apos;s own live date. Same leads as the table above.</p>
+            <LeadTimingCompare a={A.timing} b={B.timing} labels={[name(ai, ac), name(bi, bc)]} />
+            {early.length > 0 && <div className="mk-notice" style={{ marginTop: 14 }}>{early.map((n) => <p key={n}>{n}</p>)}</div>}
           </div>
         </>
       )}

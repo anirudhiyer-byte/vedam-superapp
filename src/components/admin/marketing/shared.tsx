@@ -138,26 +138,6 @@ export function ExtLink({ href, children }: { href: string | null | undefined; c
 
 // ───────────────────────────── charts (plain SVG) ─────────────────────────────
 
-/** Funnel: each step a bar, its width relative to the first step, with the step-to-step % on the right. */
-export function Funnel({ steps }: { steps: { label: string; value: number }[] }) {
-  const top = Math.max(1, steps[0]?.value ?? 0);
-  return (
-    <div className="mk-funnel">
-      {steps.map((s, i) => {
-        const prev = i > 0 ? steps[i - 1].value : null;
-        const pct = prev && prev > 0 ? (s.value / prev) * 100 : null;
-        const w = Math.max(3, Math.min(100, (s.value / top) * 100));
-        return (
-          <div key={s.label} className="mk-frow">
-            <span className="mk-fk">{s.label}</span>
-            <div className="mk-fbar"><i style={{ width: `${w}%` }} /><b>{s.value.toLocaleString("en-IN")}</b></div>
-            <span className="mk-fp">{pct === null ? "" : `${pct < 0.1 && pct > 0 ? pct.toFixed(3) : pct.toFixed(1)}% of ${steps[i - 1].label.toLowerCase()}`}</span>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 /**
  * A filter dropdown you can type in: the list narrows to the options that contain the typed text.
@@ -328,13 +308,6 @@ export const CSS = `
 .mk-box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
 .mk-box h4{font-family:var(--mk-head);font-weight:600;font-size:16px;line-height:1.3;letter-spacing:-.01em;margin:0 0 14px;color:var(--ink)}
 .mk-box-a{border-color:rgba(167,139,250,.45)}.mk-box-b{border-color:rgba(251,146,60,.45)}
-.mk-funnel{display:flex;flex-direction:column;gap:10px}
-.mk-frow{display:grid;grid-template-columns:120px 1fr 160px;gap:14px;align-items:center;font-size:13.5px}
-.mk-fk{color:var(--mk-soft);font-weight:500}
-.mk-fbar{position:relative;height:30px;background:rgba(130,150,255,.06);border-radius:8px;overflow:hidden}
-.mk-fbar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,rgba(52,226,176,.55),rgba(34,211,238,.42));border-radius:8px}
-.mk-fbar b{position:relative;padding-left:12px;line-height:30px;color:var(--ink);font-weight:600;font-size:13px;font-variant-numeric:tabular-nums}
-.mk-fp{color:var(--mut);font-size:12.5px}
 .mk-grid{stroke:rgba(130,150,255,.12);stroke-width:1}
 .mk-ax{fill:var(--mut2);font-size:10.5px;font-family:var(--mk-ui);font-variant-numeric:tabular-nums}
 .mk-chart{touch-action:pan-y;cursor:crosshair}
@@ -391,6 +364,17 @@ export const CSS = `
 .mk-sc-l{font-size:10.5px;font-family:var(--mk-ui);font-weight:500}
 .mk-sc-pt{cursor:pointer;outline:none}.mk-sc-pt circle{transition:fill-opacity .15s}
 .mk-sc-pt:focus-visible circle{stroke:#34e2b0}
+.mk-lt{display:flex;flex-direction:column;gap:12px}
+.mk-lt-r{display:grid;grid-template-columns:minmax(120px,22%) minmax(0,1fr) 84px;gap:14px;align-items:center}
+.mk-lt-n{font-size:13.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mk-lt-bar{display:flex;gap:2px;height:30px;min-width:0;border-radius:7px;overflow:hidden}
+.mk-lt-none{align-items:center;padding:0 12px;background:rgba(130,150,255,.06);color:var(--mut2);font-size:12.5px}
+.mk-lt-s{flex:1 1 0;min-width:4px;display:flex;align-items:center;overflow:hidden;border-radius:5px}
+.mk-lt-s b{padding:0 10px;font-size:12px;font-weight:600;color:#0b1024;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mk-lt-t{font-size:12.5px;color:var(--mut);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mk-lt-before{background:rgba(248,113,113,.75)}.mk-lt-d0_7{background:#34e2b0}.mk-lt-d8_30{background:#22d3ee}.mk-lt-d31p{background:#818cf8}.mk-lt-no_live{background:rgba(174,184,224,.4)}
+.mk-lt-legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:12px;color:var(--mut);margin-top:2px}
+.mk-lt-legend span{display:inline-flex;align-items:center;gap:7px}.mk-lt-legend i{width:10px;height:10px;border-radius:3px}
 .mk-notice{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.3);border-radius:12px;padding:12px 16px;font-size:13.5px;color:var(--ink)}
 .mk-notice p{margin:0}.mk-notice p+p{margin-top:4px}
 .mk-dot{stroke:var(--panel);stroke-width:2}
@@ -400,5 +384,5 @@ export const CSS = `
 .mk-topc .mk-cv{font-size:26px}
 .mk-topn{font-size:14px;font-weight:500;color:var(--ink);margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mk-subh{font-family:var(--mk-head);font-weight:600;font-size:16px;letter-spacing:-.01em;margin:4px 0 0;color:var(--ink)}
-@media (max-width:760px){.mk-page{padding:20px 16px 48px;gap:16px}.mk-head h2{font-size:22px}.mk-cv{font-size:26px}.mk-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mk-card{padding:14px}.mk-form,.mk-grid2{grid-template-columns:1fr}.mk-frow{grid-template-columns:90px 1fr}.mk-fp{display:none}.mk-search{min-width:0;flex:1 1 100%}}
+@media (max-width:760px){.mk-page{padding:20px 16px 48px;gap:16px}.mk-head h2{font-size:22px}.mk-cv{font-size:26px}.mk-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mk-card{padding:14px}.mk-form,.mk-grid2{grid-template-columns:1fr}.mk-lt-r{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}.mk-lt-bar{grid-column:1 / -1;grid-row:2}.mk-search{min-width:0;flex:1 1 100%}}
 `;
