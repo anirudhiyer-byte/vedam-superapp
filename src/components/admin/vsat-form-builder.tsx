@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city" | "board" | "dob";
+type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city" | "board" | "dob" | "email" | "phone";
 type Cond = { q: string; op: "eq" | "neq" | "includes"; value: string };
 type Route = { value: string; to: string }; // to = category key | "__next__" | "__submit__"
 type Question = {
@@ -24,9 +24,10 @@ type Category = { key: string; title: string; questions: Question[]; subcategori
 type FormDraft = { id?: string; name: string; categories: Category[] };
 type FormRow = { id: string; name: string; status: string; version: number; categories: number; updatedAt: string; admin_only?: boolean };
 
-const QTYPES: QType[] = ["text", "textarea", "number", "date", "dob", "dropdown", "checkbox", "radio", "file", "school", "state", "city", "board"];
+const QTYPES: QType[] = ["text", "textarea", "number", "date", "dob", "email", "phone", "dropdown", "checkbox", "radio", "file", "school", "state", "city", "board"];
 const TYPE_LABEL: Record<QType, string> = {
   text: "Short text", textarea: "Paragraph", number: "Number", date: "Date", dob: "Date of birth (DD/MM/YYYY)",
+  email: "Email address", phone: "Phone number",
   dropdown: "Dropdown (pick one)", checkbox: "Checkboxes (pick many)", radio: "Multiple choice (pick one)",
   file: "File upload", school: "School (searchable)", state: "State / UT", city: "City", board: "Board (CBSE/ICSE/State…)",
 };
@@ -38,6 +39,8 @@ const DATASET_HINTS: Partial<Record<QType, string>> = {
   city: "Cascades off the nearest State question above it — add a State question first.",
   board: "Searchable dropdown of all national + state exam boards (CBSE, ICSE, NIOS, every State board…).",
   dob: "Masked DD/MM/YYYY entry.",
+  email: "Validated as a real email address (on the form and again on the server).",
+  phone: "Digits only; validated as a 10–15 digit phone number.",
 };
 const NEXT = "__next__", SUBMIT = "__submit__";
 
