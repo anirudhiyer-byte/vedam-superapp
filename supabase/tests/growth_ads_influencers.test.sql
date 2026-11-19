@@ -178,39 +178,41 @@ begin
     t_pass := t_pass || (r::text not like '%zztest-gai-l1%' and r::text not like '%ZZTEST L1%');
 
     -- ════ E. custom columns ════
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"Creative Type","type":"select","required":true,"options":["Static","Video"," Video "]}'));
+    -- The test's own columns carry a ZZTEST name, so a real column on the database (e.g. the staging demo seed's
+    -- "Creative type") cannot collide with them. Every check below is the same as before; only the names differ.
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"ZZTEST Creative Type","type":"select","required":true,"options":["Static","Video"," Video "]}'));
     t_name := t_name || text 'E select column added (options de-duplicated)'; t_det := t_det || r::text;
-    t_pass := t_pass || (r->>'key' = 'x_creative_type' and (select options = '["Static","Video"]'::jsonb from public.growth_custom_columns where col_key = 'x_creative_type' and deleted_at is null));
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"Impressions","type":"number"}'));
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"creative type","type":"text"}'));
+    t_pass := t_pass || (r->>'key' = 'x_zztest_creative_type' and (select options = '["Static","Video"]'::jsonb from public.growth_custom_columns where col_key = 'x_zztest_creative_type' and deleted_at is null));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"ZZTEST Impressions","type":"number"}'));
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"zztest creative type","type":"text"}'));
     t_name := t_name || text 'E duplicate column label refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'DUPLICATE');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"Spend","type":"number"}'));
     t_name := t_name || text 'E a label that clashes with a standard column is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'DUPLICATE');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_add', '{"channel":"ads","label":"Bad","type":"json"}'));
     t_name := t_name || text 'E unknown column type refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: type');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_row_save', jsonb_build_object('channel', 'ads', 'row', jsonb_build_object('ad_name', 'ZZTEST E', 'platform', 'Meta', 'campaign', c9))));
-    t_name := t_name || text 'E a required custom column must be filled on a new row'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REQUIRED: x_creative_type');
+    t_name := t_name || text 'E a required custom column must be filled on a new row'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REQUIRED: x_zztest_creative_type');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_row_save', jsonb_build_object('channel', 'ads', 'row', jsonb_build_object('ad_name', 'ZZTEST E', 'platform', 'Meta', 'campaign', c9,
-          'extra', jsonb_build_object('x_creative_type', 'Carousel')))));
-    t_name := t_name || text 'E a select value must be one of the options'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: x_creative_type');
+          'extra', jsonb_build_object('x_zztest_creative_type', 'Carousel')))));
+    t_name := t_name || text 'E a select value must be one of the options'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: x_zztest_creative_type');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_row_save', jsonb_build_object('channel', 'ads', 'row', jsonb_build_object('ad_name', 'ZZTEST E', 'platform', 'Meta', 'campaign', c9,
-          'extra', jsonb_build_object('x_creative_type', 'Video', 'x_impressions', 'lots')))));
-    t_name := t_name || text 'E a number column refuses text'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: x_impressions');
+          'extra', jsonb_build_object('x_zztest_creative_type', 'Video', 'x_zztest_impressions', 'lots')))));
+    t_name := t_name || text 'E a number column refuses text'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: x_zztest_impressions');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_row_save', jsonb_build_object('channel', 'ads', 'row', jsonb_build_object('ad_name', 'ZZTEST E', 'platform', 'Meta', 'campaign', c9,
-          'extra', jsonb_build_object('x_creative_type', 'Video', 'x_nope', '1')))));
+          'extra', jsonb_build_object('x_zztest_creative_type', 'Video', 'x_nope', '1')))));
     t_name := t_name || text 'E a value for a column that does not exist is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'UNKNOWN_KEY: x_nope');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_row_save', jsonb_build_object('channel', 'ads', 'row', jsonb_build_object('ad_name', 'ZZTEST E', 'platform', 'Meta', 'campaign', c9,
-          'extra', jsonb_build_object('x_creative_type', 'Video', 'x_impressions', '1,20,000')))));
+          'extra', jsonb_build_object('x_zztest_creative_type', 'Video', 'x_zztest_impressions', '1,20,000')))));
     t_name := t_name || text 'E custom values saved in the database'; t_det := t_det || r::text;
-    t_pass := t_pass || (select extra = '{"x_creative_type":"Video","x_impressions":"120000"}'::jsonb from public.growth_ad_rows where id = (r->>'id')::uuid);
+    t_pass := t_pass || (select extra = '{"x_zztest_creative_type":"Video","x_zztest_impressions":"120000"}'::jsonb from public.growth_ad_rows where id = (r->>'id')::uuid);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_row_save', jsonb_build_object('channel', 'ads', 'row', jsonb_build_object('id', a2, 'ad_name', 'ZZTEST ad B (same UTM)', 'platform', 'Meta', 'campaign', c9, 'spend', 3000, 'utm_link', utm9))));
-    t_name := t_name || text 'E an old row must get the required value when it is next edited'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REQUIRED: x_creative_type');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_remove', '{"channel":"ads","key":"x_creative_type"}'));
+    t_name := t_name || text 'E an old row must get the required value when it is next edited'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REQUIRED: x_zztest_creative_type');
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_column_remove', '{"channel":"ads","key":"x_zztest_creative_type"}'));
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_row_save', jsonb_build_object('channel', 'ads', 'row', jsonb_build_object('id', a2, 'ad_name', 'ZZTEST ad B (same UTM)', 'platform', 'Meta', 'campaign', c9, 'spend', 3000, 'utm_link', utm9))));
     t_name := t_name || text 'E after removing the column it is no longer required'; t_det := t_det || r::text; t_pass := t_pass || (r->>'id' = a2::text);
     r := pg_temp.call_as(adm, 'select public.growth_mkt_meta()');
     t_name := t_name || text 'E meta lists the live columns only'; t_det := t_det || (r->'columns')::text;
-    t_pass := t_pass || (r->'columns' @> '[{"key":"x_impressions"}]'::jsonb and not (r->'columns' @> '[{"key":"x_creative_type"}]'::jsonb));
+    t_pass := t_pass || (r->'columns' @> '[{"key":"x_zztest_impressions"}]'::jsonb and not (r->'columns' @> '[{"key":"x_zztest_creative_type"}]'::jsonb));
 
     -- ════ F. trash ════
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_rows_trash', jsonb_build_object('channel', 'ads', 'ids', jsonb_build_array(a2), 'trash', true)));
