@@ -1,8 +1,8 @@
--- Growth → Campaigns + Season Dashboard · tests for migration 0119 (STAGING ONLY)
+-- Growth → Campaigns + Season Dashboard · tests for migration 0120 (STAGING ONLY)
 --
--- 0119: a campaign no longer needs an exam date, and the Season Dashboard counts Paid and Enrolments of a
+-- 0120: a campaign no longer needs an exam date, and the Season Dashboard counts Paid and Enrolments of a
 -- campaign by the campaign's own start and end dates (the same rule as a plain date range, as on the CRM).
--- How to run: apply 0119 on staging, then paste this whole file into the staging SQL editor (or the Supabase MCP).
+-- How to run: apply 0120 on staging, then paste this whole file into the staging SQL editor (or the Supabase MCP).
 -- The last statement returns one row per test: test | pass | detail. Everything is rolled back at the end (ZDONE).
 -- Fake data only (@example.invalid, ZZTEST names), dated 2090. Refuses to run unless app_flags.environment = 'staging'.
 
@@ -129,7 +129,7 @@ begin
     insert into public.vsat_campaigns (name, campaign_start, campaign_end, exam_date) values ('ZZTEST CEO Old', '2090-01-01', '2090-01-31', '2090-03-01') returning id into ca;
     begin
       insert into public.vsat_campaigns (name, campaign_start, campaign_end) values ('ZZTEST CEO New', '2090-01-01', '2090-01-31') returning id into cb;
-    exception when not_null_violation then cb := null;   -- before 0119: the tests that need it fail
+    exception when not_null_violation then cb := null;   -- before 0120: the tests that need it fail
     end;
     insert into public.application_manager (application_id, lead_id, application_no, registered_name, exam_date_id, enrollment_stage, enrollment_paid_at, last_updated_date) values
       ('ZZTEST-CEO-APP-1', l1, 'ZZCEOA1', 'ZZTEST CEO One',   e1, 'approved', '2090-01-20 12:00:00+05:30', '2090-01-20 12:00:00+05:30'),

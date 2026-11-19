@@ -128,7 +128,7 @@ begin
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_counts', '{"from":"2000-01-01","to":"2100-12-31"}'));
     t_name := t_name || text 'B a very wide range works and includes the fake leads'; t_det := t_det || r::text; t_pass := t_pass || ((r->>'leads')::int >= 6 and (r->>'paid')::int >= 3);
 
-    -- ════ C. campaign = locked window (0119: Paid and Enrolments by the campaign's dates, not its exam date) ════
+    -- ════ C. campaign = locked window (0120: Paid and Enrolments by the campaign's dates, not its exam date) ════
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_counts', jsonb_build_object('campaign_id', camp)));
     t_name := t_name || text 'C campaign: leads (4), paid (3) and enrolled (2) inside its dates, window locked, name returned';
     t_det := t_det || r::text;

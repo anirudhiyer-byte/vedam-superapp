@@ -11,7 +11,7 @@ import { CSS, Field, Modal, rpc } from "./shared";
  * A copy of the Vedam CRM "Campaigns" page (layout, sizes, texts, icons, behaviour), in the staging look.
  * Reads with growth_campaigns_list, writes with growth_campaign_save / growth_campaign_delete (migration 0107);
  * the browser has no table access and the database checks the admin on every call.
- * The same fields as the CRM form: no exam date (exam dates live in Exam Center; migration 0119 made the column optional).
+ * The same fields as the CRM form: no exam date (exam dates live in Exam Center; migration 0120 made the column optional).
  */
 
 // lucide icon shapes (same as the CRM), drawn inline so no package is added

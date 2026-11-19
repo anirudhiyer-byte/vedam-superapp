@@ -18,7 +18,7 @@ export const fmtNum = (n: number | string | null | undefined): string => {
  * Form values → the object sent to growth_campaign_save.
  * Same rules as the CRM: target and budget default to 0; planned L2P / CPP and last date are empty → null;
  * custom fields must be valid JSON. The database checks everything again (this is only for fast feedback).
- * No exam date is sent (as on the CRM): exam dates live in Exam Center, and the database keeps a stored one on edit (0119).
+ * No exam date is sent (as on the CRM): exam dates live in Exam Center, and the database keeps a stored one on edit (0120).
  */
 export function buildCampaignPayload(f: CampaignForm, id?: string): PayloadResult {
   const t = (v: string | null | undefined) => (v ?? "").trim();
