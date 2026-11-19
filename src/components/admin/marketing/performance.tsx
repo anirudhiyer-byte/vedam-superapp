@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   AD_PLATFORMS, INFL_PLATFORMS, MIN_LEADS, bestV2l, fillWeeks, fmtCompact, fmtDate, fmtInr, fmtInt, fmtPct, groupTotals, highestL2p,
-  isYouTube, lowestCpp, metrics, totals, type Best, type Campaign, type Channel, type Meta, type Metrics, type PerfRow, type Week,
+  isYouTube, lowestCpp, metrics, shareBar, totals, type Best, type Campaign, type Channel, type Meta, type Metrics, type PerfRow, type Week,
 } from "@/lib/growth/marketing";
-import { Card, Err, ExtLink, Funnel, Tabs, WeeklyCompare, rpc, type Client } from "./shared";
+import { Err, ExtLink, Funnel, FunnelPanel, Tabs, WeeklyCompare, rpc, type Client } from "./shared";
 
 /**
  * Ad Performance + Influencer Performance. Numbers come from growth_perf (migration 0105):
@@ -93,32 +93,14 @@ function TopCard({ title, best, value, who, link }: { title: string; best: Best;
  * Bars are each step's share of the leads.
  */
 function FunnelCards({ m, ads }: { m: Metrics; ads: number }) {
-  const bar = (v: number) => (m.leads > 0 && v > 0 ? Math.max(2, Math.min(100, (v / m.leads) * 100)) : 0);
-  const step = (tone: string, label: string, value: number, cost?: { v: number | null; what: string }) => (
-    <div className={`mk-fs mk-fs-${tone}`}>
-      <div className="mk-fs-l"><i aria-hidden="true" />{label}</div>
-      <div className="mk-fs-v">{fmtInt(value)}</div>
-      <div className="mk-fs-bar" aria-hidden="true"><span style={{ width: `${bar(value)}%` }} /></div>
-      {cost && <div className="mk-fs-cost"><b>{fmtInr(cost.v)}</b><span>{cost.what}</span></div>}
-    </div>
-  );
-  const conv = (pct: number | null, name: string, title: string) => (
-    <div className="mk-fs-arr" title={title}><b>{fmtPct(pct)}</b><span className="mk-fs-line" aria-hidden="true" /><small>{name}</small></div>
-  );
   return (
-    <section className="mk-fun" aria-label="Spend and funnel"><div className="mk-fun-in">
-      <div className="mk-fun-sp">
-        <div><div className="mk-fs-l">Total spend</div><div className="mk-fun-spv">{fmtInr(m.spend)}</div></div>
-        <div className="mk-fun-meta"><span>Ads (unique UTMs)</span><b>{fmtInt(ads)}</b></div>
-      </div>
-      <div className="mk-fun-st">
-        {step("ld", "Leads", m.leads, { v: m.cpl, what: "per lead (CPL)" })}
-        {conv(m.l2p, "L2P", "Leads that paid")}
-        {step("py", "Payments", m.payments, { v: m.cpp, what: "per payment (CPP)" })}
-        {conv(m.p2e, "P2E", "Payments that enrolled")}
-        {step("en", "Enrollments", m.enrollments)}
-      </div>
-    </div></section>
+    <FunnelPanel aria="Spend and funnel" spendLabel="Total spend" spend={fmtInr(m.spend)} meta={[{ label: "Unique ads", title: "Ads counted once per UTM link", value: fmtInt(ads) }]}
+      steps={[
+        { label: "Leads", tone: "ld", value: fmtInt(m.leads), bar: shareBar(m.leads, m.leads), chip: <><b>{fmtInr(m.cpl)}</b><span>per lead (CPL)</span></> },
+        { label: "Payments", tone: "py", value: fmtInt(m.payments), bar: shareBar(m.payments, m.leads), chip: <><b>{fmtInr(m.cpp)}</b><span>per payment (CPP)</span></> },
+        { label: "Enrollments", tone: "en", value: fmtInt(m.enrollments), bar: shareBar(m.enrollments, m.leads) },
+      ]}
+      links={[{ value: fmtPct(m.l2p), name: "L2P", title: "Leads that paid" }, { value: fmtPct(m.p2e), name: "P2E", title: "Payments that enrolled" }]} />
   );
 }
 
@@ -335,24 +317,27 @@ function InflCards({ rows, only }: { rows: PerfRow[]; only?: "YouTube" | "Instag
   const views = (rs: PerfRow[]) => rs.reduce((a, r) => a + (Number(r.views) || 0), 0);
   return (
     <>
-      <div className="mk-cards">
-        <Card label="Influencers" value={fmtInt(new Set(rows.map((r) => r.influencer_id)).size)} />
-        <Card label={only ? `${only} posts` : "Total posts"} value={fmtInt(rows.length)} />
-        {!only && <Card label="YouTube posts" value={fmtInt(yt.length)} sub="by type in the table below" />}
-        {!only && <Card label="Instagram posts" value={fmtInt(ig.length)} sub={`Reels ${ig.filter((r) => r.platform === "Instagram Reel").length} · Stories ${ig.filter((r) => r.platform === "Instagram Story").length}`} />}
-        <Card label={only ? `${only} views` : "Total views"} value={fmtCompact(m.views)} />
-        {!only && <Card label="YouTube views" value={fmtCompact(views(yt))} />}
-        {!only && <Card label="Instagram views" value={fmtCompact(views(ig))} />}
-      </div>
-      <div className="mk-cards">
-        <Card label="Leads" value={fmtInt(m.leads)} />
-        <Card label="Payments" value={fmtInt(m.payments)} />
-        <Card label="Enrollments" value={fmtInt(m.enrollments)} />
-        <Card label="Cost" value={fmtInr(m.spend)} accent />
-        <Card label="CPP" value={fmtInr(m.cpp)} sub="cost / payments" />
-        <Card label="L2P" value={fmtPct(m.l2p, 2)} sub="leads → payments" />
-        <Card label="V2L" value={fmtPct(m.v2l, 3)} sub="views → leads" />
-      </div>
+      <FunnelPanel aria="Cost and funnel" spendLabel={only ? `${only} cost` : "Total cost"} spend={fmtInr(m.spend)}
+        meta={[
+          { label: "Influencers", value: fmtInt(new Set(rows.map((r) => r.influencer_id)).size) },
+          { label: only ? `${only} posts` : "Posts", value: fmtInt(rows.length) },
+          ...(only ? [] : [
+            { label: "YouTube posts", value: fmtInt(yt.length) },
+            { label: "Instagram posts", value: fmtInt(ig.length), sub: `Reels ${ig.filter((r) => r.platform === "Instagram Reel").length} · Stories ${ig.filter((r) => r.platform === "Instagram Story").length}` },
+          ]),
+        ]}
+        steps={[
+          { label: only ? `${only} views` : "Views", tone: "vw", value: fmtCompact(m.views), title: fmtInt(m.views),
+            chip: only ? undefined : <><span className="mk-fs-pair"><b>{fmtCompact(views(yt))}</b><span>YouTube</span></span><span className="mk-fs-pair"><b>{fmtCompact(views(ig))}</b><span>Instagram</span></span></> },
+          { label: "Leads", tone: "ld", value: fmtInt(m.leads), bar: shareBar(m.leads, m.leads) },
+          { label: "Payments", tone: "py", value: fmtInt(m.payments), bar: shareBar(m.payments, m.leads), chip: <><b>{fmtInr(m.cpp)}</b><span>per payment (CPP)</span></> },
+          { label: "Enrollments", tone: "en", value: fmtInt(m.enrollments), bar: shareBar(m.enrollments, m.leads) },
+        ]}
+        links={[
+          { value: fmtPct(m.v2l, 3), name: "V2L", title: "Views that became leads" },
+          { value: fmtPct(m.l2p, 2), name: "L2P", title: "Leads that paid" },
+          { value: fmtPct(m.p2e), name: "P2E", title: "Payments that enrolled" },
+        ]} />
       <div className="mk-box"><h4>Attribution funnel</h4>
         <Funnel steps={[{ label: "Views", value: m.views }, { label: "Leads", value: m.leads }, { label: "Payments", value: m.payments }, { label: "Enrollments", value: m.enrollments }]} />
       </div>
