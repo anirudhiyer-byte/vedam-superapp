@@ -252,32 +252,41 @@ begin
     t_name := t_name || text 'G import cannot overwrite existing rows (no id)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'IMPORT_FAILED');
 
     -- ════ H. performance ════
+    -- a1, a2 (VSAT-9) and a3 (VSAT-10) share UTM 9. Since 0113 each lead counts for ONE of them
+    -- (see 0113 header / growth_shared_utm.test.sql): L1 and L3 -> a2 (live from the campaign start,
+    -- a1 only went live on 05-11), L2 -> a1 (went live most recently before it), L4 -> a3 (its window).
+    -- The UTM's totals are unchanged; they are now the sum of a1 + a2 + a3.
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_perf', jsonb_build_object('channel', 'ads', 'campaign_ids', jsonb_build_array(c9))));
-    r2 := pg_temp.row_of(r, a1::text);
-    t_name := t_name || text 'H campaign filter = in-window cohort (3 leads, 2 paid, 1 enrolled)'; t_det := t_det || r2::text;
-    t_pass := t_pass || ((r2->>'leads')::int = 3 and (r2->>'payments')::int = 2 and (r2->>'enrollments')::int = 1);
+    t_name := t_name || text 'H campaign filter = in-window cohort (3 leads, 2 paid, 1 enrolled = a1 + a2, each lead once)';
+    t_det := t_det || format('a1=%s a2=%s', pg_temp.row_of(r, a1::text), pg_temp.row_of(r, a2::text));
+    t_pass := t_pass || ((select sum((x->>'leads')::int) = 3 and sum((x->>'payments')::int) = 2 and sum((x->>'enrollments')::int) = 1
+                            from jsonb_array_elements(r->'rows') x where x->>'id' in (a1::text, a2::text))
+                         and (pg_temp.row_of(r, a1::text)->>'leads')::int = 1 and (pg_temp.row_of(r, a2::text)->>'leads')::int = 2);
     t_name := t_name || text 'H campaign filter leaves out other campaigns'' rows'; t_det := t_det || text '-';
     t_pass := t_pass || (pg_temp.row_of(r, a3::text) is null);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_perf', '{"channel":"ads","from":"2026-05-13","to":"2026-05-31"}'));
-    r2 := pg_temp.row_of(r, a1::text);
-    t_name := t_name || text 'H date range = events in the range: 1 lead (L4), 2 payments (L2 + L4 paid in range), 0 enrolled'; t_det := t_det || r2::text;
-    t_pass := t_pass || ((r2->>'leads')::int = 1 and (r2->>'payments')::int = 2 and (r2->>'enrollments')::int = 0);
+    t_name := t_name || text 'H date range = events in the range: 1 lead (L4, a3), 2 payments (L2 on a1 + L4 on a3), 0 enrolled';
+    t_det := t_det || format('a1=%s a3=%s', pg_temp.row_of(r, a1::text), pg_temp.row_of(r, a3::text));
+    t_pass := t_pass || ((select sum((x->>'leads')::int) = 1 and sum((x->>'payments')::int) = 2 and sum((x->>'enrollments')::int) = 0
+                            from jsonb_array_elements(r->'rows') x where x->>'id' in (a1::text, a2::text, a3::text))
+                         and (pg_temp.row_of(r, a3::text)->>'leads')::int = 1 and (pg_temp.row_of(r, a1::text)->>'payments')::int = 1);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_perf', '{"channel":"ads","from":"2026-07-01","to":"2026-07-31"}'));
-    r2 := pg_temp.row_of(r, a1::text);
-    t_name := t_name || text 'H date range counts the enrolment by its own date (July: 1 enrolled, 0 leads)'; t_det := t_det || coalesce(r2::text, 'null');
+    r2 := pg_temp.row_of(r, a2::text);
+    t_name := t_name || text 'H date range counts the enrolment by its own date (July: 1 enrolled on L1''s ad a2, 0 leads)'; t_det := t_det || coalesce(r2::text, 'null');
     t_pass := t_pass || ((r2->>'enrollments')::int = 1 and (r2->>'leads')::int = 0);
     t_name := t_name || text 'H date range drops a row with no live date and no activity in it'; t_det := t_det || text '-';
     t_pass := t_pass || (pg_temp.row_of(r, a4::text) is null);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_perf', '{"channel":"ads"}'));
-    r2 := pg_temp.row_of(r, a1::text);
-    t_name := t_name || text 'H no filter = all-time (4 leads, 3 paid, 1 enrolled)'; t_det := t_det || r2::text;
-    t_pass := t_pass || ((r2->>'leads')::int = 4 and (r2->>'payments')::int = 3 and (r2->>'enrollments')::int = 1);
+    t_name := t_name || text 'H no filter = all-time (4 leads, 3 paid, 1 enrolled = a1 + a2 + a3, each lead once)';
+    t_det := t_det || format('a1=%s a2=%s a3=%s', pg_temp.row_of(r, a1::text), pg_temp.row_of(r, a2::text), pg_temp.row_of(r, a3::text));
+    t_pass := t_pass || (select sum((x->>'leads')::int) = 4 and sum((x->>'payments')::int) = 3 and sum((x->>'enrollments')::int) = 1
+                           from jsonb_array_elements(r->'rows') x where x->>'id' in (a1::text, a2::text, a3::text));
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_perf', '{"channel":"ads","from":"2026-06-01","to":"2026-05-01"}'));
     t_name := t_name || text 'H to before from is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: to');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_weekly', jsonb_build_object('channel', 'ads', 'ids', jsonb_build_array(a1, a2))));
-    t_name := t_name || text 'H weekly: two rows sharing a UTM count each lead once (4 leads, 3 paid, 1 enrolled)'; t_det := t_det || r::text;
-    t_pass := t_pass || ((select sum((w->>'leads')::int) from jsonb_array_elements(r->'weeks') w) = 4
-                        and (select sum((w->>'payments')::int) from jsonb_array_elements(r->'weeks') w) = 3
+    t_name := t_name || text 'H weekly: two rows sharing a UTM count each of their own leads once (3 leads, 2 paid, 1 enrolled; L4 is a3''s)'; t_det := t_det || r::text;
+    t_pass := t_pass || ((select sum((w->>'leads')::int) from jsonb_array_elements(r->'weeks') w) = 3
+                        and (select sum((w->>'payments')::int) from jsonb_array_elements(r->'weeks') w) = 2
                         and (select sum((w->>'enrollments')::int) from jsonb_array_elements(r->'weeks') w) = 1);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_weekly', jsonb_build_object('channel', 'ads', 'ids', jsonb_build_array(a1, a3), 'campaign_id', c10)));
     t_name := t_name || text 'H weekly with a campaign = that campaign''s rows + window (1 lead)'; t_det := t_det || r::text;

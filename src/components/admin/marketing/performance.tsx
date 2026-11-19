@@ -147,9 +147,9 @@ export function AdsPerformance({ sb, meta }: { sb: Client; meta: Meta }) {
       <Tabs<AdTab> value={tab} onChange={setTab} tabs={[{ id: "season", label: "Season Performance" }, { id: "platform", label: "Platform Performance" }, { id: "compare", label: "Ad Comparison" }, { id: "list", label: "Performance List" }]} />
       {rows === null ? <p className="mk-mid">Loading…</p> : (
         <>
-          {tab === "season" && <AdSeason rows={all} perCamp={perCamp} meta={meta} />}
-          {tab === "platform" && <AdPlatform rows={rows} perCamp={perCamp} meta={meta} />}
-          {tab === "compare" && <AdCompare rows={rows} perCamp={perCamp} meta={meta} />}
+          {tab === "season" && <AdSeason rows={all} meta={meta} />}
+          {tab === "platform" && <AdPlatform rows={rows} meta={meta} />}
+          {tab === "compare" && <AdCompare rows={rows} meta={meta} />}
           {tab === "list" && <AdList rows={all} />}
         </>
       )}
@@ -158,8 +158,8 @@ export function AdsPerformance({ sb, meta }: { sb: Client; meta: Meta }) {
   );
 }
 
-function AdSeason({ rows, perCamp, meta }: { rows: PerfRow[]; perCamp: boolean; meta: Meta }) {
-  const m = totals(rows, perCamp);
+function AdSeason({ rows, meta }: { rows: PerfRow[]; meta: Meta }) {
+  const m = totals(rows);
   const uniq = new Set(rows.map((r) => r.utm_key ?? `row:${r.id}`)).size;
   return (
     <>
@@ -169,16 +169,16 @@ function AdSeason({ rows, perCamp, meta }: { rows: PerfRow[]; perCamp: boolean; 
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(rows)} value={(b) => fmtPct(b.m.l2p)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
       </div>
       <div className="mk-box"><h4>Funnel</h4><Funnel steps={[{ label: "Leads", value: m.leads }, { label: "Payments", value: m.payments }, { label: "Enrollments", value: m.enrollments }]} /></div>
-      <GroupTable title="By campaign" groups={groupTotals(rows, (r) => r.campaign_id ?? "-", perCamp)} label={campName(meta)} />
-      <GroupTable title="By platform" groups={groupTotals(rows, (r) => r.platform, perCamp)} label={(k) => k} />
+      <GroupTable title="By campaign" groups={groupTotals(rows, (r) => r.campaign_id ?? "-")} label={campName(meta)} />
+      <GroupTable title="By platform" groups={groupTotals(rows, (r) => r.platform)} label={(k) => k} />
     </>
   );
 }
 
-function AdPlatform({ rows, perCamp, meta }: { rows: PerfRow[]; perCamp: boolean; meta: Meta }) {
+function AdPlatform({ rows, meta }: { rows: PerfRow[]; meta: Meta }) {
   const [p, setP] = useState<string>("Meta");
   const sub = rows.filter((r) => r.platform === p);
-  const m = totals(sub, perCamp);
+  const m = totals(sub);
   return (
     <>
       <div className="mk-bar">{AD_PLATFORMS.map((x) => <button key={x} className={x === p ? "mk-pri" : "mk-btn"} onClick={() => setP(x)}>{x}</button>)}</div>
@@ -188,20 +188,20 @@ function AdPlatform({ rows, perCamp, meta }: { rows: PerfRow[]; perCamp: boolean
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(sub)} value={(b) => fmtPct(b.m.l2p)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
       </div>
       <div className="mk-box"><h4>Funnel · {p}</h4><Funnel steps={[{ label: "Leads", value: m.leads }, { label: "Payments", value: m.payments }, { label: "Enrollments", value: m.enrollments }]} /></div>
-      <GroupTable title="By campaign" groups={groupTotals(sub, (r) => r.campaign_id ?? "-", perCamp)} label={campName(meta)} />
+      <GroupTable title="By campaign" groups={groupTotals(sub, (r) => r.campaign_id ?? "-")} label={campName(meta)} />
     </>
   );
 }
 
 type Side = { ad: string; campaign: string; platform: string };
-function AdCompare({ rows, perCamp, meta }: { rows: PerfRow[]; perCamp: boolean; meta: Meta }) {
+function AdCompare({ rows, meta }: { rows: PerfRow[]; meta: Meta }) {
   const [a, setA] = useState<Side>({ ad: "", campaign: "", platform: "" });
   const [b, setB] = useState<Side>({ ad: "", campaign: "", platform: "" });
   const ads = useMemo(() => [...new Map(rows.map((r) => [r.id, r.label])).entries()].sort((x, y) => x[1].localeCompare(y[1])), [rows]);
   const pick = (s: Side) => rows.filter((r) => (!s.ad || r.id === s.ad) && (!s.campaign || r.campaign_id === s.campaign) && (!s.platform || r.platform === s.platform));
   const side = (s: Side, set: (s: Side) => void, tone: "a" | "b", name: string) => {
     const sub = pick(s);
-    const cols: [string, Metrics][] = [["Total", totals(sub, perCamp)], ...AD_PLATFORMS.map((p) => [p, totals(sub.filter((r) => r.platform === p), perCamp)] as [string, Metrics])];
+    const cols: [string, Metrics][] = [["Total", totals(sub)], ...AD_PLATFORMS.map((p) => [p, totals(sub.filter((r) => r.platform === p))] as [string, Metrics])];
     const line = (label: string, f: (m: Metrics) => string) => <tr key={label}><td>{label}</td>{cols.map(([k, m]) => <td key={k} className="v">{f(m)}</td>)}</tr>;
     return (
       <div className={`mk-box mk-box-${tone}`}>
@@ -296,18 +296,19 @@ export function InfluencerPerformance({ sb, meta }: { sb: Client; meta: Meta }) 
       <Tabs<InflTab> value={tab} onChange={setTab} tabs={[{ id: "season", label: "Season" }, { id: "platform", label: "Platform" }, { id: "campaign", label: "Campaign" }, { id: "compare", label: "Influencer Compare" }, { id: "list", label: "List" }]} />
       {tab === "campaign" ? <InflCampaigns sb={sb} meta={meta} f={f} /> : tab === "compare" ? <InflCompare sb={sb} meta={meta} f={f} /> : rows === null ? <p className="mk-mid">Loading…</p> : (
         <>
-          {tab === "season" && <InflSeason rows={rows} perCamp={perCamp} />}
-          {tab === "platform" && <InflPlatform rows={rows} perCamp={perCamp} />}
+          {tab === "season" && <InflSeason rows={rows} />}
+          {tab === "platform" && <InflPlatform rows={rows} />}
           {tab === "list" && <InflList rows={rows} />}
         </>
       )}
-      <Note campaign={perCamp} />
+      {/* Campaign and Influencer Compare pick their own campaigns, so they explain their numbers themselves */}
+      {tab !== "campaign" && tab !== "compare" && <Note campaign={perCamp} />}
     </div>
   );
 }
 
-function InflCards({ rows, perCamp, only }: { rows: PerfRow[]; perCamp: boolean; only?: "YouTube" | "Instagram" }) {
-  const m = totals(rows, perCamp);
+function InflCards({ rows, only }: { rows: PerfRow[]; only?: "YouTube" | "Instagram" }) {
+  const m = totals(rows);
   const yt = rows.filter((r) => isYouTube(r.platform)), ig = rows.filter((r) => !isYouTube(r.platform));
   const views = (rs: PerfRow[]) => rs.reduce((a, r) => a + (Number(r.views) || 0), 0);
   return (
@@ -340,7 +341,7 @@ function InflCards({ rows, perCamp, only }: { rows: PerfRow[]; perCamp: boolean;
 const postLabel = (b: NonNullable<Best>) => `${b.row.influencer ?? b.row.label} · ${b.row.platform}${b.row.live_date ? ` · ${fmtDate(b.row.live_date)}` : ""}`;
 
 /** Every post type (YouTube Shorts / Dedicated / Integrated / Semi-Dedicated / Generic, Instagram Reel / Story), zeros included. */
-function PostTypeTable({ rows, perCamp, types }: { rows: PerfRow[]; perCamp: boolean; types: readonly string[] }) {
+function PostTypeTable({ rows, types }: { rows: PerfRow[]; types: readonly string[] }) {
   return (
     <div className="mk-box">
       <h4>By post type</h4>
@@ -350,7 +351,7 @@ function PostTypeTable({ rows, perCamp, types }: { rows: PerfRow[]; perCamp: boo
           <tbody>
             {types.map((t) => {
               const rs = rows.filter((r) => r.platform === t);
-              const m = totals(rs, perCamp);
+              const m = totals(rs);
               return (
                 <tr key={t} style={rs.length ? undefined : { opacity: 0.5 }}>
                   <td className="mk-strong">{t}</td><td className="r">{fmtInt(rs.length)}</td><td className="r">{fmtCompact(m.views)}</td><td className="r">{fmtInr(m.spend)}</td>
@@ -366,29 +367,29 @@ function PostTypeTable({ rows, perCamp, types }: { rows: PerfRow[]; perCamp: boo
   );
 }
 
-function InflSeason({ rows, perCamp }: { rows: PerfRow[]; perCamp: boolean }) {
+function InflSeason({ rows }: { rows: PerfRow[] }) {
   return (
     <>
-      <InflCards rows={rows} perCamp={perCamp} />
-      <PostTypeTable rows={rows} perCamp={perCamp} types={INFL_PLATFORMS} />
+      <InflCards rows={rows} />
+      <PostTypeTable rows={rows} types={INFL_PLATFORMS} />
     </>
   );
 }
 
-function InflPlatform({ rows, perCamp }: { rows: PerfRow[]; perCamp: boolean }) {
+function InflPlatform({ rows }: { rows: PerfRow[] }) {
   const [p, setP] = useState<"YouTube" | "Instagram">("YouTube");
   const sub = rows.filter((r) => (p === "YouTube" ? isYouTube(r.platform) : !isYouTube(r.platform)));
   return (
     <>
       <div className="mk-bar">{(["YouTube", "Instagram"] as const).map((x) => <button key={x} className={x === p ? "mk-pri" : "mk-btn"} onClick={() => setP(x)}>{x}</button>)}</div>
-      <InflCards rows={sub} perCamp={perCamp} only={p} />
+      <InflCards rows={sub} only={p} />
       <h4 className="mk-subh">Top performers on {p}</h4>
       <div className="mk-top">
         <TopCard title="Lowest CPP" best={lowestCpp(sub)} value={(b) => fmtInr(b.m.cpp)} who={postLabel} link={(b) => b.row.live_link} />
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(sub)} value={(b) => fmtPct(b.m.l2p)} who={postLabel} link={(b) => b.row.live_link} />
         <TopCard title={`Best view → lead (≥ ${MIN_LEADS} leads)`} best={bestV2l(sub)} value={(b) => fmtPct(b.m.v2l, 3)} who={postLabel} link={(b) => b.row.live_link} />
       </div>
-      <PostTypeTable rows={sub} perCamp={perCamp} types={INFL_PLATFORMS.filter((t) => (p === "YouTube") === isYouTube(t))} />
+      <PostTypeTable rows={sub} types={INFL_PLATFORMS.filter((t) => (p === "YouTube") === isYouTube(t))} />
     </>
   );
 }
@@ -401,7 +402,7 @@ function InflCampaigns({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) 
   const col = (id: string) => {
     const c = meta.campaigns.find((x) => x.id === id);
     const rs = (rows ?? []).filter((r) => r.campaign_id === id);
-    return { c, rs, m: totals(rs, true) };
+    return { c, rs, m: totals(rs) };
   };
   const A = col(a), B = col(b);
   const line = (label: string, f2: (x: { c?: Campaign; rs: PerfRow[]; m: Metrics }) => string) => (
@@ -459,7 +460,7 @@ function useSide(sb: Client, f: Filters, infl: string, camp: string) {
     });
     return () => { on = false; };
   }, [sb, infl, camp, ids]);
-  return { rows: mine, loading: !!infl && rows === null, err: err || wErr, weeks, m: totals(mine, !!camp) };
+  return { rows: mine, loading: !!infl && rows === null, err: err || wErr, weeks, m: totals(mine) };
 }
 
 function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
@@ -492,6 +493,14 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
     : side.weeks.length === 0 ? `${tag} · ${meta.influencers.find((x) => x.id === i)?.name ?? "—"} has no leads, payments or enrollments yet ${where(c)}.`
     : null;
   const notes = ready && !A.loading && !B.loading ? [empty("A", A, ai, ac), empty("B", B, bi, bc)].filter((x): x is string => !!x) : [];
+  // how each side's numbers are counted: a side with a campaign is that campaign's cohort, a side
+  // without one follows the From / To dates of the filter bar
+  const how = (tag: "A" | "B", c: string) => {
+    const camp = meta.campaigns.find((x) => x.id === c);
+    return c
+      ? `${tag} (${camp?.name ?? "campaign"}): only the leads that arrived inside the campaign dates, ${fmtDate(camp?.campaign_start)} to ${fmtDate(camp?.campaign_end)}, and their payments and enrollments whenever they happened.`
+      : `${tag} (all campaigns): date view, ${f.from ? fmtDate(f.from) : "from the start"} to ${f.to ? fmtDate(f.to) : "today"}. Leads by the day they arrived, payments by the day they paid and enrollments by the day they enrolled.`;
+  };
   return (
     <>
       <p className="mk-note">Pick an influencer on each side. Pick the same influencer with two different campaigns to see how they did in two VSATs.</p>
@@ -515,6 +524,7 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
           </div>
         </>
       )}
+      {ready && <div className="mk-note"><p>{how("A", ac)}</p><p>{how("B", bc)}</p></div>}
     </>
   );
 }

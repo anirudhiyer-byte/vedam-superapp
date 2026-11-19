@@ -37,17 +37,20 @@ describe("metrics", () => {
     const z = metrics(500, 0, 0, 0, 0);
     expect([z.cpl, z.cpp, z.l2p, z.v2l]).toEqual([null, null, null, null]);
   });
-  it("rows sharing a UTM share their leads: counted once (and per campaign in a cohort view)", () => {
+  // Since migration 0113 the database gives each lead to ONE row, even when rows share a UTM
+  // (the VSAT-8 reel and its VSAT-9 rerun: 67 + 50 = the UTM's 117), so totals are a plain sum.
+  // Before 0113 every such row carried all of the UTM's leads and this function de-duplicated them.
+  it("rows sharing a UTM have their own leads (0113): totals add the rows up", () => {
     const rows = [
-      perf({ id: "1", utm_key: "u", campaign_id: "c9", cost: 100, leads: 10, payments: 2 }),
-      perf({ id: "2", utm_key: "u", campaign_id: "c9", cost: 50, leads: 10, payments: 2 }),
-      perf({ id: "3", utm_key: "u", campaign_id: "c10", cost: 25, leads: 4, payments: 1 }),
+      perf({ id: "1", utm_key: "u", campaign_id: "c8", cost: 100, leads: 67, payments: 5, enrollments: 1 }),
+      perf({ id: "2", utm_key: "u", campaign_id: "c9", cost: 50, leads: 50, payments: 5 }),
+      perf({ id: "3", utm_key: "u", campaign_id: "c9", cost: 25, leads: 4, payments: 1 }),
       perf({ id: "4", utm_key: null, cost: 10, leads: 0 }),
     ];
-    expect(totals(rows, false)).toMatchObject({ spend: 185, leads: 10, payments: 2 });
-    expect(totals(rows, true)).toMatchObject({ spend: 185, leads: 14, payments: 3 });
-    const g = groupTotals(rows, (r) => r.campaign_id ?? "-", true);
-    expect(g.map((x) => [x.key, x.m.spend, x.m.leads])).toEqual([["c9", 150, 10], ["c10", 25, 4], ["-", 10, 0]]);
+    expect(totals(rows)).toMatchObject({ spend: 185, leads: 121, payments: 11, enrollments: 1 });
+    expect(totals([])).toMatchObject({ spend: 0, leads: 0, cpl: null });
+    const g = groupTotals(rows, (r) => r.campaign_id ?? "-");
+    expect(g.map((x) => [x.key, x.m.spend, x.m.leads, x.m.payments])).toEqual([["c8", 100, 67, 5], ["c9", 75, 54, 6], ["-", 10, 0, 0]]);
   });
   it("best cards: lowest CPP needs a payment; L2P and V2L need at least 20 leads", () => {
     const rows = [
