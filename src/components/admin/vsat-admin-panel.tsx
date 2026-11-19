@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Image from "next/image";
 import { VsatFormBuilder } from "@/components/admin/vsat-form-builder";
 import { VsatExamCenter, type WheeboxStatus } from "@/components/admin/vsat-exam-center";
@@ -135,6 +135,11 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
   const [active, setActive] = useState<{ id: string; file?: string; page?: string; cm?: boolean; title: string }>(
     staff ? { id: "form", title: "Form Builder" } : { id: first ?? "none", title: firstTitle });
   const [open, setOpen] = useState<string | null>(null); // open parent id
+  // One tick per click on a page in the menu. The page area is keyed on it, so a page starts fresh when it is
+  // picked (as before), but opening or closing a menu group no longer re-mounts the page and wipes what the
+  // user chose on it (campaign, dates, filters, search, tab).
+  const [nav, setNav] = useState(0);
+  function go(a: typeof active) { setActive(a); setNav((n) => n + 1); }
 
   // pipeline items go live by role; non-staff team members see only their pipeline panels
   const vsatModel: Group[] = VSAT
@@ -146,8 +151,8 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
 
   function switchPanel(p: "vsat" | "growth") {
     setPanel(p); setOpen(null);
-    if (p === "vsat") setActive({ id: "form", title: "Form Builder" });
-    else setActive({ id: "pred", file: "predictor.html", page: "cost-listing", title: "College Predictor · Cost & CPL Listing" });
+    if (p === "vsat") go({ id: "form", title: "Form Builder" });
+    else go({ id: "pred", file: "predictor.html", page: "cost-listing", title: "College Predictor · Cost & CPL Listing" });
   }
 
   // a Communication page asking to open another one (e.g. Manage List → Upload Raw Data)
@@ -157,10 +162,12 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     if (!g || !i) return;
     const id = `cm-${g.label.toLowerCase().replace(/\s+/g, "-")}`;
     setOpen(id);
-    setActive({ id, page: k, cm: true, title: `${g.label} · ${i.label}` });
+    go({ id, page: k, cm: true, title: `${g.label} · ${i.label}` });
   }
 
-  function Content() {
+  // called as a plain function (not <Content />): a component defined in here is a new type on every render,
+  // which re-mounted the whole page on any change of this shell
+  function renderContent() {
     if (panel === "growth") {
       if (active.id === "season") return <div className="vp-scroll"><SeasonPanel /></div>;
       if (active.id === "vcamp") return <div className="vp-scroll"><VcampPanel /></div>;
@@ -220,7 +227,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                             {it.sub.map((s) => {
                               const on = active.id === it.id && active.page === s.page;
                               return (
-                                <a key={s.page} className={on ? "on" : ""} onClick={() => setActive({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
+                                <a key={s.page} className={on ? "on" : ""} onClick={() => go({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
                                   <Svg inner='<circle cx="12" cy="12" r="2.5"/>' /><span className="vp-lbl">{s.label}</span>
                                 </a>
                               );
@@ -233,7 +240,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                   const on = active.id === it.id;
                   return (
                     <a key={it.id} className={`${it.live ? "" : "vp-soon"}${on ? " on" : ""}`}
-                      onClick={() => it.live && setActive({ id: it.id, title: it.label })}>
+                      onClick={() => it.live && go({ id: it.id, title: it.label })}>
                       <Svg inner={it.icon} /><span className="vp-lbl">{it.label}</span>
                       {it.live ? <span className="vp-plive"><i />Live</span> : <span className="vp-psoon">Soon</span>}
                     </a>
@@ -248,7 +255,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
         </aside>
         <div className="vp-content">
           <div className="vp-ctop"><span className="vp-crumb">{panel === "vsat" ? "VSAT" : "GROWTH"}</span><span className="vp-title">{active.title}</span></div>
-          <div className="vp-main"><Content /></div>
+          <div className="vp-main"><Fragment key={nav}>{renderContent()}</Fragment></div>
         </div>
       </div>
     </div>
