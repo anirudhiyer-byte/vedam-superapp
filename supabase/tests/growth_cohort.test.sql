@@ -71,7 +71,7 @@ returns table (test text, pass boolean, detail text) language plpgsql as $$
 declare
   t_name text[] := '{}'; t_pass boolean[] := '{}'; t_det text[] := '{}';
   adm uuid; staff uuid; l1 uuid; l2 uuid; l3 uuid; l4 uuid; l5 uuid; l6 uuid; l7 uuid; l8 uuid; ghost uuid := gen_random_uuid();
-  camp uuid; c_nod uuid; c_long uuid; r jsonb; s text;
+  camp uuid; c_nod uuid; c_long uuid; c_rev uuid; r jsonb; s text;
   win jsonb := '{"from":"2090-01-04","to":"2090-01-10"}'::jsonb;
 begin
   begin -- rolled back at the end (ZDONE)
@@ -98,6 +98,7 @@ begin
     insert into public.vsat_campaigns (name, campaign_start, campaign_end, exam_date) values ('ZZTEST Cohort C', '2090-01-04', '2090-01-10', '2090-01-25') returning id into camp;
     insert into public.vsat_campaigns (name, campaign_start, campaign_end, exam_date) values ('ZZTEST Cohort NoDates', null, null, '2090-01-25') returning id into c_nod;
     insert into public.vsat_campaigns (name, campaign_start, campaign_end, exam_date) values ('ZZTEST Cohort Long', '2090-01-01', '2090-05-01', '2090-05-10') returning id into c_long;
+    insert into public.vsat_campaigns (name, campaign_start, campaign_end, exam_date) values ('ZZTEST Cohort Reversed', '2090-01-10', '2090-01-04', '2090-01-25') returning id into c_rev;
 
     -- ════ A. who may use it ════
     r := pg_temp.call_as(null, pg_temp.rpc('growth_cohort_report', win), true);
@@ -116,11 +117,14 @@ begin
                      and has_function_privilege('authenticated', 'public.growth_cohort_report(jsonb)', 'execute')
                      and not has_function_privilege('authenticated', 'public.growth__cohort_data(jsonb, date)', 'execute')
                      and not has_function_privilege('anon', 'public.growth__cohort_data(jsonb, date)', 'execute'));
-    t_name := t_name || text 'A both functions are SECURITY DEFINER with search_path empty';
+    -- owner-approved change (security review, 19 Nov): the private helper is SECURITY INVOKER, so a wrong grant later
+    -- could not hand out the report; only the public function runs as the owner
+    t_name := t_name || text 'A public function SECURITY DEFINER, private helper SECURITY INVOKER, both search_path empty';
     t_det := t_det || text 'see test';
     t_pass := t_pass || ((select count(*) from pg_proc p where p.pronamespace = 'public'::regnamespace
-                           and p.proname in ('growth_cohort_report', 'growth__cohort_data')
-                           and p.prosecdef and p.proconfig @> array['search_path=""']) = 2);
+                           and p.proname = 'growth_cohort_report' and p.prosecdef and p.proconfig @> array['search_path=""']) = 1
+                     and (select count(*) from pg_proc p where p.pronamespace = 'public'::regnamespace
+                           and p.proname = 'growth__cohort_data' and not p.prosecdef and p.proconfig @> array['search_path=""']) = 1);
 
     -- ════ B. request checks (public function, as admin) ════
     foreach s in array array[
@@ -136,6 +140,8 @@ begin
       '{"from":5,"to":"2090-01-10"}|BAD_VALUE: from',
       '{"campaign_id":"not-a-uuid"}|BAD_VALUE: campaign_id',
       '{"campaign_id":"00000000-0000-0000-0000-000000000000"}|NOT_FOUND',
+      '{"campaign_id":123}|BAD_VALUE: campaign_id',
+      '{"campaign_id":{"a":1}}|BAD_VALUE: campaign_id',
       '[]|BAD_REQUEST',
       '"x"|BAD_REQUEST'] loop
       r := pg_temp.call_as(adm, pg_temp.rpc('growth_cohort_report', split_part(s, '|', 1)::jsonb));
@@ -148,6 +154,11 @@ begin
     t_name := t_name || text 'B a campaign without dates is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: campaign_id');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_cohort_report', jsonb_build_object('campaign_id', c_long)));
     t_name := t_name || text 'B a campaign window longer than 120 days is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: range');
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_cohort_report', jsonb_build_object('campaign_id', c_rev)));
+    t_name := t_name || text 'B a campaign whose start is after its end is refused (never an empty report)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: campaign_id');
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_cohort_report', '{"campaign_id":null}'));
+    t_name := t_name || text 'B {"campaign_id":null} alone opens the default 30 days'; t_det := t_det || left(r::text, 120);
+    t_pass := t_pass || (r->>'source' = 'default' and (r->>'to')::date - (r->>'from')::date = 29);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_cohort_report', jsonb_build_object('from', repeat('9', 100000), 'to', '2090-01-10')));
     t_name := t_name || text 'B 100 000 characters of text are refused'; t_det := t_det || left(r::text, 120); t_pass := t_pass || (r->>'message' = 'BAD_VALUE: from');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_cohort_report', '{"from":"2090-01-01","to":"2090-04-30"}'));

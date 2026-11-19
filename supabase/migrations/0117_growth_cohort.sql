@@ -8,7 +8,8 @@
 --              or, with nothing sent, IST today − 29 .. today (decided here, never by the browser)
 --              Checks come from public.growth__season_window (0108): campaign + dates together → BAD_VALUE: from,
 --              bad id → BAD_VALUE: campaign_id, unknown id → NOT_FOUND, campaign without dates → BAD_VALUE: campaign_id,
---              missing date → REQUIRED: from|to, to < from → BAD_VALUE: to.
+--              missing date → REQUIRED: from|to, to < from → BAD_VALUE: to; a campaign whose start is after its
+--              end → BAD_VALUE: campaign_id.
 --   limit    = at most 120 days (both ends included) → else BAD_VALUE: range (also for a long campaign window).
 --   leads    = public.growth__lead_rows (0116): lead_manager by the IST date of user_registration_date.
 --              (@vedam.org addresses are NOT excluded here — owner's rule for this page, same as the CRM page.)
@@ -20,18 +21,21 @@
 --                lead date after `to`        → after   (+ after_days)          (owner's choice; the CRM has no row)
 --                no lead date                → unknown
 --
--- Security: admin only (growth__admin → is_admin()), checked first in the public function. SECURITY DEFINER,
--- search_path '', public function revoked from public/anon and granted to authenticated; the private helper is revoked
--- from everyone (also authenticated). Request keys: campaign_id | from | to only; unknown keys are refused. Read only.
+-- Security: admin only (growth__admin → is_admin()), checked first in the public function. The public function is
+-- SECURITY DEFINER; the private helper is SECURITY INVOKER. Both use search_path ''. The public function is revoked
+-- from public/anon and granted to authenticated; the private helper is revoked from everyone (also authenticated).
+-- Request keys: campaign_id | from | to only; unknown keys are refused. Read only.
 --
 -- Not touched: any table, RLS, existing function (growth__keys, growth__season_window, growth__lead_rows and
 -- growth__paid_rows are only called).
 -- Rollback: supabase/rollback/0117_growth_cohort_down.sql
 -- Tests:    supabase/tests/growth_cohort.test.sql
 
--- the whole matrix for one request on one IST day (p_today is a parameter so tests can fix it)
+-- the whole matrix for one request on one IST day (p_today is a parameter so tests can fix it).
+-- SECURITY INVOKER on purpose (security review): it runs as the owner only when growth_cohort_report calls it, so a
+-- wrong grant later could never hand the report to a browser role.
 create or replace function public.growth__cohort_data(p jsonb, p_today date)
-returns jsonb language plpgsql stable security definer set search_path to '' as $fn$
+returns jsonb language plpgsql stable security invoker set search_path to '' as $fn$
 declare
   w record;
   f date; t date;
@@ -57,6 +61,9 @@ begin
     t := p_today; f := p_today - 29; v_source := 'default';
   end if;
 
+  -- a campaign row whose start is after its end (no table constraint stops it) is an error, never an empty report;
+  -- typed dates are already refused by growth__season_window (BAD_VALUE: to)
+  if t < f then raise exception 'BAD_VALUE: campaign_id' using errcode = '22023'; end if;
   if t - f + 1 > 120 then raise exception 'BAD_VALUE: range' using errcode = '22023'; end if;
 
   select coalesce(jsonb_agg(jsonb_build_object('d', x.d, 'n', x.n) order by x.d), '[]'::jsonb)
