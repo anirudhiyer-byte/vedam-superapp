@@ -314,8 +314,8 @@ export function CsvDialog({ sb, channel, columns, onClose, onImported }: {
 
 // ───────────────────────────── campaigns ─────────────────────────────
 
-type CampaignDraft = { id?: string; name: string; campaign_start: string; campaign_end: string; exam_date: string; budget: string; application_target: string };
-const emptyDraft: CampaignDraft = { name: "", campaign_start: "", campaign_end: "", exam_date: "", budget: "", application_target: "" };
+type CampaignDraft = { id?: string; name: string; campaign_start: string; campaign_end: string; budget: string; application_target: string };
+const emptyDraft: CampaignDraft = { name: "", campaign_start: "", campaign_end: "", budget: "", application_target: "" };
 
 export function CampaignsDialog({ sb, campaigns, onClose, onChanged }: { sb: Client; campaigns: Campaign[]; onClose: () => void; onChanged: () => void }) {
   const [d, setD] = useState<CampaignDraft>(emptyDraft);
@@ -324,12 +324,13 @@ export function CampaignsDialog({ sb, campaigns, onClose, onChanged }: { sb: Cli
 
   function edit(c: Campaign) {
     setErr("");
-    setD({ id: c.id, name: c.name, campaign_start: c.campaign_start ?? "", campaign_end: c.campaign_end ?? "", exam_date: c.exam_date ?? "",
+    setD({ id: c.id, name: c.name, campaign_start: c.campaign_start ?? "", campaign_end: c.campaign_end ?? "",
       budget: c.budget == null ? "" : String(c.budget), application_target: c.application_target == null ? "" : String(c.application_target) });
   }
   async function save() {
     setBusy(true); setErr("");
-    const p: Record<string, unknown> = { name: d.name, campaign_start: d.campaign_start, campaign_end: d.campaign_end, exam_date: d.exam_date,
+    // no exam date (0119): exam dates live in Exam Center; the database keeps a stored one on edit
+    const p: Record<string, unknown> = { name: d.name, campaign_start: d.campaign_start, campaign_end: d.campaign_end,
       budget: d.budget, application_target: d.application_target };
     if (d.id) p.id = d.id;
     const r = await rpc(sb, "growth_campaign_save", p);
@@ -348,14 +349,13 @@ export function CampaignsDialog({ sb, campaigns, onClose, onChanged }: { sb: Cli
     <Modal title="Campaigns" sub="“Used in” on an ad or post points to one of these. In-window = leads that arrived between the start and end date (IST)." onClose={onClose} wide>
       <div className="mk-tablewrap" style={{ maxHeight: 280, marginBottom: 14 }}>
         <table className="mk-table">
-          <thead><tr><th>Campaign</th><th>Window</th><th>Exam</th><th className="r">Budget</th><th className="r">Target</th><th className="r">Rows</th><th /></tr></thead>
+          <thead><tr><th>Campaign</th><th>Window</th><th className="r">Budget</th><th className="r">Target</th><th className="r">Rows</th><th /></tr></thead>
           <tbody>
-            {campaigns.length === 0 && <tr><td colSpan={7} className="mk-mid">No campaigns yet. Add the first one below.</td></tr>}
+            {campaigns.length === 0 && <tr><td colSpan={6} className="mk-mid">No campaigns yet. Add the first one below.</td></tr>}
             {campaigns.map((c) => (
               <tr key={c.id} className={d.id === c.id ? "on" : ""}>
                 <td className="mk-strong">{c.name}</td>
                 <td>{fmtDate(c.campaign_start)} – {fmtDate(c.campaign_end)}</td>
-                <td>{fmtDate(c.exam_date)}</td>
                 <td className="r">{fmtInr(c.budget)}</td>
                 <td className="r">{c.application_target ?? "—"}</td>
                 <td className="r">{c.used}</td>
@@ -374,7 +374,6 @@ export function CampaignsDialog({ sb, campaigns, onClose, onChanged }: { sb: Cli
         </Field></div>
         <Field label="Campaign start" required><input className="mk-in mk-date" type="date" value={d.campaign_start} onChange={(e) => setD({ ...d, campaign_start: e.target.value })} /></Field>
         <Field label="Campaign end" required><input className="mk-in mk-date" type="date" value={d.campaign_end} onChange={(e) => setD({ ...d, campaign_end: e.target.value })} /></Field>
-        <Field label="Exam date" required><input className="mk-in mk-date" type="date" value={d.exam_date} onChange={(e) => setD({ ...d, exam_date: e.target.value })} /></Field>
         <Field label="Budget (₹)"><input className="mk-in" inputMode="decimal" value={d.budget} onChange={(e) => setD({ ...d, budget: e.target.value })} /></Field>
         <Field label="Application target"><input className="mk-in" inputMode="numeric" value={d.application_target} onChange={(e) => setD({ ...d, application_target: e.target.value })} /></Field>
       </div>

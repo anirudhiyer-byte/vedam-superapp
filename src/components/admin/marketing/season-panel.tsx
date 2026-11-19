@@ -118,7 +118,7 @@ export function SeasonPanel() {
             <>
               <span className="sd-eyebrow">Window</span>
               <span className="sd-win">{locked && counts?.from && counts?.to ? <>{counts.from}<i> → </i>{counts.to}</> : "…"}</span>
-              <span className="sd-eyebrow sd-lock" title={`Campaign “${campName}” sets the window. Leads are counted in that window; Paid and Enrolments are the leads whose application is on this campaign’s exam date.`}>Locked to campaign</span>
+              <span className="sd-eyebrow sd-lock" title={`Campaign “${campName}” sets the window. Leads, Paid and Enrolments are all counted inside that window (by sign-up date, first payment date and enrolment date).`}>Locked to campaign</span>
             </>
           ) : (
             <>

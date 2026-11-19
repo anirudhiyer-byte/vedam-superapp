@@ -128,11 +128,11 @@ begin
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_counts', '{"from":"2000-01-01","to":"2100-12-31"}'));
     t_name := t_name || text 'B a very wide range works and includes the fake leads'; t_det := t_det || r::text; t_pass := t_pass || ((r->>'leads')::int >= 6 and (r->>'paid')::int >= 3);
 
-    -- ════ C. campaign = locked window + exam date ════
+    -- ════ C. campaign = locked window (0119: Paid and Enrolments by the campaign's dates, not its exam date) ════
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_counts', jsonb_build_object('campaign_id', camp)));
-    t_name := t_name || text 'C campaign: leads in its window (4), paid and enrolled on its exam date (2 and 2), window locked, name returned';
+    t_name := t_name || text 'C campaign: leads (4), paid (3) and enrolled (2) inside its dates, window locked, name returned';
     t_det := t_det || r::text;
-    t_pass := t_pass || ((r->>'leads')::int = 4 and (r->>'paid')::int = 2 and (r->>'enrolled')::int = 2 and r->>'locked' = 'true'
+    t_pass := t_pass || ((r->>'leads')::int = 4 and (r->>'paid')::int = 3 and (r->>'enrolled')::int = 2 and r->>'locked' = 'true'
                          and r->>'campaign' = 'ZZTEST Season C' and r->>'from' = '2090-01-01' and r->>'to' = '2090-01-31');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_counts', jsonb_build_object('campaign_id', camp, 'from', '2090-01-01')));
     t_name := t_name || text 'C a campaign together with dates is refused (the campaign locks the window)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: from');
@@ -182,8 +182,8 @@ begin
     t_pass := t_pass || ((r->>'total')::int = (r2->>'enrolled')::int and jsonb_array_length(r->'rows') = 2);
     r2 := pg_temp.call_as(adm, pg_temp.rpc('growth_season_counts', jsonb_build_object('campaign_id', camp)));
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jsonb_build_object('kind', 'paid', 'campaign_id', camp)));
-    t_name := t_name || text 'E campaign mode: list total = card too (paid 2)'; t_det := t_det || left(r::text, 120);
-    t_pass := t_pass || ((r->>'total')::int = (r2->>'paid')::int and (r->>'total')::int = 2);
+    t_name := t_name || text 'E campaign mode: list total = card too (paid 3)'; t_det := t_det || left(r::text, 120);
+    t_pass := t_pass || ((r->>'total')::int = (r2->>'paid')::int and (r->>'total')::int = 3);
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_season_drill', jan || '{"kind":"paid"}'));
     t_name := t_name || text 'E a paid row has the payment, the exam date and the enrolment (IST times)';
     t_det := t_det || (select x::text from jsonb_array_elements(r->'rows') x where x->>'registered_email' = 'zz1@example.invalid');
