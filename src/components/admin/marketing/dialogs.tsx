@@ -329,7 +329,7 @@ export function CampaignsDialog({ sb, campaigns, onClose, onChanged }: { sb: Cli
   }
   async function save() {
     setBusy(true); setErr("");
-    // no exam date (0119): exam dates live in Exam Center; the database keeps a stored one on edit
+    // no exam date (0120): exam dates live in Exam Center; the database keeps a stored one on edit
     const p: Record<string, unknown> = { name: d.name, campaign_start: d.campaign_start, campaign_end: d.campaign_end,
       budget: d.budget, application_target: d.application_target };
     if (d.id) p.id = d.id;
