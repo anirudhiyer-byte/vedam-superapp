@@ -38,17 +38,57 @@ async function whoAmI(url: string, anon: string, token: string) {
   return { id: u.user.id, isAdmin };
 }
 
-// does `name`/`type` satisfy one of the accept patterns?  '' / [] => accept anything.
+// Known file-type keywords → the extensions + MIME types they permit.
+const TYPE_ALIASES: Record<string, { ext: string[]; mime: string[] }> = {
+  pdf:  { ext: [".pdf"],          mime: ["application/pdf"] },
+  jpg:  { ext: [".jpg", ".jpeg"], mime: ["image/jpeg"] },
+  jpeg: { ext: [".jpg", ".jpeg"], mime: ["image/jpeg"] },
+  png:  { ext: [".png"],          mime: ["image/png"] },
+  webp: { ext: [".webp"],         mime: ["image/webp"] },
+  heic: { ext: [".heic"],         mime: ["image/heic"] },
+  heif: { ext: [".heif"],         mime: ["image/heif"] },
+  doc:  { ext: [".doc"],          mime: ["application/msword"] },
+  docx: { ext: [".docx"],         mime: ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"] },
+};
+
+// Turn an accept rule into the extensions / MIMEs / families it actually permits.
+// Rules may be clean (".pdf", "image/png", "image/*") OR sloppy admin labels
+// ("Only jpeg", "pdf allowed"); we scan each rule for known type keywords and ignore
+// anything unrecognised, so a badly-typed rule never silently blocks every upload.
+function parseAccept(accept: string[]): { ext: Set<string>; mime: Set<string>; families: string[] } {
+  const ext = new Set<string>(), mime = new Set<string>(), families: string[] = [];
+  for (const raw of accept) {
+    const a = (raw || "").trim().toLowerCase();
+    if (!a) continue;
+    if (a.endsWith("/*")) { families.push(a.slice(0, -1)); continue; }           // "image/*"
+    if (a.includes("/")) { mime.add(a); continue; }                             // explicit MIME
+    if (a.startsWith(".")) {                                                    // ".pdf"
+      ext.add(a);
+      const k = a.slice(1);
+      if (TYPE_ALIASES[k]) TYPE_ALIASES[k].mime.forEach((m) => mime.add(m));
+      continue;
+    }
+    for (const k in TYPE_ALIASES) {                                             // bare word / label
+      if (new RegExp(`\\b${k}\\b`).test(a)) {
+        TYPE_ALIASES[k].ext.forEach((e) => ext.add(e));
+        TYPE_ALIASES[k].mime.forEach((m) => mime.add(m));
+      }
+    }
+  }
+  return { ext, mime, families };
+}
+
+// does `name`/`type` satisfy the accept rule?  '' / [] => accept anything.
 function okType(accept: string[], name: string, type: string): boolean {
   if (accept.length === 0) return true;
+  const { ext, mime, families } = parseAccept(accept);
+  // nothing recognisable in the rule → don't block (the bucket's MIME list is the backstop)
+  if (ext.size === 0 && mime.size === 0 && families.length === 0) return true;
   const n = name.toLowerCase(), t = (type || "").toLowerCase();
-  return accept.some((raw) => {
-    const a = raw.trim().toLowerCase();
-    if (!a) return false;
-    if (a.startsWith(".")) return n.endsWith(a);           // extension, e.g. ".pdf"
-    if (a.endsWith("/*")) return t.startsWith(a.slice(0, -1)); // family, e.g. "image/*"
-    return t === a;                                        // exact mime
-  });
+  if (t && mime.has(t)) return true;
+  if (t && families.some((f) => t.startsWith(f))) return true;
+  if ([...ext].some((e) => n.endsWith(e))) return true;
+  return false;
 }
 
 function safeName(raw: string): string {

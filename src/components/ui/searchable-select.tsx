@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-export function SearchableSelect({ options, value, onChange, placeholder = "Select…", disabled = false }:
-  { options: string[]; value: string; onChange: (v: string) => void; placeholder?: string; disabled?: boolean }) {
+export function SearchableSelect({ options, value, onChange, placeholder = "Select…", disabled = false, allowCustom = false }:
+  { options: string[]; value: string; onChange: (v: string) => void; placeholder?: string; disabled?: boolean; allowCustom?: boolean }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const ref = useRef<HTMLDivElement>(null);
@@ -41,7 +41,13 @@ export function SearchableSelect({ options, value, onChange, placeholder = "Sele
                     o === value ? "font-semibold text-accent" : "text-foreground"].join(" ")}>{o}</button>
               </li>
             ))}
-            {filtered.length === 0 && <li className="px-3 py-3 text-center font-body text-sm text-muted">No matches</li>}
+            {allowCustom && q.trim() && !options.some((o) => o.toLowerCase() === q.trim().toLowerCase()) && (
+              <li className="border-t border-border">
+                <button type="button" onClick={() => { onChange(q.trim()); setOpen(false); setQ(""); }}
+                  className="block w-full px-3 py-2 text-left font-body text-sm text-accent hover:bg-surface-warm">Use “{q.trim()}” (not in the list)</button>
+              </li>
+            )}
+            {filtered.length === 0 && !(allowCustom && q.trim()) && <li className="px-3 py-3 text-center font-body text-sm text-muted">No matches</li>}
             {options.length > 60 && filtered.length === 60 && <li className="px-3 py-2 text-center font-mono text-[11px] text-muted">Keep typing to narrow…</li>}
           </ul>
         </div>
