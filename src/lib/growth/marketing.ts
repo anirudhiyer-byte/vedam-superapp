@@ -126,6 +126,23 @@ export function shareBar(v: number, base: number): number {
   return Math.max(2, Math.min(100, (v / base) * 100));
 }
 
+/** growth_lead_timing (migration 0118): a set of posts' leads by the days after each post's own live date. */
+export type LeadTiming = { before: number; d0_7: number; d8_30: number; d31p: number; no_live: number };
+export const TIMING_PARTS = [
+  { k: "before", label: "Before live date" },
+  { k: "d0_7", label: "0–7 days" },
+  { k: "d8_30", label: "8–30 days" },
+  { k: "d31p", label: "31+ days" },
+  { k: "no_live", label: "No live date" },
+] as const satisfies readonly { k: keyof LeadTiming; label: string }[];
+
+/** A side's non-empty timing parts in order, each with its share (%) of the side's leads. */
+export function timingParts(t: LeadTiming | null): { total: number; parts: { k: keyof LeadTiming; label: string; n: number; pct: number }[] } {
+  const total = t ? TIMING_PARTS.reduce((a, p) => a + (Number(t[p.k]) || 0), 0) : 0;
+  if (!t || total === 0) return { total: 0, parts: [] };
+  return { total, parts: TIMING_PARTS.filter((p) => Number(t[p.k]) > 0).map((p) => ({ k: p.k, label: p.label, n: Number(t[p.k]), pct: (Number(t[p.k]) / total) * 100 })) };
+}
+
 /** Group rows by a key and total each group. Sorted by spend, high first. */
 export function groupTotals(rows: PerfRow[], keyOf: (r: PerfRow) => string): { key: string; rows: PerfRow[]; m: Metrics }[] {
   const g = new Map<string, PerfRow[]>();

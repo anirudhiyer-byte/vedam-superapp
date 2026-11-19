@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   activeSpan, adCards, bestV2l, countTicks, cplGuides, cumulative, nearestIndex, niceCeil, shortPlatform, csvToRows, errorText, fillWeeks, fmtCompact, groupTotals, highestL2p, importErrors, inRange, inflCards,
-  labelIndexes, lowestCpp, parseAmount, shareBar, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
+  labelIndexes, lowestCpp, parseAmount, shareBar, matchesTerms, metrics, mondayOf, splitTerms, timingParts, totals, youTubeId,
   type AdRow, type CustomColumn, type PerfRow, type PostRow,
 } from "./marketing";
 
@@ -55,6 +55,15 @@ describe("metrics", () => {
   it("funnel bar width: share of the base, at least 2 when above zero, never over 100", () => {
     expect([shareBar(395, 395), shareBar(41, 395), shareBar(1, 1000), shareBar(0, 395), shareBar(5, 0), shareBar(500, 395)])
       .toEqual([100, (41 / 395) * 100, 2, 0, 0, 100]);
+  });
+  it("lead timing: non-empty parts in order with their share; nothing for no data or zero leads", () => {
+    const t = timingParts({ before: 10, d0_7: 14, d8_30: 3, d31p: 3, no_live: 0 });
+    expect(t.total).toBe(30);
+    expect(t.parts.map((p) => [p.k, p.n, Math.round(p.pct)])).toEqual([["before", 10, 33], ["d0_7", 14, 47], ["d8_30", 3, 10], ["d31p", 3, 10]]);
+    expect(t.parts.reduce((a, p) => a + p.pct, 0)).toBeCloseTo(100);
+    expect(timingParts({ before: 0, d0_7: 0, d8_30: 0, d31p: 0, no_live: 2 }).parts).toEqual([{ k: "no_live", label: "No live date", n: 2, pct: 100 }]);
+    expect(timingParts(null)).toEqual({ total: 0, parts: [] });
+    expect(timingParts({ before: 0, d0_7: 0, d8_30: 0, d31p: 0, no_live: 0 })).toEqual({ total: 0, parts: [] });
   });
   it("best cards: lowest CPP needs a payment; L2P and V2L need at least 20 leads", () => {
     const rows = [
