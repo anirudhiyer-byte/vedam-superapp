@@ -1,11 +1,16 @@
 "use client";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Image from "next/image";
 import { VsatFormBuilder } from "@/components/admin/vsat-form-builder";
 import { VsatExamCenter, type WheeboxStatus } from "@/components/admin/vsat-exam-center";
 import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
 import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
+import { MarketingPanel, type MarketingPage } from "@/components/admin/marketing/marketing-panel";
+import { CampaignsPanel } from "@/components/admin/marketing/campaigns-panel";
+import { SeasonPanel } from "@/components/admin/marketing/season-panel";
+import { VcampPanel } from "@/components/admin/marketing/vcamp-panel";
+import { CohortPanel } from "@/components/admin/marketing/cohort-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
 import { VsatSettings } from "@/components/admin/vsat-settings";
@@ -38,9 +43,11 @@ const ICON: Record<string, string> = {
   form: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
   center: '<circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.9 7.9 0 0 0 0-2l2-1.5-2-3.4-2.3 1a8 8 0 0 0-1.7-1L15 3.5h-4l-.4 2.6a8 8 0 0 0-1.7 1l-2.3-1-2 3.4L6.6 11a7.9 7.9 0 0 0 0 2l-2 1.5 2 3.4 2.3-1a8 8 0 0 0 1.7 1l.4 2.6h4l.4-2.6a8 8 0 0 0 1.7-1l2.3 1 2-3.4z"/>',
   comms: '<path d="M4 4h16v12H5.2L4 17.2z"/>',
+  campaign: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
   season: '<path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>',
   cohort: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
   call: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7l.7 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5l2.7.7A2 2 0 0 1 22 16.9z"/>',
+  ads: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>',
   infl: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 5a3 3 0 0 1 0 6"/>',
   tele: '<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
   cons: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
@@ -77,12 +84,13 @@ const VSAT: Group[] = [
 ];
 
 // Growth modules (served from /public/growth/<file>). Mirrors the Growth shell:
-// only pred/sprint/event are navigable; the rest render as "soon".
+// only calling/ads/infl/pred/sprint/event are navigable; the rest render as "soon".
 const GROWTH: Group[] = [
   { g: "Overview", items: [
-    { id: "season", label: "Season Dashboard", icon: ICON.season },
-    { id: "cohort", label: "Payment Cohort", icon: ICON.cohort },
-    { id: "vcamp", label: "VSAT Campaign Report", icon: ICON.exam },
+    { id: "season", label: "Season Dashboard", icon: ICON.season, live: true },
+    { id: "cohort", label: "Payment Cohort", icon: ICON.cohort, live: true },
+    { id: "vcamp", label: "VSAT Campaign Report", icon: ICON.exam, live: true },
+    { id: "campaigns", label: "Campaigns", icon: ICON.campaign, live: true },
   ] },
   { g: "Marketing Channels", items: [
     { id: "calling", label: "Calling", icon: ICON.call, live: true, sub: [
@@ -90,7 +98,12 @@ const GROWTH: Group[] = [
       { label: "UTM Listing", page: "utm" }, { label: "Callers", page: "callers" },
       { label: "Elevate", page: "elevate" },
     ] },
-    { id: "infl", label: "Influencers", icon: ICON.infl },
+    { id: "ads", label: "Ads", icon: ICON.ads, live: true, sub: [
+      { label: "Ads Listing", page: "listing" }, { label: "Ad Performance", page: "perf" },
+    ] },
+    { id: "infl", label: "Influencers", icon: ICON.infl, live: true, sub: [
+      { label: "Influencer Listing", page: "listing" }, { label: "Influencer Performance", page: "perf" },
+    ] },
     { id: "tele", label: "Telegram Channel", icon: ICON.tele },
     { id: "cons", label: "Consultants Channel", icon: ICON.cons },
     { id: "pred", label: "College Predictor", icon: ICON.pred, live: true, file: "predictor.html", sub: [
@@ -122,6 +135,11 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
   const [active, setActive] = useState<{ id: string; file?: string; page?: string; cm?: boolean; title: string }>(
     staff ? { id: "form", title: "Form Builder" } : { id: first ?? "none", title: firstTitle });
   const [open, setOpen] = useState<string | null>(null); // open parent id
+  // One tick per click on a page in the menu. The page area is keyed on it, so a page starts fresh when it is
+  // picked (as before), but opening or closing a menu group no longer re-mounts the page and wipes what the
+  // user chose on it (campaign, dates, filters, search, tab).
+  const [nav, setNav] = useState(0);
+  function go(a: typeof active) { setActive(a); setNav((n) => n + 1); }
 
   // pipeline items go live by role; non-staff team members see only their pipeline panels
   const vsatModel: Group[] = VSAT
@@ -133,8 +151,8 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
 
   function switchPanel(p: "vsat" | "growth") {
     setPanel(p); setOpen(null);
-    if (p === "vsat") setActive({ id: "form", title: "Form Builder" });
-    else setActive({ id: "pred", file: "predictor.html", page: "cost-listing", title: "College Predictor · Cost & CPL Listing" });
+    if (p === "vsat") go({ id: "form", title: "Form Builder" });
+    else go({ id: "pred", file: "predictor.html", page: "cost-listing", title: "College Predictor · Cost & CPL Listing" });
   }
 
   // a Communication page asking to open another one (e.g. Manage List → Upload Raw Data)
@@ -144,12 +162,22 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     if (!g || !i) return;
     const id = `cm-${g.label.toLowerCase().replace(/\s+/g, "-")}`;
     setOpen(id);
-    setActive({ id, page: k, cm: true, title: `${g.label} · ${i.label}` });
+    go({ id, page: k, cm: true, title: `${g.label} · ${i.label}` });
   }
 
-  function Content() {
+  // called as a plain function (not <Content />): a component defined in here is a new type on every render,
+  // which re-mounted the whole page on any change of this shell
+  function renderContent() {
     if (panel === "growth") {
+      if (active.id === "season") return <div className="vp-scroll"><SeasonPanel /></div>;
+      if (active.id === "vcamp") return <div className="vp-scroll"><VcampPanel /></div>;
+      if (active.id === "cohort") return <div className="vp-scroll"><CohortPanel /></div>;
+      if (active.id === "campaigns") return <div className="vp-scroll"><CampaignsPanel /></div>;
       if (active.id === "calling") return <div className="vp-scroll"><CallingPanel page={(active.page ?? "data") as CallingPage} /></div>;
+      if (active.id === "ads" || active.id === "infl") {
+        const ch = active.id === "ads" ? "ads" : "influencers";
+        return <div className="vp-scroll"><MarketingPanel key={`${ch}-${active.page}`} channel={ch} page={(active.page ?? "listing") as MarketingPage} /></div>;
+      }
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
     }
@@ -199,7 +227,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                             {it.sub.map((s) => {
                               const on = active.id === it.id && active.page === s.page;
                               return (
-                                <a key={s.page} className={on ? "on" : ""} onClick={() => setActive({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
+                                <a key={s.page} className={on ? "on" : ""} onClick={() => go({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
                                   <Svg inner='<circle cx="12" cy="12" r="2.5"/>' /><span className="vp-lbl">{s.label}</span>
                                 </a>
                               );
@@ -212,7 +240,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                   const on = active.id === it.id;
                   return (
                     <a key={it.id} className={`${it.live ? "" : "vp-soon"}${on ? " on" : ""}`}
-                      onClick={() => it.live && setActive({ id: it.id, title: it.label })}>
+                      onClick={() => it.live && go({ id: it.id, title: it.label })}>
                       <Svg inner={it.icon} /><span className="vp-lbl">{it.label}</span>
                       {it.live ? <span className="vp-plive"><i />Live</span> : <span className="vp-psoon">Soon</span>}
                     </a>
@@ -227,7 +255,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
         </aside>
         <div className="vp-content">
           <div className="vp-ctop"><span className="vp-crumb">{panel === "vsat" ? "VSAT" : "GROWTH"}</span><span className="vp-title">{active.title}</span></div>
-          <div className="vp-main"><Content /></div>
+          <div className="vp-main"><Fragment key={nav}>{renderContent()}</Fragment></div>
         </div>
       </div>
     </div>
