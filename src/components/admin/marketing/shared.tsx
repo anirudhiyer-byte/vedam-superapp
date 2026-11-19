@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { countTicks, errorText, labelIndexes, type Channel, type CustomColumn, type Meta, type Week } from "@/lib/growth/marketing";
 
@@ -41,24 +41,48 @@ export const colsOf = (meta: Meta | null, channel: Channel): CustomColumn[] => (
 
 // ───────────────────────────── small UI ─────────────────────────────
 
-export function Card({ label, value, sub, accent, title }: { label: string; value: ReactNode; sub?: ReactNode; accent?: boolean; title?: string }) {
-  return (
-    <div className={`mk-card${accent ? " mk-card-a" : ""}`} title={title}>
-      <div className="mk-cl">{label}</div>
-      <div className="mk-cv">{value}</div>
-      {sub != null && <div className="mk-cs">{sub}</div>}
-    </div>
-  );
-}
+export type PanelStep = {
+  label: string; value: ReactNode; tone: "ld" | "py" | "en" | "vw" | "ps";
+  /** width of the step's bar, 0–100; leave out on every step for a panel without bars */
+  bar?: number; chip?: ReactNode; title?: string;
+};
+/** What sits between two steps: a conversion (value + short name) or null for a plain gap. */
+export type PanelLink = { value: ReactNode; name: string; title?: string } | null;
 
-/** "In-window" big, "All-time" small under it. */
-export function SplitCard({ label, iw, all, hasWindow, title }: { label: string; iw: number; all: number; hasWindow: boolean; title?: string }) {
+/**
+ * The headline panel of the Ads / Influencers pages: spend (and a few counts) on the left, the
+ * steps on the right with what links them. Follows the width of the page area, not the screen:
+ * spend moves on top under 900px, the steps stack under 600px.
+ */
+export function FunnelPanel({ aria, spendLabel, spend, meta, steps, links = [] }: {
+  aria: string; spendLabel: string; spend: ReactNode; meta: { label: string; value: ReactNode; sub?: ReactNode; title?: string }[];
+  steps: PanelStep[]; links?: PanelLink[];
+}) {
+  const bars = steps.some((s) => s.bar !== undefined);
   return (
-    <div className="mk-card" title={title}>
-      <div className="mk-cl">{label}</div>
-      <div className="mk-split"><span className="mk-k">In-window</span><span className="mk-cv mk-cv-p">{hasWindow ? iw.toLocaleString("en-IN") : "—"}</span></div>
-      <div className="mk-split"><span className="mk-k">All-time</span><span className="mk-cv2">{all.toLocaleString("en-IN")}</span></div>
-    </div>
+    <section className={`mk-fun${steps.length > 3 ? " mk-fun-wide" : ""}`} aria-label={aria}><div className="mk-fun-in">
+      <div className="mk-fun-sp">
+        <div><div className="mk-fs-l">{spendLabel}</div><div className="mk-fun-spv">{spend}</div></div>
+        <div className="mk-fun-meta">{meta.map((x) => <div key={x.label} title={x.title}><span>{x.label}</span><b>{x.value}</b>{x.sub != null && <small>{x.sub}</small>}</div>)}</div>
+      </div>
+      <div className="mk-fun-st">
+        {steps.map((s, i) => {
+          const link = i > 0 ? links[i - 1] ?? null : undefined;
+          return (
+            <Fragment key={s.label}>
+              {link === null && <div className="mk-fs-gap" aria-hidden="true" />}
+              {link && <div className="mk-fs-arr" title={link.title}><b>{link.value}</b><span className="mk-fs-line" aria-hidden="true" /><small>{link.name}</small></div>}
+              <div className={`mk-fs mk-fs-${s.tone}`} title={s.title}>
+                <div className="mk-fs-l"><i aria-hidden="true" />{s.label}</div>
+                <div className="mk-fs-v">{s.value}</div>
+                {bars && <div className={`mk-fs-bar${s.bar === undefined ? " mk-fs-nobar" : ""}`} aria-hidden="true"><span style={{ width: `${Math.max(0, Math.min(100, s.bar ?? 0))}%` }} /></div>}
+                {s.chip != null && <div className="mk-fs-cost">{s.chip}</div>}
+              </div>
+            </Fragment>
+          );
+        })}
+      </div>
+    </div></section>
   );
 }
 
@@ -303,10 +327,12 @@ export const CSS = `
 .mk-fun-in{display:grid;grid-template-columns:minmax(240px,300px) 1fr}
 .mk-fun-sp{padding:24px 26px;border-right:1px solid var(--line);background:linear-gradient(160deg,rgba(52,226,176,.10),rgba(52,226,176,0) 70%);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
 .mk-fun-spv{font-family:var(--mk-head);font-weight:500;font-size:40px;line-height:1;letter-spacing:-.025em;color:var(--ink);font-variant-numeric:tabular-nums;margin-top:12px}
-.mk-fun-meta{display:flex;flex-direction:column;gap:4px}.mk-fun-meta span{font-size:12.5px;color:var(--mut2)}
+.mk-fun-meta{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:14px 12px;width:100%}.mk-fun-meta div{display:flex;flex-direction:column;gap:4px}.mk-fun-meta span{font-size:12.5px;color:var(--mut2)}
+.mk-fun-meta small{font-size:12px;color:var(--mut2)}
 .mk-fun-meta b{font-family:var(--mk-head);font-weight:500;font-size:18px;color:var(--ink);font-variant-numeric:tabular-nums}
-.mk-fun-st{display:grid;grid-template-columns:minmax(0,1fr) 84px minmax(0,1fr) 84px minmax(0,1fr);padding:24px 26px 22px}
-.mk-fs{min-width:0}.mk-fs-ld{--k:#818cf8}.mk-fs-py{--k:var(--violet)}.mk-fs-en{--k:var(--cyan)}
+.mk-fun-st{display:flex;align-items:stretch;padding:24px 26px 22px}
+.mk-fs{flex:1 1 0;min-width:0}.mk-fs-ld{--k:#818cf8}.mk-fs-py{--k:var(--violet)}.mk-fs-en{--k:var(--cyan)}.mk-fs-vw{--k:#60a5fa}.mk-fs-ps{--k:#818cf8}
+.mk-fs-gap{flex:0 0 32px}.mk-fs-nobar{visibility:hidden}
 .mk-fs-l{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--mut)}
 .mk-fs-l i{width:8px;height:8px;border-radius:50%;background:var(--k)}
 .mk-fs-v{font-family:var(--mk-head);font-weight:500;font-size:40px;line-height:1;letter-spacing:-.025em;color:var(--ink);font-variant-numeric:tabular-nums;margin:12px 0 14px}
@@ -315,13 +341,16 @@ export const CSS = `
 .mk-fs-cost{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;padding:6px 10px;border-radius:9px;background:rgba(130,150,255,.07);border:1px solid var(--line)}
 .mk-fs-cost b{font-family:var(--mk-head);font-weight:500;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
 .mk-fs-cost span{font-size:12px;color:var(--mut)}
-.mk-fs-arr{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:36px}
+.mk-fs-pair{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap}
+.mk-fs-arr{flex:0 0 84px;display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:36px}
 .mk-fs-arr b{font-family:var(--mk-head);font-weight:600;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
 .mk-fs-arr small{font-size:11.5px;color:var(--mut2)}
 .mk-fs-line{width:52px;height:1px;background:linear-gradient(90deg,rgba(130,150,255,.15),rgba(130,150,255,.55));position:relative}
 .mk-fs-line::after{content:"";position:absolute;right:-1px;top:-4px;border:4.5px solid transparent;border-left:7px solid rgba(130,150,255,.55);border-right:0}
-@container (max-width:900px){.mk-fun-in{grid-template-columns:1fr}.mk-fun-sp{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;align-items:flex-end;flex-wrap:wrap}.mk-fun-meta{align-items:flex-end}}
-@container (max-width:600px){.mk-fun-sp,.mk-fun-st{padding:18px}.mk-fun-spv,.mk-fs-v{font-size:32px}.mk-fun-st{grid-template-columns:1fr;gap:4px}.mk-fs-arr{flex-direction:row;justify-content:flex-start;padding:6px 0 10px;gap:10px}.mk-fs-line{width:1px;height:18px;background:rgba(130,150,255,.4)}.mk-fs-line::after{display:none}.mk-fs-v{margin:8px 0 10px}}
+@container (max-width:900px){.mk-fun-in{grid-template-columns:1fr}.mk-fun-meta{display:flex;flex-wrap:wrap;gap:14px 36px;width:auto}.mk-fun-meta span,.mk-fun-meta small{white-space:nowrap}.mk-fun-sp{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;align-items:flex-end;flex-wrap:wrap}}
+@container (max-width:1150px){.mk-fun-wide .mk-fun-in{grid-template-columns:1fr}.mk-fun-wide .mk-fun-meta{display:flex;flex-wrap:wrap;gap:14px 36px;width:auto}.mk-fun-wide .mk-fun-meta span,.mk-fun-wide .mk-fun-meta small{white-space:nowrap}.mk-fun-wide .mk-fun-sp{border-right:0;border-bottom:1px solid var(--line);flex-direction:row;align-items:flex-end;flex-wrap:wrap}}
+@container (max-width:600px){.mk-fun-sp,.mk-fun-st{padding:18px}.mk-fun-spv,.mk-fs-v{font-size:32px}.mk-fun-st{flex-direction:column;gap:4px}.mk-fs,.mk-fs-arr{flex:none}.mk-fs-gap{flex:none;height:14px}.mk-fs-arr{flex-direction:row;justify-content:flex-start;padding:6px 0 10px;gap:10px}.mk-fs-line{width:1px;height:18px;background:rgba(130,150,255,.4)}.mk-fs-line::after{display:none}.mk-fs-v{margin:8px 0 10px}}
+@container (max-width:820px){.mk-fun-wide .mk-fun-sp,.mk-fun-wide .mk-fun-st{padding:18px}.mk-fun-wide .mk-fun-spv,.mk-fun-wide .mk-fs-v{font-size:32px}.mk-fun-wide .mk-fun-st{flex-direction:column;gap:4px}.mk-fun-wide .mk-fs,.mk-fun-wide .mk-fs-arr{flex:none}.mk-fun-wide .mk-fs-gap{flex:none;height:14px}.mk-fun-wide .mk-fs-arr{flex-direction:row;justify-content:flex-start;padding:6px 0 10px;gap:10px}.mk-fun-wide .mk-fs-line{width:1px;height:18px;background:rgba(130,150,255,.4)}.mk-fun-wide .mk-fs-line::after{display:none}.mk-fun-wide .mk-fs-v{margin:8px 0 10px}}
 .mk-cl{font-size:12.5px;font-weight:500;line-height:1.35;color:var(--mut);margin-bottom:10px}
 .mk-cv{font-family:var(--mk-head);font-weight:500;font-size:30px;line-height:1.05;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
 .mk-cv-p{color:#c4b5fd;font-size:24px}

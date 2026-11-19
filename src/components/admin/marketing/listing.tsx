@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   AD_PLATFORMS, INFL_PLATFORMS, adCards, parseAmount, fmtCompact, fmtDate, fmtDateTime, fmtInr, fmtInt, inRange, inflCards, isYouTube, matchesTerms,
-  splitTerms, type AdRow, type Channel, type CustomColumn, type Meta, type PostRow,
+  shareBar, splitTerms, type AdRow, type Channel, type CustomColumn, type Meta, type PostRow,
 } from "@/lib/growth/marketing";
 import { AD_FIELDS, CampaignsDialog, ColumnsDialog, CsvDialog, INFL_FIELDS, RowDialog } from "./dialogs";
-import { Card, Err, ExtLink, SearchSelect, SplitCard, colsOf, rpc, type Client } from "./shared";
+import { Err, ExtLink, FunnelPanel, SearchSelect, colsOf, rpc, type Client } from "./shared";
 
 /**
  * Ads Channel Listing + Influencer Listing (Growth → Marketing Channels). Admin only.
@@ -226,15 +226,15 @@ export function AdsListing({ sb, meta, reloadMeta }: { sb: Client; meta: Meta; r
       <Err msg={err} onClose={() => setErr("")} />
       {ok && <div className="mk-ok" onClick={() => setOk("")}>{ok}</div>}
 
-      <div className="mk-cards">
-        <Card label="Unique ads" value={fmtInt(cards.uniqueAds)} sub="by UTM" />
-        <Card label="Running" value={fmtInt(cards.running)} sub="by UTM" />
-        <Card label="Paused" value={fmtInt(cards.paused)} sub="by UTM" />
-        <Card label="Total spend" value={fmtInr(cards.spend)} accent />
-        <SplitCard label="Leads" iw={cards.iw.l} all={cards.all.l} hasWindow={cards.anyWindow} title="In-window: leads that arrived inside the campaign dates. All-time: every lead from these UTMs." />
-        <SplitCard label="Payments" iw={cards.iw.p} all={cards.all.p} hasWindow={cards.anyWindow} />
-        <SplitCard label="Enrollments" iw={cards.iw.e} all={cards.all.e} hasWindow={cards.anyWindow} />
-      </div>
+      <FunnelPanel aria="Spend and attribution" spendLabel="Total spend" spend={fmtInr(cards.spend)}
+        meta={[{ label: "Unique ads", title: "Ads counted once per UTM link", value: fmtInt(cards.uniqueAds) }, { label: "Running", value: fmtInt(cards.running) }, { label: "Paused", value: fmtInt(cards.paused) }]}
+        steps={([["Leads", "ld", "l"], ["Payments", "py", "p"], ["Enrollments", "en", "e"]] as const).map(([label, tone, k]) => ({
+          label: `${label} (in-window)`, tone, value: cards.anyWindow ? fmtInt(cards.iw[k]) : "—",
+          bar: cards.anyWindow ? shareBar(cards.iw[k], cards.iw.l) : 0,
+          chip: <><b>{fmtInt(cards.all[k])}</b><span>all-time</span></>,
+          title: "In-window: leads that arrived inside the campaign dates. All-time: every lead from these UTMs.",
+        }))}
+        links={[null, null]} />
 
       <ViewTabs view={view} setView={(v) => { setView(v); setSel(new Set()); }} counts={counts} />
       <BulkBar n={sel.size} view={view} onTrash={trash} onClear={() => setSel(new Set())} busy={busy} />
@@ -417,12 +417,13 @@ export function InfluencerListing({ sb, meta, reloadMeta }: { sb: Client; meta: 
       <Err msg={err} onClose={() => setErr("")} />
       {ok && <div className="mk-ok" onClick={() => setOk("")}>{ok}</div>}
 
-      <div className="mk-cards">
-        <Card label="Posts live" value={fmtInt(cards.postsLive)} sub={`${filtered.length} in this view`} />
-        <Card label="Unique channels" value={fmtInt(cards.channels)} />
-        <Card label="Total spend" value={fmtInr(cards.spend)} accent />
-        <Card label="Total views" value={fmtCompact(cards.views)} sub={fmtInt(cards.views)} />
-      </div>
+      <FunnelPanel aria="Spend, posts and views" spendLabel="Total spend" spend={fmtInr(cards.spend)}
+        meta={[{ label: "Unique channels", value: fmtInt(cards.channels) }]}
+        steps={[
+          { label: "Posts live", tone: "ps", value: fmtInt(cards.postsLive), chip: <><b>{fmtInt(filtered.length)}</b><span>in this view</span></> },
+          { label: "Total views", tone: "vw", value: fmtCompact(cards.views), chip: <><b>{fmtInt(cards.views)}</b><span>exact</span></> },
+        ]}
+        links={[null]} />
 
       <ViewTabs view={view} setView={(v) => { setView(v); setSel(new Set()); }} counts={counts} />
       <BulkBar n={sel.size} view={view} onTrash={trash} onClear={() => setSel(new Set())} busy={busy} />

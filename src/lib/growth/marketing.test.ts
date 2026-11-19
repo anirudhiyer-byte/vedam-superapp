@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   adCards, bestV2l, countTicks, csvToRows, errorText, fillWeeks, fmtCompact, groupTotals, highestL2p, importErrors, inRange, inflCards,
-  labelIndexes, lowestCpp, parseAmount, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
+  labelIndexes, lowestCpp, parseAmount, shareBar, matchesTerms, metrics, mondayOf, splitTerms, totals, youTubeId,
   type AdRow, type CustomColumn, type PerfRow, type PostRow,
 } from "./marketing";
 
@@ -51,6 +51,10 @@ describe("metrics", () => {
     expect(totals([])).toMatchObject({ spend: 0, leads: 0, cpl: null });
     const g = groupTotals(rows, (r) => r.campaign_id ?? "-");
     expect(g.map((x) => [x.key, x.m.spend, x.m.leads, x.m.payments])).toEqual([["c8", 100, 67, 5], ["c9", 75, 54, 6], ["-", 10, 0, 0]]);
+  });
+  it("funnel bar width: share of the base, at least 2 when above zero, never over 100", () => {
+    expect([shareBar(395, 395), shareBar(41, 395), shareBar(1, 1000), shareBar(0, 395), shareBar(5, 0), shareBar(500, 395)])
+      .toEqual([100, (41 / 395) * 100, 2, 0, 0, 100]);
   });
   it("best cards: lowest CPP needs a payment; L2P and V2L need at least 20 leads", () => {
     const rows = [

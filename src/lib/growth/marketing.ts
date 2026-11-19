@@ -120,6 +120,12 @@ export function totals(rows: PerfRow[]): Metrics {
   return metrics(spend, l, p, e, views);
 }
 
+/** Width (0–100) of a funnel bar: v as a share of base; anything above zero shows at least 2 so it stays visible. */
+export function shareBar(v: number, base: number): number {
+  if (!(base > 0) || !(v > 0)) return 0;
+  return Math.max(2, Math.min(100, (v / base) * 100));
+}
+
 /** Group rows by a key and total each group. Sorted by spend, high first. */
 export function groupTotals(rows: PerfRow[], keyOf: (r: PerfRow) => string): { key: string; rows: PerfRow[]; m: Metrics }[] {
   const g = new Map<string, PerfRow[]>();
