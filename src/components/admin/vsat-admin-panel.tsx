@@ -9,6 +9,7 @@ import { CallingPanel, type CallingPage } from "@/components/admin/calling/calli
 import { MarketingPanel, type MarketingPage } from "@/components/admin/marketing/marketing-panel";
 import { CampaignsPanel } from "@/components/admin/marketing/campaigns-panel";
 import { SeasonPanel } from "@/components/admin/marketing/season-panel";
+import { VcampPanel } from "@/components/admin/marketing/vcamp-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
 import { VsatSettings } from "@/components/admin/vsat-settings";
@@ -87,7 +88,7 @@ const GROWTH: Group[] = [
   { g: "Overview", items: [
     { id: "season", label: "Season Dashboard", icon: ICON.season, live: true },
     { id: "cohort", label: "Payment Cohort", icon: ICON.cohort },
-    { id: "vcamp", label: "VSAT Campaign Report", icon: ICON.exam },
+    { id: "vcamp", label: "VSAT Campaign Report", icon: ICON.exam, live: true },
     { id: "campaigns", label: "Campaigns", icon: ICON.campaign, live: true },
   ] },
   { g: "Marketing Channels", items: [
@@ -161,6 +162,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
   function Content() {
     if (panel === "growth") {
       if (active.id === "season") return <div className="vp-scroll"><SeasonPanel /></div>;
+      if (active.id === "vcamp") return <div className="vp-scroll"><VcampPanel /></div>;
       if (active.id === "campaigns") return <div className="vp-scroll"><CampaignsPanel /></div>;
       if (active.id === "calling") return <div className="vp-scroll"><CallingPanel page={(active.page ?? "data") as CallingPage} /></div>;
       if (active.id === "ads" || active.id === "infl") {
