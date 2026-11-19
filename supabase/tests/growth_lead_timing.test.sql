@@ -30,10 +30,11 @@ create or replace function pg_temp.lt_lead(p_tag text, p_campaign text, p_at tim
 returns uuid language plpgsql as $$
 declare u uuid := pg_temp.lt_user('zztest-lt-' || lower(p_tag) || '@example.invalid');
 begin
-  insert into public.lead_manager (lead_id, registered_name, registered_email, utm_source, utm_medium, utm_campaign, created_at)
-  values (u, 'ZZTEST ' || p_tag, 'zztest-lt-' || lower(p_tag) || '@example.invalid', 'zzlt', 'zzmed', p_campaign, p_at)
+  -- 0122: leads are counted by their registration day; a real row has it equal to created_at (both default to now())
+  insert into public.lead_manager (lead_id, registered_name, registered_email, utm_source, utm_medium, utm_campaign, created_at, user_registration_date)
+  values (u, 'ZZTEST ' || p_tag, 'zztest-lt-' || lower(p_tag) || '@example.invalid', 'zzlt', 'zzmed', p_campaign, p_at, p_at)
   on conflict (lead_id) do update set utm_source = excluded.utm_source, utm_medium = excluded.utm_medium,
-    utm_campaign = excluded.utm_campaign, created_at = excluded.created_at;
+    utm_campaign = excluded.utm_campaign, created_at = excluded.created_at, user_registration_date = excluded.user_registration_date;
   return u;
 end $$;
 

@@ -30,10 +30,11 @@ create or replace function pg_temp.su_lead(p_tag text, p_at timestamptz, p_paid 
 returns uuid language plpgsql as $$
 declare u uuid := pg_temp.su_user('zztest-su-' || lower(p_tag) || '@example.invalid');
 begin
-  insert into public.lead_manager (lead_id, registered_name, registered_email, utm_source, utm_medium, utm_campaign, created_at)
-  values (u, 'ZZTEST ' || p_tag, 'zztest-su-' || lower(p_tag) || '@example.invalid', 'zzsu', 'zzmed', 'zz shared', p_at)
+  -- 0122: leads are counted by their registration day; a real row has it equal to created_at (both default to now())
+  insert into public.lead_manager (lead_id, registered_name, registered_email, utm_source, utm_medium, utm_campaign, created_at, user_registration_date)
+  values (u, 'ZZTEST ' || p_tag, 'zztest-su-' || lower(p_tag) || '@example.invalid', 'zzsu', 'zzmed', 'zz shared', p_at, p_at)
   on conflict (lead_id) do update set utm_source = excluded.utm_source, utm_medium = excluded.utm_medium,
-    utm_campaign = excluded.utm_campaign, created_at = excluded.created_at;
+    utm_campaign = excluded.utm_campaign, created_at = excluded.created_at, user_registration_date = excluded.user_registration_date;
   if p_paid is not null then
     insert into public.vsat_payments (lead_id, paid_at, payment_ref, provider, amount, currency)
     values (u, p_paid, 'zz-su-' || p_tag, 'simulated', 1000, 'INR');
