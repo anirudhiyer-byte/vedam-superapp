@@ -196,7 +196,7 @@ const VCR_CSS = `
 .vcr-err{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;cursor:default}
 .vcr-empty{display:flex;align-items:center;justify-content:center;gap:10px;padding:32px;text-align:center;background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:16px;color:var(--mut);font-size:15px;font-weight:600}
 .vcr-empty p{margin:0}
-.vcr-body{display:flex;flex-direction:column;gap:24px;transition:opacity .15s}
+.vcr-body{display:flex;flex-direction:column;gap:24px;transition:opacity .15s;container-type:inline-size}
 .vcr-dim{opacity:.55}
 .vcr-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .vcr-card{position:relative;overflow:hidden;min-width:0;padding:20px;background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:16px;transition:border-color .15s cubic-bezier(.4,0,.2,1)}
@@ -228,7 +228,8 @@ const VCR_CSS = `
 @media (min-width:768px){.vcr-title{font-size:48px}}
 /* below 1024 the 32px cell padding alone pushes the table past its box; 20px keeps all 4 columns visible */
 @media (max-width:1023px){.vcr-table thead th,.vcr-table td,.vcr-table .vcr-ml{padding-left:20px;padding-right:20px}}
-/* 4 cards from 1024 (the CRM goes to 4 at 768 and clips the labels there) */
-@media (min-width:1024px){.vcr-cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* 4 cards only when the page area (not the window) is wide enough: the admin sidebar takes ~260px, so at a 1024px
+   window 4 cards were 162px and the labels wrapped (the CRM has the same squeeze at 768) */
+@container (min-width:880px){.vcr-cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:760px){.vcr-sel{gap:12px;padding:16px}.vcr-field{flex:1 1 100%}.vcr-select{width:100%}.vcr-mh{padding:16px 20px}.vcr-table thead th,.vcr-table td,.vcr-table .vcr-ml{padding-left:16px;padding-right:16px}}
 `;
