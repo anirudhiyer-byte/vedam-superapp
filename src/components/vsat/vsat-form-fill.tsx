@@ -6,7 +6,10 @@ import { CitySelect } from "@/components/ui/city-select";
 import { INDIA_STATES } from "@/lib/india-cities";
 import { INDIA_BOARDS } from "@/lib/india-boards";
 
-type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city" | "board" | "dob";
+type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city" | "board" | "dob" | "email" | "phone";
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const phoneDigits = (s: string) => s.replace(/\D/g, "");
+const isValidPhone = (s: string) => /^[0-9]{10,15}$/.test(phoneDigits(s));
 type Cond = { q: string; op: "eq" | "neq" | "includes"; value: string };
 type Route = { value: string; to: string };
 type Question = {
@@ -297,7 +300,18 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
   const willSubmit = resolveNext() === null;
 
   async function saveNext() {
-    setBusy(true); setErr(""); setMissing([]);
+    setErr(""); setMissing([]);
+    // client-side format check for email / phone (skipped-exception fields are exempt)
+    const badFmt = allQs.filter((q) => {
+      if (!visible(q) || (q.exception && exc[q.key])) return false;
+      const val = asStr(catAns[q.key]).trim();
+      if (!val) return false;
+      if (q.type === "email") return !EMAIL_RE.test(val);
+      if (q.type === "phone") return !isValidPhone(val);
+      return false;
+    }).map((q) => q.key);
+    if (badFmt.length) { setMissing(badFmt); setErr("Please check the highlighted email / phone fields."); return; }
+    setBusy(true);
     const exceptions = allQs.filter((q) => q.exception && exc[q.key]).map((q) => q.exception!.key);
     const { data } = await supabase.rpc("vsat_form_save_category", { p: { formId, category: cat.key, answers: catAns, exceptions } });
     setBusy(false);
@@ -371,6 +385,14 @@ export function VsatFormFill({ onDone }: { onDone?: () => void }) {
           <SearchableSelect options={INDIA_STATES} value={asStr(catAns[q.key])} disabled={skipped} onChange={(v) => setStateVal(q.key, v)} placeholder="Select state…" />
         ) : q.type === "city" ? (
           <CitySelect state={stateBefore(q)} value={asStr(catAns[q.key])} disabled={skipped || !stateBefore(q)} invalid={isMissing} onChange={(v) => setVal(q.key, v)} inputClassName={input} />
+        ) : q.type === "email" ? (
+          <input type="email" inputMode="email" autoComplete="email" placeholder="name@example.com"
+            value={asStr(catAns[q.key])} onChange={(e) => setVal(q.key, e.target.value)} disabled={skipped}
+            className={`${input} ${isMissing ? "border-[#d14343]" : ""} ${skipped ? "opacity-40" : ""}`} />
+        ) : q.type === "phone" ? (
+          <input type="tel" inputMode="numeric" autoComplete="tel" placeholder="10-digit number"
+            value={asStr(catAns[q.key])} onChange={(e) => setVal(q.key, e.target.value.replace(/[^0-9+\-\s]/g, ""))} disabled={skipped}
+            className={`${input} ${isMissing ? "border-[#d14343]" : ""} ${skipped ? "opacity-40" : ""}`} />
         ) : (
           <input type={q.type === "number" ? "number" : q.type === "date" ? "date" : "text"}
             value={asStr(catAns[q.key])} onChange={(e) => setVal(q.key, e.target.value)} disabled={skipped}
