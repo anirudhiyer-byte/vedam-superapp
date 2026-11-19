@@ -111,8 +111,10 @@ begin
     t_name := t_name || text 'B a campaign needs an end date'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REQUIRED: campaign_end');
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_campaign_save', '{"name":"ZZTEST VSAT-9","campaign_start":"2026-05-12","campaign_end":"2026-05-01"}'));
     t_name := t_name || text 'B end before start is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: campaign_end');
-    r := pg_temp.call_as(adm, pg_temp.rpc('growth_campaign_save', '{"name":"ZZTEST VSAT-9","campaign_start":"2026-05-01","campaign_end":"2026-05-12"}'));
-    t_name := t_name || text 'B a campaign needs its exam date'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REQUIRED: exam_date');
+    -- 0119: the exam date is optional (before: REQUIRED: exam_date)
+    r := pg_temp.call_as(adm, pg_temp.rpc('growth_campaign_save', '{"name":"ZZTEST VSAT-9 no exam","campaign_start":"2026-05-01","campaign_end":"2026-05-12"}'));
+    t_name := t_name || text 'B a campaign is saved without an exam date'; t_det := t_det || r::text;
+    t_pass := t_pass || (r ? 'id' and coalesce((select exam_date is null from public.vsat_campaigns where id = (r->>'id')::uuid), false));
     r := pg_temp.call_as(adm, pg_temp.rpc('growth_campaign_save', '{"name":"ZZTEST VSAT-9","campaign_start":"01-05-2026","campaign_end":"12/05/2026","exam_date":"2026-05-13","budget":"5,00,000","application_target":400}'));
     c9 := (r->>'id')::uuid;
     t_name := t_name || text 'B campaign saved (DD-MM-YYYY, DD/MM/YYYY and Indian commas accepted)'; t_det := t_det || r::text;

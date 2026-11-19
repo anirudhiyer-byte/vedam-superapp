@@ -2,7 +2,7 @@
 // No UI and no network here, so they can be unit-tested.
 
 export type CampaignForm = {
-  name: string; campaign_start: string; campaign_end: string; exam_date: string; last_date_to_apply: string;
+  name: string; campaign_start: string; campaign_end: string; last_date_to_apply: string;
   application_target: string; budget: string; planned_l2p: string; planned_cpp: string; metadata: string;
 };
 
@@ -18,6 +18,7 @@ export const fmtNum = (n: number | string | null | undefined): string => {
  * Form values → the object sent to growth_campaign_save.
  * Same rules as the CRM: target and budget default to 0; planned L2P / CPP and last date are empty → null;
  * custom fields must be valid JSON. The database checks everything again (this is only for fast feedback).
+ * No exam date is sent (as on the CRM): exam dates live in Exam Center, and the database keeps a stored one on edit (0119).
  */
 export function buildCampaignPayload(f: CampaignForm, id?: string): PayloadResult {
   const t = (v: string | null | undefined) => (v ?? "").trim();
@@ -34,7 +35,6 @@ export function buildCampaignPayload(f: CampaignForm, id?: string): PayloadResul
     name: t(f.name),
     campaign_start: t(f.campaign_start),
     campaign_end: t(f.campaign_end),
-    exam_date: t(f.exam_date),
     last_date_to_apply: opt(f.last_date_to_apply),
     application_target: t(f.application_target) || "0",
     budget: t(f.budget) || "0",

@@ -11,7 +11,7 @@ import { CSS, Field, Modal, rpc } from "./shared";
  * A copy of the Vedam CRM "Campaigns" page (layout, sizes, texts, icons, behaviour), in the staging look.
  * Reads with growth_campaigns_list, writes with growth_campaign_save / growth_campaign_delete (migration 0107);
  * the browser has no table access and the database checks the admin on every call.
- * One difference from the CRM: "Exam date" is an extra required field (the database column is NOT NULL).
+ * The same fields as the CRM form: no exam date (exam dates live in Exam Center; migration 0119 made the column optional).
  */
 
 // lucide icon shapes (same as the CRM), drawn inline so no package is added
@@ -143,7 +143,7 @@ function CampaignDialog({ sb, say, campaign, onClose, onSaved }: {
     const f = new FormData(e.currentTarget);
     const v = (k: string) => String(f.get(k) ?? "");
     const built = buildCampaignPayload({
-      name: v("name"), campaign_start: v("campaign_start"), campaign_end: v("campaign_end"), exam_date: v("exam_date"),
+      name: v("name"), campaign_start: v("campaign_start"), campaign_end: v("campaign_end"),
       last_date_to_apply: v("last_date_to_apply"), application_target: v("application_target"), budget: v("budget"),
       planned_l2p: v("planned_l2p"), planned_cpp: v("planned_cpp"), metadata: v("metadata"),
     }, campaign?.id);
@@ -173,9 +173,6 @@ function CampaignDialog({ sb, say, campaign, onClose, onSaved }: {
           </div>
           <Field label="Last date to apply">
             <input className="mk-in" type="date" name="last_date_to_apply" defaultValue={campaign?.last_date_to_apply ?? ""} />
-          </Field>
-          <Field label="Exam date" required>
-            <input className="mk-in" type="date" name="exam_date" defaultValue={campaign?.exam_date ?? ""} required />
           </Field>
           <div className="cmp-g2">
             <Field label="Target apps">
