@@ -18,8 +18,8 @@ describe("needsReason (same rule as vsat__move_checked)", () => {
   it("absent at the same stage → no reason", () => {
     expect(needsReason("interview_scheduled", "active", "interview_scheduled", "absent")).toBe(false);
   });
-  it("offer_sent → seat_blocked / lapsed / cancelled are all one step", () => {
-    for (const s of ["seat_blocked", "offer_lapsed", "offer_cancelled"] as const) expect(needsReason("offer_sent", "active", s, "active")).toBe(false);
+  it("offer_sent → enrolled / lapsed / cancelled are all one step", () => {
+    for (const s of ["enrolled", "offer_lapsed", "offer_cancelled"] as const) expect(needsReason("offer_sent", "active", s, "active")).toBe(false);
   });
 });
 
