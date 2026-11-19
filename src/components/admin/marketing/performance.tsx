@@ -13,7 +13,7 @@ import { Card, Err, ExtLink, Funnel, Tabs, WeeklyCompare, rpc, type Client } fro
  *     their payments / enrollments
  *   • no campaign: the date range counts leads by arrival date, payments by paid date and
  *     enrollments by enrolment date, whichever VSAT they belong to
- * Totals count each UTM once (per UTM + campaign in a campaign view).
+ * Each lead belongs to one row even when rows share a UTM (migration 0113), so totals are a plain sum.
  */
 
 const yearAgo = () => { const d = new Date(); d.setFullYear(d.getFullYear() - 1); return d.toISOString().slice(0, 10); };
@@ -87,17 +87,38 @@ function TopCard({ title, best, value, who, link }: { title: string; best: Best;
   );
 }
 
-function MetricCards({ m, extra }: { m: Metrics; extra?: ReactNode }) {
-  return (
-    <div className="mk-cards">
-      {extra}
-      <Card label="Leads" value={fmtInt(m.leads)} />
-      <Card label="Payments" value={fmtInt(m.payments)} sub={`L2P ${fmtPct(m.l2p)}`} />
-      <Card label="Enrollments" value={fmtInt(m.enrollments)} sub={`${fmtPct(m.p2e)} of payments`} />
-      <Card label="Total spend" value={fmtInr(m.spend)} accent />
-      <Card label="CPL" value={fmtInr(m.cpl)} sub="spend / leads" />
-      <Card label="CPP" value={fmtInr(m.cpp)} sub="spend / payments" />
+/**
+ * Ad Performance headline: spend on the left, Leads → Payments → Enrollments on the right.
+ * The conversion (L2P, P2E) sits between the steps and the cost (CPL, CPP) under each step.
+ * Bars are each step's share of the leads.
+ */
+function FunnelCards({ m, ads }: { m: Metrics; ads: number }) {
+  const bar = (v: number) => (m.leads > 0 && v > 0 ? Math.max(2, Math.min(100, (v / m.leads) * 100)) : 0);
+  const step = (tone: string, label: string, value: number, cost?: { v: number | null; what: string }) => (
+    <div className={`mk-fs mk-fs-${tone}`}>
+      <div className="mk-fs-l"><i aria-hidden="true" />{label}</div>
+      <div className="mk-fs-v">{fmtInt(value)}</div>
+      <div className="mk-fs-bar" aria-hidden="true"><span style={{ width: `${bar(value)}%` }} /></div>
+      {cost && <div className="mk-fs-cost"><b>{fmtInr(cost.v)}</b><span>{cost.what}</span></div>}
     </div>
+  );
+  const conv = (pct: number | null, name: string, title: string) => (
+    <div className="mk-fs-arr" title={title}><b>{fmtPct(pct)}</b><span className="mk-fs-line" aria-hidden="true" /><small>{name}</small></div>
+  );
+  return (
+    <section className="mk-fun" aria-label="Spend and funnel"><div className="mk-fun-in">
+      <div className="mk-fun-sp">
+        <div><div className="mk-fs-l">Total spend</div><div className="mk-fun-spv">{fmtInr(m.spend)}</div></div>
+        <div className="mk-fun-meta"><span>Ads (unique UTMs)</span><b>{fmtInt(ads)}</b></div>
+      </div>
+      <div className="mk-fun-st">
+        {step("ld", "Leads", m.leads, { v: m.cpl, what: "per lead (CPL)" })}
+        {conv(m.l2p, "L2P", "Leads that paid")}
+        {step("py", "Payments", m.payments, { v: m.cpp, what: "per payment (CPP)" })}
+        {conv(m.p2e, "P2E", "Payments that enrolled")}
+        {step("en", "Enrollments", m.enrollments)}
+      </div>
+    </div></section>
   );
 }
 
@@ -164,7 +185,7 @@ function AdSeason({ rows, meta }: { rows: PerfRow[]; meta: Meta }) {
   const uniq = new Set(rows.map((r) => r.utm_key ?? `row:${r.id}`)).size;
   return (
     <>
-      <MetricCards m={m} extra={<><Card label="Unique ads" value={fmtInt(uniq)} sub="by UTM" /><Card label="L2P" value={fmtPct(m.l2p)} sub="leads → payments" /></>} />
+      <FunnelCards m={m} ads={uniq} />
       <div className="mk-top">
         <TopCard title="Lowest CPP" best={lowestCpp(rows)} value={(b) => fmtInr(b.m.cpp)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(rows)} value={(b) => fmtPct(b.m.l2p)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
@@ -183,7 +204,7 @@ function AdPlatform({ rows, meta }: { rows: PerfRow[]; meta: Meta }) {
   return (
     <>
       <div className="mk-bar">{AD_PLATFORMS.map((x) => <button key={x} className={x === p ? "mk-pri" : "mk-btn"} onClick={() => setP(x)}>{x}</button>)}</div>
-      <MetricCards m={m} extra={<Card label="Unique ads" value={fmtInt(new Set(sub.map((r) => r.utm_key ?? `row:${r.id}`)).size)} sub="by UTM" />} />
+      <FunnelCards m={m} ads={new Set(sub.map((r) => r.utm_key ?? `row:${r.id}`)).size} />
       <div className="mk-top">
         <TopCard title="Lowest CPP" best={lowestCpp(sub)} value={(b) => fmtInr(b.m.cpp)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
         <TopCard title={`Highest L2P (≥ ${MIN_LEADS} leads)`} best={highestL2p(sub)} value={(b) => fmtPct(b.m.l2p)} who={(b) => b.row.label} link={(b) => b.row.utm_link} />
