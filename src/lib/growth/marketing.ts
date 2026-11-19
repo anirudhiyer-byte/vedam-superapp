@@ -108,31 +108,26 @@ export function metrics(spend: number, leads: number, payments: number, enrollme
 }
 
 /**
- * Totals for a set of performance rows. Spend and views add up per row; leads / payments / enrollments
- * are taken once per UTM (per UTM + campaign when `perCampaign`), because rows sharing a UTM share leads.
+ * Totals for a set of performance rows: a plain sum. growth_perf gives every lead to one row only, even
+ * when rows share a UTM (migration 0113), so adding rows up never counts a lead twice.
  */
-export function totals(rows: PerfRow[], perCampaign: boolean): Metrics {
-  let spend = 0, views = 0;
-  const seen = new Map<string, { l: number; p: number; e: number }>();
+export function totals(rows: PerfRow[]): Metrics {
+  let spend = 0, views = 0, l = 0, p = 0, e = 0;
   for (const r of rows) {
-    spend += n0(r.cost);
-    views += n0(r.views);
-    const k = r.utm_key ? `${r.utm_key}|${perCampaign ? r.campaign_id ?? "" : ""}` : `row:${r.id}`;
-    if (!seen.has(k)) seen.set(k, { l: n0(r.leads), p: n0(r.payments), e: n0(r.enrollments) });
+    spend += n0(r.cost); views += n0(r.views);
+    l += n0(r.leads); p += n0(r.payments); e += n0(r.enrollments);
   }
-  let l = 0, p = 0, e = 0;
-  for (const v of seen.values()) { l += v.l; p += v.p; e += v.e; }
   return metrics(spend, l, p, e, views);
 }
 
-/** Group rows by a key and total each group (same de-duplication as `totals`). Sorted by spend, high first. */
-export function groupTotals(rows: PerfRow[], keyOf: (r: PerfRow) => string, perCampaign: boolean): { key: string; rows: PerfRow[]; m: Metrics }[] {
+/** Group rows by a key and total each group. Sorted by spend, high first. */
+export function groupTotals(rows: PerfRow[], keyOf: (r: PerfRow) => string): { key: string; rows: PerfRow[]; m: Metrics }[] {
   const g = new Map<string, PerfRow[]>();
   for (const r of rows) {
     const k = keyOf(r);
     g.set(k, [...(g.get(k) ?? []), r]);
   }
-  return [...g.entries()].map(([key, rs]) => ({ key, rows: rs, m: totals(rs, perCampaign) })).sort((a, b) => b.m.spend - a.m.spend);
+  return [...g.entries()].map(([key, rs]) => ({ key, rows: rs, m: totals(rs) })).sort((a, b) => b.m.spend - a.m.spend);
 }
 
 export type Best = { row: PerfRow; m: Metrics } | null;
