@@ -485,7 +485,9 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
       </div>
     </div>
   );
-  const ready = !!(ai && bi);
+  // the same influencer with the same campaign choice on both sides compares a thing with itself: ask for a difference
+  const same = !!(ai && bi) && ai === bi && ac === bc;
+  const ready = !!(ai && bi) && !same;
   const line = (label: string, fn: (m: Metrics, n: number) => string) => (
     <tr key={label}><td>{label}</td><td className="v">{fn(A.m, A.rows.length)}</td><td className="v">{fn(B.m, B.rows.length)}</td></tr>
   );
@@ -522,7 +524,7 @@ function InflCompare({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
       <p className="mk-note">Pick an influencer on each side. Pick the same influencer with two different campaigns to see how they did in two VSATs.</p>
       <div className="mk-grid2">{picker(ai, setAi, ac, setAc, "a", "Influencer A")}{picker(bi, setBi, bc, setBc, "b", "Influencer B")}</div>
       <Err msg={A.err || B.err} />
-      {!ready ? <p className="mk-mid">Pick both sides to compare.</p> : (A.loading || B.loading) ? <p className="mk-mid">Loading…</p> : (
+      {same ? <div className="mk-notice" role="status"><p>Both sides are the same. Pick a different influencer, or a different campaign on one side.</p></div> : !ready ? <p className="mk-mid">Pick both sides to compare.</p> : (A.loading || B.loading) ? <p className="mk-mid">Loading…</p> : (
         <>
           {notes.length > 0 && <div className="mk-notice">{notes.map((n) => <p key={n}>{n}</p>)}</div>}
           <div className="mk-box">
