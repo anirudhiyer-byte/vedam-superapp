@@ -396,8 +396,9 @@ function InflPlatform({ rows }: { rows: PerfRow[] }) {
 }
 
 function InflCampaigns({ sb, meta, f }: { sb: Client; meta: Meta; f: Filters }) {
-  const [a, setA] = useState(meta.campaigns[meta.campaigns.length - 2]?.id ?? "");
-  const [b, setB] = useState(meta.campaigns[meta.campaigns.length - 1]?.id ?? "");
+  // campaigns come newest first (growth_mkt_meta, 0122): open on the two newest, the older one on the left as before
+  const [a, setA] = useState(meta.campaigns[1]?.id ?? "");
+  const [b, setB] = useState(meta.campaigns[0]?.id ?? "");
   const ids = [a, b].filter(Boolean);
   const { rows, err } = usePerf(sb, "influencers", { from: "", to: "", campaign_ids: ids.length ? ids : null, live: f.live }, ids.length > 0);
   const col = (id: string) => {
