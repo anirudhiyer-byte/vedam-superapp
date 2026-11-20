@@ -40,8 +40,8 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
     P("full_name", "Registered Name", "name"), P("public_id", "Vedam ID", "id"),
     P("email", "Email", "text"), P("phone", "Mobile", "text"),
     P("campus_preference", "Campus Pref", "enum"), P("year_passing_10th", "10th Passing", "enum"),
-    P("registered", "Status", "status"), P("registered_at", "Registered On", "date"),
-    P("paid", "Paid", "status"), P("paid_at", "Paid On", "date"),
+    P("registered", "Early Registration", "status"), P("registered_at", "Registered On", "date"),
+    P("applied", "Applied", "status"), P("paid", "Paid", "status"), P("paid_at", "Paid On", "date"),
     P("gender", "Gender", "enum", false), P("utm_source", "UTM Source", "enum", false),
   ]},
   { key: "codesprint", label: "CodeSprint", rpc: "pu_codesprint", base: "vedam_one_profiles.cs_*", cols: [
@@ -107,6 +107,7 @@ const truthy = (v: unknown) => v === true || (typeof v === "number" && v > 0) ||
 const istYmd = (v: unknown) => v ? new Date(String(v)).toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }) : "";
 const STATUS_LABELS: Record<string, [string, string]> = {
   registered: ["Registered", "Not registered"], vsat_registered: ["Registered", "Not registered"],
+  applied: ["Applied", "Not applied"],
   paid: ["Paid", "Not paid"], is_dormant: ["Dormant", "Active"], vsat_early_registered: ["Early reg", "No"],
   bc_winner: ["Winner", "No"], bc_dropped_off: ["Dropped off", "No"],
 };
