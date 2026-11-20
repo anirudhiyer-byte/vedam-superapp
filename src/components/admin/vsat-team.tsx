@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
+import { PageHead } from "@/components/admin/ui/page-head";
 import { errorText } from "@/lib/vsat/pipeline";
 
 /**
@@ -13,8 +15,7 @@ import { errorText } from "@/lib/vsat/pipeline";
 type Role = "admissions" | "interviewer" | "counsellor";
 type Member = { user_id: string; name: string | null; email: string; role: Role; campus: "pune" | "gurugram" | null; active: boolean; created_at: string; open: number };
 
-const input = "rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#22d3ee] focus:outline-none";
-const btn = "rounded-lg px-3 py-2 text-sm font-semibold disabled:opacity-40";
+const input = vx.field;
 const ROLE_LABEL: Record<Role, string> = { admissions: "Admissions", interviewer: "Interviewer", counsellor: "Counsellor" };
 const ROLE_HELP: Record<Role, string> = {
   admissions: "Sees and manages every student (of their campus, if one is set), assigns interviews and counselling, moves stages, exports and sends messages.",
@@ -74,15 +75,16 @@ export function VsatTeam() {
     setMsg(null); setReload((x) => x + 1);
   }
 
-  if (err) return <div className="p-5"><p className="rounded-lg border border-rose-400/30 bg-rose-400/10 px-3 py-2 text-sm text-rose-200">{err}</p></div>;
+  if (err) return <div className="p-5"><p className="rounded-lg border border-vx-red/30 bg-vx-red/10 px-3 py-2 text-sm text-[#ffb3bf]">{err}</p></div>;
 
   return (
-    <div className="space-y-5 p-5 text-white">
-      <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 space-y-3">
-        <h2 className="text-base font-semibold">Add a person</h2>
-        <p className="text-xs text-white/50">They must already have a Vedam One account (signed up with this email). Admins don&apos;t need to be added: they can do everything.</p>
+    <div className="space-y-5 p-4 font-sans text-vx-ink sm:p-8">
+      <PageHead title="Team" sub="Who can work on VSAT applications, interviews and counselling, and on which campus." />
+      <div className={cx(vx.card, vx.pad, "space-y-3")}>
+        <h2 className={vx.h2}>Add a person</h2>
+        <p className="text-[13px] leading-relaxed text-vx-faint">They must already have a Vedam One account (signed up with this email). Admins don&apos;t need to be added: they can do everything.</p>
         <div className="flex flex-wrap items-center gap-2">
-          <input className={`${input} w-72`} type="email" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={254} aria-label="Email" />
+          <input className={cx(input, "w-full sm:w-72")} type="email" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={254} aria-label="Email" />
           <select className={input} value={role} onChange={(e) => setRole(e.target.value as Role)} aria-label="Role">
             {(Object.keys(ROLE_LABEL) as Role[]).map((r) => <option key={r} value={r}>{ROLE_LABEL[r]}</option>)}
           </select>
@@ -91,42 +93,42 @@ export function VsatTeam() {
               <option value="">Both campuses</option><option value="pune">Pune only</option><option value="gurugram">Gurugram only</option>
             </select>
           )}
-          <button className={`${btn} bg-[#34e2b0] text-[#04101a]`} disabled={busy} onClick={add}>{busy ? "Adding…" : "Add"}</button>
+          <button className={cx(vx.btn, vx.primary)} disabled={busy} onClick={add}>{busy ? "Adding…" : "Add"}</button>
         </div>
-        <p className="text-xs text-white/45">{ROLE_HELP[role]}</p>
-        {msg && <p className={`text-sm ${msg.ok ? "text-emerald-300" : "text-rose-300"}`}>{msg.text}</p>}
+        <p className="text-[13px] text-vx-faint">{ROLE_HELP[role]}</p>
+        {msg && <p className={`text-sm ${msg.ok ? "text-vx-green" : "text-vx-red"}`}>{msg.text}</p>}
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 text-sm text-white/60">
-        <span>Active: <b className="text-white">{counts.admissions}</b> admissions · <b className="text-white">{counts.interviewer}</b> interviewers · <b className="text-white">{counts.counsellor}</b> counsellors</span>
-        <label className="ml-auto flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-[#34e2b0]" checked={showOff} onChange={(e) => setShowOff(e.target.checked)} /> Show switched-off roles</label>
+      <div className="flex flex-wrap items-center gap-3 text-sm text-vx-mut">
+        <span>Active: <b className="text-vx-ink">{counts.admissions}</b> admissions · <b className="text-vx-ink">{counts.interviewer}</b> interviewers · <b className="text-vx-ink">{counts.counsellor}</b> counsellors</span>
+        <label className="ml-auto flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-[#8a18ff]" checked={showOff} onChange={(e) => setShowOff(e.target.checked)} /> Show switched-off roles</label>
       </div>
 
-      <div className="overflow-auto rounded-xl border border-white/10">
+      <div className="overflow-auto rounded-[18px] border border-vx-line bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <table className="w-full text-left text-sm">
-          <thead className="bg-white/5 text-xs uppercase tracking-wide text-white/50"><tr>
-            <th className="px-3 py-2">Person</th><th className="px-3 py-2">Role</th><th className="px-3 py-2">Campus</th><th className="px-3 py-2">Scheduled now</th><th className="px-3 py-2">Status</th><th className="px-3 py-2" />
+          <thead className="bg-white/[0.02] text-[12.5px] text-vx-faint"><tr>
+            <th className="border-b border-vx-line px-4 py-3 font-medium">Person</th><th className="border-b border-vx-line px-4 py-3 font-medium">Role</th><th className="border-b border-vx-line px-4 py-3 font-medium">Campus</th><th className="border-b border-vx-line px-4 py-3 font-medium">Scheduled now</th><th className="border-b border-vx-line px-4 py-3 font-medium">Status</th><th className="border-b border-vx-line px-4 py-3 font-medium" />
           </tr></thead>
           <tbody>
-            {!rows && <tr><td colSpan={6} className="px-3 py-6 text-center text-white/50">Loading…</td></tr>}
-            {rows && shown.length === 0 && <tr><td colSpan={6} className="px-3 py-6 text-center text-white/50">No one on the team yet.</td></tr>}
+            {!rows && <tr><td colSpan={6} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
+            {rows && shown.length === 0 && <tr><td colSpan={6} className="px-4 py-10 text-center text-vx-faint">No one on the team yet.</td></tr>}
             {shown.map((m) => (
-              <tr key={`${m.user_id}:${m.role}`} className={`border-t border-white/5 ${m.active ? "" : "opacity-50"}`}>
-                <td className="px-3 py-2"><div className="font-medium">{m.name ?? "—"}</div><div className="text-xs text-white/45">{m.email}</div></td>
-                <td className="px-3 py-2">{ROLE_LABEL[m.role]}</td>
-                <td className="px-3 py-2">
+              <tr key={`${m.user_id}:${m.role}`} className={`border-t border-vx-line-soft ${m.active ? "" : "opacity-50"}`}>
+                <td className="px-4 py-3"><div className="font-medium">{m.name ?? "—"}</div><div className="text-xs text-vx-faint">{m.email}</div></td>
+                <td className="px-4 py-3">{ROLE_LABEL[m.role]}</td>
+                <td className="px-4 py-3">
                   {m.role === "admissions" ? (
-                    <select className={`${input} py-1`} value={m.campus ?? ""} disabled={!m.active} onChange={(e) => update(m, { campus: e.target.value || null })} aria-label={`Campus for ${m.email}`}>
+                    <select className={cx(input, "h-9")} value={m.campus ?? ""} disabled={!m.active} onChange={(e) => update(m, { campus: e.target.value || null })} aria-label={`Campus for ${m.email}`}>
                       <option value="">Both</option><option value="pune">Pune</option><option value="gurugram">Gurugram</option>
                     </select>
-                  ) : <span className="text-xs text-white/40">Assigned students only</span>}
+                  ) : <span className="text-xs text-vx-faint">Assigned students only</span>}
                 </td>
-                <td className="px-3 py-2 tabular-nums">{m.role === "admissions" ? "—" : m.open}</td>
-                <td className="px-3 py-2">{m.active ? <span className="text-emerald-300">Active</span> : <span className="text-white/50">Off</span>}</td>
-                <td className="px-3 py-2 text-right">
+                <td className="px-4 py-3 tabular-nums">{m.role === "admissions" ? "—" : m.open}</td>
+                <td className="px-4 py-3">{m.active ? <span className={cx(vx.badge, vx.tone.green)}>Active</span> : <span className={cx(vx.badge, vx.tone.neutral)}>Off</span>}</td>
+                <td className="px-4 py-3 text-right">
                   {m.active
-                    ? <button className="text-xs text-rose-300 hover:underline" onClick={() => update(m, { active: false })}>Switch off</button>
-                    : <button className="text-xs text-[#22d3ee] hover:underline" onClick={() => update(m, { active: true })}>Switch on</button>}
+                    ? <button className={cx(vx.btn, vx.ghost, vx.sm, "hover:text-vx-red")} onClick={() => update(m, { active: false })}>Switch off</button>
+                    : <button className={cx(vx.btn, vx.secondary, vx.sm)} onClick={() => update(m, { active: true })}>Switch on</button>}
                 </td>
               </tr>
             ))}

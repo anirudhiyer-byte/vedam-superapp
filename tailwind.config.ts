@@ -23,6 +23,13 @@ const config: Config = {
         // Communication module: lighter violet for focus rings / links (same in both themes)
         "accent-soft": "#B47BFF",
         "violet-deep": "rgb(var(--violet-deep) / <alpha-value>)",
+        // VSAT admin (src/components/admin/ui/vx.ts): Vedam brand colours tuned for the dark admin surface
+        vx: {
+          ink: "#f5f3ff", mut: "#aca6d4", faint: "#8a84b5", raised: "#16123a",
+          violet: "#8a18ff", "violet-t": "#c4a1ff", orange: "#f97d03", "orange-t": "#ffb35c",
+          green: "#2bd99f", teal: "#00cfe5", "teal-t": "#7ce9f5", red: "#ff6b81",
+          line: "rgba(170,160,255,0.11)", line2: "rgba(170,160,255,0.22)", "line-soft": "rgba(170,160,255,0.07)",
+        },
         // PeerPath (Talk to a Senior) — values live on the .pp wrapper in peerpath.css
         pp: {
           page: "rgb(var(--pp-page) / <alpha-value>)",

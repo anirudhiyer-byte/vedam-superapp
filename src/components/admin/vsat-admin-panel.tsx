@@ -19,7 +19,7 @@ import { visiblePanels, type PanelKey, type VsatRoles } from "@/lib/vsat/pipelin
 
 /**
  * VSAT Admin Panel — wears the same "Neural" shell as the Growth panel
- * (public/growth/index.html): dark rail with grouped nav + soon/live pills, a
+ * (public/growth/index.html): dark rail with grouped nav + "soon" pills, a
  * content area, and VSAT|Growth pills at the top of the rail.
  *
  * - VSAT tools (Form Builder, Exam Center + Dates) mount as React in the content
@@ -59,22 +59,22 @@ const ICON: Record<string, string> = {
 };
 
 const VSAT: Group[] = [
-  { g: "Leads & Applications", items: [
+  { g: "Leads & applications", items: [
     { id: "leads", label: "VSAT Leads", icon: ICON.leads, live: true },
     { id: "apps", label: "VSAT Applications", icon: ICON.apps },
   ] },
-  { g: "VSAT Process", items: [
+  { g: "VSAT process", items: [
     { id: "exam", label: "VSAT Exam", icon: ICON.exam },
     { id: "intv", label: "Interview", icon: ICON.intv },
     { id: "couns", label: "Counselling", icon: ICON.couns },
   ] },
-  { g: "VSAT Settings", items: [
+  { g: "VSAT settings", items: [
     { id: "form", label: "Form Builder", icon: ICON.form, live: true },
     { id: "center", label: "Exam Center", icon: ICON.center, live: true },
     { id: "scoring", label: "Scholarship & Scoring", icon: ICON.scoring, live: true },
     { id: "team", label: "Team", icon: ICON.team, live: true },
   ] },
-  { g: "VSAT Communications", items: [
+  { g: "VSAT communications", items: [
     // Communication module (sample data). Names + page keys come from the module itself.
     ...CM_GROUPS.map((g) => ({
       id: `cm-${g.label.toLowerCase().replace(/\s+/g, "-")}`, label: g.label, icon: ICON.comms, live: true, cm: true,
@@ -92,7 +92,7 @@ const GROWTH: Group[] = [
     { id: "vcamp", label: "VSAT Campaign Report", icon: ICON.exam, live: true },
     { id: "campaigns", label: "Campaigns", icon: ICON.campaign, live: true },
   ] },
-  { g: "Marketing Channels", items: [
+  { g: "Marketing channels", items: [
     { id: "calling", label: "Calling", icon: ICON.call, live: true, sub: [
       { label: "Calling Data", page: "data" }, { label: "Dashboards", page: "dash" },
       { label: "UTM Listing", page: "utm" }, { label: "Callers", page: "callers" },
@@ -248,7 +248,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                             {it.sub.map((s) => {
                               const on = active.id === it.id && active.page === s.page;
                               return (
-                                <a key={s.page} className={on ? "on" : ""} onClick={() => pick({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
+                                <a key={s.page} className={on ? "on" : ""} aria-current={on ? "page" : undefined} onClick={() => pick({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
                                   <Svg inner='<circle cx="12" cy="12" r="2.5"/>' /><span className="vp-lbl">{s.label}</span>
                                 </a>
                               );
@@ -260,10 +260,10 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                   }
                   const on = active.id === it.id;
                   return (
-                    <a key={it.id} className={`${it.live ? "" : "vp-soon"}${on ? " on" : ""}`}
+                    <a key={it.id} className={`${it.live ? "" : "vp-soon"}${on ? " on" : ""}`} aria-current={on ? "page" : undefined}
                       onClick={() => it.live && pick({ id: it.id, title: it.label })}>
                       <Svg inner={it.icon} /><span className="vp-lbl">{it.label}</span>
-                      {it.live ? <span className="vp-plive"><i />Live</span> : <span className="vp-psoon">Soon</span>}
+                      {!it.live && <span className="vp-psoon">Soon</span>}
                     </a>
                   );
                 })}
@@ -280,7 +280,12 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
               onClick={() => setDrawer(true)}>
               <Svg inner='<path d="M3 6h18M3 12h18M3 18h18"/>' />
             </button>
-            <span className="vp-crumb">{panel === "vsat" ? "VSAT" : "GROWTH"}</span><span className="vp-title">{active.title}</span>
+            <div className="vp-crumbs">
+              <span>{panel === "vsat" ? "VSAT" : "Growth"}</span>
+              {active.title.split(" · ").map((part, i, all) => (
+                <Fragment key={i}><span className="vp-sep" aria-hidden="true">/</span><span className={i === all.length - 1 ? "vp-title" : undefined}>{part}</span></Fragment>
+              ))}
+            </div>
           </div>
           <div className="vp-main"><Fragment key={nav}>{renderContent()}</Fragment></div>
         </div>
@@ -305,65 +310,72 @@ function Placeholder({ title, kind }: { title: string; kind: "vsat" | "growth" }
 }
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-.vsat-shell{--bg:#070a16;--bg2:#0b1024;--panel:rgba(20,26,54,.55);--ink:#f2f5ff;--mut:#aeb8e0;--mut2:#7681b2;--green:#34e2b0;--cyan:#22d3ee;--violet:#8b5cf6;--line:rgba(130,150,255,.10);--rail:rgba(12,16,38,.72);--display:'Sora',system-ui,sans-serif;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;color-scheme:dark}
-.vsat-shell{color:var(--ink);font-family:var(--font)}
+/* Brand tokens (Vedam Visual Identity: Electric Violet #8A18FF, Vedam Orange #F97D03, Outfit). Fonts come from next/font
+   (--font-outfit / --font-jetbrains on <body>), so nothing extra is downloaded. --green / --cyan / --line / --mut2 are
+   also read by the Growth calling panel. */
+.vsat-shell{--bg:#09071c;--bg2:#0b0823;--rail:#0c0a24;--panel:rgba(255,255,255,.035);--ink:#f5f3ff;--mut:#aca6d4;--mut2:#8a84b5;--violet:#8a18ff;--violet-t:#b98aff;--orange:#f97d03;--green:#2bd99f;--cyan:#00cfe5;--line:rgba(170,160,255,.11);--line2:rgba(170,160,255,.22);--display:var(--font-outfit),system-ui,sans-serif;--font:var(--font-outfit),system-ui,sans-serif;--mono:var(--font-jetbrains),ui-monospace,monospace;color-scheme:dark}
+.vsat-shell{color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
 .vsat-shell select,.vsat-shell input[type=date],.vsat-shell input[type=time],.vsat-shell input[type=datetime-local]{color-scheme:dark}
-.vsat-shell select option,.vsat-shell select optgroup{background:#141a38;color:#f2f5ff}
-.vsat-shell select option:checked{background:#34e2b0;color:#04101a}
-.vsat-shell select option:disabled{color:#7681b2}
-.vp-app{display:grid;grid-template-columns:248px 1fr;height:100vh;height:100dvh;background:radial-gradient(1100px 700px at 82% -8%,rgba(139,92,246,.16),transparent 60%),radial-gradient(900px 620px at -6% 108%,rgba(34,211,238,.13),transparent 58%),linear-gradient(180deg,var(--bg),var(--bg2))}
-.vp-rail{background:var(--rail);backdrop-filter:blur(14px);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:16px 12px;gap:2px;overflow:auto}
-.vp-brand{display:flex;align-items:center;padding:4px 8px 12px;border-bottom:1px solid var(--line)}
-.vp-logo{width:118px;max-width:100%;height:auto;display:block}
-.vp-pills{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:12px;padding:5px;margin:12px 2px 4px}
-.vp-pills button{border:0;background:transparent;color:var(--mut);font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.3px;text-transform:uppercase;padding:8px 0;border-radius:9px;cursor:pointer;transition:.16s}
-.vp-pills button.on{color:#04101a;background:linear-gradient(90deg,var(--green),var(--cyan));box-shadow:0 6px 18px -8px rgba(52,226,176,.6)}
+.vsat-shell select option,.vsat-shell select optgroup{background:#16123a;color:#f5f3ff}
+.vsat-shell select option:checked{background:#8a18ff;color:#fff}
+.vsat-shell select option:disabled{color:#8a84b5}
+.vp-app{display:grid;grid-template-columns:256px 1fr;height:100vh;height:100dvh;background:radial-gradient(900px 520px at 88% -12%,rgba(138,24,255,.12),transparent 65%),linear-gradient(180deg,var(--bg),var(--bg2))}
+.vp-rail{background:var(--rail);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:20px 14px;gap:2px;overflow:auto}
+.vp-brand{display:flex;align-items:center;padding:2px 10px 16px}
+.vp-logo{width:124px;max-width:100%;height:auto;display:block}
+.vp-pills{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px;margin:0 2px 4px}
+.vp-pills button{border:0;background:transparent;color:var(--mut);font:500 13.5px var(--font);padding:8px 0;border-radius:9px;cursor:pointer;transition:background-color .16s,color .16s}
+.vp-pills button:hover:not(.on){color:var(--ink)}
+.vp-pills button.on{color:#fff;background:var(--violet);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
 .vp-nav{display:flex;flex-direction:column}
-.vp-grp{margin-top:12px}
-.vp-gl{font-family:var(--mono);font-size:9.5px;letter-spacing:3px;color:var(--mut2);text-transform:uppercase;padding:4px 11px 7px}
-.vp-nav a,.vp-parent{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);font-size:13.5px;font-weight:500;text-decoration:none;cursor:pointer;transition:.16s;border:1px solid transparent;user-select:none}
-.vp-nav a:hover:not(.vp-soon),.vp-parent:hover{color:var(--ink);background:rgba(130,150,255,.07)}
-.vp-nav a.on{color:var(--ink);background:linear-gradient(90deg,rgba(52,226,176,.22),rgba(34,211,238,.05));border-color:rgba(52,226,176,.3);box-shadow:inset 0 0 0 1px rgba(52,226,176,.15)}
-.vp-nav svg{width:18px;height:18px;flex:none;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.vp-grp{margin-top:14px}
+.vp-gl{font:500 12px var(--font);color:var(--mut2);padding:4px 12px 6px}
+.vp-nav a,.vp-parent{position:relative;display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:10px;color:var(--mut);font-size:14.5px;font-weight:400;line-height:1.3;text-decoration:none;cursor:pointer;transition:background-color .16s,color .16s;user-select:none}
+.vp-nav a:hover:not(.vp-soon),.vp-parent:hover{color:var(--ink);background:rgba(255,255,255,.04)}
+.vp-nav a.on{color:var(--ink);background:rgba(138,24,255,.16);font-weight:500}
+/* the brand rhomboid marks where you are */
+.vp-nav a.on::before{content:"";position:absolute;left:-8px;top:50%;width:8px;height:14px;border-radius:2px;background:var(--orange);transform:translateY(-50%) skewX(-18deg)}
+.vp-nav svg{width:18px;height:18px;flex:none;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.vp-nav a.on svg{opacity:1}
 .vp-lbl{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.vp-chev{width:15px!important;height:15px!important;transition:.22s;opacity:.7}
+.vp-chev{width:15px!important;height:15px!important;transition:transform .22s;opacity:.6}
 .vp-parent.open .vp-chev{transform:rotate(180deg)}
-.vp-children{display:flex;flex-direction:column;gap:2px;margin:2px 0 4px 14px;padding-left:10px;border-left:1px solid var(--line)}
-.vp-children a{font-size:12.8px;padding:8px 11px}
-.vp-children svg{width:15px!important;height:15px!important}
-.vp-soon{opacity:.42;cursor:not-allowed}
+.vp-children{display:flex;flex-direction:column;gap:2px;margin:2px 0 4px 20px;padding-left:10px;border-left:1px solid var(--line)}
+.vp-children a{font-size:13.5px;padding:8px 11px}
+.vp-children a.on::before{left:-15px;width:6px;height:11px}
+.vp-children svg{width:14px!important;height:14px!important}
+.vp-soon{opacity:.5;cursor:not-allowed}
 .vp-soon:hover{background:transparent;color:var(--mut)}
-.vp-psoon{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--mut2);border:1px solid var(--line);border-radius:999px;padding:2px 6px;flex:none}
-.vp-plive{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);border:1px solid rgba(52,226,176,.35);background:rgba(52,226,176,.1);border-radius:999px;padding:2px 6px;flex:none;display:inline-flex;align-items:center;gap:4px}
-.vp-plive i{width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block}
-.vp-foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
-.vp-so{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:11px;color:var(--mut);cursor:pointer;font-size:13.5px;font-weight:500;text-decoration:none}
-.vp-so svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.vp-so:hover{color:var(--ink);background:rgba(130,150,255,.07)}
+.vp-psoon{font:500 11px var(--font);color:var(--mut2);border:1px solid var(--line);border-radius:999px;padding:1px 8px;flex:none}
+.vp-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.vp-so{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:10px;color:var(--mut);cursor:pointer;font-size:14.5px;text-decoration:none;transition:background-color .16s,color .16s}
+.vp-so svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.vp-so:hover{color:var(--ink);background:rgba(255,255,255,.04)}
 .vp-content{position:relative;min-width:0;display:flex;flex-direction:column;overflow:hidden}
-.vp-ctop{display:flex;align-items:center;gap:10px;padding:13px 22px;border-bottom:1px solid var(--line);background:rgba(12,16,38,.4)}
-.vp-crumb{font-family:var(--mono);font-size:11px;color:var(--mut2)}
-.vp-title{font-family:var(--display);font-weight:600;font-size:15px}
+.vp-ctop{display:flex;align-items:center;gap:12px;min-height:60px;padding:0 32px;border-bottom:1px solid var(--line);background:rgba(9,7,28,.55);backdrop-filter:blur(10px)}
+.vp-crumbs{display:flex;align-items:center;gap:8px;min-width:0;font-size:13.5px;color:var(--mut2)}
+.vp-crumbs span{white-space:nowrap}
+.vp-crumbs .vp-sep{color:var(--line2)}
+.vp-crumbs .vp-title{color:var(--ink);font-weight:500;overflow:hidden;text-overflow:ellipsis}
 .vp-main{flex:1;min-height:0;overflow:hidden;position:relative}
 .vp-frame{border:0;width:100%;height:100%;background:var(--bg)}
 .vp-scroll{height:100%;overflow:auto}
 .vp-ph{height:100%;display:grid;place-items:center;padding:24px}
-.vp-phcard{max-width:560px;border:1px dashed var(--line);border-radius:16px;background:var(--panel);padding:28px;text-align:center}
-.vp-phcard h2{font-family:var(--display);margin:0 0 8px;font-size:19px}
-.vp-phcard p{color:var(--mut);font-size:13.5px;margin:0}
-.vp-phtag{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut2);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
-.vp-burger{display:none;width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:var(--panel);color:var(--ink);align-items:center;justify-content:center;cursor:pointer;flex:none;padding:0}
+.vp-phcard{max-width:560px;border:1px dashed var(--line2);border-radius:18px;background:var(--panel);padding:32px;text-align:center}
+.vp-phcard h2{font:600 20px var(--display);letter-spacing:-.01em;margin:0 0 8px}
+.vp-phcard p{color:var(--mut);font-size:14.5px;line-height:1.55;margin:0}
+.vp-phtag{display:inline-block;margin-top:18px;font:500 12px var(--font);color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.vp-burger{display:none;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--panel);color:var(--ink);align-items:center;justify-content:center;cursor:pointer;flex:none;padding:0}
 .vp-burger svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
-.vp-burger:focus-visible,.vp-pills button:focus-visible,.vp-so:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.vp-burger:focus-visible,.vp-pills button:focus-visible,.vp-so:focus-visible{outline:2px solid var(--violet-t);outline-offset:2px}
 .vp-rail:focus{outline:none}
-.vp-scrim{display:none;position:fixed;inset:0;background:rgba(4,6,16,.6);backdrop-filter:blur(2px);z-index:35}
+.vp-scrim{display:none;position:fixed;inset:0;background:rgba(4,3,14,.6);backdrop-filter:blur(2px);z-index:35}
 /* phones / tablets: the rail becomes a slide-in drawer opened from the ☰ button (reference: public/growth/index.html) */
 @media(max-width:860px){
   .vp-app{grid-template-columns:1fr}
-  .vp-ctop{padding:10px 14px}
+  .vp-ctop{padding:0 16px}
   .vp-burger{display:flex}
-  .vp-rail{position:fixed;top:0;left:0;bottom:0;width:272px;max-width:85vw;z-index:40;background:#0c1026;transform:translateX(-102%);visibility:hidden;transition:transform .26s cubic-bezier(.2,.7,.2,1),visibility 0s linear .26s;box-shadow:24px 0 60px rgba(0,0,0,.5)}
+  .vp-rail{position:fixed;top:0;left:0;bottom:0;width:280px;max-width:85vw;z-index:40;background:var(--rail);transform:translateX(-102%);visibility:hidden;transition:transform .26s cubic-bezier(.2,.7,.2,1),visibility 0s linear .26s;box-shadow:24px 0 60px rgba(0,0,0,.5)}
   .vp-rail.open{transform:none;visibility:visible;transition:transform .26s cubic-bezier(.2,.7,.2,1)}
   .vp-scrim.on{display:block}
 }
