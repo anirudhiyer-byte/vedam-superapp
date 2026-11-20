@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { readVsatMoneyFlags, computeVsatFee, fetchValidCoupon } from "@/lib/payments/vsat-fee";
+import { readVsatMoneyFlags, computeVsatFee, fetchValidCoupon, isEarlyRegistrant } from "@/lib/payments/vsat-fee";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
   const { data: app } = await svc.from("application_manager").select("created_at").eq("lead_id", u.user.id).maybeSingle();
   const flags = await readVsatMoneyFlags(svc);
   const createdAt = (app as { created_at?: string } | null)?.created_at;
+  const earlyReg = await isEarlyRegistrant(svc, u.user.id);
 
   // optional manual coupon
   const typed = (b.code ?? "").trim();
@@ -36,12 +37,13 @@ export async function POST(req: Request) {
     if (look.ok) couponInput = look.coupon; else couponError = look.reason;
   }
 
-  const fee = computeVsatFee({ fee: flags.fee, discount24h: flags.discount24h, applicantCreatedAt: createdAt, coupon: couponInput });
+  const fee = computeVsatFee({ fee: flags.fee, discount24h: flags.discount24h, applicantCreatedAt: createdAt, coupon: couponInput, earlyReg, earlyRegDiscount: flags.earlyRegDiscount });
 
   return Response.json({
     ok: true,
     base: fee.base, discount: fee.discount, net: fee.net,
     autoDiscount: fee.autoDiscount, couponDiscount: fee.couponDiscount,
+    earlyReg: fee.earlyReg, earlyRegDiscount: fee.earlyRegDiscount,
     within24h: fee.within24h, windowEndsAt: fee.windowEndsAt, currency: fee.currency,
     coupon: typed ? {
       code: typed.toUpperCase(),
