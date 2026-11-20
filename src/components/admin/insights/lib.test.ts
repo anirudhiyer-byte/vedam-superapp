@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { costPer, fmt, inr, pct, periodRange, personStatus, sourceLabel, type Person } from "./lib";
+import { MATRIX_COLUMNS, VSAT_STEPS, columnTotals, costPer, fmt, inr, overIndexed, pct, peopleFor, periodRange, personStatus, sourceLabel, type Person } from "./lib";
 
 // Thu 5 Nov 2026, 15:30 IST = 10:00 UTC
 const NOW = new Date("2026-11-05T10:00:00Z");
@@ -81,5 +81,46 @@ describe("personStatus", () => {
       { product: "bootcamp", text: "2 registered · 1 attended" },
       { product: "cp", text: "1 prediction" },
     ]);
+  });
+});
+
+describe("source × product matrix (ins_funnel, 0129)", () => {
+  const row = (source: string, all: number, codesprint: number, bootcamp = 0, pyq = 0, cp = 0, vsat = 0) => ({ source, all, codesprint, bootcamp, pyq, cp, vsat });
+  const rows = [row("whatsapp", 200, 150, 10), row("meta", 500, 100, 40), row("unknown", 300, 250), row("telegram", 10, 30)];
+
+  it("column totals add every source, including unknown", () => {
+    expect(columnTotals(rows)).toEqual({ all: 1010, codesprint: 530, bootcamp: 50, pyq: 0, cp: 0, vsat: 0 });
+  });
+  it("over-indexed: the source with the biggest share gap, never unknown, only with enough people", () => {
+    // whatsapp: 150/530 = 28.3% of CodeSprint vs 200/1010 = 19.8% of sign-ups → +8.5 points
+    // unknown has a bigger gap but is excluded; telegram has only 10 sign-ups (< minN 20)
+    const o = overIndexed(rows, "codesprint");
+    expect(o?.source).toBe("whatsapp");
+    expect(o!.productShare).toBeCloseTo(28.3, 1);
+    expect(o!.allShare).toBeCloseTo(19.8, 1);
+  });
+  it("over-indexed: nothing when the gap is under 5 points or the product has no users", () => {
+    expect(overIndexed([row("a", 100, 50), row("b", 100, 50)], "codesprint")).toBeNull();
+    expect(overIndexed(rows, "pyq")).toBeNull();
+    expect(overIndexed([], "codesprint")).toBeNull();
+  });
+  it("columns start with Vedam One, then every product the database returns", () => {
+    expect(MATRIX_COLUMNS.map((c) => c.key)).toEqual(["all", "codesprint", "bootcamp", "pyq", "cp", "vsat"]);
+  });
+  it("VSAT steps are in funnel order and match the database keys", () => {
+    expect(VSAT_STEPS.map((s) => s.key)).toEqual(["mqr", "vsat_early", "applied", "form_submitted", "fee_paid", "exam_taken", "enrolled"]);
+  });
+});
+
+describe("peopleFor (people drawer filter for a source/state cell)", () => {
+  const range = { p_from: "2026-11-01T00:00:00Z", p_to: "2026-11-20T00:00:00Z" };
+  it("Vedam One = people who signed up in the period", () => {
+    expect(peopleFor("all", range, { p_source: "meta" }, "t")).toEqual({ title: "t", sub: "Signed up in this period", ...range, p_source: "meta" });
+  });
+  it("a product = people who used it in the period (p_used)", () => {
+    expect(peopleFor("codesprint", range, { p_source: "meta" }, "t")).toEqual({ title: "t", sub: "Used CodeSprint in this period", ...range, p_used: "codesprint", p_source: "meta" });
+  });
+  it("VSAT early wording, and all time when there is no period", () => {
+    expect(peopleFor("vsat", { p_from: null, p_to: null }, {}, "t").sub).toBe("Early-registered for VSAT all time");
   });
 });

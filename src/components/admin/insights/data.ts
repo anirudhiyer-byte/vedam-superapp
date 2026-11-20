@@ -28,6 +28,18 @@ export type Cross = {
   levels: { level: "low" | "medium" | "high"; users: number; vsat: number }[];
   before_vsat: { product: string; users: number }[];
 };
+/** ins_funnel (0129): the source × product split and the path from products to the VSAT application. */
+export type FunnelSteps = {
+  users: number; mqr: number; vsat_early: number; applied: number; form_submitted: number;
+  fee_paid: number; exam_taken: number; enrolled: number;
+};
+export type MatrixRow = { source: string; all: number; codesprint: number; bootcamp: number; pyq: number; cp: number; vsat: number };
+export type Funnel = {
+  cohort: number;
+  matrix: MatrixRow[];
+  by_products: (FunnelSteps & { n: number })[];
+  by_source: (FunnelSteps & { source: string })[];
+};
 export type ActiveRow = { product: string; dau: number; dau_prev: number; wau: number; wau_prev: number; mau: number; mau_prev: number; tracked_since: string | null };
 export type Active = { today: string; products: ActiveRow[]; trend: { day: string; product: string; dau: number }[] };
 

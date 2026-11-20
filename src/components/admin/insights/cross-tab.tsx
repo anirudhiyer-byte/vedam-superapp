@@ -1,8 +1,9 @@
 "use client";
 
 import { LEVEL_LABEL, REAL_USE_RULE, fmt, pct, productLabel, ratio } from "./lib";
-import { useRpc, type Cross, type PeopleFilter } from "./data";
+import { useRpc, type Cross, type Funnel, type PeopleFilter } from "./data";
 import { ACCENT, BLUE, BarRow, Card, Empty, ErrorNote, Insight, Loading } from "./ui";
+import { ProductsToVsatCard } from "./funnel-cards";
 
 type Range = { p_from: string | null; p_to: string | null };
 const PRODUCTS = ["codesprint", "bootcamp", "pyq", "cp"] as const;
@@ -11,6 +12,7 @@ const MIN_N = 20;
 /** Who uses more than one product, in what order, how engaged they are, and how that links to VSAT. */
 export function CrossTab({ range, openPeople }: { range: Range; openPeople: (f: PeopleFilter) => void }) {
   const res = useRpc<Cross>("ins_cross", range);
+  const funnel = useRpc<Funnel>("ins_funnel", range); // 0129: how far each group got with the VSAT application
   if (res.error) return <ErrorNote message={res.error} />;
   if (!res.data) return <Loading h={460} />;
   const c = res.data;
@@ -60,6 +62,8 @@ export function CrossTab({ range, openPeople }: { range: Range; openPeople: (f: 
           ))}
         </Card>
       </div>
+
+      <ProductsToVsatCard res={funnel} />
 
       <Card title="Which products are used together" sub="Each cell = people who used both products (the diagonal = all users of that product). The small line is the VSAT early-registration rate. Click a cell to see the people.">
         <div className="overflow-x-auto">
