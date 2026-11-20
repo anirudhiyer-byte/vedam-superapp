@@ -12,9 +12,69 @@ export type GridColumn = { key: string; group: string; type: GridColType; virtua
 export type GridColumnsResult = { can_manage: boolean; columns: GridColumn[] };
 
 export type GridRow = Record<string, unknown> & { application_id: string; stage: Stage; status: string; attempt_no: number };
-export type GridFacets = { stage: Record<string, number>; status: Record<string, number>; vsat: Record<string, number>; campus: Record<string, number> };
+export type GridFacets = {
+  stage: Record<string, number>; status: Record<string, number>; vsat: Record<string, number>; campus: Record<string, number>;
+  form_stage?: Record<string, number>; payment_stage?: Record<string, number>;
+};
 export type GridResult = { total: number; facets: GridFacets | null; rows: GridRow[]; limit: number; offset: number; can_manage: boolean };
 export type GridSearch = { column: string; values: string[] };
+
+/** Form-stage dimension (application_manager.form_stage_1 — enum vm_form_stage), in flow order. Any VSAT role may filter. */
+export const FORM_STAGES = ["not_started", "form_initiated", "basic_details", "academic_details", "parent_details", "documents_uploaded", "form_submitted"] as const;
+export const FORM_STAGE_LABEL: Record<string, string> = {
+  not_started: "Not started", form_initiated: "Form initiated", basic_details: "Basic details", academic_details: "Academic details",
+  parent_details: "Parent details", documents_uploaded: "Documents uploaded", form_submitted: "Form submitted",
+};
+/** Payment-stage dimension (application_manager.payment_stage_1 — enum vm_payment_stage). Admin / admissions only. */
+export const PAYMENT_STAGES = ["payment_not_initiated", "payment_initiated", "payment_approved", "payment_failed"] as const;
+export const PAYMENT_STAGE_LABEL: Record<string, string> = {
+  payment_not_initiated: "Not initiated", payment_initiated: "Payment initiated", payment_approved: "Payment approved", payment_failed: "Payment failed",
+};
+
+/** Advanced filter builder (0118): AND-ed clauses on real columns. Mirrors the operators the database allows per type. */
+export type FilterArity = "one" | "two" | "list" | "none";
+export type FilterOp = { op: string; label: string; arity: FilterArity };
+export type FilterClause = { column: string; op: string; v?: string | string[] };
+/** Column types the advanced filter builder offers (virtual columns keep their dropdowns). */
+export const FILTERABLE_TYPES = ["num", "date", "ts", "text", "bool"];
+export const FILTER_OPS: Record<string, FilterOp[]> = {
+  num: [
+    { op: "eq", label: "=", arity: "one" }, { op: "ne", label: "≠", arity: "one" },
+    { op: "lt", label: "<", arity: "one" }, { op: "lte", label: "≤", arity: "one" },
+    { op: "gt", label: ">", arity: "one" }, { op: "gte", label: "≥", arity: "one" },
+    { op: "between", label: "between", arity: "two" }, { op: "in", label: "is any of", arity: "list" },
+    { op: "notnull", label: "is set", arity: "none" }, { op: "isnull", label: "is empty", arity: "none" },
+  ],
+  date: [
+    { op: "eq", label: "on", arity: "one" }, { op: "before", label: "before", arity: "one" }, { op: "after", label: "after", arity: "one" },
+    { op: "between", label: "between", arity: "two" }, { op: "notnull", label: "is set", arity: "none" }, { op: "isnull", label: "is empty", arity: "none" },
+  ],
+  ts: [
+    { op: "before", label: "before", arity: "one" }, { op: "after", label: "after", arity: "one" },
+    { op: "between", label: "between", arity: "two" }, { op: "notnull", label: "is set", arity: "none" }, { op: "isnull", label: "is empty", arity: "none" },
+  ],
+  text: [
+    { op: "contains", label: "contains", arity: "one" }, { op: "eq", label: "is", arity: "one" }, { op: "ne", label: "is not", arity: "one" },
+    { op: "in", label: "is any of", arity: "list" }, { op: "notnull", label: "is set", arity: "none" }, { op: "isnull", label: "is empty", arity: "none" },
+  ],
+  bool: [
+    { op: "true", label: "is Yes", arity: "none" }, { op: "false", label: "is No", arity: "none" },
+    { op: "notnull", label: "is set", arity: "none" }, { op: "isnull", label: "is empty", arity: "none" },
+  ],
+};
+export const opArity = (type: string, op: string): FilterArity => FILTER_OPS[type]?.find((o) => o.op === op)?.arity ?? "one";
+export const opLabel = (type: string, op: string): string => FILTER_OPS[type]?.find((o) => o.op === op)?.label ?? op;
+/** HTML input type for a filter value field, from the column type. */
+export const filterInputType = (type: string): string => (type === "num" ? "number" : type === "date" || type === "ts" ? "date" : "text");
+/** One filter clause → a short human string for the active-filter chips. */
+export function describeClause(c: FilterClause, type: string): string {
+  const name = columnLabel(c.column);
+  const lab = opLabel(type, c.op);
+  if (c.op === "isnull" || c.op === "notnull" || c.op === "true" || c.op === "false") return `${name} ${lab}`;
+  if (c.op === "between" && Array.isArray(c.v)) return `${name} ${lab} ${c.v[0] ?? ""}–${c.v[1] ?? ""}`;
+  if (c.op === "in" && Array.isArray(c.v)) return `${name} ${lab} ${c.v.join(", ")}`;
+  return `${name} ${lab} ${typeof c.v === "string" ? c.v : ""}`.trim();
+}
 
 /** Order the groups appear in the "Columns" drawer. Unknown groups go last, alphabetically. */
 export const GROUP_ORDER = [

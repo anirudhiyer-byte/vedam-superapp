@@ -96,6 +96,10 @@ begin
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', g4, 'counsellor_id', cou1, 'slot_datetime', slot)));
     if r->'pipeline'->>'stage' <> 'counselling_scheduled' then raise exception 'fixture g4: %', r; end if;
     perform public.vsat__move(g2, 'vsat_cleared', 'on_hold', 'zz test', 'system', null, null);
+    -- form-stage / payment-stage dimensions (0117): g1,g2 submitted+approved · g3 not_started+not_initiated · g4 documents+initiated
+    update public.application_manager set form_stage_1 = 'form_submitted',     payment_stage_1 = 'payment_approved'      where application_id in (g1, g2);
+    update public.application_manager set form_stage_1 = 'not_started',        payment_stage_1 = 'payment_not_initiated' where application_id = g3;
+    update public.application_manager set form_stage_1 = 'documents_uploaded', payment_stage_1 = 'payment_initiated'     where application_id = g4;
 
     -- ════ A. access ════
     r := pg_temp.call_as(null, pg_temp.rpc('vsat_grid_list', pg_temp.q(null)), true);
@@ -284,6 +288,75 @@ begin
                             and (has_function_privilege('authenticated', p.oid, 'execute') or has_function_privilege('anon', p.oid, 'execute')))
                          and (select relrowsecurity from pg_class where oid = 'public.vsat_grid_audit'::regclass)
                          and not has_table_privilege('authenticated', 'public.vsat_grid_audit', 'select'));
+
+    -- ════ I. form-stage / payment-stage dimensions (0117) ════
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q(null)));
+    t_name := t_name || text 'I admin: form_stage + payment_stage facets present with counts';
+    t_det := t_det || left((r->'facets'->'form_stage')::text || ' ' || (r->'facets'->'payment_stage')::text, 300);
+    t_pass := t_pass || ((r->'facets'->'form_stage'->>'form_submitted')::int = 2 and (r->'facets'->'form_stage'->>'not_started')::int = 1
+                         and (r->'facets'->'form_stage'->>'documents_uploaded')::int = 1
+                         and (r->'facets'->'payment_stage'->>'payment_approved')::int = 2 and (r->'facets'->'payment_stage'->>'payment_not_initiated')::int = 1
+                         and (r->'facets'->'payment_stage'->>'payment_initiated')::int = 1);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"form_stages":["form_submitted"]}')));
+    t_name := t_name || text 'I form filter narrows to the 2 submitted; payment facet respects it';
+    t_det := t_det || left(r::text, 200);
+    t_pass := t_pass || ((r->>'total')::int = 2 and (r->'facets'->'payment_stage'->>'payment_approved')::int = 2
+                         and r->'facets'->'payment_stage'->'payment_not_initiated' is null);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"payment_stages":["payment_approved"]}')));
+    t_name := t_name || text 'I payment filter narrows to the 2 approved';
+    t_det := t_det || left(r::text, 160); t_pass := t_pass || ((r->>'total')::int = 2);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"form_stages":["form_submitted"],"payment_stages":["payment_not_initiated"]}')));
+    t_name := t_name || text 'I form + payment mix (submitted AND not-initiated) → none of the test students';
+    t_det := t_det || left(r::text, 160); t_pass := t_pass || ((r->>'total')::int = 0);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"form_stages":["banana"]}')));
+    t_name := t_name || text 'I a form value outside the enum is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: form_stages');
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"payment_stages":["refunded"]}')));
+    t_name := t_name || text 'I a payment value outside the enum is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: payment_stages');
+    r := pg_temp.call_as(int1, pg_temp.rpc('vsat_grid_list', pg_temp.q(null)));
+    t_name := t_name || text 'I interviewer: payment_stage facet is hidden ({}), form_stage facet still shown';
+    t_det := t_det || left((r->'facets'->'payment_stage')::text || ' ' || (r->'facets'->'form_stage')::text, 200);
+    t_pass := t_pass || (r->'facets'->'payment_stage' = '{}'::jsonb and (r->'facets'->'form_stage'->>'not_started')::int = 1);
+    r := pg_temp.call_as(int1, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"payment_stages":["payment_approved"]}')));
+    t_name := t_name || text 'I interviewer filtering by payment stage is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'FORBIDDEN_COLUMN: payment_stage_1');
+    r := pg_temp.call_as(int1, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"form_stages":["not_started"]}')));
+    t_name := t_name || text 'I interviewer can filter by form stage (open) → their assigned student';
+    t_det := t_det || left(r::text, 160); t_pass := t_pass || ((r->>'total')::int = 1 and r->'rows'->0->>'application_id' = g3);
+
+    -- ════ J. advanced filter builder (0118) ════
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"class12_percentage","op":"eq","v":"80"}]}')));
+    t_name := t_name || text 'J numeric eq: all 4 test students are at 80%'; t_det := t_det || left(r::text, 120); t_pass := t_pass || ((r->>'total')::int = 4);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"class12_percentage","op":"gt","v":"85"}]}')));
+    t_name := t_name || text 'J numeric gt 85 → none'; t_det := t_det || left(r::text, 120); t_pass := t_pass || ((r->>'total')::int = 0);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"class12_percentage","op":"between","v":["70","90"]}]}')));
+    t_name := t_name || text 'J numeric between 70–90 → all 4'; t_det := t_det || left(r::text, 120); t_pass := t_pass || ((r->>'total')::int = 4);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"registered_name","op":"contains","v":"grd1"},{"column":"class10_percentage","op":"gte","v":"90"}]}')));
+    t_name := t_name || text 'J two AND-ed clauses (name contains + marks) → 1'; t_det := t_det || left(r::text, 160);
+    t_pass := t_pass || ((r->>'total')::int = 1 and r->'rows'->0->>'application_id' = g1);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"jee_registered","op":"false"}]}')));
+    t_name := t_name || text 'J boolean filter (jee_registered is No) → all 4'; t_det := t_det || left(r::text, 120); t_pass := t_pass || ((r->>'total')::int = 4);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"family_income","op":"in","v":["10-15 lakh","none"]}]}')));
+    t_name := t_name || text 'J manager can filter a finance column; in-list → 4'; t_det := t_det || left(r::text, 120); t_pass := t_pass || ((r->>'total')::int = 4);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"class12_percentage","op":"eq","v":"80"}],"form_stages":["not_started"]}')));
+    t_name := t_name || text 'J advanced filter AND-s with the form dropdown → only g3'; t_det := t_det || left(r::text, 160);
+    t_pass := t_pass || ((r->>'total')::int = 1 and r->'rows'->0->>'application_id' = g3);
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"registered_name","op":"eq","v":"x'' or 1=1 --"}]}')));
+    t_name := t_name || text 'J a SQL-ish value is matched literally, not executed → 0'; t_det := t_det || left(r::text, 120); t_pass := t_pass || ((r->>'total')::int = 0);
+    r := pg_temp.call_as(int1, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"family_income","op":"notnull"}]}')));
+    t_name := t_name || text 'J interviewer filtering a finance column is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'FORBIDDEN_COLUMN: family_income');
+    r := pg_temp.call_as(int1, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"registered_email","op":"contains","v":"x"}]}')));
+    t_name := t_name || text 'J interviewer filtering a contact column is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'FORBIDDEN_COLUMN: registered_email');
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"aadhaar_url","op":"notnull"}]}')));
+    t_name := t_name || text 'J document links cannot be filtered either'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'FORBIDDEN_COLUMN: aadhaar_url');
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"stage","op":"eq","v":"applied"}]}')));
+    t_name := t_name || text 'J a virtual column cannot be filtered (use its dropdown)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"class12_percentage","op":"contains","v":"8"}]}')));
+    t_name := t_name || text 'J an operator not allowed for the type is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"class12_percentage","op":"gte","v":"abc"}]}')));
+    t_name := t_name || text 'J a value that will not cast to the column type is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"nope","op":"eq","v":"1"}]}')));
+    t_name := t_name || text 'J an unknown column is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: filters');
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', pg_temp.q('{"filters":[{"column":"class12_percentage","op":"gte","v":"7","evil":"x"}]}')));
+    t_name := t_name || text 'J an unexpected key in a clause is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
 
     raise exception using errcode = 'ZDONE';
   exception when sqlstate 'ZDONE' then null;
