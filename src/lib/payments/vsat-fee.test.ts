@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeVsatFee, VSAT_24H_COUPON } from "./vsat-fee";
+import { computeVsatFee, VSAT_24H_COUPON, VSAT_EARLY_REG_COUPON, VSAT_EARLY_REG_SOURCE } from "./vsat-fee";
 
 const T0 = Date.parse("2026-11-01T10:00:00+05:30"); // when the applicant was created
 
@@ -89,5 +89,74 @@ describe("computeVsatFee — manual coupon merge (never stacks on the 24h)", () 
     const f = computeVsatFee({ ...after, coupon: { code: "HUGE", amount: 5000, discount_type: "flat" } });
     expect(f.discount).toBe(1000);
     expect(f.net).toBe(0);
+  });
+});
+
+describe("computeVsatFee — VSAT early-registration floor (₹500, merges not stacks)", () => {
+  const within = { fee: 1000, discount24h: 200, applicantCreatedAt: new Date(T0).toISOString(), now: T0 + 3_600_000, earlyReg: true, earlyRegDiscount: 500 };
+  const after = { fee: 1000, discount24h: 200, applicantCreatedAt: new Date(T0).toISOString(), now: T0 + 25 * 3_600_000, earlyReg: true, earlyRegDiscount: 500 };
+
+  it("INSIDE 24h → ₹500 off = ₹200 early-bird + ₹300 early-registration, net 500", () => {
+    const f = computeVsatFee(within);
+    expect(f.discount).toBe(500);
+    expect(f.net).toBe(500);
+    expect(f.autoDiscount).toBe(200);
+    expect(f.earlyRegDiscount).toBe(300);
+    expect(f.earlyReg).toBe(true);
+    expect(f.source).toBe(VSAT_EARLY_REG_SOURCE);
+    expect(f.coupon).toBe(VSAT_EARLY_REG_COUPON);
+  });
+
+  it("AFTER 24h → full ₹500 off, net 500", () => {
+    const f = computeVsatFee(after);
+    expect(f.discount).toBe(500);
+    expect(f.net).toBe(500);
+    expect(f.autoDiscount).toBe(0);
+    expect(f.earlyRegDiscount).toBe(500);
+    expect(f.earlyReg).toBe(true);
+    expect(f.coupon).toBe(VSAT_EARLY_REG_COUPON);
+  });
+
+  it("a BIGGER coupon still beats the floor (floor, not exact)", () => {
+    const f = computeVsatFee({ ...within, coupon: { code: "SAVE750", amount: 750, discount_type: "flat" } });
+    expect(f.discount).toBe(750);
+    expect(f.net).toBe(250);
+    expect(f.couponDiscount).toBe(550); // 200 auto + 550 coupon
+    expect(f.earlyRegDiscount).toBe(0);
+    expect(f.earlyReg).toBe(false);
+    expect(f.couponCode).toBe("SAVE750");
+  });
+
+  it("a SMALLER coupon loses to the floor (student still gets ₹500)", () => {
+    const f = computeVsatFee({ ...within, coupon: { code: "SMALL300", amount: 300, discount_type: "flat" } });
+    expect(f.discount).toBe(500);
+    expect(f.net).toBe(500);
+    expect(f.couponDiscount).toBe(0);
+    expect(f.earlyRegDiscount).toBe(300);
+    expect(f.earlyReg).toBe(true);
+    expect(f.source).toBe(VSAT_EARLY_REG_SOURCE);
+  });
+
+  it("not an early registrant → floor never applies (unchanged behaviour)", () => {
+    const f = computeVsatFee({ ...within, earlyReg: false });
+    expect(f.discount).toBe(200);
+    expect(f.net).toBe(800);
+    expect(f.earlyRegDiscount).toBe(0);
+    expect(f.earlyReg).toBe(false);
+    expect(f.coupon).toBe(VSAT_24H_COUPON);
+  });
+
+  it("floor not configured (0) → no early-reg discount even if early registrant", () => {
+    const f = computeVsatFee({ ...after, earlyRegDiscount: 0 });
+    expect(f.discount).toBe(0);
+    expect(f.net).toBe(1000);
+    expect(f.earlyReg).toBe(false);
+  });
+
+  it("floor is capped at the fee (net never below 0)", () => {
+    const f = computeVsatFee({ fee: 400, discount24h: 200, applicantCreatedAt: new Date(T0).toISOString(), now: T0 + 25 * 3_600_000, earlyReg: true, earlyRegDiscount: 500 });
+    expect(f.discount).toBe(400);
+    expect(f.net).toBe(0);
+    expect(f.earlyReg).toBe(true);
   });
 });

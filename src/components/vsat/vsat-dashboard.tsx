@@ -12,7 +12,7 @@ const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected",
 
 type App = Record<string, unknown> | null;
 type Lead = Record<string, unknown> | null;
-type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null; couponCode?: string | null; couponDiscount?: number } | null;
+type Quote = { base: number; discount: number; net: number; within24h: boolean; windowEndsAt: string | null; couponCode?: string | null; couponDiscount?: number; earlyReg?: boolean; earlyRegDiscount?: number; autoDiscount?: number } | null;
 
 type CashfreeCheckout = { checkout: (o: { paymentSessionId: string; redirectTarget?: string }) => void };
 declare global { interface Window { Cashfree?: (opts: { mode: string }) => CashfreeCheckout } }
@@ -134,7 +134,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
       if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); } }
     } catch { /* ignore */ }
     try {
-      if (qR.status === "fulfilled") { const qj = await qR.value.json(); if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt }); }
+      if (qR.status === "fulfilled") { const qj = await qR.value.json(); if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, earlyReg: qj.earlyReg, earlyRegDiscount: qj.earlyRegDiscount, autoDiscount: qj.autoDiscount }); }
     } catch { /* banner is best-effort */ }
     setLoading(false);
   }, [supabase]);
@@ -188,7 +188,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
       const q = await fetch("/api/payments/vsat-quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session.access_token, code }) });
       const qj = await q.json();
       if (!qj.ok) { setCouponMsg({ ok: false, text: "Couldn't check that code." }); return; }
-      setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, couponCode: qj.coupon?.code ?? null, couponDiscount: qj.couponDiscount });
+      setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, couponCode: qj.coupon?.code ?? null, couponDiscount: qj.couponDiscount, earlyReg: qj.earlyReg, earlyRegDiscount: qj.earlyRegDiscount, autoDiscount: qj.autoDiscount });
       const c = qj.coupon;
       if (!code) { setAppliedCode(undefined); setCouponMsg(null); return; }
       if (c?.accepted) {
@@ -471,6 +471,15 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
                   {showDiscount && <span className="text-base text-[#a79fbd] line-through tabular-nums">₹{quote?.base}</span>}
                   {showDiscount && <span className={pillOrange}>₹{quote?.discount} off</span>}
                 </div>
+                {quote?.earlyReg && !paid && (
+                  <p className="mt-2 flex items-start gap-1.5 rounded-xl border border-[#cdeedd] bg-[#eafaf1] px-3 py-2 text-[13px] font-semibold text-[#1f7a4d]">
+                    🎓 <span>
+                      {quote.autoDiscount && quote.autoDiscount > 0
+                        ? `VSAT early registrant — ₹${quote.autoDiscount} early-bird + ₹${quote.earlyRegDiscount} early-registration = ₹${quote.discount} off`
+                        : `VSAT early-registration bonus — ₹${quote.discount} off your form fee`}
+                    </span>
+                  </p>
+                )}
                 {/* manual coupon — codes are never shown here; the student types one in if they have it */}
                 <div className="mt-3">
                   <div className="flex gap-2">
