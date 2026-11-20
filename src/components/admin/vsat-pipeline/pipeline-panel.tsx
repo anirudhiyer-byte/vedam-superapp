@@ -1,16 +1,18 @@
 "use client";
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import {
   NEEDS_ASSIGNMENT, PANEL_STAGES, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, isStage, isStatus, needsReason,
   type PanelKey, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import {
-  DEFAULT_COLUMNS, GROUP_ORDER, columnLabel, formatValue, panelScope, parseSearchValues, pickSummary, requestColumns, sanitizeColumns, toCsv,
-  type GridColumn, type GridColumnsResult, type GridResult, type GridRow, type GridSearch,
+  DEFAULT_COLUMNS, FILTERABLE_TYPES, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL,
+  columnLabel, describeClause, filterInputType, formatValue, opArity, panelScope, parseSearchValues, requestColumns, sanitizeColumns, toCsv,
+  type FilterClause, type GridColumn, type GridColumnsResult, type GridResult, type GridRow, type GridSearch,
 } from "@/lib/vsat/grid";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { StudentDrawer } from "./student-drawer";
+import { FacetPick, type Opt } from "./facet-pick";
 import type { Batch } from "./types";
 
 /**
@@ -50,6 +52,7 @@ const Svg = (p: { children: ReactNode; className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={p.className || "h-4 w-4"}>{p.children}</svg>
 );
 const IconColumns = () => <Svg><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 3v18M15 3v18" /></Svg>;
+const IconFilter = () => <Svg><path d="M22 3H2l8 9.46V19l4 2v-8.54z" /></Svg>;
 const IconDownload = () => <Svg><path d="M12 15V3M8 7l4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" /></Svg>;
 const IconSend = () => <Svg><path d="m22 2-7 20-4-9-9-4z" /><path d="M22 2 11 13" /></Svg>;
 const IconMail = () => <Svg><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></Svg>;
@@ -60,50 +63,6 @@ const colsKey = (panel: PanelKey) => `vsat-grid-cols:v1:${panel}`;
 // per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
 function loadCols(panel: PanelKey): unknown { try { const s = localStorage.getItem(colsKey(panel)); return s ? JSON.parse(s) : null; } catch { return null; } }
 function saveCols(panel: PanelKey, cols: string[]) { try { localStorage.setItem(colsKey(panel), JSON.stringify(cols)); } catch { /* ignore */ } }
-
-type Opt = { value: string; label: string; count: number | null };
-
-/** Dropdown with checkboxes and a count per option. The list is position:fixed so nothing clips it. */
-function FacetPick({ title, options, value, onChange }: { title: string; options: Opt[]; value: string[]; onChange: (v: string[]) => void }) {
-  const [open, setOpen] = useState(false);
-  const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const box = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!open) return;
-    const close = (e: MouseEvent) => { if (!box.current?.contains(e.target as Node) && !btnRef.current?.contains(e.target as Node)) setOpen(false); };
-    const esc = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
-    const off = () => setOpen(false);
-    document.addEventListener("mousedown", close); document.addEventListener("keydown", esc);
-    window.addEventListener("scroll", off, true); window.addEventListener("resize", off);
-    return () => { document.removeEventListener("mousedown", close); document.removeEventListener("keydown", esc); window.removeEventListener("scroll", off, true); window.removeEventListener("resize", off); };
-  }, [open]);
-  const labelOf = (v: string) => options.find((o) => o.value === v)?.label ?? v;
-  const toggle = (v: string) => onChange(value.includes(v) ? value.filter((x) => x !== v) : [...value, v]);
-  return (
-    <>
-      <button ref={btnRef} type="button" aria-label={title} aria-expanded={open}
-        onClick={() => { const r = btnRef.current?.getBoundingClientRect(); if (r) setPos({ left: r.left, top: r.bottom + 4 }); setOpen((o) => !o); }}
-        className={`${input} flex min-w-[150px] items-center justify-between gap-2 text-left ${value.length ? "border-[#34e2b0]/50" : ""}`}>
-        <span className="truncate"><span className="text-white/45">{title}: </span>{pickSummary(value, labelOf)}</span>
-        <span className="text-white/40">▾</span>
-      </button>
-      {open && pos && (
-        <div ref={box} style={{ left: pos.left, top: pos.top }} className="fixed z-50 max-h-80 min-w-[240px] overflow-auto rounded-xl border border-white/10 bg-[#141a38] p-1 text-sm shadow-[0_16px_40px_-12px_rgba(0,0,0,0.7)]">
-          {options.length === 0 && <div className="px-3 py-2 text-white/40">Nothing here</div>}
-          {options.map((o) => (
-            <label key={o.value} className="flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-lg px-2.5 py-1.5 text-white/85 hover:bg-white/[0.07]">
-              <input type="checkbox" checked={value.includes(o.value)} onChange={() => toggle(o.value)} className="h-3.5 w-3.5 accent-[#34e2b0]" />
-              <span className={`flex-1 ${o.count === 0 ? "text-white/40" : ""}`}>{o.label}</span>
-              {o.count !== null && <span className={`rounded-full px-1.5 text-[11px] tabular-nums ${o.count ? "bg-white/10 text-white/80" : "text-white/30"}`}>{o.count}</span>}
-            </label>
-          ))}
-          {value.length > 0 && <button type="button" onClick={() => onChange([])} className="mt-1 w-full rounded-lg border-t border-white/10 px-2.5 py-1.5 text-left text-xs text-white/55 hover:text-white">Clear</button>}
-        </div>
-      )}
-    </>
-  );
-}
 
 export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRoles }) {
   const [supabase] = useState(() => createClient());
@@ -116,6 +75,10 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [statuses, setStatuses] = useState<string[]>([]);
   const [vsatIds, setVsatIds] = useState<string[]>([]);
   const [campuses, setCampuses] = useState<string[]>([]);
+  const [formStages, setFormStages] = useState<string[]>([]);
+  const [payStages, setPayStages] = useState<string[]>([]);
+  const [filterClauses, setFilterClauses] = useState<FilterClause[]>([]);
+  const [showFilters, setShowFilters] = useState(false);
   const [searchCol, setSearchCol] = useState("_any");
   const [searchText, setSearchText] = useState("");
   const [search, setSearch] = useState<GridSearch | null>(null);
@@ -167,9 +130,12 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
     if (statuses.length) p.statuses = statuses;
     if (vsatIds.length) p.exam_date_ids = vsatIds;
     if (campuses.length) p.campuses = campuses;
+    if (formStages.length) p.form_stages = formStages;
+    if (manager && payStages.length) p.payment_stages = payStages;
+    if (filterClauses.length) p.filters = filterClauses;
     if (search) p.search = search;
     return p;
-  }, [scope, stages, statuses, vsatIds, campuses, search]);
+  }, [scope, stages, statuses, vsatIds, campuses, formStages, payStages, filterClauses, manager, search]);
 
   const load = useCallback(async () => {
     if (!catalog.length) return;
@@ -184,7 +150,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
 
   const rows = useMemo(() => data?.rows ?? [], [data]);
   const facets = data?.facets ?? null;
-  const anyFilter = stages.length > 0 || statuses.length > 0 || vsatIds.length > 0 || campuses.length > 0 || !!search;
+  const anyFilter = stages.length > 0 || statuses.length > 0 || vsatIds.length > 0 || campuses.length > 0 || formStages.length > 0 || payStages.length > 0 || filterClauses.length > 0 || !!search;
   const allOnPage = rows.length > 0 && rows.every((r) => sel.has(r.application_id));
   // the stage every selected row is at — the bulk move checks the database still agrees
   const selStage = useMemo<Stage | null>(() => {
@@ -199,10 +165,14 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
     { value: "pune", label: "Pune", count: facets ? facets.campus.pune ?? 0 : null },
     { value: "gurugram", label: "Gurugram", count: facets ? facets.campus.gurugram ?? 0 : null },
   ];
+  const formOpts: Opt[] = FORM_STAGES.map((v) => ({ value: v, label: FORM_STAGE_LABEL[v], count: facets ? facets.form_stage?.[v] ?? 0 : null }));
+  const payOpts: Opt[] = PAYMENT_STAGES.map((v) => ({ value: v, label: PAYMENT_STAGE_LABEL[v], count: facets ? facets.payment_stage?.[v] ?? 0 : null }));
   const searchable = useMemo(() => catalog.filter((c) => !c.virtual && ["text", "num", "date", "ts"].includes(c.type))
     .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
 
-  function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setSearchText(""); setOffset(0); }
+  const filterable = useMemo(() => catalog.filter((c) => !c.virtual && FILTERABLE_TYPES.includes(c.type))
+    .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
+  function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setFormStages([]); setPayStages([]); setFilterClauses([]); setSearchText(""); setOffset(0); }
   function toggle(id: string) { setSel((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; }); }
   function setColumns(next: string[]) { setCols(next); saveCols(panel, next); setOffset(0); }
 
@@ -255,7 +225,12 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         <FacetPick title="Status" options={statusOpts} value={statuses} onChange={(v) => { setStatuses(v); setOffset(0); }} />
         <FacetPick title="VSAT" options={vsatOpts} value={vsatIds} onChange={(v) => { setVsatIds(v); setOffset(0); }} />
         <FacetPick title="Campus" options={campusOpts} value={campuses} onChange={(v) => { setCampuses(v); setOffset(0); }} />
+        <FacetPick title="Form" options={formOpts} value={formStages} onChange={(v) => { setFormStages(v); setOffset(0); }} />
+        {manager && <FacetPick title="Payment" options={payOpts} value={payStages} onChange={(v) => { setPayStages(v); setOffset(0); }} />}
         <span className="flex-1" />
+        <button className={`${ghost} inline-flex items-center gap-2 ${filterClauses.length ? "border-[#34e2b0]/50 text-white" : ""}`} onClick={() => setShowFilters(true)} disabled={!catalog.length}>
+          <IconFilter /> Filters{filterClauses.length > 0 && <span className="rounded-full bg-[#34e2b0]/20 px-1.5 text-[11px] tabular-nums text-[#34e2b0]">{filterClauses.length}</span>}
+        </button>
         <button className={`${ghost} inline-flex items-center gap-2`} onClick={() => setShowCols(true)} disabled={!catalog.length}>
           <IconColumns /> Columns <span className="rounded-full bg-white/10 px-1.5 text-[11px] tabular-nums">{shownCols.length}</span>
         </button>
@@ -273,6 +248,19 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         {anyFilter && <button className="text-xs text-white/60 underline-offset-2 hover:text-white hover:underline" onClick={clearFilters}>Clear filters</button>}
         {notice && <span className="text-xs text-white/70">{notice}</span>}
       </div>
+
+      {filterClauses.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          {filterClauses.map((c, i) => (
+            <span key={i} className="inline-flex items-center gap-1.5 rounded-full border border-[#34e2b0]/30 bg-[#34e2b0]/10 px-2.5 py-1 text-xs text-white/85">
+              {describeClause(c, byKey.get(c.column)?.type ?? "text")}
+              <button type="button" aria-label="Remove filter" className="text-white/50 hover:text-white"
+                onClick={() => { setFilterClauses(filterClauses.filter((_, j) => j !== i)); setOffset(0); }}>×</button>
+            </span>
+          ))}
+          <button type="button" className="text-xs text-white/50 underline-offset-2 hover:text-white hover:underline" onClick={() => setShowFilters(true)}>Edit</button>
+        </div>
+      )}
 
       {/* ── selection bar ─────────────────────────── */}
       {manager && sel.size > 0 && (
@@ -338,6 +326,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       {openId && <StudentDrawer id={openId} roles={roles} onClose={() => setOpenId(null)} onChanged={() => setReload((n) => n + 1)} />}
 
       {showCols && <ColumnsDrawer catalog={catalog} cols={cols} panel={panel} onChange={setColumns} onClose={() => setShowCols(false)} />}
+
+      {showFilters && <FilterDrawer filterable={filterable} value={filterClauses} onChange={(v) => { setFilterClauses(v); setOffset(0); }} onClose={() => setShowFilters(false)} />}
 
       {comm && (
         <>
@@ -431,6 +421,84 @@ function ColumnsDrawer({ catalog, cols, panel, onChange, onClose }: { catalog: G
           <span className="mr-auto font-mono text-[11px] text-white/40">{cols.length} shown</span>
           <button onClick={() => onChange(sanitizeColumns(null, catalog, DEFAULT_COLUMNS[panel]))} className={ghost}>Reset</button>
           <button onClick={onClose} className={`${btn} bg-[#34e2b0] text-[#04101a]`}>Done</button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/** Advanced filter builder: AND-ed clauses on any filterable column. The database re-checks every column, operator and value. */
+function FilterDrawer({ filterable, value, onChange, onClose }:
+  { filterable: GridColumn[]; value: FilterClause[]; onChange: (v: FilterClause[]) => void; onClose: () => void }) {
+  const [draft, setDraft] = useState<FilterClause[]>(value);
+  const [col, setCol] = useState<string>(filterable[0]?.key ?? "");
+  const type = useMemo(() => filterable.find((c) => c.key === col)?.type ?? "text", [filterable, col]);
+  const ops = FILTER_OPS[type] ?? [];
+  const [op, setOp] = useState<string>(ops[0]?.op ?? "eq");
+  const [v1, setV1] = useState("");
+  const [v2, setV2] = useState("");
+  const arity = opArity(type, op);
+  const inputType = filterInputType(type);
+
+  function pickCol(k: string) {
+    setCol(k);
+    const t = filterable.find((c) => c.key === k)?.type ?? "text";
+    setOp((FILTER_OPS[t] ?? [])[0]?.op ?? "eq"); setV1(""); setV2("");
+  }
+  function add() {
+    if (!col) return;
+    let clause: FilterClause;
+    if (arity === "none") clause = { column: col, op };
+    else if (arity === "two") { if (!v1.trim() || !v2.trim()) return; clause = { column: col, op, v: [v1.trim(), v2.trim()] }; }
+    else if (arity === "list") {
+      const list = v1.split(/[,\n]/).map((x) => x.trim()).filter(Boolean);
+      if (!list.length) return; clause = { column: col, op, v: list };
+    } else { if (!v1.trim()) return; clause = { column: col, op, v: v1.trim() }; }
+    setDraft([...draft, clause]); setV1(""); setV2("");
+  }
+
+  return (
+    <>
+      <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="fixed right-0 top-0 z-50 flex h-full w-[min(460px,100%)] flex-col border-l border-white/10 bg-[#0d1430] text-white shadow-2xl">
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <div><h2 className="text-base font-bold">Filters</h2><p className="text-xs text-white/45">Build conditions on any column. All conditions must match (AND).</p></div>
+          <button onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 hover:text-white"><IconClose /></button>
+        </div>
+        <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+          {draft.length > 0 && (
+            <div className="space-y-1.5">
+              {draft.map((c, i) => (
+                <div key={i} className="flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm">
+                  <span>{describeClause(c, filterable.find((f) => f.key === c.column)?.type ?? "text")}</span>
+                  <button type="button" aria-label="Remove" className="text-white/40 hover:text-white" onClick={() => setDraft(draft.filter((_, j) => j !== i))}>×</button>
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="space-y-2 rounded-xl border border-white/10 bg-white/[0.02] p-3">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-white/40">Add a condition</div>
+            <select className={`${input} w-full`} value={col} onChange={(e) => pickCol(e.target.value)} aria-label="Filter column">
+              {filterable.map((c) => <option key={c.key} value={c.key}>{columnLabel(c.key)}{c.restricted ? " · restricted" : ""}</option>)}
+            </select>
+            <div className="flex gap-2">
+              <select className={`${input} w-40`} value={op} onChange={(e) => { setOp(e.target.value); setV1(""); setV2(""); }} aria-label="Operator">
+                {ops.map((o) => <option key={o.op} value={o.op}>{o.label}</option>)}
+              </select>
+              {arity === "one" && <input className={`${input} flex-1`} type={inputType} value={v1} onChange={(e) => setV1(e.target.value)} placeholder="value" aria-label="Value" />}
+              {arity === "two" && <>
+                <input className={`${input} w-24`} type={inputType} value={v1} onChange={(e) => setV1(e.target.value)} placeholder="from" aria-label="From" />
+                <input className={`${input} w-24`} type={inputType} value={v2} onChange={(e) => setV2(e.target.value)} placeholder="to" aria-label="To" />
+              </>}
+              {arity === "list" && <input className={`${input} flex-1`} value={v1} onChange={(e) => setV1(e.target.value)} placeholder="value, value, …" aria-label="Values" />}
+            </div>
+            <button type="button" className={`${ghost} w-full`} onClick={add}>+ Add condition</button>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 border-t border-white/10 px-5 py-4">
+          <button onClick={() => setDraft([])} className={`${ghost} mr-auto`} disabled={!draft.length}>Clear all</button>
+          <button onClick={onClose} className={ghost}>Cancel</button>
+          <button onClick={() => { onChange(draft); onClose(); }} className={`${btn} bg-[#34e2b0] text-[#04101a]`}>Apply{draft.length > 0 ? ` (${draft.length})` : ""}</button>
         </div>
       </div>
     </>
