@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { VsatFormBuilder } from "@/components/admin/vsat-form-builder";
 import { VsatExamCenter, type WheeboxStatus } from "@/components/admin/vsat-exam-center";
@@ -141,6 +141,27 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
   const [nav, setNav] = useState(0);
   function go(a: typeof active) { setActive(a); setNav((n) => n + 1); }
 
+  // Phones / tablets (≤860px): the menu is a slide-in drawer opened from the ☰ button in the top bar
+  // (as in the reference design public/growth/index.html). Picking a page, the scrim or Esc closes it.
+  const [drawer, setDrawer] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const railRef = useRef<HTMLElement>(null);
+  function closeDrawer() { setDrawer(false); burgerRef.current?.focus(); }
+  function pick(a: typeof active) { go(a); setDrawer(false); }
+  useEffect(() => {
+    if (!drawer) return;
+    // Focus the menu itself, not its first button: the buttons inherit visibility through their own CSS transitions,
+    // so for the first frame they are still hidden and cannot take focus. The rail turns visible at once.
+    railRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setDrawer(false); burgerRef.current?.focus(); } };
+    // back to a wide screen: the rail is a normal column again, so drop the drawer state
+    const wide = window.matchMedia("(min-width: 861px)");
+    const onWide = () => { if (wide.matches) setDrawer(false); };
+    window.addEventListener("keydown", onKey);
+    wide.addEventListener("change", onWide);
+    return () => { window.removeEventListener("keydown", onKey); wide.removeEventListener("change", onWide); };
+  }, [drawer]);
+
   // pipeline items go live by role; non-staff team members see only their pipeline panels
   const vsatModel: Group[] = VSAT
     .map((g) => ({ ...g, items: g.items
@@ -201,7 +222,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     <div className="vsat-shell">
       <style>{CSS}</style>
       <div className="vp-app">
-        <aside className="vp-rail">
+        <aside className={`vp-rail${drawer ? " open" : ""}`} id="vp-rail" ref={railRef} tabIndex={-1} aria-label="VSAT admin menu">
           <div className="vp-brand"><Image src="/vedam-logo-dark.png" alt="Vedam School of Technology" width={118} height={42} className="vp-logo" priority /></div>
           {staff && (
             <div className="vp-pills">
@@ -227,7 +248,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                             {it.sub.map((s) => {
                               const on = active.id === it.id && active.page === s.page;
                               return (
-                                <a key={s.page} className={on ? "on" : ""} onClick={() => go({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
+                                <a key={s.page} className={on ? "on" : ""} onClick={() => pick({ id: it.id, file: it.file, page: s.page, cm: it.cm, title: `${it.label} · ${s.label}` })}>
                                   <Svg inner='<circle cx="12" cy="12" r="2.5"/>' /><span className="vp-lbl">{s.label}</span>
                                 </a>
                               );
@@ -240,7 +261,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
                   const on = active.id === it.id;
                   return (
                     <a key={it.id} className={`${it.live ? "" : "vp-soon"}${on ? " on" : ""}`}
-                      onClick={() => it.live && go({ id: it.id, title: it.label })}>
+                      onClick={() => it.live && pick({ id: it.id, title: it.label })}>
                       <Svg inner={it.icon} /><span className="vp-lbl">{it.label}</span>
                       {it.live ? <span className="vp-plive"><i />Live</span> : <span className="vp-psoon">Soon</span>}
                     </a>
@@ -254,10 +275,17 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
           </div>
         </aside>
         <div className="vp-content">
-          <div className="vp-ctop"><span className="vp-crumb">{panel === "vsat" ? "VSAT" : "GROWTH"}</span><span className="vp-title">{active.title}</span></div>
+          <div className="vp-ctop">
+            <button type="button" ref={burgerRef} className="vp-burger" aria-label="Open menu" aria-controls="vp-rail" aria-expanded={drawer}
+              onClick={() => setDrawer(true)}>
+              <Svg inner='<path d="M3 6h18M3 12h18M3 18h18"/>' />
+            </button>
+            <span className="vp-crumb">{panel === "vsat" ? "VSAT" : "GROWTH"}</span><span className="vp-title">{active.title}</span>
+          </div>
           <div className="vp-main"><Fragment key={nav}>{renderContent()}</Fragment></div>
         </div>
       </div>
+      <div className={`vp-scrim${drawer ? " on" : ""}`} onClick={closeDrawer} aria-hidden="true" />
     </div>
   );
 }
@@ -325,5 +353,19 @@ const CSS = `
 .vp-phcard h2{font-family:var(--display);margin:0 0 8px;font-size:19px}
 .vp-phcard p{color:var(--mut);font-size:13.5px;margin:0}
 .vp-phtag{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut2);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
-@media(max-width:860px){.vp-app{grid-template-columns:1fr}.vp-rail{display:none}}
+.vp-burger{display:none;width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:var(--panel);color:var(--ink);align-items:center;justify-content:center;cursor:pointer;flex:none;padding:0}
+.vp-burger svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
+.vp-burger:focus-visible,.vp-pills button:focus-visible,.vp-so:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.vp-rail:focus{outline:none}
+.vp-scrim{display:none;position:fixed;inset:0;background:rgba(4,6,16,.6);backdrop-filter:blur(2px);z-index:35}
+/* phones / tablets: the rail becomes a slide-in drawer opened from the ☰ button (reference: public/growth/index.html) */
+@media(max-width:860px){
+  .vp-app{grid-template-columns:1fr}
+  .vp-ctop{padding:10px 14px}
+  .vp-burger{display:flex}
+  .vp-rail{position:fixed;top:0;left:0;bottom:0;width:272px;max-width:85vw;z-index:40;background:#0c1026;transform:translateX(-102%);visibility:hidden;transition:transform .26s cubic-bezier(.2,.7,.2,1),visibility 0s linear .26s;box-shadow:24px 0 60px rgba(0,0,0,.5)}
+  .vp-rail.open{transform:none;visibility:visible;transition:transform .26s cubic-bezier(.2,.7,.2,1)}
+  .vp-scrim.on{display:block}
+}
+@media(max-width:860px) and (prefers-reduced-motion:reduce){.vp-rail,.vp-rail.open{transition:none}}
 `;
