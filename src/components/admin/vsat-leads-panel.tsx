@@ -1,6 +1,8 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
+import { PageHead } from "@/components/admin/ui/page-head";
 import { FacetPick, type Opt } from "@/components/admin/vsat-pipeline/facet-pick";
 
 /**
@@ -11,8 +13,7 @@ import { FacetPick, type Opt } from "@/components/admin/vsat-pipeline/facet-pick
  */
 
 const PAGE = 50;
-const input = "rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#22d3ee] focus:outline-none";
-const btn = "rounded-lg px-3 py-2 text-sm font-semibold disabled:opacity-40";
+const input = vx.field;
 
 type Row = {
   lead_id: string; name: string | null; email: string | null; mobile: string | null;
@@ -33,8 +34,8 @@ const stageLabel = (s: string | null) => (s ? s.replace(/_/g, " ").replace(/\b\w
 const sourceLabel = (s: string) => (s === "none" ? "Unknown" : s);
 
 function Utm({ value, muted }: { value: string | null; muted?: boolean }) {
-  if (!value) return <span className="text-white/30">—</span>;
-  return <span className={`font-mono text-[11px] ${muted ? "text-white/45" : "text-white/80"}`} title={value}>{value}</span>;
+  if (!value) return <span className="text-vx-faint">—</span>;
+  return <span className={`font-mono text-[11px] ${muted ? "text-vx-faint" : "text-vx-ink"}`} title={value}>{value}</span>;
 }
 
 export function VsatLeadsPanel() {
@@ -96,53 +97,53 @@ export function VsatLeadsPanel() {
   function clearFilters() { setCampuses([]); setLeadStages([]); setApplied([]); setSources([]); setQInput(""); setOffset(0); }
 
   return (
-    <div className="space-y-4 p-5 text-white">
+    <div className="space-y-4 p-4 font-sans text-vx-ink sm:p-8">
+      <PageHead title="VSAT Leads" count={`${total.toLocaleString("en-IN")} lead${total === 1 ? "" : "s"}${anyFilter ? " match" : ""}`} />
       <div className="flex flex-wrap items-center gap-2">
-        <input className={`${input} w-72`} placeholder="Search name, email or mobile" value={qInput} onChange={(e) => setQInput(e.target.value)} maxLength={100} aria-label="Search" />
+        <input className={cx(input, "w-full sm:w-72")} placeholder="Search name, email or mobile" value={qInput} onChange={(e) => setQInput(e.target.value)} maxLength={100} aria-label="Search" />
         <FacetPick title="Campus" options={campusOpts} value={campuses} onChange={(v) => { setCampuses(v); setOffset(0); }} />
         <FacetPick title="Stage" options={stageOpts} value={leadStages} onChange={(v) => { setLeadStages(v); setOffset(0); }} />
         <FacetPick title="Applied" options={appliedOpts} value={applied} onChange={(v) => { setApplied(v); setOffset(0); }} />
         {sourceOpts.length > 1 && <FacetPick title="Source" options={sourceOpts} value={sources} onChange={(v) => { setSources(v); setOffset(0); }} />}
-        <span className="ml-auto text-xs text-white/50">{total} lead{total === 1 ? "" : "s"}{anyFilter ? " match" : ""}</span>
-        {anyFilter && <button className="text-xs text-white/60 underline-offset-2 hover:text-white hover:underline" onClick={clearFilters}>Clear filters</button>}
+        {anyFilter && <button className="text-xs text-vx-mut underline-offset-2 hover:text-vx-ink hover:underline" onClick={clearFilters}>Clear filters</button>}
       </div>
 
-      {err && <div className="rounded-lg border border-rose-400/30 bg-rose-400/10 px-3 py-2 text-sm text-rose-200">{err}</div>}
+      {err && <div role="alert" className={vx.error}>{err}</div>}
 
-      <div className="overflow-auto rounded-xl border border-white/10">
+      <div className="overflow-auto rounded-[18px] border border-vx-line bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <table className="w-full min-w-[980px] text-left text-sm">
-          <thead className="bg-white/5 text-[11px] uppercase tracking-wider text-white/45">
+          <thead className="bg-white/[0.02] text-[12.5px] text-vx-faint">
             <tr>
-              <th className="px-3 py-2.5 font-semibold">Lead</th>
-              <th className="px-3 py-2.5 font-semibold">Contact</th>
-              <th className="px-3 py-2.5 font-semibold">Campus</th>
-              <th className="px-3 py-2.5 font-semibold">Stage</th>
-              <th className="px-3 py-2.5 font-semibold">Primary campaign</th>
-              <th className="px-3 py-2.5 font-semibold">Latest campaign</th>
-              <th className="px-3 py-2.5 font-semibold">Applied</th>
-              <th className="px-3 py-2.5 font-semibold">Joined</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Lead</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Contact</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Campus</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Stage</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Primary campaign</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Latest campaign</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Applied</th>
+              <th className="border-b border-vx-line px-3 py-3 font-medium">Joined</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
-            {loading && <tr><td colSpan={8} className="px-3 py-8 text-center text-white/40">Loading…</td></tr>}
-            {!loading && rows.length === 0 && <tr><td colSpan={8} className="px-3 py-8 text-center text-white/40">{anyFilter ? "No leads match these filters." : "No leads yet."}</td></tr>}
+          <tbody className="divide-y divide-vx-line-soft">
+            {loading && <tr><td colSpan={8} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
+            {!loading && rows.length === 0 && <tr><td colSpan={8} className="px-4 py-10 text-center text-vx-faint">{anyFilter ? "No leads match these filters." : "No leads yet."}</td></tr>}
             {!loading && rows.map((r) => (
-              <tr key={r.lead_id} className="hover:bg-white/[.03]">
-                <td className="px-3 py-2.5 font-medium text-white/90">{r.name || "—"}</td>
-                <td className="px-3 py-2.5">
-                  <div className="text-white/70">{r.email || "—"}</div>
-                  <div className="text-[12px] text-white/45">{r.mobile || "—"}</div>
+              <tr key={r.lead_id} className="transition-colors hover:bg-white/[0.03]">
+                <td className="min-w-[150px] px-4 py-3 font-medium text-vx-ink">{r.name || "—"}</td>
+                <td className="px-3 py-3">
+                  <div className="text-vx-mut">{r.email || "—"}</div>
+                  <div className="text-[12px] text-vx-faint">{r.mobile || "—"}</div>
                 </td>
-                <td className="px-3 py-2.5 text-white/70">{campusLabel(r.campus)}</td>
-                <td className="px-3 py-2.5 text-white/70">{stageLabel(r.lead_stage)}</td>
-                <td className="px-3 py-2.5"><Utm value={r.primary_utm} /></td>
-                <td className="px-3 py-2.5"><Utm value={r.latest_utm} muted /></td>
-                <td className="px-3 py-2.5">
-                  <span className={`inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold ${r.application_submitted ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300" : "border-white/10 bg-white/5 text-white/35"}`}>
+                <td className="px-3 py-3 text-vx-mut">{campusLabel(r.campus)}</td>
+                <td className="px-3 py-3 text-vx-mut">{stageLabel(r.lead_stage)}</td>
+                <td className="px-3 py-3"><Utm value={r.primary_utm} /></td>
+                <td className="px-3 py-3"><Utm value={r.latest_utm} muted /></td>
+                <td className="px-3 py-3">
+                  <span className={cx(vx.badge, r.application_submitted ? vx.tone.green : vx.tone.neutral)}>
                     {r.application_submitted ? "Yes" : "No"}
                   </span>
                 </td>
-                <td className="px-3 py-2.5 whitespace-nowrap text-white/60">{fmt(r.created_at)}</td>
+                <td className="px-3 py-3 whitespace-nowrap text-vx-mut">{fmt(r.created_at)}</td>
               </tr>
             ))}
           </tbody>
@@ -150,10 +151,10 @@ export function VsatLeadsPanel() {
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-xs text-white/40">{rows.length ? `${offset + 1}–${offset + rows.length} of ${total}` : "—"}</span>
+        <span className="text-xs text-vx-faint">{rows.length ? `${offset + 1}–${offset + rows.length} of ${total}` : "—"}</span>
         <div className="flex gap-2">
-          <button className={`${btn} bg-white/5 text-white/70`} disabled={offset === 0 || loading} onClick={() => setOffset(Math.max(0, offset - PAGE))}>Prev</button>
-          <button className={`${btn} bg-white/5 text-white/70`} disabled={offset + rows.length >= total || loading} onClick={() => setOffset(offset + PAGE)}>Next</button>
+          <button className={cx(vx.btn, vx.ghost, vx.sm)} disabled={offset === 0 || loading} onClick={() => setOffset(Math.max(0, offset - PAGE))}>Prev</button>
+          <button className={cx(vx.btn, vx.secondary, vx.sm)} disabled={offset + rows.length >= total || loading} onClick={() => setOffset(offset + PAGE)}>Next</button>
         </div>
       </div>
     </div>

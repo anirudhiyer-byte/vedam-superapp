@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
 
 /**
  * VSAT coupon maker (admin, inside the Exam Center).
@@ -20,9 +21,9 @@ type Coupon = {
   visible_at_checkout: boolean; created_at: string;
 };
 
-const input = "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#00cfe5] focus:outline-none";
-const label = "mb-1 block text-xs font-semibold text-white/60";
-const card = "rounded-2xl border border-white/10 bg-white/[0.03] p-5";
+const input = vx.input;
+const label = vx.label;
+const card = cx(vx.card, "p-5 sm:p-6");
 
 const ERRORS: Record<string, string> = {
   missing_code: "Enter a code.", bad_amount: "Enter a value above 0.",
@@ -106,8 +107,8 @@ export function VsatCouponMaker() {
   return (
     <section className={`${card} mt-6`}>
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-white">Coupons</h2>
-        <span className="text-xs text-white/40">Manual entry only · never shown at checkout unless marked visible</span>
+        <h2 className="text-sm font-bold text-vx-ink">Coupons</h2>
+        <span className="text-xs text-vx-faint">Manual entry only · never shown at checkout unless marked visible</span>
       </div>
 
       {/* create */}
@@ -139,41 +140,41 @@ export function VsatCouponMaker() {
           <label className={label}>Max uses (blank = ∞)</label>
           <input className={input} type="number" value={maxUses} onChange={(e) => setMaxUses(e.target.value)} placeholder="∞" />
         </div>
-        <label className="col-span-2 flex items-center gap-2 text-xs text-white/60 md:col-span-1">
+        <label className="col-span-2 flex items-center gap-2 text-xs text-vx-mut md:col-span-1">
           <input type="checkbox" checked={visible} onChange={(e) => setVisible(e.target.checked)} /> Show at checkout
         </label>
         <div className="col-span-2 flex items-end md:col-span-1">
-          <button onClick={create} disabled={busy} className="w-full rounded-lg bg-[#00cfe5] px-3 py-2 text-sm font-bold text-[#06252b] disabled:opacity-50">Create</button>
+          <button onClick={create} disabled={busy} className={cx(vx.btn, vx.primary, "w-full")}>Create</button>
         </div>
       </div>
-      {err && <p className="mt-3 text-xs font-semibold text-[#ff8a8a]">{err}</p>}
-      {msg && <p className="mt-3 text-xs font-semibold text-[#79e3b0]">{msg}</p>}
+      {err && <p className="mt-3 text-xs font-semibold text-vx-red">{err}</p>}
+      {msg && <p className="mt-3 text-xs font-semibold text-vx-green">{msg}</p>}
 
       {/* list */}
       <div className="mt-5 overflow-x-auto">
-        {loading ? <p className="text-sm text-white/40">Loading…</p> : rows.length === 0 ? (
-          <p className="text-sm text-white/40">No coupons yet.</p>
+        {loading ? <p className="text-sm text-vx-faint">Loading…</p> : rows.length === 0 ? (
+          <p className="text-sm text-vx-faint">No coupons yet.</p>
         ) : (
-          <table className="w-full text-left text-sm text-white/80">
-            <thead className="text-xs uppercase tracking-wide text-white/40">
+          <table className="w-full text-left text-sm text-vx-ink">
+            <thead className="text-xs text-vx-faint">
               <tr><th className="py-2 pr-3">Code</th><th className="pr-3">Off</th><th className="pr-3">Note</th><th className="pr-3">Used</th><th className="pr-3">Expires</th><th className="pr-3">Checkout</th><th className="pr-3">Active</th><th></th></tr>
             </thead>
             <tbody>
               {rows.map((c) => (
-                <tr key={c.id} className="border-t border-white/10">
-                  <td className="py-2 pr-3 font-bold text-white">{c.code}</td>
+                <tr key={c.id} className="border-t border-vx-line">
+                  <td className="py-2 pr-3 font-bold text-vx-ink">{c.code}</td>
                   <td className="pr-3 tabular-nums">{c.discount_type === "percent" ? `${c.amount}%` : `₹${c.amount}`}</td>
-                  <td className="pr-3 text-white/60">{c.note || "—"}</td>
+                  <td className="pr-3 text-vx-mut">{c.note || "—"}</td>
                   <td className="pr-3 tabular-nums">{c.used_count}{c.max_uses != null ? ` / ${c.max_uses}` : ""}</td>
                   <td className="pr-3">{fmtDate(c.valid_to)}</td>
                   <td className="pr-3">
-                    <button onClick={() => toggleVisible(c)} disabled={busy} className={`rounded px-2 py-0.5 text-xs font-semibold ${c.visible_at_checkout ? "bg-[#00cfe5]/20 text-[#00cfe5]" : "bg-white/5 text-white/40"}`}>{c.visible_at_checkout ? "Shown" : "Hidden"}</button>
+                    <button onClick={() => toggleVisible(c)} disabled={busy} className={`rounded px-2 py-0.5 text-xs font-semibold ${c.visible_at_checkout ? "bg-vx-violet/20 text-vx-violet-t" : "bg-white/5 text-vx-faint"}`}>{c.visible_at_checkout ? "Shown" : "Hidden"}</button>
                   </td>
                   <td className="pr-3">
-                    <button onClick={() => toggle(c)} disabled={busy} className={`rounded px-2 py-0.5 text-xs font-semibold ${c.active ? "bg-[#79e3b0]/20 text-[#79e3b0]" : "bg-white/5 text-white/40"}`}>{c.active ? "On" : "Off"}</button>
+                    <button onClick={() => toggle(c)} disabled={busy} className={`rounded px-2 py-0.5 text-xs font-semibold ${c.active ? "bg-vx-green/20 text-vx-green" : "bg-white/5 text-vx-faint"}`}>{c.active ? "On" : "Off"}</button>
                   </td>
                   <td className="text-right">
-                    <button onClick={() => remove(c)} disabled={busy} className="text-xs text-white/30 hover:text-[#ff8a8a]">Delete</button>
+                    <button onClick={() => remove(c)} disabled={busy} className="text-xs text-vx-faint hover:text-vx-red">Delete</button>
                   </td>
                 </tr>
               ))}

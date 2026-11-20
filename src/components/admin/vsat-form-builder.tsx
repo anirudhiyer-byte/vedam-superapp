@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
 
 type QType = "text" | "textarea" | "number" | "date" | "dropdown" | "checkbox" | "radio" | "file" | "school" | "state" | "city" | "board" | "dob" | "email" | "phone";
 type Cond = { q: string; op: "eq" | "neq" | "includes"; value: string };
@@ -141,10 +142,23 @@ function fromSchema(id: string, name: string, schema: { categories?: Array<Recor
 
 const newQuestion = (): Question => ({ key: "q_" + uid(), label: "", type: "text", required: false });
 
-const input = "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#00cfe5] focus:outline-none";
-const mini = "rounded-md border border-white/15 bg-white/5 px-2 py-1.5 text-xs text-white focus:border-[#00cfe5] focus:outline-none";
-const btn = "rounded-lg px-4 py-2 text-sm font-semibold";
-const chip = "rounded-lg border border-white/15 px-2.5 py-1 text-xs text-white/70 hover:text-white hover:border-white/30";
+const input = vx.input;
+const mini = "h-8 rounded-[9px] border border-vx-line2 bg-black/20 px-2 font-sans text-[13px] text-vx-ink focus:border-vx-violet focus:outline-none focus:ring-2 focus:ring-vx-violet/30";
+const chip = cx(vx.btn, vx.ghost, vx.sm);
+const add = cx(vx.dashed, "px-3 py-2 text-[13px]");
+const opt = "bg-vx-raised"; // <option> background in the native dropdown
+const DocIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" /><path d="M14 3v6h6M8 13h8M8 17h5" />
+  </svg>
+);
+/** Status of a form, as a coloured chip + the icon-tile colours that go with it. */
+function formState(f: FormRow) {
+  if (f.status === "active" && f.admin_only) return { label: "Live for staff", chip: "border-vx-orange/30 bg-vx-orange/10 text-vx-orange-t", dot: "bg-vx-orange", tile: "border-vx-orange/30 bg-vx-orange/10 text-vx-orange-t" };
+  if (f.status === "active") return { label: "Live for public", chip: "border-vx-green/30 bg-vx-green/10 text-vx-green", dot: "bg-vx-green shadow-[0_0_0_3px_rgba(43,217,159,0.18)]", tile: "border-vx-green/30 bg-vx-green/10 text-vx-green" };
+  if (f.status === "archived") return { label: "Archived", chip: "border-vx-line bg-white/[0.05] text-vx-faint", dot: "bg-vx-faint", tile: "border-vx-line bg-white/[0.04] text-vx-faint" };
+  return { label: "Not live", chip: "border-vx-line bg-white/[0.05] text-vx-mut", dot: "bg-vx-faint", tile: "border-vx-violet/30 bg-vx-violet/[0.14] text-vx-violet-t" };
+}
 
 export function VsatFormBuilder() {
   const [supabase] = useState(() => createClient());
@@ -236,51 +250,59 @@ export function VsatFormBuilder() {
     return d;
   });
 
-  if (loading) return <div className="p-10 text-white/50">Loading…</div>;
+  if (loading) return <div className={cx(vx.page, "text-vx-mut")}>Loading…</div>;
 
   // ── LIST VIEW ──
   if (!draft) {
     return (
-      <div className="mx-auto max-w-4xl px-6 py-10">
-        <div className="flex items-center justify-between">
+      <div className={vx.page}>
+        <div className={vx.head}>
           <div>
-            <h1 className="font-display text-2xl font-bold">VSAT Form builder</h1>
-            <p className="mt-1 text-sm text-white/50">Build the application form. One form is live at a time — whoever pays the VSAT fee fills it.</p>
+            <h1 className={vx.h1}>Form builder</h1>
+            <p className={vx.sub}>Build the application form. One form is live at a time — whoever pays the VSAT fee fills it.</p>
           </div>
-          <button onClick={() => setDraft({ name: "", categories: [] })} className={`${btn} bg-gradient-to-r from-[#00cfe5] to-[#c200db] text-white`}>+ New form</button>
+          <button onClick={() => setDraft({ name: "", categories: [] })} className={cx(vx.btn, vx.cta, "h-11 px-5")}>
+            <span aria-hidden="true" className="text-lg leading-none">+</span>New form
+          </button>
         </div>
-        {msg && <p className="mt-4 text-sm text-[#00cfe5]">{msg}</p>}
-        <div className="mt-6 space-y-3">
-          {forms.length === 0 && <p className="text-sm text-white/40">No forms yet.</p>}
-          {forms.map((f) => (
-            <div key={f.id} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
-              <div>
-                <p className="font-semibold">{f.name}
-                  {f.status === "active" && (f.admin_only
-                    ? <span className="ml-2 rounded-full bg-amber-400/15 px-2 py-0.5 text-xs font-semibold text-amber-300">LIVE · STAFF ONLY</span>
-                    : <span className="ml-2 rounded-full bg-[#16a34a]/20 px-2 py-0.5 text-xs text-[#4ade80]">LIVE</span>)}
-                  {f.status === "archived" && <span className="ml-2 text-xs text-white/30">archived</span>}</p>
-                <p className="text-xs text-white/40">{f.categories} categor{f.categories === 1 ? "y" : "ies"} · v{f.version}
-                  {f.status === "active" && f.admin_only && <span className="text-amber-300/70"> · only vedam.org can see & fill it</span>}</p>
+        {msg && <p role="status" className={cx(vx.info, "mb-4")}>{msg}</p>}
+        <div className="space-y-3">
+          {forms.length === 0 && <div className={cx(vx.card, vx.pad, "text-center text-sm text-vx-mut")}>No forms yet. Create one with “New form”.</div>}
+          {forms.map((f) => {
+            const st = formState(f);
+            return (
+              <div key={f.id} className={cx(vx.card, vx.hover, "flex flex-wrap items-center gap-x-[18px] gap-y-4 p-5 sm:px-6")}>
+                <div className={cx("grid h-12 w-12 flex-none place-items-center rounded-[14px] border", st.tile)}><DocIcon /></div>
+                <div className="min-w-0 flex-1">
+                  <h2 className={cx(vx.h2, "truncate")}>{f.name}</h2>
+                  <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                    <span className={cx("inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[12.5px] font-medium", st.chip)}><span className={cx(vx.dot, st.dot)} />{st.label}</span>
+                    <span className={vx.chip}>{f.categories} categor{f.categories === 1 ? "y" : "ies"}</span>
+                    <span className={vx.chip}>Version {f.version}</span>
+                  </div>
+                  {f.status === "active" && f.admin_only && <p className="mt-2 text-[13px] text-vx-orange-t/80">Only vedam.org accounts can see and fill it.</p>}
+                </div>
+                <div className="flex w-full flex-wrap gap-2 sm:w-auto">
+                  <button onClick={() => editForm(f.id)} disabled={busy} className={cx(vx.btn, vx.ghost)}>Edit</button>
+                  {f.status !== "active" ? (
+                    <>
+                      <button onClick={() => setStatus(f.id, "active", true)} disabled={busy} className={cx(vx.btn, vx.secondary)} title="Turn it on for Vedam staff only, to test it before going public">
+                        <span className={cx(vx.dot, "bg-vx-orange")} aria-hidden="true" />Enable for staff
+                      </button>
+                      <button onClick={() => setStatus(f.id, "active", false)} disabled={busy} className={cx(vx.btn, vx.primary)}>Enable for public</button>
+                    </>
+                  ) : (
+                    <>
+                      {f.admin_only
+                        ? <button onClick={() => setStatus(f.id, "active", false)} disabled={busy} className={cx(vx.btn, vx.primary)}>Make public</button>
+                        : <button onClick={() => setStatus(f.id, "active", true)} disabled={busy} className={cx(vx.btn, vx.secondary)}><span className={cx(vx.dot, "bg-vx-orange")} aria-hidden="true" />Switch to staff only</button>}
+                      <button onClick={() => setStatus(f.id, "draft")} disabled={busy} className={cx(vx.btn, vx.ghost)}>Turn off</button>
+                    </>
+                  )}
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <button onClick={() => editForm(f.id)} disabled={busy} className={`${btn} border border-white/15 text-white`}>Edit</button>
-                {f.status !== "active" ? (
-                  <>
-                    <button onClick={() => setStatus(f.id, "active", true)} disabled={busy} className={`${btn} bg-amber-500/90 text-black`} title="Enable for Vedam staff only — test it before going public">Enable (staff only)</button>
-                    <button onClick={() => setStatus(f.id, "active", false)} disabled={busy} className={`${btn} bg-[#16a34a] text-white`}>Enable (public)</button>
-                  </>
-                ) : (
-                  <>
-                    {f.admin_only
-                      ? <button onClick={() => setStatus(f.id, "active", false)} disabled={busy} className={`${btn} bg-[#16a34a] text-white`}>Make public</button>
-                      : <button onClick={() => setStatus(f.id, "active", true)} disabled={busy} className={`${btn} bg-amber-500/90 text-black`}>Switch to staff-only</button>}
-                    <button onClick={() => setStatus(f.id, "draft")} disabled={busy} className={`${btn} border border-white/15 text-white`}>Disable</button>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     );
@@ -294,9 +316,9 @@ export function VsatFormBuilder() {
   ]);
   const routeTargets = (ci: number) => (
     <>
-      <option value={NEXT} className="bg-[#160a30]">Continue to next section</option>
-      {catOpts.map((c, i) => i !== ci && <option key={c.key} value={c.key} className="bg-[#160a30]">Go to: {c.title}</option>)}
-      <option value={SUBMIT} className="bg-[#160a30]">Submit the form</option>
+      <option value={NEXT} className={opt}>Continue to next section</option>
+      {catOpts.map((c, i) => i !== ci && <option key={c.key} value={c.key} className={opt}>Go to: {c.title}</option>)}
+      <option value={SUBMIT} className={opt}>Submit the form</option>
     </>
   );
 
@@ -308,30 +330,30 @@ export function VsatFormBuilder() {
       <div key={q.key} draggable
         onDragStart={() => { drag.current = { list, index: qi }; }}
         onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop(list, qi)}
-        className="rounded-lg border border-white/10 bg-black/20 p-3">
+        className={cx(vx.well, "p-4")}>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="cursor-grab select-none px-1 text-white/30" title="Drag to reorder">⠿</span>
-          <input value={q.label} onChange={(e) => editQ(ci, si, qi, { label: e.target.value })} placeholder="Question label" className={`${input} flex-1 min-w-[160px]`} />
-          <select value={q.type} onChange={(e) => editQ(ci, si, qi, { type: e.target.value as QType })} className={`${input} w-44`}>
-            {QTYPES.map((t) => <option key={t} value={t} className="bg-[#160a30]">{TYPE_LABEL[t]}</option>)}
+          <span className="cursor-grab select-none px-1 text-vx-faint" title="Drag to reorder">⠿</span>
+          <input value={q.label} onChange={(e) => editQ(ci, si, qi, { label: e.target.value })} placeholder="Question label" className={cx(vx.field, "min-w-[160px] flex-1")} />
+          <select value={q.type} onChange={(e) => editQ(ci, si, qi, { type: e.target.value as QType })} className={cx(vx.field, "w-44")}>
+            {QTYPES.map((t) => <option key={t} value={t} className={opt}>{TYPE_LABEL[t]}</option>)}
           </select>
-          <label className="flex items-center gap-1 text-xs text-white/60"><input type="checkbox" checked={q.required} onChange={(e) => editQ(ci, si, qi, { required: e.target.checked })} /> required</label>
-          <button onClick={() => dupQ(ci, si, qi)} className="rounded px-2 py-1 text-xs text-white/40 hover:text-white" title="Duplicate">⧉</button>
-          <button onClick={() => delQ(ci, si, qi)} className="rounded px-2 py-1 text-xs text-white/40 hover:text-[#ff9db0]" title="Remove">✕</button>
+          <label className="flex items-center gap-1.5 text-[13px] text-vx-mut"><input type="checkbox" className={vx.check} checked={q.required} onChange={(e) => editQ(ci, si, qi, { required: e.target.checked })} /> required</label>
+          <button onClick={() => dupQ(ci, si, qi)} className="rounded-md px-2 py-1 text-sm text-vx-faint hover:bg-white/[0.05] hover:text-vx-ink" title="Duplicate" aria-label="Duplicate question">⧉</button>
+          <button onClick={() => delQ(ci, si, qi)} className="rounded-md px-2 py-1 text-sm text-vx-faint hover:bg-white/[0.05] hover:text-vx-red" title="Remove" aria-label="Remove question">✕</button>
         </div>
 
         {HAS_OPTIONS(q.type) && (
-          <input value={q.options ?? ""} onChange={(e) => editQ(ci, si, qi, { options: e.target.value })} placeholder="Options, comma-separated (e.g. CSE, AI/ML, ECE)" className={`${input} mt-2`} />
+          <input value={q.options ?? ""} onChange={(e) => editQ(ci, si, qi, { options: e.target.value })} placeholder="Options, comma-separated (e.g. CSE, AI/ML, ECE)" className={cx(input, "mt-2")} />
         )}
 
         {q.type === "file" && (
           <div className="mt-2 space-y-2">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs text-white/50">Allowed file types:</span>
+              <span className="text-[13px] text-vx-mut">Allowed file types:</span>
               {FILE_PRESETS.map((p) => {
                 const on = p.ext.some((e) => opts(q.accept).includes(e));
                 return (
-                  <label key={p.label} className={`cursor-pointer select-none rounded-md border px-2.5 py-1 text-xs ${on ? "border-[#00cfe5] bg-[#00cfe5]/15 text-white" : "border-white/15 text-white/60 hover:border-white/30"}`}>
+                  <label key={p.label} className={cx("cursor-pointer select-none rounded-full border px-3 py-1 text-[12.5px] transition-colors", on ? "border-vx-violet bg-vx-violet/15 text-vx-ink" : "border-vx-line2 text-vx-mut hover:border-vx-violet/50")}>
                     <input type="checkbox" className="sr-only" checked={on}
                       onChange={() => {
                         const s = new Set(opts(q.accept));
@@ -344,26 +366,26 @@ export function VsatFormBuilder() {
               })}
             </div>
             <div className="flex flex-wrap items-center gap-3">
-              <input type="number" min={1} value={q.maxSizeMb ?? ""} onChange={(e) => editQ(ci, si, qi, { maxSizeMb: e.target.value })} placeholder="Max MB" className={`${input} w-28`} />
-              <label className="flex items-center gap-2 text-xs text-white/60"><input type="checkbox" checked={!!q.multiple} onChange={(e) => editQ(ci, si, qi, { multiple: e.target.checked })} /> allow multiple files</label>
+              <input type="number" min={1} value={q.maxSizeMb ?? ""} onChange={(e) => editQ(ci, si, qi, { maxSizeMb: e.target.value })} placeholder="Max MB" className={cx(vx.field, "w-28")} />
+              <label className="flex items-center gap-2 text-[13px] text-vx-mut"><input type="checkbox" className={vx.check} checked={!!q.multiple} onChange={(e) => editQ(ci, si, qi, { multiple: e.target.checked })} /> allow multiple files</label>
             </div>
-            {opts(q.accept).length === 0 && <p className="text-xs text-amber-300/70">Pick at least one type — otherwise every file type is allowed.</p>}
+            {opts(q.accept).length === 0 && <p className="text-[13px] text-vx-orange-t/80">Pick at least one type — otherwise every file type is allowed.</p>}
           </div>
         )}
 
-        {DATASET_HINTS[q.type] && <p className="mt-2 text-xs text-white/40">{DATASET_HINTS[q.type]}</p>}
+        {DATASET_HINTS[q.type] && <p className="mt-2 text-[13px] text-vx-faint">{DATASET_HINTS[q.type]}</p>}
 
-        <input value={q.help ?? ""} onChange={(e) => editQ(ci, si, qi, { help: e.target.value })} placeholder="Guidance text (optional — shown under the question)" className={`${input} mt-2 text-xs`} />
+        <input value={q.help ?? ""} onChange={(e) => editQ(ci, si, qi, { help: e.target.value })} placeholder="Guidance text (optional — shown under the question)" className={cx(input, "mt-2 text-[13px]")} />
 
         {/* conditional: branch by answer (single-choice only) */}
         {CAN_ROUTE(q.type) && opts(q.options).length > 0 && (
-          <div className="mt-2 rounded-md border border-[#00cfe5]/25 bg-[#00cfe5]/[0.06] p-2">
-            <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#6fe3ef]">Branch by answer</p>
+          <div className="mt-3 rounded-xl border border-vx-violet/25 bg-vx-violet/[0.06] p-3">
+            <p className="mb-2 text-[13px] font-medium text-vx-violet-t">Branch by answer</p>
             <div className="space-y-1.5">
               {opts(q.options).map((o) => (
                 <div key={o} className="flex items-center gap-2">
-                  <span className="min-w-[90px] shrink-0 truncate text-xs text-white/70">If “{o}” →</span>
-                  <select value={(q.routes ?? []).find((r) => r.value === o)?.to ?? NEXT} onChange={(e) => setRoute(ci, si, qi, o, e.target.value)} className={`${mini} flex-1`}>
+                  <span className="min-w-[90px] shrink-0 truncate text-[13px] text-vx-mut">If “{o}” →</span>
+                  <select value={(q.routes ?? []).find((r) => r.value === o)?.to ?? NEXT} onChange={(e) => setRoute(ci, si, qi, o, e.target.value)} className={cx(mini, "flex-1")}>
                     {routeTargets(ci)}
                   </select>
                 </div>
@@ -373,42 +395,42 @@ export function VsatFormBuilder() {
         )}
 
         {/* conditional: show only if */}
-        <label className="mt-2 flex items-center gap-2 text-xs text-white/50">
-          <input type="checkbox" checked={!!q.showIf}
+        <label className="mt-3 flex items-center gap-2 text-[13px] text-vx-mut">
+          <input type="checkbox" className={vx.check} checked={!!q.showIf}
             onChange={(e) => editQ(ci, si, qi, { showIf: e.target.checked ? { q: refs[0]?.key ?? "", op: "eq", value: "" } : undefined })} />
           show this question only if…
         </label>
         {q.showIf && (
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-            <select value={q.showIf.q} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, q: e.target.value } })} className={`${mini} max-w-[180px]`}>
+            <select value={q.showIf.q} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, q: e.target.value } })} className={cx(mini, "max-w-[180px]")}>
               {refs.length === 0 && <option value="">(add another question first)</option>}
-              {refs.map((x) => <option key={x.key} value={x.key} className="bg-[#160a30]">{x.label}</option>)}
+              {refs.map((x) => <option key={x.key} value={x.key} className={opt}>{x.label}</option>)}
             </select>
             <select value={q.showIf.op} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, op: e.target.value as Cond["op"] } })} className={mini}>
-              <option value="eq" className="bg-[#160a30]">is</option>
-              <option value="neq" className="bg-[#160a30]">is not</option>
-              <option value="includes" className="bg-[#160a30]">includes</option>
+              <option value="eq" className={opt}>is</option>
+              <option value="neq" className={opt}>is not</option>
+              <option value="includes" className={opt}>includes</option>
             </select>
             {(() => {
               const refOpts = refQ ? opts(draft.categories.flatMap((c) => [...c.questions, ...c.subcategories.flatMap((s) => s.questions)]).find((qq) => qq.key === refQ.key)?.options) : [];
               return refOpts.length > 0 ? (
                 <select value={q.showIf.value} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, value: e.target.value } })} className={mini}>
-                  <option value="" className="bg-[#160a30]">(pick a value)</option>
-                  {refOpts.map((o) => <option key={o} value={o} className="bg-[#160a30]">{o}</option>)}
+                  <option value="" className={opt}>(pick a value)</option>
+                  {refOpts.map((o) => <option key={o} value={o} className={opt}>{o}</option>)}
                 </select>
               ) : (
-                <input value={q.showIf.value} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, value: e.target.value } })} placeholder="value" className={`${mini} w-28`} />
+                <input value={q.showIf.value} onChange={(e) => editQ(ci, si, qi, { showIf: { ...q.showIf!, value: e.target.value } })} placeholder="value" className={cx(mini, "w-28")} />
               );
             })()}
           </div>
         )}
 
-        <label className="mt-2 flex items-center gap-2 text-xs text-white/50">
-          <input type="checkbox" checked={!!q.hasException} onChange={(e) => editQ(ci, si, qi, { hasException: e.target.checked })} />
+        <label className="mt-2 flex items-center gap-2 text-[13px] text-vx-mut">
+          <input type="checkbox" className={vx.check} checked={!!q.hasException} onChange={(e) => editQ(ci, si, qi, { hasException: e.target.checked })} />
           allow a skip-exception
         </label>
         {q.hasException && (
-          <input value={q.exceptionLabel ?? ""} onChange={(e) => editQ(ci, si, qi, { exceptionLabel: e.target.value })} placeholder='Exception label (e.g. "12th results not out yet")' className={`${input} mt-2`} />
+          <input value={q.exceptionLabel ?? ""} onChange={(e) => editQ(ci, si, qi, { exceptionLabel: e.target.value })} placeholder='Exception label (e.g. "12th results not out yet")' className={cx(input, "mt-2")} />
         )}
       </div>
     );
@@ -416,18 +438,19 @@ export function VsatFormBuilder() {
 
   // ── EDIT VIEW ──
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
-      <div className="flex items-center justify-between">
-        <button onClick={() => { setDraft(null); setMsg(""); }} className="text-sm text-white/50 hover:text-white">← All forms</button>
-        <button onClick={save} disabled={busy} className={`${btn} bg-gradient-to-r from-[#00cfe5] to-[#c200db] text-white`}>{busy ? "Saving…" : "Save"}</button>
+    <div className={vx.page}>
+      <div className="flex items-center justify-between gap-3">
+        <button onClick={() => { setDraft(null); setMsg(""); }} className={cx(vx.btn, vx.ghost, vx.sm)}>← All forms</button>
+        <button onClick={save} disabled={busy} className={cx(vx.btn, vx.cta, "px-6")}>{busy ? "Saving…" : "Save"}</button>
       </div>
-      {msg && <p className="mt-3 text-sm text-[#00cfe5]">{msg}</p>}
+      {msg && <p role="status" className={cx(vx.info, "mt-4")}>{msg}</p>}
 
-      <input value={draft.name} onChange={(e) => up((d) => { d.name = e.target.value; return d; })} placeholder="Form name (e.g. VSAT 2027 application)" className={`${input} mt-5 text-lg`} />
+      <input value={draft.name} onChange={(e) => up((d) => { d.name = e.target.value; return d; })} placeholder="Form name (e.g. VSAT 2027 application)" aria-label="Form name"
+        className={cx(input, "mt-6 h-12 text-lg font-semibold")} />
 
-      <div className="mt-2 flex items-center justify-end gap-3 text-xs text-white/40">
-        <button onClick={() => up((d) => { d.categories.forEach((c) => (c.collapsed = true)); return d; })} className="hover:text-white">Collapse all</button>
-        <button onClick={() => up((d) => { d.categories.forEach((c) => (c.collapsed = false)); return d; })} className="hover:text-white">Expand all</button>
+      <div className="mt-3 flex items-center justify-end gap-1 text-[13px]">
+        <button onClick={() => up((d) => { d.categories.forEach((c) => (c.collapsed = true)); return d; })} className="rounded-md px-2 py-1 text-vx-mut hover:bg-white/[0.04] hover:text-vx-ink">Collapse all</button>
+        <button onClick={() => up((d) => { d.categories.forEach((c) => (c.collapsed = false)); return d; })} className="rounded-md px-2 py-1 text-vx-mut hover:bg-white/[0.04] hover:text-vx-ink">Expand all</button>
       </div>
 
       <div className="mt-3 space-y-4">
@@ -437,40 +460,40 @@ export function VsatFormBuilder() {
             <div key={c.key} draggable
               onDragStart={(e) => { if (e.target === e.currentTarget || (e.target as HTMLElement).dataset.draghandle) { drag.current = { list: "cat", index: ci }; } }}
               onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop("cat", ci)}
-              className="rounded-xl border border-white/10 bg-white/5">
-              <div className="flex items-center gap-2 p-4">
-                <span data-draghandle className="cursor-grab select-none px-1 text-white/30" title="Drag to reorder">⠿</span>
-                <button onClick={() => up((d) => { d.categories[ci].collapsed = !d.categories[ci].collapsed; return d; })} className="shrink-0 text-white/50 hover:text-white" title={c.collapsed ? "Expand" : "Collapse"}>{c.collapsed ? "▸" : "▾"}</button>
-                <input value={c.title} onChange={(e) => up((d) => { d.categories[ci].title = e.target.value; return d; })} placeholder={`Category ${ci + 1} title (e.g. Basic details)`} className={`${input} font-semibold`} />
-                <span className="shrink-0 text-xs text-white/30">{qCount} Q{c.subcategories.length ? ` · ${c.subcategories.length} section${c.subcategories.length > 1 ? "s" : ""}` : ""}</span>
-                <button onClick={() => dupCategory(ci)} className={`${chip} shrink-0`} title="Duplicate category">⧉ Copy</button>
-                <button onClick={() => up((d) => { d.categories.splice(ci, 1); return d; })} className={`${chip} shrink-0 hover:text-[#ff9db0]`}>Remove</button>
+              className={vx.card}>
+              <div className="flex items-center gap-2 p-4 sm:px-5">
+                <span data-draghandle className="cursor-grab select-none px-1 text-vx-faint" title="Drag to reorder">⠿</span>
+                <button onClick={() => up((d) => { d.categories[ci].collapsed = !d.categories[ci].collapsed; return d; })} className="shrink-0 rounded-md px-1 text-vx-mut hover:text-vx-ink" title={c.collapsed ? "Expand" : "Collapse"} aria-expanded={!c.collapsed}>{c.collapsed ? "▸" : "▾"}</button>
+                <input value={c.title} onChange={(e) => up((d) => { d.categories[ci].title = e.target.value; return d; })} placeholder={`Category ${ci + 1} title (e.g. Basic details)`} className={cx(input, "font-semibold")} />
+                <span className="shrink-0 text-[12.5px] text-vx-faint">{qCount} Q{c.subcategories.length ? ` · ${c.subcategories.length} section${c.subcategories.length > 1 ? "s" : ""}` : ""}</span>
+                <button onClick={() => dupCategory(ci)} className={cx(chip, "shrink-0")} title="Duplicate category">⧉ Copy</button>
+                <button onClick={() => up((d) => { d.categories.splice(ci, 1); return d; })} className={cx(chip, "shrink-0 hover:text-vx-red")}>Remove</button>
               </div>
 
               {!c.collapsed && (
-                <div className="space-y-3 px-4 pb-4">
+                <div className="space-y-3 px-4 pb-4 sm:px-5 sm:pb-5">
                   {c.questions.map((q, qi) => questionCard(q, ci, null, qi, `cat-${ci}`))}
-                  <button onClick={() => addQuestion(ci, null)} className="rounded-lg border border-dashed border-white/20 px-3 py-2 text-xs text-white/60 hover:text-white">+ Add question</button>
+                  <button onClick={() => addQuestion(ci, null)} className={add}>+ Add question</button>
 
                   {c.subcategories.map((s, si) => (
-                    <div key={s.key} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                    <div key={s.key} className="rounded-xl border border-vx-line bg-white/[0.025] p-3 sm:p-4">
                       <div className="flex items-center gap-2">
-                        <span className="text-white/30">↳</span>
-                        <input value={s.title} onChange={(e) => up((d) => { d.categories[ci].subcategories[si].title = e.target.value; return d; })} placeholder={`Sub-category ${si + 1} title (e.g. Class 12 marks)`} className={`${input} font-medium`} />
-                        <button onClick={() => up((d) => { d.categories[ci].subcategories.splice(si, 1); return d; })} className={`${chip} shrink-0 hover:text-[#ff9db0]`}>Remove</button>
+                        <span className="text-vx-faint">↳</span>
+                        <input value={s.title} onChange={(e) => up((d) => { d.categories[ci].subcategories[si].title = e.target.value; return d; })} placeholder={`Sub-category ${si + 1} title (e.g. Class 12 marks)`} className={cx(input, "font-medium")} />
+                        <button onClick={() => up((d) => { d.categories[ci].subcategories.splice(si, 1); return d; })} className={cx(chip, "shrink-0 hover:text-vx-red")}>Remove</button>
                       </div>
                       <div className="mt-3 space-y-3">
                         {s.questions.map((q, qi) => questionCard(q, ci, si, qi, `cat-${ci}-sub-${si}`))}
-                        <button onClick={() => addQuestion(ci, si)} className="rounded-lg border border-dashed border-white/20 px-3 py-2 text-xs text-white/60 hover:text-white">+ Add question to this section</button>
+                        <button onClick={() => addQuestion(ci, si)} className={add}>+ Add question to this section</button>
                       </div>
                     </div>
                   ))}
-                  <button onClick={() => addSub(ci)} className="rounded-lg border border-dashed border-white/15 px-3 py-2 text-xs text-white/40 hover:text-white">+ Add sub-category</button>
+                  <button onClick={() => addSub(ci)} className={add}>+ Add sub-category</button>
 
                   {/* after this section → (default routing; a question's own branch overrides this) */}
-                  <div className="flex items-center gap-2 border-t border-white/10 pt-3">
-                    <span className="text-xs text-white/50">After this section →</span>
-                    <select value={c.next ?? NEXT} onChange={(e) => up((d) => { d.categories[ci].next = e.target.value; return d; })} className={`${mini} max-w-[220px]`}>
+                  <div className="flex items-center gap-2 border-t border-vx-line pt-3">
+                    <span className="text-[13px] text-vx-mut">After this section →</span>
+                    <select value={c.next ?? NEXT} onChange={(e) => up((d) => { d.categories[ci].next = e.target.value; return d; })} className={cx(mini, "max-w-[220px]")}>
                       {routeTargets(ci)}
                     </select>
                   </div>
@@ -479,7 +502,7 @@ export function VsatFormBuilder() {
             </div>
           );
         })}
-        <button onClick={addCategory} className="w-full rounded-xl border border-dashed border-white/20 px-4 py-3 text-sm text-white/60 hover:text-white">+ Add category</button>
+        <button onClick={addCategory} className={cx(vx.dashed, "w-full py-3.5")}>+ Add category</button>
       </div>
     </div>
   );
