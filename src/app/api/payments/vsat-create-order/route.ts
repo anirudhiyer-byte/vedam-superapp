@@ -2,7 +2,7 @@ import crypto from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { createOrder, cashfreeConfigured } from "@/lib/payments/cashfree";
 import { safeBaseUrl } from "@/lib/payments/base-url";
-import { readVsatMoneyFlags, computeVsatFee, fetchValidCoupon } from "@/lib/payments/vsat-fee";
+import { readVsatMoneyFlags, computeVsatFee, fetchValidCoupon, isEarlyRegistrant } from "@/lib/payments/vsat-fee";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -63,9 +63,11 @@ export async function POST(req: Request) {
       couponInput = look.coupon;
     }
 
-    // server-authoritative amount: 24h early-bird discount merged (not stacked) with the coupon
+    // server-authoritative amount: the BEST of the 24h early-bird discount, the manual coupon,
+    // and the ₹500 early-registration floor (merged, never stacked) — all read from the DB.
     const flags = await readVsatMoneyFlags(svc);
-    const fee = computeVsatFee({ fee: flags.fee, discount24h: flags.discount24h, applicantCreatedAt: app.created_at, coupon: couponInput });
+    const earlyReg = await isEarlyRegistrant(svc, userId);
+    const fee = computeVsatFee({ fee: flags.fee, discount24h: flags.discount24h, applicantCreatedAt: app.created_at, coupon: couponInput, earlyReg, earlyRegDiscount: flags.earlyRegDiscount });
 
     const attempt = app.current_attempt ?? 1;
     const cfOrderId = "VSATPAY_" + crypto.randomUUID().replace(/-/g, "").slice(0, 20);
@@ -120,7 +122,8 @@ export async function POST(req: Request) {
     return Response.json({
       ok: true, paymentSessionId: order.paymentSessionId, orderId: cfOrderId,
       amount: fee.net, base: fee.base, discount: fee.discount, within24h: fee.within24h,
-      couponDiscount: fee.couponDiscount, couponCode: fee.couponCode,
+      autoDiscount: fee.autoDiscount, couponDiscount: fee.couponDiscount, couponCode: fee.couponCode,
+      earlyReg: fee.earlyReg, earlyRegDiscount: fee.earlyRegDiscount,
       mode: (process.env.CASHFREE_ENV || "sandbox").toLowerCase(),
     });
   } catch (e) {
