@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
 import { VsatCouponMaker } from "@/components/admin/vsat-coupon-maker";
 import { VsatDocUploader } from "@/components/admin/vsat-doc-uploader";
 import { VsatLandingToggles } from "@/components/admin/vsat-landing-toggles";
@@ -14,9 +15,9 @@ export type WheeboxStatus = { base: boolean; companyCode: boolean; accessToken: 
 type Anchor = { percentile: number; vps: number };
 type Settings = { mockTestId: string; osrFormat: string; leadMinutes: number; passVpsCutoff: number | null; vpsAnchors: Anchor[] };
 
-const input = "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#00cfe5] focus:outline-none";
-const label = "mb-1 block text-xs font-semibold text-white/60";
-const card = "rounded-2xl border border-white/10 bg-white/[0.03] p-5";
+const input = vx.input;
+const label = vx.label;
+const card = cx(vx.card, "p-5 sm:p-6");
 
 const DEFAULT_ANCHORS: Anchor[] = [{ percentile: 0, vps: 0 }, { percentile: 50, vps: 7.5 }, { percentile: 100, vps: 10 }];
 
@@ -82,66 +83,66 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10 text-white">
+    <div className="mx-auto w-full max-w-[880px] px-4 py-6 font-sans sm:px-8 sm:py-10 text-vx-ink">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-2xl font-bold">VSAT Exam Center</h1>
-          <p className="mt-1 text-sm text-white/55">Wheebox connection and scoring settings. Exam slots live under <Link href="/admin/vsat-exam-dates" className="text-[#00cfe5] underline">Exam dates</Link>.</p>
+          <h1 className="font-sans text-[26px] font-semibold leading-tight tracking-[-0.025em] text-vx-ink sm:text-[30px]">VSAT Exam Center</h1>
+          <p className="mt-1 text-sm text-vx-mut">Wheebox connection and scoring settings. Exam slots live under <Link href="/admin/vsat-exam-dates" className="text-vx-violet-t underline">Exam dates</Link>.</p>
         </div>
       </div>
 
       {/* ── Wheebox connection (env, read-only) ── */}
       <section className={`${card} mt-6`}>
         <div className="flex items-center justify-between gap-3">
-          <h2 className="font-display text-lg font-semibold">Wheebox connection</h2>
-          <span className={`rounded-full px-3 py-1 text-xs font-bold ${wheebox.ready ? "bg-[#16a34a]/15 text-[#5ee9a0]" : "bg-[#f5a623]/15 text-[#ffcf7a]"}`}>
+          <h2 className="font-sans text-[17px] font-semibold tracking-[-0.01em]">Wheebox connection</h2>
+          <span className={`rounded-full px-3 py-1 text-xs font-bold ${wheebox.ready ? "bg-vx-green/15 text-vx-green" : "bg-vx-orange/15 text-vx-orange-t"}`}>
             {wheebox.ready ? "● Connected" : "● Not configured"}
           </span>
         </div>
-        <p className="mt-1.5 text-sm text-white/55">Credentials are set as environment variables (Vercel) and are never shown here. Add them to enable exam registration &amp; result sync.</p>
+        <p className="mt-1.5 text-sm text-vx-mut">Credentials are set as environment variables (Vercel) and are never shown here. Add them to enable exam registration &amp; result sync.</p>
         <div className="mt-4 space-y-2">
           {WB_VARS.map((v) => (
-            <div key={v.env} className="flex items-center justify-between rounded-lg border border-white/10 bg-black/20 px-3 py-2.5">
+            <div key={v.env} className="flex items-center justify-between rounded-lg border border-vx-line bg-black/20 px-3 py-2.5">
               <div className="min-w-0">
-                <code className="text-[13px] text-white/85">{v.env}</code>
-                <span className="ml-2 text-xs text-white/40">{v.desc}</span>
+                <code className="text-[13px] text-vx-ink">{v.env}</code>
+                <span className="ml-2 text-xs text-vx-faint">{v.desc}</span>
               </div>
-              <span className={`shrink-0 text-xs font-bold ${wheebox[v.key] ? "text-[#5ee9a0]" : "text-[#ff9db0]"}`}>{wheebox[v.key] ? "✓ Set" : "✗ Missing"}</span>
+              <span className={`shrink-0 text-xs font-bold ${wheebox[v.key] ? "text-vx-green" : "text-vx-red"}`}>{wheebox[v.key] ? "✓ Set" : "✗ Missing"}</span>
             </div>
           ))}
         </div>
-        {!wheebox.ready && <p className="mt-3 text-xs text-white/45">Exam-registration and result routes stay inert until all four are present — nothing else is affected.</p>}
+        {!wheebox.ready && <p className="mt-3 text-xs text-vx-faint">Exam-registration and result routes stay inert until all four are present — nothing else is affected.</p>}
       </section>
 
       {/* ── Scoring & exam settings ── */}
       <section className={`${card} mt-5`}>
-        <h2 className="font-display text-lg font-semibold">Scoring &amp; exam settings</h2>
+        <h2 className="font-sans text-[17px] font-semibold tracking-[-0.01em]">Scoring &amp; exam settings</h2>
         {loading ? (
-          <p className="mt-4 text-sm text-white/50">Loading…</p>
+          <p className="mt-4 text-sm text-vx-faint">Loading…</p>
         ) : !s ? (
-          <p className="mt-4 text-sm text-[#ff9db0]">{err || "Couldn't load settings."}</p>
+          <p className="mt-4 text-sm text-vx-red">{err || "Couldn't load settings."}</p>
         ) : (
           <div className="mt-4 space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className={label}>Mock test ID</label>
                 <input className={input} value={s.mockTestId} onChange={(e) => patch({ mockTestId: e.target.value })} placeholder="Wheebox mock test ID" />
-                <p className="mt-1 text-[11px] text-white/35">One mock test, given once per applicant.</p>
+                <p className="mt-1 text-[11px] text-vx-faint">One mock test, given once per applicant.</p>
               </div>
               <div>
                 <label className={label}>OSR format</label>
                 <input className={input} value={s.osrFormat} onChange={(e) => patch({ osrFormat: e.target.value })} placeholder="o" />
-                <p className="mt-1 text-[11px] text-white/35">Wheebox result-format flag (default &ldquo;o&rdquo;).</p>
+                <p className="mt-1 text-[11px] text-vx-faint">Wheebox result-format flag (default &ldquo;o&rdquo;).</p>
               </div>
               <div>
                 <label className={label}>Clickable lead (minutes)</label>
                 <input type="number" className={input} value={s.leadMinutes} onChange={(e) => patch({ leadMinutes: parseInt(e.target.value || "0", 10) })} min={0} max={240} />
-                <p className="mt-1 text-[11px] text-white/35">How early before a slot the exam link becomes clickable.</p>
+                <p className="mt-1 text-[11px] text-vx-faint">How early before a slot the exam link becomes clickable.</p>
               </div>
               <div>
                 <label className={label}>Pass VPS cutoff (optional)</label>
                 <input type="number" step="0.1" className={input} value={s.passVpsCutoff ?? ""} onChange={(e) => patch({ passVpsCutoff: e.target.value === "" ? null : Number(e.target.value) })} placeholder="— none —" />
-                <p className="mt-1 text-[11px] text-white/35">Reference cutoff only; pass/fail stays an admin decision.</p>
+                <p className="mt-1 text-[11px] text-vx-faint">Reference cutoff only; pass/fail stays an admin decision.</p>
               </div>
             </div>
 
@@ -150,23 +151,23 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
               <div className="space-y-2">
                 {s.vpsAnchors.map((a, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <input type="number" className={`${input} w-28`} value={a.percentile} onChange={(e) => setAnchor(i, "percentile", Number(e.target.value))} min={0} max={100} />
-                    <span className="text-white/40">percentile →</span>
-                    <input type="number" step="0.1" className={`${input} w-24`} value={a.vps} onChange={(e) => setAnchor(i, "vps", Number(e.target.value))} />
-                    <span className="text-white/40">VPS</span>
+                    <input type="number" className={cx(vx.field, "w-28")} value={a.percentile} onChange={(e) => setAnchor(i, "percentile", Number(e.target.value))} min={0} max={100} />
+                    <span className="whitespace-nowrap text-vx-faint">percentile →</span>
+                    <input type="number" step="0.1" className={cx(vx.field, "w-24")} value={a.vps} onChange={(e) => setAnchor(i, "vps", Number(e.target.value))} />
+                    <span className="text-vx-faint">VPS</span>
                     <button onClick={() => patch({ vpsAnchors: s.vpsAnchors.filter((_, j) => j !== i) })} disabled={s.vpsAnchors.length <= 2}
-                      className="ml-auto rounded px-2 py-1 text-xs text-white/40 hover:text-[#ff9db0] disabled:opacity-30">✕</button>
+                      className="ml-auto rounded px-2 py-1 text-xs text-vx-faint hover:text-vx-red disabled:opacity-30">✕</button>
                   </div>
                 ))}
               </div>
-              <button onClick={() => patch({ vpsAnchors: [...s.vpsAnchors, { percentile: 100, vps: 10 }] })} className="mt-2 rounded-lg border border-dashed border-white/20 px-3 py-1.5 text-xs text-white/60 hover:text-white">+ Add anchor</button>
-              <p className="mt-1.5 text-[11px] text-white/35">Raw marks never shown to students — only the computed VPS (0–10).</p>
+              <button onClick={() => patch({ vpsAnchors: [...s.vpsAnchors, { percentile: 100, vps: 10 }] })} className="mt-2 rounded-lg border border-dashed border-vx-line2 px-3 py-1.5 text-xs text-vx-mut hover:text-vx-ink">+ Add anchor</button>
+              <p className="mt-1.5 text-[11px] text-vx-faint">Raw marks never shown to students — only the computed VPS (0–10).</p>
             </div>
 
-            {err && <p className="text-xs text-[#ff9db0]">{err}</p>}
+            {err && <p className="text-xs text-vx-red">{err}</p>}
             <div className="flex items-center gap-3 pt-1">
-              <button onClick={save} disabled={busy} className="rounded-lg bg-gradient-to-r from-[#00cfe5] to-[#c200db] px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-50">{busy ? "Saving…" : "Save settings"}</button>
-              {msg && <span className="text-sm text-[#5ee9a0]">{msg}</span>}
+              <button onClick={save} disabled={busy} className="rounded-lg bg-[linear-gradient(100deg,#f97d03_0%,#c43ccf_55%,#8a18ff_100%)] shadow-[0_8px_24px_-10px_rgba(196,60,207,0.7)] hover:brightness-110 px-5 py-2.5 text-sm font-semibold text-vx-ink disabled:opacity-50">{busy ? "Saving…" : "Save settings"}</button>
+              {msg && <span className="text-sm text-vx-green">{msg}</span>}
             </div>
           </div>
         )}

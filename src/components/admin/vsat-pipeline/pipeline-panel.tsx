@@ -1,6 +1,8 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
+import { PageHead } from "@/components/admin/ui/page-head";
 import {
   NEEDS_ASSIGNMENT, PANEL_STAGES, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, isStage, isStatus, needsReason,
   type PanelKey, type Stage, type Status, type VsatRoles,
@@ -28,21 +30,21 @@ import type { Batch } from "./types";
  */
 
 const PAGE = 50;
-const input = "rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#22d3ee] focus:outline-none";
-const btn = "rounded-lg px-3 py-2 text-sm font-semibold disabled:opacity-40";
-const ghost = `${btn} border border-white/10 bg-white/5 text-white/80 hover:bg-white/10`;
-const STICKY_BG = "bg-[#0c1226]";
+const input = vx.field;
+const ghost = cx(vx.btn, vx.secondary);
+const TITLE: Record<PanelKey, string> = { apps: "VSAT Applications", exam: "VSAT Exam", intv: "Interview", couns: "Counselling" };
+const STICKY_BG = "bg-[#100d2a]";
 
 export const STATUS_TONE: Record<Status, string> = {
-  active: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
-  not_selected: "border-rose-400/30 bg-rose-400/10 text-rose-300",
-  absent: "border-amber-400/30 bg-amber-400/10 text-amber-300",
-  on_hold: "border-sky-400/30 bg-sky-400/10 text-sky-300",
+  active: "border-vx-green/30 bg-vx-green/10 text-vx-green",
+  not_selected: "border-vx-red/30 bg-vx-red/10 text-vx-red",
+  absent: "border-vx-orange/30 bg-vx-orange/10 text-vx-orange-t",
+  on_hold: "border-vx-teal/30 bg-vx-teal/10 text-vx-teal-t",
 };
 
 export function StageBadge({ stage, status }: { stage: Stage; status: Status }) {
   return (
-    <span className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full border px-2 py-0.5 text-[11px] font-semibold ${STATUS_TONE[status]}`}>
+    <span className={cx("inline-flex items-center gap-1 whitespace-nowrap rounded-lg border px-2.5 py-0.5 text-[12.5px] font-medium", STATUS_TONE[status])}>
       {STAGE_LABEL[stage]}{status !== "active" && <span className="opacity-80">· {STATUS_LABEL[status]}</span>}
     </span>
   );
@@ -208,16 +210,17 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
 
   const total = data?.total ?? 0;
   return (
-    <div className="space-y-4 p-5 text-white">
+    <div className="space-y-4 p-4 font-sans text-vx-ink sm:p-8">
+      <PageHead title={TITLE[panel]} count={`${loading && !data ? "…" : total.toLocaleString("en-IN")} student${total === 1 ? "" : "s"}${anyFilter ? " match" : ""}`} />
       {/* ── filters ───────────────────────────────── */}
       <div className="flex flex-wrap items-start gap-2">
-        <div className="flex items-stretch overflow-hidden rounded-lg border border-white/15 bg-white/5 focus-within:border-[#22d3ee]">
-          <select className="border-r border-white/10 bg-transparent px-2 py-2 text-sm text-white/80 focus:outline-none" value={searchCol}
+        <div className="flex h-10 items-stretch overflow-hidden rounded-[11px] border border-vx-line2 bg-black/20 focus-within:border-vx-violet focus-within:ring-2 focus-within:ring-vx-violet/30">
+          <select className="border-r border-vx-line bg-transparent px-2 py-2 text-sm text-vx-ink focus:outline-none" value={searchCol}
             onChange={(e) => setSearchCol(e.target.value)} aria-label="Search column">
             <option value="_any">{manager ? "Name, email, mobile, app no." : "Name or app no."}</option>
             {searchable.map((c) => <option key={c.key} value={c.key}>{columnLabel(c.key)}</option>)}
           </select>
-          <textarea className="w-72 resize-none bg-transparent px-3 py-2 text-sm text-white placeholder-white/30 focus:outline-none" rows={1}
+          <textarea className="w-56 resize-none bg-transparent px-3 py-2 text-sm sm:w-72 text-vx-ink placeholder:text-vx-faint focus:outline-none" rows={1}
             placeholder={searchCol === "_any" ? "Search…" : `Paste ${columnLabel(searchCol).toLowerCase()} values, one per line or comma-separated`}
             value={searchText} onChange={(e) => setSearchText(e.target.value)} maxLength={20000} aria-label="Search values" />
         </div>
@@ -228,8 +231,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         <FacetPick title="Form" options={formOpts} value={formStages} onChange={(v) => { setFormStages(v); setOffset(0); }} />
         {manager && <FacetPick title="Payment" options={payOpts} value={payStages} onChange={(v) => { setPayStages(v); setOffset(0); }} />}
         <span className="flex-1" />
-        <button className={`${ghost} inline-flex items-center gap-2 ${filterClauses.length ? "border-[#34e2b0]/50 text-white" : ""}`} onClick={() => setShowFilters(true)} disabled={!catalog.length}>
-          <IconFilter /> Filters{filterClauses.length > 0 && <span className="rounded-full bg-[#34e2b0]/20 px-1.5 text-[11px] tabular-nums text-[#34e2b0]">{filterClauses.length}</span>}
+        <button className={`${ghost} inline-flex items-center gap-2 ${filterClauses.length ? "border-vx-violet/50 text-vx-ink" : ""}`} onClick={() => setShowFilters(true)} disabled={!catalog.length}>
+          <IconFilter /> Filters{filterClauses.length > 0 && <span className="rounded-full bg-vx-violet/20 px-1.5 text-[11px] tabular-nums text-vx-violet-t">{filterClauses.length}</span>}
         </button>
         <button className={`${ghost} inline-flex items-center gap-2`} onClick={() => setShowCols(true)} disabled={!catalog.length}>
           <IconColumns /> Columns <span className="rounded-full bg-white/10 px-1.5 text-[11px] tabular-nums">{shownCols.length}</span>
@@ -242,29 +245,28 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         <button className={ghost} onClick={() => setReload((n) => n + 1)}>Refresh</button>
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/60">
-        <span><b className="font-semibold text-white tabular-nums">{loading && !data ? "…" : total}</b> student{total === 1 ? "" : "s"}{anyFilter ? " match" : ""}</span>
-        {search && <span className="text-xs text-white/40">{search.values.length} search value{search.values.length === 1 ? "" : "s"} on {searchCol === "_any" ? "all fields" : columnLabel(searchCol)}</span>}
-        {anyFilter && <button className="text-xs text-white/60 underline-offset-2 hover:text-white hover:underline" onClick={clearFilters}>Clear filters</button>}
-        {notice && <span className="text-xs text-white/70">{notice}</span>}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-vx-mut">
+        {search && <span className="text-xs text-vx-faint">{search.values.length} search value{search.values.length === 1 ? "" : "s"} on {searchCol === "_any" ? "all fields" : columnLabel(searchCol)}</span>}
+        {anyFilter && <button className="text-xs text-vx-mut underline-offset-2 hover:text-vx-ink hover:underline" onClick={clearFilters}>Clear filters</button>}
+        {notice && <span className="text-xs text-vx-mut">{notice}</span>}
       </div>
 
       {filterClauses.length > 0 && (
         <div className="flex flex-wrap items-center gap-1.5">
           {filterClauses.map((c, i) => (
-            <span key={i} className="inline-flex items-center gap-1.5 rounded-full border border-[#34e2b0]/30 bg-[#34e2b0]/10 px-2.5 py-1 text-xs text-white/85">
+            <span key={i} className="inline-flex items-center gap-1.5 rounded-full border border-vx-violet/30 bg-vx-violet/10 px-2.5 py-1 text-xs text-vx-ink">
               {describeClause(c, byKey.get(c.column)?.type ?? "text")}
-              <button type="button" aria-label="Remove filter" className="text-white/50 hover:text-white"
+              <button type="button" aria-label="Remove filter" className="text-vx-faint hover:text-vx-ink"
                 onClick={() => { setFilterClauses(filterClauses.filter((_, j) => j !== i)); setOffset(0); }}>×</button>
             </span>
           ))}
-          <button type="button" className="text-xs text-white/50 underline-offset-2 hover:text-white hover:underline" onClick={() => setShowFilters(true)}>Edit</button>
+          <button type="button" className="text-xs text-vx-faint underline-offset-2 hover:text-vx-ink hover:underline" onClick={() => setShowFilters(true)}>Edit</button>
         </div>
       )}
 
       {/* ── selection bar ─────────────────────────── */}
       {manager && sel.size > 0 && (
-        <div className="space-y-2 rounded-xl border border-[#34e2b0]/30 bg-[#34e2b0]/5 p-3 text-sm">
+        <div className="space-y-2 rounded-[14px] border border-vx-violet/35 bg-vx-violet/[0.08] p-3 text-sm sm:px-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="font-semibold">{sel.size} selected</span>
             <span className="flex-1" />
@@ -276,36 +278,36 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         </div>
       )}
       {manager && sel.size === 0 && total > 0 && !loading && (
-        <div className="flex flex-wrap items-center gap-2 text-xs text-white/50">
+        <div className="flex flex-wrap items-center gap-2 text-xs text-vx-faint">
           <span>No selection → actions apply to all {total} matching student{total === 1 ? "" : "s"}:</span>
-          <button className="inline-flex items-center gap-1 rounded-md border border-white/10 px-2 py-1 text-white/75 hover:bg-white/5 disabled:opacity-40" onClick={openComms} disabled={busy !== ""}><IconSend /> Send Communication</button>
+          <button className={cx(vx.btn, vx.ghost, vx.sm)} onClick={openComms} disabled={busy !== ""}><IconSend /> Send Communication</button>
         </div>
       )}
 
-      {err && <p className="rounded-lg border border-rose-400/30 bg-rose-400/10 px-3 py-2 text-sm text-rose-200">{err}</p>}
+      {err && <p role="alert" className={vx.error}>{err}</p>}
 
       {/* ── table ─────────────────────────────────── */}
-      <div className="overflow-auto rounded-xl border border-white/10">
+      <div className="overflow-auto rounded-[18px] border border-vx-line bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <table className="w-full text-left text-sm">
-          <thead className="sticky top-0 z-10 bg-white/5 text-xs uppercase tracking-wide text-white/50">
+          <thead className="sticky top-0 z-10 text-[12.5px] text-vx-faint">
             <tr>
-              {manager && <th className={`sticky left-0 z-20 w-8 px-3 py-2 ${STICKY_BG}`}><input type="checkbox" aria-label="Select all on this page" checked={allOnPage}
+              {manager && <th className={`sticky left-0 z-20 w-8 border-b border-vx-line px-3 py-3 ${STICKY_BG}`}><input type="checkbox" className={vx.check} aria-label="Select all on this page" checked={allOnPage}
                 onChange={() => setSel(allOnPage ? new Set() : new Set(rows.map((r) => r.application_id)))} /></th>}
               {shownCols.map((c, i) => (
-                <th key={c.key} className={`whitespace-nowrap px-3 py-2 ${i === 0 ? `sticky z-20 ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : STICKY_BG} ${c.restricted ? "text-amber-200/70" : ""}`}
+                <th key={c.key} className={`whitespace-nowrap border-b border-vx-line px-4 py-3 font-medium ${i === 0 ? `sticky z-20 ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : STICKY_BG} ${c.restricted ? "text-vx-orange-t/70" : ""}`}
                   title={c.restricted ? "Admin / admissions only" : c.group}>{columnLabel(c.key)}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {loading && <tr><td colSpan={shownCols.length + 1} className="px-3 py-6 text-center text-white/50">Loading…</td></tr>}
-            {!loading && rows.length === 0 && <tr><td colSpan={shownCols.length + 1} className="px-3 py-6 text-center text-white/50">{anyFilter ? "No students match these filters." : "No students here."}</td></tr>}
+            {loading && <tr><td colSpan={shownCols.length + 1} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
+            {!loading && rows.length === 0 && <tr><td colSpan={shownCols.length + 1} className="px-4 py-10 text-center text-vx-faint">{anyFilter ? "No students match these filters." : "No students here."}</td></tr>}
             {!loading && rows.map((r) => (
-              <tr key={r.application_id} className={`cursor-pointer border-t border-white/5 hover:bg-white/5 ${sel.has(r.application_id) ? "bg-[#34e2b0]/5" : ""}`} onClick={() => setOpenId(r.application_id)}>
-                {manager && <td className={`sticky left-0 z-[1] px-3 py-2 ${STICKY_BG}`} onClick={(e) => e.stopPropagation()}>
-                  <input type="checkbox" aria-label={`Select ${String(r.registered_name ?? r.application_id)}`} checked={sel.has(r.application_id)} onChange={() => toggle(r.application_id)} /></td>}
+              <tr key={r.application_id} className={`group cursor-pointer border-t border-vx-line-soft transition-colors hover:bg-white/[0.03] ${sel.has(r.application_id) ? "bg-vx-violet/[0.08]" : ""}`} onClick={() => setOpenId(r.application_id)}>
+                {manager && <td className={`sticky left-0 z-[1] px-3 py-3 ${STICKY_BG}`} onClick={(e) => e.stopPropagation()}>
+                  <input type="checkbox" className={vx.check} aria-label={`Select ${String(r.registered_name ?? r.application_id)}`} checked={sel.has(r.application_id)} onChange={() => toggle(r.application_id)} /></td>}
                 {shownCols.map((c, i) => (
-                  <td key={c.key} className={`whitespace-nowrap px-3 py-2 ${i === 0 ? `sticky z-[1] ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : ""}`}>
+                  <td key={c.key} className={`whitespace-nowrap px-4 py-3 ${i === 0 ? `sticky z-[1] ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : ""}`}>
                     <Cell col={c} row={r} />
                   </td>
                 ))}
@@ -316,10 +318,10 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       </div>
 
       {data && data.total > PAGE && (
-        <div className="flex items-center gap-3 text-sm text-white/60">
-          <button className={`${btn} bg-white/5`} disabled={offset === 0} onClick={() => setOffset(Math.max(0, offset - PAGE))}>Previous</button>
+        <div className="flex items-center gap-3 text-sm text-vx-mut">
+          <button className={cx(vx.btn, vx.ghost, vx.sm)} disabled={offset === 0} onClick={() => setOffset(Math.max(0, offset - PAGE))}>Previous</button>
           <span>{offset + 1}–{Math.min(offset + PAGE, data.total)} of {data.total}</span>
-          <button className={`${btn} bg-white/5`} disabled={offset + PAGE >= data.total} onClick={() => setOffset(offset + PAGE)}>Next</button>
+          <button className={cx(vx.btn, vx.secondary, vx.sm)} disabled={offset + PAGE >= data.total} onClick={() => setOffset(offset + PAGE)}>Next</button>
         </div>
       )}
 
@@ -332,20 +334,20 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       {comm && (
         <>
           <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setComm(null)} />
-          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 bg-[#0d1430] text-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-vx-line bg-[#0e0b29] text-vx-ink shadow-2xl">
+            <div className="flex items-center justify-between border-b border-vx-line px-5 py-4">
               <h2 className="flex items-center gap-2.5 text-base font-bold">Send Communication
-                <span className="rounded-full bg-[#34e2b0]/15 px-2.5 py-0.5 text-xs font-semibold text-[#34e2b0]">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
-              <button onClick={() => setComm(null)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 hover:text-white"><IconClose /></button>
+                <span className="rounded-full bg-vx-violet/15 px-2.5 py-0.5 text-xs font-semibold text-vx-violet-t">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
+              <button onClick={() => setComm(null)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-vx-line text-vx-mut hover:text-vx-ink"><IconClose /></button>
             </div>
             <div className="flex gap-1 px-5 pt-3">
               {(["email", "whatsapp"] as const).map((ch) => (
-                <button key={ch} onClick={() => setComm(ch)} className={["inline-flex items-center gap-2 rounded-t-xl border border-b-0 px-4 py-2 text-sm font-semibold", comm === ch ? "border-white/10 bg-white/[0.04] text-white" : "border-transparent text-white/45 hover:text-white/80"].join(" ")}>
+                <button key={ch} onClick={() => setComm(ch)} className={["inline-flex items-center gap-2 rounded-t-xl border border-b-0 px-4 py-2 text-sm font-semibold", comm === ch ? "border-vx-line bg-white/[0.04] text-vx-ink" : "border-transparent text-vx-faint hover:text-vx-ink"].join(" ")}>
                   {ch === "email" ? <IconMail /> : <IconChat />}{ch === "email" ? "Email" : "WhatsApp"}
                 </button>
               ))}
             </div>
-            <div className="max-h-[74vh] overflow-y-auto border-t border-white/10 px-1 py-1">
+            <div className="max-h-[74vh] overflow-y-auto border-t border-vx-line px-1 py-1">
               <CommsBroadcast channel={comm} product="all" overrideRecipients={recipients} />
             </div>
           </div>
@@ -359,16 +361,16 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
 function Cell({ col, row }: { col: GridColumn; row: GridRow }) {
   const v = row[col.key];
   if (col.key === "registered_name") {
-    return <><div className="font-medium">{v ? String(v) : "—"}</div><div className="text-xs text-white/40">{String(row.application_no ?? row.application_id)}</div></>;
+    return <><div className="font-medium">{v ? String(v) : "—"}</div><div className="text-xs text-vx-faint">{String(row.application_no ?? row.application_id)}</div></>;
   }
   if (col.key === "stage") return isStage(row.stage) && isStatus(row.status) ? <StageBadge stage={row.stage} status={row.status} /> : <>{String(v ?? "—")}</>;
   if (col.key === "vps_effective" || col.key === "eligible_effective") {
     const ov = row[col.key === "vps_effective" ? "vps_override" : "eligible_override"];
-    return <>{formatValue(col.type, col.key, v)}{ov !== null && ov !== undefined && <span className="ml-1 text-xs text-amber-300">override</span>}</>;
+    return <>{formatValue(col.type, col.key, v)}{ov !== null && ov !== undefined && <span className="ml-1 text-xs text-vx-orange-t">override</span>}</>;
   }
   if (col.key === "campus") return <span className="capitalize">{formatValue(col.type, col.key, v)}</span>;
-  if (col.type === "ts" || col.type === "date") return <span className="text-xs text-white/60">{formatValue(col.type, col.key, v)}</span>;
-  if (col.type === "bool") { const s = formatValue(col.type, col.key, v); return <span className={s === "Yes" ? "text-emerald-300" : s === "No" ? "text-white/50" : ""}>{s}</span>; }
+  if (col.type === "ts" || col.type === "date") return <span className="text-xs text-vx-mut">{formatValue(col.type, col.key, v)}</span>;
+  if (col.type === "bool") { const s = formatValue(col.type, col.key, v); return <span className={s === "Yes" ? "text-vx-green" : s === "No" ? "text-vx-faint" : ""}>{s}</span>; }
   const s = formatValue(col.type, col.key, v);
   return <span className={s.length > 48 ? "block max-w-[320px] truncate" : ""} title={s.length > 48 ? s : undefined}>{s}</span>;
 }
@@ -390,10 +392,10 @@ function ColumnsDrawer({ catalog, cols, panel, onChange, onClose }: { catalog: G
   return (
     <>
       <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="fixed right-0 top-0 z-50 flex h-full w-[min(440px,100%)] flex-col border-l border-white/10 bg-[#0d1430] text-white shadow-2xl">
-        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-          <div><h2 className="text-base font-bold">Columns</h2><p className="text-xs text-white/45">Tick what you want to see. Amber = admin / admissions only. Your choice is remembered on this device.</p></div>
-          <button onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 hover:text-white"><IconClose /></button>
+      <div className="fixed right-0 top-0 z-50 flex h-full w-[min(440px,100%)] flex-col border-l border-vx-line bg-[#0e0b29] text-vx-ink shadow-2xl">
+        <div className="flex items-center justify-between border-b border-vx-line px-5 py-4">
+          <div><h2 className="text-base font-bold">Columns</h2><p className="text-xs text-vx-faint">Tick what you want to see. Amber = admin / admissions only. Your choice is remembered on this device.</p></div>
+          <button onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-vx-line text-vx-mut hover:text-vx-ink"><IconClose /></button>
         </div>
         <div className="flex-1 overflow-y-auto px-5 py-4">
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search columns" aria-label="Search columns"
@@ -403,24 +405,24 @@ function ColumnsDrawer({ catalog, cols, panel, onChange, onClose }: { catalog: G
             if (!vis.length) return null;
             return (
               <div key={g} className="mb-4">
-                <div className="mb-1 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-white/40">
+                <div className="mb-1 flex items-center justify-between font-mono text-[10px] text-vx-faint">
                   <span>{g}</span><span>{list.filter((c) => on.has(c.key)).length}/{list.length}</span>
                 </div>
                 {vis.map((c) => (
                   <label key={c.key} className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 hover:bg-white/5">
-                    <input type="checkbox" checked={on.has(c.key)} onChange={() => toggle(c.key)} className="h-4 w-4 accent-[#34e2b0]" />
-                    <span className={`text-sm ${on.has(c.key) ? "font-medium text-white" : "text-white/60"} ${c.restricted ? "text-amber-200/80" : ""}`}>{columnLabel(c.key)}</span>
-                    <span className="ml-auto font-mono text-[10px] text-white/30">{c.key}</span>
+                    <input type="checkbox" checked={on.has(c.key)} onChange={() => toggle(c.key)} className="h-4 w-4 accent-[#8a18ff]" />
+                    <span className={`text-sm ${on.has(c.key) ? "font-medium text-vx-ink" : "text-vx-mut"} ${c.restricted ? "text-vx-orange-t/80" : ""}`}>{columnLabel(c.key)}</span>
+                    <span className="ml-auto font-mono text-[10px] text-vx-faint">{c.key}</span>
                   </label>
                 ))}
               </div>
             );
           })}
         </div>
-        <div className="flex items-center gap-2 border-t border-white/10 px-5 py-4">
-          <span className="mr-auto font-mono text-[11px] text-white/40">{cols.length} shown</span>
+        <div className="flex items-center gap-2 border-t border-vx-line px-5 py-4">
+          <span className="mr-auto font-mono text-[11px] text-vx-faint">{cols.length} shown</span>
           <button onClick={() => onChange(sanitizeColumns(null, catalog, DEFAULT_COLUMNS[panel]))} className={ghost}>Reset</button>
-          <button onClick={onClose} className={`${btn} bg-[#34e2b0] text-[#04101a]`}>Done</button>
+          <button onClick={onClose} className={cx(vx.btn, vx.primary)}>Done</button>
         </div>
       </div>
     </>
@@ -460,24 +462,24 @@ function FilterDrawer({ filterable, value, onChange, onClose }:
   return (
     <>
       <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="fixed right-0 top-0 z-50 flex h-full w-[min(460px,100%)] flex-col border-l border-white/10 bg-[#0d1430] text-white shadow-2xl">
-        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-          <div><h2 className="text-base font-bold">Filters</h2><p className="text-xs text-white/45">Build conditions on any column. All conditions must match (AND).</p></div>
-          <button onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-white/60 hover:text-white"><IconClose /></button>
+      <div className="fixed right-0 top-0 z-50 flex h-full w-[min(460px,100%)] flex-col border-l border-vx-line bg-[#0e0b29] text-vx-ink shadow-2xl">
+        <div className="flex items-center justify-between border-b border-vx-line px-5 py-4">
+          <div><h2 className="text-base font-bold">Filters</h2><p className="text-xs text-vx-faint">Build conditions on any column. All conditions must match (AND).</p></div>
+          <button onClick={onClose} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-vx-line text-vx-mut hover:text-vx-ink"><IconClose /></button>
         </div>
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
           {draft.length > 0 && (
             <div className="space-y-1.5">
               {draft.map((c, i) => (
-                <div key={i} className="flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm">
+                <div key={i} className="flex items-center justify-between gap-2 rounded-lg border border-vx-line bg-white/[0.03] px-3 py-2 text-sm">
                   <span>{describeClause(c, filterable.find((f) => f.key === c.column)?.type ?? "text")}</span>
-                  <button type="button" aria-label="Remove" className="text-white/40 hover:text-white" onClick={() => setDraft(draft.filter((_, j) => j !== i))}>×</button>
+                  <button type="button" aria-label="Remove" className="text-vx-faint hover:text-vx-ink" onClick={() => setDraft(draft.filter((_, j) => j !== i))}>×</button>
                 </div>
               ))}
             </div>
           )}
-          <div className="space-y-2 rounded-xl border border-white/10 bg-white/[0.02] p-3">
-            <div className="text-[10px] font-mono uppercase tracking-wider text-white/40">Add a condition</div>
+          <div className="space-y-2 rounded-xl border border-vx-line bg-white/[0.02] p-3">
+            <div className="text-[10px] font-mono text-vx-faint">Add a condition</div>
             <select className={`${input} w-full`} value={col} onChange={(e) => pickCol(e.target.value)} aria-label="Filter column">
               {filterable.map((c) => <option key={c.key} value={c.key}>{columnLabel(c.key)}{c.restricted ? " · restricted" : ""}</option>)}
             </select>
@@ -495,10 +497,10 @@ function FilterDrawer({ filterable, value, onChange, onClose }:
             <button type="button" className={`${ghost} w-full`} onClick={add}>+ Add condition</button>
           </div>
         </div>
-        <div className="flex items-center gap-2 border-t border-white/10 px-5 py-4">
+        <div className="flex items-center gap-2 border-t border-vx-line px-5 py-4">
           <button onClick={() => setDraft([])} className={`${ghost} mr-auto`} disabled={!draft.length}>Clear all</button>
           <button onClick={onClose} className={ghost}>Cancel</button>
-          <button onClick={() => { onChange(draft); onClose(); }} className={`${btn} bg-[#34e2b0] text-[#04101a]`}>Apply{draft.length > 0 ? ` (${draft.length})` : ""}</button>
+          <button onClick={() => { onChange(draft); onClose(); }} className={cx(vx.btn, vx.primary)}>Apply{draft.length > 0 ? ` (${draft.length})` : ""}</button>
         </div>
       </div>
     </>
@@ -532,7 +534,7 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
 
   return (
     <div className="flex flex-wrap items-center gap-2 text-sm">
-      <span className="text-white/70">Move to</span>
+      <span className="text-vx-mut">Move to</span>
       <select className={input} value={to} onChange={(e) => setTo(e.target.value as Stage)} aria-label="Move to stage">
         {targets.map((s) => <option key={s} value={s}>{STAGE_LABEL[s]}</option>)}
       </select>
@@ -541,9 +543,9 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
       </select>
       <input className={`${input} w-64`} placeholder={reasonNeeded ? "Reason (required)" : "Reason (optional)"} value={reason}
         onChange={(e) => setReason(e.target.value)} maxLength={500} aria-label="Reason" />
-      <button className={`${btn} bg-[#34e2b0] text-[#04101a]`} disabled={busy} onClick={apply}>{busy ? "Moving…" : "Move"}</button>
-      <span className="text-xs text-white/50">Scheduling an interview or counselling is done from the student page (it needs a person and a slot).{current ? "" : " Mixed stages selected: a reason is required."}</span>
-      {msg && <p className="w-full text-white/80">{msg}</p>}
+      <button className={cx(vx.btn, vx.primary)} disabled={busy} onClick={apply}>{busy ? "Moving…" : "Move"}</button>
+      <span className="text-xs text-vx-faint">Scheduling an interview or counselling is done from the student page (it needs a person and a slot).{current ? "" : " Mixed stages selected: a reason is required."}</span>
+      {msg && <p className="w-full text-vx-ink">{msg}</p>}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
 
 /**
  * One-click admin uploader for the VSAT landing documents → the public vsat-docs
@@ -14,7 +15,7 @@ const DOCS: { path: string; label: string }[] = [
   { path: "vsat-prep-kit.pdf", label: "Prep kit" },
 ];
 
-const card = "rounded-2xl border border-white/10 bg-white/[0.03] p-5";
+const card = cx(vx.card, "p-5 sm:p-6");
 
 function Row({ path, label }: { path: string; label: string }) {
   const [supabase] = useState(() => createClient());
@@ -43,15 +44,15 @@ function Row({ path, label }: { path: string; label: string }) {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-3 border-t border-white/10 py-3 first:border-t-0">
+    <div className="flex flex-wrap items-center gap-3 border-t border-vx-line py-3 first:border-t-0">
       <div className="min-w-[180px] flex-1">
-        <div className="text-sm font-semibold text-white">{label}</div>
-        <div className="text-[11px] text-white/35">{path}</div>
+        <div className="text-sm font-semibold text-vx-ink">{label}</div>
+        <div className="text-[11px] text-vx-faint">{path}</div>
       </div>
       <input ref={ref} type="file" accept="application/pdf"
-        className="max-w-[220px] text-xs text-white/70 file:mr-2 file:rounded-md file:border-0 file:bg-white/10 file:px-2 file:py-1 file:text-xs file:text-white" />
-      <button onClick={upload} disabled={busy} className="rounded-lg bg-[#00cfe5] px-3 py-1.5 text-sm font-bold text-[#06252b] disabled:opacity-50">{busy ? "Uploading…" : "Upload"}</button>
-      {msg && <span className={`text-xs font-semibold ${msg.ok ? "text-[#79e3b0]" : "text-[#ff8a8a]"}`}>{msg.text}</span>}
+        className="max-w-[220px] text-xs text-vx-mut file:mr-2 file:rounded-md file:border-0 file:bg-white/10 file:px-2 file:py-1 file:text-xs file:text-vx-ink" />
+      <button onClick={upload} disabled={busy} className={cx(vx.btn, vx.primary)}>{busy ? "Uploading…" : "Upload"}</button>
+      {msg && <span className={`text-xs font-semibold ${msg.ok ? "text-vx-green" : "text-vx-red"}`}>{msg.text}</span>}
     </div>
   );
 }
@@ -60,8 +61,8 @@ export function VsatDocUploader() {
   return (
     <section className={`${card} mt-6`}>
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-bold text-white">Landing documents</h2>
-        <span className="text-xs text-white/40">Public bucket · students download these from the dashboard</span>
+        <h2 className="text-sm font-bold text-vx-ink">Landing documents</h2>
+        <span className="text-xs text-vx-faint">Public bucket · students download these from the dashboard</span>
       </div>
       <div className="mt-3">
         {DOCS.map((d) => <Row key={d.path} {...d} />)}
