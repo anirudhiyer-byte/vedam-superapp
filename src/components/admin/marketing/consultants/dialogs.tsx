@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import {
-  CATEGORIES, COMBO_KEYS, EDITABLE_STD, SLAB_VALUES, duplicateOf, importErrorLines, importTargets, mapRecords, mappingErrors, parseCsv,
+  CATEGORIES, COMBO_KEYS, colKeyOf, EDITABLE_STD, SLAB_VALUES, duplicateOf, importErrorLines, importTargets, mapRecords, mappingErrors, parseCsv,
   type ConsColumn, type ConsRow, type CsvParsed,
 } from "@/lib/growth/consultants";
 import { call, type Client } from "./api";
@@ -316,6 +316,7 @@ export function AddColumnDialog({ sb, onClose, onDone }: { sb: Client; onClose: 
         <div>
           <label className="vcn-fl" htmlFor="vcn-ac-l">Column Name</label>
           <input id="vcn-ac-l" className="vcn-in" value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. Group Admin Name" maxLength={60} data-autofocus />
+          <div className="vcn-fh">Internal key: {label.trim() ? colKeyOf(label.trim()) : "—"}</div>
         </div>
         <fieldset style={{ border: 0, margin: 0, padding: 0 }}>
           <legend className="vcn-fl">Type</legend>
@@ -328,7 +329,7 @@ export function AddColumnDialog({ sb, onClose, onDone }: { sb: Client; onClose: 
         </fieldset>
         <label className="vcn-radio">
           <input type="checkbox" checked={required} onChange={(e) => setRequired(e.target.checked)} />
-          <span>Required<small>Every row must have a value before it can be saved.</small></span>
+          <span>Required field<small>(Rows can&apos;t be saved if this is empty)</small></span>
         </label>
         <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
       </form>

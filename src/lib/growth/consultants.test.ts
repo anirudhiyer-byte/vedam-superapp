@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  cellText, consError, csvCell, duplicateOf, filterRows, importErrorLines, kpis, mapRecords, mappingErrors, nextSort, parseCsv,
+  cellText, colKeyOf, consError, csvCell, duplicateOf, filterRows, importErrorLines, kpis, mapRecords, mappingErrors, nextSort, parseCsv,
   serialsOf, sortRows, toCsv, totalEnrollments, totalSpend, utmKey, valueOf, type ConsColumn, type ConsRow,
 } from "./consultants";
 
@@ -104,11 +104,21 @@ describe("KPI cards (CRM rules)", () => {
 });
 
 describe("cell text", () => {
-  it("money in ₹, numbers en-IN, empty as a dash", () => {
-    expect(cellText(STD[10], 150000)).toBe("₹1,50,000");
+  it("amounts as plain en-IN numbers like the CRM table (₹ only on the cards), empty as a dash", () => {
+    expect(cellText(STD[10], 150000)).toBe("1,50,000");
+    expect(cellText(STD[12], 0)).toBe("0");
     expect(cellText(STD[8], 123456)).toBe("1,23,456");
     expect(cellText(STD[3], null)).toBe("—");
     expect(cellText(col("x_d", "D", "date", { standard: false }), "2090-03-05")).toMatch(/05.*Mar.*2090/);
+  });
+});
+
+describe("added column key (same rule as growth_cons_col_add)", () => {
+  it("x_ + lower-case words joined by _, at most 32 characters", () => {
+    expect(colKeyOf("Group Admin Name")).toBe("x_group_admin_name");
+    expect(colKeyOf("  ZZ -- Payout (₹) ")).toBe("x_zz_payout");
+    expect(colKeyOf("₹₹")).toBe("x_col");
+    expect(colKeyOf("a".repeat(40)).length).toBe(34);
   });
 });
 

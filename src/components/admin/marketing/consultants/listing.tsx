@@ -4,7 +4,7 @@ import {
   useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type DragEvent, type KeyboardEvent as RKeyboardEvent, type ReactNode, type RefObject,
 } from "react";
 import {
-  CATEGORIES, NUMBER_RIGHT, SLAB_VALUES, cellText, csvFileName, filterRows, fmtInr, fmtInt, isDraggable, isSystem, kpis, nextSort,
+  CATEGORIES, SLAB_VALUES, cellText, csvFileName, filterRows, fmtInr, fmtInt, isDraggable, isSystem, kpis, nextSort,
   serialsOf, sortRows, toCsv, valueOf, type ConsColumn, type ConsList, type ConsRow, type Filters, type Sort,
 } from "@/lib/growth/consultants";
 import { call, type Client } from "./api";
@@ -298,7 +298,7 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
                 <tr key={r.id} className={sel.has(r.id) ? "sel" : ""}>
                   <td className="chk"><input type="checkbox" className="vcn-chk" checked={sel.has(r.id)} onChange={() => toggle(r.id)} aria-label={`Select ${r.consultant_name}`} /></td>
                   {shown.map((c) => (
-                    <td key={c.key} className={`${c.hidden ? "hid " : ""}${NUMBER_RIGHT.has(c.key) || (!c.standard && c.type === "number") ? "r" : ""}`}>
+                    <td key={c.key} className={c.hidden ? "hid" : undefined}>
                       <Cell c={c} r={r} serial={serials.get(r.id)} editable={!isTrash} onSet={inlineSet} />
                     </td>
                   ))}
@@ -453,13 +453,12 @@ function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide
   const title = on ? (sort!.dir === "asc" ? "Sorted ascending — click for descending" : "Sorted descending — click to clear sort") : "Click to sort ascending";
   return (
     <th scope="col" {...dnd} aria-sort={on ? (sort!.dir === "asc" ? "ascending" : "descending") : "none"}
-      className={`${c.hidden ? "hid " : ""}${drag ? "drag " : ""}${dragging ? "dragging " : ""}${over ? "over " : ""}${NUMBER_RIGHT.has(c.key) ? "r" : ""}`}>
+      className={`${c.hidden ? "hid " : ""}${drag ? "drag " : ""}${dragging ? "dragging " : ""}${over ? "over" : ""}`}>
       <div className="vcn-th">
         {drag && <span className="vcn-grip"><Icon n="grip" size="xs" /></span>}
         {c.hidden && <Icon n="eyeOff" size="xs" />}
         <span>{c.label}</span>
         {c.required && <span className="vcn-req" aria-label="required">*</span>}
-        {c.type === "computed" && c.key !== "serial_no" && <span className="vcn-auto">(auto)</span>}
         <button type="button" className={`vcn-hb${on ? " on" : ""}`} onClick={onSort} title={title} aria-label={`${c.label}: ${title}`} draggable={false}
           onDragStart={(e) => e.stopPropagation()}>
           <Icon n={on ? (sort!.dir === "asc" ? "up" : "down") : "updown"} size="s" />
@@ -508,6 +507,7 @@ function Cell({ c, r, serial, editable, onSet }: {
     if (r.utm_link?.trim()) return <span className="vcn-via"><span className="vcn-num">{Number(v ?? 0).toLocaleString("en-IN")}</span><small>via UTM</small></span>;
   }
   if (v === null || v === "") return <span className="vcn-dash">—</span>;
+  if (c.key === "utm_link") return <span className="vcn-utm">{String(v)}</span>;   // CRM: the UTM is plain text, shown in full
   if (c.type === "url") {
     const href = safeHref(String(v));
     if (!href) return <span>{String(v)}</span>;

@@ -19,19 +19,19 @@ export const CSS = `
 @media (prefers-reduced-motion:reduce){.vcn-spin{animation:none}}
 
 .vcn-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
-.vcn-h1{font-family:var(--h);font-weight:700;font-size:44px;line-height:1.05;letter-spacing:-.025em;margin:0;
+.vcn-h1{font-family:var(--h);font-weight:700;font-size:48px;line-height:1.05;letter-spacing:-.025em;margin:0;
   background:linear-gradient(135deg,var(--a),color-mix(in srgb,var(--a) 60%,transparent));-webkit-background-clip:text;background-clip:text;color:transparent}
-.vcn-sub{margin:8px 0 0;font-size:13.5px;font-weight:500;color:var(--mut);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.vcn-sub{margin:8px 0 0;font-size:14px;font-weight:500;color:var(--mut);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
 .vcn-sub i{font-style:normal;color:var(--mut2);display:inline-flex;align-items:center;gap:4px}
 .vcn-tools{display:flex;flex-wrap:wrap;gap:8px}
-.vcn-tb{display:inline-flex;align-items:center;gap:8px;min-height:max(40px,var(--tap));padding:9px 16px;border-radius:12px;font:600 13.5px var(--ui);cursor:pointer;
+.vcn-tb{display:inline-flex;align-items:center;gap:8px;min-height:max(42px,var(--tap));padding:10px 16px;border-radius:12px;font:600 14px var(--ui);cursor:pointer;
   border:1px solid var(--line);background:var(--panel);color:var(--mut);transition:background-color .15s,color .15s,border-color .15s,opacity .15s;white-space:nowrap}
 .vcn-tb:hover{background:var(--hov);color:var(--ink)}
 .vcn-tb.pri{background:var(--a);border-color:var(--a);color:#fff}.vcn-tb.pri:hover{opacity:.9;background:var(--a)}
 .vcn-tb:disabled{opacity:.55;cursor:default}
 
 .vcn-filters{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px;margin-bottom:12px}
-.vcn-search{flex:1;min-width:220px;position:relative}
+.vcn-search{flex:0 1 244px;min-width:220px;position:relative}
 .vcn-search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--mut2);pointer-events:none}
 .vcn-in,.vcn-sel{min-height:var(--tap);padding:7px 12px;border-radius:9px;border:1px solid var(--line2,rgba(170,160,255,.22));background:var(--in);color:var(--ink);
   font:400 13.5px var(--ui);outline:none;transition:border-color .15s,background-color .15s}
@@ -107,7 +107,7 @@ export const CSS = `
 .vcn-t th.hid,.vcn-t td.hid{color:var(--mut2);background:rgba(170,160,255,.025);border-left:1px dashed var(--line2,rgba(170,160,255,.22))}
 .vcn-t th.drag{cursor:move}.vcn-t th.dragging{opacity:.4}.vcn-t th.over{box-shadow:inset 3px 0 0 var(--a)}
 .vcn-th{display:flex;align-items:center;gap:6px}
-.vcn-req{color:var(--pink)}.vcn-auto{color:var(--mut2);font-size:10px;text-transform:none;letter-spacing:0;font-weight:500}
+.vcn-req{color:var(--pink)}
 .vcn-grip{color:var(--mut2);opacity:0;transition:opacity .15s}
 .vcn-hb{display:inline-flex;align-items:center;justify-content:center;min-width:22px;min-height:22px;padding:2px;border:0;border-radius:5px;background:none;color:var(--mut2);cursor:pointer;
   opacity:.35;transition:opacity .15s,color .15s}
@@ -122,7 +122,7 @@ export const CSS = `
 .vcn-mi:hover,.vcn-mi:focus-visible{background:var(--hov);outline:none}
 .vcn-mi.dan{color:var(--pink)}.vcn-mi:disabled{color:var(--mut2);cursor:not-allowed;background:none}
 .vcn-mi-sep{height:1px;background:var(--line);margin:4px 0}
-.vcn-t tbody tr{border-bottom:1px solid var(--line);transition:background-color .12s}
+.vcn-t tbody tr{border-bottom:1px solid var(--line)}
 .vcn-t tbody tr:last-child{border-bottom:0}
 .vcn-t tbody tr:hover,.vcn-t tbody tr.sel{background:var(--hov)}
 .vcn-t td{padding:10px 14px;font-size:13.5px;white-space:nowrap;color:color-mix(in srgb,var(--ink) 92%,transparent)}
@@ -133,6 +133,7 @@ export const CSS = `
 .vcn-via{display:flex;flex-direction:column;line-height:1.2}.vcn-via small{font-size:10px;font-style:italic;color:var(--mut2)}
 .vcn-t td.r .vcn-via{align-items:flex-end}
 .vcn-dash{color:var(--mut2)}
+.vcn-utm{white-space:nowrap}
 .vcn-url{display:inline-flex;align-items:center;gap:4px;max-width:240px;color:var(--a);text-decoration:none}
 .vcn-url span{overflow:hidden;text-overflow:ellipsis;font-family:var(--code);font-size:12.5px}
 .vcn-url:hover{text-decoration:underline}

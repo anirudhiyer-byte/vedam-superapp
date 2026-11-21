@@ -26,12 +26,10 @@ export type ConsList = { rows: ConsRow[]; counts: { active: number; trash: numbe
 export const EDITABLE_STD = ["consultant_name", "utm_link", "city", "bdm", "category", "coupon_code", "slab_hit", "enrollment_spend", "slab_spend"] as const;
 /** System columns: rename / hide only (as on the CRM: serial and the link). Every CRM column is a system column here. */
 export const isSystem = (c: ConsColumn) => c.standard;
-/** Draggable = a visible column that is not worked out (CRM: computed / hidden columns are not draggable). */
-export const isDraggable = (c: ConsColumn) => !c.hidden && c.type !== "computed";
+/** Draggable = any visible column (on the CRM every Consultants column can be dragged; hidden ones cannot). */
+export const isDraggable = (c: ConsColumn) => !c.hidden;
 /** Combo fields: pick an existing value or type a new one. */
 export const COMBO_KEYS = new Set(["consultant_name", "bdm", "city"]);
-export const MONEY_KEYS = new Set(["enrollment_spend", "slab_spend", "total_spend"]);
-export const NUMBER_RIGHT = new Set(["leads", "apps_utm", "apps_coupon", "enr_utm", "enr_coupon", "enr_total", "enrollment_spend", "slab_spend", "total_spend"]);
 
 const num = (v: unknown) => (Number.isFinite(Number(v)) ? Number(v) : 0);
 export const totalEnrollments = (r: ConsRow) => num(r.enr_utm) + num(r.enr_coupon);
@@ -151,14 +149,19 @@ export function fmtDate(d: string | null | undefined): string {
   return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
-/** Text shown in a cell (links are drawn by the page). */
+/** Text shown in a cell (links are drawn by the page). As on the CRM table, amounts are plain numbers (no ₹; the cards show ₹). */
 export function cellText(c: ConsColumn, v: string | number | null): string {
   if (v === null || v === "") return "—";
   if (c.key === "serial_no") return String(v);
-  if (MONEY_KEYS.has(c.key)) return fmtInr(Number(v));
   if (c.type === "number" || c.type === "computed") return Number.isFinite(Number(v)) ? Number(v).toLocaleString("en-IN") : String(v);
   if (c.type === "date") return fmtDate(String(v));
   return String(v);
+}
+
+/** The key an added column gets (same rule as growth_cons_col_add), shown as "Internal key" like the CRM. */
+export function colKeyOf(label: string): string {
+  const slug = label.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 32);
+  return `x_${slug || "col"}`;
 }
 
 // ───────────────────────────── UTM (same rule as growth__utm_key, for the live duplicate check) ─────────────────────────────
