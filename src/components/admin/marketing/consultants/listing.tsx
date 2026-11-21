@@ -1,6 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type DragEvent, type KeyboardEvent as RKeyboardEvent, type ReactNode } from "react";
+import {
+  useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type DragEvent, type KeyboardEvent as RKeyboardEvent, type ReactNode, type RefObject,
+} from "react";
 import {
   CATEGORIES, NUMBER_RIGHT, SLAB_VALUES, cellText, csvFileName, filterRows, fmtInr, fmtInt, isDraggable, isSystem, kpis, nextSort,
   serialsOf, sortRows, toCsv, valueOf, type ConsColumn, type ConsList, type ConsRow, type Filters, type Sort,
@@ -273,13 +275,13 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
                 <tr key={i} className="vcn-skel" aria-hidden="true"><td colSpan={shown.length + 2 || 19}><i style={{ width: `${90 - i * 9}%` }} /></td></tr>
               ))}
               {!first && data === null && loadErr && (
-                <tr><td colSpan={shown.length + 2 || 19}>
+                <tr><td className="msg" colSpan={shown.length + 2 || 19}>
                   <div className="vcn-empty" role="alert"><b>Couldn&apos;t load the consultants.</b><span>{loadErr}</span>
                     <button type="button" className="vcn-b" style={{ marginTop: 14 }} onClick={reload}><Icon n="refresh" size="s" /> Try again</button></div>
                 </td></tr>
               )}
               {data && allRows.length === 0 && (
-                <tr><td colSpan={shown.length + 2}>
+                <tr><td className="msg" colSpan={shown.length + 2}>
                   <div className="vcn-empty">
                     <b>{isTrash ? "Trash is empty." : "No entries yet for Consultants."}</b>
                     <span>{isTrash ? "Deleted rows will appear here for 30 days." : <>Click <em>Add Row</em> or <em>Upload CSV</em> to get started.</>}</span>
@@ -287,7 +289,7 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
                 </td></tr>
               )}
               {data && allRows.length > 0 && filtered.length === 0 && (
-                <tr><td colSpan={shown.length + 2}>
+                <tr><td className="msg" colSpan={shown.length + 2}>
                   <div className="vcn-empty"><b>No consultants match these filters.</b><span>Change the search or filters, or clear them.</span>
                     <button type="button" className="vcn-b" style={{ marginTop: 14 }} onClick={() => setF({ q: "", category: "", slab: "" })}><Icon n="x" size="s" /> Clear filters</button></div>
                 </td></tr>
@@ -378,6 +380,33 @@ function Kpi({ label, v, sub, color, hl }: { label: string; v: string | null; su
   );
 }
 
+// ───────────────────────────── menus that open over the table ─────────────────────────────
+
+/**
+ * The table scrolls sideways, so a menu placed inside it would be cut off (and would make the table scroll).
+ * The menu is placed on the screen instead: under its button, or above it when there is no room below, and it
+ * follows the button when the page or the table scrolls.
+ */
+function useMenuPos(open: boolean, anchor: RefObject<HTMLElement | null>, menu: RefObject<HTMLElement | null>, align: "left" | "right"): CSSProperties {
+  const [pos, setPos] = useState<CSSProperties>({ visibility: "hidden" });
+  useLayoutEffect(() => {
+    if (!open) { setPos({ visibility: "hidden" }); return; }
+    const place = () => {
+      if (!anchor.current) return;
+      const a = anchor.current.getBoundingClientRect();
+      const mh = menu.current?.offsetHeight ?? 0, mw = menu.current?.offsetWidth ?? 0;
+      const top = window.innerHeight - a.bottom < mh + 12 && a.top > mh + 12 ? a.top - mh - 4 : a.bottom + 4;
+      const left = Math.max(8, Math.min(align === "right" ? a.right - mw : a.left, window.innerWidth - mw - 8));
+      setPos({ position: "fixed", top, left, right: "auto" });
+    };
+    place();
+    window.addEventListener("scroll", place, true);
+    window.addEventListener("resize", place);
+    return () => { window.removeEventListener("scroll", place, true); window.removeEventListener("resize", place); };
+  }, [open, anchor, menu, align]);
+  return pos;
+}
+
 // ───────────────────────────── header cell: drag, sort, column menu ─────────────────────────────
 
 let dragKey: string | null = null;   // one drag at a time on the page
@@ -391,6 +420,8 @@ function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide
   const [open, setOpen] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   const btn = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuPos = useMenuPos(open, btn, menuRef, "right");
   const drag = !trash && isDraggable(c);
   const on = sort?.key === c.key;
   useEffect(() => {
@@ -399,8 +430,9 @@ function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide
     const key = (e: KeyboardEvent) => { if (e.key === "Escape") { e.stopPropagation(); setOpen(false); btn.current?.focus(); } };
     document.addEventListener("mousedown", down);
     document.addEventListener("keydown", key, true);
-    wrap.current?.querySelector<HTMLButtonElement>(".vcn-mi:not(:disabled)")?.focus();
-    return () => { document.removeEventListener("mousedown", down); document.removeEventListener("keydown", key, true); };
+    // after the menu has its place on screen; no scroll (a scroll closes the menu)
+    const raf = requestAnimationFrame(() => wrap.current?.querySelector<HTMLButtonElement>(".vcn-mi:not(:disabled)")?.focus({ preventScroll: true }));
+    return () => { cancelAnimationFrame(raf); document.removeEventListener("mousedown", down); document.removeEventListener("keydown", key, true); };
   }, [open]);
   const pick = (fn: () => void) => () => { setOpen(false); fn(); };
   const menuKeys = (e: RKeyboardEvent<HTMLDivElement>) => {
@@ -408,7 +440,7 @@ function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide
     e.preventDefault();
     const items = [...(wrap.current?.querySelectorAll<HTMLButtonElement>(".vcn-mi:not(:disabled)") ?? [])];
     const i = items.indexOf(document.activeElement as HTMLButtonElement);
-    items[(i + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus();
+    items[(i + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus({ preventScroll: true });
   };
   const dnd = drag ? {
     draggable: true,
@@ -439,7 +471,7 @@ function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide
               <Icon n="more" size="s" />
             </button>
             {open && (
-              <div className="vcn-menu" role="menu" aria-label={`${c.label} column`}>
+              <div ref={menuRef} style={menuPos} className="vcn-menu" role="menu" aria-label={`${c.label} column`}>
                 <button type="button" role="menuitem" className="vcn-mi" onClick={pick(onRename)}><Icon n="pencil" size="s" /> Rename column</button>
                 {c.hidden
                   ? <button type="button" role="menuitem" className="vcn-mi" onClick={pick(() => onHide(false))}><Icon n="eye" size="s" /> Unhide column</button>
@@ -494,6 +526,8 @@ function EditableCell({ label, value, options, clearable, onPick, name }: {
   const [busy, setBusy] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const btn = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuPos = useMenuPos(open, btn, menuRef, "left");
   useEffect(() => setShown(value), [value]);
   useEffect(() => {
     if (!open) return;
@@ -501,8 +535,9 @@ function EditableCell({ label, value, options, clearable, onPick, name }: {
     const key = (e: KeyboardEvent) => { if (e.key === "Escape") { e.stopPropagation(); setOpen(false); btn.current?.focus(); } };
     document.addEventListener("mousedown", down);
     document.addEventListener("keydown", key, true);
-    (ref.current?.querySelector<HTMLButtonElement>(".vcn-eco[aria-checked='true']") ?? ref.current?.querySelector<HTMLButtonElement>(".vcn-eco"))?.focus();
-    return () => { document.removeEventListener("mousedown", down); document.removeEventListener("keydown", key, true); };
+    const raf = requestAnimationFrame(() =>
+      (ref.current?.querySelector<HTMLButtonElement>(".vcn-eco[aria-checked='true']") ?? ref.current?.querySelector<HTMLButtonElement>(".vcn-eco"))?.focus({ preventScroll: true }));
+    return () => { cancelAnimationFrame(raf); document.removeEventListener("mousedown", down); document.removeEventListener("keydown", key, true); };
   }, [open]);
   async function pick(v: string | null) {
     setOpen(false);
@@ -520,7 +555,7 @@ function EditableCell({ label, value, options, clearable, onPick, name }: {
     e.preventDefault();
     const items = [...(ref.current?.querySelectorAll<HTMLButtonElement>(".vcn-eco") ?? [])];
     const i = items.indexOf(document.activeElement as HTMLButtonElement);
-    items[(i + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus();
+    items[(i + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus({ preventScroll: true });
   };
   return (
     <div className="vcn-ec" ref={ref} onKeyDown={keys}>
@@ -529,7 +564,7 @@ function EditableCell({ label, value, options, clearable, onPick, name }: {
         <span>{shown ?? "—"}</span>{busy ? <Icon n="loader" spin size="xs" /> : <Icon n="down" size="xs" />}
       </button>
       {open && (
-        <div className="vcn-ecm" role="listbox" aria-label={label}>
+        <div ref={menuRef} style={menuPos} className="vcn-ecm" role="listbox" aria-label={label}>
           {options.map((o) => (
             <button key={o} type="button" role="option" aria-checked={shown === o} aria-selected={shown === o} className={`vcn-eco${pos(o) ? " pos" : ""}`} onClick={() => pick(o)}>
               <span>{o}</span>{shown === o && <Icon n="check" size="xs" />}
