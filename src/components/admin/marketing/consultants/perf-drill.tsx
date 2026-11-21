@@ -96,7 +96,7 @@ export function StudentTable({ rows, withConsultant }: { rows: PerfStudent[]; wi
         </tr></thead>
         <tbody>
           {rows.length === 0 ? (
-            <tr><td colSpan={withConsultant ? 9 : 6}><div className="vcn-empty"><b>No students in view.</b></div></td></tr>
+            <tr><td className="msg" colSpan={withConsultant ? 9 : 6}><div className="vcn-empty"><b>No students in view.</b></div></td></tr>
           ) : rows.map((s) => (
             <tr key={`${s.lead_id}-${s.consultant_name}`}>
               <td className="nm">{s.name || "—"}</td>

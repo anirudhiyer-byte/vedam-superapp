@@ -3,6 +3,8 @@
  * (colours, Outfit / Inter, --tap sizes). Layout follows the vedamcrm360 Consultants Dashboard.
  */
 export const PERF_CSS = `
+/* Listing messages are pinned to the table scroller (100cqi); outside a table scroller they are plain blocks */
+.vcn-card>.vcn-empty,.vcp-md .vcn-empty{position:static;width:auto}
 .vcp-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:14px}
 .vcp-lab{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2)}
 .vcp-pb{display:inline-flex;align-items:center;gap:4px;min-height:max(32px,var(--ttap));padding:5px 12px;border-radius:8px;border:1px solid var(--line);background:var(--in);
