@@ -10,14 +10,16 @@ import { Icon } from "./icons";
 
 const STD_KEYS = new Set<string>(EDITABLE_STD);
 
-// ───────────────────────────── modal shell ─────────────────────────────
+// ───────────────────────────── dialog shell ─────────────────────────────
 
-/** Dialog: Escape and the backdrop close it (not while saving); focus moves in, stays in, and returns on close. */
-export function Modal({ title, sub, gradient, size, busy, onClose, children, footer }: {
-  title: string; sub?: ReactNode; gradient?: boolean; size?: "wide" | "xl"; busy?: boolean; onClose: () => void; children: ReactNode; footer: ReactNode;
+/**
+ * Dialog frame (overlay + panel). Escape and a click on the backdrop close it (not while saving); focus moves in, stays in
+ * and returns on close. Each dialog builds its own header / body / footer, like the CRM dialogs do.
+ */
+function Dialog({ ov = "", cls = "", busy, onClose, labelledBy, children }: {
+  ov?: string; cls?: string; busy?: boolean; onClose: () => void; labelledBy: string; children: ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const id = useId();
   const closeRef = useRef(onClose);
   const busyRef = useRef(busy);
   useEffect(() => { closeRef.current = onClose; busyRef.current = busy; });
@@ -27,7 +29,10 @@ export function Modal({ title, sub, gradient, size, busy, onClose, children, foo
     const first = el?.querySelector<HTMLElement>("[data-autofocus]") ?? el?.querySelector<HTMLElement>("input,select,textarea,button:not(.vcn-x)");
     first?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { e.stopPropagation(); if (!busyRef.current) closeRef.current(); return; }
+      if (e.key === "Escape") {
+        if (el?.querySelector(".vcn-cp")) return;   // an open pick-list inside the dialog closes first
+        e.stopPropagation(); if (!busyRef.current) closeRef.current(); return;
+      }
       if (e.key !== "Tab" || !el) return;
       const f = [...el.querySelectorAll<HTMLElement>("a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex='-1'])")];
       if (!f.length) return;
@@ -38,15 +43,18 @@ export function Modal({ title, sub, gradient, size, busy, onClose, children, foo
     return () => { document.removeEventListener("keydown", onKey, true); before?.focus?.(); };
   }, []);
   return (
-    <div className="vcn-ov" onMouseDown={(e) => { if (e.target === e.currentTarget && !busy) onClose(); }}>
-      <div ref={ref} className={`vcn-dlg${size ? ` ${size}` : ""}`} role="dialog" aria-modal="true" aria-labelledby={`${id}-t`}>
-        <div className="vcn-dh">
-          <div><h2 id={`${id}-t`} className={gradient ? "g" : ""}>{title}</h2>{sub && <p>{sub}</p>}</div>
-          <button type="button" className="vcn-x" onClick={onClose} disabled={busy} aria-label="Close"><Icon n="x" /></button>
-        </div>
-        <div className="vcn-db">{children}</div>
-        <div className="vcn-df">{footer}</div>
-      </div>
+    <div className={`vcn-ov ${ov}`} onMouseDown={(e) => { if (e.target === e.currentTarget && !busy) onClose(); }}>
+      <div ref={ref} className={`vcn-dlg ${cls}`} role="dialog" aria-modal="true" aria-labelledby={labelledBy}>{children}</div>
+    </div>
+  );
+}
+
+/** Header with the orange gradient title, a one-line hint and the close button (row / add column / CSV dialogs). */
+function GradHead({ id, title, sub, busy, onClose }: { id: string; title: string; sub?: ReactNode; busy?: boolean; onClose: () => void }) {
+  return (
+    <div className="vcn-dh">
+      <div><h2 id={id} className="g">{title}</h2>{sub && <p>{sub}</p>}</div>
+      <button type="button" className="vcn-x" onClick={onClose} disabled={busy} aria-label="Close"><Icon n="x" size="l" /></button>
     </div>
   );
 }
@@ -54,14 +62,72 @@ export function Modal({ title, sub, gradient, size, busy, onClose, children, foo
 function ErrBox({ msg, lines }: { msg: string; lines?: string[] }) {
   if (!msg) return null;
   return (
-    <div className="vcn-banner err" role="alert">
+    <div className="vcn-err" role="alert">
       <Icon n="alert" />
       <div>{msg}{lines && lines.length > 0 && <ul className="vcn-errlist">{lines.map((l, i) => <li key={i}>{l}</li>)}</ul>}</div>
     </div>
   );
 }
 
-const Saving = ({ text }: { text: string }) => <><Icon n="loader" spin size="s" /> {text}</>;
+const Saving = ({ text }: { text: string }) => <><Icon n="loader" spin /> {text}</>;
+
+// ───────────────────────────── pick-list (CRM ComboPicker) ─────────────────────────────
+
+/** A button that opens a small list with a search box: pick an existing value, or (allowNew) use what was typed. */
+function ComboPicker({ id, options, value, onChange, placeholder, allowNew, invalid, describedBy, autoFocus }: {
+  id: string; options: readonly string[]; value: string; onChange: (v: string) => void; placeholder: string; allowNew: boolean;
+  invalid?: boolean; describedBy?: string; autoFocus?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const box = useRef<HTMLDivElement>(null);
+  const btn = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const down = (e: MouseEvent) => { if (box.current && !box.current.contains(e.target as Node)) setOpen(false); };
+    const key = (e: KeyboardEvent) => { if (e.key === "Escape") { e.stopPropagation(); setOpen(false); btn.current?.focus(); } };
+    document.addEventListener("mousedown", down);
+    document.addEventListener("keydown", key, true);
+    return () => { document.removeEventListener("mousedown", down); document.removeEventListener("keydown", key, true); };
+  }, [open]);
+  const q = search.trim();
+  const shownOpts = q ? options.filter((o) => o.toLowerCase().includes(q.toLowerCase())) : options;
+  const exact = options.some((o) => o.toLowerCase() === q.toLowerCase());
+  const create = allowNew && q.length > 0 && !exact;
+  const custom = !!value && !options.includes(value);
+  const pick = (v: string) => { onChange(v); setOpen(false); setSearch(""); btn.current?.focus(); };
+  return (
+    <div className="vcn-combo" ref={box}>
+      <button ref={btn} id={id} type="button" className={`vcn-cb${invalid ? " bad" : ""}`} aria-haspopup="listbox" aria-expanded={open}
+        aria-describedby={describedBy} onClick={() => setOpen((o) => !o)} {...(autoFocus ? { "data-autofocus": true } : {})}>
+        <span className={value ? "" : "ph"}>{value || placeholder}{custom && <em>custom</em>}</span>
+        <Icon n="down" />
+      </button>
+      {open && (
+        <div className="vcn-cp">
+          <div className="vcn-cp-s">
+            <Icon n="search" size="s" />
+            <input type="text" value={search} autoFocus autoComplete="off" aria-label="Filter the list" placeholder={allowNew ? "Type to filter or add new…" : "Type to filter…"}
+              onChange={(e) => setSearch(e.target.value)} maxLength={120}
+              onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); if (create) pick(q); else if (shownOpts.length === 1) pick(shownOpts[0]); } }} />
+          </div>
+          <div className="vcn-cp-l" role="listbox" aria-label="Options">
+            {value && <button type="button" className="vcn-cp-o clr" onClick={() => pick("")}>Clear</button>}
+            {shownOpts.length === 0 && !create && <div className="vcn-cp-n">No matching options</div>}
+            {shownOpts.map((o) => (
+              <button key={o} type="button" role="option" aria-selected={value === o} className="vcn-cp-o" onClick={() => pick(o)}>
+                <span>{o}</span>{value === o && <Icon n="check" size="s" />}
+              </button>
+            ))}
+            {create && (
+              <button type="button" className="vcn-cp-o new" onClick={() => pick(q)}><Icon n="plus" size="s" /><span>Use <b>&ldquo;{q}&rdquo;</b></span></button>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ───────────────────────────── add / edit row ─────────────────────────────
 
@@ -131,64 +197,52 @@ export function RowDialog({ sb, columns, rows, editing, onClose, onSaved }: {
   }
 
   return (
-    <Modal title={editing ? "Edit Consultants Row" : "Add Consultants Row"} gradient size="wide" busy={busy} onClose={onClose}
-      sub={editing ? "Update fields and save." : "Fill in the fields below. Required fields marked with *."}
-      footer={<>
-        <button type="button" className="vcn-ghost" onClick={onClose} disabled={busy}>Cancel</button>
-        <button type="button" className="vcn-b acc" onClick={save} disabled={busy || !!utmConflict}>
-          {busy ? <Saving text="Saving…" /> : <><Icon n="save" size="s" /> {editing ? "Save Changes" : "Add Row"}</>}
+    <Dialog ov="dk fs" cls="x2 modal fs" busy={busy} onClose={onClose} labelledBy={`${dlId}-t`}>
+      <GradHead id={`${dlId}-t`} title={editing ? "Edit Consultants Row" : "Add Consultants Row"} busy={busy} onClose={onClose}
+        sub={editing ? "Update fields and save." : "Fill in the fields below. Required fields marked with *."} />
+      <div className="vcn-db">
+        <ErrBox msg={top} />
+        <form onSubmit={(e) => { e.preventDefault(); void save(); }} style={{ display: "contents" }}>
+          {cols.map((c, i) => {
+            const id = `${dlId}-${c.key}`;
+            const err = c.key === "utm_link" ? errs[c.key] || utmConflict : errs[c.key];
+            const common = { id, "aria-invalid": !!err || undefined, "aria-describedby": err ? `${id}-e` : undefined, ...(i === 0 ? { "data-autofocus": true } : {}) };
+            const cls = `vcn-fin${err ? " bad" : ""}`;
+            let input: ReactNode;
+            if (c.key === "category" || c.key === "slab_hit") {
+              input = <ComboPicker id={id} options={c.key === "category" ? CATEGORIES : SLAB_VALUES} value={vals[c.key]} onChange={(v) => set(c.key, v)} allowNew={false}
+                placeholder={`Pick a ${c.label.toLowerCase()}…`} invalid={!!err} describedBy={err ? `${id}-e` : undefined} autoFocus={i === 0} />;
+            } else if (c.type === "number") {
+              input = <input {...common} className={cls} inputMode="decimal" placeholder="0" value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)} maxLength={20} />;
+            } else if (c.type === "date") {
+              input = <input {...common} className={cls} type="date" style={{ colorScheme: "dark" }} value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)} />;
+            } else if (c.type === "url") {
+              input = <input {...common} className={cls} type="url" inputMode="url" placeholder="https://" value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)} maxLength={2000} spellCheck={false} autoCapitalize="off" />;
+            } else if ((options[c.key] ?? []).length > 0 && COMBO_KEYS.has(c.key)) {
+              input = <ComboPicker id={id} options={options[c.key]} value={vals[c.key]} onChange={(v) => set(c.key, v)} allowNew
+                placeholder={`Pick a ${c.label.toLowerCase()} or type a new one…`} invalid={!!err} describedBy={err ? `${id}-e` : undefined} autoFocus={i === 0} />;
+            } else {
+              input = <input {...common} className={cls} value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)}
+                maxLength={c.key === "consultant_name" ? 120 : c.key === "coupon_code" ? 120 : c.standard ? 80 : 500} autoComplete="off" />;
+            }
+            return (
+              <div key={c.key}>
+                <label className="vcn-fl" htmlFor={id}>{c.label}{c.required && <span className="vcn-req"> *</span>}</label>
+                {input}
+                {err && <div className="vcn-fe" id={`${id}-e`}>{err}</div>}
+              </div>
+            );
+          })}
+          <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
+        </form>
+      </div>
+      <div className="vcn-df">
+        <button type="button" className="vcn-cancel" onClick={onClose} disabled={busy}>Cancel</button>
+        <button type="button" className="vcn-go" onClick={save} disabled={busy || !!utmConflict}>
+          {busy ? <Saving text="Saving…" /> : <><Icon n="save" /> {editing ? "Save Changes" : "Add Row"}</>}
         </button>
-      </>}>
-      <ErrBox msg={top} />
-      <form onSubmit={(e) => { e.preventDefault(); void save(); }} style={{ display: "contents" }}>
-        {cols.map((c, i) => {
-          const id = `${dlId}-${c.key}`;
-          const err = c.key === "utm_link" ? errs[c.key] || utmConflict : errs[c.key];
-          const common = { id, "aria-invalid": !!err || undefined, "aria-describedby": err ? `${id}-e` : undefined, ...(i === 0 ? { "data-autofocus": true } : {}) };
-          let input: ReactNode;
-          if (c.key === "category") {
-            input = (
-              <select {...common} className="vcn-sel" value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)}>
-                <option value="">Pick a category…</option>
-                {CATEGORIES.map((o) => <option key={o}>{o}</option>)}
-              </select>
-            );
-          } else if (c.key === "slab_hit") {
-            input = (
-              <select {...common} className="vcn-sel" value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)}>
-                <option value="">—</option>
-                {SLAB_VALUES.map((o) => <option key={o}>{o}</option>)}
-              </select>
-            );
-          } else if (c.type === "number") {
-            input = <input {...common} className={`vcn-in${err ? " bad" : ""}`} inputMode="decimal" placeholder="0" value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)} maxLength={20} />;
-          } else if (c.type === "date") {
-            input = <input {...common} className={`vcn-in${err ? " bad" : ""}`} type="date" style={{ colorScheme: "dark" }} value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)} />;
-          } else if (c.type === "url") {
-            input = <input {...common} className={`vcn-in${err ? " bad" : ""}`} type="url" inputMode="url" placeholder="https://" value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)} maxLength={2000} spellCheck={false} autoCapitalize="off" />;
-          } else {
-            const opts = options[c.key] ?? [];
-            input = (
-              <>
-                <input {...common} className={`vcn-in${err ? " bad" : ""}`} value={vals[c.key]} onChange={(e) => set(c.key, e.target.value)}
-                  maxLength={c.key === "consultant_name" ? 120 : c.key === "coupon_code" ? 120 : c.standard ? 80 : 500}
-                  list={opts.length ? `${id}-l` : undefined} autoComplete="off"
-                  placeholder={opts.length ? `Pick a ${c.label.toLowerCase()} or type a new one…` : undefined} />
-                {opts.length > 0 && <datalist id={`${id}-l`}>{opts.map((o) => <option key={o} value={o} />)}</datalist>}
-              </>
-            );
-          }
-          return (
-            <div key={c.key}>
-              <label className="vcn-fl" htmlFor={id}>{c.label}{c.required && <span className="vcn-req"> *</span>}</label>
-              {input}
-              {err && <div className="vcn-fe" id={`${id}-e`}>{err}</div>}
-            </div>
-          );
-        })}
-        <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
-      </form>
-    </Modal>
+      </div>
+    </Dialog>
   );
 }
 
@@ -199,6 +253,7 @@ export function ConfirmDialog({ title, body, confirm, busyText, danger, onClose,
 }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const id = useId();
   async function go() {
     setBusy(true); setErr("");
     const e = await onConfirm();
@@ -206,16 +261,22 @@ export function ConfirmDialog({ title, body, confirm, busyText, danger, onClose,
     if (e) setErr(e);
   }
   return (
-    <Modal title={title} busy={busy} onClose={onClose}
-      footer={<>
-        <button type="button" className="vcn-ghost" onClick={onClose} disabled={busy} data-autofocus>Cancel</button>
-        <button type="button" className={`vcn-b ${danger ? "dan" : "acc"}`} onClick={go} disabled={busy}>
-          {busy ? <Saving text={busyText} /> : <><Icon n="trash" size="s" /> {confirm}</>}
+    <Dialog ov="z6" cls="md" busy={busy} onClose={onClose} labelledBy={`${id}-t`}>
+      <div className="vcn-cf-h">
+        <div className="vcn-cf-t">
+          <div className="vcn-cf-i"><Icon n="warn" size="l" /></div>
+          <h2 id={`${id}-t`}>{title}</h2>
+        </div>
+        {err && <div style={{ margin: "12px 0" }}><ErrBox msg={err} /></div>}
+        <p className="vcn-cf-p">{body}</p>
+      </div>
+      <div className="vcn-df nb">
+        <button type="button" className="vcn-cancel s" onClick={onClose} disabled={busy} data-autofocus>Cancel</button>
+        <button type="button" className={`vcn-go${danger ? " dan" : ""}`} onClick={go} disabled={busy}>
+          {busy ? <Saving text={busyText} /> : <><Icon n="trash" /> {confirm}</>}
         </button>
-      </>}>
-      <ErrBox msg={err} />
-      <p style={{ margin: 0, color: "var(--mut)" }}>{body}</p>
-    </Modal>
+      </div>
+    </Dialog>
   );
 }
 
@@ -231,6 +292,7 @@ export function BulkUpdateDialog({ sb, columns, ids, onClose, onDone }: {
   const [err, setErr] = useState("");
   const col = eligible.find((c) => c.key === key);
   const labelOf = (k: string) => columns.find((c) => c.key === k)?.label;
+  const dlId = useId();
   async function go() {
     if (!col) return setErr("Pick a column first.");
     if (col.required && !value.trim()) return setErr(`${col.label} is required.`);
@@ -241,44 +303,47 @@ export function BulkUpdateDialog({ sb, columns, ids, onClose, onDone }: {
     onDone(`${r.data?.changed ?? ids.length} ${ids.length === 1 ? "row" : "rows"} updated.`);
   }
   const n = ids.length;
+  const rows = `${n} ${n === 1 ? "row" : "rows"}`;
   return (
-    <Modal title={`Bulk update ${n} ${n === 1 ? "row" : "rows"}`} busy={busy} onClose={onClose}
-      footer={<>
-        <button type="button" className="vcn-ghost" onClick={onClose} disabled={busy}>Cancel</button>
-        <button type="button" className="vcn-b acc" onClick={go} disabled={busy || !col}>{busy ? <Saving text="Updating…" /> : `Update ${n} ${n === 1 ? "row" : "rows"}`}</button>
-      </>}>
-      <p style={{ margin: 0, color: "var(--mut)" }}>Pick a column and a value. Every selected row gets the same value for that column — other columns are untouched.</p>
-      <ErrBox msg={err} />
-      <div>
-        <label className="vcn-fl" htmlFor="vcn-bu-c">Column</label>
-        <select id="vcn-bu-c" className="vcn-sel" value={key} onChange={(e) => { setKey(e.target.value); setValue(""); setErr(""); }} data-autofocus>
-          <option value="">Pick a column…</option>
-          {eligible.map((c) => <option key={c.key} value={c.key}>{c.label}</option>)}
-        </select>
+    <Dialog ov="dk nb" cls="md pad" busy={busy} onClose={onClose} labelledBy={`${dlId}-t`}>
+      <div className="vcn-bu-h">
+        <h2 id={`${dlId}-t`}>Bulk update {rows}</h2>
+        <button type="button" className="vcn-x" onClick={onClose} disabled={busy} aria-label="Close"><Icon n="x" /></button>
       </div>
-      {col && (
-        <div>
-          <label className="vcn-fl" htmlFor="vcn-bu-v">Value</label>
-          {col.key === "category" ? (
-            <select id="vcn-bu-v" className="vcn-sel" value={value} onChange={(e) => setValue(e.target.value)}>
-              <option value="">Pick a category…</option>{CATEGORIES.map((o) => <option key={o}>{o}</option>)}
-            </select>
-          ) : col.key === "slab_hit" ? (
-            <select id="vcn-bu-v" className="vcn-sel" value={value} onChange={(e) => setValue(e.target.value)}>
-              <option value="">— (clear)</option>{SLAB_VALUES.map((o) => <option key={o}>{o}</option>)}
-            </select>
-          ) : col.type === "number" ? (
-            <input id="vcn-bu-v" className="vcn-in" inputMode="decimal" placeholder="Enter a number" value={value} onChange={(e) => setValue(e.target.value)} maxLength={20} />
-          ) : col.type === "date" ? (
-            <input id="vcn-bu-v" className="vcn-in" type="date" style={{ colorScheme: "dark" }} value={value} onChange={(e) => setValue(e.target.value)} />
-          ) : (
-            <input id="vcn-bu-v" className="vcn-in" type={col.type === "url" ? "url" : "text"} placeholder={col.type === "url" ? "https://" : "Enter a value"}
-              value={value} onChange={(e) => setValue(e.target.value)} maxLength={500} />
-          )}
-          {!col.required && <div className="vcn-fh">Leave empty to clear the value.</div>}
-        </div>
-      )}
-    </Modal>
+      <p className="vcn-bu-p">Pick a column and a value. Every selected row gets the same value for that column — other columns are untouched.</p>
+      {err && <div style={{ marginBottom: 16 }}><ErrBox msg={err} /></div>}
+      <label className="vcn-fl w" htmlFor={`${dlId}-c`}>Column</label>
+      <select id={`${dlId}-c`} className="vcn-bu-in mb" value={key} onChange={(e) => { setKey(e.target.value); setValue(""); setErr(""); }} data-autofocus>
+        <option value="">Pick a column…</option>
+        {eligible.map((c) => <option key={c.key} value={c.key}>{c.label}</option>)}
+      </select>
+      {col && <>
+        <label className="vcn-fl w" htmlFor={`${dlId}-v`}>Value</label>
+        {col.key === "category" ? (
+          <select id={`${dlId}-v`} className="vcn-bu-in" value={value} onChange={(e) => setValue(e.target.value)}>
+            <option value="">Pick a category…</option>{CATEGORIES.map((o) => <option key={o}>{o}</option>)}
+          </select>
+        ) : col.key === "slab_hit" ? (
+          <select id={`${dlId}-v`} className="vcn-bu-in" value={value} onChange={(e) => setValue(e.target.value)}>
+            <option value="">— (clear)</option>{SLAB_VALUES.map((o) => <option key={o}>{o}</option>)}
+          </select>
+        ) : col.type === "number" ? (
+          <input id={`${dlId}-v`} className="vcn-bu-in" inputMode="decimal" placeholder="Enter a number" value={value} onChange={(e) => setValue(e.target.value)} maxLength={20} />
+        ) : col.type === "date" ? (
+          <input id={`${dlId}-v`} className="vcn-bu-in" type="date" style={{ colorScheme: "dark" }} value={value} onChange={(e) => setValue(e.target.value)} />
+        ) : (
+          <input id={`${dlId}-v`} className="vcn-bu-in" type={col.type === "url" ? "url" : "text"} placeholder={col.type === "url" ? "https://…" : "Enter a value"}
+            value={value} onChange={(e) => setValue(e.target.value)} maxLength={500} />
+        )}
+        {!col.required && <p className="vcn-fh it" style={{ margin: "0 0 16px" }}>Leave blank to clear this column on all selected rows.</p>}
+      </>}
+      <div className="vcn-bu-f">
+        <button type="button" className="vcn-cancel md" onClick={onClose} disabled={busy}>Cancel</button>
+        <button type="button" className="vcn-go md" onClick={go} disabled={busy || !col}>
+          {busy ? <Icon n="loader" spin /> : <Icon n="check" />} Apply to {rows}
+        </button>
+      </div>
+    </Dialog>
   );
 }
 
@@ -297,6 +362,7 @@ export function AddColumnDialog({ sb, onClose, onDone }: { sb: Client; onClose: 
   const [required, setRequired] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const id = useId();
   async function go() {
     if (!label.trim()) return setErr("Column name is required.");
     setBusy(true); setErr("");
@@ -306,34 +372,40 @@ export function AddColumnDialog({ sb, onClose, onDone }: { sb: Client; onClose: 
     onDone(`Column “${label.trim()}” added.`);
   }
   return (
-    <Modal title="Add Column to Consultants" gradient busy={busy} onClose={onClose} sub="The new column appears in the table immediately."
-      footer={<>
-        <button type="button" className="vcn-ghost" onClick={onClose} disabled={busy}>Cancel</button>
-        <button type="button" className="vcn-b acc" onClick={go} disabled={busy}>{busy ? <Saving text="Adding…" /> : <><Icon n="plus" size="s" /> Add Column</>}</button>
-      </>}>
-      <ErrBox msg={err} />
-      <form onSubmit={(e) => { e.preventDefault(); void go(); }} style={{ display: "contents" }}>
-        <div>
-          <label className="vcn-fl" htmlFor="vcn-ac-l">Column Name</label>
-          <input id="vcn-ac-l" className="vcn-in" value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. Group Admin Name" maxLength={60} data-autofocus />
-          <div className="vcn-fh">Internal key: {label.trim() ? colKeyOf(label.trim()) : "—"}</div>
-        </div>
-        <fieldset style={{ border: 0, margin: 0, padding: 0 }}>
-          <legend className="vcn-fl">Type</legend>
-          {TYPES.map((t) => (
-            <label key={t.v} className="vcn-radio">
-              <input type="radio" name="vcn-ac-t" value={t.v} checked={type === t.v} onChange={() => setType(t.v)} />
-              <span>{t.l}<small>{t.d}</small></span>
-            </label>
-          ))}
-        </fieldset>
-        <label className="vcn-radio">
-          <input type="checkbox" checked={required} onChange={(e) => setRequired(e.target.checked)} />
-          <span>Required field<small>(Rows can&apos;t be saved if this is empty)</small></span>
-        </label>
-        <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
-      </form>
-    </Modal>
+    <Dialog cls="lg" busy={busy} onClose={onClose} labelledBy={`${id}-t`}>
+      <GradHead id={`${id}-t`} title="Add Column to Consultants" sub="The new column appears in the table immediately." busy={busy} onClose={onClose} />
+      <div className="vcn-db g20">
+        <ErrBox msg={err} />
+        <form onSubmit={(e) => { e.preventDefault(); void go(); }} style={{ display: "contents" }}>
+          <div>
+            <label className="vcn-fl" htmlFor={`${id}-l`}>Column Name</label>
+            <input id={`${id}-l`} className="vcn-fin sf" value={label} onChange={(e) => setLabel(e.target.value)} placeholder="e.g. Group Admin Name" maxLength={60} data-autofocus />
+            <div className="vcn-fh mono">Internal key: {label.trim() ? colKeyOf(label.trim()) : "—"}</div>
+          </div>
+          <fieldset style={{ border: 0, margin: 0, padding: 0, minWidth: 0 }}>
+            <legend className="vcn-fl" style={{ padding: 0 }}>Type</legend>
+            <div className="vcn-types">
+              {TYPES.map((t) => (
+                <label key={t.v} className={`vcn-type${type === t.v ? " on" : ""}`}>
+                  <input type="radio" name={`${id}-t`} value={t.v} checked={type === t.v} onChange={() => setType(t.v)} />
+                  <div><b>{t.l}</b><span>{t.d}</span></div>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <label className="vcn-req-l">
+            <input type="checkbox" checked={required} onChange={(e) => setRequired(e.target.checked)} />
+            <b>Required field</b>
+            <span>(Rows can&apos;t be saved if this is empty)</span>
+          </label>
+          <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
+        </form>
+      </div>
+      <div className="vcn-df">
+        <button type="button" className="vcn-cancel s" onClick={onClose} disabled={busy}>Cancel</button>
+        <button type="button" className="vcn-go" onClick={go} disabled={busy || !label.trim()}>{busy ? <Saving text="Adding…" /> : <><Icon n="plus" /> Add Column</>}</button>
+      </div>
+    </Dialog>
   );
 }
 
@@ -341,9 +413,10 @@ export function RenameColumnDialog({ sb, column, onClose, onDone }: { sb: Client
   const [label, setLabel] = useState(column.label);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
+  const id = useId();
+  const same = label.trim() === column.label;
   async function go() {
-    if (!label.trim()) return setErr("Column name is required.");
-    if (label.trim() === column.label) return onClose();
+    if (!label.trim() || same) return;
     setBusy(true); setErr("");
     const r = await call(sb, "growth_cons_col_update", { key: column.key, label: label.trim() });
     setBusy(false);
@@ -351,19 +424,27 @@ export function RenameColumnDialog({ sb, column, onClose, onDone }: { sb: Client
     onDone("Column renamed.");
   }
   return (
-    <Modal title="Rename column" busy={busy} onClose={onClose}
-      footer={<>
-        <button type="button" className="vcn-ghost" onClick={onClose} disabled={busy}>Cancel</button>
-        <button type="button" className="vcn-b acc" onClick={go} disabled={busy}>{busy ? <Saving text="Saving…" /> : "Save"}</button>
-      </>}>
-      <ErrBox msg={err} />
-      <form onSubmit={(e) => { e.preventDefault(); void go(); }} style={{ display: "contents" }}>
-        <div>
-          <label className="vcn-fl" htmlFor="vcn-rc">Column Name</label>
-          <input id="vcn-rc" className="vcn-in" value={label} onChange={(e) => setLabel(e.target.value)} maxLength={60} data-autofocus />
-        </div>
-      </form>
-    </Modal>
+    <Dialog ov="z6" cls="md" busy={busy} onClose={onClose} labelledBy={`${id}-t`}>
+      <div className="vcn-dh">
+        <h2 id={`${id}-t`} className="sm">Rename column</h2>
+        <button type="button" className="vcn-x" onClick={onClose} disabled={busy} aria-label="Close"><Icon n="x" size="l" /></button>
+      </div>
+      <div className="vcn-db g12">
+        <ErrBox msg={err} />
+        <form onSubmit={(e) => { e.preventDefault(); void go(); }} style={{ display: "contents" }}>
+          <div>
+            <label className="vcn-fl" htmlFor={`${id}-l`}>New Label</label>
+            <input id={`${id}-l`} className="vcn-fin sf" value={label} onChange={(e) => setLabel(e.target.value)} maxLength={60} data-autofocus />
+            <div className="vcn-fh">Only the display label changes. The internal key stays the same to preserve existing data.</div>
+          </div>
+          <button type="submit" hidden aria-hidden="true" tabIndex={-1} />
+        </form>
+      </div>
+      <div className="vcn-df">
+        <button type="button" className="vcn-cancel s" onClick={onClose} disabled={busy}>Cancel</button>
+        <button type="button" className="vcn-go" onClick={go} disabled={busy || !label.trim() || same}>{busy ? <Saving text="Saving…" /> : <><Icon n="save" /> Save</>}</button>
+      </div>
+    </Dialog>
   );
 }
 
@@ -379,14 +460,18 @@ export function CsvDialog({ sb, columns, onClose, onDone, onColumns }: {
   const [parsed, setParsed] = useState<CsvParsed | null>(null);
   const [mapping, setMapping] = useState<MapTarget[]>([]);
   const [newType, setNewType] = useState<("text" | "number" | "date" | "url")[]>([]);
-  const [mode, setMode] = useState<"upsert" | "add">("upsert");
+  const [matchUtm, setMatchUtm] = useState(true);
+  const [always, setAlways] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [lines, setLines] = useState<string[]>([]);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState<{ added: number; updated: number; cols: number } | null>(null);
   const input = useRef<HTMLInputElement>(null);
+  const id = useId();
   const targets = importTargets(columns);
   const labelOf = (k: string) => columns.find((c) => c.key === k)?.label;
+  const mode: "upsert" | "add" = always ? "add" : "upsert";
+  const canUpload = matchUtm || always;
 
   async function pick(f: File) {
     setErr(""); setLines([]);
@@ -407,10 +492,11 @@ export function CsvDialog({ sb, columns, onClose, onDone, onColumns }: {
     });
     return { m, cols: [...columns, ...extraCols] };
   }, [mapping, newType, columns, parsed]);
-  const mapErrs = parsed ? mappingErrors(planned.m, planned.cols, mode) : [];
+  const mapErrs = parsed && canUpload ? mappingErrors(planned.m, planned.cols, mode) : [];
+  const utmMapped = mapping.includes("utm_link");
 
   async function upload() {
-    if (!parsed || mapErrs.length) return;
+    if (!parsed || mapErrs.length || !canUpload) return;
     setBusy(true); setErr(""); setLines([]);
     // 1. new columns first (the database checks their names)
     const m = [...mapping];
@@ -437,69 +523,128 @@ export function CsvDialog({ sb, columns, onClose, onDone, onColumns }: {
       if (m.some((_, i) => mapping[i] === "__new__")) { setMapping(m); onColumns(); }   // the new columns exist now
       return;
     }
-    setResult(`${r.data?.added ?? 0} added · ${r.data?.updated ?? 0} updated.`);
+    setResult({ added: r.data?.added ?? 0, updated: r.data?.updated ?? 0, cols: mapping.filter((k) => k === "__new__").length });
     setStep("result");
   }
 
+  const summary = result ? `${result.added} added · ${result.updated} updated.` : "";
+  const finish = () => onDone(`CSV uploaded: ${summary}`);
+  const n = parsed?.records.length ?? 0;
   const sub = step === "pick" ? "Pick a CSV file to upload." : step === "map" && parsed
-    ? `${file} · ${parsed.records.length} ${parsed.records.length === 1 ? "row" : "rows"} · ${parsed.headers.length} columns` : "Upload complete.";
+    ? `${file} · ${n} ${n === 1 ? "row" : "rows"} · ${parsed.headers.length} columns` : "Upload complete.";
+  const close = step === "result" ? finish : onClose;
   return (
-    <Modal title="Upload CSV to Consultants" gradient size="xl" busy={busy} sub={sub} onClose={step === "result" ? () => onDone(`CSV uploaded: ${result}`) : onClose}
-      footer={step === "result"
-        ? <button type="button" className="vcn-b acc" onClick={() => onDone(`CSV uploaded: ${result}`)} data-autofocus>Done</button>
-        : <>
-          {step === "map" && <button type="button" className="vcn-ghost" onClick={() => { setStep("pick"); setParsed(null); setErr(""); setLines([]); }} disabled={busy}>Back</button>}
-          <button type="button" className="vcn-ghost" onClick={onClose} disabled={busy}>Cancel</button>
-          {step === "map" && <button type="button" className="vcn-b acc" onClick={upload} disabled={busy || mapErrs.length > 0}>{busy ? <Saving text="Uploading…" /> : <><Icon n="upload" size="s" /> Upload {parsed?.records.length} {parsed?.records.length === 1 ? "row" : "rows"}</>}</button>}
-        </>}>
-      <ErrBox msg={err} lines={lines} />
-      {step === "pick" && <>
-        <input ref={input} type="file" accept=".csv,text/csv" hidden onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) void pick(f); }} />
-        <button type="button" className="vcn-drop" onClick={() => input.current?.click()} data-autofocus>
-          <Icon n="file" /><b>Choose a CSV file</b><span>First row must contain column headers</span>
-        </button>
-        <p style={{ margin: 0, fontSize: 12, color: "var(--mut2)" }}><strong style={{ color: "var(--mut)" }}>Upsert rule:</strong> after picking the file you choose how rows are matched. Rows whose UTM Link is already in the list → updated (empty cells keep the old value). New rows → inserted. Nothing is saved if any row has an error.</p>
-      </>}
-      {step === "map" && parsed && <>
-        <div className="vcn-scroll" style={{ border: "1px solid var(--line)", borderRadius: 12 }}>
-          <table className="vcn-map" style={{ minWidth: 560 }}>
-            <thead><tr><th scope="col">CSV Header</th><th scope="col">Sample</th><th scope="col">Map To</th></tr></thead>
-            <tbody>
-              {parsed.headers.map((h, i) => (
-                <tr key={i}>
-                  <td className="h">{h || <span className="vcn-dash">(empty)</span>}</td>
-                  <td className="s" title={parsed.records[0]?.[i] ?? ""}>{parsed.records[0]?.[i] || "—"}</td>
-                  <td>
-                    <div className="vcn-mapc">
-                      <select className="vcn-sel" aria-label={`Map ${h || `column ${i + 1}`} to`} value={mapping[i] ?? ""}
-                        onChange={(e) => setMapping((m) => m.map((x, j) => (j === i ? e.target.value : x)))}>
-                        <option value="__new__">+ Add as new column</option>
-                        <option value="">Skip column</option>
-                        <optgroup label="Existing columns">{targets.map((c) => <option key={c.key} value={c.key}>{c.label}</option>)}</optgroup>
-                      </select>
-                      {mapping[i] === "__new__" && (
-                        <select className="vcn-sel" style={{ width: 96 }} title="Type of the new column" aria-label="Type of the new column" value={newType[i] ?? "text"}
-                          onChange={(e) => setNewType((t) => t.map((x, j) => (j === i ? (e.target.value as "text") : x)))}>
-                          {TYPES.map((t) => <option key={t.v} value={t.v}>{t.l}</option>)}
-                        </select>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <fieldset style={{ border: "1px solid var(--line)", borderRadius: 12, margin: 0, padding: "10px 14px" }}>
-          <legend className="vcn-fl" style={{ padding: "0 4px" }}>Upsert rule</legend>
-          <label className="vcn-radio"><input type="radio" name="vcn-csv-m" checked={mode === "upsert"} onChange={() => setMode("upsert")} />
-            <span>Match on UTM Link<small>Rows whose UTM Link is already in the list are updated; the rest are added.</small></span></label>
-          <label className="vcn-radio"><input type="radio" name="vcn-csv-m" checked={mode === "add"} onChange={() => setMode("add")} />
-            <span>Don&apos;t match — always insert as new rows<small>A UTM Link that is already in the list is an error (each UTM must be unique).</small></span></label>
-        </fieldset>
-        {mapErrs.length > 0 && <div className="vcn-fe" role="status">{mapErrs.map((e) => <div key={e}>{e}</div>)}</div>}
-      </>}
-      {step === "result" && <p style={{ margin: 0 }} role="status"><Icon n="check" /> {result}</p>}
-    </Modal>
+    <Dialog cls="x3" busy={busy} onClose={close} labelledBy={`${id}-t`}>
+      <GradHead id={`${id}-t`} title="Upload CSV to Consultants" sub={sub} busy={busy} onClose={close} />
+      <div className="vcn-db blk">
+        {err && <div style={{ marginBottom: 16 }}><ErrBox msg={err} lines={lines} /></div>}
+        {step === "pick" && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <input ref={input} type="file" accept=".csv,text/csv" hidden onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) void pick(f); }} />
+            <button type="button" className="vcn-drop" onClick={() => input.current?.click()} data-autofocus>
+              <Icon n="file" size="x4" /><b>Choose a CSV file</b><span>First row must contain column headers</span>
+            </button>
+            <p className="vcn-rule"><strong>Upsert rule:</strong> After picking the file you&apos;ll choose which columns to match existing rows on. Rows that match → updated. New rows → inserted. Nothing is saved if any row has an error.</p>
+          </div>
+        )}
+        {step === "map" && parsed && (
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div className="vcn-mapbox"><div style={{ overflowX: "auto" }}>
+              <table className="vcn-map">
+                <thead><tr><th scope="col">CSV Header</th><th scope="col">Sample</th><th scope="col">Map To</th></tr></thead>
+                <tbody>
+                  {parsed.headers.map((h, i) => (
+                    <tr key={i}>
+                      <td className="h">{h || <span className="vcn-dash">(empty)</span>}</td>
+                      <td className="s" title={parsed.records[0]?.[i] ?? ""}>{parsed.records[0]?.[i] || "—"}</td>
+                      <td>
+                        <div className="vcn-mapc">
+                          <select aria-label={`Map ${h || `column ${i + 1}`} to`} value={mapping[i] ?? ""}
+                            onChange={(e) => setMapping((m) => m.map((x, j) => (j === i ? e.target.value : x)))}>
+                            <option value="__new__">+ Add as new column</option>
+                            <option value="">Skip column</option>
+                            <optgroup label="Existing columns">{targets.map((c) => <option key={c.key} value={c.key}>{c.label}</option>)}</optgroup>
+                          </select>
+                          {mapping[i] === "__new__" && (
+                            <select className="ty" title="Type of the new column" aria-label="Type of the new column" value={newType[i] ?? "text"}
+                              onChange={(e) => setNewType((t) => t.map((x, j) => (j === i ? (e.target.value as "text") : x)))}>
+                              {TYPES.map((t) => <option key={t.v} value={t.v}>{t.l}</option>)}
+                            </select>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div></div>
+
+            <div className={`vcn-match${canUpload ? " on" : ""}`}>
+              <div className="vcn-match-h">
+                <Icon n="key" />
+                <div>
+                  <b>Match existing rows on</b>
+                  <span>Rows where ALL checked columns match an existing row will be UPDATED. Otherwise they&apos;re INSERTED as new rows.</span>
+                </div>
+              </div>
+              {!utmMapped ? (
+                <div style={{ fontSize: 12, color: "var(--fg60)", fontStyle: "italic" }}>Map at least one CSV header to the UTM Link column above.</div>
+              ) : (
+                <div className="vcn-mrow">
+                  <label className={`vcn-mchk${always ? " off" : ""}`}>
+                    <input type="checkbox" checked={matchUtm && !always} disabled={always} onChange={(e) => setMatchUtm(e.target.checked)} />
+                    <b>{labelOf("utm_link") ?? "UTM Link"}</b><i>default</i>
+                  </label>
+                </div>
+              )}
+              <label className="vcn-always">
+                <input type="checkbox" checked={always} onChange={(e) => { setAlways(e.target.checked); if (e.target.checked) setMatchUtm(false); else setMatchUtm(true); }} />
+                <div>
+                  <div>Don&apos;t match — always insert as new rows</div>
+                  <small>Use this for fresh batches you know aren&apos;t already in the table. Skips matching entirely.</small>
+                </div>
+              </label>
+              {!canUpload && <div className="vcn-pick">Pick at least one match column, or check &quot;Don&apos;t match&quot;.</div>}
+            </div>
+
+            {n > 0 && (
+              <div>
+                <div className="vcn-prev-t">Preview (first 3 rows)</div>
+                <div className="vcn-prev"><div style={{ overflowX: "auto" }}>
+                  <table>
+                    <thead><tr>{parsed.headers.map((h, i) => <th key={i}>{h}</th>)}</tr></thead>
+                    <tbody>
+                      {parsed.records.slice(0, 3).map((r, ri) => (
+                        <tr key={ri}>{parsed.headers.map((_, ci) => <td key={ci}>{r[ci] || <span className="vcn-dash">—</span>}</td>)}</tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div></div>
+              </div>
+            )}
+            {mapErrs.length > 0 && <div className="vcn-fe" role="status">{mapErrs.map((e) => <div key={e}>{e}</div>)}</div>}
+          </div>
+        )}
+        {step === "result" && result && (
+          <div className="vcn-done" role="status">
+            <Icon n="okc" size="x5" />
+            <h3>Upload complete</h3>
+            <p><b>{result.added}</b> {result.added === 1 ? "row" : "rows"} added</p>
+            <p><b>{result.updated}</b> existing {result.updated === 1 ? "row" : "rows"} updated</p>
+            {result.cols > 0 && <p><b>{result.cols}</b> new {result.cols === 1 ? "column" : "columns"} created</p>}
+          </div>
+        )}
+      </div>
+      <div className="vcn-df">
+        {step === "map" && <button type="button" className="vcn-back" onClick={() => { setStep("pick"); setParsed(null); setErr(""); setLines([]); }} disabled={busy}>← Pick different file</button>}
+        <div className="sp" />
+        <button type="button" className="vcn-cancel s" onClick={close} disabled={busy} {...(step === "result" ? { "data-autofocus": true } : {})}>{step === "result" ? "Close" : "Cancel"}</button>
+        {step === "map" && (
+          <button type="button" className="vcn-go" onClick={upload} disabled={busy || mapErrs.length > 0 || !canUpload}>
+            {busy ? <Saving text="Uploading…" /> : <><Icon n="upload" /> Upload {n} {n === 1 ? "row" : "rows"}</>}
+          </button>
+        )}
+      </div>
+    </Dialog>
   );
 }
