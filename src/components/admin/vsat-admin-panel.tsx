@@ -8,6 +8,7 @@ import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
 import { MarketingPanel, type MarketingPage } from "@/components/admin/marketing/marketing-panel";
 import { ConsultantsPanel } from "@/components/admin/marketing/consultants/consultants-panel";
+import { TelegramPanel } from "@/components/admin/marketing/telegram/telegram-panel";
 import { CampaignsPanel } from "@/components/admin/marketing/campaigns-panel";
 import { SeasonPanel } from "@/components/admin/marketing/season-panel";
 import { VcampPanel } from "@/components/admin/marketing/vcamp-panel";
@@ -105,7 +106,7 @@ const GROWTH: Group[] = [
     { id: "infl", label: "Influencers", icon: ICON.infl, live: true, sub: [
       { label: "Influencer Listing", page: "listing" }, { label: "Influencer Performance", page: "perf" },
     ] },
-    { id: "tele", label: "Telegram Channel", icon: ICON.tele },
+    { id: "tele", label: "Telegram Channel", icon: ICON.tele, live: true, sub: [{ label: "Telegram Listing", page: "listing" }] },
     { id: "cons", label: "Consultants Channel", icon: ICON.cons, live: true, sub: [
       { label: "Consultant Listing", page: "listing" }, { label: "Consultant Performance", page: "perf" },
     ] },
@@ -202,6 +203,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
         const ch = active.id === "ads" ? "ads" : "influencers";
         return <div className="vp-scroll"><MarketingPanel key={`${ch}-${active.page}`} channel={ch} page={(active.page ?? "listing") as MarketingPage} /></div>;
       }
+      if (active.id === "tele") return <div className="vp-scroll"><TelegramPanel /></div>;
       if (active.id === "cons") return <div className="vp-scroll"><ConsultantsPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
