@@ -167,7 +167,7 @@ export function TelegramListing({ sb }: { sb: Client }) {
       </div>
 
       <div className="vcn-top">
-      <div className="vcn-filters" role="search">
+      <div className="vcn-filters vtg-filters" role="search">
         <div className="vcn-search">
           <Icon n="search" />
           <input className="vcn-in" type="search" placeholder="Search influencer, UTM, VSAT… (comma for multiple)" aria-label="Search influencer, UTM, VSAT"
@@ -356,13 +356,39 @@ export function TelegramListing({ sb }: { sb: Client }) {
 }
 
 function Kpi({ label, v, sub, color, hl }: { label: string; v: string | null; sub?: string; color: string; hl?: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useFitText(ref, v);
   return (
     <div className={`vcn-kpi${hl ? " hl" : ""}`} style={{ ["--k" as string]: color }}>
       <div className="vcn-kpi-l">{label}</div>
-      <div className={`vcn-kpi-v${v === null ? " ld" : ""}`} title={v ?? undefined}>{v ?? "…"}</div>
+      <div ref={ref} className={`vcn-kpi-v${v === null ? " ld" : ""}`} title={v ?? undefined}>{v ?? "…"}</div>
       {sub && v !== null && <div className="vcn-kpi-s">{sub}</div>}
     </div>
   );
+}
+
+/**
+ * Keeps a KPI value on one line: at its normal size when it fits (as the CRM), otherwise 1px smaller at a time down to
+ * 12px, so a long amount is not split in the middle ("₹25,445.0" / "0"). Only if it still does not fit at 12px does it wrap
+ * (the CRM's behaviour). Re-checked when the value or the card width changes.
+ */
+function useFitText(ref: RefObject<HTMLDivElement | null>, text: string | null) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fit = () => {
+      el.style.fontSize = "";
+      el.style.whiteSpace = "nowrap";
+      let size = parseFloat(getComputedStyle(el).fontSize);
+      while (el.scrollWidth > el.clientWidth + 0.5 && size > 12) { size -= 1; el.style.fontSize = `${size}px`; }
+      if (el.scrollWidth > el.clientWidth + 0.5) el.style.whiteSpace = "";
+    };
+    fit();
+    let w = el.clientWidth;   // react to width changes only (the font change itself alters the height)
+    const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(() => { if (el.clientWidth !== w) { w = el.clientWidth; fit(); } });
+    ro?.observe(el);
+    return () => ro?.disconnect();
+  }, [ref, text]);
 }
 
 // ───────────────────────────── menus that open over the table ─────────────────────────────

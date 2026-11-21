@@ -10,6 +10,7 @@ const TG_CSS = CSS.replace(/#f97d03/gi, "#229ed9") + `
 .vcn .vtg-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 @media (min-width:640px){.vcn .vtg-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:1024px){.vcn .vtg-kpis{grid-template-columns:repeat(8,minmax(0,1fr))}}
+.vcn .vtg-filters .vcn-search{min-width:220px}
 `;
 
 /**
