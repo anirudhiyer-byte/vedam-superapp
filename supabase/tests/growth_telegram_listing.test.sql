@@ -1,6 +1,6 @@
--- Growth → Telegram Channel → Telegram Listing · tests for migration 0132 (STAGING ONLY)
+-- Growth → Telegram Channel → Telegram Listing · tests for migrations 0132 and 0133 (STAGING ONLY)
 --
--- How to run: apply 0132 on staging, then paste this whole file into the staging SQL editor (or the Supabase MCP).
+-- How to run: apply 0132 and 0133 on staging, then paste this whole file into the staging SQL editor (or the Supabase MCP).
 -- The last statement returns one row per test: test | pass | detail. Everything is rolled back at the end (ZDONE).
 -- Fake data only (ZZTEST names, zztg* UTMs, ZZTG campaigns in 2090). Refuses to run unless app_flags.environment = 'staging'.
 
@@ -93,7 +93,7 @@ create or replace function pg_temp.run_growth_tg_tests()
 returns table (test text, pass boolean, detail text) language plpgsql as $$
 declare
   tn text[] := '{}'; tp boolean[] := '{}'; td text[] := '{}';
-  adm uuid; usr uuid; r jsonb; x jsonb; s text; n int; r1 uuid; r2 uuid; r3 uuid; c1 uuid; c2 uuid; c3 uuid; k text; keys jsonb;
+  adm uuid; usr uuid; r jsonb; x jsonb; s text; n int; t0 timestamptz; ms int; ids jsonb; r1 uuid; r2 uuid; r3 uuid; c1 uuid; c2 uuid; c3 uuid; k text; keys jsonb;
   u1 text := 'https://t.me/zz?utm_source=ZZTG&utm_medium=zztgmed&utm_campaign=zz%20tg';
   u2 text := 'https://apply.vedam.org/?utm_source=zztg2&utm_medium=zztgmed&utm_campaign=zz%20tg';
   pub text[] := array['growth_tg_list', 'growth_tg_save', 'growth_tg_bulk_update', 'growth_tg_trash', 'growth_tg_purge',
@@ -133,7 +133,7 @@ begin
     select count(*) into n from pg_proc p where p.pronamespace = 'public'::regnamespace and p.proname like 'growth\_\_tg\_%'
        and p.proconfig = array['search_path=""']
        and not has_function_privilege('authenticated', p.oid, 'execute') and not has_function_privilege('anon', p.oid, 'execute');
-    tn := tn || text 'A all 7 private helpers: search_path empty, no browser access'; td := td || n::text; tp := tp || (n = 7);
+    tn := tn || text 'A all 8 private helpers (7 from 0132 + growth__tg_key_trg from 0133): search_path empty, no browser access'; td := td || n::text; tp := tp || (n = 8);
     select count(*) into n from pg_class c where c.oid in ('public.growth_tg_rows'::regclass, 'public.growth_tg_columns'::regclass)
        and c.relrowsecurity and not exists (select 1 from pg_policy pl where pl.polrelid = c.oid)
        and not has_table_privilege('anon', c.oid, 'select') and not has_table_privilege('authenticated', c.oid, 'select')
@@ -294,6 +294,37 @@ begin
     tn := tn || text 'J the daily clean-up job is scheduled';
     select string_agg(jobname || ' ' || schedule, ', ') into s from cron.job where jobname = 'growth-tg-trash-purge';
     td := td || coalesce(s, 'missing'); tp := tp || (s is not null);
+
+    -- ════ K. 0133: stored UTM key, speed ════
+    r := pg_temp.gtg_call(adm, pg_temp.gtg_rpc('growth_tg_save', jsonb_build_object('row', jsonb_build_object('influencer_name', 'ZZTEST Key',
+           'utm_link', 'https://t.me/k?utm_source=ZZKey&utm_medium=Tg&utm_campaign=zz%20k', 'used_in', 'ZZTG Feb'))));
+    r1 := (r->>'id')::uuid;
+    select utm_key into s from public.growth_tg_rows where id = r1;
+    tn := tn || text 'K a new row stores its UTM key'; td := td || coalesce(s, r::text);
+    tp := tp || (s = public.growth__utm_key('https://t.me/k?utm_source=ZZKey&utm_medium=Tg&utm_campaign=zz%20k') and s is not null);
+    r := pg_temp.gtg_call(adm, pg_temp.gtg_rpc('growth_tg_save', jsonb_build_object('row', jsonb_build_object('id', r1, 'influencer_name', 'ZZTEST Key',
+           'utm_link', 'https://t.me/k?utm_source=zzkey2&utm_medium=tg&utm_campaign=zz', 'used_in', 'ZZTG Feb'))));
+    select utm_key into s from public.growth_tg_rows where id = r1;
+    tn := tn || text 'K editing the link updates the stored key'; td := td || coalesce(s, r::text);
+    tp := tp || (s = public.growth__utm_key('https://t.me/k?utm_source=zzkey2&utm_medium=tg&utm_campaign=zz'));
+    tn := tn || text 'K the key column exists only for the database (browsers still cannot read the table)';
+    r := pg_temp.gtg_call(adm, 'select to_jsonb(count(utm_key)) from public.growth_tg_rows'); td := td || r::text; tp := tp || (r->>'sqlstate' = '42501');
+    select count(*) into n from public.growth__leads(array['zztg/zztgmed/zz tg', 'zztg/zztgmed/zz tg', null, 'zz no such key']);
+    tn := tn || text 'K growth__leads: a repeated key counts each lead once, empty / unknown keys add nothing'; td := td || n::text;
+    tp := tp || (n = (select count(*) from public.growth__leads(array['zztg/zztgmed/zz tg'])) and n = 4);
+    insert into public.growth_tg_rows (influencer_name, utm_link, campaign_id, cpl, cpa)
+      select 'ZZTEST load ' || g, 'https://t.me/zzload?utm_source=zzload' || g || '&utm_medium=tg&utm_campaign=zz', c2, 40, 1500 from generate_series(1, 2000) g;
+    select jsonb_agg(id) into ids from (select id from public.growth_tg_rows where influencer_name like 'ZZTEST load %' limit 500) q;
+    t0 := clock_timestamp();
+    r := pg_temp.gtg_call(adm, pg_temp.gtg_rpc('growth_tg_list', '{"view":"active"}'));
+    ms := round(extract(epoch from clock_timestamp() - t0) * 1000);
+    tn := tn || text 'K speed: the list with 2000+ rows answers in under 1 second'; td := td || (ms || ' ms, ' || jsonb_array_length(r->'rows') || ' rows');
+    tp := tp || (ms < 1000 and jsonb_array_length(r->'rows') >= 2000);
+    t0 := clock_timestamp();
+    r := pg_temp.gtg_call(adm, pg_temp.gtg_rpc('growth_tg_bulk_update', jsonb_build_object('ids', ids, 'key', 'cpl', 'value', '45')));
+    ms := round(extract(epoch from clock_timestamp() - t0) * 1000);
+    tn := tn || text 'K speed: bulk update of 500 rows (out of 2000) in under 5 seconds'; td := td || (ms || ' ms, ' || r::text);
+    tp := tp || (ms < 5000 and r->>'changed' = '500');
 
     raise exception using errcode = 'ZDONE';
   exception when sqlstate 'ZDONE' then null;

@@ -120,7 +120,8 @@ export const fmtInr2 = (v: number | null | undefined) =>
 export function cellText(c: TgColumn, v: string | number | null): string {
   if (v === null || v === "") return "—";
   if (c.key === "serial_no") return String(v);
-  if (["cpl", "cpa", "cpl_spend", "cpa_spend", "total_spend"].includes(c.key)) return `₹${Number(v).toLocaleString("en-IN")}`;
+  // CRM: CPL / CPA / spend cells are plain numbers (its number columns get ₹ only for cost / spend / revenue / price keys);
+  // the KPI cards above the table carry the ₹.
   if (c.type === "number" || c.type === "computed") return Number.isFinite(Number(v)) ? Number(v).toLocaleString("en-IN") : String(v);
   if (c.type === "date") return fmtDate(String(v));
   return String(v);
