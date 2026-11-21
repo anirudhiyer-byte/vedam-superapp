@@ -7,6 +7,7 @@ import { VsatExamDates } from "@/components/admin/vsat-exam-dates";
 import { CommunicationManager, CM_GROUPS, type CmPage } from "@/components/admin/communication/cm-shell";
 import { CallingPanel, type CallingPage } from "@/components/admin/calling/calling-panel";
 import { MarketingPanel, type MarketingPage } from "@/components/admin/marketing/marketing-panel";
+import { ConsultantsPanel } from "@/components/admin/marketing/consultants/consultants-panel";
 import { CampaignsPanel } from "@/components/admin/marketing/campaigns-panel";
 import { SeasonPanel } from "@/components/admin/marketing/season-panel";
 import { VcampPanel } from "@/components/admin/marketing/vcamp-panel";
@@ -105,7 +106,7 @@ const GROWTH: Group[] = [
       { label: "Influencer Listing", page: "listing" }, { label: "Influencer Performance", page: "perf" },
     ] },
     { id: "tele", label: "Telegram Channel", icon: ICON.tele },
-    { id: "cons", label: "Consultants Channel", icon: ICON.cons },
+    { id: "cons", label: "Consultants Channel", icon: ICON.cons, live: true, sub: [{ label: "Consultant Listing", page: "listing" }] },
     { id: "pred", label: "College Predictor", icon: ICON.pred, live: true, file: "predictor.html", sub: [
       { label: "Cost & CPL Listing", page: "cost-listing" }, { label: "Cost & CPL Dashboard", page: "cost-dash" },
       { label: "UTM Listing", page: "utm-listing" }, { label: "UTM Dashboard", page: "utm-dash" },
@@ -199,6 +200,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
         const ch = active.id === "ads" ? "ads" : "influencers";
         return <div className="vp-scroll"><MarketingPanel key={`${ch}-${active.page}`} channel={ch} page={(active.page ?? "listing") as MarketingPage} /></div>;
       }
+      if (active.id === "cons") return <div className="vp-scroll"><ConsultantsPanel /></div>;
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
     }
