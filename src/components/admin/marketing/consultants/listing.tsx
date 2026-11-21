@@ -118,12 +118,6 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
     keys.splice(keys.indexOf(to) + (i < j ? 1 : 0), 0, from);
     void saveOrder(keys);
   }
-  function step(c: ConsColumn, d: -1 | 1) {
-    const list = shown;
-    const i = list.findIndex((x) => x.key === c.key);
-    const t = list[i + d];
-    if (t) move(c.key, t.key);
-  }
 
   // ── row actions ──
   async function inlineSet(r: ConsRow, key: "category" | "slab_hit", value: string | null): Promise<boolean> {
@@ -162,10 +156,10 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
         <div>
           <h1 className="vcn-h1">Consultants Listing</h1>
           <p className="vcn-sub">
-            <span>{visibleCols.length} columns · {filtered.length} {filtered.length === 1 ? "row" : "rows"}</span>
-            {hiddenCols.length > 0 && <i>· {hiddenCols.length} hidden</i>}
-            {colBusy === "order" && <i><Icon n="loader" spin size="xs" /> Saving order…</i>}
-            {colBusy === "vis" && <i><Icon n="loader" spin size="xs" /> Updating…</i>}
+            {visibleCols.length} columns · {filtered.length} {filtered.length === 1 ? "row" : "rows"}
+            {hiddenCols.length > 0 && <i> · {hiddenCols.length} hidden</i>}
+            {colBusy === "order" && <i className="sv"><Icon n="loader" spin size="xs" /> Saving order…</i>}
+            {colBusy === "vis" && <i className="sv"><Icon n="loader" spin size="xs" /> Updating…</i>}
           </p>
         </div>
         {!isTrash && (
@@ -177,6 +171,7 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
         )}
       </div>
 
+      <div className="vcn-top">
       <div className="vcn-filters" role="search">
         <div className="vcn-search">
           <Icon n="search" />
@@ -206,6 +201,7 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
         <Kpi label="Enrollments" color="var(--pink)" v={first ? null : fmtInt(k.enr)} sub={`${fmtInt(k.enrUtm)} UTM · ${fmtInt(k.enrCoupon)} coupon`} />
         <Kpi label="Enrollment Spend" color="var(--gr)" v={first ? null : fmtInr(k.enrollmentSpend)} />
         <Kpi label="Total Spend" color="var(--a)" hl v={first ? null : fmtInr(k.totalSpend)} sub={`+ ${fmtInr(k.slabSpend)} slab`} />
+      </div>
       </div>
 
       <div className="vcn-tabs" role="tablist" aria-label="Rows">
@@ -250,8 +246,8 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
         </div>
       )}
 
-      {isTrash && allRows.length > 0 && <div className="vcn-note">These rows were deleted but can be restored. Rows older than 30 days will be purged.</div>}
-      {!isTrash && <div className="vcn-tip">Tip: drag a visible column header to reorder (or use Move left / right in the column menu). Use the column menu to rename, hide, or delete.</div>}
+      {isTrash && allRows.length > 0 && <div className="vcn-note"><span>These rows were deleted but can be restored. Rows older than 30 days will be purged.</span></div>}
+      {!isTrash && <div className="vcn-tip">Tip: drag a visible column header to reorder. Use the column menu to rename, hide, or delete.</div>}
 
       <div className="vcn-card">
         <div className="vcn-scroll">
@@ -265,7 +261,7 @@ export function ConsultantsListing({ sb }: { sb: Client }) {
                 {shown.map((c) => (
                   <HeadCell key={c.key} c={c} trash={isTrash} sort={sort} onSort={() => setSort((s) => nextSort(s, c.key))}
                     onDropOn={move} onRename={() => setDlg({ k: "rename", col: c })} onDelete={() => setDlg({ k: "delcol", col: c })}
-                    onHide={(h) => void setHidden(c, h)} onStep={(d) => step(c, d)} canStep={{ l: shown[0]?.key !== c.key, r: shown[shown.length - 1]?.key !== c.key }} />
+                    onHide={(h) => void setHidden(c, h)} />
                 ))}
                 <th scope="col" className="r">Actions</th>
               </tr>
@@ -411,9 +407,9 @@ function useMenuPos(open: boolean, anchor: RefObject<HTMLElement | null>, menu: 
 
 let dragKey: string | null = null;   // one drag at a time on the page
 
-function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide, onStep, canStep }: {
+function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide }: {
   c: ConsColumn; trash: boolean; sort: Sort; onSort: () => void; onDropOn: (from: string, to: string) => void;
-  onRename: () => void; onDelete: () => void; onHide: (hidden: boolean) => void; onStep: (d: -1 | 1) => void; canStep: { l: boolean; r: boolean };
+  onRename: () => void; onDelete: () => void; onHide: (hidden: boolean) => void;
 }) {
   const [over, setOver] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -461,7 +457,7 @@ function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide
         {c.required && <span className="vcn-req" aria-label="required">*</span>}
         <button type="button" className={`vcn-hb${on ? " on" : ""}`} onClick={onSort} title={title} aria-label={`${c.label}: ${title}`} draggable={false}
           onDragStart={(e) => e.stopPropagation()}>
-          <Icon n={on ? (sort!.dir === "asc" ? "up" : "down") : "updown"} size="s" />
+          <Icon n={on ? (sort!.dir === "asc" ? "up" : "down") : "updown"} size={on ? "s" : "xs"} />
         </button>
         {!trash && (
           <div className="vcn-menuw" ref={wrap} onKeyDown={menuKeys}>
@@ -475,9 +471,6 @@ function HeadCell({ c, trash, sort, onSort, onDropOn, onRename, onDelete, onHide
                 {c.hidden
                   ? <button type="button" role="menuitem" className="vcn-mi" onClick={pick(() => onHide(false))}><Icon n="eye" size="s" /> Unhide column</button>
                   : <button type="button" role="menuitem" className="vcn-mi" onClick={pick(() => onHide(true))}><Icon n="eyeOff" size="s" /> Hide column</button>}
-                <button type="button" role="menuitem" className="vcn-mi" disabled={!canStep.l} onClick={pick(() => onStep(-1))}><Icon n="arrowL" size="s" /> Move left</button>
-                <button type="button" role="menuitem" className="vcn-mi" disabled={!canStep.r} onClick={pick(() => onStep(1))}><Icon n="arrowR" size="s" /> Move right</button>
-                <div className="vcn-mi-sep" role="separator" />
                 <button type="button" role="menuitem" className="vcn-mi dan" disabled={isSystem(c)} onClick={pick(onDelete)}
                   title={isSystem(c) ? "System column — can only be renamed or hidden" : undefined}>
                   <Icon n="trash" size="s" /> Delete column

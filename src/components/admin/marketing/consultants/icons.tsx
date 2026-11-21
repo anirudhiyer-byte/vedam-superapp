@@ -29,6 +29,10 @@ const P: Record<string, string> = {
   save: "M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h8",
   arrowL: "M19 12H5M12 19l-7-7 7-7",
   arrowR: "M5 12h14M12 5l7 7-7 7",
+  // CRM dialogs
+  warn: "M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01",
+  key: "m21 2-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4",
+  okc: "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM9 12l2 2 4-4",
   // Consultant Performance
   calendar: "M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z",
   pin: "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
@@ -38,7 +42,7 @@ const P: Record<string, string> = {
 };
 export type IconName = keyof typeof P;
 
-export function Icon({ n, size, spin }: { n: IconName; size?: "s" | "xs"; spin?: boolean }) {
+export function Icon({ n, size, spin }: { n: IconName; size?: "s" | "xs" | "l" | "x4" | "x5"; spin?: boolean }) {
   return (
     <svg viewBox="0 0 24 24" className={`vcn-ico${size ? ` ${size}` : ""}${spin ? " vcn-spin" : ""}`} aria-hidden="true" focusable="false">
       <path d={P[n]} />
