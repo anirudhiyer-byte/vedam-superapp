@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
 
 type DateRow = {
   id: string; label: string; testId: string; examDate: string;
@@ -9,8 +10,7 @@ type DateRow = {
 };
 type Draft = { id?: string; label: string; testId: string; examDate: string; startTime: string; endTime: string; leadMinutes: number; capacity: string };
 
-const input = "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#00cfe5] focus:outline-none";
-const btn = "rounded-lg px-4 py-2 text-sm font-semibold";
+const input = vx.input;
 const ist = (iso: string) => new Date(iso).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" });
 const hhmm = (iso: string) => new Date(iso).toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" });
 
@@ -68,51 +68,51 @@ export function VsatExamDates() {
     setDraft({ id: r.id, label: r.label, testId: r.testId, examDate: r.examDate, startTime: hhmm(r.startAt), endTime: hhmm(r.endAt), leadMinutes: r.leadMinutes, capacity: r.capacity == null ? "" : String(r.capacity) });
   }
 
-  if (loading) return <div className="p-10 text-white/50">Loading…</div>;
+  if (loading) return <div className="p-10 text-vx-faint">Loading…</div>;
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
+    <div className="mx-auto w-full max-w-[880px] px-4 py-6 font-sans sm:px-8 sm:py-10 pt-0 sm:pt-0">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-bold">VSAT Exam dates</h1>
-          <p className="mt-1 text-sm text-white/50">Lock a Wheebox test ID to each date + window. Enabled dates appear for paid applicants to select; the Start-exam button goes live inside the window.</p>
+          <h1 className="font-sans text-[26px] font-semibold leading-tight tracking-[-0.025em] text-vx-ink sm:text-[30px]">VSAT Exam dates</h1>
+          <p className="mt-1 text-sm text-vx-faint">Lock a Wheebox test ID to each date + window. Enabled dates appear for paid applicants to select; the Start-exam button goes live inside the window.</p>
         </div>
-        {!draft && <button onClick={() => setDraft(emptyDraft())} className={`${btn} bg-gradient-to-r from-[#00cfe5] to-[#c200db] text-white`}>+ New date</button>}
+        {!draft && <button onClick={() => setDraft(emptyDraft())} className={cx(vx.btn, vx.cta)}>+ New date</button>}
       </div>
-      {msg && <p className="mt-4 text-sm text-[#00cfe5]">{msg}</p>}
+      {msg && <p className="mt-4 text-sm text-vx-violet-t">{msg}</p>}
 
       {draft ? (
-        <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="mt-6 rounded-xl border border-vx-line bg-white/5 p-5">
           <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block"><span className="mb-1 block text-xs text-white/50">Label</span><input value={draft.label} onChange={(e) => setDraft({ ...draft, label: e.target.value })} placeholder="VSAT — 20 Nov slot" className={input} /></label>
-            <label className="block"><span className="mb-1 block text-xs text-white/50">Wheebox test ID</span><input value={draft.testId} onChange={(e) => setDraft({ ...draft, testId: e.target.value })} placeholder="e.g. 34073" className={input} /></label>
-            <label className="block"><span className="mb-1 block text-xs text-white/50">Exam date (IST)</span><input type="date" value={draft.examDate} onChange={(e) => setDraft({ ...draft, examDate: e.target.value })} className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Label</span><input value={draft.label} onChange={(e) => setDraft({ ...draft, label: e.target.value })} placeholder="VSAT — 20 Nov slot" className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Wheebox test ID</span><input value={draft.testId} onChange={(e) => setDraft({ ...draft, testId: e.target.value })} placeholder="e.g. 34073" className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Exam date (IST)</span><input type="date" value={draft.examDate} onChange={(e) => setDraft({ ...draft, examDate: e.target.value })} className={input} /></label>
             <div className="grid grid-cols-2 gap-3">
-              <label className="block"><span className="mb-1 block text-xs text-white/50">Start (IST)</span><input type="time" value={draft.startTime} onChange={(e) => setDraft({ ...draft, startTime: e.target.value })} className={input} /></label>
-              <label className="block"><span className="mb-1 block text-xs text-white/50">End (IST)</span><input type="time" value={draft.endTime} onChange={(e) => setDraft({ ...draft, endTime: e.target.value })} className={input} /></label>
+              <label className="block"><span className="mb-1 block text-xs text-vx-faint">Start (IST)</span><input type="time" value={draft.startTime} onChange={(e) => setDraft({ ...draft, startTime: e.target.value })} className={input} /></label>
+              <label className="block"><span className="mb-1 block text-xs text-vx-faint">End (IST)</span><input type="time" value={draft.endTime} onChange={(e) => setDraft({ ...draft, endTime: e.target.value })} className={input} /></label>
             </div>
-            <label className="block"><span className="mb-1 block text-xs text-white/50">Clickable lead (mins before start)</span><input type="number" value={draft.leadMinutes} onChange={(e) => setDraft({ ...draft, leadMinutes: Number(e.target.value) })} className={input} /></label>
-            <label className="block"><span className="mb-1 block text-xs text-white/50">Capacity (optional)</span><input type="number" value={draft.capacity} onChange={(e) => setDraft({ ...draft, capacity: e.target.value })} placeholder="unlimited" className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Clickable lead (mins before start)</span><input type="number" value={draft.leadMinutes} onChange={(e) => setDraft({ ...draft, leadMinutes: Number(e.target.value) })} className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Capacity (optional)</span><input type="number" value={draft.capacity} onChange={(e) => setDraft({ ...draft, capacity: e.target.value })} placeholder="unlimited" className={input} /></label>
           </div>
           <div className="mt-5 flex gap-2">
-            <button onClick={save} disabled={busy} className={`${btn} bg-gradient-to-r from-[#00cfe5] to-[#c200db] text-white`}>{busy ? "Saving…" : "Save date"}</button>
-            <button onClick={() => { setDraft(null); setMsg(""); }} className={`${btn} border border-white/15 text-white`}>Cancel</button>
+            <button onClick={save} disabled={busy} className={cx(vx.btn, vx.cta)}>{busy ? "Saving…" : "Save date"}</button>
+            <button onClick={() => { setDraft(null); setMsg(""); }} className={cx(vx.btn, vx.secondary)}>Cancel</button>
           </div>
         </div>
       ) : (
         <div className="mt-6 space-y-3">
-          {rows.length === 0 && <p className="text-sm text-white/40">No exam dates yet.</p>}
+          {rows.length === 0 && <p className="text-sm text-vx-faint">No exam dates yet.</p>}
           {rows.map((r) => (
-            <div key={r.id} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
+            <div key={r.id} className="flex items-center justify-between rounded-xl border border-vx-line bg-white/5 p-4">
               <div>
-                <p className="font-semibold">{r.label} {r.enabled && <span className="ml-2 rounded-full bg-[#16a34a]/20 px-2 py-0.5 text-xs text-[#4ade80]">LIVE</span>}</p>
-                <p className="text-xs text-white/40">{ist(r.startAt)} – {hhmm(r.endAt)} · test {r.testId} · clickable {r.leadMinutes}m early · {r.picked} picked{r.capacity != null ? ` / ${r.capacity}` : ""}</p>
+                <p className="font-semibold">{r.label} {r.enabled && <span className="ml-2 rounded-full bg-vx-green/20 px-2 py-0.5 text-xs text-vx-green">LIVE</span>}</p>
+                <p className="text-xs text-vx-faint">{ist(r.startAt)} – {hhmm(r.endAt)} · test {r.testId} · clickable {r.leadMinutes}m early · {r.picked} picked{r.capacity != null ? ` / ${r.capacity}` : ""}</p>
               </div>
               <div className="flex items-center gap-2">
-                <button onClick={() => editRow(r)} disabled={busy} className={`${btn} border border-white/15 text-white`}>Edit</button>
+                <button onClick={() => editRow(r)} disabled={busy} className={cx(vx.btn, vx.secondary)}>Edit</button>
                 {r.enabled
-                  ? <button onClick={() => toggle(r.id, false)} disabled={busy} className={`${btn} border border-white/15 text-white`}>Disable</button>
-                  : <button onClick={() => toggle(r.id, true)} disabled={busy} className={`${btn} bg-[#16a34a] text-white`}>Enable</button>}
+                  ? <button onClick={() => toggle(r.id, false)} disabled={busy} className={cx(vx.btn, vx.secondary)}>Disable</button>
+                  : <button onClick={() => toggle(r.id, true)} disabled={busy} className={cx(vx.btn, vx.primary)}>Enable</button>}
               </div>
             </div>
           ))}

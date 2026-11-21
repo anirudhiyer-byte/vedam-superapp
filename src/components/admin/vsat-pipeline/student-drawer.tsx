@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { cx, vx } from "@/components/admin/ui/vx";
 import {
   NEEDS_ASSIGNMENT, PARTS, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst, interviewFormErrors,
   isHttpsLink, istSlot, needsReason, type InterviewForm, type Stage, type Status, type VsatRoles,
@@ -15,31 +16,30 @@ import { profileErrorText } from "@/lib/vsat/profile-prompt";
  * only a convenience. Interviewers and counsellors never get contact details (the database leaves them out).
  */
 
-const input = "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder-white/30 focus:border-[#22d3ee] focus:outline-none";
-const btn = "rounded-lg px-3 py-2 text-sm font-semibold disabled:opacity-40";
-const primary = `${btn} bg-[#34e2b0] text-[#04101a]`;
-const ghost = `${btn} bg-white/5 text-white/80`;
+const input = vx.input;
+const primary = cx(vx.btn, vx.primary);
+const ghost = cx(vx.btn, vx.secondary);
 const show = (v: unknown, suffix = "") => (v === null || v === undefined || v === "" ? "—" : `${String(v)}${suffix}`);
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="rounded-xl border border-white/10 bg-white/[.03] p-4">
-      <h3 className="mb-3 font-semibold text-white">{title}</h3>
-      <div className="space-y-3 text-sm text-white/80">{children}</div>
+    <section className="rounded-xl border border-vx-line bg-white/[.03] p-4">
+      <h3 className="mb-3 font-semibold text-vx-ink">{title}</h3>
+      <div className="space-y-3 text-sm text-vx-ink">{children}</div>
     </section>
   );
 }
 function Grid({ items }: { items: [string, ReactNode][] }) {
   return (
     <dl className="grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3">
-      {items.map(([k, v]) => <div key={k}><dt className="text-xs text-white/40">{k}</dt><dd>{v}</dd></div>)}
+      {items.map(([k, v]) => <div key={k}><dt className="text-xs text-vx-faint">{k}</dt><dd>{v}</dd></div>)}
     </dl>
   );
 }
 function Msg({ text }: { text: string }) {
   if (!text) return null;
   const ok = text.endsWith("✓");
-  return <p className={`rounded-lg px-3 py-2 text-sm ${ok ? "bg-emerald-400/10 text-emerald-200" : "bg-rose-400/10 text-rose-200"}`}>{text}</p>;
+  return <p className={`rounded-lg px-3 py-2 text-sm ${ok ? "bg-vx-green/10 text-vx-green" : "bg-vx-red/10 text-[#ffb3bf]"}`}>{text}</p>;
 }
 
 export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; roles: VsatRoles; onClose: () => void; onChanged: () => void }) {
@@ -69,17 +69,17 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/50" onClick={onClose} role="dialog" aria-modal="true" aria-label="Student details">
-      <div className="h-full w-full max-w-3xl overflow-auto border-l border-white/10 bg-[#0b1024] p-5 text-white" onClick={(e) => e.stopPropagation()}>
+      <div className="h-full w-full max-w-3xl overflow-auto border-l border-vx-line bg-[#0e0b29] p-5 text-vx-ink" onClick={(e) => e.stopPropagation()}>
         <div className="mb-4 flex items-start justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold">{s?.profile.name ?? "Student"}</h2>
-            <p className="text-xs text-white/50">{s?.profile.application_no ?? id}{s?.profile.campus ? ` · ${s.profile.campus}` : ""}{s?.exam.batch?.label ? ` · ${s.exam.batch.label}` : ""}</p>
+            <p className="text-xs text-vx-faint">{s?.profile.application_no ?? id}{s?.profile.campus ? ` · ${s.profile.campus}` : ""}{s?.exam.batch?.label ? ` · ${s.exam.batch.label}` : ""}</p>
             {stage && status && <div className="mt-2"><StageBadge stage={stage} status={status} /></div>}
           </div>
           <button className={ghost} onClick={onClose}>Close</button>
         </div>
         {err && <Msg text={err} />}
-        {!s && !err && <p className="text-white/50">Loading…</p>}
+        {!s && !err && <p className="text-vx-faint">Loading…</p>}
         {s && stage && status && (
           <div className="space-y-4">
             <Section title="Profile">
@@ -88,7 +88,7 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
                 ["City", show(s.profile.city)], ["State", show(s.profile.state)], ["Campus applied", show(s.profile.campus_applied)],
                 ["Father's occupation", show(s.profile.father_occupation)], ["Mother's occupation", show(s.profile.mother_occupation)],
               ]} />
-              {!s.can_manage && <p className="text-xs text-white/40">Contact details are shown to admissions only.</p>}
+              {!s.can_manage && <p className="text-xs text-vx-faint">Contact details are shown to admissions only.</p>}
             </Section>
 
             {s.can_manage && <MoveStage s={s} onDone={changed} />}
@@ -108,9 +108,9 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
                 ["Exam given", s.exam.exam_given ? "Yes" : "No"], ["Percentile", show(s.exam.percentile)],
                 ["Marks", s.exam.marks === null ? "—" : `${s.exam.marks} / ${show(s.exam.max_marks)}`],
                 ["VPS (calculated)", show(s.effective.vps.calculated)],
-                ["VPS (counts)", <span key="v">{show(s.effective.vps.value)}{s.effective.vps.override !== null && <span className="ml-1 text-xs text-amber-300">override</span>}</span>],
+                ["VPS (counts)", <span key="v">{show(s.effective.vps.value)}{s.effective.vps.override !== null && <span className="ml-1 text-xs text-vx-orange-t">override</span>}</span>],
                 ["Eligible (calculated)", show(s.effective.eligible.calculated === null ? null : s.effective.eligible.calculated ? "Yes" : "No")],
-                ["Eligible (counts)", <span key="e">{s.effective.eligible.value ? "Yes" : "No"}{s.effective.eligible.override !== null && <span className="ml-1 text-xs text-amber-300">override</span>}</span>],
+                ["Eligible (counts)", <span key="e">{s.effective.eligible.value ? "Yes" : "No"}{s.effective.eligible.override !== null && <span className="ml-1 text-xs text-vx-orange-t">override</span>}</span>],
                 ["12th result", show(s.effective.eligible.detail?.class12?.replace(/_/g, " "))], ["PCM total", show(s.effective.eligible.detail?.pcm_total)],
               ]} />
               {roles.admin && <Overrides s={s} onDone={changed} />}
@@ -122,11 +122,11 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
             <Section title="Stage history">
               <ul className="space-y-2">
                 {s.history.map((h, i) => (
-                  <li key={i} className="flex flex-wrap items-baseline gap-x-2 border-b border-white/5 pb-2">
-                    <span className="text-xs text-white/40">{fmtIst(h.at)}</span>
+                  <li key={i} className="flex flex-wrap items-baseline gap-x-2 border-b border-vx-line-soft pb-2">
+                    <span className="text-xs text-vx-faint">{fmtIst(h.at)}</span>
                     <span>{h.from_stage ? `${STAGE_LABEL[h.from_stage]}${h.from_status && h.from_status !== "active" ? ` (${STATUS_LABEL[h.from_status]})` : ""} → ` : ""}
                       <b>{STAGE_LABEL[h.to_stage]}{h.to_status !== "active" ? ` (${STATUS_LABEL[h.to_status]})` : ""}</b></span>
-                    <span className="text-xs text-white/50">{h.by ?? h.source}{h.reason ? ` · “${h.reason}”` : ""}</span>
+                    <span className="text-xs text-vx-faint">{h.by ?? h.source}{h.reason ? ` · “${h.reason}”` : ""}</span>
                   </li>
                 ))}
               </ul>
@@ -213,12 +213,12 @@ function Overrides({ s, onDone }: { s: Student; onDone: () => void }) {
   }
 
   return (
-    <div className="mt-3 space-y-2 rounded-lg border border-amber-400/20 bg-amber-400/5 p-3">
-      <p className="text-xs font-semibold uppercase tracking-wide text-amber-200">Admin override</p>
+    <div className="mt-3 space-y-2 rounded-lg border border-vx-orange/20 bg-vx-orange/5 p-3">
+      <p className="text-xs font-semibold text-vx-orange-t">Admin override</p>
       {active.map((o) => (
         <div key={o.field} className="flex flex-wrap items-center gap-2 text-xs">
           <span>{o.field === "vps" ? "VPS" : "Eligible"}: <b>{String(o.value)}</b> (calculated {String(o.calculated ?? "—")}) · “{o.reason}” · {o.by ?? ""}</span>
-          <button className="text-rose-300 underline" disabled={busy} onClick={() => clear(o.field)}>Remove</button>
+          <button className="text-vx-red underline" disabled={busy} onClick={() => clear(o.field)}>Remove</button>
         </div>
       ))}
       <div className="grid gap-2 sm:grid-cols-4">
@@ -265,8 +265,8 @@ function AssignForm({ kind, team, applicationId, onDone }: { kind: "interviewer"
   }
 
   return (
-    <div className="space-y-2 rounded-lg border border-white/10 p-3">
-      <p className="text-xs font-semibold uppercase tracking-wide text-white/50">Assign {kind} and slot (IST)</p>
+    <div className="space-y-2 rounded-lg border border-vx-line p-3">
+      <p className="text-xs font-semibold text-vx-faint">Assign {kind} and slot (IST)</p>
       <div className="grid gap-2 sm:grid-cols-3">
         <select className={input} value={who} onChange={(e) => setWho(e.target.value)} aria-label={kind}>
           <option value="">Pick {kind}…</option>
@@ -301,7 +301,7 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
     <Section title="Interview">
       {iv && <Grid items={[
         ["Interviewer", show(iv.interviewer)], ["Slot (IST)", fmtIst(iv.slot_datetime)],
-        ["Meeting", iv.meet_link ? <a key="m" className="text-[#22d3ee] underline" href={iv.meet_link} target="_blank" rel="noopener noreferrer">Open link</a> : "—"],
+        ["Meeting", iv.meet_link ? <a key="m" className="text-vx-violet-t underline" href={iv.meet_link} target="_blank" rel="noopener noreferrer">Open link</a> : "—"],
         ["Attendance", show(iv.attendance)], ["Score (out of 5)", show(iv.weighted_avg)],
         ["Verdict (calculated / interviewer)", iv.weighted_avg === null ? "—" : `${show(iv.calc_verdict)} / ${show(iv.interviewer_verdict)}`],
         ["Cheating seen", iv.cheating_seen === null ? "—" : iv.cheating_seen ? "Yes" : "No"], ["Financial capability", show(iv.financial_capability)],
@@ -309,7 +309,7 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
       {iv && iv.weighted_avg !== null && (
         <Grid items={PARTS.map(([k, label]) => [label, `${show(iv[({ communication: "rubric_behavioural", logic: "rubric_math", passion: "rubric_passion", achievements: "rubric_achievements", why_program: "rubric_why_program" } as const)[k]])}${iv.remarks?.[k] ? ` · ${iv.remarks[k]}` : ""}`] as [string, ReactNode])} />
       )}
-      {iv?.why_accept && <p><span className="text-xs text-white/40">Why should Vedam accept you: </span>{iv.why_accept}</p>}
+      {iv?.why_accept && <p><span className="text-xs text-vx-faint">Why should Vedam accept you: </span>{iv.why_accept}</p>}
       {canAssign && <AssignForm kind="interviewer" team={team} applicationId={s.profile.application_id} onDone={onDone} />}
       {canForm && iv && <InterviewFormBox applicationId={s.profile.application_id} onDone={onDone} />}
       {canForm && iv && s.pipeline.status !== "absent" && <button className={ghost} onClick={markAbsent}>Student didn&apos;t join — mark absent</button>}
@@ -326,12 +326,12 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const text = (k: string, label: string, max = 300) => (
-    <label className="block text-xs text-white/50">{label}
+    <label className="block text-xs text-vx-faint">{label}
       <input className={input} value={extra[k] ?? ""} maxLength={max} onChange={(e) => setExtra({ ...extra, [k]: e.target.value })} />
     </label>
   );
   const pct = (k: string, label: string) => (
-    <label className="block text-xs text-white/50">{label}
+    <label className="block text-xs text-vx-faint">{label}
       <input className={input} type="number" min={0} max={100} step="0.01" value={extra[k] ?? ""} onChange={(e) => setExtra({ ...extra, [k]: e.target.value })} />
     </label>
   );
@@ -358,7 +358,7 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
   }
 
   const yn = (k: string, label: string) => (
-    <label className="block text-xs text-white/50">{label}
+    <label className="block text-xs text-vx-faint">{label}
       <select className={input} value={extra[k] ?? ""} onChange={(e) => setExtra({ ...extra, [k]: e.target.value })}>
         <option value="">—</option><option value="yes">Yes</option><option value="no">No</option>
       </select>
@@ -366,8 +366,8 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
   );
 
   return (
-    <div className="space-y-3 rounded-lg border border-[#34e2b0]/30 p-3">
-      <p className="text-xs font-semibold uppercase tracking-wide text-[#34e2b0]">Interview form</p>
+    <div className="space-y-3 rounded-lg border border-vx-violet/30 p-3">
+      <p className="text-xs font-semibold text-vx-violet-t">Interview form</p>
       {PARTS.map(([k, label]) => (
         <div key={k} className="grid gap-2 sm:grid-cols-[1fr_auto]">
           <div>
@@ -378,20 +378,20 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
           <div className="flex items-center gap-1" role="radiogroup" aria-label={label}>
             {[1, 2, 3, 4, 5].map((n) => (
               <button key={n} type="button" role="radio" aria-checked={f[k] === n}
-                className={`h-9 w-9 rounded-lg border text-sm font-semibold ${f[k] === n ? "border-[#34e2b0] bg-[#34e2b0] text-[#04101a]" : "border-white/15 bg-white/5"}`}
+                className={`h-9 w-9 rounded-lg border text-sm font-semibold ${f[k] === n ? "border-vx-violet bg-vx-violet text-vx-ink" : "border-vx-line2 bg-white/5"}`}
                 onClick={() => setF({ ...f, [k]: n })}>{n}</button>
             ))}
           </div>
         </div>
       ))}
       <div className="grid gap-2 sm:grid-cols-2">
-        <label className="block text-xs text-white/50">Cheating seen? (yes = not selected)
+        <label className="block text-xs text-vx-faint">Cheating seen? (yes = not selected)
           <select className={input} value={f.cheating_seen === null ? "" : f.cheating_seen ? "yes" : "no"}
             onChange={(e) => setF({ ...f, cheating_seen: e.target.value === "" ? null : e.target.value === "yes" })}>
             <option value="">Pick…</option><option value="no">No</option><option value="yes">Yes</option>
           </select>
         </label>
-        <label className="block text-xs text-white/50">Your verdict
+        <label className="block text-xs text-vx-faint">Your verdict
           <select className={input} value={f.interviewer_verdict} onChange={(e) => setF({ ...f, interviewer_verdict: e.target.value as InterviewForm["interviewer_verdict"] })}>
             <option value="">Pick…</option><option value="selected">Selected</option><option value="maybe">Maybe</option><option value="not_selected">Not selected</option>
           </select>
@@ -401,17 +401,17 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
         {pct("jee_pct", "JEE percentile")}{pct("jee_maths_pct", "JEE Maths percentile")}{pct("expected_jee_pct", "Expected JEE percentile")}
         {text("other_exams", "Other exams")}
         {pct("class10_pct", "Class 10 %")}{pct("class11_pct", "Class 11 %")}{pct("class12_pct", "Class 12 %")}
-        <label className="block text-xs text-white/50">Financial capability
+        <label className="block text-xs text-vx-faint">Financial capability
           <select className={input} value={extra.financial_capability ?? ""} onChange={(e) => setExtra({ ...extra, financial_capability: e.target.value })}>
             <option value="">—</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option>
           </select>
         </label>
         {text("financial_reason", "Why (financial capability)", 500)}
       </div>
-      <label className="block text-xs text-white/50">Why should Vedam accept you? (student&apos;s answer)
+      <label className="block text-xs text-vx-faint">Why should Vedam accept you? (student&apos;s answer)
         <textarea className={input} rows={3} maxLength={1500} value={extra.why_accept ?? ""} onChange={(e) => setExtra({ ...extra, why_accept: e.target.value })} />
       </label>
-      <p className="text-xs text-white/40">The score is calculated by the system from the five parts. If both the calculated verdict and yours are “Selected”, the student moves to Counselling automatically; otherwise admissions decides.</p>
+      <p className="text-xs text-vx-faint">The score is calculated by the system from the five parts. If both the calculated verdict and yours are “Selected”, the student moves to Counselling automatically; otherwise admissions decides.</p>
       <button className={primary} disabled={busy} onClick={submit}>{busy ? "Submitting…" : "Submit interview"}</button>
       <Msg text={msg} />
     </div>
@@ -429,11 +429,11 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
     <Section title="Counselling & scholarship">
       {c && <Grid items={[
         ["Counsellor", show(c.counsellor)], ["Slot (IST)", fmtIst(c.slot_datetime)],
-        ["Meeting", c.zoom_link ? <a key="m" className="text-[#22d3ee] underline" href={c.zoom_link} target="_blank" rel="noopener noreferrer">Open link</a> : "—"],
+        ["Meeting", c.zoom_link ? <a key="m" className="text-vx-violet-t underline" href={c.zoom_link} target="_blank" rel="noopener noreferrer">Open link</a> : "—"],
         ["Attendance", show(c.attendance)], ["Scholarship score", show(c.calc_score)], ["Category", show(c.calc_category ?? c.scholarship_category)],
         ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
       ]} />}
-      {c?.actual_reason && <p className="text-xs text-white/60">Reason for actual %: “{c.actual_reason}”</p>}
+      {c?.actual_reason && <p className="text-xs text-vx-mut">Reason for actual %: “{c.actual_reason}”</p>}
       {c && <ProfileBox applicationId={s.profile.application_id} {...savedProfile(c.profile_analysis)} canGenerate={s.can_manage || isCounsellor} />}
       {canAssign && <AssignForm kind="counsellor" team={team} applicationId={s.profile.application_id} onDone={onDone} />}
       {canForm && c && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
@@ -444,10 +444,10 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
 /** "**bold**" → <strong>; everything else stays plain text (no HTML from the AI is ever rendered). */
 function BriefingText({ text }: { text: string }) {
   return (
-    <div className="space-y-1 whitespace-pre-wrap text-sm leading-relaxed text-white/85">
+    <div className="space-y-1 whitespace-pre-wrap text-sm leading-relaxed text-vx-ink">
       {text.split("\n").map((line, i) => (
         <p key={i}>{line.split(/(\*\*[^*]+\*\*)/g).map((part, j) =>
-          /^\*\*[^*]+\*\*$/.test(part) ? <strong key={j} className="text-white">{part.slice(2, -2)}</strong> : <span key={j}>{part}</span>)}</p>
+          /^\*\*[^*]+\*\*$/.test(part) ? <strong key={j} className="text-vx-ink">{part.slice(2, -2)}</strong> : <span key={j}>{part}</span>)}</p>
       ))}
     </div>
   );
@@ -483,15 +483,15 @@ function ProfileBox({ applicationId, saved, savedAt, canGenerate }: { applicatio
 
   if (!text && !canGenerate) return null;
   return (
-    <div className="space-y-2 rounded-lg border border-white/10 p-3">
+    <div className="space-y-2 rounded-lg border border-vx-line p-3">
       <div className="flex items-center justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[#22d3ee]">Profile analysis</p>
+        <p className="text-xs font-semibold text-vx-violet-t">Profile analysis</p>
         {canGenerate && <button className={primary} disabled={busy} onClick={generate}>{busy ? "Generating… (up to a minute)" : text ? "Regenerate profile" : "Generate profile"}</button>}
       </div>
       {text ? <>
         <BriefingText text={text} />
-        <p className="text-xs text-white/40">Written by AI from this student&apos;s data{at ? ` on ${fmtIst(at)}` : ""}. Check it against the scores before you rely on it.</p>
-      </> : <p className="text-xs text-white/50">No profile yet. It reads this student&apos;s application, VSAT and interview data and writes a short briefing for the counselling call.</p>}
+        <p className="text-xs text-vx-faint">Written by AI from this student&apos;s data{at ? ` on ${fmtIst(at)}` : ""}. Check it against the scores before you rely on it.</p>
+      </> : <p className="text-xs text-vx-faint">No profile yet. It reads this student&apos;s application, VSAT and interview data and writes a short briefing for the counselling call.</p>}
       <Msg text={msg} />
     </div>
   );
@@ -534,8 +534,8 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
 
   if (!pre) return <Msg text={msg} />;
   return (
-    <div className="space-y-3 rounded-lg border border-[#34e2b0]/30 p-3">
-      <p className="text-xs font-semibold uppercase tracking-wide text-[#34e2b0]">Scholarship (calculated by the system)</p>
+    <div className="space-y-3 rounded-lg border border-vx-violet/30 p-3">
+      <p className="text-xs font-semibold text-vx-violet-t">Scholarship (calculated by the system)</p>
       <Grid items={[
         ["Case", pre.case.replace(/_/g, " ")], ["Score", String(pre.score)], ["Category", show(pre.category)],
         ["Range", pre.min_award === null ? "—" : `${pre.min_award}%–${pre.max_award}%`],
@@ -545,8 +545,8 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
         ["Final scholarship", calc === null ? "—" : `${calc}%`],
         ["Programme fee", `₹${Number(pre.programme_fee).toLocaleString("en-IN")}`],
       ]} />
-      {pre.missing.length > 0 && <p className="text-xs text-amber-200">Missing (counted as 0, like the sheet): {pre.missing.join(", ").replace(/_/g, " ")}</p>}
-      {step === null && <p className="text-xs text-amber-200">{errorText("NO_BAND")}</p>}
+      {pre.missing.length > 0 && <p className="text-xs text-vx-orange-t">Missing (counted as 0, like the sheet): {pre.missing.join(", ").replace(/_/g, " ")}</p>}
+      {step === null && <p className="text-xs text-vx-orange-t">{errorText("NO_BAND")}</p>}
       <textarea className={input} rows={2} maxLength={2000} placeholder="Counsellor remarks (optional)" value={remarks} onChange={(e) => setRemarks(e.target.value)} aria-label="Counsellor remarks" />
       <button className={primary} disabled={busy || step === null} onClick={submit}>{busy ? "Saving…" : "Save counselling"}</button>
       <Msg text={msg} />
