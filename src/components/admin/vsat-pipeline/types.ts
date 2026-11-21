@@ -2,7 +2,8 @@ import type { Stage, Status } from "@/lib/vsat/pipeline";
 
 /** Shapes returned by the VSAT pipeline RPCs (0080 / 0081). The database decides what each role gets. */
 export type Effective = {
-  vps: { calculated: number | null; override: number | null; value: number | null };
+  /** source (0135): "stored" = an imported / frozen vps_score, "curve" = the VSAT's curve on the percentile. */
+  vps: { calculated: number | null; override: number | null; value: number | null; source?: "stored" | "curve" | null; percentile?: number | null };
   eligible: { calculated: boolean | null; override: boolean | null; value: boolean | null; detail?: { class12?: string; pcm_total?: number } };
 };
 
@@ -85,4 +86,28 @@ export type Preview = {
   special_rating: number | null;
   /** Step from the score (sheet column BK), null when the score is in no band. Set by the database (0083). */
   auto_step: number | null;
+};
+
+/** vsat_exam_analysis (0135): the results sheet's analysis box for the chosen VSAT(s). */
+export type GenderCount = { male: number; female: number; other: number };
+export type ExamAnalysis = {
+  booked: number; takers: number; disqualified: number;
+  avg_percentage: number | null; avg_percentile: number | null; above_70: number;
+  slabs: { label: string; n: number }[];
+  gender: GenderCount;
+  cutoff: null | {
+    percentile: number; vps: number | null; total: number; overall: GenderCount;
+    by_campus: Partial<Record<"pune" | "gurugram" | "none", GenderCount & { total: number }>>;
+  };
+};
+
+/** vsat_select_for_pi (0135): preview (applied false) or the result of moving them (applied true). */
+export type PiBucket = "selected" | "below_cutoff" | "disqualified" | "no_result" | "already_selected" | "not_active" | "not_eligible";
+export type PiCandidate = { application_id: string; application_no: string | null; name: string | null; percentile: number; gender: string; campus: string | null; stage: string };
+export type PiResult = {
+  vsat: string; exam_date_id: string; percentile: number; vps_cutoff: number | null;
+  counts: Record<PiBucket, number>;
+  selected: { total: number; male: number; female: number; other: number; pune: number; gurugram: number };
+  candidates: PiCandidate[];
+  applied: boolean; moved?: number; unchanged?: number; skipped?: { application_id: string; code: string }[];
 };

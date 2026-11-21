@@ -8,7 +8,8 @@
 import { PANEL_STAGES, STAGE_LABEL, STATUS_LABEL, isStage, isStatus, fmtIst, type PanelKey, type Stage } from "@/lib/vsat/pipeline";
 
 export type GridColType = "text" | "num" | "bool" | "date" | "ts" | "stage" | "status" | "json" | "uuid";
-export type GridColumn = { key: string; group: string; type: GridColType; virtual: boolean; restricted: boolean };
+/** `filterable` comes from the database (0135): real columns of a filterable type, plus the virtual ones it has a fixed expression for. */
+export type GridColumn = { key: string; group: string; type: GridColType; virtual: boolean; restricted: boolean; filterable?: boolean };
 export type GridColumnsResult = { can_manage: boolean; columns: GridColumn[] };
 
 export type GridRow = Record<string, unknown> & { application_id: string; stage: Stage; status: string; attempt_no: number };
@@ -31,12 +32,21 @@ export const PAYMENT_STAGE_LABEL: Record<string, string> = {
   payment_not_initiated: "Not initiated", payment_initiated: "Payment initiated", payment_approved: "Payment approved", payment_failed: "Payment failed",
 };
 
-/** Advanced filter builder (0118): AND-ed clauses on real columns. Mirrors the operators the database allows per type. */
+/** Advanced filter builder (0118, 0135): AND-ed clauses on real columns and on the virtual ones the database can filter. Mirrors the operators it allows per type. */
 export type FilterArity = "one" | "two" | "list" | "none";
 export type FilterOp = { op: string; label: string; arity: FilterArity };
 export type FilterClause = { column: string; op: string; v?: string | string[] };
-/** Column types the advanced filter builder offers (virtual columns keep their dropdowns). */
+/** Column types the advanced filter builder offers. */
 export const FILTERABLE_TYPES = ["num", "date", "ts", "text", "bool"];
+/** May this column go into the filter builder? The database says so (0135); older responses fall back to "real column of a filterable type". */
+export const isFilterable = (c: GridColumn): boolean => c.filterable ?? (!c.virtual && FILTERABLE_TYPES.includes(c.type));
+
+/** Columns whose values are a short fixed list: the filter builder offers a picker and cells show the readable word. */
+export const VALUE_CHOICES: Record<string, { value: string; label: string }[]> = {
+  proctoring: [{ value: "disqualified", label: "Disqualified" }, { value: "cleared", label: "Cleared" }],
+  class12_result: [{ value: "pass", label: "Pass" }, { value: "fail", label: "Fail" }, { value: "yet_to_graduate", label: "Yet to graduate" }],
+};
+const choiceLabel = (key: string, v: string): string => VALUE_CHOICES[key]?.find((c) => c.value === v)?.label ?? v;
 export const FILTER_OPS: Record<string, FilterOp[]> = {
   num: [
     { op: "eq", label: "=", arity: "one" }, { op: "ne", label: "≠", arity: "one" },
@@ -72,8 +82,8 @@ export function describeClause(c: FilterClause, type: string): string {
   const lab = opLabel(type, c.op);
   if (c.op === "isnull" || c.op === "notnull" || c.op === "true" || c.op === "false") return `${name} ${lab}`;
   if (c.op === "between" && Array.isArray(c.v)) return `${name} ${lab} ${c.v[0] ?? ""}–${c.v[1] ?? ""}`;
-  if (c.op === "in" && Array.isArray(c.v)) return `${name} ${lab} ${c.v.join(", ")}`;
-  return `${name} ${lab} ${typeof c.v === "string" ? c.v : ""}`.trim();
+  if (c.op === "in" && Array.isArray(c.v)) return `${name} ${lab} ${c.v.map((v) => choiceLabel(c.column, v)).join(", ")}`;
+  return `${name} ${lab} ${typeof c.v === "string" ? choiceLabel(c.column, c.v) : ""}`.trim();
 }
 
 /** Order the groups appear in the "Columns" drawer. Unknown groups go last, alphabetically. */
@@ -88,8 +98,11 @@ const LABELS: Record<string, string> = {
   campus: "Campus", campus_applied: "Campus applied (as typed)", vsat: "VSAT", stage: "Stage", status: "Status",
   stage_changed_at: "Updated", attempt_no: "Attempt", current_attempt: "Attempt (old field)",
   exam_percentile: "Percentile", exam_given: "Exam given", exam_obtained_marks: "Exam marks", exam_max_marks: "Exam max marks",
-  exam_overall: "Exam overall", exam_assigned: "Exam assigned", vps_score: "VPS (calculated)",
-  vps_effective: "VPS", vps_override: "VPS override", eligible_effective: "Eligible", eligible_override: "Eligible override",
+  exam_overall: "Result (Wheebox)", exam_assigned: "Exam assigned", vps_score: "VPS (stored)",
+  vps_effective: "VPS", vps_override: "VPS override", vps_calculated: "VPS (calculated)",
+  eligible_effective: "Eligible", eligible_override: "Eligible override",
+  exam_percentage: "Exam %", exam_section_maths: "Maths", exam_section_lr: "Logical reasoning", exam_section_cs: "CS",
+  proctoring: "Proctoring", class12_result: "12th result", class10_eligible: "10th eligible", class12_eligible: "12th eligible",
   interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview attendance",
   interview_score: "Interview score", interview_calc_verdict: "Verdict (calculated)", interviewer_verdict: "Verdict (interviewer)",
   cheating_seen: "Cheating seen",
@@ -134,7 +147,9 @@ export function columnLabel(key: string): string {
 /** Default columns per panel — the ones the old panels showed. "registered_name" is always first and cannot be removed. */
 export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   apps: ["registered_name", "campus", "vsat", "stage", "exam_percentile", "vps_effective", "eligible_effective", "stage_changed_at"],
-  exam: ["registered_name", "campus", "vsat", "stage", "exam_percentile", "vps_effective", "eligible_effective", "stage_changed_at"],
+  // 0135 — the results sheet: who, %, percentile, the three sections, VPS, eligibility and the proctoring verdict
+  exam: ["registered_name", "campus", "gender", "vsat", "stage", "exam_percentage", "exam_percentile", "exam_section_maths", "exam_section_lr",
+         "exam_section_cs", "vps_effective", "eligible_effective", "proctoring"],
   intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_score", "interview_calc_verdict", "interviewer_verdict", "stage_changed_at"],
   couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_category", "counselling_pct", "stage_changed_at"],
 };
@@ -143,7 +158,7 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
 export function requestColumns(shown: string[]): string[] {
   const out = new Set(shown);
   out.add("registered_name"); out.add("application_no");
-  if (out.has("vps_effective")) out.add("vps_override");
+  if (out.has("vps_effective")) { out.add("vps_override"); out.add("vps_calculated"); }
   if (out.has("eligible_effective")) out.add("eligible_override");
   return [...out];
 }
@@ -179,6 +194,7 @@ export function formatValue(type: GridColType, key: string, v: unknown): string 
   if (type === "stage") return isStage(v) ? STAGE_LABEL[v] : String(v);
   if (type === "status") return isStatus(v) ? STATUS_LABEL[v] : String(v);
   if (type === "bool") return v === true ? "Yes" : v === false ? "No" : String(v);
+  if (VALUE_CHOICES[key] && typeof v === "string") return choiceLabel(key, v);
   if (type === "ts") return fmtIst(String(v));
   if (type === "date") return istDate(v);
   if (type === "num") return /_(pct|percentage)$/.test(key) ? `${num(v)}%` : num(v);

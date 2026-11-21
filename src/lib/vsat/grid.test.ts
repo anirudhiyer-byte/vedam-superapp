@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
-  DEFAULT_COLUMNS, columnLabel, formatValue, panelScope, parseSearchValues, pickSummary, requestColumns, sanitizeColumns, toCsv,
-  type GridColumn, type GridRow,
+  DEFAULT_COLUMNS, VALUE_CHOICES, columnLabel, describeClause, formatValue, isFilterable, panelScope, parseSearchValues, pickSummary, requestColumns,
+  sanitizeColumns, toCsv, type GridColumn, type GridRow,
 } from "./grid";
 import { PANEL_STAGES } from "./pipeline";
 
@@ -96,5 +96,44 @@ describe("pickSummary", () => {
     expect(pickSummary([], l)).toBe("All");
     expect(pickSummary(["booked"], l)).toBe("BOOKED");
     expect(pickSummary(["a", "b", "c"], l)).toBe("3 selected");
+  });
+});
+
+describe("VSAT Exam results (0135)", () => {
+  it("the Exam panel opens on the results sheet: %, percentile, the three sections, VPS, eligibility, proctoring", () => {
+    expect(DEFAULT_COLUMNS.exam).toEqual(expect.arrayContaining([
+      "exam_percentage", "exam_percentile", "exam_section_maths", "exam_section_lr", "exam_section_cs", "vps_effective", "eligible_effective", "proctoring",
+    ]));
+  });
+  it("VPS brings its calculated value along so the cell can show it next to an override", () => {
+    expect(requestColumns(["vps_effective"])).toEqual(expect.arrayContaining(["vps_override", "vps_calculated"]));
+    expect(requestColumns(["exam_percentage"])).not.toContain("vps_calculated");
+  });
+  it("labels the new columns in plain words and keeps the stored VPS apart from the calculated one", () => {
+    expect(columnLabel("exam_percentage")).toBe("Exam %");
+    expect(columnLabel("exam_section_lr")).toBe("Logical reasoning");
+    expect(columnLabel("vps_calculated")).toBe("VPS (calculated)");
+    expect(columnLabel("vps_score")).toBe("VPS (stored)");
+    expect(columnLabel("exam_overall")).toBe("Result (Wheebox)");
+  });
+  it("formats the exam % with a sign and fixed-list values with their words", () => {
+    expect(formatValue("num", "exam_percentage", 75.5)).toBe("75.5%");
+    expect(formatValue("text", "proctoring", "disqualified")).toBe("Disqualified");
+    expect(formatValue("text", "class12_result", "yet_to_graduate")).toBe("Yet to graduate");
+    expect(formatValue("text", "class12_result", "something_new")).toBe("something_new");
+  });
+  it("the filter builder trusts the database's filterable flag, else real columns of a filterable type only", () => {
+    const v = (key: string, type: GridColumn["type"], filterable?: boolean): GridColumn => ({ key, type, group: "Exam", virtual: true, restricted: false, filterable });
+    expect(isFilterable(v("vps_effective", "num", true))).toBe(true);
+    expect(isFilterable(v("stage", "stage", false))).toBe(false);
+    expect(isFilterable(v("vsat", "text"))).toBe(false);                 // virtual, no flag (older response) → not offered
+    expect(isFilterable(col("class12_percentage", "num"))).toBe(true);   // real, no flag → by type
+    expect(isFilterable(col("form_data", "json"))).toBe(false);
+  });
+  it("filter chips show the readable value for fixed-list columns", () => {
+    expect(describeClause({ column: "proctoring", op: "eq", v: "disqualified" }, "text")).toBe("Proctoring is Disqualified");
+    expect(describeClause({ column: "class12_result", op: "in", v: ["pass", "yet_to_graduate"] }, "text")).toBe("12th result is any of Pass, Yet to graduate");
+    expect(describeClause({ column: "vps_effective", op: "gte", v: "7.4" }, "num")).toBe("VPS ≥ 7.4");
+    expect(VALUE_CHOICES.proctoring.map((c) => c.value)).toEqual(["disqualified", "cleared"]);
   });
 });
