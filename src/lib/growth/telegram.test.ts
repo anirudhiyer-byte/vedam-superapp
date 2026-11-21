@@ -26,7 +26,7 @@ describe("spend", () => {
   });
   it("empty CPL / CPA shows as nothing (CRM —)", () => {
     expect(valueOf(row({ id: "1" }), "cpl")).toBeNull();
-    expect(cellText(COLS[4], 1500)).toBe("₹1,500");
+    expect(cellText(COLS[4], 1500)).toBe("1,500");   // CRM table: plain number, no ₹ (KPI cards keep ₹)
     expect(cellText(COLS[4], null)).toBe("—");
   });
 });
