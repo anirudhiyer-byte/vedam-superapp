@@ -99,7 +99,7 @@ export const CSS = `
 .vcn-banner>div{flex:1}.vcn-banner .vcn-x{min-width:28px;min-height:28px;margin:-4px -6px -4px 0}
 
 .vcn-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.vcn-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.vcn-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;container-type:inline-size}
 .vcn-t{width:100%;min-width:900px;border-collapse:collapse}
 .vcn-t thead tr{background:var(--hov);border-bottom:2px solid var(--line2,rgba(170,160,255,.22))}
 .vcn-t th{text-align:left;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:10px 14px;white-space:nowrap;position:relative}
@@ -155,10 +155,12 @@ export const CSS = `
 .vcn-eco:hover,.vcn-eco:focus-visible{background:var(--hov);outline:none}.vcn-eco.pos{color:#10b981}.vcn-eco svg{color:var(--a)}
 .vcn-eco.clr{color:var(--mut2);border-top:1px solid var(--line);justify-content:flex-start}
 
-.vcn-empty{padding:64px 16px;text-align:center;color:var(--mut)}
+/* the table is much wider than the screen: messages stay in the visible part (100cqi = width of .vcn-scroll) */
+.vcn-t td.msg{padding:0}
+.vcn-empty{position:sticky;left:0;width:100cqi;padding:64px 16px;text-align:center;color:var(--mut)}
 .vcn-empty b{display:block;font-size:15px;font-weight:500;color:var(--mut)}.vcn-empty span{display:block;font-size:13.5px;margin-top:4px}
 .vcn-empty em{font-style:normal;font-weight:600;color:var(--a)}
-.vcn-skel td{padding:14px}.vcn-skel i{display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--hov),rgba(170,160,255,.12),var(--hov));
+.vcn-skel td{padding:14px}.vcn-skel i{position:sticky;left:14px;max-width:calc(100cqi - 28px);display:block;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--hov),rgba(170,160,255,.12),var(--hov));
   background-size:200% 100%;animation:vcn-sh 1.2s ease-in-out infinite}
 @keyframes vcn-sh{to{background-position:-200% 0}}@media (prefers-reduced-motion:reduce){.vcn-skel i{animation:none}}
 
