@@ -12,8 +12,6 @@ export const DEFAULT_DURATION_MIN = 30;
 export const DURATION_CHOICES = [15, 20, 30, 45, 60] as const;
 /** The student's Join button (and the link) opens this many minutes before the start. Same rule as vsat_my_interview(). */
 export const JOIN_OPENS_MIN = 10;
-/** Most students one bulk schedule may take (vsat_schedule_interviews_bulk). */
-export const BULK_MAX = 40;
 
 const TZ = "Asia/Kolkata";
 
@@ -183,6 +181,53 @@ export type MyInterview = {
   has_link?: boolean;
   meet_link?: string | null;
 };
+
+/** What the student's interview card says: no campus yet, loading / couldn't load, or one of the join phases. */
+export type CardPhase = MyInterview["state"] | "no_campus" | "loading" | "error";
+
+/** "Before you join" on the student's card (shown as icon chips while the interview is booked or starting). */
+export const JOIN_TIPS = ["Camera on", "Mic on", "Quiet place"] as const;
+
+/**
+ * The interview card's heading and message (copy approved 23 Nov 2026; no emoji — the card shows an icon per state).
+ * `hasLink` matters only while open: no link yet → the "being ready" message. The campus is shown under the heading.
+ */
+export function interviewCardCopy(phase: CardPhase, opts: { opensAt?: string | null; hasLink?: boolean } = {}): { title: string; text: string } {
+  switch (phase) {
+    case "no_campus": return { title: "Choose your campus first", text: "Pick your campus below to book your interview." };
+    case "none": return { title: "You're selected for the interview", text: "We'll book your interview soon and email you the time." };
+    case "upcoming": return {
+      title: "Your interview is booked",
+      text: `The Join button opens ${opts.opensAt ? `at ${istTime(opts.opensAt)} IST, ` : ""}${JOIN_OPENS_MIN} minutes before your interview.`,
+    };
+    case "open": return {
+      title: "Your interview is starting",
+      text: opts.hasLink ? "" : "Your meeting link will be ready in a minute. You can also join from the link in your email.",
+    };
+    case "missed": return { title: "You missed your interview", text: "The admissions team will contact you to book a new time." };
+    case "ended": return { title: "Your interview is done", text: "We'll email you the result." };
+    case "error": return { title: "Your interview", text: "We couldn't load your interview time. Please try again in a moment." };
+    default: return { title: "Your interview", text: "" };
+  }
+}
+
+/** The date tile on the student's card, in IST: "Mon" · "23" · "Nov", and "Monday, 23 November". */
+export function istDay(iso: string | null | undefined): { weekday: string; day: string; month: string; long: string } | null {
+  if (!iso || Number.isNaN(Date.parse(iso))) return null;
+  const d = new Date(iso);
+  const f = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat("en-IN", { ...o, timeZone: TZ }).format(d);
+  return { weekday: f({ weekday: "short" }), day: f({ day: "numeric" }), month: f({ month: "short" }), long: `${f({ weekday: "long" })}, ${f({ day: "numeric" })} ${f({ month: "long" })}` };
+}
+
+/** Time left, rounded up to the minute: "3 days" · "1 day 4 h" · "2 h 15 min" · "45 min". */
+export function timeLeftText(ms: number): string {
+  if (!(ms > 0)) return "a moment";
+  const min = Math.ceil(ms / 60_000);
+  if (min >= 2 * 1440) return `${Math.floor(min / 1440)} days`;
+  if (min >= 1440) { const h = Math.floor((min - 1440) / 60); return h ? `1 day ${h} h` : "1 day"; }
+  if (min >= 60) { const h = Math.floor(min / 60); const m = min % 60; return m ? `${h} h ${m} min` : `${h} h`; }
+  return `${min} min`;
+}
 
 /** The server's clock minus the browser's, so the button opens on the server's time, not a wrong phone clock. */
 export const clockSkewMs = (serverNowIso: string, clientNow = Date.now()): number => Date.parse(serverNowIso) - clientNow;

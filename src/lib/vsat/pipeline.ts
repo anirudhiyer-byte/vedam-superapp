@@ -120,6 +120,8 @@ const ERRORS: Record<string, string> = {
   LINK_IN_USE: "That meeting link is already used for another student at the same time.",
   NOTHING_TO_RETRY: "Nothing to retry: the Google Meet hasn't failed.",
   NO_FREE_SLOT: "The interviewer has no free time near this start. Pick another start time.",
+  CLASH: "The interviewer has another student at this time.",
+  NO_DRAFT: "Fill the interviewer, date and time first.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",

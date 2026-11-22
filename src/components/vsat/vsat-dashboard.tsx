@@ -7,7 +7,7 @@ import { track } from "@/lib/analytics/track";
 import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
 import { VsatExamBlock } from "@/components/vsat/vsat-exam-block";
 import { HelpBox } from "@/components/vsat/help-box";
-import { InterviewJoin } from "@/components/vsat/interview-card";
+import { InterviewCard } from "@/components/vsat/interview-card";
 import { offerPayable, type EnrollApp } from "@/lib/payments/enroll-fee";
 
 const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"];
@@ -550,17 +550,8 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
             ) : appl === "interview_selected" ? (
               // #1: "Join interview" only clickable once a campus is selected
               <div className={`${leadCard} mb-4`}>
-                <h2 className="font-display text-[19px] font-extrabold">Interview {campus ? "aligned 🎉" : "— select your campus first"}</h2>
-                <p className="mt-1.5 text-sm text-[#6c6485]">{campus ? `Campus: ${campus}. Your interview is aligned — join below.` : "Choose your campus to unlock the Join Interview button."}</p>
-                {!campus && (
-                  <div className="mt-4 space-y-2">
-                    {CAMPUSES.map((c) => (
-                      <button key={c} onClick={() => saveStage({ campus_applied: c })} disabled={busy} className="block w-full rounded-xl border border-[#e9e4f2] bg-white px-4 py-3 text-left text-sm font-semibold transition hover:border-[#8a18ff] disabled:opacity-50">{c}</button>
-                    ))}
-                  </div>
-                )}
-                {/* time + Join button: the link opens from 10 minutes before the start until the end (vsat_my_interview) */}
-                <InterviewJoin campusChosen={!!campus} />
+                {/* heading + time + Join button by state; the link opens from 10 minutes before the start until the end (vsat_my_interview) */}
+                <InterviewCard campus={campus || null} campuses={CAMPUSES} onPickCampus={(c) => saveStage({ campus_applied: c })} picking={busy} />
               </div>
             ) : hasResults ? (
               <div className={`${card} mb-4 border-[#1f9d57]/30 bg-[#f1fbf5]`}>

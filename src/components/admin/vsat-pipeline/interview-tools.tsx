@@ -1,17 +1,17 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import { errorText, fmtIst, isHttpsLink, istSlot } from "@/lib/vsat/pipeline";
 import {
-  ATTENDANCE_HINT, ATTENDANCE_LABEL, BULK_MAX, DEFAULT_DURATION_MIN, DURATION_CHOICES, MEET_LABEL, istDate, istParts, istTime, istTimeRange,
+  ATTENDANCE_HINT, ATTENDANCE_LABEL, DEFAULT_DURATION_MIN, DURATION_CHOICES, MEET_LABEL, istDate, istParts, istTimeRange,
   isLive, meetErrorText, meetState, type InterviewRow, type MeetState,
 } from "@/lib/vsat/interviews";
 import type { TeamMember } from "./types";
 
 /**
- * VSAT interviews (Phase 2, migration 0140): schedule / move / cancel, Google Meet state, attendance,
- * and the bulk scheduler. Every action is a database function that checks the caller again; after a
+ * VSAT interviews (Phase 2, migration 0140): schedule / move / cancel one student, Google Meet state and
+ * attendance (many students: the Interview panel rows, interview-planner.tsx). Every action is a database function that checks the caller again; after a
  * save the panel asks the server to run the Google + email work now (the cron does it within 10 minutes anyway).
  */
 
@@ -254,146 +254,5 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
       )}
       <Msg text={msg} />
     </div>
-  );
-}
-
-// ── bulk ──────────────────────────────────────────────────────────────────────
-
-type BulkPlan = {
-  dry_run: boolean; duration_min: number; start: string; ends_at: string | null;
-  scheduled: { application_id: string; name: string | null; slot: string }[];
-  skipped: { application_id: string; name: string | null; code: string }[];
-};
-
-/**
- * Admin / admissions: up to 40 selected students with one interviewer, back to back from a start time.
- * Preview first (nothing saved), then confirm. Times the interviewer is already busy are skipped by the database.
- */
-export function BulkScheduleDialog({ ids, onClose, onDone }: { ids: string[]; onClose: () => void; onDone: () => void }) {
-  const [supabase] = useState(() => createClient());
-  const [team, setTeam] = useState<TeamMember[] | null>(null);
-  const [who, setWho] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [dur, setDur] = useState<number>(DEFAULT_DURATION_MIN);
-  const [plan, setPlan] = useState<BulkPlan | null>(null);
-  const [done, setDone] = useState<BulkPlan | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState("");
-  const tooMany = ids.length > BULK_MAX;
-
-  useEffect(() => {
-    void supabase.rpc("vsat_team_list").then(({ data }) => setTeam(Array.isArray(data) ? (data as TeamMember[]) : []));
-  }, [supabase]);
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" && !busy) onClose(); };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose, busy]);
-  // any change to the inputs makes the preview stale
-  useEffect(() => { setPlan(null); }, [who, date, time, dur]);
-
-  const people = useMemo(() => (team ?? []).filter((t) => t.roles.includes("interviewer")), [team]);
-  const whoName = people.find((t) => t.user_id === who)?.name ?? people.find((t) => t.user_id === who)?.email ?? "";
-
-  async function run(dry: boolean) {
-    const start = istSlot(date, time);
-    if (!who) return setMsg("Pick an interviewer.");
-    if (!start) return setMsg("Pick a start date and time.");
-    if (Date.parse(start) < Date.now()) return setMsg("Pick a start time in the future.");
-    setBusy(true); setMsg("");
-    const { data, error } = await supabase.rpc("vsat_schedule_interviews_bulk", {
-      p: { application_ids: ids, interviewer_id: who, start, duration_min: dur, dry_run: dry },
-    });
-    if (error) { setBusy(false); return setMsg(errorText(error.message)); }
-    const res = data as BulkPlan;
-    if (dry) { setPlan(res); setBusy(false); return; }
-    setDone(res); setPlan(null);
-    onDone();
-    await syncInterviewsNow(res.scheduled.map((s) => s.application_id));
-    setBusy(false);
-    onDone();
-  }
-
-  const shown = done ?? plan;
-  return (
-    <>
-      <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => !busy && onClose()} />
-      <div role="dialog" aria-modal="true" aria-labelledby="bulk-iv-title"
-        className="fixed left-1/2 top-6 z-50 flex max-h-[calc(100vh-3rem)] w-[min(720px,94%)] -translate-x-1/2 flex-col overflow-hidden rounded-2xl border border-vx-line bg-[#0e0b29] text-vx-ink shadow-2xl">
-        <div className="flex items-start justify-between gap-3 border-b border-vx-line px-5 py-4">
-          <div>
-            <h2 id="bulk-iv-title" className="text-base font-bold">Schedule interviews</h2>
-            <p className="text-xs text-vx-faint">{ids.length} selected · one interviewer, back to back from the start time (IST). Busy times are skipped.</p>
-          </div>
-          <button className={cx(vx.btn, vx.ghost, vx.sm)} onClick={onClose} disabled={busy}>Close</button>
-        </div>
-
-        <div className="space-y-3 overflow-y-auto px-5 py-4 text-sm">
-          {tooMany && <p className={vx.error}>Pick at most {BULK_MAX} students at a time.</p>}
-          {!done && (
-            <div className="grid gap-2 sm:grid-cols-4">
-              <select className={`${input} sm:col-span-2`} value={who} onChange={(e) => setWho(e.target.value)} aria-label="Interviewer" disabled={!team}>
-                <option value="">{team ? "Pick interviewer…" : "Loading…"}</option>
-                {people.map((t) => <option key={t.user_id} value={t.user_id}>{t.name ?? t.email}{t.campus ? ` (${t.campus})` : ""}</option>)}
-              </select>
-              <input className={input} type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="Start date" />
-              <input className={input} type="time" step={300} value={time} onChange={(e) => setTime(e.target.value)} aria-label="Start time" />
-              <label className="flex items-center gap-2 sm:col-span-4">
-                <span className="text-vx-faint">Each interview</span>
-                <select className={vx.field} value={dur} onChange={(e) => setDur(Number(e.target.value))} aria-label="Length in minutes">
-                  {DURATION_CHOICES.map((m) => <option key={m} value={m}>{m} min</option>)}
-                </select>
-                <span className="text-xs text-vx-faint">Google Meet for each, invites to the student and {whoName || "the interviewer"}.</span>
-              </label>
-            </div>
-          )}
-
-          {shown && (
-            <div className="space-y-2">
-              <p className="font-medium">
-                {done
-                  ? `Scheduled ${done.scheduled.length} interview${done.scheduled.length === 1 ? "" : "s"} ✓`
-                  : `Preview: ${shown.scheduled.length} will be scheduled${shown.skipped.length ? `, ${shown.skipped.length} skipped` : ""}`}
-                {shown.scheduled.length > 0 && shown.ends_at && <span className="font-normal text-vx-faint"> · last one ends {istTime(shown.ends_at)} IST</span>}
-              </p>
-              {shown.scheduled.length > 0 && (
-                <ul className="max-h-60 overflow-y-auto rounded-lg border border-vx-line">
-                  {shown.scheduled.map((r) => (
-                    <li key={r.application_id} className="flex flex-wrap justify-between gap-2 border-b border-vx-line-soft px-3 py-2 last:border-0">
-                      <span>{r.name ?? r.application_id}</span>
-                      <span className="tabular-nums text-vx-mut">{slotText(r.slot, shown.duration_min)}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {shown.skipped.length > 0 && (
-                <div className="rounded-lg border border-vx-orange/25 bg-vx-orange/[0.05] p-3">
-                  <p className="mb-1 text-xs font-semibold text-vx-orange-t">Skipped</p>
-                  <ul className="space-y-1 text-xs text-vx-mut">
-                    {shown.skipped.map((r) => <li key={r.application_id}>{r.name ?? r.application_id}: {errorText(r.code)}</li>)}
-                  </ul>
-                </div>
-              )}
-              {done && <p className="text-xs text-vx-faint">Google Meet invites are being made now. Emails go out once each Meet link is ready (within 20 minutes at most).</p>}
-            </div>
-          )}
-          <Msg text={msg} />
-        </div>
-
-        <div className="flex flex-wrap items-center justify-end gap-2 border-t border-vx-line px-5 py-4">
-          {done ? (
-            <button className={primary} onClick={onClose} disabled={busy}>{busy ? "Making invites…" : "Done"}</button>
-          ) : (
-            <>
-              <button className={ghost} disabled={busy || tooMany || !team} onClick={() => void run(true)}>{busy && !plan ? "Checking…" : "Preview"}</button>
-              <button className={primary} disabled={busy || tooMany || !plan || plan.scheduled.length === 0} onClick={() => void run(false)}>
-                {busy && plan ? "Scheduling…" : plan ? `Schedule ${plan.scheduled.length}` : "Schedule"}
-              </button>
-            </>
-          )}
-        </div>
-      </div>
-    </>
   );
 }
