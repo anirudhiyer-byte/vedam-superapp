@@ -137,3 +137,34 @@ describe("VSAT Exam results (0135)", () => {
     expect(VALUE_CHOICES.proctoring.map((c) => c.value)).toEqual(["disqualified", "cleared"]);
   });
 });
+
+describe("interviews (0140)", () => {
+  it("the Interview panel shows the Meet state and attendance next to the slot", () => {
+    expect(DEFAULT_COLUMNS.intv.slice(4, 8)).toEqual(["interviewer", "interview_slot", "interview_meet", "interview_attendance"]);
+    expect(columnLabel("interview_meet")).toBe("Interview Meet");
+  });
+  it("Meet state reads as words in cells and CSV", () => {
+    expect(formatValue("text", "interview_meet", "ready")).toBe("Meet ready");
+    expect(formatValue("text", "interview_meet", "own_link")).toBe("Own link");
+    expect(formatValue("text", "interview_meet", "failed")).toBe("Meet failed");
+    expect(formatValue("text", "interview_meet", null)).toBe("—");
+    expect(formatValue("text", "interview_meet", "something_new")).toBe("something_new");
+  });
+});
+
+describe("attendance columns read as words (cells and CSV)", () => {
+  it("interview and counselling attendance use the drawer's words; unknown values pass through", () => {
+    for (const key of ["interview_attendance", "counselling_attendance"]) {
+      expect(formatValue("text", key, "scheduled")).toBe("Not marked yet");
+      expect(formatValue("text", key, "done")).toBe("Joined");
+      expect(formatValue("text", key, "no_show")).toBe("No-show");
+      expect(formatValue("text", key, "rescheduled")).toBe("Rescheduled");
+      expect(formatValue("text", key, "other")).toBe("other");
+      expect(formatValue("text", key, null)).toBe("—");
+    }
+  });
+  it("CSV carries the words too", () => {
+    const rows = [{ application_id: "A1", application_no: "A1", stage: "interview_scheduled", status: "active", attempt_no: 1, interview_attendance: "no_show" }] as unknown as GridRow[];
+    expect(toCsv(rows, [{ key: "interview_attendance", type: "text" }])).toBe('"App no.","Interview attendance"\n"A1","No-show"');
+  });
+});

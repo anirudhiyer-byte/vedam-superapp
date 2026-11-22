@@ -16,6 +16,12 @@ type Step = {
 };
 type Settings = { master: boolean; test_email: string; test_phone: string };
 
+/** Interview steps (0140) are sent by the interview jobs, by email only, with their own placeholders. */
+const isInterviewStep = (key: string) => /^interview(er)?_/.test(key);
+const STAGE_VARS = ["name", "amount", "apply_link", "dashboard_link", "receipt_link"];
+const INTERVIEW_VARS = ["name", "student_name", "application_no", "date", "time", "old_date", "old_time", "join_link", "dashboard_link", "panel_link"];
+const varList = (vars: string[]) => vars.map((v) => `{{${v}}}`).join(" ");
+
 function Toggle({ on, onClick, text }: { on: boolean; onClick: () => void; text: string }) {
   return (
     <button type="button" onClick={onClick}
@@ -139,10 +145,20 @@ export function VsatCommsPanel() {
                           <Toggle on={s.email_enabled} onClick={() => patch(i, { email_enabled: !s.email_enabled })} text="Email" />
                         </div>
                         <input className={`${input} mt-2`} value={s.email_subject} onChange={(e) => patch(i, { email_subject: e.target.value })} placeholder="Email subject" />
-                        <textarea className={`${input} mt-2 min-h-[120px] font-mono text-[12px]`} value={s.email_body} onChange={(e) => patch(i, { email_body: e.target.value })} placeholder="Email body (HTML). Placeholders: {{name}} {{amount}} {{apply_link}} {{dashboard_link}} {{receipt_link}}" />
+                        <textarea className={`${input} mt-2 min-h-[120px] font-mono text-[12px]`} value={s.email_body} onChange={(e) => patch(i, { email_body: e.target.value })}
+                          placeholder={`Email body (HTML). Placeholders: ${varList(isInterviewStep(s.step_key) ? INTERVIEW_VARS : STAGE_VARS)}`} />
+                        {isInterviewStep(s.step_key) && (
+                          <p className="mt-1.5 text-[11px] text-vx-faint">
+                            Placeholders: {varList(INTERVIEW_VARS)}. {"{{name}}"} is the person getting the email; {"{{join_link}}"} is the meeting link
+                            (or the dashboard / panel link until the Google Meet is ready); {"{{old_date}}"} and {"{{old_time}}"} are only in &ldquo;moved&rdquo; emails.
+                          </p>
+                        )}
                       </div>
 
-                      {/* ── WhatsApp channel (separate — copy comes from the approved template) ── */}
+                      {/* ── WhatsApp channel (separate — copy comes from the approved template). Interview steps: email only. ── */}
+                      {isInterviewStep(s.step_key) ? (
+                        <p className="mt-3 text-[11px] text-vx-faint">Interview messages go by email only (with the Google Calendar invite). There is no WhatsApp for this step.</p>
+                      ) : (
                       <div className="mt-3 rounded-lg border border-vx-line bg-white/[0.02] p-3">
                         <div className="flex items-center justify-between gap-2">
                           <span className="text-xs font-semibold text-vx-mut">💬 WhatsApp</span>
@@ -151,6 +167,7 @@ export function VsatCommsPanel() {
                         <input className={`${input} mt-2`} value={s.wa_template_id ?? ""} onChange={(e) => patch(i, { wa_template_id: e.target.value })} placeholder="WhatsApp template id (set after approval)" />
                         <p className="mt-1.5 text-[11px] text-vx-faint">WhatsApp copy is set by the approved template — kept separate from the email content above.</p>
                       </div>
+                      )}
 
                       <div className="mt-3"><button onClick={() => saveStep(s)} disabled={busy} className={btn}>Save step</button></div>
                     </div>
@@ -161,7 +178,7 @@ export function VsatCommsPanel() {
           </div>
 
           {msg && <p className="mt-4 text-sm text-vx-green">{msg}</p>}
-          <p className="mt-3 text-[11px] text-vx-faint">Placeholders: <code>{"{{name}}"}</code>, <code>{"{{amount}}"}</code>, <code>{"{{apply_link}}"}</code>, <code>{"{{dashboard_link}}"}</code>, <code>{"{{receipt_link}}"}</code>. WhatsApp copy is fixed by the approved template; the email is fully editable.</p>
+          <p className="mt-3 text-[11px] text-vx-faint">Placeholders: <code>{"{{name}}"}</code>, <code>{"{{amount}}"}</code>, <code>{"{{apply_link}}"}</code>, <code>{"{{dashboard_link}}"}</code>, <code>{"{{receipt_link}}"}</code> (interview steps have their own, listed in each step). WhatsApp copy is fixed by the approved template; the email is fully editable.</p>
         </>
       )}
     </section>

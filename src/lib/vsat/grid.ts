@@ -6,6 +6,7 @@
  * for each panel, format cell values and turn pasted search text into values.
  */
 import { PANEL_STAGES, STAGE_LABEL, STATUS_LABEL, isStage, isStatus, fmtIst, type PanelKey, type Stage } from "@/lib/vsat/pipeline";
+import { ATTENDANCE_LABEL, MEET_LABEL, isMeetState } from "@/lib/vsat/interviews";
 
 export type GridColType = "text" | "num" | "bool" | "date" | "ts" | "stage" | "status" | "json" | "uuid";
 /** `filterable` comes from the database (0135): real columns of a filterable type, plus the virtual ones it has a fixed expression for. */
@@ -16,7 +17,11 @@ export type GridRow = Record<string, unknown> & { application_id: string; stage:
 export type GridFacets = {
   stage: Record<string, number>; status: Record<string, number>; vsat: Record<string, number>; campus: Record<string, number>;
   form_stage?: Record<string, number>; payment_stage?: Record<string, number>;
+  /** 0140: students per interviewer user id ("none" = no interviewer), and each id's name. */
+  interviewer?: Record<string, number>; interviewer_name?: Record<string, string>;
 };
+/** 0140: the Interviewer dropdown's value for "no interviewer yet". */
+export const NO_INTERVIEWER = "none";
 export type GridResult = { total: number; facets: GridFacets | null; rows: GridRow[]; limit: number; offset: number; can_manage: boolean };
 export type GridSearch = { column: string; values: string[] };
 
@@ -47,6 +52,9 @@ export const VALUE_CHOICES: Record<string, { value: string; label: string }[]> =
   class12_result: [{ value: "pass", label: "Pass" }, { value: "fail", label: "Fail" }, { value: "yet_to_graduate", label: "Yet to graduate" }],
   payment_stage_1: PAYMENT_STAGES.map((v) => ({ value: v, label: PAYMENT_STAGE_LABEL[v] })),
   payment_stage_2: PAYMENT_STAGES.map((v) => ({ value: v, label: PAYMENT_STAGE_LABEL[v] })),
+  // enum vm_attendance, same words as the student drawer (0140)
+  interview_attendance: Object.entries(ATTENDANCE_LABEL).map(([value, label]) => ({ value, label })),
+  counselling_attendance: Object.entries(ATTENDANCE_LABEL).map(([value, label]) => ({ value, label })),
 };
 const choiceLabel = (key: string, v: string): string => VALUE_CHOICES[key]?.find((c) => c.value === v)?.label ?? v;
 export const FILTER_OPS: Record<string, FilterOp[]> = {
@@ -108,6 +116,7 @@ const LABELS: Record<string, string> = {
   proctoring: "Proctoring", class12_result: "12th result", class10_eligible: "10th eligible", class12_eligible: "12th eligible",
   interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview attendance",
   interview_score: "Interview score", interview_calc_verdict: "Verdict (calculated)", interviewer_verdict: "Verdict (interviewer)",
+  interview_meet: "Interview Meet",
   cheating_seen: "Cheating seen",
   counsellor: "Counsellor", counselling_slot: "Counselling slot (IST)", counselling_attendance: "Counselling attendance",
   counselling_category: "Scholarship category", counselling_pct: "Scholarship %", counselling_calculated_pct: "Calculated %",
@@ -153,7 +162,9 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   // 0135 — the results sheet: who, %, percentile, the three sections, VPS, eligibility and the proctoring verdict
   exam: ["registered_name", "campus", "gender", "vsat", "stage", "exam_percentage", "exam_percentile", "exam_section_maths", "exam_section_lr",
          "exam_section_cs", "vps_effective", "eligible_effective", "proctoring"],
-  intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_score", "interview_calc_verdict", "interviewer_verdict", "stage_changed_at"],
+  // 0140 — Meet state and attendance next to the slot
+  intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_score",
+         "interview_calc_verdict", "interviewer_verdict", "stage_changed_at"],
   couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_category", "counselling_pct", "stage_changed_at"],
 };
 
@@ -198,6 +209,7 @@ export function formatValue(type: GridColType, key: string, v: unknown): string 
   if (type === "status") return isStatus(v) ? STATUS_LABEL[v] : String(v);
   if (type === "bool") return v === true ? "Yes" : v === false ? "No" : String(v);
   if (VALUE_CHOICES[key] && typeof v === "string") return choiceLabel(key, v);
+  if (key === "interview_meet") return isMeetState(v) ? MEET_LABEL[v] : String(v);
   if (type === "ts") return fmtIst(String(v));
   if (type === "date") return istDate(v);
   if (type === "num") return /_(pct|percentage)$/.test(key) ? `${num(v)}%` : num(v);

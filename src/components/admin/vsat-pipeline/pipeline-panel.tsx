@@ -8,7 +8,7 @@ import {
   type PanelKey, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import {
-  DEFAULT_COLUMNS, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL, VALUE_CHOICES,
+  DEFAULT_COLUMNS, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, NO_INTERVIEWER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL, VALUE_CHOICES,
   columnLabel, describeClause, filterInputType, formatValue, isFilterable, opArity, panelScope, parseSearchValues, requestColumns, sanitizeColumns, toCsv,
   type FilterClause, type GridColumn, type GridColumnsResult, type GridResult, type GridRow, type GridSearch,
 } from "@/lib/vsat/grid";
@@ -16,6 +16,8 @@ import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { StudentDrawer } from "./student-drawer";
 import { FacetPick, type Opt } from "./facet-pick";
 import { ExamAnalysisCard, ProctoringBar, VpsEditDialog, type VpsTarget } from "./exam-tools";
+import { BulkScheduleDialog, MeetBadge } from "./interview-tools";
+import { BULK_MAX, isMeetState } from "@/lib/vsat/interviews";
 import type { Batch } from "./types";
 
 /**
@@ -30,6 +32,7 @@ import type { Batch } from "./types";
  * assignment and column rules on every call. Stage moves use the same engine as before.
  * VSAT Exam panel (0135): results columns by default, paid students by default for managers, the results
  * analysis for the chosen VSAT(s), Select for PI (admins), proctoring verdicts and a VPS edit (admins).
+ * Interview panel (0140): an Interviewer dropdown and "Schedule interviews" (bulk, preview first) for managers.
  */
 
 const PAGE = 50;
@@ -83,6 +86,9 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [vsatIds, setVsatIds] = useState<string[]>([]);
   const [campuses, setCampuses] = useState<string[]>([]);
   const [formStages, setFormStages] = useState<string[]>([]);
+  const [ivIds, setIvIds] = useState<string[]>([]);
+  const ivPanel = panel === "intv" && manager;
+  const [bulkIv, setBulkIv] = useState(false);
   // Exam panel: managers start on paid students only (0135); "Clear filters" still shows everyone
   const [payStages, setPayStages] = useState<string[]>(() => (manager && panel === "exam" ? ["payment_approved"] : []));
   const [filterClauses, setFilterClauses] = useState<FilterClause[]>([]);
@@ -141,10 +147,11 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
     if (campuses.length) p.campuses = campuses;
     if (formStages.length) p.form_stages = formStages;
     if (manager && payStages.length) p.payment_stages = payStages;
+    if (ivPanel && ivIds.length) p.interviewer_ids = ivIds;
     if (filterClauses.length) p.filters = filterClauses;
     if (search) p.search = search;
     return p;
-  }, [scope, stages, statuses, vsatIds, campuses, formStages, payStages, filterClauses, manager, search]);
+  }, [scope, stages, statuses, vsatIds, campuses, formStages, payStages, ivPanel, ivIds, filterClauses, manager, search]);
 
   const load = useCallback(async () => {
     if (!catalog.length) return;
@@ -159,7 +166,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
 
   const rows = useMemo(() => data?.rows ?? [], [data]);
   const facets = data?.facets ?? null;
-  const anyFilter = stages.length > 0 || statuses.length > 0 || vsatIds.length > 0 || campuses.length > 0 || formStages.length > 0 || payStages.length > 0 || filterClauses.length > 0 || !!search;
+  const anyFilter = stages.length > 0 || statuses.length > 0 || vsatIds.length > 0 || campuses.length > 0 || formStages.length > 0 || payStages.length > 0
+    || ivIds.length > 0 || filterClauses.length > 0 || !!search;
   const allOnPage = rows.length > 0 && rows.every((r) => sel.has(r.application_id));
   // the stage every selected row is at — the bulk move checks the database still agrees
   const selStage = useMemo<Stage | null>(() => {
@@ -176,12 +184,21 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   ];
   const formOpts: Opt[] = FORM_STAGES.map((v) => ({ value: v, label: FORM_STAGE_LABEL[v], count: facets ? facets.form_stage?.[v] ?? 0 : null }));
   const payOpts: Opt[] = PAYMENT_STAGES.map((v) => ({ value: v, label: PAYMENT_STAGE_LABEL[v], count: facets ? facets.payment_stage?.[v] ?? 0 : null }));
+  // interviewers in this panel's scope (names from the database), A–Z, then "No interviewer"; a chosen one stays listed even at 0
+  const ivOpts: Opt[] = useMemo(() => {
+    const names = facets?.interviewer_name ?? {};
+    const counts = facets?.interviewer ?? {};
+    const ids = new Set([...Object.keys(names), ...ivIds.filter((v) => v !== NO_INTERVIEWER)]);
+    const list = [...ids].map((id) => ({ value: id, label: names[id] ?? "Interviewer", count: facets ? counts[id] ?? 0 : null }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+    return [...list, { value: NO_INTERVIEWER, label: "No interviewer", count: facets ? counts[NO_INTERVIEWER] ?? 0 : null }];
+  }, [facets, ivIds]);
   const searchable = useMemo(() => catalog.filter((c) => !c.virtual && ["text", "num", "date", "ts"].includes(c.type))
     .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
 
   const filterable = useMemo(() => catalog.filter(isFilterable)
     .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
-  function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setFormStages([]); setPayStages([]); setFilterClauses([]); setSearchText(""); setOffset(0); }
+  function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setFormStages([]); setPayStages([]); setIvIds([]); setFilterClauses([]); setSearchText(""); setOffset(0); }
   function toggle(id: string) { setSel((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; }); }
   function setColumns(next: string[]) { setCols(next); saveCols(panel, next); setOffset(0); }
 
@@ -237,6 +254,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         <FacetPick title="Campus" options={campusOpts} value={campuses} onChange={(v) => { setCampuses(v); setOffset(0); }} />
         <FacetPick title="Form" options={formOpts} value={formStages} onChange={(v) => { setFormStages(v); setOffset(0); }} />
         {manager && <FacetPick title="Payment" options={payOpts} value={payStages} onChange={(v) => { setPayStages(v); setOffset(0); }} />}
+        {ivPanel && <FacetPick title="Interviewer" options={ivOpts} value={ivIds} onChange={(v) => { setIvIds(v); setOffset(0); }} />}
         <span className="flex-1" />
         <button className={`${ghost} inline-flex items-center gap-2 ${filterClauses.length ? "border-vx-violet/50 text-vx-ink" : ""}`} onClick={() => setShowFilters(true)} disabled={!catalog.length}>
           <IconFilter /> Filters{filterClauses.length > 0 && <span className="rounded-full bg-vx-violet/20 px-1.5 text-[11px] tabular-nums text-vx-violet-t">{filterClauses.length}</span>}
@@ -286,6 +304,10 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
           <div className="flex flex-wrap items-center gap-2">
             <span className="font-semibold">{sel.size} selected</span>
             <span className="flex-1" />
+            {ivPanel && (
+              <button className={cx(vx.btn, vx.primary)} onClick={() => setBulkIv(true)} disabled={busy !== "" || sel.size > BULK_MAX}
+                title={sel.size > BULK_MAX ? `At most ${BULK_MAX} at a time` : undefined}>Schedule interviews</button>
+            )}
             <button className={`${ghost} inline-flex items-center gap-1.5`} onClick={openComms} disabled={busy !== ""}><IconSend /> {busy === "comms" ? "Loading…" : "Send Communication"}</button>
             <button className={`${ghost} inline-flex items-center gap-1.5`} onClick={exportCsv} disabled={busy !== ""}><IconDownload /> Export</button>
             <button className={ghost} onClick={() => setSel(new Set())}>Clear</button>
@@ -343,6 +365,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       )}
 
       {vpsEdit && <VpsEditDialog target={vpsEdit} onClose={() => setVpsEdit(null)} onDone={() => setReload((n) => n + 1)} />}
+
+      {bulkIv && <BulkScheduleDialog ids={[...sel]} onClose={() => setBulkIv(false)} onDone={() => setReload((n) => n + 1)} />}
 
       {openId && <StudentDrawer id={openId} roles={roles} onClose={() => setOpenId(null)} onChanged={() => setReload((n) => n + 1)} />}
 
@@ -409,6 +433,7 @@ function Cell({ col, row, onEditVps }: { col: GridColumn; row: GridRow; onEditVp
     if (v === "cleared") return <span className={cx(vx.badge, vx.tone.green)}>Cleared</span>;
     return <span className="text-vx-faint">—</span>;
   }
+  if (col.key === "interview_meet") return isMeetState(v) ? <MeetBadge state={v} /> : <span className="text-vx-faint">—</span>;
   if (col.key === "campus") return <span className="capitalize">{formatValue(col.type, col.key, v)}</span>;
   if (col.type === "ts" || col.type === "date") return <span className="text-xs text-vx-mut">{formatValue(col.type, col.key, v)}</span>;
   if (col.type === "bool") { const s = formatValue(col.type, col.key, v); return <span className={s === "Yes" ? "text-vx-green" : s === "No" ? "text-vx-faint" : ""}>{s}</span>; }
@@ -594,7 +619,7 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
       <input className={`${input} w-64`} placeholder={reasonNeeded ? "Reason (required)" : "Reason (optional)"} value={reason}
         onChange={(e) => setReason(e.target.value)} maxLength={500} aria-label="Reason" />
       <button className={cx(vx.btn, vx.primary)} disabled={busy} onClick={apply}>{busy ? "Moving…" : "Move"}</button>
-      <span className="text-xs text-vx-faint">Scheduling an interview or counselling is done from the student page (it needs a person and a slot).{current ? "" : " Mixed stages selected: a reason is required."}</span>
+      <span className="text-xs text-vx-faint">{panel === "intv" ? "To book interviews use “Schedule interviews”; one student: open the student page. " : "Scheduling counselling is done from the student page (it needs a person and a slot). "}{current ? "" : "Mixed stages selected: a reason is required."}</span>
       {msg && <p className="w-full text-vx-ink">{msg}</p>}
     </div>
   );

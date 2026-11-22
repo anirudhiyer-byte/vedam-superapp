@@ -15,6 +15,10 @@
     {
       "path": "/api/cron/elevate-drain",
       "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/vsat-interviews",
+      "schedule": "*/10 * * * *"
     }
   ]
 }
