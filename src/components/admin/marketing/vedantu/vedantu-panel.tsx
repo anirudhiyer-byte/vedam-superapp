@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { CSS } from "../consultants/css";
+import { PERF_CSS } from "../consultants/perf-css";
 import { VedantuListing } from "./listing";
+import { VedantuPerformance } from "./perf";
+import { VP_CSS } from "./perf-css";
 
 /** Vedantu pink (the CRM's Vedantu accent) in place of the Consultants orange; the rest of the Listing styles are shared. */
 const VD_CSS = CSS.replace(/#f97d03/gi, "#E80074") + `
@@ -21,16 +24,20 @@ const VD_CSS = CSS.replace(/#f97d03/gi, "#E80074") + `
 .vcn .vvd-fill{font-size:11px;opacity:.75}
 `;
 
+export type VedantuPage = "listing" | "perf";
+
 /**
- * Growth → Marketing Channels → Vedantu Channel → Vedantu Listing (migration 0136).
+ * Growth → Marketing Channels → Vedantu Channel: Vedantu Listing (migration 0136) and Vedantu Performance (0137).
  * Every read and write goes through the admin-checked growth_vd_* RPCs; the browser has no table access.
  */
-export function VedantuPanel() {
+export function VedantuPanel({ page = "listing" }: { page?: VedantuPage }) {
   const [sb] = useState(() => createClient());
   return (
     <div className="vcn">
       <style>{VD_CSS}</style>
-      <VedantuListing sb={sb} />
+      {page === "perf"
+        ? <><style>{PERF_CSS.replace(/#f97d03/gi, "#E80074") + VP_CSS}</style><VedantuPerformance sb={sb} /></>
+        : <VedantuListing sb={sb} />}
     </div>
   );
 }
