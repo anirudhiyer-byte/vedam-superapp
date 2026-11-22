@@ -45,6 +45,8 @@ export const isFilterable = (c: GridColumn): boolean => c.filterable ?? (!c.virt
 export const VALUE_CHOICES: Record<string, { value: string; label: string }[]> = {
   proctoring: [{ value: "disqualified", label: "Disqualified" }, { value: "cleared", label: "Cleared" }],
   class12_result: [{ value: "pass", label: "Pass" }, { value: "fail", label: "Fail" }, { value: "yet_to_graduate", label: "Yet to graduate" }],
+  payment_stage_1: PAYMENT_STAGES.map((v) => ({ value: v, label: PAYMENT_STAGE_LABEL[v] })),
+  payment_stage_2: PAYMENT_STAGES.map((v) => ({ value: v, label: PAYMENT_STAGE_LABEL[v] })),
 };
 const choiceLabel = (key: string, v: string): string => VALUE_CHOICES[key]?.find((c) => c.value === v)?.label ?? v;
 export const FILTER_OPS: Record<string, FilterOp[]> = {
@@ -97,6 +99,7 @@ const LABELS: Record<string, string> = {
   registered_name: "Student", application_no: "App no.", registered_email: "Email", registered_mobile: "Mobile",
   campus: "Campus", campus_applied: "Campus applied (as typed)", vsat: "VSAT", stage: "Stage", status: "Status",
   stage_changed_at: "Updated", attempt_no: "Attempt", current_attempt: "Attempt (old field)",
+  payment_stage_1: "Payment status", payment_stage_2: "Payment status (attempt 2)",
   exam_percentile: "Percentile", exam_given: "Exam given", exam_obtained_marks: "Exam marks", exam_max_marks: "Exam max marks",
   exam_overall: "Result (Wheebox)", exam_assigned: "Exam assigned", vps_score: "VPS (stored)",
   vps_effective: "VPS", vps_override: "VPS override", vps_calculated: "VPS (calculated)",
