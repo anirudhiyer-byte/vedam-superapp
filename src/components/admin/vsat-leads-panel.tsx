@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import { PageHead } from "@/components/admin/ui/page-head";
 import { FacetPick, type Opt } from "@/components/admin/vsat-pipeline/facet-pick";
+import { DeletePerson } from "@/components/admin/vsat-delete-person";
 
 /**
  * VSAT Leads — EVERYONE who filled the first half of the form (a lead_manager row),
@@ -50,6 +51,13 @@ export function VsatLeadsPanel() {
   const [data, setData] = useState<Result | null>(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let on = true;
+    void supabase.rpc("is_admin").then(({ data: a }) => { if (on) setIsAdmin(a === true); });
+    return () => { on = false; };
+  }, [supabase]);
 
   useEffect(() => {
     const t = setTimeout(() => { setQ(qInput.trim().length >= 2 ? qInput.trim() : ""); setOffset(0); }, 350);
@@ -122,11 +130,12 @@ export function VsatLeadsPanel() {
               <th className="border-b border-vx-line px-3 py-3 font-medium">Latest campaign</th>
               <th className="border-b border-vx-line px-3 py-3 font-medium">Applied</th>
               <th className="border-b border-vx-line px-3 py-3 font-medium">Joined</th>
+              {isAdmin && <th className="border-b border-vx-line px-3 py-3 font-medium text-right">Actions</th>}
             </tr>
           </thead>
           <tbody className="divide-y divide-vx-line-soft">
-            {loading && <tr><td colSpan={8} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
-            {!loading && rows.length === 0 && <tr><td colSpan={8} className="px-4 py-10 text-center text-vx-faint">{anyFilter ? "No leads match these filters." : "No leads yet."}</td></tr>}
+            {loading && <tr><td colSpan={isAdmin ? 9 : 8} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
+            {!loading && rows.length === 0 && <tr><td colSpan={isAdmin ? 9 : 8} className="px-4 py-10 text-center text-vx-faint">{anyFilter ? "No leads match these filters." : "No leads yet."}</td></tr>}
             {!loading && rows.map((r) => (
               <tr key={r.lead_id} className="transition-colors hover:bg-white/[0.03]">
                 <td className="min-w-[150px] px-4 py-3 font-medium text-vx-ink">{r.name || "—"}</td>
@@ -144,6 +153,11 @@ export function VsatLeadsPanel() {
                   </span>
                 </td>
                 <td className="px-3 py-3 whitespace-nowrap text-vx-mut">{fmt(r.created_at)}</td>
+                {isAdmin && (
+                  <td className="px-3 py-3 text-right">
+                    <DeletePerson kind="lead" id={r.lead_id} name={r.name} email={r.email} onDeleted={() => void load()} compact />
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
