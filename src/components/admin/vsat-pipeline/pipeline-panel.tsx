@@ -18,6 +18,8 @@ import { FacetPick, type Opt } from "./facet-pick";
 import { ExamAnalysisCard, ProctoringBar, VpsEditDialog, type VpsTarget } from "./exam-tools";
 import { MeetBadge } from "./interview-tools";
 import { PlanBar, PlanDate, PlanInterviewer, PlanStatus, PlanTime, useInterviewPlan, type PlanMessage } from "./interview-planner";
+import { OfferBar, type OfferMessage } from "./offer-tools";
+import { TRACKS, type Track, type TrackKey } from "@/lib/vsat/tracks";
 import { isMeetState } from "@/lib/vsat/interviews";
 import type { Batch } from "./types";
 
@@ -35,6 +37,8 @@ import type { Batch } from "./types";
  * analysis for the chosen VSAT(s), Select for PI (admins), proctoring verdicts and a VPS edit (admins).
  * Interview panel (0140, 0143): an Interviewer dropdown for managers, and booking from the rows like the old
  * sheet — Interviewer / Date / Time cells on each row, select rows, one Send (interview-planner.tsx).
+ * Counselling panel (0144, 0145): the same row booking with Counsellor / Date / Time, and Release offer for
+ * students at Counselled (offer-tools.tsx).
  */
 
 const PAGE = 50;
@@ -43,8 +47,11 @@ const ghost = cx(vx.btn, vx.secondary);
 const TITLE: Record<PanelKey, string> = { apps: "VSAT Applications", exam: "VSAT Exam", intv: "Interview", couns: "Counselling" };
 const STICKY_BG = "bg-[#100d2a]";
 // Interview panel, managers: these columns become the editable row cells (Interviewer / Date / Time / Invite)
-const PLANNER_REPLACES = new Set(["interviewer", "interview_slot"]);
-const PLANNER_HEADS = ["Interviewer", "Date (IST)", "Time (IST)", "Invite"];
+// the grid columns the row cells replace, per track (0143 interviews, 0145 counselling)
+const PLANNER_REPLACES: Record<TrackKey, Set<string>> = {
+  interview: new Set(["interviewer", "interview_slot"]), counselling: new Set(["counsellor", "counselling_slot"]),
+};
+const plannerHeads = (t: Track) => [t.Host, "Date (IST)", "Time (IST)", "Invite"];
 
 export const STATUS_TONE: Record<Status, string> = {
   active: "border-vx-green/30 bg-vx-green/10 text-vx-green",
@@ -93,6 +100,10 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [formStages, setFormStages] = useState<string[]>([]);
   const [ivIds, setIvIds] = useState<string[]>([]);
   const ivPanel = panel === "intv" && manager;
+  // booking from the rows: interviews (0143) on the Interview panel, counselling (0145) on the Counselling panel
+  const planTrack: Track | null = !manager ? null : panel === "intv" ? TRACKS.interview : panel === "couns" ? TRACKS.counselling : null;
+  const planOn = !!planTrack;
+  const offerPanel = panel === "couns" && manager;   // 0144: release offers from the selection
   // Exam panel: managers start on paid students only (0135); "Clear filters" still shows everyone
   const [payStages, setPayStages] = useState<string[]>(() => (manager && panel === "exam" ? ["payment_approved"] : []));
   const [filterClauses, setFilterClauses] = useState<FilterClause[]>([]);
@@ -115,6 +126,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [notice, setNotice] = useState("");
   const [vpsEdit, setVpsEdit] = useState<VpsTarget | null>(null);
   const [planMsg, setPlanMsg] = useState<PlanMessage | null>(null);
+  const [offerMsg, setOfferMsg] = useState<OfferMessage | null>(null);
 
   // catalogue (what this person may show) + VSAT list; saved column choice is checked against the catalogue
   useEffect(() => {
@@ -173,12 +185,12 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const facets = data?.facets ?? null;
   // Interview panel, managers: book from the rows (0143)
   const rowIds = useMemo(() => (loading ? [] : rows.map((r) => r.application_id)), [rows, loading]);
-  const planner = useInterviewPlan(rowIds, ivPanel);
-  const tableCols = useMemo(() => (ivPanel ? shownCols.filter((c) => !PLANNER_REPLACES.has(c.key)) : shownCols), [ivPanel, shownCols]);
+  const planner = useInterviewPlan(rowIds, planOn, planTrack ?? TRACKS.interview);
+  const tableCols = useMemo(() => (planTrack ? shownCols.filter((c) => !PLANNER_REPLACES[planTrack.key].has(c.key)) : shownCols), [planTrack, shownCols]);
   const selInOrder = useMemo(() => rows.map((r) => r.application_id).filter((id) => sel.has(id)), [rows, sel]);
   const replanRows = planner.replan;
   const afterBooking = useCallback(() => { setReload((n) => n + 1); void replanRows(); }, [replanRows]);
-  const colCount = tableCols.length + (manager ? 1 : 0) + (ivPanel ? PLANNER_HEADS.length : 0);
+  const colCount = tableCols.length + (manager ? 1 : 0) + (planTrack ? plannerHeads(planTrack).length : 0);
   const anyFilter = stages.length > 0 || statuses.length > 0 || vsatIds.length > 0 || campuses.length > 0 || formStages.length > 0 || payStages.length > 0
     || ivIds.length > 0 || filterClauses.length > 0 || !!search;
   const allOnPage = rows.length > 0 && rows.every((r) => sel.has(r.application_id));
@@ -321,7 +333,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
             <button className={`${ghost} inline-flex items-center gap-1.5`} onClick={exportCsv} disabled={busy !== ""}><IconDownload /> Export</button>
             <button className={ghost} onClick={() => setSel(new Set())}>Clear</button>
           </div>
-          {ivPanel && <PlanBar ids={selInOrder} planner={planner} onDone={afterBooking} onSent={setPlanMsg} />}
+          {planOn && <PlanBar ids={selInOrder} planner={planner} onDone={afterBooking} onSent={setPlanMsg} />}
+          {offerPanel && <OfferBar ids={selInOrder} onDone={() => setReload((n) => n + 1)} onReleased={setOfferMsg} />}
           <BulkBar ids={[...sel]} current={selStage} panel={panel} onDone={() => setReload((n) => n + 1)} />
           {examPanel && <div className="border-t border-vx-violet/20 pt-2"><ProctoringBar ids={[...sel]} onDone={() => setReload((n) => n + 1)} /></div>}
         </div>
@@ -334,15 +347,21 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       )}
 
       {err && <p role="alert" className={vx.error}>{err}</p>}
-      {ivPanel && planner.loadErr && <p role="alert" className={vx.error}>Couldn&apos;t load the interview times: {planner.loadErr}</p>}
-      {ivPanel && planMsg && (
+      {planTrack && planner.loadErr && <p role="alert" className={vx.error}>Couldn&apos;t load the {planTrack.noun} times: {planner.loadErr}</p>}
+      {planOn && planMsg && (
         <div role="status" className={cx(planMsg.ok ? vx.ok : vx.info, "flex items-start justify-between gap-3")}>
           <span>{planMsg.text}</span>
           <button type="button" aria-label="Dismiss" className="text-vx-faint hover:text-vx-ink" onClick={() => setPlanMsg(null)}>×</button>
         </div>
       )}
-      {ivPanel && sel.size === 0 && total > 0 && !loading && (
-        <p className="text-xs text-vx-faint">To book: fill Interviewer, Date and Time on the rows (saved as you type, not sent), select them, then press Send.</p>
+      {offerPanel && offerMsg && (
+        <div role="status" className={cx(offerMsg.ok ? vx.ok : vx.info, "flex items-start justify-between gap-3")}>
+          <span>{offerMsg.text}</span>
+          <button type="button" aria-label="Dismiss" className="text-vx-faint hover:text-vx-ink" onClick={() => setOfferMsg(null)}>×</button>
+        </div>
+      )}
+      {planTrack && sel.size === 0 && total > 0 && !loading && (
+        <p className="text-xs text-vx-faint">To book: fill {planTrack.Host}, Date and Time on the rows (saved as you type, not sent), select them, then press Send.{offerPanel ? " To release offers: select students at Counselled and press Release offer." : ""}</p>
       )}
 
       {/* ── table ─────────────────────────────────── */}
@@ -356,7 +375,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
                 <Fragment key={c.key}>
                   <th className={`whitespace-nowrap border-b border-vx-line px-4 py-3 font-medium ${i === 0 ? `sticky z-20 ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : STICKY_BG} ${c.restricted ? "text-vx-orange-t/70" : ""}`}
                     title={c.restricted ? "Admin / admissions only" : c.group}>{columnLabel(c.key)}</th>
-                  {ivPanel && i === 0 && PLANNER_HEADS.map((h) => (
+                  {planTrack && i === 0 && plannerHeads(planTrack).map((h) => (
                     <th key={h} className={`whitespace-nowrap border-b border-vx-line px-3 py-3 font-medium ${STICKY_BG}`}>{h}</th>
                   ))}
                 </Fragment>
@@ -377,7 +396,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
                       <td className={`whitespace-nowrap px-4 py-3 ${i === 0 ? `sticky z-[1] ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : ""}`}>
                         <Cell col={c} row={r} onEditVps={roles.admin ? (t) => setVpsEdit(t) : undefined} />
                       </td>
-                      {ivPanel && i === 0 && (
+                      {planOn && i === 0 && (
                         <>
                           {/* editing a cell never opens the student page */}
                           <td className="whitespace-nowrap px-3 py-2" onClick={(e) => e.stopPropagation()}><PlanInterviewer app={r.application_id} name={name} planner={planner} /></td>
@@ -656,7 +675,7 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
       <input className={`${input} w-64`} placeholder={reasonNeeded ? "Reason (required)" : "Reason (optional)"} value={reason}
         onChange={(e) => setReason(e.target.value)} maxLength={500} aria-label="Reason" />
       <button className={cx(vx.btn, vx.primary)} disabled={busy} onClick={apply}>{busy ? "Moving…" : "Move"}</button>
-      <span className="text-xs text-vx-faint">{panel === "intv" ? "To book interviews: fill Interviewer, Date and Time on the rows and press Send above. " : "Scheduling counselling is done from the student page (it needs a person and a slot). "}{current ? "" : "Mixed stages selected: a reason is required."}</span>
+      <span className="text-xs text-vx-faint">{panel === "intv" ? "To book interviews: fill Interviewer, Date and Time on the rows and press Send above. " : panel === "couns" ? "To book counselling: fill Counsellor, Date and Time on the rows and press Send above. " : ""}{current ? "" : "Mixed stages selected: a reason is required."}</span>
       {msg && <p className="w-full text-vx-ink">{msg}</p>}
     </div>
   );

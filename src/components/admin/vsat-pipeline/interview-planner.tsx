@@ -8,10 +8,12 @@ import {
   sendResultText, statusOf, toPlanRow, type CellValues, type FillResult, type PlanRow, type SendResult,
 } from "@/lib/vsat/interview-plan";
 import { syncInterviewsNow } from "./interview-tools";
+import { TRACKS, inTrackWords, type Track } from "@/lib/vsat/tracks";
 import type { TeamMember } from "./types";
 
 /**
- * Interview panel (0143): book interviews from the rows, like the old sheet.
+ * Interview panel (0143) and Counselling panel (0145): book from the rows, like the old sheet. `track` picks
+ * the interview or counselling functions, team role and words; the rules are the same.
  * Admin / admissions type Interviewer, Date and Time on a student's row; it is saved as "not sent yet"
  * (shared with the team, checked for clashes by the database). Select rows → one Send books each row with
  * its own time, its own Google Meet and its own emails. "Fill times" types back-to-back times for the selection.
@@ -25,7 +27,7 @@ const REPLAN_AFTER_MS = 700;
 export type Planner = ReturnType<typeof useInterviewPlan>;
 
 /** The plan for the rows on screen, the team's interviewers, and saving what is typed. Off for everyone but managers. */
-export function useInterviewPlan(ids: string[], on: boolean) {
+export function useInterviewPlan(ids: string[], on: boolean, track: Track = TRACKS.interview) {
   const [supabase] = useState(() => createClient());
   const [team, setTeam] = useState<TeamMember[]>([]);
   const [plan, setPlan] = useState<Map<string, PlanRow>>(new Map());
@@ -49,12 +51,12 @@ export function useInterviewPlan(ids: string[], on: boolean) {
     const list = key ? key.split("\n") : [];
     if (!on || !list.length) { setPlan(new Map()); return; }
     const my = ++seq.current;
-    const { data, error } = await supabase.rpc("vsat_interview_plan", { p: { application_ids: list } });
+    const { data, error } = await supabase.rpc(track.rpc.plan, { p: { application_ids: list } });
     if (my !== seq.current) return;   // a newer plan is on its way
     if (error) { setLoadErr(errorText(error.message)); return; }
     setLoadErr("");
     setPlan(parsePlan(data));
-  }, [supabase, on, key]);
+  }, [supabase, on, key, track]);
 
   // a new page / filter: start clean
   useEffect(() => {
@@ -76,15 +78,18 @@ export function useInterviewPlan(ids: string[], on: boolean) {
   const mark = (app: string, busy: boolean) => setWaiting((s) => { const n = new Set(s); if (busy) n.add(app); else n.delete(app); return n; });
 
   const save = useCallback(async (app: string, p: Exclude<ReturnType<typeof draftPayload>, "partial">, sent: CellValues) => {
-    const { data, error } = await supabase.rpc("vsat_interview_draft_set", { p });
+    // the host is "interviewer_id" in the shared helpers; each track's function names it its own way
+    const { data, error } = await supabase.rpc(track.rpc.draftSet, {
+      p: { application_id: p.application_id, [track.hostParam]: p.interviewer_id, slot_datetime: p.slot_datetime },
+    });
     if (!timers.current.has(app)) mark(app, false);
-    if (error) { setErrors((e) => ({ ...e, [app]: errorText(error.message) })); return; }
+    if (error) { setErrors((e) => ({ ...e, [app]: inTrackWords(errorText(error.message), track) })); return; }
     const r = toPlanRow(data);
     if (r) setPlan((m) => new Map(m).set(app, r));
     // keep the on-screen copy if something newer was typed meanwhile
     setEdits((e) => { if (!e[app] || !sameCells(e[app], sent)) return e; const n = { ...e }; delete n[app]; return n; });
     replanSoon();   // one row's change can make or clear a clash on another
-  }, [supabase, replanSoon]);
+  }, [supabase, replanSoon, track]);
 
   const cells = useCallback((app: string): CellValues => edits[app] ?? cellValues(plan.get(app)), [edits, plan]);
 
@@ -113,13 +118,15 @@ export function useInterviewPlan(ids: string[], on: boolean) {
     void save(app, { application_id: app, interviewer_id: b ? b.interviewer_id : null, slot_datetime: b ? b.slot : null }, back);
   }, [plan, save]);
 
-  const interviewers = useMemo(() => team.filter((t) => t.roles.includes("interviewer"))
-    .sort((a, b) => (a.name ?? a.email ?? "").localeCompare(b.name ?? b.email ?? "")), [team]);
+  const interviewers = useMemo(() => team.filter((t) => t.roles.includes(track.host))
+    .sort((a, b) => (a.name ?? a.email ?? "").localeCompare(b.name ?? b.email ?? "")), [team, track]);
 
-  return { plan, cells, setCell, undo, waiting, errors, loadErr, replan, interviewers };
+  return { plan, cells, setCell, undo, waiting, errors, loadErr, replan, interviewers, track };
 }
 
-const who = (t: TeamMember) => t.name ?? t.email ?? "Interviewer";
+const who = (t: TeamMember, track: Track) => t.name ?? t.email ?? track.Host;
+/** "Interview" / "Counselling" (the aria labels of the date and time cells). */
+const short = (track: Track) => track.Noun.split(" ")[0];
 
 /** Interviewer dropdown of one row. */
 export function PlanInterviewer({ app, name, planner }: { app: string; name: string; planner: Planner }) {
@@ -127,11 +134,11 @@ export function PlanInterviewer({ app, name, planner }: { app: string; name: str
   const v = planner.cells(app);
   const known = planner.interviewers.some((t) => t.user_id === v.interviewer_id);
   return (
-    <select className={cx(cell, "w-44")} value={v.interviewer_id} disabled={!isEditable(row)} aria-label={`Interviewer for ${name}`}
+    <select className={cx(cell, "w-44")} value={v.interviewer_id} disabled={!isEditable(row)} aria-label={`${planner.track.Host} for ${name}`}
       onChange={(e) => planner.setCell(app, { interviewer_id: e.target.value })}>
       <option value="">—</option>
-      {v.interviewer_id && !known && <option value={v.interviewer_id}>Inactive interviewer</option>}
-      {planner.interviewers.map((t) => <option key={t.user_id} value={t.user_id}>{who(t)}{t.campus ? ` (${t.campus})` : ""}</option>)}
+      {v.interviewer_id && !known && <option value={v.interviewer_id}>Inactive {planner.track.host}</option>}
+      {planner.interviewers.map((t) => <option key={t.user_id} value={t.user_id}>{who(t, planner.track)}{t.campus ? ` (${t.campus})` : ""}</option>)}
     </select>
   );
 }
@@ -141,7 +148,7 @@ export function PlanDate({ app, name, planner }: { app: string; name: string; pl
   const v = planner.cells(app);
   return (
     <input type="date" className={cx(cell, "w-[9.5rem]")} value={v.date} disabled={!isEditable(planner.plan.get(app))}
-      aria-label={`Interview date for ${name} (IST)`} onChange={(e) => planner.setCell(app, { date: e.target.value })} />
+      aria-label={`${short(planner.track)} date for ${name} (IST)`} onChange={(e) => planner.setCell(app, { date: e.target.value })} />
   );
 }
 
@@ -150,7 +157,7 @@ export function PlanTime({ app, name, planner }: { app: string; name: string; pl
   const v = planner.cells(app);
   return (
     <input type="time" step={300} className={cx(cell, "w-[7.5rem]")} value={v.time} disabled={!isEditable(planner.plan.get(app))}
-      aria-label={`Interview time for ${name} (IST)`} onChange={(e) => planner.setCell(app, { time: e.target.value })} />
+      aria-label={`${short(planner.track)} time for ${name} (IST)`} onChange={(e) => planner.setCell(app, { time: e.target.value })} />
   );
 }
 
@@ -163,7 +170,8 @@ export function PlanStatus({ app, planner }: { app: string; planner: Planner }) 
   if (planner.waiting.has(app)) return <span className="text-xs text-vx-faint">Saving…</span>;
   // half typed (a date without a time): only on this screen until the time is picked
   if (draftPayload(app, v) === "partial") return <span className={cx(vx.badge, vx.tone.orange)}>Pick the {v.date ? "time" : "date"}</span>;
-  const s = statusOf(row);
+  const raw = statusOf(row);
+  const s = { ...raw, label: inTrackWords(raw.label, planner.track), title: raw.title ? inTrackWords(raw.title, planner.track) : undefined };
   const canUndo = !!row?.draft && isEditable(row);
   if (s.tone === "neutral" && !canUndo) return <span className="text-vx-faint">{s.label}</span>;
   return (
@@ -199,36 +207,36 @@ export function PlanBar({ ids, planner, onDone, onSent }:
   const toSend = [...sum.invites, ...sum.updates].sort((a, b) => ids.indexOf(a) - ids.indexOf(b));
   const saving = ids.some((id) => planner.waiting.has(id));
   const tooMany = toSend.length > SEND_MAX;
-  const blocked = blockedText(sum);
+  const blocked = (() => { const b = blockedText(sum); return b ? inTrackWords(b, planner.track) : b; })();
   const idsKey = ids.join("\n");
   useEffect(() => { setConfirming(false); }, [idsKey]);   // a different selection needs a fresh confirm
 
   async function send() {
     setBusy("send"); setMsg(null);
-    const { data, error } = await supabase.rpc("vsat_interview_drafts_send", { p: { application_ids: toSend } });
+    const { data, error } = await supabase.rpc(planner.track.rpc.draftsSend, { p: { application_ids: toSend } });
     setConfirming(false);
-    if (error) { setBusy(""); setMsg({ text: errorText(error.message), ok: false }); return; }
+    if (error) { setBusy(""); setMsg({ text: inTrackWords(errorText(error.message), planner.track), ok: false }); return; }
     const r = data as SendResult;
-    onSent({ text: sendResultText(r), ok: r.skipped.length === 0 && r.sent.length > 0 });
+    onSent({ text: inTrackWords(sendResultText(r), planner.track), ok: r.skipped.length === 0 && r.sent.length > 0 });
     // Google Meet + emails for the booked ones now (the cron does it anyway)
     const booked = r.sent.filter((s) => s.kind).map((s) => s.application_id);
     onDone();   // the rows show "Booked" right away
-    if (booked.length) { await syncInterviewsNow(booked); onDone(); }   // then the Meet state
+    if (booked.length) { await syncInterviewsNow(booked, planner.track); onDone(); }   // then the Meet state
     setBusy("");
   }
 
   async function fill() {
     const start = istSlot(fillDate, fillTime);
-    if (!fillWho) return setMsg({ text: "Pick the interviewer to fill with.", ok: false });
+    if (!fillWho) return setMsg({ text: `Pick the ${planner.track.host} to fill with.`, ok: false });
     if (!start) return setMsg({ text: "Pick the start date and time.", ok: false });
     if (Date.parse(start) < Date.now()) return setMsg({ text: "Pick a start time in the future.", ok: false });
     if (ids.length > SEND_MAX) return setMsg({ text: `Select at most ${SEND_MAX} students to fill.`, ok: false });
     setBusy("fill"); setMsg(null);
-    const { data, error } = await supabase.rpc("vsat_interview_drafts_fill", { p: { application_ids: ids, interviewer_id: fillWho, start } });
+    const { data, error } = await supabase.rpc(planner.track.rpc.draftsFill, { p: { application_ids: ids, [planner.track.hostParam]: fillWho, start } });
     setBusy("");
-    if (error) return setMsg({ text: errorText(error.message), ok: false });
+    if (error) return setMsg({ text: inTrackWords(errorText(error.message), planner.track), ok: false });
     const r = data as FillResult;
-    setMsg({ text: fillResultText(r), ok: r.skipped.length === 0 && r.filled.length > 0 });
+    setMsg({ text: inTrackWords(fillResultText(r), planner.track), ok: r.skipped.length === 0 && r.filled.length > 0 });
     void planner.replan();
   }
 
@@ -238,7 +246,7 @@ export function PlanBar({ ids, planner, onDone, onSent }:
         {confirming ? (
           <>
             <span className="text-sm text-vx-ink">
-              Book {toSend.length} interview{toSend.length === 1 ? "" : "s"}? Each one gets its own Google Meet and emails to the student and the interviewer.
+              Book {toSend.length} {planner.track.noun}{toSend.length === 1 ? "" : "s"}? Each one gets its own Google Meet and emails to the student and the {planner.track.host}.
             </span>
             <button className={cx(vx.btn, vx.primary)} disabled={busy !== ""} onClick={() => void send()}>{busy === "send" ? "Sending…" : "Yes, send"}</button>
             <button className={cx(vx.btn, vx.secondary)} disabled={busy !== ""} onClick={() => setConfirming(false)}>Back</button>
@@ -259,9 +267,9 @@ export function PlanBar({ ids, planner, onDone, onSent }:
       {!confirming && (
         <div className="flex flex-wrap items-center gap-2 text-sm">
           <span className="text-vx-mut">Fill times</span>
-          <select className={cell} value={fillWho} onChange={(e) => setFillWho(e.target.value)} aria-label="Interviewer to fill with">
-            <option value="">Interviewer…</option>
-            {planner.interviewers.map((t) => <option key={t.user_id} value={t.user_id}>{who(t)}{t.campus ? ` (${t.campus})` : ""}</option>)}
+          <select className={cell} value={fillWho} onChange={(e) => setFillWho(e.target.value)} aria-label={`${planner.track.Host} to fill with`}>
+            <option value="">{planner.track.Host}…</option>
+            {planner.interviewers.map((t) => <option key={t.user_id} value={t.user_id}>{who(t, planner.track)}{t.campus ? ` (${t.campus})` : ""}</option>)}
           </select>
           <input type="date" className={cell} value={fillDate} onChange={(e) => setFillDate(e.target.value)} aria-label="Fill from date (IST)" />
           <input type="time" step={300} className={cell} value={fillTime} onChange={(e) => setFillTime(e.target.value)} aria-label="Fill from time (IST)" />

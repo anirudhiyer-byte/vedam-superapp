@@ -1,0 +1,153 @@
+/**
+ * VSAT offers (Phase 3, migration 0144) · pure rules shared by the Counselling panel, the student drawer
+ * and the server job that sends the offer email. No I/O here, so all of it is unit-tested.
+ *
+ * The database decides everything that matters: releasing = moving the student to "Offer sent"
+ * (a trigger fills the offer fields the payment gate reads), the deadline (campus "Days to pay", until
+ * 11:59 pm IST), who may release, and the lapse job. These helpers only shape what people see.
+ */
+
+import { istDate, istTime } from "./interviews";
+import { errorText } from "./pipeline";
+
+/** The VSAT comms step that carries the offer email. */
+export const OFFER_STEP = "offer_released";
+/** Most students one release call takes (same as vsat_offers_release). */
+export const RELEASE_MAX = 100;
+
+export const CAMPUS_NAME: Record<string, string> = { pune: "Pune", gurugram: "Gurugram" };
+
+const num = (v: unknown): number | null => {
+  const n = typeof v === "number" ? v : typeof v === "string" && v.trim() !== "" ? Number(v) : NaN;
+  return Number.isFinite(n) ? n : null;
+};
+
+/** 40 → "40", 37.5 → "37.5" (never "40.00"). */
+export function pctText(v: unknown): string {
+  const n = num(v);
+  return n === null ? "" : String(Math.round(n * 100) / 100);
+}
+
+/** 50000 → "50,000" (Indian grouping). */
+export function amountText(v: unknown): string {
+  const n = num(v);
+  return n === null ? "" : Math.round(n).toLocaleString("en-IN");
+}
+
+/** "Fri, 28 Nov 2026, 11:59 pm IST". */
+export function deadlineText(iso: string | null | undefined): string {
+  if (!iso) return "—";
+  return `${istDate(iso)}, ${istTime(iso)} IST`;
+}
+
+// ── the release call ─────────────────────────────────────────────────────────
+
+export type Released = { application_id: string; name: string | null; scholarship_pct: number | string | null; expires_at: string | null };
+export type Skipped = { application_id: string; name: string | null; code: string };
+export type ReleaseResult = { released: Released[]; skipped: Skipped[]; dry_run: boolean };
+
+const str = (v: unknown): string | null => (typeof v === "string" ? v : null);
+
+/** vsat_offers_release(...) → a checked shape (anything odd is dropped, never trusted). */
+export function parseRelease(data: unknown): ReleaseResult {
+  const o = (data && typeof data === "object" ? data : {}) as Record<string, unknown>;
+  const list = (v: unknown) => (Array.isArray(v) ? v.filter((x) => x && typeof x === "object") as Record<string, unknown>[] : []);
+  return {
+    released: list(o.released).filter((x) => typeof x.application_id === "string").map((x) => ({
+      application_id: x.application_id as string, name: str(x.name),
+      scholarship_pct: typeof x.scholarship_pct === "number" || typeof x.scholarship_pct === "string" ? x.scholarship_pct : null,
+      expires_at: str(x.expires_at),
+    })),
+    skipped: list(o.skipped).filter((x) => typeof x.application_id === "string").map((x) => ({
+      application_id: x.application_id as string, name: str(x.name), code: str(x.code) ?? "",
+    })),
+    dry_run: o.dry_run === true,
+  };
+}
+
+const who = (x: { name: string | null; application_id: string }) => (x.name ?? "").trim() || x.application_id;
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+
+/** Why a student was left out, in plain words. */
+export function skipText(code: string): string {
+  if (code === "ALREADY_RELEASED") return "offer already released";
+  if (code === "WRONG_STAGE") return "not at Counselled";
+  if (code === "NO_SCHOLARSHIP") return "counselling not saved yet";
+  return errorText(code).replace(/\.$/, "").replace(/^./, (c) => c.toLowerCase());
+}
+
+function skippedList(r: ReleaseResult): string {
+  return r.skipped.map((s) => `${who(s)} (${skipText(s.code)})`).join(", ");
+}
+
+/** The confirm line shown before releasing (from the dry run). Null when nobody can be released. */
+export function previewText(r: ReleaseResult): string | null {
+  if (!r.released.length) return null;
+  const deadlines = [...new Set(r.released.map((x) => x.expires_at).filter(Boolean))] as string[];
+  const by = deadlines.length === 1 ? ` They can pay until ${deadlineText(deadlines[0])}.` : "";
+  const out = `Release ${plural(r.released.length, "offer", "offers")}? Each student gets an email with their scholarship and can then pay the enrollment fee from their dashboard.${by}`;
+  return r.skipped.length ? `${out} Left out: ${skippedList(r)}.` : out;
+}
+
+/** What happened, after releasing. */
+export function releaseResultText(r: ReleaseResult): string {
+  const parts: string[] = [];
+  if (r.released.length) parts.push(`Released ${plural(r.released.length, "offer", "offers")} ✓`);
+  if (r.skipped.length) parts.push(`Not released: ${skippedList(r)}`);
+  return parts.length ? `${parts.join(". ")}.` : "Nothing to release.";
+}
+
+/** Nothing in the selection can be released: say why (from the dry run). */
+export function nothingToReleaseText(r: ReleaseResult): string {
+  return r.skipped.length ? `Nothing to release: ${skippedList(r)}.` : "Select students at Counselled to release their offers.";
+}
+
+// ── the offer as staff see it (drawer) ───────────────────────────────────────
+
+export type OfferInfo = { released_at: string | null; expires_at: string | null; scholarship_pct: number | string | null; category?: number | null };
+export type OfferTone = "neutral" | "green" | "orange" | "red";
+
+/** The offer's state for a student at `stage`, at time `now` (ms). */
+export function offerState(stage: string, offer: OfferInfo | null | undefined, now = Date.now()): { label: string; tone: OfferTone } {
+  if (stage === "enrolled") return { label: "Accepted: enrollment fee paid", tone: "green" };
+  if (stage === "offer_cancelled") return { label: "Cancelled", tone: "red" };
+  if (stage === "offer_lapsed") return { label: "Lapsed: the deadline passed without payment", tone: "orange" };
+  if (!offer?.released_at) return { label: "Not released yet", tone: "neutral" };
+  if (stage !== "offer_sent") return { label: "Not active (the student was moved back)", tone: "red" };
+  if (offer.expires_at && Date.parse(offer.expires_at) <= now) return { label: "Deadline passed: lapses within 15 minutes", tone: "orange" };
+  return { label: `Valid until ${deadlineText(offer.expires_at)}`, tone: "green" };
+}
+
+// ── the offer email (server job) ─────────────────────────────────────────────
+
+export type OfferJob = {
+  id: string;
+  kind: "released";
+  attempts: number;
+  sent_to?: string[];
+  scholarship_pct: number | string | null;
+  released_at: string | null;
+  expires_at: string | null;
+  amount: string | number | null;
+  student: { name: string | null; email: string | null; lead_id: string | null; application_no: string | null; campus: string | null };
+};
+
+const firstName = (full: string | null | undefined) => (full ?? "").trim().split(/\s+/)[0] || "there";
+
+/** The placeholder values for the offer email (plain text; HTML-escaped when filled into the body). */
+export function offerVars(job: OfferJob, site: string): Record<string, string> {
+  return {
+    name: firstName(job.student.name),
+    student_name: (job.student.name ?? "").trim() || "there",
+    application_no: job.student.application_no ?? "",
+    campus: CAMPUS_NAME[job.student.campus ?? ""] ?? "Vedam",
+    scholarship: pctText(job.scholarship_pct),
+    amount: amountText(job.amount ?? 50000),
+    deadline_date: job.expires_at ? istDate(job.expires_at) : "",
+    deadline_time: job.expires_at ? istTime(job.expires_at) : "",
+    dashboard_link: `${site}/apply/dashboard`,
+  };
+}
+
+/** Placeholders the VSAT comms panel lists for the offer step. */
+export const OFFER_VARS = ["name", "student_name", "application_no", "campus", "scholarship", "amount", "deadline_date", "deadline_time", "dashboard_link"] as const;

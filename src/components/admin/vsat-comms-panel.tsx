@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
+import { OFFER_STEP, OFFER_VARS } from "@/lib/vsat/offers";
 
 const input = vx.input;
 const label = vx.label;
@@ -16,11 +17,15 @@ type Step = {
 };
 type Settings = { master: boolean; test_email: string; test_phone: string };
 
-/** Interview steps (0140) are sent by the interview jobs, by email only, with their own placeholders. */
-const isInterviewStep = (key: string) => /^interview(er)?_/.test(key);
+/** Interview (0140) and counselling (0145) steps are sent by the meeting jobs, by email only, with their own placeholders. */
+const isInterviewStep = (key: string) => /^(interview(er)?|counselling|counsellor)_/.test(key);
+/** The offer step (0144) is sent by the offer job, by email only, with its own placeholders. */
+const isOfferStep = (key: string) => key === OFFER_STEP;
+const isEmailOnly = (key: string) => isInterviewStep(key) || isOfferStep(key);
 const STAGE_VARS = ["name", "amount", "apply_link", "dashboard_link", "receipt_link"];
 const INTERVIEW_VARS = ["name", "student_name", "application_no", "date", "time", "old_date", "old_time", "join_link", "dashboard_link", "panel_link"];
-const varList = (vars: string[]) => vars.map((v) => `{{${v}}}`).join(" ");
+const stepVars = (key: string): readonly string[] => (isInterviewStep(key) ? INTERVIEW_VARS : isOfferStep(key) ? OFFER_VARS : STAGE_VARS);
+const varList = (vars: readonly string[]) => vars.map((v) => `{{${v}}}`).join(" ");
 
 function Toggle({ on, onClick, text }: { on: boolean; onClick: () => void; text: string }) {
   return (
@@ -146,7 +151,13 @@ export function VsatCommsPanel() {
                         </div>
                         <input className={`${input} mt-2`} value={s.email_subject} onChange={(e) => patch(i, { email_subject: e.target.value })} placeholder="Email subject" />
                         <textarea className={`${input} mt-2 min-h-[120px] font-mono text-[12px]`} value={s.email_body} onChange={(e) => patch(i, { email_body: e.target.value })}
-                          placeholder={`Email body (HTML). Placeholders: ${varList(isInterviewStep(s.step_key) ? INTERVIEW_VARS : STAGE_VARS)}`} />
+                          placeholder={`Email body (HTML). Placeholders: ${varList(stepVars(s.step_key))}`} />
+                        {isOfferStep(s.step_key) && (
+                          <p className="mt-1.5 text-[11px] text-vx-faint">
+                            Placeholders: {varList(OFFER_VARS)}. Sent once when an offer is released (Counselling panel). {"{{amount}}"} is the
+                            enrollment fee; {"{{deadline_date}}"} and {"{{deadline_time}}"} are the last day and time to pay (IST).
+                          </p>
+                        )}
                         {isInterviewStep(s.step_key) && (
                           <p className="mt-1.5 text-[11px] text-vx-faint">
                             Placeholders: {varList(INTERVIEW_VARS)}. {"{{name}}"} is the person getting the email; {"{{join_link}}"} is the meeting link
@@ -156,8 +167,10 @@ export function VsatCommsPanel() {
                       </div>
 
                       {/* ── WhatsApp channel (separate — copy comes from the approved template). Interview steps: email only. ── */}
-                      {isInterviewStep(s.step_key) ? (
-                        <p className="mt-3 text-[11px] text-vx-faint">Interview messages go by email only (with the Google Calendar invite). There is no WhatsApp for this step.</p>
+                      {isEmailOnly(s.step_key) ? (
+                        <p className="mt-3 text-[11px] text-vx-faint">{isOfferStep(s.step_key)
+                          ? "The offer goes by email only. There is no WhatsApp for this step."
+                          : `${/^counsell/.test(s.step_key) ? "Counselling" : "Interview"} messages go by email only (with the Google Calendar invite). There is no WhatsApp for this step.`}</p>
                       ) : (
                       <div className="mt-3 rounded-lg border border-vx-line bg-white/[0.02] p-3">
                         <div className="flex items-center justify-between gap-2">

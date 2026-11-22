@@ -122,6 +122,12 @@ const ERRORS: Record<string, string> = {
   NO_FREE_SLOT: "The interviewer has no free time near this start. Pick another start time.",
   CLASH: "The interviewer has another student at this time.",
   NO_DRAFT: "Fill the interviewer, date and time first.",
+  // counselling (0145)
+  ALREADY_COUNSELLED: "This student's counselling is already saved.",
+  NO_COUNSELLING: "There's no counselling session booked for this student.",
+  // offers (0144)
+  NO_SCHOLARSHIP: "Save the counselling first: the offer needs the scholarship %.",
+  ALREADY_RELEASED: "The offer is already released.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
@@ -135,7 +141,7 @@ const FIELD_LABEL: Record<string, string> = {
   w_why_program: "Why this program", note: "Note", vps: "VPS", percentile: "Percentile", cleared_vps_cutoff: "Cut-off",
   email: "Email", role: "Role", campus: "Campus", exam_date_id: "VSAT", bands: "Bands",
   verdict: "Proctoring verdict", expected_count: "Count", apply: "Apply",
-  duration_min: "Length", interviewer_id: "Interviewer", interviewer_ids: "Interviewer", attendance: "Attendance",
+  duration_min: "Length", interviewer_id: "Interviewer", interviewer_ids: "Interviewer", counsellor_id: "Counsellor", attendance: "Attendance",
   start: "Start time", auto_meet: "Google Meet", reason: "Reason", dry_run: "Preview",
 };
 

@@ -8,9 +8,10 @@ import {
   isLive, meetErrorText, meetState, type InterviewRow, type MeetState,
 } from "@/lib/vsat/interviews";
 import type { TeamMember } from "./types";
+import { TRACKS, inTrackWords, type Track } from "@/lib/vsat/tracks";
 
 /**
- * VSAT interviews (Phase 2, migration 0140): schedule / move / cancel one student, Google Meet state and
+ * VSAT interviews (0140) and counselling sessions (0145, `track`): schedule / move / cancel one student, Google Meet state and
  * attendance (many students: the Interview panel rows, interview-planner.tsx). Every action is a database function that checks the caller again; after a
  * save the panel asks the server to run the Google + email work now (the cron does it within 10 minutes anyway).
  */
@@ -26,11 +27,11 @@ function Msg({ text }: { text: string }) {
   return <p role="status" className={`rounded-lg px-3 py-2 text-sm ${ok ? "bg-vx-green/10 text-vx-green" : "bg-vx-red/10 text-[#ffb3bf]"}`}>{text}</p>;
 }
 
-/** Run the queued Google + email work for these students now. Never throws: if it fails the cron does it. */
-export async function syncInterviewsNow(ids: string[]): Promise<boolean> {
+/** Run the queued Google + email work for these students now (interviews or counselling). Never throws: if it fails the cron does it. */
+export async function syncInterviewsNow(ids: string[], track: Track = TRACKS.interview): Promise<boolean> {
   if (!ids.length) return true;
   try {
-    const res = await fetch("/api/vsat/interviews/sync", {
+    const res = await fetch(track.syncRoute, {
       method: "POST", credentials: "same-origin",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ application_ids: ids.slice(0, 50) }),
@@ -58,8 +59,8 @@ export const slotText = (iso: string | null | undefined, dur: number | null | un
 // ── schedule / reschedule one student ─────────────────────────────────────────
 
 /** Admin / admissions: interviewer, date and time (IST), length, Google Meet or own link. Reschedule when one is booked. */
-export function InterviewScheduleForm({ team, applicationId, current, onDone }:
-  { team: TeamMember[]; applicationId: string; current: InterviewRow | null; onDone: () => void }) {
+export function InterviewScheduleForm({ team, applicationId, current, onDone, track = TRACKS.interview }:
+  { team: TeamMember[]; applicationId: string; current: InterviewRow | null; onDone: () => void; track?: Track }) {
   const [supabase] = useState(() => createClient());
   const live = isLive(current);
   const start = live ? istParts(current?.slot_datetime) : { date: "", time: "" };
@@ -73,35 +74,35 @@ export function InterviewScheduleForm({ team, applicationId, current, onDone }:
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
 
-  const people = team.filter((t) => t.roles.includes("interviewer"));
+  const people = team.filter((t) => t.roles.includes(track.host));
   const missing = live && current?.interviewer_id && !people.some((t) => t.user_id === current.interviewer_id);
 
   async function save() {
     const slot = istSlot(date, time);
-    if (!who) return setMsg("Pick an interviewer.");
+    if (!who) return setMsg(track.host === "interviewer" ? "Pick an interviewer." : `Pick a ${track.host}.`);
     if (!slot) return setMsg("Pick a date and time.");
     if (Date.parse(slot) < Date.now()) return setMsg("Pick a time in the future.");
     if (mode === "own" && !isHttpsLink(link)) return setMsg("Paste the meeting link (it must start with https://).");
     setBusy(true); setMsg("");
-    const p: Record<string, unknown> = { application_id: applicationId, interviewer_id: who, slot_datetime: slot, duration_min: dur };
-    if (mode === "own") p.meet_link = link.trim(); else p.auto_meet = true;
-    const { error } = await supabase.rpc("vsat_assign_interview", { p });
+    const p: Record<string, unknown> = { application_id: applicationId, [track.hostParam]: who, slot_datetime: slot, duration_min: dur };
+    if (mode === "own") p[track.linkParam] = link.trim(); else p.auto_meet = true;
+    const { error } = await supabase.rpc(track.rpc.assign, { p });
     if (error) { setBusy(false); return setMsg(errorText(error.message)); }
     setMsg(live ? "Rescheduled ✓" : "Scheduled ✓");
     onDone();
     // Google event + emails now, then show the new Meet state
-    await syncInterviewsNow([applicationId]);
+    await syncInterviewsNow([applicationId], track);
     setBusy(false);
     onDone();
   }
 
   return (
     <div className="space-y-2 rounded-lg border border-vx-line p-3">
-      <p className="text-xs font-semibold text-vx-faint">{live ? "Reschedule (IST)" : "Schedule interview (IST)"}</p>
+      <p className="text-xs font-semibold text-vx-faint">{live ? "Reschedule (IST)" : `Schedule ${track.noun} (IST)`}</p>
       <div className="grid gap-2 sm:grid-cols-4">
-        <select className={`${input} sm:col-span-2`} value={who} onChange={(e) => setWho(e.target.value)} aria-label="Interviewer">
-          <option value="">Pick interviewer…</option>
-          {missing && <option value={current?.interviewer_id ?? ""}>{current?.interviewer ?? "Current interviewer"} (inactive)</option>}
+        <select className={`${input} sm:col-span-2`} value={who} onChange={(e) => setWho(e.target.value)} aria-label={track.Host}>
+          <option value="">Pick {track.host}…</option>
+          {missing && <option value={current?.interviewer_id ?? ""}>{current?.interviewer ?? `Current ${track.host}`} (inactive)</option>}
           {people.map((t) => <option key={t.user_id} value={t.user_id}>{t.name ?? t.email}{t.campus ? ` (${t.campus})` : ""}</option>)}
         </select>
         <input className={input} type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="Date" />
@@ -131,8 +132,8 @@ export function InterviewScheduleForm({ team, applicationId, current, onDone }:
       )}
       <p className="text-xs text-vx-faint">
         {mode === "google"
-          ? "A Google Calendar invite with a Meet link goes to the student and the interviewer."
-          : "No Google invite is made. The student and the interviewer get the link by email."}
+          ? `A Google Calendar invite with a Meet link goes to the student and the ${track.host}.`
+          : `No Google invite is made. The student and the ${track.host} get the link by email.`}
       </p>
       <button className={primary} disabled={busy} onClick={save}>{busy ? "Saving…" : live ? "Reschedule" : "Schedule"}</button>
       <Msg text={msg} />
@@ -146,8 +147,10 @@ export function InterviewScheduleForm({ team, applicationId, current, onDone }:
  * What happened to a booked interview: the Google Meet, attendance (from Meet or marked by staff),
  * and the actions. Interviewers may mark attendance once; changing a mark is admin / admissions, with a reason.
  */
-export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atInterviewStage, studentAbsent, onDone }: {
+export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atInterviewStage, studentAbsent, onDone, track = TRACKS.interview }: {
   iv: InterviewRow; applicationId: string; manager: boolean; isInterviewer: boolean; atInterviewStage: boolean; studentAbsent: boolean; onDone: () => void;
+  /** interview (default) or counselling: which functions and words; isInterviewer / atInterviewStage then mean the counsellor / the counselling stage */
+  track?: Track;
 }) {
   const [supabase] = useState(() => createClient());
   const [busy, setBusy] = useState(false);
@@ -162,7 +165,7 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
   if (iv.cancelled_at) {
     return (
       <p className="text-sm text-vx-mut">
-        The last interview was cancelled on {fmtIst(iv.cancelled_at)}{iv.cancel_reason ? `: “${iv.cancel_reason}”` : "."}
+        The last {track.noun} was cancelled on {fmtIst(iv.cancelled_at)}{iv.cancel_reason ? `: “${iv.cancel_reason}”` : "."}
       </p>
     );
   }
@@ -174,7 +177,7 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
   const firstMark = att === "scheduled";
   const canMark = open && started && (manager || (isInterviewer && firstMark));
   const needReason = !firstMark || studentAbsent;
-  const hint = iv.attendance_detail?.reason ? ATTENDANCE_HINT[iv.attendance_detail.reason] : "";
+  const hint = iv.attendance_detail?.reason ? inTrackWords(ATTENDANCE_HINT[iv.attendance_detail.reason] ?? "", track) : "";
 
   /** One action; true when the database accepted it. */
   async function call(fn: string, p: Record<string, unknown>, ok: string, sync = false): Promise<boolean> {
@@ -182,7 +185,7 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
     const { error } = await supabase.rpc(fn, { p });
     if (error) { setBusy(false); setMsg(errorText(error.message)); return false; }
     setMsg(ok); onDone();
-    if (sync) { await syncInterviewsNow([applicationId]); onDone(); }
+    if (sync) { await syncInterviewsNow([applicationId], track); onDone(); }
     setBusy(false);
     return true;
   }
@@ -190,11 +193,11 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
     if (needReason && reason.trim().length < 3) return setMsg("Please add a reason (at least 3 characters).");
     const p: Record<string, unknown> = { application_id: applicationId, attendance: v };
     if (reason.trim()) p.reason = reason.trim();
-    void call("vsat_set_interview_attendance", p, v === "done" ? "Marked joined ✓" : "Marked no-show ✓").then((ok) => { if (ok) setReason(""); });
+    void call(track.rpc.attendance, p, v === "done" ? "Marked joined ✓" : "Marked no-show ✓").then((ok) => { if (ok) setReason(""); });
   }
   function cancel() {
     if (cancelReason.trim().length < 3) return setMsg("Please add a reason (at least 3 characters).");
-    void call("vsat_cancel_interview", { application_id: applicationId, reason: cancelReason.trim() }, "Interview cancelled ✓", true)
+    void call(track.rpc.cancel, { application_id: applicationId, reason: cancelReason.trim() }, `${track.key === "interview" ? "Interview" : "Counselling session"} cancelled ✓`, true)
       .then((ok) => { if (ok) { setCancelling(false); setCancelReason(""); } });
   }
 
@@ -209,10 +212,10 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
         {state === "creating" && (iv.meet_attempts ?? 0) > 0 && <span className="text-xs text-vx-faint">Google is retrying (try {iv.meet_attempts} of 5)</span>}
         {state === "failed" && manager && (
           <button className={cx(vx.btn, vx.secondary, vx.sm)} disabled={busy}
-            onClick={() => void call("vsat_interview_meet_retry", { application_id: applicationId }, "Trying again ✓", true)}>Try again</button>
+            onClick={() => void call(track.rpc.meetRetry, { application_id: applicationId }, "Trying again ✓", true)}>Try again</button>
         )}
       </div>
-      {state === "failed" && <p className="text-xs text-[#ffb3bf]">{meetErrorText(iv.meet_error)}</p>}
+      {state === "failed" && <p className="text-xs text-[#ffb3bf]">{inTrackWords(meetErrorText(iv.meet_error), track)}</p>}
 
       <div className="flex flex-wrap items-center gap-2 text-sm">
         <span className="text-xs text-vx-faint">Attendance</span>
@@ -222,7 +225,7 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
         )}
       </div>
       {hint && <p className="text-xs text-vx-mut">{hint}{att === "no_show" && manager ? " Change it if the student did join." : ""}</p>}
-      {open && !started && <p className="text-xs text-vx-faint">Attendance can be marked once the interview starts{iv.meet_mode === "auto" ? ". Google Meet fills it in after the interview ends" : ""}.</p>}
+      {open && !started && <p className="text-xs text-vx-faint">Attendance can be marked once the {track.noun} starts{iv.meet_mode === "auto" ? `. Google Meet fills it in after the ${track.noun} ends` : ""}.</p>}
 
       {canMark && (
         <div className="space-y-2">
@@ -240,16 +243,16 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
       {manager && open && (
         cancelling ? (
           <div className="space-y-2 rounded-lg border border-vx-red/25 bg-vx-red/[0.05] p-3">
-            <p className="text-xs text-vx-mut">The Google invite is removed, the student and the interviewer are told, and the student goes back to VSAT cleared.</p>
+            <p className="text-xs text-vx-mut">The Google invite is removed, the student and the {track.host} are told, and the student goes back to {track.fromStageLabel}.</p>
             <input className={input} placeholder="Reason (required)" value={cancelReason} onChange={(e) => setCancelReason(e.target.value)}
               maxLength={450} aria-label="Cancel reason" />
             <div className="flex flex-wrap gap-2">
-              <button className={danger} disabled={busy} onClick={cancel}>{busy ? "Cancelling…" : "Cancel interview"}</button>
+              <button className={danger} disabled={busy} onClick={cancel}>{busy ? "Cancelling…" : `Cancel ${track.noun}`}</button>
               <button className={ghost} disabled={busy} onClick={() => { setCancelling(false); setCancelReason(""); }}>Keep it</button>
             </div>
           </div>
         ) : (
-          <button className={cx(vx.btn, vx.ghost, vx.sm)} onClick={() => setCancelling(true)}>Cancel interview…</button>
+          <button className={cx(vx.btn, vx.ghost, vx.sm)} onClick={() => setCancelling(true)}>Cancel {track.noun}…</button>
         )
       )}
       <Msg text={msg} />

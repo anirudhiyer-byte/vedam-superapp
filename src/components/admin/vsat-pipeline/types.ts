@@ -49,13 +49,17 @@ export type Student = {
     rubric_achievements: number | null; rubric_why_program: number | null; why_accept: string | null; financial_capability: string | null;
   });
   counselling: null | (Record<string, unknown> & {
-    counsellor: string | null; slot_datetime: string | null; zoom_link: string | null; attendance: string | null;
+    counsellor: string | null; counsellor_id?: string | null; slot_datetime: string | null; zoom_link: string | null; attendance: string | null;
+    /** 0145: Google Meet / cancel / attendance details (same columns as the interview row) */
+    duration_min?: number | null; cancelled_at?: string | null; submitted_at?: string | null;
     calc_score: number | null; calc_category: number | null; chosen_step: number | null; calculated_pct: number | null;
     actual_pct: number | null; actual_reason: string | null; special_rating: number | null; bonus_applied: boolean | null;
     scholarship_pct: number | null; scholarship_category: number | null;
     /** Profile analyser (0085): AI briefing for the counsellor, saved by the server only. */
     profile_analysis?: { text?: unknown; generated_at?: unknown; model?: unknown } | null;
   });
+  /** The offer the payment gate reads (0144 fills it when the student moves to Offer sent). */
+  offer?: { released_at: string | null; expires_at: string | null; scholarship_pct: number | null; category: number | null } | null;
   overrides: { field: string; value: unknown; calculated: unknown; reason: string; set_at: string; by: string | null; cleared_at: string | null }[];
   history: HistoryRow[];
 };

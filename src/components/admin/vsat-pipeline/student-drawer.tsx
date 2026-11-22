@@ -4,13 +4,15 @@ import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import {
   NEEDS_ASSIGNMENT, PARTS, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst, interviewFormErrors,
-  isHttpsLink, istSlot, needsReason, type InterviewForm, type Stage, type Status, type VsatRoles,
+  needsReason, type InterviewForm, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import { StageBadge } from "./pipeline-panel";
 import type { Preview, Student, StudentComm, StudentExtras, TeamMember } from "./types";
 import { profileErrorText } from "@/lib/vsat/profile-prompt";
 import { ATTENDANCE_LABEL, type InterviewRow } from "@/lib/vsat/interviews";
 import { InterviewScheduleForm, InterviewStatus, slotText } from "./interview-tools";
+import { OfferBox } from "./offer-tools";
+import { TRACKS } from "@/lib/vsat/tracks";
 import { DeletePerson } from "@/components/admin/vsat-delete-person";
 
 /**
@@ -219,7 +221,7 @@ function MoveStage({ s, onDone }: { s: Student; onDone: () => void }) {
 
   async function move() {
     if (to === cur.stage && st === cur.status) return setMsg("Nothing to change.");
-    if (assignOnly) return setMsg(`Use "Assign" below to schedule (it needs a ${NEEDS_ASSIGNMENT[to]} and a slot).`);
+    if (assignOnly) return setMsg(`Use "Schedule" below to book it (it needs a ${NEEDS_ASSIGNMENT[to]} and a slot).`);
     if (req && reason.trim().length < 3) return setMsg("Please add a reason (at least 3 characters).");
     setBusy(true); setMsg("");
     const p: Record<string, unknown> = { application_id: s.profile.application_id, to_stage: to, to_status: st, expected_stage: cur.stage };
@@ -300,51 +302,6 @@ function Overrides({ s, onDone }: { s: Student; onDone: () => void }) {
         <input className={`${input} sm:col-span-2`} placeholder="Reason (required)" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={500} aria-label="Override reason" />
       </div>
       <button className={primary} disabled={busy} onClick={save}>Save override</button>
-      <Msg text={msg} />
-    </div>
-  );
-}
-
-/** Counsellor picker + IST date and time + optional https link. (Interviews: InterviewScheduleForm.) */
-function AssignForm({ team, applicationId, onDone }: { team: TeamMember[]; applicationId: string; onDone: () => void }) {
-  const [supabase] = useState(() => createClient());
-  const kind = "counsellor";
-  const people = team.filter((t) => t.roles.includes(kind));
-  const [who, setWho] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [link, setLink] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState("");
-
-  async function save() {
-    const slot = istSlot(date, time);
-    if (!who) return setMsg(`Pick a ${kind}.`);
-    if (!slot) return setMsg("Pick a date and time.");
-    if (link.trim() && !isHttpsLink(link)) return setMsg("The meeting link must start with https://");
-    setBusy(true); setMsg("");
-    const p: Record<string, unknown> = { application_id: applicationId, slot_datetime: slot, counsellor_id: who };
-    if (link.trim()) p.meeting_link = link.trim();
-    const { error } = await supabase.rpc("vsat_assign_counsellor", { p });
-    setBusy(false);
-    if (error) return setMsg(errorText(error.message));
-    setMsg("Assigned ✓"); onDone();
-  }
-
-  return (
-    <div className="space-y-2 rounded-lg border border-vx-line p-3">
-      <p className="text-xs font-semibold text-vx-faint">Assign {kind} and slot (IST)</p>
-      <div className="grid gap-2 sm:grid-cols-3">
-        <select className={input} value={who} onChange={(e) => setWho(e.target.value)} aria-label={kind}>
-          <option value="">Pick {kind}…</option>
-          {people.map((t) => <option key={t.user_id} value={t.user_id}>{t.name ?? t.email}{t.campus ? ` (${t.campus})` : ""}</option>)}
-        </select>
-        <input className={input} type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="Date" />
-        <input className={input} type="time" step={900} value={time} onChange={(e) => setTime(e.target.value)} aria-label="Time" />
-      </div>
-      <input className={input} placeholder="Meeting link (optional, https://…)" value={link}
-        onChange={(e) => setLink(e.target.value)} maxLength={300} aria-label="Meeting link" />
-      <button className={primary} disabled={busy} onClick={save}>{busy ? "Saving…" : "Assign"}</button>
       <Msg text={msg} />
     </div>
   );
@@ -483,23 +440,36 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
 
 function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: VsatRoles; team: TeamMember[]; onDone: () => void }) {
   const st = s.pipeline.stage; const c = s.counselling;
+  // 0145: the counselling row in the shape the meeting tools read (the host is "interviewer", the link column is zoom_link)
+  const row = c ? ({ ...c, interviewer_id: c.counsellor_id ?? null, interviewer: c.counsellor, meet_link: c.zoom_link } as unknown as InterviewRow) : null;
+  const cancelled = !!row?.cancelled_at;
   const isCounsellor = roles.roles.includes("counsellor");
-  const canAssign = s.can_manage && (st === "pi_cleared" || st === "counselling_scheduled") && s.pipeline.status !== "not_selected";
+  const canAssign = s.can_manage && (st === "pi_cleared" || st === "counselling_scheduled") && s.pipeline.status !== "not_selected" && !c?.submitted_at;
   const canForm = st === "counselling_scheduled" && (s.can_manage || isCounsellor);
-  if (!c && !canAssign) return null;
+  // the offer (0144): from Counselled on, or whenever one was released
+  const showOffer = ["counselled", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled"].includes(st) || !!s.offer?.released_at;
+  if (!c && !canAssign && !showOffer) return null;
 
   return (
     <Section title="Counselling & scholarship">
       {c && <Grid items={[
-        ["Counsellor", show(c.counsellor)], ["Slot (IST)", fmtIst(c.slot_datetime)],
-        ["Meeting", c.zoom_link ? <a key="m" className="text-vx-violet-t underline" href={c.zoom_link} target="_blank" rel="noopener noreferrer">Open link</a> : "—"],
-        ["Attendance", show(c.attendance)], ["Scholarship score", show(c.calc_score)], ["Category", show(c.calc_category ?? c.scholarship_category)],
+        ["Counsellor", show(cancelled ? null : c.counsellor)], ["Slot (IST)", cancelled ? "—" : slotText(c.slot_datetime, row?.duration_min)],
+        ["Attendance", show(c.attendance ? ATTENDANCE_LABEL[c.attendance] ?? c.attendance : null)],
+        ["Scholarship score", show(c.calc_score)], ["Category", show(c.calc_category ?? c.scholarship_category)],
         ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
       ]} />}
       {c?.actual_reason && <p className="text-xs text-vx-mut">Reason for actual %: “{c.actual_reason}”</p>}
       {c && <ProfileBox applicationId={s.profile.application_id} {...savedProfile(c.profile_analysis)} canGenerate={s.can_manage || isCounsellor} />}
-      {canAssign && <AssignForm team={team} applicationId={s.profile.application_id} onDone={onDone} />}
-      {canForm && c && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
+      {row && (
+        <InterviewStatus iv={row} applicationId={s.profile.application_id} manager={s.can_manage} isInterviewer={isCounsellor}
+          atInterviewStage={st === "counselling_scheduled"} studentAbsent={s.pipeline.status === "absent"} onDone={onDone} track={TRACKS.counselling} />
+      )}
+      {canAssign && <InterviewScheduleForm team={team} applicationId={s.profile.application_id} current={row} onDone={onDone} track={TRACKS.counselling} />}
+      {canForm && c && !cancelled && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
+      {showOffer && (
+        <OfferBox applicationId={s.profile.application_id} stage={st} status={s.pipeline.status} offer={s.offer ?? null}
+          canManage={s.can_manage} onDone={onDone} />
+      )}
     </Section>
   );
 }
