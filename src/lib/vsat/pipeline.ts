@@ -111,6 +111,15 @@ const ERRORS: Record<string, string> = {
   NOT_FOUND: "That item no longer exists. Refresh and try again.",
   BAD_REQUEST: "The app sent something unexpected. Refresh the page and try again.",
   COUNT_CHANGED: "The list changed since you previewed it. Preview again, then confirm.",
+  // interviews (0140)
+  SLOT_IN_PAST: "Pick a time in the future.",
+  ALREADY_SCHEDULED: "Already has an interview booked. Open the student to move it.",
+  ALREADY_INTERVIEWED: "This student has already been interviewed.",
+  NO_INTERVIEW: "There's no interview booked for this student.",
+  TOO_EARLY: "Attendance can be marked once the interview has started.",
+  LINK_IN_USE: "That meeting link is already used for another student at the same time.",
+  NOTHING_TO_RETRY: "Nothing to retry: the Google Meet hasn't failed.",
+  NO_FREE_SLOT: "The interviewer has no free time near this start. Pick another start time.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
@@ -124,6 +133,8 @@ const FIELD_LABEL: Record<string, string> = {
   w_why_program: "Why this program", note: "Note", vps: "VPS", percentile: "Percentile", cleared_vps_cutoff: "Cut-off",
   email: "Email", role: "Role", campus: "Campus", exam_date_id: "VSAT", bands: "Bands",
   verdict: "Proctoring verdict", expected_count: "Count", apply: "Apply",
+  duration_min: "Length", interviewer_id: "Interviewer", interviewer_ids: "Interviewer", attendance: "Attendance",
+  start: "Start time", auto_meet: "Google Meet", reason: "Reason", dry_run: "Preview",
 };
 
 export function errorText(raw: string | null | undefined): string {

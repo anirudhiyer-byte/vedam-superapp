@@ -9,6 +9,8 @@ import {
 import { StageBadge } from "./pipeline-panel";
 import type { Preview, Student, StudentComm, StudentExtras, TeamMember } from "./types";
 import { profileErrorText } from "@/lib/vsat/profile-prompt";
+import { ATTENDANCE_LABEL, type InterviewRow } from "@/lib/vsat/interviews";
+import { InterviewScheduleForm, InterviewStatus, slotText } from "./interview-tools";
 
 /**
  * One student across all stages. Everything comes from vsat_student / vsat_scholarship_preview and
@@ -284,9 +286,10 @@ function Overrides({ s, onDone }: { s: Student; onDone: () => void }) {
   );
 }
 
-/** Interviewer / counsellor picker + IST date and time + optional https link. */
-function AssignForm({ kind, team, applicationId, onDone }: { kind: "interviewer" | "counsellor"; team: TeamMember[]; applicationId: string; onDone: () => void }) {
+/** Counsellor picker + IST date and time + optional https link. (Interviews: InterviewScheduleForm.) */
+function AssignForm({ team, applicationId, onDone }: { team: TeamMember[]; applicationId: string; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
+  const kind = "counsellor";
   const people = team.filter((t) => t.roles.includes(kind));
   const [who, setWho] = useState("");
   const [date, setDate] = useState("");
@@ -301,10 +304,9 @@ function AssignForm({ kind, team, applicationId, onDone }: { kind: "interviewer"
     if (!slot) return setMsg("Pick a date and time.");
     if (link.trim() && !isHttpsLink(link)) return setMsg("The meeting link must start with https://");
     setBusy(true); setMsg("");
-    const p: Record<string, unknown> = { application_id: applicationId, slot_datetime: slot };
-    if (kind === "interviewer") { p.interviewer_id = who; if (link.trim()) p.meet_link = link.trim(); }
-    else { p.counsellor_id = who; if (link.trim()) p.meeting_link = link.trim(); }
-    const { error } = await supabase.rpc(kind === "interviewer" ? "vsat_assign_interview" : "vsat_assign_counsellor", { p });
+    const p: Record<string, unknown> = { application_id: applicationId, slot_datetime: slot, counsellor_id: who };
+    if (link.trim()) p.meeting_link = link.trim();
+    const { error } = await supabase.rpc("vsat_assign_counsellor", { p });
     setBusy(false);
     if (error) return setMsg(errorText(error.message));
     setMsg("Assigned ✓"); onDone();
@@ -321,7 +323,7 @@ function AssignForm({ kind, team, applicationId, onDone }: { kind: "interviewer"
         <input className={input} type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="Date" />
         <input className={input} type="time" step={900} value={time} onChange={(e) => setTime(e.target.value)} aria-label="Time" />
       </div>
-      <input className={input} placeholder="Meeting link (optional, https://…) — automatic Google Meet comes in the next step" value={link}
+      <input className={input} placeholder="Meeting link (optional, https://…)" value={link}
         onChange={(e) => setLink(e.target.value)} maxLength={300} aria-label="Meeting link" />
       <button className={primary} disabled={busy} onClick={save}>{busy ? "Saving…" : "Assign"}</button>
       <Msg text={msg} />
@@ -330,25 +332,19 @@ function AssignForm({ kind, team, applicationId, onDone }: { kind: "interviewer"
 }
 
 function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatRoles; team: TeamMember[]; onDone: () => void }) {
-  const [supabase] = useState(() => createClient());
   const st = s.pipeline.stage; const iv = s.interview;
+  const row = iv as unknown as InterviewRow | null;
   const isInterviewer = roles.roles.includes("interviewer");
   const canAssign = s.can_manage && (st === "vsat_cleared" || st === "interview_scheduled") && s.pipeline.status !== "not_selected";
   const canForm = st === "interview_scheduled" && (s.can_manage || isInterviewer);
-  const [msg, setMsg] = useState("");
   if (!iv && !canAssign && !["vsat_cleared", "interview_scheduled"].includes(st)) return null;
-
-  async function markAbsent() {
-    const { error } = await supabase.rpc("vsat_move_stage", { p: { application_id: s.profile.application_id, to_stage: "interview_scheduled", to_status: "absent", expected_stage: st } });
-    setMsg(error ? errorText(error.message) : "Marked absent ✓"); if (!error) onDone();
-  }
+  const cancelled = !!row?.cancelled_at;
 
   return (
     <Section title="Interview">
-      {iv && <Grid items={[
-        ["Interviewer", show(iv.interviewer)], ["Slot (IST)", fmtIst(iv.slot_datetime)],
-        ["Meeting", iv.meet_link ? <a key="m" className="text-vx-violet-t underline" href={iv.meet_link} target="_blank" rel="noopener noreferrer">Open link</a> : "—"],
-        ["Attendance", show(iv.attendance)], ["Score (out of 5)", show(iv.weighted_avg)],
+      {iv && !cancelled && <Grid items={[
+        ["Interviewer", show(iv.interviewer)], ["Slot (IST)", slotText(iv.slot_datetime, row?.duration_min)],
+        ["Attendance", show(iv.attendance ? ATTENDANCE_LABEL[iv.attendance] ?? iv.attendance : null)], ["Score (out of 5)", show(iv.weighted_avg)],
         ["Verdict (calculated / interviewer)", iv.weighted_avg === null ? "—" : `${show(iv.calc_verdict)} / ${show(iv.interviewer_verdict)}`],
         ["Cheating seen", iv.cheating_seen === null ? "—" : iv.cheating_seen ? "Yes" : "No"], ["Financial capability", show(iv.financial_capability)],
       ]} />}
@@ -356,10 +352,12 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
         <Grid items={PARTS.map(([k, label]) => [label, `${show(iv[({ communication: "rubric_behavioural", logic: "rubric_math", passion: "rubric_passion", achievements: "rubric_achievements", why_program: "rubric_why_program" } as const)[k]])}${iv.remarks?.[k] ? ` · ${iv.remarks[k]}` : ""}`] as [string, ReactNode])} />
       )}
       {iv?.why_accept && <p><span className="text-xs text-vx-faint">Why should Vedam accept you: </span>{iv.why_accept}</p>}
-      {canAssign && <AssignForm kind="interviewer" team={team} applicationId={s.profile.application_id} onDone={onDone} />}
-      {canForm && iv && <InterviewFormBox applicationId={s.profile.application_id} onDone={onDone} />}
-      {canForm && iv && s.pipeline.status !== "absent" && <button className={ghost} onClick={markAbsent}>Student didn&apos;t join — mark absent</button>}
-      <Msg text={msg} />
+      {row && (
+        <InterviewStatus iv={row} applicationId={s.profile.application_id} manager={s.can_manage} isInterviewer={isInterviewer}
+          atInterviewStage={st === "interview_scheduled"} studentAbsent={s.pipeline.status === "absent"} onDone={onDone} />
+      )}
+      {canAssign && <InterviewScheduleForm team={team} applicationId={s.profile.application_id} current={row} onDone={onDone} />}
+      {canForm && iv && !cancelled && <InterviewFormBox applicationId={s.profile.application_id} onDone={onDone} />}
     </Section>
   );
 }
@@ -481,7 +479,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
       ]} />}
       {c?.actual_reason && <p className="text-xs text-vx-mut">Reason for actual %: “{c.actual_reason}”</p>}
       {c && <ProfileBox applicationId={s.profile.application_id} {...savedProfile(c.profile_analysis)} canGenerate={s.can_manage || isCounsellor} />}
-      {canAssign && <AssignForm kind="counsellor" team={team} applicationId={s.profile.application_id} onDone={onDone} />}
+      {canAssign && <AssignForm team={team} applicationId={s.profile.application_id} onDone={onDone} />}
       {canForm && c && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
     </Section>
   );

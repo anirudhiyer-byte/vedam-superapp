@@ -118,3 +118,13 @@ describe("admin middleware exception for VSAT team members", () => {
     }
   });
 });
+
+describe("errorText · interviews (0140)", () => {
+  it("every code the interview functions raise has its own plain message", () => {
+    for (const code of ["SLOT_IN_PAST", "ALREADY_SCHEDULED", "ALREADY_INTERVIEWED", "NO_INTERVIEW", "TOO_EARLY", "LINK_IN_USE", "NOTHING_TO_RETRY", "NO_FREE_SLOT"]) {
+      expect(errorText(code)).not.toBe("Something went wrong. Please try again.");
+    }
+    expect(errorText("BAD_VALUE: duration_min")).toBe('Please check "Length".');
+    expect(errorText("BAD_VALUE: interviewer_ids")).toBe('Please check "Interviewer".');
+  });
+});

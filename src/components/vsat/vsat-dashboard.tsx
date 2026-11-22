@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
 import { VsatExamBlock } from "@/components/vsat/vsat-exam-block";
+import { InterviewJoin } from "@/components/vsat/interview-card";
 import { offerPayable, type EnrollApp } from "@/lib/payments/enroll-fee";
 
 const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"];
@@ -556,10 +557,8 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
                     ))}
                   </div>
                 )}
-                <button disabled={!campus || busy} onClick={() => track("vsat_join_interview")}
-                  className={`mt-4 ${campus ? btn : "inline-flex items-center justify-center rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4] cursor-not-allowed"}`}>
-                  {campus ? "Join interview" : "🔒 Join interview (select campus)"}
-                </button>
+                {/* time + Join button: the link opens from 10 minutes before the start until the end (vsat_my_interview) */}
+                <InterviewJoin campusChosen={!!campus} />
               </div>
             ) : hasResults ? (
               <div className={`${card} mb-4 border-[#1f9d57]/30 bg-[#f1fbf5]`}>
