@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
 import { VsatExamBlock } from "@/components/vsat/vsat-exam-block";
+import { HelpBox } from "@/components/vsat/help-box";
 import { InterviewJoin } from "@/components/vsat/interview-card";
 import { offerPayable, type EnrollApp } from "@/lib/payments/enroll-fee";
 
@@ -431,6 +432,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
               <span className="text-[#a79fbd]">→</span>
             </Link>
           </nav>
+          <HelpBox />
           </div>
 
           {/* MIDDLE · action box + form-progress / performance slot */}
