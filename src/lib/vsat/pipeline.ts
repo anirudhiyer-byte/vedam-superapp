@@ -110,6 +110,7 @@ const ERRORS: Record<string, string> = {
   NO_ACCOUNT: "No Vedam One account uses this email. Ask the person to sign up first, then add them.",
   NOT_FOUND: "That item no longer exists. Refresh and try again.",
   BAD_REQUEST: "The app sent something unexpected. Refresh the page and try again.",
+  COUNT_CHANGED: "The list changed since you previewed it. Preview again, then confirm.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
@@ -122,6 +123,7 @@ const FIELD_LABEL: Record<string, string> = {
   w_communication: "Communication", w_logic: "Logical reasoning", w_passion: "Passion for CS", w_achievements: "Achievements",
   w_why_program: "Why this program", note: "Note", vps: "VPS", percentile: "Percentile", cleared_vps_cutoff: "Cut-off",
   email: "Email", role: "Role", campus: "Campus", exam_date_id: "VSAT", bands: "Bands",
+  verdict: "Proctoring verdict", expected_count: "Count", apply: "Apply",
 };
 
 export function errorText(raw: string | null | undefined): string {
