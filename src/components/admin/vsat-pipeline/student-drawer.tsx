@@ -11,6 +11,7 @@ import type { Preview, Student, StudentComm, StudentExtras, TeamMember } from ".
 import { profileErrorText } from "@/lib/vsat/profile-prompt";
 import { ATTENDANCE_LABEL, type InterviewRow } from "@/lib/vsat/interviews";
 import { InterviewScheduleForm, InterviewStatus, slotText } from "./interview-tools";
+import { DeletePerson } from "@/components/admin/vsat-delete-person";
 
 /**
  * One student across all stages. Everything comes from vsat_student / vsat_scholarship_preview and
@@ -179,6 +180,24 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
                 ))}
               </ul>
             </Section>
+
+            {roles.admin && (
+              <section className="rounded-xl border border-[rgba(255,107,129,0.35)] bg-[rgba(255,107,129,0.06)] p-4">
+                <h3 className="mb-1 font-semibold text-vx-red">Danger zone</h3>
+                <p className="mb-3 text-sm text-vx-mut">
+                  Permanently erase this person and their entire VSAT footprint (application, exam,
+                  interview, counselling, payments, CRM logs and early registration). Use only for
+                  dummy / test entries — it cannot be undone.
+                </p>
+                <DeletePerson
+                  kind="application"
+                  id={s.profile.application_id}
+                  name={s.profile.name}
+                  email={s.profile.email}
+                  onDeleted={() => { onChanged(); onClose(); }}
+                />
+              </section>
+            )}
           </div>
         )}
       </div>
