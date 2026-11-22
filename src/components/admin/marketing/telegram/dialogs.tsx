@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type FocusEvent as ReactFocusEvent, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import {
   colKeyOf, EDITABLE_STD, duplicateOf, importErrorLines, importTargets, mapRecords, mappingErrors, parseCsv,
   type TgCampaign, type TgColumn, type TgRow, type CsvParsed,
@@ -77,6 +77,8 @@ const Saving = ({ text }: { text: string }) => <><Icon n="loader" spin /> {text}
 
 // ───────────────────────────── pick-list (CRM ComboPicker) ─────────────────────────────
 
+const caretToEnd = (e: ReactFocusEvent<HTMLInputElement>) => { const n = e.currentTarget.value.length; e.currentTarget.setSelectionRange(n, n); };
+
 /** A button that opens a small list with a search box: pick an existing value, or (allowNew) use what was typed. */
 function ComboPicker({ id, options, value, onChange, placeholder, allowNew, invalid, describedBy, autoFocus }: {
   id: string; options: readonly string[]; value: string; onChange: (v: string) => void; placeholder: string; allowNew: boolean;
@@ -100,10 +102,17 @@ function ComboPicker({ id, options, value, onChange, placeholder, allowNew, inva
   const create = allowNew && q.length > 0 && !exact;
   const custom = !!value && !options.includes(value);
   const pick = (v: string) => { onChange(v); setOpen(false); setSearch(""); btn.current?.focus(); };
+  // Typing a letter on the closed button opens the list with that letter (otherwise letters before the first Space were lost)
+  const typeToOpen = (e: ReactKeyboardEvent<HTMLButtonElement>) => {
+    if (open || e.key.length !== 1 || e.key === " " || e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault();
+    setSearch(e.key);
+    setOpen(true);
+  };
   return (
     <div className="vcn-combo" ref={box}>
       <button ref={btn} id={id} type="button" className={`vcn-cb${invalid ? " bad" : ""}`} aria-haspopup="listbox" aria-expanded={open}
-        aria-describedby={describedBy} onClick={() => setOpen((o) => !o)} {...(autoFocus ? { "data-autofocus": true } : {})}>
+        aria-describedby={describedBy} onClick={() => setOpen((o) => !o)} onKeyDown={typeToOpen} {...(autoFocus ? { "data-autofocus": true } : {})}>
         <span className={value ? "" : "ph"}>{value || placeholder}{custom && <em>custom</em>}</span>
         <Icon n="down" />
       </button>
@@ -111,7 +120,7 @@ function ComboPicker({ id, options, value, onChange, placeholder, allowNew, inva
         <div className="vcn-cp">
           <div className="vcn-cp-s">
             <Icon n="search" size="s" />
-            <input type="text" value={search} autoFocus autoComplete="off" aria-label="Filter the list" placeholder={allowNew ? "Type to filter or add new…" : "Type to filter…"}
+            <input type="text" value={search} autoFocus autoComplete="off" onFocus={caretToEnd} aria-label="Filter the list" placeholder={allowNew ? "Type to filter or add new…" : "Type to filter…"}
               onChange={(e) => setSearch(e.target.value)} maxLength={120}
               onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); if (create) pick(q); else if (shownOpts.length === 1) pick(shownOpts[0]); } }} />
           </div>

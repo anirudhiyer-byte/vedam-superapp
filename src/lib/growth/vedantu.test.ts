@@ -19,6 +19,17 @@ const COLS: VdColumn[] = [
   { ...col("x_city", "text", "City"), standard: false },
 ];
 
+describe("counts", () => {
+  it("Enrollments column is all-time (as the CRM); Leads / Payments keep In Window and All Time", () => {
+    const r = row({ id: "1", leads: 2, leads_all: 5, payments: 1, payments_all: 3, enrollments: 0, enrollments_all: 2 });
+    expect(valueOf(r, "enrollments")).toBe(2);
+    expect(valueOf(r, "leads")).toBe(2);
+    expect(valueOf(r, "leads_all")).toBe(5);
+    expect(valueOf(r, "payments")).toBe(1);
+    expect(valueOf(r, "payments_all")).toBe(3);
+  });
+});
+
 describe("spend", () => {
   it("Total CPA = CPA × all-time payments; Total Spend = Video Spend + Total CPA", () => {
     const r = row({ id: "1", cpa: 500, payments: 1, payments_all: 4, video_spend: 10000 });

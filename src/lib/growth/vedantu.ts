@@ -6,6 +6,7 @@
  * and convert, the way the CRM's Vedantu Listing does:
  *   • Campaign = the VSAT whose dates hold the Live Date (worked out by the database, never typed)
  *   • Total CPA = CPA × Payments (all-time) · Total Spend = Video Spend + Total CPA
+ *   • Enrollments column = all-time enrolments of the UTM (Leads / Payments have In Window and All Time columns)
  *   • Serial No is a counter (1…N) in Live Date order, not a stored value
  *   • View Comparison = (Actual − Expected) ÷ Expected, worked out on screen from the two view columns
  *   • KPI cards follow the filtered rows: Posts live, Total spend, Video spend, Total CPA spend, Total views
@@ -60,7 +61,9 @@ export function valueOf(r: VdRow, key: string, serial?: number): string | number
     case "campaign": return r.campaign ?? null;
     case "total_cpa": return totalCpa(r);
     case "total_spend": return totalSpend(r);
-    case "leads": case "payments": case "enrollments": case "leads_all": case "payments_all": case "enrollments_all": return num(r[key]);
+    case "leads": case "payments": case "leads_all": case "payments_all": case "enrollments_all": return num(r[key]);
+    // CRM: the Listing's Enrollments column is all-time (its Performance card "Enrolments · All time" adds this column up)
+    case "enrollments": return num(r.enrollments_all);
     case VIEW_COMPARISON: { const c = comparison(r); return c.kind === "ok" ? c.pct : null; }
     case "expected_views": case "actual_views": return r[key] == null ? null : num(r[key]);
     case "video_spend": case "cpa": return num(r[key]) || null;   // CRM: an empty spend / CPA shows "—"
