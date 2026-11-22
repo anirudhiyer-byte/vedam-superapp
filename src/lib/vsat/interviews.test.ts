@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  attendanceOutcome, clockSkewMs, escapeHtml, eventText, fillTemplate, interviewEventId, isLive, isMeetUrl, istDate, istParts, joinUrl,
+  attendanceOutcome, clockSkewMs, escapeHtml, eventText, fillTemplate, interviewCardCopy, interviewEventId, istDay, JOIN_TIPS, timeLeftText, isLive, isMeetUrl, istDate, istParts, joinUrl,
   istSlotIso, istTimeRange, joinPhase, meetErrorText, meetState, msToNextPhase, noticeVars, parseIdList, planNotices,
   type MyInterview, type NoticeJob,
 } from "./interviews";
@@ -122,6 +122,51 @@ describe("student Join button", () => {
     expect(isMeetUrl("javascript:alert(1)")).toBe(false);
     expect(isMeetUrl("https://meet.google.com.evil.com/x")).toBe(false);
     expect(isMeetUrl(null)).toBe(false);
+  });
+  it("card copy per state (approved 23 Nov 2026; the joining tips are chips)", () => {
+    expect(interviewCardCopy("none")).toEqual({ title: "You're selected for the interview", text: "We'll book your interview soon and email you the time." });
+    expect(interviewCardCopy("upcoming", { opensAt: "2026-11-25T05:20:00Z" })).toEqual({
+      title: "Your interview is booked",
+      text: "The Join button opens at 10:50 am IST, 10 minutes before your interview.",
+    });
+    expect(interviewCardCopy("upcoming").text).toBe("The Join button opens 10 minutes before your interview.");
+    expect(JOIN_TIPS).toEqual(["Camera on", "Mic on", "Quiet place"]);
+    expect(interviewCardCopy("open", { hasLink: true })).toEqual({ title: "Your interview is starting", text: "" });
+    expect(interviewCardCopy("open", { hasLink: false }).text).toBe("Your meeting link will be ready in a minute. You can also join from the link in your email.");
+    expect(interviewCardCopy("missed")).toEqual({ title: "You missed your interview", text: "The admissions team will contact you to book a new time." });
+    expect(interviewCardCopy("ended")).toEqual({ title: "Your interview is done", text: "We'll email you the result." });
+    expect(interviewCardCopy("no_campus")).toEqual({ title: "Choose your campus first", text: "Pick your campus below to book your interview." });
+    expect(interviewCardCopy("loading")).toEqual({ title: "Your interview", text: "" });
+    expect(interviewCardCopy("error").text).toMatch(/couldn't load/);
+  });
+  it("no emoji in the card copy (icons are drawn by the card)", () => {
+    for (const p of ["none", "upcoming", "open", "missed", "ended", "no_campus", "loading", "error"] as const) {
+      const c = interviewCardCopy(p, { hasLink: false, opensAt: "2026-11-25T05:20:00Z" });
+      expect(`${c.title} ${c.text}`).not.toMatch(/\p{Extended_Pictographic}/u);
+    }
+  });
+  it("date tile in IST", () => {
+    expect(istDay("2026-11-22T19:00:00Z")).toEqual({ weekday: "Mon", day: "23", month: "Nov", long: "Monday, 23 November" });
+    expect(istDay(null)).toBeNull();
+    expect(istDay("nope")).toBeNull();
+  });
+  it("countdown text", () => {
+    expect(timeLeftText(45 * 60_000)).toBe("45 min");
+    expect(timeLeftText(44 * 60_000 + 1)).toBe("45 min");          // rounded up
+    expect(timeLeftText(60 * 60_000)).toBe("1 h");
+    expect(timeLeftText(135 * 60_000)).toBe("2 h 15 min");
+    expect(timeLeftText(1440 * 60_000)).toBe("1 day");
+    expect(timeLeftText((1440 + 250) * 60_000)).toBe("1 day 4 h");
+    expect(timeLeftText(3 * 1440 * 60_000 + 5)).toBe("3 days");
+    expect(timeLeftText(0)).toBe("a moment");
+    expect(timeLeftText(Number.NaN)).toBe("a moment");
+  });
+  it("no state says the interview is aligned or asks to join when nothing is booked", () => {
+    for (const p of ["none", "upcoming", "open", "missed", "ended", "no_campus", "loading", "error"] as const) {
+      const c = interviewCardCopy(p, { hasLink: false });
+      expect(`${c.title} ${c.text}`).not.toMatch(/aligned/i);
+    }
+    expect(interviewCardCopy("none").text).not.toMatch(/join/i);
   });
   it("the Join button opens https links only (Meet, or staff's own Zoom / Teams link)", () => {
     expect(joinUrl("https://meet.google.com/abc-defg-hij")).toBe("https://meet.google.com/abc-defg-hij");

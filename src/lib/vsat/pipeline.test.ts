@@ -128,3 +128,13 @@ describe("errorText · interviews (0140)", () => {
     expect(errorText("BAD_VALUE: interviewer_ids")).toBe('Please check "Interviewer".');
   });
 });
+
+describe("errorText · booking from the panel rows (0143)", () => {
+  it("every code the row functions raise has its own plain message", () => {
+    for (const code of ["CLASH", "NO_DRAFT", "SLOT_TAKEN", "NOT_AN_INTERVIEWER", "WRONG_STAGE", "SLOT_IN_PAST", "ALREADY_INTERVIEWED", "ALREADY_SCHEDULED", "NO_FREE_SLOT"]) {
+      expect(errorText(code)).not.toBe("Something went wrong. Please try again.");
+    }
+    expect(errorText("BAD_VALUE: application_ids")).not.toBe("Something went wrong. Please try again.");
+    expect(errorText("BAD_VALUE: start")).toBe('Please check "Start time".');
+  });
+});
