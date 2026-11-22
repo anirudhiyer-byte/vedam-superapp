@@ -8,6 +8,11 @@ Booking from the panel rows: migration `0143_vsat_interview_inline_schedule` (ro
 `supabase/rollback/0143_vsat_interview_inline_schedule_down.sql`), DB tests in
 `supabase/tests/vsat_interview_inline_schedule.test.sql`.
 
+Phase 3 reuses all of this for counselling (`counselling-scheduling.md`, migration 0145) through one config,
+`src/lib/vsat/tracks.ts`; the offer release is in `offers.md` (migration 0144). The interview behaviour and copy
+are unchanged. The VSAT cron now also runs the counselling jobs and the offer emails; the interview Google step
+stops claiming new work after 2 minutes (was 2.5) to leave time for them.
+
 ## What staff can do (Interview panel)
 
 | Action | Who | What happens |
@@ -112,7 +117,7 @@ column stays *Creating*.
 
 ## Production release (only with the owner's OK)
 
-1. Apply migrations 0140 and 0143 on production (in that order).
+1. Apply migrations 0140 and 0143 on production (in that order). With Phase 3: then 0144 (offers) and 0145 (counselling).
 2. Set the `ADMISSIONS_*` env in Vercel **Production** (`ADMISSIONS_INVITE_MODE=live`).
 3. Merge to `main` (the cron entry comes with `vercel.json`).
 4. In *VSAT → Comms*, check the six interview steps' copy, then turn them on and off test mode.

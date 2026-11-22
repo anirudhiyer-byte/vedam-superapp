@@ -139,6 +139,8 @@ const LABELS: Record<string, string> = {
   primary_utm: "UTM (first)", secondary_utm: "UTM (second)", tertiary_utm: "UTM (third)", latest_utm: "UTM (latest)",
   primary_utm_source: "UTM source (first)", primary_utm_medium: "UTM medium (first)", primary_utm_campaign: "UTM campaign (first)",
   wheebox_login_id: "Wheebox login", wheebox_registered: "Wheebox registered", form_completion_percentage: "Form completion %",
+  offer_released_at: "Offer released (IST)", offer_expires_at: "Offer valid till (IST)", offer_cancelled: "Offer cancelled",
+  offer_status: "Offer status", offer_released_date: "Offer released (old field)", offer_expiry_date: "Offer expiry (old field)",
   offer_pay_timeline_days: "Days to pay", scholarship_percentage: "Scholarship % (final)", scholarship_amount: "Scholarship amount",
   transferred_to_erp: "Transferred to ERP", doc_verification_status: "Documents verified", verification_level1_status: "Verification level 1",
 };
@@ -165,7 +167,9 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   // 0140 — Meet state and attendance next to the slot
   intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_score",
          "interview_calc_verdict", "interviewer_verdict", "stage_changed_at"],
-  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_category", "counselling_pct", "stage_changed_at"],
+  // 0144 — the offer deadline next to the scholarship
+  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_category", "counselling_pct", "offer_expires_at",
+          "stage_changed_at"],
 };
 
 /** Columns the request must carry for the shown ones to render (the override markers, the app no. under the name). */

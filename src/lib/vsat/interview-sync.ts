@@ -1,5 +1,6 @@
 /**
- * VSAT interviews · server jobs (service role). Server-only.
+ * VSAT interviews and counselling sessions · server jobs (service role). Server-only.
+ * Every job takes a Track (src/lib/vsat/tracks.ts): the interview (0140) or counselling (0145); same rules.
  *
  *   syncInterviews            make / move / remove the Google Calendar event (with its Meet link)
  *   checkInterviewAttendance  after the slot, read Meet attendance → joined / no-show / "please mark"
@@ -14,6 +15,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createGoogleAccount, GoogleError, type CalEvent, type GoogleAccount } from "@/lib/google/account";
 import { decideAttendance, type Participant } from "@/lib/peerpath/attendance";
 import { deliverEmail } from "@/lib/email/deliver";
+import { MEETING_STEP_KEYS, TRACKS, withHost, type Track } from "./tracks";
 import {
   attendanceOutcome, eventText, fillTemplate, interviewEventId, isMeetUrl, noticeVars, planNotices,
   type NoticeJob, type NoticeStep,
@@ -84,7 +86,7 @@ function linkResult(ev: CalEvent, id: string): SyncResult {
 }
 
 /** Decide and do the Google work for one claimed interview. Never throws. */
-export async function syncOne(g: GoogleAccount, row: SyncRow, now = Date.now()): Promise<SyncResult> {
+export async function syncOne(g: GoogleAccount, row: SyncRow, now = Date.now(), track: Track = TRACKS.interview): Promise<SyncResult> {
   const wantEvent = !row.cancelled && !!row.slot_start && row.meet_mode === "auto" && !!row.interviewer;
   try {
     if (!wantEvent) {
@@ -102,7 +104,7 @@ export async function syncOne(g: GoogleAccount, row: SyncRow, now = Date.now()):
     if (!g.invitesAllowed(emails)) {
       return { outcome: "failed", final: true, error: "test_mode: an attendee is not on ADMISSIONS_TEST_EMAILS, no invite sent" };
     }
-    const { summary, description } = eventText({ studentName: row.student.name, applicationNo: row.student.application_no, site: siteUrl() });
+    const { summary, description } = eventText({ studentName: row.student.name, applicationNo: row.student.application_no, site: siteUrl() }, track);
     const want = { summary, description, start, end, attendees: emails };
 
     let gone: string | undefined;
@@ -118,7 +120,7 @@ export async function syncOne(g: GoogleAccount, row: SyncRow, now = Date.now()):
     let gen = row.event_gen + (gone ? 1 : 0);
     for (let i = 0; i < 4; i++, gen++) {
       try {
-        const ev = await g.createEvent({ id: interviewEventId(row.id, gen), ...want });
+        const ev = await g.createEvent({ id: interviewEventId(row.id, gen, track.eventPrefix), ...want });
         return { ...linkResult(ev, ev.id), event_gen: gen, deleted_event_id: gone };
       } catch (err) {
         // that id belongs to an event deleted earlier → try the next generation
@@ -141,19 +143,20 @@ export async function syncInterviews(
   db: SupabaseClient,
   opts: { ids?: string[]; limit?: number; deadline?: number } = {},
   g: GoogleAccount = admissionsGoogle,
+  track: Track = TRACKS.interview,
 ): Promise<{ claimed: number; ok: number; failed: number; skipped?: string }> {
   const out = { claimed: 0, ok: 0, failed: 0 };
   if (!g.configured()) return { ...out, skipped: "google_not_configured" };
   const p: Record<string, unknown> = { limit: opts.limit ?? 20 };
   if (opts.ids) p.application_ids = opts.ids;
-  const { data, error } = await db.rpc("vsat_interview_sync_claim", { p });
+  const { data, error } = await db.rpc(track.rpc.syncClaim, { p });
   if (error) throw new Error(`sync_claim: ${error.message}`);
-  const rows = (Array.isArray(data) ? data : []) as SyncRow[];
+  const rows = (Array.isArray(data) ? data : []).map((x) => withHost(x as Record<string, unknown>, track)) as unknown as SyncRow[];
   out.claimed = rows.length;
   for (const row of rows) {
     if (opts.deadline && Date.now() > opts.deadline) break;
-    const r = await syncOne(g, row);
-    const { error: e2 } = await db.rpc("vsat_interview_sync_release", {
+    const r = await syncOne(g, row, Date.now(), track);
+    const { error: e2 } = await db.rpc(track.rpc.syncRelease, {
       p: compact({ id: row.id, version: row.version, claimed_at: row.claimed_at, ...r }),
     });
     if (e2 || r.outcome === "failed") out.failed++;
@@ -175,13 +178,14 @@ export async function checkInterviewAttendance(
   limit = 20,
   g: GoogleAccount = admissionsGoogle,
   now = Date.now(),
+  track: Track = TRACKS.interview,
 ): Promise<{ checked: number; done: number; no_show: number; marking: number; retry: number; skipped?: string }> {
   const out = { checked: 0, done: 0, no_show: 0, marking: 0, retry: 0 };
   if (!g.configured()) return { ...out, skipped: "google_not_configured" };
-  const { data, error } = await db.rpc("vsat_interview_attendance_due", { p_limit: limit });
+  const { data, error } = await db.rpc(track.rpc.attendanceDue, { p_limit: limit });
   if (error) throw new Error(`attendance_due: ${error.message}`);
   const apply = (row: DueRow, result: string, detail?: Record<string, unknown>) =>
-    db.rpc("vsat_interview_attendance_apply", { p: compact({ id: row.id, version: row.version, result, detail }) });
+    db.rpc(track.rpc.attendanceApply, { p: compact({ id: row.id, version: row.version, result, detail }) });
 
   for (const row of (Array.isArray(data) ? data : []) as DueRow[]) {
     out.checked++;
@@ -231,10 +235,7 @@ export async function checkInterviewAttendance(
 type StepCfg = { step_key: string; title: string; enabled: boolean; test_mode: boolean; email_enabled: boolean; email_subject: string; email_body: string };
 export type NoticeConfig = { master: boolean; testEmail: string; steps: Map<string, StepCfg> };
 
-const STEP_KEYS: NoticeStep[] = [
-  "interview_invite", "interview_rescheduled", "interview_cancelled",
-  "interviewer_invite", "interviewer_rescheduled", "interviewer_cancelled",
-];
+const STEP_KEYS = MEETING_STEP_KEYS as NoticeStep[];   // both tracks (interview + counselling)
 
 export async function loadNoticeConfig(db: SupabaseClient): Promise<NoticeConfig> {
   const [{ data: steps }, { data: settings }] = await Promise.all([
@@ -260,13 +261,14 @@ export async function sendInterviewNotices(
   db: SupabaseClient,
   opts: { ids?: string[]; limit?: number; waitForMeet?: boolean } = {},
   deps: { deliver?: Deliver; config?: NoticeConfig } = {},
+  track: Track = TRACKS.interview,
 ): Promise<{ jobs: number; sent: number; failed: number; off: number }> {
   const out = { jobs: 0, sent: 0, failed: 0, off: 0 };
   const p: Record<string, unknown> = { limit: opts.limit ?? 20, wait_for_meet: opts.waitForMeet ?? admissionsGoogle.configured() };
   if (opts.ids) p.application_ids = opts.ids;
-  const { data, error } = await db.rpc("vsat_interview_notices_claim", { p });
+  const { data, error } = await db.rpc(track.rpc.noticesClaim, { p });
   if (error) throw new Error(`notices_claim: ${error.message}`);
-  const jobs = (Array.isArray(data) ? data : []) as NoticeJob[];
+  const jobs = (Array.isArray(data) ? data : []).map((x) => withHost(x as Record<string, unknown>, track)) as unknown as NoticeJob[];
   if (!jobs.length) return out;
   const cfg = deps.config ?? (await loadNoticeConfig(db));
   const deliver = deps.deliver ?? deliverEmail;
@@ -277,7 +279,7 @@ export async function sendInterviewNotices(
     const sentTo = [...(job.sent_to ?? [])];
     let failed = false;
     let sentNow = 0;
-    for (const n of planNotices(job)) {
+    for (const n of planNotices(job, track)) {
       const step = cfg.steps.get(n.step);
       if (!cfg.master || !step || !step.enabled || !step.email_enabled) { out.off++; continue; }
       const to = step.test_mode ? cfg.testEmail : n.to;
@@ -301,7 +303,7 @@ export async function sendInterviewNotices(
       }
     }
     const status = failed ? "failed" : sentTo.length > 0 ? "sent" : "skipped";
-    await db.rpc("vsat_interview_notice_done", { p: { id: job.id, status, detail: { sent_to: sentTo, sent_now: sentNow } } });
+    await db.rpc(track.rpc.noticeDone, { p: { id: job.id, status, detail: { sent_to: sentTo, sent_now: sentNow } } });
   }
   return out;
 }

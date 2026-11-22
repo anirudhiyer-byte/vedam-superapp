@@ -138,3 +138,13 @@ describe("errorText · booking from the panel rows (0143)", () => {
     expect(errorText("BAD_VALUE: start")).toBe('Please check "Start time".');
   });
 });
+
+describe("errorText · offers (0144)", () => {
+  it("every code the offer functions raise has its own plain message", () => {
+    for (const code of ["NO_SCHOLARSHIP", "ALREADY_RELEASED", "CAMPUS_MISSING", "WRONG_STAGE", "REASON_REQUIRED", "STAGE_CHANGED"]) {
+      expect(errorText(code)).not.toBe("Something went wrong. Please try again.");
+    }
+    expect(errorText("NO_SCHOLARSHIP")).toMatch(/counselling/);
+    expect(errorText("BAD_VALUE: dry_run")).toBe('Please check "Preview".');
+  });
+});

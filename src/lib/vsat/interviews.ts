@@ -7,6 +7,7 @@
  */
 
 import { istSlot } from "./pipeline";
+import { TRACKS, type Track } from "./tracks";
 
 export const DEFAULT_DURATION_MIN = 30;
 export const DURATION_CHOICES = [15, 20, 30, 45, 60] as const;
@@ -149,19 +150,19 @@ export const ATTENDANCE_HINT: Record<string, string> = {
 
 // ── Google event ─────────────────────────────────────────────────────────────
 
-/** Calendar event ids allow only a–v and 0–9: "vi" + the row id without dashes + "g" + generation. */
-export const interviewEventId = (assignmentId: string, gen: number): string =>
-  `vi${assignmentId.replace(/-/g, "").toLowerCase()}g${Math.max(0, Math.floor(gen))}`;
+/** Calendar event ids allow only a–v and 0–9: "vi" (interview) / "vc" (counselling) + the row id without dashes + "g" + generation. */
+export const interviewEventId = (assignmentId: string, gen: number, prefix: Track["eventPrefix"] = "vi"): string =>
+  `${prefix}${assignmentId.replace(/-/g, "").toLowerCase()}g${Math.max(0, Math.floor(gen))}`;
 
 /**
  * Invite text. Guests can't see each other, but both see the title: the student's own name and
  * application number are fine to show to the student, and help the interviewer find the right person.
  */
-export function eventText(args: { studentName: string | null; applicationNo: string | null; site: string }) {
+export function eventText(args: { studentName: string | null; applicationNo: string | null; site: string }, track: Track = TRACKS.interview) {
   const who = [args.studentName?.trim(), args.applicationNo ? `(${args.applicationNo})` : ""].filter(Boolean).join(" ");
-  const summary = who ? `Vedam admissions interview: ${who}` : "Vedam admissions interview";
+  const summary = who ? `${track.eventTitle}: ${who}` : track.eventTitle;
   const description = [
-    "Your Vedam admissions interview on Google Meet.",
+    `Your ${track.eventTitle} on Google Meet.`,
     "Join with the Google Meet link in this invite. Students can also join from their dashboard; the Join button opens 10 minutes before the start.",
     args.site ? `Dashboard: ${args.site}/apply/dashboard` : "",
     "Please join on time from a quiet place, with your camera and microphone working.",
@@ -208,6 +209,38 @@ export function interviewCardCopy(phase: CardPhase, opts: { opensAt?: string | n
     case "ended": return { title: "Your interview is done", text: "We'll email you the result." };
     case "error": return { title: "Your interview", text: "We couldn't load your interview time. Please try again in a moment." };
     default: return { title: "Your interview", text: "" };
+  }
+}
+
+/** Where the student is between the interview and counselling (vsat_my_counselling, 0145). */
+export type CounsellingStep = "interview" | "interviewed" | "pi_cleared" | "counselling";
+export type MyCounselling = MyInterview & { step?: CounsellingStep };
+export const isCounsellingStep = (v: unknown): v is CounsellingStep =>
+  v === "interview" || v === "interviewed" || v === "pi_cleared" || v === "counselling";
+
+/**
+ * The counselling card's heading and message: the interview card's copy with "counselling session" (0145). Before a
+ * session is booked it says where the student is: interview done (waiting for the result) or interview cleared.
+ */
+export function counsellingCardCopy(phase: CardPhase, step: CounsellingStep, opts: { opensAt?: string | null; hasLink?: boolean } = {}): { title: string; text: string } {
+  switch (phase) {
+    case "none":
+      if (step === "interviewed") return { title: "Your interview is done", text: "We'll email you the result." };
+      if (step === "pi_cleared") return { title: "You've cleared the interview", text: "We'll book your counselling session soon and email you the time." };
+      return { title: "Your counselling session", text: "We'll book your counselling session soon and email you the time." };
+    case "no_campus": return { title: "Choose your campus first", text: "Pick your campus below to continue." };
+    case "upcoming": return {
+      title: "Your counselling session is booked",
+      text: `The Join button opens ${opts.opensAt ? `at ${istTime(opts.opensAt)} IST, ` : ""}${JOIN_OPENS_MIN} minutes before your session.`,
+    };
+    case "open": return {
+      title: "Your counselling session is starting",
+      text: opts.hasLink ? "" : "Your meeting link will be ready in a minute. You can also join from the link in your email.",
+    };
+    case "missed": return { title: "You missed your counselling session", text: "The admissions team will contact you to book a new time." };
+    case "ended": return { title: "Your counselling session is done", text: "We'll email you the next steps." };
+    case "error": return { title: "Your counselling session", text: "We couldn't load your session time. Please try again in a moment." };
+    default: return { title: "Your counselling session", text: "" };
   }
 }
 
@@ -270,7 +303,9 @@ export function joinUrl(v: unknown): string | null {
 
 export type NoticeStep =
   | "interview_invite" | "interview_rescheduled" | "interview_cancelled"
-  | "interviewer_invite" | "interviewer_rescheduled" | "interviewer_cancelled";
+  | "interviewer_invite" | "interviewer_rescheduled" | "interviewer_cancelled"
+  | "counselling_invite" | "counselling_rescheduled" | "counselling_cancelled"
+  | "counsellor_invite" | "counsellor_rescheduled" | "counsellor_cancelled";
 
 type Person = { id?: string; name: string | null; email: string | null };
 
@@ -314,8 +349,10 @@ export type PlannedNotice = {
  *   moved to another interviewer→ the old one gets "cancelled", the new one an invite; the student "moved" if the time changed
  * Recipients already in sent_to (an earlier, partly failed try) are left out.
  */
-export function planNotices(job: NoticeJob): PlannedNotice[] {
+export function planNotices(job: NoticeJob, track: Track = TRACKS.interview): PlannedNotice[] {
   const out: PlannedNotice[] = [];
+  const S = track.steps as Record<keyof Track["steps"], NoticeStep>;
+  const hostKey = (id: string) => `${track.host}:${id}`;
   const base = job.baseline && job.baseline.kind !== "cancelled" ? job.baseline : null;
   const st = job.student;
   const add = (p: Omit<PlannedNotice, "to"> & { to: string | null }) => {
@@ -327,10 +364,10 @@ export function planNotices(job: NoticeJob): PlannedNotice[] {
 
   if (job.kind === "cancelled") {
     if (!base) return out;
-    add({ ...studentEmail, step: "interview_cancelled", slot: base.slot_start, duration: base.duration_min, oldSlot: base.slot_start, oldDuration: base.duration_min });
+    add({ ...studentEmail, step: S.cancelled, slot: base.slot_start, duration: base.duration_min, oldSlot: base.slot_start, oldDuration: base.duration_min });
     if (base.interviewer) {
-      add({ key: `interviewer:${base.interviewer.id}`, to: base.interviewer.email, name: base.interviewer.name, isStudent: false,
-        step: "interviewer_cancelled", slot: base.slot_start, duration: base.duration_min, oldSlot: base.slot_start, oldDuration: base.duration_min });
+      add({ key: hostKey(base.interviewer.id), to: base.interviewer.email, name: base.interviewer.name, isStudent: false,
+        step: S.hostCancelled, slot: base.slot_start, duration: base.duration_min, oldSlot: base.slot_start, oldDuration: base.duration_min });
     }
     return out;
   }
@@ -338,23 +375,23 @@ export function planNotices(job: NoticeJob): PlannedNotice[] {
   const timeChanged = !base || base.slot_start !== job.slot_start || (base.duration_min ?? null) !== (job.duration_min ?? null);
   const cur = job.interviewer;
   if (!base) {
-    add({ ...studentEmail, step: "interview_invite", slot: job.slot_start, duration: job.duration_min, oldSlot: null, oldDuration: null });
+    add({ ...studentEmail, step: S.invite, slot: job.slot_start, duration: job.duration_min, oldSlot: null, oldDuration: null });
   } else if (timeChanged) {
-    add({ ...studentEmail, step: "interview_rescheduled", slot: job.slot_start, duration: job.duration_min, oldSlot: base.slot_start, oldDuration: base.duration_min });
+    add({ ...studentEmail, step: S.rescheduled, slot: job.slot_start, duration: job.duration_min, oldSlot: base.slot_start, oldDuration: base.duration_min });
   }
   const prev = base?.interviewer ?? null;
   if (prev && cur && prev.id !== cur.id) {
-    add({ key: `interviewer:${prev.id}`, to: prev.email, name: prev.name, isStudent: false,
-      step: "interviewer_cancelled", slot: base!.slot_start, duration: base!.duration_min, oldSlot: base!.slot_start, oldDuration: base!.duration_min });
+    add({ key: hostKey(prev.id), to: prev.email, name: prev.name, isStudent: false,
+      step: S.hostCancelled, slot: base!.slot_start, duration: base!.duration_min, oldSlot: base!.slot_start, oldDuration: base!.duration_min });
   }
   if (cur) {
     const same = !!prev && prev.id === cur.id;
     if (!same) {
-      add({ key: `interviewer:${cur.id}`, to: cur.email, name: cur.name, isStudent: false,
-        step: "interviewer_invite", slot: job.slot_start, duration: job.duration_min, oldSlot: null, oldDuration: null });
+      add({ key: hostKey(cur.id), to: cur.email, name: cur.name, isStudent: false,
+        step: S.hostInvite, slot: job.slot_start, duration: job.duration_min, oldSlot: null, oldDuration: null });
     } else if (timeChanged) {
-      add({ key: `interviewer:${cur.id}`, to: cur.email, name: cur.name, isStudent: false,
-        step: "interviewer_rescheduled", slot: job.slot_start, duration: job.duration_min, oldSlot: base!.slot_start, oldDuration: base!.duration_min });
+      add({ key: hostKey(cur.id), to: cur.email, name: cur.name, isStudent: false,
+        step: S.hostRescheduled, slot: job.slot_start, duration: job.duration_min, oldSlot: base!.slot_start, oldDuration: base!.duration_min });
     }
   }
   return out;

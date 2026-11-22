@@ -1,5 +1,6 @@
 /**
- * Booking interviews from the Interview panel rows (migration 0143). Pure helpers, no I/O:
+ * Booking interviews (Interview panel, 0143) and counselling sessions (Counselling panel, 0145) from the rows.
+ * Pure helpers, no I/O. The host (interviewer / counsellor) is called interviewer_id here for both tracks.
  * what a row shows, what to save when a cell changes, which selected rows can be sent, and the messages.
  * The database decides every state (vsat_interview_plan); these only read what it returned.
  */
@@ -29,13 +30,16 @@ export const EMPTY_CELLS: CellValues = { interviewer_id: "", date: "", time: "" 
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const str = (v: unknown): string | null => (typeof v === "string" ? v : null);
 
+/** The host's id in a plan entry: interviewer_id (interviews, 0143) or counsellor_id (counselling, 0145). */
+const hostId = (o: Record<string, unknown>): unknown => o.interviewer_id ?? o.counsellor_id;
+
 /** One plan entry as the database returned it; anything malformed → null (the row then shows nothing to edit). */
 export function toPlanRow(v: unknown): PlanRow | null {
   if (!isObj(v) || typeof v.application_id !== "string" || !PLAN_STATES.includes(v.state as PlanState)) return null;
-  const b = isObj(v.booked) && typeof v.booked.interviewer_id === "string" && typeof v.booked.slot === "string"
-    ? { interviewer_id: v.booked.interviewer_id, slot: v.booked.slot, duration_min: Number(v.booked.duration_min) || 30, meet_mode: String(v.booked.meet_mode ?? "") }
+  const b = isObj(v.booked) && typeof hostId(v.booked) === "string" && typeof v.booked.slot === "string"
+    ? { interviewer_id: hostId(v.booked) as string, slot: v.booked.slot, duration_min: Number(v.booked.duration_min) || 30, meet_mode: String(v.booked.meet_mode ?? "") }
     : null;
-  const d = isObj(v.draft) ? { interviewer_id: str(v.draft.interviewer_id), slot: str(v.draft.slot), updated_at: str(v.draft.updated_at) ?? undefined } : null;
+  const d = isObj(v.draft) ? { interviewer_id: str(hostId(v.draft)), slot: str(v.draft.slot), updated_at: str(v.draft.updated_at) ?? undefined } : null;
   const c = isObj(v.clash_with) ? { application_id: str(v.clash_with.application_id), name: str(v.clash_with.name) } : null;
   return {
     application_id: v.application_id, attempt_no: Number(v.attempt_no) || 1, state: v.state as PlanState,

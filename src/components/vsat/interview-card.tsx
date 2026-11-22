@@ -3,13 +3,16 @@ import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 import {
-  JOIN_TIPS, clockSkewMs, interviewCardCopy, istDay, istTimeRange, joinPhase, joinUrl, msToNextPhase, timeLeftText,
-  type CardPhase, type MyInterview,
+  JOIN_TIPS, clockSkewMs, counsellingCardCopy, interviewCardCopy, isCounsellingStep, istDay, istTimeRange, joinPhase, joinUrl,
+  msToNextPhase, timeLeftText, type CardPhase, type CounsellingStep, type MyCounselling, type MyInterview,
 } from "@/lib/vsat/interviews";
+import { TRACKS, type TrackKey } from "@/lib/vsat/tracks";
 
 /**
  * Student dashboard · the interview card: an icon and heading per state, the campus, the interview time as a
  * date tile with a live countdown, and the Join button (migration 0140, vsat_my_interview()). Copy: interviewCardCopy.
+ * After the interview the same card shows the counselling session (0145, vsat_my_counselling(): interview done,
+ * cleared, or the booked session with its own Join window). Copy: counsellingCardCopy.
  *
  * The server decides everything by the student's login: which interview, and the meeting link, which it
  * only hands out from 10 minutes before the start until the end. The page follows the server's clock
@@ -112,17 +115,28 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
   { campus: string | null; campuses: readonly string[]; onPickCampus: (c: string) => void; picking: boolean }) {
   const [supabase] = useState(() => createClient());
   const [mi, setMi] = useState<MyInterview | null>(null);
+  // which meeting the card is about: the interview, or (once the interview is over) counselling
+  const [kind, setKind] = useState<TrackKey>("interview");
+  const [step, setStep] = useState<CounsellingStep>("interview");
   const [skew, setSkew] = useState(0);
   const [failed, setFailed] = useState(false);
   const [retrying, setRetrying] = useState(false);
   const [, setTick] = useState(0);
 
   const load = useCallback(async () => {
+    // counselling first: it says where the student is after the interview (no answer → the interview card as before)
+    const cs = await supabase.rpc("vsat_my_counselling");
+    const c = !cs.error && cs.data ? (cs.data as MyCounselling) : null;
+    if (c && isCounsellingStep(c.step) && c.step !== "interview") {
+      setFailed(false); setSkew(clockSkewMs(c.now)); setKind("counselling"); setStep(c.step); setMi(c);
+      return;
+    }
     const { data, error } = await supabase.rpc("vsat_my_interview");
     if (error || !data) { setFailed(true); return; }
     const d = data as MyInterview;
     setFailed(false);
     setSkew(clockSkewMs(d.now));
+    setKind("interview");
     setMi(d);
   }, [supabase]);
 
@@ -156,7 +170,10 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
   }, [phase]);
 
   const shown: CardPhase = !campus ? "no_campus" : phase ?? (failed ? "error" : "loading");
-  const copy = interviewCardCopy(shown, { opensAt: mi?.opens_at, hasLink: !!link });
+  const copy = kind === "counselling"
+    ? counsellingCardCopy(shown, step, { opensAt: mi?.opens_at, hasLink: !!link })
+    : interviewCardCopy(shown, { opensAt: mi?.opens_at, hasLink: !!link });
+  const joinText = kind === "counselling" ? "Join session" : "Join interview";
   const { Icon, tone } = LOOK[shown];
   const dur = mi?.duration_min ?? 30;
   const start = mi?.start && ["upcoming", "open", "missed", "ended"].includes(shown) ? mi.start : null;
@@ -211,12 +228,12 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
               );
             })}
           </div>
-          <button disabled className={`mt-4 ${locked}`}><IconLock className="h-4 w-4" />Join interview (select campus)</button>
+          <button disabled className={`mt-4 ${locked}`}><IconLock className="h-4 w-4" />{joinText} (select campus)</button>
         </>
       )}
 
       {shown === "loading" && (
-        <div className="mt-5 flex animate-pulse items-center gap-4 rounded-2xl border border-[#ece6f7] bg-[#faf8fe] p-3.5 motion-reduce:animate-none" aria-label="Loading your interview">
+        <div className="mt-5 flex animate-pulse items-center gap-4 rounded-2xl border border-[#ece6f7] bg-[#faf8fe] p-3.5 motion-reduce:animate-none" aria-label={kind === "counselling" ? "Loading your counselling session" : "Loading your interview"}>
           <div className="h-[74px] w-[58px] rounded-xl bg-[#ece6f7]" />
           <div className="flex-1 space-y-2"><div className="h-3.5 w-2/3 rounded bg-[#ece6f7]" /><div className="h-3 w-1/2 rounded bg-[#ece6f7]" /></div>
         </div>
@@ -241,7 +258,7 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
       {shown === "upcoming" && (
         <>
           <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:items-center">
-            <button disabled className={locked}><IconLock className="h-4 w-4" />Join interview</button>
+            <button disabled className={locked}><IconLock className="h-4 w-4" />{joinText}</button>
             <p className="text-xs text-[#6c6485]">{copy.text}</p>
           </div>
           <Tips />
@@ -251,9 +268,9 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
       {shown === "open" && (
         <>
           {link ? (
-            <a href={link} target="_blank" rel="noopener noreferrer" onClick={() => track("vsat_join_interview")}
+            <a href={link} target="_blank" rel="noopener noreferrer" onClick={() => track(TRACKS[kind].joinEvent)}
               className="group mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[linear-gradient(100deg,#f97d03_0%,#c43ccf_55%,#8a18ff_100%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_-12px_rgba(196,60,207,0.9)] transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8a18ff]/50 focus-visible:ring-offset-2 sm:w-auto">
-              <IconVideo className="h-4 w-4" />Join interview
+              <IconVideo className="h-4 w-4" />{joinText}
               <IconArrow className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
             </a>
           ) : (
