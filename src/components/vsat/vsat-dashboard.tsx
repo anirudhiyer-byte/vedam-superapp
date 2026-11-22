@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { track } from "@/lib/analytics/track";
 import { VsatFormFill } from "@/components/vsat/vsat-form-fill";
 import { VsatExamBlock } from "@/components/vsat/vsat-exam-block";
+import { HelpBox } from "@/components/vsat/help-box";
 import { offerPayable, type EnrollApp } from "@/lib/payments/enroll-fee";
 
 const RESULT_STAGES = ["vsat_cleared", "vsat_not_cleared", "interview_selected", "interview_rejected", "counselling_done", "offer_released", "offer_cancelled", "enrolled"];
@@ -430,6 +431,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
               <span className="text-[#a79fbd]">→</span>
             </Link>
           </nav>
+          <HelpBox />
           </div>
 
           {/* MIDDLE · action box + form-progress / performance slot */}
