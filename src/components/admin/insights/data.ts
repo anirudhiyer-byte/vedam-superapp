@@ -18,6 +18,10 @@ export type ProductRow = {
   step1: number; step2: number; step3: number; spend_all_time: number;
 };
 export type SourceRow = { source: string; users: number; full: number; mqr: number; vsat_early: number; multi: number; spend_all_time: number | null };
+/** ins_source_split (0143): per-marketing-bucket registrations + MQR for one product. */
+export type SplitRow = { bucket: string; registrations: number; mqr: number };
+export type SourceSplit = { product: string; total_registrations: number; total_mqr: number; rows: SplitRow[] };
+export type VsatExam = { id: string; label: string | null; exam_date: string | null };
 export type StateRow = { state: string; users: number; mqr: number; vsat_early: number; multi: number };
 export type Cross = {
   cohort: number; vsat: number;
