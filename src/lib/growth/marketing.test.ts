@@ -177,6 +177,7 @@ describe("errors + format", () => {
     expect(errorText("BAD_VALUE: campaign")).toMatch(/does not exist/);
     expect(errorText("REQUIRED: x_creative_type", () => "Creative Type")).toBe("Creative Type is required.");
     expect(errorText("FORBIDDEN")).toMatch(/Only admins/);
+    expect(errorText("VD_UTM_CONFLICT")).toMatch(/same UTM into one VSAT/);
     expect(errorText("<script>alert(1)</script>")).toBe("Something went wrong. Please try again.");
   });
   it("compact numbers in lakh / crore", () => {
