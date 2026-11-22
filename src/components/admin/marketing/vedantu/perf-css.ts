@@ -3,6 +3,7 @@
  * dialog styles (vcp-). Layout follows the vedamcrm360 Vedantu Performance page: filter bar, 6 + 4 cards, drill dialog.
  */
 export const VP_CSS = `
+@media (max-width:767px){.vcn .vvp-h1{font-size:30px}}
 .vvp-bar{margin-bottom:24px;padding:16px;border-radius:16px;border:1px solid var(--bd);background:var(--surf);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .vvp-bar-in{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px}
 @media (min-width:768px){.vvp-bar-in{gap:12px}}

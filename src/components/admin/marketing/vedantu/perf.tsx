@@ -54,7 +54,7 @@ export function VedantuPerformance({ sb }: { sb: Client }) {
     <div className="vcn-page">
       <div className="vcn-head">
         <div>
-          <h1 className="vcn-h1">Vedantu Performance</h1>
+          <h1 className="vcn-h1 vvp-h1">Vedantu Performance</h1>
           <p className="vcn-sub">{ld ? "Loading…" : `${all.length.toLocaleString("en-IN")} videos · UTM-attributed · click any leads/payments/enrolment number to drill`}</p>
         </div>
       </div>
