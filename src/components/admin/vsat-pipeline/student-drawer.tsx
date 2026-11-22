@@ -7,7 +7,7 @@ import {
   isHttpsLink, istSlot, needsReason, type InterviewForm, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import { StageBadge } from "./pipeline-panel";
-import type { Preview, Student, TeamMember } from "./types";
+import type { Preview, Student, StudentComm, StudentExtras, TeamMember } from "./types";
 import { profileErrorText } from "@/lib/vsat/profile-prompt";
 
 /**
@@ -41,17 +41,41 @@ function Msg({ text }: { text: string }) {
   const ok = text.endsWith("✓");
   return <p className={`rounded-lg px-3 py-2 text-sm ${ok ? "bg-vx-green/10 text-vx-green" : "bg-vx-red/10 text-[#ffb3bf]"}`}>{text}</p>;
 }
+/** One email / WhatsApp in the communication log: channel badge, what it was, delivery state, time (+ sender when not automated). */
+function CommRow({ c }: { c: StudentComm }) {
+  const isEmail = c.channel === "email";
+  const badge = isEmail ? "border-vx-teal/30 bg-vx-teal/10 text-vx-teal-t" : "border-vx-green/30 bg-vx-green/10 text-vx-green";
+  const bits: string[] = [];
+  if (c.status) bits.push(c.status);
+  if (c.opened_at) bits.push("opened"); else if (c.read_at) bits.push("read"); else if (c.delivered_at) bits.push("delivered");
+  if (c.failed_reason) bits.push(c.failed_reason);
+  return (
+    <li className="flex flex-wrap items-baseline gap-x-2 gap-y-1 border-b border-vx-line-soft pb-2">
+      <span className={`rounded border px-1.5 py-0.5 text-[10px] font-semibold ${badge}`}>{isEmail ? "Email" : "WhatsApp"}</span>
+      <span className="text-vx-ink">{c.title}</span>
+      {bits.length > 0 && <span className="text-xs text-vx-faint">· {bits.join(" · ")}</span>}
+      <span className="ml-auto whitespace-nowrap text-xs text-vx-faint">{c.at ? fmtIst(c.at) : "—"}{c.by && c.by !== "system" ? ` · ${c.by}` : ""}</span>
+    </li>
+  );
+}
 
 export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; roles: VsatRoles; onClose: () => void; onChanged: () => void }) {
   const [supabase] = useState(() => createClient());
   const [s, setS] = useState<Student | null>(null);
+  const [extra, setExtra] = useState<StudentExtras | null>(null);
   const [err, setErr] = useState("");
   const [team, setTeam] = useState<TeamMember[]>([]);
   const manager = canManage(roles);
 
   const load = useCallback(async () => {
-    const { data, error } = await supabase.rpc("vsat_student", { p_application_id: id });
+    // vsat_student (pipeline/profile) and vsat_student_comms (documents + comm log) run together.
+    // The comms RPC re-checks the same access gate; a failure there never blocks the drawer.
+    const [{ data, error }, extraRes] = await Promise.all([
+      supabase.rpc("vsat_student", { p_application_id: id }),
+      supabase.rpc("vsat_student_comms", { p_application_id: id }),
+    ]);
     if (error) { setErr(errorText(error.message)); setS(null); } else { setErr(""); setS(data as Student); }
+    setExtra(extraRes.error ? null : (extraRes.data as StudentExtras));
   }, [supabase, id]);
   useEffect(() => { void load(); }, [load]);
   useEffect(() => {
@@ -91,6 +115,20 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
               {!s.can_manage && <p className="text-xs text-vx-faint">Contact details are shown to admissions only.</p>}
             </Section>
 
+            {extra?.can_manage && extra.documents.length > 0 && (
+              <Section title="Documents">
+                <div className="flex flex-wrap gap-2">
+                  {extra.documents.map((d) => (
+                    <a key={d.key} href={d.url} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-vx-line2 bg-white/5 px-3 py-1.5 text-sm font-medium text-vx-violet-t hover:bg-white/10">
+                      {d.label}
+                      <span aria-hidden className="text-vx-faint">↗</span>
+                    </a>
+                  ))}
+                </div>
+              </Section>
+            )}
+
             {s.can_manage && <MoveStage s={s} onDone={changed} />}
 
             <Section title="Academics">
@@ -118,6 +156,14 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
 
             <InterviewSection s={s} roles={roles} team={team} onDone={changed} />
             <CounsellingSection s={s} roles={roles} team={team} onDone={changed} />
+
+            {extra?.can_manage && (
+              <Section title="Communication history">
+                {extra.comms.length === 0
+                  ? <p className="text-sm text-vx-faint">No emails or WhatsApp messages yet.</p>
+                  : <ul className="space-y-2">{extra.comms.map((c, i) => <CommRow key={i} c={c} />)}</ul>}
+              </Section>
+            )}
 
             <Section title="Stage history">
               <ul className="space-y-2">

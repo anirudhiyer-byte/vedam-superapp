@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { costPer, fmt, inr, pct, productLabel, ratio, sourceLabel, type PeriodKey } from "./lib";
-import { useRpc, type PeopleFilter, type SourceRow, type StateRow } from "./data";
+import { costPer, fmt, inr, pct, peopleFor, ratio, sourceLabel, type PeriodKey } from "./lib";
+import { useRpc, type Funnel, type PeopleFilter, type SourceRow, type StateRow } from "./data";
 import { BLUE, BarRow, Card, Empty, ErrorNote, Insight, Loading, Segmented } from "./ui";
 import { StateMap, type MapMetric } from "./state-map";
+import { SourceMatrixCard, SourceToVsatCard } from "./funnel-cards";
 
 type Range = { p_from: string | null; p_to: string | null };
 type ProductFilter = "all" | "codesprint" | "bootcamp" | "pyq" | "cp" | "vsat";
@@ -18,19 +19,12 @@ const PRODUCT_FILTERS: { key: ProductFilter; label: string }[] = [
 ];
 const MIN_N = 20; // findings only compare groups with at least this many people
 
-/** People for a source/state row: sign-ups in the period, or (with a product filter) the same people the row
- *  counts — those who used that product in the period (ins_people p_used, 0074). */
-function peopleFor(product: ProductFilter, range: Range, extra: Partial<PeopleFilter>, title: string): PeopleFilter {
-  if (product === "all") return { title, sub: "Signed up in this period", ...range, ...extra };
-  const when = range.p_from ? "in this period" : "all time";
-  const sub = product === "vsat" ? `Early-registered for VSAT ${when}` : `Used ${productLabel(product)} ${when}`;
-  return { title, sub, ...range, p_used: product, ...extra };
-}
-
 export function SourcesTab({ range, period, openPeople }: { range: Range; period: PeriodKey; openPeople: (f: PeopleFilter) => void }) {
   const [product, setProduct] = useState<ProductFilter>("all");
   const args = useMemo(() => ({ ...range, p_product: product }), [range, product]);
   const res = useRpc<SourceRow[]>("ins_sources", args);
+  // every product at once (0129): one call, not affected by the product filter below
+  const funnel = useRpc<Funnel>("ins_funnel", range);
 
   const rows = (res.data ?? []).filter((r) => r.users > 0);
   const spendOnly = (res.data ?? []).filter((r) => r.users === 0 && r.spend_all_time);
@@ -49,9 +43,12 @@ export function SourcesTab({ range, period, openPeople }: { range: Range; period
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-center gap-3">
+      <SourceMatrixCard res={funnel} range={range} openPeople={openPeople} />
+      <SourceToVsatCard res={funnel} />
+
+      <div className="flex flex-wrap items-center gap-3 border-t border-white/10 pt-5">
         <Segmented value={product} onChange={setProduct} options={PRODUCT_FILTERS} />
-        <span className="text-[12.5px] text-white/45">Source = the first link a person signed up from. Capital and small letters count as the same source.</span>
+        <span className="text-[12.5px] text-white/45">One product in depth (the cards below). Source = the first link a person signed up from. Capital and small letters count as the same source.</span>
       </div>
 
       {res.error ? <ErrorNote message={res.error} /> : !res.data ? <Loading h={420} /> : rows.length === 0 ? <Empty>No sign-ups in this period.</Empty> : (

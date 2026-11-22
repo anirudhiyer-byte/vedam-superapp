@@ -8,13 +8,14 @@ import {
   type PanelKey, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import {
-  DEFAULT_COLUMNS, FILTERABLE_TYPES, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL,
-  columnLabel, describeClause, filterInputType, formatValue, opArity, panelScope, parseSearchValues, requestColumns, sanitizeColumns, toCsv,
+  DEFAULT_COLUMNS, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL, VALUE_CHOICES,
+  columnLabel, describeClause, filterInputType, formatValue, isFilterable, opArity, panelScope, parseSearchValues, requestColumns, sanitizeColumns, toCsv,
   type FilterClause, type GridColumn, type GridColumnsResult, type GridResult, type GridRow, type GridSearch,
 } from "@/lib/vsat/grid";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { StudentDrawer } from "./student-drawer";
 import { FacetPick, type Opt } from "./facet-pick";
+import { ExamAnalysisCard, ProctoringBar, VpsEditDialog, type VpsTarget } from "./exam-tools";
 import type { Batch } from "./types";
 
 /**
@@ -27,6 +28,8 @@ import type { Batch } from "./types";
  * - Export CSV and Send Communication act on the selection, or on the whole filtered set.
  * Data comes only from vsat_grid_list / vsat_grid_export: the database applies role, campus,
  * assignment and column rules on every call. Stage moves use the same engine as before.
+ * VSAT Exam panel (0135): results columns by default, paid students by default for managers, the results
+ * analysis for the chosen VSAT(s), Select for PI (admins), proctoring verdicts and a VPS edit (admins).
  */
 
 const PAGE = 50;
@@ -60,6 +63,7 @@ const IconSend = () => <Svg><path d="m22 2-7 20-4-9-9-4z" /><path d="M22 2 11 13
 const IconMail = () => <Svg><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></Svg>;
 const IconChat = () => <Svg><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.5L3 21l2-5.4A8.5 8.5 0 1 1 21 11.5z" /></Svg>;
 const IconClose = () => <Svg><path d="M18 6 6 18M6 6l12 12" /></Svg>;
+const IconPencil = () => <Svg className="h-3.5 w-3.5"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></Svg>;
 
 const colsKey = (panel: PanelKey) => `vsat-grid-cols:v1:${panel}`;
 // per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
@@ -70,6 +74,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [supabase] = useState(() => createClient());
   const scope = useMemo(() => panelScope(panel), [panel]);
   const manager = canManage(roles);
+  const examPanel = panel === "exam";
 
   const [catalog, setCatalog] = useState<GridColumn[]>([]);
   const [vsats, setVsats] = useState<Batch[]>([]);
@@ -78,7 +83,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [vsatIds, setVsatIds] = useState<string[]>([]);
   const [campuses, setCampuses] = useState<string[]>([]);
   const [formStages, setFormStages] = useState<string[]>([]);
-  const [payStages, setPayStages] = useState<string[]>([]);
+  // Exam panel: managers start on paid students only (0135); "Clear filters" still shows everyone
+  const [payStages, setPayStages] = useState<string[]>(() => (manager && panel === "exam" ? ["payment_approved"] : []));
   const [filterClauses, setFilterClauses] = useState<FilterClause[]>([]);
   const [showFilters, setShowFilters] = useState(false);
   const [searchCol, setSearchCol] = useState("_any");
@@ -97,6 +103,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [comm, setComm] = useState<null | "email" | "whatsapp">(null);
   const [recipients, setRecipients] = useState<{ user_id: string; email: string | null; phone: string | null; full_name: string | null; state: string | null; city: string | null }[]>([]);
   const [notice, setNotice] = useState("");
+  const [vpsEdit, setVpsEdit] = useState<VpsTarget | null>(null);
 
   // catalogue (what this person may show) + VSAT list; saved column choice is checked against the catalogue
   useEffect(() => {
@@ -172,7 +179,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const searchable = useMemo(() => catalog.filter((c) => !c.virtual && ["text", "num", "date", "ts"].includes(c.type))
     .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
 
-  const filterable = useMemo(() => catalog.filter((c) => !c.virtual && FILTERABLE_TYPES.includes(c.type))
+  const filterable = useMemo(() => catalog.filter(isFilterable)
     .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
   function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setFormStages([]); setPayStages([]); setFilterClauses([]); setSearchText(""); setOffset(0); }
   function toggle(id: string) { setSel((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; }); }
@@ -264,6 +271,15 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         </div>
       )}
 
+      {/* ── VSAT Exam: results analysis for the chosen VSAT(s) ── */}
+      {examPanel && manager && vsatIds.length > 0 && (
+        <ExamAnalysisCard vsatIds={vsatIds} vsatLabels={vsatIds.map((id) => vsats.find((b) => b.id === id)?.label ?? "VSAT")}
+          canSelect={roles.admin} reloadKey={reload} onApplied={() => setReload((n) => n + 1)} />
+      )}
+      {examPanel && manager && vsatIds.length === 0 && (
+        <p className="text-[13px] text-vx-faint">Pick a VSAT above to see its results analysis{roles.admin ? " and select students for PI" : ""}.</p>
+      )}
+
       {/* ── selection bar ─────────────────────────── */}
       {manager && sel.size > 0 && (
         <div className="space-y-2 rounded-[14px] border border-vx-violet/35 bg-vx-violet/[0.08] p-3 text-sm sm:px-4">
@@ -275,6 +291,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
             <button className={ghost} onClick={() => setSel(new Set())}>Clear</button>
           </div>
           <BulkBar ids={[...sel]} current={selStage} panel={panel} onDone={() => setReload((n) => n + 1)} />
+          {examPanel && <div className="border-t border-vx-violet/20 pt-2"><ProctoringBar ids={[...sel]} onDone={() => setReload((n) => n + 1)} /></div>}
         </div>
       )}
       {manager && sel.size === 0 && total > 0 && !loading && (
@@ -308,7 +325,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
                   <input type="checkbox" className={vx.check} aria-label={`Select ${String(r.registered_name ?? r.application_id)}`} checked={sel.has(r.application_id)} onChange={() => toggle(r.application_id)} /></td>}
                 {shownCols.map((c, i) => (
                   <td key={c.key} className={`whitespace-nowrap px-4 py-3 ${i === 0 ? `sticky z-[1] ${STICKY_BG} ${manager ? "left-[44px]" : "left-0"}` : ""}`}>
-                    <Cell col={c} row={r} />
+                    <Cell col={c} row={r} onEditVps={roles.admin ? (t) => setVpsEdit(t) : undefined} />
                   </td>
                 ))}
               </tr>
@@ -324,6 +341,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
           <button className={cx(vx.btn, vx.secondary, vx.sm)} disabled={offset + PAGE >= data.total} onClick={() => setOffset(offset + PAGE)}>Next</button>
         </div>
       )}
+
+      {vpsEdit && <VpsEditDialog target={vpsEdit} onClose={() => setVpsEdit(null)} onDone={() => setReload((n) => n + 1)} />}
 
       {openId && <StudentDrawer id={openId} roles={roles} onClose={() => setOpenId(null)} onChanged={() => setReload((n) => n + 1)} />}
 
@@ -357,8 +376,10 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   );
 }
 
-/** One cell: the student column carries the app no.; stage shows the badge; VPS / eligible mark an override. */
-function Cell({ col, row }: { col: GridColumn; row: GridRow }) {
+const num = (v: unknown): number | null => (v === null || v === undefined || v === "" || !Number.isFinite(Number(v)) ? null : Number(v));
+
+/** One cell: the student column carries the app no.; stage shows the badge; VPS / eligible mark an override; admins can edit VPS. */
+function Cell({ col, row, onEditVps }: { col: GridColumn; row: GridRow; onEditVps?: (t: VpsTarget) => void }) {
   const v = row[col.key];
   if (col.key === "registered_name") {
     return <><div className="font-medium">{v ? String(v) : "—"}</div><div className="text-xs text-vx-faint">{String(row.application_no ?? row.application_id)}</div></>;
@@ -366,7 +387,27 @@ function Cell({ col, row }: { col: GridColumn; row: GridRow }) {
   if (col.key === "stage") return isStage(row.stage) && isStatus(row.status) ? <StageBadge stage={row.stage} status={row.status} /> : <>{String(v ?? "—")}</>;
   if (col.key === "vps_effective" || col.key === "eligible_effective") {
     const ov = row[col.key === "vps_effective" ? "vps_override" : "eligible_override"];
-    return <>{formatValue(col.type, col.key, v)}{ov !== null && ov !== undefined && <span className="ml-1 text-xs text-vx-orange-t">override</span>}</>;
+    const hasOv = ov !== null && ov !== undefined;
+    const calc = col.key === "vps_effective" ? num(row.vps_calculated) : null;
+    return (
+      <span className="inline-flex items-center gap-1" title={hasOv && calc !== null ? `Calculated ${formatValue("num", "vps", calc)}` : undefined}>
+        {formatValue(col.type, col.key, v)}
+        {hasOv && <span className="text-xs text-vx-orange-t">override</span>}
+        {col.key === "vps_effective" && onEditVps && (
+          <button type="button" aria-label={`Edit VPS for ${String(row.registered_name ?? row.application_id)}`}
+            className="ml-0.5 grid h-6 w-6 place-items-center rounded-md text-vx-faint opacity-60 hover:bg-white/10 hover:text-vx-ink hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100"
+            onClick={(e) => { e.stopPropagation(); onEditVps({ applicationId: row.application_id, name: String(row.registered_name ?? row.application_no ?? row.application_id),
+              value: num(v), calculated: calc, override: num(ov) }); }}>
+            <IconPencil />
+          </button>
+        )}
+      </span>
+    );
+  }
+  if (col.key === "proctoring") {
+    if (v === "disqualified") return <span className={cx(vx.badge, vx.tone.red)}>Disqualified</span>;
+    if (v === "cleared") return <span className={cx(vx.badge, vx.tone.green)}>Cleared</span>;
+    return <span className="text-vx-faint">—</span>;
   }
   if (col.key === "campus") return <span className="capitalize">{formatValue(col.type, col.key, v)}</span>;
   if (col.type === "ts" || col.type === "date") return <span className="text-xs text-vx-mut">{formatValue(col.type, col.key, v)}</span>;
@@ -429,13 +470,17 @@ function ColumnsDrawer({ catalog, cols, panel, onChange, onClose }: { catalog: G
   );
 }
 
+/** Fixed-list columns (proctoring, 12th result) are picked, not typed: is / is not / set / empty only. */
+const CHOICE_OPS = ["eq", "ne", "notnull", "isnull"];
+const opsFor = (key: string, type: string) => (FILTER_OPS[type] ?? []).filter((o) => !VALUE_CHOICES[key] || CHOICE_OPS.includes(o.op));
+
 /** Advanced filter builder: AND-ed clauses on any filterable column. The database re-checks every column, operator and value. */
 function FilterDrawer({ filterable, value, onChange, onClose }:
   { filterable: GridColumn[]; value: FilterClause[]; onChange: (v: FilterClause[]) => void; onClose: () => void }) {
   const [draft, setDraft] = useState<FilterClause[]>(value);
   const [col, setCol] = useState<string>(filterable[0]?.key ?? "");
   const type = useMemo(() => filterable.find((c) => c.key === col)?.type ?? "text", [filterable, col]);
-  const ops = FILTER_OPS[type] ?? [];
+  const ops = opsFor(col, type);
   const [op, setOp] = useState<string>(ops[0]?.op ?? "eq");
   const [v1, setV1] = useState("");
   const [v2, setV2] = useState("");
@@ -445,7 +490,7 @@ function FilterDrawer({ filterable, value, onChange, onClose }:
   function pickCol(k: string) {
     setCol(k);
     const t = filterable.find((c) => c.key === k)?.type ?? "text";
-    setOp((FILTER_OPS[t] ?? [])[0]?.op ?? "eq"); setV1(""); setV2("");
+    setOp(opsFor(k, t)[0]?.op ?? "eq"); setV1(""); setV2("");
   }
   function add() {
     if (!col) return;
@@ -487,7 +532,12 @@ function FilterDrawer({ filterable, value, onChange, onClose }:
               <select className={`${input} w-40`} value={op} onChange={(e) => { setOp(e.target.value); setV1(""); setV2(""); }} aria-label="Operator">
                 {ops.map((o) => <option key={o.op} value={o.op}>{o.label}</option>)}
               </select>
-              {arity === "one" && <input className={`${input} flex-1`} type={inputType} value={v1} onChange={(e) => setV1(e.target.value)} placeholder="value" aria-label="Value" />}
+              {arity === "one" && (VALUE_CHOICES[col]
+                ? <select className={`${input} flex-1`} value={v1} onChange={(e) => setV1(e.target.value)} aria-label="Value">
+                    <option value="">Pick…</option>
+                    {VALUE_CHOICES[col].map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+                  </select>
+                : <input className={`${input} flex-1`} type={inputType} value={v1} onChange={(e) => setV1(e.target.value)} placeholder="value" aria-label="Value" />)}
               {arity === "two" && <>
                 <input className={`${input} w-24`} type={inputType} value={v1} onChange={(e) => setV1(e.target.value)} placeholder="from" aria-label="From" />
                 <input className={`${input} w-24`} type={inputType} value={v2} onChange={(e) => setV2(e.target.value)} placeholder="to" aria-label="To" />

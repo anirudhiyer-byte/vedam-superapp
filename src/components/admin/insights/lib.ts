@@ -1,5 +1,18 @@
 /* Pure helpers for the Insights page (no React, no Supabase) — unit-tested in lib.test.ts. */
 
+import type { PeopleFilter } from "./data";
+
+type Range = { p_from: string | null; p_to: string | null };
+
+/** People-drawer filter for a source/state row: sign-ups in the period, or (for a product) the same people the
+ *  row counts — those who used that product in the period (ins_people p_used, 0074). */
+export function peopleFor(product: string, range: Range, extra: Partial<PeopleFilter>, title: string): PeopleFilter {
+  if (product === "all") return { title, sub: "Signed up in this period", ...range, ...extra };
+  const when = range.p_from ? "in this period" : "all time";
+  const sub = product === "vsat" ? `Early-registered for VSAT ${when}` : `Used ${productLabel(product)} ${when}`;
+  return { title, sub, ...range, p_used: product, ...extra };
+}
+
 /* ---------- periods (IST, UTC+5:30) ---------- */
 export type PeriodKey = "today" | "week" | "month" | "year" | "all";
 export const PERIODS: { key: PeriodKey; label: string; short: string }[] = [
@@ -107,6 +120,55 @@ export function sourceLabel(key: string | null | undefined): string {
 export function titleCase(s: string): string {
   return s.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+/* ---------- source × product matrix and the VSAT application steps (ins_funnel, 0129) ---------- */
+export type MatrixKey = "all" | "codesprint" | "bootcamp" | "pyq" | "cp" | "vsat";
+export const MATRIX_COLUMNS: { key: MatrixKey; label: string }[] = [
+  { key: "all", label: "Vedam One" },
+  { key: "codesprint", label: "CodeSprint" },
+  { key: "bootcamp", label: "Bootcamp" },
+  { key: "pyq", label: "PYQ" },
+  { key: "cp", label: "College Predictor" },
+  { key: "vsat", label: "VSAT early" },
+];
+
+/** Column totals of the matrix, so each cell can show its share of its own column. */
+export function columnTotals<R extends Record<MatrixKey, number>>(rows: R[]): Record<MatrixKey, number> {
+  const t = { all: 0, codesprint: 0, bootcamp: 0, pyq: 0, cp: 0, vsat: 0 };
+  for (const r of rows) for (const k of Object.keys(t) as MatrixKey[]) t[k] += Number(r[k]) || 0;
+  return t;
+}
+
+/**
+ * The source whose share of a product is furthest above its share of Vedam One sign-ups
+ * (e.g. 18% of sign-ups but 30% of CodeSprint users). Only sources with minN+ people in both,
+ * and never "unknown". Null when nothing qualifies or the gap is under 5 points.
+ */
+export function overIndexed<R extends Record<MatrixKey, number> & { source: string }>(
+  rows: R[], product: Exclude<MatrixKey, "all">, minN = 20,
+): { source: string; productShare: number; allShare: number } | null {
+  const t = columnTotals(rows);
+  if (!t.all || !t[product]) return null;
+  let best: { source: string; productShare: number; allShare: number } | null = null;
+  for (const r of rows) {
+    if (r.source === "unknown" || r.all < minN || r[product] < minN) continue;
+    const productShare = (r[product] / t[product]) * 100, allShare = (r.all / t.all) * 100;
+    if (productShare - allShare >= 5 && (!best || productShare - allShare > best.productShare - best.allShare)) best = { source: r.source, productShare, allShare };
+  }
+  return best;
+}
+
+/** Steps after sign-up, in order. Every % is of the row's people (a fee can be paid before an application exists). */
+export type VsatStepKey = "mqr" | "vsat_early" | "applied" | "form_submitted" | "fee_paid" | "exam_taken" | "enrolled";
+export const VSAT_STEPS: { key: VsatStepKey; label: string; rule: string }[] = [
+  { key: "mqr", label: "MQR", rule: "PCM/PCMB, passing 2026 or 2027" },
+  { key: "vsat_early", label: "VSAT early", rule: "early-registered for VSAT" },
+  { key: "applied", label: "Applied", rule: "started a VSAT application" },
+  { key: "form_submitted", label: "Form submitted", rule: "submitted the application form" },
+  { key: "fee_paid", label: "Fee paid", rule: "paid the VSAT fee" },
+  { key: "exam_taken", label: "Exam taken", rule: "took the VSAT exam" },
+  { key: "enrolled", label: "Enrolled", rule: "paid the enrolment fee" },
+];
 
 export const LEVEL_LABEL: Record<string, { name: string; rule: string }> = {
   high: { name: "Highly engaged", rule: "real use in 2+ products" },
