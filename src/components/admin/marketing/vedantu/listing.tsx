@@ -368,7 +368,7 @@ function Kpi({ label, v, sub, color, hl }: { label: string; v: string | null; su
  * 12px, so a long amount is not split in the middle ("₹25,445.0" / "0"). Only if it still does not fit at 12px does it wrap
  * (the CRM's behaviour). Re-checked when the value or the card width changes.
  */
-function useFitText(ref: RefObject<HTMLDivElement | null>, text: string | null) {
+export function useFitText(ref: RefObject<HTMLDivElement | null>, text: string | null) {
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;

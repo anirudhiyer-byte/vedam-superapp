@@ -109,7 +109,9 @@ const GROWTH: Group[] = [
       { label: "Influencer Listing", page: "listing" }, { label: "Influencer Performance", page: "perf" },
     ] },
     { id: "tele", label: "Telegram Channel", icon: ICON.tele, live: true, sub: [{ label: "Telegram Listing", page: "listing" }, { label: "Telegram Performance", page: "perf" }] },
-    { id: "vedantu", label: "Vedantu Channel", icon: ICON.vedantu, live: true, sub: [{ label: "Vedantu Listing", page: "listing" }] },
+    { id: "vedantu", label: "Vedantu Channel", icon: ICON.vedantu, live: true, sub: [
+      { label: "Vedantu Listing", page: "listing" }, { label: "Vedantu Performance", page: "perf" },
+    ] },
     { id: "cons", label: "Consultants Channel", icon: ICON.cons, live: true, sub: [
       { label: "Consultant Listing", page: "listing" }, { label: "Consultant Performance", page: "perf" },
     ] },
@@ -207,7 +209,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
         return <div className="vp-scroll"><MarketingPanel key={`${ch}-${active.page}`} channel={ch} page={(active.page ?? "listing") as MarketingPage} /></div>;
       }
       if (active.id === "tele") return <div className="vp-scroll"><TelegramPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
-      if (active.id === "vedantu") return <div className="vp-scroll"><VedantuPanel key={active.page} /></div>;
+      if (active.id === "vedantu") return <div className="vp-scroll"><VedantuPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
       if (active.id === "cons") return <div className="vp-scroll"><ConsultantsPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
