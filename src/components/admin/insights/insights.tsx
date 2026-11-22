@@ -7,14 +7,16 @@ import { Segmented } from "./ui";
 import { OverviewTab } from "./overview-tab";
 import { ProductsTab } from "./products-tab";
 import { SourcesTab, StatesTab } from "./sources-tab";
+import { SourceSplitTab } from "./source-split-tab";
 import { CrossTab } from "./cross-tab";
 import { PeopleDrawer } from "./people-drawer";
 
-type Tab = "overview" | "products" | "sources" | "states" | "cross";
+type Tab = "overview" | "products" | "sources" | "split" | "states" | "cross";
 const TABS: { key: Tab; label: string }[] = [
   { key: "overview", label: "Vedam One overview" },
   { key: "products", label: "Products" },
   { key: "sources", label: "Sources" },
+  { key: "split", label: "Source split" },
   { key: "states", label: "States" },
   { key: "cross", label: "Cross-product & VSAT" },
 ];
@@ -55,6 +57,7 @@ export function Insights() {
       {tab === "overview" && <OverviewTab period={period} active={active} openPeople={setPeople} />}
       {tab === "products" && <ProductsTab range={range} period={period} active={active} openPeople={setPeople} />}
       {tab === "sources" && <SourcesTab range={range} period={period} openPeople={setPeople} />}
+      {tab === "split" && <SourceSplitTab range={range} />}
       {tab === "states" && <StatesTab range={range} openPeople={setPeople} />}
       {tab === "cross" && <CrossTab range={range} openPeople={setPeople} />}
 
