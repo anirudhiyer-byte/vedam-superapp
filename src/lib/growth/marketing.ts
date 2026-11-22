@@ -458,6 +458,7 @@ export function errorText(raw: string | null | undefined, labelOf: (key: string)
     case "NOT_SIGNED_IN": return "Your session ended. Sign in again.";
     case "DUPLICATE": return "That name is already used.";
     case "IN_USE": return "This campaign is used by ads or posts, so it cannot be deleted.";
+    case "VD_UTM_CONFLICT": return "These dates would put two Vedantu rows with the same UTM into one VSAT, so their leads and payments would be counted twice. Change the dates, or fix the UTM of one row first.";
     case "NOT_FOUND": return "It no longer exists. Reload the page.";
     case "TOO_MANY_ROWS": return `Upload at most ${CSV_IMPORT_MAX_ROWS} rows at a time.`;
     case "TOO_MANY_COLUMNS": return "A table can have at most 30 added columns.";
