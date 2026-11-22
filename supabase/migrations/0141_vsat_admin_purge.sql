@@ -103,20 +103,25 @@ begin
       from public.application_manager where lead_id = p_lead_id;
   end if;
 
-  -- 1) children keyed by the TEXT application code
+  -- 1) children keyed by the TEXT application code (skip tables absent in this environment,
+  --    e.g. vsat_interview_events exists on staging ahead of prod — keeps the purge portable)
   if v_app is not null then
     foreach t in array appcode_tables loop
-      execute format('delete from public.%I where application_id = $1', t) using v_app;
-      get diagnostics n = row_count;
-      v_counts := v_counts || jsonb_build_object(t, n);
+      if to_regclass('public.' || t) is not null then
+        execute format('delete from public.%I where application_id = $1', t) using v_app;
+        get diagnostics n = row_count;
+        v_counts := v_counts || jsonb_build_object(t, n);
+      end if;
     end loop;
   end if;
 
   -- 2) rows keyed by lead_id (uuid)
   foreach t in array lead_tables loop
-    execute format('delete from public.%I where lead_id = $1', t) using p_lead_id;
-    get diagnostics n = row_count;
-    v_counts := v_counts || jsonb_build_object(t, n);
+    if to_regclass('public.' || t) is not null then
+      execute format('delete from public.%I where lead_id = $1', t) using p_lead_id;
+      get diagnostics n = row_count;
+      v_counts := v_counts || jsonb_build_object(t, n);
+    end if;
   end loop;
 
   -- 3) exam results carry BOTH keys (text code + uuid lead)
