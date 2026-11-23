@@ -21,6 +21,7 @@ returns boolean language sql immutable set search_path to '' as $function$
       or (p_stage = 'interviewed' and p_status = 'not_selected')
       or (p_stage = 'counselled'  and p_status = 'not_selected')
 $function$;
+revoke all on function public.vsat__is_terminal_fail(text, text) from public, anon, authenticated;
 
 -- core reset — SECURITY DEFINER, no auth check of its own (callers gate). Idempotent-safe:
 -- it refuses unless the row is attempt 1 in a terminal-fail state.
@@ -28,6 +29,8 @@ create or replace function public.vsat__begin_attempt2(p_app text, p_source text
 returns jsonb language plpgsql security definer set search_path to '' as $function$
 declare cur public.vsat_pipeline; am public.application_manager;
 begin
+  -- vsat_stage_history.source is constrained; normalise any caller label to an allowed value.
+  if p_source is null or p_source not in ('manual', 'bulk', 'auto', 'system', 'backfill') then p_source := 'system'; end if;
   select * into cur from public.vsat_pipeline where application_id = p_app for update;
   if not found then raise exception 'NOT_IN_PIPELINE' using errcode = 'P0002'; end if;
   if cur.attempt_no <> 1 then raise exception 'ALREADY_SECOND_ATTEMPT' using errcode = '22023'; end if;
@@ -70,7 +73,7 @@ begin
   if new.payment_stage_2 = 'payment_approved'
      and (tg_op = 'INSERT' or old.payment_stage_2 is distinct from new.payment_stage_2) then
     begin
-      perform public.vsat__begin_attempt2(new.application_id, 'payment', null);
+      perform public.vsat__begin_attempt2(new.application_id, 'system', null);
     exception when others then null;
     end;
   end if;
@@ -93,7 +96,7 @@ begin
   app := public.vsat__txt(p, 'application_id', 64, true);
   select public.vsat__campus_key(am.campus_applied) into v_campus from public.application_manager am where am.application_id = app;
   if not public.vsat__can_manage(v_campus) then raise exception 'FORBIDDEN' using errcode = '42501'; end if;
-  perform public.vsat__begin_attempt2(app, 'admin', auth.uid());
+  perform public.vsat__begin_attempt2(app, 'manual', auth.uid());
   return public.vsat_student(app);
 end $function$;
 revoke all on function public.vsat_start_second_attempt(jsonb) from public, anon;
