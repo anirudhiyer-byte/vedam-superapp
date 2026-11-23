@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
@@ -101,6 +101,10 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
   const [err, setErr] = useState("");
   const [note, setNote] = useState("");
   const [fillOpen, setFillOpen] = useState(false);
+  // When the applicant taps "Continue/Fill the form", the form mounts further down the page —
+  // scroll to it so it's clear the form opened (previously it just appeared below the fold).
+  const formRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (fillOpen) formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); }, [fillOpen]);
   const [perfAtt, setPerfAtt] = useState(1);
   const [journeyOpen, setJourneyOpen] = useState(false); // mobile: journey timeline collapsed by default
   // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
@@ -567,7 +571,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
               a.form_status === "completed" ? (
                 <div className={card}><p className="flex items-center gap-2 text-sm font-semibold text-[#1f9d57]"><span className={pillGood}>✓ Submitted</span> Application form</p></div>
               ) : fillOpen || a.form_status === "in_progress" ? (
-                <VsatFormFill onDone={() => { setFillOpen(false); void load(); }} />
+                <div ref={formRef} style={{ scrollMarginTop: 16 }}><VsatFormFill onDone={() => { setFillOpen(false); void load(); }} /></div>
               ) : (
                 <div className={card}>
                   <div className="flex flex-wrap items-center justify-between gap-2.5">
