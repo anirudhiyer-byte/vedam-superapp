@@ -97,7 +97,14 @@ const PRODUCTS: { key: string; label: string; rpc: string; base: string; cols: C
   ]},
 ];
 
-const getVal = (r: Row, c: Col): unknown => c.group === "profile" ? (r.profile as Record<string, unknown> | null)?.[c.key] : r[c.key];
+const getVal = (r: Row, c: Col): unknown => {
+  const raw = c.group === "profile" ? (r.profile as Record<string, unknown> | null)?.[c.key] : r[c.key];
+  // UTM Source columns store the full "source/medium/campaign" triple; show only the source
+  // (the part before the first "/") in the cell, the filter options and search. e.g.
+  // "Telegram/Telegram/ajay_pyq_1" → "Telegram".
+  if (/(^|_)utm_source$/.test(c.key) && typeof raw === "string" && raw.includes("/")) return raw.split("/")[0];
+  return raw;
+};
 const istDate = (v: unknown) => v ? new Date(String(v)).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "2-digit", timeZone: "Asia/Kolkata" }) : "—";
 const str = (v: unknown) => Array.isArray(v) ? v.join(", ") : v == null ? "" : String(v);
 const initials = (name: unknown) => String(name ?? "").trim().split(/\s+/).slice(0, 2).map((s) => s[0] || "").join("").toUpperCase() || "–";
