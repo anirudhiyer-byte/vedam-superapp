@@ -105,6 +105,8 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
   const formRef = useRef<HTMLDivElement>(null);
   useEffect(() => { if (fillOpen) formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); }, [fillOpen]);
   const [perfAtt, setPerfAtt] = useState(1);
+  // Server says this applicant closed attempt 1 in a terminal-fail state and may re-sit (₹500).
+  const [secondEligible, setSecondEligible] = useState(false);
   const [journeyOpen, setJourneyOpen] = useState(false); // mobile: journey timeline collapsed by default
   // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
   // Not a bypass of the pay screen — the admin still sees "Pay", with a Simulate
@@ -136,7 +138,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
       fetch("/api/payments/vsat-quote", opts),
     ]);
     try {
-      if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); } }
+      if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); setSecondEligible(j.secondAttemptEligible === true); } }
     } catch { /* ignore */ }
     try {
       if (qR.status === "fulfilled") { const qj = await qR.value.json(); if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, earlyReg: qj.earlyReg, earlyRegDiscount: qj.earlyRegDiscount, autoDiscount: qj.autoDiscount }); }
@@ -176,6 +178,27 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
       const res = await fetch("/api/payments/vsat-create-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token, code: appliedCode }) });
       const j = await res.json();
       if (!j.ok) { setBusy(false); return setErr(j.error === "already_paid" ? "You've already paid." : j.error || "Could not start payment."); }
+      const cashfree = await loadCashfree(j.mode || "sandbox");
+      cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
+      // browser now navigates to Cashfree; on return the effect above confirms.
+    } catch (e) {
+      setBusy(false);
+      setErr(String((e as Error)?.message || "Payment could not start."));
+    }
+  }
+
+  // Second attempt: pay ₹500, then re-sit the VSAT. Eligibility is enforced server-side.
+  async function startSecondAttempt() {
+    setBusy(true); setErr("");
+    track("vsat_pay2_click");
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const res = await fetch("/api/payments/vsat-second-attempt-order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token }) });
+      const j = await res.json();
+      if (!j.ok) {
+        setBusy(false);
+        return setErr(j.error === "already_paid" ? "Your second attempt is already paid." : j.error === "not_eligible_for_retry" ? "A second attempt isn't available right now." : j.error === "attempt1_not_paid" ? "Finish your first attempt payment first." : "Could not start payment.");
+      }
       const cashfree = await loadCashfree(j.mode || "sandbox");
       cashfree.checkout({ paymentSessionId: j.paymentSessionId, redirectTarget: "_self" });
       // browser now navigates to Cashfree; on return the effect above confirms.
@@ -575,6 +598,18 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
                 <p className="mt-2 text-sm text-[#2b135c]/70">You&apos;re progressing through the admissions funnel. Watch your email/WhatsApp for the next step.</p>
               </div>
             ) : null}
+
+            {/* Second attempt: shown whenever the server says attempt 1 closed in a terminal-fail
+                state (VSAT/PI/counselling, not-cleared or no-show) and attempt 2 isn't paid yet. */}
+            {secondEligible && (
+              <div className={`${card} mb-4 border-[#f3d79a] bg-[#fff6e6]`}>
+                <h2 className="font-display text-[19px] font-extrabold text-[#b26a00]">Take VSAT again</h2>
+                <p className="mt-2 text-sm text-[#b26a00]">You can take a second attempt — pay a one-time ₹500 fee, pick a new exam date and go through the journey again. Your first attempt stays on record.</p>
+                <button onClick={startSecondAttempt} disabled={busy} className={`${btn} mt-4`}>{busy ? "Starting…" : "Start 2nd attempt · pay ₹500"}</button>
+                {a.payment_stage_2 === "payment_initiated" && <p className="mt-3 text-xs text-[#b26a00]">Second-attempt payment initiated — click to complete it.</p>}
+                {a.payment_stage_2 === "payment_failed" && <p className="mt-3 text-xs text-[#d14343]">Last payment failed. You can try again.</p>}
+              </div>
+            )}
 
             {/* secondary slot: application form in exam phase → performance summary after results */}
             {inExamPhase ? (
