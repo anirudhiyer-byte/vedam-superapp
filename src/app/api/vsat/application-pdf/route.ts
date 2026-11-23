@@ -23,9 +23,13 @@ export async function GET(req: Request) {
   const userId = u.user.id;
 
   const svc = createClient(url, svcKey);
-  const { data: appRow } = await svc.from("application_manager")
-    .select("application_id, application_no, registered_name, registered_email, registered_mobile, campus_applied, campus_preference, stream, application_stage_1, created_at, form_data")
+  // Select "*" so a column that exists on one environment but not another (e.g. campus_preference,
+  // stream) can never break the fetch. campus/stream below are optional and fall back safely.
+  // We also surface a real read error instead of silently reporting "No application found".
+  const { data: appRow, error: readErr } = await svc.from("application_manager")
+    .select("*")
     .eq("lead_id", userId).maybeSingle();
+  if (readErr) return new Response("Couldn't load your application right now. Please try again in a moment.", { status: 500 });
   const a = appRow as (Record<string, unknown> & { form_data?: Record<string, unknown> }) | null;
   if (!a) return new Response("No application found", { status: 404 });
 
