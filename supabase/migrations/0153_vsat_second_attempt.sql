@@ -46,7 +46,7 @@ begin
          exam_percentile       = null,
          vps_score             = null,
          scholarship_percentage = null,
-         application_stage_2   = null,
+         application_stage_2   = 'mock_enabled',  -- paid, mock unlocked (mirrors attempt 1 post-payment); student picks a new exam date next
          last_updated_date     = now()
    where a.application_id = p_app;
 
