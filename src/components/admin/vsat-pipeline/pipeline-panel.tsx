@@ -180,6 +180,21 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
     setLoading(false);
   }, [supabase, catalog.length, filters, cols, offset]);
   useEffect(() => { void load(); }, [load, reload]);
+  // Realtime: a contentless ping on the 'vsat_pipeline' channel (migration 0149) means a stage
+  // moved or an interview/counselling assignment changed — reload the grid (debounced) so every
+  // open admin screen stays live without a refresh. All real data still comes from the RPC.
+  useEffect(() => {
+    let on = true; let t: ReturnType<typeof setTimeout> | null = null;
+    let ch: ReturnType<typeof supabase.channel> | null = null;
+    const ping = () => { if (t) clearTimeout(t); t = setTimeout(() => { if (on) setReload((r) => r + 1); }, 800); };
+    void (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session || !on) return;
+      supabase.realtime.setAuth(session.access_token);
+      ch = supabase.channel("vsat_pipeline", { config: { private: true } }).on("broadcast", { event: "change" }, ping).subscribe();
+    })();
+    return () => { on = false; if (t) clearTimeout(t); if (ch) void supabase.removeChannel(ch); };
+  }, [supabase]);
 
   const rows = useMemo(() => data?.rows ?? [], [data]);
   const facets = data?.facets ?? null;
