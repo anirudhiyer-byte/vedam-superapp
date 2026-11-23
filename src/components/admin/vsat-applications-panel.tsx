@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { DeletePerson } from "@/components/admin/vsat-delete-person";
 
 /**
  * VSAT Applications — EVERY application (an application_manager row), regardless of
@@ -51,6 +52,13 @@ export function VsatApplicationsPanel() {
   const [data, setData] = useState<Result | null>(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    let on = true;
+    void supabase.rpc("is_admin").then(({ data: a }) => { if (on) setIsAdmin(a === true); });
+    return () => { on = false; };
+  }, [supabase]);
 
   useEffect(() => {
     const t = setTimeout(() => { setQ(qInput.trim().length >= 2 ? qInput.trim() : ""); setOffset(0); }, 350);
@@ -102,11 +110,12 @@ export function VsatApplicationsPanel() {
               <th className="px-3 py-2.5 font-semibold">Primary campaign</th>
               <th className="px-3 py-2.5 font-semibold">Latest campaign</th>
               <th className="px-3 py-2.5 font-semibold">Applied</th>
+              {isAdmin && <th className="px-3 py-2.5 text-right font-semibold">Actions</th>}
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
-            {loading && <tr><td colSpan={7} className="px-3 py-8 text-center text-white/40">Loading…</td></tr>}
-            {!loading && rows.length === 0 && <tr><td colSpan={7} className="px-3 py-8 text-center text-white/40">No applications match.</td></tr>}
+            {loading && <tr><td colSpan={isAdmin ? 8 : 7} className="px-3 py-8 text-center text-white/40">Loading…</td></tr>}
+            {!loading && rows.length === 0 && <tr><td colSpan={isAdmin ? 8 : 7} className="px-3 py-8 text-center text-white/40">No applications match.</td></tr>}
             {!loading && rows.map((r) => (
               <tr key={r.application_id} className="hover:bg-white/[.03]">
                 <td className="px-3 py-2.5">
@@ -128,6 +137,11 @@ export function VsatApplicationsPanel() {
                 <td className="px-3 py-2.5"><Utm value={r.primary_utm} /></td>
                 <td className="px-3 py-2.5"><Utm value={r.latest_utm} muted /></td>
                 <td className="px-3 py-2.5 whitespace-nowrap text-white/60">{fmt(r.created_at)}</td>
+                {isAdmin && (
+                  <td className="px-3 py-2.5 text-right">
+                    <DeletePerson kind="application" id={r.application_id} name={r.name} email={r.email} onDeleted={() => void load()} compact />
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
