@@ -5,6 +5,7 @@ import { cx, vx } from "@/components/admin/ui/vx";
 import { PageHead } from "@/components/admin/ui/page-head";
 import { FacetPick, type Opt } from "@/components/admin/vsat-pipeline/facet-pick";
 import { DeletePerson } from "@/components/admin/vsat-delete-person";
+import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 
 /**
  * VSAT Leads — EVERYONE who filled the first half of the form (a lead_manager row),
@@ -39,6 +40,28 @@ function Utm({ value, muted }: { value: string | null; muted?: boolean }) {
   return <span className={`font-mono text-[11px] ${muted ? "text-vx-faint" : "text-vx-ink"}`} title={value}>{value}</span>;
 }
 
+/** Leads → CSV text (every value quoted). Mirrors the columns shown in the table. */
+const CSV_COLS: { key: string; label: string }[] = [
+  { key: "name", label: "Name" }, { key: "email", label: "Email" }, { key: "mobile", label: "Mobile" },
+  { key: "campus", label: "Campus" }, { key: "lead_stage", label: "Stage" }, { key: "lead_source", label: "Source" },
+  { key: "application_submitted", label: "Applied" },
+  { key: "primary_utm", label: "Primary campaign" }, { key: "latest_utm", label: "Latest campaign" }, { key: "created_at", label: "Joined" },
+];
+function leadsCsv(rows: Row[]): string {
+  const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const val = (key: string, r: Row) => {
+    const v = (r as Record<string, unknown>)[key];
+    if (key === "campus") return campusLabel(v as string | null);
+    if (key === "lead_stage") return stageLabel(v as string | null);
+    if (key === "application_submitted") return v ? "Yes" : "No";
+    if (key === "created_at") { const f = fmt(v as string | null); return f === "—" ? "" : f; }
+    return v == null ? "" : String(v);
+  };
+  const head = CSV_COLS.map((c) => c.label);
+  const body = rows.map((r) => CSV_COLS.map((c) => val(c.key, r)));
+  return [head, ...body].map((line) => line.map(esc).join(",")).join("\n");
+}
+
 export function VsatLeadsPanel() {
   const [supabase] = useState(() => createClient());
   const [campuses, setCampuses] = useState<string[]>([]);
@@ -52,6 +75,10 @@ export function VsatLeadsPanel() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [busy, setBusy] = useState<"" | "csv" | "comms">("");
+  const [notice, setNotice] = useState("");
+  const [comm, setComm] = useState<null | "email" | "whatsapp">(null);
+  const [recipients, setRecipients] = useState<{ user_id: string; email: string | null; phone: string | null; full_name: string | null; state: string | null; city: string | null }[]>([]);
 
   useEffect(() => {
     let on = true;
@@ -104,6 +131,43 @@ export function VsatLeadsPanel() {
 
   function clearFilters() { setCampuses([]); setLeadStages([]); setApplied([]); setSources([]); setQInput(""); setOffset(0); }
 
+  // Export / Communicate act on the WHOLE filtered set (not just the page) — the database
+  // re-checks role + campus and caps at 5000. Mirrors the VSAT Applications grid.
+  function filterParams() {
+    const p: Record<string, unknown> = {};
+    if (campuses.length) p.campuses = campuses;
+    if (leadStages.length) p.lead_stages = leadStages;
+    if (applied.length === 1) p.applied = applied[0];
+    if (sources.length) p.sources = sources;
+    if (q) p.q = q;
+    return p;
+  }
+  async function pull(): Promise<{ total: number; rows: Row[] } | null> {
+    const { data: d, error } = await supabase.rpc("vsat_leads_export", { p: filterParams() });
+    if (error) {
+      setNotice(/TOO_MANY_ROWS/.test(error.message) ? "Too many leads match (over 5,000) — narrow the filters first." : "Couldn’t load the leads. Try again.");
+      return null;
+    }
+    return d as { total: number; rows: Row[] };
+  }
+  async function exportCsv() {
+    setBusy("csv"); setNotice("");
+    const d = await pull(); setBusy("");
+    if (!d) return;
+    const blob = new Blob([leadsCsv(d.rows)], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = `vsat-leads-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(a.href);
+    setNotice(`Exported ${d.total} lead${d.total === 1 ? "" : "s"}.`);
+  }
+  async function openComms() {
+    setBusy("comms"); setNotice("");
+    const d = await pull(); setBusy("");
+    if (!d) return;
+    if (d.total === 0) { setNotice("No leads match these filters to message."); return; }
+    setRecipients(d.rows.map((r) => ({ user_id: r.lead_id, email: r.email, phone: r.mobile, full_name: r.name, state: null, city: null })));
+    setComm("email");
+  }
+
   return (
     <div className="space-y-4 p-4 font-sans text-vx-ink sm:p-8">
       <PageHead title="VSAT Leads" count={`${total.toLocaleString("en-IN")} lead${total === 1 ? "" : "s"}${anyFilter ? " match" : ""}`} />
@@ -114,7 +178,15 @@ export function VsatLeadsPanel() {
         <FacetPick title="Applied" options={appliedOpts} value={applied} onChange={(v) => { setApplied(v); setOffset(0); }} />
         {sourceOpts.length > 1 && <FacetPick title="Source" options={sourceOpts} value={sources} onChange={(v) => { setSources(v); setOffset(0); }} />}
         {anyFilter && <button className="text-xs text-vx-mut underline-offset-2 hover:text-vx-ink hover:underline" onClick={clearFilters}>Clear filters</button>}
+        <span className="flex-1" />
+        <button className={cx(vx.btn, vx.ghost, vx.sm)} onClick={() => void exportCsv()} disabled={busy !== "" || loading || total === 0}>
+          {busy === "csv" ? "Exporting…" : "Export CSV"}
+        </button>
+        <button className={cx(vx.btn, vx.secondary, vx.sm)} onClick={() => void openComms()} disabled={busy !== "" || loading || total === 0}>
+          {busy === "comms" ? "Loading…" : "Communicate"}
+        </button>
       </div>
+      {notice && <div className="text-xs text-vx-mut">{notice}</div>}
 
       {err && <div role="alert" className={vx.error}>{err}</div>}
 
@@ -171,6 +243,29 @@ export function VsatLeadsPanel() {
           <button className={cx(vx.btn, vx.secondary, vx.sm)} disabled={offset + rows.length >= total || loading} onClick={() => setOffset(offset + PAGE)}>Next</button>
         </div>
       </div>
+
+      {comm && (
+        <>
+          <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setComm(null)} />
+          <div className="fixed left-1/2 top-6 z-50 w-[min(780px,94%)] -translate-x-1/2 overflow-hidden rounded-2xl border border-vx-line bg-[#0e0b29] text-vx-ink shadow-2xl">
+            <div className="flex items-center justify-between border-b border-vx-line px-5 py-4">
+              <h2 className="flex items-center gap-2.5 text-base font-bold">Send Communication
+                <span className="rounded-full bg-vx-violet/15 px-2.5 py-0.5 text-xs font-semibold text-vx-violet-t">{recipients.length} recipient{recipients.length === 1 ? "" : "s"}</span></h2>
+              <button onClick={() => setComm(null)} aria-label="Close" className="grid h-8 w-8 place-items-center rounded-lg border border-vx-line text-lg leading-none text-vx-mut hover:text-vx-ink">×</button>
+            </div>
+            <div className="flex gap-1 px-5 pt-3">
+              {(["email", "whatsapp"] as const).map((ch) => (
+                <button key={ch} onClick={() => setComm(ch)} className={["inline-flex items-center gap-2 rounded-t-xl border border-b-0 px-4 py-2 text-sm font-semibold", comm === ch ? "border-vx-line bg-white/[0.04] text-vx-ink" : "border-transparent text-vx-faint hover:text-vx-ink"].join(" ")}>
+                  {ch === "email" ? "Email" : "WhatsApp"}
+                </button>
+              ))}
+            </div>
+            <div className="max-h-[74vh] overflow-y-auto border-t border-vx-line px-1 py-1">
+              <CommsBroadcast channel={comm} product="all" overrideRecipients={recipients} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
