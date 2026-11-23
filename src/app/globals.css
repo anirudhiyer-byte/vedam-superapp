@@ -278,13 +278,23 @@ body::after {
    Pressing Refresh: the card's content blurs and a soft band of white light sweeps across it until the new data is in.
    Several cards on a page sweep one after the other (--vx-refresh-delay). Off for people who ask for less motion. */
 .vx-refresh { position: relative; }
-.vx-refresh > :not(.vx-refresh-sweep) {
-  transition: filter .55s cubic-bezier(.22, 1, .36, 1), opacity .55s cubic-bezier(.22, 1, .36, 1), transform .55s cubic-bezier(.22, 1, .36, 1);
+/* the card itself (border, background) stays sharp; only what is inside it blurs, so the blur never spills past the edge.
+   In a table only the rows blur: the column headers stay readable (and a sticky header stays solid). */
+.vx-refresh > :not(.vx-refresh-sweep) > :not(table),
+.vx-refresh > :not(.vx-refresh-sweep) > table > tbody {
+  transition: filter .55s cubic-bezier(.22, 1, .36, 1);
 }
-.vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) {
-  filter: blur(4px); opacity: .6; transform: scale(.996); pointer-events: none; transition-duration: .35s;
+.vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) { pointer-events: none; }
+.vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) > :not(table),
+.vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) > table > tbody {
+  filter: blur(4px); transition-duration: .35s;
 }
-.vx-refresh-sweep { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none; }
+/* the dimming is a layer on top (not opacity on the content), so sticky table headers stay solid */
+.vx-refresh-sweep {
+  position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none;
+  background-color: transparent; transition: background-color .55s cubic-bezier(.22, 1, .36, 1);
+}
+.vx-refresh[data-refreshing] .vx-refresh-sweep { background-color: rgba(13, 10, 38, .38); transition-duration: .35s; }
 .vx-refresh-sweep::after {
   content: ""; position: absolute; inset: -30% -80%; opacity: 0;
   background: linear-gradient(105deg,
@@ -302,7 +312,8 @@ body::after {
   100% { opacity: 0; transform: translate3d(60%, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .vx-refresh > :not(.vx-refresh-sweep) { transition: none; }
-  .vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) { filter: none; transform: none; }
+  .vx-refresh > :not(.vx-refresh-sweep) > :not(table), .vx-refresh > :not(.vx-refresh-sweep) > table > tbody, .vx-refresh-sweep { transition: none; }
+  .vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) > :not(table),
+  .vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) > table > tbody { filter: none; }
   .vx-refresh[data-refreshing] .vx-refresh-sweep::after { animation: none; }
 }
