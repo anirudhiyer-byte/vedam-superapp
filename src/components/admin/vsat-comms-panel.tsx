@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
-import { OFFER_STEP, OFFER_VARS } from "@/lib/vsat/offers";
+import { OFFER_STEP, OFFER_EMAIL_VARS } from "@/lib/vsat/offers";
 
 const input = vx.input;
 const label = vx.label;
@@ -24,7 +24,7 @@ const isOfferStep = (key: string) => key === OFFER_STEP;
 const isEmailOnly = (key: string) => isInterviewStep(key) || isOfferStep(key);
 const STAGE_VARS = ["name", "amount", "apply_link", "dashboard_link", "receipt_link"];
 const INTERVIEW_VARS = ["name", "student_name", "application_no", "date", "time", "old_date", "old_time", "join_link", "dashboard_link", "panel_link"];
-const stepVars = (key: string): readonly string[] => (isInterviewStep(key) ? INTERVIEW_VARS : isOfferStep(key) ? OFFER_VARS : STAGE_VARS);
+const stepVars = (key: string): readonly string[] => (isInterviewStep(key) ? INTERVIEW_VARS : isOfferStep(key) ? OFFER_EMAIL_VARS : STAGE_VARS);
 const varList = (vars: readonly string[]) => vars.map((v) => `{{${v}}}`).join(" ");
 
 function Toggle({ on, onClick, text }: { on: boolean; onClick: () => void; text: string }) {
@@ -154,8 +154,9 @@ export function VsatCommsPanel() {
                           placeholder={`Email body (HTML). Placeholders: ${varList(stepVars(s.step_key))}`} />
                         {isOfferStep(s.step_key) && (
                           <p className="mt-1.5 text-[11px] text-vx-faint">
-                            Placeholders: {varList(OFFER_VARS)}. Sent once when an offer is released (Counselling panel). {"{{amount}}"} is the
-                            enrollment fee; {"{{deadline_date}}"} and {"{{deadline_time}}"} are the last day and time to pay (IST).
+                            Placeholders: {varList(OFFER_EMAIL_VARS)}. Sent once when an offer is released (Counselling panel). {"{{amount}}"} is the
+                            enrollment fee; {"{{deadline_date}}"} and {"{{deadline_time}}"} are the last day and time to pay (IST);
+                            {" {{offer_days}}"} is how many days the offer is valid. The student&apos;s Acceptance Letter (PDF) is attached.
                           </p>
                         )}
                         {isInterviewStep(s.step_key) && (

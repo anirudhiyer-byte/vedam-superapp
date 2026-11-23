@@ -134,6 +134,11 @@ export function OfferBox({ applicationId, stage, status, offer, canManage, onDon
       {canRelease && !confirm && (
         <button className={cx(vx.btn, vx.primary, vx.sm)} disabled={busy} onClick={() => void check()}>{busy ? "Checking…" : "Release offer"}</button>
       )}
+      {offer?.released_at && (
+        <a className={cx(vx.btn, vx.secondary, vx.sm, "inline-flex")} href={`/api/vsat/offer-letter?application_id=${encodeURIComponent(applicationId)}`}>
+          Download Acceptance Letter (PDF)
+        </a>
+      )}
       {confirm && (
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-sm">{previewText(confirm)}</span>

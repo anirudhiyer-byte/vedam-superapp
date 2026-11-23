@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { sendOfferNotices, type OfferNoticeConfig } from "./offer-sync";
+import { letterInput, sendOfferNotices, type OfferNoticeConfig } from "./offer-sync";
+import type { LetterInput } from "./offer-letter";
 import type { OfferJob } from "./offers";
 
 function fakeDb(answers: Record<string, unknown>) {
@@ -81,5 +82,45 @@ describe("sendOfferNotices", () => {
   it("claim error → throws (the cron reports it)", async () => {
     const { db } = fakeDb({ vsat_offer_notices_claim: new Error("boom") });
     await expect(sendOfferNotices(db, { site: SITE })).rejects.toThrow(/offer_notices_claim/);
+  });
+});
+
+describe("sendOfferNotices · Acceptance Letter attached", () => {
+  it("attaches the letter (PDF named after the student), drawn from the campus settings", async () => {
+    const sent: Record<string, unknown>[] = [];
+    const seen: LetterInput[] = [];
+    const { db } = fakeDb({ vsat_offer_notices_claim: [job], vsat_offer_notice_done: {} });
+    const config = { ...cfg(), campus: { gurugram: { programme_fee: "1800000", offer_days: 5 } } };
+    await sendOfferNotices(db, { site: SITE }, { config, deliver: async (o) => { sent.push(o); return { ok: true }; }, letter: async (i) => { seen.push(i); return "UERGLQ==" } });
+    expect(seen[0]).toEqual({ name: "Ravi <b>K</b>", campus: "gurugram", pct: 40, programmeFee: "1800000", seatBlock: "50000", days: 5, dashboardLink: "https://one.vedam.org/apply/dashboard" });
+    expect(sent[0].attachments).toEqual([{ filename: "Acceptance_Letter_Ravi_b_K_b.pdf", content: "UERGLQ==", mimetype: "application/pdf" }]);
+  });
+  it("the real letter is a PDF (season fee when the settings have none)", async () => {
+    const sent: Record<string, unknown>[] = [];
+    const { db } = fakeDb({ vsat_offer_notices_claim: [job], vsat_offer_notice_done: {} });
+    await sendOfferNotices(db, { site: SITE }, { config: cfg(), deliver: async (o) => { sent.push(o); return { ok: true }; } });
+    const att = (sent[0].attachments as { content: string }[])[0];
+    expect(Buffer.from(att.content, "base64").subarray(0, 5).toString()).toBe("%PDF-");
+  }, 30_000);
+  it("no campus → no email without its letter: failed, reason kept", async () => {
+    let n = 0;
+    const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, student: { ...job.student, campus: null } }], vsat_offer_notice_done: {} });
+    const r = await sendOfferNotices(db, { site: SITE }, { config: cfg(), deliver: async () => { n++; return { ok: true }; } });
+    expect(n).toBe(0);
+    expect(r.failed).toBe(1);
+    expect(calls.at(-1)!.args.p).toEqual({ id: "ev-1", status: "failed", detail: { sent_to: [], test: false, why: "letter_no_campus" } });
+  });
+  it("the letter cannot be drawn → not sent, failed (retried)", async () => {
+    let n = 0;
+    const { db, calls } = fakeDb({ vsat_offer_notices_claim: [job], vsat_offer_notice_done: {} });
+    const r = await sendOfferNotices(db, { site: SITE }, { config: cfg(), deliver: async () => { n++; return { ok: true }; }, letter: async () => { throw new Error("font"); } });
+    expect(n).toBe(0);
+    expect(r.failed).toBe(1);
+    expect((calls.at(-1)!.args.p as { detail: { why: string } }).detail.why).toBe("letter_failed");
+  });
+  it("letterInput: days from the release and deadline, else the campus days", () => {
+    expect(letterInput(job, cfg(), SITE)?.days).toBe(5);
+    expect(letterInput({ ...job, released_at: null }, { ...cfg(), campus: { gurugram: { programme_fee: null, offer_days: 2 } } }, SITE)).toMatchObject({ days: 2, programmeFee: 1800000 });
+    expect(letterInput({ ...job, student: { ...job.student, name: "  " } }, cfg(), SITE)?.name).toBe("Student");
   });
 });

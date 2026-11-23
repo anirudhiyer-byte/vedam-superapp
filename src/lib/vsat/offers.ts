@@ -9,6 +9,7 @@
 
 import { istDate, istTime } from "./interviews";
 import { errorText } from "./pipeline";
+import { offerDays } from "./offer-letter";
 
 /** The VSAT comms step that carries the offer email. */
 export const OFFER_STEP = "offer_released";
@@ -151,3 +152,9 @@ export function offerVars(job: OfferJob, site: string): Record<string, string> {
 
 /** Placeholders the VSAT comms panel lists for the offer step. */
 export const OFFER_VARS = ["name", "student_name", "application_no", "campus", "scholarship", "amount", "deadline_date", "deadline_time", "dashboard_link"] as const;
+
+/** The offer email's placeholders: the ones above plus {{offer_days}} (how many days the offer is valid, 0156). */
+export function offerEmailVars(job: OfferJob, site: string): Record<string, string> {
+  return { ...offerVars(job, site), offer_days: job.released_at && job.expires_at ? String(offerDays(job.released_at, job.expires_at, 0)) : "" };
+}
+export const OFFER_EMAIL_VARS = [...OFFER_VARS, "offer_days"] as const;
