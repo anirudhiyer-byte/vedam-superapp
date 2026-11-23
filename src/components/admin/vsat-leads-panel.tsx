@@ -6,6 +6,7 @@ import { PageHead } from "@/components/admin/ui/page-head";
 import { FacetPick, type Opt } from "@/components/admin/vsat-pipeline/facet-pick";
 import { DeletePerson } from "@/components/admin/vsat-delete-person";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
+import { RefreshShimmer, useRefreshShimmer } from "@/components/admin/ui/refresh-shimmer";
 import {
   DEFAULT_LEAD_COLUMNS, FILTER_OPS, GROUP_ORDER, LEAD_NAME_COL, VALUE_CHOICES, campusLabel, columnLabel,
   describeClause, filterInputType, formatValue, isFilterable, loadCols, opArity, parseSearchValues,
@@ -56,6 +57,8 @@ export function VsatLeadsPanel() {
   const [offset, setOffset] = useState(0);
   const [data, setData] = useState<LeadsResult | null>(null);
   const [loading, setLoading] = useState(true);
+  // Refresh button: blur + sweep of light over the table until the new data is in (the old rows stay on screen meanwhile)
+  const shimmer = useRefreshShimmer(loading);
   const [err, setErr] = useState("");
   const [reload, setReload] = useState(0);
   const [sel, setSel] = useState<Set<string>>(new Set());
@@ -113,6 +116,7 @@ export function VsatLeadsPanel() {
   useEffect(() => { void load(); }, [load, reload]);
 
   const rows = useMemo(() => data?.rows ?? [], [data]);
+  const keepRows = shimmer.on && rows.length > 0;
   const facets = data?.facets ?? null;
   const total = data?.total ?? 0;
   const anyFilter = campuses.length > 0 || leadStages.length > 0 || applied.length > 0 || sources.length > 0 || filterClauses.length > 0 || !!search;
@@ -207,7 +211,7 @@ export function VsatLeadsPanel() {
         <button className={`${ghost} inline-flex items-center gap-2`} onClick={() => void exportCsv()} disabled={busy !== "" || loading || total === 0}>
           <IconDownload /> {busy === "csv" ? "Exporting…" : sel.size ? `Export ${sel.size}` : "Export CSV"}
         </button>
-        <button className={ghost} onClick={() => setReload((n) => n + 1)}>Refresh</button>
+        <button className={ghost} onClick={() => { shimmer.start(); setReload((n) => n + 1); }}>Refresh</button>
       </div>
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-vx-mut">
@@ -248,6 +252,7 @@ export function VsatLeadsPanel() {
       {err && <p role="alert" className={vx.error}>{err}</p>}
 
       {/* ── table ─────────────────────────────────── */}
+      <RefreshShimmer on={shimmer.on} className="rounded-[18px]">
       <div className="overflow-auto rounded-[18px] border border-vx-line bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <table className="w-full text-left text-sm">
           <thead className="sticky top-0 z-10 text-[12.5px] text-vx-faint">
@@ -263,9 +268,9 @@ export function VsatLeadsPanel() {
             </tr>
           </thead>
           <tbody>
-            {loading && <tr><td colSpan={shownCols.length + (isAdmin ? 2 : 1)} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
+            {loading && !keepRows && <tr><td colSpan={shownCols.length + (isAdmin ? 2 : 1)} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
             {!loading && rows.length === 0 && <tr><td colSpan={shownCols.length + (isAdmin ? 2 : 1)} className="px-4 py-10 text-center text-vx-faint">{anyFilter ? "No leads match these filters." : "No leads yet."}</td></tr>}
-            {!loading && rows.map((r) => (
+            {(!loading || keepRows) && rows.map((r) => (
               <tr key={r.lead_id} className={`border-t border-vx-line-soft transition-colors hover:bg-white/[0.03] ${sel.has(r.lead_id) ? "bg-vx-violet/[0.08]" : ""}`}>
                 <td className={`sticky left-0 z-[1] px-3 py-3 ${STICKY_BG}`}>
                   <input type="checkbox" className={vx.check} aria-label={`Select ${String(r.name ?? r.lead_id)}`} checked={sel.has(r.lead_id)} onChange={() => toggle(r.lead_id)} /></td>
@@ -284,6 +289,7 @@ export function VsatLeadsPanel() {
           </tbody>
         </table>
       </div>
+      </RefreshShimmer>
 
       {data && data.total > PAGE && (
         <div className="flex items-center gap-3 text-sm text-vx-mut">
