@@ -53,6 +53,20 @@ Tests: `src/lib/vsat/offer-letter.test.ts`, `src/lib/vsat/offer-sync.test.ts`, `
 DB `supabase/tests/vsat_offer_letter.test.sql` (18 tests). Rollback `supabase/rollback/0156_vsat_offer_letter_down.sql`
 (tested on staging inside one transaction).
 
+## Last-day reminder and lapsed email (migration 0157)
+
+| What | Where |
+|---|---|
+| Reminder | VSAT comms → **Offer: last day reminder → student**. One email at **10:00 am IST on the offer's last day** (the deadline is 11:59 pm IST that day), only if the student is still at Offer sent (active, not on hold), the offer is not cancelled and the enrollment fee is not paid. Not sent for an offer released after 10 am on its last day. One per offer: a re-issued offer gets its own. Queued by pg_cron job `vsat-offer-remind` (minutes 1, 16, 31, 46), sent by the same offer job as the release email. |
+| Lapsed email | VSAT comms → **Offer lapsed → student**. One email when the student moves to Offer lapsed (by the lapse job or by hand). Not sent if the fee was paid after all (Enrolled) or the offer was re-opened before it went out. Lapses from before 0157 get no email. |
+| Steps | Both OFF and in test mode until an admin turns them on; email only; the same placeholders as the offer email. The copy is a draft for the admissions team. Neither carries the Acceptance Letter (the student can download it from the dashboard). |
+| Each step on its own | The offer email, the reminder and the lapsed email follow only their own step: turning one on does not send the others. |
+
+Tests: `supabase/tests/vsat_offer_reminders.test.sql` (23, staging), `src/lib/vsat/offer-sync.test.ts`.
+`vsat_offer_release.test.sql` now expects the lapse event to queue an email (it expected none before 0157).
+Rollback `supabase/rollback/0157_vsat_offer_reminders_down.sql` (tested on staging: down → the 0144 functions,
+grants, constraints and steps exactly as before → rolled back).
+
 ## Security
 
 - `vsat_offers_release(p)`: signed-in admin / admissions only; campus rules (a Pune admissions member never
@@ -61,6 +75,7 @@ DB `supabase/tests/vsat_offer_letter.test.sql` (18 tests). Rollback `supabase/ro
 - The email outbox and its functions are server only (service role). The lapse job can't be called by
   browsers or the API.
 - `vsat_offer_events`: RLS on, no browser access.
+- `vsat__offers_remind()` (0157): pg_cron only — no browser role and not the server API.
 - `vsat_offer_letter(p)` (0156): signed in only; a student gets only their own current offer (Offer sent /
   Enrolled, not cancelled); admin / admissions only on campuses they manage; unknown keys refused.
 
@@ -78,11 +93,12 @@ DB `supabase/tests/vsat_offer_letter.test.sql` (18 tests). Rollback `supabase/ro
    offer dates came from the old data; any with a deadline in the past will be lapsed by the first run.
 5. Apply **0156** (letter data + email wording) after the other numbers before it (0145, 0148–0155 are other teams' work). Set **Days to pay**: Pune 2, Gurugram 5.
 6. Turn on the **Offer released → student** step in VSAT comms (test mode first; check the attached letter).
+7. Apply **0157** (reminder + lapsed email). Check `select jobname, schedule from cron.job where jobname = 'vsat-offer-remind'`.
+   Turn on **Offer: last day reminder** and **Offer lapsed** in VSAT comms when the copy is approved (test mode first).
 
 Rollback: `supabase/rollback/0144_vsat_offer_release_down.sql` (tested on staging: down → identical
 function / ACL / constraint snapshot → up).
 
 ## Left for later
 
-- Reminder email before the deadline; email when an offer lapses.
 - Choosing a custom deadline per student.

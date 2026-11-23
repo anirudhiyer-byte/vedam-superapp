@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
-import { OFFER_STEP, OFFER_EMAIL_VARS } from "@/lib/vsat/offers";
+import { OFFER_EMAIL_VARS, OFFER_LAPSED_STEP, OFFER_REMINDER_STEP, OFFER_STEP, OFFER_STEPS } from "@/lib/vsat/offers";
 
 const input = vx.input;
 const label = vx.label;
@@ -19,8 +19,14 @@ type Settings = { master: boolean; test_email: string; test_phone: string };
 
 /** Interview (0140) and counselling (0145) steps are sent by the meeting jobs, by email only, with their own placeholders. */
 const isInterviewStep = (key: string) => /^(interview(er)?|counselling|counsellor)_/.test(key);
-/** The offer step (0144) is sent by the offer job, by email only, with its own placeholders. */
-const isOfferStep = (key: string) => key === OFFER_STEP;
+/** The offer steps (0144 offer, 0157 reminder + lapsed) are sent by the offer job, by email only, with the offer placeholders. */
+const isOfferStep = (key: string) => OFFER_STEPS.includes(key);
+/** When each offer step goes out (shown under its placeholders). */
+const OFFER_STEP_NOTE: Record<string, string> = {
+  [OFFER_STEP]: "Sent once when an offer is released (Counselling panel). The student's Acceptance Letter (PDF) is attached.",
+  [OFFER_REMINDER_STEP]: "Sent once at 10:00 am IST on the offer's last day, only if the enrollment fee is not paid yet.",
+  [OFFER_LAPSED_STEP]: "Sent once when the offer lapses (the deadline passed without payment). Not sent if the student paid after all.",
+};
 const isEmailOnly = (key: string) => isInterviewStep(key) || isOfferStep(key);
 const STAGE_VARS = ["name", "amount", "apply_link", "dashboard_link", "receipt_link"];
 const INTERVIEW_VARS = ["name", "student_name", "application_no", "date", "time", "old_date", "old_time", "join_link", "dashboard_link", "panel_link"];
@@ -154,9 +160,9 @@ export function VsatCommsPanel() {
                           placeholder={`Email body (HTML). Placeholders: ${varList(stepVars(s.step_key))}`} />
                         {isOfferStep(s.step_key) && (
                           <p className="mt-1.5 text-[11px] text-vx-faint">
-                            Placeholders: {varList(OFFER_EMAIL_VARS)}. Sent once when an offer is released (Counselling panel). {"{{amount}}"} is the
+                            Placeholders: {varList(OFFER_EMAIL_VARS)}. {OFFER_STEP_NOTE[s.step_key]} {"{{amount}}"} is the
                             enrollment fee; {"{{deadline_date}}"} and {"{{deadline_time}}"} are the last day and time to pay (IST);
-                            {" {{offer_days}}"} is how many days the offer is valid. The student&apos;s Acceptance Letter (PDF) is attached.
+                            {" {{offer_days}}"} is how many days the offer is valid.
                           </p>
                         )}
                         {isInterviewStep(s.step_key) && (
@@ -170,7 +176,7 @@ export function VsatCommsPanel() {
                       {/* ── WhatsApp channel (separate — copy comes from the approved template). Interview steps: email only. ── */}
                       {isEmailOnly(s.step_key) ? (
                         <p className="mt-3 text-[11px] text-vx-faint">{isOfferStep(s.step_key)
-                          ? "The offer goes by email only. There is no WhatsApp for this step."
+                          ? "Offer emails go by email only. There is no WhatsApp for this step."
                           : `${/^counsell/.test(s.step_key) ? "Counselling" : "Interview"} messages go by email only (with the Google Calendar invite). There is no WhatsApp for this step.`}</p>
                       ) : (
                       <div className="mt-3 rounded-lg border border-vx-line bg-white/[0.02] p-3">

@@ -56,12 +56,20 @@ cron `/api/cron/vsat-interviews` (now also runs the counselling Google, attendan
 - Rollback `supabase/rollback/0145_vsat_counselling_scheduling_down.sql` tested on staging inside one transaction:
   down → function / ACL / column / index / constraint / data snapshot identical → rolled back (0145 stays applied).
 
+## Grid: Counsellor dropdown and Counselling Meet column (0158)
+
+- Counselling panel (admin / admissions): a **Counsellor** dropdown next to the others: every counsellor in the panel
+  by name with a count, then **No counsellor**. Works with every other dropdown and filter, and with CSV export.
+- New column **Counselling Meet** (shown by default after the slot): Meet ready / Creating Meet… / Meet failed /
+  Own link / Cancelled, the same words and colours as Interview Meet. A saved column choice from before does not get
+  it automatically: add it from Columns.
+- Database: `vsat__grid` takes `counsellor_ids` (user ids or `none`, up to 50) and returns the `counsellor` /
+  `counsellor_name` counts; the catalogue has `counselling_meet`. Who sees which rows did not change.
+- Tests: `supabase/tests/vsat_grid_counsellor.test.sql` (17), `vsat_grid.test.sql` still 76/76; unit tests in
+  `src/lib/vsat/grid.test.ts`. Rollback `supabase/rollback/0158_vsat_grid_counsellor_down.sql` (puts back the 0140
+  functions; tested on staging: down → same md5 and grants as before → rolled back).
+
 ## Production release (only with the owner's OK)
 
 Apply 0140 → 0143 → 0144 → **0145**. Uses the same `ADMISSIONS_*` Google account as the interviews. Then turn on
-the 6 counselling steps in VSAT comms (test mode first).
-
-## Left for later
-
-- Counsellor dropdown filter and a "Counselling Meet" column in the grid (the interview panel has both; it needs a
-  change to the big grid function `vsat__grid`).
+the 6 counselling steps in VSAT comms (test mode first). The grid change is **0158** (after 0140; no settings).
