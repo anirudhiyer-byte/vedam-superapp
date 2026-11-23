@@ -17,6 +17,7 @@ import { StudentDrawer } from "./student-drawer";
 import { FacetPick, type Opt } from "./facet-pick";
 import { ExamAnalysisCard, ProctoringBar, VpsEditDialog, type VpsTarget } from "./exam-tools";
 import { MeetBadge } from "./interview-tools";
+import { RefreshShimmer, useRefreshShimmer } from "@/components/admin/ui/refresh-shimmer";
 import { PlanBar, PlanDate, PlanInterviewer, PlanStatus, PlanTime, useInterviewPlan, type PlanMessage } from "./interview-planner";
 import { OfferBar, type OfferMessage } from "./offer-tools";
 import { TRACKS, type Track, type TrackKey } from "@/lib/vsat/tracks";
@@ -117,6 +118,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [offset, setOffset] = useState(0);
   const [data, setData] = useState<GridResult | null>(null);
   const [loading, setLoading] = useState(true);
+  // Refresh button: blur + sweep of light over the cards until the new data is in (keeps the old rows on screen meanwhile)
+  const shimmer = useRefreshShimmer(loading);
   const [err, setErr] = useState("");
   const [sel, setSel] = useState<Set<string>>(new Set());
   const [openId, setOpenId] = useState<string | null>(null);
@@ -203,6 +206,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const facets = data?.facets ?? null;
   // Interview panel, managers: book from the rows (0143)
   const rowIds = useMemo(() => (loading ? [] : rows.map((r) => r.application_id)), [rows, loading]);
+  // during a Refresh the old rows stay (blurred) instead of a "Loading…" line
+  const keepRows = shimmer.on && rows.length > 0;
   const planner = useInterviewPlan(rowIds, planOn, planTrack ?? TRACKS.interview);
   const tableCols = useMemo(() => (planTrack ? shownCols.filter((c) => !PLANNER_REPLACES[planTrack.key].has(c.key)) : shownCols), [planTrack, shownCols]);
   const selInOrder = useMemo(() => rows.map((r) => r.application_id).filter((id) => sel.has(id)), [rows, sel]);
@@ -307,7 +312,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
             <IconDownload /> {busy === "csv" ? "Exporting…" : sel.size ? `Export ${sel.size}` : "Export CSV"}
           </button>
         )}
-        <button className={ghost} onClick={() => setReload((n) => n + 1)}>Refresh</button>
+        <button className={ghost} onClick={() => { shimmer.start(); setReload((n) => n + 1); }}>Refresh</button>
       </div>
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-vx-mut">
@@ -331,8 +336,10 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
 
       {/* ── VSAT Exam: results analysis for the chosen VSAT(s) ── */}
       {examPanel && manager && vsatIds.length > 0 && (
-        <ExamAnalysisCard vsatIds={vsatIds} vsatLabels={vsatIds.map((id) => vsats.find((b) => b.id === id)?.label ?? "VSAT")}
-          canSelect={roles.admin} reloadKey={reload} onApplied={() => setReload((n) => n + 1)} />
+        <RefreshShimmer on={shimmer.on} className="rounded-[18px]">
+          <ExamAnalysisCard vsatIds={vsatIds} vsatLabels={vsatIds.map((id) => vsats.find((b) => b.id === id)?.label ?? "VSAT")}
+            canSelect={roles.admin} reloadKey={reload} onApplied={() => setReload((n) => n + 1)} />
+        </RefreshShimmer>
       )}
       {examPanel && manager && vsatIds.length === 0 && (
         <p className="text-[13px] text-vx-faint">Pick a VSAT above to see its results analysis{roles.admin ? " and select students for PI" : ""}.</p>
@@ -380,6 +387,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       )}
 
       {/* ── table ─────────────────────────────────── */}
+      <RefreshShimmer on={shimmer.on} delayMs={examPanel && manager && vsatIds.length > 0 ? 80 : 0} className="rounded-[18px]">
       <div className="overflow-auto rounded-[18px] border border-vx-line bg-white/[0.015] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <table className="w-full text-left text-sm">
           <thead className="sticky top-0 z-10 text-[12.5px] text-vx-faint">
@@ -398,9 +406,9 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
             </tr>
           </thead>
           <tbody>
-            {loading && <tr><td colSpan={colCount} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
+            {loading && !keepRows && <tr><td colSpan={colCount} className="px-4 py-10 text-center text-vx-faint">Loading…</td></tr>}
             {!loading && rows.length === 0 && <tr><td colSpan={colCount} className="px-4 py-10 text-center text-vx-faint">{anyFilter ? "No students match these filters." : "No students here."}</td></tr>}
-            {!loading && rows.map((r) => {
+            {(!loading || keepRows) && rows.map((r) => {
               const name = String(r.registered_name ?? r.application_id);
               return (
                 <tr key={r.application_id} className={`group cursor-pointer border-t border-vx-line-soft transition-colors hover:bg-white/[0.03] ${sel.has(r.application_id) ? "bg-vx-violet/[0.08]" : ""}`} onClick={() => setOpenId(r.application_id)}>
@@ -428,6 +436,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
           </tbody>
         </table>
       </div>
+      </RefreshShimmer>
 
       {data && data.total > PAGE && (
         <div className="flex items-center gap-3 text-sm text-vx-mut">

@@ -273,3 +273,36 @@ body::after {
     @apply text-[12px] font-semibold uppercase tracking-[0.06em] text-pp-muted;
   }
 }
+
+/* ── VSAT admin · refresh shimmer (RefreshShimmer, src/components/admin/ui/refresh-shimmer.tsx) ──
+   Pressing Refresh: the card's content blurs and a soft band of white light sweeps across it until the new data is in.
+   Several cards on a page sweep one after the other (--vx-refresh-delay). Off for people who ask for less motion. */
+.vx-refresh { position: relative; }
+.vx-refresh > :not(.vx-refresh-sweep) {
+  transition: filter .55s cubic-bezier(.22, 1, .36, 1), opacity .55s cubic-bezier(.22, 1, .36, 1), transform .55s cubic-bezier(.22, 1, .36, 1);
+}
+.vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) {
+  filter: blur(4px); opacity: .6; transform: scale(.996); pointer-events: none; transition-duration: .35s;
+}
+.vx-refresh-sweep { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none; }
+.vx-refresh-sweep::after {
+  content: ""; position: absolute; inset: -30% -80%; opacity: 0;
+  background: linear-gradient(105deg,
+    transparent 30%, rgba(255, 255, 255, .04) 38%, rgba(255, 255, 255, .14) 44%, rgba(255, 255, 255, .34) 50%,
+    rgba(255, 255, 255, .14) 56%, rgba(255, 255, 255, .04) 62%, transparent 70%);
+  filter: blur(6px); transform: translate3d(-60%, 0, 0); will-change: transform, opacity;
+}
+.vx-refresh[data-refreshing] .vx-refresh-sweep::after {
+  animation: vx-refresh-sweep 1.05s cubic-bezier(.4, 0, .2, 1) var(--vx-refresh-delay, 0ms) infinite;
+}
+@keyframes vx-refresh-sweep {
+  0% { opacity: 0; transform: translate3d(-60%, 0, 0); }
+  18% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(60%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vx-refresh > :not(.vx-refresh-sweep) { transition: none; }
+  .vx-refresh[data-refreshing] > :not(.vx-refresh-sweep) { filter: none; transform: none; }
+  .vx-refresh[data-refreshing] .vx-refresh-sweep::after { animation: none; }
+}
