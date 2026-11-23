@@ -5,13 +5,13 @@ import {
 } from "./season";
 
 describe("academicYearStart", () => {
-  it("before 20 Nov → 20 Nov of the previous year", () => {
-    expect(academicYearStart("2026-11-18")).toBe("2025-11-20");
-    expect(academicYearStart("2026-01-01")).toBe("2025-11-20");
+  it("before 1 Nov → 1 Nov of the previous year", () => {
+    expect(academicYearStart("2026-10-31")).toBe("2025-11-01");
+    expect(academicYearStart("2026-01-01")).toBe("2025-11-01");
   });
-  it("on or after 20 Nov → 20 Nov of this year", () => {
-    expect(academicYearStart("2026-11-20")).toBe("2026-11-20");
-    expect(academicYearStart("2026-12-31")).toBe("2026-11-20");
+  it("on or after 1 Nov → 1 Nov of this year", () => {
+    expect(academicYearStart("2026-11-01")).toBe("2026-11-01");
+    expect(academicYearStart("2026-12-31")).toBe("2026-11-01");
   });
 });
 

@@ -28,8 +28,8 @@ export function isIsoDate(s: string): boolean {
 /** The admissions season starts on 20 Nov: that is the default "From". `today` is an IST date, YYYY-MM-DD. */
 export function academicYearStart(today: string): string {
   const y = Number(today.slice(0, 4));
-  const after = today.slice(5) >= "11-20";
-  return `${after ? y : y - 1}-11-20`;
+  const after = today.slice(5) >= "11-01";
+  return `${after ? y : y - 1}-11-01`;
 }
 
 export type RangeCheck = { ok: true } | { ok: false; error: string };
