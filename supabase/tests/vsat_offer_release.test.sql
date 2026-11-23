@@ -1,4 +1,4 @@
--- VSAT offers · release, email outbox, lapse — tests for migration 0144 (STAGING ONLY)
+-- VSAT offers · release, email outbox, lapse — tests for migration 0144 (STAGING ONLY; the lapse email check follows 0157)
 --
 -- How to run: paste this whole file into the staging SQL editor, or run it through the Supabase MCP.
 -- The last statement returns one row per test: test | pass | detail.
@@ -222,11 +222,11 @@ begin
     t_name := t_name || text 'C past the deadline → Offer lapsed (on-hold students left alone)';
     t_det := t_det || (format('n=%s %s %s %s', n, pg_temp.stage(a7), pg_temp.stage(a8), pg_temp.stage(a4)));
     t_pass := t_pass || (n >= 2 and pg_temp.stage(a7) = 'offer_lapsed:active' and pg_temp.stage(a8) = 'offer_lapsed:active' and pg_temp.stage(a4) = 'offer_sent:on_hold');
-    t_name := t_name || text 'C lapse: history by the system, offer status lapsed, lapse event (no email)';
+    t_name := t_name || text 'C lapse: history by the system, offer status lapsed, lapse event (lapsed email queued since 0157)';
     select h.source || '|' || coalesce(h.reason, '') into s from public.vsat_stage_history h where h.application_id = a7 and h.to_stage = 'offer_lapsed';
     t_det := t_det || (s);
     t_pass := t_pass || (s = 'system|The offer deadline passed' and (select offer_status from public.application_manager where application_id = a7) = 'lapsed'
-                         and exists (select 1 from public.vsat_offer_events where application_id = a7 and kind = 'lapsed' and notify_status = 'none'));
+                         and exists (select 1 from public.vsat_offer_events where application_id = a7 and kind = 'lapsed' and notify_status = 'pending'));
     t_name := t_name || text 'C the job runs again safely (nothing left to lapse among these)';
     n := public.vsat__offers_lapse();
     t_det := t_det || (pg_temp.stage(a7)); t_pass := t_pass || (pg_temp.stage(a7) = 'offer_lapsed:active');

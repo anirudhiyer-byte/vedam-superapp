@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { letterInput, sendOfferNotices, type OfferNoticeConfig } from "./offer-sync";
+import { letterInput, loadOfferNoticeConfig, sendOfferNotices, type OfferNoticeConfig } from "./offer-sync";
 import type { LetterInput } from "./offer-letter";
 import type { OfferJob } from "./offers";
 
@@ -122,5 +122,99 @@ describe("sendOfferNotices · Acceptance Letter attached", () => {
     expect(letterInput(job, cfg(), SITE)?.days).toBe(5);
     expect(letterInput({ ...job, released_at: null }, { ...cfg(), campus: { gurugram: { programme_fee: null, offer_days: 2 } } }, SITE)).toMatchObject({ days: 2, programmeFee: 1800000 });
     expect(letterInput({ ...job, student: { ...job.student, name: "  " } }, cfg(), SITE)?.name).toBe("Student");
+  });
+});
+
+describe("sendOfferNotices · last-day reminder and lapsed emails (0157)", () => {
+  const step = (key: string, over: Partial<NonNullable<OfferNoticeConfig["step"]>> = {}) => ({
+    step_key: key, title: key === "offer_reminder" ? "Offer: last day reminder → student" : "Offer lapsed → student",
+    enabled: true, test_mode: false, email_enabled: true,
+    email_subject: key === "offer_reminder" ? "Last day: {{scholarship}}%" : "Expired: {{scholarship}}%",
+    email_body: "<p>Dear {{student_name}}, {{campus}}, by {{deadline_date}} {{deadline_time}}</p>", ...over,
+  });
+  const cfg2 = (over: Partial<OfferNoticeConfig> = {}): OfferNoticeConfig =>
+    cfg({ steps: { reminder: step("offer_reminder"), lapsed: step("offer_lapsed") }, ...over });
+
+  it("reminder and lapsed jobs use their own step, carry no letter, and are recorded", async () => {
+    for (const kind of ["reminder", "lapsed"] as const) {
+      const sent: Record<string, unknown>[] = [];
+      let drawn = 0;
+      const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind }], vsat_offer_notice_done: {} });
+      const r = await sendOfferNotices(db, { site: SITE }, {
+        config: cfg2(), deliver: async (o) => { sent.push(o); return { ok: true }; }, letter: async () => { drawn++; return "JVBERi0="; },
+      });
+      expect(r).toEqual({ jobs: 1, sent: 1, failed: 0, off: 0 });
+      expect(drawn).toBe(0);
+      expect(sent[0]).toMatchObject({
+        to: "ravi@example.com", subject: kind === "reminder" ? "Last day: 40%" : "Expired: 40%",
+        kind: `vsat_offer_${kind}`, userId: "lead-1", refId: "ev-1",
+      });
+      expect(sent[0]).not.toHaveProperty("attachments");
+      expect(String(sent[0].html)).toBe("<p>Dear Ravi &lt;b&gt;K&lt;/b&gt;, Gurugram, by Sat, 28 Nov 2026 11:59 pm</p>");
+      expect(calls.at(-1)).toEqual({ fn: "vsat_offer_notice_done", args: { p: { id: "ev-1", status: "sent", detail: { sent_to: ["student"], test: false } } } });
+    }
+  });
+
+  it("each kind follows only its own step: the offer step on does not send a reminder whose step is off", async () => {
+    for (const c of [cfg(), cfg2({ steps: { reminder: step("offer_reminder", { enabled: false }), lapsed: step("offer_lapsed") } }),
+                     cfg2({ steps: { reminder: step("offer_reminder", { email_enabled: false }) } }), cfg2({ master: false })]) {
+      let n = 0;
+      const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "reminder" }], vsat_offer_notice_done: {} });
+      const r = await sendOfferNotices(db, { site: SITE }, { config: c, deliver: async () => { n++; return { ok: true }; } });
+      expect(n).toBe(0);
+      expect(r.off).toBe(1);
+      expect((calls.at(-1)!.args.p as { status: string }).status).toBe("skipped");
+    }
+  });
+
+  it("the offer step off does not stop a lapsed email whose step is on", async () => {
+    let n = 0;
+    const { db } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "lapsed" }], vsat_offer_notice_done: {} });
+    const c = cfg2();
+    const r = await sendOfferNotices(db, { site: SITE }, { config: { ...c, step: { ...c.step!, enabled: false } }, deliver: async () => { n++; return { ok: true }; } });
+    expect(n).toBe(1);
+    expect(r.sent).toBe(1);
+  });
+
+  it("test mode on the reminder step → the test inbox only", async () => {
+    const sent: Record<string, unknown>[] = [];
+    const { db } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "reminder" }], vsat_offer_notice_done: {} });
+    await sendOfferNotices(db, { site: SITE }, {
+      config: cfg2({ steps: { reminder: step("offer_reminder", { test_mode: true }) } }), deliver: async (o) => { sent.push(o); return { ok: true }; },
+    });
+    expect(sent[0]).toMatchObject({ to: "qa@vedam.org", userId: null });
+  });
+
+  it("an unknown kind (e.g. cancelled) is never emailed: closed as skipped", async () => {
+    let n = 0;
+    const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "cancelled" as unknown as OfferJob["kind"] }], vsat_offer_notice_done: {} });
+    const r = await sendOfferNotices(db, { site: SITE }, { config: cfg2(), deliver: async () => { n++; return { ok: true }; } });
+    expect(n).toBe(0);
+    expect(r.off).toBe(1);
+    expect((calls.at(-1)!.args.p as { status: string }).status).toBe("skipped");
+  });
+
+  it("loadOfferNoticeConfig reads all three steps in one query", async () => {
+    const rows = [
+      { step_key: "offer_released", title: "Offer released → student", enabled: true, test_mode: true, email_enabled: true, email_subject: "a", email_body: "b" },
+      { step_key: "offer_reminder", title: "Offer: last day reminder → student", enabled: false, test_mode: true, email_enabled: true, email_subject: "c", email_body: "d" },
+      { step_key: "offer_lapsed", title: "Offer lapsed → student", enabled: true, test_mode: false, email_enabled: true, email_subject: "e", email_body: "f" },
+    ];
+    const asked: unknown[] = [];
+    const q = (data: unknown) => ({
+      select: () => ({
+        in: (_c: string, v: unknown) => { asked.push(v); return Promise.resolve({ data }); },
+        eq: () => ({ maybeSingle: () => Promise.resolve({ data: { master: true, test_email: " qa@vedam.org " } }) }),
+        then: (f: (x: unknown) => unknown) => Promise.resolve({ data: [] }).then(f),
+      }),
+    });
+    const db = { from: (t: string) => q(t === "vsat_comm_steps" ? rows : null) } as unknown as SupabaseClient;
+    const c = await loadOfferNoticeConfig(db);
+    expect(asked[0]).toEqual(["offer_released", "offer_reminder", "offer_lapsed"]);
+    expect(c.master).toBe(true);
+    expect(c.testEmail).toBe("qa@vedam.org");
+    expect(c.step?.step_key).toBe("offer_released");
+    expect(c.steps?.reminder?.enabled).toBe(false);
+    expect(c.steps?.lapsed?.step_key).toBe("offer_lapsed");
   });
 });

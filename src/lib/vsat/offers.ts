@@ -13,6 +13,14 @@ import { offerDays } from "./offer-letter";
 
 /** The VSAT comms step that carries the offer email. */
 export const OFFER_STEP = "offer_released";
+/** 0157: the reminder on the offer's last day (10:00 am IST) and the email when the offer lapses. */
+export const OFFER_REMINDER_STEP = "offer_reminder";
+export const OFFER_LAPSED_STEP = "offer_lapsed";
+/** Which VSAT comms step sends each kind of offer email job (vsat_offer_events.kind). */
+export const OFFER_JOB_STEP = { released: OFFER_STEP, reminder: OFFER_REMINDER_STEP, lapsed: OFFER_LAPSED_STEP } as const;
+export type OfferJobKind = keyof typeof OFFER_JOB_STEP;
+/** The VSAT comms steps sent by the offer job (email only, offer placeholders). */
+export const OFFER_STEPS: readonly string[] = Object.values(OFFER_JOB_STEP);
 /** Most students one release call takes (same as vsat_offers_release). */
 export const RELEASE_MAX = 100;
 
@@ -123,7 +131,8 @@ export function offerState(stage: string, offer: OfferInfo | null | undefined, n
 
 export type OfferJob = {
   id: string;
-  kind: "released";
+  /** released = the offer email (with the letter); reminder = last day, 10 am IST; lapsed = the deadline passed (0157). */
+  kind: OfferJobKind;
   attempts: number;
   sent_to?: string[];
   scholarship_pct: number | string | null;

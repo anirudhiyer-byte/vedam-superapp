@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
-  DEFAULT_COLUMNS, VALUE_CHOICES, columnLabel, describeClause, formatValue, isFilterable, panelScope, parseSearchValues, pickSummary, requestColumns,
-  sanitizeColumns, toCsv, type GridColumn, type GridRow,
+  DEFAULT_COLUMNS, NO_COUNSELLOR, NO_INTERVIEWER, VALUE_CHOICES, columnLabel, describeClause, formatValue, isFilterable, panelScope, parseSearchValues,
+  peopleOptions, pickSummary, requestColumns, sanitizeColumns, toCsv, type GridColumn, type GridRow,
 } from "./grid";
 import { PANEL_STAGES } from "./pipeline";
 
@@ -166,5 +166,40 @@ describe("attendance columns read as words (cells and CSV)", () => {
   it("CSV carries the words too", () => {
     const rows = [{ application_id: "A1", application_no: "A1", stage: "interview_scheduled", status: "active", attempt_no: 1, interview_attendance: "no_show" }] as unknown as GridRow[];
     expect(toCsv(rows, [{ key: "interview_attendance", type: "text" }])).toBe('"App no.","Interview attendance"\n"A1","No-show"');
+  });
+});
+
+describe("counselling (0158): Counsellor dropdown and Counselling Meet", () => {
+  it("the Counselling panel shows the Meet state next to the slot", () => {
+    expect(DEFAULT_COLUMNS.couns.slice(4, 7)).toEqual(["counsellor", "counselling_slot", "counselling_meet"]);
+    expect(columnLabel("counselling_meet")).toBe("Counselling Meet");
+  });
+  it("Meet state reads as words in cells and CSV, like the interview one", () => {
+    expect(formatValue("text", "counselling_meet", "ready")).toBe("Meet ready");
+    expect(formatValue("text", "counselling_meet", "creating")).toBe("Creating Meet…");
+    expect(formatValue("text", "counselling_meet", "cancelled")).toBe("Cancelled");
+    expect(formatValue("text", "counselling_meet", null)).toBe("—");
+    expect(formatValue("text", "counselling_meet", "something_new")).toBe("something_new");
+    const rows = [{ application_id: "A1", application_no: "A1", stage: "counselling_scheduled", status: "active", attempt_no: 1, counselling_meet: "own_link" }] as unknown as GridRow[];
+    expect(toCsv(rows, [{ key: "counselling_meet", type: "text" }])).toBe('"App no.","Counselling Meet"\n"A1","Own link"');
+  });
+  it("people dropdown: names A–Z, then the 'nobody yet' option, with counts", () => {
+    const opts = peopleOptions({ u2: "Zoya", u1: "Arjun" }, { u1: 3, u2: 1, none: 4 }, [],
+      { none: NO_COUNSELLOR, noneLabel: "No counsellor", fallback: "Counsellor", loaded: true });
+    expect(opts).toEqual([
+      { value: "u1", label: "Arjun", count: 3 }, { value: "u2", label: "Zoya", count: 1 }, { value: "none", label: "No counsellor", count: 4 },
+    ]);
+  });
+  it("a chosen counsellor stays listed at 0 (and without a name), counts are empty before the first load", () => {
+    const opts = peopleOptions({}, {}, ["u9", NO_COUNSELLOR], { none: NO_COUNSELLOR, noneLabel: "No counsellor", fallback: "Counsellor", loaded: true });
+    expect(opts).toEqual([{ value: "u9", label: "Counsellor", count: 0 }, { value: "none", label: "No counsellor", count: 0 }]);
+    const before = peopleOptions(undefined, undefined, [], { none: NO_COUNSELLOR, noneLabel: "No counsellor", fallback: "Counsellor", loaded: false });
+    expect(before).toEqual([{ value: "none", label: "No counsellor", count: null }]);
+  });
+  it("the interviewer dropdown gives the same list it gave before the shared helper", () => {
+    const opts = peopleOptions({ a: "Bina" }, { a: 2, none: 1 }, ["b"], { none: NO_INTERVIEWER, noneLabel: "No interviewer", fallback: "Interviewer", loaded: true });
+    expect(opts).toEqual([
+      { value: "a", label: "Bina", count: 2 }, { value: "b", label: "Interviewer", count: 0 }, { value: "none", label: "No interviewer", count: 1 },
+    ]);
   });
 });

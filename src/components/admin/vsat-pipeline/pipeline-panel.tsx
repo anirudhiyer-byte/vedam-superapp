@@ -8,8 +8,8 @@ import {
   type PanelKey, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import {
-  DEFAULT_COLUMNS, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, NO_INTERVIEWER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL, VALUE_CHOICES,
-  columnLabel, describeClause, filterInputType, formatValue, isFilterable, opArity, panelScope, parseSearchValues, requestColumns, sanitizeColumns, toCsv,
+  DEFAULT_COLUMNS, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, NO_COUNSELLOR, NO_INTERVIEWER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL, VALUE_CHOICES,
+  columnLabel, describeClause, filterInputType, formatValue, isFilterable, opArity, panelScope, parseSearchValues, peopleOptions, requestColumns, sanitizeColumns, toCsv,
   type FilterClause, type GridColumn, type GridColumnsResult, type GridResult, type GridRow, type GridSearch,
 } from "@/lib/vsat/grid";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
@@ -100,6 +100,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [formStages, setFormStages] = useState<string[]>([]);
   const [ivIds, setIvIds] = useState<string[]>([]);
   const ivPanel = panel === "intv" && manager;
+  const [csIds, setCsIds] = useState<string[]>([]);
+  const csPanel = panel === "couns" && manager;   // 0158: Counsellor dropdown on the Counselling panel
   // booking from the rows: interviews (0143) on the Interview panel, counselling (0145) on the Counselling panel
   const planTrack: Track | null = !manager ? null : panel === "intv" ? TRACKS.interview : panel === "couns" ? TRACKS.counselling : null;
   const planOn = !!planTrack;
@@ -165,10 +167,11 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
     if (formStages.length) p.form_stages = formStages;
     if (manager && payStages.length) p.payment_stages = payStages;
     if (ivPanel && ivIds.length) p.interviewer_ids = ivIds;
+    if (csPanel && csIds.length) p.counsellor_ids = csIds;
     if (filterClauses.length) p.filters = filterClauses;
     if (search) p.search = search;
     return p;
-  }, [scope, stages, statuses, vsatIds, campuses, formStages, payStages, ivPanel, ivIds, filterClauses, manager, search]);
+  }, [scope, stages, statuses, vsatIds, campuses, formStages, payStages, ivPanel, ivIds, csPanel, csIds, filterClauses, manager, search]);
 
   const load = useCallback(async () => {
     if (!catalog.length) return;
@@ -207,7 +210,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const afterBooking = useCallback(() => { setReload((n) => n + 1); void replanRows(); }, [replanRows]);
   const colCount = tableCols.length + (manager ? 1 : 0) + (planTrack ? plannerHeads(planTrack).length : 0);
   const anyFilter = stages.length > 0 || statuses.length > 0 || vsatIds.length > 0 || campuses.length > 0 || formStages.length > 0 || payStages.length > 0
-    || ivIds.length > 0 || filterClauses.length > 0 || !!search;
+    || ivIds.length > 0 || csIds.length > 0 || filterClauses.length > 0 || !!search;
   const allOnPage = rows.length > 0 && rows.every((r) => sel.has(r.application_id));
   // the stage every selected row is at — the bulk move checks the database still agrees
   const selStage = useMemo<Stage | null>(() => {
@@ -224,21 +227,17 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   ];
   const formOpts: Opt[] = FORM_STAGES.map((v) => ({ value: v, label: FORM_STAGE_LABEL[v], count: facets ? facets.form_stage?.[v] ?? 0 : null }));
   const payOpts: Opt[] = PAYMENT_STAGES.map((v) => ({ value: v, label: PAYMENT_STAGE_LABEL[v], count: facets ? facets.payment_stage?.[v] ?? 0 : null }));
-  // interviewers in this panel's scope (names from the database), A–Z, then "No interviewer"; a chosen one stays listed even at 0
-  const ivOpts: Opt[] = useMemo(() => {
-    const names = facets?.interviewer_name ?? {};
-    const counts = facets?.interviewer ?? {};
-    const ids = new Set([...Object.keys(names), ...ivIds.filter((v) => v !== NO_INTERVIEWER)]);
-    const list = [...ids].map((id) => ({ value: id, label: names[id] ?? "Interviewer", count: facets ? counts[id] ?? 0 : null }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-    return [...list, { value: NO_INTERVIEWER, label: "No interviewer", count: facets ? counts[NO_INTERVIEWER] ?? 0 : null }];
-  }, [facets, ivIds]);
+  // interviewers / counsellors in this panel's scope (names from the database), A–Z, then "No …"; a chosen one stays listed even at 0
+  const ivOpts: Opt[] = useMemo(() => peopleOptions(facets?.interviewer_name, facets?.interviewer, ivIds,
+    { none: NO_INTERVIEWER, noneLabel: "No interviewer", fallback: "Interviewer", loaded: !!facets }), [facets, ivIds]);
+  const csOpts: Opt[] = useMemo(() => peopleOptions(facets?.counsellor_name, facets?.counsellor, csIds,
+    { none: NO_COUNSELLOR, noneLabel: "No counsellor", fallback: "Counsellor", loaded: !!facets }), [facets, csIds]);
   const searchable = useMemo(() => catalog.filter((c) => !c.virtual && ["text", "num", "date", "ts"].includes(c.type))
     .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
 
   const filterable = useMemo(() => catalog.filter(isFilterable)
     .sort((a, b) => columnLabel(a.key).localeCompare(columnLabel(b.key))), [catalog]);
-  function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setFormStages([]); setPayStages([]); setIvIds([]); setFilterClauses([]); setSearchText(""); setOffset(0); }
+  function clearFilters() { setStages([]); setStatuses([]); setVsatIds([]); setCampuses([]); setFormStages([]); setPayStages([]); setIvIds([]); setCsIds([]); setFilterClauses([]); setSearchText(""); setOffset(0); }
   function toggle(id: string) { setSel((s) => { const n = new Set(s); if (n.has(id)) n.delete(id); else n.add(id); return n; }); }
   function setColumns(next: string[]) { setCols(next); saveCols(panel, next); setOffset(0); }
 
@@ -295,6 +294,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         <FacetPick title="Form" options={formOpts} value={formStages} onChange={(v) => { setFormStages(v); setOffset(0); }} />
         {manager && <FacetPick title="Payment" options={payOpts} value={payStages} onChange={(v) => { setPayStages(v); setOffset(0); }} />}
         {ivPanel && <FacetPick title="Interviewer" options={ivOpts} value={ivIds} onChange={(v) => { setIvIds(v); setOffset(0); }} />}
+        {csPanel && <FacetPick title="Counsellor" options={csOpts} value={csIds} onChange={(v) => { setCsIds(v); setOffset(0); }} />}
         <span className="flex-1" />
         <button className={`${ghost} inline-flex items-center gap-2 ${filterClauses.length ? "border-vx-violet/50 text-vx-ink" : ""}`} onClick={() => setShowFilters(true)} disabled={!catalog.length}>
           <IconFilter /> Filters{filterClauses.length > 0 && <span className="rounded-full bg-vx-violet/20 px-1.5 text-[11px] tabular-nums text-vx-violet-t">{filterClauses.length}</span>}
@@ -504,7 +504,7 @@ function Cell({ col, row, onEditVps }: { col: GridColumn; row: GridRow; onEditVp
     if (v === "cleared") return <span className={cx(vx.badge, vx.tone.green)}>Cleared</span>;
     return <span className="text-vx-faint">—</span>;
   }
-  if (col.key === "interview_meet") return isMeetState(v) ? <MeetBadge state={v} /> : <span className="text-vx-faint">—</span>;
+  if (col.key === "interview_meet" || col.key === "counselling_meet") return isMeetState(v) ? <MeetBadge state={v} /> : <span className="text-vx-faint">—</span>;
   if (col.key === "campus") return <span className="capitalize">{formatValue(col.type, col.key, v)}</span>;
   if (col.type === "ts" || col.type === "date") return <span className="text-xs text-vx-mut">{formatValue(col.type, col.key, v)}</span>;
   if (col.type === "bool") { const s = formatValue(col.type, col.key, v); return <span className={s === "Yes" ? "text-vx-green" : s === "No" ? "text-vx-faint" : ""}>{s}</span>; }

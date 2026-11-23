@@ -1,22 +1,26 @@
 /**
  * VSAT offers · server job (service role). Server-only.
  *
- *   sendOfferNotices   the "Offer released → student" email through the VSAT comms step offer_released
+ *   sendOfferNotices   the offer emails through their VSAT comms steps:
+ *                        released → "Offer released → student" (offer_released, with the Acceptance Letter)
+ *                        reminder → "Offer: last day reminder → student" (offer_reminder, 0157)
+ *                        lapsed   → "Offer lapsed → student" (offer_lapsed, 0157)
  *
- * The database queues one email job per release (migration 0144, vsat_offer_events) and hands each job out
- * once (vsat_offer_notices_claim). A job whose offer is no longer the current, valid one (cancelled,
- * re-released, past the deadline) is skipped there, so a student never gets an outdated offer. With the
- * step or the comms master switch off, the job is closed as skipped (no late emails when it is turned on).
- * Called by the "send now" route after a release and by the VSAT cron (every 10 minutes, production).
+ * The database queues the jobs (vsat_offer_events: one per release, per lapse, and one reminder per offer on its
+ * last day at 10 am IST) and hands each job out once (vsat_offer_notices_claim). A job that no longer fits
+ * (offer cancelled or re-released, deadline passed, fee paid) is skipped there, so a student never gets an
+ * outdated email. With the step or the comms master switch off, the job is closed as skipped (no late emails
+ * when it is turned on). Called by the "send now" route after a release and by the VSAT cron (every 10 minutes,
+ * production).
  *
- * The student's Acceptance Letter (PDF, offer-letter-pdf.ts) goes with the email. If it cannot be drawn
- * (no campus), the email is not sent and the job is marked failed, so a student never gets the email
- * without the letter it asks them to sign.
+ * The student's Acceptance Letter (PDF, offer-letter-pdf.ts) goes with the offer email (released only). If it
+ * cannot be drawn (no campus), the email is not sent and the job is marked failed, so a student never gets the
+ * email without the letter it asks them to sign.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { deliverEmail } from "@/lib/email/deliver";
 import { fillTemplate } from "./interviews";
-import { OFFER_STEP, offerEmailVars, type OfferJob } from "./offers";
+import { OFFER_JOB_STEP, OFFER_STEP, offerEmailVars, type OfferJob, type OfferJobKind } from "./offers";
 import { CAMPUS_LETTER, campusKey, letterFileName, offerDays, type CampusKey, type LetterInput } from "./offer-letter";
 import { buildOfferLetterPdfBase64 } from "./offer-letter-pdf";
 
@@ -24,11 +28,16 @@ if (typeof window !== "undefined") throw new Error("vsat/offer-sync is server-on
 
 type StepCfg = { step_key: string; title: string; enabled: boolean; test_mode: boolean; email_enabled: boolean; email_subject: string; email_body: string };
 type CampusCfg = { programme_fee: number | string | null; offer_days: number | null };
-export type OfferNoticeConfig = { master: boolean; testEmail: string; step: StepCfg | null; campus?: Partial<Record<CampusKey, CampusCfg>> };
+/** `step` = offer_released; `steps` = the 0157 steps (reminder, lapsed). A missing step = off. */
+export type OfferNoticeConfig = {
+  master: boolean; testEmail: string; step: StepCfg | null;
+  steps?: Partial<Record<Exclude<OfferJobKind, "released">, StepCfg | null>>;
+  campus?: Partial<Record<CampusKey, CampusCfg>>;
+};
 
 export async function loadOfferNoticeConfig(db: SupabaseClient): Promise<OfferNoticeConfig> {
-  const [{ data: step }, { data: settings }, { data: campuses }] = await Promise.all([
-    db.from("vsat_comm_steps").select("step_key, title, enabled, test_mode, email_enabled, email_subject, email_body").eq("step_key", OFFER_STEP).maybeSingle(),
+  const [{ data: stepRows }, { data: settings }, { data: campuses }] = await Promise.all([
+    db.from("vsat_comm_steps").select("step_key, title, enabled, test_mode, email_enabled, email_subject, email_body").in("step_key", Object.values(OFFER_JOB_STEP)),
     db.from("vsat_comm_settings").select("master, test_email").eq("id", true).maybeSingle(),
     db.from("vsat_campus_settings").select("campus, programme_fee, offer_days"),
   ]);
@@ -38,7 +47,12 @@ export async function loadOfferNoticeConfig(db: SupabaseClient): Promise<OfferNo
     const k = campusKey(c.campus);
     if (k) campus[k] = { programme_fee: c.programme_fee, offer_days: c.offer_days };
   }
-  return { master: !!s?.master, testEmail: (s?.test_email ?? "").trim(), step: (step as StepCfg | null) ?? null, campus };
+  const byKey = new Map(((stepRows ?? []) as StepCfg[]).map((r) => [r.step_key, r]));
+  return {
+    master: !!s?.master, testEmail: (s?.test_email ?? "").trim(), step: byKey.get(OFFER_STEP) ?? null,
+    steps: { reminder: byKey.get(OFFER_JOB_STEP.reminder) ?? null, lapsed: byKey.get(OFFER_JOB_STEP.lapsed) ?? null },
+    campus,
+  };
 }
 
 type Deliver = typeof deliverEmail;
@@ -82,7 +96,8 @@ export async function sendOfferNotices(
     const sentTo = [...(job.sent_to ?? [])];
     let failed = false;
     let why: string | null = null;
-    const step = cfg.step;
+    // each kind has its own step; an unknown kind has none (closed as skipped)
+    const step = job.kind === "released" ? cfg.step : job.kind === "reminder" || job.kind === "lapsed" ? cfg.steps?.[job.kind] ?? null : null;
     const to = step?.test_mode ? cfg.testEmail : (job.student.email ?? "").trim();
     if (sentTo.includes("student")) {
       // already delivered on an earlier try
@@ -91,18 +106,22 @@ export async function sendOfferNotices(
     } else {
       const vars = offerEmailVars(job, opts.site);
       try {
-        const input = letterInput(job, cfg, opts.site);
-        if (!input) throw Object.assign(new Error("no campus"), { why: "letter_no_campus" });
-        const pdf = await letter(input).catch((e: unknown) => { throw Object.assign(new Error(String(e)), { why: "letter_failed" }); });
+        let attachments: { filename: string; content: string; mimetype: string }[] | undefined;
+        if (job.kind === "released") {
+          const input = letterInput(job, cfg, opts.site);
+          if (!input) throw Object.assign(new Error("no campus"), { why: "letter_no_campus" });
+          const pdf = await letter(input).catch((e: unknown) => { throw Object.assign(new Error(String(e)), { why: "letter_failed" }); });
+          attachments = [{ filename: letterFileName(job.student.name), content: pdf, mimetype: "application/pdf" }];
+        }
         const r = await deliver({
           to,
           subject: fillTemplate(step.email_subject, vars, "text"),
           html: fillTemplate(step.email_body, vars, "html"),
-          kind: `vsat_${OFFER_STEP}`,
+          kind: `vsat_${OFFER_JOB_STEP[job.kind]}`,
           userId: !step.test_mode ? job.student.lead_id : null,
           refId: job.id,
           refName: step.title,
-          attachments: [{ filename: letterFileName(job.student.name), content: pdf, mimetype: "application/pdf" }],
+          ...(attachments ? { attachments } : {}),
         });
         if (r.ok) { sentTo.push("student"); out.sent++; } else { failed = true; out.failed++; }
       } catch (e) {

@@ -19,9 +19,29 @@ export type GridFacets = {
   form_stage?: Record<string, number>; payment_stage?: Record<string, number>;
   /** 0140: students per interviewer user id ("none" = no interviewer), and each id's name. */
   interviewer?: Record<string, number>; interviewer_name?: Record<string, string>;
+  /** 0158: the same for counsellors (Counselling panel). */
+  counsellor?: Record<string, number>; counsellor_name?: Record<string, string>;
 };
 /** 0140: the Interviewer dropdown's value for "no interviewer yet". */
 export const NO_INTERVIEWER = "none";
+/** 0158: the Counsellor dropdown's value for "no counsellor yet". */
+export const NO_COUNSELLOR = "none";
+
+/**
+ * Options for a people dropdown (Interviewer 0140, Counsellor 0158): everyone in the panel's scope by name, A–Z, then
+ * the "nobody yet" option. A chosen person stays listed even when no row has them now. Counts are null before the
+ * first load (facets not there yet).
+ */
+export function peopleOptions(
+  names: Record<string, string> | undefined, counts: Record<string, number> | undefined, chosen: string[],
+  opts: { none: string; noneLabel: string; fallback: string; loaded: boolean },
+): { value: string; label: string; count: number | null }[] {
+  const n = names ?? {}, c = counts ?? {};
+  const ids = new Set([...Object.keys(n), ...chosen.filter((v) => v !== opts.none)]);
+  const list = [...ids].map((id) => ({ value: id, label: n[id] ?? opts.fallback, count: opts.loaded ? c[id] ?? 0 : null }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+  return [...list, { value: opts.none, label: opts.noneLabel, count: opts.loaded ? c[opts.none] ?? 0 : null }];
+}
 export type GridResult = { total: number; facets: GridFacets | null; rows: GridRow[]; limit: number; offset: number; can_manage: boolean };
 export type GridSearch = { column: string; values: string[] };
 
@@ -116,7 +136,7 @@ const LABELS: Record<string, string> = {
   proctoring: "Proctoring", class12_result: "12th result", class10_eligible: "10th eligible", class12_eligible: "12th eligible",
   interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview attendance",
   interview_score: "Interview score", interview_calc_verdict: "Verdict (calculated)", interviewer_verdict: "Verdict (interviewer)",
-  interview_meet: "Interview Meet",
+  interview_meet: "Interview Meet", counselling_meet: "Counselling Meet",
   cheating_seen: "Cheating seen",
   counsellor: "Counsellor", counselling_slot: "Counselling slot (IST)", counselling_attendance: "Counselling attendance",
   counselling_category: "Scholarship category", counselling_pct: "Scholarship %", counselling_calculated_pct: "Calculated %",
@@ -167,9 +187,9 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   // 0140 — Meet state and attendance next to the slot
   intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_score",
          "interview_calc_verdict", "interviewer_verdict", "stage_changed_at"],
-  // 0144 — the offer deadline next to the scholarship
-  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_category", "counselling_pct", "offer_expires_at",
-          "stage_changed_at"],
+  // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot
+  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_category", "counselling_pct",
+          "offer_expires_at", "stage_changed_at"],
 };
 
 /** Columns the request must carry for the shown ones to render (the override markers, the app no. under the name). */
@@ -213,7 +233,7 @@ export function formatValue(type: GridColType, key: string, v: unknown): string 
   if (type === "status") return isStatus(v) ? STATUS_LABEL[v] : String(v);
   if (type === "bool") return v === true ? "Yes" : v === false ? "No" : String(v);
   if (VALUE_CHOICES[key] && typeof v === "string") return choiceLabel(key, v);
-  if (key === "interview_meet") return isMeetState(v) ? MEET_LABEL[v] : String(v);
+  if (key === "interview_meet" || key === "counselling_meet") return isMeetState(v) ? MEET_LABEL[v] : String(v);
   if (type === "ts") return fmtIst(String(v));
   if (type === "date") return istDate(v);
   if (type === "num") return /_(pct|percentage)$/.test(key) ? `${num(v)}%` : num(v);
