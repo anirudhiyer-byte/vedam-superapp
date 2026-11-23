@@ -29,6 +29,7 @@ export function SiteHeader() {
   const [phone, setPhone] = useState("");
   const [uid, setUid] = useState("");
   const [points, setPoints] = useState(0);
+  const [adminGrp, setAdminGrp] = useState<"" | "products" | "misc">("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileComplete, setProfileComplete] = useState(true);
   const [gateOpen, setGateOpen] = useState(false);
@@ -146,19 +147,29 @@ export function SiteHeader() {
                         <>
                           <div className="my-1 h-px bg-white/10" />
                           <div className="px-4 pt-1 pb-0.5 font-mono text-[10px] uppercase tracking-wide text-white/35">Admin</div>
-                          <Link href="/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">⚙ Admin overview</Link>
-                          <Link href="/admin/product-users" className="flex items-center gap-2 px-4 py-2 text-white/85 hover:bg-white/5"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 opacity-80"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>Product Users</Link>
-                          <Link href="/admin/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">🗂️ VSAT Admin Panel</Link>
-                          <Link href="/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎯 VSAT registration (internal)</Link>
-                          <Link href="/apply/dashboard" className="block px-4 py-2 text-white/85 hover:bg-white/5">🧭 VSAT applicant dashboard</Link>
-                          <Link href="/admin/vsat-early" className="block px-4 py-2 text-white/85 hover:bg-white/5">📈 VSAT Early-Reg Analytics</Link>
-                          <Link href="/events?admin=manage" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage Events</Link>
-                          <Link href="/events?admin=analytics" className="block px-4 py-2 text-white/85 hover:bg-white/5">Events Analytics</Link>
-                          <Link href="/codesprint?admin=1" className="block px-4 py-2 text-white/85 hover:bg-white/5">Manage CodeSprint</Link>
-                          <Link href="/admin/comms" className="block px-4 py-2 text-white/85 hover:bg-white/5">Communications</Link>
-                          <Link href="/admin/daily" className="block px-4 py-2 text-white/85 hover:bg-white/5">📊 Daily Dashboard</Link>
-                          <Link href="/admin/insights" className="block px-4 py-2 text-white/85 hover:bg-white/5">🔎 Insights</Link>
-                          <Link href="/peerpath/talk-to-senior/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">🎓 PeerPath admin</Link>
+                          <Link href="/admin" className="block px-4 py-2 text-white/85 hover:bg-white/5">Admin Overview</Link>
+                          <Link href="/admin/product-users" className="block px-4 py-2 text-white/85 hover:bg-white/5">Product Users</Link>
+                          <Link href="/admin/vsat" className="block px-4 py-2 text-white/85 hover:bg-white/5">VSAT Admin Panel</Link>
+                          <Link href="/admin/insights" className="block px-4 py-2 text-white/85 hover:bg-white/5">Insights</Link>
+                          <button type="button" onClick={() => setAdminGrp((g) => (g === "products" ? "" : "products"))} className="flex w-full items-center justify-between px-4 py-2 text-left text-white/85 hover:bg-white/5">Manage Products<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className={`shrink-0 opacity-60 transition-transform ${adminGrp === "products" ? "rotate-180" : ""}`}><path d="M6 9l6 6 6-6" /></svg></button>
+                          {adminGrp === "products" && (
+                            <div className="bg-black/20">
+                              <Link href="/events?admin=manage" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">Manage Events</Link>
+                              <Link href="/events?admin=analytics" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">Events Analytics</Link>
+                              <Link href="/admin/comms" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">Communications</Link>
+                              <Link href="/peerpath/talk-to-senior/admin" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">PeerPath Admin</Link>
+                              <Link href="/codesprint?admin=1" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">Manage CodeSprint</Link>
+                            </div>
+                          )}
+                          <button type="button" onClick={() => setAdminGrp((g) => (g === "misc" ? "" : "misc"))} className="flex w-full items-center justify-between px-4 py-2 text-left text-white/85 hover:bg-white/5">Miscellaneous<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className={`shrink-0 opacity-60 transition-transform ${adminGrp === "misc" ? "rotate-180" : ""}`}><path d="M6 9l6 6 6-6" /></svg></button>
+                          {adminGrp === "misc" && (
+                            <div className="bg-black/20">
+                              <Link href="/admin/daily" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">Daily Dashboards</Link>
+                              <Link href="/admin/vsat-early" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">VSAT Early-Reg Analytics</Link>
+                              <Link href="/vsat" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">VSAT registration (internal)</Link>
+                              <Link href="/apply/dashboard" className="block px-7 py-2 text-[13px] text-white/75 hover:bg-white/5">VSAT application dashboard</Link>
+                            </div>
+                          )}
                         </>
                       )}
                     </div>
