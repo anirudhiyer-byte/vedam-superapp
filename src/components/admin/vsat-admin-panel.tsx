@@ -10,6 +10,7 @@ import { MarketingPanel, type MarketingPage } from "@/components/admin/marketing
 import { ConsultantsPanel } from "@/components/admin/marketing/consultants/consultants-panel";
 import { TelegramPanel } from "@/components/admin/marketing/telegram/telegram-panel";
 import { VedantuPanel } from "@/components/admin/marketing/vedantu/vedantu-panel";
+import { SchoolConnectPanel } from "@/components/admin/marketing/schoolconnect/schoolconnect-panel";
 import { CampaignsPanel } from "@/components/admin/marketing/campaigns-panel";
 import { SeasonPanel } from "@/components/admin/marketing/season-panel";
 import { VcampPanel } from "@/components/admin/marketing/vcamp-panel";
@@ -54,6 +55,7 @@ const ICON: Record<string, string> = {
   infl: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 5a3 3 0 0 1 0 6"/>',
   tele: '<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
   vedantu: '<polygon points="6 4 20 12 6 20 6 4"/>',
+  schoolconnect: '<path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M6 10.5V15c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.5"/><path d="M22 8v5"/>',
   cons: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
   pred: '<circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-4 1 2-5z"/>',
   sprint: '<path d="M9 8l-5 4 5 4M15 8l5 4-5 4"/>',
@@ -111,6 +113,9 @@ const GROWTH: Group[] = [
     { id: "tele", label: "Telegram Channel", icon: ICON.tele, live: true, sub: [{ label: "Telegram Listing", page: "listing" }, { label: "Telegram Performance", page: "perf" }] },
     { id: "vedantu", label: "Vedantu Channel", icon: ICON.vedantu, live: true, sub: [
       { label: "Vedantu Listing", page: "listing" }, { label: "Vedantu Performance", page: "perf" },
+    ] },
+    { id: "schoolconnect", label: "School Connect", icon: ICON.schoolconnect, live: true, sub: [
+      { label: "School Connect Listing", page: "listing" }, { label: "School Connect Performance", page: "perf" },
     ] },
     { id: "cons", label: "Consultants Channel", icon: ICON.cons, live: true, sub: [
       { label: "Consultant Listing", page: "listing" }, { label: "Consultant Performance", page: "perf" },
@@ -210,6 +215,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
       }
       if (active.id === "tele") return <div className="vp-scroll"><TelegramPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
       if (active.id === "vedantu") return <div className="vp-scroll"><VedantuPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
+      if (active.id === "schoolconnect") return <div className="vp-scroll"><SchoolConnectPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
       if (active.id === "cons") return <div className="vp-scroll"><ConsultantsPanel key={active.page} page={active.page === "perf" ? "perf" : "listing"} /></div>;
       if (active.file) return <iframe title={active.title} src={`/growth/${active.file}#page=${active.page ?? ""}`} className="vp-frame" />;
       return <Placeholder title={active.title} kind="growth" />;
