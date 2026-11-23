@@ -8,8 +8,9 @@
 
 export const STAGES = [
   "applied", "application_fee_paid",
-  "booked", "eligible", "exam_taken", "vsat_cleared", "interview_scheduled", "interviewed", "pi_cleared",
-  "counselling_scheduled", "counselled", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled",
+  "booked", "eligible", "exam_taken", "vsat_cleared", "vsat_not_appeared",
+  "interview_scheduled", "interviewed", "pi_cleared", "pi_not_appeared",
+  "counselling_scheduled", "counselled", "counselling_not_appeared", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled",
 ] as const;
 export type Stage = (typeof STAGES)[number];
 
@@ -19,9 +20,11 @@ export type Status = (typeof STATUSES)[number];
 export const STAGE_LABEL: Record<Stage, string> = {
   applied: "Applied", application_fee_paid: "Fee paid",
   booked: "Booked", eligible: "Eligible", exam_taken: "Exam taken", vsat_cleared: "VSAT cleared",
+  vsat_not_appeared: "VSAT not appeared",
   interview_scheduled: "Interview scheduled", interviewed: "Interviewed", pi_cleared: "PI cleared",
-  counselling_scheduled: "Counselling scheduled", counselled: "Counselled", offer_sent: "Offer sent",
-  enrolled: "Enrolled", offer_lapsed: "Offer lapsed", offer_cancelled: "Offer cancelled",
+  pi_not_appeared: "PI not appeared",
+  counselling_scheduled: "Counselling scheduled", counselled: "Counselled", counselling_not_appeared: "Counselling not appeared",
+  offer_sent: "Offer sent", enrolled: "Enrolled", offer_lapsed: "Offer lapsed", offer_cancelled: "Offer cancelled",
 };
 
 export const STATUS_LABEL: Record<Status, string> = {
@@ -32,15 +35,16 @@ export const STATUS_LABEL: Record<Status, string> = {
 export type PanelKey = "apps" | "exam" | "intv" | "couns";
 export const PANEL_STAGES: Record<PanelKey, readonly Stage[]> = {
   apps: STAGES,
-  exam: ["booked", "eligible", "exam_taken", "vsat_cleared"],
-  intv: ["vsat_cleared", "interview_scheduled", "interviewed", "pi_cleared"],
-  couns: ["pi_cleared", "counselling_scheduled", "counselled", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled"],
+  exam: ["booked", "eligible", "exam_taken", "vsat_cleared", "vsat_not_appeared"],
+  intv: ["vsat_cleared", "interview_scheduled", "interviewed", "pi_cleared", "pi_not_appeared"],
+  couns: ["pi_cleared", "counselling_scheduled", "counselled", "counselling_not_appeared", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled"],
 };
 
 export const STAGE_ORDER: Record<Stage, number> = {
   applied: 0, application_fee_paid: 1,
   booked: 2, eligible: 3, exam_taken: 4, vsat_cleared: 5, interview_scheduled: 6, interviewed: 7, pi_cleared: 8,
   counselling_scheduled: 9, counselled: 10, offer_sent: 11, enrolled: 12, offer_lapsed: 12, offer_cancelled: 12,
+  vsat_not_appeared: 4, pi_not_appeared: 7, counselling_not_appeared: 10,
 };
 
 export const isStage = (v: unknown): v is Stage => typeof v === "string" && (STAGES as readonly string[]).includes(v);
