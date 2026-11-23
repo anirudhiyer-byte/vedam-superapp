@@ -602,6 +602,91 @@ function CallersManage({ supabase }: { supabase: Client }) {
           </tbody>
         </table>
       </div>
+
+      <TelecmiAgents supabase={supabase} />
+    </div>
+  );
+}
+
+/** Admin · map each caller to their TeleCMI user and call mode (migration 0147). */
+function TelecmiAgents({ supabase }: { supabase: Client }) {
+  type Draft = { tid: string; mode: string; cid: string; active: boolean };
+  const [rows, setRows] = useState<Json[]>([]);
+  const [on, setOn] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState("");
+  const [msg, setMsg] = useState<{ t: "ok" | "err"; s: string } | null>(null);
+  const [draft, setDraft] = useState<Record<string, Draft>>({});
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const [{ data: r }, { data: o }] = await Promise.all([
+      supabase.rpc("calling_telecmi_roster"),
+      supabase.rpc("calling_telecmi_on"),
+    ]);
+    const list = Array.isArray(r) ? (r as Json[]) : [];
+    const d: Record<string, Draft> = {};
+    for (const x of list) d[str(x.user_id)] = { tid: str(x.telecmi_user_id), mode: str(x.call_mode) || "mobile", cid: str(x.callerid), active: x.mapped ? x.active === true : true };
+    setRows(list); setDraft(d); setOn(o === true); setLoading(false);
+  }, [supabase]);
+  useEffect(() => { void load(); }, [load]);
+
+  const edit = (uid: string, patch: Partial<Draft>) => setDraft((s) => ({ ...s, [uid]: { ...s[uid], ...patch } }));
+
+  async function save(uid: string) {
+    const d = draft[uid];
+    if (!d || !d.tid.trim()) { setMsg({ t: "err", s: "Enter the TeleCMI user id first." }); return; }
+    setBusy(uid); setMsg(null);
+    const { data, error } = await supabase.rpc("calling_set_telecmi_agent", { p: { user_id: uid, telecmi_user_id: d.tid.trim(), call_mode: d.mode, callerid: d.cid.trim() || null, active: d.active } });
+    setBusy("");
+    const res = (data ?? {}) as Json;
+    if (error || !res.ok) { setMsg({ t: "err", s: error?.message ?? `Couldn't save: ${str(res.error)}` }); return; }
+    setMsg({ t: "ok", s: "Saved." }); await load();
+  }
+
+  return (
+    <div className="cl-tele">
+      <div className="cl-callhead">
+        <div>
+          <h3 className="cl-h3">Telephony <span className="cl-mut2">· TeleCMI</span></h3>
+          <p className="cl-sub2">
+            Map each caller to their TeleCMI user id and pick how the call reaches them. {" "}
+            {on === null ? null : on
+              ? <span className="cl-pill cl-pill-on">Calling is ON</span>
+              : <span className="cl-pill cl-pill-off">Calling is OFF — set the TeleCMI keys and flip <code>telecmi_enabled</code> to turn it on.</span>}
+          </p>
+        </div>
+      </div>
+      {msg && <div className={msg.t === "ok" ? "cl-ok-banner" : "cl-err"} onClick={() => setMsg(null)}>{msg.s} · dismiss</div>}
+      <div className="cl-tablewrap">
+        <table className="cl-table">
+          <thead><tr><th>Caller</th><th>TeleCMI user id</th><th className="cl-c">Mode</th><th>Caller ID</th><th className="cl-c">Active</th><th></th></tr></thead>
+          <tbody>
+            {loading && <tr><td colSpan={6} className="cl-mid">Loading…</td></tr>}
+            {!loading && rows.length === 0 && <tr><td colSpan={6} className="cl-mid">Add callers above first.</td></tr>}
+            {!loading && rows.map((r) => {
+              const uid = str(r.user_id);
+              const d = draft[uid] ?? { tid: "", mode: "mobile", cid: "", active: true };
+              return (
+                <tr key={uid}>
+                  <td className="cl-name">{str(r.email)}</td>
+                  <td><input className="cl-tele-in mono" placeholder="e.g. 208_1111112" value={d.tid} onChange={(e) => edit(uid, { tid: e.target.value })} /></td>
+                  <td className="cl-c">
+                    <select className="cl-tele-sel" value={d.mode} onChange={(e) => edit(uid, { mode: e.target.value })}>
+                      <option value="mobile">Mobile</option>
+                      <option value="softphone">Softphone</option>
+                    </select>
+                  </td>
+                  <td><input className="cl-tele-in mono" placeholder="(optional DID)" value={d.cid} onChange={(e) => edit(uid, { cid: e.target.value })} /></td>
+                  <td className="cl-c"><input type="checkbox" checked={d.active} onChange={(e) => edit(uid, { active: e.target.checked })} /></td>
+                  <td className="cl-c"><button className="cl-add sm" disabled={busy === uid} onClick={() => save(uid)}>{busy === uid ? "…" : str(r.mapped) === "true" ? "Update" : "Save"}</button></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p className="cl-sub2 cl-tele-foot"><b>Mobile</b> rings the caller&apos;s own phone first, then the lead. <b>Softphone</b> rings them in the browser Console (TeleCMI WebRTC). The TeleCMI user id is on the caller&apos;s TeleCMI dashboard.</p>
     </div>
   );
 }
@@ -783,5 +868,17 @@ const CSS = `
 .cl-utmform{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:rgba(130,150,255,.05);border:1px solid var(--line);border-radius:12px;padding:12px}
 .cl-utmform input{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-size:12.5px;padding:8px 11px;outline:none;min-width:150px;flex:1}
 .cl-utmform input:focus{border-color:rgba(52,226,176,.4)}
+.cl-tele{margin-top:30px;border-top:1px solid var(--line);padding-top:22px}
+.cl-mut2{color:var(--mut2);font-weight:400;font-size:12px}
+.cl-pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;margin-left:4px;vertical-align:middle}
+.cl-pill-on{background:rgba(52,226,176,.14);border:1px solid rgba(52,226,176,.35);color:var(--green)}
+.cl-pill-off{background:rgba(255,186,90,.12);border:1px solid rgba(255,186,90,.3);color:#ffcf8e}
+.cl-tele-in{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:8px;color:var(--ink);font-size:12.5px;padding:7px 10px;outline:none;width:100%;min-width:120px}
+.cl-tele-in.mono{font-family:var(--mono);font-size:12px}
+.cl-tele-in:focus{border-color:rgba(52,226,176,.4)}
+.cl-tele-sel{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:8px;color:var(--ink);font-size:12.5px;padding:7px 8px;outline:none}
+.cl-add.sm{padding:6px 11px;font-size:12px}
+.cl-tele-foot{max-width:none;margin-top:12px}
+.cl-tele-foot b{color:var(--mut)}
 @media(max-width:720px){.cl-search{max-width:none}}
 `;
