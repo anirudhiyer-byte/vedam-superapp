@@ -69,7 +69,34 @@ function Queue({ supabase }: { supabase: ReturnType<typeof createClient> }) {
   const [due, setDue] = useState(false);
   const [q, setQ] = useState("");
   const [search, setSearch] = useState("");
+  const [tele, setTele] = useState(false);
+  const [call, setCall] = useState<Record<string, { state: "ringing" | "done" | "err"; msg?: string }>>({});
+  const [openCalls, setOpenCalls] = useState<string | null>(null);
   const LIMIT = 50;
+
+  useEffect(() => { let on = true; void supabase.rpc("calling_telecmi_on").then(({ data }) => { if (on) setTele(data === true); }); return () => { on = false; }; }, [supabase]);
+
+  const CALL_ERR: Record<string, string> = {
+    disabled: "Calling isn't switched on yet.", no_agent: "You're not set up for calling yet — ask an admin to map your TeleCMI user.",
+    not_your_lead: "That lead isn't assigned to you.", bad_number: "This lead has no valid phone number.",
+    NOT_CONFIGURED: "Calling isn't configured yet.", RATE_LIMITED: "Too many calls — wait a moment.",
+    TELEPHONY_REJECTED: "The phone system rejected the call. Check your TeleCMI setup.", TELEPHONY_UNREACHABLE: "Couldn't reach the phone system.",
+  };
+  async function placeCall(id: string) {
+    setCall((c) => ({ ...c, [id]: { state: "ringing" } }));
+    try {
+      const res = await fetch("/api/calling/call", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ lead_id: id }) });
+      const d = (await res.json().catch(() => ({}))) as { ok?: boolean; code?: string; mode?: string };
+      if (d.ok) {
+        setCall((c) => ({ ...c, [id]: { state: "done", msg: d.mode === "softphone" ? "Ringing in your browser…" : "Ringing your phone…" } }));
+        setTimeout(() => void load(), 2000);
+      } else {
+        setCall((c) => ({ ...c, [id]: { state: "err", msg: CALL_ERR[d.code ?? ""] ?? "Couldn't start the call." } }));
+      }
+    } catch {
+      setCall((c) => ({ ...c, [id]: { state: "err", msg: "Network error — try again." } }));
+    }
+  }
 
   const load = useCallback(async () => {
     setLoading(true); setErr(null);
@@ -134,8 +161,12 @@ function Queue({ supabase }: { supabase: ReturnType<typeof createClient> }) {
                   <input className="cc-dt" type="datetime-local" defaultValue={toLocalInput(r.next_followup_at)}
                     onBlur={(e) => { const v = e.target.value; const iso = v ? new Date(v).toISOString() : ""; if (iso !== str(r.next_followup_at)) update(id, { next_followup_at: iso }); }} />
                 </div>
+                {tele && <button className="cc-call" disabled={call[id]?.state === "ringing"} onClick={() => placeCall(id)}>{call[id]?.state === "ringing" ? "Calling…" : "📞 Call"}</button>}
                 <button className="cc-log" onClick={() => update(id, { logged_call: true })}>＋ Log call</button>
+                {tele && <button className="cc-calls-t" onClick={() => setOpenCalls((o) => (o === id ? null : id))}>{openCalls === id ? "Hide calls" : "Calls"}</button>}
               </div>
+              {call[id] && <div className={`cc-callmsg ${call[id].state}`}>{call[id].state === "ringing" ? "Starting call…" : call[id].msg}</div>}
+              {openCalls === id && <CallHistory supabase={supabase} leadId={id} />}
             </div>
           );
         })}
@@ -161,6 +192,36 @@ function RemarkInput({ value, onSave }: { value: string; onSave: (v: string) => 
       onChange={(e) => setV(e.target.value)}
       onBlur={() => { if (v !== value) onSave(v); }}
       onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); }} />
+  );
+}
+
+function CallHistory({ supabase, leadId }: { supabase: ReturnType<typeof createClient>; leadId: string }) {
+  const [calls, setCalls] = useState<Json[] | null>(null);
+  useEffect(() => {
+    let on = true;
+    void supabase.rpc("calling_lead_calls", { p: { lead_id: leadId } }).then(({ data }) => {
+      if (!on) return;
+      const c = (data as { calls?: Json[] } | null)?.calls;
+      setCalls(Array.isArray(c) ? c : []);
+    });
+    return () => { on = false; };
+  }, [supabase, leadId]);
+  if (calls === null) return <div className="cc-ch cc-mut">Loading calls…</div>;
+  if (calls.length === 0) return <div className="cc-ch cc-mut">No calls recorded for this lead yet.</div>;
+  return (
+    <div className="cc-ch">
+      {calls.map((c) => {
+        const dur = Number(c.billedsec ?? c.duration ?? 0);
+        return (
+          <div className="cc-chrow" key={str(c.id)}>
+            <span className={`cc-chst s-${str(c.status)}`}>{str(c.status)}</span>
+            <span className="cc-mut">{fmtDate(c.created_at)}</span>
+            {dur > 0 && <span className="cc-mut">· {dur}s</span>}
+            {c.recording_url ? <a className="cc-chrec" href={str(c.recording_url)} target="_blank" rel="noreferrer">▶ recording</a> : <span className="cc-mut">· no recording</span>}
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -274,5 +335,18 @@ const CSS = `
 .cc-bbar{flex:1;height:7px;background:rgba(130,150,255,.08);border-radius:999px;overflow:hidden}
 .cc-bbar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--cyan))}
 .cc-bv{width:30px;text-align:right;font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+.cc-call{border:0;background:linear-gradient(90deg,#34e2b0,#22d3ee);color:#04101a;font-weight:700;font-size:12.5px;border-radius:10px;padding:9px 14px;cursor:pointer;height:36px}
+.cc-call:disabled{opacity:.6;cursor:default}
+.cc-calls-t{border:1px solid var(--line);background:rgba(130,150,255,.06);color:var(--mut);border-radius:10px;padding:9px 12px;font-size:12px;cursor:pointer;height:36px}
+.cc-callmsg{font-size:12px;padding:6px 10px;border-radius:8px;margin-top:2px}
+.cc-callmsg.ringing,.cc-callmsg.done{background:rgba(52,226,176,.1);border:1px solid rgba(52,226,176,.28);color:var(--green)}
+.cc-callmsg.err{background:rgba(255,90,120,.12);border:1px solid rgba(255,90,120,.35);color:#ffd4dc}
+.cc-ch{display:flex;flex-direction:column;gap:6px;margin-top:4px;padding:10px 12px;background:rgba(130,150,255,.04);border:1px solid var(--line);border-radius:10px}
+.cc-chrow{display:flex;align-items:center;gap:8px;font-size:12px}
+.cc-chst{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+.cc-chst.s-completed,.cc-chst.s-answered{background:rgba(52,226,176,.12);border-color:rgba(52,226,176,.3);color:var(--green)}
+.cc-chst.s-missed,.cc-chst.s-failed{background:rgba(255,186,90,.1);border-color:rgba(255,186,90,.28);color:#ffcf8e}
+.cc-chrec{color:var(--cyan);text-decoration:none;font-weight:600;margin-left:auto}
+.cc-chrec:hover{text-decoration:underline}
 @media(max-width:620px){.cc-ttl{display:none}.cc-search{max-width:none}}
 `;
