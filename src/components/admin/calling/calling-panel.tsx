@@ -696,6 +696,7 @@ function ElevatePanel() {
   const [status, setStatus] = useState<Json | null>(null);
   const [loading, setLoading] = useState(true);
   const [testing, setTesting] = useState(false);
+  const [toggling, setToggling] = useState(false);
   const [testRes, setTestRes] = useState<Json | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
@@ -728,6 +729,22 @@ function ElevatePanel() {
   const problems = (stats.recent_problems as Json[]) ?? [];
   const live = flag === "on";
 
+  async function toggleLive(next: boolean) {
+    if (next && !window.confirm("Turn the Elevate webhook ON? Live lead events will start sending to Elevate.")) return;
+    setToggling(true); setErr(null);
+    try {
+      const r = await fetch("/api/admin/elevate/toggle", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ on: next }),
+      });
+      const j = (await r.json()) as Json;
+      if (!r.ok || j?.ok !== true) setErr(str(j?.error) || "Couldn't change the flag");
+    } catch (e) { setErr(e instanceof Error ? e.message : "Couldn't change the flag"); }
+    setToggling(false);
+    void loadStatus();
+  }
+
   return (
     <div className="cl-page">
       {err && <div className="cl-err" onClick={() => setErr(null)}>{err} · dismiss</div>}
@@ -736,9 +753,19 @@ function ElevatePanel() {
           <h3 className="cl-h3">Elevate outbound webhook</h3>
           <p className="cl-sub2">Sends partner-credited lead events (UTM-medium leads) to Elevate down the funnel. Fires only when the flag is <b>on</b> and the secret is set. Rejections and dropouts are not sent.</p>
         </div>
-        <button className="cl-add" disabled={testing || !configured} onClick={runTest} title={configured ? "" : "Set ELEVATE_WEBHOOK_URL / ELEVATE_WEBHOOK_SECRET first"}>
-          {testing ? "Testing…" : "Test connection"}
-        </button>
+        <div className="cl-elv-btns">
+          <button className="cl-ghost" disabled={testing || !configured} onClick={runTest} title={configured ? "" : "Set ELEVATE_WEBHOOK_URL / ELEVATE_WEBHOOK_SECRET first"}>
+            {testing ? "Testing…" : "Test connection"}
+          </button>
+          <button
+            className={live ? "cl-ghost" : "cl-add"}
+            disabled={toggling || loading || (!live && !configured)}
+            onClick={() => void toggleLive(!live)}
+            title={!live && !configured ? "Set ELEVATE_WEBHOOK_URL / ELEVATE_WEBHOOK_SECRET first" : ""}
+          >
+            {toggling ? "Saving…" : live ? "Turn OFF" : "Turn ON"}
+          </button>
+        </div>
       </div>
 
       <div className="cl-cards">
@@ -758,8 +785,7 @@ function ElevatePanel() {
 
       {!live && (
         <div className="cl-note">
-          <b>To go live:</b> set <code>ELEVATE_WEBHOOK_URL</code> + <code>ELEVATE_WEBHOOK_SECRET</code> in the environment, run <b>Test connection</b> until it passes, then flip the flag:
-          <pre>update public.app_flags set value=&apos;on&apos; where key=&apos;elevate_webhook&apos;;</pre>
+          <b>To go live:</b> set <code>ELEVATE_WEBHOOK_URL</code> + <code>ELEVATE_WEBHOOK_SECRET</code> in the environment, run <b>Test connection</b> until it passes, then press <b>Turn ON</b> above.
         </div>
       )}
 
@@ -859,6 +885,7 @@ const CSS = `
 .cl-h3{font-family:var(--display);font-size:16px;margin:0 0 4px;color:var(--ink)}
 .cl-sub2{font-size:12px;color:var(--mut2);margin:0;max-width:440px;line-height:1.5}
 .cl-sub2 code{font-family:var(--mono);font-size:11px;color:var(--mut);background:rgba(130,150,255,.08);padding:1px 5px;border-radius:5px}
+.cl-elv-btns{display:flex;gap:8px;flex-wrap:wrap}
 .cl-addcaller{display:flex;gap:8px}
 .cl-addcaller input{background:rgba(130,150,255,.06);border:1px solid var(--line);border-radius:10px;color:var(--ink);font-size:13px;padding:9px 12px;outline:none;min-width:220px}
 .cl-addcaller input:focus{border-color:rgba(52,226,176,.4)}
