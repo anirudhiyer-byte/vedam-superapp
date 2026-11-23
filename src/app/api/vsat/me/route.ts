@@ -18,5 +18,24 @@ export async function POST(req: Request) {
       .eq("enabled", true).gte("end_at", new Date().toISOString())
       .order("start_at", { ascending: true }),
   ]);
-  return Response.json({ ok: true, app, lead, dates: dates ?? [] });
+  // pipeline stage/status (keyed by application_id) — lets the dashboard show the exact
+  // terminal-fail state and whether a 2nd attempt is offered (legacy application_stage_1 can't
+  // tell a no-show from a not-cleared, and has no value for a counselling fail).
+  type Vp = { stage: string; status: string; attempt_no: number };
+  let pipeline: Vp | null = null;
+  const applicationId = (app as { application_id?: string } | null)?.application_id;
+  if (applicationId) {
+    const { data: vp } = await admin.from("vsat_pipeline").select("stage,status,attempt_no").eq("application_id", applicationId).maybeSingle();
+    pipeline = (vp as Vp | null) ?? null;
+  }
+  const a = app as { payment_stage_1?: string | null; payment_stage_2?: string | null } | null;
+  const isTerminalFail = (s: string, st: string) =>
+    ["vsat_not_appeared", "pi_not_appeared", "counselling_not_appeared"].includes(s) ||
+    (s === "exam_taken" && st === "not_selected") ||
+    (s === "interviewed" && st === "not_selected") ||
+    (s === "counselled" && st === "not_selected");
+  const secondAttemptEligible = !!pipeline && pipeline.attempt_no === 1 &&
+    isTerminalFail(pipeline.stage, pipeline.status) &&
+    a?.payment_stage_1 === "payment_approved" && a?.payment_stage_2 !== "payment_approved";
+  return Response.json({ ok: true, app, lead, dates: dates ?? [], pipeline, secondAttemptEligible });
 }

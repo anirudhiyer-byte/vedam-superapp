@@ -31,10 +31,17 @@ export async function confirmVsatPayment(
   const attempt = o.attempt ?? 1;
   const sfx = attempt >= 2 ? "2" : "1";
 
-  // already settled + payment recorded → nothing to do
+  // already settled + payment recorded → nothing to do. Attempt-aware: attempt 1 is recorded
+  // in vsat_payments, attempt 2 in application_manager.payment_stage_2 (checking vsat_payments
+  // for attempt 2 would wrongly short-circuit, since the lead already has an attempt-1 row).
   if (o.status === "paid") {
-    const { data: paid } = await svc.from("vsat_payments").select("lead_id").eq("lead_id", o.lead_id).maybeSingle();
-    if (paid) return { ok: true, status: "already_paid" };
+    if (attempt >= 2) {
+      const { data: am2 } = await svc.from("application_manager").select("payment_stage_2").eq("lead_id", o.lead_id).maybeSingle();
+      if ((am2 as { payment_stage_2?: string } | null)?.payment_stage_2 === "payment_approved") return { ok: true, status: "already_paid" };
+    } else {
+      const { data: paid } = await svc.from("vsat_payments").select("lead_id").eq("lead_id", o.lead_id).maybeSingle();
+      if (paid) return { ok: true, status: "already_paid" };
+    }
   }
 
   // 1) authoritative verification with Cashfree
@@ -71,14 +78,18 @@ export async function confirmVsatPayment(
   const paidAt = new Date().toISOString();
   const providerEventId = eventId || paymentId || cfOrderId;
 
-  // 4) THE source of truth — write-once, idempotent (lead_id PK + unique refs → on conflict do nothing)
-  await svc.from("vsat_payments").insert({
-    lead_id: o.lead_id, paid_at: paidAt, payment_ref: cfOrderId,
-    provider: "cashfree", provider_event_id: providerEventId,
-    amount: o.amount, currency: o.currency,
-  });
-  // NOTE: a duplicate (retried webhook, or a 2nd attempt for an already-paid user)
-  // is silently ignored by the DB's unique/PK constraints — that is intended.
+  // 4) attempt 1 only: THE source of truth for "paid" eligibility — write-once, idempotent
+  //    (lead_id PK + unique refs → on conflict do nothing). Attempt 2 is deliberately NOT
+  //    recorded here; it lives in payment_stage_2, so the eligibility gate stays attempt-1 only.
+  if (attempt < 2) {
+    await svc.from("vsat_payments").insert({
+      lead_id: o.lead_id, paid_at: paidAt, payment_ref: cfOrderId,
+      provider: "cashfree", provider_event_id: providerEventId,
+      amount: o.amount, currency: o.currency,
+    });
+    // NOTE: a duplicate (retried webhook) is silently ignored by the DB's unique/PK
+    // constraints — that is intended.
+  }
 
   // 5) settle the ledger — guarded so only the FIRST confirmation transitions it
   const { data: settled } = await svc.from("vsat_payment_orders").update({
@@ -93,10 +104,9 @@ export async function confirmVsatPayment(
   }
 
   // 6) reflect onto the application for admin/CRM display (access is still decided by vsat_payments, not this)
-  await svc.from("application_manager").update({
+  const appUpdate: Record<string, unknown> = {
     [`payment_stage_${sfx}`]: "payment_approved",
     [`payment_stage_${sfx}_at`]: paidAt,
-    application_stage_1: "mock_enabled", // paid -> mock exam unlocked (student picks exam date next)
     payment_status: "approved",
     payment_approved_date: paidAt,
     payment_end_date: paidAt,
@@ -108,7 +118,12 @@ export async function confirmVsatPayment(
     discount_coupon: o.discount_coupon,
     currency: o.currency,
     last_updated_date: paidAt,
-  }).eq("lead_id", o.lead_id);
+  };
+  // attempt 1: unlock the mock + advance the journey (application_stage_1 = mock_enabled).
+  // attempt 2: the payment_stage_2 trigger (vsat__begin_attempt2) resets the pipeline and sets
+  // application_stage_2, so don't touch application_stage_1 — attempt 1's record stays intact.
+  if (attempt < 2) appUpdate.application_stage_1 = "mock_enabled";
+  await svc.from("application_manager").update(appUpdate).eq("lead_id", o.lead_id);
 
   // 7) move the lead forward
   await svc.from("lead_manager").update({ lead_stage: "applicant_paid" }).eq("lead_id", o.lead_id);
