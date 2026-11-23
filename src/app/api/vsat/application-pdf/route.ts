@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { applicationHtml, type Category } from "@/lib/vsat/application-pdf";
+import { applicationHtml, buildSections } from "@/lib/vsat/application-pdf";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,14 +38,10 @@ export async function GET(req: Request) {
   if (!meta.submitted) return new Response("Your application PDF is available once you submit the form.", { status: 409 });
 
   const { data: formRow } = await svc.from("vsat_forms").select("name, schema").eq("status", "active").maybeSingle();
-  const form = (formRow ?? { name: "VSAT Application", schema: { categories: [] } }) as { name: string; schema: { categories?: Category[] } };
-
-  // answers = form_data minus the _meta bookkeeping key
-  const answers: Record<string, Record<string, string>> = {};
-  for (const [k, v] of Object.entries(formData)) {
-    if (k === "_meta" || v == null || typeof v !== "object") continue;
-    answers[k] = v as Record<string, string>;
-  }
+  const form = (formRow ?? { name: "VSAT Application", schema: { categories: [] } }) as {
+    name: string;
+    schema: { categories?: { key: string; label?: string | null; questions?: { key: string; label?: string | null; type?: string | null }[] }[] };
+  };
 
   const stageLabel = a.application_stage_1 ? String(a.application_stage_1).replace(/_/g, " ") : null;
   const html = applicationHtml({
@@ -58,8 +54,8 @@ export async function GET(req: Request) {
     statusLabel: stageLabel,
     createdAtIso: (a.created_at as string) ?? null,
     formName: form.name,
-    categories: (form.schema?.categories ?? []) as Category[],
-    answers,
+    // render from the stored answers (never dropped if the live form changed), enriched by the schema labels
+    sections: buildSections(formData, form.schema?.categories ?? []),
   });
   return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
 }
