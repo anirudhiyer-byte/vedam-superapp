@@ -18,9 +18,11 @@ const nextConfig = {
   generateBuildId: async () => process.env.VERCEL_GIT_COMMIT_SHA || null,
   // Ship pdfkit's standard-font metrics (.afm) with the payment functions that build
   // the VSAT receipt PDF — Next's tracer can miss these runtime-read files otherwise.
+  // The VSAT Acceptance Letter (src/lib/vsat/offer-letter-pdf.ts) reads its fonts + logo from disk too.
   outputFileTracingIncludes: {
     "/api/payments/**": ["./node_modules/pdfkit/js/data/*.afm"],
-    "/api/cron/**": ["./node_modules/pdfkit/js/data/*.afm"],
+    "/api/cron/**": ["./node_modules/pdfkit/js/data/*.afm", "./src/lib/vsat/offer-letter-assets/*"],
+    "/api/vsat/**": ["./src/lib/vsat/offer-letter-assets/*"],
   },
   async redirects() {
     return [];

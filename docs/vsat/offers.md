@@ -31,7 +31,27 @@ Only the staging dummy seed (`scripts/staging/seed-vsat-pipeline-dummy.sql`) fil
 
 Placeholders for the offer email: `{{name}}` (first name), `{{student_name}}`, `{{application_no}}`,
 `{{campus}}` (Pune / Gurugram), `{{scholarship}}` (e.g. 37.5), `{{amount}}` (enrollment fee, e.g. 50,000),
-`{{deadline_date}}` (Sat, 28 Nov 2026), `{{deadline_time}}` (11:59 pm), `{{dashboard_link}}`.
+`{{deadline_date}}` (Sat, 28 Nov 2026), `{{deadline_time}}` (11:59 pm), `{{offer_days}}` (days the offer is
+valid, e.g. 2), `{{dashboard_link}}`. Since 0156 the email has the admissions team's wording and carries the
+Acceptance Letter (below).
+
+## Acceptance Letter (PDF, migration 0156)
+
+| What | Where |
+|---|---|
+| The letter | 4 pages like the approved samples (letterhead, letter, fee table, refund policy, T&C, signature lines). Drawn on demand by `src/lib/vsat/offer-letter-pdf.ts` (pdfkit, Nunito Sans with ₹, logo in `src/lib/vsat/offer-letter-assets/`). Never stored. |
+| Personalised | Name, campus, university, degree, campus address, scholarship (total and Year 1), days the offer is valid, and the fee table. |
+| Fee table | Seat blocking amount and deposit as they are; each of the 8 semesters shows Course fee, Scholarship and Amount payable. Scholarship = scholarship % × campus programme fee (VSAT settings), split equally over the 8 semesters (whole rupees). Year 1 = semesters 1 + 2. 0% → the plain 3-column table. Gurugram keeps the semester amounts of its sample letter (decided 23 Nov 2026). |
+| Content per season | `src/lib/vsat/offer-letter.ts` (`SEASON`, `CAMPUS_LETTER`): class of, due dates, joining, semester amounts, university text. Now the class of 2027 (fee 2027 - 2031; the sample letters' dates moved one year on). No MacBook line (not given any more). Update once a season, with its tests. |
+| Days valid | The campus **Days to pay** (Pune 2, Gurugram 5 — set in VSAT settings). The same number is in the email, the letter, the table's seat-blocking due date and the auto-lapse. |
+| Email | Attached to **Offer released → student** (file `Acceptance_Letter_<NAME>.pdf`). If it cannot be drawn, the email is not sent and the job is marked failed (retried). |
+| Student | Dashboard → offer card (and the Enrolled card) → **Download your Acceptance Letter (PDF)**. |
+| Admin / admissions | Student drawer → Offer box → **Download Acceptance Letter (PDF)** (any released offer on a campus they manage). |
+| Route | `GET /api/vsat/offer-letter` (student's own) or `?application_id=…` (admin). Who sees what is decided by `vsat_offer_letter(p)` in the database. |
+
+Tests: `src/lib/vsat/offer-letter.test.ts`, `src/lib/vsat/offer-sync.test.ts`, `src/app/api/vsat/offer-letter/route.test.ts`,
+DB `supabase/tests/vsat_offer_letter.test.sql` (18 tests). Rollback `supabase/rollback/0156_vsat_offer_letter_down.sql`
+(tested on staging inside one transaction).
 
 ## Security
 
@@ -41,6 +61,8 @@ Placeholders for the offer email: `{{name}}` (first name), `{{student_name}}`, `
 - The email outbox and its functions are server only (service role). The lapse job can't be called by
   browsers or the API.
 - `vsat_offer_events`: RLS on, no browser access.
+- `vsat_offer_letter(p)` (0156): signed in only; a student gets only their own current offer (Offer sent /
+  Enrolled, not cancelled); admin / admissions only on campuses they manage; unknown keys refused.
 
 ## Tests
 
@@ -54,13 +76,13 @@ Placeholders for the offer email: `{{name}}` (first name), `{{student_name}}`, `
 3. Check `select jobname, schedule from cron.job where jobname = 'vsat-offer-lapse'`.
 4. Before turning the job on for real data: review students already at **Offer sent** on production. Their
    offer dates came from the old data; any with a deadline in the past will be lapsed by the first run.
-5. Turn on the **Offer released → student** step in VSAT comms (test mode first).
+5. Apply **0156** (letter data + email wording) after the other numbers before it (0145, 0148–0155 are other teams' work). Set **Days to pay**: Pune 2, Gurugram 5.
+6. Turn on the **Offer released → student** step in VSAT comms (test mode first; check the attached letter).
 
 Rollback: `supabase/rollback/0144_vsat_offer_release_down.sql` (tested on staging: down → identical
 function / ACL / constraint snapshot → up).
 
 ## Left for later
 
-- Offer letter PDF (needs the official template).
 - Reminder email before the deadline; email when an offer lapses.
 - Choosing a custom deadline per student.

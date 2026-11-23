@@ -308,6 +308,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
   const canEnroll = offerPayable(enrollApp).ok;
   const offerIssued = ao.scholarship_percentage != null && !!ao.offer_released_at;
   const offerActive = offerIssued && ao.offer_cancelled !== true;
+  const letterLink = "mt-3 inline-block text-sm font-semibold text-[#7312e0] underline underline-offset-2 hover:text-[#8a18ff]";
   const inExamPhase = paid && !RESULT_STAGES.includes(appl);
   const vps = ao.vps_score != null ? Number(ao.vps_score) : null;
   const hasResults = vps != null || RESULT_STAGES.includes(appl);
@@ -541,6 +542,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
               <div className={`${card} mb-4 border-[#1f9d57]/30 bg-[#f1fbf5]`}>
                 <h2 className="font-display text-[19px] font-extrabold text-[#1f9d57]">You&apos;re enrolled 🎉</h2>
                 <p className="mt-2 text-sm text-[#2b135c]/70">Welcome to Vedam! Our team will reach out with your joining details.</p>
+                {offerActive && <a href="/api/vsat/offer-letter" className={letterLink}>Download your Acceptance Letter (PDF)</a>}
               </div>
             ) : canEnroll ? (
               <div className={`${leadCard} mb-4`}>
@@ -552,6 +554,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
                 <button onClick={startEnrollment} disabled={busy} className={`${btn} mt-4`}>{busy ? "Starting…" : `Enroll · pay ₹${Number(ao.enrollment_amount ?? 50000)}`}</button>
                 {ao.enrollment_stage === "initiated" && <p className="mt-3 text-xs text-[#b26a00]">Enrollment payment initiated — click Enroll to complete it.</p>}
                 {ao.enrollment_stage === "failed" && <p className="mt-3 text-xs text-[#d14343]">Last enrollment payment failed. You can try again.</p>}
+                <a href="/api/vsat/offer-letter" className={letterLink}>Download your Acceptance Letter (PDF)</a>
               </div>
             ) : offerIssued ? (
               <div className={`${card} mb-4 border-[#f3d79a] bg-[#fff6e6]`}>

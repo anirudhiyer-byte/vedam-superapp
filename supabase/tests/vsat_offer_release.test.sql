@@ -93,6 +93,8 @@ declare
   ggn constant text := 'Sushant University — Gurugram';
 begin
   begin -- rolled back at the end (ZDONE)
+    -- fixture: these tests are written for 5 "Days to pay" on Pune (staging VSAT settings now say 2 for the Acceptance Letter; rolled back)
+    update public.vsat_campus_settings set offer_days = 5 where campus = 'pune';
     adm := pg_temp.mk_user('zztest-off-adm@example.invalid');
     adm_pune := pg_temp.mk_user('zztest-off-admpune@example.invalid');
     nobody := pg_temp.mk_user('zztest-off-nobody@example.invalid');
