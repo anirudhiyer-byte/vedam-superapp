@@ -169,14 +169,24 @@ function FileField({ catKey, q, token, value, disabled, invalid, onChange }:
 /** Date-of-birth field — auto-formats digits into DD/MM/YYYY as the student types. */
 function DobField({ value, disabled, invalid, onChange }:
   { value: string; disabled?: boolean; invalid?: boolean; onChange: (v: string) => void }) {
+  // Stored value stays DD/MM/YYYY — the user can type it, or pick from the calendar.
   const fmt = (raw: string) => {
     const d = raw.replace(/\D/g, "").slice(0, 8);
     return [d.slice(0, 2), d.slice(2, 4), d.slice(4, 8)].filter(Boolean).join("/");
   };
+  const toISO = (s: string) => { const m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? `${m[3]}-${m[2]}-${m[1]}` : ""; };
+  const today = new Date().toISOString().slice(0, 10);
   return (
-    <input inputMode="numeric" placeholder="DD/MM/YYYY" maxLength={10} disabled={disabled}
-      value={asStrSafe(value)} onChange={(e) => onChange(fmt(e.target.value))}
-      className={`${input} ${invalid ? "border-[#d14343]" : ""} ${disabled ? "opacity-40" : ""}`} />
+    <div className="relative">
+      <input inputMode="numeric" placeholder="DD/MM/YYYY" maxLength={10} disabled={disabled}
+        value={asStrSafe(value)} onChange={(e) => onChange(fmt(e.target.value))}
+        className={`${input} pr-11 ${invalid ? "border-[#d14343]" : ""} ${disabled ? "opacity-40" : ""}`} />
+      <input type="date" aria-label="Pick date of birth from a calendar" max={today} disabled={disabled}
+        value={toISO(asStrSafe(value))}
+        onChange={(e) => { const v = e.target.value; if (v) { const [y, m, d] = v.split("-"); onChange(`${d}/${m}/${y}`); } }}
+        className="absolute inset-y-0 right-0 w-11 cursor-pointer opacity-0 disabled:cursor-not-allowed" />
+      <span aria-hidden className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-[#6b647e]">📅</span>
+    </div>
   );
 }
 const asStrSafe = (v: unknown) => (typeof v === "string" ? v : "");
