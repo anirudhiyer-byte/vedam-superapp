@@ -110,6 +110,18 @@ function Queue({ supabase }: { supabase: ReturnType<typeof createClient> }) {
   }, [supabase, page, status, due, q]);
 
   useEffect(() => { void load(); }, [load]);
+  // Realtime: reload my queue when a lead's caller assignment changes (migration 0149 broadcast).
+  useEffect(() => {
+    let on = true;
+    let ch: ReturnType<typeof supabase.channel> | null = null;
+    void (async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session || !on) return;
+      supabase.realtime.setAuth(session.access_token);
+      ch = supabase.channel("calling_leads", { config: { private: true } }).on("broadcast", { event: "change" }, () => { if (on) void load(); }).subscribe();
+    })();
+    return () => { on = false; if (ch) void supabase.removeChannel(ch); };
+  }, [supabase, load]);
 
   async function update(id: string, body: Json) {
     setBusy(true);
