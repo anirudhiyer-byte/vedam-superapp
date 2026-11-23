@@ -147,7 +147,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
   const firstTitle = VSAT.flatMap((g) => g.items).find((i) => i.id === first)?.label ?? "";
   const [panel, setPanel] = useState<"vsat" | "growth">("vsat");
   const [active, setActive] = useState<{ id: string; file?: string; page?: string; cm?: boolean; title: string }>(
-    staff ? { id: "form", title: "Form Builder" } : { id: first ?? "none", title: firstTitle });
+    staff ? { id: "leads", title: "VSAT Leads" } : { id: first ?? "none", title: firstTitle });
   const [open, setOpen] = useState<string | null>(null); // open parent id
   // One tick per click on a page in the menu. The page area is keyed on it, so a page starts fresh when it is
   // picked (as before), but opening or closing a menu group no longer re-mounts the page and wipes what the
@@ -186,8 +186,8 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
 
   function switchPanel(p: "vsat" | "growth") {
     setPanel(p); setOpen(null);
-    if (p === "vsat") go({ id: "form", title: "Form Builder" });
-    else go({ id: "pred", file: "predictor.html", page: "cost-listing", title: "College Predictor · Cost & CPL Listing" });
+    if (p === "vsat") go({ id: "leads", title: "VSAT Leads" });
+    else go({ id: "season", title: "Season Dashboard" });
   }
 
   // a Communication page asking to open another one (e.g. Manage List → Upload Raw Data)
