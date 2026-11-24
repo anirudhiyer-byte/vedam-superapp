@@ -18,6 +18,8 @@ export const preferredRegion = "bom1";
 type InLead = {
   external_id?: unknown; name?: unknown; email?: unknown; phone?: unknown; campus?: unknown;
   utm_campaign?: unknown; bdm?: unknown; utm_source?: unknown; utm_medium?: unknown;
+  // SIF first-half fields (explicit; also mirrored into extra for the claim to pre-fill)
+  stream?: unknown; graduation_year?: unknown; grad_year?: unknown; state?: unknown; city?: unknown; school_name?: unknown;
   prepaid?: unknown; prepaid_amount?: unknown; extra?: unknown;
 };
 
@@ -58,6 +60,16 @@ export async function POST(req: Request) {
     if (!phone || phoneNorm.length < 8) { results.push({ phone: phone ?? "", ok: false, error: "invalid phone" }); continue; }
     const prepaid = raw.prepaid === true || raw.prepaid === "true";
     const amt = Number(raw.prepaid_amount);
+    // explicit SIF first-half fields → mirrored into extra so the claim can pre-fill the form.
+    // Explicit fields win over the UTM slots, so a medium/campaign swap can't lose the BDM or school.
+    const school = str(raw.school_name, 120);
+    const baseExtra = raw.extra && typeof raw.extra === "object" && !Array.isArray(raw.extra) ? (raw.extra as Record<string, unknown>) : {};
+    const sif: Record<string, unknown> = {};
+    const stream = str(raw.stream, 60); if (stream) sif.stream = stream;
+    const gradYear = str(raw.graduation_year ?? raw.grad_year, 8); if (gradYear) sif.graduation_year = gradYear;
+    const stt = str(raw.state, 60); if (stt) sif.state = stt;
+    const cty = str(raw.city, 60); if (cty) sif.city = cty;
+    if (school) sif.school_name = school;
     const row = {
       partner: "elevate",
       external_id: str(raw.external_id, 120),
@@ -66,11 +78,11 @@ export async function POST(req: Request) {
       phone,
       campus: str(raw.campus, 40),
       utm_source: str(raw.utm_source, 60) ?? "schoolconnect",
-      utm_medium: str(raw.utm_medium, 60) ?? "offline",
-      utm_campaign: str(raw.utm_campaign ?? raw.bdm, 120), // BDM name
+      utm_medium: str(raw.utm_medium, 80) ?? school ?? "offline", // school name
+      utm_campaign: str(raw.utm_campaign ?? raw.bdm, 120),        // BDM name
       prepaid,
       prepaid_amount: prepaid && Number.isFinite(amt) && amt >= 0 ? amt : null,
-      extra: raw.extra && typeof raw.extra === "object" && !Array.isArray(raw.extra) ? raw.extra : {},
+      extra: { ...baseExtra, ...sif },
       status: "pending" as const,
     };
     // upsert the single PENDING row for this (partner, phone): re-push refreshes it
