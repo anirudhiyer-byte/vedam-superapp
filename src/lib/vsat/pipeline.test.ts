@@ -84,8 +84,12 @@ describe("interview form checks", () => {
     expect(interviewFormErrors({ ...ok, logic: 6 })).toHaveLength(1);
     expect(interviewFormErrors({ ...ok, logic: 3.5 })).toHaveLength(1);
   });
-  it("cheating seen and verdict are required", () => {
-    expect(interviewFormErrors({ ...ok, cheating_seen: null, interviewer_verdict: "" })).toHaveLength(2);
+  // 0164 (owner's review): the interviewer gives no verdict any more; cheating seen is still required
+  it("cheating seen is required; the interviewer's verdict is not", () => {
+    expect(interviewFormErrors({ ...ok, cheating_seen: null, interviewer_verdict: "" })).toEqual(["Cheating seen: pick yes or no"]);
+    const { interviewer_verdict: _dropped, ...noVerdict } = ok;
+    void _dropped;
+    expect(interviewFormErrors(noVerdict)).toEqual([]);
   });
 });
 

@@ -99,8 +99,8 @@ const ERRORS: Record<string, string> = {
   STAGE_CHANGED: "Someone else moved this student just now. Refresh and try again.",
   BAD_STAGE: "That stage doesn't exist.",
   BAD_STATUS: "That status doesn't exist.",
-  NEEDS_INTERVIEWER: "Assign an interviewer and slot first.",
-  NEEDS_COUNSELLOR: "Assign a counsellor and slot first.",
+  NEEDS_INTERVIEWER: "Book the interview first (fill the row and press Send).",
+  NEEDS_COUNSELLOR: "Book the counselling session first (fill the row and press Send).",
   NOT_AN_INTERVIEWER: "That person isn't an active interviewer.",
   NOT_A_COUNSELLOR: "That person isn't an active counsellor.",
   WRONG_STAGE: "The student isn't at the right stage for this.",
@@ -120,7 +120,7 @@ const ERRORS: Record<string, string> = {
   ALREADY_SCHEDULED: "Already has an interview booked. Open the student to move it.",
   ALREADY_INTERVIEWED: "This student has already been interviewed.",
   NO_INTERVIEW: "There's no interview booked for this student.",
-  TOO_EARLY: "Attendance can be marked once the interview has started.",
+  TOO_EARLY: "Done / No-show can be set once the interview has started.",
   LINK_IN_USE: "That meeting link is already used for another student at the same time.",
   NOTHING_TO_RETRY: "Nothing to retry: the Google Meet hasn't failed.",
   NO_FREE_SLOT: "The interviewer has no free time near this start. Pick another start time.",
@@ -145,7 +145,7 @@ const FIELD_LABEL: Record<string, string> = {
   w_why_program: "Why this program", note: "Note", vps: "VPS", percentile: "Percentile", cleared_vps_cutoff: "Cut-off",
   email: "Email", role: "Role", campus: "Campus", exam_date_id: "VSAT", bands: "Bands",
   verdict: "Proctoring verdict", expected_count: "Count", apply: "Apply",
-  duration_min: "Length", interviewer_id: "Interviewer", interviewer_ids: "Interviewer", counsellor_id: "Counsellor", attendance: "Attendance",
+  duration_min: "Length", interviewer_id: "Interviewer", interviewer_ids: "Interviewer", counsellor_id: "Counsellor", attendance: "Status", track: "Panel",
   start: "Start time", auto_meet: "Google Meet", reason: "Reason", dry_run: "Preview",
 };
 
@@ -163,10 +163,13 @@ export function errorText(raw: string | null | undefined): string {
   return "Something went wrong. Please try again.";
 }
 
-/** Interview form: five parts 1–5 (whole numbers), cheating seen and verdict required. */
+/**
+ * Interview form: five parts 1–5 (whole numbers) and cheating seen are required. 0164: the interviewer gives no
+ * verdict (it is decided later from the scores); the field stays optional only for older saved forms.
+ */
 export type InterviewForm = {
   communication: number | null; logic: number | null; passion: number | null; achievements: number | null; why_program: number | null;
-  cheating_seen: boolean | null; interviewer_verdict: "selected" | "maybe" | "not_selected" | "";
+  cheating_seen: boolean | null; interviewer_verdict?: "selected" | "maybe" | "not_selected" | "";
 };
 export const PARTS = [
   ["communication", "Communication & behaviour"], ["logic", "Guesstimate & logical reasoning"], ["passion", "Passion & motivation for CS"],
@@ -180,7 +183,6 @@ export function interviewFormErrors(f: InterviewForm): string[] {
     if (v === null || !Number.isInteger(v) || v < 1 || v > 5) out.push(`${label}: pick 1 to 5`);
   }
   if (f.cheating_seen === null) out.push("Cheating seen: pick yes or no");
-  if (!f.interviewer_verdict) out.push("Your verdict: pick one");
   return out;
 }
 

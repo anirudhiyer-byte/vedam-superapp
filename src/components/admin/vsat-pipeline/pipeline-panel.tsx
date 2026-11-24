@@ -4,12 +4,13 @@ import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import { PageHead } from "@/components/admin/ui/page-head";
 import {
-  NEEDS_ASSIGNMENT, PANEL_STAGES, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, isStage, isStatus, needsReason,
+  PANEL_STAGES, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, isStage, isStatus, needsReason,
   type PanelKey, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import {
   DEFAULT_COLUMNS, FILTER_OPS, FORM_STAGES, FORM_STAGE_LABEL, GROUP_ORDER, NO_COUNSELLOR, NO_INTERVIEWER, PAYMENT_STAGES, PAYMENT_STAGE_LABEL, VALUE_CHOICES,
-  columnLabel, describeClause, filterInputType, formatValue, isFilterable, opArity, panelScope, parseSearchValues, peopleOptions, requestColumns, sanitizeColumns, toCsv,
+  columnLabel, describeClause, filterInputType, formatValue, isFilterable, linkText, meetLink, opArity, panelScope, parseSearchValues, peopleOptions, requestColumns,
+  sanitizeColumns, toCsv,
   type FilterClause, type GridColumn, type GridColumnsResult, type GridResult, type GridRow, type GridSearch,
 } from "@/lib/vsat/grid";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
@@ -21,7 +22,8 @@ import { RefreshShimmer, useRefreshShimmer } from "@/components/admin/ui/refresh
 import { PlanBar, PlanDate, PlanInterviewer, PlanStatus, PlanTime, useInterviewPlan, type PlanMessage } from "./interview-planner";
 import { OfferBar, type OfferMessage } from "./offer-tools";
 import { TRACKS, type Track, type TrackKey } from "@/lib/vsat/tracks";
-import { isMeetState } from "@/lib/vsat/interviews";
+import { ATTENDANCE_LABEL, STATUS_CHOICES, isMeetState, type SessionStatus } from "@/lib/vsat/interviews";
+import { inTrackWords } from "@/lib/vsat/tracks";
 import type { Batch } from "./types";
 
 /**
@@ -356,6 +358,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
             <button className={ghost} onClick={() => setSel(new Set())}>Clear</button>
           </div>
           {planOn && <PlanBar ids={selInOrder} planner={planner} onDone={afterBooking} onSent={setPlanMsg} />}
+          {planTrack && <StatusBar ids={selInOrder} track={planTrack} onDone={() => setReload((n) => n + 1)} />}
           {offerPanel && <OfferBar ids={selInOrder} onDone={() => setReload((n) => n + 1)} onReleased={setOfferMsg} />}
           <BulkBar ids={[...sel]} current={selStage} panel={panel} onDone={() => setReload((n) => n + 1)} />
           {examPanel && <div className="border-t border-vx-violet/20 pt-2"><ProctoringBar ids={[...sel]} onDone={() => setReload((n) => n + 1)} /></div>}
@@ -383,7 +386,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         </div>
       )}
       {planTrack && sel.size === 0 && total > 0 && !loading && (
-        <p className="text-xs text-vx-faint">To book: fill {planTrack.Host}, Date and Time on the rows (saved as you type, not sent), select them, then press Send.{offerPanel ? " To release offers: select students at Counselled and press Release offer." : ""}</p>
+        <p className="text-xs text-vx-faint">To book: fill {planTrack.Host}, Date and Time on the rows (saved as you type, not sent), select them, then press Send. Sending doesn&apos;t change the stage: move it with “Move to”.{offerPanel ? " To release offers: select students at Counselled and press Release offer." : ""}</p>
       )}
 
       {/* ── table ─────────────────────────────────── */}
@@ -513,7 +516,24 @@ function Cell({ col, row, onEditVps }: { col: GridColumn; row: GridRow; onEditVp
     if (v === "cleared") return <span className={cx(vx.badge, vx.tone.green)}>Cleared</span>;
     return <span className="text-vx-faint">—</span>;
   }
-  if (col.key === "interview_meet" || col.key === "counselling_meet") return isMeetState(v) ? <MeetBadge state={v} /> : <span className="text-vx-faint">—</span>;
+  if (col.key === "interview_meet" || col.key === "counselling_meet") {
+    // 0163: the link comes only for staff who may join this meeting; Join opens it in a new tab, never the student page
+    const link = meetLink(row, col.key);
+    if (!link) return isMeetState(v) ? <MeetBadge state={v} /> : <span className="text-vx-faint">—</span>;
+    const what = col.key === "interview_meet" ? "interview" : "session";
+    return (
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-2">
+          {isMeetState(v) && <MeetBadge state={v} />}
+          <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
+            className={cx(vx.btn, vx.primary, vx.sm)} aria-label={`Join ${what}: ${String(row.registered_name ?? row.application_id)}`}>
+            Join {what}<IconExternal />
+          </a>
+        </div>
+        <span className="max-w-[260px] truncate text-xs text-vx-faint" title={link}>{linkText(link)}</span>
+      </div>
+    );
+  }
   if (col.key === "campus") return <span className="capitalize">{formatValue(col.type, col.key, v)}</span>;
   if (col.type === "ts" || col.type === "date") return <span className="text-xs text-vx-mut">{formatValue(col.type, col.key, v)}</span>;
   if (col.type === "bool") { const s = formatValue(col.type, col.key, v); return <span className={s === "Yes" ? "text-vx-green" : s === "No" ? "text-vx-faint" : ""}>{s}</span>; }
@@ -663,10 +683,57 @@ function FilterDrawer({ filterable, value, onChange, onClose }:
 }
 
 /** Bulk move (admin / admissions). Each student is checked on its own by the database; skipped ones are listed. */
+const IconExternal = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5" aria-hidden>
+    <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+  </svg>
+);
+
+/**
+ * 0164: one status (Done / No-show / Rescheduled) for the selected interview / counselling rows. Every row goes
+ * through the same database checks as one student; rows that can't take it are listed with the reason.
+ */
+function StatusBar({ ids, track, onDone }: { ids: string[]; track: Track; onDone: () => void }) {
+  const [supabase] = useState(() => createClient());
+  const [v, setV] = useState<SessionStatus>("done");
+  const [reason, setReason] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  async function apply() {
+    if (ids.length > 100) return setMsg("Select at most 100 students at a time.");
+    setBusy(true); setMsg("");
+    const p: Record<string, unknown> = { track: track.key, application_ids: ids, attendance: v };
+    if (reason.trim()) p.reason = reason.trim();
+    const { data, error } = await supabase.rpc("vsat_set_attendance_bulk", { p });
+    setBusy(false);
+    if (error) return setMsg(inTrackWords(errorText(error.message), track));
+    const d = data as { updated: string[]; skipped: { application_id: string; code: string }[] };
+    const why = d.skipped.slice(0, 5).map((x) => `${x.application_id} (${inTrackWords(errorText(x.code), track).replace(/\.$/, "")})`).join("; ");
+    setMsg(`${ATTENDANCE_LABEL[v]}: ${d.updated.length} updated${d.skipped.length ? `, ${d.skipped.length} not changed: ${why}${d.skipped.length > 5 ? " …" : ""}` : ""}.`);
+    if (d.updated.length) { setReason(""); onDone(); }
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 border-t border-vx-violet/20 pt-2 text-sm">
+      <span className="text-vx-mut">{track.Noun.split(" ")[0]} status</span>
+      <select className={input} value={v} onChange={(e) => setV(e.target.value as SessionStatus)} aria-label={`${track.Noun} status`}>
+        {STATUS_CHOICES.map((s) => <option key={s} value={s}>{ATTENDANCE_LABEL[s]}</option>)}
+      </select>
+      <input className={`${input} w-64`} placeholder="Reason (needed to change a status already set)" value={reason}
+        onChange={(e) => setReason(e.target.value)} maxLength={450} aria-label="Status reason" />
+      <button className={cx(vx.btn, vx.secondary)} disabled={busy} onClick={apply}>{busy ? "Saving…" : "Set status"}</button>
+      <span className="text-xs text-vx-faint">Done and No-show once the {track.noun} has started; Rescheduled any time. The stage doesn&apos;t change.</span>
+      {msg && <p className="w-full text-vx-ink" role="status">{msg}</p>}
+    </div>
+  );
+}
+
 function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stage | null; panel: PanelKey; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
-  const targets = STAGES.filter((s) => !NEEDS_ASSIGNMENT[s]);
-  const [to, setTo] = useState<Stage>(current && !NEEDS_ASSIGNMENT[current] ? current : PANEL_STAGES[panel][0]);
+  // 0164: every stage is set by hand, the scheduled ones too (the database refuses them until the booking is sent)
+  const targets = STAGES;
+  const [to, setTo] = useState<Stage>(current ?? PANEL_STAGES[panel][0]);
   const [st, setSt] = useState<Status>("active");
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
@@ -699,7 +766,7 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
       <input className={`${input} w-64`} placeholder={reasonNeeded ? "Reason (required)" : "Reason (optional)"} value={reason}
         onChange={(e) => setReason(e.target.value)} maxLength={500} aria-label="Reason" />
       <button className={cx(vx.btn, vx.primary)} disabled={busy} onClick={apply}>{busy ? "Moving…" : "Move"}</button>
-      <span className="text-xs text-vx-faint">{panel === "intv" ? "To book interviews: fill Interviewer, Date and Time on the rows and press Send above. " : panel === "couns" ? "To book counselling: fill Counsellor, Date and Time on the rows and press Send above. " : ""}{current ? "" : "Mixed stages selected: a reason is required."}</span>
+      <span className="text-xs text-vx-faint">{panel === "intv" ? "Booking (Send above) doesn't change the stage; move it here. " : panel === "couns" ? "Booking (Send above) doesn't change the stage; move it here. " : ""}{current ? "" : "Mixed stages selected: a reason is required."}</span>
       {msg && <p className="w-full text-vx-ink">{msg}</p>}
     </div>
   );

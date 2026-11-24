@@ -237,10 +237,10 @@ begin
                          and (select slot_datetime from public.interview_assignments where application_id = a1) = t0
                          and (select slot_datetime from public.interview_assignments where application_id = a2) = t0 + interval '30 minutes');
     select * into iv from public.interview_assignments where application_id = a1;
-    t_name := t_name || text 'D a sent row: Google Meet queued, 30 min, interview_scheduled, typed values cleared';
+    t_name := t_name || text 'D a sent row: Google Meet queued, 30 min, typed values cleared (0164: stage stays VSAT cleared)';
     t_det := t_det || (format('%s|%s|%s|%s', iv.meet_mode, iv.meet_sync, iv.duration_min, (select stage from public.vsat_pipeline where application_id = a1)));
     t_pass := t_pass || (iv.meet_mode = 'auto' and iv.meet_sync = 'pending' and iv.duration_min = 30
-                         and (select stage from public.vsat_pipeline where application_id = a1) = 'interview_scheduled'
+                         and (select stage from public.vsat_pipeline where application_id = a1) = 'vsat_cleared'
                          and not exists (select 1 from public.vsat_interview_drafts where application_id in (a1, a2)));
     select count(*) into n from public.vsat_interview_events where application_id in (a1, a2) and kind = 'scheduled' and source = 'bulk' and notify_status = 'pending';
     t_name := t_name || text 'D each sent row has its own email job (invite)'; t_det := t_det || (n::text); t_pass := t_pass || (n = 2);

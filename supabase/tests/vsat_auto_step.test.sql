@@ -67,15 +67,27 @@ create or replace function pg_temp.rpc(p_fn text, p jsonb)
 returns text language sql as $$ select format('select public.%I(%L::jsonb)', p_fn, p::text) $$;
 
 -- interview (given achievements score) → pi_cleared → counselling_scheduled
+-- 0164: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now)
+create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
+returns jsonb language sql as $$
+  select pg_temp.call_as(p_adm, pg_temp.rpc('vsat_move_stage', jsonb_build_object('application_id', p_app, 'to_stage', p_stage)))
+$$;
 create or replace function pg_temp.to_counselling(p_app text, p_ach int, p_n int, p_adm uuid, p_int uuid, p_cou uuid)
 returns jsonb language plpgsql as $$
 declare r jsonb; slot text := to_char(now() + make_interval(days => 10 + p_n), 'YYYY-MM-DD"T"HH24:00:00"Z"');
 begin
   r := pg_temp.call_as(p_adm, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', p_app, 'interviewer_id', p_int, 'slot_datetime', slot)));
+  if r ? 'sqlstate' then return r; end if;
+  r := pg_temp.move_to(p_adm, p_app, 'interview_scheduled'); if r ? 'sqlstate' then return r; end if;
   r := pg_temp.call_as(p_int, pg_temp.rpc('vsat_submit_interview', jsonb_build_object('application_id', p_app, 'communication', 4, 'logic', 4,
-         'passion', 3, 'achievements', p_ach, 'why_program', 4, 'cheating_seen', false, 'interviewer_verdict', 'selected')));
-  if r->>'stage' is distinct from 'pi_cleared' then return r; end if;
-  return pg_temp.call_as(p_adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', p_app, 'counsellor_id', p_cou, 'slot_datetime', slot)));
+         'passion', 3, 'achievements', p_ach, 'why_program', 4, 'cheating_seen', false)));
+  if r ? 'sqlstate' then return r; end if;
+  r := pg_temp.move_to(p_adm, p_app, 'interviewed'); if r ? 'sqlstate' then return r; end if;
+  r := pg_temp.move_to(p_adm, p_app, 'pi_cleared'); if r ? 'sqlstate' then return r; end if;
+  r := pg_temp.call_as(p_adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', p_app, 'counsellor_id', p_cou, 'slot_datetime', slot)));
+  if r ? 'sqlstate' then return r; end if;
+  r := pg_temp.move_to(p_adm, p_app, 'counselling_scheduled'); if r ? 'sqlstate' then return r; end if;
+  return pg_temp.call_as(p_adm, format('select public.vsat_student(%L)', p_app));
 end $$;
 
 create or replace function pg_temp.run_vsat_auto_step_tests()
@@ -178,14 +190,15 @@ begin
     t_name := t_name || text 'C sending actual_pct / actual_reason is refused, admissions too'; t_det := t_det || r::text;
     t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
     r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b1, 'remarks', 'zz ok')));
-    t_name := t_name || text 'C submit with only remarks → step = auto_step, % = calculated, counselled'; t_det := t_det || r::text;
+    -- 0164: submitting no longer moves the stage (was: → counselled)
+    t_name := t_name || text 'C submit with only remarks → step = auto_step, % = calculated, stage unchanged'; t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'step')::numeric = (pre->>'auto_step')::numeric and (r->>'actual_pct')::numeric = (r->>'calculated_pct')::numeric
-                         and r->>'stage' = 'counselled');
-    t_name := t_name || text 'C saved: chosen_step = auto, actual = calculated, no reason; history move has no reason';
+                         and r->>'stage' = 'counselling_scheduled');
+    t_name := t_name || text 'C saved: chosen_step = auto, actual = calculated, no reason; no stage move recorded (0164)';
     select format('%s|%s|%s', ca.chosen_step = (pre->>'auto_step')::numeric, ca.actual_pct = ca.calculated_pct, ca.actual_reason is null)
       into s from public.counselling_assignments ca where ca.application_id = b1;
     t_det := t_det || s;
-    t_pass := t_pass || (s = 't|t|t' and exists (select 1 from public.vsat_stage_history h where h.application_id = b1 and h.to_stage = 'counselled' and h.reason is null));
+    t_pass := t_pass || (s = 't|t|t' and not exists (select 1 from public.vsat_stage_history h where h.application_id = b1 and h.to_stage = 'counselled'));
 
     -- ── D. access ──
     t_name := t_name || text 'D vsat_calc_auto_step is private (no authenticated / anon)';
