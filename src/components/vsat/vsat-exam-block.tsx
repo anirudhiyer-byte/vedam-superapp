@@ -15,7 +15,8 @@ const istTime = (v: string) => new Date(v).toLocaleTimeString("en-IN", { timeZon
  * only goes live inside the chosen window. The actual Wheebox launch is wired when
  * the UAT creds are in; until then the buttons explain that the exam opens here.
  */
-export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>; onChange: () => void }) {
+export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = false, examEnabled = true }:
+  { app: Record<string, unknown>; onChange: () => void; isAdmin?: boolean; mockEnabled?: boolean; examEnabled?: boolean }) {
   const [supabase] = useState(() => createClient());
   const [dates, setDates] = useState<OpenDate[]>([]);
   const [busy, setBusy] = useState(false);
@@ -50,6 +51,8 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
     WINDOW_CLOSED: "Your exam window has closed.",
     MOCK_NOT_CONFIGURED: "The mock test isn't set up yet — check back soon.",
     MOCK_ALREADY_DONE: "You've already completed your mock test.",
+    MOCK_DISABLED: "The mock test isn't open yet — check back soon.",
+    EXAM_DISABLED: "The exam isn't open yet — check back soon.",
     WHEEBOX_NOT_CONFIGURED: "The exam platform isn't connected yet — check back soon.",
   };
 
@@ -107,7 +110,11 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
       ) : (
         <>
           <p className="mt-2 text-sm text-[#6b647e]">Practice once before the real VSAT. Available once per applicant.</p>
-          <button disabled className={`mt-4 ${grad} cursor-not-allowed opacity-60`} title="Coming soon">🔒 Coming soon</button>
+          {(mockEnabled || isAdmin) ? (
+            <button onClick={() => launch("mock")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start mock test →"}{isAdmin && !mockEnabled ? " (admin)" : ""}</button>
+          ) : (
+            <button disabled className={`mt-4 ${grad} cursor-not-allowed opacity-60`} title="Coming soon">🔒 Coming soon</button>
+          )}
         </>
       )}
 
@@ -137,7 +144,11 @@ export function VsatExamBlock({ app, onChange }: { app: Record<string, unknown>;
           <>
             <h3 className="font-display text-base font-bold">Your exam slot</h3>
             <p className="mt-2 text-sm text-[#6b647e]">{sel ? sel.label + " · " : ""}{istFull(startMs)}</p>
-            {windowClosed ? (
+            {isAdmin ? (
+              <button onClick={() => launch("exam")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start exam → (admin)"}</button>
+            ) : !examEnabled ? (
+              <button disabled className="mt-4 cursor-not-allowed rounded-xl bg-[#f0edf8] px-5 py-2.5 text-sm font-semibold text-[#b4adc4]">🔒 Exam not open yet</button>
+            ) : windowClosed ? (
               <p className="mt-4 text-sm text-[#d14343]">Your exam window has closed.</p>
             ) : inWindow ? (
               <button onClick={() => launch("exam")} disabled={busy} className={`mt-4 ${grad}`}>{busy ? "Opening…" : "Start exam →"}</button>

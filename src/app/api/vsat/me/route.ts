@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   if (!user) return Response.json({ ok: false, error: "unauthorized" }, { status: 401 });
   // These three only depend on user.id — run them in parallel instead of serially
   // (saves two DB round-trips on every dashboard load).
-  const [{ data: app }, { data: lead }, { data: dates }] = await Promise.all([
+  const [{ data: app }, { data: lead }, { data: dates }, { data: flagRows }] = await Promise.all([
     admin.from("application_manager").select("*").eq("lead_id", user.id).maybeSingle(),
     admin.from("lead_manager").select("lead_stage,registered_name,public_id,campus_preference").eq("lead_id", user.id).maybeSingle(),
     // Enabled, not-yet-finished exam dates for the student date picker (no Wheebox test id exposed).
@@ -17,7 +17,11 @@ export async function POST(req: Request) {
       .select("id,label,exam_date,start_at,end_at")
       .eq("enabled", true).gte("end_at", new Date().toISOString())
       .order("start_at", { ascending: true }),
+    admin.from("app_flags").select("key,value").in("key", ["vsat_mock_enabled", "vsat_exam_enabled"]),
   ]);
+  // student-facing exam master switches (admins bypass these in the launch route anyway)
+  const fv = (k: string, dflt: string) => (flagRows as { key: string; value: string }[] | null)?.find((r) => r.key === k)?.value ?? dflt;
+  const examFlags = { mock: fv("vsat_mock_enabled", "off") === "on", exam: fv("vsat_exam_enabled", "on") === "on" };
   // pipeline stage/status (keyed by application_id) — lets the dashboard show the exact
   // terminal-fail state and whether a 2nd attempt is offered (legacy application_stage_1 can't
   // tell a no-show from a not-cleared, and has no value for a counselling fail).
@@ -37,5 +41,5 @@ export async function POST(req: Request) {
   const secondAttemptEligible = !!pipeline && pipeline.attempt_no === 1 &&
     isTerminalFail(pipeline.stage, pipeline.status) &&
     a?.payment_stage_1 === "payment_approved" && a?.payment_stage_2 !== "payment_approved";
-  return Response.json({ ok: true, app, lead, dates: dates ?? [], pipeline, secondAttemptEligible });
+  return Response.json({ ok: true, app, lead, dates: dates ?? [], pipeline, secondAttemptEligible, examFlags });
 }

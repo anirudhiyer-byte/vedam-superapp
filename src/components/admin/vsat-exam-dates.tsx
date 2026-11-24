@@ -63,6 +63,32 @@ export function VsatExamDates() {
     void load();
   }
 
+  // Pull every student's Wheebox result for this VSAT, mapped to each student. Resumable:
+  // the route does up to ~40 per call, so we loop until nothing remains.
+  async function pullResults(id: string, label: string) {
+    setBusy(true); setMsg(`Pulling results for ${label}…`);
+    let pulled = 0, guard = 0;
+    try {
+      while (guard++ < 200) {
+        const res = await fetch("/api/vsat/exam/bulk-pull-result", {
+          method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include",
+          body: JSON.stringify({ exam_date_id: id }),
+        });
+        const d = await res.json().catch(() => ({}));
+        if (!d?.ok) { setMsg(d?.code === "WHEEBOX_NOT_CONFIGURED" ? "Wheebox isn't connected (set the env keys in the Exam Center)." : d?.code === "FORBIDDEN" ? "Admins only." : d?.code === "DATE_UNAVAILABLE" ? "This date has no Wheebox test ID." : "Couldn't pull results."); break; }
+        pulled += d.pulled || 0;
+        if (d.total === 0) { setMsg(`${label}: no applicants are assigned to this VSAT yet.`); break; }
+        // Keep going only while each pass stores new results. A pass that pulls nothing but still
+        // has "remaining" means those students have no result to fetch (not submitted) — stop
+        // rather than re-hitting Wheebox for the same ones.
+        if (d.remaining && d.pulled > 0) { setMsg(`Pulling ${label}: ${pulled} done, ${d.remaining} to go…`); continue; }
+        const left = d.remaining || 0;
+        setMsg(`${label}: pulled ${pulled} result${pulled === 1 ? "" : "s"}${left ? `. ${left} still have no result (not submitted yet) — run again later.` : ". ✓"}`); break;
+      }
+    } catch { setMsg("Couldn’t reach the server while pulling results."); }
+    setBusy(false); void load();
+  }
+
   function editRow(r: DateRow) {
     setMsg("");
     setDraft({ id: r.id, label: r.label, testId: r.testId, examDate: r.examDate, startTime: hhmm(r.startAt), endTime: hhmm(r.endAt), leadMinutes: r.leadMinutes, capacity: r.capacity == null ? "" : String(r.capacity) });
@@ -109,6 +135,7 @@ export function VsatExamDates() {
                 <p className="text-xs text-vx-faint">{ist(r.startAt)} – {hhmm(r.endAt)} · test {r.testId} · clickable {r.leadMinutes}m early · {r.picked} picked{r.capacity != null ? ` / ${r.capacity}` : ""}</p>
               </div>
               <div className="flex items-center gap-2">
+                <button onClick={() => pullResults(r.id, r.label)} disabled={busy} className={cx(vx.btn, vx.secondary)} title="Fetch every student's Wheebox result for this VSAT and map it to each student">Pull results</button>
                 <button onClick={() => editRow(r)} disabled={busy} className={cx(vx.btn, vx.secondary)}>Edit</button>
                 {r.enabled
                   ? <button onClick={() => toggle(r.id, false)} disabled={busy} className={cx(vx.btn, vx.secondary)}>Disable</button>
