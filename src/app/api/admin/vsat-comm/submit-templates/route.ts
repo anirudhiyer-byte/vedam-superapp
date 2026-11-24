@@ -16,26 +16,28 @@ const DASH = "https://one.vedam.org/apply/dashboard";
 const APPLY = "https://one.vedam.org/apply";
 const PAY = "https://one.vedam.org/apply/dashboard/payments";
 
+// Refreshed utility copy (Nov 2026). Variable slots here MUST match waBodyvar() in
+// src/lib/vsat/comms.ts for each step, or TrustSignal rejects the send on a slot-count mismatch.
 const TEMPLATES: { step_key: string; name: string; body: string; samples: string[] }[] = [
   {
     step_key: "first_half", name: "vsat_first_half",
-    body: "Hi {{1}}, welcome to Vedam! 🎉 Your Vedam One account is ready and your VSAT journey has begun. You're just one step away — complete the second half of your form to continue: {{2}}\n\nWarmly, Team Vedam",
+    body: "Hi {{1}}, welcome to Vedam! 🎉 Your Vedam One account is ready and your VSAT journey has begun. You're just one step away — complete your application and start preparing for VSAT: {{2}}\n\nAll the best, Team Vedam",
     samples: ["Pawan", APPLY],
   },
   {
     step_key: "application_started", name: "vsat_application_started",
-    body: "Hi {{1}}, wonderful news — your VSAT application has started! To unlock your exam, a fee of ₹{{2}} is needed, and your early-bird price stays open for the next 24 hours. Complete your payment here: {{3}}\n\nCheering you on, Team Vedam",
-    samples: ["Pawan", "800", DASH],
+    body: "Hi {{1}}, wonderful news — your VSAT application has started! You're one step away from VSAT: complete your exam fee payment and select your test slot here: {{2}}. Also get a concession of ₹200 on VSAT, valid only for the first 24 hours.\n\nCheering you on, Team Vedam",
+    samples: ["Pawan", DASH],
   },
   {
     step_key: "payment_reminder_24h", name: "vsat_payment_reminder",
-    body: "Hi {{1}}, a gentle reminder — your VSAT fee of ₹{{2}} is still pending and your early-bird window is closing soon. Secure your seat whenever you're ready: {{3}}\n\nWarm wishes, Team Vedam",
-    samples: ["Pawan", "800", DASH],
+    body: "Hi {{1}}, just a few hours left before the VSAT scholarship ends — and we'd hate for you to miss out! Your VSAT registration is 99% done; all that's left is the final step. Complete it now to avail up to 20% scholarship on your VSAT registration fee: {{2}}\n\nCheering you on, Team Vedam",
+    samples: ["Pawan", DASH],
   },
   {
     step_key: "payment_confirmed", name: "vsat_payment_confirmed",
-    body: "Hi {{1}}, thank you so much! 💜 We've received your VSAT fee of ₹{{2}}. Here's your receipt: {{3}}. You're all set — next, fill your application form, take your mock test, and pick your exam date on your dashboard: {{4}}\n\nWarmly, Team Vedam",
-    samples: ["Pawan", "800", PAY, DASH],
+    body: "Hi {{1}}, you have successfully registered for VSAT! We've received your VSAT fee of ₹{{2}}. Here's your receipt: {{3}}. Next steps: pick your exam date, fill your application form, and take the mock test.\n\nAll the best, Team Vedam",
+    samples: ["Pawan", "800", PAY],
   },
 ];
 
