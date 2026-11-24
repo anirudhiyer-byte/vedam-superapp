@@ -425,7 +425,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
                           <td className="whitespace-nowrap px-3 py-2" onClick={(e) => e.stopPropagation()}><PlanInterviewer app={r.application_id} name={name} planner={planner} /></td>
                           <td className="whitespace-nowrap px-3 py-2" onClick={(e) => e.stopPropagation()}><PlanDate app={r.application_id} name={name} planner={planner} /></td>
                           <td className="whitespace-nowrap px-3 py-2" onClick={(e) => e.stopPropagation()}><PlanTime app={r.application_id} name={name} planner={planner} /></td>
-                          <td className="whitespace-nowrap px-3 py-2" onClick={(e) => e.stopPropagation()}><PlanStatus app={r.application_id} planner={planner} /></td>
+                          <td className="whitespace-nowrap px-3 py-2" onClick={(e) => e.stopPropagation()}><PlanStatus app={r.application_id} planner={planner} stage={r.stage} status={r.status} /></td>
                         </>
                       )}
                     </Fragment>

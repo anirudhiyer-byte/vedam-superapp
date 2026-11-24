@@ -4,8 +4,9 @@
  * what a row shows, what to save when a cell changes, which selected rows can be sent, and the messages.
  * The database decides every state (vsat_interview_plan); these only read what it returned.
  */
-import { errorText, istSlot } from "./pipeline";
+import { STAGE_LABEL, errorText, istSlot, type Stage } from "./pipeline";
 import { istParts } from "./interviews";
+import type { Track } from "./tracks";
 
 /** Most rows one Send or one "Fill times" may take (vsat_interview_drafts_send / _fill). */
 export const SEND_MAX = 40;
@@ -77,7 +78,7 @@ export const sameCells = (a: CellValues, b: CellValues) => a.interviewer_id === 
 
 /** A row that Send would book: new with all three filled, or a booked one with a new time / interviewer. */
 export const isSendable = (r: PlanRow | null | undefined) => r?.state === "ready" || r?.state === "changed";
-/** Locked rows (interview done, not at an interview stage) show their values but can't be edited. */
+/** Locked rows (interview done, not at an interview stage) show their values but can't be edited (lockedStatus says why). */
 export const isEditable = (r: PlanRow | null | undefined) => !!r && r.state !== "locked";
 
 export type SelectionSummary = { invites: string[]; updates: string[]; problems: number; incomplete: number };
@@ -127,6 +128,21 @@ export function statusOf(r: PlanRow | null | undefined): { label: string; tone: 
       return { label: errorText(r.problem), tone: "red" };
     default: return { label: "—", tone: "neutral" };
   }
+}
+
+/**
+ * Why a locked row can't be edited, already in the track's words (do not pass it through inTrackWords: a stage
+ * name like "Interview scheduled" must stay as it is). Same order as the database rule (0143 / 0145): the
+ * student is past (or before) this step, or marked Not selected, or the meeting is already done.
+ * `stage` / `status` come from the grid row; when they are missing the cell just says "Locked".
+ */
+export function lockedStatus(track: Track, stage: string | null | undefined, status: string | null | undefined): { label: string; tone: Tone; title: string } {
+  const open = `${track.Noun} times can be set only at ${track.fromStageLabel} or ${STAGE_LABEL[track.stage]}.`;
+  const at = stage ? STAGE_LABEL[stage as Stage] : undefined;
+  if (!at) return { label: "Locked", tone: "neutral", title: open };
+  if (stage !== track.fromStage && stage !== track.stage) return { label: `Locked: ${at}`, tone: "neutral", title: `This student is at ${at}. ${open}` };
+  if (status === "not_selected") return { label: "Locked: Not selected", tone: "neutral", title: `This student is marked Not selected, so no ${track.noun} can be booked.` };
+  return { label: `Locked: ${track.Noun.split(" ")[0]} done`, tone: "neutral", title: `The ${track.noun} is already done and submitted, so its time can't be changed.` };
 }
 
 type Named = { application_id: string; name: string | null };

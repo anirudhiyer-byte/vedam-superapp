@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
   EMPTY_CELLS, blockedText, cellValues, draftPayload, fillResultText, isEditable, isSendable, parsePlan, sameCells, selectionSummary,
-  sendLabel, sendResultText, statusOf, toPlanRow, type PlanRow,
+  lockedStatus, sendLabel, sendResultText, statusOf, toPlanRow, type PlanRow,
 } from "./interview-plan";
+import { TRACKS } from "./tracks";
 
 const I1 = "11111111-1111-4111-8111-111111111111";
 const I2 = "22222222-2222-4222-8222-222222222222";
@@ -136,5 +137,62 @@ describe("result messages", () => {
   it("long skip lists are shortened", () => {
     const skipped = Array.from({ length: 6 }, (_, i) => ({ application_id: `S${i}`, name: `N${i}`, code: "CLASH" }));
     expect(sendResultText({ sent: [], skipped })).toMatch(/and 2 more\.$/);
+  });
+});
+
+describe("locked rows say why", () => {
+  const C = TRACKS.counselling, I = TRACKS.interview;
+  it("past the counselling step: the stage, and when times can be set", () => {
+    expect(lockedStatus(C, "offer_sent", "active")).toEqual({
+      label: "Locked: Offer sent", tone: "neutral",
+      title: "This student is at Offer sent. Counselling session times can be set only at PI cleared or Counselling scheduled.",
+    });
+    expect(lockedStatus(C, "offer_lapsed", "active").label).toBe("Locked: Offer lapsed");
+    expect(lockedStatus(C, "counselled", "active").label).toBe("Locked: Counselled");
+    expect(lockedStatus(C, "counselling_not_appeared", "absent").label).toBe("Locked: Counselling not appeared");
+    expect(lockedStatus(C, "enrolled", "active").label).toBe("Locked: Enrolled");
+  });
+  it("past the interview step", () => {
+    expect(lockedStatus(I, "pi_cleared", "active")).toEqual({
+      label: "Locked: PI cleared", tone: "neutral",
+      title: "This student is at PI cleared. Interview times can be set only at VSAT cleared or Interview scheduled.",
+    });
+    expect(lockedStatus(I, "interviewed", "active").label).toBe("Locked: Interviewed");
+    expect(lockedStatus(I, "pi_not_appeared", "absent").label).toBe("Locked: PI not appeared");
+  });
+  it("at the right stage but Not selected", () => {
+    expect(lockedStatus(C, "pi_cleared", "not_selected")).toMatchObject({ label: "Locked: Not selected", title: "This student is marked Not selected, so no counselling session can be booked." });
+    expect(lockedStatus(I, "interview_scheduled", "not_selected").label).toBe("Locked: Not selected");
+  });
+  it("at the right stage and active: the meeting is already done", () => {
+    expect(lockedStatus(C, "counselling_scheduled", "active")).toMatchObject({
+      label: "Locked: Counselling done", title: "The counselling session is already done and submitted, so its time can't be changed.",
+    });
+    expect(lockedStatus(I, "vsat_cleared", "active")).toMatchObject({
+      label: "Locked: Interview done", title: "The interview is already done and submitted, so its time can't be changed.",
+    });
+  });
+  it("past the step wins over Not selected (the stage is the reason the time can't move)", () => {
+    expect(lockedStatus(C, "offer_lapsed", "not_selected").label).toBe("Locked: Offer lapsed");
+  });
+  it("missing or unknown stage: just 'Locked', still with the rule on hover", () => {
+    for (const s of [undefined, null, "", "made_up"]) {
+      expect(lockedStatus(C, s, "active")).toEqual({
+        label: "Locked", tone: "neutral", title: "Counselling session times can be set only at PI cleared or Counselling scheduled.",
+      });
+    }
+  });
+  it("counselling text never talks about interviews, interview text never about counselling", () => {
+    for (const st of ["pi_cleared", "counselling_scheduled", "counselled", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled"]) {
+      const s = lockedStatus(C, st, "active");
+      expect(`${s.label} ${s.title}`).not.toMatch(/interview/i);
+    }
+    for (const st of ["vsat_cleared", "interview_scheduled", "interviewed", "pi_cleared", "pi_not_appeared"]) {
+      const s = lockedStatus(I, st, "active");
+      expect(`${s.label} ${s.title}`).not.toMatch(/counsell/i);
+    }
+  });
+  it("statusOf itself is unchanged for a locked row (the panel asks lockedStatus)", () => {
+    expect(statusOf(row({ application_id: "L", state: "locked" })).label).toBe("—");
   });
 });
