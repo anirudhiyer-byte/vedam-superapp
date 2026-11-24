@@ -68,6 +68,17 @@ export async function POST(req: Request) {
   };
   const { error } = await admin.from("lead_manager").upsert(row, { onConflict: "lead_id" });
   if (error) return Response.json({ ok: false, error: error.message }, { status: 500 });
+  // Partner lead claim-on-login (0160): if a partner (Elevate/School Connect) pushed this
+  // student before they had a login, match the pending partner_leads row by phone/email, stamp
+  // the partner attribution, and — if pre-paid — mirror the paid VSAT state. Best-effort: a claim
+  // failure must never break the apply flow. No-ops when nothing matches.
+  try {
+    await admin.rpc("partner_claim", {
+      p_lead_id: user.id,
+      p_phone: (L.phone as string) || user.phone || null,
+      p_email: (L.email as string) || user.email || null,
+    });
+  } catch { /* best-effort; the lead is already saved */ }
   await admin.from("crm_activity_log").insert({ entity_type: "lead", lead_id: user.id, action: "stage_change", stage_type: "application", to_value: "lead", actor: "applicant", path: "/apply" });
   // stage comm: first half filled → account + lead (fires once per lead, best-effort)
   await sendVsatStepComms("first_half", { leadId: user.id, name: (L.name as string) ?? null, email: (L.email as string) ?? null, phone: (L.phone as string) ?? null });
