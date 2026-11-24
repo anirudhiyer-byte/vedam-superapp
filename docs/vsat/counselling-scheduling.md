@@ -67,8 +67,8 @@ cron `/api/cron/vsat-interviews` (now also runs the counselling Google, attendan
 - Counselling panel (admin / admissions): a **Counsellor** dropdown next to the others: every counsellor in the panel
   by name with a count, then **No counsellor**. Works with every other dropdown and filter, and with CSV export.
 - New column **Counselling Meet** (shown by default after the slot): Meet ready / Creating Meet… / Meet failed /
-  Own link / Cancelled, the same words and colours as Interview Meet. A saved column choice from before does not get
-  it automatically: add it from Columns.
+  Cancelled, the same words and colours as Interview Meet (since 0167 an old pasted-link row shows no badge, only
+  Join). A saved column choice from before does not get it automatically: add it from Columns.
 - Database: `vsat__grid` takes `counsellor_ids` (user ids or `none`, up to 50) and returns the `counsellor` /
   `counsellor_name` counts; the catalogue has `counselling_meet`. Who sees which rows did not change.
 - Tests: `supabase/tests/vsat_grid_counsellor.test.sql` (17), `vsat_grid.test.sql` still 76/76; unit tests in

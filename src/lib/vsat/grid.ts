@@ -234,7 +234,10 @@ export function formatValue(type: GridColType, key: string, v: unknown): string 
   if (type === "status") return isStatus(v) ? STATUS_LABEL[v] : String(v);
   if (type === "bool") return v === true ? "Yes" : v === false ? "No" : String(v);
   if (VALUE_CHOICES[key] && typeof v === "string") return choiceLabel(key, v);
-  if (key === "interview_meet" || key === "counselling_meet") return isMeetState(v) ? MEET_LABEL[v] : String(v);
+  if (key === "interview_meet" || key === "counselling_meet") {
+    if (v === "own_link") return "—";  // old pasted link: no "Own link" word anywhere (Google Meet only, 0167)
+    return isMeetState(v) ? MEET_LABEL[v] : String(v);
+  }
   if (type === "ts") return fmtIst(String(v));
   if (type === "date") return istDate(v);
   if (type === "num") return /_(pct|percentage)$/.test(key) ? `${num(v)}%` : num(v);
