@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  DEFAULT_COLUMNS, NO_COUNSELLOR, NO_INTERVIEWER, VALUE_CHOICES, columnLabel, describeClause, formatValue, isFilterable, panelScope, parseSearchValues,
+  DEFAULT_COLUMNS, NO_COUNSELLOR, NO_INTERVIEWER, VALUE_CHOICES, columnLabel, describeClause, formatValue, isFilterable, linkText, meetLink, panelScope, parseSearchValues,
   peopleOptions, pickSummary, requestColumns, sanitizeColumns, toCsv, type GridColumn, type GridRow,
 } from "./grid";
 import { PANEL_STAGES } from "./pipeline";
@@ -152,11 +152,12 @@ describe("interviews (0140)", () => {
   });
 });
 
-describe("attendance columns read as words (cells and CSV)", () => {
-  it("interview and counselling attendance use the drawer's words; unknown values pass through", () => {
+describe("status columns read as words (cells and CSV)", () => {
+  // 0164 (owner's review): the attendance column is the Status, Done / No-show / Rescheduled ("Joined" became "Done")
+  it("interview and counselling status use the drawer's words; unknown values pass through", () => {
     for (const key of ["interview_attendance", "counselling_attendance"]) {
       expect(formatValue("text", key, "scheduled")).toBe("Not marked yet");
-      expect(formatValue("text", key, "done")).toBe("Joined");
+      expect(formatValue("text", key, "done")).toBe("Done");
       expect(formatValue("text", key, "no_show")).toBe("No-show");
       expect(formatValue("text", key, "rescheduled")).toBe("Rescheduled");
       expect(formatValue("text", key, "other")).toBe("other");
@@ -165,7 +166,7 @@ describe("attendance columns read as words (cells and CSV)", () => {
   });
   it("CSV carries the words too", () => {
     const rows = [{ application_id: "A1", application_no: "A1", stage: "interview_scheduled", status: "active", attempt_no: 1, interview_attendance: "no_show" }] as unknown as GridRow[];
-    expect(toCsv(rows, [{ key: "interview_attendance", type: "text" }])).toBe('"App no.","Interview attendance"\n"A1","No-show"');
+    expect(toCsv(rows, [{ key: "interview_attendance", type: "text" }])).toBe('"App no.","Interview status"\n"A1","No-show"');
   });
 });
 
@@ -201,5 +202,31 @@ describe("counselling (0158): Counsellor dropdown and Counselling Meet", () => {
     expect(opts).toEqual([
       { value: "a", label: "Bina", count: 2 }, { value: "b", label: "Interviewer", count: 0 }, { value: "none", label: "No interviewer", count: 1 },
     ]);
+  });
+});
+
+describe("0163/0164: Join link, reschedule counts, status columns", () => {
+  it("meetLink gives only a clean https link that came with its own Meet column", () => {
+    const row = { interview_meet_link: "https://meet.google.com/abc-defg-hij", counselling_meet_link: "https://zoom.us/j/123?pwd=x" };
+    expect(meetLink(row, "interview_meet")).toBe("https://meet.google.com/abc-defg-hij");
+    expect(meetLink(row, "counselling_meet")).toBe("https://zoom.us/j/123?pwd=x");
+    expect(meetLink(row, "interview_slot")).toBeNull();
+    expect(meetLink({}, "interview_meet")).toBeNull();
+    for (const bad of ["http://meet.google.com/x", "javascript:alert(1)", "https://user:pw@evil.example/x", "not a url", 42, null, "https://" + "a".repeat(500)]) {
+      expect(meetLink({ interview_meet_link: bad }, "interview_meet")).toBeNull();
+    }
+  });
+  it("linkText drops https:// and shortens long links", () => {
+    expect(linkText("https://meet.google.com/abc-defg-hij")).toBe("meet.google.com/abc-defg-hij");
+    expect(linkText("https://zoom.us/j/1234567890123456789012345?pwd=abcdef", 20)).toBe("zoom.us/j/123456789…");
+  });
+  it("the interview / counselling panels show status and reschedule count by default, not the interviewer's verdict", () => {
+    expect(DEFAULT_COLUMNS.intv).toEqual(expect.arrayContaining(["interview_attendance", "interview_reschedules", "interview_meet"]));
+    expect(DEFAULT_COLUMNS.intv).not.toContain("interviewer_verdict");
+    expect(DEFAULT_COLUMNS.couns).toEqual(expect.arrayContaining(["counselling_attendance", "counselling_reschedules", "counselling_meet"]));
+    expect(columnLabel("interview_attendance")).toBe("Interview status");
+    expect(columnLabel("counselling_attendance")).toBe("Counselling status");
+    expect(columnLabel("interview_reschedules")).toBe("Interview reschedules");
+    expect(columnLabel("counselling_reschedules")).toBe("Counselling reschedules");
   });
 });

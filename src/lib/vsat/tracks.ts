@@ -19,6 +19,11 @@ export type Track = {
   stage: "interview_scheduled" | "counselling_scheduled";
   fromStage: "vsat_cleared" | "pi_cleared";
   fromStageLabel: string;
+  /**
+   * 0164: the stages of this step. Booking no longer moves the stage (stages are changed by hand), so the form, the
+   * status (Done / No-show / Rescheduled) and cancelling work at any of these — the same list as the database.
+   */
+  stepStages: readonly string[];
   /** request keys of the booking functions */
   hostParam: "interviewer_id" | "counsellor_id";
   linkParam: "meet_link" | "meeting_link";
@@ -46,6 +51,7 @@ export const TRACKS: Record<TrackKey, Track> = {
   interview: {
     key: "interview", noun: "interview", Noun: "Interview", host: "interviewer", Host: "Interviewer",
     stage: "interview_scheduled", fromStage: "vsat_cleared", fromStageLabel: "VSAT cleared",
+    stepStages: ["vsat_cleared", "interview_scheduled", "interviewed", "pi_not_appeared"],
     hostParam: "interviewer_id", linkParam: "meet_link", hostKey: "interviewer",
     rpc: {
       assign: "vsat_assign_interview", cancel: "vsat_cancel_interview", attendance: "vsat_set_interview_attendance",
@@ -64,6 +70,7 @@ export const TRACKS: Record<TrackKey, Track> = {
   counselling: {
     key: "counselling", noun: "counselling session", Noun: "Counselling session", host: "counsellor", Host: "Counsellor",
     stage: "counselling_scheduled", fromStage: "pi_cleared", fromStageLabel: "PI cleared",
+    stepStages: ["pi_cleared", "counselling_scheduled", "counselled", "counselling_not_appeared"],
     hostParam: "counsellor_id", linkParam: "meeting_link", hostKey: "counsellor",
     rpc: {
       assign: "vsat_assign_counsellor", cancel: "vsat_cancel_counselling", attendance: "vsat_set_counselling_attendance",

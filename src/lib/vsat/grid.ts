@@ -134,11 +134,12 @@ const LABELS: Record<string, string> = {
   eligible_effective: "Eligible", eligible_override: "Eligible override",
   exam_percentage: "Exam %", exam_section_maths: "Maths", exam_section_lr: "Logical reasoning", exam_section_cs: "CS",
   proctoring: "Proctoring", class12_result: "12th result", class10_eligible: "10th eligible", class12_eligible: "12th eligible",
-  interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview attendance",
+  interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview status",
   interview_score: "Interview score", interview_calc_verdict: "Verdict (calculated)", interviewer_verdict: "Verdict (interviewer)",
   interview_meet: "Interview Meet", counselling_meet: "Counselling Meet",
   cheating_seen: "Cheating seen",
-  counsellor: "Counsellor", counselling_slot: "Counselling slot (IST)", counselling_attendance: "Counselling attendance",
+  counsellor: "Counsellor", counselling_slot: "Counselling slot (IST)", counselling_attendance: "Counselling status",
+  interview_reschedules: "Interview reschedules", counselling_reschedules: "Counselling reschedules",
   counselling_category: "Scholarship category", counselling_pct: "Scholarship %", counselling_calculated_pct: "Calculated %",
   class10_percentage: "Class 10 %", class12_percentage: "Class 12 %", class10_maths_percentage: "Class 10 maths %",
   class12_maths_percentage: "Class 12 maths %", class10_year: "Class 10 year", class12_year: "Class 12 year",
@@ -184,12 +185,12 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   // 0135 — the results sheet: who, %, percentile, the three sections, VPS, eligibility and the proctoring verdict
   exam: ["registered_name", "campus", "gender", "vsat", "stage", "exam_percentage", "exam_percentile", "exam_section_maths", "exam_section_lr",
          "exam_section_cs", "vps_effective", "eligible_effective", "proctoring"],
-  // 0140 — Meet state and attendance next to the slot
-  intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_score",
-         "interview_calc_verdict", "interviewer_verdict", "stage_changed_at"],
-  // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot
-  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_category", "counselling_pct",
-          "offer_expires_at", "stage_changed_at"],
+  // 0140 — Meet state and attendance next to the slot; 0164 — status + reschedule count, no interviewer verdict
+  intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_reschedules",
+         "interview_score", "interview_calc_verdict", "stage_changed_at"],
+  // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot; 0164 — status + reschedule count
+  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_attendance",
+          "counselling_reschedules", "counselling_category", "counselling_pct", "offer_expires_at", "stage_changed_at"],
 };
 
 /** Columns the request must carry for the shown ones to render (the override markers, the app no. under the name). */
@@ -257,4 +258,28 @@ export function pickSummary(selected: string[], labelOf: (v: string) => string):
   if (selected.length === 0) return "All";
   if (selected.length === 1) return labelOf(selected[0]);
   return `${selected.length} selected`;
+}
+
+// ── 0163: the meeting link next to the Meet column (Join button) ─────────────
+
+/** The key the grid sends the link under, next to each Meet column (only for staff who may join that meeting). */
+export const MEET_LINK_KEY = { interview_meet: "interview_meet_link", counselling_meet: "counselling_meet_link" } as const;
+
+/** The row's meeting link for a Meet column, or null. Only a well-formed https link is ever returned (never shown otherwise). */
+export function meetLink(row: Record<string, unknown>, key: string): string | null {
+  const k = (MEET_LINK_KEY as Record<string, string>)[key];
+  const v = k ? row[k] : null;
+  if (typeof v !== "string" || v.length > 500) return null;
+  try {
+    const u = new URL(v);
+    return u.protocol === "https:" && !u.username && !u.password ? u.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
+/** "https://meet.google.com/abc-defg-hij" → "meet.google.com/abc-defg-hij" (shortened when long). */
+export function linkText(url: string, max = 36): string {
+  const s = url.replace(/^https:\/\//, "").replace(/\/$/, "");
+  return s.length > max ? `${s.slice(0, max - 1)}…` : s;
 }

@@ -65,6 +65,12 @@ returns jsonb language sql as $$
   select jsonb_build_object('search', jsonb_build_object('column', '_any', 'values', '["zztest grd"]'::jsonb)) || coalesce(p, '{}'::jsonb)
 $$;
 
+-- 0164: booking no longer moves the stage, so admissions moves it by hand (as staff do now)
+create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
+returns jsonb language sql as $$
+  select pg_temp.call_as(p_adm, pg_temp.rpc('vsat_move_stage', jsonb_build_object('application_id', p_app, 'to_stage', p_stage)))
+$$;
+
 create or replace function pg_temp.run_vsat_grid_tests()
 returns table (test text, pass boolean, detail text) language plpgsql as $$
 declare
@@ -91,10 +97,14 @@ begin
     g4 := pg_temp.mk_app('GRD4', 'Ajeenkya DY Patil University — Pune', d2, '9876500004');
     -- g3: interview scheduled with int1 · g4: counselling scheduled with cou1 · g2: on hold
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', g3, 'interviewer_id', int1, 'slot_datetime', slot)));
-    if r->'pipeline'->>'stage' <> 'interview_scheduled' then raise exception 'fixture g3: %', r; end if;
+    if r ? 'sqlstate' then raise exception 'fixture g3: %', r; end if;
+    r := pg_temp.move_to(adm, g3, 'interview_scheduled');  -- 0164: by hand
+    if (select vp.stage from public.vsat_pipeline vp where vp.application_id = g3) <> 'interview_scheduled' then raise exception 'fixture g3: %', r; end if;
     perform public.vsat__move(g4, 'pi_cleared', 'active', 'zz test', 'system', null, null);
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', g4, 'counsellor_id', cou1, 'slot_datetime', slot)));
-    if r->'pipeline'->>'stage' <> 'counselling_scheduled' then raise exception 'fixture g4: %', r; end if;
+    if r ? 'sqlstate' then raise exception 'fixture g4: %', r; end if;
+    r := pg_temp.move_to(adm, g4, 'counselling_scheduled');  -- 0164: by hand
+    if (select vp.stage from public.vsat_pipeline vp where vp.application_id = g4) <> 'counselling_scheduled' then raise exception 'fixture g4: %', r; end if;
     perform public.vsat__move(g2, 'vsat_cleared', 'on_hold', 'zz test', 'system', null, null);
     -- form-stage / payment-stage dimensions (0117): g1,g2 submitted+approved · g3 not_started+not_initiated · g4 documents+initiated
     update public.application_manager set form_stage_1 = 'form_submitted',     payment_stage_1 = 'payment_approved'      where application_id in (g1, g2);

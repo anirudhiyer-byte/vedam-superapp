@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import {
-  NEEDS_ASSIGNMENT, PARTS, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst, interviewFormErrors,
+  PARTS, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst, interviewFormErrors,
   needsReason, type InterviewForm, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import { StageBadge } from "./pipeline-panel";
@@ -207,7 +207,7 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
   );
 }
 
-/** Admin / admissions: move to any stage (scheduled stages go through "Assign"). */
+/** Admin / admissions: move to any stage (0164: the scheduled ones too, once the booking is sent). */
 function MoveStage({ s, onDone }: { s: Student; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
   const cur = s.pipeline;
@@ -217,11 +217,9 @@ function MoveStage({ s, onDone }: { s: Student; onDone: () => void }) {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const req = needsReason(cur.stage, cur.status, to, st);
-  const assignOnly = !!NEEDS_ASSIGNMENT[to] && to !== cur.stage;
 
   async function move() {
     if (to === cur.stage && st === cur.status) return setMsg("Nothing to change.");
-    if (assignOnly) return setMsg(`Use "Schedule" below to book it (it needs a ${NEEDS_ASSIGNMENT[to]} and a slot).`);
     if (req && reason.trim().length < 3) return setMsg("Please add a reason (at least 3 characters).");
     setBusy(true); setMsg("");
     const p: Record<string, unknown> = { application_id: s.profile.application_id, to_stage: to, to_status: st, expected_stage: cur.stage };
@@ -312,16 +310,18 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
   const row = iv as unknown as InterviewRow | null;
   const isInterviewer = roles.roles.includes("interviewer");
   const canAssign = s.can_manage && (st === "vsat_cleared" || st === "interview_scheduled") && s.pipeline.status !== "not_selected";
-  const canForm = st === "interview_scheduled" && (s.can_manage || isInterviewer);
-  if (!iv && !canAssign && !["vsat_cleared", "interview_scheduled"].includes(st)) return null;
+  // 0164: the stage no longer follows the booking, so the form works at every stage of the interview step
+  const atStep = TRACKS.interview.stepStages.includes(st);
+  const canForm = atStep && (s.can_manage || isInterviewer);
+  if (!iv && !canAssign && !atStep) return null;
   const cancelled = !!row?.cancelled_at;
 
   return (
     <Section title="Interview">
       {iv && !cancelled && <Grid items={[
         ["Interviewer", show(iv.interviewer)], ["Slot (IST)", slotText(iv.slot_datetime, row?.duration_min)],
-        ["Attendance", show(iv.attendance ? ATTENDANCE_LABEL[iv.attendance] ?? iv.attendance : null)], ["Score (out of 5)", show(iv.weighted_avg)],
-        ["Verdict (calculated / interviewer)", iv.weighted_avg === null ? "—" : `${show(iv.calc_verdict)} / ${show(iv.interviewer_verdict)}`],
+        ["Status", show(iv.attendance ? ATTENDANCE_LABEL[iv.attendance] ?? iv.attendance : null)], ["Score (out of 5)", show(iv.weighted_avg)],
+        ["Verdict (calculated)", iv.weighted_avg === null ? "—" : `${show(iv.calc_verdict)}${iv.interviewer_verdict ? ` (older form: interviewer said ${iv.interviewer_verdict})` : ""}`],
         ["Cheating seen", iv.cheating_seen === null ? "—" : iv.cheating_seen ? "Yes" : "No"], ["Financial capability", show(iv.financial_capability)],
       ]} />}
       {iv && iv.weighted_avg !== null && (
@@ -330,7 +330,7 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
       {iv?.why_accept && <p><span className="text-xs text-vx-faint">Why should Vedam accept you: </span>{iv.why_accept}</p>}
       {row && (
         <InterviewStatus iv={row} applicationId={s.profile.application_id} manager={s.can_manage} isInterviewer={isInterviewer}
-          atInterviewStage={st === "interview_scheduled"} studentAbsent={s.pipeline.status === "absent"} onDone={onDone} />
+          atInterviewStage={atStep} studentAbsent={s.pipeline.status === "absent"} onDone={onDone} />
       )}
       {canAssign && <InterviewScheduleForm team={team} applicationId={s.profile.application_id} current={row} onDone={onDone} />}
       {canForm && iv && !cancelled && <InterviewFormBox applicationId={s.profile.application_id} onDone={onDone} />}
@@ -340,7 +340,7 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
 
 function InterviewFormBox({ applicationId, onDone }: { applicationId: string; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
-  const [f, setF] = useState<InterviewForm>({ communication: null, logic: null, passion: null, achievements: null, why_program: null, cheating_seen: null, interviewer_verdict: "" });
+  const [f, setF] = useState<InterviewForm>({ communication: null, logic: null, passion: null, achievements: null, why_program: null, cheating_seen: null });
   const [remarks, setRemarks] = useState<Record<string, string>>({});
   const [extra, setExtra] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
@@ -373,7 +373,7 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
     setBusy(false);
     if (error) return setMsg(errorText(error.message));
     const d = data as { score: number; calc_verdict: string; stage: Stage; status: Status };
-    setMsg(`Saved ✓ Score ${d.score} (${d.calc_verdict}) → ${STAGE_LABEL[d.stage]}${d.status !== "active" ? ` (${STATUS_LABEL[d.status]})` : ""} ✓`);
+    setMsg(`Saved ✓ Score ${d.score} (calculated: ${d.calc_verdict}). The stage stays ${STAGE_LABEL[d.stage]} ✓`);
     onDone();
   }
 
@@ -411,11 +411,6 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
             <option value="">Pick…</option><option value="no">No</option><option value="yes">Yes</option>
           </select>
         </label>
-        <label className="block text-xs text-vx-faint">Your verdict
-          <select className={input} value={f.interviewer_verdict} onChange={(e) => setF({ ...f, interviewer_verdict: e.target.value as InterviewForm["interviewer_verdict"] })}>
-            <option value="">Pick…</option><option value="selected">Selected</option><option value="maybe">Maybe</option><option value="not_selected">Not selected</option>
-          </select>
-        </label>
         {yn("coding_talent", "Possible coding talent")}{yn("cert_asked", "National-level certificate asked for")}{yn("drop_year", "Drop year")}
         {text("previous_jee", "Previous JEE (if drop year)", 200)}
         {pct("jee_pct", "JEE percentile")}{pct("jee_maths_pct", "JEE Maths percentile")}{pct("expected_jee_pct", "Expected JEE percentile")}
@@ -431,7 +426,7 @@ function InterviewFormBox({ applicationId, onDone }: { applicationId: string; on
       <label className="block text-xs text-vx-faint">Why should Vedam accept you? (student&apos;s answer)
         <textarea className={input} rows={3} maxLength={1500} value={extra.why_accept ?? ""} onChange={(e) => setExtra({ ...extra, why_accept: e.target.value })} />
       </label>
-      <p className="text-xs text-vx-faint">The score is calculated by the system from the five parts. If both the calculated verdict and yours are “Selected”, the student moves to Counselling automatically; otherwise admissions decides.</p>
+      <p className="text-xs text-vx-faint">The score is calculated from the five parts. Submitting saves the form only: the result is decided later from everyone&apos;s scores, and admissions changes the stage.</p>
       <button className={primary} disabled={busy} onClick={submit}>{busy ? "Submitting…" : "Submit interview"}</button>
       <Msg text={msg} />
     </div>
@@ -445,7 +440,9 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
   const cancelled = !!row?.cancelled_at;
   const isCounsellor = roles.roles.includes("counsellor");
   const canAssign = s.can_manage && (st === "pi_cleared" || st === "counselling_scheduled") && s.pipeline.status !== "not_selected" && !c?.submitted_at;
-  const canForm = st === "counselling_scheduled" && (s.can_manage || isCounsellor);
+  // 0164: the stage no longer follows the booking, so the form works at every stage of the counselling step
+  const atStep = TRACKS.counselling.stepStages.includes(st);
+  const canForm = atStep && (s.can_manage || isCounsellor);
   // the offer (0144): from Counselled on, or whenever one was released
   const showOffer = ["counselled", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled"].includes(st) || !!s.offer?.released_at;
   if (!c && !canAssign && !showOffer) return null;
@@ -454,7 +451,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
     <Section title="Counselling & scholarship">
       {c && <Grid items={[
         ["Counsellor", show(cancelled ? null : c.counsellor)], ["Slot (IST)", cancelled ? "—" : slotText(c.slot_datetime, row?.duration_min)],
-        ["Attendance", show(c.attendance ? ATTENDANCE_LABEL[c.attendance] ?? c.attendance : null)],
+        ["Status", show(c.attendance ? ATTENDANCE_LABEL[c.attendance] ?? c.attendance : null)],
         ["Scholarship score", show(c.calc_score)], ["Category", show(c.calc_category ?? c.scholarship_category)],
         ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
       ]} />}
@@ -462,7 +459,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
       {c && <ProfileBox applicationId={s.profile.application_id} {...savedProfile(c.profile_analysis)} canGenerate={s.can_manage || isCounsellor} />}
       {row && (
         <InterviewStatus iv={row} applicationId={s.profile.application_id} manager={s.can_manage} isInterviewer={isCounsellor}
-          atInterviewStage={st === "counselling_scheduled"} studentAbsent={s.pipeline.status === "absent"} onDone={onDone} track={TRACKS.counselling} />
+          atInterviewStage={atStep} studentAbsent={s.pipeline.status === "absent"} onDone={onDone} track={TRACKS.counselling} />
       )}
       {canAssign && <InterviewScheduleForm team={team} applicationId={s.profile.application_id} current={row} onDone={onDone} track={TRACKS.counselling} />}
       {canForm && c && !cancelled && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
