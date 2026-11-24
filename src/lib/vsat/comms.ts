@@ -60,9 +60,9 @@ function fill(tpl: string, v: Record<string, string>): string {
 function waBodyvar(step: VsatCommStep, v: Record<string, string>): string[] {
   switch (step) {
     case "first_half": return [v.name, v.apply_link];
-    case "application_started": return [v.name, v.amount, v.dashboard_link];
-    case "payment_reminder_24h": return [v.name, v.amount, v.dashboard_link];
-    case "payment_confirmed": return [v.name, v.amount, v.receipt_link, v.dashboard_link];
+    case "application_started": return [v.name, v.dashboard_link];
+    case "payment_reminder_24h": return [v.name, v.dashboard_link];
+    case "payment_confirmed": return [v.name, v.amount, v.receipt_link];
   }
 }
 
