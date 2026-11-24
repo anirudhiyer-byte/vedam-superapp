@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import { errorText, istSlot } from "@/lib/vsat/pipeline";
 import {
-  SEND_MAX, blockedText, cellValues, draftPayload, fillResultText, isEditable, parsePlan, sameCells, selectionSummary, sendLabel,
+  SEND_MAX, blockedText, cellValues, draftPayload, fillResultText, isEditable, lockedStatus, parsePlan, sameCells, selectionSummary, sendLabel,
   sendResultText, statusOf, toPlanRow, type CellValues, type FillResult, type PlanRow, type SendResult,
 } from "@/lib/vsat/interview-plan";
 import { syncInterviewsNow } from "./interview-tools";
@@ -161,8 +161,11 @@ export function PlanTime({ app, name, planner }: { app: string; name: string; pl
   );
 }
 
-/** What will happen to the row: not sent / booked / a problem in words, and Undo for typed changes. */
-export function PlanStatus({ app, planner }: { app: string; planner: Planner }) {
+/**
+ * What will happen to the row: not sent / booked / a problem in words, and Undo for typed changes.
+ * A locked row says why (its stage / status from the grid row), with what would allow it on hover.
+ */
+export function PlanStatus({ app, planner, stage, status }: { app: string; planner: Planner; stage?: string; status?: string }) {
   const row = planner.plan.get(app);
   const err = planner.errors[app];
   const v = planner.cells(app);
@@ -171,9 +174,10 @@ export function PlanStatus({ app, planner }: { app: string; planner: Planner }) 
   // half typed (a date without a time): only on this screen until the time is picked
   if (draftPayload(app, v) === "partial") return <span className={cx(vx.badge, vx.tone.orange)}>Pick the {v.date ? "time" : "date"}</span>;
   const raw = statusOf(row);
-  const s = { ...raw, label: inTrackWords(raw.label, planner.track), title: raw.title ? inTrackWords(raw.title, planner.track) : undefined };
+  const s = row?.state === "locked" ? lockedStatus(planner.track, stage, status)
+    : { ...raw, label: inTrackWords(raw.label, planner.track), title: raw.title ? inTrackWords(raw.title, planner.track) : undefined };
   const canUndo = !!row?.draft && isEditable(row);
-  if (s.tone === "neutral" && !canUndo) return <span className="text-vx-faint">{s.label}</span>;
+  if (s.tone === "neutral" && !canUndo) return <span className={cx("text-vx-faint", s.title && "cursor-help")} title={s.title}>{s.label}</span>;
   return (
     <span className="inline-flex items-center gap-2">
       <span className={cx(vx.badge, vx.tone[s.tone])} title={s.title}>{s.label}</span>
