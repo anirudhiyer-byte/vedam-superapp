@@ -57,7 +57,7 @@ export const slotText = (iso: string | null | undefined, dur: number | null | un
 // ── schedule / reschedule one student ─────────────────────────────────────────
 
 /**
- * Admin / admissions: interviewer (or counsellor), date and time (IST) from the student page. 0164: this only saves
+ * Admin / admissions: interviewer (or counsellor), date and time (IST) from the student page. 0166: this only saves
  * the row's "not sent" values (the same draft the row in the list shows); nothing is booked or emailed until the
  * student is selected in the list and Send is pressed. Google Meet only (no own link); the length is the default.
  */

@@ -17,12 +17,12 @@ stops claiming new work after 2 minutes (was 2.5) to leave time for them.
 
 | Action | Who | What happens |
 |---|---|---|
-| Schedule one student (drawer) | admin, admissions | Picks interviewer and date/time (IST). Since 0164 this only fills the student's row (*Not sent*); the invite goes out from the list with **Send**, like every other row. Google Meet only (no own link, 30 min). |
+| Schedule one student (drawer) | admin, admissions | Picks interviewer and date/time (IST). Since 0166 this only fills the student's row (*Not sent*); the invite goes out from the list with **Send**, like every other row. Google Meet only (no own link, 30 min). |
 | Book from the rows (like the sheet) | admin, admissions | Each row has **Interviewer**, **Date** and **Time** (IST). What you type is saved as *Not sent* (the whole team sees it, it survives a refresh). Select rows → **Send** (a short confirm in the bar, no popup) → each row is booked with its own time, its own Google Meet and its own emails. Up to 40 per send. |
 | Locked rows | admin, admissions | A row can be edited only at *VSAT cleared* / *Interview scheduled* (counselling: *PI cleared* / *Counselling scheduled*), not *Not selected*, and before the meeting is submitted. Other rows are greyed out and the status cell says why, for example *Locked: Offer sent*, *Locked: Not selected* or *Locked: Interview done*; hover shows the rule. Screen only: the database rule (`vsat_interview_plan` / `vsat_counselling_plan`) is unchanged. |
 | Fill times | admin, admissions | In the selection bar: interviewer + start → back-to-back 30-minute times for the selected rows that aren't booked yet (busy times skipped). Only fills the rows; nothing is sent. |
 | Reschedule | admin, admissions | Change the row (then Send → "moved" emails), or the student page form. The same Google event is moved (the Meet link stays the same). **Undo** on a row drops the change. |
-| Cancel | admin, admissions | Needs a reason. The Google event is deleted. Since 0164 the stage does not change. |
+| Cancel | admin, admissions | Needs a reason. The Google event is deleted. Since 0166 the stage does not change. |
 | Status (Done / No-show / Rescheduled) | admin, admissions; the interviewer for their own student | From the drawer, or for up to 100 selected rows from the selection bar (**Set status**). Done / No-show only after the slot starts; Rescheduled any time. Changing an earlier mark needs a reason. The stage does not change. |
 | Join | admin, admissions; the interviewer for their own student | Each row with a Meet link shows **Join interview** and the link. |
 | Retry Meet | admin, admissions | When Google failed 5 times. |
@@ -39,7 +39,7 @@ All rules are enforced in the database functions, not only in the screen:
 - Campus rules from the pipeline apply (`FORBIDDEN` / `NOT_IN_PIPELINE`).
 - Saving without a change does nothing (no event, no email).
 
-## Stages are changed by hand (0164) and the Join link in the row (0163)
+## Stages are changed by hand (0166) and the Join link in the row (0165)
 
 The owner's review (24 Nov 2026): after the exam booking, every stage is changed by hand.
 
@@ -58,7 +58,7 @@ The owner's review (24 Nov 2026): after the exam booking, every stage is changed
 - `vsat_set_attendance_bulk` sets one status for up to 100 selected students; each row goes through the single-row
   function, so every check is the same, and the reply lists the rows it skipped with the reason.
 
-Migrations: `0163_vsat_grid_meet_link`, `0164_vsat_manual_stages` (rollbacks in `supabase/rollback/`, tested on
+Migrations: `0165_vsat_grid_meet_link`, `0166_vsat_manual_stages` (rollbacks in `supabase/rollback/`, tested on
 staging: down inside a block that is undone → every body equals the original md5, ACLs unchanged → staging identical
 afterwards). DB tests: `vsat_grid_meet_link.test.sql` (18), `vsat_manual_stages.test.sql` (25). The older suites were
 updated so their setup moves the stage by hand, as staff now do.
@@ -72,7 +72,7 @@ has its own icon (no emoji); the time shows as a date tile with a live countdown
 "Camera on · Mic on · Quiet place" as chips while the interview is booked or starting.
 The **Join interview** button opens from **10 minutes before** the slot **until the slot ends**. The Meet link
 is only sent by the server inside that window, and the page uses the server clock, not the phone's.
-The card shows the booking once the student is at *Interview scheduled* (since 0164 admissions moves the stage by hand
+The card shows the booking once the student is at *Interview scheduled* (since 0166 admissions moves the stage by hand
 after **Send**; the invite email goes out at Send either way).
 
 ## How the background work runs
@@ -93,7 +93,7 @@ waiting for a Meet link) runs only when called by hand: `GET /api/cron/vsat-inte
 | Job | Rule |
 |---|---|
 | Google event | Made, moved or deleted. 5 tries, then *Failed* (staff can retry or use their own link). Not retried when the time has passed, an email is missing, or staging test mode blocks a guest. |
-| Attendance | Read from Meet after the slot ends. Both joined together → *done*. Nobody / only one person joined → *no-show* (Status column only; since 0164 the stage and pipeline status do not change). Short call or no Meet record → left for staff to mark. Staff can always change it. |
+| Attendance | Read from Meet after the slot ends. Both joined together → *done*. Nobody / only one person joined → *no-show* (Status column only; since 0166 the stage and pipeline status do not change). Short call or no Meet record → left for staff to mark. Staff can always change it. |
 | Emails | Through the existing **VSAT comms** steps (same sender as the other VSAT emails). Waits up to 20 minutes for the Meet link, then sends with the dashboard link. |
 
 ### Who gets which email
@@ -146,7 +146,7 @@ column stays *Creating*.
 ## Production release (only with the owner's OK)
 
 1. Apply migrations 0140 and 0143 on production (in that order). With Phase 3: then 0144 (offers) and 0145 (counselling).
-   Then 0158, 0163 (Join link + reschedule columns) and 0164 (stages by hand, Status, bulk status).
+   Then 0158, 0165 (Join link + reschedule columns) and 0166 (stages by hand, Status, bulk status).
 2. Set the `ADMISSIONS_*` env in Vercel **Production** (`ADMISSIONS_INVITE_MODE=live`).
 3. Merge to `main` (the cron entry comes with `vercel.json`).
 4. In *VSAT → Comms*, check the six interview steps' copy, then turn them on and off test mode.

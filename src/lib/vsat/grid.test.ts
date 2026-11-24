@@ -153,7 +153,7 @@ describe("interviews (0140)", () => {
 });
 
 describe("status columns read as words (cells and CSV)", () => {
-  // 0164 (owner's review): the attendance column is the Status, Done / No-show / Rescheduled ("Joined" became "Done")
+  // 0166 (owner's review): the attendance column is the Status, Done / No-show / Rescheduled ("Joined" became "Done")
   it("interview and counselling status use the drawer's words; unknown values pass through", () => {
     for (const key of ["interview_attendance", "counselling_attendance"]) {
       expect(formatValue("text", key, "scheduled")).toBe("Not marked yet");
@@ -205,7 +205,7 @@ describe("counselling (0158): Counsellor dropdown and Counselling Meet", () => {
   });
 });
 
-describe("0163/0164: Join link, reschedule counts, status columns", () => {
+describe("0165/0166: Join link, reschedule counts, status columns", () => {
   it("meetLink gives only a clean https link that came with its own Meet column", () => {
     const row = { interview_meet_link: "https://meet.google.com/abc-defg-hij", counselling_meet_link: "https://zoom.us/j/123?pwd=x" };
     expect(meetLink(row, "interview_meet")).toBe("https://meet.google.com/abc-defg-hij");

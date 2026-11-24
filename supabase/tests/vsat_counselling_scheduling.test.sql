@@ -85,7 +85,7 @@ returns public.counselling_assignments language sql as $$
   select a from public.counselling_assignments a join public.vsat_pipeline vp on vp.application_id = a.application_id and vp.attempt_no = a.attempt_no
    where a.application_id = p_app $$;
 
--- 0164: booking no longer moves the stage, so admissions moves it by hand (as staff do now)
+-- 0166: booking no longer moves the stage, so admissions moves it by hand (as staff do now)
 create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
 returns jsonb language sql as $$
   select pg_temp.call_as(p_adm, pg_temp.rpc('vsat_move_stage', jsonb_build_object('application_id', p_app, 'to_stage', p_stage)))
@@ -126,7 +126,7 @@ begin
     -- ════ A. one student from the drawer (vsat_assign_counsellor) ════
     r := pg_temp.assign(adm, a1, cs1, t0, '{"auto_meet": true}');
     c := pg_temp.ca(a1);
-    t_name := t_name || text 'A Google Meet booking: Google work queued, 30 min (0164: stage stays PI cleared)';
+    t_name := t_name || text 'A Google Meet booking: Google work queued, 30 min (0166: stage stays PI cleared)';
     t_det := t_det || (format('%s mode=%s sync=%s dur=%s ver=%s', pg_temp.stage(a1), c.meet_mode, c.meet_sync, c.duration_min, c.version));
     t_pass := t_pass || (pg_temp.stage(a1) = 'pi_cleared:active' and c.meet_mode = 'auto' and c.meet_sync = 'pending'
                          and c.duration_min = 30 and c.version = 1 and c.counsellor_id = cs1 and c.zoom_link is null);
@@ -178,7 +178,7 @@ begin
     t_pass := t_pass || (jsonb_array_length(r->'filled') = 2
                          and (r->'filled'->1->>'slot')::timestamptz - (r->'filled'->0->>'slot')::timestamptz = interval '30 minutes');
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_counselling_drafts_send', jsonb_build_object('application_ids', jsonb_build_array(a3, a4, a5, a6))));
-    t_name := t_name || text 'B one Send books every ready row; an empty row is left out (NO_DRAFT); 0164: stages stay';
+    t_name := t_name || text 'B one Send books every ready row; an empty row is left out (NO_DRAFT); 0166: stages stay';
     t_pass := t_pass || (jsonb_array_length(r->'sent') = 3 and r->'skipped'->0->>'code' = 'NO_DRAFT'
                          and pg_temp.stage(a3) = 'pi_cleared:active' and pg_temp.stage(a5) = 'pi_cleared:active');
     t_det := t_det || (r::text || ' ' || pg_temp.stage(a3) || ' ' || pg_temp.stage(a5));
@@ -194,7 +194,7 @@ begin
     r := pg_temp.call_as(adm_ggn, pg_temp.rpc('vsat_counselling_plan', jsonb_build_object('application_ids', jsonb_build_array(a3, g1))));
     t_name := t_name || text 'B plan: another campus is left out'; t_det := t_det || (r::text);
     t_pass := t_pass || (jsonb_array_length(r) = 1 and r->0->>'application_id' = g1);
-    -- 0164: admissions moves the booked students to Counselling scheduled by hand (a5 is left at PI cleared)
+    -- 0166: admissions moves the booked students to Counselling scheduled by hand (a5 is left at PI cleared)
     t_name := t_name || text 'B admissions moves the booked students to counselling_scheduled by hand';
     s := coalesce(pg_temp.move_to(adm, a1, 'counselling_scheduled')->>'message', 'ok') || ' | '
       || coalesce(pg_temp.move_to(adm, a3, 'counselling_scheduled')->>'message', 'ok') || ' | '
@@ -206,7 +206,7 @@ begin
     -- ════ C. cancel and attendance ════
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_cancel_counselling', jsonb_build_object('application_id', a5, 'reason', 'zz student asked')));
     c := pg_temp.ca(a5);
-    t_name := t_name || text 'C cancel: slot removed, stage stays PI cleared (0164), Google event removal queued, cancel email job';
+    t_name := t_name || text 'C cancel: slot removed, stage stays PI cleared (0166), Google event removal queued, cancel email job';
     select string_agg(kind || '/' || notify_status, ',' order by version) into s from public.vsat_counselling_events where application_id = a5;
     t_det := t_det || (format('%s %s %s %s', pg_temp.stage(a5), c.slot_datetime, c.cancel_reason, s));
     t_pass := t_pass || (pg_temp.stage(a5) = 'pi_cleared:active' and c.slot_datetime is null and c.cancelled_at is not null
@@ -225,7 +225,7 @@ begin
     t_name := t_name || text 'C a counsellor cannot mark another counsellor''s student'; t_det := t_det || (r::text);
     t_pass := t_pass || (r->>'message' = 'FORBIDDEN');
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_set_counselling_attendance', jsonb_build_object('application_id', a4, 'attendance', 'no_show', 'reason', 'zz did not join')));
-    t_name := t_name || text 'C no-show → status No-show (0164: stage and pipeline status unchanged)'; t_det := t_det || (pg_temp.stage(a4));
+    t_name := t_name || text 'C no-show → status No-show (0166: stage and pipeline status unchanged)'; t_det := t_det || (pg_temp.stage(a4));
     t_pass := t_pass || (pg_temp.stage(a4) = 'counselling_scheduled:active' and (pg_temp.ca(a4)).attendance::text = 'no_show');
 
     -- ════ D. the student ════

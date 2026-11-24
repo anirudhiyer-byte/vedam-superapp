@@ -63,7 +63,7 @@ create or replace function pg_temp.rpc(p_fn text, p jsonb)
 returns text language sql as $$ select format('select public.%I(%L::jsonb)', p_fn, p::text) $$;
 
 -- interview (given achievements score) → pi_cleared → counselling_scheduled
--- 0164: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now).
+-- 0166: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now).
 -- The optional interviewer verdict is still sent here: test A reads it back as "Final Verdict".
 create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
 returns jsonb language sql as $$
@@ -130,7 +130,7 @@ begin
     r := pg_temp.move_to(adm, b2, 'interview_scheduled');
     r := pg_temp.call_as(int1, pg_temp.rpc('vsat_submit_interview', jsonb_build_object('application_id', b2, 'communication', 4, 'logic', 4,
            'passion', 3, 'achievements', 4, 'why_program', 4, 'cheating_seen', false, 'interviewer_verdict', 'selected')));
-    -- 0164: PI cleared is set by hand
+    -- 0166: PI cleared is set by hand
     r := pg_temp.move_to(adm, b2, 'interviewed');
     r := pg_temp.move_to(adm, b2, 'pi_cleared');
     t_name := t_name || text 'setup: b1, b3 counselling_scheduled; b2 pi_cleared';

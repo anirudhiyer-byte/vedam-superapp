@@ -1,5 +1,5 @@
 -- VSAT grid · the meeting link next to the Interview / Counselling Meet column, and the reschedule counts — tests
--- for migration 0163 (STAGING ONLY)
+-- for migration 0165 (STAGING ONLY)
 --
 -- How to run: paste this whole file into the staging SQL editor, or run it through the Supabase MCP.
 -- The last statement returns one row per test: test | pass | detail.
@@ -173,7 +173,7 @@ begin
     t_pass := t_pass || (pg_temp.links(r) not like '%ZZT-ML-1%' and pg_temp.links(r) not like '%' || l_iv1 || '%');
     update public.interview_assignments set interviewer_id = i1 where application_id = k1;
 
-    -- ════ C. reschedule counts (0163) ════
+    -- ════ C. reschedule counts (0165) ════
     update public.interview_assignments set reschedule_count = 2 where application_id = k1;
     update public.counselling_assignments set reschedule_count = 1 where application_id = k1;
     r := pg_temp.grid(adm, array[k1, k5], '["interview_reschedules", "counselling_reschedules"]');

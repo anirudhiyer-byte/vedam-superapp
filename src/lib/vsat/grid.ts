@@ -185,10 +185,10 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   // 0135 — the results sheet: who, %, percentile, the three sections, VPS, eligibility and the proctoring verdict
   exam: ["registered_name", "campus", "gender", "vsat", "stage", "exam_percentage", "exam_percentile", "exam_section_maths", "exam_section_lr",
          "exam_section_cs", "vps_effective", "eligible_effective", "proctoring"],
-  // 0140 — Meet state and attendance next to the slot; 0164 — status + reschedule count, no interviewer verdict
+  // 0140 — Meet state and attendance next to the slot; 0166 — status + reschedule count, no interviewer verdict
   intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_reschedules",
          "interview_score", "interview_calc_verdict", "stage_changed_at"],
-  // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot; 0164 — status + reschedule count
+  // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot; 0166 — status + reschedule count
   couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_attendance",
           "counselling_reschedules", "counselling_category", "counselling_pct", "offer_expires_at", "stage_changed_at"],
 };
@@ -260,7 +260,7 @@ export function pickSummary(selected: string[], labelOf: (v: string) => string):
   return `${selected.length} selected`;
 }
 
-// ── 0163: the meeting link next to the Meet column (Join button) ─────────────
+// ── 0165: the meeting link next to the Meet column (Join button) ─────────────
 
 /** The key the grid sends the link under, next to each Meet column (only for staff who may join that meeting). */
 export const MEET_LINK_KEY = { interview_meet: "interview_meet_link", counselling_meet: "counselling_meet_link" } as const;

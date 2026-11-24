@@ -1,7 +1,27 @@
--- Rollback of 0164: puts back the ten functions exactly as they were (0081, 0083, 0140, 0145, 0152) and removes
--- vsat_set_attendance_bulk. Stages that were changed by hand while 0164 was live stay as they are (they are history).
-
-drop function if exists public.vsat_set_attendance_bulk(jsonb);
+-- 0166 · VSAT — stages are changed by hand after the exam booking; Status = Done / No-show / Rescheduled (staging first).
+--
+-- The owner's review (24 Nov 2026): "after the slot booking, every stage is updated manually". Until now these moved
+-- the stage on their own; from 0166 they only save their data:
+--   booking / rescheduling an interview or counselling   (was → Interview scheduled / Counselling scheduled)
+--   cancelling it                                        (was → back to VSAT cleared / PI cleared)
+--   marking attendance, by hand or from Google Meet      (was → PI / Counselling not appeared, status Absent)
+--   submitting the interview form                        (was → Interviewed, Not selected on cheating, PI cleared)
+--   submitting the counselling                           (was → Counselled)
+-- The interviewer no longer gives a verdict (it is decided later from the scores); an older client may still send one.
+-- Each form is still saved once only: since the stage no longer moves on, a second submit is refused with
+-- ALREADY_INTERVIEWED / ALREADY_COUNSELLED (before, the moved stage refused it with WRONG_STAGE).
+-- Because the stage no longer follows the booking, these accept the stages of their step (not only "…scheduled"):
+--   interview:   VSAT cleared, Interview scheduled, Interviewed, PI not appeared
+--   counselling: PI cleared, Counselling scheduled, Counselled, Counselling not appeared
+-- Status (the attendance column) is Done / No-show / Rescheduled. "Rescheduled" may be set before the slot; Done and
+-- No-show only once the slot has started (as before). New: vsat_set_attendance_bulk sets one status for up to 100
+-- selected students (each row goes through the single-row function, so every check is the same).
+-- Unchanged on purpose: the exam ("Booked", "Exam taken") and payment stages (asked: exam taken stays automatic);
+-- offer lapse and seat block are handled in a later migration.
+-- Every function below is the live definition (md5 checked on staging) with only the marked lines changed.
+--
+-- Rollback: supabase/rollback/0166_vsat_manual_stages_down.sql
+-- Tests:    supabase/tests/vsat_manual_stages.test.sql
 
 create or replace function public.vsat__iv_schedule(p_app text, p_iid uuid, p_slot timestamptz, p_dur int, p_link text, p_auto boolean,
                                                     p_source text, p_bulk boolean)
@@ -42,10 +62,7 @@ begin
   if live and cur.interviewer_id = p_iid and cur.slot_datetime = p_slot and cur.duration_min = p_dur
      and cur.meet_mode = v_mode and cur.meet_link is not distinct from (case when v_mode = 'manual' then v_link else cur.meet_link end) then
     -- nothing changed: no new event, no email
-    if vp.stage <> 'interview_scheduled' or vp.status <> 'active' then
-      perform public.vsat__move_checked(p_app, 'interview_scheduled', 'active',
-        case when vp.status <> 'active' then 'interview assigned' end, null, p_source);
-    end if;
+    -- vsat_manual_stages: booking no longer moves the stage (stages are changed by hand)
     return jsonb_build_object('application_id', p_app, 'kind', null, 'slot', p_slot, 'changed', false);
   end if;
 
@@ -80,10 +97,7 @@ begin
   end;
 
   perform public.vsat__iv_event(nxt, v_kind, cur, null, p_source, auth.uid());
-  if vp.stage <> 'interview_scheduled' or vp.status <> 'active' then
-    perform public.vsat__move_checked(p_app, 'interview_scheduled', 'active',
-      case when vp.status <> 'active' then 'interview assigned' end, null, p_source);
-  end if;
+  -- vsat_manual_stages: booking no longer moves the stage (stages are changed by hand)
   return jsonb_build_object('application_id', p_app, 'kind', v_kind, 'slot', nxt.slot_datetime, 'changed', true);
 end $$;
 
@@ -126,10 +140,7 @@ begin
   if live and cur.counsellor_id = p_iid and cur.slot_datetime = p_slot and cur.duration_min = p_dur
      and cur.meet_mode = v_mode and cur.zoom_link is not distinct from (case when v_mode = 'manual' then v_link else cur.zoom_link end) then
     -- nothing changed: no new event, no email
-    if vp.stage <> 'counselling_scheduled' or vp.status <> 'active' then
-      perform public.vsat__move_checked(p_app, 'counselling_scheduled', 'active',
-        case when vp.status <> 'active' then 'counselling assigned' end, null, p_source);
-    end if;
+    -- vsat_manual_stages: booking no longer moves the stage (stages are changed by hand)
     return jsonb_build_object('application_id', p_app, 'kind', null, 'slot', p_slot, 'changed', false);
   end if;
 
@@ -162,10 +173,7 @@ begin
   end;
 
   perform public.vsat__cs_event(nxt, v_kind, cur, null, p_source, auth.uid());
-  if vp.stage <> 'counselling_scheduled' or vp.status <> 'active' then
-    perform public.vsat__move_checked(p_app, 'counselling_scheduled', 'active',
-      case when vp.status <> 'active' then 'counselling assigned' end, null, p_source);
-  end if;
+  -- vsat_manual_stages: booking no longer moves the stage (stages are changed by hand)
   return jsonb_build_object('application_id', p_app, 'kind', v_kind, 'slot', nxt.slot_datetime, 'changed', true);
 end $$;
 
@@ -181,7 +189,7 @@ begin
   if char_length(coalesce(reason, '')) < 3 then raise exception 'REASON_REQUIRED' using errcode = '22023'; end if;
   select * into cur from public.interview_assignments a where a.application_id = app and a.attempt_no = vp.attempt_no for update;
   if not found or cur.cancelled_at is not null or cur.slot_datetime is null then raise exception 'NO_INTERVIEW' using errcode = 'P0002'; end if;
-  if cur.submitted_at is not null or vp.stage <> 'interview_scheduled' then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
+  if cur.submitted_at is not null or vp.stage not in ('vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
 
   update public.interview_assignments a
      set cancelled_at = now(), cancelled_by = auth.uid(), cancel_reason = reason,
@@ -193,7 +201,7 @@ begin
    where a.id = cur.id
   returning * into nxt;
   perform public.vsat__iv_event(nxt, 'cancelled', cur, jsonb_build_object('reason', reason), 'manual', auth.uid());
-  perform public.vsat__move_checked(app, 'vsat_cleared', 'active', 'Interview cancelled: ' || reason, 'interview_scheduled', 'manual');
+  -- vsat_manual_stages: cancelling no longer moves the stage back
   return public.vsat_student(app);
 end $$;
 
@@ -209,7 +217,7 @@ begin
   if char_length(coalesce(reason, '')) < 3 then raise exception 'REASON_REQUIRED' using errcode = '22023'; end if;
   select * into cur from public.counselling_assignments a where a.application_id = app and a.attempt_no = vp.attempt_no for update;
   if not found or cur.cancelled_at is not null or cur.slot_datetime is null then raise exception 'NO_COUNSELLING' using errcode = 'P0002'; end if;
-  if cur.submitted_at is not null or vp.stage <> 'counselling_scheduled' then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
+  if cur.submitted_at is not null or vp.stage not in ('pi_cleared', 'counselling_scheduled', 'counselled', 'counselling_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
 
   update public.counselling_assignments a
      set cancelled_at = now(), cancelled_by = auth.uid(), cancel_reason = reason,
@@ -221,7 +229,7 @@ begin
    where a.id = cur.id
   returning * into nxt;
   perform public.vsat__cs_event(nxt, 'cancelled', cur, jsonb_build_object('reason', reason), 'manual', auth.uid());
-  perform public.vsat__move_checked(app, 'pi_cleared', 'active', 'Counselling cancelled: ' || reason, 'counselling_scheduled', 'manual');
+  -- vsat_manual_stages: cancelling no longer moves the stage back
   return public.vsat_student(app);
 end $$;
 
@@ -242,13 +250,13 @@ begin
   mgr := public.vsat__can_manage(v_campus);
   if not mgr and not public.vsat__is_assigned('interviewer', app, vp.attempt_no) then raise exception 'FORBIDDEN' using errcode = '42501'; end if;
   v := public.vsat__txt(p, 'attendance', 20, true);
-  if v not in ('done', 'no_show') then raise exception 'BAD_VALUE: attendance' using errcode = '22023'; end if;
+  if v not in ('done', 'no_show', 'rescheduled') then raise exception 'BAD_VALUE: attendance' using errcode = '22023'; end if;
   reason := public.vsat__txt(p, 'reason', 450, false);
 
   select * into cur from public.interview_assignments a where a.application_id = app and a.attempt_no = vp.attempt_no for update;
   if not found or cur.cancelled_at is not null or cur.slot_datetime is null then raise exception 'NO_INTERVIEW' using errcode = 'P0002'; end if;
-  if cur.submitted_at is not null or vp.stage not in ('interview_scheduled', 'pi_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
-  if cur.slot_datetime > now() then raise exception 'TOO_EARLY' using errcode = '22023'; end if;
+  if cur.submitted_at is not null or vp.stage not in ('vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
+  if v <> 'rescheduled' and cur.slot_datetime > now() then raise exception 'TOO_EARLY' using errcode = '22023'; end if;
   if cur.attendance::text = v then return public.vsat_student(app); end if;
   if cur.attendance <> 'scheduled' then
     if not mgr then raise exception 'FORBIDDEN' using errcode = '42501'; end if;
@@ -262,11 +270,7 @@ begin
   returning * into nxt;
   perform public.vsat__iv_event(nxt, 'attendance', cur,
     jsonb_build_object('attendance', v, 'from', cur.attendance, 'source', 'manual', 'reason', reason), 'manual', auth.uid());
-  if v = 'no_show' and vp.status = 'active' then
-    perform public.vsat__move_checked(app, 'pi_not_appeared', 'absent', coalesce(reason, 'Did not join the interview'), vp.stage, 'manual');
-  elsif v = 'done' and vp.status = 'absent' then
-    perform public.vsat__move_checked(app, 'interview_scheduled', 'active', reason, vp.stage, 'manual');
-  end if;
+  -- vsat_manual_stages: the status never moves the stage (stages are changed by hand)
   return public.vsat_student(app);
 end $function$;
 
@@ -287,13 +291,13 @@ begin
   mgr := public.vsat__can_manage(v_campus);
   if not mgr and not public.vsat__is_assigned('counsellor', app, vp.attempt_no) then raise exception 'FORBIDDEN' using errcode = '42501'; end if;
   v := public.vsat__txt(p, 'attendance', 20, true);
-  if v not in ('done', 'no_show') then raise exception 'BAD_VALUE: attendance' using errcode = '22023'; end if;
+  if v not in ('done', 'no_show', 'rescheduled') then raise exception 'BAD_VALUE: attendance' using errcode = '22023'; end if;
   reason := public.vsat__txt(p, 'reason', 450, false);
 
   select * into cur from public.counselling_assignments a where a.application_id = app and a.attempt_no = vp.attempt_no for update;
   if not found or cur.cancelled_at is not null or cur.slot_datetime is null then raise exception 'NO_COUNSELLING' using errcode = 'P0002'; end if;
-  if cur.submitted_at is not null or vp.stage not in ('counselling_scheduled', 'counselling_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
-  if cur.slot_datetime > now() then raise exception 'TOO_EARLY' using errcode = '22023'; end if;
+  if cur.submitted_at is not null or vp.stage not in ('pi_cleared', 'counselling_scheduled', 'counselled', 'counselling_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
+  if v <> 'rescheduled' and cur.slot_datetime > now() then raise exception 'TOO_EARLY' using errcode = '22023'; end if;
   if cur.attendance::text = v then return public.vsat_student(app); end if;
   if cur.attendance <> 'scheduled' then
     if not mgr then raise exception 'FORBIDDEN' using errcode = '42501'; end if;
@@ -307,11 +311,7 @@ begin
   returning * into nxt;
   perform public.vsat__cs_event(nxt, 'attendance', cur,
     jsonb_build_object('attendance', v, 'from', cur.attendance, 'source', 'manual', 'reason', reason), 'manual', auth.uid());
-  if v = 'no_show' and vp.status = 'active' then
-    perform public.vsat__move_checked(app, 'counselling_not_appeared', 'absent', coalesce(reason, 'Did not join the counselling session'), vp.stage, 'manual');
-  elsif v = 'done' and vp.status = 'absent' then
-    perform public.vsat__move_checked(app, 'counselling_scheduled', 'active', reason, vp.stage, 'manual');
-  end if;
+  -- vsat_manual_stages: the status never moves the stage (stages are changed by hand)
   return public.vsat_student(app);
 end $function$;
 
@@ -355,13 +355,7 @@ begin
     returning * into nxt;
   end if;
   perform public.vsat__iv_event(nxt, 'attendance', cur, det || jsonb_build_object('source', 'auto'), 'auto', null);
-  if res = 'no_show' then
-    select * into vp from public.vsat_pipeline where application_id = cur.application_id;
-    if found and vp.attempt_no = cur.attempt_no and vp.stage = 'interview_scheduled' and vp.status = 'active' then
-      perform public.vsat__move(cur.application_id, 'pi_not_appeared', 'absent',
-        'Did not join the Google Meet (checked automatically)', 'auto', null, 'interview_scheduled');
-    end if;
-  end if;
+  -- vsat_manual_stages: a no-show seen in Meet only sets the status; the stage is changed by hand
   return jsonb_build_object('applied', true);
 end $function$;
 
@@ -405,13 +399,7 @@ begin
     returning * into nxt;
   end if;
   perform public.vsat__cs_event(nxt, 'attendance', cur, det || jsonb_build_object('source', 'auto'), 'auto', null);
-  if res = 'no_show' then
-    select * into vp from public.vsat_pipeline where application_id = cur.application_id;
-    if found and vp.attempt_no = cur.attempt_no and vp.stage = 'counselling_scheduled' and vp.status = 'active' then
-      perform public.vsat__move(cur.application_id, 'counselling_not_appeared', 'absent',
-        'Did not join the Google Meet (checked automatically)', 'auto', null, 'counselling_scheduled');
-    end if;
-  end if;
+  -- vsat_manual_stages: a no-show seen in Meet only sets the status; the stage is changed by hand
   return jsonb_build_object('applied', true);
 end $function$;
 
@@ -432,9 +420,11 @@ begin
   select public.vsat__campus_key(am.campus_applied) into v_campus from public.application_manager am where am.application_id = app;
   mgr := public.vsat__can_manage(v_campus);
   if not mgr and not public.vsat__is_assigned('interviewer', app, vp.attempt_no) then raise exception 'FORBIDDEN' using errcode = '42501'; end if;
-  if vp.stage <> 'interview_scheduled' then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
+  if vp.stage not in ('vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
   select * into ia from public.interview_assignments a where a.application_id = app and a.attempt_no = vp.attempt_no order by a.created_at desc limit 1;
   if not found then raise exception 'NEEDS_INTERVIEWER' using errcode = '22023'; end if;
+  -- vsat_manual_stages: the stage no longer moves on after the form, so "submit once" is checked here
+  if ia.submitted_at is not null then raise exception 'ALREADY_INTERVIEWED' using errcode = '22023'; end if;
 
   -- the five parts: whole numbers 1–5
   foreach k in array array['communication', 'logic', 'passion', 'achievements', 'why_program'] loop
@@ -450,8 +440,9 @@ begin
     end loop;
   end if;
   cheat := public.vsat__bool(p, 'cheating_seen', true);
-  verdict := public.vsat__txt(p, 'interviewer_verdict', 20, true);
-  if verdict not in ('selected', 'maybe', 'not_selected') then raise exception 'BAD_VALUE: interviewer_verdict' using errcode = '22023'; end if;
+  -- vsat_manual_stages: the interviewer gives no verdict (decided later in Interview Evaluation); an old client may still send one
+  verdict := public.vsat__txt(p, 'interviewer_verdict', 20, false);
+  if verdict is not null and verdict not in ('selected', 'maybe', 'not_selected') then raise exception 'BAD_VALUE: interviewer_verdict' using errcode = '22023'; end if;
   fin := public.vsat__txt(p, 'financial_capability', 10, false);
   if fin is not null and fin not in ('low', 'medium', 'high') then raise exception 'BAD_VALUE: financial_capability' using errcode = '22023'; end if;
 
@@ -480,12 +471,7 @@ begin
            interview_result_1 = case when cheat then 'not_selected' else calc->>'suggested_verdict' end where application_id = app;
   end if;
 
-  perform public.vsat__move(app, 'interviewed', 'active', null, 'manual', auth.uid(), null);
-  if cheat then
-    perform public.vsat__move(app, 'interviewed', 'not_selected', 'cheating seen in interview', 'auto', auth.uid(), null);
-  elsif calc->>'suggested_verdict' = 'selected' and verdict = 'selected' then
-    perform public.vsat__move(app, 'pi_cleared', 'active', 'calculated and interviewer verdicts both selected', 'auto', auth.uid(), null);
-  end if;
+  -- vsat_manual_stages: submitting only saves the form; the stage is changed by hand
   return jsonb_build_object('score', calc->'score', 'ranking', calc->'ranking', 'calc_verdict', calc->'suggested_verdict',
                             'interviewer_verdict', verdict, 'stage', (select vp2.stage from public.vsat_pipeline vp2 where vp2.application_id = app),
                             'status', (select vp2.status from public.vsat_pipeline vp2 where vp2.application_id = app));
@@ -505,9 +491,11 @@ begin
   select public.vsat__campus_key(am.campus_applied) into v_campus from public.application_manager am where am.application_id = app;
   mgr := public.vsat__can_manage(v_campus);
   if not mgr and not public.vsat__is_assigned('counsellor', app, vp.attempt_no) then raise exception 'FORBIDDEN' using errcode = '42501'; end if;
-  if vp.stage <> 'counselling_scheduled' then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
+  if vp.stage not in ('pi_cleared', 'counselling_scheduled', 'counselled', 'counselling_not_appeared') then raise exception 'WRONG_STAGE' using errcode = '22023'; end if;
   select * into ca from public.counselling_assignments c where c.application_id = app and c.attempt_no = vp.attempt_no order by c.created_at desc limit 1;
   if not found then raise exception 'NEEDS_COUNSELLOR' using errcode = '22023'; end if;
+  -- vsat_manual_stages: the stage no longer moves on after the form, so "submit once" is checked here
+  if ca.submitted_at is not null then raise exception 'ALREADY_COUNSELLED' using errcode = '22023'; end if;
 
   pre := public.vsat_scholarship_preview(app);
   step := (pre->>'auto_step')::numeric;  -- sheet column BK, never from the request
@@ -534,7 +522,44 @@ begin
            scholarship_percentage = actual where application_id = app;
   end if;
 
-  perform public.vsat__move(app, 'counselled', 'active', null, 'manual', auth.uid(), null);
+  -- vsat_manual_stages: submitting only saves the counselling; the stage is changed by hand
   return jsonb_build_object('step', step, 'calculated_pct', fin->'pct', 'actual_pct', actual, 'category', pre->'category', 'bonus_applied', fin->'bonus_applied',
-                            'special_rating', rating, 'jee_floor_applied', fin->'jee_floor_applied', 'stage', 'counselled');
+                            'special_rating', rating, 'jee_floor_applied', fin->'jee_floor_applied', 'stage', (select vp2.stage from public.vsat_pipeline vp2 where vp2.application_id = app));
 end $$;
+
+-- ── several students at once: one status for the selected rows ─────────────────────────────────────────────
+create or replace function public.vsat_set_attendance_bulk(p jsonb)
+returns jsonb language plpgsql security definer set search_path to '' as $$
+declare v_track text; v text; reason text; ids text[]; one text; done text[] := '{}'; skipped jsonb := '[]'::jsonb; n int;
+begin
+  if auth.uid() is null then raise exception 'NOT_SIGNED_IN' using errcode = '42501'; end if;
+  perform public.vsat__check_keys(p, array['track', 'application_ids', 'attendance', 'reason']);
+  v_track := public.vsat__txt(p, 'track', 20, true);
+  if v_track not in ('interview', 'counselling') then raise exception 'BAD_VALUE: track' using errcode = '22023'; end if;
+  if jsonb_typeof(p->'application_ids') is distinct from 'array' then raise exception 'BAD_VALUE: application_ids' using errcode = '22023'; end if;
+  n := jsonb_array_length(p->'application_ids');
+  if n = 0 or n > 100 or exists (select 1 from jsonb_array_elements(p->'application_ids') x
+                                  where jsonb_typeof(x) <> 'string' or char_length(x #>> '{}') not between 1 and 64) then
+    raise exception 'BAD_VALUE: application_ids' using errcode = '22023';
+  end if;
+  ids := array(select distinct x from jsonb_array_elements_text(p->'application_ids') x order by 1);
+  v := public.vsat__txt(p, 'attendance', 20, true);
+  if v not in ('done', 'no_show', 'rescheduled') then raise exception 'BAD_VALUE: attendance' using errcode = '22023'; end if;
+  reason := public.vsat__txt(p, 'reason', 450, false);
+  foreach one in array ids loop
+    begin
+      if v_track = 'interview' then
+        perform public.vsat_set_interview_attendance(jsonb_strip_nulls(jsonb_build_object('application_id', one, 'attendance', v, 'reason', reason)));
+      else
+        perform public.vsat_set_counselling_attendance(jsonb_strip_nulls(jsonb_build_object('application_id', one, 'attendance', v, 'reason', reason)));
+      end if;
+      done := done || one;
+    exception when others then
+      -- the row keeps its status; the code says why (FORBIDDEN, NO_INTERVIEW, TOO_EARLY, REASON_REQUIRED, …)
+      skipped := skipped || jsonb_build_object('application_id', one, 'code', split_part(sqlerrm, ':', 1));
+    end;
+  end loop;
+  return jsonb_build_object('updated', to_jsonb(done), 'skipped', skipped);
+end $$;
+revoke all on function public.vsat_set_attendance_bulk(jsonb) from public, anon;
+grant execute on function public.vsat_set_attendance_bulk(jsonb) to authenticated;
