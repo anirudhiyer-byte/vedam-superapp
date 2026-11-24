@@ -178,17 +178,21 @@ begin
     t_name := t_name || text 'A 45-minute interview saved'; t_det := t_det || (left(coalesce(r->'interview', r)::text, 200));
     t_pass := t_pass || ((r->'interview'->>'duration_min')::int = 45);
 
+    -- 0167: Google Meet only. A pasted link is refused; a booking from before 0167 with one becomes Google Meet when moved.
     r := pg_temp.assign(adm_all, a4, int2, ta + interval '3 hours', '{"meet_link": "https://meet.google.com/zzt-abcd-efg"}');
-    t_name := t_name || text 'A own link → manual, nothing for Google to do';
-    t_det := t_det || (left(coalesce(r->'interview', r)::text, 200));
-    t_pass := t_pass || (r->'interview'->>'meet_mode' = 'manual' and r->'interview'->>'meet_sync' = 'none'
-                         and r->'interview'->>'meet_link' = 'https://meet.google.com/zzt-abcd-efg');
+    t_name := t_name || text 'A a pasted link is refused (0167: Google Meet only), nothing booked';
+    t_det := t_det || (left(r::text, 200));
+    t_pass := t_pass || (r->>'message' = 'BAD_VALUE: meet_link'
+                         and not exists (select 1 from public.interview_assignments x where x.application_id = a4));
+    r := pg_temp.assign(adm_all, a4, int2, ta + interval '3 hours');
+    update public.interview_assignments set meet_mode = 'manual', meet_link = 'https://meet.google.com/zzt-abcd-efg', meet_sync = 'none'
+     where application_id = a4;  -- how a booking with a pasted link from before 0167 looks
     r := pg_temp.assign(adm_all, a4, int2, ta + interval '4 hours');
-    t_name := t_name || text 'A moving an own-link interview keeps the link';
+    t_name := t_name || text 'A moving an old own-link interview makes it Google Meet (0167): link cleared, Google queued';
     t_det := t_det || (left(coalesce(r->'interview', r)::text, 200));
-    t_pass := t_pass || (r->'interview'->>'meet_mode' = 'manual' and r->'interview'->>'meet_link' = 'https://meet.google.com/zzt-abcd-efg');
+    t_pass := t_pass || (r->'interview'->>'meet_mode' = 'auto' and r->'interview'->>'meet_link' is null and r->'interview'->>'meet_sync' = 'pending');
     r := pg_temp.assign(adm_all, a4, int2, ta + interval '4 hours', '{"auto_meet": true}');
-    t_name := t_name || text 'A switching to Google Meet clears the own link and queues Google';
+    t_name := t_name || text 'A asking for Google Meet again keeps it Google Meet (no link yet, Google queued)';
     t_det := t_det || (left(coalesce(r->'interview', r)::text, 200));
     t_pass := t_pass || (r->'interview'->>'meet_mode' = 'auto' and r->'interview'->>'meet_link' is null and r->'interview'->>'meet_sync' = 'pending');
 
@@ -200,14 +204,15 @@ begin
     t_det := t_det || (left(coalesce(r->'interview', r)::text, 200));
     t_pass := t_pass || (r->'interview'->>'meet_link' = 'https://meet.google.com/zzt-goog-aaa' and r->'interview'->>'meet_sync' = 'pending'
                          and r->'interview'->>'calendar_event_id' = 'vizztest3');
-    -- pretend Google made a1's event, then switch it to an own link
+    -- pretend Google made a1's event, then try to switch it to a pasted link
     update public.interview_assignments set calendar_event_id = 'vizztest1', meet_link = 'https://meet.google.com/zzt-goog-bbb',
            meet_code = 'zzt-goog-bbb', meet_sync = 'ok' where application_id = a1;
     r := pg_temp.assign(adm_all, a1, int1, ta + interval '2 hours', '{"meet_link": "https://meet.google.com/zzt-own1-abc"}');
-    t_name := t_name || text 'A switching a Google interview to an own link queues removing the Google event';
-    t_det := t_det || (left(coalesce(r->'interview', r)::text, 200));
-    t_pass := t_pass || (r->'interview'->>'meet_mode' = 'manual' and r->'interview'->>'meet_sync' = 'pending'
-                         and r->'interview'->>'meet_link' = 'https://meet.google.com/zzt-own1-abc');
+    t_name := t_name || text 'A a Google interview cannot be switched to a pasted link (0167); it stays as it was';
+    select * into iv from public.interview_assignments where application_id = a1;
+    t_det := t_det || (left(r::text, 120) || ' | ' || iv.meet_mode || ' ' || iv.meet_sync || ' ' || coalesce(iv.meet_link, '-'));
+    t_pass := t_pass || (r->>'message' = 'BAD_VALUE: meet_link' and iv.meet_mode = 'auto' and iv.meet_sync = 'ok'
+                         and iv.meet_link = 'https://meet.google.com/zzt-goog-bbb' and iv.slot_datetime = ta + interval '2 hours');
 
     -- ════ B. bulk ════
     r := pg_temp.call_as(int1, pg_temp.rpc('vsat_schedule_interviews_bulk',
@@ -317,7 +322,7 @@ begin
     update public.interview_assignments set slot_datetime = now() + interval '5 minutes' where application_id = a1;
     r := pg_temp.call_as(lead, 'select public.vsat_my_interview()');
     t_name := t_name || text 'E inside the window: open, with the Meet link'; t_det := t_det || (r::text);
-    t_pass := t_pass || (r->>'state' = 'open' and r->>'meet_link' = 'https://meet.google.com/zzt-own1-abc');
+    t_pass := t_pass || (r->>'state' = 'open' and r->>'meet_link' = 'https://meet.google.com/zzt-goog-bbb');
     update public.interview_assignments set slot_datetime = now() - interval '40 minutes' where application_id = a1;
     r := pg_temp.call_as(lead, 'select public.vsat_my_interview()');
     t_name := t_name || text 'E after the end: ended, no link'; t_det := t_det || (r::text);
@@ -379,15 +384,15 @@ begin
       from public.vsat_interview_events e where e.application_id = a1;
     t_det := t_det || (s || ' ' || left(r::text, 250));
     t_pass := t_pass || (jsonb_array_length(r) = 1 and job->>'kind' = 'rescheduled' and job->'baseline' = 'null'::jsonb
-                         and job->'student'->>'email' = 'zzt-ivs-1@example.invalid' and job->>'meet_link' = 'https://meet.google.com/zzt-own1-abc'
+                         and job->'student'->>'email' = 'zzt-ivs-1@example.invalid' and job->>'meet_link' = 'https://meet.google.com/zzt-goog-bbb'
                          and job->'interviewer'->>'email' = 'zztest-ivs-int1@example.invalid'
-                         and s = 'skipped:superseded,skipped:superseded,sending:-');
+                         and s = 'skipped:superseded,sending:-');  -- 0167: the refused pasted-link save added no event
     r := pg_temp.call_svc(pg_temp.rpc('vsat_interview_notice_done', jsonb_build_object('id', job->>'id', 'status', 'sent',
            'detail', jsonb_build_object('sent_to', jsonb_build_array('student', 'interviewer')))));
     t_name := t_name || text 'G job marked sent'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'updated' = 'true');
     r := pg_temp.call_svc(pg_temp.rpc('vsat_interview_notice_done', jsonb_build_object('id', job->>'id', 'status', 'sent')));
     t_name := t_name || text 'G a job that is not being sent cannot be marked again'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'updated' = 'false');
-    r := pg_temp.assign(adm_all, a1, int1, ta + interval '7 hours', '{"meet_link": "https://meet.google.com/zzt-own1-abc"}');
+    r := pg_temp.assign(adm_all, a1, int1, ta + interval '7 hours');
     r := pg_temp.call_svc(pg_temp.rpc('vsat_interview_notices_claim', jsonb_build_object('wait_for_meet', false, 'application_ids', jsonb_build_array(a1))));
     job := r->0;
     t_name := t_name || text 'G next move: the baseline is what was last emailed (old time), so the email says "moved"';
@@ -429,9 +434,9 @@ begin
                          and (r->'facets'->'interviewer'->>'none')::int = 3
                          and r->'facets'->'interviewer_name'->>(int1::text) = 'ZZTEST zztest-ivs-int1'
                          and (r->'facets'->'stage'->>'interview_scheduled')::int = 3);
-    t_name := t_name || text 'H Interview Meet column: own link / ready / creating';
+    t_name := t_name || text 'H Interview Meet column: creating (a1 moved, Google queued) / ready / creating';
     select string_agg(x->>'application_id' || '=' || coalesce(x->>'interview_meet', '-'), ',' order by x->>'application_id') into s from jsonb_array_elements(r->'rows') x;
-    t_det := t_det || (s); t_pass := t_pass || (s = 'ZZT-IVS-1=own_link,ZZT-IVS-2=ready,ZZT-IVS-6=creating');
+    t_det := t_det || (s); t_pass := t_pass || (s = 'ZZT-IVS-1=creating,ZZT-IVS-2=ready,ZZT-IVS-6=creating');  -- 0167: a1 is no longer an own link
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', jsonb_build_object('scope', scope, 'interviewer_ids', '["none"]'::jsonb,
            'search', jsonb_build_object('column', '_any', 'values', '["ZZT-IVS"]'::jsonb), 'columns', '["interview_meet"]'::jsonb)));
     t_name := t_name || text 'H "no interviewer" option: a3 (cancelled), a7, a8';

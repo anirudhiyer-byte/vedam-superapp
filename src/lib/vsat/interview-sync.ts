@@ -90,7 +90,7 @@ export async function syncOne(g: GoogleAccount, row: SyncRow, now = Date.now(), 
   const wantEvent = !row.cancelled && !!row.slot_start && row.meet_mode === "auto" && !!row.interviewer;
   try {
     if (!wantEvent) {
-      // cancelled, or switched to an own link → the Google event (if any) goes
+      // cancelled (or an old booking with a pasted link: Google Meet only since 0167) → the Google event (if any) goes
       if (!row.calendar_event_id) return { outcome: "none" };
       await g.deleteEvent(row.calendar_event_id);
       return { outcome: "none", deleted_event_id: row.calendar_event_id };

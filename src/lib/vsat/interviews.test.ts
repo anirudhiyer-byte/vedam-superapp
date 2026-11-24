@@ -64,7 +64,7 @@ describe("Meet state", () => {
   });
   it("explains Google failures in plain words, never raw text", () => {
     expect(meetErrorText("test_mode: an attendee is not on ADMISSIONS_TEST_EMAILS")).toMatch(/test mode/i);
-    expect(meetErrorText("403 {\"error\": ...}")).toBe("Google did not accept the request. Try again, or use your own link.");
+    expect(meetErrorText("403 {\"error\": ...}")).toBe("Google did not accept the request. Try again.");
     expect(meetErrorText(null)).toBe("");
   });
 });

@@ -252,14 +252,17 @@ begin
                          and (select slot_datetime from public.interview_assignments where application_id = a3) = t0 + interval '1 day 2 hours');
     select count(*) into n from public.vsat_interview_events where application_id = a3 and kind = 'rescheduled';
     t_name := t_name || text 'D the booked student who moved gets a "moved" email job'; t_det := t_det || (n::text); t_pass := t_pass || (n = 1);
-    -- own-link booking moved from the row keeps its own link
+    -- an old booking with a pasted link (from before 0167) moved from the row becomes Google Meet
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a6, 'interviewer_id', int2::text,
-                                    'slot_datetime', pg_temp.iso(t0 + interval '2 days'), 'meet_link', 'https://zoom.us/j/zztest6')));
+                                    'slot_datetime', pg_temp.iso(t0 + interval '2 days'))));
+    update public.interview_assignments set meet_mode = 'manual', meet_link = 'https://zoom.us/j/zztest6', meet_sync = 'none'
+     where application_id = a6;  -- how a booking with a pasted link from before 0167 looks
     r := pg_temp.draft(adm, a6, int2, t0 + interval '2 days 1 hour');
     r := pg_temp.send(adm, array[a6]);
     select * into iv from public.interview_assignments where application_id = a6;
-    t_name := t_name || text 'D an own-link booking moved from the row keeps its own link'; t_det := t_det || (r::text || ' | ' || iv.meet_mode || ' ' || coalesce(iv.meet_link, '-'));
-    t_pass := t_pass || (r->'sent'->0->>'kind' = 'rescheduled' and iv.meet_mode = 'manual' and iv.meet_link = 'https://zoom.us/j/zztest6');
+    t_name := t_name || text 'D an old own-link booking moved from the row becomes Google Meet (0167)';
+    t_det := t_det || (r::text || ' | ' || iv.meet_mode || ' ' || iv.meet_sync || ' ' || coalesce(iv.meet_link, '-'));
+    t_pass := t_pass || (r->'sent'->0->>'kind' = 'rescheduled' and iv.meet_mode = 'auto' and iv.meet_link is null and iv.meet_sync = 'pending');
     -- swap: two booked students exchanging times can't be done in one send (each waits for the other)
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', s1, 'interviewer_id', int2::text,
                                     'slot_datetime', pg_temp.iso(t0 + interval '4 days'), 'auto_meet', true)));

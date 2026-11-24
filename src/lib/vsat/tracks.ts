@@ -26,7 +26,6 @@ export type Track = {
   stepStages: readonly string[];
   /** request keys of the booking functions */
   hostParam: "interviewer_id" | "counsellor_id";
-  linkParam: "meet_link" | "meeting_link";
   /** the key the server jobs use for the host in what they return */
   hostKey: "interviewer" | "counsellor";
   rpc: {
@@ -52,7 +51,7 @@ export const TRACKS: Record<TrackKey, Track> = {
     key: "interview", noun: "interview", Noun: "Interview", host: "interviewer", Host: "Interviewer",
     stage: "interview_scheduled", fromStage: "vsat_cleared", fromStageLabel: "VSAT cleared",
     stepStages: ["vsat_cleared", "interview_scheduled", "interviewed", "pi_not_appeared"],
-    hostParam: "interviewer_id", linkParam: "meet_link", hostKey: "interviewer",
+    hostParam: "interviewer_id", hostKey: "interviewer",
     rpc: {
       assign: "vsat_assign_interview", cancel: "vsat_cancel_interview", attendance: "vsat_set_interview_attendance",
       meetRetry: "vsat_interview_meet_retry", my: "vsat_my_interview",
@@ -71,7 +70,7 @@ export const TRACKS: Record<TrackKey, Track> = {
     key: "counselling", noun: "counselling session", Noun: "Counselling session", host: "counsellor", Host: "Counsellor",
     stage: "counselling_scheduled", fromStage: "pi_cleared", fromStageLabel: "PI cleared",
     stepStages: ["pi_cleared", "counselling_scheduled", "counselled", "counselling_not_appeared"],
-    hostParam: "counsellor_id", linkParam: "meeting_link", hostKey: "counsellor",
+    hostParam: "counsellor_id", hostKey: "counsellor",
     rpc: {
       assign: "vsat_assign_counsellor", cancel: "vsat_cancel_counselling", attendance: "vsat_set_counselling_attendance",
       meetRetry: "vsat_counselling_meet_retry", my: "vsat_my_counselling",

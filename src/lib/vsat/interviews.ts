@@ -113,7 +113,7 @@ export function meetErrorText(err: string | null | undefined): string {
   if (e.startsWith("test_mode")) return "Staging test mode: one of the emails is not on the test list, so no invite was sent.";
   if (e.startsWith("missing_email")) return "The student or the interviewer has no email, so the invite could not be made.";
   if (e.startsWith("time_passed")) return "The interview time had already passed.";
-  if (e) return "Google did not accept the request. Try again, or use your own link.";
+  if (e) return "Google did not accept the request. Try again.";  // 0167: Google Meet only, no pasted link
   return "";
 }
 

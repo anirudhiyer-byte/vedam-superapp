@@ -148,8 +148,9 @@ begin
     t_pass := t_pass || (r->>'message' = 'NOT_A_COUNSELLOR');
     r := pg_temp.assign(adm, a2, cs1, t0 + interval '1 hour', '{"meeting_link": "https://zoom.us/j/123"}');
     c := pg_temp.ca(a2);
-    t_name := t_name || text 'A own link: no Google event, link kept'; t_det := t_det || (format('%s %s %s', c.meet_mode, c.meet_sync, c.zoom_link));
-    t_pass := t_pass || (c.meet_mode = 'manual' and c.meet_sync = 'none' and c.zoom_link = 'https://zoom.us/j/123');
+    t_name := t_name || text 'A a pasted link is refused (0167: Google Meet only); nothing booked';
+    t_det := t_det || (format('%s | %s', coalesce(r->>'message', 'not refused'), coalesce(c.id::text, 'no row')));
+    t_pass := t_pass || (r->>'message' = 'BAD_VALUE: meet_link' and c.id is null);
     r := pg_temp.assign(adm, a1, cs2, t0 + interval '2 hours', '{"duration_min": 45}');
     c := pg_temp.ca(a1);
     t_name := t_name || text 'A move: new counsellor, time and length; rescheduled event, Meet kept as Google';

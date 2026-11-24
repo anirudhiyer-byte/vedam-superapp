@@ -32,7 +32,7 @@ The dashboard card that showed the interview now also follows the student after 
 |---|---|
 | Interview done, waiting for the result | "Your interview is done" · We'll email you the result. |
 | PI cleared (active), no session yet | "You've cleared the interview" · We'll book your counselling session soon and email you the time. |
-| Session booked (stage *Counselling scheduled*, moved by hand since 0166) | "Your counselling session is booked" + date tile, countdown, Join button (opens 10 minutes before) |
+| Session sent (at *PI cleared* (active) or *Counselling scheduled*; 0168) | "Your counselling session is booked" + date tile, countdown, Join button (opens 10 minutes before) |
 | Live / missed / done | Same as the interview card, with "counselling session" |
 
 On hold at PI cleared → the neutral "Your interview is done" card (the student is not told they cleared).
@@ -41,13 +41,16 @@ Copy: `counsellingCardCopy` in `src/lib/vsat/interviews.ts` (needs the owner's a
 ## Database (0145)
 
 - `counselling_assignments` + the interview columns (duration, Meet mode / sync, version, cancel, attendance source).
-  The link column stays `zoom_link` (Google Meet or own link). One row per student + attempt (unique index).
+  The link column stays `zoom_link` (Google Meet; an own link only on rows from before 0167). One row per student +
+  attempt (unique index).
 - `vsat_counselling_events` (history + email outbox), `vsat_counselling_drafts` (typed row values).
 - Functions: as 0140 / 0143 with `counselling` names. `vsat_assign_counsellor` keeps its request keys
   (`meeting_link`) and gains `duration_min`, `auto_meet`. New error codes: `ALREADY_COUNSELLED`, `NO_COUNSELLING`.
 - `vsat_my_counselling()`: the student's session, plus `step` (interview / interviewed / pi_cleared / counselling).
 - Existing counselling rows (120 on staging, all with a hand-pasted link) are `manual`: no Google event, no email,
   unless someone reschedules them.
+- Since 0167 (Google Meet only) `meeting_link` and `auto_meet: false` are refused (`BAD_VALUE: meet_link`); an old
+  `manual` row becomes Google Meet the next time it is moved or re-sent. See `interview-scheduling.md`.
 
 Server: `/api/vsat/counselling/sync` (send now after a save; shared code `src/lib/vsat/sync-route.ts`) and the VSAT
 cron `/api/cron/vsat-interviews` (now also runs the counselling Google, attendance and email jobs).
@@ -76,4 +79,5 @@ cron `/api/cron/vsat-interviews` (now also runs the counselling Google, attendan
 
 Apply 0140 → 0143 → 0144 → **0145**. Uses the same `ADMISSIONS_*` Google account as the interviews. Then turn on
 the 6 counselling steps in VSAT comms (test mode first). The grid change is **0158** (after 0140; no settings).
-Then **0165** (Join link + reschedule columns) and **0166** (stages by hand, Status, bulk status).
+Then **0165** (Join link + reschedule columns), **0166** (stages by hand, Status, bulk status), **0167** (Google Meet
+only) and **0168** (the student sees the booking once it is sent).
