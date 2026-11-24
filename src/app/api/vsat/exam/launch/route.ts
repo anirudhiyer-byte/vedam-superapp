@@ -146,7 +146,9 @@ export async function POST(req: Request) {
     if (!isWheeboxOk(assignRes)) return json({ ok: false, code: "WHEEBOX_ASSIGN_FAILED", ...(isAdmin ? { detail: assignRes } : {}) }, 502);
     await admin
       .from("application_manager")
-      .update(kind === "mock" ? { mock_assigned: true } : { exam_assigned: true })
+      // record the mock launch day separately from the real exam date — it's the Wheebox
+      // result-date anchor for the mock bulk pull (latest launch wins).
+      .update(kind === "mock" ? { mock_assigned: true, mock_launched_at: new Date().toISOString() } : { exam_assigned: true })
       .eq("lead_id", user.id);
 
     // ── get the launch link ────────────────────────────────────────────────────
