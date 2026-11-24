@@ -67,7 +67,7 @@ create or replace function pg_temp.rpc(p_fn text, p jsonb)
 returns text language sql as $$ select format('select public.%I(%L::jsonb)', p_fn, p::text) $$;
 
 -- interview (given achievements score) → pi_cleared → counselling_scheduled
--- 0164: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now)
+-- 0166: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now)
 create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
 returns jsonb language sql as $$
   select pg_temp.call_as(p_adm, pg_temp.rpc('vsat_move_stage', jsonb_build_object('application_id', p_app, 'to_stage', p_stage)))
@@ -190,11 +190,11 @@ begin
     t_name := t_name || text 'C sending actual_pct / actual_reason is refused, admissions too'; t_det := t_det || r::text;
     t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
     r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b1, 'remarks', 'zz ok')));
-    -- 0164: submitting no longer moves the stage (was: → counselled)
+    -- 0166: submitting no longer moves the stage (was: → counselled)
     t_name := t_name || text 'C submit with only remarks → step = auto_step, % = calculated, stage unchanged'; t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'step')::numeric = (pre->>'auto_step')::numeric and (r->>'actual_pct')::numeric = (r->>'calculated_pct')::numeric
                          and r->>'stage' = 'counselling_scheduled');
-    t_name := t_name || text 'C saved: chosen_step = auto, actual = calculated, no reason; no stage move recorded (0164)';
+    t_name := t_name || text 'C saved: chosen_step = auto, actual = calculated, no reason; no stage move recorded (0166)';
     select format('%s|%s|%s', ca.chosen_step = (pre->>'auto_step')::numeric, ca.actual_pct = ca.calculated_pct, ca.actual_reason is null)
       into s from public.counselling_assignments ca where ca.application_id = b1;
     t_det := t_det || s;

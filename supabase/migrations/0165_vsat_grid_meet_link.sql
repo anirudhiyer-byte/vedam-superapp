@@ -1,6 +1,21 @@
--- Rollback of 0163 (VSAT grid meeting link): puts back 0158's vsat__grid exactly (md5 70cd9ad71e0d8916746b47ba2ee55391).
--- and 0158's vsat__grid_catalog (drops the two reschedule columns). Nothing else changed in 0163, so nothing else to undo. The browser simply stops getting the *_meet_link keys and the
--- Join button hides itself (it only shows for a row that has a link).
+-- 0165 · VSAT grid — the meeting link next to the Interview / Counselling Meet column (Join button), staging first.
+--
+-- Asked by the owner (24 Nov 2026): the Interview and Counselling panels show the meeting link in the row, with a Join
+-- button that staff can click any time the link exists, instead of opening the student to find it.
+--
+-- Same as 0158's vsat__grid (unchanged on staging since; md5 70cd9ad71e0d8916746b47ba2ee55391 checked) plus:
+--   rows   + interview_meet_link   (interview_assignments.meet_link)    only when the request asks for interview_meet
+--          + counselling_meet_link (counselling_assignments.zoom_link)  only when the request asks for counselling_meet
+--          given only to admin / admissions (rows they may already see) and to the row's own interviewer (interview link)
+--          or own counsellor (counselling link); never for a cancelled meeting; https links only; no link → no key
+--   The two link keys are not in vsat__grid_catalog: they can't be requested, filtered, searched or exported on their
+--   own, and the CSV export (which only writes the chosen columns) never contains them.
+-- Also two new columns: "Interview reschedules" / "Counselling reschedules" (the booking's reschedule_count), not
+-- filterable. Who sees which rows, every filter and count is unchanged. vsat__grid_catalog gets only the two rows. Grants unchanged
+-- (create or replace keeps them; the revoke below is repeated as in 0158).
+--
+-- Rollback: supabase/rollback/0165_vsat_grid_meet_link_down.sql (puts back the 0158 vsat__grid)
+-- Tests:    supabase/tests/vsat_grid_meet_link.test.sql (+ the 0140 / 0158 grid suites, unchanged)
 
 CREATE OR REPLACE FUNCTION public.vsat__grid_catalog()
  RETURNS TABLE(key text, grp text, typ text, sens text, virt boolean)
@@ -32,7 +47,9 @@ AS $function$
       ('counsellor',                 'Counselling', 'text',   30), ('counselling_slot',     'Counselling', 'ts',     31),
       ('counselling_attendance',     'Counselling', 'text',   32), ('counselling_category', 'Counselling', 'num',    33),
       ('counselling_pct',            'Counselling', 'num',    34), ('counselling_calculated_pct', 'Counselling', 'num', 35),
-      ('counselling_meet',           'Counselling', 'text',   45)
+      ('counselling_meet',           'Counselling', 'text',   45),
+      -- vsat_grid_meet_link: how many times each booking was rescheduled (asked by the owner, 24 Nov)
+      ('interview_reschedules',      'Interview',   'num',    29), ('counselling_reschedules', 'Counselling', 'num', 46)
     ) v(key, grp, typ, ord)
   )
   select v.key, v.grp, v.typ, 'open'::text, true from virt v
@@ -347,17 +364,24 @@ begin
            ca.who ca_who, ca.slot_datetime ca_slot, ca.attendance ca_att, ca.scholarship_category ca_cat, ca.scholarship_pct ca_pct, ca.calculated_pct ca_calc,
            case when ca.cancelled_at is not null then 'cancelled' when ca.meet_mode = 'manual' then 'own_link'
                 when ca.meet_sync = 'ok' then 'ready' when ca.meet_sync in ('pending', 'syncing') then 'creating'
-                when ca.meet_sync = 'failed' then 'failed' end ca_meet
+                when ca.meet_sync = 'failed' then 'failed' end ca_meet,
+           -- vsat_grid_meet_link: the meeting link, for the Join button next to the Meet column. Only for managers and the row's own
+           -- interviewer / counsellor (a counsellor never gets the interview link, an interviewer never the counselling
+           -- one), never for a cancelled meeting, https links only
+           case when ia.cancelled_at is null and (mgr or ia.interviewer_id = uid) and ia.meet_link ~* '^https://' then ia.meet_link end ia_link,
+           case when ca.cancelled_at is null and (mgr or ca.counsellor_id = uid) and ca.zoom_link ~* '^https://' then ca.zoom_link end ca_link,
+           -- vsat_grid_meet_link: how many times the booking was moved (kept by the booking functions since 0081)
+           ia.reschedule_count ia_resch, ca.reschedule_count ca_resch
       from page pg
       join public.application_manager am on am.application_id = pg.application_id
       left join public.vsat_exam_dates d on d.id = am.exam_date_id
       left join public.vsat_proctoring pr on pr.application_id = pg.application_id and pr.attempt_no = pg.attempt_no
       left join lateral (select ia.slot_datetime, ia.attendance, ia.weighted_avg, ia.calc_verdict, ia.result, ia.interviewer_verdict, ia.cheating_seen,
-                                ia.cancelled_at, ia.meet_mode, ia.meet_sync, coalesce(ip.full_name, ip.email) who
+                                ia.cancelled_at, ia.meet_mode, ia.meet_sync, ia.interviewer_id, ia.meet_link, ia.reschedule_count, coalesce(ip.full_name, ip.email) who
                            from public.interview_assignments ia left join public.profiles ip on ip.id = ia.interviewer_id
                           where ia.application_id = pg.application_id and ia.attempt_no = pg.attempt_no order by ia.created_at desc limit 1) ia on true
       left join lateral (select ca.slot_datetime, ca.attendance, ca.scholarship_category, ca.scholarship_pct, ca.calculated_pct,
-                                ca.cancelled_at, ca.meet_mode, ca.meet_sync, coalesce(cp.full_name, cp.email) who
+                                ca.cancelled_at, ca.meet_mode, ca.meet_sync, ca.counsellor_id, ca.zoom_link, ca.reschedule_count, coalesce(cp.full_name, cp.email) who
                            from public.counselling_assignments ca left join public.profiles cp on cp.id = ca.counsellor_id
                           where ca.application_id = pg.application_id and ca.attempt_no = pg.attempt_no order by ca.created_at desc limit 1) ca on true
   ), pagev as materialized (
@@ -378,7 +402,9 @@ begin
              'interview_calc_verdict', pj.ia_calc, 'interviewer_verdict', pj.ia_verdict, 'cheating_seen', pj.ia_cheat, 'interview_meet', pj.ia_meet,
              'counsellor', pj.ca_who, 'counselling_slot', pj.ca_slot, 'counselling_attendance', pj.ca_att,
              'counselling_category', pj.ca_cat, 'counselling_pct', pj.ca_pct, 'counselling_calculated_pct', pj.ca_calc,
-             'counselling_meet', pj.ca_meet) v
+             'counselling_meet', pj.ca_meet,
+             'interview_meet_link', pj.ia_link, 'counselling_meet_link', pj.ca_link,
+             'interview_reschedules', pj.ia_resch, 'counselling_reschedules', pj.ca_resch) v
       from pagej pj
   )
   select (select count(*) from base),
@@ -434,6 +460,11 @@ begin
          (select coalesce(jsonb_agg(
                    jsonb_build_object('application_id', pv.application_id, 'stage', pv.stage, 'status', pv.status, 'attempt_no', pv.attempt_no)
                    || coalesce((select jsonb_object_agg(c, pv.v -> c) from unnest(v_cols) c), '{}'::jsonb)
+                   -- vsat_grid_meet_link: a link only travels with its Meet column (it is not in the catalogue: it can't be asked for,
+                   -- filtered or exported on its own); no link → no key
+                   || jsonb_strip_nulls(jsonb_build_object(
+                        'interview_meet_link', case when 'interview_meet' = any(v_cols) then pv.v -> 'interview_meet_link' end,
+                        'counselling_meet_link', case when 'counselling_meet' = any(v_cols) then pv.v -> 'counselling_meet_link' end))
                    order by pv.stage_changed_at desc, pv.application_id), '[]'::jsonb)
             from pagev pv)
     into total, facets, rows;

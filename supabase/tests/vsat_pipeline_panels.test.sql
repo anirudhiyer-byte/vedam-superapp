@@ -60,7 +60,7 @@ end $$;
 create or replace function pg_temp.rpc(p_fn text, p jsonb)
 returns text language sql as $$ select format('select public.%I(%L::jsonb)', p_fn, p::text) $$;
 
--- 0164: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now)
+-- 0166: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now)
 create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
 returns jsonb language sql as $$
   select pg_temp.call_as(p_adm, pg_temp.rpc('vsat_move_stage', jsonb_build_object('application_id', p_app, 'to_stage', p_stage)))
@@ -114,14 +114,14 @@ begin
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a1, 'interviewer_id', int1, 'slot_datetime', slot, 'meet_link', 'javascript:alert(1)')));
     t_name := t_name || text 'B non-https meeting link refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: meet_link');
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a1, 'interviewer_id', int1, 'slot_datetime', slot, 'meet_link', 'https://meet.google.com/zzt-abcd-efg')));
-    t_name := t_name || text 'B admissions assigns interviewer + slot (0164: stage stays VSAT cleared)';
+    t_name := t_name || text 'B admissions assigns interviewer + slot (0166: stage stays VSAT cleared)';
     t_det := t_det || left(r::text, 200);
     t_pass := t_pass || (r->'pipeline'->>'stage' = 'vsat_cleared' and r->'interview'->>'interviewer_id' = int1::text);
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a2, 'interviewer_id', int1, 'slot_datetime', slot)));
     t_name := t_name || text 'B same interviewer, same slot for another student → SLOT_TAKEN'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'SLOT_TAKEN');
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a2, 'interviewer_id', int2, 'slot_datetime', slot)));
     t_name := t_name || text 'B another interviewer at that slot is fine'; t_det := t_det || left(r::text, 120); t_pass := t_pass || (r->'interview'->>'interviewer_id' = int2::text);
-    -- 0164: admissions moves both to Interview scheduled by hand
+    -- 0166: admissions moves both to Interview scheduled by hand
     t_name := t_name || text 'B admissions moves both booked students to interview_scheduled by hand';
     r := pg_temp.move_to(adm_all, a1, 'interview_scheduled'); s := coalesce(r->>'message', 'ok');
     r := pg_temp.move_to(adm_all, a2, 'interview_scheduled'); s := s || ' | ' || coalesce(r->>'message', 'ok');
@@ -162,25 +162,25 @@ begin
     r := pg_temp.call_as(int1, pg_temp.rpc('vsat_submit_interview', form || '{"remarks": {"hack": "x"}}'));
     t_name := t_name || text 'D unknown remark key refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' like 'UNKNOWN_KEY%');
     r := pg_temp.call_as(int1, pg_temp.rpc('vsat_submit_interview', form));
-    t_name := t_name || text 'D score 3.65, calculated selected; 0164: the stage stays interview_scheduled';
+    t_name := t_name || text 'D score 3.65, calculated selected; 0166: the stage stays interview_scheduled';
     t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'score')::numeric = 3.65 and r->>'calc_verdict' = 'selected' and r->>'stage' = 'interview_scheduled');
-    t_name := t_name || text 'D form saved: weights date, remarks, JEE, attendance done; 0164: no automatic move in history';
+    t_name := t_name || text 'D form saved: weights date, remarks, JEE, attendance done; 0166: no automatic move in history';
     select format('%s|%s|%s|%s', ia.weights_from, ia.remarks->>'communication', ia.jee_pct, ia.attendance) into s
       from public.interview_assignments ia where ia.application_id = a1;
     t_det := t_det || s;
     t_pass := t_pass || (s = '2026-04-01|clear and confident|91.5|done'
                          and not exists (select 1 from public.vsat_stage_history h where h.application_id = a1 and h.source = 'auto' and h.to_stage = 'pi_cleared'));
     r := pg_temp.call_as(int1, pg_temp.rpc('vsat_submit_interview', form));
-    t_name := t_name || text 'D the form cannot be submitted twice (0164: ALREADY_INTERVIEWED)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'ALREADY_INTERVIEWED');
+    t_name := t_name || text 'D the form cannot be submitted twice (0166: ALREADY_INTERVIEWED)'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'ALREADY_INTERVIEWED');
     r := pg_temp.call_as(int2, pg_temp.rpc('vsat_submit_interview', jsonb_build_object('application_id', a2, 'communication', 5, 'logic', 5, 'passion', 5,
            'achievements', 5, 'why_program', 5, 'cheating_seen', false, 'interviewer_verdict', 'maybe')));
-    t_name := t_name || text 'D calculated selected but interviewer maybe → 0164: stays interview_scheduled for admissions';
+    t_name := t_name || text 'D calculated selected but interviewer maybe → 0166: stays interview_scheduled for admissions';
     t_det := t_det || r::text; t_pass := t_pass || (r->>'stage' = 'interview_scheduled' and r->>'status' = 'active');
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a3, 'interviewer_id', int2, 'slot_datetime', to_char(now() + interval '4 days', 'YYYY-MM-DD"T"HH24:00:00"Z"'))));
     r := pg_temp.call_as(int2, pg_temp.rpc('vsat_submit_interview', jsonb_build_object('application_id', a3, 'communication', 5, 'logic', 5, 'passion', 5,
            'achievements', 5, 'why_program', 5, 'cheating_seen', true, 'interviewer_verdict', 'selected')));
-    t_name := t_name || text 'D cheating seen → result not selected, whatever the scores (0164: stage and status stay)';
+    t_name := t_name || text 'D cheating seen → result not selected, whatever the scores (0166: stage and status stay)';
     select ia.result into s from public.interview_assignments ia where ia.application_id = a3;
     t_det := t_det || (r::text || ' result=' || coalesce(s, 'null'));
     t_pass := t_pass || (s = 'not_selected' and r->>'stage' = 'vsat_cleared' and r->>'status' = 'active');
@@ -188,7 +188,7 @@ begin
     -- ════ E. counselling ════
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', a2, 'counsellor_id', cou1, 'slot_datetime', slot)));
     t_name := t_name || text 'E counsellor cannot be assigned before PI is cleared'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'WRONG_STAGE');
-    -- 0164: admissions sets PI cleared by hand
+    -- 0166: admissions sets PI cleared by hand
     t_name := t_name || text 'E admissions moves a1 to interviewed, then pi_cleared, by hand';
     r := pg_temp.move_to(adm_all, a1, 'interviewed'); s := coalesce(r->>'message', 'ok');
     r := pg_temp.move_to(adm_all, a1, 'pi_cleared'); s := s || ' | ' || coalesce(r->>'message', 'ok');
@@ -196,7 +196,7 @@ begin
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', a1, 'counsellor_id', int1, 'slot_datetime', slot)));
     t_name := t_name || text 'E assigning a non-counsellor is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'NOT_A_COUNSELLOR');
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', a1, 'counsellor_id', cou1, 'slot_datetime', slot)));
-    t_name := t_name || text 'E admissions assigns counsellor (0164: stage stays pi_cleared, then moved by hand)'; t_det := t_det || left(r::text, 120);
+    t_name := t_name || text 'E admissions assigns counsellor (0166: stage stays pi_cleared, then moved by hand)'; t_det := t_det || left(r::text, 120);
     t_pass := t_pass || (r->'pipeline'->>'stage' = 'pi_cleared' and r->'counselling'->>'counsellor_id' = cou1::text);
     r := pg_temp.move_to(adm_all, a1, 'counselling_scheduled');
     r := pg_temp.call_as(cou1, format('select public.vsat_scholarship_preview(%L)', a1));
@@ -216,11 +216,11 @@ begin
     -- 0082: the +10% rating comes from the interview's achievements score (3 for a1), not the request.
     -- The bonus itself is tested in vsat_achievements_bonus.test.sql.
     r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', a1)));
-    t_name := t_name || text 'E formula step 20 (score 68 in 65–70), JEE 91.5 → floor 30 (on since 0084) → 30%, achievements 3 → no bonus (0164: stage stays)';
+    t_name := t_name || text 'E formula step 20 (score 68 in 65–70), JEE 91.5 → floor 30 (on since 0084) → 30%, achievements 3 → no bonus (0166: stage stays)';
     t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 30 and (r->>'actual_pct')::numeric = 30 and not (r->>'bonus_applied')::boolean
                          and (r->>'jee_floor_applied')::boolean and r->>'stage' = 'counselling_scheduled');
-    -- 0164: admissions moves the student to Counselled by hand
+    -- 0166: admissions moves the student to Counselled by hand
     r := pg_temp.move_to(adm_all, a1, 'counselled');
     t_name := t_name || text 'E saved on counselling + application; old field counselling_done';
     select format('%s|%s|%s|%s|%s', ca.calc_category, ca.chosen_step, ca.scholarship_pct, am.scholarship_percentage, am.application_stage_1)

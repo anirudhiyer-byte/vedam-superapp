@@ -138,7 +138,7 @@ export function attendanceOutcome(v: MeetVerdict): "done" | "no_show" | "needs_m
 }
 
 /** Drawer wording for the interview's attendance (enum vm_attendance). */
-/** 0164: the status of a booked meeting, set by hand (or by Google Meet for Done / No-show). */
+/** 0166: the status of a booked meeting, set by hand (or by Google Meet for Done / No-show). */
 export const ATTENDANCE_LABEL: Record<string, string> = { scheduled: "Not marked yet", done: "Done", no_show: "No-show", rescheduled: "Rescheduled" };
 /** The three statuses staff can set. */
 export const STATUS_CHOICES = ["done", "no_show", "rescheduled"] as const;

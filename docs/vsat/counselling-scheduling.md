@@ -12,15 +12,15 @@ one config: `src/lib/vsat/tracks.ts` (`TRACKS.interview`, `TRACKS.counselling`).
 | Fill times | Selection bar → Fill times: counsellor + start → back-to-back 30-minute times for the selected rows (busy times skipped). Only fills the rows. |
 | Clash | Two rows (or a row and a booking) with the same counsellor at overlapping times show "Clashes with …" and are not sent. |
 | Move | Change the row's counsellor / date / time → Send → "moved" emails. Or from the student drawer. |
-| One student | Drawer → Counselling & scholarship → **Schedule counselling session**: counsellor, date, time. Since 0164 this only fills the row (*Not sent*); send it from the list with **Send**. |
-| Cancel | Drawer → Cancel counselling session (reason) → Google invite removed, both told. Since 0164 the stage does not change. |
+| One student | Drawer → Counselling & scholarship → **Schedule counselling session**: counsellor, date, time. Since 0166 this only fills the row (*Not sent*); send it from the list with **Send**. |
+| Cancel | Drawer → Cancel counselling session (reason) → Google invite removed, both told. Since 0166 the stage does not change. |
 | Status | Done / No-show / Rescheduled, from the drawer or for selected rows (**Set status**). Google Meet fills it after the session (not joined → No-show). The counsellor can mark it once; admissions can change it with a reason. The stage does not change. |
 | Join | Each row with a link shows **Join session** (admissions, and the counsellor for their own students). |
 | Retry Meet | Drawer → Meeting "Failed" → Try again. |
 | Emails | VSAT comms: 6 steps (Counselling scheduled / moved / cancelled → student; → counsellor). OFF and in test mode until an admin turns them on. Same placeholders as the interview steps. |
 
 The counselling form (Save counselling → scholarship %) and the offer (`offers.md`) are unchanged in how they
-work. Since 0164, Save counselling works at any counselling stage (PI cleared, Counselling scheduled, Counselled,
+work. Since 0166, Save counselling works at any counselling stage (PI cleared, Counselling scheduled, Counselled,
 Counselling not appeared), is saved once only (`ALREADY_COUNSELLED`) and does not move the stage: admissions moves it
 by hand. See "Stages are changed by hand" in `interview-scheduling.md`.
 
@@ -32,7 +32,7 @@ The dashboard card that showed the interview now also follows the student after 
 |---|---|
 | Interview done, waiting for the result | "Your interview is done" · We'll email you the result. |
 | PI cleared (active), no session yet | "You've cleared the interview" · We'll book your counselling session soon and email you the time. |
-| Session booked (stage *Counselling scheduled*, moved by hand since 0164) | "Your counselling session is booked" + date tile, countdown, Join button (opens 10 minutes before) |
+| Session booked (stage *Counselling scheduled*, moved by hand since 0166) | "Your counselling session is booked" + date tile, countdown, Join button (opens 10 minutes before) |
 | Live / missed / done | Same as the interview card, with "counselling session" |
 
 On hold at PI cleared → the neutral "Your interview is done" card (the student is not told they cleared).
@@ -76,4 +76,4 @@ cron `/api/cron/vsat-interviews` (now also runs the counselling Google, attendan
 
 Apply 0140 → 0143 → 0144 → **0145**. Uses the same `ADMISSIONS_*` Google account as the interviews. Then turn on
 the 6 counselling steps in VSAT comms (test mode first). The grid change is **0158** (after 0140; no settings).
-Then **0163** (Join link + reschedule columns) and **0164** (stages by hand, Status, bulk status).
+Then **0165** (Join link + reschedule columns) and **0166** (stages by hand, Status, bulk status).

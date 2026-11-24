@@ -63,7 +63,7 @@ create or replace function pg_temp.rpc(p_fn text, p jsonb)
 returns text language sql as $$ select format('select public.%I(%L::jsonb)', p_fn, p::text) $$;
 
 -- interview (given achievements score) → pi_cleared → counselling_scheduled
--- 0164: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now)
+-- 0166: booking and submitting no longer move the stage, so admissions moves it by hand at each step (as staff do now)
 create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
 returns jsonb language sql as $$
   select pg_temp.call_as(p_adm, pg_temp.rpc('vsat_move_stage', jsonb_build_object('application_id', p_app, 'to_stage', p_stage)))
@@ -143,7 +143,7 @@ begin
     r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b1)));
     t_name := t_name || text 'C achievements 5, step 30 → 40% and bonus_applied'; t_det := t_det || (r::text || ' step=' || step || ' m=' || m);
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 40 and (r->>'bonus_applied')::boolean
-                         and (r->>'special_rating')::int = 5 and r->>'stage' = 'counselling_scheduled');  -- 0164: stage unchanged (was counselled)
+                         and (r->>'special_rating')::int = 5 and r->>'stage' = 'counselling_scheduled');  -- 0166: stage unchanged (was counselled)
     t_name := t_name || text 'C saved: counselling special_rating 5, bonus true, % on the application';
     select format('%s|%s|%s', ca.special_rating, ca.bonus_applied, am.scholarship_percentage = ca.calculated_pct)
       into s from public.counselling_assignments ca join public.application_manager am using (application_id) where ca.application_id = b1;
@@ -163,9 +163,9 @@ begin
     t_pass := t_pass || (r ? 'special_rating' and r->'special_rating' = 'null'::jsonb);
     update public.interview_assignments a set rubric_achievements = null where a.application_id = b3;
     r := pg_temp.call_as(cou1, pg_temp.rpc('vsat_submit_counselling', jsonb_build_object('application_id', b3)));
-    t_name := t_name || text 'D no achievements score → no bonus, saved (stage unchanged, 0164)'; t_det := t_det || r::text;
+    t_name := t_name || text 'D no achievements score → no bonus, saved (stage unchanged, 0166)'; t_det := t_det || r::text;
     t_pass := t_pass || ((r->>'calculated_pct')::numeric = 30 and not (r->>'bonus_applied')::boolean and r->'special_rating' = 'null'::jsonb
-                         and r->>'stage' = 'counselling_scheduled');  -- 0164: stage unchanged (was counselled)
+                         and r->>'stage' = 'counselling_scheduled');  -- 0166: stage unchanged (was counselled)
 
     -- ── E. access unchanged ──
     t_name := t_name || text 'E grants unchanged: authenticated yes, anon / public no';

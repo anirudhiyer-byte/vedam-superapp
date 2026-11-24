@@ -237,7 +237,7 @@ begin
                          and (select slot_datetime from public.interview_assignments where application_id = a1) = t0
                          and (select slot_datetime from public.interview_assignments where application_id = a2) = t0 + interval '30 minutes');
     select * into iv from public.interview_assignments where application_id = a1;
-    t_name := t_name || text 'D a sent row: Google Meet queued, 30 min, typed values cleared (0164: stage stays VSAT cleared)';
+    t_name := t_name || text 'D a sent row: Google Meet queued, 30 min, typed values cleared (0166: stage stays VSAT cleared)';
     t_det := t_det || (format('%s|%s|%s|%s', iv.meet_mode, iv.meet_sync, iv.duration_min, (select stage from public.vsat_pipeline where application_id = a1)));
     t_pass := t_pass || (iv.meet_mode = 'auto' and iv.meet_sync = 'pending' and iv.duration_min = 30
                          and (select stage from public.vsat_pipeline where application_id = a1) = 'vsat_cleared'

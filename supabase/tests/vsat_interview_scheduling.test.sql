@@ -86,7 +86,7 @@ returns jsonb language sql as $$
     jsonb_build_object('application_id', p_app, 'interviewer_id', p_int, 'slot_datetime', pg_temp.iso(p_t)) || p_extra))
 $$;
 
--- 0164: booking no longer moves the stage, so admissions moves it by hand (as staff do now)
+-- 0166: booking no longer moves the stage, so admissions moves it by hand (as staff do now)
 create or replace function pg_temp.move_to(p_adm uuid, p_app text, p_stage text)
 returns jsonb language sql as $$
   select pg_temp.call_as(p_adm, pg_temp.rpc('vsat_move_stage', jsonb_build_object('application_id', p_app, 'to_stage', p_stage)))
@@ -142,12 +142,12 @@ begin
     t_name := t_name || text 'A duration as text refused'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'message' = 'BAD_VALUE: duration_min');
 
     r := pg_temp.assign(adm_all, a1, int1, ta);
-    t_name := t_name || text 'A admissions schedules a1: Google Meet queued, 30 min, version 1 (0164: stage stays VSAT cleared)';
+    t_name := t_name || text 'A admissions schedules a1: Google Meet queued, 30 min, version 1 (0166: stage stays VSAT cleared)';
     t_det := t_det || (left(coalesce(r->'interview', r)::text, 300));
     t_pass := t_pass || (r->'pipeline'->>'stage' = 'vsat_cleared' and r->'interview'->>'meet_mode' = 'auto'
                          and r->'interview'->>'meet_sync' = 'pending' and (r->'interview'->>'duration_min')::int = 30
                          and (r->'interview'->>'version')::int = 1 and r->'interview'->>'meet_link' is null);
-    r := pg_temp.move_to(adm_all, a1, 'interview_scheduled');  -- 0164: by hand
+    r := pg_temp.move_to(adm_all, a1, 'interview_scheduled');  -- 0166: by hand
     t_name := t_name || text 'A one "scheduled" event with a pending email; old field interview_selected (after the move by hand)';
     select format('%s|%s|%s|%s', count(*), min(e.kind), min(e.notify_status), min(am.application_stage_1::text)) into s
       from public.vsat_interview_events e join public.application_manager am using (application_id) where e.application_id = a1;
@@ -161,7 +161,7 @@ begin
     t_name := t_name || text 'A back-to-back slot (starts when the last ends) is fine'; t_det := t_det || (left(r::text, 120));
     t_pass := t_pass || (not r ? 'sqlstate'
                          and (select ia.slot_datetime from public.interview_assignments ia where ia.application_id = a2) = ta + interval '30 minutes');
-    r := pg_temp.move_to(adm_all, a2, 'interview_scheduled');  -- 0164: by hand
+    r := pg_temp.move_to(adm_all, a2, 'interview_scheduled');  -- 0166: by hand
 
     r := pg_temp.assign(adm_all, a1, int1, ta);
     t_name := t_name || text 'A saving the same interview again adds no event (no email)';
@@ -231,7 +231,7 @@ begin
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_schedule_interviews_bulk',
            jsonb_build_object('application_ids', jsonb_build_array(a5, a6, a1, 'ZZT-NOPE'), 'interviewer_id', int2,
                               'start', pg_temp.iso(ta + interval '4 hours'))));
-    t_name := t_name || text 'B save: both scheduled at the previewed times, Google queued, events marked bulk (0164: stages stay, no stage history)';
+    t_name := t_name || text 'B save: both scheduled at the previewed times, Google queued, events marked bulk (0166: stages stay, no stage history)';
     select format('%s|%s|%s|%s', string_agg(vp.stage, ',' order by vp.application_id),
                   bool_and(ia.meet_sync = 'pending' and ia.meet_mode = 'auto')::text,
                   (select string_agg(distinct e.source, ',') from public.vsat_interview_events e where e.application_id in (a5, a6)),
@@ -257,14 +257,14 @@ begin
     r := pg_temp.call_as(int2, pg_temp.rpc('vsat_cancel_interview', jsonb_build_object('application_id', a6, 'reason', 'zz no')));
     t_name := t_name || text 'C interviewers cannot cancel'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'message' = 'FORBIDDEN');
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_cancel_interview', jsonb_build_object('application_id', a6, 'reason', 'zz student asked')));
-    t_name := t_name || text 'C cancel: slot + interviewer cleared; stage stays VSAT cleared (0164), old field vsat_cleared';
+    t_name := t_name || text 'C cancel: slot + interviewer cleared; stage stays VSAT cleared (0166), old field vsat_cleared';
     select * into iv from public.interview_assignments where application_id = a6;
     select am.application_stage_1::text into s from public.application_manager am where am.application_id = a6;
     t_det := t_det || (left(coalesce(r->'pipeline', r)::text, 200) || ' ' || s);
     t_pass := t_pass || (r->'pipeline'->>'stage' = 'vsat_cleared' and r->'pipeline'->>'status' = 'active' and iv.cancelled_at is not null
                          and iv.slot_datetime is null and iv.interviewer_id is null and iv.cancel_reason = 'zz student asked'
                          and iv.meet_sync = 'none' and s = 'vsat_cleared');
-    t_name := t_name || text 'C cancel event keeps the old time + interviewer (0164: no stage history; the reason is on the booking)';
+    t_name := t_name || text 'C cancel event keeps the old time + interviewer (0166: no stage history; the reason is on the booking)';
     select format('%s|%s|%s|%s', e.kind, (e.prev_slot_start = ta + interval '5 hours 45 minutes')::text, (e.prev_interviewer_id = int2)::text, e.notify_status)
       into s from public.vsat_interview_events e where e.application_id = a6 and e.kind = 'cancelled';
     t_det := t_det || (s);
@@ -282,8 +282,8 @@ begin
     r := pg_temp.assign(adm_all, a6, int1, ta + interval '6 hours');
     t_name := t_name || text 'C scheduling again after a cancel is a new "scheduled" event';
     select e.kind into s from public.vsat_interview_events e where e.application_id = a6 order by e.created_at desc, e.version desc limit 1;
-    t_det := t_det || (coalesce(s, '-')); t_pass := t_pass || (s = 'scheduled' and r->'pipeline'->>'stage' = 'vsat_cleared');  -- 0164: stage stays
-    r := pg_temp.move_to(adm_all, a6, 'interview_scheduled');  -- 0164: by hand
+    t_det := t_det || (coalesce(s, '-')); t_pass := t_pass || (s = 'scheduled' and r->'pipeline'->>'stage' = 'vsat_cleared');  -- 0166: stage stays
+    r := pg_temp.move_to(adm_all, a6, 'interview_scheduled');  -- 0166: by hand
 
     -- ════ D. attendance by hand ════
     r := pg_temp.call_as(int2, pg_temp.rpc('vsat_set_interview_attendance', jsonb_build_object('application_id', a5, 'attendance', 'no_show')));
@@ -294,7 +294,7 @@ begin
     r := pg_temp.call_as(int2, pg_temp.rpc('vsat_set_interview_attendance', jsonb_build_object('application_id', a5, 'attendance', 'maybe')));
     t_name := t_name || text 'D unknown attendance value refused'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'message' = 'BAD_VALUE: attendance');
     r := pg_temp.call_as(int2, pg_temp.rpc('vsat_set_interview_attendance', jsonb_build_object('application_id', a5, 'attendance', 'no_show')));
-    t_name := t_name || text 'D the interviewer marks no-show (0164: status column only, the student stays active)';
+    t_name := t_name || text 'D the interviewer marks no-show (0166: status column only, the student stays active)';
     t_det := t_det || (left(coalesce(r->'pipeline', r)::text, 150));
     t_pass := t_pass || (r->'interview'->>'attendance' = 'no_show' and r->'interview'->>'attendance_source' = 'manual' and r->'pipeline'->>'status' = 'active');
     r := pg_temp.call_as(int2, pg_temp.rpc('vsat_set_interview_attendance', jsonb_build_object('application_id', a5, 'attendance', 'done', 'reason', 'zz oops')));
@@ -343,7 +343,7 @@ begin
     t_name := t_name || text 'F a stale version is ignored'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'applied' = 'false');
     r := pg_temp.call_svc(pg_temp.rpc('vsat_interview_attendance_apply', jsonb_build_object('id', iv.id, 'version', iv.version, 'result', 'no_show',
            'detail', jsonb_build_object('people', 1, 'overlap_min', 0, 'records', 1, 'reason', 'one_joined'))));
-    t_name := t_name || text 'F Meet says only one person joined → no-show (auto); 0164: student stays active, no stage history';
+    t_name := t_name || text 'F Meet says only one person joined → no-show (auto); 0166: student stays active, no stage history';
     select * into iv from public.interview_assignments where application_id = a2;
     select format('%s|%s|%s|%s', iv.attendance, iv.attendance_source, vp.status,
                   (select string_agg(h.source, ',') from public.vsat_stage_history h where h.application_id = a2 and h.to_status = 'absent'))

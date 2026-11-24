@@ -164,7 +164,7 @@ export function errorText(raw: string | null | undefined): string {
 }
 
 /**
- * Interview form: five parts 1–5 (whole numbers) and cheating seen are required. 0164: the interviewer gives no
+ * Interview form: five parts 1–5 (whole numbers) and cheating seen are required. 0166: the interviewer gives no
  * verdict (it is decided later from the scores); the field stays optional only for older saved forms.
  */
 export type InterviewForm = {

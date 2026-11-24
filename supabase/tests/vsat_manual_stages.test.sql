@@ -1,4 +1,4 @@
--- VSAT · stages are changed by hand after the exam booking; Status = Done / No-show / Rescheduled — tests for 0164
+-- VSAT · stages are changed by hand after the exam booking; Status = Done / No-show / Rescheduled — tests for 0166
 -- (STAGING ONLY)
 --
 -- How to run: paste this whole file into the staging SQL editor, or run it through the Supabase MCP.
@@ -262,7 +262,7 @@ begin
             or has_function_privilege('anon', p.oid, 'execute') or not has_function_privilege('authenticated', p.oid, 'execute'));
     t_det := t_det || coalesce(s, 'ok'); t_pass := t_pass || (s is null);
 
-    -- ════ X. nothing of 0164 moves a stage any more ════
+    -- ════ X. nothing of 0166 moves a stage any more ════
     t_name := t_name || text 'X none of the ten changed functions calls the stage engine';
     select string_agg(p.proname, ',') into s from pg_proc p join pg_namespace ns on ns.oid = p.pronamespace
      where ns.nspname = 'public' and p.proname in ('vsat__iv_schedule', 'vsat__cs_schedule', 'vsat_cancel_interview', 'vsat_cancel_counselling',

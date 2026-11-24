@@ -207,7 +207,7 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
   );
 }
 
-/** Admin / admissions: move to any stage (0164: the scheduled ones too, once the booking is sent). */
+/** Admin / admissions: move to any stage (0166: the scheduled ones too, once the booking is sent). */
 function MoveStage({ s, onDone }: { s: Student; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
   const cur = s.pipeline;
@@ -310,7 +310,7 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
   const row = iv as unknown as InterviewRow | null;
   const isInterviewer = roles.roles.includes("interviewer");
   const canAssign = s.can_manage && (st === "vsat_cleared" || st === "interview_scheduled") && s.pipeline.status !== "not_selected";
-  // 0164: the stage no longer follows the booking, so the form works at every stage of the interview step
+  // 0166: the stage no longer follows the booking, so the form works at every stage of the interview step
   const atStep = TRACKS.interview.stepStages.includes(st);
   const canForm = atStep && (s.can_manage || isInterviewer);
   if (!iv && !canAssign && !atStep) return null;
@@ -440,7 +440,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
   const cancelled = !!row?.cancelled_at;
   const isCounsellor = roles.roles.includes("counsellor");
   const canAssign = s.can_manage && (st === "pi_cleared" || st === "counselling_scheduled") && s.pipeline.status !== "not_selected" && !c?.submitted_at;
-  // 0164: the stage no longer follows the booking, so the form works at every stage of the counselling step
+  // 0166: the stage no longer follows the booking, so the form works at every stage of the counselling step
   const atStep = TRACKS.counselling.stepStages.includes(st);
   const canForm = atStep && (s.can_manage || isCounsellor);
   // the offer (0144): from Counselled on, or whenever one was released

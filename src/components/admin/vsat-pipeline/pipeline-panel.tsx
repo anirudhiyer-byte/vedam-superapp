@@ -517,7 +517,7 @@ function Cell({ col, row, onEditVps }: { col: GridColumn; row: GridRow; onEditVp
     return <span className="text-vx-faint">—</span>;
   }
   if (col.key === "interview_meet" || col.key === "counselling_meet") {
-    // 0163: the link comes only for staff who may join this meeting; Join opens it in a new tab, never the student page
+    // 0165: the link comes only for staff who may join this meeting; Join opens it in a new tab, never the student page
     const link = meetLink(row, col.key);
     if (!link) return isMeetState(v) ? <MeetBadge state={v} /> : <span className="text-vx-faint">—</span>;
     const what = col.key === "interview_meet" ? "interview" : "session";
@@ -690,7 +690,7 @@ const IconExternal = () => (
 );
 
 /**
- * 0164: one status (Done / No-show / Rescheduled) for the selected interview / counselling rows. Every row goes
+ * 0166: one status (Done / No-show / Rescheduled) for the selected interview / counselling rows. Every row goes
  * through the same database checks as one student; rows that can't take it are listed with the reason.
  */
 function StatusBar({ ids, track, onDone }: { ids: string[]; track: Track; onDone: () => void }) {
@@ -731,7 +731,7 @@ function StatusBar({ ids, track, onDone }: { ids: string[]; track: Track; onDone
 
 function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stage | null; panel: PanelKey; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
-  // 0164: every stage is set by hand, the scheduled ones too (the database refuses them until the booking is sent)
+  // 0166: every stage is set by hand, the scheduled ones too (the database refuses them until the booking is sent)
   const targets = STAGES;
   const [to, setTo] = useState<Stage>(current ?? PANEL_STAGES[panel][0]);
   const [st, setSt] = useState<Status>("active");
