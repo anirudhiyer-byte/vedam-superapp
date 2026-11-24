@@ -36,7 +36,7 @@ end $$;
 create or replace function pg_temp.run_partner_claim_tests()
 returns table (test text, pass boolean, detail text) language plpgsql as $$
 declare tn text[]:='{}'; tp boolean[]:='{}'; td text[]:='{}';
-  a uuid; b uuid; c uuid; d uuid; plA uuid; plB uuid; plD uuid; r jsonb; v text; n int; amt numeric;
+  a uuid; b uuid; c uuid; d uuid; e uuid; plA uuid; plB uuid; plD uuid; plE uuid; r jsonb; v text; n int; amt numeric;
 begin
   begin
     a := pg_temp.mk_user('zztest-pcl-a@example.invalid','9000000001');
@@ -90,6 +90,21 @@ begin
     r := public.partner_claim(d, '9000000004', 'zztest-pcl-d@example.invalid');
     select amount into amt from public.vsat_payments where lead_id=d;
     tn:=tn||text 'F already-paid: reports already_paid, keeps real payment (1000)'; td:=td||(r::text||' amt='||amt); tp:=tp||((r->>'already_paid')::boolean and amt=1000);
+
+    -- SIF enrichment (0162): extra fields pre-filled, verified flags set, source normalised
+    e := pg_temp.mk_user('zztest-pcl-e@example.invalid','9000000005');
+    insert into public.partner_leads (partner, name, email, phone, campus, utm_source, utm_medium, utm_campaign, prepaid, prepaid_amount, extra)
+      values ('elevate','ZZ E','zztest-pcl-e@example.invalid','9000000005','Pune','school connect','DPS Pune','BDM Neha', true, 499,
+        '{"stream":"PCM","graduation_year":"2026","state":"Maharashtra","city":"Pune","school_name":"DPS Pune"}'::jsonb) returning id into plE;
+    r := public.partner_claim(e, '9000000005', 'zztest-pcl-e@example.invalid');
+    select class_12_stream||'/'||passing_year||'/'||state||'/'||city||'/'||school_name||'/'||utm_source||'/'||mobile_verification_status||'/'||email_verification_status
+      into v from public.lead_manager where lead_id=e;
+    tn:=tn||text 'G SIF: lead enriched + source=schoolconnect + verified'; td:=td||v;
+    tp:=tp||(v='PCM/2026/Maharashtra/Pune/DPS Pune/schoolconnect/verified/verified');
+    select (mobile_verified and email_verified) into v from public.profiles where id=e;
+    tn:=tn||text 'G SIF: profile mobile+email verified'; td:=td||v; tp:=tp||(v='true');
+    select class_12_stream||'/'||class12_year||'/'||class12_school into v from public.application_manager where lead_id=e;
+    tn:=tn||text 'G SIF: application pre-filled (stream/year/school)'; td:=td||v; tp:=tp||(v='PCM/2026/DPS Pune');
 
     raise exception 'ZDONE';
   exception when others then if sqlerrm<>'ZDONE' then return query select 'FIXTURE/RUN ERROR'::text,false,sqlerrm; return; end if;
