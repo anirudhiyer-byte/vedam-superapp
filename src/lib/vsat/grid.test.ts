@@ -145,7 +145,7 @@ describe("interviews (0140)", () => {
   });
   it("Meet state reads as words in cells and CSV", () => {
     expect(formatValue("text", "interview_meet", "ready")).toBe("Meet ready");
-    expect(formatValue("text", "interview_meet", "own_link")).toBe("Own link");
+    expect(formatValue("text", "interview_meet", "own_link")).toBe("—");  // Google Meet only: no "Own link" word
     expect(formatValue("text", "interview_meet", "failed")).toBe("Meet failed");
     expect(formatValue("text", "interview_meet", null)).toBe("—");
     expect(formatValue("text", "interview_meet", "something_new")).toBe("something_new");
@@ -182,7 +182,7 @@ describe("counselling (0158): Counsellor dropdown and Counselling Meet", () => {
     expect(formatValue("text", "counselling_meet", null)).toBe("—");
     expect(formatValue("text", "counselling_meet", "something_new")).toBe("something_new");
     const rows = [{ application_id: "A1", application_no: "A1", stage: "counselling_scheduled", status: "active", attempt_no: 1, counselling_meet: "own_link" }] as unknown as GridRow[];
-    expect(toCsv(rows, [{ key: "counselling_meet", type: "text" }])).toBe('"App no.","Counselling Meet"\n"A1","Own link"');
+    expect(toCsv(rows, [{ key: "counselling_meet", type: "text" }])).toBe('"App no.","Counselling Meet"\n"A1",""');  // Google Meet only: an old pasted link is an empty cell, like no value
   });
   it("people dropdown: names A–Z, then the 'nobody yet' option, with counts", () => {
     const opts = peopleOptions({ u2: "Zoya", u1: "Arjun" }, { u1: 3, u2: 1, none: 4 }, [],

@@ -43,7 +43,7 @@ export async function syncInterviewsNow(ids: string[], track: Track = TRACKS.int
 }
 
 const MEET_TONE: Record<MeetState, string> = {
-  ready: vx.tone.green, creating: vx.tone.teal, failed: vx.tone.red, own_link: vx.tone.neutral, cancelled: vx.tone.neutral,
+  ready: vx.tone.green, creating: vx.tone.teal, failed: vx.tone.red, cancelled: vx.tone.neutral,
 };
 export function MeetBadge({ state }: { state: MeetState }) {
   return <span className={cx(vx.badge, MEET_TONE[state])}>{MEET_LABEL[state]}</span>;

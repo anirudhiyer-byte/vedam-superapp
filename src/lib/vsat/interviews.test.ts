@@ -52,7 +52,7 @@ describe("Meet state", () => {
   it("matches the grid's interview_meet rule", () => {
     expect(meetState(null)).toBeNull();
     expect(meetState({ cancelled_at: "x", meet_mode: "auto", meet_sync: "ok" })).toBe("cancelled");
-    expect(meetState({ meet_mode: "manual", meet_sync: "pending" })).toBe("own_link");
+    expect(meetState({ meet_mode: "manual", meet_sync: "pending" })).toBeNull();  // old pasted link: no badge (Google Meet only)
     expect(meetState({ meet_mode: "auto", meet_sync: "ok" })).toBe("ready");
     expect(meetState({ meet_mode: "auto", meet_sync: "syncing" })).toBe("creating");
     expect(meetState({ meet_mode: "auto", meet_sync: "failed" })).toBe("failed");

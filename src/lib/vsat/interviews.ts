@@ -66,12 +66,13 @@ export function istParts(iso: string | null | undefined): { date: string; time: 
 
 // ── Google Meet state (the grid's interview_meet value and the drawer) ───────
 
-export type MeetState = "ready" | "creating" | "failed" | "own_link" | "cancelled";
+// Google Meet only (0167, owner's review): no "Own link" state is shown. An old booking with a pasted link
+// (meet_mode = manual) shows no badge, only its Join link, until it is moved and becomes Google Meet.
+export type MeetState = "ready" | "creating" | "failed" | "cancelled";
 export const MEET_LABEL: Record<MeetState, string> = {
   ready: "Meet ready",
   creating: "Creating Meet…",
   failed: "Meet failed",
-  own_link: "Own link",
   cancelled: "Cancelled",
 };
 export const isMeetState = (v: unknown): v is MeetState => typeof v === "string" && v in MEET_LABEL;
@@ -100,7 +101,7 @@ export type InterviewRow = {
 export function meetState(iv: InterviewRow | null | undefined): MeetState | null {
   if (!iv) return null;
   if (iv.cancelled_at) return "cancelled";
-  if (iv.meet_mode === "manual") return "own_link";
+  if (iv.meet_mode === "manual") return null;  // old pasted link: no badge (Google Meet only)
   if (iv.meet_sync === "ok") return "ready";
   if (iv.meet_sync === "pending" || iv.meet_sync === "syncing") return "creating";
   if (iv.meet_sync === "failed") return "failed";

@@ -69,10 +69,11 @@ The owner's review (24 Nov 2026): interviews and counselling sessions use Google
 
 - The database refuses a pasted link (`meet_link` / `meeting_link`) and `auto_meet: false` with `BAD_VALUE: meet_link`,
   for every way of booking (drawer, row **Send**, the old bulk function). Every new booking is Google Meet.
-- Bookings made before 0167 with a pasted link keep it (Meet column *Own link*, **Join** still works) until they are
-  changed: the next move or re-send turns them into Google Meet (the pasted link goes, Google makes the event).
+- Bookings made before 0167 with a pasted link keep it (**Join** still works; the Meet column shows no badge, there is
+  no "Own link" word on any screen or in CSV) until they are changed: the next move or re-send turns them into Google Meet (the pasted link goes, Google makes the event).
   Re-sending at the same time sends no "moved" email; Google sends the calendar invite with the new link.
-- Screen: the Google failure text no longer says "use your own link".
+- Screen: the Google failure text no longer says "use your own link", and the "Own link" badge is gone (grid, drawer,
+  CSV). The database still returns `own_link` for those old rows; the screen shows no word for it.
 - Since 0166 the stage stays at *VSAT cleared* / *PI cleared* until admissions moves it, so 0168 shows the student
   the booking as soon as it is **sent** (owner's choice, 25 Nov 2026): `vsat_my_interview` also at *VSAT cleared*
   (active), `vsat_my_counselling` gives the booked card at *PI cleared* (active) when a session is sent. On hold,
