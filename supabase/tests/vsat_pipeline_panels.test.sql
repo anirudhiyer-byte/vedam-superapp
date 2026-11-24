@@ -113,7 +113,7 @@ begin
     t_name := t_name || text 'B bad slot refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: slot_datetime');
     r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a1, 'interviewer_id', int1, 'slot_datetime', slot, 'meet_link', 'javascript:alert(1)')));
     t_name := t_name || text 'B non-https meeting link refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'BAD_VALUE: meet_link');
-    r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a1, 'interviewer_id', int1, 'slot_datetime', slot, 'meet_link', 'https://meet.google.com/zzt-abcd-efg')));
+    r := pg_temp.call_as(adm_all, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a1, 'interviewer_id', int1, 'slot_datetime', slot)));  -- 0167: Google Meet only (no pasted link)
     t_name := t_name || text 'B admissions assigns interviewer + slot (0166: stage stays VSAT cleared)';
     t_det := t_det || left(r::text, 200);
     t_pass := t_pass || (r->'pipeline'->>'stage' = 'vsat_cleared' and r->'interview'->>'interviewer_id' = int1::text);

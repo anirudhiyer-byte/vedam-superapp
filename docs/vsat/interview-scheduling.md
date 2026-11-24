@@ -63,6 +63,26 @@ staging: down inside a block that is undone → every body equals the original m
 afterwards). DB tests: `vsat_grid_meet_link.test.sql` (18), `vsat_manual_stages.test.sql` (25). The older suites were
 updated so their setup moves the stage by hand, as staff now do.
 
+## Google Meet only (0167) and the student sees the booking at once (0168)
+
+The owner's review (24 Nov 2026): interviews and counselling sessions use Google Meet only, no link of our own.
+
+- The database refuses a pasted link (`meet_link` / `meeting_link`) and `auto_meet: false` with `BAD_VALUE: meet_link`,
+  for every way of booking (drawer, row **Send**, the old bulk function). Every new booking is Google Meet.
+- Bookings made before 0167 with a pasted link keep it (Meet column *Own link*, **Join** still works) until they are
+  changed: the next move or re-send turns them into Google Meet (the pasted link goes, Google makes the event).
+  Re-sending at the same time sends no "moved" email; Google sends the calendar invite with the new link.
+- Screen: the Google failure text no longer says "use your own link".
+- Since 0166 the stage stays at *VSAT cleared* / *PI cleared* until admissions moves it, so 0168 shows the student
+  the booking as soon as it is **sent** (owner's choice, 25 Nov 2026): `vsat_my_interview` also at *VSAT cleared*
+  (active), `vsat_my_counselling` gives the booked card at *PI cleared* (active) when a session is sent. On hold,
+  not selected, cancelled and typed-but-not-sent rows still show nothing. The Join link rule is unchanged.
+
+Migrations: `0167_vsat_meet_only`, `0168_vsat_student_sees_booking` (rollbacks in `supabase/rollback/`, tested on
+staging the same way). DB tests: `vsat_meet_only.test.sql` (11), `vsat_student_sees_booking.test.sql` (23); the
+interview, row booking, counselling and panel suites were updated where they pasted a link (now: refused, or an old
+own-link row made by hand in the test).
+
 ## Student side
 
 The dashboard interview card calls `vsat_my_interview()` (by login only). It shows the date and time in IST.
@@ -72,8 +92,8 @@ has its own icon (no emoji); the time shows as a date tile with a live countdown
 "Camera on · Mic on · Quiet place" as chips while the interview is booked or starting.
 The **Join interview** button opens from **10 minutes before** the slot **until the slot ends**. The Meet link
 is only sent by the server inside that window, and the page uses the server clock, not the phone's.
-The card shows the booking once the student is at *Interview scheduled* (since 0166 admissions moves the stage by hand
-after **Send**; the invite email goes out at Send either way).
+The card shows the booking as soon as it is sent: at *Interview scheduled*, and since 0168 also while the student is
+still at *VSAT cleared* (active), because admissions now moves the stage by hand after **Send**.
 
 ## How the background work runs
 
@@ -92,7 +112,7 @@ waiting for a Meet link) runs only when called by hand: `GET /api/cron/vsat-inte
 
 | Job | Rule |
 |---|---|
-| Google event | Made, moved or deleted. 5 tries, then *Failed* (staff can retry or use their own link). Not retried when the time has passed, an email is missing, or staging test mode blocks a guest. |
+| Google event | Made, moved or deleted. 5 tries, then *Failed* (staff can retry; since 0167 there is no own link). Not retried when the time has passed, an email is missing, or staging test mode blocks a guest. |
 | Attendance | Read from Meet after the slot ends. Both joined together → *done*. Nobody / only one person joined → *no-show* (Status column only; since 0166 the stage and pipeline status do not change). Short call or no Meet record → left for staff to mark. Staff can always change it. |
 | Emails | Through the existing **VSAT comms** steps (same sender as the other VSAT emails). Waits up to 20 minutes for the Meet link, then sends with the dashboard link. |
 
@@ -139,14 +159,16 @@ column stays *Creating*.
 - Meet does not say *who* joined, only how many people. "Only one person joined" counts as a no-show; staff can change it.
 - Moving a student back by hand with the pipeline's bulk move does not delete the Google event. Use **Cancel interview**.
 - Column choices saved in a browser need **Reset** once to show the new *Interview Meet* column.
-- The 221 interviews booked before this release keep their own Meet links (`meet_mode = manual`); nothing is sent for them.
+- The 221 interviews booked before this release keep their own Meet links (`meet_mode = manual`); nothing is sent for them
+  until one is moved or re-sent, which makes it Google Meet (0167).
 - Two booked students can't swap times in one send (each waits for the other's time). Move one to a free time first.
 - `vsat_schedule_interviews_bulk` (0140) is still in the database but no screen uses it any more.
 
 ## Production release (only with the owner's OK)
 
 1. Apply migrations 0140 and 0143 on production (in that order). With Phase 3: then 0144 (offers) and 0145 (counselling).
-   Then 0158, 0165 (Join link + reschedule columns) and 0166 (stages by hand, Status, bulk status).
+   Then 0158, 0165 (Join link + reschedule columns), 0166 (stages by hand, Status, bulk status), 0167 (Google Meet
+   only) and 0168 (the student sees the booking once it is sent).
 2. Set the `ADMISSIONS_*` env in Vercel **Production** (`ADMISSIONS_INVITE_MODE=live`).
 3. Merge to `main` (the cron entry comes with `vercel.json`).
 4. In *VSAT → Comms*, check the six interview steps' copy, then turn them on and off test mode.
