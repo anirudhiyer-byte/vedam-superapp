@@ -51,10 +51,22 @@ export async function POST(req: Request) {
   if (!user) return json({ ok: false, code: "NOT_LOGGED_IN" }, 401);
   const isAdminEmail = (user.email ?? "").toLowerCase().endsWith("@vedam.org") && !!user.email_confirmed_at;
 
+  // admin = confirmed @vedam.org OR is_admin(); admins bypass the paid gate, the on/off flags,
+  // the once-only mock limit and the exam date window (they can open either test anytime).
+  let isAdmin = isAdminEmail;
+  if (!isAdmin) { const { data } = await sb.rpc("is_admin"); isAdmin = !!data; }
+
   const creds = wheeboxCreds();
   if (!creds) return json({ ok: false, code: "WHEEBOX_NOT_CONFIGURED" }, 503);
 
   const admin = adminDb();
+
+  // student-facing master switches (admins bypass). Default: mock off, exam on.
+  const { data: flagRows } = await admin.from("app_flags").select("key, value").in("key", ["vsat_mock_enabled", "vsat_exam_enabled"]);
+  const flagOn = (k: string, dflt: boolean) => {
+    const v = (flagRows as { key: string; value: string }[] | null)?.find((r) => r.key === k)?.value;
+    return v == null ? dflt : v === "on";
+  };
 
   // ── application + eligibility ──────────────────────────────────────────────
   const { data: app } = await admin
@@ -64,7 +76,7 @@ export async function POST(req: Request) {
     .maybeSingle();
   if (!app?.application_id) return json({ ok: false, code: "NOT_AN_APPLICANT" }, 403);
 
-  if (!isAdminEmail) {
+  if (!isAdmin) {
     const { data: paid } = await admin.from("vsat_payments").select("lead_id").eq("lead_id", user.id).maybeSingle();
     if (!paid) return json({ ok: false, code: "NOT_PAID" }, 403);
   }
@@ -78,13 +90,15 @@ export async function POST(req: Request) {
   let startAt: string;
   let endAt: string;
   if (kind === "mock") {
-    if (app.mock_given === true) return json({ ok: false, code: "MOCK_ALREADY_DONE" }, 409);
+    if (!isAdmin && !flagOn("vsat_mock_enabled", false)) return json({ ok: false, code: "MOCK_DISABLED" }, 409);
+    if (!isAdmin && app.mock_given === true) return json({ ok: false, code: "MOCK_ALREADY_DONE" }, 409);
     if (!settings?.mock_test_id) return json({ ok: false, code: "MOCK_NOT_CONFIGURED" }, 409);
     testId = String(settings.mock_test_id);
     const now = Date.now();
     startAt = new Date(now - 2 * 60 * 1000).toISOString();
     endAt = new Date(now + MOCK_WINDOW_MS).toISOString();
   } else {
+    if (!isAdmin && !flagOn("vsat_exam_enabled", true)) return json({ ok: false, code: "EXAM_DISABLED" }, 409);
     if (app.application_stage_1 !== "slot_selected" || !app.exam_date_id) return json({ ok: false, code: "NO_SLOT" }, 409);
     const { data: date } = await admin
       .from("vsat_exam_dates")
@@ -95,8 +109,9 @@ export async function POST(req: Request) {
     const now = Date.now();
     const openFrom = new Date(date.start_at).getTime() - (date.clickable_lead_minutes ?? 15) * 60 * 1000;
     const closeAt = new Date(date.end_at).getTime();
-    if (now < openFrom) return json({ ok: false, code: "NOT_IN_WINDOW" }, 409);
-    if (now > closeAt) return json({ ok: false, code: "WINDOW_CLOSED" }, 409);
+    // admins can open the real exam anytime; students only inside the window
+    if (!isAdmin && now < openFrom) return json({ ok: false, code: "NOT_IN_WINDOW" }, 409);
+    if (!isAdmin && now > closeAt) return json({ ok: false, code: "WINDOW_CLOSED" }, 409);
     testId = String(date.wheebox_test_id);
     startAt = new Date(date.start_at).toISOString();
     endAt = new Date(date.end_at).toISOString();
@@ -121,13 +136,14 @@ export async function POST(req: Request) {
         regNO: app.application_id,
       };
       const reg = await registerCandidate(input, creds);
-      if (!isWheeboxOk(reg)) return json({ ok: false, code: "WHEEBOX_REGISTER_FAILED", detail: reg }, 502);
+      // NOTE: raw Wheebox payloads can carry internal tokens/ids — only ever echo `detail` to an admin.
+      if (!isWheeboxOk(reg)) return json({ ok: false, code: "WHEEBOX_REGISTER_FAILED", ...(isAdmin ? { detail: reg } : {}) }, 502);
       await admin.from("application_manager").update({ wheebox_login_id: loginId, wheebox_registered: true }).eq("lead_id", user.id);
     }
 
     // ── assign the test for its window ─────────────────────────────────────────
     const assignRes = await assignTest(loginId, { [testId]: { startDate: toWheeboxDate(startAt), endDate: toWheeboxDate(endAt) } }, creds);
-    if (!isWheeboxOk(assignRes)) return json({ ok: false, code: "WHEEBOX_ASSIGN_FAILED", detail: assignRes }, 502);
+    if (!isWheeboxOk(assignRes)) return json({ ok: false, code: "WHEEBOX_ASSIGN_FAILED", ...(isAdmin ? { detail: assignRes } : {}) }, 502);
     await admin
       .from("application_manager")
       .update(kind === "mock" ? { mock_assigned: true } : { exam_assigned: true })
@@ -146,7 +162,7 @@ export async function POST(req: Request) {
         url = verifyTokenUrl(creds, vt);
       }
     }
-    if (!url) return json({ ok: false, code: "WHEEBOX_NO_LINK", detail: linkRes }, 502);
+    if (!url) return json({ ok: false, code: "WHEEBOX_NO_LINK", ...(isAdmin ? { detail: linkRes } : {}) }, 502);
 
     return json({ ok: true, url });
   } catch (e) {

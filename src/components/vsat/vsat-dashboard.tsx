@@ -107,6 +107,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
   const [perfAtt, setPerfAtt] = useState(1);
   // Server says this applicant closed attempt 1 in a terminal-fail state and may re-sit (₹500).
   const [secondEligible, setSecondEligible] = useState(false);
+  const [examFlags, setExamFlags] = useState<{ mock: boolean; exam: boolean }>({ mock: false, exam: true });
   const [journeyOpen, setJourneyOpen] = useState(false); // mobile: journey timeline collapsed by default
   // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
   // Not a bypass of the pay screen — the admin still sees "Pay", with a Simulate
@@ -138,7 +139,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
       fetch("/api/payments/vsat-quote", opts),
     ]);
     try {
-      if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); setSecondEligible(j.secondAttemptEligible === true); } }
+      if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); setSecondEligible(j.secondAttemptEligible === true); setExamFlags(j.examFlags ?? { mock: false, exam: true }); } }
     } catch { /* ignore */ }
     try {
       if (qR.status === "fulfilled") { const qj = await qR.value.json(); if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, earlyReg: qj.earlyReg, earlyRegDiscount: qj.earlyRegDiscount, autoDiscount: qj.autoDiscount }); }
@@ -534,7 +535,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
                   <h2 className="font-display text-[19px] font-extrabold">Your VSAT exam</h2>
                   <span className={pillGood}>● Fee paid</span>
                 </div>
-                <VsatExamBlock app={app as Record<string, unknown>} onChange={load} />
+                <VsatExamBlock app={app as Record<string, unknown>} onChange={load} isAdmin={isAdmin} mockEnabled={examFlags.mock} examEnabled={examFlags.exam} />
               </div>
             ) : enrolled ? (
               <div className={`${card} mb-4 border-[#1f9d57]/30 bg-[#f1fbf5]`}>
