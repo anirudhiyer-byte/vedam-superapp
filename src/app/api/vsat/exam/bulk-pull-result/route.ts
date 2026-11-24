@@ -74,9 +74,9 @@ export async function POST(req: Request) {
   // everyone assigned to this VSAT date who doesn't already have a stored result for this test
   const { data: apps } = await admin
     .from("application_manager")
-    .select("application_id, lead_id, wheebox_login_id")
+    .select("application_id, lead_id, wheebox_login_id, mock_launched_at")
     .eq("exam_date_id", examDateId);
-  const all = (apps as { application_id: string; lead_id: string; wheebox_login_id: string | null }[] | null) ?? [];
+  const all = (apps as { application_id: string; lead_id: string; wheebox_login_id: string | null; mock_launched_at: string | null }[] | null) ?? [];
   if (all.length === 0) return json({ ok: true, total: 0, pulled: 0, failed: 0, remaining: 0, results: [], vsat: date.label });
 
   const { data: done } = await admin
@@ -89,8 +89,10 @@ export async function POST(req: Request) {
   let pulled = 0, failed = 0;
   for (const a of slice) {
     const loginId = a.wheebox_login_id || a.application_id;
+    // mock: anchor to the student's own launch day; exam: the fixed date. Fall back to the date row.
+    const dateAnchor = isMock && a.mock_launched_at ? new Date(a.mock_launched_at) : examDate;
     try {
-      const result = await fetchResult({ domainName, testName, loginId, osr, dateOfExam: ymd(examDate) }, creds);
+      const result = await fetchResult({ domainName, testName, loginId, osr, dateOfExam: ymd(dateAnchor) }, creds);
       const parsed = parseWheeboxResult(result);
       await admin.from("vsat_exam_results").insert({
         application_id: a.application_id, lead_id: a.lead_id, wheebox_test_id: testId, is_mock: isMock,
