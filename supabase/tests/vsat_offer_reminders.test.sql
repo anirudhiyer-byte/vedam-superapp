@@ -116,6 +116,10 @@ begin
   begin -- rolled back at the end (ZDONE)
     adm := pg_temp.mk_user('zztest-rem-adm@example.invalid');
     insert into public.vsat_team (user_id, role) values (adm, 'admissions');
+    -- campus "Days to pay" for these tests: the R checks are built on Pune 2 days and Gurugram 5 days
+    -- (0190 set the real default to 7; same pinning as vsat_offer_release / vsat_offer_days_override)
+    update public.vsat_campus_settings set offer_days = 2 where campus = 'pune';
+    update public.vsat_campus_settings set offer_days = 5 where campus = 'gurugram';
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at)
     values ('ZZTEST reminder batch', 'zz-rem', current_date, now(), now() + interval '2 hours') returning id into d;
     r1 := pg_temp.mk_app('ZZT-REM-1', pune, d, 40);
