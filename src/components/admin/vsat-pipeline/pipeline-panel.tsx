@@ -22,6 +22,7 @@ import { MeetBadge } from "./interview-tools";
 import { RefreshShimmer, useRefreshShimmer } from "@/components/admin/ui/refresh-shimmer";
 import { PlanBar, PlanDate, PlanInterviewer, PlanStatus, PlanTime, useInterviewPlan, type PlanMessage } from "./interview-planner";
 import { OfferBar, type OfferMessage } from "./offer-tools";
+import { STAGES_WITH_EMAIL, sendStageEmailsNow } from "@/lib/vsat/stage-notices-client";
 import { TRACKS, type Track, type TrackKey } from "@/lib/vsat/tracks";
 import { ATTENDANCE_LABEL, STATUS_CHOICES, isMeetState, type SessionStatus } from "@/lib/vsat/interviews";
 import { inTrackWords } from "@/lib/vsat/tracks";
@@ -86,12 +87,13 @@ const IconPencil = () => <Svg className="h-3.5 w-3.5"><path d="M12 20h9M16.5 3.5
 
 // v2 for the Exam panel (0172): the owner asked for every sheet column on the table, so a column choice saved before it
 // is set aside once and everyone opens on the new default; they can change it again from Columns.
-const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "exam" ? "v2" : "v1"}:${panel}`;
+// v2: the VSAT Exam (0172) and Interview (0173) tables got the sheet's columns, so an older saved choice is not reused
+const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "exam" || panel === "intv" ? "v2" : "v1"}:${panel}`;
 // per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
 function loadCols(panel: PanelKey): unknown { try { const s = localStorage.getItem(colsKey(panel)); return s ? JSON.parse(s) : null; } catch { return null; } }
 function saveCols(panel: PanelKey, cols: string[]) { try { localStorage.setItem(colsKey(panel), JSON.stringify(cols)); } catch { /* ignore */ } }
 
-/** onOpenEvaluation (VSAT Exam panel only): opens the Exam Evaluation page in the VSAT admin shell. */
+/** onOpenEvaluation (VSAT Exam / Interview panels): opens the Exam / Interview Evaluation page in the VSAT admin shell. */
 export function PipelinePanel({ panel, roles, onOpenEvaluation }: { panel: PanelKey; roles: VsatRoles; onOpenEvaluation?: () => void }) {
   const [supabase] = useState(() => createClient());
   const scope = useMemo(() => panelScope(panel), [panel]);
@@ -347,6 +349,13 @@ export function PipelinePanel({ panel, roles, onOpenEvaluation }: { panel: Panel
         <p className="text-[13px] text-vx-faint">
           Results analysis, cut-off and Select for PI are in{" "}
           <button type="button" onClick={onOpenEvaluation} className={vx.link}>Exam Evaluation</button>.
+        </p>
+      )}
+      {/* ── Interview: scores, verdict scores and the verdict per VSAT (0173, owner's review) ── */}
+      {panel === "intv" && manager && onOpenEvaluation && (
+        <p className="text-[13px] text-vx-faint">
+          Weighted scores, the Selected / Maybe scores and the verdict are in{" "}
+          <button type="button" onClick={onOpenEvaluation} className={vx.link}>Interview Evaluation</button>. Filter Verdict = Selected here to move students to PI cleared.
         </p>
       )}
 
@@ -754,6 +763,8 @@ function BulkBar({ ids, current, panel, onDone }: { ids: string[]; current: Stag
     setBusy(false);
     if (error) return setMsg(errorText(error.message));
     const d = data as { moved: number; unchanged: number; skipped: { application_id: string; code: string }[] };
+    // PI cleared (0173) emails the student: send the queued emails now instead of waiting for the cron (best effort)
+    if (d.moved > 0 && st === "active" && STAGES_WITH_EMAIL.includes(to)) void sendStageEmailsNow(ids);
     setMsg(`Moved ${d.moved}${d.unchanged ? `, ${d.unchanged} already there` : ""}${d.skipped.length ? `, ${d.skipped.length} skipped: ${d.skipped.slice(0, 5).map((s) => `${s.application_id} (${errorText(s.code)})`).join("; ")}${d.skipped.length > 5 ? " …" : ""}` : ""}.`);
     setReason(""); onDone();
   }

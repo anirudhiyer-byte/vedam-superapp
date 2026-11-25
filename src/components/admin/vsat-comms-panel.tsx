@@ -27,10 +27,17 @@ const OFFER_STEP_NOTE: Record<string, string> = {
   [OFFER_REMINDER_STEP]: "Sent once at 10:00 am IST on the offer's last day, only if the enrollment fee is not paid yet.",
   [OFFER_LAPSED_STEP]: "Sent once when the offer lapses (the deadline passed without payment). Not sent if the student paid after all.",
 };
-const isEmailOnly = (key: string) => isInterviewStep(key) || isOfferStep(key);
+/** Stage emails (0173: PI cleared) are sent by the stage-email job when admissions moves a student, by email only. */
+const STAGE_EMAIL_STEPS: Record<string, string> = {
+  pi_cleared: "Sent once per VSAT attempt, when admissions moves the student to PI cleared.",
+};
+const STAGE_EMAIL_VARS = ["name", "application_no", "dashboard_link"] as const;
+const isStageEmailStep = (key: string) => key in STAGE_EMAIL_STEPS;
+const isEmailOnly = (key: string) => isInterviewStep(key) || isOfferStep(key) || isStageEmailStep(key);
 const STAGE_VARS = ["name", "amount", "apply_link", "dashboard_link", "receipt_link"];
 const INTERVIEW_VARS = ["name", "student_name", "application_no", "date", "time", "old_date", "old_time", "join_link", "dashboard_link", "panel_link"];
-const stepVars = (key: string): readonly string[] => (isInterviewStep(key) ? INTERVIEW_VARS : isOfferStep(key) ? OFFER_EMAIL_VARS : STAGE_VARS);
+const stepVars = (key: string): readonly string[] =>
+  (isInterviewStep(key) ? INTERVIEW_VARS : isOfferStep(key) ? OFFER_EMAIL_VARS : isStageEmailStep(key) ? STAGE_EMAIL_VARS : STAGE_VARS);
 const varList = (vars: readonly string[]) => vars.map((v) => `{{${v}}}`).join(" ");
 
 function Toggle({ on, onClick, text }: { on: boolean; onClick: () => void; text: string }) {
@@ -165,6 +172,11 @@ export function VsatCommsPanel() {
                             {" {{offer_days}}"} is how many days the offer is valid.
                           </p>
                         )}
+                        {isStageEmailStep(s.step_key) && (
+                          <p className="mt-1.5 text-[11px] text-vx-faint">
+                            Placeholders: {varList(STAGE_EMAIL_VARS)}. {STAGE_EMAIL_STEPS[s.step_key]}
+                          </p>
+                        )}
                         {isInterviewStep(s.step_key) && (
                           <p className="mt-1.5 text-[11px] text-vx-faint">
                             Placeholders: {varList(INTERVIEW_VARS)}. {"{{name}}"} is the person getting the email; {"{{join_link}}"} is the meeting link
@@ -177,6 +189,7 @@ export function VsatCommsPanel() {
                       {isEmailOnly(s.step_key) ? (
                         <p className="mt-3 text-[11px] text-vx-faint">{isOfferStep(s.step_key)
                           ? "Offer emails go by email only. There is no WhatsApp for this step."
+                          : isStageEmailStep(s.step_key) ? "This email goes by email only. There is no WhatsApp for this step."
                           : `${/^counsell/.test(s.step_key) ? "Counselling" : "Interview"} messages go by email only (with the Google Calendar invite). There is no WhatsApp for this step.`}</p>
                       ) : (
                       <div className="mt-3 rounded-lg border border-vx-line bg-white/[0.02] p-3">

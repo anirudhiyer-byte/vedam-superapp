@@ -75,6 +75,9 @@ export const VALUE_CHOICES: Record<string, { value: string; label: string }[]> =
   // enum vm_attendance, same words as the student drawer (0140)
   interview_attendance: Object.entries(ATTENDANCE_LABEL).map(([value, label]) => ({ value, label })),
   counselling_attendance: Object.entries(ATTENDANCE_LABEL).map(([value, label]) => ({ value, label })),
+  // 0173: the verdict from Interview Evaluation, and the form's financial capability
+  interview_verdict: [{ value: "selected", label: "Selected" }, { value: "maybe", label: "Maybe" }, { value: "not_selected", label: "Rejected" }],
+  iv_financial: [{ value: "high", label: "High" }, { value: "medium", label: "Medium" }, { value: "low", label: "Low" }],
 };
 const choiceLabel = (key: string, v: string): string => VALUE_CHOICES[key]?.find((c) => c.value === v)?.label ?? v;
 export const FILTER_OPS: Record<string, FilterOp[]> = {
@@ -139,7 +142,18 @@ const LABELS: Record<string, string> = {
   exam_ended_at: "Test end", exam_time_taken: "Time taken", exam_total_questions: "Total questions", exam_attempted: "Attempted",
   exam_correct: "Correct", exam_incorrect: "Incorrect", exam_unattempted: "Unattempted", form_name: "Form name",
   interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview status",
-  interview_score: "Interview score", interview_calc_verdict: "Verdict (calculated)", interviewer_verdict: "Verdict (interviewer)",
+  interview_score: "Weighted score",
+  // 0173 — sir's interview form, one column per question (the "Interview Responses" sheet), the verdict and the final score
+  interview_submitted_at: "Form submitted (IST)", interview_verdict: "Verdict", interview_final_score: "Final score (out of 20)",
+  iv_communication: "Communication & behaviour (1–5)", iv_communication_remarks: "Communication — remarks",
+  iv_logic: "Guesstimate & logical reasoning (1–5)", iv_logic_remarks: "Logical reasoning — remarks",
+  iv_passion: "Passion for CS (1–5)", iv_coding_talent: "Possible coding talent", iv_passion_remarks: "Passion for CS — remarks",
+  iv_achievements: "Achievements & extracurricular (1–5)", iv_cert_asked: "National-level certificate asked for",
+  iv_achievements_remarks: "Achievements — remarks", iv_why_program: "Why this program (1–5)", iv_why_program_remarks: "Why this program — remarks",
+  iv_drop_year: "Drop year", iv_previous_jee: "Previous year's JEE percentile", iv_jee_pct: "JEE Mains percentile (interview)",
+  iv_jee_maths_pct: "JEE Mains maths percentile (interview)", iv_expected_jee_pct: "Expected JEE percentile", iv_other_exams: "Other exam score",
+  iv_class12_pct: "Class 12 % (interview)", iv_class11_pct: "Class 11 % (interview)", iv_class10_pct: "Class 10 % (interview)",
+  iv_financial: "Financial capability", iv_financial_reason: "Financial capability — why", iv_why_accept: "Why should Vedam accept you",
   interview_meet: "Interview Meet", counselling_meet: "Counselling Meet",
   cheating_seen: "Cheating seen",
   counsellor: "Counsellor", counselling_slot: "Counselling slot (IST)", counselling_attendance: "Counselling status",
@@ -200,6 +214,23 @@ export const EXAM_SHEET_COLUMNS = [
   "exam_correct", "exam_incorrect", "exam_unattempted", "exam_max_marks", "exam_time_taken", "vps_effective",
 ] as const;
 
+/**
+ * Interview table (0173): the booking columns, then sir's "Interview Responses" sheet left to right (Timestamp … Weighed
+ * Score), then the sheet's Final Score. "Final Verdict" (Y) is the verdict from Interview Evaluation; "Interviewer Name"
+ * (AA) is the Interviewer column at the front (a column shows once).
+ */
+export const INTERVIEW_SHEET_COLUMNS = [
+  "registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_reschedules",
+  // Interview Responses: A Timestamp, B Application No, C–X the form, Y Final Verdict, Z, AB, AC, AD Weighed Score
+  "interview_submitted_at", "application_no", "iv_communication", "iv_communication_remarks", "iv_logic", "cheating_seen",
+  "iv_passion", "iv_coding_talent", "iv_passion_remarks", "iv_achievements", "iv_cert_asked", "iv_why_program", "iv_why_program_remarks",
+  "iv_drop_year", "iv_previous_jee", "iv_jee_pct", "iv_jee_maths_pct", "iv_expected_jee_pct", "iv_other_exams",
+  "iv_class12_pct", "iv_class11_pct", "iv_class10_pct", "iv_financial", "iv_financial_reason", "interview_verdict", "iv_why_accept",
+  "iv_logic_remarks", "iv_achievements_remarks", "interview_score",
+  // the sheet's "Final Score for Percentile" (weighted × 4)
+  "interview_final_score",
+] as const;
+
 /** Default columns per panel — the ones the old panels showed. "registered_name" is always first and cannot be removed. */
 export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   apps: ["registered_name", "campus", "vsat", "stage", "exam_percentile", "vps_effective", "eligible_effective", "stage_changed_at"],
@@ -207,9 +238,9 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   // sheet's test marks, on the table itself (not only in the drawer). Wheebox sends no "Status" / "Submit By".
   // "Score / Slabs" (12th) is the 12th % as in the profile analysis (0085); the second "JEE Mains Score" is the percentile.
   exam: [...EXAM_SHEET_COLUMNS],
-  // 0140 — Meet state and attendance next to the slot; 0166 — status + reschedule count, no interviewer verdict
-  intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_reschedules",
-         "interview_score", "interview_calc_verdict", "stage_changed_at"],
+  // 0140 — Meet state and attendance next to the slot; 0166 — status + reschedule count, no interviewer verdict;
+  // 0173 — the owner's review (24 Nov): every answer, mark and remark of the interview form as its own column, in the sheet's order
+  intv: [...INTERVIEW_SHEET_COLUMNS],
   // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot; 0166 — status + reschedule count
   couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_attendance",
           "counselling_reschedules", "counselling_category", "counselling_pct", "offer_expires_at", "stage_changed_at"],
@@ -262,7 +293,8 @@ export function formatValue(type: GridColType, key: string, v: unknown): string 
   }
   if (type === "ts") return fmtIst(String(v));
   if (type === "date") return istDate(v);
-  if (type === "num") return /_(pct|percentage)$/.test(key) ? `${num(v)}%` : num(v);
+  // a JEE percentile is not a percentage (0173: the interview's JEE answers end in _pct like the class % ones)
+  if (type === "num") return /_(pct|percentage)$/.test(key) && !/^iv_(jee|jee_maths|expected_jee)_pct$/.test(key) ? `${num(v)}%` : num(v);
   if (Array.isArray(v)) return v.map(String).join(", ");
   if (typeof v === "object") return JSON.stringify(v);
   return String(v);

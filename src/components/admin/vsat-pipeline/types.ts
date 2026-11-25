@@ -47,6 +47,8 @@ export type Student = {
     weighted_avg: number | null; calc_verdict: string | null; interviewer_verdict: string | null; cheating_seen: boolean | null;
     remarks: Record<string, string> | null; rubric_behavioural: number | null; rubric_math: number | null; rubric_passion: number | null;
     rubric_achievements: number | null; rubric_why_program: number | null; why_accept: string | null; financial_capability: string | null;
+    /** 0173: Selected / Maybe / Rejected from Interview Evaluation (null = not decided yet) */
+    verdict?: string | null;
   });
   counselling: null | (Record<string, unknown> & {
     counsellor: string | null; counsellor_id?: string | null; slot_datetime: string | null; zoom_link: string | null; attendance: string | null;
