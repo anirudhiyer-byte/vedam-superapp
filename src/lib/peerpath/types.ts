@@ -179,3 +179,26 @@ export type AdminData = {
   bookings: AdminBooking[];
   feedback: Record<string, Feedback>;
 };
+
+/** Admin Impact numbers from pp_admin_insights (0176). Counts only: no names, emails, phones or ids. */
+export type ImpactDemand = {
+  attempts: number;
+  /** distinct signed-in users, plus each signed-out try as one */
+  people: number;
+  booked: number;
+  people_booked: number;
+  /** booking result code (never "OK") → tries and people */
+  blocked: Record<string, { attempts: number; people: number }>;
+};
+export type ImpactOutcome = {
+  applicants: number;
+  paid_before: number;
+  paid_after: number;
+  not_paid: number;
+  enrolled: number;
+  enrolled_after: number;
+  median_days_to_pay: number | null;
+  median_days_to_enroll: number | null;
+};
+export type ImpactRange = { demand: ImpactDemand; outcome: ImpactOutcome };
+export type AdminInsights = { mode: string; ranges: Record<"7" | "30" | "90", ImpactRange> };

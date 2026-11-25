@@ -2,6 +2,10 @@ import { describe, expect, it } from "vitest";
 import { inviteFailed, isDone, isLive, isUpcoming, needsActionCounts, needsMarking, notReady } from "./admin-insights";
 import {
   bandOf,
+  BLOCK_LABELS,
+  blockedReasons,
+  parseAdminInsights,
+  parseDays,
   BOOKING_LIMIT,
   coverage,
   hoursOffered,
@@ -19,6 +23,7 @@ import {
   weeklyCounts,
   whenGrid,
 } from "./admin-insights";
+import { BOOK_CODES } from "./booking-codes";
 import type { AdminBooking, AdminData, AvailabilityRule, Feedback, SeniorPrivate } from "./types";
 
 const NOW = Date.parse("2026-11-25T10:00:00Z");
@@ -129,11 +134,12 @@ const live = (id: string, o: Partial<SeniorPrivate> = {}) =>
 const full = (o: Partial<AdminData>): AdminData => ({ seniors: [], bookings: [], rules: {}, blocks: {}, settings: {}, feedback: {}, ...o }) as AdminData;
 
 describe("parseTab", () => {
-  it("accepts the four tabs exactly", () => {
-    for (const t of ["overview", "sessions", "seniors", "quality"]) expect(parseTab(t)).toBe(t);
+  // 2B adds the Impact tab (spec change: "impact" used to fall back to overview)
+  it("accepts the five tabs exactly", () => {
+    for (const t of ["overview", "sessions", "seniors", "quality", "impact"]) expect(parseTab(t)).toBe(t);
   });
   it("anything else is overview", () => {
-    for (const v of ["Sessions", "impact", " seniors", "", "<script>", undefined, null, 3, ["quality"], {}]) expect(parseTab(v)).toBe("overview");
+    for (const v of ["Sessions", "Impact", "impact ", " seniors", "", "<script>", undefined, null, 3, ["quality"], ["impact"], {}]) expect(parseTab(v)).toBe("overview");
   });
 });
 
@@ -390,5 +396,103 @@ describe("new helpers do not change the input", () => {
     coverage(d);
     qualityStats(d, NOW);
     expect(JSON.stringify(d)).toBe(before);
+  });
+});
+
+/* ---------- 2B: Impact ---------- */
+
+describe("parseDays", () => {
+  it("7, 30, 90 exactly", () => {
+    for (const d of ["7", "30", "90"]) expect(parseDays(d)).toBe(d);
+  });
+  it("anything else is 30", () => {
+    for (const v of ["5", "07", "30 ", "365", "", "-7", "<script>", undefined, null, 30, ["7"], {}]) expect(parseDays(v)).toBe("30");
+  });
+});
+
+describe("BLOCK_LABELS", () => {
+  it("every booking code except OK has a plain label", () => {
+    for (const c of BOOK_CODES) {
+      if (c === "OK") continue;
+      expect(BLOCK_LABELS[c], c).toMatch(/^[A-Z][a-z A-Z]+$/);
+    }
+    expect(Object.keys(BLOCK_LABELS)).toHaveLength(BOOK_CODES.length - 1);
+  });
+  it("uses the agreed words", () => {
+    expect(BLOCK_LABELS.NOT_LOGGED_IN).toBe("Not signed in");
+    expect(BLOCK_LABELS.NOT_REGISTERED).toBe("Not registered for VSAT");
+    expect(BLOCK_LABELS.PAYMENT_PENDING).toBe("Payment pending");
+    expect(BLOCK_LABELS.SLOT_UNAVAILABLE).toBe("Slot taken");
+    expect(BLOCK_LABELS.SERVER).toBe("System error");
+  });
+});
+
+describe("blockedReasons", () => {
+  it("empty is empty", () => expect(blockedReasons({})).toEqual([]));
+  it("merges codes with the same label, unknown codes go to Other, most people first, Other last", () => {
+    const r = blockedReasons({
+      EMAIL_MISSING: { attempts: 3, people: 2 },
+      EMAIL_NOT_VERIFIED: { attempts: 1, people: 1 },
+      SLOT_UNAVAILABLE: { attempts: 9, people: 5 },
+      INVALID: { attempts: 40, people: 30 },
+      SOMETHING_NEW: { attempts: 2, people: 2 },
+      SERVER: { attempts: 1, people: 1 },
+      OK: { attempts: 99, people: 99 },
+    });
+    expect(r).toEqual([
+      { label: "Slot taken", people: 5, attempts: 9 },
+      { label: "No email", people: 3, attempts: 4 },
+      { label: "System error", people: 1, attempts: 1 },
+      { label: "Other", people: 32, attempts: 42 },
+    ]);
+  });
+  it("does not change the input", () => {
+    const b = { SERVER: { attempts: 1, people: 1 } };
+    const before = JSON.stringify(b);
+    blockedReasons(b);
+    expect(JSON.stringify(b)).toBe(before);
+  });
+});
+
+describe("parseAdminInsights", () => {
+  const range = (o: Record<string, unknown> = {}) => ({
+    demand: { attempts: 9, people: 6, booked: 2, people_booked: 1, blocked: { SLOT_UNAVAILABLE: { attempts: 3, people: 1 } } },
+    outcome: { applicants: 5, paid_before: 1, paid_after: 3, not_paid: 1, enrolled: 2, enrolled_after: 1, median_days_to_pay: 3.0, median_days_to_enroll: null },
+    ...o,
+  });
+  const good = () => ({ mode: "registered", ranges: { "7": range(), "30": range(), "90": range() } });
+
+  it("reads a good answer", () => {
+    const r = parseAdminInsights(good());
+    expect(r?.mode).toBe("registered");
+    expect(r?.ranges["30"].demand.blocked).toEqual({ SLOT_UNAVAILABLE: { attempts: 3, people: 1 } });
+    expect(r?.ranges["30"].outcome.median_days_to_pay).toBe(3);
+    expect(r?.ranges["30"].outcome.median_days_to_enroll).toBeNull();
+  });
+  it("accepts numbers sent as strings (Postgres numeric)", () => {
+    const g = good();
+    (g.ranges["7"].outcome as Record<string, unknown>).median_days_to_pay = "2.5";
+    (g.ranges["7"].demand as Record<string, unknown>).attempts = "12";
+    const r = parseAdminInsights(g);
+    expect(r?.ranges["7"].outcome.median_days_to_pay).toBe(2.5);
+    expect(r?.ranges["7"].demand.attempts).toBe(12);
+  });
+  it("drops blocked codes that are not plain codes", () => {
+    const g = good();
+    g.ranges["90"].demand.blocked = { "<img src=x>": { attempts: 1, people: 1 }, OK_BUT_lower: { attempts: 1, people: 1 }, BAD: { attempts: -1, people: 1 } } as never;
+    expect(parseAdminInsights(g)?.ranges["90"].demand.blocked).toEqual({});
+  });
+  it("null for wrong shapes", () => {
+    const noRange = good() as Record<string, unknown>;
+    delete (noRange.ranges as Record<string, unknown>)["90"];
+    const negative = good();
+    (negative.ranges["30"].outcome as Record<string, unknown>).applicants = -1;
+    const nan = good();
+    (nan.ranges["30"].demand as Record<string, unknown>).people = "lots";
+    const noMode = good() as Record<string, unknown>;
+    delete noMode.mode;
+    for (const v of [null, undefined, "x", 5, [], {}, { mode: "paid" }, { mode: "paid", ranges: [] }, noRange, negative, nan, noMode]) {
+      expect(parseAdminInsights(v)).toBeNull();
+    }
   });
 });
