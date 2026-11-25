@@ -3,11 +3,11 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import { errorText } from "@/lib/vsat/pipeline";
-import type { ExamAnalysis, GenderCount, PiBucket, PiResult } from "./types";
+import type { GenderCount, PiBucket, PiResult } from "./types";
 
 /**
- * VSAT Exam panel tools (0135). Every number comes from the database:
- * - ExamAnalysisCard  → vsat_exam_analysis (admin / admissions, campus-limited)
+ * VSAT Exam tools (0135). Every number comes from the database. The results analysis moved to its own page,
+ * Exam Evaluation (exam-evaluation.tsx, 0172), which uses the Select for PI dialog and the Dialog below:
  * - SelectForPiDialog → vsat_select_for_pi (admins: preview, then move with the previewed count)
  * - ProctoringBar     → vsat_set_proctoring_bulk (admin / admissions, campus-checked per student)
  * - VpsEditDialog     → vsat_set_override / vsat_clear_override (admins)
@@ -15,15 +15,13 @@ import type { ExamAnalysis, GenderCount, PiBucket, PiResult } from "./types";
 
 const fmt = (n: number | null | undefined, digits = 2) =>
   n === null || n === undefined ? "—" : Number(n).toFixed(digits).replace(/\.?0+$/, "");
-/** The sheet's three cut-off tables: 35 %, 60 %, 65 %. */
-const QUICK_CUTS = [35, 60, 65];
 
 const IconClose = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="h-4 w-4"><path d="M18 6 6 18M6 6l12 12" /></svg>
 );
 
-/** Centered dialog with a backdrop; Escape and the backdrop close it; focus starts inside. */
-function Dialog({ title, sub, onClose, children, wide = false }: { title: string; sub?: ReactNode; onClose: () => void; children: ReactNode; wide?: boolean }) {
+/** Centered dialog with a backdrop; Escape and the backdrop close it; focus starts inside. Also used by Exam Evaluation. */
+export function Dialog({ title, sub, onClose, children, wide = false }: { title: string; sub?: ReactNode; onClose: () => void; children: ReactNode; wide?: boolean }) {
   const box = useRef<HTMLDivElement>(null);
   useEffect(() => {
     box.current?.focus();
@@ -55,151 +53,6 @@ function genderLine(g: GenderCount): string {
 function ratio(g: GenderCount): string {
   if (!g.female || !g.male) return "—";
   return `1 : ${fmt(g.male / g.female, 1)}`;
-}
-
-/* ───────────────────────────── analysis card ───────────────────────────── */
-
-export function ExamAnalysisCard({ vsatIds, vsatLabels, canSelect, reloadKey, onApplied }:
-  { vsatIds: string[]; vsatLabels: string[]; canSelect: boolean; reloadKey: number; onApplied: () => void }) {
-  const [supabase] = useState(() => createClient());
-  const [cut, setCut] = useState<number>(65);
-  const [custom, setCustom] = useState("");
-  const [data, setData] = useState<ExamAnalysis | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState("");
-  const [open, setOpen] = useState(true);
-  const [pi, setPi] = useState(false);
-  const key = vsatIds.join(",");
-
-  const load = useCallback(async () => {
-    if (!key) return;
-    setLoading(true); setErr("");
-    const { data: d, error } = await supabase.rpc("vsat_exam_analysis", { p: { exam_date_ids: key.split(","), percentile: cut } });
-    setLoading(false);
-    if (error) { setErr(errorText(error.message)); setData(null); return; }
-    setData(d as ExamAnalysis);
-  }, [supabase, key, cut]);
-  useEffect(() => { if (open) void load(); }, [load, open, reloadKey]);
-
-  function applyCustom() {
-    const n = Number(custom);
-    if (custom.trim() === "" || !Number.isFinite(n) || n < 0 || n > 100) return setErr("Cut-off must be a percentile between 0 and 100.");
-    setCut(n);
-  }
-
-  const title = vsatLabels.length === 1 ? vsatLabels[0] : `${vsatLabels.length} VSATs`;
-  const maxSlab = Math.max(1, ...(data?.slabs ?? []).map((s) => s.n));
-  const single = vsatIds.length === 1;
-
-  return (
-    <section className={cx(vx.card, "overflow-hidden")} aria-label="VSAT analysis">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-4 py-3 sm:px-5">
-        <h2 className={vx.h3}>Results · {title}</h2>
-        {data && <span className="text-[13px] text-vx-faint">
-          {data.takers} took the test of {data.booked} booked{data.disqualified ? ` · ${data.disqualified} disqualified` : ""}
-        </span>}
-        <span className="flex-1" />
-        {loading && <span className="text-xs text-vx-faint">Loading…</span>}
-        <button className={cx(vx.btn, vx.ghost, vx.sm)} onClick={() => setOpen(!open)} aria-expanded={open}>{open ? "Hide" : "Show"}</button>
-      </div>
-      {open && (
-        <div className="border-t border-vx-line-soft px-4 pb-4 pt-3 sm:px-5">
-          {err && <p role="alert" className={cx(vx.error, "mb-3")}>{err}</p>}
-          {data && data.takers === 0 && <p className={vx.note}>No results yet for {single ? "this VSAT" : "these VSATs"}. They appear here as Wheebox sends them.</p>}
-          {data && data.takers > 0 && (
-            <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
-              {/* left: the headline numbers and the spread */}
-              <div className="space-y-3">
-                <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
-                  {[
-                    { k: "Average score", v: data.avg_percentage === null ? "—" : `${fmt(data.avg_percentage)}%` },
-                    { k: "Average percentile", v: fmt(data.avg_percentile) },
-                    { k: "Percentile above 70", v: String(data.above_70) },
-                    { k: "Female : male", v: ratio(data.gender), hint: "Not disqualified" },
-                  ].map((s) => (
-                    <div key={s.k} className={cx(vx.well, "px-3 py-2")} title={s.hint}>
-                      <dt className="text-[12px] text-vx-faint">{s.k}</dt>
-                      <dd className="mt-0.5 text-[18px] font-semibold tabular-nums tracking-[-0.01em]">{s.v}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <div>
-                  <p className="mb-1.5 text-[12px] text-vx-faint">Percentile spread · not disqualified · {genderLine(data.gender)}</p>
-                  <ul className="space-y-1">
-                    {data.slabs.map((s) => (
-                      <li key={s.label} className="grid grid-cols-[52px_1fr_32px] items-center gap-2 text-[13px]">
-                        <span className="tabular-nums text-vx-mut">{s.label}</span>
-                        <span className="h-2.5 overflow-hidden rounded-full bg-white/[0.05]">
-                          <span className="block h-full rounded-full bg-vx-violet/70" style={{ width: `${(s.n / maxSlab) * 100}%` }} />
-                        </span>
-                        <span className="text-right tabular-nums">{s.n}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* right: the cut-off table and Select for PI */}
-              <div className={cx(vx.well, "p-3")}>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="mr-1 text-[13px] text-vx-mut">Percentile at least</span>
-                  {QUICK_CUTS.map((c) => (
-                    <button key={c} onClick={() => { setCut(c); setCustom(""); }} aria-pressed={cut === c}
-                      className={cx(vx.btn, vx.sm, cut === c ? "border-vx-violet/60 bg-vx-violet/20 text-vx-ink" : vx.ghost)}>{c}</button>
-                  ))}
-                  <form className="flex items-center gap-1.5" onSubmit={(e) => { e.preventDefault(); applyCustom(); }}>
-                    <input className={cx(vx.field, "h-8 w-[5.75rem] text-[13px]")} type="number" min={0} max={100} step="any" inputMode="decimal"
-                      placeholder="Other" value={custom} onChange={(e) => setCustom(e.target.value)} aria-label="Other cut-off percentile" />
-                    {custom.trim() !== "" && <button type="submit" className={cx(vx.btn, vx.secondary, vx.sm)}>Use</button>}
-                  </form>
-                </div>
-                {data.cutoff && (
-                  <>
-                    <table className="mt-3 w-full text-[13px]">
-                      <thead className="text-[12px] text-vx-faint">
-                        <tr><th className="pb-1 text-left font-medium">Not disqualified, ≥ {fmt(data.cutoff.percentile)}</th>
-                          <th className="pb-1 text-right font-medium">Male</th><th className="pb-1 text-right font-medium">Female</th><th className="pb-1 text-right font-medium">Total</th></tr>
-                      </thead>
-                      <tbody className="tabular-nums">
-                        {(["pune", "gurugram", "none"] as const).filter((c) => data.cutoff?.by_campus[c]).map((c) => {
-                          const r = data.cutoff!.by_campus[c]!;
-                          return (
-                            <tr key={c} className="border-t border-vx-line-soft">
-                              <td className="py-1.5 text-vx-mut">{c === "pune" ? "Pune" : c === "gurugram" ? "Gurugram" : "No campus"}</td>
-                              <td className="py-1.5 text-right">{r.male}</td><td className="py-1.5 text-right">{r.female}</td><td className="py-1.5 text-right">{r.total}</td>
-                            </tr>
-                          );
-                        })}
-                        <tr className="border-t border-vx-line font-semibold">
-                          <td className="py-1.5">Overall</td>
-                          <td className="py-1.5 text-right">{data.cutoff.overall.male}</td><td className="py-1.5 text-right">{data.cutoff.overall.female}</td>
-                          <td className="py-1.5 text-right">{data.cutoff.total}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <p className="mt-2 text-[12px] text-vx-faint">
-                      {data.cutoff.vps !== null ? <>On this VSAT&apos;s curve that is VPS {fmt(data.cutoff.vps)}. </> : null}
-                      Female : male {ratio(data.cutoff.overall)}.
-                    </p>
-                    {canSelect && (
-                      <div className="mt-3 flex flex-wrap items-center gap-2">
-                        <button className={cx(vx.btn, vx.primary)} disabled={!single} onClick={() => setPi(true)}>Select for PI at ≥ {fmt(cut)}</button>
-                        {!single && <span className="text-[12px] text-vx-faint">Pick one VSAT to select for PI (each VSAT has its own cut-off).</span>}
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-      {pi && single && (
-        <SelectForPiDialog examDateId={vsatIds[0]} percentile={cut} onClose={() => setPi(false)}
-          onApplied={() => { onApplied(); void load(); }} />
-      )}
-    </section>
-  );
 }
 
 /* ───────────────────────────── Select for PI ───────────────────────────── */

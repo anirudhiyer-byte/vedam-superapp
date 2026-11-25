@@ -132,6 +132,14 @@ const ERRORS: Record<string, string> = {
   // offers (0144)
   NO_SCHOLARSHIP: "Save the counselling first: the offer needs the scholarship %.",
   ALREADY_RELEASED: "The offer is already released.",
+  // Exam Evaluation · raise one student by hand (0172)
+  NO_CUTOFF: "Decide this VSAT's cut-off first (Select for PI), then raise a student.",
+  NO_RESULT: "This student has no exam result yet.",
+  DISQUALIFIED: "This student is disqualified (proctoring). Change the proctoring verdict first.",
+  NOT_ACTIVE: "This student is on hold, absent or not selected.",
+  ALREADY_SELECTED: "This student is already at VSAT cleared or later.",
+  NOT_ELIGIBLE: "This student is marked not eligible.",
+  BELOW_CUTOFF: "The new VPS must be at least the VSAT's cut-off.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",

@@ -223,8 +223,8 @@ column stays *Creating*.
 
 1. Apply migrations 0140 and 0143 on production (in that order). With Phase 3: then 0144 (offers) and 0145 (counselling).
    Then 0158, 0165 (Join link + reschedule columns), 0166 (stages by hand, Status, bulk status), 0167 (Google Meet
-   only), 0168 (the student sees the booking once it is sent) and 0169 (Meet attendance and the team count at any
-   stage).
+   only), 0168 (the student sees the booking once it is sent), 0169 (Meet attendance and the team count at any
+   stage) and 0172 (VSAT Exam sheet columns + Exam Evaluation, see `exam-evaluation.md`).
 2. Set the `ADMISSIONS_*` env in Vercel **Production** (`ADMISSIONS_INVITE_MODE=live`).
 3. Merge to `main` (the cron entry comes with `vercel.json`).
 4. In *VSAT → Comms*, check the six interview steps' copy, then turn them on and off test mode.
