@@ -63,6 +63,14 @@ export function cellValues(row: PlanRow | null | undefined): CellValues {
   return { ...EMPTY_CELLS };
 }
 
+/** A locked row's booking as read-only words: date like "31 Oct 2026" and time "19:00" (both IST), "—" when empty. */
+export function lockedCells(v: CellValues): { date: string; time: string } {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v.date);
+  const mon = m ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].at(Number(m[2]) - 1) : undefined;
+  const date = m && mon && Number(m[2]) >= 1 ? `${Number(m[3])} ${mon} ${m[1]}` : "—";
+  return { date, time: /^\d{2}:\d{2}$/.test(v.time) ? v.time : "—" };
+}
+
 /**
  * What to save after a cell changed. A time needs both a date and a time: with only one of them the row
  * waits ("partial", kept on screen only). Empty interviewer / time are sent as null (clears that part).

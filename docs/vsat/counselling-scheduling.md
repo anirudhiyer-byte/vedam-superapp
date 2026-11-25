@@ -80,4 +80,5 @@ cron `/api/cron/vsat-interviews` (now also runs the counselling Google, attendan
 Apply 0140 → 0143 → 0144 → **0145**. Uses the same `ADMISSIONS_*` Google account as the interviews. Then turn on
 the 6 counselling steps in VSAT comms (test mode first). The grid change is **0158** (after 0140; no settings).
 Then **0165** (Join link + reschedule columns), **0166** (stages by hand, Status, bulk status), **0167** (Google Meet
-only) and **0168** (the student sees the booking once it is sent).
+only), **0168** (the student sees the booking once it is sent) and **0169** (Meet attendance and the team count
+at any counselling stage; see `interview-scheduling.md`).
