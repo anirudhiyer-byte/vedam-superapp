@@ -134,6 +134,10 @@ const LABELS: Record<string, string> = {
   eligible_effective: "Eligible", eligible_override: "Eligible override",
   exam_percentage: "Exam %", exam_section_maths: "Maths", exam_section_lr: "Logical reasoning", exam_section_cs: "CS",
   proctoring: "Proctoring", class12_result: "12th result", class10_eligible: "10th eligible", class12_eligible: "12th eligible",
+  // 0172 — the rest of the "14th July" / "Test Result" sheet columns
+  first_name: "First name", last_name: "Last name", user_id: "User ID", exam_test_name: "Test name", exam_started_at: "Test start",
+  exam_ended_at: "Test end", exam_time_taken: "Time taken", exam_total_questions: "Total questions", exam_attempted: "Attempted",
+  exam_correct: "Correct", exam_incorrect: "Incorrect", exam_unattempted: "Unattempted", form_name: "Form name",
   interviewer: "Interviewer", interview_slot: "Interview slot (IST)", interview_attendance: "Interview status",
   interview_score: "Interview score", interview_calc_verdict: "Verdict (calculated)", interviewer_verdict: "Verdict (interviewer)",
   interview_meet: "Interview Meet", counselling_meet: "Counselling Meet",
@@ -179,12 +183,30 @@ export function columnLabel(key: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/** VSAT Exam table (0172): the pipeline context, then the "14th July" sheet left to right, then the "Test Result" sheet. */
+export const EXAM_SHEET_COLUMNS = [
+  "registered_name", "campus", "vsat", "stage",
+  // 14th July: Form Name … Percentage
+  "form_name", "application_no", "first_name", "last_name", "registered_email", "registered_mobile", "gender", "date_of_birth",
+  "guardian_mobile_number", "residing_city", "campus_applied", "country", "state", "city", "class10_year", "class12_year",
+  "class12_marking_scheme", "class12_percentage", "studied_pcm", "jee_registered", "jee_appeared_when", "jee_score",
+  "entrance_percentile", "jee_main_maths_percentile", "marks_physics_12", "marks_chemistry_12", "marks_maths_12",
+  "class10_score", "class10_percentage", "class10_maths_percentage", "user_id", "class12_result", "class10_eligible",
+  "class12_eligible", "eligible_effective", "proctoring", "exam_section_maths", "exam_section_lr", "exam_section_cs",
+  "exam_obtained_marks", "exam_percentile", "exam_percentage",
+  // Test Result: Login Id, Test Name, start / end, Total Question, Attempted, Correct, Incorrect, Unattempted, Maximum Score,
+  // Time Taken, VPS
+  "wheebox_login_id", "exam_test_name", "exam_started_at", "exam_ended_at", "exam_total_questions", "exam_attempted",
+  "exam_correct", "exam_incorrect", "exam_unattempted", "exam_max_marks", "exam_time_taken", "vps_effective",
+] as const;
+
 /** Default columns per panel — the ones the old panels showed. "registered_name" is always first and cannot be removed. */
 export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   apps: ["registered_name", "campus", "vsat", "stage", "exam_percentile", "vps_effective", "eligible_effective", "stage_changed_at"],
-  // 0135 — the results sheet: who, %, percentile, the three sections, VPS, eligibility and the proctoring verdict
-  exam: ["registered_name", "campus", "gender", "vsat", "stage", "exam_percentage", "exam_percentile", "exam_section_maths", "exam_section_lr",
-         "exam_section_cs", "vps_effective", "eligible_effective", "proctoring"],
+  // 0172 — the owner's review (24 Nov): every column of the "14th July" sheet, in its order, then the "Test Result"
+  // sheet's test marks, on the table itself (not only in the drawer). Wheebox sends no "Status" / "Submit By".
+  // "Score / Slabs" (12th) is the 12th % as in the profile analysis (0085); the second "JEE Mains Score" is the percentile.
+  exam: [...EXAM_SHEET_COLUMNS],
   // 0140 — Meet state and attendance next to the slot; 0166 — status + reschedule count, no interviewer verdict
   intv: ["registered_name", "campus", "vsat", "stage", "interviewer", "interview_slot", "interview_meet", "interview_attendance", "interview_reschedules",
          "interview_score", "interview_calc_verdict", "stage_changed_at"],
