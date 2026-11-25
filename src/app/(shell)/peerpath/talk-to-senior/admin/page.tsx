@@ -3,8 +3,9 @@ import Link from "next/link";
 import { TtsNav } from "@/components/peerpath/tts-nav";
 import { CopyLink, SeniorStatusAction, StatusPill } from "@/components/peerpath/admin/senior-status";
 import { EmptyState, yearLabel } from "@/components/peerpath/ui";
-import { IconFlag } from "@/components/peerpath/icons";
-import { ttsPath } from "@/lib/peerpath/constants";
+import { IconCheck, IconFlag, IconUsers } from "@/components/peerpath/icons";
+import { filterAdminByCampus, parseCampus } from "@/lib/peerpath/admin-filter";
+import { CAMPUS_INFO, CAMPUSES, ttsPath, type Campus } from "@/lib/peerpath/constants";
 import { isAdminUser, loadAdmin } from "@/lib/peerpath/server";
 import { fmtDay, fmtTime } from "@/lib/peerpath/slots";
 import type { AdminBooking, AdminData, BookingStatus, SeniorPrivate } from "@/lib/peerpath/types";
@@ -40,12 +41,57 @@ function Empty({ text }: { text: string }) {
 }
 
 const isDone = (b: AdminBooking, now: number) => b.status === "completed" || (b.status === "confirmed" && new Date(b.end).getTime() < now);
+const isUpcoming = (b: AdminBooking, now: number) => b.status === "confirmed" && new Date(b.start).getTime() > now;
+const isLive = (s: SeniorPrivate) => s.status === "active";
+
+type CardStats = { live: number; upcoming: number; done: number };
+
+/** One campus filter card: the page reloads with ?campus=… (All has no query). */
+function CampusCard({ href, active, title, sub, image, stats }: { href: string; active: boolean; title: string; sub: string; image?: string; stats: CardStats }) {
+  const nums: [string, number][] = [
+    ["Live", stats.live],
+    ["Upcoming", stats.upcoming],
+    ["Done", stats.done],
+  ];
+  return (
+    <Link
+      href={href}
+      aria-current={active ? "page" : undefined}
+      className={`pp-card flex min-h-[72px] items-center gap-3 p-3 transition ${active ? "border-pp-violet-500 bg-pp-violet-50" : "hover:border-pp-violet-200"}`}
+    >
+      {image ? (
+        // 40px static thumbnail from /public (same files the finder uses); next/image adds nothing here
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={image} alt="" width={40} height={40} className="h-10 w-10 flex-none rounded-lg object-cover" />
+      ) : (
+        <span aria-hidden className="grid h-10 w-10 flex-none place-items-center rounded-lg bg-pp-violet-100 text-pp-violet-700">
+          <IconUsers className="h-5 w-5" />
+        </span>
+      )}
+      <span className="flex min-w-0 flex-1 flex-col">
+        <span className={`flex items-center gap-1.5 text-[15px] font-semibold ${active ? "text-pp-violet-700" : "text-pp-heading"}`}>
+          {title}
+          {active && <IconCheck className="h-4 w-4" />}
+        </span>
+        <span className="truncate text-[12px] text-pp-muted">{sub}</span>
+      </span>
+      <dl className="flex flex-none gap-3 text-right">
+        {nums.map(([label, n]) => (
+          <div key={label}>
+            <dt className="text-[10px] uppercase tracking-wide text-pp-muted">{label}</dt>
+            <dd className="text-[16px] font-bold leading-tight text-pp-heading">{n}</dd>
+          </div>
+        ))}
+      </dl>
+    </Link>
+  );
+}
 
 function seniorStats(d: AdminData, s: SeniorPrivate, now: number) {
   const mine = d.bookings.filter((b) => b.seniorId === s.id);
   const ratings = mine.map((b) => d.feedback[b.id]?.rating).filter((r): r is number => typeof r === "number");
   return {
-    upcoming: mine.filter((b) => b.status === "confirmed" && new Date(b.start).getTime() > now).length,
+    upcoming: mine.filter((b) => isUpcoming(b, now)).length,
     done: mine.filter((b) => isDone(b, now)).length,
     noShows: mine.filter((b) => b.status === "no_show_applicant").length,
     rating: ratings.length ? (ratings.reduce((a, r) => a + r, 0) / ratings.length).toFixed(1) : null,
@@ -214,8 +260,8 @@ function SeniorDetail({ d, s, now }: { d: AdminData; s: SeniorPrivate; now: numb
   );
 }
 
-export default async function AdminPage({ searchParams }: { searchParams: Promise<{ s?: string }> }) {
-  const { s: focus } = await searchParams;
+export default async function AdminPage({ searchParams }: { searchParams: Promise<{ s?: string; campus?: string }> }) {
+  const { s: focus, campus: campusParam } = await searchParams;
   const admin = await isAdminUser();
   const d = admin ? await loadAdmin() : null;
 
@@ -237,19 +283,28 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   }
 
   const now = Date.now();
-  const done = d.bookings.filter((b) => isDone(b, now)).length;
-  const noShows = d.bookings.filter((b) => b.status === "no_show_applicant").length;
-  const fb = Object.values(d.feedback);
+  // ?s= (one senior's page) wins: ?campus= is ignored then and the page is the full, unfiltered one.
+  const hasFocus = typeof focus === "string" && focus !== "";
+  const campus = hasFocus ? null : parseCampus(campusParam);
+  const v = filterAdminByCampus(d, campus);
+  const done = v.bookings.filter((b) => isDone(b, now)).length;
+  const noShows = v.bookings.filter((b) => b.status === "no_show_applicant").length;
+  const fb = Object.values(v.feedback);
   const avg = fb.length ? (fb.reduce((a, f) => a + f.rating, 0) / fb.length).toFixed(1) : "–";
   const promise = fb.filter((f) => f.promiseMade).length;
-  const active = d.seniors.filter((s) => s.status === "active").length;
-  const pending = d.seniors.filter((s) => s.status === "pending");
-  const upcoming = d.bookings.filter((b) => b.status === "confirmed" && new Date(b.start).getTime() > now);
-  const flags = d.bookings
-    .filter((b) => d.feedback[b.id] && (d.feedback[b.id].promiseMade || d.feedback[b.id].rating <= 2))
-    .map((b) => ({ b, f: d.feedback[b.id], s: d.seniors.find((x) => x.id === b.seniorId) }));
-  const focused = focus ? d.seniors.find((x) => x.id === focus) : undefined;
+  const active = v.seniors.filter(isLive).length;
+  const pending = v.seniors.filter((s) => s.status === "pending");
+  const upcoming = v.bookings.filter((b) => isUpcoming(b, now));
+  const flags = v.bookings
+    .filter((b) => v.feedback[b.id] && (v.feedback[b.id].promiseMade || v.feedback[b.id].rating <= 2))
+    .map((b) => ({ b, f: v.feedback[b.id], s: v.seniors.find((x) => x.id === b.seniorId) }));
+  const focused = hasFocus ? d.seniors.find((x) => x.id === focus) : undefined;
   const total = done + noShows;
+  // card numbers always come from the unfiltered data, so they stay the same when you switch campus
+  const cardStats = (c: Campus | null): CardStats => {
+    const x = filterAdminByCampus(d, c);
+    return { live: x.seniors.filter(isLive).length, upcoming: x.bookings.filter((b) => isUpcoming(b, now)).length, done: x.bookings.filter((b) => isDone(b, now)).length };
+  };
 
   return (
     <>
@@ -259,12 +314,20 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           <div>
             <h1 className="text-[28px] font-bold text-pp-heading">Talk to a Senior: admin</h1>
             <p className="text-[16px] text-pp-muted">Sessions, quality and safety at a glance. Live from the database.</p>
+            {campus && <p className="mt-1 text-[14px] font-semibold text-pp-violet-700">Showing: {campus}</p>}
           </div>
           <div className="flex flex-wrap gap-2">
             <Link href={ttsPath.home} className="pp-btn-secondary">Applicant view</Link>
             <Link href={ttsPath.join} className="pp-btn-primary">Add a senior</Link>
           </div>
         </div>
+
+        <nav aria-label="Filter by campus" className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <CampusCard href={ttsPath.admin} active={campus === null} title="All" sub="All campuses" stats={cardStats(null)} />
+          {CAMPUSES.map((c) => (
+            <CampusCard key={c} href={`${ttsPath.admin}?campus=${c}`} active={campus === c} title={c} sub={CAMPUS_INFO[c].university} image={CAMPUS_INFO[c].image} stats={cardStats(c)} />
+          ))}
+        </nav>
 
         <section aria-label="Overview" className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-6">
           <Stat label="Upcoming chats" value={upcoming.length} />
@@ -282,8 +345,8 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
             <div className="grid grid-cols-[minmax(0,1fr)] gap-8 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
               <section className="flex min-w-0 flex-col gap-3">
                 <h2 className="text-[19px] font-semibold text-pp-heading">Seniors</h2>
-                {d.seniors.length === 0 ? (
-                  <Empty text="No seniors yet. Share the “Become a senior” page with current students." />
+                {v.seniors.length === 0 ? (
+                  <Empty text={campus ? `No seniors at ${campus} yet.` : "No seniors yet. Share the “Become a senior” page with current students."} />
                 ) : (
                   <div className="pp-card overflow-x-auto">
                     <table className="w-full min-w-[820px] text-left text-[14px]">
@@ -300,8 +363,8 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-pp-line">
-                        {d.seniors.map((s) => {
-                          const st = seniorStats(d, s, now);
+                        {v.seniors.map((s) => {
+                          const st = seniorStats(v, s, now);
                           return (
                             <tr key={s.id}>
                               <td className="px-4 py-3">
@@ -364,7 +427,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
 
             <section className="flex flex-col gap-3">
               <h2 className="text-[19px] font-semibold text-pp-heading">Recent chats</h2>
-              {d.bookings.length === 0 ? <Empty text="No chats booked yet." /> : <BookingTable d={d} rows={d.bookings.slice(0, 40)} />}
+              {v.bookings.length === 0 ? <Empty text="No chats booked yet." /> : <BookingTable d={v} rows={v.bookings.slice(0, 40)} />}
             </section>
           </>
         )}
