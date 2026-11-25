@@ -1,6 +1,6 @@
 "use client";
 
-import { DURATIONS, LANGUAGES, RESIDENCE, SESSION_TYPES, STATES, TIME_OF_DAY, TOPICS, YEARS, type Topic } from "@/lib/peerpath/constants";
+import { DURATIONS, LANGUAGES, SESSION_TYPES, STATES, TIME_OF_DAY, TOPICS, YEARS, type Topic } from "@/lib/peerpath/constants";
 import { nextDays } from "@/lib/peerpath/slots";
 import { yearLabel } from "@/components/peerpath/ui";
 import type { Filters } from "./filters";
@@ -138,16 +138,6 @@ export function FilterPanel({ value: f, onChange, showTopics = true, languagesIn
             </option>
           ))}
         </select>
-      </Section>
-
-      <Section title="Hostel or day scholar">
-        <div className="flex flex-wrap gap-2">
-          {RESIDENCE.map((r) => (
-            <Chip key={r} on={f.residence === r} onClick={() => set({ residence: f.residence === r ? null : r })}>
-              {r}
-            </Chip>
-          ))}
-        </div>
       </Section>
     </div>
   );
