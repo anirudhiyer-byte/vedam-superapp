@@ -64,7 +64,7 @@ describe("parseWheeboxResult", () => {
   });
   it("is safe on junk", () => {
     const p = parseWheeboxResult("boom");
-    expect(p).toEqual({ overall: null, obtainedMarks: null, maxMarks: null, percentile: null, sections: {} });
+    expect(p).toEqual({ overall: null, obtainedMarks: null, maxMarks: null, percentile: null, sections: {}, reportLink: null });
   });
   it("parses the real Wheebox OVERALL callback shape (maximumMark / obtainMark)", () => {
     const p = parseWheeboxResult({
@@ -88,10 +88,22 @@ describe("parseWheeboxResult", () => {
 
 describe("studentMockResult", () => {
   it("builds a compact student-facing shape", () => {
-    const out = studentMockResult({ overall: "Pass", obtainedMarks: 42, maxMarks: 60, percentile: 88.5, sections: { Maths: 20 } });
+    const out = studentMockResult({ overall: "Pass", obtainedMarks: 42, maxMarks: 60, percentile: 88.5, sections: { Maths: 20 }, reportLink: null });
     expect(out).toEqual({ Score: "42 / 60", Percentile: 88.5, Result: "Pass", Sections: { Maths: 20 } });
   });
   it("omits missing fields", () => {
-    expect(studentMockResult({ overall: null, obtainedMarks: null, maxMarks: null, percentile: null, sections: {} })).toEqual({});
+    expect(studentMockResult({ overall: null, obtainedMarks: null, maxMarks: null, percentile: null, sections: {}, reportLink: null })).toEqual({});
+  });
+  it("includes the report link when present", () => {
+    const out = studentMockResult({ overall: null, obtainedMarks: null, maxMarks: null, percentile: null, sections: {}, reportLink: "https://wheebox.com/report/1" });
+    expect(out).toEqual({ Report: "https://wheebox.com/report/1" });
+  });
+});
+
+describe("parseWheeboxResult array-wrapped payload", () => {
+  it("unwraps result[] and never yields [object Object], and extracts the report link", () => {
+    const p = parseWheeboxResult({ result: [{ OVERALL: { name: "A", email: "VDM-1" }, reportLink: "https://wheebox.com/r/1", SECTIONWISE: [] }], status: "success" });
+    expect(p.overall).toBeNull();
+    expect(p.reportLink).toBe("https://wheebox.com/r/1");
   });
 });
