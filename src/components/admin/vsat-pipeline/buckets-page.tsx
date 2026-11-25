@@ -244,7 +244,6 @@ export function BucketsPage({ roles }: { roles: VsatRoles }) {
                 </table>
               </div>
               {structural.length > 0 && <p className="text-xs text-vx-red">{structural.join(" ")}</p>}
-              {rule.length > 0 && <p className="text-xs text-vx-orange-t">Sir&apos;s rule, 5 points per bucket: {rule.join(" ")}</p>}
 
               {data.can_edit && (
                 <div className="space-y-3 border-t border-vx-line-soft pt-3">
