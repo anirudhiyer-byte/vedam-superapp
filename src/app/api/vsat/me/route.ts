@@ -41,5 +41,16 @@ export async function POST(req: Request) {
   const secondAttemptEligible = !!pipeline && pipeline.attempt_no === 1 &&
     isTerminalFail(pipeline.stage, pipeline.status) &&
     a?.payment_stage_1 === "payment_approved" && a?.payment_stage_2 !== "payment_approved";
-  return Response.json({ ok: true, app, lead, dates: dates ?? [], pipeline, secondAttemptEligible, examFlags });
+  // Raw VSAT/exam marks are admin-only — the student only ever sees a VPS score (+ the
+  // Cleared/Not-Cleared verdict) and their mock result. select("*") above pulls the raw
+  // marks too, so strip them before they reach the browser (they're never rendered, but
+  // would otherwise be readable in the network response). Admin views read them separately.
+  const SCORE_PRIVATE = [
+    "exam_overall", "exam_sections", "exam_obtained_marks", "exam_max_marks", "exam_percentile",
+    "vsat_score_lr_1", "vsat_score_maths_1", "vsat_score_cs_1", "vsat_total_1", "vsat_percentile_1",
+    "vsat_score_lr_2", "vsat_score_maths_2", "vsat_score_cs_2", "vsat_total_2", "vsat_percentile_2",
+  ];
+  let appSafe = app as Record<string, unknown> | null;
+  if (appSafe) { appSafe = { ...appSafe }; for (const k of SCORE_PRIVATE) delete appSafe[k]; }
+  return Response.json({ ok: true, app: appSafe, lead, dates: dates ?? [], pipeline, secondAttemptEligible, examFlags });
 }
