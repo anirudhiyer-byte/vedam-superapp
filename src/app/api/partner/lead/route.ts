@@ -10,10 +10,14 @@ export const preferredRegion = "bom1";
  *
  * Elevate POSTs one lead, or { "leads": [...] } (≤100), signed with HMAC-SHA256 — see
  * x-vedam-timestamp / x-vedam-signature (lib/partner/verify.ts). We stage each lead in
- * partner_leads (service role; no browser access); it is materialised into profiles +
- * lead_manager when the student later logs in and is matched by phone/email (migration 0156).
+ * partner_leads (service role; no browser access) and then EAGERLY materialise it
+ * (migration 0172): find-or-create a placeholder auth user by phone/email (handle_new_user
+ * seeds the Vedam One profile), then partner_materialize() fills the lead_manager row with
+ * schoolconnect attribution and, when the push is prepaid, a write-once vsat_payments row.
+ * A later phone-OTP login lands the student on that same account. No application_manager is
+ * created here — that waits until the student reaches the dashboard.
  *
- * Inert until PARTNER_INBOUND_SECRET is set. Never creates an auth user or a funnel row here.
+ * Inert until PARTNER_INBOUND_SECRET is set.
  */
 type InLead = {
   external_id?: unknown; name?: unknown; email?: unknown; phone?: unknown; campus?: unknown;
@@ -97,7 +101,42 @@ export async function POST(req: Request) {
       if (ex?.id) await admin.from("partner_leads").update(row).eq("id", ex.id);
       else { const ins = await admin.from("partner_leads").insert(row); if (ins.error) { results.push({ phone, ok: false, error: ins.error.message }); continue; } }
     }
-    results.push({ phone, ok: true, status: "staged" });
+    // Eager materialization (migration 0172): the pushed lead becomes a real Vedam One profile +
+    // lead_manager row now, so comms reach them and the calling team can work them without the
+    // student having to log in. Find an existing account (dedupe / "already a profile"), else
+    // create a placeholder auth user — handle_new_user seeds the profile from this metadata —
+    // then partner_materialize fills the lead + (if prepaid) a write-once vsat_payments row.
+    // NO application_manager is created here (that waits for the dashboard).
+    try {
+      const phoneE164 = "+91" + phoneNorm.slice(-10);
+      const emailLc = row.email; // already lowercased, or null
+      const { data: foundId } = await admin.rpc("partner_find_user", { p_phone: phoneE164, p_email: emailLc });
+      let userId = (foundId as string | null) ?? null;
+      if (!userId) {
+        const meta: Record<string, unknown> = {
+          source: "partner_seeded", consent_given: "true",
+          utm_source: row.utm_source, utm_medium: row.utm_medium,
+        };
+        if (row.name) meta.full_name = row.name;
+        if (emailLc) meta.email = emailLc;
+        if (row.utm_campaign) meta.utm_campaign = row.utm_campaign;
+        if (typeof sif.stream === "string") meta.stream = sif.stream;
+        if (typeof sif.graduation_year === "string") meta.grad_year = sif.graduation_year;
+        const base = { phone: phoneE164, phone_confirm: true, user_metadata: meta } as const;
+        let cu = await admin.auth.admin.createUser(emailLc ? { ...base, email: emailLc, email_confirm: false } : base);
+        if (cu.error && emailLc && /email|already/i.test(cu.error.message)) {
+          // e-mail belongs to a different account → create phone-only (e-mail stays in the profile via metadata)
+          cu = await admin.auth.admin.createUser(base);
+        }
+        if (cu.error || !cu.data?.user) { results.push({ phone, ok: false, error: "user: " + (cu.error?.message ?? "create failed") }); continue; }
+        userId = cu.data.user.id;
+      }
+      const { data: mat, error: mErr } = await admin.rpc("partner_materialize", { p_lead_id: userId, p_phone: phoneE164, p_email: emailLc });
+      if (mErr) { results.push({ phone, ok: true, status: "staged", error: "materialize: " + mErr.message }); continue; }
+      results.push({ phone, ok: true, status: (mat as { prepaid?: boolean } | null)?.prepaid ? "materialized_paid" : "materialized" });
+    } catch (e) {
+      results.push({ phone, ok: true, status: "staged", error: "materialize: " + (e instanceof Error ? e.message : "exception") });
+    }
   }
 
   const staged = results.filter((r) => r.ok).length;
