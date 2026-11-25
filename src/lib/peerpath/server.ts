@@ -6,9 +6,9 @@
  */
 import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
-import { parseAdminInsights } from "./admin-insights";
+import { parseAdminInsights, parseImpactTrend } from "./admin-insights";
 import { buildSlots, type BusyRange } from "./slots";
-import type { AdminData, AdminInsights, AvailabilityRule, Booking, DateBlock, Senior, SeniorPortal, SeniorSettings, SeniorWithSlots } from "./types";
+import type { AdminData, AdminImpactTrend, AdminInsights, AvailabilityRule, Booking, DateBlock, Senior, SeniorPortal, SeniorSettings, SeniorWithSlots } from "./types";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const isUuid = (v: string | undefined | null): v is string => !!v && UUID.test(v);
@@ -113,6 +113,17 @@ export async function loadAdminInsights(campus: "Pune" | "Gurugram" | null): Pro
   const { data, error } = await sb.rpc("pp_admin_insights", { p: campus ? { campus } : {} });
   if (error || !data) return null;
   return parseAdminInsights(data);
+}
+
+/**
+ * Impact trends: per-day numbers for 90 days and days-to-pay bins (pp_admin_impact_trend, 0185; admins only —
+ * the database checks it). Same campus rule as loadAdminInsights. Null on any error; the page shows a generic message.
+ */
+export async function loadImpactTrend(campus: "Pune" | "Gurugram" | null): Promise<AdminImpactTrend | null> {
+  const sb = await createClient();
+  const { data, error } = await sb.rpc("pp_admin_impact_trend", { p: campus ? { campus } : {} });
+  if (error || !data) return null;
+  return parseImpactTrend(data);
 }
 
 /** Same rule the rest of the superapp uses: confirmed @vedam.org account, or is_admin(). */

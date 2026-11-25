@@ -8,7 +8,7 @@
 import type { Campus, SessionType, Year } from "./constants";
 import { ttsPath } from "./constants";
 import { hoursOffered, isCapped, istWeekStart, median } from "./admin-insights";
-import type { AdminData, AdminInsights, BookingStatus, ImpactRange, SeniorStatus } from "./types";
+import type { AdminData, AdminImpactTrend, AdminInsights, BookingStatus, ImpactRange, SeniorStatus } from "./types";
 
 const HOUR = 3_600_000;
 const DAY = 24 * HOUR;
@@ -55,6 +55,11 @@ export type DashChat = {
 export type ImpactKey = "All" | Campus;
 export type DashImpact = { mode: string; ranges: AdminInsights["ranges"] } | null;
 
+/** One IST day of pp_admin_impact_trend; t = that day's IST midnight (ms). */
+export type TrendDay = { t: number; tries: number; booked: number; chats: number; paidAfter: number };
+export type DashTrend = { days: TrendDay[]; payBins: Record<"7" | "30" | "90", number[]> } | null;
+const NO_TREND: Record<ImpactKey, AdminImpactTrend | null> = { All: null, Pune: null, Gurugram: null };
+
 export type DashData = {
   now: number;
   seniors: DashSenior[];
@@ -62,6 +67,8 @@ export type DashData = {
   /** pp_admin_all stopped at its limit, so old chats are missing */
   capped: boolean;
   impact: Record<ImpactKey, DashImpact>;
+  /** Impact trends per campus filter (null = could not be loaded) */
+  trend?: Record<ImpactKey, DashTrend>;
   /** sample data (staging / preview only) */
   demo: boolean;
 };
@@ -75,7 +82,13 @@ const ms = (v: string | null | undefined) => {
 export const chatRef = (id: string) => id.replace(/[^0-9a-f]/gi, "").slice(0, 6).toUpperCase() || id.slice(0, 6).toUpperCase();
 
 /** pp_admin_all → the dashboard's data. Only whitelisted fields are copied, so new private fields never leak by accident. */
-export function toDashboardData(d: AdminData, now: number, impact: Record<ImpactKey, AdminInsights | null>, demo = false): DashData {
+export function toDashboardData(
+  d: AdminData,
+  now: number,
+  impact: Record<ImpactKey, AdminInsights | null>,
+  demo = false,
+  trend: Record<ImpactKey, AdminImpactTrend | null> = NO_TREND,
+): DashData {
   const seniors: DashSenior[] = d.seniors.map((s) => {
     const cap = d.settings[s.id]?.weeklyCap;
     return {
@@ -118,7 +131,28 @@ export function toDashboardData(d: AdminData, now: number, impact: Record<Impact
     });
   }
   const imp = (x: AdminInsights | null): DashImpact => (x ? { mode: x.mode, ranges: x.ranges } : null);
-  return { now, seniors, chats, capped: isCapped(d), impact: { All: imp(impact.All), Pune: imp(impact.Pune), Gurugram: imp(impact.Gurugram) }, demo };
+  return {
+    now,
+    seniors,
+    chats,
+    capped: isCapped(d),
+    impact: { All: imp(impact.All), Pune: imp(impact.Pune), Gurugram: imp(impact.Gurugram) },
+    trend: { All: toDashTrend(trend.All), Pune: toDashTrend(trend.Pune), Gurugram: toDashTrend(trend.Gurugram) },
+    demo,
+  };
+}
+
+/** "YYYY-MM-DD" (an IST date) → that day's IST midnight in ms. */
+export const istDayFromYmd = (ymd: string) => Date.parse(`${ymd}T00:00:00Z`) - IST_MS;
+
+/** Only the counts are copied, oldest day first. */
+function toDashTrend(x: AdminImpactTrend | null): DashTrend {
+  if (!x) return null;
+  const days = x.days
+    .map((y) => ({ t: istDayFromYmd(y.d), tries: y.tries, booked: y.booked, chats: y.chats, paidAfter: y.paid_after }))
+    .filter((y) => Number.isFinite(y.t))
+    .sort((a, b) => a.t - b.t);
+  return { days, payBins: { "7": [...x.pay_bins["7"]], "30": [...x.pay_bins["30"]], "90": [...x.pay_bins["90"]] } };
 }
 
 /* ---------- filters ---------- */
@@ -350,5 +384,78 @@ export function lowRated(list: DashChat[], seniors: DashSenior[]): LowRatedRow[]
 /* ---------- impact (from pp_admin_insights) ---------- */
 
 export const impactRange = (imp: DashImpact, range: RangeDays): ImpactRange | null => imp?.ranges[String(range) as "7" | "30" | "90"] ?? null;
+
+/* ---------- impact trends ---------- */
+
+/** Days from the first chat to paying, the same bins as pp_admin_impact_trend. */
+export const PAY_BIN_LABELS = ["<1d", "1–3d", "3–7d", "7–14d", "14–30d", "30d+"] as const;
+
+export type TrendGroup = {
+  /** IST midnight of the day, or of the Monday for a week */
+  t: number;
+  label: string;
+  title: string;
+  current: boolean;
+  /** IST days in this group */
+  days: number;
+  tries: number;
+  booked: number;
+  /** tries that did not book */
+  stopped: number;
+  chats: number;
+  paidAfter: number;
+  /** first chats that have not paid after the chat (yet) */
+  notPaid: number;
+};
+
+/**
+ * The last `range` IST calendar days, today included: one group per day for 7 and 30 days,
+ * one per IST week (Monday–Sunday) for 90 days. Oldest first.
+ */
+export function trendGroups(trend: DashTrend, now: number, range: RangeDays): TrendGroup[] {
+  if (!trend) return [];
+  const today = istDayStart(now);
+  const from = today - (range - 1) * DAY;
+  const weekly = range === 90;
+  const thisWeek = istWeekStart(now);
+  const by = new Map<number, TrendGroup>();
+  for (const x of trend.days) {
+    if (x.t < from || x.t > today) continue;
+    const key = weekly ? istWeekStart(x.t) : x.t;
+    let g = by.get(key);
+    if (!g) {
+      const current = weekly ? key === thisWeek : key === today;
+      g = {
+        t: key,
+        label: current ? (weekly ? "This wk" : "Today") : dShort(key),
+        title: weekly ? `Week of ${dShort(key)}` : dLong(key),
+        current,
+        days: 0,
+        tries: 0,
+        booked: 0,
+        stopped: 0,
+        chats: 0,
+        paidAfter: 0,
+        notPaid: 0,
+      };
+      by.set(key, g);
+    }
+    g.days++;
+    g.tries += x.tries;
+    g.booked += x.booked;
+    g.chats += x.chats;
+    g.paidAfter += x.paidAfter;
+  }
+  return [...by.values()]
+    .sort((a, b) => a.t - b.t)
+    .map((g) => ({ ...g, stopped: Math.max(0, g.tries - g.booked), notPaid: Math.max(0, g.chats - g.paidAfter) }));
+}
+
+/** The days-to-pay bins of a range, with labels. Empty when the trends could not be loaded. */
+export function payBinsFor(trend: DashTrend, range: RangeDays): { label: string; v: number }[] {
+  if (!trend) return [];
+  const b = trend.payBins[String(range) as "7" | "30" | "90"];
+  return PAY_BIN_LABELS.map((label, i) => ({ label, v: b[i] ?? 0 }));
+}
 
 export { median };

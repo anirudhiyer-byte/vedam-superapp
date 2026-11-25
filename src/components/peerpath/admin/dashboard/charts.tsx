@@ -124,7 +124,22 @@ export function AreaChart({ points, h = 230, color = "#9152ff", label, onPoint, 
 
 export type StackKey<G> = { key: keyof G & string; label: string; color: string };
 
-export function StackedBars<G extends { label: string; title: string; current?: boolean }>({ groups, keys, h = 240, onBar, width }: { groups: G[]; keys: StackKey<G>[]; h?: number; onBar?: (g: G) => void; width?: number }) {
+export function StackedBars<G extends { label: string; title: string; current?: boolean }>({
+  groups,
+  keys,
+  h = 240,
+  onBar,
+  width,
+  label = "Chats per week",
+}: {
+  groups: G[];
+  keys: StackKey<G>[];
+  h?: number;
+  onBar?: (g: G) => void;
+  width?: number;
+  /** what the chart shows, for screen readers */
+  label?: string;
+}) {
   const ui = useUi();
   const W = width ?? ui.W;
   const hit = useHit();
@@ -138,7 +153,7 @@ export function StackedBars<G extends { label: string; title: string; current?: 
   const top = niceTop(Math.max(0, ...groups.map(total)));
   const bw = iw / Math.max(1, groups.length);
   return (
-    <svg className="ppd-chart" viewBox={`0 0 ${W} ${h}`} role="img" aria-label="Chats per week">
+    <svg className="ppd-chart" viewBox={`0 0 ${W} ${h}`} role="img" aria-label={label}>
       <YGrid top={top} padL={padL} padT={padT} ih={ih} W={W} />
       {groups.map((g, i) => {
         const x0 = padL + i * bw + bw * 0.18;
@@ -172,7 +187,7 @@ export function StackedBars<G extends { label: string; title: string; current?: 
                 acc += v;
                 return <rect key={k.key} className="bar" x={x0} y={yy} width={w} height={Math.max(1, hh - 1.5)} rx={acc === t ? 5 : 2} fill={k.color} />;
               })}
-              {t > 0 && (
+              {t > 0 && bw >= 16 /* thin bars (30 days on a phone): the tooltip has the number */ && (
                 <text x={x0 + w / 2} y={padT + ih - (t / top) * ih - 6} textAnchor="middle" style={{ fill: "var(--ink)", fontWeight: 600 }}>
                   {t}
                 </text>

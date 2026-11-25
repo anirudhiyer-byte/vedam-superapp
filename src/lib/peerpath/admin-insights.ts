@@ -1,6 +1,6 @@
 import { LANGUAGES, TOPICS, type Campus } from "./constants";
 import { BOOK_CODES, type BookFailCode } from "./booking-codes";
-import type { AdminBooking, AdminData, AdminInsights, AvailabilityRule, ImpactRange, SeniorPrivate } from "./types";
+import type { AdminBooking, AdminData, AdminImpactTrend, AdminInsights, AvailabilityRule, ImpactRange, SeniorPrivate } from "./types";
 
 const HOUR = 3_600_000;
 
@@ -427,4 +427,46 @@ export function parseAdminInsights(data: unknown): AdminInsights | null {
     out[k] = r;
   }
   return { mode: d.mode, ranges: out };
+}
+
+/* ---------- Impact trends (pp_admin_impact_trend, 0185) ---------- */
+
+/** Days-to-pay bins, in the order the database returns them. */
+export const PAY_BIN_COUNT = 6;
+/** 90 days plus a partial first day; a little room, but a broken answer can't make the page draw thousands of bars. */
+const MAX_TREND_DAYS = 120;
+const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+function parseTrendDay(v: unknown): AdminImpactTrend["days"][number] | null {
+  const o = obj(v);
+  if (!o || typeof o.d !== "string" || !DAY_RE.test(o.d) || Number.isNaN(Date.parse(`${o.d}T00:00:00Z`))) return null;
+  const tries = count(o.tries);
+  const booked = count(o.booked);
+  const chats = count(o.chats);
+  const paid = count(o.paid_after);
+  if (tries === null || booked === null || chats === null || paid === null) return null;
+  return { d: o.d, tries, booked, chats, paid_after: paid };
+}
+
+/** Checks the database answer; anything off-shape gives null (the page then shows a generic message). */
+export function parseImpactTrend(data: unknown): AdminImpactTrend | null {
+  const d = obj(data);
+  const bins = obj(d?.pay_bins);
+  if (!d || typeof d.mode !== "string" || !Array.isArray(d.days) || !bins) return null;
+  if (d.days.length === 0 || d.days.length > MAX_TREND_DAYS) return null;
+  const days: AdminImpactTrend["days"] = [];
+  for (const x of d.days) {
+    const day = parseTrendDay(x);
+    if (!day) return null;
+    days.push(day);
+  }
+  const pay = {} as AdminImpactTrend["pay_bins"];
+  for (const k of IMPACT_RANGES) {
+    const arr = bins[k];
+    if (!Array.isArray(arr) || arr.length !== PAY_BIN_COUNT) return null;
+    const nums = arr.map(count);
+    if (nums.some((n) => n === null)) return null;
+    pay[k] = nums as number[];
+  }
+  return { mode: d.mode, days, pay_bins: pay };
 }

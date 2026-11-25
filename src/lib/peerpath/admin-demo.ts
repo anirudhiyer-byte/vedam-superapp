@@ -8,7 +8,7 @@
  * src/app/(shell)/peerpath/talk-to-senior/admin/page.tsx (tracked in the PR description).
  */
 import type { Campus, Topic, Year } from "./constants";
-import type { AdminBooking, AdminData, AdminInsights, AvailabilityRule, BookingStatus, Feedback, ImpactRange, SeniorPrivate } from "./types";
+import type { AdminBooking, AdminData, AdminImpactTrend, AdminInsights, AvailabilityRule, BookingStatus, Feedback, ImpactRange, SeniorPrivate } from "./types";
 
 const H = 3_600_000;
 const D = 24 * H;
@@ -170,4 +170,36 @@ export function demoInsights(): Record<"All" | Campus, AdminInsights> {
   };
   const make = (f: number): AdminInsights => ({ mode: "registered", ranges: { "7": range(0.28 * f), "30": range(1 * f), "90": range(2.4 * f) } });
   return { All: make(1), Pune: make(0.62), Gurugram: make(0.38) };
+}
+
+/** Share of paid-after people per days-to-pay bin [<1, 1–3, 3–7, 7–14, 14–30, 30+]. */
+const PAY_SHAPE = [0.12, 0.28, 0.27, 0.17, 0.11, 0.05];
+
+/** Made-up Impact trends in the pp_admin_impact_trend shape, per campus filter. */
+export function demoTrend(now: number): Record<"All" | Campus, AdminImpactTrend> {
+  const make = (f: number, seed: number): AdminImpactTrend => {
+    const r = rng(seed);
+    const today = Math.floor((now + IST) / D) * D; // IST midnight on the shifted clock, so the UTC date is the IST date
+    const days: AdminImpactTrend["days"] = [];
+    for (let i = 90; i >= 0; i--) {
+      const day = today - i * D;
+      const dow = new Date(day).getUTCDay();
+      const grow = 0.55 + 0.45 * ((90 - i) / 90); // more interest closer to the VSAT
+      const weekend = dow === 0 || dow === 6 ? 1.35 : 1;
+      const tries = Math.round((2 + r() * 5) * grow * weekend * f);
+      const booked = Math.round(tries * (0.45 + r() * 0.2));
+      const chats = Math.round(booked * (0.5 + r() * 0.25));
+      const settle = i < 7 ? 0.15 : i < 14 ? 0.3 : 0.45; // recent chats have had less time to pay
+      days.push({ d: new Date(day).toISOString().slice(0, 10), tries, booked, chats, paid_after: Math.min(chats, Math.round(chats * (settle + r() * 0.12))) });
+    }
+    const bins = (range: number, upTo: number) => {
+      const paid = days.slice(-range).reduce((a, x) => a + x.paid_after, 0);
+      const shape = PAY_SHAPE.map((s, i) => (i < upTo ? s : 0));
+      const sum = shape.reduce((a, s) => a + s, 0);
+      return shape.map((s) => Math.round((paid * s) / sum));
+    };
+    // within 7 days of a chat nobody can have waited 7+ days, within 30 days nobody 30+
+    return { mode: "registered", days, pay_bins: { "7": bins(7, 3), "30": bins(30, 5), "90": bins(90, 6) } };
+  };
+  return { All: make(1, 701), Pune: make(0.62, 702), Gurugram: make(0.38, 703) };
 }

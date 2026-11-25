@@ -5,10 +5,10 @@ import { AdminDashboard } from "@/components/peerpath/admin/dashboard/dashboard"
 import { CopyLink, SeniorStatusAction, StatusPill } from "@/components/peerpath/admin/senior-status";
 import { EmptyState, yearLabel } from "@/components/peerpath/ui";
 import { parseCampusKey, parseRange, toDashboardData } from "@/lib/peerpath/admin-dashboard";
-import { allowDemo, demoAdminData, demoInsights } from "@/lib/peerpath/admin-demo"; // SAMPLE DATA (remove before production)
+import { allowDemo, demoAdminData, demoInsights, demoTrend } from "@/lib/peerpath/admin-demo"; // SAMPLE DATA (remove before production)
 import { inviteFailed, isDone, isUpcoming, needsMarking, parseTab } from "@/lib/peerpath/admin-insights";
 import { ttsPath } from "@/lib/peerpath/constants";
-import { isAdminUser, loadAdmin, loadAdminInsights } from "@/lib/peerpath/server";
+import { isAdminUser, loadAdmin, loadAdminInsights, loadImpactTrend } from "@/lib/peerpath/server";
 import { fmtDay, fmtTime } from "@/lib/peerpath/slots";
 import type { AdminBooking, AdminData, BookingStatus, SeniorPrivate } from "@/lib/peerpath/types";
 
@@ -222,15 +222,18 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const hasFocus = typeof focus === "string" && focus !== "";
   // SAMPLE DATA (remove before production): ?demo=1 shows made-up data, never on production.
   const demo = demoParam === "1" && !hasFocus && allowDemo(process.env.VERCEL_ENV);
-  // All calls start together. pp_admin_all and pp_admin_insights check admin inside the database and return
-  // nothing for anyone else; the page still shows data only when isAdminUser() is true.
+  // All calls start together. pp_admin_all, pp_admin_insights and pp_admin_impact_trend check admin inside the
+  // database and return nothing for anyone else; the page still shows data only when isAdminUser() is true.
   const skipInsights = hasFocus || demo;
-  const [admin, data, insAll, insPune, insGurugram] = await Promise.all([
+  const [admin, data, insAll, insPune, insGurugram, trAll, trPune, trGurugram] = await Promise.all([
     isAdminUser(),
     demo ? Promise.resolve(null) : loadAdmin(),
     skipInsights ? Promise.resolve(null) : loadAdminInsights(null),
     skipInsights ? Promise.resolve(null) : loadAdminInsights("Pune"),
     skipInsights ? Promise.resolve(null) : loadAdminInsights("Gurugram"),
+    skipInsights ? Promise.resolve(null) : loadImpactTrend(null),
+    skipInsights ? Promise.resolve(null) : loadImpactTrend("Pune"),
+    skipInsights ? Promise.resolve(null) : loadImpactTrend("Gurugram"),
   ]);
   const now = Date.now();
   const d = admin ? (demo ? demoAdminData(now) : data) : null;
@@ -276,6 +279,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   // The browser gets counts, times, statuses and senior first names only: no applicant names, emails,
   // phones, questions or feedback notes (toDashboardData copies whitelisted fields).
   const ins = demo ? demoInsights() : { All: insAll, Pune: insPune, Gurugram: insGurugram };
-  const dash = toDashboardData(d, now, ins, demo);
+  const trend = demo ? demoTrend(now) : { All: trAll, Pune: trPune, Gurugram: trGurugram }; // SAMPLE DATA branch: remove "demo ? demoTrend(now) :" before production
+  const dash = toDashboardData(d, now, ins, demo, trend);
   return <AdminDashboard data={dash} initialView={parseTab(tab)} initialFilters={{ range: parseRange(days), campus: parseCampusKey(campus) }} />;
 }

@@ -24,13 +24,16 @@ import {
   leadHours,
   lowRated,
   median,
+  payBinsFor,
   pct,
   rangeWindow,
   scopeChats,
   seniorInScope,
+  trendGroups,
   weekBuckets,
   type DashChat,
   type DashSeniorRow,
+  type TrendGroup,
 } from "@/lib/peerpath/admin-dashboard";
 import { blockedReasons, notBookedPeople } from "@/lib/peerpath/admin-insights";
 import { LANGUAGES, TOPICS, ttsPath } from "@/lib/peerpath/constants";
@@ -796,6 +799,117 @@ export function ImpactView() {
             <DStat label="Chat → enroll, median" value={o.median_days_to_enroll === null ? "–" : `${o.median_days_to_enroll.toFixed(1)} d`} />
             <DStat label="Enrolled after" value={o.enrolled_after} />
           </div>
+        </Panel>
+      </div>
+      <ImpactTrends medianDays={o.median_days_to_pay} />
+    </>
+  );
+}
+
+const MUTED = "#3a2d5c";
+
+/** The "over time" part of Impact (pp_admin_impact_trend, counts only). */
+function ImpactTrends({ medianDays }: { medianDays: number | null }) {
+  const { data, filters, now, open, W } = useUi();
+  const trend = data.trend?.[filters.campus] ?? null;
+  const groups = useMemo(() => trendGroups(trend, now, filters.range), [trend, now, filters.range]);
+  if (!trend) {
+    return (
+      <Panel title="Over time">
+        <Empty>The trends could not be loaded. Please refresh.</Empty>
+      </Panel>
+    );
+  }
+  const per = filters.range === 90 ? "week" : "day";
+  // 30 daily bars: label every third one so the dates stay readable
+  const shown = groups.map((g, i) => (groups.length > 16 && (groups.length - 1 - i) % 3 ? { ...g, label: "" } : g));
+  const total = (k: "tries" | "booked" | "chats" | "paidAfter") => groups.reduce((a, g) => a + g[k], 0);
+  const tries = total("tries");
+  const booked = total("booked");
+  const chats = total("chats");
+  const paid = total("paidAfter");
+  const bins = payBinsFor(trend, filters.range);
+  const binTotal = bins.reduce((a, b) => a + b.v, 0);
+  const openGroup = (g: TrendGroup) =>
+    open({
+      title: g.title,
+      sub: per === "week" && g.days < 7 ? `Only ${g.days} of its days are in the last ${filters.range} days.` : undefined,
+      body: (
+        <>
+          <div className="ppd-dstats">
+            <DStat label="Booking tries" value={g.tries} />
+            <DStat label="Booked" value={`${g.booked} · ${pct(g.booked, g.tries)}%`} />
+            <DStat label="Didn't book" value={g.stopped} />
+          </div>
+          <div className="ppd-dstats">
+            <DStat label="First chats" value={g.chats} />
+            <DStat label="Paid after" value={`${g.paidAfter} · ${pct(g.paidAfter, g.chats)}%`} />
+            <DStat label="Not paid yet" value={g.notPaid} />
+          </div>
+          <div className="ppd-note">
+            Tries are not people: one person can try more than once. First chats count each signed-in applicant once, on the day their first chat in the last 90 days
+            ended.
+          </div>
+        </>
+      ),
+    });
+  return (
+    <>
+      <Panel
+        title="Booking tries over time"
+        sub={`${tries} tries, ${booked} booked (${pct(booked, tries)}%) in the last ${filters.range} days. One bar per ${per} (IST). Click a bar.`}
+        right={
+          <div className="ppd-legend">
+            <span><i style={{ background: VIOLET }} />Booked</span>
+            <span><i style={{ background: WARN }} />Didn&apos;t book</span>
+          </div>
+        }
+      >
+        {tries ? (
+          <StackedBars
+            groups={shown}
+            keys={[
+              { key: "booked", label: "Booked", color: VIOLET },
+              { key: "stopped", label: "Didn't book", color: WARN },
+            ]}
+            onBar={openGroup}
+            width={W === 640 ? 960 : W}
+            label={`Booking tries per ${per}`}
+          />
+        ) : (
+          <Empty>No booking tries in this range.</Empty>
+        )}
+      </Panel>
+      <div className="ppd-grid ppd-g21">
+        <Panel
+          title="First chats and paying after"
+          sub={`${chats} first chats, ${paid} paid after (${pct(paid, chats)}%). Recent chats have had less time to pay.`}
+          right={
+            <div className="ppd-legend">
+              <span><i style={{ background: ORANGE }} />Paid after</span>
+              <span><i style={{ background: MUTED }} />Not yet</span>
+            </div>
+          }
+        >
+          {chats ? (
+            <StackedBars
+              groups={shown}
+              keys={[
+                { key: "paidAfter", label: "Paid after", color: ORANGE },
+                { key: "notPaid", label: "Not yet", color: MUTED },
+              ]}
+              onBar={openGroup}
+              label={`First chats per ${per}`}
+            />
+          ) : (
+            <Empty>No first chats in this range.</Empty>
+          )}
+        </Panel>
+        <Panel
+          title="Days from chat to paying"
+          sub={`People who paid after their first chat in this range. Median ${medianDays === null ? "–" : `${medianDays.toFixed(1)} days`}.`}
+        >
+          {binTotal ? <Histogram bins={bins} width={W === 640 ? 320 : W} h={220} color={ORANGE} noun="people" /> : <Empty>Nobody paid after a chat in this range yet.</Empty>}
         </Panel>
       </div>
     </>
