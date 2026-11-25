@@ -22,6 +22,7 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [note, setNote] = useState("");
+  const [launchUrl, setLaunchUrl] = useState("");
   const [showDates, setShowDates] = useState(false);
   const [, tick] = useState(0);
   useEffect(() => { const id = setInterval(() => tick((n) => n + 1), 30000); return () => clearInterval(id); }, []);
@@ -57,7 +58,14 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
   };
 
   async function launch(kind: "mock" | "exam") {
-    setBusy(true); setErr(""); setNote("");
+    setBusy(true); setErr(""); setNote(""); setLaunchUrl("");
+    // Open the tab SYNCHRONOUSLY, inside the click, so the browser keeps the user-gesture and
+    // doesn't block it as a popup. We set its URL after the fetch. (A plain window.open after an
+    // await is treated as non-user-initiated and silently blocked — that left students "in
+    // progress" with no tab.) We also always surface a direct link as a fallback for the case
+    // where even the synchronous open is blocked.
+    let win: Window | null = null;
+    try { win = window.open("about:blank", "_blank"); } catch { win = null; }
     try {
       const res = await fetch("/api/vsat/exam/launch", {
         method: "POST",
@@ -67,13 +75,19 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
       });
       const data = await res.json().catch(() => ({}));
       if (data?.ok && typeof data.url === "string") {
-        window.open(data.url, "_blank", "noopener,noreferrer");
-        setNote("Your test is opening in a new tab. Keep this page open — your result shows here once you finish.");
+        let opened = false;
+        if (win && !win.closed) { try { win.location.href = data.url; opened = true; } catch { opened = false; } }
+        setLaunchUrl(data.url); // always show the fallback link
+        setNote(opened
+          ? "Your test is opening in a new tab. Keep this page open — your result shows here once you finish."
+          : "Your test is ready — tap “Open your test” below. Keep this page open; your result shows here once you finish.");
         onChange();
       } else {
+        if (win && !win.closed) win.close();
         setErr(launchMsg[data?.code] || "Couldn't open the test right now. Please try again in a moment.");
       }
     } catch {
+      if (win && !win.closed) win.close();
       setErr("Couldn't reach the exam platform. Check your connection and try again.");
     } finally {
       setBusy(false);
@@ -183,6 +197,9 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
         )}
       </div>
 
+      {launchUrl && (
+        <a href={launchUrl} target="_blank" rel="noopener noreferrer" className={`mt-3 inline-block ${grad}`}>Open your test →</a>
+      )}
       {note && <p className="mt-3 text-xs text-[#7b2ff7]">{note}</p>}
       {err && <p className="mt-3 text-xs text-[#d14343]">{err}</p>}
     </div>
