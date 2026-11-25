@@ -21,7 +21,7 @@ export const preferredRegion = "bom1";
  */
 type InLead = {
   external_id?: unknown; name?: unknown; email?: unknown; phone?: unknown; campus?: unknown;
-  utm_campaign?: unknown; bdm?: unknown; utm_source?: unknown; utm_medium?: unknown;
+  utm_campaign?: unknown; bdm?: unknown; bdm_name?: unknown; session_date?: unknown; utm_source?: unknown; utm_medium?: unknown;
   // SIF first-half fields (explicit; also mirrored into extra for the claim to pre-fill)
   stream?: unknown; graduation_year?: unknown; grad_year?: unknown; state?: unknown; city?: unknown; school_name?: unknown;
   prepaid?: unknown; prepaid_amount?: unknown; extra?: unknown;
@@ -74,6 +74,10 @@ export async function POST(req: Request) {
     const stt = str(raw.state, 60); if (stt) sif.state = stt;
     const cty = str(raw.city, 60); if (cty) sif.city = cty;
     if (school) sif.school_name = school;
+    // School Connect acquisition fields → extra, so partner_materialize fills lead_manager
+    // source_school / source_bdm / session_date (kept separate from the form's own school/BDM).
+    const bdm = str(raw.bdm ?? raw.bdm_name, 120); if (bdm) sif.bdm = bdm;
+    const sessionDate = str(raw.session_date, 10); if (sessionDate) sif.session_date = sessionDate;
     const row = {
       partner: "elevate",
       external_id: str(raw.external_id, 120),
@@ -83,7 +87,7 @@ export async function POST(req: Request) {
       campus: str(raw.campus, 40),
       utm_source: str(raw.utm_source, 60) ?? "schoolconnect",
       utm_medium: str(raw.utm_medium, 80) ?? school ?? "offline", // school name
-      utm_campaign: str(raw.utm_campaign ?? raw.bdm, 120),        // BDM name
+      utm_campaign: str(raw.utm_campaign ?? raw.bdm ?? raw.bdm_name, 120), // BDM name (attribution back-compat)
       prepaid,
       prepaid_amount: prepaid && Number.isFinite(amt) && amt >= 0 ? amt : null,
       extra: { ...baseExtra, ...sif },
