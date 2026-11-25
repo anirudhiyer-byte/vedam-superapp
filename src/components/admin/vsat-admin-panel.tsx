@@ -20,6 +20,7 @@ import { ExamEvaluation } from "@/components/admin/vsat-pipeline/exam-evaluation
 import { InterviewEvaluation } from "@/components/admin/vsat-pipeline/interview-evaluation";
 import { CounsellingEvaluation } from "@/components/admin/vsat-pipeline/counselling-evaluation";
 import { BucketsPage } from "@/components/admin/vsat-pipeline/buckets-page";
+import { ProfileAnalysis } from "@/components/admin/vsat-pipeline/profile-analysis";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
 import { VsatSettings } from "@/components/admin/vsat-settings";
 import { VsatTeam } from "@/components/admin/vsat-team";
@@ -86,6 +87,9 @@ const VSAT: Group[] = [
     { id: "counseval", label: "Counselling Evaluation", icon: ICON.evaluate },
     // 0188 (owner's review): buckets, ARPU target and lock per VSAT and campus, under Counselling Evaluation; admins edit, admissions view
     { id: "buckets", label: "Buckets", icon: ICON.scoring },
+    // 0191 (owner's review, Phase 7): search a student of a VSAT, every field + the AI summary, under Buckets; admins,
+    // admissions and counsellors (a counsellor sees only their own students)
+    { id: "profile", label: "Profile Analysis", icon: ICON.apps },
   ] },
   { g: "VSAT settings", items: [
     { id: "form", label: "Form Builder", icon: ICON.form, live: true },
@@ -154,7 +158,7 @@ function Svg({ inner, cls }: { inner: string; cls?: string }) {
 const PIPELINE: PanelKey[] = ["apps", "exam", "intv", "couns"];
 const isPanelKey = (id: string): id is PanelKey => (PIPELINE as string[]).includes(id);
 /** A page that is shown to the same people as a pipeline panel (Exam Evaluation → VSAT Exam, Interview Evaluation → Interview). */
-const panelOf = (id: string): string => (id === "exameval" ? "exam" : id === "intveval" ? "intv" : id === "counseval" || id === "buckets" ? "couns" : id);
+const panelOf = (id: string): string => (id === "exameval" ? "exam" : id === "intveval" ? "intv" : id === "counseval" || id === "buckets" || id === "profile" ? "couns" : id);
 /** Evaluation pages that only admins and admissions may open (an interviewer sees the Interview panel, not its evaluation). */
 const MANAGERS_ONLY = new Set(["intveval", "counseval", "buckets"]);
 
@@ -253,6 +257,7 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     if (active.id === "intveval" && allowed.includes("intv")) return <div className="vp-scroll"><InterviewEvaluation roles={vsatRoles} /></div>;
     if (active.id === "counseval" && allowed.includes("couns")) return <div className="vp-scroll"><CounsellingEvaluation roles={vsatRoles} /></div>;
     if (active.id === "buckets" && allowed.includes("couns")) return <div className="vp-scroll"><BucketsPage roles={vsatRoles} /></div>;
+    if (active.id === "profile" && allowed.includes("couns")) return <div className="vp-scroll"><ProfileAnalysis roles={vsatRoles} /></div>;
     if (isPanelKey(active.id) && allowed.includes(active.id)) return <div className="vp-scroll"><PipelinePanel key={active.id} panel={active.id} roles={vsatRoles}
       onOpenEvaluation={active.id === "exam" ? () => go({ id: "exameval", title: "Exam Evaluation" })
         : active.id === "intv" ? () => go({ id: "intveval", title: "Interview Evaluation" })

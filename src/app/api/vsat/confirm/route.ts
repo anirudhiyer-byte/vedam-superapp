@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { deliverEmail } from "@/lib/email/deliver";
+import { vsatSender } from "@/lib/vsat/sender";
 import { campaignShell } from "@/lib/email/shell";
 
 export const runtime = "nodejs";
@@ -35,7 +36,7 @@ export async function POST(req: Request) {
       <p style="margin:0;font-size:14px;color:#666">No admission commitment required. We'll notify you when the 2027 admission cycle opens.</p>`;
     const html = campaignShell(body, "brand");
 
-    const r = await deliverEmail({ to, subject, html, kind: "vsat_confirmation", userId: u.user.id, refName: "VSAT interest confirmation" });
+    const r = await deliverEmail({ to, ...vsatSender(), subject, html, kind: "vsat_confirmation", userId: u.user.id, refName: "VSAT interest confirmation" });
     return Response.json({ ok: r.ok, to, error: r.ok ? undefined : r.error }, { status: 200 });
   } catch (e) {
     return Response.json({ ok: false, error: String(e) }, { status: 200 });
