@@ -64,14 +64,17 @@ begin
     aFail := pg_temp.mk_app('ZZT-A2-FAIL', 'Ajeenkya DY Patil University — Pune', d);
     aOk   := pg_temp.mk_app('ZZT-A2-OK',   'Ajeenkya DY Patil University — Pune', d);
     aPay  := pg_temp.mk_app('ZZT-A2-PAY',  'Ajeenkya DY Patil University — Pune', d);
-    perform pg_temp.force_stage(aFail, 'pi_not_appeared', 'absent');       -- terminal-fail
-    perform pg_temp.force_stage(aOk,   'vsat_cleared',    'active');       -- NOT terminal-fail
-    perform pg_temp.force_stage(aPay,  'exam_taken',      'not_selected'); -- terminal-fail (VSAT not cleared)
+    -- 0177: "not selected" / "absent" are retired statuses — a terminal fail is now an explicit stage + Active
+    perform pg_temp.force_stage(aFail, 'pi_not_appeared',  'active');      -- terminal-fail
+    perform pg_temp.force_stage(aOk,   'vsat_cleared',     'active');      -- NOT terminal-fail
+    perform pg_temp.force_stage(aPay,  'vsat_not_cleared', 'active');      -- terminal-fail (VSAT not cleared)
 
-    -- A. predicate
-    t_name := t_name || text 'A terminal-fail predicate (3 fail true, active false)';
+    -- A. predicate (the old status combinations still answer true, for history rows)
+    t_name := t_name || text 'A terminal-fail predicate (fail stages incl. 0177 not-cleared true, active false)';
     t_pass := t_pass || (public.vsat__is_terminal_fail('pi_not_appeared','absent') and public.vsat__is_terminal_fail('exam_taken','not_selected')
-            and public.vsat__is_terminal_fail('counselling_not_appeared','absent') and not public.vsat__is_terminal_fail('vsat_cleared','active'));
+            and public.vsat__is_terminal_fail('counselling_not_appeared','absent') and not public.vsat__is_terminal_fail('vsat_cleared','active')
+            and public.vsat__is_terminal_fail('vsat_not_cleared','active') and public.vsat__is_terminal_fail('pi_not_cleared','active')
+            and public.vsat__is_terminal_fail('pi_not_appeared','active'));
     t_det := t_det || text '';
 
     -- B. non-admin cannot start a 2nd attempt

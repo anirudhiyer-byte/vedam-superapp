@@ -60,14 +60,23 @@ const plannerHeads = (t: Track) => [t.Host, "Date (IST)", "Time (IST)", "Invite"
 
 export const STATUS_TONE: Record<Status, string> = {
   active: "border-vx-green/30 bg-vx-green/10 text-vx-green",
-  not_selected: "border-vx-red/30 bg-vx-red/10 text-vx-red",
-  absent: "border-vx-orange/30 bg-vx-orange/10 text-vx-orange-t",
   on_hold: "border-vx-teal/30 bg-vx-teal/10 text-vx-teal-t",
 };
 
+/**
+ * 0177: a negative outcome is a stage now (with status Active), so the badge colour follows the stage and keeps
+ * the colours "not selected" (red) and "absent" (orange) had — never green for a rejected student.
+ */
+export function stageTone(stage: Stage, status: Status): string {
+  if (stage === "vsat_not_cleared" || stage === "pi_not_cleared") return "border-vx-red/30 bg-vx-red/10 text-vx-red";
+  if (stage === "vsat_not_appeared" || stage === "pi_not_appeared" || stage === "counselling_not_appeared")
+    return "border-vx-orange/30 bg-vx-orange/10 text-vx-orange-t";
+  return STATUS_TONE[status];
+}
+
 export function StageBadge({ stage, status }: { stage: Stage; status: Status }) {
   return (
-    <span className={cx("inline-flex items-center gap-1 whitespace-nowrap rounded-lg border px-2.5 py-0.5 text-[12.5px] font-medium", STATUS_TONE[status])}>
+    <span className={cx("inline-flex items-center gap-1 whitespace-nowrap rounded-lg border px-2.5 py-0.5 text-[12.5px] font-medium", stageTone(stage, status))}>
       {STAGE_LABEL[stage]}{status !== "active" && <span className="opacity-80">· {STATUS_LABEL[status]}</span>}
     </span>
   );

@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { createOrder, cashfreeConfigured } from "@/lib/payments/cashfree";
 import { safeBaseUrl } from "@/lib/payments/base-url";
+import { isTerminalFail } from "@/lib/vsat/pipeline";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,14 +10,6 @@ export const dynamic = "force-dynamic";
 /** Flat second-attempt fee (₹). Overridable via app_flags.vsat_second_attempt_fee. */
 const DEFAULT_SECOND_ATTEMPT_FEE = 500;
 
-/** A closed attempt-1 state that qualifies for a re-attempt (mirrors vsat__is_terminal_fail). */
-function isTerminalFail(stage: string, status: string): boolean {
-  if (["vsat_not_appeared", "pi_not_appeared", "counselling_not_appeared"].includes(stage)) return true;
-  if (stage === "exam_taken" && status === "not_selected") return true;
-  if (stage === "interviewed" && status === "not_selected") return true;
-  if (stage === "counselled" && status === "not_selected") return true;
-  return false;
-}
 
 /**
  * Start the ₹500 SECOND-ATTEMPT fee payment for the logged-in applicant.

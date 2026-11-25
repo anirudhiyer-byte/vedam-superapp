@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import { errorText } from "@/lib/vsat/pipeline";
 import {
-  RELEASE_MAX, deadlineText, nothingToReleaseText, offerState, parseRelease, pctText, previewText, releaseResultText,
+  OFFER_DAYS_ERROR, OFFER_DAYS_MAX, OFFER_DAYS_MIN, RELEASE_MAX, deadlineText, parseOfferDays, releaseParams, nothingToReleaseText, offerState, parseRelease, pctText, previewText, releaseResultText,
   type OfferInfo, type OfferTone, type ReleaseResult,
 } from "@/lib/vsat/offers";
 
@@ -12,7 +12,21 @@ import {
  * Offers (0144). Releasing = moving the student to Offer sent; the database fills the offer the payment
  * gate reads (deadline = campus "Days to pay", until 11:59 pm IST) and queues the offer email. These
  * controls only preview, confirm and show the result; the database checks everyone again.
+ * 0180: an optional "Days to pay" box sets this release's validity (empty = the campus default).
  */
+
+/** The optional "Days to pay" box (0180). It is hidden while the confirm shows, and the confirm sends the days it was previewed with. */
+function DaysToPay({ value, onChange, disabled, small }: { value: string; onChange: (v: string) => void; disabled: boolean; small?: boolean }) {
+  return (
+    <label className="flex items-center gap-1.5 text-xs text-vx-faint">
+      Days to pay
+      <input type="text" inputMode="numeric" maxLength={3} value={value} disabled={disabled}
+        onChange={(e) => onChange(e.target.value)} placeholder="Campus default" aria-label="Days to pay (empty = campus default)"
+        title={`Whole number ${OFFER_DAYS_MIN}–${OFFER_DAYS_MAX}. Leave empty to use the campus "Days to pay" from VSAT settings.`}
+        className={cx(vx.field, small ? "h-8 w-32 text-[13px]" : "w-32")} />
+    </label>
+  );
+}
 
 /** Send the queued offer emails now (the cron does it anyway within 10 minutes). Never throws. */
 export async function sendOfferEmailsNow(ids: string[]): Promise<boolean> {
@@ -37,17 +51,22 @@ export function OfferBar({ ids, onDone, onReleased }: { ids: string[]; onDone: (
   const [preview, setPreview] = useState<ReleaseResult | null>(null);
   const [busy, setBusy] = useState<"" | "check" | "release">("");
   const [msg, setMsg] = useState("");
+  const [daysText, setDaysText] = useState("");
+  const [previewDays, setPreviewDays] = useState<number | null>(null);
   const tooMany = ids.length > RELEASE_MAX;
   const idsKey = ids.join("\n");
   useEffect(() => { setPreview(null); setMsg(""); }, [idsKey]);   // a different selection needs a fresh preview
 
   async function check() {
+    const d = parseOfferDays(daysText);
+    if (!d.ok) return setMsg(OFFER_DAYS_ERROR);
     setBusy("check"); setMsg("");
-    const { data, error } = await supabase.rpc("vsat_offers_release", { p: { application_ids: ids, dry_run: true } });
+    const { data, error } = await supabase.rpc("vsat_offers_release", { p: releaseParams(ids, d.days, true) });
     setBusy("");
     if (error) return setMsg(errorText(error.message));
     const r = parseRelease(data);
     if (!r.released.length) return setMsg(nothingToReleaseText(r));
+    setPreviewDays(d.days);
     setPreview(r);
   }
 
@@ -55,11 +74,12 @@ export function OfferBar({ ids, onDone, onReleased }: { ids: string[]; onDone: (
     if (!preview) return;
     setBusy("release"); setMsg("");
     const toRelease = preview.released.map((x) => x.application_id);
-    const { data, error } = await supabase.rpc("vsat_offers_release", { p: { application_ids: toRelease } });
+    const { data, error } = await supabase.rpc("vsat_offers_release", { p: releaseParams(toRelease, previewDays, false) });
     setPreview(null);
     if (error) { setBusy(""); setMsg(errorText(error.message)); return; }
     const r = parseRelease(data);
     onReleased({ text: releaseResultText(r), ok: r.skipped.length === 0 && r.released.length > 0 });
+    setDaysText("");
     onDone();
     await sendOfferEmailsNow(r.released.map((x) => x.application_id));
     setBusy("");
@@ -75,6 +95,7 @@ export function OfferBar({ ids, onDone, onReleased }: { ids: string[]; onDone: (
         </>
       ) : (
         <>
+          <DaysToPay value={daysText} onChange={setDaysText} disabled={busy !== ""} />
           <button className={cx(vx.btn, vx.primary)} disabled={busy !== "" || tooMany} onClick={() => void check()}
             title={tooMany ? `At most ${RELEASE_MAX} at a time` : undefined}>
             {busy === "check" ? "Checking…" : "Release offer"}
@@ -99,21 +120,26 @@ export function OfferBox({ applicationId, stage, status, offer, canManage, onDon
   const [confirm, setConfirm] = useState<ReleaseResult | null>(null);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
+  const [daysText, setDaysText] = useState("");
+  const [confirmDays, setConfirmDays] = useState<number | null>(null);
   const st = offerState(stage, offer);
   const canRelease = canManage && stage === "counselled" && status === "active";
 
   async function check() {
+    const d = parseOfferDays(daysText);
+    if (!d.ok) return setMsg(OFFER_DAYS_ERROR);
     setBusy(true); setMsg("");
-    const { data, error } = await supabase.rpc("vsat_offers_release", { p: { application_ids: [applicationId], dry_run: true } });
+    const { data, error } = await supabase.rpc("vsat_offers_release", { p: releaseParams([applicationId], d.days, true) });
     setBusy(false);
     if (error) return setMsg(errorText(error.message));
     const r = parseRelease(data);
     if (!r.released.length) return setMsg(nothingToReleaseText(r));
+    setConfirmDays(d.days);
     setConfirm(r);
   }
   async function release() {
     setBusy(true); setMsg("");
-    const { data, error } = await supabase.rpc("vsat_offers_release", { p: { application_ids: [applicationId] } });
+    const { data, error } = await supabase.rpc("vsat_offers_release", { p: releaseParams([applicationId], confirmDays, false) });
     setConfirm(null);
     if (error) { setBusy(false); return setMsg(errorText(error.message)); }
     const r = parseRelease(data);
@@ -132,7 +158,10 @@ export function OfferBox({ applicationId, stage, status, offer, canManage, onDon
         <div><dt className="text-xs text-vx-faint">State</dt><dd className={TONE[st.tone]}>{st.label}</dd></div>
       </dl>
       {canRelease && !confirm && (
-        <button className={cx(vx.btn, vx.primary, vx.sm)} disabled={busy} onClick={() => void check()}>{busy ? "Checking…" : "Release offer"}</button>
+        <div className="flex flex-wrap items-center gap-2">
+          <DaysToPay value={daysText} onChange={setDaysText} disabled={busy} small />
+          <button className={cx(vx.btn, vx.primary, vx.sm)} disabled={busy} onClick={() => void check()}>{busy ? "Checking…" : "Release offer"}</button>
+        </div>
       )}
       {offer?.released_at && (
         <a className={cx(vx.btn, vx.secondary, vx.sm, "inline-flex")} href={`/api/vsat/offer-letter?application_id=${encodeURIComponent(applicationId)}`}>

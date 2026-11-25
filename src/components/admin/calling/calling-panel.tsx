@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { DarkSelect } from "@/components/admin/dark-select";
+import { callingStageLabel, stageMovedSinceAssignment } from "@/lib/calling/stage";
 
 /**
  * Calling CRM — admin panel for the Growth → Calling channel (3 pages).
@@ -212,12 +213,14 @@ function CallingData({ supabase }: { supabase: Client }) {
               <th className="cl-cbx"><input type="checkbox" checked={allOnPage} onChange={toggleAll} /></th>
               <th>Name</th><th>Phone</th><th>Stream</th><th>Source</th>
               <th>Status</th><th>Interested</th><th>Assignee</th>
+              <th title="The student's VSAT stage when this lead was given to its caller">Stage at assignment</th>
+              <th title="The student's VSAT stage now">Stage now</th>
               <th>Reg.</th><th>VSAT</th><th>Calls</th><th>Last call</th><th>Remarks</th><th></th>
             </tr>
           </thead>
           <tbody>
-            {loading && <tr><td colSpan={14} className="cl-mid">Loading…</td></tr>}
-            {!loading && rows.length === 0 && <tr><td colSpan={14} className="cl-mid">No leads match these filters.</td></tr>}
+            {loading && <tr><td colSpan={16} className="cl-mid">Loading…</td></tr>}
+            {!loading && rows.length === 0 && <tr><td colSpan={16} className="cl-mid">No leads match these filters.</td></tr>}
             {!loading && rows.map((r) => {
               const id = str(r.id);
               return (
@@ -230,6 +233,9 @@ function CallingData({ supabase }: { supabase: Client }) {
                   <td className="cl-min"><DarkSelect value={str(r.call_status)} onChange={(v) => inlineUpdate(id, { call_status: v })} options={CALL_STATUS.map((s) => ({ value: s, label: STATUS_LABEL[s] }))} /></td>
                   <td className="cl-min"><DarkSelect value={str(r.interested)} placeholder="—" onChange={(v) => inlineUpdate(id, { interested: v })} options={INTERESTED.map((s) => ({ value: s, label: s[0].toUpperCase() + s.slice(1) }))} /></td>
                   <td>{r.assigned_to ? <span className="cl-tag cl-tag-a">{callerEmail[str(r.assigned_to)] ?? str(r.assignee_email) ?? "caller"}</span> : <span className="cl-muted">—</span>}</td>
+                  <td>{r.assigned_to ? <span className="cl-tag">{callingStageLabel(r.stage_at_assignment)}</span> : <span className="cl-muted">—</span>}</td>
+                  <td><span className={stageMovedSinceAssignment(r.stage_at_assignment, r.vsat_stage) ? "cl-tag cl-tag-a" : "cl-tag"}
+                    title={stageMovedSinceAssignment(r.stage_at_assignment, r.vsat_stage) ? "Moved since the lead was assigned" : undefined}>{callingStageLabel(r.vsat_stage)}</span></td>
                   <td>{r.registered || r.linked_profile_id ? <span className="cl-dot cl-ok" title="Registered on Vedam One" /> : <span className="cl-dot" />}</td>
                   <td>{r.vsat_paid ? <span className="cl-tag cl-tag-paid">paid</span> : <button className="cl-link" onClick={() => markPaid(id)}>mark</button>}</td>
                   <td className="cl-c">{str(r.call_count) || "0"}</td>

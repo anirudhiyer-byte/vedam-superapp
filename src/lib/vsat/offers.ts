@@ -23,6 +23,24 @@ export type OfferJobKind = keyof typeof OFFER_JOB_STEP;
 export const OFFER_STEPS: readonly string[] = Object.values(OFFER_JOB_STEP);
 /** Most students one release call takes (same as vsat_offers_release). */
 export const RELEASE_MAX = 100;
+/** 0180: "Days to pay" typed at release (whole number 1–90; empty = the campus default). Same limits as the database. */
+export const OFFER_DAYS_MIN = 1;
+export const OFFER_DAYS_MAX = 90;
+export const OFFER_DAYS_ERROR = `Days to pay must be a whole number from ${OFFER_DAYS_MIN} to ${OFFER_DAYS_MAX}, or empty for the campus default.`;
+
+/** The "Days to pay" box → the number to send (null = campus default), or not ok. The database checks again. */
+export function parseOfferDays(text: string): { ok: true; days: number | null } | { ok: false } {
+  const t = text.trim();
+  if (t === "") return { ok: true, days: null };
+  if (!/^\d{1,3}$/.test(t)) return { ok: false };
+  const n = Number(t);
+  return n >= OFFER_DAYS_MIN && n <= OFFER_DAYS_MAX ? { ok: true, days: n } : { ok: false };
+}
+
+/** The release call's body: offer_days only when typed, so an empty box sends exactly what it sent before 0180. */
+export function releaseParams(ids: string[], days: number | null, dryRun: boolean): Record<string, unknown> {
+  return { application_ids: ids, ...(dryRun ? { dry_run: true } : {}), ...(days !== null ? { offer_days: days } : {}) };
+}
 
 export const CAMPUS_NAME: Record<string, string> = { pune: "Pune", gurugram: "Gurugram" };
 
