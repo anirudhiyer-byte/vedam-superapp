@@ -94,9 +94,9 @@ describe("studentMockResult", () => {
   it("omits missing fields", () => {
     expect(studentMockResult({ overall: null, obtainedMarks: null, maxMarks: null, percentile: null, sections: {}, reportLink: null })).toEqual({});
   });
-  it("includes the report link when present", () => {
+  it("does not surface a report-link-only result (unreliable email link)", () => {
     const out = studentMockResult({ overall: null, obtainedMarks: null, maxMarks: null, percentile: null, sections: {}, reportLink: "https://wheebox.com/report/1" });
-    expect(out).toEqual({ Report: "https://wheebox.com/report/1" });
+    expect(out).toEqual({});
   });
 });
 

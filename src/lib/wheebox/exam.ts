@@ -140,9 +140,10 @@ export function parseWheeboxResult(payload: unknown): ParsedResult {
 /** True when a parsed result carries real data (a score, a verdict, or sections) — i.e. the
  *  candidate has a result to store. Guards against writing an empty/error response as a result. */
 export function hasResultData(p: ParsedResult): boolean {
+  // Requires an actual score/verdict/sections. A report-link-only response (candidate exists but
+  // Wheebox has no marks — an unsubmitted/unscored attempt) is NOT a result; it stays "in progress".
   return p.obtainedMarks !== null || p.maxMarks !== null || p.percentile !== null
-    || (p.overall !== null && p.overall !== "") || Object.keys(p.sections).length > 0
-    || p.reportLink !== null;
+    || (p.overall !== null && p.overall !== "") || Object.keys(p.sections).length > 0;
 }
 
 /** The compact, student-safe shape we store in application_manager.mock_result. */
@@ -157,6 +158,7 @@ export function studentMockResult(p: ParsedResult): Record<string, unknown> {
     for (const [k, v] of Object.entries(p.sections)) if (v !== null && typeof v !== "object") flat[k] = v;
     if (Object.keys(flat).length) out["Sections"] = flat;
   }
-  if (p.reportLink) out["Report"] = p.reportLink;
+  // Note: p.reportLink is deliberately NOT surfaced — Wheebox's fromMail report URL is an
+  // email-only link that errors ("invalid request") when opened directly.
   return out;
 }
