@@ -61,6 +61,7 @@ export type ParsedResult = {
   maxMarks: number | null;
   percentile: number | null;
   sections: Record<string, unknown>;
+  reportLink: string | null;
 };
 
 const num = (v: unknown): number | null => {
@@ -93,13 +94,25 @@ function block(root: Record<string, unknown>, names: string[]): unknown {
  * our own cohort rank, not from Wheebox.
  */
 export function parseWheeboxResult(payload: unknown): ParsedResult {
-  const root = (payload && typeof payload === "object" ? (payload as Record<string, unknown>) : {}) as Record<string, unknown>;
-  const ovRaw = block(root, ["OVERALL", "overall", "overallResult", "overall_result", "data", "result"]);
+  const root0 = (payload && typeof payload === "object" ? (payload as Record<string, unknown>) : {}) as Record<string, unknown>;
+  // Wheebox wraps the result in a `result` array: [{ OVERALL, SECTIONWISE, reportLink }].
+  // Descend into the first element so OVERALL/SECTIONWISE resolve, instead of treating the
+  // whole array as the "overall" value (which stringified to "[object Object]").
+  const rootResult = root0["result"];
+  const root = (Array.isArray(rootResult) && rootResult[0] && typeof rootResult[0] === "object"
+    ? (rootResult[0] as Record<string, unknown>)
+    : root0);
+  const ovRaw = block(root, ["OVERALL", "overall", "overallResult", "overall_result", "data"]);
   const overallObj = (ovRaw && typeof ovRaw === "object" && !Array.isArray(ovRaw) ? ovRaw : root) as Record<string, unknown>;
 
+  // Verdict must be a scalar (pass/fail/grade) — never an object/array.
   const overall = ((): string | null => {
-    const v = pick(overallObj, ["result", "overallResult", "passFail", "pass_fail", "grade", "status"]);
-    return v === undefined || v === null || v === "" ? null : String(v);
+    const v = pick(overallObj, ["result", "overallResult", "passFail", "pass_fail", "grade"]);
+    return v === undefined || v === null || v === "" || typeof v === "object" ? null : String(v);
+  })();
+  const reportLink = ((): string | null => {
+    const v = pick(root, ["reportLink", "report_link", "report", "reportUrl", "report_url"]);
+    return typeof v === "string" && v.startsWith("http") ? v : null;
   })();
   const obtainedMarks = num(pick(overallObj, ["obtainMark", "obtainMarks", "obtainedMarks", "obtained_marks", "marks", "score", "obtained", "totalMarksObtained"]));
   const maxMarks = num(pick(overallObj, ["maximumMark", "maximumMarks", "maxMarks", "max_marks", "totalMarks", "total_marks", "outOf"]));
@@ -121,14 +134,15 @@ export function parseWheeboxResult(payload: unknown): ParsedResult {
     Object.assign(sections, secRaw as Record<string, unknown>);
   }
 
-  return { overall, obtainedMarks, maxMarks, percentile, sections };
+  return { overall, obtainedMarks, maxMarks, percentile, sections, reportLink };
 }
 
 /** True when a parsed result carries real data (a score, a verdict, or sections) — i.e. the
  *  candidate has a result to store. Guards against writing an empty/error response as a result. */
 export function hasResultData(p: ParsedResult): boolean {
   return p.obtainedMarks !== null || p.maxMarks !== null || p.percentile !== null
-    || (p.overall !== null && p.overall !== "") || Object.keys(p.sections).length > 0;
+    || (p.overall !== null && p.overall !== "") || Object.keys(p.sections).length > 0
+    || p.reportLink !== null;
 }
 
 /** The compact, student-safe shape we store in application_manager.mock_result. */
@@ -137,6 +151,12 @@ export function studentMockResult(p: ParsedResult): Record<string, unknown> {
   if (p.obtainedMarks !== null) out["Score"] = p.maxMarks !== null ? `${p.obtainedMarks} / ${p.maxMarks}` : p.obtainedMarks;
   if (p.percentile !== null) out["Percentile"] = p.percentile;
   if (p.overall) out["Result"] = p.overall;
-  if (Object.keys(p.sections).length) out["Sections"] = p.sections;
+  // Only include sections when they carry scalar values (avoid nested objects rendering as junk).
+  if (Object.keys(p.sections).length) {
+    const flat: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(p.sections)) if (v !== null && typeof v !== "object") flat[k] = v;
+    if (Object.keys(flat).length) out["Sections"] = flat;
+  }
+  if (p.reportLink) out["Report"] = p.reportLink;
   return out;
 }

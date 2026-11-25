@@ -107,9 +107,21 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
           <p className="text-sm text-[#16a34a]">Mock completed ✓</p>
           {mockHasResult && (
             <div className="mt-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
-              {Object.entries(mockResult as Record<string, unknown>).map(([k, v]) => (
-                <div key={k} className="rounded-lg bg-[#f6f3fd] px-3 py-2"><span className="text-[#6b647e]">{k}</span>: <b>{String(v)}</b></div>
-              ))}
+              {Object.entries(mockResult as Record<string, unknown>).map(([k, v]) => {
+                const isUrl = typeof v === "string" && v.startsWith("http");
+                return (
+                  <div key={k} className="rounded-lg bg-[#f6f3fd] px-3 py-2">
+                    <span className="text-[#6b647e]">{k}</span>:{" "}
+                    {isUrl ? (
+                      <a href={String(v)} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#7b2ff7] underline">View →</a>
+                    ) : v !== null && typeof v === "object" ? (
+                      <b>{Object.entries(v as Record<string, unknown>).map(([sk, sv]) => `${sk}: ${String(sv)}`).join(" · ")}</b>
+                    ) : (
+                      <b>{String(v)}</b>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
