@@ -19,7 +19,7 @@ import { adminDb } from "@/lib/peerpath/meet-sync";
 import { bearerToken, sameOrigin, readJsonObject } from "@/lib/peerpath/book-request";
 import { wheeboxCreds } from "@/lib/wheebox/crypto";
 import { fetchResult } from "@/lib/wheebox/api";
-import { parseWheeboxResult, studentMockResult } from "@/lib/wheebox/exam";
+import { parseWheeboxResult, studentMockResult, isWheeboxOk, hasResultData } from "@/lib/wheebox/exam";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
@@ -56,32 +56,39 @@ export async function POST(req: Request) {
   const admin = adminDb();
   const { data: app } = await admin
     .from("application_manager")
-    .select("lead_id, application_id, wheebox_login_id, exam_date_id")
+    .select("lead_id, application_id, wheebox_login_id, exam_date_id, mock_launched_at")
     .eq("application_id", applicationId)
     .maybeSingle();
   if (!app?.application_id) return json({ ok: false, code: "NOT_FOUND" }, 404);
 
-  const { data: settings } = await admin.from("vsat_exam_settings").select("mock_test_id, osr_format").eq("id", 1).maybeSingle();
+  const { data: settings } = await admin.from("vsat_exam_settings").select("mock_test_id, mock_test_name, mock_domain_name, osr_format").eq("id", 1).maybeSingle();
   const osr = (settings?.osr_format || "o").toString();
 
-  // Resolve test id + exam date.
+  // Resolve test id + exam date + the result-lookup names (Wheebox keys results by domain + test NAME).
   let testId: string | null = null;
   let examDate = new Date();
+  let tName: string | null = null;
+  let dName: string | null = null;
   if (kind === "mock") {
     testId = settings?.mock_test_id ? String(settings.mock_test_id) : null;
+    tName = settings?.mock_test_name ?? null; dName = settings?.mock_domain_name ?? null;
+    // mock anchors to when the student took it, not today
+    if (app.mock_launched_at) examDate = new Date(app.mock_launched_at as string);
   } else if (app.exam_date_id) {
-    const { data: d } = await admin.from("vsat_exam_dates").select("wheebox_test_id, exam_date").eq("id", app.exam_date_id).maybeSingle();
-    if (d?.wheebox_test_id) { testId = String(d.wheebox_test_id); if (d.exam_date) examDate = new Date(d.exam_date); }
+    const { data: d } = await admin.from("vsat_exam_dates").select("wheebox_test_id, test_name, domain_name, exam_date").eq("id", app.exam_date_id).maybeSingle();
+    if (d?.wheebox_test_id) { testId = String(d.wheebox_test_id); if (d.exam_date) examDate = new Date(d.exam_date); tName = d.test_name ?? null; dName = d.domain_name ?? null; }
   }
   if (!testId) return json({ ok: false, code: kind === "mock" ? "MOCK_NOT_CONFIGURED" : "NO_SLOT" }, 409);
 
   const loginId = app.wheebox_login_id || app.application_id;
-  const domainName = process.env.WHEEBOX_DOMAIN_NAME || creds.companyCode;
-  const testName = process.env.WHEEBOX_TEST_NAME || testId;
+  const domainName = dName || process.env.WHEEBOX_DOMAIN_NAME || creds.companyCode;
+  const testName = tName || process.env.WHEEBOX_TEST_NAME || testId;
 
   try {
     const result = await fetchResult({ domainName, testName, loginId, osr, dateOfExam: ymd(examDate) }, creds);
     const parsed = parseWheeboxResult(result);
+    // only store a REAL result — an error body / not-submitted-yet must not become a stored result
+    if (!isWheeboxOk(result) || !hasResultData(parsed)) return json({ ok: false, code: "NO_RESULT" }, 409);
     const isMock = kind === "mock";
 
     await admin.from("vsat_exam_results").insert({
@@ -98,7 +105,7 @@ export async function POST(req: Request) {
     });
 
     if (isMock) {
-      await admin.from("application_manager").update({ mock_given: true, mock_result: studentMockResult(parsed) }).eq("lead_id", app.lead_id);
+      await admin.from("application_manager").update({ mock_given: true, mock_result: studentMockResult(parsed), mock_percentile: parsed.percentile, mock_sections: parsed.sections }).eq("lead_id", app.lead_id);
     } else {
       await admin.from("application_manager").update({
         exam_given: true,
