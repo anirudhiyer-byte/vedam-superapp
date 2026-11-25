@@ -38,6 +38,7 @@ export function VsatAuthOverlay({
   const [otp, setOtp] = useState("");
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaKey, setCaptchaKey] = useState(0);
+  const [existing, setExisting] = useState(false); // this phone/email already has a Vedam One profile
 
   const fullName = (initial.fullName || "").trim();
   const email = (initial.email || "").trim();
@@ -45,6 +46,27 @@ export function VsatAuthOverlay({
 
   const firstRender = useRef(true);
   useEffect(() => { firstRender.current = false; }, []);
+
+  // A pushed School Connect lead (or any returning user) already has a Vedam One profile. Detect
+  // it up front so we tell them "you already have a profile — log in" instead of acting like a
+  // fresh registration. Verifying still signs them into that same account (no duplicate).
+  useEffect(() => {
+    const p10 = (initial.phone || "").replace(/\D/g, "").slice(-10);
+    const em = (initial.email || "").trim();
+    if (p10.length < 10 && !em) return;
+    let on = true;
+    (async () => {
+      try {
+        const r = await fetch("/api/auth/check-exists", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ phone: p10.length === 10 ? "+91" + p10 : undefined, email: em || undefined }),
+        });
+        const j = await r.json().catch(() => ({}));
+        if (on) setExisting(!!j?.conflict);
+      } catch { /* best effort — never block */ }
+    })();
+    return () => { on = false; };
+  }, [initial.phone, initial.email]);
 
   async function makeLead(verifiedToken?: string) {
     const utm = readUtm();
@@ -136,6 +158,12 @@ export function VsatAuthOverlay({
           <button onClick={onClose} aria-label="Close" className="ml-3 shrink-0 rounded-lg px-2 py-1 text-xl leading-none text-[#9ca3af] hover:text-[#160a30]">×</button>
         </div>
 
+        {existing && (
+          <div className="mt-4 rounded-xl border border-[#f0b429]/50 bg-[#fff8e6] px-3 py-2 text-[13px] leading-snug text-[#7a5b00]">
+            You already have a Vedam One profile with this number{email ? " / email" : ""}. Verifying the code will <b>log you in</b> to it — you don&apos;t need to register again.
+          </div>
+        )}
+
         {step === "send" && (
           <div className="mt-5">
             {captchaRequired && <Turnstile onToken={setCaptchaToken} resetKey={captchaKey} />}
@@ -143,7 +171,7 @@ export function VsatAuthOverlay({
             <button
               onClick={sendOtp} disabled={loading || (captchaRequired && !captchaToken)}
               className="mt-4 w-full rounded-xl bg-gradient-to-r from-[#00cfe5] to-[#c200db] py-3 text-sm font-semibold text-white disabled:opacity-50"
-            >{loading ? "Sending…" : "Send code"}</button>
+            >{loading ? "Sending…" : existing ? "Log in with code" : "Send code"}</button>
           </div>
         )}
 
