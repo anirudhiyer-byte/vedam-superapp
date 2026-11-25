@@ -186,6 +186,10 @@ const ERRORS: Record<string, string> = {
   MODE_OFFLINE: "The student chose offline counselling: no online invite is sent. They come on an offline date.",
   NO_ZOOM_LINK: "This counsellor has no Zoom link yet. An admin adds it under Counselling → Zoom links.",
   ALREADY_EXISTS: "That date is already on the list.",
+  // Buckets (0188)
+  LOCKED: "This VSAT's buckets are locked for this campus. Unlock them first (with a reason).",
+  ALREADY_LOCKED: "These buckets are already locked.",
+  NOT_LOCKED: "These buckets are not locked.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
@@ -205,6 +209,8 @@ const FIELD_LABEL: Record<string, string> = {
   zoom_link: "Zoom link", date: "Date", mode: "Mode", feedback: "Counsellor feedback", parent_present: "Parent present",
   connected_students: "Already connected with existing students", heard_from: "Came to know about Vedam from",
   adjust_pct: "Adjustment", adjust_reason: "Reason for the adjustment",
+  // 0188
+  arpu_target: "ARPU target", locked: "Lock",
 };
 
 export function errorText(raw: string | null | undefined): string {
@@ -213,7 +219,7 @@ export function errorText(raw: string | null | undefined): string {
   const bad = /^BAD_VALUE: ([a-z_0-9]+)$/.exec(m);
   if (bad) return `Please check "${FIELD_LABEL[bad[1]] ?? bad[1].replace(/_/g, " ")}".`;
   // band / curve checks carry their own plain-English reason (fixed text written in the database)
-  const rule = /^BAD_(BANDS|ANCHORS): ([A-Za-z0-9 %,.'-]{1,120})$/.exec(m);
+  const rule = /^BAD_(BANDS|ANCHORS): ([A-Za-z0-9 %,.'()-]{1,120})$/.exec(m);
   if (rule) return `${rule[2].charAt(0).toUpperCase()}${rule[2].slice(1)}.`;
   const col = /^FORBIDDEN_COLUMN: ([a-z_0-9]+)$/.exec(m);
   if (col) return `You don't have access to the column "${col[1].replace(/_/g, " ")}".`;
