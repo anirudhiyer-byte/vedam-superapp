@@ -24,9 +24,11 @@ export async function smtp2goSend(opts: {
   ics?: string;              // optional .ics calendar invite (raw text)
   attachments?: Attachment[]; // optional files (content = base64)
   fromName?: string;
+  /** a verified from-address for this email only (VSAT: VSAT_SENDER_EMAIL); else SMTP2GO_SENDER / SENDER_EMAIL */
+  fromEmail?: string;
 }): Promise<{ ok: boolean; messageId?: string; error?: string }> {
   const apiKey = process.env.SMTP2GO_API_KEY;
-  const senderAddr = process.env.SMTP2GO_SENDER || process.env.SENDER_EMAIL;
+  const senderAddr = opts.fromEmail || process.env.SMTP2GO_SENDER || process.env.SENDER_EMAIL;
   if (!apiKey || !senderAddr) return { ok: false, error: "smtp2go_not_configured" };
 
   const sender = `${opts.fromName || "Vedam School of Technology"} <${senderAddr}>`;

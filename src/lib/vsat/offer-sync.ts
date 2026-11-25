@@ -20,6 +20,7 @@
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { deliverEmail } from "@/lib/email/deliver";
+import { vsatSender } from "./sender";
 import { fillTemplate } from "./interviews";
 import { OFFER_JOB_STEP, OFFER_STEP, offerEmailVars, type OfferJob, type OfferJobKind } from "./offers";
 import { CAMPUS_LETTER, campusKey, letterFileName, offerDays, type CampusKey, type LetterInput } from "./offer-letter";
@@ -120,6 +121,7 @@ export async function sendOfferNotices(
         }
         const r = await deliver({
           to,
+          ...vsatSender(),
           subject: fillTemplate(step.email_subject, vars, "text"),
           html: fillTemplate(step.email_body, vars, "html"),
           kind: `vsat_${OFFER_JOB_STEP[job.kind]}`,

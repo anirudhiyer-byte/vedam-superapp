@@ -2,10 +2,13 @@
  * VSAT profile analyser · the prompt (step 6).
  *
  * The text is the "Profile Analyzer" gen() prompt from the VSAT Student Details sheet, kept as it is,
- * with two changes:
+ * with three changes:
  *   - "Until May 2026" becomes the coming board-results year, so the rule stays right every season.
  *   - the student data sits between clear markers, and the model is told to treat it as data only
  *     (the student's own answers are free text and could contain instructions).
+ *   - Phase 7 (sir's review, 24 Nov 2026): the summary is "not biased towards making it look positive, neither negative",
+ *     a logical, rational, structured analysis. The sheet's "slightly conservative — avoid over-optimism" line is replaced
+ *     by that; everything else stays as in the sheet.
  * Fields come from the database (vsat_profile_start, migration 0085) as [label, value] pairs.
  */
 
@@ -23,7 +26,7 @@ export function profileInstructions(now: Date): string {
   const y = boardsYear(now);
   return `You are a senior admissions counsellor at Vedam School of Technology with a rigorous, evidence-driven evaluation approach. Produce a concise, professional, counsellor-style summary for a pre-admission counselling conversation.
 
-The analysis must be balanced, realistic, and slightly conservative — avoid over-optimism. Praise only where clearly supported by data, and clearly flag risks, gaps, and inconsistencies where present. Do not assume high potential without evidence.
+The analysis must be neutral — not biased towards making the student look positive, nor negative. It must be logical, rational and structured, based strictly on the data. Mention strengths only where clearly supported by data, and clearly flag risks, gaps, and inconsistencies where present. Do not assume high or low potential without evidence.
 
 Output must be in bullet points (•), short, actionable, empathetic, and feedback-focused (not sales-oriented).
 

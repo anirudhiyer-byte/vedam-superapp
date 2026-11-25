@@ -20,6 +20,12 @@ describe("prompt text", () => {
       expect(p).toContain(s);
     }
   });
+  it("Phase 7: neutral, as sir asked — neither positive nor negative, logical and structured", () => {
+    expect(p).toContain("not biased towards making the student look positive, nor negative");
+    expect(p).toContain("logical, rational and structured");
+    expect(p).not.toContain("slightly conservative");
+    expect(p).not.toContain("over-optimism");
+  });
   it("uses the coming board-results year, not a fixed 2026", () => {
     expect(p).toContain("Until May 2027");
     expect(p).not.toContain("May 2026");

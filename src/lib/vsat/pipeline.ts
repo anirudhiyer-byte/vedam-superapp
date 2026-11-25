@@ -155,6 +155,8 @@ const ERRORS: Record<string, string> = {
   NOT_FOUND: "That item no longer exists. Refresh and try again.",
   BAD_REQUEST: "The app sent something unexpected. Refresh the page and try again.",
   COUNT_CHANGED: "The list changed since you previewed it. Preview again, then confirm.",
+  // Profile Analysis (0191)
+  WRONG_VSAT: "This student is not in the VSAT you picked. Pick their VSAT, or search in that VSAT.",
   // interviews (0140)
   SLOT_IN_PAST: "Pick a time in the future.",
   ALREADY_SCHEDULED: "Already has an interview booked. Open the student to move it.",

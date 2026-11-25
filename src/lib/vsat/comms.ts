@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { deliverEmail } from "@/lib/email/deliver";
+import { vsatSender } from "./sender";
 import { waSendSingle } from "@/lib/whatsapp/client";
 
 /**
@@ -96,6 +97,7 @@ export async function sendVsatStepComms(step: VsatCommStep, ctx: VsatCommCtx): P
       if (testMode || !(await alreadySent(db, ctx.leadId, step, "email"))) {
         const r = await deliverEmail({
           to: toEmail,
+          ...vsatSender(),
           subject: fill(cfg.email_subject, v),
           html: fill(cfg.email_body, v),
           kind: `vsat_${step}`,

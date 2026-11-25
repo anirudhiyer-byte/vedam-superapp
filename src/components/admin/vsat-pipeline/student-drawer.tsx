@@ -433,7 +433,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
 }
 
 /** "**bold**" → <strong>; everything else stays plain text (no HTML from the AI is ever rendered). */
-function BriefingText({ text }: { text: string }) {
+export function BriefingText({ text }: { text: string }) {
   return (
     <div className="space-y-1 whitespace-pre-wrap text-sm leading-relaxed text-vx-ink">
       {text.split("\n").map((line, i) => (
@@ -451,7 +451,7 @@ function savedProfile(p: unknown): { saved: string | null; savedAt: string | nul
 }
 
 /** Profile analyser (step 6): the AI briefing for the counsellor. Generated on the server (/api/vsat/profile). */
-function ProfileBox({ applicationId, saved, savedAt, canGenerate }: { applicationId: string; saved: string | null; savedAt: string | null; canGenerate: boolean }) {
+export function ProfileBox({ applicationId, saved, savedAt, canGenerate }: { applicationId: string; saved: string | null; savedAt: string | null; canGenerate: boolean }) {
   const [text, setText] = useState(saved);
   const [at, setAt] = useState(savedAt);
   const [busy, setBusy] = useState(false);

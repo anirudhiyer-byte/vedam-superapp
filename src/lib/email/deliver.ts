@@ -29,6 +29,8 @@ export async function deliverEmail(opts: {
   refName?: string | null;
   campaignId?: string | null;
   fromName?: string;
+  /** From-address for this email (SMTP2GO only; the Gmail fallback always sends as its own account). VSAT: lib/vsat/sender.ts */
+  fromEmail?: string;
   attachments?: { filename: string; content: string; mimetype: string }[]; // content = base64
 }): Promise<DeliverResult> {
   const svc = svcClient();
@@ -65,7 +67,7 @@ export async function deliverEmail(opts: {
   let provider: "smtp2go" | "gmail";
   if (smtp2goConfigured()) {
     provider = "smtp2go";
-    sent = await smtp2goSend({ to: opts.to, subject: opts.subject, html, ics: opts.ics, attachments: opts.attachments, fromName: opts.fromName });
+    sent = await smtp2goSend({ to: opts.to, subject: opts.subject, html, ics: opts.ics, attachments: opts.attachments, fromName: opts.fromName, fromEmail: opts.fromEmail });
   } else {
     provider = "gmail";
     const creds = await gmailAccessToken();

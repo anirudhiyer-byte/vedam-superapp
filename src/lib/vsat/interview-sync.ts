@@ -16,6 +16,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createGoogleAccount, GoogleError, type CalEvent, type GoogleAccount } from "@/lib/google/account";
 import { decideAttendance, type Participant } from "@/lib/peerpath/attendance";
 import { deliverEmail } from "@/lib/email/deliver";
+import { vsatSender } from "./sender";
 import { MEETING_STEP_KEYS, TRACKS, withHost, type Track } from "./tracks";
 import {
   attendanceOutcome, eventText, fillTemplate, interviewEventId, isMeetUrl, joinUrl, noticeVars, planNotices,
@@ -305,6 +306,7 @@ export async function sendInterviewNotices(
       try {
         const r = await deliver({
           to,
+          ...vsatSender(),
           subject: fillTemplate(step.email_subject, vars, "text"),
           html: fillTemplate(step.email_body, vars, "html"),
           kind: `vsat_${n.step}`,

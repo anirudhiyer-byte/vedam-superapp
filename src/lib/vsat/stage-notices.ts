@@ -12,6 +12,7 @@
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { deliverEmail } from "@/lib/email/deliver";
+import { vsatSender } from "./sender";
 import { fillTemplate } from "./interviews";
 import { offlineDateText } from "./counselling-setup";
 
@@ -100,6 +101,7 @@ export async function sendStageNotices(
       try {
         const r = await deliver({
           to,
+          ...vsatSender(),
           subject: fillTemplate(step.email_subject, vars, "text"),
           html: fillTemplate(step.email_body, vars, "html"),
           kind: `vsat_${job.stage}`,
