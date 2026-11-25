@@ -4,6 +4,7 @@ import {
   bandOf,
   BLOCK_LABELS,
   blockedReasons,
+  notBookedPeople,
   parseAdminInsights,
   parseDays,
   BOOKING_LIMIT,
@@ -494,5 +495,20 @@ describe("parseAdminInsights", () => {
     for (const v of [null, undefined, "x", 5, [], {}, { mode: "paid" }, { mode: "paid", ranges: [] }, noRange, negative, nan, noMode]) {
       expect(parseAdminInsights(v)).toBeNull();
     }
+  });
+});
+
+describe("notBookedPeople", () => {
+  it("one person stopped for two reasons is one person (staging: 1 tried, 0 booked, Slot taken + Other)", () => {
+    const blocked = { SLOT_UNAVAILABLE: { attempts: 2, people: 1 }, INVALID: { attempts: 1, people: 1 } };
+    expect(blockedReasons(blocked).reduce((a, x) => a + x.people, 0)).toBe(2); // summing the bars double-counts
+    expect(notBookedPeople({ people: 1, people_booked: 0 })).toBe(1);
+  });
+  it("people who were blocked first and booked later are not counted", () => {
+    expect(notBookedPeople({ people: 10, people_booked: 7 })).toBe(3);
+  });
+  it("zero and never negative", () => {
+    expect(notBookedPeople({ people: 0, people_booked: 0 })).toBe(0);
+    expect(notBookedPeople({ people: 2, people_booked: 5 })).toBe(0);
   });
 });

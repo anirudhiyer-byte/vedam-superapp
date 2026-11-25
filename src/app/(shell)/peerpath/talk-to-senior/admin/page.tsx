@@ -10,6 +10,7 @@ import { filterAdminByCampus, parseCampus } from "@/lib/peerpath/admin-filter";
 import {
   blockedReasons,
   coverage,
+  notBookedPeople,
   IMPACT_RANGES,
   inviteFailed,
   isCapped,
@@ -827,7 +828,7 @@ function ImpactRangeView({ r, mode }: { r: ImpactRange; mode: string }) {
   const o = r.outcome;
   const reasons = blockedReasons(dm.blocked);
   const maxPeople = Math.max(1, ...reasons.map((x) => x.people));
-  const blockedPeople = reasons.reduce((a, x) => a + x.people, 0);
+  const stopped = notBookedPeople(dm);
   return (
     <>
       <Panel title="Demand" sub="Everyone who pressed “Confirm booking”, allowed or blocked.">
@@ -838,7 +839,7 @@ function ImpactRangeView({ r, mode }: { r: ImpactRange; mode: string }) {
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               <Kpi label="Tried to book" value={dm.people} sub={`${dm.attempts} ${dm.attempts === 1 ? "try" : "tries"}`} icon={<IconUsers className="h-4 w-4" />} />
               <Kpi label="Booked" value={dm.people_booked} sub={`${pct(dm.people_booked, dm.people)}% of people who tried`} tone={dm.people_booked ? "good" : "default"} icon={<IconCheck className="h-4 w-4" />} />
-              <Kpi label="Blocked at least once" value={blockedPeople} sub="People may be blocked for more than one reason" tone={blockedPeople ? "warn" : "default"} icon={<IconFlag className="h-4 w-4" />} className="col-span-2 sm:col-span-1" />
+              <Kpi label="Tried but didn’t book" value={stopped} sub={`${pct(stopped, dm.people)}% of people who tried`} tone={stopped ? "warn" : "default"} icon={<IconFlag className="h-4 w-4" />} className="col-span-2 sm:col-span-1" />
             </div>
             <div className="flex flex-col gap-3">
               <h3 className="text-[14px] font-semibold text-pp-heading">Why people were stopped</h3>
@@ -857,7 +858,7 @@ function ImpactRangeView({ r, mode }: { r: ImpactRange; mode: string }) {
                   />
                 ))
               )}
-              <p className="text-[12px] text-pp-muted">Counted in people. A signed-out try counts as one person, because we can’t tell signed-out people apart.</p>
+              <p className="text-[12px] text-pp-muted">Counted in people. One person can be stopped for more than one reason, so these bars can add up to more than “Tried but didn’t book”. A signed-out try counts as one person, because we can’t tell signed-out people apart.</p>
             </div>
           </>
         )}
