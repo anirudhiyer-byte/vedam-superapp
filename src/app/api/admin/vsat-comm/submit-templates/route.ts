@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import crypto from "crypto";
 import { waCreateTemplate } from "@/lib/whatsapp/client";
 
 export const dynamic = "force-dynamic";
@@ -9,7 +10,22 @@ export const runtime = "nodejs";
  * and store each returned template name on its step (wa_template_id). UTILITY category so
  * delivery isn't throttled as marketing. Approval is async — the admin flips each step's
  * WhatsApp on in the panel once TrustSignal shows it approved.
+ *
+ * WhatsApp/TrustSignal template names are immutable and must be unique — you can't re-register
+ * a name with changed copy. So each name carries a short hash of its body: edited copy becomes a
+ * NEW template (fresh approval), and re-submitting identical copy just hits DUPLICATE_TEMPLATE_NAME,
+ * which we treat as "already registered" so the button is idempotent and never hard-errors.
  */
+
+/** base + a 6-char hash of the body, so a copy change makes a new template name. */
+const versionedName = (base: string, body: string) =>
+  `${base}_v${crypto.createHash("sha256").update(body).digest("hex").slice(0, 6)}`;
+
+/** TrustSignal's duplicate-name rejection (code 1001 / DUPLICATE_TEMPLATE_NAME) = already registered. */
+function isDuplicateName(data: unknown): boolean {
+  const errs = (data as { errors?: { code?: string; codeMsg?: string }[] } | undefined)?.errors;
+  return Array.isArray(errs) && errs.some((e) => e?.code === "1001" || e?.codeMsg === "DUPLICATE_TEMPLATE_NAME");
+}
 
 const LANG = "en";
 const DASH = "https://one.vedam.org/apply/dashboard";
@@ -62,17 +78,20 @@ export async function POST(req: Request) {
   if (!isAdmin) return Response.json({ ok: false, error: "forbidden" }, { status: 403 });
 
   const svc = createClient(url, svcKey);
-  const results: { step_key: string; name: string; ok: boolean; status: number; detail?: unknown }[] = [];
+  const results: { step_key: string; name: string; ok: boolean; created: boolean; already: boolean; status: number; detail?: unknown }[] = [];
 
   for (const t of TEMPLATES) {
+    const name = versionedName(t.name, t.body);
     const payload = {
-      name: t.name, lang: LANG, category: "UTILITY",
+      name, lang: LANG, category: "UTILITY",
       components: [{ type: "BODY", text: t.body, example: { body_text: [t.samples] } }],
     };
     const r = await waCreateTemplate(payload);
-    results.push({ step_key: t.step_key, name: t.name, ok: r.ok, status: r.status, detail: r.data });
-    // store the template name on the step so sends resolve once it's approved
-    await svc.from("vsat_comm_steps").update({ wa_template_id: t.name }).eq("step_key", t.step_key);
+    const already = !r.ok && isDuplicateName(r.data); // same copy already submitted → fine
+    const ok = r.ok || already;
+    results.push({ step_key: t.step_key, name, ok, created: r.ok, already, status: r.status, detail: ok ? undefined : r.data });
+    // point the step at this versioned name so sends resolve once it's approved
+    if (ok) await svc.from("vsat_comm_steps").update({ wa_template_id: name }).eq("step_key", t.step_key);
   }
 
   return Response.json({ ok: results.every((r) => r.ok), results });
