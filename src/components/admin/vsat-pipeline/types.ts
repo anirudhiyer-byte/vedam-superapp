@@ -97,6 +97,9 @@ export type GenderCount = { male: number; female: number; other: number };
 export type ExamAnalysis = {
   booked: number; takers: number; disqualified: number;
   avg_percentage: number | null; avg_percentile: number | null; above_70: number;
+  /** 0172: not disqualified, and the highest / lowest of every taker (like the average). Missing before 0172. */
+  not_disqualified?: number;
+  max_percentage?: number | null; min_percentage?: number | null; max_percentile?: number | null; min_percentile?: number | null;
   slabs: { label: string; n: number }[];
   gender: GenderCount;
   cutoff: null | {
@@ -104,6 +107,16 @@ export type ExamAnalysis = {
     by_campus: Partial<Record<"pune" | "gurugram" | "none", GenderCount & { total: number }>>;
   };
 };
+
+/** vsat_exam_below_cutoff (0172): students of one VSAT below the cut-off Select for PI saved (admins). */
+export type BelowCutoffStudent = {
+  application_id: string; application_no: string | null; name: string | null; stage: string;
+  percentile: number | null; percentage: number | null; vps: number;
+  vps_calculated: number | null; vps_override: number | null; gender: string; campus: string | null;
+};
+export type BelowCutoff = { vsat: string; vps_cutoff: number | null; total: number; students: BelowCutoffStudent[] };
+/** vsat_exam_raise (0172): the student's new VPS and the move to VSAT cleared. */
+export type RaiseResult = { application_id: string; vps: number; vps_cutoff: number; from_stage: string; stage: string; moved: boolean };
 
 /** vsat_select_for_pi (0135): preview (applied false) or the result of moving them (applied true). */
 export type PiBucket = "selected" | "below_cutoff" | "disqualified" | "no_result" | "already_selected" | "not_active" | "not_eligible";

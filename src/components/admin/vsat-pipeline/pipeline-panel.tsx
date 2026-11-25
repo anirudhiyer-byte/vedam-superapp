@@ -17,7 +17,7 @@ import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { StudentDrawer } from "./student-drawer";
 import { BulkImportDialog } from "@/components/admin/vsat-app-admin-tools";
 import { FacetPick, type Opt } from "./facet-pick";
-import { ExamAnalysisCard, ProctoringBar, VpsEditDialog, type VpsTarget } from "./exam-tools";
+import { ProctoringBar, VpsEditDialog, type VpsTarget } from "./exam-tools";
 import { MeetBadge } from "./interview-tools";
 import { RefreshShimmer, useRefreshShimmer } from "@/components/admin/ui/refresh-shimmer";
 import { PlanBar, PlanDate, PlanInterviewer, PlanStatus, PlanTime, useInterviewPlan, type PlanMessage } from "./interview-planner";
@@ -84,12 +84,15 @@ const IconChat = () => <Svg><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.5L3 21l2-5.4A
 const IconClose = () => <Svg><path d="M18 6 6 18M6 6l12 12" /></Svg>;
 const IconPencil = () => <Svg className="h-3.5 w-3.5"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></Svg>;
 
-const colsKey = (panel: PanelKey) => `vsat-grid-cols:v1:${panel}`;
+// v2 for the Exam panel (0172): the owner asked for every sheet column on the table, so a column choice saved before it
+// is set aside once and everyone opens on the new default; they can change it again from Columns.
+const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "exam" ? "v2" : "v1"}:${panel}`;
 // per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
 function loadCols(panel: PanelKey): unknown { try { const s = localStorage.getItem(colsKey(panel)); return s ? JSON.parse(s) : null; } catch { return null; } }
 function saveCols(panel: PanelKey, cols: string[]) { try { localStorage.setItem(colsKey(panel), JSON.stringify(cols)); } catch { /* ignore */ } }
 
-export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRoles }) {
+/** onOpenEvaluation (VSAT Exam panel only): opens the Exam Evaluation page in the VSAT admin shell. */
+export function PipelinePanel({ panel, roles, onOpenEvaluation }: { panel: PanelKey; roles: VsatRoles; onOpenEvaluation?: () => void }) {
   const [supabase] = useState(() => createClient());
   const scope = useMemo(() => panelScope(panel), [panel]);
   const manager = canManage(roles);
@@ -339,15 +342,12 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
         </div>
       )}
 
-      {/* ── VSAT Exam: results analysis for the chosen VSAT(s) ── */}
-      {examPanel && manager && vsatIds.length > 0 && (
-        <RefreshShimmer on={shimmer.on} className="rounded-[18px]">
-          <ExamAnalysisCard vsatIds={vsatIds} vsatLabels={vsatIds.map((id) => vsats.find((b) => b.id === id)?.label ?? "VSAT")}
-            canSelect={roles.admin} reloadKey={reload} onApplied={() => setReload((n) => n + 1)} />
-        </RefreshShimmer>
-      )}
-      {examPanel && manager && vsatIds.length === 0 && (
-        <p className="text-[13px] text-vx-faint">Pick a VSAT above to see its results analysis{roles.admin ? " and select students for PI" : ""}.</p>
+      {/* ── VSAT Exam: the results analysis lives on its own page now (0172, owner's review) ── */}
+      {examPanel && manager && onOpenEvaluation && (
+        <p className="text-[13px] text-vx-faint">
+          Results analysis, cut-off and Select for PI are in{" "}
+          <button type="button" onClick={onOpenEvaluation} className={vx.link}>Exam Evaluation</button>.
+        </p>
       )}
 
       {/* ── selection bar ─────────────────────────── */}

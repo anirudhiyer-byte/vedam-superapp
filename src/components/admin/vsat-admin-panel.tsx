@@ -16,6 +16,7 @@ import { SeasonPanel } from "@/components/admin/marketing/season-panel";
 import { VcampPanel } from "@/components/admin/marketing/vcamp-panel";
 import { CohortPanel } from "@/components/admin/marketing/cohort-panel";
 import { PipelinePanel } from "@/components/admin/vsat-pipeline/pipeline-panel";
+import { ExamEvaluation } from "@/components/admin/vsat-pipeline/exam-evaluation";
 import { VsatLeadsPanel } from "@/components/admin/vsat-leads-panel";
 import { VsatSettings } from "@/components/admin/vsat-settings";
 import { VsatTeam } from "@/components/admin/vsat-team";
@@ -42,6 +43,7 @@ const ICON: Record<string, string> = {
   leads: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>',
   apps: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/>',
   exam: '<path d="M22 3L2 11l6 2 2 6 4-5 5 4z"/>',
+  evaluate: '<path d="M4 20V11M10 20V5M16 20v-8M21 20H3"/>',
   intv: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
   couns: '<path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>',
   form: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
@@ -71,6 +73,8 @@ const VSAT: Group[] = [
   ] },
   { g: "VSAT process", items: [
     { id: "exam", label: "VSAT Exam", icon: ICON.exam },
+    // 0172 (owner's review): the results analysis, cut-off and raise-by-hand page sits under VSAT Exam; same people as VSAT Exam
+    { id: "exameval", label: "Exam Evaluation", icon: ICON.evaluate },
     { id: "intv", label: "Interview", icon: ICON.intv },
     { id: "couns", label: "Counselling", icon: ICON.couns },
   ] },
@@ -140,6 +144,8 @@ function Svg({ inner, cls }: { inner: string; cls?: string }) {
 
 const PIPELINE: PanelKey[] = ["apps", "exam", "intv", "couns"];
 const isPanelKey = (id: string): id is PanelKey => (PIPELINE as string[]).includes(id);
+/** A page that is shown to the same people as a pipeline panel (Exam Evaluation → VSAT Exam). */
+const panelOf = (id: string): string => (id === "exameval" ? "exam" : id);
 
 export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: WheeboxStatus; staff: boolean; vsatRoles: VsatRoles }) {
   const allowed = visiblePanels(vsatRoles);
@@ -179,8 +185,8 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
   // pipeline items go live by role; non-staff team members see only their pipeline panels
   const vsatModel: Group[] = VSAT
     .map((g) => ({ ...g, items: g.items
-      .filter((it) => staff || (isPanelKey(it.id) && allowed.includes(it.id)))
-      .map((it) => (isPanelKey(it.id) ? { ...it, live: allowed.includes(it.id) } : it)) }))
+      .filter((it) => { const k = panelOf(it.id); return staff || (isPanelKey(k) && allowed.includes(k)); })
+      .map((it) => { const k = panelOf(it.id); return isPanelKey(k) ? { ...it, live: allowed.includes(k) } : it; }) }))
     .filter((g) => g.items.length > 0);
   const model = panel === "vsat" ? vsatModel : GROWTH;
 
@@ -232,7 +238,9 @@ export function VsatAdminPanel({ wheebox, staff, vsatRoles }: { wheebox: Wheebox
     // "apps" renders the full pipeline Applications panel (stage moves, comments, bulk,
     // assignments) — same as Exam/Interview/Counselling. (Showing pre-booking applicants
     // here too is handled by enrolling them into the pipeline, built separately.)
-    if (isPanelKey(active.id) && allowed.includes(active.id)) return <div className="vp-scroll"><PipelinePanel key={active.id} panel={active.id} roles={vsatRoles} /></div>;
+    if (active.id === "exameval" && allowed.includes("exam")) return <div className="vp-scroll"><ExamEvaluation roles={vsatRoles} /></div>;
+    if (isPanelKey(active.id) && allowed.includes(active.id)) return <div className="vp-scroll"><PipelinePanel key={active.id} panel={active.id} roles={vsatRoles}
+      onOpenEvaluation={active.id === "exam" ? () => go({ id: "exameval", title: "Exam Evaluation" }) : undefined} /></div>;
     return <Placeholder title={active.title} kind="vsat" />;
   }
 

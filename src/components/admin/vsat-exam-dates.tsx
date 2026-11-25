@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
+import { pullPassFetch, pullVsatResults } from "@/lib/vsat/pull-results";
 
 type DateRow = {
   id: string; label: string; testId: string; testName: string | null; domainName: string | null; examDate: string;
@@ -69,24 +70,7 @@ export function VsatExamDates() {
   // are pulled separately from the Exam Center — the mock isn't tied to a date.)
   async function pullResults(id: string, label: string) {
     setBusy(true); setMsg(`Pulling results for ${label}…`);
-    let pulled = 0, guard = 0;
-    try {
-      while (guard++ < 200) {
-        const res = await fetch("/api/vsat/exam/bulk-pull-result", {
-          method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include",
-          body: JSON.stringify({ exam_date_id: id }),
-        });
-        const d = await res.json().catch(() => ({}));
-        if (!d?.ok) { setMsg(d?.code === "WHEEBOX_NOT_CONFIGURED" ? "Wheebox isn't connected (set the env keys in the Exam Center)." : d?.code === "FORBIDDEN" ? "Admins only." : d?.code === "DATE_UNAVAILABLE" ? "This date has no Wheebox test ID." : "Couldn't pull results."); break; }
-        pulled += d.pulled || 0;
-        if (d.total === 0) { setMsg(`${label}: no applicants are assigned to this VSAT yet.`); break; }
-        // Keep going only while each pass stores new results. A pass that pulls nothing but still
-        // has "remaining" means those students have no result to fetch (not submitted) — stop.
-        if (d.remaining && d.pulled > 0) { setMsg(`Pulling results for ${label}: ${pulled} done, ${d.remaining} to go…`); continue; }
-        const left = d.remaining || 0;
-        setMsg(`${label}: pulled ${pulled} result${pulled === 1 ? "" : "s"}${left ? `. ${left} still have no result (not submitted yet) — run again later.` : ". ✓"}`); break;
-      }
-    } catch { setMsg("Couldn’t reach the server while pulling results."); }
+    setMsg(await pullVsatResults(label, () => pullPassFetch(id), setMsg));  // shared with Exam Evaluation (0172)
     setBusy(false); void load();
   }
 
