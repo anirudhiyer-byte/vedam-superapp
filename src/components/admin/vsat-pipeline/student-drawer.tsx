@@ -3,15 +3,18 @@ import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import {
-  PARTS, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst, interviewFormErrors,
-  needsReason, type InterviewForm, type Stage, type Status, type VsatRoles,
+  PARTS, STAGES, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst,
+  needsReason, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
+import { verdictLabel } from "@/lib/vsat/interview-evaluation";
+import { InterviewFormBox } from "./interview-form";
 import { StageBadge } from "./pipeline-panel";
 import type { Preview, Student, StudentComm, StudentExtras, TeamMember } from "./types";
 import { profileErrorText } from "@/lib/vsat/profile-prompt";
 import { ATTENDANCE_LABEL, type InterviewRow } from "@/lib/vsat/interviews";
 import { InterviewScheduleForm, InterviewStatus, slotText } from "./interview-tools";
 import { OfferBox } from "./offer-tools";
+import { STAGES_WITH_EMAIL, sendStageEmailsNow } from "@/lib/vsat/stage-notices-client";
 import { TRACKS } from "@/lib/vsat/tracks";
 import { DeletePerson } from "@/components/admin/vsat-delete-person";
 import { ApplicationEditor } from "@/components/admin/vsat-app-admin-tools";
@@ -250,6 +253,8 @@ function MoveStage({ s, onDone }: { s: Student; onDone: () => void }) {
     const { error } = await supabase.rpc("vsat_move_stage", { p });
     setBusy(false);
     if (error) return setMsg(errorText(error.message));
+    // PI cleared (0173) emails the student: send it now instead of waiting for the cron (best effort)
+    if (st === "active" && STAGES_WITH_EMAIL.includes(to)) void sendStageEmailsNow([s.profile.application_id]);
     setMsg("Moved ✓"); setReason(""); onDone();
   }
 
@@ -343,8 +348,10 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
     <Section title="Interview">
       {iv && !cancelled && <Grid items={[
         ["Interviewer", show(iv.interviewer)], ["Slot (IST)", slotText(iv.slot_datetime, row?.duration_min)],
-        ["Status", show(iv.attendance ? ATTENDANCE_LABEL[iv.attendance] ?? iv.attendance : null)], ["Score (out of 5)", show(iv.weighted_avg)],
-        ["Verdict (calculated)", iv.weighted_avg === null ? "—" : `${show(iv.calc_verdict)}${iv.interviewer_verdict ? ` (older form: interviewer said ${iv.interviewer_verdict})` : ""}`],
+        ["Status", show(iv.attendance ? ATTENDANCE_LABEL[iv.attendance] ?? iv.attendance : null)], ["Weighted score (out of 5)", show(iv.weighted_avg)],
+        ["Final score (out of 20)", iv.weighted_avg === null ? "—" : show(Math.round(Number(iv.weighted_avg) * 4 * 100) / 100)],
+        // 0173: the verdict comes from Interview Evaluation (the interviewer gives none)
+        ["Verdict", iv.weighted_avg === null && !iv.verdict ? "—" : verdictLabel(iv.verdict)],
         ["Cheating seen", iv.cheating_seen === null ? "—" : iv.cheating_seen ? "Yes" : "No"], ["Financial capability", show(iv.financial_capability)],
       ]} />}
       {iv && iv.weighted_avg !== null && (
@@ -358,101 +365,6 @@ function InterviewSection({ s, roles, team, onDone }: { s: Student; roles: VsatR
       {canAssign && <InterviewScheduleForm team={team} applicationId={s.profile.application_id} current={row} onDone={onDone} />}
       {canForm && iv && !cancelled && <InterviewFormBox applicationId={s.profile.application_id} onDone={onDone} />}
     </Section>
-  );
-}
-
-function InterviewFormBox({ applicationId, onDone }: { applicationId: string; onDone: () => void }) {
-  const [supabase] = useState(() => createClient());
-  const [f, setF] = useState<InterviewForm>({ communication: null, logic: null, passion: null, achievements: null, why_program: null, cheating_seen: null });
-  const [remarks, setRemarks] = useState<Record<string, string>>({});
-  const [extra, setExtra] = useState<Record<string, string>>({});
-  const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState("");
-  const text = (k: string, label: string, max = 300) => (
-    <label className="block text-xs text-vx-faint">{label}
-      <input className={input} value={extra[k] ?? ""} maxLength={max} onChange={(e) => setExtra({ ...extra, [k]: e.target.value })} />
-    </label>
-  );
-  const pct = (k: string, label: string) => (
-    <label className="block text-xs text-vx-faint">{label}
-      <input className={input} type="number" min={0} max={100} step="0.01" value={extra[k] ?? ""} onChange={(e) => setExtra({ ...extra, [k]: e.target.value })} />
-    </label>
-  );
-
-  async function submit() {
-    const errs = interviewFormErrors(f);
-    if (errs.length) return setMsg(errs.join(" · "));
-    const p: Record<string, unknown> = { application_id: applicationId, ...f };
-    const rem = Object.fromEntries(Object.entries(remarks).filter(([, v]) => v.trim()).map(([k, v]) => [k, v.trim()]));
-    if (Object.keys(rem).length) p.remarks = rem;
-    for (const k of ["previous_jee", "other_exams", "financial_reason", "why_accept"]) if (extra[k]?.trim()) p[k] = extra[k].trim();
-    for (const k of ["jee_pct", "jee_maths_pct", "expected_jee_pct", "class10_pct", "class11_pct", "class12_pct"]) {
-      if (extra[k]?.trim()) { const n = Number(extra[k]); if (!Number.isFinite(n) || n < 0 || n > 100) return setMsg("Percentages must be between 0 and 100."); p[k] = n; }
-    }
-    for (const k of ["coding_talent", "cert_asked", "drop_year"]) if (extra[k] === "yes" || extra[k] === "no") p[k] = extra[k] === "yes";
-    if (extra.financial_capability) p.financial_capability = extra.financial_capability;
-    setBusy(true); setMsg("");
-    const { data, error } = await supabase.rpc("vsat_submit_interview", { p });
-    setBusy(false);
-    if (error) return setMsg(errorText(error.message));
-    const d = data as { score: number; calc_verdict: string; stage: Stage; status: Status };
-    setMsg(`Saved ✓ Score ${d.score} (calculated: ${d.calc_verdict}). The stage stays ${STAGE_LABEL[d.stage]} ✓`);
-    onDone();
-  }
-
-  const yn = (k: string, label: string) => (
-    <label className="block text-xs text-vx-faint">{label}
-      <select className={input} value={extra[k] ?? ""} onChange={(e) => setExtra({ ...extra, [k]: e.target.value })}>
-        <option value="">—</option><option value="yes">Yes</option><option value="no">No</option>
-      </select>
-    </label>
-  );
-
-  return (
-    <div className="space-y-3 rounded-lg border border-vx-violet/30 p-3">
-      <p className="text-xs font-semibold text-vx-violet-t">Interview form</p>
-      {PARTS.map(([k, label]) => (
-        <div key={k} className="grid gap-2 sm:grid-cols-[1fr_auto]">
-          <div>
-            <p className="text-sm">{label}</p>
-            <input className={`${input} mt-1`} placeholder="Remarks (optional)" maxLength={1000} value={remarks[k] ?? ""}
-              onChange={(e) => setRemarks({ ...remarks, [k]: e.target.value })} aria-label={`${label} remarks`} />
-          </div>
-          <div className="flex items-center gap-1" role="radiogroup" aria-label={label}>
-            {[1, 2, 3, 4, 5].map((n) => (
-              <button key={n} type="button" role="radio" aria-checked={f[k] === n}
-                className={`h-9 w-9 rounded-lg border text-sm font-semibold ${f[k] === n ? "border-vx-violet bg-vx-violet text-vx-ink" : "border-vx-line2 bg-white/5"}`}
-                onClick={() => setF({ ...f, [k]: n })}>{n}</button>
-            ))}
-          </div>
-        </div>
-      ))}
-      <div className="grid gap-2 sm:grid-cols-2">
-        <label className="block text-xs text-vx-faint">Cheating seen? (yes = not selected)
-          <select className={input} value={f.cheating_seen === null ? "" : f.cheating_seen ? "yes" : "no"}
-            onChange={(e) => setF({ ...f, cheating_seen: e.target.value === "" ? null : e.target.value === "yes" })}>
-            <option value="">Pick…</option><option value="no">No</option><option value="yes">Yes</option>
-          </select>
-        </label>
-        {yn("coding_talent", "Possible coding talent")}{yn("cert_asked", "National-level certificate asked for")}{yn("drop_year", "Drop year")}
-        {text("previous_jee", "Previous JEE (if drop year)", 200)}
-        {pct("jee_pct", "JEE percentile")}{pct("jee_maths_pct", "JEE Maths percentile")}{pct("expected_jee_pct", "Expected JEE percentile")}
-        {text("other_exams", "Other exams")}
-        {pct("class10_pct", "Class 10 %")}{pct("class11_pct", "Class 11 %")}{pct("class12_pct", "Class 12 %")}
-        <label className="block text-xs text-vx-faint">Financial capability
-          <select className={input} value={extra.financial_capability ?? ""} onChange={(e) => setExtra({ ...extra, financial_capability: e.target.value })}>
-            <option value="">—</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option>
-          </select>
-        </label>
-        {text("financial_reason", "Why (financial capability)", 500)}
-      </div>
-      <label className="block text-xs text-vx-faint">Why should Vedam accept you? (student&apos;s answer)
-        <textarea className={input} rows={3} maxLength={1500} value={extra.why_accept ?? ""} onChange={(e) => setExtra({ ...extra, why_accept: e.target.value })} />
-      </label>
-      <p className="text-xs text-vx-faint">The score is calculated from the five parts. Submitting saves the form only: the result is decided later from everyone&apos;s scores, and admissions changes the stage.</p>
-      <button className={primary} disabled={busy} onClick={submit}>{busy ? "Submitting…" : "Submit interview"}</button>
-      <Msg text={msg} />
-    </div>
   );
 }
 

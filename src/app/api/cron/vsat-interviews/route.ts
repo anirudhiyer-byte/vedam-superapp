@@ -4,12 +4,14 @@
  *   2. Google: read Meet attendance for sessions that ended (joined / no-show / please mark)
  *   3. Email: invite / moved / cancelled emails through the VSAT comms steps
  *   4. Email: "Offer released" emails still queued (0144). Offers lapse in the database (pg_cron), not here.
+ *   5. Email: stage emails still queued (0173: "PI cleared → student").
  * Google steps are skipped until the ADMISSIONS_* env is set; emails still go (with the dashboard link).
  * Fails closed without CRON_SECRET.
  */
 import { NextResponse } from "next/server";
 import { checkInterviewAttendance, sendInterviewNotices, serviceDb, siteUrl, syncInterviews } from "@/lib/vsat/interview-sync";
 import { sendOfferNotices } from "@/lib/vsat/offer-sync";
+import { sendStageNotices } from "@/lib/vsat/stage-notices";
 import { TRACKS } from "@/lib/vsat/tracks";
 
 export const dynamic = "force-dynamic";
@@ -34,5 +36,6 @@ export async function GET(req: Request) {
   try { out.cs_attendance = await checkInterviewAttendance(db, 20, undefined, undefined, cs); } catch (e) { out.cs_attendance = { error: String(e).slice(0, 200) }; }
   try { out.cs_notified = await sendInterviewNotices(db, { limit: 50 }, {}, cs); } catch (e) { out.cs_notified = { error: String(e).slice(0, 200) }; }
   try { out.offers = await sendOfferNotices(db, { limit: 50, site: siteUrl() }); } catch (e) { out.offers = { error: String(e).slice(0, 200) }; }
+  try { out.stages = await sendStageNotices(db, { limit: 50, site: siteUrl() }); } catch (e) { out.stages = { error: String(e).slice(0, 200) }; }
   return NextResponse.json(out);
 }
