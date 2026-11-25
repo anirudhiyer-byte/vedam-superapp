@@ -174,6 +174,7 @@ const LABELS: Record<string, string> = {
   cs_heard_from: "Came to know about Vedam from", cs_remarks: "Counsellor remarks", cs_adjust_pct: "Counsellor adjustment (±5 %)",
   cs_submitted_at: "Counselling form submitted (IST)", campus_fee: "Programme fee", cs_scholarship_amount: "Scholarship amount",
   cs_first_year_scholarship: "1st-year scholarship", cs_actual_fee: "Fee after scholarship",
+  cs_offline_form_filled: "Offline form filled",
   class10_percentage: "Class 10 %", class12_percentage: "Class 12 %", class10_maths_percentage: "Class 10 maths %",
   class12_maths_percentage: "Class 12 maths %", class10_year: "Class 10 year", class12_year: "Class 12 year",
   class10_board: "Class 10 board", class12_board: "Class 12 board", class10_school: "Class 10 school", class12_school: "Class 12 school",
@@ -255,6 +256,8 @@ export const INTERVIEW_SHEET_COLUMNS = [
 export const COUNSELLING_SHEET_COLUMNS = [
   "registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_mode", "counselling_attendance",
   "counselling_reschedules",
+  // 0186: the sheet's "Offline Form Filled"
+  "cs_offline_form_filled",
   // the sheet: VEDAM ID, State, City, Financial Capability, Why?, the five remarks, Why should Vedam accept you
   "application_no", "state", "city", "iv_financial", "iv_financial_reason", "iv_communication_remarks", "iv_logic_remarks",
   "iv_passion_remarks", "iv_achievements_remarks", "iv_why_program_remarks", "iv_why_accept",
@@ -328,6 +331,7 @@ export function formatValue(type: GridColType, key: string, v: unknown): string 
   if (key === "interview_meet" || key === "counselling_meet") {
     if (v === "own_link") return "—";  // old pasted link: no "Own link" word anywhere (Google Meet only, 0167)
     if (v === "zoom") return "Zoom";   // 0184: counselling on the counsellor's Zoom link
+    if (v === "offline") return "Offline";  // 0186: an offline session, recorded with no invite
     return isMeetState(v) ? MEET_LABEL[v] : String(v);
   }
   // 0184: rupees, Indian grouping, whole rupees (as in the sheet)

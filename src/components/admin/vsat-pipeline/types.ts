@@ -62,6 +62,8 @@ export type Student = {
     /** 0184: the "Selected for counselling" sheet's counsellor answers and the ±5 adjustment */
     counsellor_feedback?: string | null; parent_present?: string | null; connected_students?: boolean | null;
     heard_from?: string | null; adjust_pct?: number | null; counsellor_remarks?: string | null; meet_mode?: string | null;
+    /** 0186: the sheet's "Offline Form Filled" */
+    offline_form_filled?: boolean | null;
     /** Profile analyser (0085): AI briefing for the counsellor, saved by the server only. */
     profile_analysis?: { text?: unknown; generated_at?: unknown; model?: unknown } | null;
   });

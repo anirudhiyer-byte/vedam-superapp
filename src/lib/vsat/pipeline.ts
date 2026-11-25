@@ -182,6 +182,7 @@ const ERRORS: Record<string, string> = {
   BELOW_CUTOFF: "The new VPS must be at least the VSAT's cut-off.",
   // counselling, owner's review (0184): online students only, on the counsellor's own Zoom link
   MODE_NOT_CHOSEN: "The student hasn't chosen online or offline counselling yet. Set the mode first.",
+  // not raised since 0186 (an offline session is recorded); kept for the 0186 rollback
   MODE_OFFLINE: "The student chose offline counselling: no online invite is sent. They come on an offline date.",
   NO_ZOOM_LINK: "This counsellor has no Zoom link yet. An admin adds it under Counselling → Zoom links.",
   ALREADY_EXISTS: "That date is already on the list.",

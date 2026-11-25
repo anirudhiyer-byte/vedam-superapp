@@ -47,7 +47,7 @@ export function ModeBar({ ids, onDone }: { ids: string[]; onDone: () => void }) 
         {MODE_CHOICES.map((c) => <option key={c.v} value={c.v}>{c.label}</option>)}
       </select>
       <button className={cx(vx.btn, vx.secondary)} disabled={busy} onClick={apply}>{busy ? "Saving…" : "Set mode"}</button>
-      <span className="text-xs text-vx-faint">For students who replied by email. Online students get the invite on their counsellor&apos;s Zoom link; offline students come on an offline date.</span>
+      <span className="text-xs text-vx-faint">For students who replied by email. Online students get the invite on their counsellor&apos;s Zoom link; for offline students, book the counsellor and the offline date to record it (no invite).</span>
       {msg && <p className="w-full text-vx-ink" role="status">{msg}</p>}
     </div>
   );

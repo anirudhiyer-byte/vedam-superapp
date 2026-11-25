@@ -34,10 +34,10 @@ Admissions can see the links but can't change them. Every change is in the setti
 - **Selection bar → Counselling mode**: set Online, Offline or Not chosen for the selected students (at most 100). Only
   students at PI cleared, Counselling scheduled or Counselling not appeared can be set. A student whose counselling is
   already saved is skipped, and the reason is listed.
-- **Booking (Send / drawer)** works only for students who chose **Online**:
+- **Booking (Send / drawer)**:
   - Not chosen → **MODE_NOT_CHOSEN** ("set the mode first");
-  - Offline → **MODE_OFFLINE** (no online invite; they come on an offline date);
-  - a counsellor with no Zoom link → **NO_ZOOM_LINK**.
+  - Online → on the counsellor's Zoom link; a counsellor with no Zoom link → **NO_ZOOM_LINK**;
+  - Offline (0186, see below) → recorded with the counsellor and the offline date and time, with no invite.
 
   A booked session is on the counsellor's Zoom link. The Meet column shows **Zoom**, Join opens the Zoom link, and the
   calendar invite (Google Calendar, no Google Meet) carries the link. Moving a session that was on Google Meet before
@@ -102,6 +102,38 @@ The student drawer → **The counselling call**:
 The form shows the scholarship awarded (formula % + adjustment, kept within 0–100), and from the programme fee the
 scholarship amount, the 1st-year scholarship (÷ 4) and the fee after scholarship. All the answers are optional, as in
 the sheet. The form is saved once. The stage does not move.
+
+## Offline sessions and "Offline Form Filled" (0186, owner's decision 25 Nov)
+
+Before 0186 an offline student could not be booked (MODE_OFFLINE), so their counselling form could never be saved.
+
+- Admissions set the counsellor and the offline date and time for an offline student the same way as for an online one
+  (drawer or Send). It is **recorded only**: no Zoom link, no calendar invite, no email. The counsellor does not need a
+  Zoom link. The Meet column and the drawer show **Offline**; Status (Done / No-show / Rescheduled) is set by hand.
+- A booking moved from online to offline loses its Zoom link; its old calendar invite is deleted by the calendar job,
+  and no "moved" email goes out.
+- The student's card says the session is at the campus, with no Join button and no link.
+- The counselling form has **Offline form filled?** (Yes / No, optional), and the Counselling table has the column
+  **Offline form filled** (after Counselling reschedules). Everyone opens the Counselling table on the default columns
+  once more (saved column choice set aside, `v3`).
+- Counselling Evaluation counts a recorded offline session as booked.
+
+| Object | What |
+|---|---|
+| `counselling_assignments` | + `offline_form_filled`; `meet_mode` may be `offline` |
+| `vsat__cs_schedule` (0184 body, patched) | offline student → `meet_mode = 'offline'`, no link, no calendar work |
+| `vsat_counselling_notices_claim` (0145, patched) | offline events are skipped (`why: offline`) |
+| `vsat_submit_counselling` (0184 body, patched) | + `offline_form_filled` (true / false) |
+| `vsat__grid_catalog` / `vsat__grid` (0184 bodies, patched) | + `cs_offline_form_filled`; Meet column value `offline` |
+| `vsat_my_counselling` (0168, patched) | + `offline` for the student's card |
+
+- Rollback: `supabase/rollback/0186_vsat_counselling_offline_down.sql` (offline rows become `manual` with no link, as
+  0184 had no offline mode; the column is dropped).
+- Staging record: `0185_vsat_counselling_offline` (applied before a teammate's 0185 took that number, so this file was
+  renumbered 0186).
+- Tests: `supabase/tests/vsat_counselling_offline.test.sql` (staging). `vsat_counselling_phase4.test.sql` D and H were
+  changed for this decision: the offline student is now recorded (was MODE_OFFLINE), Send records the offline row, and
+  booked counts 4 (was 3).
 
 ## Database (0184)
 
@@ -170,7 +202,7 @@ Unit test: `stage-notices.test.ts` "placeholders: a missing name reads Student" 
 ## Production release (only with the owner's OK)
 
 After 0179 and 0180 (the teammate's counselling mode and offer days): apply **0184** by name
-(`0184_vsat_counselling_phase4.sql`, the single file). No new env: the calendar invite uses the same `ADMISSIONS_*`
+(`0184_vsat_counselling_phase4.sql`, the single file), then **0186** (`0186_vsat_counselling_offline.sql`). No new env: the calendar invite uses the same `ADMISSIONS_*`
 Google account. Before booking online counselling on production:
 
 1. an admin adds each counsellor's Zoom link (Counselling → Zoom links & offline dates);

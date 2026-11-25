@@ -6,6 +6,7 @@
  *   Already Connected with Existing Students?   yes / no
  *   Came to know about Vedam from?              free text (≤ 300)
  *   Actual Scholarship Awarded  the formula's % plus the counsellor's adjustment, −5 to +5 whole points, with a reason
+ *   Offline Form Filled         yes / no (0186)
  *
  * The database checks every value again (vsat_submit_counselling); these only shape the form and its messages.
  */
@@ -37,6 +38,8 @@ export function awardedPct(calculated: number | null | undefined, adjust: number
 export type CounsellingFormInput = {
   feedback: string; parentPresent: string; connected: "" | "yes" | "no"; heardFrom: string; remarks: string;
   adjust: string; adjustReason: string;
+  /** the sheet's "Offline Form Filled" (0186); optional so an older caller still type-checks */
+  offlineForm?: "" | "yes" | "no";
 };
 export type CounsellingFormCheck =
   | { ok: true; payload: Record<string, unknown>; adjust: number }
@@ -68,6 +71,7 @@ export function counsellingPayload(applicationId: string, f: CounsellingFormInpu
   if (f.feedback) payload.feedback = f.feedback;
   if (f.parentPresent) payload.parent_present = f.parentPresent;
   if (f.connected) payload.connected_students = f.connected === "yes";
+  if (f.offlineForm) payload.offline_form_filled = f.offlineForm === "yes";
   if (heard) payload.heard_from = heard;
   if (adjust !== 0) { payload.adjust_pct = adjust; payload.adjust_reason = reason; }
   return { ok: true, payload, adjust };

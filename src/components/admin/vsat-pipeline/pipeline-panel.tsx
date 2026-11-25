@@ -98,7 +98,8 @@ const IconPencil = () => <Svg className="h-3.5 w-3.5"><path d="M12 20h9M16.5 3.5
 // v2 for the Exam panel (0172): the owner asked for every sheet column on the table, so a column choice saved before it
 // is set aside once and everyone opens on the new default; they can change it again from Columns.
 // v2: the VSAT Exam (0172), Interview (0173) and Counselling (0184) tables got the sheet's columns, so an older saved choice is not reused
-const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "exam" || panel === "intv" || panel === "couns" ? "v2" : "v1"}:${panel}`;
+// couns v3 (0186): everyone sees the new "Offline form filled" default column once
+const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "couns" ? "v3" : panel === "exam" || panel === "intv" ? "v2" : "v1"}:${panel}`;
 // per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
 function loadCols(panel: PanelKey): unknown { try { const s = localStorage.getItem(colsKey(panel)); return s ? JSON.parse(s) : null; } catch { return null; } }
 function saveCols(panel: PanelKey, cols: string[]) { try { localStorage.setItem(colsKey(panel), JSON.stringify(cols)); } catch { /* ignore */ } }
@@ -373,7 +374,7 @@ export function PipelinePanel({ panel, roles, onOpenEvaluation }: { panel: Panel
       {panel === "couns" && manager && onOpenEvaluation && (
         <p className="text-[13px] text-vx-faint">
           Mode, booked sessions, feedback, scholarship and ARPU per VSAT are in{" "}
-          <button type="button" onClick={onOpenEvaluation} className={vx.link}>Counselling Evaluation</button>. Only students who chose Online get an invite, on their counsellor&apos;s Zoom link.
+          <button type="button" onClick={onOpenEvaluation} className={vx.link}>Counselling Evaluation</button>. Online students get an invite on their counsellor&apos;s Zoom link. For offline students, set the counsellor and the offline date and time the same way: it is recorded, with no invite or email.
         </p>
       )}
       {panel === "couns" && manager && <CounsellingSetup admin={roles.admin} />}
@@ -553,7 +554,9 @@ function Cell({ col, row, onEditVps }: { col: GridColumn; row: GridRow; onEditVp
     // 0165: the link comes only for staff who may join this meeting; Join opens it in a new tab, never the student page
     const link = meetLink(row, col.key);
     // 0184: counselling on the counsellor's own Zoom link
-    const badge = v === "zoom" ? <span className={cx(vx.badge, vx.tone.violet)}>Zoom</span> : isMeetState(v) ? <MeetBadge state={v} /> : null;
+    const badge = v === "zoom" ? <span className={cx(vx.badge, vx.tone.violet)}>Zoom</span>
+      : v === "offline" ? <span className={cx(vx.badge, vx.tone.teal)}>Offline</span>  // 0186: recorded, no invite
+      : isMeetState(v) ? <MeetBadge state={v} /> : null;
     if (!link) return badge ?? <span className="text-vx-faint">—</span>;
     const what = col.key === "interview_meet" ? "interview" : "session";
     return (

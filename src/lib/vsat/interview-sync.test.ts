@@ -161,6 +161,21 @@ describe("syncOne — counselling on the counsellor's Zoom link (0184)", () => {
   });
 });
 
+describe("syncOne — offline counselling (0186): recorded, no invite", () => {
+  it("an offline session that was online before → its old invite is deleted, nothing new is made", async () => {
+    const { g, calls } = fakeGoogle();
+    const r = await syncOne(g, row({ meet_mode: "offline", zoom_link: null, calendar_event_id: "vcold" }), Date.now(), TRACKS.counselling);
+    expect(calls.map((c) => c.fn)).toEqual(["deleteEvent"]);
+    expect(r).toMatchObject({ outcome: "none", deleted_event_id: "vcold" });
+  });
+  it("an offline session with no invite → no Google call at all", async () => {
+    const { g, calls } = fakeGoogle();
+    const r = await syncOne(g, row({ meet_mode: "offline", zoom_link: null, calendar_event_id: null }), Date.now(), TRACKS.counselling);
+    expect(calls).toEqual([]);
+    expect(r).toEqual({ outcome: "none" });
+  });
+});
+
 describe("syncInterviews — claim, work, release", () => {
   it("does nothing until the admissions Google account is set up", async () => {
     const { db, calls } = fakeDb({});

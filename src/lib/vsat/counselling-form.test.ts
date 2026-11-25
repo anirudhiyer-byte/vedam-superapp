@@ -16,6 +16,14 @@ describe("counselling form → request (0184)", () => {
       adjust_pct: 5, adjust_reason: "Strong projects",
     } });
   });
+  it("Offline Form Filled (0186): yes / no go as true / false; blank is left out", () => {
+    const yes = counsellingPayload("APP-1", { ...blank, offlineForm: "yes" });
+    expect(yes.ok && yes.payload.offline_form_filled).toBe(true);
+    const no = counsellingPayload("APP-1", { ...blank, offlineForm: "no" });
+    expect(no.ok && no.payload.offline_form_filled).toBe(false);
+    const none = counsellingPayload("APP-1", { ...blank, offlineForm: "" });
+    expect(none.ok && "offline_form_filled" in none.payload).toBe(false);
+  });
   it("connected = no is sent as false (not left out)", () => {
     const r = counsellingPayload("APP-1", { ...blank, connected: "no" });
     expect(r.ok && r.payload.connected_students).toBe(false);
