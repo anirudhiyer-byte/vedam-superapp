@@ -4,17 +4,17 @@ import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 
 type DateRow = {
-  id: string; label: string; testId: string; examDate: string;
+  id: string; label: string; testId: string; testName: string | null; domainName: string | null; examDate: string;
   startAt: string; endAt: string; leadMinutes: number; capacity: number | null;
   enabled: boolean; picked: number;
 };
-type Draft = { id?: string; label: string; testId: string; examDate: string; startTime: string; endTime: string; leadMinutes: number; capacity: string };
+type Draft = { id?: string; label: string; testId: string; testName: string; domainName: string; examDate: string; startTime: string; endTime: string; leadMinutes: number; capacity: string };
 
 const input = vx.input;
 const ist = (iso: string) => new Date(iso).toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" });
 const hhmm = (iso: string) => new Date(iso).toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit" });
 
-const emptyDraft = (): Draft => ({ label: "", testId: "", examDate: "", startTime: "", endTime: "", leadMinutes: 15, capacity: "" });
+const emptyDraft = (): Draft => ({ label: "", testId: "", testName: "", domainName: "", examDate: "", startTime: "", endTime: "", leadMinutes: 15, capacity: "" });
 
 export function VsatExamDates() {
   const [supabase] = useState(() => createClient());
@@ -44,6 +44,7 @@ export function VsatExamDates() {
     setBusy(true); setMsg("");
     const p: Record<string, unknown> = {
       label: draft.label.trim(), testId: draft.testId.trim(), examDate: draft.examDate,
+      testName: draft.testName.trim(), domainName: draft.domainName.trim(),
       startAt, endAt, leadMinutes: Number(draft.leadMinutes) || 15,
     };
     if (draft.capacity.trim() !== "") p.capacity = Number(draft.capacity);
@@ -63,28 +64,27 @@ export function VsatExamDates() {
     void load();
   }
 
-  // Pull every student's Wheebox result for this VSAT, mapped to each student. Resumable:
-  // the route does up to ~40 per call, so we loop until nothing remains.
-  async function pullResults(id: string, label: string, kind: "exam" | "mock" = "exam") {
-    const what = kind === "mock" ? "mock results" : "results";
-    setBusy(true); setMsg(`Pulling ${what} for ${label}…`);
+  // Pull every student's REAL-exam Wheebox result for this VSAT date, mapped to each student.
+  // Resumable: the route does up to ~40 per call, so we loop until nothing remains. (Mock results
+  // are pulled separately from the Exam Center — the mock isn't tied to a date.)
+  async function pullResults(id: string, label: string) {
+    setBusy(true); setMsg(`Pulling results for ${label}…`);
     let pulled = 0, guard = 0;
     try {
       while (guard++ < 200) {
         const res = await fetch("/api/vsat/exam/bulk-pull-result", {
           method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include",
-          body: JSON.stringify({ exam_date_id: id, kind }),
+          body: JSON.stringify({ exam_date_id: id }),
         });
         const d = await res.json().catch(() => ({}));
-        if (!d?.ok) { setMsg(d?.code === "WHEEBOX_NOT_CONFIGURED" ? "Wheebox isn't connected (set the env keys in the Exam Center)." : d?.code === "FORBIDDEN" ? "Admins only." : d?.code === "MOCK_NOT_CONFIGURED" ? "No mock test ID is set (Exam Center settings)." : d?.code === "DATE_UNAVAILABLE" ? "This date has no Wheebox test ID." : "Couldn't pull results."); break; }
+        if (!d?.ok) { setMsg(d?.code === "WHEEBOX_NOT_CONFIGURED" ? "Wheebox isn't connected (set the env keys in the Exam Center)." : d?.code === "FORBIDDEN" ? "Admins only." : d?.code === "DATE_UNAVAILABLE" ? "This date has no Wheebox test ID." : "Couldn't pull results."); break; }
         pulled += d.pulled || 0;
         if (d.total === 0) { setMsg(`${label}: no applicants are assigned to this VSAT yet.`); break; }
         // Keep going only while each pass stores new results. A pass that pulls nothing but still
-        // has "remaining" means those students have no result to fetch (not submitted) — stop
-        // rather than re-hitting Wheebox for the same ones.
-        if (d.remaining && d.pulled > 0) { setMsg(`Pulling ${what} for ${label}: ${pulled} done, ${d.remaining} to go…`); continue; }
+        // has "remaining" means those students have no result to fetch (not submitted) — stop.
+        if (d.remaining && d.pulled > 0) { setMsg(`Pulling results for ${label}: ${pulled} done, ${d.remaining} to go…`); continue; }
         const left = d.remaining || 0;
-        setMsg(`${label} (${kind === "mock" ? "mock" : "exam"}): pulled ${pulled} result${pulled === 1 ? "" : "s"}${left ? `. ${left} still have no result (not submitted yet) — run again later.` : ". ✓"}`); break;
+        setMsg(`${label}: pulled ${pulled} result${pulled === 1 ? "" : "s"}${left ? `. ${left} still have no result (not submitted yet) — run again later.` : ". ✓"}`); break;
       }
     } catch { setMsg("Couldn’t reach the server while pulling results."); }
     setBusy(false); void load();
@@ -92,7 +92,7 @@ export function VsatExamDates() {
 
   function editRow(r: DateRow) {
     setMsg("");
-    setDraft({ id: r.id, label: r.label, testId: r.testId, examDate: r.examDate, startTime: hhmm(r.startAt), endTime: hhmm(r.endAt), leadMinutes: r.leadMinutes, capacity: r.capacity == null ? "" : String(r.capacity) });
+    setDraft({ id: r.id, label: r.label, testId: r.testId, testName: r.testName ?? "", domainName: r.domainName ?? "", examDate: r.examDate, startTime: hhmm(r.startAt), endTime: hhmm(r.endAt), leadMinutes: r.leadMinutes, capacity: r.capacity == null ? "" : String(r.capacity) });
   }
 
   if (loading) return <div className="p-10 text-vx-faint">Loading…</div>;
@@ -112,7 +112,9 @@ export function VsatExamDates() {
         <div className="mt-6 rounded-xl border border-vx-line bg-white/5 p-5">
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block"><span className="mb-1 block text-xs text-vx-faint">Label</span><input value={draft.label} onChange={(e) => setDraft({ ...draft, label: e.target.value })} placeholder="VSAT — 20 Nov slot" className={input} /></label>
-            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Wheebox test ID</span><input value={draft.testId} onChange={(e) => setDraft({ ...draft, testId: e.target.value })} placeholder="e.g. 34073" className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Wheebox test ID</span><input value={draft.testId} onChange={(e) => setDraft({ ...draft, testId: e.target.value })} placeholder="e.g. 169872" className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Wheebox test name <span className="opacity-60">(for results)</span></span><input value={draft.testName} onChange={(e) => setDraft({ ...draft, testName: e.target.value })} placeholder="e.g. VSAT" className={input} /></label>
+            <label className="block"><span className="mb-1 block text-xs text-vx-faint">Wheebox domain name <span className="opacity-60">(for results)</span></span><input value={draft.domainName} onChange={(e) => setDraft({ ...draft, domainName: e.target.value })} placeholder="e.g. April 2026" className={input} /></label>
             <label className="block"><span className="mb-1 block text-xs text-vx-faint">Exam date (IST)</span><input type="date" value={draft.examDate} onChange={(e) => setDraft({ ...draft, examDate: e.target.value })} className={input} /></label>
             <div className="grid grid-cols-2 gap-3">
               <label className="block"><span className="mb-1 block text-xs text-vx-faint">Start (IST)</span><input type="time" value={draft.startTime} onChange={(e) => setDraft({ ...draft, startTime: e.target.value })} className={input} /></label>
@@ -133,11 +135,10 @@ export function VsatExamDates() {
             <div key={r.id} className="flex items-center justify-between rounded-xl border border-vx-line bg-white/5 p-4">
               <div>
                 <p className="font-semibold">{r.label} {r.enabled && <span className="ml-2 rounded-full bg-vx-green/20 px-2 py-0.5 text-xs text-vx-green">LIVE</span>}</p>
-                <p className="text-xs text-vx-faint">{ist(r.startAt)} – {hhmm(r.endAt)} · test {r.testId} · clickable {r.leadMinutes}m early · {r.picked} picked{r.capacity != null ? ` / ${r.capacity}` : ""}</p>
+                <p className="text-xs text-vx-faint">{ist(r.startAt)} – {hhmm(r.endAt)} · test {r.testId}{r.testName ? ` (${r.testName}${r.domainName ? ` · ${r.domainName}` : ""})` : ""} · clickable {r.leadMinutes}m early · {r.picked} picked{r.capacity != null ? ` / ${r.capacity}` : ""}</p>
               </div>
               <div className="flex items-center gap-2">
-                <button onClick={() => pullResults(r.id, r.label, "exam")} disabled={busy} className={cx(vx.btn, vx.secondary)} title="Fetch every student's real-exam Wheebox result for this VSAT date and map it to each student">Pull results</button>
-                <button onClick={() => pullResults(r.id, r.label, "mock")} disabled={busy} className={cx(vx.btn, vx.secondary)} title="Fetch the mock result for every student assigned to this VSAT date and map it to each student">Pull mock</button>
+                <button onClick={() => pullResults(r.id, r.label)} disabled={busy} className={cx(vx.btn, vx.secondary)} title="Fetch every student's real-exam Wheebox result for this VSAT date and map it to each student">Pull results</button>
                 <button onClick={() => editRow(r)} disabled={busy} className={cx(vx.btn, vx.secondary)}>Edit</button>
                 {r.enabled
                   ? <button onClick={() => toggle(r.id, false)} disabled={busy} className={cx(vx.btn, vx.secondary)}>Disable</button>

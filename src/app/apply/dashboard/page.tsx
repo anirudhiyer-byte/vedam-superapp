@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createSvc } from "@supabase/supabase-js";
 import { VsatDashboard } from "@/components/vsat/vsat-dashboard";
+import { DashboardReauth } from "@/components/vsat/dashboard-reauth";
 import { readVsatGate } from "@/lib/vsat/public-gate";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +17,9 @@ export const metadata: Metadata = { title: "VSAT — Applicant Dashboard" };
 export default async function Page() {
   const sb = await createClient();
   const { data: { user } } = await sb.auth.getUser();
-  if (!user) redirect("/apply");
+  // On a hard reload the SSR session can transiently miss (refresh-token race); rather than bounce
+  // a logged-in applicant to /apply, let the client confirm the session and reload once.
+  if (!user) return <DashboardReauth />;
   const email = (user.email ?? "").toLowerCase();
   const emailAdmin = email.endsWith("@vedam.org") && !!user.email_confirmed_at;
   const svcUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY;

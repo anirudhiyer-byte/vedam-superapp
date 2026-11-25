@@ -115,6 +115,8 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
   // button below it. Persisted per browser so a refresh keeps them past the gate.
   const [simPaid, setSimPaid] = useState(false);
   useEffect(() => { try { if (isAdmin && localStorage.getItem("vsat_admin_sim_paid") === "1") setSimPaid(true); } catch { /* ignore */ } }, [isAdmin]);
+  // The dashboard rendered server-side, so clear the one-shot reauth-reload guard (see DashboardReauth).
+  useEffect(() => { try { sessionStorage.removeItem("vsat_dash_reauth"); } catch { /* ignore */ } }, []);
   function simulatePayment() {
     try { localStorage.setItem("vsat_admin_sim_paid", "1"); } catch { /* ignore */ }
     setSimPaid(true);
