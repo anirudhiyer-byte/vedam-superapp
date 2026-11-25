@@ -16,6 +16,12 @@ From the owner's review (24 Nov 2026, transcript) and decisions (25 Nov).
 - The only Pune % mismatch was the default **Pune category 3** band: it was 50–70% (seeded by 0079), while the sheet says 60–70%. 0187 sets it to 60–70%. After that, all 16 sample students that follow the bucket rule match.
 - In 5 Gurugram rows, the sheet's % was typed by hand, and it does not follow the bucket rule. One example is 30% in category 8, whose max is 25%. Owner's decision: keep the rule plus the counsellor's ±5. **These 5 cases need to be shown to sir.**
 - **Sir's own "Buckets Pune" sheet breaks the 5-points rule in category 5** (2 buckets, 35–45%). The rule is checked when buckets are saved on this page. So Pune buckets can only be saved after category 5 is changed, for example to 35–40% or to 3 buckets. **This needs sir's call.**
+- The sheet's formulas were also copied into a test and compared with the engine (`vsat_scholarship_sheet_formulas.test.sql`, all pass on staging):
+  - Scholarship Score (column AC), all 4 cases (12th + JEE, 12th only, JEE only, neither): 80 input sets per case, all match.
+  - Scholarship Category (column AF) at every band edge, Pune and Gurugram: 40 of 40 match.
+  - JEE slab (90 / 93 / 95 / 97 / 98.5 → 30 / 40 / 50 / 60 / 70%), the higher of the bucket % and the JEE %, and +10 when achievements = 5 and that value is 30% or less: 3,672 of 3,672 cases match, both campuses.
+  - Only 2 of sir's sample students have a JEE of 90+ or achievements = 5, so the rule itself was checked on every edge.
+- **For sir (no change needed in the app):** in the sheet, the JEE column returns text ("30%"), and Google Sheets' MAX skips text in a range. So in the sheet itself the JEE % can never win over the bucket %. The app takes the higher of the two, as sir said.
 
 ## For admins and admissions (sidebar → VSAT process → Buckets)
 
@@ -51,6 +57,7 @@ Every page function is `SECURITY DEFINER`, `search_path ''`, revoked from `publi
 - Tests (staging):
   - `vsat_buckets.test.sql`, 19 checks: access, ARPU = the engine's %, preview, 5-points rule, suggestion, save, lock / unlock, grants.
   - `vsat_pune_band3_fix.test.sql`: sir's bands and sample students.
+  - `vsat_scholarship_sheet_formulas.test.sql`: the sheet's score, category, JEE slab and bonus formulas against the engine.
   - `vsat_settings_team.test.sql` (0098) still passes, 50/50.
 - Unit: `buckets.test.ts`.
 
