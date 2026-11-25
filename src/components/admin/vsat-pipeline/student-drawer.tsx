@@ -14,6 +14,7 @@ import { InterviewScheduleForm, InterviewStatus, slotText } from "./interview-to
 import { OfferBox } from "./offer-tools";
 import { TRACKS } from "@/lib/vsat/tracks";
 import { DeletePerson } from "@/components/admin/vsat-delete-person";
+import { ApplicationEditor } from "@/components/admin/vsat-app-admin-tools";
 
 /**
  * One student across all stages. Everything comes from vsat_student / vsat_scholarship_preview and
@@ -70,6 +71,8 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
   const [extra, setExtra] = useState<StudentExtras | null>(null);
   const [err, setErr] = useState("");
   const [team, setTeam] = useState<TeamMember[]>([]);
+  const [showEdit, setShowEdit] = useState(false);
+  const [toolMsg, setToolMsg] = useState("");
   const manager = canManage(roles);
 
   const load = useCallback(async () => {
@@ -94,6 +97,14 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
   }, [onClose]);
 
   const changed = () => { void load(); onChanged(); };
+  const reenableMock = async () => {
+    if (!s) return;
+    if (!confirm(`Re-enable the mock for ${s.profile.name || s.profile.application_id}? This clears their mock result so they can take it again.`)) return;
+    setToolMsg("");
+    const { data, error } = await supabase.rpc("vsat_mock_reset", { p: { applicationId: s.profile.application_id } });
+    if (error || !(data as { ok?: boolean })?.ok) { setToolMsg(errorText(error?.message || "Couldn't re-enable the mock.")); return; }
+    setToolMsg("Mock re-enabled ✓"); changed();
+  };
   const stage = s?.pipeline.stage; const status = s?.pipeline.status;
 
   return (
@@ -184,6 +195,17 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
             </Section>
 
             {roles.admin && (
+              <Section title="Application tools">
+                <div className="flex flex-wrap gap-2">
+                  <button className={primary} onClick={() => setShowEdit(true)}>Edit application</button>
+                  <button className={ghost} onClick={reenableMock}>Re-enable mock</button>
+                </div>
+                <Msg text={toolMsg} />
+                <p className="text-xs text-vx-faint">Edit any field of this application (changing an ID asks for confirmation). Re-enabling the mock clears the mock result so the student can take it again.</p>
+              </Section>
+            )}
+
+            {roles.admin && (
               <section className="rounded-xl border border-[rgba(255,107,129,0.35)] bg-[rgba(255,107,129,0.06)] p-4">
                 <h3 className="mb-1 font-semibold text-vx-red">Danger zone</h3>
                 <p className="mb-3 text-sm text-vx-mut">
@@ -202,6 +224,7 @@ export function StudentDrawer({ id, roles, onClose, onChanged }: { id: string; r
             )}
           </div>
         )}
+        {showEdit && s && <ApplicationEditor applicationId={s.profile.application_id} onClose={() => setShowEdit(false)} onSaved={changed} />}
       </div>
     </div>
   );
