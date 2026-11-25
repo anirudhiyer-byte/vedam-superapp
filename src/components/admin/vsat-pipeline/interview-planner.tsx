@@ -282,7 +282,11 @@ export function PlanBar({ ids, planner, onDone, onSent }:
         {confirming ? (
           <>
             <span className="text-sm text-vx-ink">
-              Book {toSend.length} {planner.track.noun}{toSend.length === 1 ? "" : "s"}? Each one gets its own Google Meet and emails to the student and the {planner.track.host}.
+              Book {toSend.length} {planner.track.noun}{toSend.length === 1 ? "" : "s"}?{" "}
+              {planner.track.key === "counselling"
+                // 0184 / 0186: online on the counsellor's Zoom link; offline is recorded only
+                ? "Online students get a calendar invite with their counsellor's Zoom link and emails; offline students are recorded only (no invite or email)."
+                : `Each one gets its own Google Meet and emails to the student and the ${planner.track.host}.`}
             </span>
             <button className={cx(vx.btn, vx.primary)} disabled={busy !== ""} onClick={() => void send()}>{busy === "send" ? "Sending…" : "Yes, send"}</button>
             <button className={cx(vx.btn, vx.secondary)} disabled={busy !== ""} onClick={() => setConfirming(false)}>Back</button>
