@@ -5,6 +5,7 @@ import { CopyLink, SeniorStatusAction, StatusPill } from "@/components/peerpath/
 import { EmptyState, yearLabel } from "@/components/peerpath/ui";
 import { IconCheck, IconFlag, IconUsers } from "@/components/peerpath/icons";
 import { filterAdminByCampus, parseCampus } from "@/lib/peerpath/admin-filter";
+import { inviteFailed, isDone, isLive, isUpcoming, needsActionCounts, needsMarking } from "@/lib/peerpath/admin-insights";
 import { CAMPUS_INFO, CAMPUSES, ttsPath, type Campus } from "@/lib/peerpath/constants";
 import { isAdminUser, loadAdmin } from "@/lib/peerpath/server";
 import { fmtDay, fmtTime } from "@/lib/peerpath/slots";
@@ -40,9 +41,15 @@ function Empty({ text }: { text: string }) {
   return <p className="rounded-xl border border-dashed border-pp-line px-4 py-8 text-center text-[14px] text-pp-muted">{text}</p>;
 }
 
-const isDone = (b: AdminBooking, now: number) => b.status === "completed" || (b.status === "confirmed" && new Date(b.end).getTime() < now);
-const isUpcoming = (b: AdminBooking, now: number) => b.status === "confirmed" && new Date(b.start).getTime() > now;
-const isLive = (s: SeniorPrivate) => s.status === "active";
+/** One item of the "Needs action" strip. Red when there is something to do. */
+function ActionItem({ label, value, warn = true }: { label: string; value: number; warn?: boolean }) {
+  return (
+    <div className="flex items-baseline gap-2">
+      <span className={`text-[20px] font-bold leading-none ${warn && value > 0 ? "text-[#FF7A6E]" : "text-pp-heading"}`}>{value}</span>
+      <span className="text-[13px] text-pp-muted">{label}</span>
+    </div>
+  );
+}
 
 type CardStats = { live: number; upcoming: number; done: number };
 
@@ -146,10 +153,10 @@ function BookingTable({ d, rows }: { d: AdminData; rows: AdminBooking[] }) {
                 <td className="px-4 py-3">
                   {BOOKING_LABEL[b.status]}
                   {b.autoResult === "completed" && b.status === "completed" && <p className="text-[12px] text-pp-muted">auto, from Meet</p>}
-                  {b.autoResult === "needs_marking" && b.status === "confirmed" && (
+                  {needsMarking(b) && (
                     <p className="text-[12px] font-semibold text-[#FF7A6E]">Needs marking</p>
                   )}
-                  {b.meetSync === "failed" && b.status === "confirmed" && (
+                  {inviteFailed(b) && (
                     <p className="text-[12px] text-[#FF7A6E]" title={b.meetError ?? undefined}>Invite not sent yet</p>
                   )}
                 </td>
@@ -300,6 +307,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
     .map((b) => ({ b, f: v.feedback[b.id], s: v.seniors.find((x) => x.id === b.seniorId) }));
   const focused = hasFocus ? d.seniors.find((x) => x.id === focus) : undefined;
   const total = done + noShows;
+  const na = needsActionCounts(v, now);
   // card numbers always come from the unfiltered data, so they stay the same when you switch campus
   const cardStats = (c: Campus | null): CardStats => {
     const x = filterAdminByCampus(d, c);
@@ -328,6 +336,19 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
             <CampusCard key={c} href={`${ttsPath.admin}?campus=${c}`} active={campus === c} title={c} sub={CAMPUS_INFO[c].university} image={CAMPUS_INFO[c].image} stats={cardStats(c)} />
           ))}
         </nav>
+
+        {!hasFocus && (
+          <section aria-label="Needs action" className="pp-card flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-6 sm:p-5">
+            <h2 className="text-[15px] font-semibold text-pp-heading">Needs action</h2>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 sm:flex sm:flex-1 sm:flex-wrap">
+              <ActionItem label="waiting for approval" value={na.waitingApproval} />
+              <ActionItem label="live but not ready" value={na.notReady} />
+              <ActionItem label="to mark" value={na.toMark} />
+              <ActionItem label="invite failed" value={na.inviteFailed} />
+              <ActionItem label="chats in next 24h" value={na.next24h} warn={false} />
+            </div>
+          </section>
+        )}
 
         <section aria-label="Overview" className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-6">
           <Stat label="Upcoming chats" value={upcoming.length} />
