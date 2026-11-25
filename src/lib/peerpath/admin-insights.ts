@@ -372,6 +372,12 @@ export function blockedReasons(blocked: Record<string, { attempts: number; peopl
   return [...by.values()].sort((a, b) => (a.label === OTHER ? 1 : 0) - (b.label === OTHER ? 1 : 0) || b.people - a.people || a.label.localeCompare(b.label));
 }
 
+/**
+ * People who tried in the range but never got a booking. Uses the database's own distinct counts
+ * (people − people_booked), so a person stopped for two reasons is still one person.
+ */
+export const notBookedPeople = (d: { people: number; people_booked: number }) => Math.max(0, d.people - d.people_booked);
+
 const count = (v: unknown): number | null => {
   const n = typeof v === "number" ? v : typeof v === "string" && v.trim() !== "" ? Number(v) : NaN;
   return Number.isFinite(n) && n >= 0 ? n : null;
