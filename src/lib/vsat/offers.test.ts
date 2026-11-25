@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
-  OFFER_DAYS_ERROR, OFFER_VARS, amountText, parseOfferDays, releaseParams, deadlineText, nothingToReleaseText, offerState, offerVars, parseRelease, pctText, previewText,
-  releaseResultText, skipText, type OfferJob,
+  EXTEND_DAYS_ERROR, EXTEND_REASON_ERROR, OFFER_DAYS_ERROR, OFFER_JOB_STEP, OFFER_STEPS, OFFER_VARS, amountText, extendParams, extendResultText,
+  extendedDeadline, parseExtendDays, parseExtendReason, parseOfferDays, releaseParams, deadlineText, nothingToReleaseText, offerState, offerVars,
+  parseRelease, pctText, previewText, releaseResultText, skipText, type OfferJob,
 } from "./offers";
 import { fillTemplate } from "./interviews";
 
@@ -62,8 +63,9 @@ describe("release texts", () => {
   it("preview: nobody to release → null, with a reason", () => {
     const none = parseRelease({ skipped: [{ application_id: "A1", name: "Ravi", code: "ALREADY_RELEASED" }, { application_id: "A2", name: null, code: "WRONG_STAGE" }] });
     expect(previewText(none)).toBeNull();
-    expect(nothingToReleaseText(none)).toBe("Nothing to release: Ravi (offer already released), A2 (not at Counselled).");
-    expect(nothingToReleaseText(parseRelease({}))).toMatch(/Select students at Counselled/);
+    // 0189 (sir): an offer can be released once counselling is Done, so WRONG_STAGE now means "not marked Done yet"
+    expect(nothingToReleaseText(none)).toBe("Nothing to release: Ravi (offer already released), A2 (counselling not marked Done yet).");
+    expect(nothingToReleaseText(parseRelease({}))).toMatch(/Select students whose counselling is Done/);
   });
   it("result", () => {
     expect(releaseResultText(two)).toBe("Released 2 offers ✓. Not released: Kabir (counselling not saved yet).");
@@ -140,5 +142,39 @@ describe("offer email", () => {
   it("unknown campus / missing fee fall back safely", () => {
     const v = offerVars({ ...job, amount: null, student: { ...job.student, campus: null, name: null } }, "https://x");
     expect(v).toMatchObject({ campus: "Vedam", amount: "50,000", name: "there" });
+  });
+});
+
+describe("0189 · sir's two reminders and OL Date Increase", () => {
+  it("each offer email job has its own VSAT comms step; the 0157 last-day step is gone", () => {
+    expect(OFFER_JOB_STEP).toEqual({ released: "offer_released", reminder_1: "offer_reminder_1", reminder_2: "offer_reminder_2", lapsed: "offer_lapsed" });
+    expect(OFFER_STEPS).toEqual(["offer_released", "offer_reminder_1", "offer_reminder_2", "offer_lapsed"]);
+    expect(OFFER_STEPS).not.toContain("offer_reminder");
+  });
+  it("days to add: a whole number 1–90; anything else refused", () => {
+    expect(parseExtendDays("3")).toEqual({ ok: true, days: 3 });
+    expect(parseExtendDays(" 90 ")).toEqual({ ok: true, days: 90 });
+    for (const bad of ["", "0", "91", "1.5", "-2", "abc", "3 days", "100"]) expect(parseExtendDays(bad)).toEqual({ ok: false });
+    expect(EXTEND_DAYS_ERROR).toMatch(/1 to 90/);
+  });
+  it("reason: 3–500 characters after trimming", () => {
+    expect(parseExtendReason("  parents travelling  ")).toEqual({ ok: true, reason: "parents travelling" });
+    for (const bad of ["", "  ", "ab", "x".repeat(501)]) expect(parseExtendReason(bad)).toEqual({ ok: false });
+    expect(EXTEND_REASON_ERROR).toMatch(/at least 3/);
+  });
+  it("the call body carries exactly the three keys the database accepts", () => {
+    expect(extendParams("APP-1", 3, "parents travelling")).toEqual({ application_id: "APP-1", days: 3, reason: "parents travelling" });
+  });
+  it("the new last date: the old IST day + N, still 11:59:59 pm IST", () => {
+    expect(extendedDeadline(DEADLINE, 3)).toBe("2026-12-01T18:29:59.000Z");
+    expect(extendedDeadline("2026-11-30T18:29:59Z", 1)).toBe("2026-12-01T18:29:59.000Z");   // month change
+    expect(extendedDeadline(null, 3)).toBeNull();
+    expect(extendedDeadline("not a date", 3)).toBeNull();
+  });
+  it("the message after extending", () => {
+    expect(extendResultText({ days: 3, total_days: 3, expires_at: "2026-12-01T18:29:59Z" })).toBe("Last date moved 3 days on: Tue, 1 Dec 2026, 11:59 pm IST ✓");
+    expect(extendResultText({ days: 1, total_days: 5, expires_at: "2026-12-01T18:29:59Z" }))
+      .toBe("Last date moved 1 day on: Tue, 1 Dec 2026, 11:59 pm IST (5 days added in total) ✓");
+    expect(extendResultText(null)).toBe("Last date extended ✓");
   });
 });

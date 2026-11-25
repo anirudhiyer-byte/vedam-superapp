@@ -175,6 +175,9 @@ const LABELS: Record<string, string> = {
   cs_submitted_at: "Counselling form submitted (IST)", campus_fee: "Programme fee", cs_scholarship_amount: "Scholarship amount",
   cs_first_year_scholarship: "1st-year scholarship", cs_actual_fee: "Fee after scholarship",
   cs_offline_form_filled: "Offline form filled",
+  // 0189: sir's offer-letter columns ("Selected For Counselling" sheet)
+  ol_date_increase: "OL date increase (days)", seat_block_status: "Seat block status", seat_block_date: "Seat block date (IST)",
+  ol_reminder_1: "OL reminder 1", ol_reminder_2: "OL reminder 2", ol_cancelled: "OL cancelled",
   class10_percentage: "Class 10 %", class12_percentage: "Class 12 %", class10_maths_percentage: "Class 10 maths %",
   class12_maths_percentage: "Class 12 maths %", class10_year: "Class 10 year", class12_year: "Class 12 year",
   class10_board: "Class 10 board", class12_board: "Class 12 board", class10_school: "Class 10 school", class12_school: "Class 12 school",
@@ -194,7 +197,8 @@ const LABELS: Record<string, string> = {
   primary_utm: "UTM (first)", secondary_utm: "UTM (second)", tertiary_utm: "UTM (third)", latest_utm: "UTM (latest)",
   primary_utm_source: "UTM source (first)", primary_utm_medium: "UTM medium (first)", primary_utm_campaign: "UTM campaign (first)",
   wheebox_login_id: "Wheebox login", wheebox_registered: "Wheebox registered", form_completion_percentage: "Form completion %",
-  offer_released_at: "Offer released (IST)", offer_expires_at: "Offer valid till (IST)", offer_cancelled: "Offer cancelled",
+  // 0189: named as in sir's sheet ("OL Sending date", "OL Last date")
+  offer_released_at: "OL sending date (IST)", offer_expires_at: "OL last date (IST)", offer_cancelled: "Offer cancelled",
   offer_status: "Offer status", offer_released_date: "Offer released (old field)", offer_expiry_date: "Offer expiry (old field)",
   offer_pay_timeline_days: "Days to pay", scholarship_percentage: "Scholarship % (final)", scholarship_amount: "Scholarship amount",
   transferred_to_erp: "Transferred to ERP", doc_verification_status: "Documents verified", verification_level1_status: "Verification level 1",
@@ -251,7 +255,9 @@ export const INTERVIEW_SHEET_COLUMNS = [
  * Counselling table (0184): the booking columns, then sir's "Selected for counselling" sheet (Pune / GGN) left to right —
  * the interview answers and scores, the scholarship, the counsellor's answers, Status, Counseling Mode, Date — then the
  * fee columns at the sheet's end (fee, scholarship = fee × %, 1st year = ÷ 4, fee after scholarship). A column shows once
- * (Counselor / Status / Mode / Date are the booking columns at the front). Offer columns stay (the offer follows counselling).
+ * (Counselor / Status / Mode / Date are the booking columns at the front).
+ * 0189: the sheet's offer-letter columns (OL Sending date, OL Last date, OL Date Increase, Seat Block Status / Date,
+ * OL Reminder 1 / 2, OL Cancelled) come before the fee columns, in the sheet's order.
  */
 export const COUNSELLING_SHEET_COLUMNS = [
   "registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_mode", "counselling_attendance",
@@ -267,8 +273,11 @@ export const COUNSELLING_SHEET_COLUMNS = [
   // Scholarship Score, Interviewer, Verdict, Category, Award, Actual Awarded (with the counsellor's ±5), the counsellor's answers
   "cs_score", "interviewer", "interview_verdict", "counselling_category", "counselling_calculated_pct", "cs_adjust_pct", "counselling_pct",
   "cs_feedback", "cs_parent_present", "cs_connected_students", "cs_heard_from", "cs_remarks", "cs_submitted_at",
-  // the fee maths at the sheet's end, then the offer
-  "campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee", "offer_expires_at", "stage_changed_at",
+  // 0189: the offer letter (sheet columns AU–BB)
+  "offer_released_at", "offer_expires_at", "ol_date_increase", "seat_block_status", "seat_block_date", "ol_reminder_1", "ol_reminder_2",
+  "ol_cancelled",
+  // the fee maths at the sheet's end
+  "campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee", "stage_changed_at",
 ] as const;
 
 /** Default columns per panel — the ones the old panels showed. "registered_name" is always first and cannot be removed. */

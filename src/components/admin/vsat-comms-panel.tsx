@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
-import { OFFER_EMAIL_VARS, OFFER_LAPSED_STEP, OFFER_REMINDER_STEP, OFFER_STEP, OFFER_STEPS } from "@/lib/vsat/offers";
+import { OFFER_EMAIL_VARS, OFFER_LAPSED_STEP, OFFER_REMINDER_1_STEP, OFFER_REMINDER_2_STEP, OFFER_STEP, OFFER_STEPS } from "@/lib/vsat/offers";
 
 const input = vx.input;
 const label = vx.label;
@@ -19,12 +19,13 @@ type Settings = { master: boolean; test_email: string; test_phone: string };
 
 /** Interview (0140) and counselling (0145) steps are sent by the meeting jobs, by email only, with their own placeholders. */
 const isInterviewStep = (key: string) => /^(interview(er)?|counselling|counsellor)_/.test(key);
-/** The offer steps (0144 offer, 0157 reminder + lapsed) are sent by the offer job, by email only, with the offer placeholders. */
+/** The offer steps (0144 offer, 0189 reminders 1 + 2, 0157 lapsed) are sent by the offer job, by email only, with the offer placeholders. */
 const isOfferStep = (key: string) => OFFER_STEPS.includes(key);
 /** When each offer step goes out (shown under its placeholders). */
 const OFFER_STEP_NOTE: Record<string, string> = {
   [OFFER_STEP]: "Sent once when an offer is released (Counselling panel). The student's Acceptance Letter (PDF) is attached.",
-  [OFFER_REMINDER_STEP]: "Sent once at 10:00 am IST on the offer's last day, only if the enrollment fee is not paid yet.",
+  [OFFER_REMINDER_1_STEP]: "Sent once at 10:00 am IST, 3 days before the offer's last date, only if the enrollment fee is not paid yet. Not sent for an offer released after that time (e.g. a 2-day offer).",
+  [OFFER_REMINDER_2_STEP]: "Sent once at 10:00 am IST, 1 day before the offer's last date, only if the enrollment fee is not paid yet.",
   [OFFER_LAPSED_STEP]: "Sent once when the offer lapses (the deadline passed without payment). Not sent if the student paid after all.",
 };
 /** Stage emails (0173: PI cleared) are sent by the stage-email job when admissions moves a student, by email only. */

@@ -190,6 +190,8 @@ const ERRORS: Record<string, string> = {
   LOCKED: "This VSAT's buckets are locked for this campus. Unlock them first (with a reason).",
   ALREADY_LOCKED: "These buckets are already locked.",
   NOT_LOCKED: "These buckets are not locked.",
+  // OL Date Increase (0189)
+  OFFER_NOT_ACTIVE: "The offer isn't live any more (lapsed, cancelled, paid or past its last date). A lapsed offer is re-opened with Move stage → Offer sent.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
@@ -211,6 +213,8 @@ const FIELD_LABEL: Record<string, string> = {
   adjust_pct: "Adjustment", adjust_reason: "Reason for the adjustment",
   // 0188
   arpu_target: "ARPU target", locked: "Lock",
+  // 0189
+  days: "Days to add",
 };
 
 export function errorText(raw: string | null | undefined): string {

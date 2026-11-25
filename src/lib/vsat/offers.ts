@@ -13,11 +13,17 @@ import { offerDays } from "./offer-letter";
 
 /** The VSAT comms step that carries the offer email. */
 export const OFFER_STEP = "offer_released";
-/** 0157: the reminder on the offer's last day (10:00 am IST) and the email when the offer lapses. */
-export const OFFER_REMINDER_STEP = "offer_reminder";
+/**
+ * 0189 (sir's review): Reminder 1 at 10:00 am IST 3 days before the offer's last date and Reminder 2 at 10:00 am IST 1 day
+ * before (they replaced the 0157 last-day reminder); 0157: the email when the offer lapses.
+ */
+export const OFFER_REMINDER_1_STEP = "offer_reminder_1";
+export const OFFER_REMINDER_2_STEP = "offer_reminder_2";
 export const OFFER_LAPSED_STEP = "offer_lapsed";
 /** Which VSAT comms step sends each kind of offer email job (vsat_offer_events.kind). */
-export const OFFER_JOB_STEP = { released: OFFER_STEP, reminder: OFFER_REMINDER_STEP, lapsed: OFFER_LAPSED_STEP } as const;
+export const OFFER_JOB_STEP = {
+  released: OFFER_STEP, reminder_1: OFFER_REMINDER_1_STEP, reminder_2: OFFER_REMINDER_2_STEP, lapsed: OFFER_LAPSED_STEP,
+} as const;
 export type OfferJobKind = keyof typeof OFFER_JOB_STEP;
 /** The VSAT comms steps sent by the offer job (email only, offer placeholders). */
 export const OFFER_STEPS: readonly string[] = Object.values(OFFER_JOB_STEP);
@@ -98,7 +104,7 @@ const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one :
 /** Why a student was left out, in plain words. */
 export function skipText(code: string): string {
   if (code === "ALREADY_RELEASED") return "offer already released";
-  if (code === "WRONG_STAGE") return "not at Counselled";
+  if (code === "WRONG_STAGE") return "counselling not marked Done yet";
   if (code === "NO_SCHOLARSHIP") return "counselling not saved yet";
   return errorText(code).replace(/\.$/, "").replace(/^./, (c) => c.toLowerCase());
 }
@@ -126,7 +132,7 @@ export function releaseResultText(r: ReleaseResult): string {
 
 /** Nothing in the selection can be released: say why (from the dry run). */
 export function nothingToReleaseText(r: ReleaseResult): string {
-  return r.skipped.length ? `Nothing to release: ${skippedList(r)}.` : "Select students at Counselled to release their offers.";
+  return r.skipped.length ? `Nothing to release: ${skippedList(r)}.` : "Select students whose counselling is Done to release their offers.";
 }
 
 // ── the offer as staff see it (drawer) ───────────────────────────────────────
@@ -149,7 +155,8 @@ export function offerState(stage: string, offer: OfferInfo | null | undefined, n
 
 export type OfferJob = {
   id: string;
-  /** released = the offer email (with the letter); reminder = last day, 10 am IST; lapsed = the deadline passed (0157). */
+  /** released = the offer email (with the letter); reminder_1 / reminder_2 = 3 days / 1 day before the last date, 10 am IST (0189);
+   *  lapsed = the deadline passed (0157). */
   kind: OfferJobKind;
   attempts: number;
   sent_to?: string[];
@@ -185,3 +192,52 @@ export function offerEmailVars(job: OfferJob, site: string): Record<string, stri
   return { ...offerVars(job, site), offer_days: job.released_at && job.expires_at ? String(offerDays(job.released_at, job.expires_at, 0)) : "" };
 }
 export const OFFER_EMAIL_VARS = [...OFFER_VARS, "offer_days"] as const;
+
+// ── OL Date Increase (0189): extend one live offer's last date ──────────────────
+
+/** Days added in one go (same limits as vsat_offer_extend). */
+export const EXTEND_DAYS_MIN = 1;
+export const EXTEND_DAYS_MAX = 90;
+export const EXTEND_DAYS_ERROR = `Days to add must be a whole number from ${EXTEND_DAYS_MIN} to ${EXTEND_DAYS_MAX}.`;
+export const EXTEND_REASON_MIN = 3;
+export const EXTEND_REASON_MAX = 500;
+export const EXTEND_REASON_ERROR = `Write why the last date is extended (at least ${EXTEND_REASON_MIN} characters).`;
+
+/** The "Days to add" box → a whole number 1–90, or not ok. The database checks again. */
+export function parseExtendDays(text: string): { ok: true; days: number } | { ok: false } {
+  const t = text.trim();
+  if (!/^\d{1,3}$/.test(t)) return { ok: false };
+  const n = Number(t);
+  return n >= EXTEND_DAYS_MIN && n <= EXTEND_DAYS_MAX ? { ok: true, days: n } : { ok: false };
+}
+
+/** The reason box → trimmed text, or not ok (too short / too long). */
+export function parseExtendReason(text: string): { ok: true; reason: string } | { ok: false } {
+  const r = text.trim();
+  return r.length >= EXTEND_REASON_MIN && r.length <= EXTEND_REASON_MAX ? { ok: true, reason: r } : { ok: false };
+}
+
+/** vsat_offer_extend's body: exactly the three keys the database accepts. */
+export function extendParams(applicationId: string, days: number, reason: string): { application_id: string; days: number; reason: string } {
+  return { application_id: applicationId, days, reason };
+}
+
+/** What the student's last date will be after adding `days` (11:59 pm IST of that day) — the confirm line before extending. */
+export function extendedDeadline(expiresAt: string | null | undefined, days: number): string | null {
+  if (!expiresAt || !Number.isFinite(Date.parse(expiresAt))) return null;
+  // the IST calendar day of the deadline, plus `days`, at 23:59:59 IST (= 18:29:59 UTC)
+  const ist = new Date(Date.parse(expiresAt) + 330 * 60_000);
+  const d = Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate() + days, 18, 29, 59);
+  return new Date(d).toISOString();
+}
+
+/** vsat_offer_extend(...) → the message shown after extending. */
+export function extendResultText(data: unknown): string {
+  const o = (data && typeof data === "object" ? data : {}) as Record<string, unknown>;
+  const days = typeof o.days === "number" ? o.days : null;
+  const total = typeof o.total_days === "number" ? o.total_days : null;
+  const when = typeof o.expires_at === "string" ? deadlineText(o.expires_at) : null;
+  if (!when || days === null) return "Last date extended ✓";
+  const extra = total !== null && total !== days ? ` (${plural(total, "day", "days")} added in total)` : "";
+  return `Last date moved ${plural(days, "day", "days")} on: ${when}${extra} ✓`;
+}
