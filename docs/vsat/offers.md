@@ -76,7 +76,7 @@ From sir's review (24 Nov 2026) and the owner's decisions (25 Nov: "do as sir sa
 | What | How |
 |---|---|
 | Release once counselling is Done | Counselling panel → select students → **Release offer**, or the drawer. A student can be released at **Counselled**, or still at **Counselling scheduled** when the counselling Status is **Done** and the counselling form is saved. The release then moves them Counselling scheduled → Counselled → Offer sent (both moves are in the stage history). The % is the counsellor's (Actual Scholarship Awarded, with the ±5). |
-| Validity | Chosen at release (**Days to pay**, empty = the campus default). The last date is 11:59:59 pm IST. |
+| Validity | **7 days** by default on both campuses, as sir said (migration 0190). Can still be set per student at release (**Days to pay**) or changed on Scholarship & Scoring. The last date is 11:59:59 pm IST. |
 | **OL Date Increase** | Drawer → Offer → **Extend last date**: days to add (1–90) and a reason → confirm (shows the new last date) → the offer's last date moves on. Only for a live offer (Offer sent, active, not cancelled, not paid, before its last date). A lapsed offer is still re-opened with Move stage → Offer sent. **No email** to the student (sir asked for email only for the reminders). The payment gate, the auto-lapse, the dashboard, the letter and the reminders follow the new date. History: `vsat_offer_events` kind `extended` (days, old / new date, reason, who). |
 | **OL Reminder 1 / 2** | Emails at **10:00 am IST, 3 days and 1 day before the last date** (VSAT comms → "Offer: reminder 1 (3 days before)" / "Offer: reminder 2 (1 day before)", OFF and in test mode, email only, draft copy until sir's templates in Phase 7). One each per offer. Not sent when that time had already passed at release (a 2-day offer has no Reminder 1), when the fee is paid, the offer is cancelled / lapsed / on hold, or after the last date. Reminder 1 is not sent late once Reminder 2 is due. After an extension, a reminder not sent yet goes at the new time. Same pg_cron job `vsat-offer-remind` (every 15 minutes) and the same email job. |
 | **Seat Block Status / Date** | **Done** and the payment date as soon as the ₹50,000 enrollment (seat blocking) fee is paid (`enrollment_stage = approved`, `enrollment_paid_at`). |
@@ -85,7 +85,9 @@ From sir's review (24 Nov 2026) and the owner's decisions (25 Nov: "do as sir sa
 
 Database (0189): `vsat_offer_extend(p)` (admin / admissions, campus rules, `authenticated` only); `vsat_offers_release` (0180 body + the Done rule); `vsat__offers_remind` (two reminders); `vsat_offer_notices_claim` (0157 body + the reminder kinds; the offer and reminder emails carry the current last date); private `vsat__offer_cols`, `vsat__offer_reminder_state`, `vsat__offer_reminder_due`; the grid functions (0186 / 0184 bodies + the six columns). Comms steps: + `offer_reminder_1`, `offer_reminder_2`; − `offer_reminder` (its waiting jobs closed as `replaced`).
 
-Tests (staging): `supabase/tests/vsat_offer_phase6.test.sql` (32), `vsat_offer_reminders.test.sql` (updated for the two reminders, 23). Rollback `supabase/rollback/0189_vsat_offer_phase6_down.sql` (tested on staging inside one block: the six functions, grants, steps and constraints back exactly; the new functions, index and rows gone).
+Tests (staging): `supabase/tests/vsat_offer_phase6.test.sql` (33), `vsat_offer_reminders.test.sql` (updated for the two reminders, 23; since 0190 it pins Pune 2 / Gurugram 5 days inside its rolled-back block, as its checks are built on those). Rollback `supabase/rollback/0189_vsat_offer_phase6_down.sql` (tested on staging inside one block: the six functions, grants, steps and constraints back exactly; the new functions, index and rows gone).
+
+**0190 (default validity 7 days):** sir said the offer is valid for 7 days; Pune and Gurugram `vsat_campus_settings.offer_days` = 7 (staging was Pune 2, Gurugram 5). Offers already released keep their date. Test `vsat_offer_days_7.test.sql` (4). Rollback `supabase/rollback/0190_vsat_offer_days_7_down.sql` puts back each database's earlier values (tested on staging: down → Pune 2 / Gurugram 5, up → 7 / 7).
 
 ## Security
 
@@ -117,6 +119,7 @@ Tests (staging): `supabase/tests/vsat_offer_phase6.test.sql` (32), `vsat_offer_r
    Turn on **Offer lapsed** in VSAT comms when the copy is approved (test mode first).
 8. Apply **0189** after 0188 (Phase 6; it replaces 0157's last-day reminder). Check `vsat-offer-remind` is still scheduled.
    Turn on **Offer: reminder 1** and **Offer: reminder 2** in VSAT comms when sir's wording is in (test mode first).
+9. Apply **0190** after 0189: default validity 7 days on both campuses (data only; the earlier values are kept in the column comment for the rollback).
 
 Rollback: `supabase/rollback/0144_vsat_offer_release_down.sql` (tested on staging: down → identical
 function / ACL / constraint snapshot → up).
@@ -124,4 +127,3 @@ function / ACL / constraint snapshot → up).
 ## Left for later
 
 - Sir's wording for the two reminder emails (Phase 7 templates).
-- Sir to confirm the default validity (the app uses Pune 2 days and Gurugram 5 days; sir said 7).
