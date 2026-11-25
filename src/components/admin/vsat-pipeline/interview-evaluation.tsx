@@ -50,6 +50,7 @@ export function InterviewEvaluation({ roles }: { roles: VsatRoles }) {
   const [maybeText, setMaybeText] = useState("");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
+  const [scoreErr, setScoreErr] = useState("");  // shown next to the score boxes (the page error sits at the top, off-screen there)
   const [msg, setMsg] = useState("");
   const [confirm, setConfirm] = useState(false);
   const [reload, setReload] = useState(0);
@@ -70,7 +71,7 @@ export function InterviewEvaluation({ roles }: { roles: VsatRoles }) {
   }, [supabase]);
 
   function pickVsat(id: string) {
-    setVsatId(id); setMsg(""); setErr("");
+    setVsatId(id); setMsg(""); setErr(""); setScoreErr("");
     try { localStorage.setItem(VSAT_KEY, id); } catch { /* storage can be off */ }
   }
 
@@ -103,8 +104,8 @@ export function InterviewEvaluation({ roles }: { roles: VsatRoles }) {
   const inSync = parsed.ok && shown?.select_min === parsed.selectMin && shown?.maybe_min === parsed.maybeMin;
 
   async function preview() {
-    if (!parsed.ok) return setErr(parsed.error);
-    setMsg("");
+    if (!parsed.ok) return setScoreErr(parsed.error);
+    setScoreErr(""); setMsg("");
     const d = await fetchAnalysis({ selectMin: parsed.selectMin, maybeMin: parsed.maybeMin });
     if (d) setData(d);
   }
@@ -206,11 +207,11 @@ export function InterviewEvaluation({ roles }: { roles: VsatRoles }) {
                 <form className="flex flex-wrap items-end gap-2" onSubmit={(e) => { e.preventDefault(); void preview(); }}>
                   <div>
                     <label className={vx.label} htmlFor="ie-sel">Selected from (out of {FINAL_MAX})</label>
-                    <input id="ie-sel" className={cx(vx.field, "w-[9rem]")} type="text" inputMode="decimal" value={selText} onChange={(e) => setSelText(e.target.value)} />
+                    <input id="ie-sel" className={cx(vx.field, "w-[9rem]")} type="text" inputMode="decimal" value={selText} onChange={(e) => { setSelText(e.target.value); setScoreErr(""); }} />
                   </div>
                   <div>
                     <label className={vx.label} htmlFor="ie-maybe">Maybe from (out of {FINAL_MAX})</label>
-                    <input id="ie-maybe" className={cx(vx.field, "w-[9rem]")} type="text" inputMode="decimal" value={maybeText} onChange={(e) => setMaybeText(e.target.value)} />
+                    <input id="ie-maybe" className={cx(vx.field, "w-[9rem]")} type="text" inputMode="decimal" value={maybeText} onChange={(e) => { setMaybeText(e.target.value); setScoreErr(""); }} />
                   </div>
                   <button type="submit" className={cx(vx.btn, vx.secondary)} disabled={loading || inSync}>{loading ? "Counting…" : "Show counts"}</button>
                   {admin && (
@@ -218,6 +219,7 @@ export function InterviewEvaluation({ roles }: { roles: VsatRoles }) {
                       title={inSync ? undefined : "Show counts for these scores first"}>Save verdicts</button>
                   )}
                 </form>
+                {scoreErr && <p role="alert" className={cx(vx.error, "mt-3")}>{scoreErr}</p>}
                 {inSync && shown?.select_min != null && (
                   <p className="mt-3 text-[15px] text-vx-ink tabular-nums">
                     {ranges.selected}: <b className="font-semibold">{data.ranges.selected}</b> · {ranges.maybe}: <b className="font-semibold">{data.ranges.maybe}</b> ·{" "}
