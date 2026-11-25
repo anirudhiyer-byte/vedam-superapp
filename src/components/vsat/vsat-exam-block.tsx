@@ -36,6 +36,9 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
     if (data?.ok) setDates((data.dates as OpenDate[]) ?? []);
   }, [supabase]);
   useEffect(() => { void loadDates(); }, [loadDates]);
+  // Once a test is completed, drop any lingering launch link / note so no stale "Open your test"
+  // button remains (re-opening a finished test errors on Wheebox).
+  useEffect(() => { if (app.mock_given === true || app.exam_given === true) { setLaunchUrl(""); setNote(""); } }, [app.mock_given, app.exam_given]);
 
   async function selectDate(id: string) {
     setBusy(true); setErr("");
@@ -77,7 +80,9 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
       if (data?.ok && typeof data.url === "string") {
         let opened = false;
         if (win && !win.closed) { try { win.location.href = data.url; opened = true; } catch { opened = false; } }
-        setLaunchUrl(data.url); // always show the fallback link
+        // Only surface the fallback link when the tab was actually blocked — otherwise it lingers
+        // as a confusing "Open your test" button (and re-opening a finished test errors on Wheebox).
+        if (!opened) setLaunchUrl(data.url);
         setNote(opened
           ? "Your test is opening in a new tab. Keep this page open — your result shows here once you finish."
           : "Your test is ready — tap “Open your test” below. Keep this page open; your result shows here once you finish.");
