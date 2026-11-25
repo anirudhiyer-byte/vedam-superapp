@@ -13,19 +13,35 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { deliverEmail } from "@/lib/email/deliver";
 import { fillTemplate } from "./interviews";
+import { offlineDateText } from "./counselling-setup";
 
 if (typeof window !== "undefined") throw new Error("vsat/stage-notices is server-only");
 
 /** The stages that send an email, and their comms step (the step key is the stage, as in vsat_comm_steps). */
 export const STAGE_NOTICE_STEPS = ["pi_cleared"] as const;
 export type StageNoticeStage = (typeof STAGE_NOTICE_STEPS)[number];
-/** The placeholders a stage email can use. */
-export const STAGE_NOTICE_VARS = ["name", "application_no", "dashboard_link"] as const;
+/** The placeholders a stage email can use. offline_dates (0184): the student's campus's coming offline counselling dates. */
+export const STAGE_NOTICE_VARS = ["name", "application_no", "dashboard_link", "offline_dates"] as const;
 
+export type OfflineDate = { date: string; note: string | null };
 export type StageNoticeJob = {
   id: string; stage: string; attempts: number; sent_to: string[] | null;
   student: { name: string | null; email: string | null; lead_id: string | null; application_no: string | null; campus: string | null };
+  /** 0184: the campus's offline counselling dates from today on (set on the Counselling page), oldest first */
+  offline_dates?: OfflineDate[] | null;
 };
+
+/** "Sat, 28 Nov 2026 (Campus, 10 am); Thu, 3 Dec 2026" — or a holding line when the campus has none set yet. */
+export function offlineDatesText(list: OfflineDate[] | null | undefined): string {
+  const parts = (list ?? [])
+    .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d.date))
+    .map((d) => {
+      const day = offlineDateText(d.date);
+      const note = (d.note ?? "").trim();
+      return note ? `${day} (${note})` : day;
+    });
+  return parts.length ? parts.join("; ") : "to be announced soon";
+}
 type StepCfg = { step_key: string; title: string; enabled: boolean; test_mode: boolean; email_enabled: boolean; email_subject: string; email_body: string };
 export type StageNoticeConfig = { master: boolean; testEmail: string; steps: Partial<Record<string, StepCfg>> };
 
@@ -46,6 +62,7 @@ export function stageEmailVars(job: StageNoticeJob, site: string): Record<(typeo
     name: (job.student.name ?? "").trim() || "Student",
     application_no: job.student.application_no ?? "",
     dashboard_link: `${site}/apply/dashboard`,
+    offline_dates: offlineDatesText(job.offline_dates),
   };
 }
 

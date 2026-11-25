@@ -31,7 +31,8 @@ const OFFER_STEP_NOTE: Record<string, string> = {
 const STAGE_EMAIL_STEPS: Record<string, string> = {
   pi_cleared: "Sent once per VSAT attempt, when admissions moves the student to PI cleared.",
 };
-const STAGE_EMAIL_VARS = ["name", "application_no", "dashboard_link"] as const;
+// 0184: offline_dates = the campus's coming offline counselling dates (set on the Counselling page)
+const STAGE_EMAIL_VARS = ["name", "application_no", "dashboard_link", "offline_dates"] as const;
 const isStageEmailStep = (key: string) => key in STAGE_EMAIL_STEPS;
 const isEmailOnly = (key: string) => isInterviewStep(key) || isOfferStep(key) || isStageEmailStep(key);
 const STAGE_VARS = ["name", "amount", "apply_link", "dashboard_link", "receipt_link"];

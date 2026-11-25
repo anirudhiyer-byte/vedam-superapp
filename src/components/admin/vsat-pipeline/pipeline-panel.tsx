@@ -22,6 +22,7 @@ import { MeetBadge } from "./interview-tools";
 import { RefreshShimmer, useRefreshShimmer } from "@/components/admin/ui/refresh-shimmer";
 import { PlanBar, PlanDate, PlanInterviewer, PlanStatus, PlanTime, useInterviewPlan, type PlanMessage } from "./interview-planner";
 import { OfferBar, type OfferMessage } from "./offer-tools";
+import { CounsellingSetup, ModeBar } from "./counselling-tools";
 import { STAGES_WITH_EMAIL, sendStageEmailsNow } from "@/lib/vsat/stage-notices-client";
 import { TRACKS, type Track, type TrackKey } from "@/lib/vsat/tracks";
 import { ATTENDANCE_LABEL, STATUS_CHOICES, isMeetState, type SessionStatus } from "@/lib/vsat/interviews";
@@ -96,8 +97,8 @@ const IconPencil = () => <Svg className="h-3.5 w-3.5"><path d="M12 20h9M16.5 3.5
 
 // v2 for the Exam panel (0172): the owner asked for every sheet column on the table, so a column choice saved before it
 // is set aside once and everyone opens on the new default; they can change it again from Columns.
-// v2: the VSAT Exam (0172) and Interview (0173) tables got the sheet's columns, so an older saved choice is not reused
-const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "exam" || panel === "intv" ? "v2" : "v1"}:${panel}`;
+// v2: the VSAT Exam (0172), Interview (0173) and Counselling (0184) tables got the sheet's columns, so an older saved choice is not reused
+const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "exam" || panel === "intv" || panel === "couns" ? "v2" : "v1"}:${panel}`;
 // per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
 function loadCols(panel: PanelKey): unknown { try { const s = localStorage.getItem(colsKey(panel)); return s ? JSON.parse(s) : null; } catch { return null; } }
 function saveCols(panel: PanelKey, cols: string[]) { try { localStorage.setItem(colsKey(panel), JSON.stringify(cols)); } catch { /* ignore */ } }
@@ -368,6 +369,15 @@ export function PipelinePanel({ panel, roles, onOpenEvaluation }: { panel: Panel
         </p>
       )}
 
+      {/* ── Counselling (0184, owner's review): the analysis per VSAT, the Zoom links and the offline dates ── */}
+      {panel === "couns" && manager && onOpenEvaluation && (
+        <p className="text-[13px] text-vx-faint">
+          Mode, booked sessions, feedback, scholarship and ARPU per VSAT are in{" "}
+          <button type="button" onClick={onOpenEvaluation} className={vx.link}>Counselling Evaluation</button>. Only students who chose Online get an invite, on their counsellor&apos;s Zoom link.
+        </p>
+      )}
+      {panel === "couns" && manager && <CounsellingSetup admin={roles.admin} />}
+
       {/* ── selection bar ─────────────────────────── */}
       {manager && sel.size > 0 && (
         <div className="space-y-2 rounded-[14px] border border-vx-violet/35 bg-vx-violet/[0.08] p-3 text-sm sm:px-4">
@@ -381,6 +391,7 @@ export function PipelinePanel({ panel, roles, onOpenEvaluation }: { panel: Panel
           {planOn && <PlanBar ids={selInOrder} planner={planner} onDone={afterBooking} onSent={setPlanMsg} />}
           {planTrack && <StatusBar ids={selInOrder} track={planTrack} onDone={() => setReload((n) => n + 1)} />}
           {offerPanel && <OfferBar ids={selInOrder} onDone={() => setReload((n) => n + 1)} onReleased={setOfferMsg} />}
+          {panel === "couns" && manager && <ModeBar ids={selInOrder} onDone={() => setReload((n) => n + 1)} />}
           <BulkBar ids={[...sel]} current={selStage} panel={panel} onDone={() => setReload((n) => n + 1)} />
           {examPanel && <div className="border-t border-vx-violet/20 pt-2"><ProctoringBar ids={[...sel]} onDone={() => setReload((n) => n + 1)} /></div>}
         </div>
@@ -541,12 +552,14 @@ function Cell({ col, row, onEditVps }: { col: GridColumn; row: GridRow; onEditVp
   if (col.key === "interview_meet" || col.key === "counselling_meet") {
     // 0165: the link comes only for staff who may join this meeting; Join opens it in a new tab, never the student page
     const link = meetLink(row, col.key);
-    if (!link) return isMeetState(v) ? <MeetBadge state={v} /> : <span className="text-vx-faint">—</span>;
+    // 0184: counselling on the counsellor's own Zoom link
+    const badge = v === "zoom" ? <span className={cx(vx.badge, vx.tone.violet)}>Zoom</span> : isMeetState(v) ? <MeetBadge state={v} /> : null;
+    if (!link) return badge ?? <span className="text-vx-faint">—</span>;
     const what = col.key === "interview_meet" ? "interview" : "session";
     return (
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          {isMeetState(v) && <MeetBadge state={v} />}
+          {badge}
           <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}
             className={cx(vx.btn, vx.primary, vx.sm)} aria-label={`Join ${what}: ${String(row.registered_name ?? row.application_id)}`}>
             Join {what}<IconExternal />

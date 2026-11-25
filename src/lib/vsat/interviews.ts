@@ -84,7 +84,8 @@ export type InterviewRow = {
   slot_datetime?: string | null;
   duration_min?: number | null;
   meet_link?: string | null;
-  meet_mode?: "auto" | "manual" | null;
+  /** "zoom": counselling on the counsellor's own Zoom link (0184) */
+  meet_mode?: "auto" | "manual" | "zoom" | null;
   meet_sync?: "none" | "pending" | "syncing" | "ok" | "failed" | null;
   meet_error?: string | null;
   meet_attempts?: number | null;
@@ -163,12 +164,19 @@ export const interviewEventId = (assignmentId: string, gen: number, prefix: Trac
  * Invite text. Guests can't see each other, but both see the title: the student's own name and
  * application number are fine to show to the student, and help the interviewer find the right person.
  */
-export function eventText(args: { studentName: string | null; applicationNo: string | null; site: string }, track: Track = TRACKS.interview) {
+export function eventText(
+  args: { studentName: string | null; applicationNo: string | null; site: string; zoomLink?: string | null },
+  track: Track = TRACKS.interview,
+) {
   const who = [args.studentName?.trim(), args.applicationNo ? `(${args.applicationNo})` : ""].filter(Boolean).join(" ");
   const summary = who ? `${track.eventTitle}: ${who}` : track.eventTitle;
+  // 0184: counselling runs on the counsellor's own Zoom link (owner's review: "Google Meet nahi hoga")
+  const zoom = args.zoomLink ? joinUrl(args.zoomLink) : null;
   const description = [
-    `Your ${track.eventTitle} on Google Meet.`,
-    "Join with the Google Meet link in this invite. Students can also join from their dashboard; the Join button opens 10 minutes before the start.",
+    zoom ? `Your ${track.eventTitle} on Zoom.` : `Your ${track.eventTitle} on Google Meet.`,
+    zoom
+      ? `Join on Zoom: ${zoom}\n\nStudents can also join from their dashboard; the Join button opens 10 minutes before the start.`
+      : "Join with the Google Meet link in this invite. Students can also join from their dashboard; the Join button opens 10 minutes before the start.",
     args.site ? `Dashboard: ${args.site}/apply/dashboard` : "",
     "Please join on time from a quiet place, with your camera and microphone working.",
   ].filter(Boolean).join("\n\n");
@@ -329,7 +337,7 @@ export type NoticeJob = {
   baseline: { kind: string; slot_start: string | null; duration_min: number | null; interviewer: (Person & { id: string }) | null } | null;
   student: { name: string | null; email: string | null; application_no: string | null; lead_id: string | null };
   meet_link: string | null;
-  meet_mode: "auto" | "manual" | null;
+  meet_mode: "auto" | "manual" | "zoom" | null;
 };
 
 export type PlannedNotice = {

@@ -30,6 +30,7 @@ begin
     exam_percentile, exam_obtained_marks, exam_max_marks, vps_score, family_income, father_mobile)
   values (p_id, u, p_id, 'ZZTEST ' || p_id, lower(p_id) || '@example.invalid', p_mobile, p_campus, p_date,
     2024, 90, 85, 2026, 80, 70, 70, 70, 70, false, null, null, 80, 40, 50, 8.43, '10-15 lakh', '9000000000');
+  update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = p_id;  -- 0184 test setup: counselling is booked for online students only
   update public.application_manager set exam_given = true where application_id = p_id;
   perform public.vsat__move(p_id, 'vsat_cleared', 'active', 'zz test', 'system', null, null);
   return p_id;
@@ -87,6 +88,7 @@ begin
     cou1 := pg_temp.mk_user('zztest-grd-cou1@example.invalid');
     usr  := pg_temp.mk_user('zztest-grd-user@example.invalid');
     insert into public.vsat_team (user_id, role, campus) values (adm_pune, 'admissions', 'pune'), (int1, 'interviewer', null), (cou1, 'counsellor', null);
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (cou1, 'https://zoom.us/j/zztest-cou1');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at)
     values ('ZZTEST VSAT-G1', 'zz-grd-1', current_date, now(), now() + interval '2 hours') returning id into d1;
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at)

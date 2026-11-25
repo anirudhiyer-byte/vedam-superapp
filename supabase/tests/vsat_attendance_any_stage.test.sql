@@ -27,6 +27,7 @@ begin
   on conflict (lead_id) do nothing;
   insert into public.application_manager (application_id, lead_id, application_no, registered_name, registered_email, campus_applied)
   values (p_id, u, p_id, 'ZZTEST ' || p_id, lower(p_id) || '@example.invalid', 'Ajeenkya DY Patil University — Pune');
+  update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = p_id;  -- 0184 test setup: counselling is booked for online students only
   foreach s in array array['vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_cleared', 'counselling_scheduled', 'counselled'] loop
     perform public.vsat__move(p_id, s, 'active', 'zz test', 'system', null, null);
     exit when s = p_stage;
@@ -70,10 +71,12 @@ returns void language sql as $$
   update public.interview_assignments set slot_datetime = date_trunc('minute', now()) - p_ago - make_interval(mins => duration_min),
          meet_sync = 'ok', meet_code = 'zzt-' || lower(right(p_app, 3)) || '-iv', meet_link = 'https://meet.google.com/zzt-' || lower(right(p_app, 3)) || '-iv'
    where application_id = p_app $$;
+-- 0184 test setup: new counselling bookings are on the counsellor's Zoom link and Zoom attendance is not read (Status by
+-- hand, tested in vsat_counselling_phase4); the stage rule below is for the Google Meet bookings made before 0184
 create or replace function pg_temp.ended_cs(p_app text, p_ago interval)
 returns void language sql as $$
   update public.counselling_assignments set slot_datetime = date_trunc('minute', now()) - p_ago - make_interval(mins => duration_min),
-         meet_sync = 'ok', meet_code = 'zzt-' || lower(right(p_app, 3)) || '-cs', zoom_link = 'https://meet.google.com/zzt-' || lower(right(p_app, 3)) || '-cs'
+         meet_mode = 'auto', meet_sync = 'ok', meet_code = 'zzt-' || lower(right(p_app, 3)) || '-cs', zoom_link = 'https://meet.google.com/zzt-' || lower(right(p_app, 3)) || '-cs'
    where application_id = p_app $$;
 
 create or replace function pg_temp.due(p_fn text)
@@ -103,6 +106,7 @@ begin
     i2 := pg_temp.mk_user('zztest-as-int2@example.invalid');
     c1 := pg_temp.mk_user('zztest-as-couns1@example.invalid');
     insert into public.vsat_team (user_id, role, campus) values (i1, 'interviewer', null), (i2, 'interviewer', null), (c1, 'counsellor', null);
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (c1, 'https://zoom.us/j/zztest-c1');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
 
     v1 := pg_temp.mk_app('ZZT-AS-V1', 'vsat_cleared');         -- sent, stage not moved (normal since 0166)
     v2 := pg_temp.mk_app('ZZT-AS-V2', 'interview_scheduled');  -- moved by hand, as before

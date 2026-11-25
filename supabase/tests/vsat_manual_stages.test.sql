@@ -27,6 +27,7 @@ begin
   on conflict (lead_id) do nothing;
   insert into public.application_manager (application_id, lead_id, application_no, registered_name, registered_email, campus_applied)
   values (p_id, u, p_id, 'ZZTEST ' || p_id, lower(p_id) || '@example.invalid', 'Ajeenkya DY Patil University — Pune');
+  update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = p_id;  -- 0184 test setup: counselling is booked for online students only
   foreach s in array array['vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_cleared', 'counselling_scheduled'] loop
     perform public.vsat__move(p_id, s, 'active', 'zz test', 'system', null, null);
     exit when s = p_stage;
@@ -77,6 +78,7 @@ begin
     c1 := pg_temp.mk_user('zztest-ms-couns1@example.invalid');
     nobody := pg_temp.mk_user('zztest-ms-nobody@example.invalid');
     insert into public.vsat_team (user_id, role, campus) values (adm, 'admissions', null), (i1, 'interviewer', null), (i2, 'interviewer', null), (c1, 'counsellor', null);
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (c1, 'https://zoom.us/j/zztest-c1');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
     a1 := pg_temp.mk_app('ZZT-MS-1', 'vsat_cleared');
     a2 := pg_temp.mk_app('ZZT-MS-2', 'vsat_cleared');
     a3 := pg_temp.mk_app('ZZT-MS-3', 'vsat_cleared');
@@ -91,6 +93,7 @@ begin
     insert into public.lead_manager (lead_id, registered_name, registered_email, lead_stage) values (s::uuid, 'ZZTEST B0', 'zzt-ms-b0@example.invalid', 'applicant_paid');
     insert into public.application_manager (application_id, lead_id, application_no, registered_name, registered_email, campus_applied)
     values (b0, s::uuid, b0, 'ZZTEST B0', 'zzt-ms-b0@example.invalid', 'Ajeenkya DY Patil University — Pune');
+    update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = b0;  -- 0184 test setup: counselling is booked for online students only
 
     -- ════ B. booking, rescheduling and cancelling never move the stage ════
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_interview', jsonb_build_object('application_id', a1, 'interviewer_id', i1,

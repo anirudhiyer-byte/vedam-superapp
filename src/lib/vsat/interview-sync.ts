@@ -2,7 +2,8 @@
  * VSAT interviews and counselling sessions · server jobs (service role). Server-only.
  * Every job takes a Track (src/lib/vsat/tracks.ts): the interview (0140) or counselling (0145); same rules.
  *
- *   syncInterviews            make / move / remove the Google Calendar event (with its Meet link)
+ *   syncInterviews            make / move / remove the Google Calendar event (with its Meet link; counselling since
+ *                             0184: no Meet, the counsellor's Zoom link is on the event)
  *   checkInterviewAttendance  after the slot, read Meet attendance → joined / no-show / "please mark"
  *   sendInterviewNotices      the invite / moved / cancelled emails through the VSAT comms steps
  *
@@ -17,7 +18,7 @@ import { decideAttendance, type Participant } from "@/lib/peerpath/attendance";
 import { deliverEmail } from "@/lib/email/deliver";
 import { MEETING_STEP_KEYS, TRACKS, withHost, type Track } from "./tracks";
 import {
-  attendanceOutcome, eventText, fillTemplate, interviewEventId, isMeetUrl, noticeVars, planNotices,
+  attendanceOutcome, eventText, fillTemplate, interviewEventId, isMeetUrl, joinUrl, noticeVars, planNotices,
   type NoticeJob, type NoticeStep,
 } from "./interviews";
 
@@ -47,7 +48,10 @@ export type SyncRow = {
   application_id: string;
   slot_start: string | null;
   duration_min: number;
-  meet_mode: "auto" | "manual";
+  /** "zoom" (counselling, 0184): the event carries the counsellor's Zoom link and no Google Meet */
+  meet_mode: "auto" | "manual" | "zoom";
+  /** counselling on Zoom only: the counsellor's link (0184) */
+  zoom_link?: string | null;
   cancelled: boolean;
   calendar_event_id: string | null;
   event_gen: number;
@@ -85,9 +89,13 @@ function linkResult(ev: CalEvent, id: string): SyncResult {
   return { outcome: link ? "ok" : "pending", calendar_event_id: id, meet_link: link, meet_code: code };
 }
 
+/** A Zoom booking's event is done once it exists: there is no Meet link to wait for (0184). */
+const zoomResult = (id: string): SyncResult => ({ outcome: "ok", calendar_event_id: id });
+
 /** Decide and do the Google work for one claimed interview. Never throws. */
 export async function syncOne(g: GoogleAccount, row: SyncRow, now = Date.now(), track: Track = TRACKS.interview): Promise<SyncResult> {
-  const wantEvent = !row.cancelled && !!row.slot_start && row.meet_mode === "auto" && !!row.interviewer;
+  const zoom = row.meet_mode === "zoom" ? joinUrl(row.zoom_link) : null;
+  const wantEvent = !row.cancelled && !!row.slot_start && !!row.interviewer && (row.meet_mode === "auto" || !!zoom);
   try {
     if (!wantEvent) {
       // cancelled (or an old booking with a pasted link: Google Meet only since 0167) → the Google event (if any) goes
@@ -104,24 +112,32 @@ export async function syncOne(g: GoogleAccount, row: SyncRow, now = Date.now(), 
     if (!g.invitesAllowed(emails)) {
       return { outcome: "failed", final: true, error: "test_mode: an attendee is not on ADMISSIONS_TEST_EMAILS, no invite sent" };
     }
-    const { summary, description } = eventText({ studentName: row.student.name, applicationNo: row.student.application_no, site: siteUrl() }, track);
-    const want = { summary, description, start, end, attendees: emails };
+    const { summary, description } = eventText(
+      { studentName: row.student.name, applicationNo: row.student.application_no, site: siteUrl(), zoomLink: zoom }, track);
+    // 0184: a Zoom booking gets the link as the event's place and no Google Meet
+    const want = zoom ? { summary, description, start, end, attendees: emails, location: zoom } : { summary, description, start, end, attendees: emails };
 
     let gone: string | undefined;
     if (row.calendar_event_id) {
       const ev = await liveEvent(g, row.calendar_event_id);
-      if (ev) {
+      if (ev && zoom && ev.hangoutLink) {
+        // a Google Meet event from before 0184 (the booking moved to Zoom): a Meet can't be taken off an event, so the
+        // event goes and a new one (no Meet, the Zoom link) is made under the next id
+        await g.deleteEvent(row.calendar_event_id);
+        gone = row.calendar_event_id;
+      } else if (ev) {
         // already in step with this version → only the Meet link was missing; otherwise move / re-guest it
         const out = row.event_version === row.version ? ev : await g.patchEvent(row.calendar_event_id, want);
-        return linkResult(out, row.calendar_event_id);
+        return zoom ? zoomResult(row.calendar_event_id) : linkResult(out, row.calendar_event_id);
+      } else {
+        gone = row.calendar_event_id; // deleted on Google's side → make a new one under the next id
       }
-      gone = row.calendar_event_id; // deleted on Google's side → make a new one under the next id
     }
     let gen = row.event_gen + (gone ? 1 : 0);
     for (let i = 0; i < 4; i++, gen++) {
       try {
-        const ev = await g.createEvent({ id: interviewEventId(row.id, gen, track.eventPrefix), ...want });
-        return { ...linkResult(ev, ev.id), event_gen: gen, deleted_event_id: gone };
+        const ev = await g.createEvent({ id: interviewEventId(row.id, gen, track.eventPrefix), ...want, ...(zoom ? { meet: false } : {}) });
+        return { ...(zoom ? zoomResult(ev.id) : linkResult(ev, ev.id)), event_gen: gen, deleted_event_id: gone };
       } catch (err) {
         // that id belongs to an event deleted earlier → try the next generation
         if (!(err instanceof GoogleError && err.status === 409)) throw err;

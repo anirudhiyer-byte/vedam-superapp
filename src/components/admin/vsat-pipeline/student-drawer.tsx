@@ -16,6 +16,10 @@ import { InterviewScheduleForm, InterviewStatus, slotText } from "./interview-to
 import { OfferBox } from "./offer-tools";
 import { STAGES_WITH_EMAIL, sendStageEmailsNow } from "@/lib/vsat/stage-notices-client";
 import { TRACKS } from "@/lib/vsat/tracks";
+import {
+  ADJUST_MAX, ADJUST_MIN, COUNSELLOR_FEEDBACK, FEEDBACK_LABEL, HEARD_FROM_MAX, PARENT_LABEL, PARENT_PRESENT, REMARKS_MAX, awardedPct,
+  counsellingPayload, type CounsellingFormInput, type CounsellorFeedback, type ParentPresent,
+} from "@/lib/vsat/counselling-form";
 import { DeletePerson } from "@/components/admin/vsat-delete-person";
 import { ApplicationEditor } from "@/components/admin/vsat-app-admin-tools";
 
@@ -398,16 +402,27 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
         ["Counsellor", show(cancelled ? null : c.counsellor)], ["Slot (IST)", cancelled ? "—" : slotText(c.slot_datetime, row?.duration_min)],
         ["Status", show(c.attendance ? ATTENDANCE_LABEL[c.attendance] ?? c.attendance : null)],
         ["Scholarship score", show(c.calc_score)], ["Category", show(c.calc_category ?? c.scholarship_category)],
-        ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")], ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
+        ["Step", show(c.chosen_step, "%")], ["Calculated %", show(c.calculated_pct, "%")],
+        // 0184: the counsellor's ±5 sits between the formula's % and the awarded one
+        ...(c.submitted_at ? [["Counsellor adjustment", c.adjust_pct ? `${c.adjust_pct > 0 ? "+" : ""}${c.adjust_pct}%` : "None"] as [string, ReactNode]] : []),
+        ["Final %", show(c.actual_pct ?? c.scholarship_pct, "%")],
       ]} />}
-      {c?.actual_reason && <p className="text-xs text-vx-mut">Reason for actual %: “{c.actual_reason}”</p>}
+      {c?.actual_reason && <p className="text-xs text-vx-mut">Reason for the counsellor&apos;s adjustment: “{c.actual_reason}”</p>}
+      {/* 0184: the sheet's counsellor answers, once the form is saved */}
+      {c?.submitted_at && <Grid items={[
+        ["Counsellor feedback", show(c.counsellor_feedback ? FEEDBACK_LABEL[c.counsellor_feedback as CounsellorFeedback] ?? c.counsellor_feedback : null)],
+        ["Parent present", show(c.parent_present ? PARENT_LABEL[c.parent_present as ParentPresent] ?? c.parent_present : null)],
+        ["Already connected with existing students", c.connected_students == null ? "—" : c.connected_students ? "Yes" : "No"],
+        ["Came to know about Vedam from", show(c.heard_from)],
+        ["Counsellor remarks", show(c.counsellor_remarks)],
+      ]} />}
       {c && <ProfileBox applicationId={s.profile.application_id} {...savedProfile(c.profile_analysis)} canGenerate={s.can_manage || isCounsellor} />}
       {row && (
         <InterviewStatus iv={row} applicationId={s.profile.application_id} manager={s.can_manage} isInterviewer={isCounsellor}
           atInterviewStage={atStep} studentAbsent={st === "counselling_not_appeared"} onDone={onDone} track={TRACKS.counselling} />
       )}
       {canAssign && <InterviewScheduleForm team={team} applicationId={s.profile.application_id} current={row} onDone={onDone} track={TRACKS.counselling} />}
-      {canForm && c && !cancelled && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
+      {canForm && c && !cancelled && !c.submitted_at && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
       {showOffer && (
         <OfferBox applicationId={s.profile.application_id} stage={st} status={s.pipeline.status} offer={s.offer ?? null}
           canManage={s.can_manage} onDone={onDone} />
@@ -475,7 +490,9 @@ function ProfileBox({ applicationId, saved, savedAt, canGenerate }: { applicatio
 function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; onDone: () => void }) {
   const [supabase] = useState(() => createClient());
   const [pre, setPre] = useState<Preview | null>(null);
-  const [remarks, setRemarks] = useState("");
+  // 0184: the "Selected for counselling" sheet's counsellor columns, and the counsellor's −5 … +5 on the formula's %
+  const [f, setF] = useState<CounsellingFormInput>({ feedback: "", parentPresent: "", connected: "", heardFrom: "", remarks: "", adjust: "0", adjustReason: "" });
+  const set = <K extends keyof CounsellingFormInput>(k: K, v: CounsellingFormInput[K]) => { setF((x) => ({ ...x, [k]: v })); setMsg(""); };
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -493,17 +510,22 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
     const m = Math.max(step, floor);
     return pre?.special_rating === 5 && m <= 30 ? m + 10 : m;
   })());
+  const adjNum = Number(f.adjust.trim().replace(/^\+/, "") || "0");
+  const adjOk = Number.isInteger(adjNum) && adjNum >= ADJUST_MIN && adjNum <= ADJUST_MAX;
+  const awarded = adjOk ? awardedPct(calc, adjNum) : null;
+  const fee = Number(pre?.programme_fee);
 
   async function submit() {
     if (step === null) return setMsg(errorText("NO_BAND"));
+    const chk = counsellingPayload(applicationId, f);
+    if (!chk.ok) return setMsg(chk.error);
     setBusy(true); setMsg("");
-    const p: Record<string, unknown> = { application_id: applicationId };
-    if (remarks.trim()) p.remarks = remarks.trim();
-    const { data, error } = await supabase.rpc("vsat_submit_counselling", { p });
+    const { data, error } = await supabase.rpc("vsat_submit_counselling", { p: chk.payload });
     setBusy(false);
     if (error) return setMsg(errorText(error.message));
     const d = data as { actual_pct: number };
-    setMsg(`Saved ✓ Scholarship ${d.actual_pct}% → Counselled ✓`);
+    // 0166: saving does not move the stage (admissions moves it by hand)
+    setMsg(`Saved ✓ Scholarship ${d.actual_pct}%`);
     onDone();
   }
 
@@ -517,13 +539,57 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
         ["Step (from the score)", step === null ? "—" : `${step}%`],
         ["JEE floor", pre.jee_floor === null ? "—" : `${pre.jee_floor}% (${pre.jee_floor_enabled ? "on" : "off for this campus"})`],
         ["Achievements (interview)", pre.special_rating === null ? "—" : `${pre.special_rating}/5${pre.special_rating === 5 ? " · +10% if 30% or less" : ""}`],
-        ["Final scholarship", calc === null ? "—" : `${calc}%`],
+        ["Scholarship (formula)", calc === null ? "—" : `${calc}%`],
         ["Programme fee", `₹${Number(pre.programme_fee).toLocaleString("en-IN")}`],
       ]} />
       {pre.missing.length > 0 && <p className="text-xs text-vx-orange-t">Missing (counted as 0, like the sheet): {pre.missing.join(", ").replace(/_/g, " ")}</p>}
       {step === null && <p className="text-xs text-vx-orange-t">{errorText("NO_BAND")}</p>}
-      <textarea className={input} rows={2} maxLength={2000} placeholder="Counsellor remarks (optional)" value={remarks} onChange={(e) => setRemarks(e.target.value)} aria-label="Counsellor remarks" />
+
+      <p className="pt-1 text-xs font-semibold text-vx-violet-t">The counselling call</p>
+      <div className="grid gap-2 sm:grid-cols-2">
+        <label className="block text-xs text-vx-faint">Counsellor feedback
+          <select className={cx(input, "mt-1")} value={f.feedback} onChange={(e) => set("feedback", e.target.value)}>
+            <option value="">Not given</option>
+            {COUNSELLOR_FEEDBACK.map((v) => <option key={v} value={v}>{FEEDBACK_LABEL[v]}</option>)}
+          </select>
+        </label>
+        <label className="block text-xs text-vx-faint">Parent present?
+          <select className={cx(input, "mt-1")} value={f.parentPresent} onChange={(e) => set("parentPresent", e.target.value)}>
+            <option value="">Not given</option>
+            {PARENT_PRESENT.map((v) => <option key={v} value={v}>{PARENT_LABEL[v]}</option>)}
+          </select>
+        </label>
+        <label className="block text-xs text-vx-faint">Already connected with existing students?
+          <select className={cx(input, "mt-1")} value={f.connected} onChange={(e) => set("connected", e.target.value as CounsellingFormInput["connected"])}>
+            <option value="">Not given</option><option value="yes">Yes</option><option value="no">No</option>
+          </select>
+        </label>
+        <label className="block text-xs text-vx-faint">Came to know about Vedam from?
+          <input className={cx(input, "mt-1")} maxLength={HEARD_FROM_MAX} value={f.heardFrom} onChange={(e) => set("heardFrom", e.target.value)} placeholder="e.g. a friend, Instagram, school" />
+        </label>
+      </div>
+      <textarea className={input} rows={2} maxLength={REMARKS_MAX} placeholder="Counsellor remarks (optional)" value={f.remarks} onChange={(e) => set("remarks", e.target.value)} aria-label="Counsellor remarks" />
+
+      <div className="grid gap-2 sm:grid-cols-[9rem_1fr]">
+        <label className="block text-xs text-vx-faint">Adjustment (−5 to +5)
+          <input className={cx(input, "mt-1 tabular-nums")} type="number" step={1} min={ADJUST_MIN} max={ADJUST_MAX} inputMode="numeric"
+            value={f.adjust} onChange={(e) => set("adjust", e.target.value)} />
+        </label>
+        <label className="block text-xs text-vx-faint">Why (needed if the adjustment is not 0)
+          <input className={cx(input, "mt-1")} maxLength={500} value={f.adjustReason} onChange={(e) => set("adjustReason", e.target.value)} disabled={adjOk && adjNum === 0} />
+        </label>
+      </div>
+      <p className="text-sm text-vx-ink tabular-nums">
+        Scholarship awarded: <b className="font-semibold">{awarded === null ? "—" : `${awarded}%`}</b>
+        {awarded !== null && adjNum !== 0 && <span className="text-xs text-vx-faint"> (formula {calc}% {adjNum > 0 ? "+" : "−"} {Math.abs(adjNum)})</span>}
+        {awarded !== null && Number.isFinite(fee) && fee > 0 && (
+          <span className="block text-xs text-vx-faint">
+            Scholarship ₹{Math.round(fee * awarded / 100).toLocaleString("en-IN")} · 1st year ₹{Math.round(fee * awarded / 100 / 4).toLocaleString("en-IN")} · fee after scholarship ₹{Math.round(fee - fee * awarded / 100).toLocaleString("en-IN")}
+          </span>
+        )}
+      </p>
       <button className={primary} disabled={busy || step === null} onClick={submit}>{busy ? "Saving…" : "Save counselling"}</button>
+      <p className="text-xs text-vx-faint">The form is saved once. The stage does not move: admissions moves the student on by hand.</p>
       <Msg text={msg} />
     </div>
   );

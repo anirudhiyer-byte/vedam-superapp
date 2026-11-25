@@ -230,3 +230,31 @@ describe("0165/0166: Join link, reschedule counts, status columns", () => {
     expect(columnLabel("counselling_reschedules")).toBe("Counselling reschedules");
   });
 });
+
+describe("Counselling table: the 'Selected for counselling' sheet (0184)", () => {
+  it("defaults to the booking columns, then the sheet's columns in order, the fee maths at the end", () => {
+    const c = DEFAULT_COLUMNS.couns;
+    expect(c.slice(0, 4)).toEqual(["registered_name", "campus", "vsat", "stage"]);
+    const at = (k: string) => c.indexOf(k);
+    for (const k of ["pi_score_x20", "iv_cs_x20", "iv_lr_x20", "cs_score", "cs_feedback", "cs_parent_present", "cs_connected_students",
+      "cs_heard_from", "cs_remarks", "campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee"]) expect(at(k)).toBeGreaterThan(0);
+    expect(at("interview_score")).toBeLessThan(at("pi_score_x20"));
+    expect(at("counselling_calculated_pct")).toBeLessThan(at("cs_adjust_pct"));
+    expect(at("cs_adjust_pct")).toBeLessThan(at("counselling_pct"));
+    expect(at("counselling_pct")).toBeLessThan(at("cs_feedback"));
+    expect(at("campus_fee")).toBeLessThan(at("cs_scholarship_amount"));
+    expect(at("cs_first_year_scholarship")).toBeLessThan(at("cs_actual_fee"));
+    expect(new Set(c).size).toBe(c.length); // a column shows once
+  });
+  it("cells: Zoom in the Meet column, rupees for the fee columns, a signed adjustment, the sheet's words", () => {
+    expect(formatValue("text", "counselling_meet", "zoom")).toBe("Zoom");
+    expect(formatValue("num", "campus_fee", 1850000)).toBe("₹18,50,000");
+    expect(formatValue("num", "cs_first_year_scholarship", 161875)).toBe("₹1,61,875");
+    expect(formatValue("num", "cs_adjust_pct", 5)).toBe("+5%");
+    expect(formatValue("num", "cs_adjust_pct", -2)).toBe("-2%");
+    expect(formatValue("num", "cs_adjust_pct", 0)).toBe("0%");
+    expect(formatValue("text", "cs_feedback", "may_or_may_not")).toBe("May or may not");
+    expect(formatValue("text", "cs_parent_present", "mother")).toBe("Yes (Mother)");
+    expect(columnLabel("cs_heard_from")).toBe("Came to know about Vedam from");
+  });
+});
