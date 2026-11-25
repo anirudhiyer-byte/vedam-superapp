@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { book } from "@/lib/peerpath/client";
 import { popupFor, type BookFailCode, type Popup } from "@/lib/peerpath/booking-codes";
 import { ttsPath } from "@/lib/peerpath/constants";
+import { cleanQuestion } from "@/lib/peerpath/question";
 import { VerifyEmailStep } from "./verify-email-step";
 
 type Contact = { name: string; email: string | null; phone: string | null; complete: boolean };
@@ -27,6 +28,7 @@ export function BookingForm(p: Props) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [agreeError, setAgreeError] = useState(false);
+  const [questionError, setQuestionError] = useState(false);
   const [popup, setPopup] = useState<Popup | null>(null);
   const [verified, setVerified] = useState(false);
   const sending = useRef(false); // stops a double-click before React re-renders
@@ -42,11 +44,11 @@ export function BookingForm(p: Props) {
     e.preventDefault();
     if (sending.current) return;
     const form = new FormData(e.currentTarget);
-    if (form.get("agree") !== "on") {
-      setAgreeError(true);
-      return;
-    }
-    setAgreeError(false);
+    const question = cleanQuestion(form.get("question"));
+    const agreed = form.get("agree") === "on";
+    setQuestionError(question === null);
+    setAgreeError(!agreed);
+    if (question === null || !agreed) return;
     sending.current = true;
     setBusy(true);
     const res = await book({
@@ -54,7 +56,7 @@ export function BookingForm(p: Props) {
       start: p.start,
       type: p.type,
       duration: p.duration,
-      question: String(form.get("question") ?? "").trim() || null,
+      question,
       rescheduleOf: p.rescheduleOf ?? null,
     });
     if (res.ok) {
@@ -95,9 +97,25 @@ export function BookingForm(p: Props) {
 
         <div className="flex flex-col gap-1.5">
           <label htmlFor="question" className="pp-label">
-            What do you want to ask? <span className="font-normal text-pp-muted">(optional)</span>
+            What do you want to ask?
           </label>
-          <textarea id="question" name="question" rows={3} maxLength={500} className="pp-field py-3" placeholder="e.g. How did you prepare for the VSAT interview?" />
+          <textarea
+            id="question"
+            name="question"
+            rows={3}
+            maxLength={500}
+            required
+            aria-required="true"
+            aria-invalid={questionError}
+            aria-describedby={questionError ? "question-err" : undefined}
+            className="pp-field py-3"
+            placeholder="e.g. How did you prepare for the VSAT interview?"
+          />
+          {questionError && (
+            <p id="question-err" className="text-[13px] font-medium text-[#FF7A6E]">
+              Please write what you want to ask.
+            </p>
+          )}
         </div>
 
         <div className="flex flex-col gap-1.5">

@@ -36,7 +36,6 @@ export default async function PeerPathPage() {
           <Link href={TTS} className="pp-btn-primary px-8 text-[16px]">
             Talk to a Senior <span aria-hidden>→</span>
           </Link>
-          <p className="text-[14px] text-pp-muted">Free · No account needed · Google Meet</p>
         </div>
         <ul className="flex flex-wrap gap-2 pt-2">
           {ASK.map((a) => (
