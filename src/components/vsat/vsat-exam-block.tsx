@@ -80,8 +80,14 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
     }
   }
 
-  const mockGiven = app.mock_given === true;
   const mockResult = (app.mock_result as Record<string, unknown> | null) ?? null;
+  const mockHasResult = !!mockResult && Object.keys(mockResult).length > 0;
+  // Completed = a real result is in (mock_given is only set when a genuine result was stored).
+  const mockDone = app.mock_given === true;
+  // In progress = launched/assigned but no result yet. We can't tell "finished, awaiting result"
+  // from "launched then bailed" without the Wheebox callback, so we don't claim "completed" here —
+  // we show an awaiting-result state and let them resume if they didn't finish.
+  const mockInProgress = !mockDone && (app.mock_assigned === true || app.mock_launched_at != null);
 
   // resolve the chosen date's window (from the open-dates list; falls back to the stored start)
   const sel = dates.find((d) => d.id === examDateId);
@@ -96,16 +102,22 @@ export function VsatExamBlock({ app, onChange, isAdmin = false, mockEnabled = fa
     <div className={card}>
       {/* MOCK */}
       <h2 className="font-display text-xl font-bold">Mock test</h2>
-      {mockGiven ? (
+      {mockDone ? (
         <div className="mt-2">
           <p className="text-sm text-[#16a34a]">Mock completed ✓</p>
-          {mockResult && (
+          {mockHasResult && (
             <div className="mt-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
-              {Object.entries(mockResult).map(([k, v]) => (
+              {Object.entries(mockResult as Record<string, unknown>).map(([k, v]) => (
                 <div key={k} className="rounded-lg bg-[#f6f3fd] px-3 py-2"><span className="text-[#6b647e]">{k}</span>: <b>{String(v)}</b></div>
               ))}
             </div>
           )}
+        </div>
+      ) : mockInProgress ? (
+        <div className="mt-2">
+          <p className="text-sm font-semibold text-[#7b2ff7]">Mock in progress</p>
+          <p className="mt-1 text-sm text-[#6b647e]">Once you finish, your result will appear here (it can take a little while to process).</p>
+          <button onClick={() => launch("mock")} disabled={busy} className="mt-3 text-xs font-semibold text-[#7b2ff7] underline disabled:opacity-50">{busy ? "Opening…" : "Didn’t finish? Re-enter the mock"}</button>
         </div>
       ) : (
         <>
