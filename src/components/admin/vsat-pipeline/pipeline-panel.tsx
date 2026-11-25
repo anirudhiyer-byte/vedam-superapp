@@ -14,6 +14,7 @@ import {
 } from "@/lib/vsat/grid";
 import { CommsBroadcast } from "@/components/admin/comms-broadcast";
 import { StudentDrawer } from "./student-drawer";
+import { BulkImportDialog } from "@/components/admin/vsat-app-admin-tools";
 import { FacetPick, type Opt } from "./facet-pick";
 import { ExamAnalysisCard, ProctoringBar, VpsEditDialog, type VpsTarget } from "./exam-tools";
 import type { Batch } from "./types";
@@ -104,6 +105,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const [recipients, setRecipients] = useState<{ user_id: string; email: string | null; phone: string | null; full_name: string | null; state: string | null; city: string | null }[]>([]);
   const [notice, setNotice] = useState("");
   const [vpsEdit, setVpsEdit] = useState<VpsTarget | null>(null);
+  const [showImport, setShowImport] = useState(false);
 
   // catalogue (what this person may show) + VSAT list; saved column choice is checked against the catalogue
   useEffect(() => {
@@ -233,7 +235,8 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
   const total = data?.total ?? 0;
   return (
     <div className="space-y-4 p-4 font-sans text-vx-ink sm:p-8">
-      <PageHead title={TITLE[panel]} count={`${loading && !data ? "…" : total.toLocaleString("en-IN")} student${total === 1 ? "" : "s"}${anyFilter ? " match" : ""}`} />
+      <PageHead title={TITLE[panel]} count={`${loading && !data ? "…" : total.toLocaleString("en-IN")} student${total === 1 ? "" : "s"}${anyFilter ? " match" : ""}`}
+        actions={panel === "apps" && roles.admin ? <button className={cx(vx.btn, vx.secondary)} onClick={() => setShowImport(true)}>Import CSV</button> : undefined} />
       {/* ── filters ───────────────────────────────── */}
       <div className="flex flex-wrap items-start gap-2">
         <div className="flex h-10 items-stretch overflow-hidden rounded-[11px] border border-vx-line2 bg-black/20 focus-within:border-vx-violet focus-within:ring-2 focus-within:ring-vx-violet/30">
@@ -360,6 +363,7 @@ export function PipelinePanel({ panel, roles }: { panel: PanelKey; roles: VsatRo
       {vpsEdit && <VpsEditDialog target={vpsEdit} onClose={() => setVpsEdit(null)} onDone={() => setReload((n) => n + 1)} />}
 
       {openId && <StudentDrawer id={openId} roles={roles} onClose={() => setOpenId(null)} onChanged={() => setReload((n) => n + 1)} />}
+      {showImport && <BulkImportDialog onClose={() => setShowImport(false)} />}
 
       {showCols && <ColumnsDrawer catalog={catalog} cols={cols} panel={panel} onChange={setColumns} onClose={() => setShowCols(false)} />}
 
