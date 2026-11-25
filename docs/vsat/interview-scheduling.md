@@ -19,7 +19,7 @@ stops claiming new work after 2 minutes (was 2.5) to leave time for them.
 |---|---|---|
 | Schedule one student (drawer) | admin, admissions | Picks interviewer and date/time (IST). Since 0166 this only fills the student's row (*Not sent*); the invite goes out from the list with **Send**, like every other row. Google Meet only (no own link, 30 min). |
 | Book from the rows (like the sheet) | admin, admissions | Each row has **Interviewer**, **Date** and **Time** (IST). What you type is saved as *Not sent* (the whole team sees it, it survives a refresh). Select rows → **Send** (a short confirm in the bar, no popup) → each row is booked with its own time, its own Google Meet and its own emails. Up to 40 per send. |
-| Locked rows | admin, admissions | A row can be edited only at *VSAT cleared* / *Interview scheduled* (counselling: *PI cleared* / *Counselling scheduled*), not *Not selected*, and before the meeting is submitted. Other rows are greyed out and the status cell says why, for example *Locked: Offer sent*, *Locked: Not selected* or *Locked: Interview done*; hover shows the rule. Screen only: the database rule (`vsat_interview_plan` / `vsat_counselling_plan`) is unchanged. |
+| Locked rows | admin, admissions | A row can be edited only at *VSAT cleared* / *Interview scheduled* (counselling: *PI cleared* / *Counselling scheduled*), not *Not selected*, and before the meeting is submitted. On other rows the Interviewer, Date and Time cells are plain text with a padlock (the booking, or "—"), not greyed-out dropdowns that look broken (owner's review, 25 Nov 2026), and the status cell says why, for example *Locked: Offer sent*, *Locked: Not selected* or *Locked: Interview done*; hover on any of them shows the rule. Screen only: the database rule (`vsat_interview_plan` / `vsat_counselling_plan`) is unchanged. |
 | Fill times | admin, admissions | In the selection bar: interviewer + start → back-to-back 30-minute times for the selected rows that aren't booked yet (busy times skipped). Only fills the rows; nothing is sent. |
 | Reschedule | admin, admissions | Change the row (then Send → "moved" emails), or the student page form. The same Google event is moved (the Meet link stays the same). **Undo** on a row drops the change. |
 | Cancel | admin, admissions | Needs a reason. The Google event is deleted. Since 0166 the stage does not change. |
@@ -84,6 +84,26 @@ staging the same way). DB tests: `vsat_meet_only.test.sql` (11), `vsat_student_s
 interview, row booking, counselling and panel suites were updated where they pasted a link (now: refused, or an old
 own-link row made by hand in the test).
 
+## Meet attendance and the team count at any stage (0169)
+
+Found while checking attendance for the owner (25 Nov 2026): since 0166 the stage no longer follows the booking, but
+two places still looked for the old automatic stage.
+
+- **Meet attendance** was read only at *Interview scheduled* / *Counselling scheduled*. A booking sent while the
+  student is still at *VSAT cleared* / *PI cleared* (normal now) never got its Status from Meet. Now it is read at
+  every stage where staff can set the Status: interview at *VSAT cleared*, *Interview scheduled*, *Interviewed*,
+  *PI not appeared*; counselling at *PI cleared*, *Counselling scheduled*, *Counselled*, *Counselling not appeared*.
+  A row already marked (by hand or by Meet), cancelled, submitted or of another attempt is still never touched.
+- **Settings → Team, "open" count** (the warning before switching an interviewer or counsellor off) counted only
+  students at the scheduled stage. Now it counts live bookings (not cancelled, not submitted, Status not *Done*) of
+  students still at a bookable stage, so a booking sent at *VSAT cleared* / *PI cleared* is counted.
+
+Migration `0169_vsat_attendance_any_stage` (same signatures and grants; rollback
+`supabase/rollback/0169_vsat_attendance_any_stage_down.sql` puts back the 0140 / 0145 / 0098 bodies; tested on
+staging: down → every body equals the original md5, ACLs unchanged → staging identical afterwards). DB test:
+`vsat_attendance_any_stage.test.sql` (12; it failed before the migration). The interview (93), counselling (43) and
+settings / team (50) suites still pass.
+
 ## Student side
 
 The dashboard interview card calls `vsat_my_interview()` (by login only). It shows the date and time in IST.
@@ -116,6 +136,32 @@ waiting for a Meet link) runs only when called by hand: `GET /api/cron/vsat-inte
 | Google event | Made, moved or deleted. 5 tries, then *Failed* (staff can retry; since 0167 there is no own link). Not retried when the time has passed, an email is missing, or staging test mode blocks a guest. |
 | Attendance | Read from Meet after the slot ends. Both joined together → *done*. Nobody / only one person joined → *no-show* (Status column only; since 0166 the stage and pipeline status do not change). Short call or no Meet record → left for staff to mark. Staff can always change it. |
 | Emails | Through the existing **VSAT comms** steps (same sender as the other VSAT emails). Waits up to 20 minutes for the Meet link, then sends with the dashboard link. |
+
+### How attendance is captured (checked in the code, 25 Nov 2026)
+
+Sir asked to confirm this. Attendance is the **Status** column (Done / No-show / Rescheduled). It never moves the stage.
+
+1. **From Google Meet, automatically.** Only for Google Meet bookings (every booking since 0167), and only once
+   the admissions Google account is connected (scope `meetings.space.readonly`). Until then nothing is read.
+2. **When.** The VSAT job runs every 10 minutes (on production by Vercel cron; on staging only when called by hand).
+   It picks bookings that ended at least 10 minutes ago and have no Status yet (`vsat_interview_attendance_due`),
+   at any stage where staff can set the Status (since 0169; before, only at *Interview scheduled*).
+3. **What it reads.** Google Meet's call records for that meeting code, from 30 minutes before the slot to
+   60 minutes after it, and each person's time in the call.
+4. **The rule** (`decideAttendance`): a person counts only after 1 minute in the call (between 15 minutes before
+   the slot and 60 minutes after it).
+   - **Done**: at least 2 people were in the call together for 5 minutes or more.
+   - **No-show**: nobody joined, or only one person joined.
+   - **Left for staff** (Status stays *Not marked yet*): a shorter call, or no Meet record 2 hours after the end.
+5. **Still going.** If the call is still on, it tries again on the next run, up to 12 times or 24 hours. Then it
+   leaves the row for staff.
+6. **By hand, always.** The interviewer can set the Status of their own student once; admissions can set it for
+   one row or up to 100 selected rows, and change an earlier mark with a reason. Done / No-show only after the
+   slot starts; Rescheduled any time. A mark made by hand is never overwritten by Meet.
+7. **Limit.** Meet reports how many people joined, not who. "Only one person joined" is marked No-show even if
+   that person was the student; staff can change it.
+8. **Counselling.** The same rules apply today. Once counselling moves to the counsellor's Zoom link (Phase 4),
+   Google cannot read Zoom calls, so counselling Status will be marked by hand.
 
 ### Who gets which email
 
@@ -151,6 +197,14 @@ A separate Google Workspace account (not the PeerPath one), for example `admissi
 | `ADMISSIONS_INVITE_MODE` | `live` in production only. Anything else = test mode. |
 | `ADMISSIONS_TEST_EMAILS` | staging: comma-separated emails Google may invite |
 
+**Separate invites (decided 25 Nov 2026).** Each booking is one Google event owned by the admissions account, with the
+student and the interviewer (or counsellor) as guests. Google sends each guest their own invite. The guest list is
+hidden (`guestsCanSeeOtherGuests: false`) and the title has only the student's name, so the student does not see who
+the interviewer or counsellor is before the call. Two separate events sharing one Meet were not used: guests of the
+second event may have to "ask to join", and the admissions host never joins. To check in the first real-email test on
+staging, with screenshots for the owner. In the Workspace admin console, Meet's **"Host must join before anyone else"**
+must stay off for the admissions account.
+
 In test mode, Google invites go out **only** when every guest is on `ADMISSIONS_TEST_EMAILS`; otherwise the row
 shows *Failed — staging test mode*. Without these values, interviews still save and emails still go; the Meet
 column stays *Creating*.
@@ -169,7 +223,8 @@ column stays *Creating*.
 
 1. Apply migrations 0140 and 0143 on production (in that order). With Phase 3: then 0144 (offers) and 0145 (counselling).
    Then 0158, 0165 (Join link + reschedule columns), 0166 (stages by hand, Status, bulk status), 0167 (Google Meet
-   only) and 0168 (the student sees the booking once it is sent).
+   only), 0168 (the student sees the booking once it is sent) and 0169 (Meet attendance and the team count at any
+   stage).
 2. Set the `ADMISSIONS_*` env in Vercel **Production** (`ADMISSIONS_INVITE_MODE=live`).
 3. Merge to `main` (the cron entry comes with `vercel.json`).
 4. In *VSAT → Comms*, check the six interview steps' copy, then turn them on and off test mode.

@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import { errorText, istSlot } from "@/lib/vsat/pipeline";
 import {
-  SEND_MAX, blockedText, cellValues, draftPayload, fillResultText, isEditable, lockedStatus, parsePlan, sameCells, selectionSummary, sendLabel,
+  SEND_MAX, blockedText, cellValues, draftPayload, fillResultText, isEditable, lockedCells, lockedStatus, parsePlan, sameCells, selectionSummary, sendLabel,
   sendResultText, statusOf, toPlanRow, type CellValues, type FillResult, type PlanRow, type SendResult,
 } from "@/lib/vsat/interview-plan";
 import { syncInterviewsNow } from "./interview-tools";
@@ -128,11 +128,39 @@ const who = (t: TeamMember, track: Track) => t.name ?? t.email ?? track.Host;
 /** "Interview" / "Counselling" (the aria labels of the date and time cells). */
 const short = (track: Track) => track.Noun.split(" ")[0];
 
+type LockProps = { stage?: string; status?: string };
+
+/** A small padlock (decorative: the words beside it say what is locked). */
+function LockIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5 shrink-0">
+      <path fill="currentColor" d="M4 7V5a4 4 0 0 1 8 0v2h.5A1.5 1.5 0 0 1 14 8.5v5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5v-5A1.5 1.5 0 0 1 3.5 7H4Zm1.5 0h5V5a2.5 2.5 0 0 0-5 0v2Z" />
+    </svg>
+  );
+}
+
+/**
+ * A locked row (stage past booking, Not selected, or already done) shows its booking as plain words with a
+ * padlock and the reason on hover, not a greyed-out dropdown that looks broken (owner's review, 24 Nov 2026).
+ */
+function LockedCell({ width, text, planner, stage, status }: { width: string; text: string; planner: Planner } & LockProps) {
+  const why = lockedStatus(planner.track, stage, status);
+  return (
+    <span className={cx("inline-flex h-8 cursor-help items-center gap-1.5 text-[13px] text-vx-faint", width)} title={why.title}>
+      <LockIcon /><span className="sr-only">Locked: </span><span className="truncate">{text}</span>
+    </span>
+  );
+}
+
 /** Interviewer dropdown of one row. */
-export function PlanInterviewer({ app, name, planner }: { app: string; name: string; planner: Planner }) {
+export function PlanInterviewer({ app, name, planner, stage, status }: { app: string; name: string; planner: Planner } & LockProps) {
   const row = planner.plan.get(app);
   const v = planner.cells(app);
-  const known = planner.interviewers.some((t) => t.user_id === v.interviewer_id);
+  const known = planner.interviewers.find((t) => t.user_id === v.interviewer_id);
+  if (row?.state === "locked") {
+    const text = !v.interviewer_id ? "—" : known ? who(known, planner.track) : `Inactive ${planner.track.host}`;
+    return <LockedCell width="w-44" text={text} planner={planner} stage={stage} status={status} />;
+  }
   return (
     <select className={cx(cell, "w-44")} value={v.interviewer_id} disabled={!isEditable(row)} aria-label={`${planner.track.Host} for ${name}`}
       onChange={(e) => planner.setCell(app, { interviewer_id: e.target.value })}>
@@ -144,19 +172,23 @@ export function PlanInterviewer({ app, name, planner }: { app: string; name: str
 }
 
 /** Date (IST) of one row. */
-export function PlanDate({ app, name, planner }: { app: string; name: string; planner: Planner }) {
+export function PlanDate({ app, name, planner, stage, status }: { app: string; name: string; planner: Planner } & LockProps) {
+  const row = planner.plan.get(app);
   const v = planner.cells(app);
+  if (row?.state === "locked") return <LockedCell width="w-[9.5rem]" text={lockedCells(v).date} planner={planner} stage={stage} status={status} />;
   return (
-    <input type="date" className={cx(cell, "w-[9.5rem]")} value={v.date} disabled={!isEditable(planner.plan.get(app))}
+    <input type="date" className={cx(cell, "w-[9.5rem]")} value={v.date} disabled={!isEditable(row)}
       aria-label={`${short(planner.track)} date for ${name} (IST)`} onChange={(e) => planner.setCell(app, { date: e.target.value })} />
   );
 }
 
 /** Time (IST) of one row, 5-minute steps. */
-export function PlanTime({ app, name, planner }: { app: string; name: string; planner: Planner }) {
+export function PlanTime({ app, name, planner, stage, status }: { app: string; name: string; planner: Planner } & LockProps) {
+  const row = planner.plan.get(app);
   const v = planner.cells(app);
+  if (row?.state === "locked") return <LockedCell width="w-[7.5rem]" text={lockedCells(v).time} planner={planner} stage={stage} status={status} />;
   return (
-    <input type="time" step={300} className={cx(cell, "w-[7.5rem]")} value={v.time} disabled={!isEditable(planner.plan.get(app))}
+    <input type="time" step={300} className={cx(cell, "w-[7.5rem]")} value={v.time} disabled={!isEditable(row)}
       aria-label={`${short(planner.track)} time for ${name} (IST)`} onChange={(e) => planner.setCell(app, { time: e.target.value })} />
   );
 }

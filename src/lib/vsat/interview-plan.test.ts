@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   EMPTY_CELLS, blockedText, cellValues, draftPayload, fillResultText, isEditable, isSendable, parsePlan, sameCells, selectionSummary,
-  lockedStatus, sendLabel, sendResultText, statusOf, toPlanRow, type PlanRow,
+  lockedCells, lockedStatus, sendLabel, sendResultText, statusOf, toPlanRow, type PlanRow,
 } from "./interview-plan";
 import { TRACKS } from "./tracks";
 
@@ -137,6 +137,24 @@ describe("result messages", () => {
   it("long skip lists are shortened", () => {
     const skipped = Array.from({ length: 6 }, (_, i) => ({ application_id: `S${i}`, name: `N${i}`, code: "CLASH" }));
     expect(sendResultText({ sent: [], skipped })).toMatch(/and 2 more\.$/);
+  });
+});
+
+describe("locked rows show their booking as words, not a greyed-out dropdown", () => {
+  it("date as '31 Oct 2026' and time as '19:00' (IST, from the cells)", () => {
+    expect(lockedCells({ interviewer_id: I1, date: "2026-10-31", time: "19:00" })).toEqual({ date: "31 Oct 2026", time: "19:00" });
+    expect(lockedCells({ interviewer_id: I1, date: "2026-01-05", time: "09:30" })).toEqual({ date: "5 Jan 2026", time: "09:30" });
+  });
+  it("nothing booked → a dash", () => {
+    expect(lockedCells(EMPTY_CELLS)).toEqual({ date: "—", time: "—" });
+  });
+  it("a value that is not a real date or time → a dash, never 'undefined'", () => {
+    expect(lockedCells({ interviewer_id: "", date: "2026-13-01", time: "7pm" })).toEqual({ date: "—", time: "—" });
+    expect(lockedCells({ interviewer_id: "", date: "2026-00-10", time: "" })).toEqual({ date: "—", time: "—" });
+  });
+  it("matches what a booked locked row's cells hold", () => {
+    const r = row({ application_id: "A", state: "locked", booked: { interviewer_id: I2, slot: "2026-10-31T13:30:00+00:00", duration_min: 30, meet_mode: "auto" } });
+    expect(lockedCells(cellValues(r))).toEqual({ date: "31 Oct 2026", time: "19:00" });
   });
 });
 
