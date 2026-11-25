@@ -4,11 +4,13 @@ import type { ReactNode } from "react";
 import { TtsNav } from "@/components/peerpath/tts-nav";
 import { CopyLink, SeniorStatusAction, StatusPill } from "@/components/peerpath/admin/senior-status";
 import { EmptyState, yearLabel } from "@/components/peerpath/ui";
-import { AdminTabList, AdminTabPanel, AdminTabsProvider, KeepTabLink } from "@/components/peerpath/admin/admin-tabs";
+import { AdminTabList, AdminTabPanel, AdminTabsProvider, KeepTabLink, RangeSwitch } from "@/components/peerpath/admin/admin-tabs";
 import { IconCalendar, IconCheck, IconFlag, IconInfo, IconStar, IconUsers, IconVideo } from "@/components/peerpath/icons";
 import { filterAdminByCampus, parseCampus } from "@/lib/peerpath/admin-filter";
 import {
+  blockedReasons,
   coverage,
+  IMPACT_RANGES,
   inviteFailed,
   isCapped,
   isDone,
@@ -18,6 +20,7 @@ import {
   IST_DAYS,
   needsActionCounts,
   needsMarking,
+  parseDays,
   parseTab,
   qualityStats,
   seniorRows,
@@ -28,11 +31,12 @@ import {
   whenGrid,
   type AdminTab,
   type CoverageItem,
+  type ImpactRangeKey,
 } from "@/lib/peerpath/admin-insights";
 import { CAMPUS_INFO, CAMPUSES, ttsPath, type Campus } from "@/lib/peerpath/constants";
-import { isAdminUser, loadAdmin } from "@/lib/peerpath/server";
+import { isAdminUser, loadAdmin, loadAdminInsights } from "@/lib/peerpath/server";
 import { fmtDay, fmtTime } from "@/lib/peerpath/slots";
-import type { AdminBooking, AdminData, BookingStatus, SeniorPrivate } from "@/lib/peerpath/types";
+import type { AdminBooking, AdminData, AdminInsights, BookingStatus, ImpactOutcome, ImpactRange, SeniorPrivate } from "@/lib/peerpath/types";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "PeerPath admin — Talk to a Senior · Vedam", robots: { index: false, follow: false } };
@@ -304,10 +308,10 @@ function ago(iso: string | null, now: number) {
 }
 
 /** Big number card with an icon chip and a soft glow; tone colours the number. */
-function Kpi({ label, value, sub, icon, tone = "default" }: { label: string; value: string | number; sub?: string; icon?: ReactNode; tone?: "default" | "warn" | "good" }) {
+function Kpi({ label, value, sub, icon, tone = "default", className = "" }: { label: string; value: string | number; sub?: string; icon?: ReactNode; tone?: "default" | "warn" | "good"; className?: string }) {
   const color = tone === "warn" ? "text-[#FF7A6E]" : tone === "good" ? "text-[#4ADE80]" : "text-pp-heading";
   return (
-    <div className="pp-card relative flex flex-col gap-1.5 overflow-hidden p-4 sm:p-5">
+    <div className={`pp-card relative flex flex-col gap-1.5 overflow-hidden p-4 sm:p-5 ${className}`}>
       <span aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-pp-violet-500/15 blur-2xl" />
       <div className="flex items-center gap-2">
         {icon && <span className="grid h-7 w-7 place-items-center rounded-lg bg-pp-violet-100 text-pp-violet-700">{icon}</span>}
@@ -345,7 +349,7 @@ function HBar({ label, value, max, note, tone = "violet", labelClass = "w-[84px]
       <span className="relative h-2.5 flex-1 overflow-hidden rounded-full bg-pp-soft">
         <span className={`ppa-bar-x absolute inset-y-0 left-0 rounded-full ${fill}`} style={{ width: `${w}%` }} />
       </span>
-      <span className="w-[64px] flex-none text-right text-[13px] font-semibold tabular-nums text-pp-heading">
+      <span className="min-w-[64px] flex-none whitespace-nowrap text-right text-[13px] font-semibold tabular-nums text-pp-heading">
         {value}
         {note && <span className="ml-1 font-normal text-pp-muted">{note}</span>}
       </span>
@@ -785,6 +789,130 @@ function QualityTab({ v, now }: { v: AdminData; now: number }) {
   );
 }
 
+/* ===================== Impact tab (2B) — counts only, from pp_admin_insights ===================== */
+
+const MODE_TEXT: Record<string, { label: string; tone: string }> = {
+  off: { label: "Booking closed", tone: "bg-pp-soft text-pp-muted ring-pp-line" },
+  registered: { label: "Open to VSAT-registered applicants", tone: "bg-pp-violet-50 text-pp-violet-700 ring-pp-violet-500/30" },
+  paid: { label: "Open to applicants who paid the VSAT fee", tone: "bg-pp-orange-50 text-pp-orange-700 ring-pp-orange-500/30" },
+};
+const fmtDays = (d: number | null) => (d === null ? "–" : `${Number.isInteger(d) ? d : d.toFixed(1)} ${d === 1 ? "day" : "days"}`);
+
+/** One stacked bar: paid before / paid after / not paid, with a legend. */
+function PaidSplit({ o }: { o: ImpactOutcome }) {
+  const parts: [string, number, string][] = [
+    ["Paid after the chat", o.paid_after, "bg-gradient-to-r from-pp-orange-500 to-[#E80074]"],
+    ["Paid before the chat", o.paid_before, "bg-pp-violet-500"],
+    ["Not paid yet", o.not_paid, "bg-pp-soft"],
+  ];
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex h-4 w-full overflow-hidden rounded-full bg-pp-soft" role="img" aria-label={parts.map(([k, n]) => `${k}: ${n}`).join(", ")}>
+        {parts.map(([k, n, c]) => (n > 0 ? <span key={k} className={`ppa-bar-x h-full ${c}`} style={{ width: `${pct(n, o.applicants)}%` }} /> : null))}
+      </div>
+      <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[13px]">
+        {parts.map(([k, n, c]) => (
+          <li key={k} className="flex items-center gap-2 text-pp-muted">
+            <span aria-hidden className={`h-2.5 w-2.5 rounded-full ${c} ${c === "bg-pp-soft" ? "ring-1 ring-pp-line" : ""}`} />
+            {k} <b className="text-pp-heading">{n}</b> <span>({pct(n, o.applicants)}%)</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ImpactRangeView({ r, mode }: { r: ImpactRange; mode: string }) {
+  const dm = r.demand;
+  const o = r.outcome;
+  const reasons = blockedReasons(dm.blocked);
+  const maxPeople = Math.max(1, ...reasons.map((x) => x.people));
+  const blockedPeople = reasons.reduce((a, x) => a + x.people, 0);
+  return (
+    <>
+      <Panel title="Demand" sub="Everyone who pressed “Confirm booking”, allowed or blocked.">
+        {dm.attempts === 0 ? (
+          <SoftEmpty text="No booking tries in this range." />
+        ) : (
+          <>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <Kpi label="Tried to book" value={dm.people} sub={`${dm.attempts} ${dm.attempts === 1 ? "try" : "tries"}`} icon={<IconUsers className="h-4 w-4" />} />
+              <Kpi label="Booked" value={dm.people_booked} sub={`${pct(dm.people_booked, dm.people)}% of people who tried`} tone={dm.people_booked ? "good" : "default"} icon={<IconCheck className="h-4 w-4" />} />
+              <Kpi label="Blocked at least once" value={blockedPeople} sub="People may be blocked for more than one reason" tone={blockedPeople ? "warn" : "default"} icon={<IconFlag className="h-4 w-4" />} className="col-span-2 sm:col-span-1" />
+            </div>
+            <div className="flex flex-col gap-3">
+              <h3 className="text-[14px] font-semibold text-pp-heading">Why people were stopped</h3>
+              {reasons.length === 0 ? (
+                <p className="text-[13px] text-pp-muted">Nobody was blocked.</p>
+              ) : (
+                reasons.map((x) => (
+                  <HBar
+                    key={x.label}
+                    label={x.label}
+                    value={x.people}
+                    max={maxPeople}
+                    note={`· ${x.attempts} ${x.attempts === 1 ? "try" : "tries"}`}
+                    tone={x.label === "System error" ? "warn" : x.label === "Other" ? "violet" : "orange"}
+                    labelClass="w-[128px] sm:w-[190px]"
+                  />
+                ))
+              )}
+              <p className="text-[12px] text-pp-muted">Counted in people. A signed-out try counts as one person, because we can’t tell signed-out people apart.</p>
+            </div>
+          </>
+        )}
+      </Panel>
+
+      <Panel title="After the chat" sub="Signed-in applicants whose chat in this range is done. Paid = VSAT fee paid. Enrolled = enrollment approved.">
+        {o.applicants === 0 ? (
+          <SoftEmpty text="No finished chats from signed-in applicants in this range." />
+        ) : (
+          <>
+            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+              <Kpi label="Had a chat" value={o.applicants} icon={<IconVideo className="h-4 w-4" />} />
+              <Kpi label="Paid after the chat" value={o.paid_after} sub={`${pct(o.paid_after, o.applicants)}% of them`} tone={o.paid_after ? "good" : "default"} icon={<IconCheck className="h-4 w-4" />} />
+              <Kpi label="Enrolled" value={o.enrolled} sub={`${o.enrolled_after} after the chat`} tone={o.enrolled ? "good" : "default"} icon={<IconStar className="h-4 w-4" />} />
+              <Kpi label="Days chat → pay" value={o.median_days_to_pay ?? "–"} sub={`Median. Chat → enroll: ${fmtDays(o.median_days_to_enroll)}`} icon={<IconCalendar className="h-4 w-4" />} />
+            </div>
+            <PaidSplit o={o} />
+          </>
+        )}
+        {mode === "paid" && (
+          <p className="rounded-xl border border-pp-orange-500/30 bg-pp-orange-50 px-4 py-3 text-[13px] text-pp-orange-700">
+            In “paid” mode everyone who books has already paid — look at Enrolled.
+          </p>
+        )}
+      </Panel>
+    </>
+  );
+}
+
+function ImpactTab({ ins, days }: { ins: AdminInsights | null; days: ImpactRangeKey }) {
+  if (!ins) {
+    return (
+      <Panel title="Impact" sub="Is PeerPath helping admissions?">
+        <SoftEmpty text="Could not load these numbers. Please refresh in a minute." />
+      </Panel>
+    );
+  }
+  const m = MODE_TEXT[ins.mode] ?? MODE_TEXT.off;
+  return (
+    <>
+      <div className="flex flex-wrap items-center gap-3">
+        <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[12px] font-semibold ring-1 ring-inset ${m.tone}`}>
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-current" /> {m.label}
+        </span>
+        <span className="text-[12px] text-pp-muted">Booking tries are kept for 90 days. Pre-login bookings are not counted.</span>
+      </div>
+      <RangeSwitch
+        label="Date range"
+        initial={days}
+        items={IMPACT_RANGES.map((k) => ({ id: k, label: `${k} days`, node: <ImpactRangeView r={ins.ranges[k]} mode={ins.mode} /> }))}
+      />
+    </>
+  );
+}
+
 /** One href builder for the admin page; only whitelisted values go in. */
 function adminHref(campus: Campus | null, tab: AdminTab) {
   const q = new URLSearchParams();
@@ -794,12 +922,16 @@ function adminHref(campus: Campus | null, tab: AdminTab) {
   return s ? `${ttsPath.admin}?${s}` : ttsPath.admin;
 }
 
-export default async function AdminPage({ searchParams }: { searchParams: Promise<{ s?: string; campus?: string; tab?: string }> }) {
-  const { s: focus, campus: campusParam, tab: tabParam } = await searchParams;
-  // Both calls start together (one round-trip saved). pp_admin_all checks admin inside the database and returns
-  // nothing for anyone else, and the page still shows data only when isAdminUser() is true.
-  const [admin, data] = await Promise.all([isAdminUser(), loadAdmin()]);
+export default async function AdminPage({ searchParams }: { searchParams: Promise<{ s?: string; campus?: string; tab?: string; days?: string }> }) {
+  const { s: focus, campus: campusParam, tab: tabParam, days: daysParam } = await searchParams;
+  // ?s= (one senior's page) wins: ?campus= is ignored then and the page is the full, unfiltered one.
+  const hasFocus = typeof focus === "string" && focus !== "";
+  const campus = hasFocus ? null : parseCampus(campusParam);
+  // All calls start together (fewer round-trips). pp_admin_all and pp_admin_insights check admin inside the
+  // database and return nothing for anyone else, and the page still shows data only when isAdminUser() is true.
+  const [admin, data, insights] = await Promise.all([isAdminUser(), loadAdmin(), hasFocus ? Promise.resolve(null) : loadAdminInsights(campus)]);
   const d = admin ? data : null;
+  const ins = admin ? insights : null;
 
   if (!admin || !d) {
     return (
@@ -819,9 +951,6 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   }
 
   const now = Date.now();
-  // ?s= (one senior's page) wins: ?campus= is ignored then and the page is the full, unfiltered one.
-  const hasFocus = typeof focus === "string" && focus !== "";
-  const campus = hasFocus ? null : parseCampus(campusParam);
   const v = filterAdminByCampus(d, campus);
   const done = v.bookings.filter((b) => isDone(b, now)).length;
   const noShows = v.bookings.filter((b) => b.status === "no_show_applicant").length;
@@ -989,6 +1118,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                     { id: "sessions", label: "Sessions", href: adminHref(campus, "sessions"), icon: <IconVideo className="h-4 w-4" /> },
                     { id: "seniors", label: "Seniors", href: adminHref(campus, "seniors"), icon: <IconUsers className="h-4 w-4" /> },
                     { id: "quality", label: "Quality", href: adminHref(campus, "quality"), icon: <IconStar className="h-4 w-4" /> },
+                    { id: "impact", label: "Impact", href: adminHref(campus, "impact"), icon: <IconCheck className="h-4 w-4" /> },
                   ]}
                 />
                 {isCapped(d) && <p className="text-[13px] text-pp-muted">Based on the latest 2,000 chats.</p>}
@@ -1027,6 +1157,9 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
               </AdminTabPanel>
               <AdminTabPanel id="quality">
                 <QualityTab v={v} now={now} />
+              </AdminTabPanel>
+              <AdminTabPanel id="impact">
+                <ImpactTab ins={ins} days={parseDays(daysParam)} />
               </AdminTabPanel>
             </>
           )}

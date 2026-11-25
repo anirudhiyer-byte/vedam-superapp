@@ -57,7 +57,7 @@ export function AdminTabList({ items, label }: { items: TabItem[]; label: string
 
   return (
     <div>
-      <div role="tablist" aria-label={label} className="grid grid-cols-4 gap-1 rounded-2xl border border-pp-line bg-pp-card/80 p-1.5 shadow-pp-card backdrop-blur sm:inline-flex">
+      <div role="tablist" aria-label={label} className="grid grid-cols-5 gap-1 rounded-2xl border border-pp-line bg-pp-card/80 p-1.5 shadow-pp-card backdrop-blur sm:inline-flex">
         {items.map((t, i) => {
           const on = t.id === tab;
           return (
@@ -119,6 +119,53 @@ export function KeepTabLink({ href, className, children, current }: { href: stri
     <Link href={withTab(href, tab)} aria-current={current ? "page" : undefined} className={className}>
       {children}
     </Link>
+  );
+}
+
+export type RangeItem = { id: string; label: string; node: ReactNode };
+
+/**
+ * Instant range chips (e.g. 7 / 30 / 90 days). Every range is already rendered by the server from one
+ * database call; a chip only shows another panel and keeps ?days= in the address bar.
+ */
+export function RangeSwitch({ items, initial, label, param = "days" }: { items: RangeItem[]; initial: string; label: string; param?: string }) {
+  const [cur, setCur] = useState(items.some((i) => i.id === initial) ? initial : items[0]?.id);
+  function pick(id: string) {
+    setCur(id);
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set(param, id);
+      window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+    } catch {
+      /* the range still switches */
+    }
+  }
+  return (
+    <div className="flex flex-col gap-6">
+      <div role="group" aria-label={label} className="inline-flex w-fit gap-1 rounded-full border border-pp-line bg-pp-card/80 p-1">
+        {items.map((i) => {
+          const on = i.id === cur;
+          return (
+            <button
+              key={i.id}
+              type="button"
+              aria-pressed={on}
+              onClick={() => pick(i.id)}
+              className={`rounded-full px-4 py-1.5 text-[13px] font-semibold outline-none transition-all focus-visible:ring-2 focus-visible:ring-pp-violet-600 ${
+                on ? "bg-pp-violet-500 text-white shadow-[0_4px_14px_-4px_rgba(118,41,252,0.8)]" : "text-pp-muted hover:text-pp-heading"
+              }`}
+            >
+              {i.label}
+            </button>
+          );
+        })}
+      </div>
+      {items.map((i) => (
+        <div key={i.id} hidden={i.id !== cur} className={i.id === cur ? "ppa-in flex flex-col gap-6" : undefined}>
+          {i.node}
+        </div>
+      ))}
+    </div>
   );
 }
 

@@ -1,5 +1,6 @@
 import { LANGUAGES, TOPICS, type Campus } from "./constants";
-import type { AdminBooking, AdminData, AvailabilityRule, SeniorPrivate } from "./types";
+import { BOOK_CODES, type BookFailCode } from "./booking-codes";
+import type { AdminBooking, AdminData, AdminInsights, AvailabilityRule, ImpactRange, SeniorPrivate } from "./types";
 
 const HOUR = 3_600_000;
 
@@ -43,7 +44,7 @@ export function needsActionCounts(d: AdminData, now: number): NeedsAction {
 
 /* ---------- Tabs ---------- */
 
-export const ADMIN_TABS = ["overview", "sessions", "seniors", "quality"] as const;
+export const ADMIN_TABS = ["overview", "sessions", "seniors", "quality", "impact"] as const;
 export type AdminTab = (typeof ADMIN_TABS)[number];
 
 /** Reads ?tab=. Exact match against ADMIN_TABS only; anything else (arrays, junk, empty) is "overview". */
@@ -324,3 +325,100 @@ export function qualityStats(d: AdminData, now: number): Quality {
 /** pp_admin_all returns at most this many bookings (latest first). */
 export const BOOKING_LIMIT = 2000;
 export const isCapped = (d: AdminData) => d.bookings.length >= BOOKING_LIMIT;
+
+/* ---------- Impact tab (2B, pp_admin_insights) ---------- */
+
+export const IMPACT_RANGES = ["7", "30", "90"] as const;
+export type ImpactRangeKey = (typeof IMPACT_RANGES)[number];
+
+/** Reads ?days=. Only 7, 30 or 90; anything else is 30. */
+export function parseDays(v: unknown): ImpactRangeKey {
+  if (typeof v !== "string") return "30";
+  return IMPACT_RANGES.find((d) => d === v) ?? "30";
+}
+
+/** Plain words for why a booking try was blocked. Every booking code except OK has one. */
+export const BLOCK_LABELS: Record<BookFailCode, string> = {
+  NOT_LOGGED_IN: "Not signed in",
+  NOT_REGISTERED: "Not registered for VSAT",
+  PAYMENT_PENDING: "Payment pending",
+  EMAIL_MISSING: "No email",
+  EMAIL_NOT_VERIFIED: "No email",
+  SLOT_UNAVAILABLE: "Slot taken",
+  LIMIT_REACHED: "Limit reached",
+  RATE_LIMITED: "Too many tries",
+  BOOKING_CLOSED: "Booking closed",
+  SERVER: "System error",
+  INVALID: "Other",
+  RESCHEDULE_CLOSED: "Other",
+  FORBIDDEN: "Other",
+};
+const OTHER = "Other";
+const isFailCode = (c: string): c is BookFailCode => c !== "OK" && (BOOK_CODES as readonly string[]).includes(c);
+
+export type BlockedReason = { label: string; people: number; attempts: number };
+
+/** Groups the blocked codes under their labels (unknown codes → Other), most people first, Other last. */
+export function blockedReasons(blocked: Record<string, { attempts: number; people: number }>): BlockedReason[] {
+  const by = new Map<string, BlockedReason>();
+  for (const [code, v] of Object.entries(blocked)) {
+    if (code === "OK") continue;
+    const label = isFailCode(code) ? BLOCK_LABELS[code] : OTHER;
+    const cur = by.get(label) ?? { label, people: 0, attempts: 0 };
+    cur.people += v.people;
+    cur.attempts += v.attempts;
+    by.set(label, cur);
+  }
+  return [...by.values()].sort((a, b) => (a.label === OTHER ? 1 : 0) - (b.label === OTHER ? 1 : 0) || b.people - a.people || a.label.localeCompare(b.label));
+}
+
+const count = (v: unknown): number | null => {
+  const n = typeof v === "number" ? v : typeof v === "string" && v.trim() !== "" ? Number(v) : NaN;
+  return Number.isFinite(n) && n >= 0 ? n : null;
+};
+const obj = (v: unknown): Record<string, unknown> | null => (v && typeof v === "object" && !Array.isArray(v) ? (v as Record<string, unknown>) : null);
+
+function parseRange(v: unknown): ImpactRange | null {
+  const r = obj(v);
+  const d = obj(r?.demand);
+  const o = obj(r?.outcome);
+  if (!d || !o) return null;
+  const nums = <K extends string>(src: Record<string, unknown>, keys: readonly K[]) => {
+    const out = {} as Record<K, number>;
+    for (const k of keys) {
+      const n = count(src[k]);
+      if (n === null) return null;
+      out[k] = n;
+    }
+    return out;
+  };
+  const dn = nums(d, ["attempts", "people", "booked", "people_booked"] as const);
+  const on = nums(o, ["applicants", "paid_before", "paid_after", "not_paid", "enrolled", "enrolled_after"] as const);
+  if (!dn || !on) return null;
+  const blocked: ImpactRange["demand"]["blocked"] = {};
+  for (const [code, x] of Object.entries(obj(d.blocked) ?? {})) {
+    const e = obj(x);
+    const a = count(e?.attempts);
+    const p = count(e?.people);
+    if (/^[A-Z_]{1,40}$/.test(code) && a !== null && p !== null) blocked[code] = { attempts: a, people: p };
+  }
+  const median = (m: unknown) => (m === null || m === undefined ? null : count(m));
+  return {
+    demand: { ...dn, blocked },
+    outcome: { ...on, median_days_to_pay: median(o.median_days_to_pay), median_days_to_enroll: median(o.median_days_to_enroll) },
+  };
+}
+
+/** Checks the database answer; anything off-shape gives null (the page then shows a generic message). */
+export function parseAdminInsights(data: unknown): AdminInsights | null {
+  const d = obj(data);
+  const ranges = obj(d?.ranges);
+  if (!d || typeof d.mode !== "string" || !ranges) return null;
+  const out = {} as AdminInsights["ranges"];
+  for (const k of IMPACT_RANGES) {
+    const r = parseRange(ranges[k]);
+    if (!r) return null;
+    out[k] = r;
+  }
+  return { mode: d.mode, ranges: out };
+}
