@@ -3,11 +3,12 @@
  *
  *   sendOfferNotices   the offer emails through their VSAT comms steps:
  *                        released → "Offer released → student" (offer_released, with the Acceptance Letter)
- *                        reminder → "Offer: last day reminder → student" (offer_reminder, 0157)
+ *                        reminder_1 → "Offer: reminder 1 (3 days before) → student" (offer_reminder_1, 0189)
+ *                        reminder_2 → "Offer: reminder 2 (1 day before) → student" (offer_reminder_2, 0189)
  *                        lapsed   → "Offer lapsed → student" (offer_lapsed, 0157)
  *
- * The database queues the jobs (vsat_offer_events: one per release, per lapse, and one reminder per offer on its
- * last day at 10 am IST) and hands each job out once (vsat_offer_notices_claim). A job that no longer fits
+ * The database queues the jobs (vsat_offer_events: one per release, per lapse, and sir's two reminders per offer at
+ * 10 am IST, 3 days and 1 day before its last date) and hands each job out once (vsat_offer_notices_claim). A job that no longer fits
  * (offer cancelled or re-released, deadline passed, fee paid) is skipped there, so a student never gets an
  * outdated email. With the step or the comms master switch off, the job is closed as skipped (no late emails
  * when it is turned on). Called by the "send now" route after a release and by the VSAT cron (every 10 minutes,
@@ -28,7 +29,7 @@ if (typeof window !== "undefined") throw new Error("vsat/offer-sync is server-on
 
 type StepCfg = { step_key: string; title: string; enabled: boolean; test_mode: boolean; email_enabled: boolean; email_subject: string; email_body: string };
 type CampusCfg = { programme_fee: number | string | null; offer_days: number | null };
-/** `step` = offer_released; `steps` = the 0157 steps (reminder, lapsed). A missing step = off. */
+/** `step` = offer_released; `steps` = the other offer steps by job kind (reminder_1, reminder_2, lapsed). A missing step = off. */
 export type OfferNoticeConfig = {
   master: boolean; testEmail: string; step: StepCfg | null;
   steps?: Partial<Record<Exclude<OfferJobKind, "released">, StepCfg | null>>;
@@ -50,7 +51,10 @@ export async function loadOfferNoticeConfig(db: SupabaseClient): Promise<OfferNo
   const byKey = new Map(((stepRows ?? []) as StepCfg[]).map((r) => [r.step_key, r]));
   return {
     master: !!s?.master, testEmail: (s?.test_email ?? "").trim(), step: byKey.get(OFFER_STEP) ?? null,
-    steps: { reminder: byKey.get(OFFER_JOB_STEP.reminder) ?? null, lapsed: byKey.get(OFFER_JOB_STEP.lapsed) ?? null },
+    steps: {
+      reminder_1: byKey.get(OFFER_JOB_STEP.reminder_1) ?? null, reminder_2: byKey.get(OFFER_JOB_STEP.reminder_2) ?? null,
+      lapsed: byKey.get(OFFER_JOB_STEP.lapsed) ?? null,
+    },
     campus,
   };
 }
@@ -97,7 +101,8 @@ export async function sendOfferNotices(
     let failed = false;
     let why: string | null = null;
     // each kind has its own step; an unknown kind has none (closed as skipped)
-    const step = job.kind === "released" ? cfg.step : job.kind === "reminder" || job.kind === "lapsed" ? cfg.steps?.[job.kind] ?? null : null;
+    const step = job.kind === "released" ? cfg.step
+      : job.kind === "reminder_1" || job.kind === "reminder_2" || job.kind === "lapsed" ? cfg.steps?.[job.kind] ?? null : null;
     const to = step?.test_mode ? cfg.testEmail : (job.student.email ?? "").trim();
     if (sentTo.includes("student")) {
       // already delivered on an earlier try

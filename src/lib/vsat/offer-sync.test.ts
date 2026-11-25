@@ -125,18 +125,19 @@ describe("sendOfferNotices · Acceptance Letter attached", () => {
   });
 });
 
-describe("sendOfferNotices · last-day reminder and lapsed emails (0157)", () => {
+// 0189 (owner's decision 25 Nov, sir's review): the 0157 last-day reminder was replaced by Reminder 1 (3 days before the last date)
+// and Reminder 2 (1 day before), each with its own step; these tests now use those two kinds (same checks as for 0157)
+describe("sendOfferNotices · sir's two reminders (0189) and the lapsed email (0157)", () => {
+  const SUBJECT: Record<string, string> = { offer_reminder_1: "3 days left: {{scholarship}}%", offer_reminder_2: "Tomorrow: {{scholarship}}%", offer_lapsed: "Expired: {{scholarship}}%" };
   const step = (key: string, over: Partial<NonNullable<OfferNoticeConfig["step"]>> = {}) => ({
-    step_key: key, title: key === "offer_reminder" ? "Offer: last day reminder → student" : "Offer lapsed → student",
-    enabled: true, test_mode: false, email_enabled: true,
-    email_subject: key === "offer_reminder" ? "Last day: {{scholarship}}%" : "Expired: {{scholarship}}%",
+    step_key: key, title: key, enabled: true, test_mode: false, email_enabled: true, email_subject: SUBJECT[key] ?? "x",
     email_body: "<p>Dear {{student_name}}, {{campus}}, by {{deadline_date}} {{deadline_time}}</p>", ...over,
   });
   const cfg2 = (over: Partial<OfferNoticeConfig> = {}): OfferNoticeConfig =>
-    cfg({ steps: { reminder: step("offer_reminder"), lapsed: step("offer_lapsed") }, ...over });
+    cfg({ steps: { reminder_1: step("offer_reminder_1"), reminder_2: step("offer_reminder_2"), lapsed: step("offer_lapsed") }, ...over });
 
   it("reminder and lapsed jobs use their own step, carry no letter, and are recorded", async () => {
-    for (const kind of ["reminder", "lapsed"] as const) {
+    for (const kind of ["reminder_1", "reminder_2", "lapsed"] as const) {
       const sent: Record<string, unknown>[] = [];
       let drawn = 0;
       const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind }], vsat_offer_notice_done: {} });
@@ -146,7 +147,7 @@ describe("sendOfferNotices · last-day reminder and lapsed emails (0157)", () =>
       expect(r).toEqual({ jobs: 1, sent: 1, failed: 0, off: 0 });
       expect(drawn).toBe(0);
       expect(sent[0]).toMatchObject({
-        to: "ravi@example.com", subject: kind === "reminder" ? "Last day: 40%" : "Expired: 40%",
+        to: "ravi@example.com", subject: { reminder_1: "3 days left: 40%", reminder_2: "Tomorrow: 40%", lapsed: "Expired: 40%" }[kind],
         kind: `vsat_offer_${kind}`, userId: "lead-1", refId: "ev-1",
       });
       expect(sent[0]).not.toHaveProperty("attachments");
@@ -156,10 +157,11 @@ describe("sendOfferNotices · last-day reminder and lapsed emails (0157)", () =>
   });
 
   it("each kind follows only its own step: the offer step on does not send a reminder whose step is off", async () => {
-    for (const c of [cfg(), cfg2({ steps: { reminder: step("offer_reminder", { enabled: false }), lapsed: step("offer_lapsed") } }),
-                     cfg2({ steps: { reminder: step("offer_reminder", { email_enabled: false }) } }), cfg2({ master: false })]) {
+    for (const c of [cfg(), cfg2({ steps: { reminder_1: step("offer_reminder_1", { enabled: false }), reminder_2: step("offer_reminder_2"), lapsed: step("offer_lapsed") } }),
+                     cfg2({ steps: { reminder_1: step("offer_reminder_1", { email_enabled: false }) } }), cfg2({ master: false }),
+                     cfg2({ steps: { reminder_2: step("offer_reminder_2") } })]) {
       let n = 0;
-      const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "reminder" }], vsat_offer_notice_done: {} });
+      const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "reminder_1" }], vsat_offer_notice_done: {} });
       const r = await sendOfferNotices(db, { site: SITE }, { config: c, deliver: async () => { n++; return { ok: true }; } });
       expect(n).toBe(0);
       expect(r.off).toBe(1);
@@ -178,26 +180,29 @@ describe("sendOfferNotices · last-day reminder and lapsed emails (0157)", () =>
 
   it("test mode on the reminder step → the test inbox only", async () => {
     const sent: Record<string, unknown>[] = [];
-    const { db } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "reminder" }], vsat_offer_notice_done: {} });
+    const { db } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "reminder_2" }], vsat_offer_notice_done: {} });
     await sendOfferNotices(db, { site: SITE }, {
-      config: cfg2({ steps: { reminder: step("offer_reminder", { test_mode: true }) } }), deliver: async (o) => { sent.push(o); return { ok: true }; },
+      config: cfg2({ steps: { reminder_2: step("offer_reminder_2", { test_mode: true }) } }), deliver: async (o) => { sent.push(o); return { ok: true }; },
     });
     expect(sent[0]).toMatchObject({ to: "qa@vedam.org", userId: null });
   });
 
-  it("an unknown kind (e.g. cancelled) is never emailed: closed as skipped", async () => {
+  it("an unknown kind (e.g. cancelled, or the 0157 \"reminder\") is never emailed: closed as skipped", async () => {
     let n = 0;
-    const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: "cancelled" as unknown as OfferJob["kind"] }], vsat_offer_notice_done: {} });
-    const r = await sendOfferNotices(db, { site: SITE }, { config: cfg2(), deliver: async () => { n++; return { ok: true }; } });
+    for (const kind of ["cancelled", "reminder"]) {
+      const { db, calls } = fakeDb({ vsat_offer_notices_claim: [{ ...job, kind: kind as unknown as OfferJob["kind"] }], vsat_offer_notice_done: {} });
+      const r = await sendOfferNotices(db, { site: SITE }, { config: cfg2(), deliver: async () => { n++; return { ok: true }; } });
+      expect(r.off).toBe(1);
+      expect((calls.at(-1)!.args.p as { status: string }).status).toBe("skipped");
+    }
     expect(n).toBe(0);
-    expect(r.off).toBe(1);
-    expect((calls.at(-1)!.args.p as { status: string }).status).toBe("skipped");
   });
 
-  it("loadOfferNoticeConfig reads all three steps in one query", async () => {
+  it("loadOfferNoticeConfig reads all four steps in one query", async () => {
     const rows = [
       { step_key: "offer_released", title: "Offer released → student", enabled: true, test_mode: true, email_enabled: true, email_subject: "a", email_body: "b" },
-      { step_key: "offer_reminder", title: "Offer: last day reminder → student", enabled: false, test_mode: true, email_enabled: true, email_subject: "c", email_body: "d" },
+      { step_key: "offer_reminder_1", title: "Offer: reminder 1 (3 days before) → student", enabled: false, test_mode: true, email_enabled: true, email_subject: "c", email_body: "d" },
+      { step_key: "offer_reminder_2", title: "Offer: reminder 2 (1 day before) → student", enabled: true, test_mode: true, email_enabled: true, email_subject: "g", email_body: "h" },
       { step_key: "offer_lapsed", title: "Offer lapsed → student", enabled: true, test_mode: false, email_enabled: true, email_subject: "e", email_body: "f" },
     ];
     const asked: unknown[] = [];
@@ -210,11 +215,12 @@ describe("sendOfferNotices · last-day reminder and lapsed emails (0157)", () =>
     });
     const db = { from: (t: string) => q(t === "vsat_comm_steps" ? rows : null) } as unknown as SupabaseClient;
     const c = await loadOfferNoticeConfig(db);
-    expect(asked[0]).toEqual(["offer_released", "offer_reminder", "offer_lapsed"]);
+    expect(asked[0]).toEqual(["offer_released", "offer_reminder_1", "offer_reminder_2", "offer_lapsed"]);
     expect(c.master).toBe(true);
     expect(c.testEmail).toBe("qa@vedam.org");
     expect(c.step?.step_key).toBe("offer_released");
-    expect(c.steps?.reminder?.enabled).toBe(false);
+    expect(c.steps?.reminder_1?.enabled).toBe(false);
+    expect(c.steps?.reminder_2?.step_key).toBe("offer_reminder_2");
     expect(c.steps?.lapsed?.step_key).toBe("offer_lapsed");
   });
 });
