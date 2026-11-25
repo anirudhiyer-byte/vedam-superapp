@@ -6,37 +6,63 @@
  * mistakes before a round trip.
  */
 
+/**
+ * 0177 (owner's model, 25 Nov 2026): every outcome is a stage the admin picks —
+ * cleared / not cleared (sat it, failed) / not appeared (did not turn up) — and counselling never rejects.
+ */
 export const STAGES = [
   "applied", "application_fee_paid",
-  "booked", "eligible", "exam_taken", "vsat_cleared", "vsat_not_appeared",
-  "interview_scheduled", "interviewed", "pi_cleared", "pi_not_appeared",
+  "booked", "eligible", "exam_taken", "vsat_cleared", "vsat_not_cleared", "vsat_not_appeared",
+  "interview_scheduled", "interviewed", "pi_cleared", "pi_not_cleared", "pi_not_appeared",
   "counselling_scheduled", "counselled", "counselling_not_appeared", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled",
 ] as const;
 export type Stage = (typeof STAGES)[number];
 
-export const STATUSES = ["active", "not_selected", "absent", "on_hold"] as const;
+/** 0177: only Active (in progress) and On hold (paused); "not selected" / "absent" became stages. */
+export const STATUSES = ["active", "on_hold"] as const;
 export type Status = (typeof STATUSES)[number];
 
 export const STAGE_LABEL: Record<Stage, string> = {
   applied: "Applied", application_fee_paid: "Fee paid",
   booked: "Booked", eligible: "Eligible", exam_taken: "Exam taken", vsat_cleared: "VSAT cleared",
-  vsat_not_appeared: "VSAT not appeared",
+  vsat_not_cleared: "VSAT not cleared", vsat_not_appeared: "VSAT not appeared",
   interview_scheduled: "Interview scheduled", interviewed: "Interviewed", pi_cleared: "PI cleared",
-  pi_not_appeared: "PI not appeared",
+  pi_not_cleared: "PI not cleared", pi_not_appeared: "PI not appeared",
   counselling_scheduled: "Counselling scheduled", counselled: "Counselled", counselling_not_appeared: "Counselling not appeared",
   offer_sent: "Offer sent", enrolled: "Enrolled", offer_lapsed: "Offer lapsed", offer_cancelled: "Offer cancelled",
 };
 
-export const STATUS_LABEL: Record<Status, string> = {
-  active: "Active", not_selected: "Not selected", absent: "Absent", on_hold: "On hold",
-};
+export const STATUS_LABEL: Record<Status, string> = { active: "Active", on_hold: "On hold" };
+
+/** History rows written before 0177 can still hold the retired statuses — label those too. */
+const RETIRED_STATUS_LABEL: Record<string, string> = { not_selected: "Not selected", absent: "Absent" };
+export const statusLabel = (s: string | null | undefined): string =>
+  !s ? "" : isStatus(s) ? STATUS_LABEL[s] : RETIRED_STATUS_LABEL[s] ?? s;
+
+/** Failing a step (into one needs a reason, as "not selected" did). */
+export const NOT_CLEARED_STAGES: readonly Stage[] = ["vsat_not_cleared", "pi_not_cleared"];
+/** Every negative outcome; leaving one (reopening) needs a reason. */
+export const NEGATIVE_STAGES: readonly Stage[] = ["vsat_not_cleared", "pi_not_cleared", "vsat_not_appeared", "pi_not_appeared", "counselling_not_appeared"];
+
+/**
+ * The Move-stage picker, grouped by step. Offer sent / lapsed / cancelled sit under Counselling as its sub-stages
+ * (owner's model); they stay separate stages in the database because the offer deadline, the lapse job and the
+ * fee check run on them (0144 / 0157).
+ */
+export const STAGE_GROUPS: readonly { label: string; stages: readonly Stage[] }[] = [
+  { label: "Application", stages: ["applied", "application_fee_paid"] },
+  { label: "VSAT", stages: ["booked", "eligible", "exam_taken", "vsat_cleared", "vsat_not_cleared", "vsat_not_appeared"] },
+  { label: "Interview", stages: ["interview_scheduled", "interviewed", "pi_cleared", "pi_not_cleared", "pi_not_appeared"] },
+  { label: "Counselling", stages: ["counselling_scheduled", "counselled", "counselling_not_appeared", "offer_sent", "offer_lapsed", "offer_cancelled"] },
+  { label: "Enrolment", stages: ["enrolled"] },
+];
 
 /** Which stages each panel shows (trickle-down: a panel only lists students who reached it). */
 export type PanelKey = "apps" | "exam" | "intv" | "couns";
 export const PANEL_STAGES: Record<PanelKey, readonly Stage[]> = {
   apps: STAGES,
-  exam: ["booked", "eligible", "exam_taken", "vsat_cleared", "vsat_not_appeared"],
-  intv: ["vsat_cleared", "interview_scheduled", "interviewed", "pi_cleared", "pi_not_appeared"],
+  exam: ["booked", "eligible", "exam_taken", "vsat_cleared", "vsat_not_cleared", "vsat_not_appeared"],
+  intv: ["vsat_cleared", "interview_scheduled", "interviewed", "pi_cleared", "pi_not_cleared", "pi_not_appeared"],
   couns: ["pi_cleared", "counselling_scheduled", "counselled", "counselling_not_appeared", "offer_sent", "enrolled", "offer_lapsed", "offer_cancelled"],
 };
 
@@ -45,18 +71,32 @@ export const STAGE_ORDER: Record<Stage, number> = {
   booked: 2, eligible: 3, exam_taken: 4, vsat_cleared: 5, interview_scheduled: 6, interviewed: 7, pi_cleared: 8,
   counselling_scheduled: 9, counselled: 10, offer_sent: 11, enrolled: 12, offer_lapsed: 12, offer_cancelled: 12,
   vsat_not_appeared: 4, pi_not_appeared: 7, counselling_not_appeared: 10,
+  vsat_not_cleared: 5, pi_not_cleared: 8,
 };
+
+/**
+ * A closed attempt-1 state that qualifies for attempt 2 — mirrors the database's vsat__is_terminal_fail (0177):
+ * any "not cleared" / "not appeared" stage. The old status combinations stay true for rows from before 0177.
+ */
+export function isTerminalFail(stage: string, status: string): boolean {
+  if ((NEGATIVE_STAGES as readonly string[]).includes(stage)) return true;
+  return status === "not_selected" && (stage === "exam_taken" || stage === "interviewed" || stage === "counselled");
+}
 
 export const isStage = (v: unknown): v is Stage => typeof v === "string" && (STAGES as readonly string[]).includes(v);
 export const isStatus = (v: unknown): v is Status => typeof v === "string" && (STATUSES as readonly string[]).includes(v);
 
 /**
- * Same rule as the database (vsat__move_checked): admin / admissions need a reason when moving
- * back, skipping a stage, setting not selected / on hold, or reopening a student who isn't active.
+ * Same rule as the database (vsat__move_checked, 0177): admin / admissions need a reason when moving back,
+ * skipping a stage, putting On hold, rejecting (into a "not cleared" stage), reopening (out of any
+ * "not cleared" / "not appeared" stage), or resuming a student who is On hold.
  */
 export function needsReason(fromStage: Stage, fromStatus: Status, toStage: Stage, toStatus: Status): boolean {
   const a = STAGE_ORDER[fromStage], b = STAGE_ORDER[toStage];
-  return b < a || b > a + 1 || toStatus === "not_selected" || toStatus === "on_hold" || (fromStatus !== "active" && toStatus === "active");
+  return b < a || b > a + 1 || toStatus === "on_hold"
+    || (NOT_CLEARED_STAGES.includes(toStage) && toStage !== fromStage)
+    || (NEGATIVE_STAGES.includes(fromStage) && toStage !== fromStage)
+    || (fromStatus !== "active" && toStatus === "active");
 }
 
 /** Moving into a scheduled stage needs an assignment first — the panels do that through "Assign". */

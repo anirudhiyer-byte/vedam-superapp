@@ -1,25 +1,68 @@
 import { describe, expect, it } from "vitest";
 import {
-  PANEL_STAGES, STAGES, canManage, errorText, hasVsatRole, interviewFormErrors, isHttpsLink, isVsatTeamPath, istSlot, needsReason, visiblePanels,
+  PANEL_STAGES, STAGES, STAGE_GROUPS, STATUSES, canManage, errorText, hasVsatRole, interviewFormErrors, isHttpsLink, isTerminalFail,
+  isVsatTeamPath, istSlot, needsReason, statusLabel, visiblePanels,
   type InterviewForm,
 } from "./pipeline";
 
-describe("needsReason (same rule as vsat__move_checked)", () => {
+describe("needsReason (same rule as vsat__move_checked, 0177)", () => {
   it("next stage, active → no reason", () => {
     expect(needsReason("exam_taken", "active", "vsat_cleared", "active")).toBe(false);
   });
-  it("moving back, skipping, not selected, on hold, reopening → reason", () => {
+  it("moving back, skipping, not cleared, on hold, reopening → reason", () => {
     expect(needsReason("vsat_cleared", "active", "exam_taken", "active")).toBe(true);
     expect(needsReason("booked", "active", "vsat_cleared", "active")).toBe(true);
-    expect(needsReason("exam_taken", "active", "exam_taken", "not_selected")).toBe(true);
+    // 0177: rejecting is a stage now (was status not_selected)
+    expect(needsReason("exam_taken", "active", "vsat_not_cleared", "active")).toBe(true);
+    expect(needsReason("interviewed", "active", "pi_not_cleared", "active")).toBe(true);
     expect(needsReason("pi_cleared", "active", "pi_cleared", "on_hold")).toBe(true);
-    expect(needsReason("exam_taken", "not_selected", "vsat_cleared", "active")).toBe(true);
+    // 0177: reopening = leaving a "not cleared" / "not appeared" stage (was not_selected → active), even at the same order
+    expect(needsReason("vsat_not_cleared", "active", "vsat_cleared", "active")).toBe(true);
+    expect(needsReason("counselling_not_appeared", "active", "counselled", "active")).toBe(true);
+    expect(needsReason("pi_cleared", "on_hold", "pi_cleared", "active")).toBe(true);
   });
-  it("absent at the same stage → no reason", () => {
-    expect(needsReason("interview_scheduled", "active", "interview_scheduled", "absent")).toBe(false);
+  it("a no-show (the next step, PI not appeared) → no reason", () => {
+    // 0177: was "absent at the same stage"; a no-show is the stage PI not appeared now
+    expect(needsReason("interview_scheduled", "active", "pi_not_appeared", "active")).toBe(false);
   });
   it("offer_sent → enrolled / lapsed / cancelled are all one step", () => {
     for (const s of ["enrolled", "offer_lapsed", "offer_cancelled"] as const) expect(needsReason("offer_sent", "active", s, "active")).toBe(false);
+  });
+});
+
+describe("0177 stage model", () => {
+  it("only Active and On hold are statuses", () => {
+    expect(STATUSES).toEqual(["active", "on_hold"]);
+  });
+  it("both not-cleared stages exist and sit in their panels", () => {
+    expect(STAGES).toContain("vsat_not_cleared");
+    expect(STAGES).toContain("pi_not_cleared");
+    expect(PANEL_STAGES.exam).toContain("vsat_not_cleared");
+    expect(PANEL_STAGES.intv).toContain("pi_not_cleared");
+  });
+  it("the Move-stage groups hold every stage exactly once; offers sit under Counselling", () => {
+    const all = STAGE_GROUPS.flatMap((g) => [...g.stages]);
+    expect([...all].sort()).toEqual([...STAGES].sort());
+    expect(new Set(all).size).toBe(all.length);
+    const couns = STAGE_GROUPS.find((g) => g.label === "Counselling")!.stages;
+    for (const s of ["offer_sent", "offer_lapsed", "offer_cancelled"] as const) expect(couns).toContain(s);
+  });
+  it("terminal fail (attempt 2) mirrors vsat__is_terminal_fail", () => {
+    for (const s of ["vsat_not_cleared", "pi_not_cleared", "vsat_not_appeared", "pi_not_appeared", "counselling_not_appeared"])
+      expect(isTerminalFail(s, "active")).toBe(true);
+    expect(isTerminalFail("vsat_cleared", "active")).toBe(false);
+    expect(isTerminalFail("pi_cleared", "on_hold")).toBe(false);
+    // rows from before 0177
+    expect(isTerminalFail("exam_taken", "not_selected")).toBe(true);
+    expect(isTerminalFail("interviewed", "not_selected")).toBe(true);
+  });
+  it("status labels, including the retired ones still in history", () => {
+    expect(statusLabel("active")).toBe("Active");
+    expect(statusLabel("on_hold")).toBe("On hold");
+    expect(statusLabel("not_selected")).toBe("Not selected");
+    expect(statusLabel("absent")).toBe("Absent");
+    expect(statusLabel(null)).toBe("");
+    expect(statusLabel("something_else")).toBe("something_else");
   });
 });
 

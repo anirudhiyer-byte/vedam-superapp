@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { isTerminalFail } from "@/lib/vsat/pipeline";
 export const dynamic = "force-dynamic"; export const runtime = "nodejs";
 export async function POST(req: Request) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL, svc = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -33,11 +34,6 @@ export async function POST(req: Request) {
     pipeline = (vp as Vp | null) ?? null;
   }
   const a = app as { payment_stage_1?: string | null; payment_stage_2?: string | null } | null;
-  const isTerminalFail = (s: string, st: string) =>
-    ["vsat_not_appeared", "pi_not_appeared", "counselling_not_appeared"].includes(s) ||
-    (s === "exam_taken" && st === "not_selected") ||
-    (s === "interviewed" && st === "not_selected") ||
-    (s === "counselled" && st === "not_selected");
   const secondAttemptEligible = !!pipeline && pipeline.attempt_no === 1 &&
     isTerminalFail(pipeline.stage, pipeline.status) &&
     a?.payment_stage_1 === "payment_approved" && a?.payment_stage_2 !== "payment_approved";

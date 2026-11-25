@@ -27,7 +27,8 @@ export type Batch = { id: string; label: string; exam_date: string; cleared_vps_
 export type TeamMember = { user_id: string; name: string | null; email: string | null; roles: string[]; campus: string | null };
 
 export type HistoryRow = {
-  at: string; from_stage: Stage | null; to_stage: Stage; from_status: Status | null; to_status: Status;
+  // statuses are plain text here: history written before 0177 can hold the retired not_selected / absent
+  at: string; from_stage: Stage | null; to_stage: Stage; from_status: string | null; to_status: string;
   reason: string | null; source: string; attempt_no: number; by: string | null;
 };
 
@@ -38,6 +39,7 @@ export type Student = {
     application_id: string; application_no: string | null; name: string | null; email: string | null; mobile: string | null;
     gender: string | null; date_of_birth: string | null; city: string | null; state: string | null; campus: string | null;
     campus_applied: string | null; father_occupation: string | null; mother_occupation: string | null;
+    counselling_mode?: "online" | "offline" | null; // 0179 (absent on a database without 0179)
   };
   academics: Record<string, number | string | boolean | null>;
   exam: { batch: { label: string } | null; exam_given: boolean; percentile: number | null; marks: number | null; max_marks: number | null };

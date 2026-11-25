@@ -178,12 +178,13 @@ begin
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_interview_draft_set', jsonb_build_object('application_id', a8, 'interviewer_id', null, 'slot_datetime', null)));
     t_name := t_name || text 'B clearing both → empty and nothing kept'; t_det := t_det || (r::text);
     t_pass := t_pass || (r->>'state' = 'empty' and not exists (select 1 from public.vsat_interview_drafts where application_id = a8));
-    update public.vsat_pipeline set status = 'not_selected' where application_id = a8;
+    -- 0177: "not selected" at VSAT cleared is now the stage PI not cleared (the status is retired)
+    update public.vsat_pipeline set stage = 'pi_not_cleared' where application_id = a8;
     r := pg_temp.draft(adm, a8, int1, t0 + interval '1 day');
     t_name := t_name || text 'B a not-selected student cannot be typed (WRONG_STAGE)'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'message' = 'WRONG_STAGE');
     r := pg_temp.row1(adm, a8);
     t_name := t_name || text 'B a not-selected student shows as locked'; t_det := t_det || (r::text); t_pass := t_pass || (r->>'state' = 'locked');
-    update public.vsat_pipeline set status = 'active' where application_id = a8;
+    update public.vsat_pipeline set stage = 'vsat_cleared' where application_id = a8;
 
     -- ════ C. clashes ════
     r := pg_temp.draft(adm, a2, int1, t0 + interval '15 minutes');

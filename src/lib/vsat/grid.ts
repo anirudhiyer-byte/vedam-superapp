@@ -5,7 +5,7 @@
  * vsat_grid_list). These helpers only give the columns readable names, pick the default set
  * for each panel, format cell values and turn pasted search text into values.
  */
-import { PANEL_STAGES, STAGE_LABEL, STATUS_LABEL, isStage, isStatus, fmtIst, type PanelKey, type Stage } from "@/lib/vsat/pipeline";
+import { PANEL_STAGES, STAGE_LABEL, isStage, statusLabel, fmtIst, type PanelKey, type Stage } from "@/lib/vsat/pipeline";
 import { ATTENDANCE_LABEL, MEET_LABEL, isMeetState } from "@/lib/vsat/interviews";
 
 export type GridColType = "text" | "num" | "bool" | "date" | "ts" | "stage" | "status" | "json" | "uuid";
@@ -78,6 +78,8 @@ export const VALUE_CHOICES: Record<string, { value: string; label: string }[]> =
   // 0173: the verdict from Interview Evaluation, and the form's financial capability
   interview_verdict: [{ value: "selected", label: "Selected" }, { value: "maybe", label: "Maybe" }, { value: "not_selected", label: "Rejected" }],
   iv_financial: [{ value: "high", label: "High" }, { value: "medium", label: "Medium" }, { value: "low", label: "Low" }],
+  // 0179: the student's choice at PI cleared
+  counselling_mode: [{ value: "online", label: "Online" }, { value: "offline", label: "Offline" }],
 };
 const choiceLabel = (key: string, v: string): string => VALUE_CHOICES[key]?.find((c) => c.value === v)?.label ?? v;
 export const FILTER_OPS: Record<string, FilterOp[]> = {
@@ -242,7 +244,8 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   // 0173 — the owner's review (24 Nov): every answer, mark and remark of the interview form as its own column, in the sheet's order
   intv: [...INTERVIEW_SHEET_COLUMNS],
   // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot; 0166 — status + reschedule count
-  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_attendance",
+  // 0179 — the student's Online / Offline choice right after the slot + Meet
+  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_mode", "counselling_attendance",
           "counselling_reschedules", "counselling_category", "counselling_pct", "offer_expires_at", "stage_changed_at"],
 };
 
@@ -284,7 +287,7 @@ const num = (v: unknown) => (v === null || v === undefined || v === "" ? "—" :
 export function formatValue(type: GridColType, key: string, v: unknown): string {
   if (v === null || v === undefined || v === "") return "—";
   if (type === "stage") return isStage(v) ? STAGE_LABEL[v] : String(v);
-  if (type === "status") return isStatus(v) ? STATUS_LABEL[v] : String(v);
+  if (type === "status") return statusLabel(String(v));
   if (type === "bool") return v === true ? "Yes" : v === false ? "No" : String(v);
   if (VALUE_CHOICES[key] && typeof v === "string") return choiceLabel(key, v);
   if (key === "interview_meet" || key === "counselling_meet") {

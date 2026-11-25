@@ -108,6 +108,8 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
   const [perfAtt, setPerfAtt] = useState(1);
   // Server says this applicant closed attempt 1 in a terminal-fail state and may re-sit (₹500).
   const [secondEligible, setSecondEligible] = useState(false);
+  // the pipeline stage itself (the legacy application stage has no value for PI cleared) — 0179 counselling mode
+  const [pipe, setPipe] = useState<{ stage: string; status: string; attempt_no: number } | null>(null);
   const [examFlags, setExamFlags] = useState<{ mock: boolean; exam: boolean }>({ mock: false, exam: true });
   const [journeyOpen, setJourneyOpen] = useState(false); // mobile: journey timeline collapsed by default
   // Admin-only demo: lets staff skip the real payment to walk the post-pay flow.
@@ -142,7 +144,7 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
       fetch("/api/payments/vsat-quote", opts),
     ]);
     try {
-      if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); setSecondEligible(j.secondAttemptEligible === true); setExamFlags(j.examFlags ?? { mock: false, exam: true }); } }
+      if (meR.status === "fulfilled") { const j = await meR.value.json(); if (j.ok) { setApp(j.app); setLead(j.lead); setSecondEligible(j.secondAttemptEligible === true); setPipe(j.pipeline ?? null);setExamFlags(j.examFlags ?? { mock: false, exam: true }); } }
     } catch { /* ignore */ }
     try {
       if (qR.status === "fulfilled") { const qj = await qR.value.json(); if (qj.ok) setQuote({ base: qj.base, discount: qj.discount, net: qj.net, within24h: qj.within24h, windowEndsAt: qj.windowEndsAt, earlyReg: qj.earlyReg, earlyRegDiscount: qj.earlyRegDiscount, autoDiscount: qj.autoDiscount }); }
@@ -264,6 +266,20 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
     const res = await fetch("/api/vsat/stage", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ accessToken: session?.access_token, updates }) });
     const j = await res.json(); setBusy(false);
     if (!j.ok) return setErr(j.error || "Couldn't save. Try again.");
+    await load();
+  }, [supabase, load]);
+
+  // 0179: Online / Offline counselling, chosen at PI cleared. The database checks everything (own application only,
+  // PI cleared / Counselling scheduled, not after the counselling is submitted); this only shows its answer.
+  const saveCounsellingMode = useCallback(async (mode: "online" | "offline") => {
+    setBusy(true); setErr("");
+    const { error } = await supabase.rpc("vsat_set_counselling_mode", { p: { mode } });
+    setBusy(false);
+    if (error) {
+      return setErr(error.message === "ALREADY_COUNSELLED" ? "Your counselling is already done, so the mode can't be changed now."
+        : error.message === "WRONG_STAGE" ? "The counselling mode can be chosen once you've cleared the interview."
+        : "Couldn't save. Try again.");
+    }
     await load();
   }, [supabase, load]);
 
@@ -594,6 +610,24 @@ export function VsatDashboard({ isAdmin = false, initialApp = null, initialLead 
                 <p className="mt-2 text-sm text-[#2b135c]/70">You&apos;re progressing through the admissions funnel. Watch your email/WhatsApp for the next step.</p>
               </div>
             ) : null}
+
+            {/* 0179: Mode of counselling, asked from PI cleared until the counselling is done */}
+            {pipe && (pipe.stage === "pi_cleared" || pipe.stage === "counselling_scheduled") && pipe.status === "active" && (
+              <div className={`${leadCard} mb-4`}>
+                <h2 className="font-display text-[19px] font-extrabold">Mode of counselling</h2>
+                <p className="mt-1.5 text-sm text-[#6c6485]">
+                  {a.counselling_mode ? "You can change this until your counselling session is done." : "How would you like to attend your counselling session?"}
+                </p>
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  {(["online", "offline"] as const).map((m) => (
+                    <button key={m} onClick={() => saveCounsellingMode(m)} disabled={busy} aria-pressed={a.counselling_mode === m}
+                      className={`rounded-xl border px-4 py-3 text-sm font-semibold transition disabled:opacity-50 ${a.counselling_mode === m ? "border-[#8a18ff] bg-[#f4ecff] text-[#5b0fb3]" : "border-[#e9e4f2] bg-white hover:border-[#8a18ff]"}`}>
+                      {m === "online" ? "Online" : "Offline"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Second attempt: shown whenever the server says attempt 1 closed in a terminal-fail
                 state (VSAT/PI/counselling, not-cleared or no-show) and attempt 2 isn't paid yet. */}

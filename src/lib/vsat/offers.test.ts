@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  OFFER_VARS, amountText, deadlineText, nothingToReleaseText, offerState, offerVars, parseRelease, pctText, previewText,
+  OFFER_DAYS_ERROR, OFFER_VARS, amountText, parseOfferDays, releaseParams, deadlineText, nothingToReleaseText, offerState, offerVars, parseRelease, pctText, previewText,
   releaseResultText, skipText, type OfferJob,
 } from "./offers";
 import { fillTemplate } from "./interviews";
@@ -73,6 +73,31 @@ describe("release texts", () => {
     expect(skipText("STAGE_CHANGED")).toBe("someone else moved this student just now. Refresh and try again");
     expect(skipText('duplicate key value violates unique constraint "x"')).toBe("something went wrong. Please try again");
     expect(skipText("CAMPUS_MISSING")).toMatch(/no campus/);
+  });
+});
+
+describe("Days to pay at release (0180)", () => {
+  it("empty = campus default", () => {
+    expect(parseOfferDays("")).toEqual({ ok: true, days: null });
+    expect(parseOfferDays("   ")).toEqual({ ok: true, days: null });
+  });
+  it("whole numbers 1–90 are taken (spaces trimmed)", () => {
+    expect(parseOfferDays("1")).toEqual({ ok: true, days: 1 });
+    expect(parseOfferDays(" 10 ")).toEqual({ ok: true, days: 10 });
+    expect(parseOfferDays("90")).toEqual({ ok: true, days: 90 });
+    expect(parseOfferDays("007")).toEqual({ ok: true, days: 7 });
+  });
+  it("anything else is refused (same limits as the database)", () => {
+    for (const bad of ["0", "91", "2.5", "-3", "1e1", "ten", "7 days", "0x10", "1000"]) expect(parseOfferDays(bad)).toEqual({ ok: false });
+  });
+  it("the call sends offer_days only when typed", () => {
+    expect(releaseParams(["A1"], null, true)).toEqual({ application_ids: ["A1"], dry_run: true });
+    expect(releaseParams(["A1", "A2"], null, false)).toEqual({ application_ids: ["A1", "A2"] });
+    expect(releaseParams(["A1"], 10, true)).toEqual({ application_ids: ["A1"], dry_run: true, offer_days: 10 });
+    expect(releaseParams(["A1"], 1, false)).toEqual({ application_ids: ["A1"], offer_days: 1 });
+  });
+  it("the error names the limits", () => {
+    expect(OFFER_DAYS_ERROR).toContain("1 to 90");
   });
 });
 

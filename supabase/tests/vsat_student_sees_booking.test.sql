@@ -133,9 +133,10 @@ begin
     t_name := t_name || text 'V on hold at VSAT cleared → not shown (as before)';
     t_det := t_det || r::text; t_pass := t_pass || (r->>'state' = 'none');
 
-    update public.vsat_pipeline set status = 'not_selected' where application_id = v4;
+    -- 0177: "not selected" at VSAT cleared is now the stage PI not cleared (the status is retired)
+    update public.vsat_pipeline set stage = 'pi_not_cleared' where application_id = v4;
     r := pg_temp.my_iv(v4);
-    t_name := t_name || text 'V not selected at VSAT cleared → not shown';
+    t_name := t_name || text 'V not selected at VSAT cleared (now PI not cleared) → not shown';
     t_det := t_det || r::text; t_pass := t_pass || (r->>'state' = 'none');
 
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_cancel_interview', jsonb_build_object('application_id', v5, 'reason', 'zz student asked')));

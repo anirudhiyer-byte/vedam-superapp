@@ -142,9 +142,11 @@ begin
     r := pg_temp.call_as(adm_all, pg_temp.mv(a2, 'exam_taken', 'not_selected'));
     t_name := t_name || text 'C not_selected without a reason is refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REASON_REQUIRED');
     r := pg_temp.call_as(adm_all, pg_temp.mv(a2, 'exam_taken', 'not_selected', 'VPS below batch cut-off'));
-    t_name := t_name || text 'C not_selected with a reason → old field vsat_not_cleared';
+    -- 0177: the status "not selected" is retired — the engine moves the student to the stage VSAT not cleared (Active)
+    t_name := t_name || text 'C not_selected with a reason → stage vsat_not_cleared (0177), old field vsat_not_cleared';
     t_det := t_det || (r::text || ' ' || (select application_stage_1::text from public.application_manager where application_id = a2));
-    t_pass := t_pass || (r->>'status' = 'not_selected' and (select application_stage_1::text from public.application_manager where application_id = a2) = 'vsat_not_cleared');
+    t_pass := t_pass || (r->>'stage' = 'vsat_not_cleared' and r->>'status' = 'active'
+                         and (select application_stage_1::text from public.application_manager where application_id = a2) = 'vsat_not_cleared');
     r := pg_temp.call_as(adm_all, pg_temp.mv(a2, 'vsat_cleared'));
     t_name := t_name || text 'C reopening a not_selected student needs a reason'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'REASON_REQUIRED');
     r := pg_temp.call_as(adm_all, pg_temp.mv(a1, 'interview_scheduled', null, null, 'exam_taken'));
@@ -244,7 +246,8 @@ begin
     t_name := t_name || text 'I admin list: stage filter shows only that stage; counts cover all stages';
     t_det := t_det || left(r::text, 400);
     t_pass := t_pass || ((r->>'total')::int = 1 and r->'rows'->0->>'stage' = 'counselled'
-                         and (r->'counts'->>'counselled')::int = 1 and (r->'counts'->>'exam_taken')::int = 1
+                         -- 0177: a2 (not cleared) is counted under its own stage, no longer under exam_taken
+                         and (r->'counts'->>'counselled')::int = 1 and (r->'counts'->>'vsat_not_cleared')::int = 1
                          and r->'rows'->0->>'email' is not null and r->'rows'->0->>'batch' = 'ZZTEST batch');
     r := pg_temp.call_as(adm, 'select public.vsat_pipeline_list(''{"q":"x"}''::jsonb)');
     t_name := t_name || text 'I one-letter search refused'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' like 'BAD_VALUE%');
