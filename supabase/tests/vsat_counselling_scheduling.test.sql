@@ -31,6 +31,7 @@ begin
     marks_physics_12, marks_chemistry_12, marks_maths_12, exam_percentile, exam_obtained_marks, exam_max_marks, vps_score)
   values (p_id, u, p_id, 'ZZTEST ' || p_id, lower(p_id) || '@example.invalid', p_campus, p_date,
     2024, 90, 85, 2026, 80, 70, 70, 70, 70, 80, 40, 50, 8.43);
+  update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = p_id;  -- 0184 test setup: counselling is booked for online students only
   update public.application_manager set exam_given = true where application_id = p_id;
   foreach s in array array['vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_cleared'] loop
     perform public.vsat__move(p_id, s, 'active', 'zz test', 'system', null, null);
@@ -110,7 +111,9 @@ begin
     cs_off := pg_temp.mk_user('zztest-cs-coff@example.invalid');
     intv := pg_temp.mk_user('zztest-cs-int@example.invalid');
     insert into public.vsat_team (user_id, role) values (adm, 'admissions'), (cs1, 'counsellor'), (cs2, 'counsellor'), (intv, 'interviewer');
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (cs1, 'https://zoom.us/j/zztest-cs1'), (cs2, 'https://zoom.us/j/zztest-cs2');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
     insert into public.vsat_team (user_id, role, active) values (cs_off, 'counsellor', false);
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (cs_off, 'https://zoom.us/j/zztest-cs-off');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
     insert into public.vsat_team (user_id, role, campus) values (adm_ggn, 'admissions', 'gurugram');
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at)
     values ('ZZTEST counselling batch', 'zz-cs', current_date, now(), now() + interval '2 hours') returning id into d;
@@ -126,10 +129,10 @@ begin
     -- ════ A. one student from the drawer (vsat_assign_counsellor) ════
     r := pg_temp.assign(adm, a1, cs1, t0, '{"auto_meet": true}');
     c := pg_temp.ca(a1);
-    t_name := t_name || text 'A Google Meet booking: Google work queued, 30 min (0166: stage stays PI cleared)';
-    t_det := t_det || (format('%s mode=%s sync=%s dur=%s ver=%s', pg_temp.stage(a1), c.meet_mode, c.meet_sync, c.duration_min, c.version));
-    t_pass := t_pass || (pg_temp.stage(a1) = 'pi_cleared:active' and c.meet_mode = 'auto' and c.meet_sync = 'pending'
-                         and c.duration_min = 30 and c.version = 1 and c.counsellor_id = cs1 and c.zoom_link is null);
+    t_name := t_name || text 'A booking on the counsellor''s Zoom link (0184): calendar work queued, 30 min (0166: stage stays PI cleared)';
+    t_det := t_det || (format('%s mode=%s sync=%s dur=%s ver=%s link=%s', pg_temp.stage(a1), c.meet_mode, c.meet_sync, c.duration_min, c.version, c.zoom_link));
+    t_pass := t_pass || (pg_temp.stage(a1) = 'pi_cleared:active' and c.meet_mode = 'zoom' and c.meet_sync = 'pending'
+                         and c.duration_min = 30 and c.version = 1 and c.counsellor_id = cs1 and c.zoom_link = 'https://zoom.us/j/zztest-cs1');
     t_name := t_name || text 'A history + one email job (scheduled)';
     select string_agg(kind || '/' || notify_status, ',') into s from public.vsat_counselling_events where application_id = a1;
     t_det := t_det || (coalesce(s, '∅')); t_pass := t_pass || (s = 'scheduled/pending');
@@ -153,10 +156,11 @@ begin
     t_pass := t_pass || (r->>'message' = 'BAD_VALUE: meet_link' and c.id is null);
     r := pg_temp.assign(adm, a1, cs2, t0 + interval '2 hours', '{"duration_min": 45}');
     c := pg_temp.ca(a1);
-    t_name := t_name || text 'A move: new counsellor, time and length; rescheduled event, Meet kept as Google';
+    t_name := t_name || text 'A move: new counsellor, time and length; rescheduled event, now on the new counsellor''s Zoom link (0184)';
     select string_agg(kind, ',' order by version) into s from public.vsat_counselling_events where application_id = a1;
-    t_det := t_det || (format('%s ver=%s dur=%s mode=%s', s, c.version, c.duration_min, c.meet_mode));
-    t_pass := t_pass || (s = 'scheduled,rescheduled' and c.version = 2 and c.duration_min = 45 and c.counsellor_id = cs2 and c.meet_mode = 'auto');
+    t_det := t_det || (format('%s ver=%s dur=%s mode=%s link=%s', s, c.version, c.duration_min, c.meet_mode, c.zoom_link));
+    t_pass := t_pass || (s = 'scheduled,rescheduled' and c.version = 2 and c.duration_min = 45 and c.counsellor_id = cs2 and c.meet_mode = 'zoom'
+                         and c.zoom_link = 'https://zoom.us/j/zztest-cs2');
     r := pg_temp.assign(cs1, a3, cs1, t0 + interval '5 hours');
     t_name := t_name || text 'A a counsellor cannot book'; t_det := t_det || (r::text);
     t_pass := t_pass || (r->>'message' = 'FORBIDDEN' and pg_temp.stage(a3) = 'pi_cleared:active');
@@ -187,7 +191,7 @@ begin
     select count(*) into n from public.vsat_counselling_drafts where application_id in (a3, a4, a5);
     t_det := t_det || (format('drafts=%s mode=%s jobs=%s', n, (pg_temp.ca(a3)).meet_mode,
                               (select count(*) from public.vsat_counselling_events where application_id in (a3, a4, a5) and notify_status = 'pending')));
-    t_pass := t_pass || (n = 0 and (pg_temp.ca(a3)).meet_mode = 'auto' and (pg_temp.ca(a3)).meet_sync = 'pending'
+    t_pass := t_pass || (n = 0 and (pg_temp.ca(a3)).meet_mode = 'zoom' and (pg_temp.ca(a3)).meet_sync = 'pending'  -- 0184: Zoom, not Google Meet
                          and (select count(*) from public.vsat_counselling_events where application_id in (a3, a4, a5) and notify_status = 'pending') = 3);
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_counselling_plan', jsonb_build_object('application_ids', jsonb_build_array(a3, g1))));
     t_name := t_name || text 'B plan: booked row shows the booking (counsellor_id key)'; t_det := t_det || (r::text);
@@ -263,12 +267,13 @@ begin
     r2 := pg_temp.call_as(null, pg_temp.rpc('vsat_counselling_sync_release', jsonb_build_object('id', r->0->>'id', 'version', (r->0->>'version')::int,
             'claimed_at', r->0->>'claimed_at', 'outcome', 'ok', 'calendar_event_id', 'vc0123456789abcdefg0', 'meet_link', 'https://meet.google.com/xyz-abcd-efg', 'meet_code', 'xyz-abcd-efg')), 'service_role');
     c := pg_temp.ca(a3);
-    t_name := t_name || text 'E Google result saved into the counselling row (link in zoom_link)'; t_det := t_det || (format('%s %s %s %s', r2, c.meet_sync, c.zoom_link, c.calendar_event_id));
-    t_pass := t_pass || (r2->>'applied' = 'true' and c.meet_sync = 'ok' and c.zoom_link = 'https://meet.google.com/xyz-abcd-efg' and c.calendar_event_id = 'vc0123456789abcdefg0');
+    -- 0184: a Zoom booking keeps the counsellor's Zoom link; only the calendar event is saved
+    t_name := t_name || text 'E calendar result saved into the counselling row; the counsellor''s Zoom link is kept (0184)'; t_det := t_det || (format('%s %s %s %s', r2, c.meet_sync, c.zoom_link, c.calendar_event_id));
+    t_pass := t_pass || (r2->>'applied' = 'true' and c.meet_sync = 'ok' and c.zoom_link = 'https://zoom.us/j/zztest-cs1' and c.calendar_event_id = 'vc0123456789abcdefg0');
     r := pg_temp.call_as(null, pg_temp.rpc('vsat_counselling_notices_claim', jsonb_build_object('application_ids', jsonb_build_array(a3), 'wait_for_meet', false)), 'service_role');
-    t_name := t_name || text 'E email job: counsellor, student and the Meet link'; t_det := t_det || (r::text);
+    t_name := t_name || text 'E email job: counsellor, student and the counsellor''s Zoom link (0184)'; t_det := t_det || (r::text);
     t_pass := t_pass || (jsonb_array_length(r) = 1 and r->0->>'kind' = 'scheduled' and r->0->'counsellor'->>'id' = cs1::text
-                         and r->0->>'meet_link' = 'https://meet.google.com/xyz-abcd-efg' and r->0->'student'->>'lead_id' = pg_temp.lead_of(a3)::text);
+                         and r->0->>'meet_link' = 'https://zoom.us/j/zztest-cs1' and r->0->'student'->>'lead_id' = pg_temp.lead_of(a3)::text);
     r2 := pg_temp.call_as(null, pg_temp.rpc('vsat_counselling_notice_done', jsonb_build_object('id', r->0->>'id', 'status', 'sent')), 'service_role');
     t_name := t_name || text 'E email job closed'; t_det := t_det || (r2::text); t_pass := t_pass || (r2->>'updated' = 'true');
     r := pg_temp.call_as(null, pg_temp.rpc('vsat_counselling_attendance_apply', jsonb_build_object('id', (pg_temp.ca(a3)).id, 'version', 0, 'result', 'no_show')), 'service_role');

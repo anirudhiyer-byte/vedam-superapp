@@ -1,5 +1,6 @@
 /**
- * One Google organizer account → Calendar events with a Meet link, and Meet attendance.
+ * One Google organizer account → Calendar events with a Meet link (or, 0184, without one: VSAT counselling is on
+ * the counsellor's Zoom link), and Meet attendance.
  * Server-only. Same model as PeerPath (src/lib/peerpath/google.ts, left unchanged): ONE
  * account's OAuth refresh token, no service account, no domain-wide delegation. If the
  * token leaks, only that account's own calendar and its own Meet records are exposed.
@@ -48,9 +49,13 @@ export type EventInput = {
   start: string; // ISO
   end: string; // ISO
   attendees: string[];
+  /** where the meeting is (VSAT counselling, 0184: the counsellor's own Zoom link) */
+  location?: string;
+  /** false = no Google Meet on the event (0184: counselling runs on Zoom). Default: a Meet is made */
+  meet?: boolean;
 };
 
-export type EventPatch = Partial<Omit<EventInput, "id">>;
+export type EventPatch = Partial<Omit<EventInput, "id" | "meet">>;
 
 export type ConferenceRecord = { name: string; startTime?: string; endTime?: string };
 export type Attendee = { key: string; sessions: { start: number; end: number }[] };
@@ -132,6 +137,7 @@ export function createGoogleAccount(prefix: string, deps: Deps = {}) {
     if (e.start) body.start = { dateTime: e.start, timeZone: TZ };
     if (e.end) body.end = { dateTime: e.end, timeZone: TZ };
     if (e.attendees) body.attendees = lowerSet(e.attendees).map((email) => ({ email }));
+    if (e.location !== undefined) body.location = e.location;
     return body;
   }
 
@@ -145,7 +151,7 @@ export function createGoogleAccount(prefix: string, deps: Deps = {}) {
       guestsCanSeeOtherGuests: false,
       guestsCanInviteOthers: false,
       guestsCanModify: false,
-      conferenceData: { createRequest: { requestId: e.id, conferenceSolutionKey: { type: "hangoutsMeet" } } },
+      ...(e.meet === false ? {} : { conferenceData: { createRequest: { requestId: e.id, conferenceSolutionKey: { type: "hangoutsMeet" } } } }),
     };
     return call<CalEvent>(`${CAL}?conferenceDataVersion=1&sendUpdates=all`, { method: "POST", body: JSON.stringify(body) });
   }
@@ -167,7 +173,7 @@ export function createGoogleAccount(prefix: string, deps: Deps = {}) {
     }
   }
 
-  /** Move / rename / re-guest an event in one call. Keeps its Meet link. */
+  /** Move / rename / re-guest an event in one call. Keeps its Meet link (an event made without one stays without). */
   function patchEvent(id: string, patch: EventPatch): Promise<CalEvent> {
     return call<CalEvent>(eventUrl(id, "?conferenceDataVersion=1&sendUpdates=all"), { method: "PATCH", body: JSON.stringify(eventBody(patch)) });
   }

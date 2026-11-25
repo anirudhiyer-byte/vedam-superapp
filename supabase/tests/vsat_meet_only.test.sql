@@ -27,6 +27,7 @@ begin
   on conflict (lead_id) do nothing;
   insert into public.application_manager (application_id, lead_id, application_no, registered_name, registered_email, campus_applied)
   values (p_id, u, p_id, 'ZZTEST ' || p_id, lower(p_id) || '@example.invalid', 'Ajeenkya DY Patil University — Pune');
+  update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = p_id;  -- 0184 test setup: counselling is booked for online students only
   foreach s in array array['vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_cleared'] loop
     perform public.vsat__move(p_id, s, 'active', 'zz test', 'system', null, null);
     exit when s = p_stage;
@@ -69,6 +70,7 @@ begin
     i1 := pg_temp.mk_user('zztest-mo-int1@example.invalid');
     c1 := pg_temp.mk_user('zztest-mo-couns1@example.invalid');
     insert into public.vsat_team (user_id, role, campus) values (adm, 'admissions', null), (i1, 'interviewer', null), (c1, 'counsellor', null);
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (c1, 'https://zoom.us/j/zztest-c1');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
     a1 := pg_temp.mk_app('ZZT-MO-1', 'vsat_cleared');
     a2 := pg_temp.mk_app('ZZT-MO-2', 'vsat_cleared');
     a3 := pg_temp.mk_app('ZZT-MO-3', 'vsat_cleared');
@@ -129,18 +131,19 @@ begin
 
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', k1, 'counsellor_id', c1, 'slot_datetime', pg_temp.iso(t0))));
     select * into ca from public.counselling_assignments x where x.application_id = k1;
-    t_name := t_name || text 'C a normal counselling booking is Google Meet';
-    t_det := t_det || format('%s mode=%s sync=%s', coalesce(r->>'message', 'ok'), ca.meet_mode, ca.meet_sync);
-    t_pass := t_pass || (ca.meet_mode = 'auto' and ca.meet_sync = 'pending' and ca.zoom_link is null);
+    -- 0184: counselling is on the counsellor's own Zoom link (sir: "Google Meet nahi hoga"), not Google Meet
+    t_name := t_name || text 'C a normal counselling booking is on the counsellor''s Zoom link (0184)';
+    t_det := t_det || format('%s mode=%s sync=%s link=%s', coalesce(r->>'message', 'ok'), ca.meet_mode, ca.meet_sync, coalesce(ca.zoom_link, '-'));
+    t_pass := t_pass || (ca.meet_mode = 'zoom' and ca.meet_sync = 'pending' and ca.zoom_link = 'https://zoom.us/j/zztest-c1');
 
     perform pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', k2, 'counsellor_id', c1, 'slot_datetime', pg_temp.iso(t0 + interval '1 hour'))));
     update public.counselling_assignments x set meet_mode = 'manual', meet_sync = 'none', zoom_link = 'https://zoom.us/j/zzt-old'
      where x.application_id = k2;
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', k2, 'counsellor_id', c1, 'slot_datetime', pg_temp.iso(t0 + interval '4 hours'))));
     select * into ca from public.counselling_assignments x where x.application_id = k2;
-    t_name := t_name || text 'C an old counselling booking with a pasted link becomes Google Meet when moved';
+    t_name := t_name || text 'C an old counselling booking with a pasted link moves to the counsellor''s Zoom link when moved (0184)';
     t_det := t_det || format('%s mode=%s sync=%s link=%s', coalesce(r->>'message', 'ok'), ca.meet_mode, ca.meet_sync, coalesce(ca.zoom_link, '-'));
-    t_pass := t_pass || (ca.meet_mode = 'auto' and ca.meet_sync = 'pending' and ca.zoom_link is null);
+    t_pass := t_pass || (ca.meet_mode = 'zoom' and ca.meet_sync = 'pending' and ca.zoom_link = 'https://zoom.us/j/zztest-c1');
 
     -- ════ S. access unchanged ════
     t_name := t_name || text 'S both booking engines: security definer, empty search_path, not callable by browsers';

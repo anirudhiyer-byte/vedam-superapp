@@ -26,6 +26,7 @@ begin
   on conflict (lead_id) do nothing;
   insert into public.application_manager (application_id, lead_id, application_no, registered_name, registered_email, campus_applied)
   values (p_id, u, p_id, 'ZZTEST ' || p_id, lower(p_id) || '@example.invalid', 'Ajeenkya DY Patil University — Pune');
+  update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = p_id;  -- 0184 test setup: counselling is booked for online students only
   foreach s in array array['vsat_cleared', 'interview_scheduled', 'interviewed', 'pi_cleared', 'counselling_scheduled'] loop
     perform public.vsat__move(p_id, s, 'active', 'zz test', 'system', null, null);
     exit when s = p_stage;
@@ -84,6 +85,7 @@ begin
     i1 := pg_temp.mk_user('zztest-sb-int1@example.invalid');
     c1 := pg_temp.mk_user('zztest-sb-couns1@example.invalid');
     insert into public.vsat_team (user_id, role, campus) values (adm, 'admissions', null), (i1, 'interviewer', null), (c1, 'counsellor', null);
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (c1, 'https://zoom.us/j/zztest-c1');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
     v1 := pg_temp.mk_app('ZZT-SB-V1', 'vsat_cleared');
     v2 := pg_temp.mk_app('ZZT-SB-V2', 'vsat_cleared');
     v3 := pg_temp.mk_app('ZZT-SB-V3', 'vsat_cleared');

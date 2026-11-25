@@ -59,6 +59,9 @@ export type Student = {
     calc_score: number | null; calc_category: number | null; chosen_step: number | null; calculated_pct: number | null;
     actual_pct: number | null; actual_reason: string | null; special_rating: number | null; bonus_applied: boolean | null;
     scholarship_pct: number | null; scholarship_category: number | null;
+    /** 0184: the "Selected for counselling" sheet's counsellor answers and the ±5 adjustment */
+    counsellor_feedback?: string | null; parent_present?: string | null; connected_students?: boolean | null;
+    heard_from?: string | null; adjust_pct?: number | null; counsellor_remarks?: string | null; meet_mode?: string | null;
     /** Profile analyser (0085): AI briefing for the counsellor, saved by the server only. */
     profile_analysis?: { text?: unknown; generated_at?: unknown; model?: unknown } | null;
   });

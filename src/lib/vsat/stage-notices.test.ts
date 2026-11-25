@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { STAGE_NOTICE_STEPS, sendStageNotices, stageEmailVars, type StageNoticeConfig, type StageNoticeJob } from "./stage-notices";
+import { STAGE_NOTICE_STEPS, offlineDatesText, sendStageNotices, stageEmailVars, type StageNoticeConfig, type StageNoticeJob } from "./stage-notices";
 
 function fakeDb(answers: Record<string, unknown>) {
   const calls: { fn: string; args: Record<string, unknown> }[] = [];
@@ -95,6 +95,23 @@ describe("sendStageNotices (PI cleared → student)", () => {
   it("placeholders: a missing name reads Student", () => {
     expect(stageEmailVars({ ...job, student: { ...job.student, name: " " } }, SITE)).toEqual({
       name: "Student", application_no: "VED-42", dashboard_link: "https://one.vedam.org/apply/dashboard",
+      offline_dates: "to be announced soon", // 0184: new placeholder (no dates on the job → the holding line)
     });
+  });
+});
+
+describe("offline counselling dates in the PI-cleared email (0184)", () => {
+  it("lists the campus's dates with their note, in order", () => {
+    expect(offlineDatesText([{ date: "2026-11-28", note: "Campus, 10 am" }, { date: "2026-12-03", note: null }]))
+      .toBe("Sat, 28 Nov 2026 (Campus, 10 am); Thu, 3 Dec 2026");
+  });
+  it("none set yet → a holding line, never an empty gap", () => {
+    expect(offlineDatesText([])).toBe("to be announced soon");
+    expect(offlineDatesText(null)).toBe("to be announced soon");
+  });
+  it("is a placeholder of the email, escaped like the others", () => {
+    const v = stageEmailVars({ ...job, offline_dates: [{ date: "2026-11-28", note: "<b>Hall A</b>" }] }, SITE);
+    expect(v.offline_dates).toBe("Sat, 28 Nov 2026 (<b>Hall A</b>)");
+    expect(v.name).toBe("Asha <i>R</i>");
   });
 });

@@ -3,6 +3,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { GoogleError, type CalEvent, type EventInput, type GoogleAccount } from "@/lib/google/account";
 import { checkInterviewAttendance, sendInterviewNotices, syncInterviews, syncOne, type NoticeConfig, type SyncRow } from "./interview-sync";
 import type { NoticeJob } from "./interviews";
+import { TRACKS } from "./tracks";
 
 const ID = "11111111-1111-4111-8111-111111111111";
 const LINK = "https://meet.google.com/abc-defg-hij";
@@ -115,6 +116,50 @@ function fakeDb(answers: Record<string, unknown>) {
   } as unknown as SupabaseClient;
   return { db, calls };
 }
+
+describe("syncOne — counselling on the counsellor's Zoom link (0184)", () => {
+  const ZOOM = "https://us06web.zoom.us/j/11111111111?pwd=abc";
+  const zrow = (over: Partial<SyncRow> = {}) => row({ meet_mode: "zoom", zoom_link: ZOOM, ...over });
+  /** Google answers like for an event made without a Meet (no hangoutLink); every call is still recorded */
+  function noMeetGoogle() {
+    const f = fakeGoogle();
+    f.g.createEvent = (async (e: EventInput) => { f.calls.push({ fn: "createEvent", args: [e] }); return { id: e.id, status: "confirmed" }; }) as GoogleAccount["createEvent"];
+    f.g.patchEvent = (async (id: string, p: unknown) => { f.calls.push({ fn: "patchEvent", args: [id, p] }); return { id, status: "confirmed" }; }) as GoogleAccount["patchEvent"];
+    return f;
+  }
+  it("new Zoom booking → an event with no Google Meet, the Zoom link as its place and in the text; done (nothing to wait for)", async () => {
+    const { g, calls } = noMeetGoogle();
+    const r = await syncOne(g, zrow(), Date.now(), TRACKS.counselling);
+    expect(r).toMatchObject({ outcome: "ok", calendar_event_id: `vc${ID.replace(/-/g, "")}g0`, event_gen: 0 });
+    expect(r.meet_link).toBeUndefined();
+    expect(r.meet_code).toBeUndefined();
+    const input = calls[0].args[0] as EventInput;
+    expect(input.meet).toBe(false);
+    expect(input.location).toBe(ZOOM);
+    expect(input.description).toContain(`Join on Zoom: ${ZOOM}`);
+    expect(input.description).not.toContain("Google Meet");
+  });
+  it("moved → the same event is moved, still done", async () => {
+    const { g, calls } = noMeetGoogle();
+    g.getEvent = (async (id: string) => { calls.push({ fn: "getEvent", args: [id] }); return { id, status: "confirmed" }; }) as GoogleAccount["getEvent"];
+    const r = await syncOne(g, zrow({ calendar_event_id: "vcold", event_version: 1 }), Date.now(), TRACKS.counselling);
+    expect(calls.map((c) => c.fn)).toEqual(["getEvent", "patchEvent"]);
+    expect((calls[1].args[1] as { location?: string }).location).toBe(ZOOM);
+    expect(r).toMatchObject({ outcome: "ok", calendar_event_id: "vcold" });
+  });
+  it("an old Google Meet event (booking moved to Zoom) → deleted, and a new one without Meet under the next generation", async () => {
+    const { g, calls } = noMeetGoogle(); // getEvent still answers with the old Google Meet event
+    const r = await syncOne(g, zrow({ calendar_event_id: "vcold", event_gen: 0, event_version: 1 }), Date.now(), TRACKS.counselling);
+    expect(calls.map((c) => c.fn)).toEqual(["getEvent", "deleteEvent", "createEvent"]);
+    expect(r).toMatchObject({ outcome: "ok", deleted_event_id: "vcold", event_gen: 1, calendar_event_id: `vc${ID.replace(/-/g, "")}g1` });
+  });
+  it("a Zoom booking without a usable link → no event (an old one is removed)", async () => {
+    const { g, calls } = fakeGoogle();
+    const r = await syncOne(g, zrow({ zoom_link: "http://not-https.example/x", calendar_event_id: "vcold" }), Date.now(), TRACKS.counselling);
+    expect(calls.map((c) => c.fn)).toEqual(["deleteEvent"]);
+    expect(r).toMatchObject({ outcome: "none", deleted_event_id: "vcold" });
+  });
+});
 
 describe("syncInterviews — claim, work, release", () => {
   it("does nothing until the admissions Google account is set up", async () => {

@@ -7,6 +7,10 @@
  */
 import { PANEL_STAGES, STAGE_LABEL, isStage, statusLabel, fmtIst, type PanelKey, type Stage } from "@/lib/vsat/pipeline";
 import { ATTENDANCE_LABEL, MEET_LABEL, isMeetState } from "@/lib/vsat/interviews";
+import { COUNSELLOR_FEEDBACK, FEEDBACK_LABEL, PARENT_LABEL, PARENT_PRESENT } from "@/lib/vsat/counselling-form";
+
+/** 0184: the fee columns of the counselling sheet, shown in rupees. */
+export const MONEY_KEYS = ["campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee"] as const;
 
 export type GridColType = "text" | "num" | "bool" | "date" | "ts" | "stage" | "status" | "json" | "uuid";
 /** `filterable` comes from the database (0135): real columns of a filterable type, plus the virtual ones it has a fixed expression for. */
@@ -80,6 +84,9 @@ export const VALUE_CHOICES: Record<string, { value: string; label: string }[]> =
   iv_financial: [{ value: "high", label: "High" }, { value: "medium", label: "Medium" }, { value: "low", label: "Low" }],
   // 0179: the student's choice at PI cleared
   counselling_mode: [{ value: "online", label: "Online" }, { value: "offline", label: "Offline" }],
+  // 0184: the "Selected for counselling" sheet's Counselor Feedback and Parent Present? answers
+  cs_feedback: COUNSELLOR_FEEDBACK.map((value) => ({ value, label: FEEDBACK_LABEL[value] })),
+  cs_parent_present: PARENT_PRESENT.map((value) => ({ value, label: PARENT_LABEL[value] })),
 };
 const choiceLabel = (key: string, v: string): string => VALUE_CHOICES[key]?.find((c) => c.value === v)?.label ?? v;
 export const FILTER_OPS: Record<string, FilterOp[]> = {
@@ -161,6 +168,12 @@ const LABELS: Record<string, string> = {
   counsellor: "Counsellor", counselling_slot: "Counselling slot (IST)", counselling_attendance: "Counselling status",
   interview_reschedules: "Interview reschedules", counselling_reschedules: "Counselling reschedules",
   counselling_category: "Scholarship category", counselling_pct: "Scholarship %", counselling_calculated_pct: "Calculated %",
+  // 0184 — the "Selected for counselling" sheet (Pune / GGN): the interview's ×20 scores, the counsellor's answers, the fee maths
+  pi_score_x20: "PI score (×20)", iv_cs_x20: "Comp science (×20)", iv_lr_x20: "Logical reasoning (×20)", cs_score: "Scholarship score",
+  cs_feedback: "Counsellor feedback", cs_parent_present: "Parent present", cs_connected_students: "Already connected with existing students",
+  cs_heard_from: "Came to know about Vedam from", cs_remarks: "Counsellor remarks", cs_adjust_pct: "Counsellor adjustment (±5 %)",
+  cs_submitted_at: "Counselling form submitted (IST)", campus_fee: "Programme fee", cs_scholarship_amount: "Scholarship amount",
+  cs_first_year_scholarship: "1st-year scholarship", cs_actual_fee: "Fee after scholarship",
   class10_percentage: "Class 10 %", class12_percentage: "Class 12 %", class10_maths_percentage: "Class 10 maths %",
   class12_maths_percentage: "Class 12 maths %", class10_year: "Class 10 year", class12_year: "Class 12 year",
   class10_board: "Class 10 board", class12_board: "Class 12 board", class10_school: "Class 10 school", class12_school: "Class 12 school",
@@ -233,6 +246,28 @@ export const INTERVIEW_SHEET_COLUMNS = [
   "interview_final_score",
 ] as const;
 
+/**
+ * Counselling table (0184): the booking columns, then sir's "Selected for counselling" sheet (Pune / GGN) left to right —
+ * the interview answers and scores, the scholarship, the counsellor's answers, Status, Counseling Mode, Date — then the
+ * fee columns at the sheet's end (fee, scholarship = fee × %, 1st year = ÷ 4, fee after scholarship). A column shows once
+ * (Counselor / Status / Mode / Date are the booking columns at the front). Offer columns stay (the offer follows counselling).
+ */
+export const COUNSELLING_SHEET_COLUMNS = [
+  "registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_mode", "counselling_attendance",
+  "counselling_reschedules",
+  // the sheet: VEDAM ID, State, City, Financial Capability, Why?, the five remarks, Why should Vedam accept you
+  "application_no", "state", "city", "iv_financial", "iv_financial_reason", "iv_communication_remarks", "iv_logic_remarks",
+  "iv_passion_remarks", "iv_achievements_remarks", "iv_why_program_remarks", "iv_why_accept",
+  // 10th %, Gender, VPS, Class 10 / 12 marks, PI score (×20), JEE Main, Comp Science (×20), Logical Reasoning (×20), JEE maths, 10th / 12th maths
+  "class10_percentage", "gender", "vps_effective", "class12_percentage", "interview_score", "pi_score_x20", "entrance_percentile",
+  "iv_passion", "iv_cs_x20", "iv_logic", "iv_lr_x20", "jee_main_maths_percentile", "class10_maths_percentage", "class12_maths_percentage",
+  // Scholarship Score, Interviewer, Verdict, Category, Award, Actual Awarded (with the counsellor's ±5), the counsellor's answers
+  "cs_score", "interviewer", "interview_verdict", "counselling_category", "counselling_calculated_pct", "cs_adjust_pct", "counselling_pct",
+  "cs_feedback", "cs_parent_present", "cs_connected_students", "cs_heard_from", "cs_remarks", "cs_submitted_at",
+  // the fee maths at the sheet's end, then the offer
+  "campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee", "offer_expires_at", "stage_changed_at",
+] as const;
+
 /** Default columns per panel — the ones the old panels showed. "registered_name" is always first and cannot be removed. */
 export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   apps: ["registered_name", "campus", "vsat", "stage", "exam_percentile", "vps_effective", "eligible_effective", "stage_changed_at"],
@@ -245,8 +280,8 @@ export const DEFAULT_COLUMNS: Record<PanelKey, string[]> = {
   intv: [...INTERVIEW_SHEET_COLUMNS],
   // 0144 — the offer deadline next to the scholarship; 0158 — the Meet state next to the slot; 0166 — status + reschedule count
   // 0179 — the student's Online / Offline choice right after the slot + Meet
-  couns: ["registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_mode", "counselling_attendance",
-          "counselling_reschedules", "counselling_category", "counselling_pct", "offer_expires_at", "stage_changed_at"],
+  // 0184 — the owner's review (24 Nov): the "Selected for counselling" sheet's columns, in its order, after the booking ones
+  couns: [...COUNSELLING_SHEET_COLUMNS],
 };
 
 /** Columns the request must carry for the shown ones to render (the override markers, the app no. under the name). */
@@ -292,8 +327,12 @@ export function formatValue(type: GridColType, key: string, v: unknown): string 
   if (VALUE_CHOICES[key] && typeof v === "string") return choiceLabel(key, v);
   if (key === "interview_meet" || key === "counselling_meet") {
     if (v === "own_link") return "—";  // old pasted link: no "Own link" word anywhere (Google Meet only, 0167)
+    if (v === "zoom") return "Zoom";   // 0184: counselling on the counsellor's Zoom link
     return isMeetState(v) ? MEET_LABEL[v] : String(v);
   }
+  // 0184: rupees, Indian grouping, whole rupees (as in the sheet)
+  if ((MONEY_KEYS as readonly string[]).includes(key) && Number.isFinite(Number(v))) return `₹${Math.round(Number(v)).toLocaleString("en-IN")}`;
+  if (key === "cs_adjust_pct" && Number.isFinite(Number(v))) return Number(v) > 0 ? `+${num(v)}%` : `${num(v)}%`;
   if (type === "ts") return fmtIst(String(v));
   if (type === "date") return istDate(v);
   // a JEE percentile is not a percentage (0173: the interview's JEE answers end in _pct like the class % ones)

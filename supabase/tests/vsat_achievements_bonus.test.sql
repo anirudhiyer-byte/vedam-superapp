@@ -33,6 +33,7 @@ begin
     exam_percentile, exam_obtained_marks, exam_max_marks, vps_score)
   values (p_id, u, p_id, 'ZZTEST ' || p_id, lower(p_id) || '@example.invalid', 'Ajeenkya DY Patil University — Pune', p_date,
     2024, 90, 85, 2026, 80, 70, 70, 70, 70, false, null, null, 80, p_marks, 50, 8.43);
+  update public.application_manager set counselling_mode = 'online', counselling_mode_at = now() where application_id = p_id;  -- 0184 test setup: counselling is booked for online students only
   update public.application_manager set exam_given = true where application_id = p_id;
   perform public.vsat__move(p_id, 'vsat_cleared', 'active', 'zz test', 'system', null, null);
   return p_id;
@@ -98,6 +99,7 @@ begin
     int1 := pg_temp.mk_user('zztest-bon-int1@example.invalid');
     cou1 := pg_temp.mk_user('zztest-bon-cou1@example.invalid');
     insert into public.vsat_team (user_id, role) values (adm, 'admissions'), (int1, 'interviewer'), (cou1, 'counsellor');
+    insert into public.vsat_counsellor_zoom (counsellor_id, zoom_link) values (cou1, 'https://zoom.us/j/zztest-cou1');  -- 0184 test setup: counselling runs on the counsellor's own Zoom link
     insert into public.vsat_exam_dates (label, wheebox_test_id, exam_date, start_at, end_at)
     values ('ZZTEST bonus batch', 'zz-bon', current_date, now(), now() + interval '2 hours') returning id into d;
     b1 := pg_temp.mk_app('ZZT-BON-1', d, 21);

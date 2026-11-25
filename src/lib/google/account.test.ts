@@ -25,6 +25,17 @@ afterEach(() => { for (const k of ENV) delete process.env[k]; });
 const ev = { id: "viabcg0", status: "confirmed", hangoutLink: "https://meet.google.com/abc-defg-hij", conferenceData: { conferenceId: "abc-defg-hij" } };
 
 describe("google account", () => {
+  it("0184: an event can be made without a Google Meet, with its place (the counsellor's Zoom link)", async () => {
+    const f = fakeFetch([{ status: 200, body: { id: "vcabcg0", status: "confirmed" } }]);
+    const g = createGoogleAccount("ZZT", { fetch: f.fn, accessToken: async () => "tok" });
+    await g.createEvent({ id: "vcabcg0", summary: "S", description: "D", start: "2026-11-25T05:30:00.000Z", end: "2026-11-25T06:00:00.000Z",
+      attendees: ["ravi@example.com"], location: "https://us06web.zoom.us/j/111", meet: false });
+    const body = f.calls[0].body as Record<string, unknown>;
+    expect(body.conferenceData).toBeUndefined();
+    expect(body.location).toBe("https://us06web.zoom.us/j/111");
+    expect(body.meet).toBeUndefined(); // never sent to Google as a field
+  });
+
   it("is configured only with all four auth values (prefix-scoped env)", () => {
     const g = createGoogleAccount("ZZT");
     expect(g.configured()).toBe(false);

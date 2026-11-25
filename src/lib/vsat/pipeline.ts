@@ -180,6 +180,11 @@ const ERRORS: Record<string, string> = {
   ALREADY_SELECTED: "This student is already at VSAT cleared or later.",
   NOT_ELIGIBLE: "This student is marked not eligible.",
   BELOW_CUTOFF: "The new VPS must be at least the VSAT's cut-off.",
+  // counselling, owner's review (0184): online students only, on the counsellor's own Zoom link
+  MODE_NOT_CHOSEN: "The student hasn't chosen online or offline counselling yet. Set the mode first.",
+  MODE_OFFLINE: "The student chose offline counselling: no online invite is sent. They come on an offline date.",
+  NO_ZOOM_LINK: "This counsellor has no Zoom link yet. An admin adds it under Counselling → Zoom links.",
+  ALREADY_EXISTS: "That date is already on the list.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
@@ -195,6 +200,10 @@ const FIELD_LABEL: Record<string, string> = {
   verdict: "Proctoring verdict", expected_count: "Count", apply: "Apply",
   duration_min: "Length", interviewer_id: "Interviewer", interviewer_ids: "Interviewer", counsellor_id: "Counsellor", attendance: "Status", track: "Panel",
   start: "Start time", auto_meet: "Google Meet", reason: "Reason", dry_run: "Preview",
+  // 0184
+  zoom_link: "Zoom link", date: "Date", mode: "Mode", feedback: "Counsellor feedback", parent_present: "Parent present",
+  connected_students: "Already connected with existing students", heard_from: "Came to know about Vedam from",
+  adjust_pct: "Adjustment", adjust_reason: "Reason for the adjustment",
 };
 
 export function errorText(raw: string | null | undefined): string {
