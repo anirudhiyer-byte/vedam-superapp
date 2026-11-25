@@ -381,6 +381,13 @@ begin
                          and pg_temp.col(x5, 'ol_cancelled') = 'OL Cancelled' and pg_temp.stage(c3) = 'enrolled:active'
                          and pg_temp.col(c3, 'ol_cancelled') is null and pg_temp.col(c3, 'seat_block_status') = 'Done' and pg_temp.col(x1, 'ol_cancelled') is null);
 
+    -- r3: Reminder 2 still waiting (R section, never claimed) → pays; r1: Reminder 1 was sent → pays too
+    update public.application_manager set enrollment_stage = 'approved' where application_id in (r1, r3);
+    t_name := t_name || text 'C a reminder still waiting when the student pays shows "Not sent (no longer live)"; a sent one stays "Sent"';
+    t_det := t_det || (format('r3 %s → %s | r1 %s → %s', pg_temp.rem(r3), pg_temp.col(r3, 'ol_reminder_2'), pg_temp.rem(r1), pg_temp.col(r1, 'ol_reminder_1')));
+    t_pass := t_pass || (pg_temp.rem(r3) like '%reminder_2=pending%' and pg_temp.col(r3, 'ol_reminder_2') = 'Not sent (no longer live)'
+                         and pg_temp.col(r1, 'ol_reminder_1') = 'Sent');
+
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_grid_list', jsonb_build_object('application_ids', jsonb_build_array(x1, c1, c2),
            'columns', jsonb_build_array('offer_released_at', 'offer_expires_at', 'ol_date_increase', 'seat_block_status', 'seat_block_date',
                                         'ol_reminder_1', 'ol_reminder_2', 'ol_cancelled'), 'limit', 10)));
