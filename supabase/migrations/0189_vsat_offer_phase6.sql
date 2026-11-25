@@ -130,6 +130,14 @@ begin
    where e.application_id = p_app and e.kind = 'reminder_' || p_n and e.released_at = am.offer_released_at
    order by e.created_at desc limit 1;
   if found then
+    -- a reminder still waiting whose offer is no longer live (paid, cancelled, lapsed, on hold, past its date) won't go out
+    if ev.notify_status in ('pending', 'failed') then
+      select * into vp from public.vsat_pipeline x where x.application_id = p_app;
+      if coalesce(am.enrollment_stage, '') = 'approved' or coalesce(am.offer_cancelled, false) or vp.stage is distinct from 'offer_sent'
+         or vp.status is distinct from 'active' or am.offer_expires_at <= now() then
+        return 'Not sent (no longer live)';
+      end if;
+    end if;
     return case ev.notify_status
       when 'sent' then 'Sent'
       when 'failed' then 'Failed'

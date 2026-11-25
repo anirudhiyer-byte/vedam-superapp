@@ -104,7 +104,7 @@ export function OfferBar({ ids, onDone, onReleased }: { ids: string[]; onDone: (
             title={tooMany ? `At most ${RELEASE_MAX} at a time` : undefined}>
             {busy === "check" ? "Checking…" : "Release offer"}
           </button>
-          <span className="text-xs text-vx-faint">For students at Counselled. Each gets an email with their scholarship and a deadline to pay.</span>
+          <span className="text-xs text-vx-faint">For students whose counselling is Done. Each gets an email with their scholarship and a deadline to pay.</span>
           {tooMany && <span className="text-xs text-vx-orange-t">At most {RELEASE_MAX} at a time.</span>}
         </>
       )}

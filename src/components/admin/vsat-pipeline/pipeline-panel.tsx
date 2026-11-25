@@ -44,7 +44,7 @@ import type { Batch } from "./types";
  * Interview panel (0140, 0143): an Interviewer dropdown for managers, and booking from the rows like the old
  * sheet — Interviewer / Date / Time cells on each row, select rows, one Send (interview-planner.tsx).
  * Counselling panel (0144, 0145): the same row booking with Counsellor / Date / Time, and Release offer for
- * students at Counselled (offer-tools.tsx).
+ * students whose counselling is Done (offer-tools.tsx, 0189).
  */
 
 const PAGE = 50;
@@ -420,7 +420,7 @@ export function PipelinePanel({ panel, roles, onOpenEvaluation }: { panel: Panel
         </div>
       )}
       {planTrack && sel.size === 0 && total > 0 && !loading && (
-        <p className="text-xs text-vx-faint">To book: fill {planTrack.Host}, Date and Time on the rows (saved as you type, not sent), select them, then press Send. Sending doesn&apos;t change the stage: move it with “Move to”.{offerPanel ? " To release offers: select students at Counselled and press Release offer." : ""}</p>
+        <p className="text-xs text-vx-faint">To book: fill {planTrack.Host}, Date and Time on the rows (saved as you type, not sent), select them, then press Send. Sending doesn&apos;t change the stage: move it with “Move to”.{offerPanel ? " To release offers: select students whose counselling is Done and press Release offer." : ""}</p>
       )}
 
       {/* ── table ─────────────────────────────────── */}
