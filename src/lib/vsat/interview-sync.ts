@@ -48,8 +48,9 @@ export type SyncRow = {
   application_id: string;
   slot_start: string | null;
   duration_min: number;
-  /** "zoom" (counselling, 0184): the event carries the counsellor's Zoom link and no Google Meet */
-  meet_mode: "auto" | "manual" | "zoom";
+  /** "zoom" (counselling, 0184): the event carries the counsellor's Zoom link and no Google Meet.
+   *  "offline" (counselling, 0186): no event at all — an older invite (online before) is deleted */
+  meet_mode: "auto" | "manual" | "zoom" | "offline";
   /** counselling on Zoom only: the counsellor's link (0184) */
   zoom_link?: string | null;
   cancelled: boolean;

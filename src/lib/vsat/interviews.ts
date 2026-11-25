@@ -84,8 +84,8 @@ export type InterviewRow = {
   slot_datetime?: string | null;
   duration_min?: number | null;
   meet_link?: string | null;
-  /** "zoom": counselling on the counsellor's own Zoom link (0184) */
-  meet_mode?: "auto" | "manual" | "zoom" | null;
+  /** "zoom": counselling on the counsellor's own Zoom link (0184); "offline": an offline session, recorded only (0186) */
+  meet_mode?: "auto" | "manual" | "zoom" | "offline" | null;
   meet_sync?: "none" | "pending" | "syncing" | "ok" | "failed" | null;
   meet_error?: string | null;
   meet_attempts?: number | null;
@@ -103,6 +103,7 @@ export function meetState(iv: InterviewRow | null | undefined): MeetState | null
   if (!iv) return null;
   if (iv.cancelled_at) return "cancelled";
   if (iv.meet_mode === "manual") return null;  // old pasted link: no badge (Google Meet only)
+  if (iv.meet_mode === "offline") return null;  // 0186: no meeting (an old invite is removed in the background)
   if (iv.meet_sync === "ok") return "ready";
   if (iv.meet_sync === "pending" || iv.meet_sync === "syncing") return "creating";
   if (iv.meet_sync === "failed") return "failed";
@@ -227,7 +228,11 @@ export function interviewCardCopy(phase: CardPhase, opts: { opensAt?: string | n
 
 /** Where the student is between the interview and counselling (vsat_my_counselling, 0145). */
 export type CounsellingStep = "interview" | "interviewed" | "pi_cleared" | "counselling";
-export type MyCounselling = MyInterview & { step?: CounsellingStep };
+export type MyCounselling = MyInterview & {
+  step?: CounsellingStep;
+  /** 0186: an offline session at the campus — no link, no Join button */
+  offline?: boolean;
+};
 export const isCounsellingStep = (v: unknown): v is CounsellingStep =>
   v === "interview" || v === "interviewed" || v === "pi_cleared" || v === "counselling";
 
@@ -235,7 +240,10 @@ export const isCounsellingStep = (v: unknown): v is CounsellingStep =>
  * The counselling card's heading and message: the interview card's copy with "counselling session" (0145). Before a
  * session is booked it says where the student is: interview done (waiting for the result) or interview cleared.
  */
-export function counsellingCardCopy(phase: CardPhase, step: CounsellingStep, opts: { opensAt?: string | null; hasLink?: boolean } = {}): { title: string; text: string } {
+export function counsellingCardCopy(phase: CardPhase, step: CounsellingStep, opts: { opensAt?: string | null; hasLink?: boolean; offline?: boolean } = {}): { title: string; text: string } {
+  // 0186: an offline session is at the campus — the time only, no Join button or link
+  if (opts.offline && phase === "upcoming") return { title: "Your counselling session is booked", text: "Please come to the campus at this time. No link is needed." };
+  if (opts.offline && phase === "open") return { title: "Your counselling session is starting", text: "Please come to the campus. No link is needed." };
   switch (phase) {
     case "none":
       if (step === "interviewed") return { title: "Your interview is done", text: "We'll email you the result." };
@@ -337,7 +345,7 @@ export type NoticeJob = {
   baseline: { kind: string; slot_start: string | null; duration_min: number | null; interviewer: (Person & { id: string }) | null } | null;
   student: { name: string | null; email: string | null; application_no: string | null; lead_id: string | null };
   meet_link: string | null;
-  meet_mode: "auto" | "manual" | "zoom" | null;
+  meet_mode: "auto" | "manual" | "zoom" | "offline" | null;
 };
 
 export type PlannedNotice = {

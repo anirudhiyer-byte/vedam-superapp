@@ -89,6 +89,10 @@ describe("student card copy (counselling)", () => {
       .toBe("The Join button opens at 10:50 am IST, 10 minutes before your session.");
     expect(counsellingCardCopy("open", "counselling", { hasLink: true }).text).toBe("");
     expect(counsellingCardCopy("missed", "counselling").title).toBe("You missed your counselling session");
+    // 0186: an offline session — come to the campus, no link
+    expect(counsellingCardCopy("upcoming", "counselling", { offline: true }).text).toBe("Please come to the campus at this time. No link is needed.");
+    expect(counsellingCardCopy("open", "counselling", { offline: true, hasLink: false }).text).toBe("Please come to the campus. No link is needed.");
+    expect(counsellingCardCopy("ended", "counselling", { offline: true })).toEqual(counsellingCardCopy("ended", "counselling"));
     for (const ph of ["none", "upcoming", "open", "missed", "ended", "error", "no_campus", "loading"] as const) {
       const c = counsellingCardCopy(ph, "counselling");
       expect(c.title + c.text).not.toMatch(/\p{Extended_Pictographic}/u);

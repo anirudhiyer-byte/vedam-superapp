@@ -138,7 +138,7 @@ export function CounsellingEvaluation({ roles }: { roles: VsatRoles }) {
               <Tile label="Reached counselling" value={String(data.students)} hint="PI cleared and every stage after it, this attempt" />
               <Tile label="Chose online" value={String(data.mode.online)} />
               <Tile label="Chose offline" value={String(data.mode.offline)} />
-              <Tile label="Booked" value={String(data.booked)} hint="An online session is booked (not cancelled)" />
+              <Tile label="Booked" value={String(data.booked)} hint="An online session is booked or an offline one is recorded (not cancelled)" />
               <Tile label="Counselled" value={String(data.counselled)} hint="The counselling form is saved: the scholarship is decided" />
               <Tile label="ARPU" value={rupeesShort(data.arpu)} hint="Average fee a counselled student pays after the scholarship" />
             </dl>

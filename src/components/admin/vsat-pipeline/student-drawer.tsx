@@ -414,6 +414,7 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
         ["Parent present", show(c.parent_present ? PARENT_LABEL[c.parent_present as ParentPresent] ?? c.parent_present : null)],
         ["Already connected with existing students", c.connected_students == null ? "—" : c.connected_students ? "Yes" : "No"],
         ["Came to know about Vedam from", show(c.heard_from)],
+        ["Offline form filled", c.offline_form_filled == null ? "—" : c.offline_form_filled ? "Yes" : "No"],
         ["Counsellor remarks", show(c.counsellor_remarks)],
       ]} />}
       {c && <ProfileBox applicationId={s.profile.application_id} {...savedProfile(c.profile_analysis)} canGenerate={s.can_manage || isCounsellor} />}
@@ -491,7 +492,7 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
   const [supabase] = useState(() => createClient());
   const [pre, setPre] = useState<Preview | null>(null);
   // 0184: the "Selected for counselling" sheet's counsellor columns, and the counsellor's −5 … +5 on the formula's %
-  const [f, setF] = useState<CounsellingFormInput>({ feedback: "", parentPresent: "", connected: "", heardFrom: "", remarks: "", adjust: "0", adjustReason: "" });
+  const [f, setF] = useState<CounsellingFormInput>({ feedback: "", parentPresent: "", connected: "", heardFrom: "", remarks: "", adjust: "0", adjustReason: "", offlineForm: "" });
   const set = <K extends keyof CounsellingFormInput>(k: K, v: CounsellingFormInput[K]) => { setF((x) => ({ ...x, [k]: v })); setMsg(""); };
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
@@ -566,6 +567,12 @@ function CounsellingFormBox({ applicationId, onDone }: { applicationId: string; 
         </label>
         <label className="block text-xs text-vx-faint">Came to know about Vedam from?
           <input className={cx(input, "mt-1")} maxLength={HEARD_FROM_MAX} value={f.heardFrom} onChange={(e) => set("heardFrom", e.target.value)} placeholder="e.g. a friend, Instagram, school" />
+        </label>
+        {/* 0186: the sheet's "Offline Form Filled" */}
+        <label className="block text-xs text-vx-faint">Offline form filled?
+          <select className={cx(input, "mt-1")} value={f.offlineForm ?? ""} onChange={(e) => set("offlineForm", e.target.value as CounsellingFormInput["offlineForm"])}>
+            <option value="">Not given</option><option value="yes">Yes</option><option value="no">No</option>
+          </select>
         </label>
       </div>
       <textarea className={input} rows={2} maxLength={REMARKS_MAX} placeholder="Counsellor remarks (optional)" value={f.remarks} onChange={(e) => set("remarks", e.target.value)} aria-label="Counsellor remarks" />

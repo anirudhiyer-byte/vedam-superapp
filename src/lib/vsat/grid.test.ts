@@ -258,3 +258,14 @@ describe("Counselling table: the 'Selected for counselling' sheet (0184)", () =>
     expect(columnLabel("cs_heard_from")).toBe("Came to know about Vedam from");
   });
 });
+
+describe("Counselling table: offline sessions (0186)", () => {
+  it("the Meet column says Offline; Offline form filled is a default column, after the booking columns", () => {
+    expect(formatValue("text", "counselling_meet", "offline")).toBe("Offline");
+    expect(columnLabel("cs_offline_form_filled")).toBe("Offline form filled");
+    const c = DEFAULT_COLUMNS.couns;
+    expect(c.indexOf("cs_offline_form_filled")).toBe(c.indexOf("counselling_reschedules") + 1);
+    expect(formatValue("bool", "cs_offline_form_filled", true)).toBe("Yes");
+    expect(formatValue("bool", "cs_offline_form_filled", false)).toBe("No");
+  });
+});

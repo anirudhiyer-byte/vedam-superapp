@@ -174,7 +174,9 @@ export function InterviewStatus({ iv, applicationId, manager, isInterviewer, atI
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-xs text-vx-faint">Meeting</span>
         {/* 0184: counselling on the counsellor's own Zoom link — no Google Meet; the calendar invite still goes out */}
-        {iv.meet_mode === "zoom" ? <span className={cx(vx.badge, vx.tone.violet)}>Zoom</span> : state && <MeetBadge state={state} />}
+        {iv.meet_mode === "zoom" ? <span className={cx(vx.badge, vx.tone.violet)}>Zoom</span>
+          : iv.meet_mode === "offline" ? <span className={cx(vx.badge, vx.tone.teal)}>Offline (on campus)</span>  // 0186: recorded, no invite or email
+          : state && <MeetBadge state={state} />}
         {iv.meet_mode === "zoom" && state === "creating" && <span className="text-xs text-vx-faint">Sending the calendar invite…</span>}
         {iv.meet_mode === "zoom" && state === "failed" && <span className={cx(vx.badge, vx.tone.red)}>Invite failed</span>}
         {iv.meet_link && isHttpsLink(iv.meet_link) && (

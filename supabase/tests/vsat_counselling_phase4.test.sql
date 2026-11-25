@@ -196,8 +196,12 @@ begin
     slot := to_char(now() + interval '4 days', 'YYYY-MM-DD"T"HH24:00:00"Z"');
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', g1, 'counsellor_id', c1, 'slot_datetime', slot)));
     t_name := t_name || text 'D no mode chosen yet → MODE_NOT_CHOSEN'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'MODE_NOT_CHOSEN');
-    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', a4, 'counsellor_id', c1, 'slot_datetime', slot)));
-    t_name := t_name || text 'D an offline student gets no invite → MODE_OFFLINE'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'MODE_OFFLINE');
+    -- 0186 (owner's decision, 25 Nov): an offline student's session is recorded with no invite (was MODE_OFFLINE in 0184)
+    r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', a4, 'counsellor_id', c2, 'slot_datetime', slot)));
+    select * into ca from public.counselling_assignments x where x.application_id = a4;
+    t_name := t_name || text 'D an offline student is recorded with no invite (no Zoom link needed, no calendar work)';
+    t_det := t_det || format('%s | mode=%s link=%s sync=%s', left(coalesce(r->>'message', 'ok'), 80), ca.meet_mode, coalesce(ca.zoom_link, '-'), ca.meet_sync);
+    t_pass := t_pass || coalesce(not (r ? 'sqlstate') and ca.meet_mode = 'offline' and ca.zoom_link is null and ca.meet_sync = 'none', false);
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', a2, 'counsellor_id', c2, 'slot_datetime', slot)));
     t_name := t_name || text 'D a counsellor without a Zoom link → NO_ZOOM_LINK'; t_det := t_det || r::text; t_pass := t_pass || (r->>'message' = 'NO_ZOOM_LINK');
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_assign_counsellor', jsonb_build_object('application_id', a2, 'counsellor_id', c1, 'slot_datetime', slot)));
@@ -229,11 +233,14 @@ begin
     values (a3, 1, c2, (now() + interval '5 days')::timestamptz), (a4, 1, c1, (now() + interval '6 days')::timestamptz),
            (g1, 1, c1, (now() + interval '7 days')::timestamptz);
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_counselling_drafts_send', jsonb_build_object('application_ids', jsonb_build_array(a3, a4, g1))));
-    t_name := t_name || text 'D Send: the online student is sent on their counsellor''s link; offline and no-mode rows are skipped with the reason';
+    -- 0186: the offline row is sent too (recorded, no invite); only the no-mode row is skipped
+    t_name := t_name || text 'D Send: the online student is sent on their counsellor''s link; the offline row is recorded; the no-mode row is skipped with the reason';
     t_det := t_det || r::text;
-    t_pass := t_pass || (jsonb_array_length(r->'sent') = 1 and r->'sent'->0->>'application_id' = a3
-                         and r->'skipped' @> jsonb_build_array(jsonb_build_object('application_id', a4, 'code', 'MODE_OFFLINE'))
+    t_pass := t_pass || (jsonb_array_length(r->'sent') = 2 and r->'sent' @> jsonb_build_array(jsonb_build_object('application_id', a3))
+                         and r->'sent' @> jsonb_build_array(jsonb_build_object('application_id', a4))
+                         and jsonb_array_length(r->'skipped') = 1
                          and r->'skipped' @> jsonb_build_array(jsonb_build_object('application_id', g1, 'code', 'MODE_NOT_CHOSEN'))
+                         and (select x.meet_mode from public.counselling_assignments x where x.application_id = a4) = 'offline'
                          and (select x.zoom_link from public.counselling_assignments x where x.application_id = a3) = zl2);
 
     -- ── E. counselling form: the sheet's counsellor fields and the ±5 adjustment ──
@@ -322,11 +329,11 @@ begin
 
     -- ── H. Counselling Evaluation ──
     r := pg_temp.call_as(adm, pg_temp.rpc('vsat_counselling_analysis', jsonb_build_object('exam_date_id', d)));
-    -- PI cleared and after: a1 a2 a3 (online), a4 (offline), g1 and v1 (no mode); booked a1 a2 a3; counselled a1 (likely) and a3 (no feedback)
+    -- PI cleared and after: a1 a2 a3 (online), a4 (offline), g1 and v1 (no mode); booked a1 a2 a3 a4 (0186: offline recorded); counselled a1 (likely) and a3 (no feedback)
     t_name := t_name || text 'H one VSAT: students, mode, booked, counselled, feedback, ARPU (average actual fee) per campus and overall';
     t_det := t_det || left(r::text, 700);
     t_pass := t_pass || coalesce((r->>'students')::int = 6 and (r->'mode'->>'online')::int = 3 and (r->'mode'->>'offline')::int = 1
-                         and (r->'mode'->>'not_chosen')::int = 2 and (r->>'booked')::int = 3 and (r->>'counselled')::int = 2
+                         and (r->'mode'->>'not_chosen')::int = 2 and (r->>'booked')::int = 4 and (r->>'counselled')::int = 2
                          and (r->'feedback'->>'likely')::int = 1 and (r->'feedback'->>'not_given')::int = 1
                          and (r->>'arpu')::numeric = (select round(avg(1850000 * (1 - x.scholarship_pct / 100))) from public.counselling_assignments x where x.application_id in (a1, a3))
                          and r->'campuses' @> jsonb_build_array(jsonb_build_object('campus', 'gurugram', 'students', 1, 'counselled', 0))

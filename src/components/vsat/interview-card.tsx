@@ -149,19 +149,21 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
   }, [load]);
 
   const phase = mi ? joinPhase(mi, Date.now(), skew) : null;
-  const link = phase === "open" && mi?.state === "open" ? joinUrl(mi.meet_link) : null;
+  // 0186: an offline counselling session has no link and no Join button
+  const offline = kind === "counselling" && !!(mi as MyCounselling | null)?.offline;
+  const link = phase === "open" && mi?.state === "open" && !offline ? joinUrl(mi.meet_link) : null;
 
   // ask the server again when the phase changes (it hands out the link only inside the window),
   // and every 30 s while the window is open but the link isn't ready yet
   useEffect(() => {
     if (!mi) return;
     const next = msToNextPhase(mi, Date.now(), skew);
-    const waitLink = phase === "open" && !link ? RECHECK_NO_LINK_MS : null;
+    const waitLink = phase === "open" && !link && !offline ? RECHECK_NO_LINK_MS : null;
     const wait = [next === null ? null : next + 1_000, waitLink].filter((x): x is number => x !== null);
     if (!wait.length) return;
     const t = setTimeout(() => { setTick((n) => n + 1); void load(); }, Math.min(...wait, 2 ** 31 - 1));
     return () => clearTimeout(t);
-  }, [mi, skew, phase, link, load]);
+  }, [mi, skew, phase, link, offline, load]);
   // the countdown
   useEffect(() => {
     if (phase !== "upcoming") return;
@@ -171,7 +173,7 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
 
   const shown: CardPhase = !campus ? "no_campus" : phase ?? (failed ? "error" : "loading");
   const copy = kind === "counselling"
-    ? counsellingCardCopy(shown, step, { opensAt: mi?.opens_at, hasLink: !!link })
+    ? counsellingCardCopy(shown, step, { opensAt: mi?.opens_at, hasLink: !!link, offline })
     : interviewCardCopy(shown, { opensAt: mi?.opens_at, hasLink: !!link });
   const joinText = kind === "counselling" ? "Join session" : "Join interview";
   const { Icon, tone } = LOOK[shown];
@@ -255,7 +257,11 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
 
       {start && <SlotPanel start={start} dur={dur} chip={chip} />}
 
-      {shown === "upcoming" && (
+      {offline && (shown === "upcoming" || shown === "open") && (
+        <div className={`mt-4 ${note} bg-[#faf8fe] text-[#4a4160]`}><IconPin className="mt-0.5 h-4 w-4 shrink-0 text-[#8a18ff]" />{copy.text}</div>
+      )}
+
+      {shown === "upcoming" && !offline && (
         <>
           <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:items-center">
             <button disabled className={locked}><IconLock className="h-4 w-4" />{joinText}</button>
@@ -265,7 +271,7 @@ export function InterviewCard({ campus, campuses, onPickCampus, picking }:
         </>
       )}
 
-      {shown === "open" && (
+      {shown === "open" && !offline && (
         <>
           {link ? (
             <a href={link} target="_blank" rel="noopener noreferrer" onClick={() => track(TRACKS[kind].joinEvent)}
