@@ -71,7 +71,7 @@ export async function POST(req: Request) {
   // ── application + eligibility ──────────────────────────────────────────────
   const { data: app } = await admin
     .from("application_manager")
-    .select("application_id, registered_name, registered_email, gender, state, city, country, wheebox_login_id, wheebox_registered, exam_date_id, application_stage_1, mock_given")
+    .select("application_id, registered_name, registered_email, gender, state, city, country, wheebox_login_id, wheebox_registered, exam_date_id, application_stage_1, mock_given, mock_assigned")
     .eq("lead_id", user.id)
     .maybeSingle();
   if (!app?.application_id) return json({ ok: false, code: "NOT_AN_APPLICANT" }, 403);
@@ -91,6 +91,9 @@ export async function POST(req: Request) {
   let endAt: string;
   if (kind === "mock") {
     if (!isAdmin && !flagOn("vsat_mock_enabled", false)) return json({ ok: false, code: "MOCK_DISABLED" }, 409);
+    // Lock only once a real result is in (mock_given). Before that a student may still re-enter —
+    // we can't tell "finished" from "launched then bailed" without the Wheebox callback, so an
+    // abandoner must be able to resume. (Wheebox itself blocks re-attempt after submission.)
     if (!isAdmin && app.mock_given === true) return json({ ok: false, code: "MOCK_ALREADY_DONE" }, 409);
     if (!settings?.mock_test_id) return json({ ok: false, code: "MOCK_NOT_CONFIGURED" }, 409);
     testId = String(settings.mock_test_id);

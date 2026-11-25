@@ -13,7 +13,7 @@ import { VsatCommsPanel } from "@/components/admin/vsat-comms-panel";
 export type WheeboxStatus = { base: boolean; companyCode: boolean; accessToken: boolean; privateKey: boolean; ready: boolean };
 
 type Anchor = { percentile: number; vps: number };
-type Settings = { mockTestId: string; osrFormat: string; leadMinutes: number; passVpsCutoff: number | null; vpsAnchors: Anchor[] };
+type Settings = { mockTestId: string; mockTestName: string; mockDomainName: string; osrFormat: string; leadMinutes: number; passVpsCutoff: number | null; vpsAnchors: Anchor[] };
 
 const input = vx.input;
 const label = vx.label;
@@ -35,6 +35,7 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const [err, setErr] = useState("");
+  const [pullMsg, setPullMsg] = useState("");
 
   const load = useCallback(async () => {
     setLoading(true); setErr("");
@@ -44,6 +45,8 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
     const d = data.settings as Record<string, unknown>;
     setS({
       mockTestId: (d.mockTestId as string) ?? "",
+      mockTestName: (d.mockTestName as string) ?? "",
+      mockDomainName: (d.mockDomainName as string) ?? "",
       osrFormat: (d.osrFormat as string) ?? "o",
       leadMinutes: d.leadMinutes != null ? Number(d.leadMinutes) : 15,
       passVpsCutoff: d.passVpsCutoff != null ? Number(d.passVpsCutoff) : null,
@@ -71,6 +74,8 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
     setBusy(true);
     const { data } = await supabase.rpc("vsat_exam_settings_set", { p: {
       mockTestId: s.mockTestId.trim(),
+      mockTestName: s.mockTestName.trim(),
+      mockDomainName: s.mockDomainName.trim(),
       osrFormat: s.osrFormat.trim() || "o",
       leadMinutes: s.leadMinutes,
       passVpsCutoff: s.passVpsCutoff,
@@ -80,6 +85,26 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
     if (!data?.ok) return setErr(data?.code === "INVALID_ANCHORS" ? "VPS anchors are invalid." : data?.code === "FORBIDDEN" ? "Admins only." : "Couldn't save. Try again.");
     setMsg("Saved ✓");
     void load();
+  }
+
+  // Pull the mock result for every student who has taken the mock, mapped to each student.
+  // Not date-scoped (the mock is independent of VSAT dates). Resumable: loop until nothing remains.
+  async function pullMock() {
+    setBusy(true); setPullMsg("Pulling mock results…");
+    let pulled = 0, guard = 0;
+    try {
+      while (guard++ < 200) {
+        const res = await fetch("/api/vsat/exam/pull-mock", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "include", body: "{}" });
+        const d = await res.json().catch(() => ({}));
+        if (!d?.ok) { setPullMsg(d?.code === "WHEEBOX_NOT_CONFIGURED" ? "Wheebox isn't connected (set the env keys above)." : d?.code === "FORBIDDEN" ? "Admins only." : d?.code === "MOCK_NOT_CONFIGURED" ? "Set the mock test ID first." : "Couldn't pull mock results."); break; }
+        pulled += d.pulled || 0;
+        if (d.total === 0) { setPullMsg("No students have taken the mock yet."); break; }
+        if (d.remaining && d.pulled > 0) { setPullMsg(`Pulling mock results: ${pulled} done, ${d.remaining} to go…`); continue; }
+        const left = d.remaining || 0;
+        setPullMsg(`Pulled ${pulled} mock result${pulled === 1 ? "" : "s"}${left ? `. ${left} still have no result (not submitted yet) — run again later.` : ". ✓"}`); break;
+      }
+    } catch { setPullMsg("Couldn’t reach the server while pulling mock results."); }
+    setBusy(false);
   }
 
   return (
@@ -130,6 +155,16 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
                 <p className="mt-1 text-[11px] text-vx-faint">One mock test, given once per applicant.</p>
               </div>
               <div>
+                <label className={label}>Mock test name <span className="opacity-60">(for results)</span></label>
+                <input className={input} value={s.mockTestName} onChange={(e) => patch({ mockTestName: e.target.value })} placeholder="e.g. VSAT Mock" />
+                <p className="mt-1 text-[11px] text-vx-faint">Wheebox test name — needed to pull mock results.</p>
+              </div>
+              <div>
+                <label className={label}>Mock domain name <span className="opacity-60">(for results)</span></label>
+                <input className={input} value={s.mockDomainName} onChange={(e) => patch({ mockDomainName: e.target.value })} placeholder="e.g. April 2026" />
+                <p className="mt-1 text-[11px] text-vx-faint">Wheebox domain name — needed to pull mock results.</p>
+              </div>
+              <div>
                 <label className={label}>OSR format</label>
                 <input className={input} value={s.osrFormat} onChange={(e) => patch({ osrFormat: e.target.value })} placeholder="o" />
                 <p className="mt-1 text-[11px] text-vx-faint">Wheebox result-format flag (default &ldquo;o&rdquo;).</p>
@@ -171,6 +206,18 @@ export function VsatExamCenter({ wheebox }: { wheebox: WheeboxStatus }) {
             </div>
           </div>
         )}
+      </section>
+
+      {/* ── Mock results (global; not tied to a VSAT date) ── */}
+      <section className={`${card} mt-5`}>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-sans text-[17px] font-semibold tracking-[-0.01em]">Mock results</h2>
+            <p className="mt-1 text-sm text-vx-mut">Pull the Wheebox mock result for every student who has taken the mock, mapped to each student. The mock isn&apos;t tied to any exam date.</p>
+          </div>
+          <button onClick={pullMock} disabled={busy} className={cx(vx.btn, vx.cta)}>{busy ? "Pulling…" : "Pull mock results"}</button>
+        </div>
+        {pullMsg && <p className="mt-3 text-sm text-vx-violet-t">{pullMsg}</p>}
       </section>
 
       <VsatLandingToggles />

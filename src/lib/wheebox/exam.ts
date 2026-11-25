@@ -124,6 +124,13 @@ export function parseWheeboxResult(payload: unknown): ParsedResult {
   return { overall, obtainedMarks, maxMarks, percentile, sections };
 }
 
+/** True when a parsed result carries real data (a score, a verdict, or sections) — i.e. the
+ *  candidate has a result to store. Guards against writing an empty/error response as a result. */
+export function hasResultData(p: ParsedResult): boolean {
+  return p.obtainedMarks !== null || p.maxMarks !== null || p.percentile !== null
+    || (p.overall !== null && p.overall !== "") || Object.keys(p.sections).length > 0;
+}
+
 /** The compact, student-safe shape we store in application_manager.mock_result. */
 export function studentMockResult(p: ParsedResult): Record<string, unknown> {
   const out: Record<string, unknown> = {};
