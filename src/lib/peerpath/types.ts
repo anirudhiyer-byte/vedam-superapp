@@ -202,3 +202,24 @@ export type ImpactOutcome = {
 };
 export type ImpactRange = { demand: ImpactDemand; outcome: ImpactOutcome };
 export type AdminInsights = { mode: string; ranges: Record<"7" | "30" | "90", ImpactRange> };
+
+/** Admin Impact trends from pp_admin_impact_trend (0185). Counts only: no names, emails, phones or ids. */
+export type ImpactTrendDay = {
+  /** IST calendar day, YYYY-MM-DD */
+  d: string;
+  /** booking tries that day (any result) */
+  tries: number;
+  /** tries that booked (code OK) */
+  booked: number;
+  /** signed-in applicants whose first chat in the last 90 days ended that day */
+  chats: number;
+  /** of those, how many paid after that chat */
+  paid_after: number;
+};
+export type AdminImpactTrend = {
+  mode: string;
+  /** one row per IST day for the last 90 days, oldest first */
+  days: ImpactTrendDay[];
+  /** days from the first chat to paying: [<1, 1–3, 3–7, 7–14, 14–30, 30+] for each range */
+  pay_bins: Record<"7" | "30" | "90", number[]>;
+};
