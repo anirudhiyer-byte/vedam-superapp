@@ -289,3 +289,25 @@ describe("Counselling table: the sheet's three scholarship columns (0192)", () =
     expect(formatValue("num", "cs_max_pct", null)).toBe("—");
   });
 });
+
+describe("Counselling table: Confirmation, Additional comments, Proposed fee (0193)", () => {
+  it("sit where the sheets have them: Confirmation after the Meet column, the other two after OL cancelled", () => {
+    const c = DEFAULT_COLUMNS.couns;
+    const at = (k: string) => c.indexOf(k);
+    expect(at("cs_confirmation")).toBe(at("counselling_meet") + 1);
+    expect(at("cs_additional_comments")).toBe(at("ol_cancelled") + 1);
+    expect(at("cs_proposed_fee")).toBe(at("cs_additional_comments") + 1);
+    expect(at("cs_proposed_fee")).toBeLessThan(at("campus_fee"));
+    expect(new Set(c).size).toBe(c.length); // a column shows once
+  });
+  it("use the sheets' names; the fee in rupees, Confirmation as Yes / No", () => {
+    expect(columnLabel("cs_confirmation")).toBe("Confirmation");
+    expect(columnLabel("cs_additional_comments")).toBe("Additional comments");
+    expect(columnLabel("cs_proposed_fee")).toBe("Proposed fee");
+    expect(formatValue("num", "cs_proposed_fee", 1500000)).toBe("₹15,00,000");
+    expect(formatValue("bool", "cs_confirmation", true)).toBe("Yes");
+    expect(formatValue("bool", "cs_confirmation", false)).toBe("No");
+    expect(formatValue("bool", "cs_confirmation", null)).toBe("—");
+    expect(formatValue("text", "cs_additional_comments", "Father will call back")).toBe("Father will call back");
+  });
+});

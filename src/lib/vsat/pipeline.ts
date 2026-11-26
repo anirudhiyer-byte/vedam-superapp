@@ -194,6 +194,8 @@ const ERRORS: Record<string, string> = {
   NOT_LOCKED: "These buckets are not locked.",
   // OL Date Increase (0189)
   OFFER_NOT_ACTIVE: "The offer isn't live any more (lapsed, cancelled, paid or past its last date). A lapsed offer is re-opened with Move stage → Offer sent.",
+  // sir's Confirmation column (0193)
+  NO_ONLINE_BOOKING: "Confirmation is only for a booked online session (not offline, not cancelled). Book the online session first.",
 };
 const FIELD_LABEL: Record<string, string> = {
   communication: "Communication", logic: "Logical reasoning", passion: "Passion for CS", achievements: "Achievements",
@@ -217,6 +219,8 @@ const FIELD_LABEL: Record<string, string> = {
   arpu_target: "ARPU target", locked: "Lock",
   // 0189
   days: "Days to add",
+  // 0193
+  additional_comments: "Additional comments", proposed_fee: "Proposed fee", confirmation: "Confirmation",
 };
 
 export function errorText(raw: string | null | undefined): string {

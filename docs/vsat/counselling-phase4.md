@@ -51,7 +51,8 @@ Admissions can see the links but can't change them. Every change is in the setti
     scholarship awarded;
   - counsellor feedback, parent present, already connected, came to know from, counsellor remarks, form submitted;
   - programme fee, scholarship amount, 1st-year scholarship, fee after scholarship, offer deadline;
-  - (0192) scholarship as per weightage, scholarship as per JEE Mains, max scholarship.
+  - (0192) scholarship as per weightage, scholarship as per JEE Mains, max scholarship;
+  - (0193) Confirmation right after the Meet column; Additional comments and Proposed fee after OL cancelled.
 
   Everyone opens on this default once; a column choice saved earlier is set aside. **Counsellor feedback** can be
   filtered.
@@ -169,6 +170,41 @@ the Counselling table, right after the fee columns, in the sheet's order:
   from the table, the filter, missing data, and access. `vsat_grid`, `vsat_grid_counsellor`, `vsat_offer_phase6` and
   `vsat_scholarship_sheet_formulas` pass too. Unit: `grid.test.ts`.
 - Production (only with the owner's OK): apply **0192** after 0190 and 0191.
+
+## Confirmation, Additional comments, Proposed fee (0193, alpha test 26 Nov)
+
+The last three columns of sir's sheets that the Counselling table did not have. Admissions write them, so admins and
+admissions can edit them in the student drawer (Counselling & scholarship → "Sheet columns"), from PI cleared on.
+
+| Column | Sheet | What it holds |
+|---|---|---|
+| Confirmation | Online Counselling, after Link | Yes / No: the student confirmed the online session. Only for a booked online session (not offline, not cancelled). It belongs to that slot: when the session is moved, the old answer no longer shows, so set it again for the new slot. |
+| Additional comments | Pune BB / GGN BC | free text, up to 2,000 characters |
+| Proposed fee | Pune BE / GGN BF | whole rupees, 0 up to the campus programme fee; shown in ₹ |
+
+- Save sends only what changed; empty text, an empty fee or "Not set" clears a field. Every change is logged in
+  `crm_activity_log` (action `counselling_notes`, with before and after).
+- All three are table columns and can be filtered. Counsellors see them for their own students but can't change them.
+  Everyone opens the Counselling table on the default columns once more (`v6`).
+- Per student and VSAT attempt: a new attempt starts empty.
+- Errors: **NO_ONLINE_BOOKING** (Confirmation without a booked online session), **WRONG_STAGE** (before PI cleared),
+  `BAD_VALUE: proposed_fee` (not whole rupees, or above the programme fee).
+
+| Object | What |
+|---|---|
+| `vsat_counselling_notes` (new) | one row per student and attempt: comments, proposed fee, confirmed + the slot it was given for; RLS on, no policies, no browser access |
+| `vsat__counselling_notes_cols` (new, private) | the three values as the table shows them |
+| `vsat_counselling_notes_get` / `_set` (new) | the drawer's read and save; admins and admissions of the student's campus (`vsat__iv_managed`) |
+| `vsat__grid_catalog` / `vsat__grid` / `vsat__grid_virt_expr` (0192 bodies, patched) | + `cs_confirmation`, `cs_additional_comments`, `cs_proposed_fee` (virtual, Counselling group); read only when asked for |
+
+- Rollback: `supabase/rollback/0193_vsat_counselling_notes_down.sql` (puts back the 0192 bodies, drops the functions and
+  the table — rows typed in since 0193 are lost). Tested on staging: the down file ran inside a block that was undone;
+  the three bodies matched 0192 by md5, the ACLs were unchanged and every new object was gone.
+- Tests: `supabase/tests/vsat_counselling_notes.test.sql` (staging, 21/21): access (anon, no role, the counsellor,
+  Pune-only admissions), save / keep / clear / checks / stage / log, Confirmation (no booking, offline, moved session),
+  the table, filters and a counsellor's view, the drawer's read. `vsat_grid`, `vsat_grid_counsellor`,
+  `vsat_scholarship_columns` and `vsat_counselling_offline` pass too. Unit: `counselling-notes.test.ts`, `grid.test.ts`.
+- Production (only with the owner's OK): apply **0193** after 0192.
 
 ## Database (0184)
 

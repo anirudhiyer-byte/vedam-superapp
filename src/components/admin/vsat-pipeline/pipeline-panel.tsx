@@ -100,7 +100,7 @@ const IconPencil = () => <Svg className="h-3.5 w-3.5"><path d="M12 20h9M16.5 3.5
 // v2: the VSAT Exam (0172), Interview (0173) and Counselling (0184) tables got the sheet's columns, so an older saved choice is not reused
 // couns v3 (0186): everyone sees the new "Offline form filled" default column once
 // couns v4 (0189): everyone sees sir's offer-letter columns (OL sending / last date, date increase, seat block, reminders, cancelled) once
-const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "couns" ? "v5" : panel === "exam" || panel === "intv" ? "v2" : "v1"}:${panel}`;
+const colsKey = (panel: PanelKey) => `vsat-grid-cols:${panel === "couns" ? "v6" : panel === "exam" || panel === "intv" ? "v2" : "v1"}:${panel}`;
 // per-viewer convenience only; storage may be empty or throw (private window), so every touch is guarded
 function loadCols(panel: PanelKey): unknown { try { const s = localStorage.getItem(colsKey(panel)); return s ? JSON.parse(s) : null; } catch { return null; } }
 function saveCols(panel: PanelKey, cols: string[]) { try { localStorage.setItem(colsKey(panel), JSON.stringify(cols)); } catch { /* ignore */ } }

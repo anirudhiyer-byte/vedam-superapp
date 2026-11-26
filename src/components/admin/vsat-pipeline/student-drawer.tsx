@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
 import {
-  PARTS, STAGE_GROUPS, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst,
+  PANEL_STAGES, PARTS, STAGE_GROUPS, STAGE_LABEL, STATUSES, STATUS_LABEL, canManage, errorText, fmtIst,
   needsReason, statusLabel, type Stage, type Status, type VsatRoles,
 } from "@/lib/vsat/pipeline";
 import { verdictLabel } from "@/lib/vsat/interview-evaluation";
@@ -14,6 +14,7 @@ import { profileErrorText } from "@/lib/vsat/profile-prompt";
 import { ATTENDANCE_LABEL, type InterviewRow } from "@/lib/vsat/interviews";
 import { InterviewScheduleForm, InterviewStatus, slotText } from "./interview-tools";
 import { OfferBox } from "./offer-tools";
+import { NotesBox } from "./counselling-tools";
 import { STAGES_WITH_EMAIL, sendStageEmailsNow } from "@/lib/vsat/stage-notices-client";
 import { TRACKS } from "@/lib/vsat/tracks";
 import {
@@ -424,6 +425,8 @@ function CounsellingSection({ s, roles, team, onDone }: { s: Student; roles: Vsa
       )}
       {canAssign && <InterviewScheduleForm team={team} applicationId={s.profile.application_id} current={row} onDone={onDone} track={TRACKS.counselling} />}
       {canForm && c && !cancelled && !c.submitted_at && <CounsellingFormBox applicationId={s.profile.application_id} onDone={onDone} />}
+      {/* 0193: sir's sheet columns Confirmation, Additional comments, Proposed fee (admins and admissions) */}
+      {s.can_manage && (PANEL_STAGES.couns as readonly string[]).includes(st) && <NotesBox applicationId={s.profile.application_id} onDone={onDone} />}
       {showOffer && (
         <OfferBox applicationId={s.profile.application_id} stage={st} status={s.pipeline.status} offer={s.offer ?? null}
           canManage={s.can_manage} onDone={onDone} />
