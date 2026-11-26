@@ -2,16 +2,21 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cx, vx } from "@/components/admin/ui/vx";
-import { errorText } from "@/lib/vsat/pipeline";
+import { errorText, fmtIst } from "@/lib/vsat/pipeline";
 import { campusLabel } from "@/lib/vsat/leads-grid";
 import { offlineDateText, zoomLinkProblem, type OfflineDateRow, type ZoomLinkRow } from "@/lib/vsat/counselling-setup";
+import {
+  CONFIRMATION_CHOICES, NOTES_COMMENTS_MAX, draftOf, notesChanges, rupees, type Confirmation, type CounsellingNotes, type NotesDraft,
+} from "@/lib/vsat/counselling-notes";
 
 /**
  * VSAT counselling, owner's review 24 Nov 2026 (0184):
  *   ModeBar            admissions set Online / Offline for the selected students (students who reply by email)
  *   CounsellingSetup   one Zoom link per counsellor (admins) and the offline counselling dates per campus (admins and
  *                      admissions) — the online invite goes on the counsellor's link; the PI-cleared email lists the dates
- * The database checks every rule again (vsat_counselling_mode_staff, vsat_counsellor_zoom_set, vsat_offline_date_add / _remove).
+ *   NotesBox           (0193) the sheets' "Confirmation", "Additional Comments" and "Proposed Fee" for one student (drawer)
+ * The database checks every rule again (vsat_counselling_mode_staff, vsat_counsellor_zoom_set, vsat_offline_date_add / _remove,
+ * vsat_counselling_notes_set).
  */
 
 const input = vx.input;
@@ -49,6 +54,88 @@ export function ModeBar({ ids, onDone }: { ids: string[]; onDone: () => void }) 
       <button className={cx(vx.btn, vx.secondary)} disabled={busy} onClick={apply}>{busy ? "Saving…" : "Set mode"}</button>
       <span className="text-xs text-vx-faint">For students who replied by email. Online students get the invite on their counsellor&apos;s Zoom link; for offline students, book the counsellor and the offline date to record it (no invite).</span>
       {msg && <p className="w-full text-vx-ink" role="status">{msg}</p>}
+    </div>
+  );
+}
+
+/**
+ * Drawer (admins and admissions): sir's sheet columns "Confirmation" (the student confirmed the online session — only for a
+ * booked online session, and for that slot: a moved session needs it again), "Additional Comments" and "Proposed Fee".
+ * Save sends only what changed; the table shows the saved values.
+ */
+export function NotesBox({ applicationId, onDone }: { applicationId: string; onDone: () => void }) {
+  const [supabase] = useState(() => createClient());
+  const [saved, setSaved] = useState<CounsellingNotes | null>(null);
+  const [draft, setDraft] = useState<NotesDraft>({ comments: "", fee: "", confirmation: "" });
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<{ text: string; ok: boolean } | null>(null);
+
+  useEffect(() => {
+    let on = true;
+    setSaved(null); setMsg(null);
+    void supabase.rpc("vsat_counselling_notes_get", { p: { application_id: applicationId } }).then(({ data, error }) => {
+      if (!on) return;
+      if (error) return setMsg({ text: errorText(error.message), ok: false });
+      const n = data as CounsellingNotes;
+      setSaved(n); setDraft(draftOf(n));
+    });
+    return () => { on = false; };
+  }, [supabase, applicationId]);
+
+  if (!saved) return msg ? <p role="alert" className={vx.error}>{msg.text}</p> : null;
+  const check = notesChanges(saved, draft);
+  const changed = !check.ok || check.payload !== null;
+  const edit = (patch: Partial<NotesDraft>) => { setDraft((d) => ({ ...d, ...patch })); setMsg(null); };
+
+  async function save() {
+    if (!saved) return;
+    const c = notesChanges(saved, draft);
+    if (!c.ok) return setMsg({ text: c.error, ok: false });
+    if (!c.payload) return;
+    setBusy(true); setMsg(null);
+    const { data, error } = await supabase.rpc("vsat_counselling_notes_set", { p: c.payload });
+    setBusy(false);
+    if (error) return setMsg({ text: errorText(error.message), ok: false });
+    const n = data as CounsellingNotes;
+    setSaved(n); setDraft(draftOf(n));
+    setMsg({ text: "Saved ✓", ok: true });
+    onDone();
+  }
+
+  const confOff = !saved.editable || (!saved.online_slot && draft.confirmation === "");
+  return (
+    <div className="space-y-3 rounded-lg border border-vx-line p-3">
+      <div>
+        <p className="text-xs font-semibold text-vx-faint">Sheet columns: Confirmation, Additional comments, Proposed fee</p>
+        {!saved.editable && <p className="mt-1 text-xs text-vx-faint">These can be changed from PI cleared on.</p>}
+      </div>
+      <label className="block text-xs text-vx-faint">
+        Confirmation
+        <select className={cx(input, "mt-1 block max-w-[12rem]")} value={draft.confirmation} disabled={busy || confOff}
+          onChange={(e) => edit({ confirmation: e.target.value as Confirmation })}>
+          {CONFIRMATION_CHOICES.map((c) => <option key={c.v} value={c.v}>{c.label}</option>)}
+        </select>
+        <span className="mt-1 block">
+          {saved.online_slot ? `Did the student confirm the online session on ${fmtIst(saved.online_slot)}?` : "Only for a booked online session."}
+        </span>
+      </label>
+      <label className="block text-xs text-vx-faint">
+        Proposed fee (₹)
+        <input className={cx(input, "mt-1 block max-w-[12rem]")} inputMode="numeric" maxLength={14} placeholder="e.g. 15,00,000"
+          value={draft.fee} disabled={busy || !saved.editable} onChange={(e) => edit({ fee: e.target.value })} />
+        {saved.programme_fee != null && <span className="mt-1 block">Up to the programme fee, {rupees(saved.programme_fee)}.</span>}
+      </label>
+      <label className="block text-xs text-vx-faint">
+        Additional comments
+        <textarea className={cx(vx.textarea, "mt-1")} rows={3} maxLength={NOTES_COMMENTS_MAX} value={draft.comments}
+          disabled={busy || !saved.editable} onChange={(e) => edit({ comments: e.target.value })} />
+      </label>
+      {saved.editable && (
+        <button type="button" className={cx(vx.btn, vx.secondary, vx.sm)} disabled={busy || !changed} onClick={() => void save()}>
+          {busy ? "Saving…" : "Save"}
+        </button>
+      )}
+      {msg && <p className={cx("text-xs", msg.ok ? "text-vx-green" : "text-[#ffb3bf]")} role={msg.ok ? "status" : "alert"}>{msg.text}</p>}
     </div>
   );
 }

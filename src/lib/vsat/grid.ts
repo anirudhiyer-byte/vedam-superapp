@@ -9,8 +9,8 @@ import { PANEL_STAGES, STAGE_LABEL, isStage, statusLabel, fmtIst, type PanelKey,
 import { ATTENDANCE_LABEL, MEET_LABEL, isMeetState } from "@/lib/vsat/interviews";
 import { COUNSELLOR_FEEDBACK, FEEDBACK_LABEL, PARENT_LABEL, PARENT_PRESENT } from "@/lib/vsat/counselling-form";
 
-/** 0184: the fee columns of the counselling sheet, shown in rupees. */
-export const MONEY_KEYS = ["campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee"] as const;
+/** 0184: the fee columns of the counselling sheet, shown in rupees (0193: + the sheet's "Proposed Fee"). */
+export const MONEY_KEYS = ["campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee", "cs_proposed_fee"] as const;
 
 export type GridColType = "text" | "num" | "bool" | "date" | "ts" | "stage" | "status" | "json" | "uuid";
 /** `filterable` comes from the database (0135): real columns of a filterable type, plus the virtual ones it has a fixed expression for. */
@@ -177,6 +177,8 @@ const LABELS: Record<string, string> = {
   cs_offline_form_filled: "Offline form filled",
   // 0192: the sheet's three scholarship columns at its end (live, from the current buckets)
   cs_weightage_pct: "Scholarship as per weightage", cs_jee_pct: "Scholarship as per JEE Mains", cs_max_pct: "Max scholarship",
+  // 0193: the sheets' last three columns, written by admissions (student drawer)
+  cs_confirmation: "Confirmation", cs_additional_comments: "Additional comments", cs_proposed_fee: "Proposed fee",
   // 0189: sir's offer-letter columns ("Selected For Counselling" sheet)
   ol_date_increase: "OL date increase (days)", seat_block_status: "Seat block status", seat_block_date: "Seat block date (IST)",
   ol_reminder_1: "OL reminder 1", ol_reminder_2: "OL reminder 2", ol_cancelled: "OL cancelled",
@@ -261,10 +263,13 @@ export const INTERVIEW_SHEET_COLUMNS = [
  * 0189: the sheet's offer-letter columns (OL Sending date, OL Last date, OL Date Increase, Seat Block Status / Date,
  * OL Reminder 1 / 2, OL Cancelled) come before the fee columns, in the sheet's order.
  * 0192: after the fee columns, the sheet's "Scholarship as Per Weightage", "as Per JEE Mains" and "Max Scholarship".
+ * 0193: the Online Counselling sheet's "Confirmation" after the Meet column; "Additional Comments" and "Proposed Fee" after
+ * OL Cancelled (admissions write them in the student drawer).
  */
 export const COUNSELLING_SHEET_COLUMNS = [
-  "registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_mode", "counselling_attendance",
-  "counselling_reschedules",
+  "registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet",
+  // 0193: the Online Counselling sheet's "Confirmation" (after Date, Time Slot, Link)
+  "cs_confirmation", "counselling_mode", "counselling_attendance", "counselling_reschedules",
   // 0186: the sheet's "Offline Form Filled"
   "cs_offline_form_filled",
   // the sheet: VEDAM ID, State, City, Financial Capability, Why?, the five remarks, Why should Vedam accept you
@@ -279,6 +284,8 @@ export const COUNSELLING_SHEET_COLUMNS = [
   // 0189: the offer letter (sheet columns AU–BB)
   "offer_released_at", "offer_expires_at", "ol_date_increase", "seat_block_status", "seat_block_date", "ol_reminder_1", "ol_reminder_2",
   "ol_cancelled",
+  // 0193: the sheet's "Additional Comments" and "Proposed Fee" (after OL Cancelled, before the fees)
+  "cs_additional_comments", "cs_proposed_fee",
   // the fee maths at the sheet's end
   "campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee",
   // 0192: then Scholarship as Per Weightage, as Per JEE Mains, Max Scholarship (Pune BK–BM, GGN BL–BN)
