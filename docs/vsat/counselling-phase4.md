@@ -50,7 +50,8 @@ Admissions can see the links but can't change them. Every change is in the setti
   - scholarship score, interviewer, verdict, category, award (formula %), the counsellor's adjustment, actual
     scholarship awarded;
   - counsellor feedback, parent present, already connected, came to know from, counsellor remarks, form submitted;
-  - programme fee, scholarship amount, 1st-year scholarship, fee after scholarship, offer deadline.
+  - programme fee, scholarship amount, 1st-year scholarship, fee after scholarship, offer deadline;
+  - (0192) scholarship as per weightage, scholarship as per JEE Mains, max scholarship.
 
   Everyone opens on this default once; a column choice saved earlier is set aside. **Counsellor feedback** can be
   filtered.
@@ -134,6 +135,40 @@ Before 0186 an offline student could not be booked (MODE_OFFLINE), so their coun
 - Tests: `supabase/tests/vsat_counselling_offline.test.sql` (staging). `vsat_counselling_phase4.test.sql` D and H were
   changed for this decision: the offline student is now recorded (was MODE_OFFLINE), Send records the offline row, and
   booked counts 4 (was 3).
+
+## Sir's three scholarship columns (0192, alpha test 26 Nov)
+
+The alpha test against sir's review found that the Counselling table showed only the final "Calculated %", while sir's
+"Selected For Counselling" sheets end with three scholarship columns (Pune BK–BM, GGN BL–BN). They are now columns of
+the Counselling table, right after the fee columns, in the sheet's order:
+
+| Column | Sheet | What it shows |
+|---|---|---|
+| Scholarship as per weightage | Scholarship as Per Weightage | the bucket % for the student's scholarship score |
+| Scholarship as per JEE Mains | Scholarship as Per JEE Mains | the JEE slab (90 / 93 / 95 / 97 / 98.5 → 30 / 40 / 50 / 60 / 70 %) when the JEE Mains percentile is 90 or more, else the weightage % |
+| Max scholarship | Max Scholarship | the higher of the two, +10 when the interview achievements score is 5 and that is 30 % or less, at most 100 |
+
+- The values are **live**: worked out from the current buckets of the student's VSAT (as on the Buckets page), so they
+  follow a bucket change. "Calculated %" stays the % saved with the counselling form.
+- Max uses the JEE % only where the campus has the JEE floor on (Scholarship & Scoring); both campuses have it on, as in
+  the sheet.
+- A student without the data for a score (or not Pune / Gurugram) shows empty cells.
+- All three can be filtered (number). Everyone opens the Counselling table on the default columns once more (saved
+  column choice set aside, `v5`).
+
+| Object | What |
+|---|---|
+| `vsat__scholarship_cols` (new, private) | the three values for one student, from `vsat__calc_safe` and `vsat_calc_final_scholarship` |
+| `vsat__grid_catalog` / `vsat__grid` / `vsat__grid_virt_expr` (0189 bodies, patched) | + `cs_weightage_pct`, `cs_jee_pct`, `cs_max_pct` (virtual, Counselling group); worked out only when the table asks for them |
+
+- Rollback: `supabase/rollback/0192_vsat_scholarship_columns_down.sql` (puts back the 0189 bodies, drops the helper).
+  Tested on staging: the down file ran inside a block that was undone; the three bodies matched 0189 by md5, the ACLs
+  were unchanged and the helper was gone.
+- Tests: `supabase/tests/vsat_scholarship_columns.test.sql` (staging, 8/8): the sheet's rules worked out on their own for
+  every staging student at PI cleared or later (151, of whom 11 with a JEE slab and 14 with the +10), the same values
+  from the table, the filter, missing data, and access. `vsat_grid`, `vsat_grid_counsellor`, `vsat_offer_phase6` and
+  `vsat_scholarship_sheet_formulas` pass too. Unit: `grid.test.ts`.
+- Production (only with the owner's OK): apply **0192** after 0190 and 0191.
 
 ## Database (0184)
 

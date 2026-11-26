@@ -175,6 +175,8 @@ const LABELS: Record<string, string> = {
   cs_submitted_at: "Counselling form submitted (IST)", campus_fee: "Programme fee", cs_scholarship_amount: "Scholarship amount",
   cs_first_year_scholarship: "1st-year scholarship", cs_actual_fee: "Fee after scholarship",
   cs_offline_form_filled: "Offline form filled",
+  // 0192: the sheet's three scholarship columns at its end (live, from the current buckets)
+  cs_weightage_pct: "Scholarship as per weightage", cs_jee_pct: "Scholarship as per JEE Mains", cs_max_pct: "Max scholarship",
   // 0189: sir's offer-letter columns ("Selected For Counselling" sheet)
   ol_date_increase: "OL date increase (days)", seat_block_status: "Seat block status", seat_block_date: "Seat block date (IST)",
   ol_reminder_1: "OL reminder 1", ol_reminder_2: "OL reminder 2", ol_cancelled: "OL cancelled",
@@ -258,6 +260,7 @@ export const INTERVIEW_SHEET_COLUMNS = [
  * (Counselor / Status / Mode / Date are the booking columns at the front).
  * 0189: the sheet's offer-letter columns (OL Sending date, OL Last date, OL Date Increase, Seat Block Status / Date,
  * OL Reminder 1 / 2, OL Cancelled) come before the fee columns, in the sheet's order.
+ * 0192: after the fee columns, the sheet's "Scholarship as Per Weightage", "as Per JEE Mains" and "Max Scholarship".
  */
 export const COUNSELLING_SHEET_COLUMNS = [
   "registered_name", "campus", "vsat", "stage", "counsellor", "counselling_slot", "counselling_meet", "counselling_mode", "counselling_attendance",
@@ -277,7 +280,9 @@ export const COUNSELLING_SHEET_COLUMNS = [
   "offer_released_at", "offer_expires_at", "ol_date_increase", "seat_block_status", "seat_block_date", "ol_reminder_1", "ol_reminder_2",
   "ol_cancelled",
   // the fee maths at the sheet's end
-  "campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee", "stage_changed_at",
+  "campus_fee", "cs_scholarship_amount", "cs_first_year_scholarship", "cs_actual_fee",
+  // 0192: then Scholarship as Per Weightage, as Per JEE Mains, Max Scholarship (Pune BK–BM, GGN BL–BN)
+  "cs_weightage_pct", "cs_jee_pct", "cs_max_pct", "stage_changed_at",
 ] as const;
 
 /** Default columns per panel — the ones the old panels showed. "registered_name" is always first and cannot be removed. */

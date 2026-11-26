@@ -269,3 +269,23 @@ describe("Counselling table: offline sessions (0186)", () => {
     expect(formatValue("bool", "cs_offline_form_filled", false)).toBe("No");
   });
 });
+
+describe("Counselling table: the sheet's three scholarship columns (0192)", () => {
+  it("come right after the fee columns, in the sheet's order (Weightage, JEE Mains, Max)", () => {
+    const c = DEFAULT_COLUMNS.couns;
+    const at = (k: string) => c.indexOf(k);
+    expect(at("cs_weightage_pct")).toBe(at("cs_actual_fee") + 1);
+    expect(at("cs_jee_pct")).toBe(at("cs_weightage_pct") + 1);
+    expect(at("cs_max_pct")).toBe(at("cs_jee_pct") + 1);
+    expect(new Set(c).size).toBe(c.length); // a column shows once
+  });
+  it("use the sheet's names and show as percentages", () => {
+    expect(columnLabel("cs_weightage_pct")).toBe("Scholarship as per weightage");
+    expect(columnLabel("cs_jee_pct")).toBe("Scholarship as per JEE Mains");
+    expect(columnLabel("cs_max_pct")).toBe("Max scholarship");
+    expect(formatValue("num", "cs_weightage_pct", 25)).toBe("25%");
+    expect(formatValue("num", "cs_jee_pct", 40)).toBe("40%");
+    expect(formatValue("num", "cs_max_pct", 50)).toBe("50%");
+    expect(formatValue("num", "cs_max_pct", null)).toBe("—");
+  });
+});
